@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AVImageGenerator module provides the APIs for extracting video frames at given time points from videos.
+The module provides the APIs for extracting video frames at given time points from videos.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 

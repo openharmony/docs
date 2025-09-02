@@ -224,11 +224,11 @@
     constructor() {
     }
 
-    test(): Array<Number> {
+    test(): Array<number> {
       return [1, 2, 3, 4]
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -653,7 +653,7 @@
       return p;
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log(" " + param);
     }
   }
@@ -725,7 +725,7 @@
       setTimeout( () => { param("suc") }, 10000)
     }
 
-    toString(param:String): void {
+    toString(param: string): void {
       console.log(" " + param);
     }
   }

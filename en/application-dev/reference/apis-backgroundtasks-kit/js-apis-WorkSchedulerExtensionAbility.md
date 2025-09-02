@@ -30,9 +30,9 @@ type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes| No| Context of the WorkSchedulerExtensionAbility. This context inherits from **ExtensionContext**.|
+| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | No| No| Context of the WorkSchedulerExtensionAbility. This context inherits from **ExtensionContext**.|
 
 ### onWorkStart
 
@@ -64,7 +64,7 @@ Called when the system starts scheduling the deferred task.
 
 onWorkStop(work: workScheduler.WorkInfo): void
 
-Called when the system stops scheduling the deferred task.
+Called when the system stops scheduling the deferred task. This callback is triggered when the deferred task times out for 2 minutes or the stopWork API is called to cancel the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 

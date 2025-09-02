@@ -1,11 +1,8 @@
 # Signing and Signature Recovery Using an RSA Key Pair (PKCS1 Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
 
-
 **Signing**
-
 
 1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA key pair (**KeyPair**) with two primes. The **KeyPair** instance consists of a public key (**PubKey**) and a private key (**PriKey**).
    
@@ -17,9 +14,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 
 4. Call [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1) to generate a signature.
 
-
 **Signature Verification**
-
 
 1. Call [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA1024|PKCS1|SHA256|Recover'** to create a **Verify** instance. The key parameters must be the same as that used to create the **Sign** instance.
 
@@ -32,7 +27,6 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // The plaintext is split into input1 and input2.
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   async function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "RSA1024|PKCS1|NoHash|OnlySign";
@@ -67,7 +61,6 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // The plaintext is split into input1 and input2.
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "RSA1024|PKCS1|NoHash|OnlySign";

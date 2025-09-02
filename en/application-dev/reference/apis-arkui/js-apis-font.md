@@ -38,7 +38,7 @@ Registers a custom font with the font manager.
 
 ## FontOptions
 
-Information about the custom font to register.
+Provides the information about the custom font to register.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -205,7 +205,7 @@ Obtains information about a system font based on the font name.
 
 ## FontInfo<sup>10+</sup>
 
-Information about the system font.
+Provides the information about the system font.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -279,7 +279,7 @@ Obtains the UI font configuration of the system.
 
 ## UIFontConfig<sup>11+</sup>
 
-UI font configuration of the system.
+Describes the UI font configuration of the system.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -292,7 +292,7 @@ UI font configuration of the system.
 
 ## UIFontGenericInfo<sup>11+</sup>
 
-List of supported generic font families.
+Provides the list of supported generic font families.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -305,7 +305,7 @@ List of supported generic font families.
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 
-List of alternate generic font families.
+Provides the list of alternate generic font families.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -317,7 +317,7 @@ List of alternate generic font families.
 
 ## UIFontAliasInfo<sup>11+</sup>
 
-Alias list.
+Provides the alias list.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

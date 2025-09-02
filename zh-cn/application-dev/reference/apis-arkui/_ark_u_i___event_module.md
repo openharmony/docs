@@ -218,7 +218,7 @@ anonymous enum
 | UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。  | 
 | UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。  | 
 | UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。  | 
-| UI_MOUSE_EVENT_ACTION_CANCEL  | 鼠标按键被取消。  | 
+| UI_MOUSE_EVENT_ACTION_CANCEL  | 鼠标按键被取消。<br>**起始版本：** 18  | 
 
 
 ### anonymous enum
@@ -337,6 +337,8 @@ enum ArkUI_InteractionHand
 | ARKUI_EVENT_HAND_LEFT  | 左手。  | 
 | ARKUI_EVENT_HAND_RIGHT  | 右手。  | 
 
+### anonymous enum
+
 ```
 anonymous enum
 ```
@@ -365,7 +367,7 @@ double OH_ArkUI_AxisEvent_GetHorizontalAxisValue (const ArkUI_UIInputEvent * eve
 ```
 **描述：**
 
-获取当前轴事件的水平滚动轴的值。
+获取当前轴事件的水平滚动轴的值，通过在触控板上双指横向滑动产生。当通过触控板双指竖向滑动时：1.上报的数值单位为PX，为单次滚动增量，非滚动总量；2.上报的数值不受用户配置的放大系数[OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)影响；3.数值的正负代表方向，双指从左往右滑动时上报数值为负数，双指从右往左滑动时上报数值为正数；4.方向会受系统设置中"自然滚动"配置的影响。
 
 **起始版本：** 12
 
@@ -409,7 +411,7 @@ double OH_ArkUI_AxisEvent_GetVerticalAxisValue (const ArkUI_UIInputEvent * event
 ```
 **描述：**
 
-获取当前轴事件的垂直滚动轴的值。
+获取当前轴事件的垂直滚动轴的值。通常由鼠标滚轮，或用户在触控板上双指竖向滑动产生。当通过鼠标滚动触发时：1.上报的数值单位为角度，为单次滚动角度增量，非滚动总量；2.上报的数值已与用户配置的放大系数[OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)叠加运算；3.数值的正负代表方向，向前滚动鼠标滚轮时上报数值为负数，向后滚动鼠标滚轮时上报数值为正数；当通过触控板双指竖向滑动时：1.上报的数值单位为PX，为单次滚动增量，非滚动总量；2.上报的数值不受用户配置的放大系数[OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)影响；3.数值的正负代表方向，双指从上往下滑动时上报数值为负数，双指从下往上滑动时上报数值为正数；4.方向会受系统设置中"自然滚动"配置的影响。通常情况下，垂直滚动轴事件只能驱动竖向的滑动手势响应，但当鼠标指针下命中的可滑动手势里，如果可响应的方向都是一致的，那么垂直滚动轴事件可以驱动这些滑动手势得到响应，即使这些手势所定义的方向是横向的。
 
 **起始版本：** 12
 
@@ -987,7 +989,7 @@ int32_t OH_ArkUI_PointerEvent_GetChangedPointerId (const ArkUI_UIInputEvent * ev
 ```
 **描述：**
 
-获取当前触摸事件触发的id。
+获取触发当前事件的对应的手指id。
 
 **起始版本：** 15
 
@@ -1349,7 +1351,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation (const ArkUI_UIInputEvent * eve
 ```
 **描述：**
 
-设置是否阻止事件冒泡。
+设置是否阻止事件冒泡。仅适用于接收基础事件的场景，如使用NODE_ON_TOUCH接收touch事件场景，不适用于轴事件。对于通过[OH_ArkUI_GestureEvent_GetRawInputEvent](_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent)接口从一个手势事件中获取到的ArkUI_UIInputEvent对象，无法使用该接口。
 
 **起始版本：** 12
 
@@ -1372,7 +1374,7 @@ int32_t OH_ArkUI_UIInputEvent_GetAction (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取UI输入事件的操作类型。
+获取输入事件的action类型。action类型为基础事件在不同阶段的类型定义，通常代表了事件的特点，并表征事件的开始与结束，如touch down, touch up。触控事件的action类型为[UI_TOUCH_EVENT_ACTION_XXX](#anonymous-enum)，鼠标事件的action类型为[UI_MOUSE_EVENT_ACTION_XXX](#anonymous-enum-3)。轴事件的action类型获取请使用[OH_ArkUI_AxisEvent_GetAxisAction](#oh_arkui_axisevent_getaxisaction)，返回值类型为[UI_AXIS_EVENT_ACTION_XXX](#anonymous-enum-6)，按键事件的action类型获取请使用[OH_ArkUI_KeyEvent_GetType](./_ark_u_i___native_module.md#oh_arkui_keyevent_gettype)接口。
 
 **起始版本：** 12
 
@@ -1384,7 +1386,7 @@ int32_t OH_ArkUI_UIInputEvent_GetAction (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前UI输入事件的操作类型，如果参数异常则返回0。
+返回当前UI输入事件的操作类型，如果参数异常则返回-1。
 
 
 ### OH_ArkUI_UIInputEvent_GetDeviceId()
@@ -1462,7 +1464,7 @@ int32_t OH_ArkUI_UIInputEvent_GetSourceType (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取产生UI输入事件的来源类型。
+获取UI输入事件的触发源类型。输入源为产生输入事件的真实物理设备，如触摸屏，鼠标等，由UI_INPUT_EVENT_SOURCE_TYPE_XXX定义，而输入工具为操作输入源设备来产生事件的工具，如手指、触控笔。在某些情况下两者可能容易发生混淆，比如当用户在操作鼠标时，鼠标既是输入源，也是输入工具。对于按键事件，并不支持获取输入源类型，返回unkown。
 
 **起始版本：** 12
 
@@ -1484,7 +1486,7 @@ int32_t OH_ArkUI_UIInputEvent_GetToolType (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取产生UI输入事件的工具类型。
+获取UI输入事件的工具类型。输入工具为操作输入源设备来产生事件的操作方，如手指、触控笔，他们自身不真实产生事件，但可以驱动输入源设备不断产生事件。返回的类型由UI_INPUT_EVENT_TOOL_TYPE_XXX枚举值定义。对于按键事件，并不支持获取输入工具类型，返回unkown。
 
 **起始版本：** 12
 
@@ -1687,7 +1689,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand (const ArkUI_UIInputEvent * eve
 ```
 **描述：**
 
-获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。该值并非在按下时即可获取，直到系统推断出结果前，都只会返回NONE，请不要过度依赖该接口返回的结果。
 
 **起始版本：** 15
 
@@ -1710,7 +1712,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEven
 ```
 **描述：**
 
-获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。该值并非在按下时即可获取，直到系统推断出结果前，都只会返回NONE，请不要过度依赖该接口返回的结果。
 
 **起始版本：** 15
 

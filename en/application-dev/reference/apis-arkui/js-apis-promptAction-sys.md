@@ -16,7 +16,7 @@ import { promptAction } from '@kit.ArkUI';
 
 ### ToastShowMode
 
-Describes the mode in which the toast is shown.
+Enumerates display modes for toasts. By default, the toast is displayed within the application and supports display in sub-windows.
 
 **System API**: This is a system API.
 

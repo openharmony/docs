@@ -61,7 +61,7 @@ Read [AVMetadataExtractor](../../reference/apis-media-kit/capi-avmetadataextract
 5. Call [OH_AVMetadataExtractor_Release()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_release) to destroy the instance and release resources.
 
 
-## Development Example
+## Sample Code
 
 Refer to the sample code below to set the file descriptor and obtain the metadata and album cover of an audio asset.
 

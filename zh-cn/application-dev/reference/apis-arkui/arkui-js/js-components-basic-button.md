@@ -138,10 +138,10 @@ export default {
     downloadText: "Download"
   },
   progress(e) {
-    this.count+= 10;
-    this.downloadText = this.count+ "%";
+    this.count += 10;
+    this.downloadText = this.count + "%";
     this.$element('download-btn').setProgress({ progress: this.count});
-    if (this.count>= 100) {
+    if (this.count >= 100) {
       this.downloadText = "Done";
     }
   }

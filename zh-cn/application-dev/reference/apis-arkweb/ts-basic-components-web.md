@@ -333,7 +333,7 @@ deleteForward(length: number): void
 | ------ | -------- | ---- | ------------------------ |
 | length | number   | 是   | 从后往前删除Web输入框中指定长度的字符。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标前面所有字符；参数值为负数时，不执行删除操作。 |
 
-### deleteBackward12+</sup>
+### deleteBackward<sup>12+</sup>
 
 deleteBackward(length: number): void
 
@@ -384,6 +384,15 @@ constructor(message: string, sourceId: string, lineNumber: number, messageLevel:
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[constructor](#constructor9)代替。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型                                      | 必填 | 说明                               |
+| --------- | ----------------------------------------- | ---- | ---------------------------------- |
+| message | string | 是   | ConsoleMessage的日志输出信息。 |
+| sourceId | string | 是   | 网页源文件的路径和文件名。 |
+| lineNumber | number | 是   | ConsoleMessage的行号。 |
+| messageLevel | [MessageLevel](./ts-basic-components-web-e.md#messagelevel) | 是   | ConsoleMessage的日志级别。 |
 
 ### constructor<sup>9+</sup>
 
@@ -794,11 +803,7 @@ getResponseDataEx(): string | number | ArrayBuffer | Resource | undefined
 
 |类型|说明|
 |---|---|
-|string|返回HTML格式的字符串。|
-|number|返回文件句柄。|
-|ArrayBuffer|返回二进制数据。|
-|[Resource](../apis-arkui/arkui-ts/ts-types.md)|返回`$rawfile`资源。|
-|undefined|如果没有可用数据，返回`undefined`。|
+|string \| number \| ArrayBuffer \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) \| undefined | string返回HTML格式的字符串。 number返回文件句柄。 ArrayBuffer返回二进制数据。 Resource返回`$rawfile`资源。 如果没有可用数据，返回`undefined`。 |
 
 ### getResponseIsReady<sup>13+</sup>
 
@@ -1148,6 +1153,19 @@ confirm(authUri : string): void
 | ------- | ------ | ---- | ------- |
 | authUri | string | 是    | 凭据的关键值。 |
 
+支持的证书签名算法以及秘钥长度详见下表。
+| 签名算法     | 秘钥长度   | 
+| ------- | ------ |
+| SSL_SIGN_RSA_PKCS1_SHA256 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PKCS1_SHA384 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PKCS1_SHA512 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PSS_SHA256 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PSS_SHA384 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_RSA_PSS_SHA512 | 1024（API version 18后开始支持）、2048、3072、4096 | 
+| SSL_SIGN_ECDSA_SECP256R1_SHA256 | 256 | 
+| SSL_SIGN_ECDSA_SECP384R1_SHA384 | 384 | 
+| SSL_SIGN_ECDSA_SECP521R1_SHA512 | 521 | 
+
 ### cancel<sup>9+</sup>
 
 cancel(): void
@@ -1274,9 +1292,9 @@ grant(config: ScreenCaptureConfig): void
 
 **参数：**
 
-| 参数名    | 类型                                     | 必填   | 说明    |
-| ------ | ---------------------------------------- | ---- | ------- |
-| config | [ScreenCaptureConfig](#screencaptureconfig10) | 是   | 屏幕捕获配置。 |
+| 参数名    | 类型                                     | 只读 | 可选 | 说明    |
+| ------ | ---------------------------------------- | ---- | ---- |------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | 否 | 否 | 屏幕捕获配置。 |
 
 ## EventResult<sup>12+</sup>
 

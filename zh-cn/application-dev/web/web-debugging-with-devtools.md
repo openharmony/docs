@@ -34,7 +34,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
      }
    }
    ```
-2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
    ```
    "requestPermissions":[
@@ -71,7 +71,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
    ```
 
 ### 端口转发
-当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。也可以参考[自动映射WebView调试链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118)。  
+当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。也可以参考[自动映射WebView调试链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations#section48387420516)。  
 Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将设备上的domain socket转发到电脑上。
 
 1. 先在hdc shell里执行如下命令，查询ArkWeb在设备里创建的domain socket。  
@@ -275,6 +275,11 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
 
 ## 常见问题与解决方法
 
+### 可以调试系统浏览器打开的网页吗？
+
+能否调试系统浏览器打开的网页，取决于系统浏览器是否开启Web调试开关。
+* 当前系统浏览器已启用Web调试开关，可继续执行[调试步骤](#调试步骤)中的后续步骤。
+
 ### hdc无法发现设备
 **问题现象**
 
@@ -360,3 +365,15 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
     - 请确保Chrome调试工具界面的 "Configure" 中配置的端口号，与端口转发指定的TCP端口号一致。
     - 在本文档中，默认使用的TCP端口号为9222。   
       如果开发者使用了其他的TCP端口号(比如9223)，请同时修改[端口转发](#端口转发)中的TCP端口号和[Chrome调试工具界面"Configure"配置](#在chrome浏览器上打开调试工具页面)中的端口号。
+
+### Web组件无法使用DevTools工具进行调试
+**问题现象**
+
+  电脑端Chrome浏览器无法发现被调试网页。
+
+**问题原因**
+
+* 当同时使用HDC和ADB时，ADB会干扰DevTools与设备之间的WebSocket连接
+
+**解决方法**
+* 如果同时使用HDC和ADB，先关闭ADB进程，确保DevTools与设备建立WebSocket连接

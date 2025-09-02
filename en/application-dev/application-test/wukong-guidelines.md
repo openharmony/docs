@@ -26,23 +26,23 @@ The following figure shows the wukong component architecture and the responsibil
 
 1. The wukong tool is built in the system since API version 9.
 
-2. In API versions earlier than 9, you need to build the tool and push it to the target device. The procedure is as follows:
+2. When the PC is connected to one or more target devices, you can run test commands.
+
+3. Enter the shell mode before running any command.
+<!--Del-->
+4. In API versions earlier than 9, you need to build the tool and push it to the target device. The procedure is as follows:
 
    ```bash
-   // Build code.
+   # Build code
    ./build.sh --product-name rk3568 --build-target wukong
 
-   // Push code.
+   # Push code
    hdc shell mount -o rw,remount /
    hdc file send wukong /
    hdc shell chmod a+x /wukong
    hdc shell mv /wukong /bin/
    ```
-
-3. When the PC is connected to one or more target devices, you can run test commands.
-
-4. Enter the shell mode before running any command.
-
+<!--DelEnd-->
 ## Functions and Commands
 
 | Command          | Description                                          |
@@ -61,19 +61,18 @@ The following figure shows the wukong component architecture and the responsibil
   ```bash
   #If you are testing one device, run **hdc shell**.
   C:\Users>hdc shell
-  #
-
+  $
   #If you are testing multiple devices, run **hdc list targets** to obtain the SNs, and then run **hdc -t** open the shell.
   C:\Users>hdc list targets
   15xxx424axxxx345209d94xxxx8fxx900
   C:\Users>hdc -t 15xxx424axxxx345209d94xxxx8fxx900 shell
-  #
+  $
   ```
 
 - Obtain the bundle name and ability name of the application.
 
   ```bash
-  # wukong appinfo
+  $ wukong appinfo
   BundleName:  com.ohos.adminprovisioning
   AbilityName:  com.ohos.adminprovisioning.MainAbility
   BundleName:  com.ohos.callui
@@ -83,8 +82,7 @@ The following figure shows the wukong component architecture and the responsibil
 
   ```bash
   C:\Users>hdc shell
-  # wukong --help        // wukong help menu.
-  wukong: '--help' is not a valid wukong command. See 'wukong help'.
+  $ wukong help        #wukong help menu.
   usage: wukong <command> [<arguments>]
   These are common wukong command list:
     help                       wukong help information
@@ -93,7 +91,7 @@ The following figure shows the wukong component architecture and the responsibil
     special                    run special test
     focus                      run focus test
     appinfo                    show all app information
-  # wukong exec -help   // Help menu for wukong random testing.
+  $ wukong exec -help   #Help menu for wukong random testing.
   usage: wukong exec [<arguments>]
   These are wukong exec arguments list:
     -h, --help                 random test help
@@ -120,7 +118,7 @@ The following figure shows the wukong component architecture and the responsibil
     -B, --checkBWScreen        black and white screen detection
     -U, --Uri                  set Uri pages
     -x, --Uri-type             set Uri-type
-  # wukong special -help    // Help menu for wukong special testing.
+  $ wukong special -help    #Help menu for wukong special testing.
   usage: wukong special [<arguments>]
   These are wukong special arguments list:
     -h, --help                 special test help
@@ -135,7 +133,7 @@ The following figure shows the wukong component architecture and the responsibil
     -k, --spec_insomnia        power on/off event
     -T, --time                 total time of test
     -C, --component            component event
-    -p, --screenshot           get screenshot(only in componment input)
+    -p, --screenshot           get screenshot(only in compoment input)
     -r, --record               record user operation
     -R, --replay               replay user operation
     -u, --uitest               uitest dumpLayout
@@ -177,7 +175,7 @@ The following figure shows the wukong component architecture and the responsibil
 - Set 100 event injections.
 
   ```bash
-  # wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
+  $ wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
   ```
 
   The parameters in the command are described as follows.
@@ -195,16 +193,16 @@ The following figure shows the wukong component architecture and the responsibil
   ```bash
   > Explicit start
   > hdc_std shell
-  # wukong exec -b bundlename -a abilityname -U uri
+  $ wukong exec -b bundlename -e abilityname -U uri
 
   > Implicit start
   > hdc_std shell
-  # wukong exec -b bundlename -U uri -x uriType
+  $ wukong exec -b bundlename -U uri -x uriType
   ```
 
 - Set the ability that allows and blocks testing.
   ```bash
-  # wukong exec -b com.ohos.settings -e com.ohos.settings.MainAbility -E com.ohos.settings.AppInfoAbility
+  $ wukong exec -b com.ohos.settings -e com.ohos.settings.MainAbility -E com.ohos.settings.AppInfoAbility
   ```
   >  **NOTE**
   >
@@ -234,7 +232,7 @@ The following figure shows the wukong component architecture and the responsibil
 ### Samples
 
 ```bash
-# wukong special -C [bundlename] -p
+$ wukong special -C [bundlename] -p
 ```
 
 ## Focus Testing
@@ -245,7 +243,7 @@ The following figure shows the wukong component architecture and the responsibil
 | --------------- | ------------------------------------ | ---- | ---------------------------------------- |
 | -n,--numberfocus       | Sets the number of injections for each component.              | No  | Unit: times                |
 | -f, --focustypes       | Sets the types of component for the focus testing.              | No  | Use commas (,) to separate the types.                        |
-| -h,--help       | Obtains the help information about the test.              | No  |                          |
+| -h,--help       | Obtains the help information about the test.              | No  |  -                       |
 | -c,--count      | Sets the number of test times. This command conflicts with the **-T** command. Set either of them.  | No  | The default value is 10, in times.                      |
 | -i,--interval   | Sets the test interval.                        | No  | The default value is 1500, in millisecond.                      |
 | -s,--seed       | Sets the random seed.                        | No  | If the same random seed is set, the same random event sequence is generated.|
@@ -271,7 +269,7 @@ The following figure shows the wukong component architecture and the responsibil
 ### Samples
 
 ```bash
-# wukong focus -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
+$ wukong focus -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
 ```
 
 The parameters in the command are described as follows.
@@ -291,8 +289,8 @@ The parameters in the command are described as follows.
 
 After the test commands are executed, the test result is automatically generated. You can obtain the test result in the following directory:
 
-- For DevEco Studio versions earlier than September 22, 2022: /data/local/wukong/report/xxxxxxxx_xxxxxx/
-- For DevEco Studio versions later than September 22, 2022: /data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
+- For DevEco Studio versions earlier than September 22, 2022: **/data/local/wukong/report/xxxxxxxx_xxxxxx/**
+- For DevEco Studio versions later than September 22, 2022: **/data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/**
 
 ### Test Report Directories
 
@@ -308,15 +306,15 @@ After the test commands are executed, the test result is automatically generated
 You can run the hdc command to obtain logs to the local host and view the operation history.
 
 ```bash
-// The path of the wukong.log file is as follows:
+# The path of the wukong.log file is as follows:
 /data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/wukong.log
 
-// To view the directory of the wukong test report, run the following command:
-# cd /data/local/tmp/wukong/report/20170805_170053
-# ls
+# To view the directory of the wukong test report, run the following command:
+$ cd /data/local/tmp/wukong/report/20170805_170053
+$ ls
 data.js  exception  wukong.log  wukong_report.csv
 
-// Open the shell and run hdc file recv to obtain wukong logs.
+# Open the shell and run hdc file recv to obtain wukong logs.
 C:\Users\xxx>hdc file recv /data/local/tmp/wukong/report/20170805_170053/wukong.log C:\Users\xxx\Desktop\log
 [I][2024-01-03 20:08:02] HdcFile::TransferSummary success
 FileTransfer finish, Size:76492, File count = 1, time:16ms rate:4780.75kB/s

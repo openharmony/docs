@@ -1,14 +1,12 @@
 # Checking a Key (ArkTS)
 
-
 Check whether a key exists.
-
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
-2. Initialize the key property set. You can specify [HuksTag](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag) of the key to check. To check a single key, leave this parameter empty.
+2. Initialize the key property set to specify [the property tags of keys](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag). When a single key is queried, **TAG** can be empty.
 
 3. Use [hasKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukshaskeyitem11) to check whether the key exists.
 

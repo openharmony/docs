@@ -16,7 +16,7 @@ ArrayBuffer是ArkTS中的一种数据类型，用于表示通用的、固定长�
 | -------- | -------- |
 | napi_is_arraybuffer | 检查一个值是否为ArrayBuffer，以确保正在处理正确的数据类型。需要注意的是，此函数只能判断一个值是否为ArrayBuffer，而不能判断一个值是否为TypedArray。要判断一个值是否为TypedArray，可以使用napi_is_typedarray函数。 |
 | napi_get_arraybuffer_info | 获取给定的ArrayBuffer对象的相关信息，包括数据指针和数据长度。 |
-| napi_detach_arraybuffer | 将arraybuffer底层缓冲区与arraybuffer对象分离。分离后可以直接在C/C++中操作数据，而无需通过Node-API接口进行数据访问。 |
+| napi_detach_arraybuffer | 将ArrayBuffer底层缓冲区与ArrayBuffer对象分离。分离后可以直接在C/C++中操作数据，而无需通过Node-API接口进行数据访问。 |
 | napi_is_detached_arraybuffer | 判断给定的ArrayBuffer是否已经被分离。 |
 | napi_create_arraybuffer | 用于在Node-API模块中创建一个具有指定字节长度的ArkTS ArrayBuffer对象。 |
 
@@ -57,13 +57,13 @@ static napi_value IsArrayBuffer(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void;
+export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let value = new ArrayBuffer(1);
@@ -88,6 +88,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include <cstring>
 
 static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 {
@@ -120,6 +121,7 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_value bufferData = nullptr;
     void *newData = nullptr;
     napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
+    memcpy(newData, data, byteLength);
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
@@ -133,17 +135,24 @@ export class ArrayBufferInfo {
   byteLength: number;
   buffer: ArrayBuffer;
 }
-export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
-const buffer = new ArrayBuffer(10);
-hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
+try {
+  let typedArray = new Uint8Array([1, 2, 3, 4, 5]);
+  let buffer = typedArray.buffer;
+  let result = testNapi.getArrayBufferInfo(buffer) as testNapi.ArrayBufferInfo;
+  let resBuffer = new Uint8Array(result.buffer);
+  hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info byteLength: %{public}d buffer: %{public}s', result.byteLength, JSON.stringify(resBuffer));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info error: %{public}s', error.message);
+}
 ```
 
 输出日志：
@@ -202,7 +211,7 @@ export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   const bufferArray = new ArrayBuffer(8);
@@ -230,6 +239,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 {
@@ -247,7 +257,11 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
     // 创建一个新的ArrayBuffer
     napi_create_arraybuffer(env, length, &data, &result);
     if (data != nullptr) {
-        // 确保安全后才能使用data进行操作
+      // 确保安全后才能使用data进行操作
+    } else {
+      // 处理内存分配失败的情况
+      OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for ArrayBuffer");
+      return nullptr;
     }
     // 返回ArrayBuffer
     return result;
@@ -264,7 +278,7 @@ export const createArrayBuffer: (size: number) => ArrayBuffer;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArrayBuffer(10).toString());
@@ -276,7 +290,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s'
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```
 
 输出日志：

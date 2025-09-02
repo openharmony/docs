@@ -18,10 +18,10 @@ import { ChildProcessArgs } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name       | Type                   | Mandatory| Description                                                        |
-| ----------- | --------------------   | ---- | ------------------------------------------------------------ |
-| entryParams | string                 |  No | Custom parameters to be transparently transmit to the child process. The parameters can be obtained through **args.entryParams** in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart). The maximum data volume supported by **entryParams** is 150 KB.|
-| fds         | Record<string, number> |  No | File Descriptor (FD) handles, which are used for communication between the main process and child process. They are passed to the child process in the form of key-value pairs, where **key** is a custom string and **value** is a DF handle. The FD handles can be obtained through **args.fds** in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart).<br><b>NOTE</b><br>- **fds** supports a maximum of 16 groups. In each group, **key** contains a maximum of 20 characters.<br>- The ID of a handle passed to the child process may change, but the handle always points to the same file.|
+| Name       | Type                   | Read-Only| Optional | Description                                                        |
+| ----------- | --------------------   | ---- | ------|------------------------------------------------------ |
+| entryParams | string                 |  No | Yes|Custom parameters to be transparently transmit to the child process. The parameters can be obtained through **args.entryParams** in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart). The maximum data volume supported by **entryParams** is 150 KB.|
+| fds         | Record<string, number> |  No | Yes|File Descriptor (FD) handles, which are used for communication between the main process and child process. They are passed to the child process in the form of key-value pairs, where **key** is a custom string and **value** is a DF handle. The FD handles can be obtained through **args.fds** in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart).<br><b>NOTE</b><br>- **fds** supports a maximum of 16 groups. In each group, **key** contains a maximum of 20 characters.<br>- The ID of a handle passed to the child process may change, but the handle always points to the same file.|
 
 **Example**
 

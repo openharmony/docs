@@ -19,7 +19,7 @@ In the following example, the **Web** component intercepts the web page request 
       <meta charset="utf-8">
   </head>
   <body>
-  <!-- Page resource request ->
+  <!-- Page resource request -->
   <a href="https://www.example.com/test.html">intercept test!</a>
   </body>
   </html>
@@ -71,7 +71,11 @@ In the following example, the **Web** component intercepts the web page request 
   }
   ```
 
-Create a **CodeCache** object for a custom JS request response: If the resource of a custom request response is a JavaScript script, you can add the **ResponseDataID** field to the response header. After obtaining this field, the **Web** kernel generates a **CodeCache** object, which accelerates JavaScript execution. Any changes to the **ResponseDataID** field must be notified to the **Web** component. If the **ResponseDataID** field is not added, no **CodeCache** object is created by default.
+- Page after being intercepted
+
+  ![Image](figures/web-rescource-interception-request-1.PNG)
+
+Create a **CodeCache** object for a custom JS request response: If the resource of a custom request response is a JavaScript script, you can add the **ResponseDataID** field to the response header. After obtaining this field, the **Web** kernel generates a **CodeCache** object, which accelerates JavaScript execution. If **ResponseData** is updated, the **ResponseDataID** field must be updated. If the **ResponseDataID** field is not added, no **CodeCache** object is created by default.
 
 In the following example, the **Web** component intercepts the web page request **https://www.example.com/test.js**; a custom response is constructed in the application code, with the **ResponseDataID** field added to the response header.
 
@@ -164,3 +168,7 @@ In the following example, the **Web** component intercepts the web page request 
     }
   }
   ```
+
+- Page after being intercepted
+
+  ![Image](figures/web-rescource-intercption-request-2.PNG)

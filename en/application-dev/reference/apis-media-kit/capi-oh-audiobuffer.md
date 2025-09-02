@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AudioBuffer struct describes the configuration such as the size, type, and timestamp of audio data.
+The struct describes the configuration such as the size, type, and timestamp of audio data.
 
 **Since**: 10
 

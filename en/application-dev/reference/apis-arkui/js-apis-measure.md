@@ -8,23 +8,29 @@ The **measure** module provides APIs for measuring text metrics, such as text he
 > 
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> Since API version 12, you can use the **getMeasureUtils** API in **UIContext** to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context.
->
 > To perform more complex text measurements, you are advised to call the corresponding graphics measurement API, specifically [Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph).
 >
-> To ensure the correct sequence of events and the accuracy of the measurement results, listen for changes in font scaling whenever possible.
+> Avoid using [ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13) during text measurement API calls. To ensure timing correctness and the accuracy of measurement results, manually listen for font scale changes.
+>
+> When calculating clipped text, you are advised to iterate by Unicode units instead of the string length. This approach prevents character truncation that can occur with length-based iteration, which often leads to inaccurate calculation results. A typical example of this issue is the improper truncation of emoji characters.
 
 ## Modules to Import
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 ```
 
-## MeasureText.measureText
+## MeasureText.measureText<sup>(deprecated)</sup>
 
 static measureText(options: MeasureOptions): number
 
 Measures the width of the given text.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [measureText](js-apis-arkui-UIContext.md#measuretext12) instead on the obtained [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object.
+>
+> Since API version 12, you can use the [getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -47,7 +53,7 @@ Measures the width of the given text.
 
 > **NOTE**
 >
->You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
+> Directly using **MeasureText** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context by using the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext).
 
 ```ts
 import { MeasureText } from '@kit.ArkUI';
@@ -56,7 +62,7 @@ import { MeasureText } from '@kit.ArkUI';
 @Component
 struct Index {
   @State textWidth: number = MeasureText.measureText({
-    // You are advised to this.getUIContext().getMeasureUtils().measureText().
+    // You are advised to use this.getUIContext().getMeasureUtils().measureText().
     textContent: "Hello World",
     fontSize: '50px'
   });
@@ -73,11 +79,17 @@ struct Index {
 }
 ```
 
-## MeasureText.measureTextSize<sup>10+</sup>
+## MeasureText.measureTextSize<sup>(deprecated)</sup>
 
 static measureTextSize(options: MeasureOptions): SizeOptions
 
 Measures the width and height of the given text.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [measureTextSize](js-apis-arkui-UIContext.md#measuretextsize12) instead on the obtained [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object.
+>
+> Since API version 12, you can use the [getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -100,7 +112,7 @@ Measures the width and height of the given text.
 
 > **NOTE**
 >
->You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
+> Directly using **MeasureText** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context by using the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext).
 
 ```ts
 import { MeasureText } from '@kit.ArkUI';
@@ -109,7 +121,7 @@ import { MeasureText } from '@kit.ArkUI';
 @Component
 struct Index {
   textSize: SizeOptions = MeasureText.measureTextSize({
-    // You are advised to this.getUIContext().getMeasureUtils().measureText().
+    // You are advised to use this.getUIContext().getMeasureUtils().measureTextSize().
     textContent: "Hello World",
     fontSize: '50px'
   });

@@ -8,7 +8,7 @@ This topic describes the usage and precautions of the ArkTS APIs related to the 
 
 ## Obtaining an Audio Session Manager
 
-Create an **AudioSessionManager** instance. Before using any APIs of **AudioSessionManager**, you must call [getSessionManager](../../reference/apis-audio-kit/js-apis-audio.md#getsessionmanager12) to obtain an **AudioSessionManager** instance.
+Create an AudioSessionManager instance. Before using any APIs of AudioSessionManager, you must call [getSessionManager](../../reference/apis-audio-kit/js-apis-audio.md#getsessionmanager12) to obtain an AudioSessionManager instance.
 
   ```ts
   import { audio } from '@kit.AudioKit';

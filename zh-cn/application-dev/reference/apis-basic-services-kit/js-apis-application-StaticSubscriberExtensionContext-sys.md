@@ -1,4 +1,10 @@
 # @ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 StaticSubscriberExtensionContext模块是StaticSubscriberExtensionAbility的上下文环境，继承自ExtensionContext。
 
@@ -28,7 +34,7 @@ import { StaticSubscriberExtensionAbility, StaticSubscriberExtensionContext } fr
 
 ## StaticSubscriberExtensionContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 拉起一个静态订阅所属的同应用的Ability。使用callback异步回调。
 
@@ -40,7 +46,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统应用**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -51,9 +57,13 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201     | The application does not have permission to call the interface. |
+| 202     | The application is not system-app, can not use system-api. |
+| 401     | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Can not start invisible component.                           |
@@ -67,8 +77,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -107,7 +115,7 @@ class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbilit
 
 ## StaticSubscriberExtensionContext.startAbility
 
-startAbility(want: Want): Promise&lt;void&gt;;
+startAbility(want: Want): Promise&lt;void&gt;
 
 拉起一个静态订阅所属的同应用的Ability。使用Promise异步回调。
 
@@ -119,7 +127,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统应用**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -135,9 +143,13 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201     | The application does not have permission to call the interface. |
+| 202     | The application is not system-app, can not use system-api. |
+| 401     | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Can not start invisible component.                           |
@@ -151,8 +163,6 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

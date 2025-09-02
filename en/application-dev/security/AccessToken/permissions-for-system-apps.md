@@ -1188,18 +1188,6 @@ Allows an application to obtain network strategy information or modify network s
 
 **Valid since**: 10
 
-## ohos.permission.GET_WIFI_LOCAL_MAC
-
-Allows an application to obtain the MAC address of the local Wi-Fi device.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
-
 ## ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
 Allows an application to obtain detailed security event information.
@@ -1231,6 +1219,8 @@ Allows an application to obtain the sensitive permissions that have been granted
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
+
+**Supported devices**: general devices
 
 **Enable via ACL**: true
 
@@ -1449,6 +1439,8 @@ Allows an application to grant sensitive permissions to other applications.
 **Permission level**: system_core
 
 **Authorization mode**: system_grant
+
+**Supported devices**: general devices
 
 **Enable via ACL**: true
 
@@ -1701,6 +1693,8 @@ Allows an application to revoke the sensitive permissions it has granted to othe
 **Permission level**: system_core
 
 **Authorization mode**: system_grant
+
+**Supported devices**: general devices
 
 **Enable via ACL**: true
 
@@ -4565,7 +4559,7 @@ Allows an application to call the APIs for uninstalling plugins.
 
 Allows a system application to obtain custom enterprise device management (EDM) configuration files.
 
-This permission prevents unauthorized access to custom EDM configuration files, such as the startup animation, startup logo, homepage layout, and wallpapers.
+This permission prevents unauthorized access to custom configuration files, such as the startup animation, startup logo, homepage layout, and wallpapers.
 
 **Permission level**: system_basic
 
@@ -4651,26 +4645,26 @@ Allows a system application to start the components provided by Tips.
 
 Allows an application to read the parental control website configuration.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Supported devices**：Phone | Tablet | 2in1
+**Supported devices**: phones | tablets | 2-in-1 devices
 
-**Valid since**：19
+**Since**: 19
 
 ## ohos.permission.WRITE_PARENT_CONTROL_DATA
 
 Allows an application to write the parental control website configuration.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Supported devices**：Phone | Tablet | 2in1
+**Supported devices**: phones | tablets | 2-in-1 devices
 
-**Valid since**：19
+**Since**: 19

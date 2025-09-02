@@ -1738,7 +1738,7 @@ int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, 
 | 名称               | 描述                                          |
 | ------------------ | --------------------------------------------- |
 | component          | 表示指向OH_NativeXComponent实例的指针。       |
-| isNeedSoftKeyboard | 表示此OH_NativeXComponent实例是否需要软键盘。 |
+| isNeedSoftKeyboard | 表示此OH_NativeXComponent实例是否需要软键盘。默认值为false。 |
 
 **返回：**
 

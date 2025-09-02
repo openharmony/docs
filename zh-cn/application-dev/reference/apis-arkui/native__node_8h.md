@@ -33,8 +33,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **MAX_NODE_SCOPE_NUM** | 1000 | 
-| **MAX_COMPONENT_EVENT_ARG_NUM** | 12 | 
+| **MAX_NODE_SCOPE_NUM 1000** | 定义组件最大方法数量。 | 
+| **MAX_COMPONENT_EVENT_ARG_NUM 12** | 定义组件事件最大参数数量。 | 
 
 
 ### 类型定义

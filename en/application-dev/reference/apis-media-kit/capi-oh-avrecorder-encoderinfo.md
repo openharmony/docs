@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder_EncoderInfo struct describes the encoder information.
+The struct describes the encoder information.
 
 **Since**: 18
 

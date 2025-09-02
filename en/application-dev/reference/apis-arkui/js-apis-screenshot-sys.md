@@ -1,6 +1,6 @@
 # @ohos.screenshot (Screenshot) (System API)
 
-The **Screenshot** module provides APIs for you to set information such as the region to capture and the size of the screen region when capturing a screen.
+The module provides APIs for you to set information such as the region to capture and the size of the screen region when capturing a screen.
 
 >  **NOTE**
 >
@@ -15,7 +15,7 @@ import { screenshot } from '@kit.ArkUI';
 
 ## ScreenshotOptions
 
-Describes screenshot options.
+Describes the screenshot options.
 
 **System API**: This is a system API.
 
@@ -28,7 +28,6 @@ Describes screenshot options.
 | rotation               | number        | No  | Angle by which the captured image should be rotated. Currently, the value can be **0** only. The default value is **0**.    |
 | displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured. The value must be an integer.|
 | isNotificationNeeded<sup>14+</sup>| boolean        | No  | Whether to send a notification after a snapshot is captured. The value **true** means to send a notification, and **false** means the opposite. The default value is **true**. Such a notification can be listened for through [captureStatusChange](js-apis-display.md#displayoncapturestatuschange12).  |
-| isCaptureFullOfScreen<sup>19+</sup> | boolean        | No  | Whether to capture all displays on the current screen. If the screen contains multiple displays, the value **true** means that the entire screen is captured, and **false** means that only the region of the logical screen associated with the specified display ID is captured.|
 
 ## Size
 
@@ -47,7 +46,7 @@ Describes the size of the screen region to capture.
 
 save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
+Takes a screenshot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -60,7 +59,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Information about the snapshot.|
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object. The size of the **PixelMap** object is **imageSize**. If **imageSize** is not specified, the size of the logical screen associated with the specified display ID is used.                                  |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a PixelMap object. The size of the PixelMap object is **imageSize**. If **imageSize** is not specified, the size of the logical screen associated with the specified display ID is used.                                  |
 
 **Error codes**
 
@@ -107,7 +106,7 @@ screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap
 
 save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
+Takes a screenshot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -119,7 +118,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a PixelMap object.                                  |
 
 
 **Error codes**
@@ -151,7 +150,7 @@ screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
 
 save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
-Takes a screenshot and saves it as a **PixelMap** object. This API uses a promise to return the result.
+Takes a screenshot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -169,7 +168,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
 
 | Type                         | Description                                           |
 | ----------------------------- | ----------------------------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return a **PixelMap** object.|
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return a PixelMap object.|
 
 
 **Error codes**

@@ -1268,7 +1268,7 @@ Enables listening for **messageReceive** events. This API uses an asynchronous c
 | Name | Type                   | Mandatory| Description                                                    |
 | -------- | ----------------------- | ---- | -------------------------------- |
 | type     | string                  | Yes | Event type, which has a fixed value of **messageReceive**. Successful calling of **onmessageReceive()** indicates that a message is received from the client.|
-| callback | Callback\<[WebSocketMessage](#websocketmessage19)\> | Yes | Callback used to return the result,<br>which contains the client information and data sent by the client.|
+| callback | Callback\<[WebSocketMessage](#websocketmessage19)\> | Yes | Callback used to return the result.<br>**clientconnection** indicates the client information and **data** indicates the data message sent by the client.|
 
 **Example**
 
@@ -1499,7 +1499,7 @@ Enumerates the response headers sent by the server.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
+| [k:string]:string \| string[] \| undefined | The header data type can be key-value pair, string, or undefined.|
 
 ## Result Codes for Closing a WebSocket Connection
 
@@ -1576,6 +1576,8 @@ Client information, including the IP address and port number.
 | clientPort | number | No  | No  | Port number of the client.|
 
 ## ClientConnectionCloseCallback<sup>19+</sup>
+
+type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, closeReason: CloseResult) => void
 
 Callback invoked when the WebSocketServer connection is closed.
 

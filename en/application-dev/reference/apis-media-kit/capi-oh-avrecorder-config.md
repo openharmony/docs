@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder_Config struct describes the AVRecorder configuration.
+The struct describes the AVRecorder configuration.
 
 **Since**: 18
 

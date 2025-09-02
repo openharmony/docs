@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVPlayer struct describes an initialized AVPlayer.
+The struct initializes an AVPlayer.
 
 **Since**: 11
 

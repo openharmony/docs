@@ -14,23 +14,23 @@ This process involves two roles: provider and controller.
 
 In the local AVSession, the provider exchanges information with the controller through AVSessionManager.
 
-1. The provider creates an **AVSession** object through AVSessionManager.
+1. The provider creates an AVSession object through AVSessionManager.
 
-2. Through the **AVSession** object, the provider sets session metadata (such as the asset ID, title, and duration) and playback attributes (such as the playback state, speed, and position).
+2. Through the AVSession object, the provider sets session metadata (such as the asset ID, title, and duration) and playback attributes (such as the playback state, speed, and position).
 
-3. The controller creates an **AVSessionController** object through AVSessionManager.
+3. The controller creates an AVSessionController object through AVSessionManager.
 
-4. Through the **AVSessionController** object, the controller listens for changes of the session metadata and playback attributes.
+4. Through the AVSessionController object, the controller listens for changes of the session metadata and playback attributes.
 
-5. Through the **AVSessionController** object, the controller sends control commands to the **AVSession** object.
+5. Through the AVSessionController object, the controller sends control commands to the AVSession object.
 
-6. Through the **AVSession** object, the provider listens for the control commands, for example, play, playNext, fastForward, and setSpeed, from the controller.
+6. Through the AVSession object, the provider listens for the control commands, for example, play, playNext, fastForward, and setSpeed, from the controller.
 
 ## AVSessionManager
 
-AVSessionManager provides the capability of managing sessions. It can create an **AVSession** object, create an **AVSessionController** object, send control commands, and listen for session state changes.
+AVSessionManager provides the capability of managing sessions. It can create an AVSession object, create an AVSessionController object, send control commands, and listen for session state changes.
 
-Unlike the **AVSession** and **AVSessionController** objects, AVSessionManager is not a specific object, but the root namespace of AVSessions. You can import AVSessionManager as follows:
+Unlike the AVSession and AVSessionController objects, AVSessionManager is not a specific object, but the root namespace of AVSessions. You can import AVSessionManager as follows:
 
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
@@ -38,35 +38,35 @@ import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
 All the APIs in the root namespace can be used as APIs of AVSessionManager.
 
-The code snippet below shows how the provider creates an **AVSession** object by using AVSessionManager:
+The code snippet below shows how the provider creates an AVSession object by using AVSessionManager:
  
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'hello world';
 
-  build() { 
+  build() {
     Column() {
-        Text(this.message)
-          .onClick(()=>{
-            // Create an AVSession object.
-            let context = this.getUIContext().getHostContext() as Context;
-            async function createSession() {
-            let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-            console.info(`session create done : sessionId : ${session.sessionId}`);
-            }
-          })
-      }
+      Text(this.message)
+        .onClick(async () => {
+          // Create an AVSession object.
+          let context = this.getUIContext().getHostContext() as Context;
+          let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+          console.info(`session create done : sessionId : ${session.sessionId}`);
+        })
+    }
     .width('100%')
     .height('100%')
   }
 }
 ```
 <!--Del-->
-The code snippet below shows how the controller creates an **AVSessionController** object by using AVSessionManager:
+The code snippet below shows how the controller creates an AVSessionController object by using AVSessionManager:
 
 ```ts
 // Create an AVSessionController object.

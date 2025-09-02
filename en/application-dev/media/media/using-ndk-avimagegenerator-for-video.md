@@ -44,7 +44,7 @@ Read [AVImageGenerator](../../reference/apis-media-kit/capi-avimagegenerator.md)
 
 4. Call [OH_AVImageGenerator_Release()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_release) to destroy the instance and release resources.
 
-## Development Example
+## Sample Code
 
 Refer to the sample code below to set the file descriptor and obtain the video frame of a video at the specified time.
 

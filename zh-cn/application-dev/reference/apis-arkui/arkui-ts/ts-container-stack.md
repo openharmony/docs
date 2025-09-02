@@ -43,9 +43,9 @@ Stack(options?: StackOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型            | 必填 | 说明                        |
-| ------------ | --------------- | ---- | --------------------------- |
-| alignContent<sup>7+</sup> | [Alignment](ts-appendix-enums.md#alignment) | 否   | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| alignContent<sup>7+</sup> | [Alignment](ts-appendix-enums.md#alignment) | 否 | 是   | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center <br />非法值：按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -67,8 +67,11 @@ alignContent(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                        |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 所有子组件在容器内的对齐方式。<br/>默认值：Alignment.Center |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 所有子组件在容器内的对齐方式。<br/>默认值：Alignment.Center <br />非法值：按默认值处理。 |
 
+## 事件
+
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

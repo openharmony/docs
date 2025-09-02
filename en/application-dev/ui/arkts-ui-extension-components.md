@@ -7,8 +7,8 @@
 ## Basic Concepts
 
 - [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md) component
-
-	Defined and used in the host application, **UIExtensionComponent** is provided by ArkUI for use in the application following the ArkTS declarative paradigm.
+	
+  Defined and used in the host application, **UIExtensionComponent** is provided by ArkUI for use in the application following the ArkTS declarative paradigm.
 
 - [UIExtensionAbility](../application-models/uiextensionability.md) component
 

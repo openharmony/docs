@@ -310,6 +310,8 @@ ArcSliderStyleOptions的构造信息。
 
 ## 示例
 
+从API version 18开始，该示例展示了ArcSlider组件的基本用法。
+
 ```ts
 // xxx.ets
 import {

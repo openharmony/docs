@@ -10,7 +10,7 @@ When a user needs to share files such as images and videos, use **Picker** to st
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Create a **PhotoSelectOptions** instance.
+2. Create a PhotoSelectOptions instance.
 
    ```ts
    const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -24,7 +24,7 @@ When a user needs to share files such as images and videos, use **Picker** to st
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images that can be selected.
    ```
 
-4. Create a **photoViewPicker** instance and call [PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select) to open Gallery for the user to select images. After the images are selected, [PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult) is returned.
+4. Create a photoViewPicker instance and call [PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select) to open Gallery for the user to select images. After the images are selected, [PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult) is returned.
 
    ```ts
    let uris: Array<string> = [];
@@ -56,6 +56,7 @@ When a user needs to share files such as images and videos, use **Picker** to st
 2. Call [fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read the file based on the FD, and close the FD after the data is read.
 
    ```ts
+   // buffer indicates the buffer length, which is user-defined.
    let buffer = new ArrayBuffer(4096);
    let readLen = fileIo.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
@@ -71,10 +72,6 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -86,7 +83,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // The URI must exist.
   predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());

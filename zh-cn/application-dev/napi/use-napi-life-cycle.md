@@ -116,7 +116,7 @@ try {
 
 ### napi_open_escapable_handle_scope、napi_close_escapable_handle_scope、napi_escape_handle
 
-通过接口napi_open_escapable_handle_scope创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。该作用域需要使用napi_close_escapable_handle_scope进行关闭。napi_escape_handle用于提升传入的ArkTS对象的生命周期到其父作用域。
+通过接口napi_open_escapable_handle_scope创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。该作用域需要使用napi_close_escapable_handle_scope进行关闭。napi_escape_handle用于提升传入的ArkTS对象的生命周期到其父作用域。
 通过上述接口可以更灵活的使用管理传入的ArkTS对象，特别是在处理跨作用域的值传递时非常有用。
 
 cpp部分代码
@@ -198,7 +198,7 @@ cpp部分代码
 // log.h用于C++中日志打印
 #include "hilog/log.h"
 #include "napi/native_api.h"
-// 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_create_reference函数之前，你需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
+// 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_add_finalizer函数之前，你需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
 napi_ref g_ref;
 
 void Finalizer(napi_env env, void *data, void *hint)
@@ -250,7 +250,7 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
     uint32_t result = 0;
     napi_value count = nullptr;
     napi_reference_unref(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "napi_reference_ref, count = %{public}d.", result);
+    OH_LOG_INFO(LOG_APP, "napi_reference_unref, count = %{public}d.", result);
     if (result != 1) {
         // 若传入引用的引用计数未减少，则抛出错误
         napi_throw_error(env, nullptr, "napi_reference_unref fail");
@@ -272,9 +272,9 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createReference: () => Object | void;
-export const useReference: () => Object | void;
-export const deleteReference: () => string | void;
+export const createReference: () => Object | undefined;
+export const useReference: () => Object | undefined;
+export const deleteReference: () => string | undefined;
 ```
 
 ArkTS侧示例代码
@@ -297,5 +297,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

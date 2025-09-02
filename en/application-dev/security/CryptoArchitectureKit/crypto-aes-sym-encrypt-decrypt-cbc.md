@@ -1,11 +1,8 @@
 # Encryption and Decryption with an AES Symmetric Key (CBC Mode) (ArkTS)
 
-
-For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
-
+For details about the algorithm specifications, see [Symmetric Key Encryption and Decryption Algorithm Specifications: AES](crypto-sym-encrypt-decrypt-spec.md#aes).
 
 **Encryption**
-
 
 1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
    
@@ -15,8 +12,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 3. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption), **key** to **SymKey** (the key for encryption), and **params** to **IvParamsSpec** corresponding to the CBC mode.
 
-4. If a small amount of data is to be encrypted, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the encrypted data.
-
+4. To encrypt a small amount of data, simply call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1).
 
 **Decryption**
 
@@ -24,8 +20,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **IvParamsSpec** corresponding to the CBC mode.
 
-3. If a small amount of data is to be decrypted, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the decrypted data.
-
+3. To decrypt a small amount of data, simply call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1).
 
 - Example (using asynchronous APIs):
 
@@ -86,7 +81,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
         console.error('decrypt failed');
       }
     } catch (error) {
-      console.error(`AES CBC "${error}", error code: ${error.code}`);
+      console.error(`AES CBC "${error}" error code: ${error.code}`);
     }
   }
   ```
@@ -150,7 +145,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
         console.error('decrypt failed');
       }
     } catch (error) {
-      console.error(`AES CBC "${error}", error code: ${error.code}`);
+      console.error(`AES CBC "${error}" error code: ${error.code}`);
     }
   }
   ```

@@ -75,7 +75,7 @@
        return timer
      }
    
-     async Countdown(time: number) {
+     async countDown(time: number) {
        return new Promise((resolve: (value: boolean) => void) => {
          setTimeout(() => {
            resolve(true)
@@ -154,7 +154,7 @@
              })
              .onClick(async () => {
                console.info(`Timer start`)
-               await this.timer?.Countdown(1000);
+               await this.timer?.countDown(1000);
                console.info(`Timer end`)
              })
          }

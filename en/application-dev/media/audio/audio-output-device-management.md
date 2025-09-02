@@ -4,7 +4,7 @@ If a device is connected to multiple audio output devices, you can use **AudioRo
 
 ## Creating an AudioRoutingManager Instance
 
-Before using **AudioRoutingManager** to manage audio devices, import the audio module and create an **AudioManager** instance.
+Before using AudioRoutingManager to manage audio devices, import the audio module and create an AudioManager instance.
 
 ```ts
 import { audio } from '@kit.AudioKit';  // Import the audio module.

@@ -1,6 +1,6 @@
 # @ohos.multimedia.avCastPickerParam (AVCastPicker Parameters)
 
-**avCastPickerParam** defines the enumerated values of the [@ohos.multimedia.avCastPicker](ohos-multimedia-avcastpicker.md) states.
+**avCastPickerParam** provides the enumerated values for the [@ohos.multimedia.avCastPicker](ohos-multimedia-avcastpicker.md) component states.
 
 > **NOTE**
 >
@@ -16,8 +16,8 @@ Enumerates the states of the **AVCastPicker** component.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| STATE_APPEARING    | 0    | The component is displayed. |
-| STATE_DISAPPEARING    | 1    | The component disappears. |
+| STATE_APPEARING    | 0    | The component is displayed.|
+| STATE_DISAPPEARING    | 1    | The component disappears.|
 
 ## AVCastPickerStyle<sup>12+</sup>
 
@@ -29,8 +29,8 @@ Enumerates the styles of the **AVCastPicker** component.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| STYLE_PANEL    | 0    | Panel style. |
-| STYLE_MENU    | 1    | Menu style. |
+| STYLE_PANEL    | 0    | Panel style.|
+| STYLE_MENU    | 1    | Menu style.|
 
 ## AVCastPickerColorMode<sup>12+</sup>
 
@@ -42,6 +42,6 @@ Enumerates the color modes of the **AVCastPicker** component.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| AUTO    | 0    | Follows the system mode. |
-| DARK    | 1    | Dark mode. |
-| LIGHT    | 2    | Light mode. |
+| AUTO    | 0    | Follows the system mode.|
+| DARK    | 1    | Dark mode.|
+| LIGHT    | 2    | Light mode.|

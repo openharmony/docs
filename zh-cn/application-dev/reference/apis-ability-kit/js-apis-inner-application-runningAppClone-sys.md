@@ -7,21 +7,21 @@
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口为系统接口。
 
-## 属性
+## 使用说明
+
+通过appManager的[getRunningMultiAppInfo](js-apis-app-ability-appManager-sys.md#appmanagergetrunningmultiappinfo12)来获取。
+
+## RunningAppClone
 
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                      | 类型   | 必填  | 说明       |
-| ------------------------- | ------ | ---- | --------- |
-| appCloneIndex | number | 是  | 分身应用的索引。 |
-| uid | number | 是   | 表示应用程序的UID。 |
-| pids | Array\<number> | 是  | 应用的进程ID集合。 |
-
-## 使用说明
-
-通过appManager的[getRunningMultiAppInfo](js-apis-app-ability-appManager-sys.md#appmanagergetrunningmultiappinfo12)来获取。
+| 名称                      | 类型   | 只读  | 可选  | 说明       |
+| ------------------------- | ------ | ---- |  ---- | --------- |
+| appCloneIndex | number | 否  | 否  | 分身应用的索引。 |
+| uid | number | 否  | 否  | 表示应用程序的UID。 |
+| pids | Array\<number> | 否  | 否  | 应用的进程ID集合。 |
 
 **示例：**
 

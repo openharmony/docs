@@ -1,4 +1,10 @@
-# @ohos.app.ability.common (应用上下文Context)(系统接口)
+# @ohos.app.ability.common (Ability公共模块)(系统接口)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
 
 开发者可以通过该模块引用Ability公共模块类。
 
@@ -8,25 +14,97 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.common (Ability公共模块)](js-apis-app-ability-common.md)。
 
 ## 导入模块
 
 ```ts
 import { common } from '@kit.AbilityKit';
 ```
-## 属性
+
+## ServiceExtensionContext
+
+type ServiceExtensionContext = _ServiceExtensionContext.default
+
+ServiceExtensionContext二级模块。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称  | 类型  | 只读  | 可选  | 说明            |
-| ----- | ---- | ----- | ----- | -------------- |
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | 否  | 否  | ServiceExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。|
-| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md) | 否  | 否  | AutoFillExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。 |
-| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | 否  | 否  | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
-| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | 否  | 否  | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
-| UIServiceExtensionContext<sup>14+<sup> | [UIServiceExtensionContext ](js-apis-inner-application-uiserviceExtensionContext-sys.md) |  否  | 否  |UIServiceExtensionContext 二级模块。<br/>**系统接口**：此接口为系统接口。 |
-| UIServiceHostProxy<sup>14+<sup> | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) |  否  | 否  | UIServiceHostProxy  二级模块。<br/>**系统接口**：此接口为系统接口。 |
+| 类型 | 说明 |
+| --- | --- |
+| [_ServiceExtensionContext.default](js-apis-inner-application-serviceExtensionContext-sys.md) | ServiceExtensionContext二级模块。 |
+
+## AutoFillExtensionContext<sup>11+<sup>
+
+type AutoFillExtensionContext = _AutoFillExtensionContext.default
+
+AutoFillExtensionContext二级模块。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AutoFillExtensionContext.default](js-apis-inner-application-autoFillExtensionContext-sys.md) | AutoFillExtensionContext二级模块。 |
+
+## AutoStartupInfo<sup>11+<sup>
+
+type AutoStartupInfo = _AutoStartupInfo
+
+AutoStartupInfo二级模块。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | AutoStartupInfo二级模块。 |
+
+## AutoStartupCallback<sup>11+<sup>
+
+type AutoStartupCallback = _AutoStartupCallback
+
+AutoStartupCallback二级模块。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | AutoStartupCallback二级模块。 |
+
+## UIServiceExtensionContext<sup>14+<sup>
+
+type UIServiceExtensionContext = _UIServiceExtensionContext.default
+
+UIServiceExtensionContext二级模块。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_UIServiceExtensionContext.default](js-apis-inner-application-uiserviceExtensionContext-sys.md) | UIServiceExtensionContext二级模块。 |
+
+## UIServiceHostProxy<sup>14+<sup>
+
+type UIServiceHostProxy = _UIServiceHostProxy.default
+
+UIServiceHostProxy二级模块。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_UIServiceHostProxy.default](js-apis-inner-application-uiservicehostproxy-sys.md) | UIServiceHostProxy二级模块。 |
 
 **示例：**
 

@@ -17,7 +17,7 @@ import { audioHaptic } from '@kit.AudioKit';
 
 getAudioHapticManager(): AudioHapticManager
 
-Obtains an **AudioHapticManager** instance.
+Obtains an AudioHapticManager instance.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -25,7 +25,7 @@ Obtains an **AudioHapticManager** instance.
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
-| [AudioHapticManager](#audiohapticmanager) | **AudioHapticManager** instance.|
+| [AudioHapticManager](#audiohapticmanager) | AudioHapticManager instance.|
 
 **Example**
 ```ts
@@ -56,7 +56,7 @@ Describes the options for the audio-haptic player.
 
 ## AudioHapticManager
 
-Manages the audio-haptic feature. Before calling any API in **AudioHapticManager**, you must use [getAudioHapticManager](#audiohapticgetaudiohapticmanager) to create an **AudioHapticManager** instance.
+Manages the audio-haptic feature. Before calling any API in AudioHapticManager, you must use [getAudioHapticManager](#audiohapticgetaudiohapticmanager) to create an AudioHapticManager instance.
 
 ### registerSource
 
@@ -81,7 +81,7 @@ Registers an audio-haptic source. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -126,7 +126,7 @@ Unregisters an audio-haptic source. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -172,7 +172,7 @@ Sets the latency mode for an audio-haptic source.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -217,7 +217,7 @@ Sets the stream usage for an audio-haptic source.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -269,11 +269,11 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; | Promise used to return the audio-haptic player.|
+| Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; |Promise used to return the audio-haptic player.|
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -323,7 +323,7 @@ Enumerates the audio haptic types.
 
 ## AudioHapticPlayer
 
-Implements audio-haptic playback. Before calling any API in **AudioHapticPlayer**, you must use [createPlayer](#createplayer) to create an **AudioHapticPlayer** instance.
+Implements audio-haptic playback. Before calling any API in AudioHapticPlayer, you must use [createPlayer](#createplayer) to create an AudioHapticPlayer instance.
 
 ### isMuted
 
@@ -347,7 +347,7 @@ Checks whether an audio-haptic type is muted.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|

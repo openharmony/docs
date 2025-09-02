@@ -1,15 +1,14 @@
 # Managing Cookies and Data Storage
 
+Cookies are data sent from the server to the client. The client holds cookies so that the server can quickly identify its identity and status.
+
+For cookies, the default value of **SameSite** is **Lax**, indicating that cookies are sent only when a user navigates to the source site and are not sent in cross-site requests.
 
 ## Cookie Management
 
-A cookie is a segment of data sent from the server to the client to uniquely identify a user during network access. The client may hold the data and provide it to the server at later interactions so that the server can quickly identify the client identity and status.
+The **Web** component provides the [WebCookieManager](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#class-webcookiemanager) class to manage cookie information. Cookies are stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies** file in the application sandbox directory.
 
-When the **SameSite** attribute of a cookie is not specified, the default value is **SameSite=Lax**. The cookie is sent only when the user navigates to the source site of the cookie and is not sent in cross-site requests.
-
-The **Web** component provides the [WebCookieManager](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md) class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
-
-The following uses [configCookieSync()](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#configcookiesync11) as an example to describe how to set a cookie's value to **value=test** for **www\.example.com**. For details about functions and usage of other APIs, see [WebCookieManager()](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md).
+The following uses the [configCookieSync()](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#configcookiesync11) API to set a cookie value to **test** for **www\.example.com**. For details about features and usage of other APIs, see [WebCookieManager()](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#class-webcookiemanager).
 
 
 ```ts
@@ -38,6 +37,9 @@ struct WebComponent {
 }
 ```
 
+> **NOTE**
+>
+> Cookies are saved to disks every 30 seconds. You can also use the [saveCookieAsync](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#savecookieasync) API to forcibly save cookies to disks. (Even if **saveCookieAsync** is called, session cookies are not written to disks in PCs/2-in-1 devices and tablets.)
 
 ## Cache and Storage Management
 
@@ -81,7 +83,7 @@ struct WebComponent {
 ```
 
 
-  To obtain up-to-date resources, you can use [removeCache()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#removecache) to clear cached resources. The sample code is as follows:
+To obtain up-to-date resources, you can use [removeCache()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#removecache) to clear cached resources. The sample code is as follows:
 
 ```ts
 // xxx.ets
@@ -115,7 +117,7 @@ struct WebComponent {
 
 ### Dom Storage
 
-Dom Storage falls into Session Storage and Local Storage. Wherein, Session Storage applies to the temporary data, and its data storage and release follow the session lifecycle; Local Storage applies to the persistent data, which is flushed to the application directory. In both storage modes, data is stored in a form of key-value pair, and is usually used when a page that needs to be stored on the client is accessed. You can use [domStorageAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#domstorageaccess) to enable Dom Storage. The following is the sample code:
+Dom Storage falls into Session Storage and Local Storage. Session Storage holds temporary data and it is stored and released based on the session lifecycle. Local Storage holds persistent data and is stored in the application directory. In both storage modes, data is stored in a form of key-value pair, and used when a page that needs to be stored on the client is accessed. You can use [domStorageAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#domstorageaccess) to enable Dom Storage. The following is the sample code:
 
 
 

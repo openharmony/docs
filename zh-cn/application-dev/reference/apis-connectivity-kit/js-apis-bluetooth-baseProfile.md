@@ -1,5 +1,11 @@
 # @ohos.bluetooth.baseProfile (蓝牙baseProfile模块)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 baseProfile模块提供了基础的profile方法。
 
 > **说明：**

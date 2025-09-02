@@ -1,5 +1,11 @@
 # @ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+
 本模块提供执行意图调用的能力，系统根据用户交互等信息执行意图调用。
 
 > **说明：**
@@ -26,17 +32,17 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 意图调用Ability所属的应用名称。 |
-| moduleName | string | 是 | 意图调用Ability所属的模块名称。 |
-| abilityName | string | 是 | 意图调用Ability名称。 |
-| insightIntentName | string | 是 | 意图调用名称。 |
-| insightIntentParam | Record\<string, Object> | 是 | 意图调用参数。 |
-| executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 是 | 意图调用执行模式。 |
-| displayId<sup>12+</sup> | number | 否 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
-| uris<sup>18+</sup> | Array&lt;string&gt; | 否 | 意图调用时，意图调用方给意图执行方授权的URI列表。 |
-| flags<sup>18+</sup> | number | 否 | 意图调用时，意图调用方给意图执行方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION、FLAG_AUTH_WRITE_URI_PERMISSION、FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION。|
+| bundleName | string | 否 | 否 | 意图调用Ability所属的应用名称。 |
+| moduleName | string | 否 | 否 | 意图调用Ability所属的模块名称。 |
+| abilityName | string | 否 | 否 | 意图调用Ability名称。 |
+| insightIntentName | string | 否 | 否 | 意图调用名称。 |
+| insightIntentParam | Record\<string, Object> | 否 | 否 | 意图调用参数。 |
+| executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 否 |  否 | 意图调用执行模式。 |
+| displayId<sup>12+</sup> | number | 否 | 是 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
+| uris<sup>18+</sup> | Array&lt;string&gt; | 否 | 是 | 意图调用时，意图调用方给意图执行方授权的URI列表。 |
+| flags<sup>18+</sup> | number | 否 | 是 | 意图调用时，意图调用方给意图执行方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION、FLAG_AUTH_WRITE_URI_PERMISSION、FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION。|
 
 ## insightIntentDriver.execute
 

@@ -16,7 +16,7 @@ Vibrator属于控制类小器件，主要包含以下四个模块：Vibrator API
 
 - Vibrator Framework：实现振动器的框架层管理，实现与控制类小器件Service的通信。
 
-- Vibrator Service：实现控制器的服务管理。
+- 控制类小器件 Service：实现控制器的服务管理。
 
 - HDF层：适配不同设备。
 

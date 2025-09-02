@@ -264,6 +264,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #include <hilog/log.h>
    #include <js_native_api.h>
    #include "NativeEntry.h"
+   #include "NormalTextListExample.h"
    
    namespace NativeModule {
    

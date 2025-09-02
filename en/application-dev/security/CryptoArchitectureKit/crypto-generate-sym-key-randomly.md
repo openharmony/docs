@@ -1,11 +1,8 @@
 # Randomly Generating a Symmetric Key (ArkTS)
 
-
 This topic uses AES and SM4 as an example to describe how to generate a symmetric key and obtain the binary data.
 
-
-The symmetric key (**SymKey**) object created can be used for subsequent encryption and decryption operations, and the binary data can be used for key storage and transfer.
-
+The symmetric key (**SymKey**) object created can be used for subsequent encryption and decryption operations, and the binary data can be used for key storage or transfer.
 
 ## Randomly Generating an AES Key
 
@@ -49,7 +46,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-key-generat
     console.info('key hex:' + encodedKey.data);
   }
   ```
-
 
 ## Randomly Generating an SM4 Key
 

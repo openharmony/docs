@@ -27,7 +27,9 @@ Generic Attribute Profile，即通用属性协议。是低功耗蓝牙（BLE）�
 ### HFP
 Hand Free Profile，即免提协议。用于实现蓝牙设备间的免提通话，支持双向语音通话和控制等功能。
 ### HID
-Human Interface Device Profile，即人机接口协议。可用于实现蓝牙无线人机交互设备连接间的低延迟双向通信。例如：键盘、鼠标、游戏手柄等设备与主机（如手机、平板和PC）间传输数据。
+Human Interface Device Profile，即人机接口协议，为经典蓝牙设计。可用于实现蓝牙无线人机交互设备连接间的低延迟双向通信。例如：键盘、鼠标、游戏手柄等设备与主机（如手机、平板和PC）间传输数据。
+### HOGP
+HID over GATT Profile，基于低功耗蓝牙的GATT协议实现的HID规范，将传统HID功能移植到BLE设备上复用，兼容键盘、鼠标、自拍杆等BLE设备的HID交互逻辑。
 ## M
 ### MAP
 Message Access Profile，即消息访问协议。可用于实现蓝牙设备间的消息同步，支持短信、邮件等数据传输。

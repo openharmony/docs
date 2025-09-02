@@ -64,8 +64,8 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
      @State videoSrc: string = '';
      createPickerProfile(context: Context): picker.PickerProfile {
        let pathDir = context.filesDir;
-       let fileName = `${new Date().getTime()}`
-       let filePath = pathDir + `/${fileName}.tmp`
+       let fileName = `${new Date().getTime()}`;
+       let filePath = pathDir + `/${fileName}.tmp`;
        fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
        
        let uri = fileUri.getUriFromPath(filePath);

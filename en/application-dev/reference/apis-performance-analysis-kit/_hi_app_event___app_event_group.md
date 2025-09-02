@@ -11,6 +11,7 @@ Defines an array of events with the same event name.
 
 **Related module**: [HiAppEvent](_hi_app_event.md)
 
+**Header file**: [hiappevent.h](hiappevent_8h.md)
 
 ## Summary
 

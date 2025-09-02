@@ -1,6 +1,13 @@
 # @ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)
 
-autoStartupManager模块提供注册、注销监听应用开机自启动状态变化的回调函数的能力。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+autoStartupManager模块提供应用开机自启动状态的监听能力，允许开发者通过回调机制感知应用自启动状态的变化。
 
 > **说明：**
 >
@@ -20,7 +27,7 @@ import { autoStartupManager } from '@kit.AbilityKit';
 
 on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
-注册监听应用组件开机自启动状态变化。
+注册监听应用组件开机自启动状态变化的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -62,7 +69,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -70,7 +77,7 @@ try {
 
 off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
-注销监听应用组件开机自启动状态变化。
+注销监听应用组件开机自启动状态变化的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -112,7 +119,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -125,6 +132,10 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -179,6 +190,10 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -237,6 +252,10 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -290,6 +309,10 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -348,6 +371,10 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -372,7 +399,7 @@ import { autoStartupManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications((err, data: common.AutoStartupInfo[]) => {
+  autoStartupManager.queryAllAutoStartupApplications((err: BusinessError, data: common.AutoStartupInfo[]) => {
     if (err) {
       console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
       return;
@@ -395,6 +422,10 @@ try {
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **返回值：**
 

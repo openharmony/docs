@@ -161,20 +161,6 @@ namespace Models {
 
 相比Java的package+static class组合，ArkTS的命名空间能更直观地实现代码分层。
 
-**类成员初始化**
-
-ArkTS支持在类体内直接初始化属性。
-
-**ArkTS示例：**
-
-```typescript
-class User {
-    private name: string = 'Default'
-}
-```
-
-Java需要显式构造函数或初始化块。
-
 ### 异步编程模型
 
 **单线程vs多线程**

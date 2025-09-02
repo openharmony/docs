@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder_Location struct describes the geographical location information about a media asset.
+The struct describes the geographical location information about a media asset.
 
 **Since**: 18
 

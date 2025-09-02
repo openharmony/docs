@@ -98,7 +98,7 @@ Common methods for setting the audio playback stream type are as follows:
 
 - **[Using OHAudio for Audio Playback](using-ohaudio-for-playback.md)**
   
-  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AudioStreamBuilder_SetRendererInfo](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrendererinfo) to specify the stream type.
+  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage) in [OH_AudioStreamBuilder_SetRendererInfo](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setrendererinfo) to specify the stream type.
 
 - **[Using AVPlayer for Audio Playback (ArkTS)](../media/using-avplayer-for-playback.md)**
   
@@ -111,7 +111,7 @@ Common methods for setting the audio playback stream type are as follows:
 
 - **[Using AVPlayer for Audio Playback (C/C++)](../media/using-ndk-avplayer-for-playback.md)**
   
-  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
+  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
 
 - **[Using SoundPool for Audio Playback](../media/using-soundpool-for-playback.md)**
   
@@ -127,10 +127,10 @@ Common methods for setting the audio recording stream type are as follows:
 
 - **[Using OHAudio for Audio Recording](using-ohaudio-for-recording.md)**
   
-  Pass [OH_AudioStream_SourceType](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_sourcetype) in [OH_AudioStreamBuilder_SetCapturerInfo](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setcapturerinfo) to specify the stream type.
+  Pass [OH_AudioStream_SourceType](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) in [OH_AudioStreamBuilder_SetCapturerInfo](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setcapturerinfo) to specify the stream type.
 
 - **[Using AVRecorder for Audio Recording](../media/using-avrecorder-for-recording.md)**
   
-  Pass [AudioSourceType](../../reference/apis-media-kit/js-apis-media.md#audiosourcetype9) [AVRecorder.prepare](../../reference/apis-media-kit/js-apis-media.md#prepare9-3) to specify the stream type.
+  Pass [AudioSourceType](../../reference/apis-media-kit/js-apis-media.md#audiosourcetype9) in [AVRecorder.prepare](../../reference/apis-media-kit/js-apis-media.md#prepare9-3) to specify the stream type.
 
   The **config** parameter in **AVRecorder.prepare** is of the **AVRecorderConfig** type, in which **AVRecorderConfig.audioSourceType** specifies the audio source type.

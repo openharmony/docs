@@ -18,7 +18,7 @@ You design page layout by leveraging specific components or attributes to contro
 
 A layout is generally in a hierarchical structure. Below is a common page structure.
 
-  **Figure 1** Common page structure 
+  **Figure 1** Common page structure
 
 ![common-page-structure](figures/common-page-structure.png)
 
@@ -27,9 +27,9 @@ To achieve the preceding effect, you need to declare the corresponding elements 
 
 ## Layout Elements
 
-You can use layout-related container components to create a specific layout. For example, the **List** component can form a linear layout.
+You can use layout-related container components to create a specific layout.
 
-  **Figure 2** Layout elements 
+  **Figure 2** Layout elements
 
 ![layout-element-omposition](figures/layout-element-omposition.png)
 
@@ -37,7 +37,7 @@ You can use layout-related container components to create a specific layout. For
 
 - Component content area (yellow block): size of the component area minus the [border](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#border) of the component. It serves as the layout constraint for calculating the size of the component content (or child component).
 
-- Component content (green block): size of the component content, for example, size of the text content in the component. The component content may not match the component content area. For example, if fixed width and height values are set, the component content area is the size obtained with the width and height minus the paddings and border. The component content is the size calculated by the layout engine, which may be less than the component content area. When the component content and component content area do not match, the [align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align) attribute takes effect, defining the alignment mode of the component content in the component content area, for example, center aligned.
+- Component content (green block): size of the component content, for example, size of the text content in the component. The component content may not match the component content area. For example, if fixed **width** and **height** values are set, the actual size of the component content area is determined by subtracting **padding** and **border** values from the set size. However, the size of component content is calculated by the layout engine, which may be less than the component content area. In such cases, the component content may not fully occupy the space provided by the component content area. When the component content and component content area do not match, the [align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align) attribute takes effect, defining the alignment mode of the component content in the component content area, for example, center aligned.
 
 - Component layout bounds (dotted lines): component area plus the [margins](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin) (if supplied). 
 

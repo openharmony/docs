@@ -150,24 +150,24 @@ ArkUI_NodeHandle testGestureExample() {
         float velocity = OH_ArkUI_PanGesture_GetVelocity(event);
         float velocityX = OH_ArkUI_PanGesture_GetVelocityX(event);
         float velocityY = OH_ArkUI_PanGesture_GetVelocityY(event);
-       float OffsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
-        float OffsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
+        float offsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
+        float offsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
         float scale = OH_ArkUI_PinchGesture_GetScale(event);
-        float CenterX = OH_ArkUI_PinchGesture_GetCenterX(event);
-        float CenterY = OH_ArkUI_PinchGesture_GetCenterY(event);
+        float centerX = OH_ArkUI_PinchGesture_GetCenterX(event);
+        float centerY = OH_ArkUI_PinchGesture_GetCenterY(event);
         float angle = OH_ArkUI_SwipeGesture_GetAngle(event);
         float VelocityS = OH_ArkUI_SwipeGesture_GetVelocity(event);
         float angleR = OH_ArkUI_RotationGesture_GetAngle(event);
-       float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
+        float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
 
         OH_LOG_Print(
             LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
             "onPanActionCallBack,longPressGesturecallback actionType:%{public}d,velocity%{public}f,velocityX"
             "%{public}f;"
-            "velocityY%{public}f,OffsetX%{public}f,OffsetY%{public}f,scale%{public}fCenterX"
-            "%{public}fCenterY"
+            "velocityY%{public}f,offsetX%{public}f,offsetY%{public}f,scale%{public}fcenterX"
+            "%{public}fcenterY"
             "%{public}fangle%{public}fVelocityS%{public}fangleR%{public}frepeat%{public}f",
-            actionType, velocity, velocityX, velocityY, OffsetX, OffsetY, scale, CenterX, CenterY, angle, VelocityS,
+            actionType, velocity, velocityX, velocityY, offsetX, offsetY, scale, centerX, centerY, angle, VelocityS,
             angleR, repeat);
     };
     gestureApi->setGestureEventTarget(longPressGesture,
@@ -193,11 +193,11 @@ ArkUI_NodeHandle testGestureExample() {
         float velocity = OH_ArkUI_PanGesture_GetVelocity(event);
         float velocityX = OH_ArkUI_PanGesture_GetVelocityX(event);
         float velocityY = OH_ArkUI_PanGesture_GetVelocityY(event);
-        float OffsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
-        float OffsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
+        float offsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
+        float offsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
         float scale = OH_ArkUI_PinchGesture_GetScale(event);
-        float CenterX = OH_ArkUI_PinchGesture_GetCenterX(event);
-        float CenterY = OH_ArkUI_PinchGesture_GetCenterY(event);
+        float centerX = OH_ArkUI_PinchGesture_GetCenterX(event);
+        float centerY = OH_ArkUI_PinchGesture_GetCenterY(event);
         float angle = OH_ArkUI_SwipeGesture_GetAngle(event);
         float VelocityS = OH_ArkUI_SwipeGesture_GetVelocity(event);
         float angleR = OH_ArkUI_RotationGesture_GetAngle(event);
@@ -209,10 +209,10 @@ ArkUI_NodeHandle testGestureExample() {
                      "onPanActionCallBack, swipeGesture callback actionType: %{public}d, velocity "
                      "%{public}f,velocityX "
                      "%{public}f; "
-                     "velocityY %{public}f, OffsetX %{public}f, OffsetY %{public}f, scale %{public}fCenterX "
-                     "%{public}f CenterY"
+                     "velocityY %{public}f, offsetX %{public}f, offsetY %{public}f, scale %{public}fcenterX "
+                     "%{public}f centerY"
                      " %{public}f angle %{public}f VelocityS %{public}f angleR %{public}f repeat %{public}f",
-                     actionType, velocity, velocityX, velocityY, OffsetX, OffsetY, scale, CenterX, CenterY, angle,
+                     actionType, velocity, velocityX, velocityY, offsetX, offsetY, scale, centerX, centerY, angle,
                      VelocityS, angleR, repeat);
 
         ArkUI_NumberValue value[] = {{.f32 = 0}, {.f32 = 0}, {.f32 = 0}, {.f32 = angleR}, {.f32 = 0}};
@@ -513,7 +513,7 @@ ArkUI_NodeHandle testGestureExample() {
 
 ### 自定义手势判定
 
-当用户的操作符合某个手势识别器，该识别器即将触发成功时，可通过自定义手势判定能力来动态决策，是否希望该识别器被系统认定为识别成功。通过setGestureInterrupterToNode接口，绑定一个回调在该组件上，但组件上的某个手势即将识别成功时，通过返回CONTUNUE或REJECT来决定是否将成功机会让给其它手势识别器。
+当用户的操作符合某个手势识别器，该识别器即将触发成功时，可通过自定义手势判定能力来动态决策，是否希望该识别器被系统认定为识别成功。通过setGestureInterrupterToNode接口，绑定一个回调在该组件上，但组件上的某个手势即将识别成功时，通过返回CONTINUE或REJECT来决定是否将成功机会让给其它手势识别器。
 
 在上文绑定手势事件的示例中按照如下方式进行调整即可实现自定义手势判定。
 
@@ -551,7 +551,7 @@ ArkUI_NodeHandle testGestureExample() {
 
 ## 获取事件信息
 
-[绑定手势事件](#绑定手势事件)已详细说明如何将手势绑定到节点上。在回调执行时，ArkUI框架提供了[OH_ArkUI_GestureEvent_GetRawInputEvent()](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent)接口，可从手势事件中获取基础事件对象。之后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用依据获取的信息，在手势事件执行过程中实现差异化交互逻辑。
+绑定手势事件已详细说明如何将手势绑定到节点上。在回调执行时，ArkUI框架提供了[OH_ArkUI_GestureEvent_GetRawInputEvent()](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent)接口，可从手势事件中获取基础事件对象。之后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用依据获取的信息，在手势事件执行过程中实现差异化交互逻辑。
 
    ```cpp
    // 设置回调，在触发手势事件时执行回调处理手势事件

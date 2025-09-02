@@ -53,7 +53,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
       OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_BGRA_8888);
       OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
       // 创建Pixelmap实例
-      OH_PixelmapNative *pixelmap = nullptr；
+      OH_PixelmapNative *pixelmap = nullptr;
       OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
       OH_PixelmapNative_Rotate(pixelmap, 45);
       OH_PixelmapNative_Opcity(pixelmap, 0.1);
@@ -197,7 +197,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
     // buttonTouch作为targetId，用于区分不同target的事件。
     enum {
       buttonTouch
-    }
+    };
 
     ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
@@ -233,11 +233,6 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
               OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                             "ARKUI_NODE_BUTTON touch intercept");
               break;
-              switch (targetId) {
-                case buttonTouch: {
-                  OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "dragTest button touch!");
-                }
-              }
           }
           case NODE_ON_DROP: {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP EventReceiver");

@@ -3275,13 +3275,13 @@ let e0: ESObject = foo(); // Compile-time error: 'ESObject' typed variable can o
 
 function f() {
   let e1 = foo();        // Compile-time error: type of e1 is 'any'
-  let e2: ESObject = 1;  // Compile-time error: can't initialize 'ESObject' with not dynamic values
-  let e3: ESObject = {}; // Compile-time error: can't initialize 'ESObject' with not dynamic values
-  let e4: ESObject = []; // Compile-time error: can't initialize 'ESObject' with not dynamic values
-  let e5: ESObject = ""; // Compile-time error: can't initialize 'ESObject' with not dynamic values
-  e5['prop']             // Compile-time error: can't access dynamic properties of 'ESObject'
-  e5[1]                  // Compile-time error: can't access dynamic properties of 'ESObject'
-  e5.prop                // Compile-time error: can't access dynamic properties of 'ESObject'
+  let e2: ESObject = 1;  // Compile-time error: cannot initialize 'ESObject' with not dynamic values
+  let e3: ESObject = {}; // Compile-time error: cannot initialize 'ESObject' with not dynamic values
+  let e4: ESObject = []; // Compile-time error: cannot initialize 'ESObject' with not dynamic values
+  let e5: ESObject = ""; // Compile-time error: cannot initialize 'ESObject' with not dynamic values
+  e5['prop']             // Compile-time error: cannot access dynamic properties of 'ESObject'
+  e5[1]                  // Compile-time error: cannot access dynamic properties of 'ESObject'
+  e5.prop                // Compile-time error: cannot access dynamic properties of 'ESObject'
 
   let e6: ESObject = foo(); // OK - explicitly annotated as 'ESObject'
   let e7 = e6;              // OK - initialize 'ESObject' with 'ESObject'

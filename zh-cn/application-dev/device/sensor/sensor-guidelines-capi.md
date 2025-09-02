@@ -50,7 +50,7 @@
    ```json
    "requestPermissions": [
          {
-           "name": "ohos.permission.ACCELEROMETER",
+           "name": "ohos.permission.ACCELEROMETER"
          },
        ]
    ```
@@ -174,11 +174,14 @@
                return nullptr;
            }
        }
-       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos sucessful");
+       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos successful");
        ret = OH_Sensor_DestroyInfos(sensors, count); // 销毁实例数组并回收内存。
        if (ret != SENSOR_SUCCESS) {
            return nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
 
@@ -225,6 +228,9 @@
            OH_Sensor_DestroySubscriber(g_user); // 销毁Sensor_Subscriber实例并回收内存。
            g_user = nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
    

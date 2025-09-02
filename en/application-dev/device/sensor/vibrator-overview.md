@@ -16,7 +16,7 @@ The vibrator is a Misc device that consists of four modules: Vibrator API, Vibra
 
 - Vibrator Framework: manages the framework layer of the vibrator and communicates with the Misc Device Service.
 
-- Vibrator Service: manages services of vibrators.
+- Misc device service: manages services of controllers.
 
 - HDF layer: adapts to different devices.
 

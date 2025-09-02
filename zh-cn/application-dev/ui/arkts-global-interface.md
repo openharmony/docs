@@ -1,8 +1,13 @@
 # 使用UI上下文接口操作界面（UIContext）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 ## 概述
 
-OpenHarmony支持Stage模型后，存在一个ArkTS引擎里面运行多个ArkUI实例的场景。此时，一个ArkTS引擎下可能会有多个Ability，每个Ability可能有多个Window，每个Window通过loadContent加载页面，生成一个ArkUI实例。
+OpenHarmony支持Stage模型后，存在一个ArkTS引擎里面运行多个ArkUI实例的场景。此时，一个ArkTS引擎下可能会有多个Ability，每个Ability可能有多个Window，每个Window通过[loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)加载页面，生成一个ArkUI实例。
 
 **图1** 多实例关系图  
 ![multi-instance](figures/multi-instance.png)
@@ -74,6 +79,8 @@ struct Index {
 <!--deprecated_code_no_check-->
 ```ts
 import { promptAction } from '@kit.ArkUI'
+// xxx.so由开发者提供
+import bridge from xxx.so
 
 @Entry
 @Component
@@ -96,6 +103,9 @@ struct Index {
 
 针对上述问题，可使用组件内置方法[`getUIContext`](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的getPromptAction接口获取与实例绑定的对象，使得Toast绑定到具体的实例。
 ```ts
+// xxx.so由开发者提供
+import bridge from xxx.so
+
 @Entry
 @Component
 struct Index {

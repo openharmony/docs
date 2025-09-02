@@ -1,4 +1,4 @@
-# LocalStorage: Storing UI State
+# LocalStorage: Storing Page-Level UI State
 
 
 LocalStorage provides storage for the page-level UI state. The parameters of the LocalStorage type accepted through the \@Entry decorator share the same LocalStorage instance on the page. LocalStorage also allows for state sharing between pages with UIAbility instances.
@@ -197,7 +197,7 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 3. Once created, a named attribute cannot have its type changed. Subsequent calls to **Set** must set a value of same type.
 
-4. LocalStorage provides page-level storage. The [getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10) API can only obtain the LocalStorage instance passed through [windowStage.loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9) in the current stage. If the instance is not available, **undefined** is returned. For the example, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+4. LocalStorage provides page-level storage. The [getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12) API can only obtain the LocalStorage instance passed through [windowStage.loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9) in the current stage. If the instance is not available, **undefined** is returned. For the example, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ## Use Scenarios

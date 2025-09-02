@@ -4,9 +4,9 @@
 
 ## 预构建库使用约束
 
-1.确保引入的SO动态库是通过[HarmonyOS NDK 编译工具链](build-with-ndk-overview.md)编译生成，如何通过[HarmonyOS NDK 编译工具链](build-with-ndk-overview.md)编译预构建库，请参照[CMake构建三方库适配流程](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-cmake-adapts-to-harmonyos#section1826019653918)。
+1.确保引入的SO动态库是通过[OpenHarmony NDK 编译工具链](build-with-ndk-overview.md)编译生成，如何通过[OpenHarmony NDK 编译工具链](build-with-ndk-overview.md)编译预构建库，请参照[CMake构建三方库适配流程](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-cmake-adapts-to-harmonyos#section1826019653918)。
 
-2.确保引入的SO动态库的依赖库也导入到工程中且通过[HarmonyOS NDK 编译工具链](build-with-ndk-overview.md)编译生成。
+2.确保引入的SO动态库的依赖库也导入到工程中且通过[OpenHarmony NDK 编译工具链](build-with-ndk-overview.md)编译生成。
 
 ## 直接引入预构建库
 

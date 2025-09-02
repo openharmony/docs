@@ -6,13 +6,15 @@
 >
 > 从API version 11开始对\@Prop/\@BuilderParam进行校验。
 >
+> 从API version 11开始，该装饰器支持在ArkTS卡片中使用。
+>
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
 >
 > 从API version 12开始对\@State/\@Provide/\@Param/普通变量(无状态装饰器修饰的变量)进行校验。
 
 ## 概述
 
-当\@Require装饰器和\@Prop、\@State、\@Provide、\@Param、\@BuilderParam、普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@Param、\@BuilderParam和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
+当\@Require装饰器和[\@Prop](./arkts-prop.md)、[\@State](./arkts-state.md)、[\@Provide](./arkts-provide-and-consume.md)、[\@Param](./arkts-new-param.md)、[\@BuilderParam](./arkts-builderparam.md)、普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@Param、\@BuilderParam和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
 
 ## 限制条件
 
@@ -65,8 +67,8 @@ struct Child {
   }
 
   @Require regular_value: string = 'Hello';
-  @Require @State state_value: string = "Hello";
-  @Require @Provide provide_value: string = "Hello";
+  @Require @State state_value: string = 'Hello';
+  @Require @Provide provide_value: string = 'Hello';
   @Require @BuilderParam buildTest: () => void;
   @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
@@ -101,7 +103,7 @@ class Info {
 @ComponentV2
 struct ChildPage {
   @Require @Param childInfo: Info = new Info();
-  @Require @Param state_value: string = "Hello";
+  @Require @Param state_value: string = 'Hello';
 
   build() {
     Column() {
@@ -121,10 +123,10 @@ struct ChildPage {
 @Entry
 @ComponentV2
 struct ParentPage {
-  info1: Info = { name: "Tom", age: 25 };
-  label1: string = "Hello World";
-  @Local info2: Info = { name: "Tom", age: 25 };
-  @Local label2: string = "Hello World";
+  info1: Info = { name: 'Tom', age: 25 };
+  label1: string = 'Hello World';
+  @Local info2: Info = { name: 'Tom', age: 25 };
+  @Local label2: string = 'Hello World';
 
   build() {
     Column() {
@@ -146,12 +148,12 @@ struct ParentPage {
         .width('100%')
         .height(5)
         .backgroundColor('#000000').margin(10)
-      Button("change info1&info2")
+      Button('change info1&info2')
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18 }; // Text1不会刷新，原因是info1没有装饰器装饰，监听不到值的改变。
-          this.info2 = { name: "Cat", age: 18 }; // Text2会刷新，原因是info2有装饰器装饰，能够监听到值的改变。
-          this.label1 = "Luck"; // 不会刷新，原因是label1没有装饰器装饰，监听不到值的改变。
-          this.label2 = "Luck"; // 会刷新，原因是label2有装饰器装饰，可以监听到值的改变。
+          this.info1 = { name: 'Cat', age: 18 }; // Text1不会刷新，原因是info1没有装饰器装饰，监听不到值的改变。
+          this.info2 = { name: 'Cat', age: 18 }; // Text2会刷新，原因是info2有装饰器装饰，能够监听到值的改变。
+          this.label1 = 'Luck'; // 不会刷新，原因是label1没有装饰器装饰，监听不到值的改变。
+          this.label2 = 'Luck'; // 会刷新，原因是label2有装饰器装饰，可以监听到值的改变。
         })
     }
   }
@@ -224,8 +226,8 @@ struct Child {
 
   // 使用@Require必须构造时传参。
   @Require regular_value: string = 'Hello';
-  @Require @State state_value: string = "Hello";
-  @Require @Provide provide_value: string = "Hello";
+  @Require @State state_value: string = 'Hello';
+  @Require @Provide provide_value: string = 'Hello';
   @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
 

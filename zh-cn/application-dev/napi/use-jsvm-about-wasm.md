@@ -195,7 +195,7 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info) {
     status = OH_JSVM_CompileWasmFunction(env, wasmModule2, functionIndex, JSVM_WASM_OPT_HIGH);
     CHECK_STATUS(status == JSVM_OK);
 
-    JSVM_Value wasmInstance2 = InstantiateWasmModule(env, wasmModule);
+    JSVM_Value wasmInstance2 = InstantiateWasmModule(env, wasmModule2);
     VerifyAddWasmInstance(env, wasmInstance2);
 
     JSVM_Value result;
@@ -219,6 +219,5 @@ const char *srcCallNative = R"JS(wasmDemo())JS";
 ```
 预期输出
 ```
-JSVM Init
 JSVM resultInt: 975178312
 ```

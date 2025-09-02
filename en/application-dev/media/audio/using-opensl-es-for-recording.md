@@ -5,11 +5,11 @@ OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cr
 ## Using OHAudio to Replace OpenSL ES
 OpenHarmony provides the OpenSL ES APIs for audio development at the native layer since SDK8. As the version evolves, these APIs fail to meet the capability expansion requirements of the audio system and therefore are no longer recommended.
 
-In SDK 10, OpenHarmony provides the **OHAudio** APIs, which open up all audio functions of the system. The **OHAudio** APIs cover all the capabilities provided by OpenSL ES in OpenHarmony. They also support new features such as audio focus events and low latency.
+In SDK 10, OpenHarmony provides the OHAudio APIs, which open up all audio functions of the system. The OHAudio APIs cover all the capabilities provided by OpenSL ES in OpenHarmony. They also support new features such as audio focus events and low latency.
 
-For details about how to use the **OHAudio** APIs for audio development, see [Using OHAudio for Audio Recording (C/C++)](using-ohaudio-for-recording.md).
+For details about how to use the OHAudio APIs for audio development, see [Using OHAudio for Audio Recording (C/C++)](using-ohaudio-for-recording.md).
 
-If you have used the OpenSL ES APIs in your code, you can switch them to the **OHAudio** APIs. For details, see [Switching from OpenSL ES to OHAudio (C/C++)](replace-opensles-by-ohaudio.md).
+If you have used the OpenSL ES APIs in your code, you can switch them to the OHAudio APIs. For details, see [Switching from OpenSL ES to OHAudio (C/C++)](replace-opensles-by-ohaudio.md).
 
 ## OpenSL ES on OpenHarmony
 
@@ -48,11 +48,11 @@ The following lists the OpenSL ES APIs that have been implemented on OpenHarmony
 
   | API| Description| 
   | -------- | -------- |
-  | SLresult (\*Enqueue) (SLOHBufferQueueItf self, const void \*buffer, SLuint32 size) | Adds a buffer to the corresponding queue.<br>For an audio playback operation, this API adds the buffer with audio data to the **filledBufferQ_** queue. For an audio recording operation, this API adds the idle buffer after recording data storage to the **freeBufferQ_** queue.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **buffer** parameter indicates the pointer to the buffer with audio data or the pointer to the idle buffer after the recording data is stored.<br>The **size** parameter indicates the size of the buffer.| 
-  | SLresult (\*Clear) (SLOHBufferQueueItf self) | Releases a **BufferQueue** object.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.| 
-  | SLresult (\*GetState) (SLOHBufferQueueItf self, SLOHBufferQueueState \*state) | Obtains the state of a **BufferQueue** object.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **state** parameter indicates the pointer to the state of the **BufferQueue** object.| 
-  | SLresult (\*RegisterCallback) (SLOHBufferQueueItf self, SlOHBufferQueueCallback callback, void\* pContext) | Registers a callback.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **callback** parameter indicates the callback to be registered for the audio playback or recording operation.<br>The **pContext** parameter indicates the pointer to the audio file to be played for an audio playback operation or the pointer to the audio file to be recorded for an audio recording operation.| 
-  | SLresult (\*GetBuffer) (SLOHBufferQueueItf self, SLuint8\*\* buffer, SLuint32\* size) | Obtains a buffer.<br>For an audio playback operation, this API obtains an idle buffer from the **freeBufferQ_** queue. For an audio recording operation, this API obtains the buffer that carries recording data from the **filledBufferQ_** queue.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **buffer** parameter indicates the double pointer to the idle buffer or the buffer carrying recording data.<br>The **size** parameter indicates the size of the buffer.| 
+  | SLresult (\*Enqueue) (SLOHBufferQueueItf self, const void \*buffer, SLuint32 size) | Adds a buffer to the corresponding queue.<br>For an audio playback operation, this API adds the buffer with audio data to the **filledBufferQ_** queue. For an audio recording operation, this API adds the idle buffer after recording data storage to the **freeBufferQ_** queue.<br>The **self** parameter indicates the BufferQueue object that calls this API.<br>The **buffer** parameter indicates the pointer to the buffer with audio data or the pointer to the idle buffer after the recording data is stored.<br>The **size** parameter indicates the size of the buffer.| 
+  | SLresult (\*Clear) (SLOHBufferQueueItf self) | Releases a BufferQueue object.<br>The **self** parameter indicates the BufferQueue object that calls this API.| 
+  | SLresult (\*GetState) (SLOHBufferQueueItf self, SLOHBufferQueueState \*state) | Obtains the state of a BufferQueue object.<br>The **self** parameter indicates the BufferQueue object that calls this API.<br>The **state** parameter indicates the pointer to the state of the BufferQueue object.| 
+  | SLresult (\*RegisterCallback) (SLOHBufferQueueItf self, SlOHBufferQueueCallback callback, void\* pContext) | Registers a callback.<br>The **self** parameter indicates the BufferQueue object that calls this API.<br>The **callback** parameter indicates the callback to be registered for the audio playback or recording operation.<br>The **pContext** parameter indicates the pointer to the audio file to be played for an audio playback operation or the pointer to the audio file to be recorded for an audio recording operation.| 
+  | SLresult (\*GetBuffer) (SLOHBufferQueueItf self, SLuint8\*\* buffer, SLuint32\* size) | Obtains a buffer.<br>For an audio playback operation, this API obtains an idle buffer from the **freeBufferQ_** queue. For an audio recording operation, this API obtains the buffer that carries recording data from the **filledBufferQ_** queue.<br>The **self** parameter indicates the BufferQueue object that calls this API.<br>The **buffer** parameter indicates the double pointer to the idle buffer or the buffer carrying recording data.<br>The **size** parameter indicates the size of the buffer.| 
 
 ## Sample Code
 
@@ -72,7 +72,7 @@ Refer to the sample code below to record an audio file.
    #include "SLES/OpenSLES_Platform.h"
    ```
 
-2. Use the **slCreateEngine** API to create and instantiate an **engine** object.
+2. Use the **slCreateEngine** API to create and instantiate an engine object.
      
    ```cpp
    SLObjectItf engineObject = nullptr;
@@ -80,14 +80,14 @@ Refer to the sample code below to record an audio file.
    (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
    ```
 
-3. Obtain the **engineEngine** instance of the **SL_IID_ENGINE** API.
+3. Obtain the engineEngine instance of the **SL_IID_ENGINE** API.
      
    ```cpp
    SLEngineItf engineItf = nullptr;
    (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineItf);
    ```
 
-4. Configure the recorder information (including the input source **audiosource** and output source **audiosink**), and create a **pcmCapturerObject** instance.
+4. Configure the recorder information (including the input source **audiosource** and output source **audiosink**), and create a pcmCapturerObject instance.
      
    ```cpp
    SLDataLocator_IODevice io_device = {
@@ -125,14 +125,14 @@ Refer to the sample code below to record an audio file.
    (*pcmCapturerObject)->Realize(pcmCapturerObject, SL_BOOLEAN_FALSE);
    ```
 
-5. Obtain the **recordItf** instance of the **SL_IID_RECORD** API.
+5. Obtain the recordItf instance of the **SL_IID_RECORD** API.
      
    ```cpp
    SLRecordItf  recordItf;
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
    ```
 
-6. Obtain the **bufferQueueItf** instance of the **SL_IID_OH_BUFFERQUEUE** API.
+6. Obtain the bufferQueueItf instance of the **SL_IID_OH_BUFFERQUEUE** API.
      
    ```cpp
    SLOHBufferQueueItf bufferQueueItf;

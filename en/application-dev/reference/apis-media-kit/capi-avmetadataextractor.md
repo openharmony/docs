@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AVMetadataExtractor module provides the APIs for extracting metadata from media assets.
+The module provides the APIs for extracting metadata from media assets.
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 

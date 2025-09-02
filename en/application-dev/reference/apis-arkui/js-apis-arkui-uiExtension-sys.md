@@ -16,7 +16,7 @@ import { uiExtension } from '@kit.ArkUI';
 
 ## WindowProxy
 
-Implements the UIExtension host window proxy.
+Implements the proxy for the UIExtension host application window.
 
 ### hideNonSecureWindows
 

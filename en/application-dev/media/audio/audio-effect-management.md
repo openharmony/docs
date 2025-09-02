@@ -8,7 +8,7 @@ You can call [getAudioEffectMode()](../../reference/apis-audio-kit/js-apis-audio
 
 ### Creating a Playback Instance
 
-Before the management, you must call [createAudioRenderer(options: AudioRendererOptions)](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8) to create an **AudioRenderer** instance.
+Before the management, you must call [createAudioRenderer(options: AudioRendererOptions)](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8) to create an AudioRenderer instance.
 
 1. Import the audio module.
 
@@ -16,7 +16,7 @@ Before the management, you must call [createAudioRenderer(options: AudioRenderer
     import { audio } from '@kit.AudioKit';
     ```
 
-2. Configure audio rendering parameters and create an **AudioRenderer** instance. For details about the audio rendering parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8). For the **AudioRenderer** instance, the audio effect mode **EFFECT_DEFAULT** is used by default.
+2. Configure audio rendering parameters and create an AudioRenderer instance. For details about the audio rendering parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8). For the AudioRenderer instance, the audio effect mode **EFFECT_DEFAULT** is used by default.
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -104,11 +104,11 @@ Enable the default system audio effect.
 
 Obtain the global audio effect mode corresponding to a specific audio stream usage, which is specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
 
-For an audio playback application, pay attention to the audio effect mode used by the audio stream of the application and perform corresponding operations. For example, for a music application, select the audio effect mode for the music scenario. Before obtaining the global audio effect mode, call **getStreamManager()** to create an **AudioStreamManager** instance.
+For an audio playback application, pay attention to the audio effect mode used by the audio stream of the application and perform corresponding operations. For example, for a music application, select the audio effect mode for the music scenario. Before obtaining the global audio effect mode, call **getStreamManager()** to create an AudioStreamManager instance.
 
 ### Creating an AudioStreamManager Instance
 
-Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
+Before using AudioStreamManager APIs, you must use **getStreamManager()** to create an AudioStreamManager instance.
 
    ```ts
    import { audio } from '@kit.AudioKit';

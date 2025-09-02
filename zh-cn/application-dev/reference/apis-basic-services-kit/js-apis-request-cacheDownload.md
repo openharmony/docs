@@ -172,11 +172,13 @@ setMemoryCacheSize(bytes: number)
 
 setFileCacheSize(bytes: number)
 
-设置缓存下载组件能够保存的文件缓存上限。
+设置缓存下载组件能够保存的文件缓存的上限。
 
-- 使用该接口调整缓存大小时，默认使用“LRU”(最近最少使用方式)清除多余的已缓存的文件缓存内容。
+- 使用该接口调整缓存大小时，默认使用“LRU”（最近最少使用）方式清除多余的已缓存的文件缓存内容。
 
-- 该方法为同步方法，不阻塞调用线程。
+- 使用该接口时，若bytes设置为0，将会删除所有缓存文件。
+
+- 该方法为同步方法，不会阻塞调用线程。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
@@ -206,3 +208,9 @@ setFileCacheSize(bytes: number)
     console.error(`Failed to set file cache size. err: ${JSON.stringify(err)}`);
   }
   ```
+
+> ​**说明：​**​
+>
+> * 预下载模块下载的网络缓存文件会保存在应用沙箱的缓存目录中。
+> * 应用可以借助该接口的能力达成清理缓存文件的目的。
+> * 不建议应用直接对缓存目录和文件进行修改，以避免功能异常。

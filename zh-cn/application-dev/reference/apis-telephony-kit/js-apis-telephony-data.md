@@ -522,6 +522,7 @@ queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
 ```ts
 import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.queryAllApns().then((data: Array<data.ApnInfo>) => {
     console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
@@ -565,6 +566,7 @@ queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 
 ```ts
 import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let apnInfo: data.ApnInfo;
 apnInfo = {
@@ -619,6 +621,7 @@ setPreferredApn(apnId: number): Promise\<boolean\>
 
 ```ts
 import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选APN。
 data.setPreferredApn(apnId).then((data: boolean) => {

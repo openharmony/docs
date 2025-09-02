@@ -17,7 +17,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
 
@@ -222,7 +222,7 @@ isFingerCountLimit(): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 值   | 描述                               |
+| 名称    | 值   | 说明                           |
 | ------- | ---- | ---------------------------------- |
 | READY | 0    | 准备状态。 |
 | DETECTING    | 1    | 检测状态。 |
@@ -505,7 +505,7 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
 | exposeInnerGesture   | boolean         | 是    | 暴露内部手势标识。<br/>默认值：false<br/>**说明:**<br/>如果是组合组件，此参数设置true，则会在current参数回调出组合组件内部的手势识别器。<br>当前仅支持[Tabs](ts-container-tabs.md)，其他组件请不要设置此参数。<br/>设置为false时，功能与原接口[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)相同。 |
@@ -521,7 +521,7 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback): T
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
 
@@ -547,7 +547,7 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | event | [BaseGestureEvent](./ts-gesture-customize-judge.md#basegestureevent对象说明) | 是   | 当前基础手势事件信息。 |
 | current | [GestureRecognizer](#gesturerecognizer) | 是   | 当前即将要响应的识别器对象。 |
-| others | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 响应链上的其他手势识别器对象。 |
+| recognizers | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 响应链上的其他手势识别器对象。 |
 
 **返回值：**
 
@@ -559,7 +559,7 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 
 ### 示例1（嵌套滚动）
 
-该示例通过shouldBuiltInrecognizerParallelWith和onGestureRecognizerJudgeBegin实现了嵌套滚动的功能。内部组件优先响应滑动手势，当内部组件滑动至顶部或底部时，外部组件能够接替滑动。
+该示例通过shouldBuiltInRecognizerParallelWith和onGestureRecognizerJudgeBegin实现了嵌套滚动的功能。内部组件优先响应滑动手势，当内部组件滑动至顶部或底部时，外部组件能够接替滑动。
 
 ```ts
 // xxx.ets
@@ -567,7 +567,7 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Component
 struct FatherControlChild {
   scroller: Scroller = new Scroller();
-  scroller2: Scroller = new Scroller()
+  scroller2: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   private childRecognizer: GestureRecognizer = new GestureRecognizer();
   private currentRecognizer: GestureRecognizer = new GestureRecognizer();
@@ -649,23 +649,23 @@ struct FatherControlChild {
                     let panEvent = event as PanGestureEvent;
                     if (target.isEnd()) { // 根据当前组件状态以及移动方向动态控制识别器使能状态
                       if (panEvent && panEvent.offsetY < 0) {
-                        this.childRecognizer.setEnabled(false)
-                        this.currentRecognizer.setEnabled(true)
+                        this.childRecognizer.setEnabled(false);
+                        this.currentRecognizer.setEnabled(true);
                       } else {
-                        this.childRecognizer.setEnabled(true)
-                        this.currentRecognizer.setEnabled(false)
+                        this.childRecognizer.setEnabled(true);
+                        this.currentRecognizer.setEnabled(false);
                       }
                     } else if (target.isBegin()) {
                       if (panEvent.offsetY > 0) {
-                        this.childRecognizer.setEnabled(false)
-                        this.currentRecognizer.setEnabled(true)
+                        this.childRecognizer.setEnabled(false);
+                        this.currentRecognizer.setEnabled(true);
                       } else {
-                        this.childRecognizer.setEnabled(true)
-                        this.currentRecognizer.setEnabled(false)
+                        this.childRecognizer.setEnabled(true);
+                        this.currentRecognizer.setEnabled(false);
                       }
                     } else {
-                      this.childRecognizer.setEnabled(true)
-                      this.currentRecognizer.setEnabled(false)
+                      this.childRecognizer.setEnabled(true);
+                      this.currentRecognizer.setEnabled(false);
                     }
                   }
                 }
@@ -687,34 +687,34 @@ struct FatherControlChild {
             if (target instanceof ScrollableTargetInfo && currentTarget instanceof ScrollableTargetInfo) {
               if (target.isEnd()) { // 在移动过程中实时根据当前组件状态，控制识别器的开闭状态
                 if ((event.offsetY - this.lastOffset) < 0) {
-                  this.childRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(false);
                   if (currentTarget.isEnd()) {
-                    this.currentRecognizer.setEnabled(false)
+                    this.currentRecognizer.setEnabled(false);
                   } else {
-                    this.currentRecognizer.setEnabled(true)
+                    this.currentRecognizer.setEnabled(true);
                   }
                 } else {
-                  this.childRecognizer.setEnabled(true)
-                  this.currentRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(true);
+                  this.currentRecognizer.setEnabled(false);
                 }
               } else if (target.isBegin()) {
                 if ((event.offsetY - this.lastOffset) > 0) {
-                  this.childRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(false);
                   if (currentTarget.isBegin()) {
-                    this.currentRecognizer.setEnabled(false)
+                    this.currentRecognizer.setEnabled(false);
                   } else {
-                    this.currentRecognizer.setEnabled(true)
+                    this.currentRecognizer.setEnabled(true);
                   }
                 } else {
-                  this.childRecognizer.setEnabled(true)
-                  this.currentRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(true);
+                  this.currentRecognizer.setEnabled(false);
                 }
               } else {
-                this.childRecognizer.setEnabled(true)
-                this.currentRecognizer.setEnabled(false)
+                this.childRecognizer.setEnabled(true);
+                this.currentRecognizer.setEnabled(false);
               }
             }
-            this.lastOffset = event.offsetY
+            this.lastOffset = event.offsetY;
           })
       )
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

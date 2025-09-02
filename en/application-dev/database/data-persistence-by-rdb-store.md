@@ -6,8 +6,8 @@
 A relational database (RDB) store is used to store data in complex relational models, such as the student information including names, student IDs, and scores of each subject, or employee information including names, employee IDs, and positions, based on SQLite. The data is more complex than key-value (KV) pairs due to strict mappings. You can use **RelationalStore** to implement persistence of this type of data.
 
 Querying data from a large amount of data may take time or even cause application suspension. In this case, you can perform batch operations. For details, see [Batch Database Operations](../arkts-utils/batch-database-operations-guide.md). Moreover, observe the following:
-- The number of data records to be queried at a time should not exceed 5000.
-- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if there is a large amount of data needs to be queried.
+- The maximum number of data records to query at a time is 5000.
+- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if a large amount of data needs to be queried.
 - Keep concatenated SQL statements as concise as possible.
 - Query data in batches.
 
@@ -74,7 +74,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    // In this example, Ability is used to obtain an RdbStore instance. You can use other implementations as required.
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       // Before using a tokenizer, call isStorageTypeSupported to check whether the tokenizer is supported by the current platform.
+       // Before using a tokenizer, call isTokenizerSupported to check whether the tokenizer is supported by the current platform.
        let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
        let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
        if (!tokenTypeSupported) {
@@ -84,8 +84,8 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S3, // Database security level.
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
-         customDir: 'customDir/subCustomDir' // (Optional) Customized database path. The database is created in the context.databaseDir + '/rdb/' + customDir directory, where context.databaseDir indicates the application sandbox path, '/rdb/' indicates a relational database, and customDir indicates the customized path. If this parameter is not specified, an RdbStore instance is created in the sandbox directory of the application.
-         isReadOnly: false // (Optional) Specify whether the RDB store is opened in read-only mode. The default value is false, which means the RDB store is readable and writable. If this parameter is true, data can only be read from the RDB store. If write operation is performed, error code 801 is returned.
+         customDir: 'customDir/subCustomDir', // (Optional) Customized database path. The database is created in the context.databaseDir + '/rdb/' + customDir directory, where context.databaseDir indicates the application sandbox path, '/rdb/' indicates a relational database, and customDir indicates the customized path. If this parameter is not specified, an RdbStore instance is created in the sandbox directory of the application.
+         isReadOnly: false, // (Optional) Specify whether the RDB store is opened in read-only mode. The default value is false, which means the RDB store is readable and writable. If this parameter is true, data can only be read from the RDB store. If write operation is performed, error code 801 is returned.
          tokenizer: tokenType // (Optional) Type of the tokenizer used in full-text search (FTS). If this parameter is left blank, only English word segmentation is supported in FTS.
        };
 
@@ -102,7 +102,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
          // When the RDB store is created, the default version is 0.
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // Create a table.
+           store.executeSql(SQL_CREATE_TABLE) // Create a table.
              .then(() => {
                // Set the RDB store version, which must be an integer greater than 0.
                store.version = 3;

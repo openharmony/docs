@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **avmetadata_extractor_base.h** file declares the constants used by the AVMetadataExtractor.
+The file declares the constants used by the AVMetadataExtractor.
 
 **Library**: libavmetadata_extractor.so
 

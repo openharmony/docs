@@ -1,5 +1,11 @@
 # @ohos.bluetooth.access (蓝牙access模块)(系统接口)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 access模块提供了打开蓝牙、关闭蓝牙和获取蓝牙状态的方法。
 
 > **说明：**

@@ -1,4 +1,4 @@
-# !! Syntax: Two-Way Binding
+# !! Syntax: Enabling Two-Way Binding
 In state management V1, [$$](./arkts-two-way-sync.md) is used for two-way binding of built-in components.
 In state management V2, the **!!** syntactic sugar is used to implement two-way binding of components in a unified manner.
 

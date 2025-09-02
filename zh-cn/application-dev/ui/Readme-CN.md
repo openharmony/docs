@@ -70,10 +70,14 @@
         - [getTarget接口：获取状态管理框架代理前的原始对象](state-management/arkts-new-getTarget.md)
         - [makeObserved接口：将非观察数据变为可观察数据](state-management/arkts-new-makeObserved.md)
       - [MVVM模式（状态管理V2）](state-management/arkts-mvvm-V2.md)
-    - V1V2混用和迁移指导<!--v1v2-migration-->
+    - V1V2混用指导<!--v1v2-mixing-->
       - [自定义组件混用场景指导](state-management/arkts-custom-component-mixed-scenarios.md)
       - [状态管理V1V2混用文档](state-management/arkts-v1-v2-mixusage.md)
-      - [V1->V2迁移指导](state-management/arkts-v1-v2-migration.md)
+    - V1->V2迁移指导<!--v1v2-migration-->
+      - [V1->V2迁移指导概述](state-management/arkts-v1-v2-migration.md)
+        - [组件内状态变量迁移指导](state-management/arkts-v1-v2-migration-inner-component.md)
+        - [数据对象状态变量的迁移指导](state-management/arkts-v1-v2-migration-inner-class.md)
+        - [应用内状态变量和其他场景迁移指导](state-management/arkts-v1-v2-migration-application-and-others.md)
   - 学习UI范式渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](state-management/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](state-management/arkts-rendering-control-ifelse.md)
@@ -208,6 +212,7 @@
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
   - [使用组件截图（ComponentSnapshot）](arkts-uicontext-component-snapshot.md)
+  - [使用inspector检查页面布局](arkts-inspector-overview.md) 
   - 嵌入式组件<!--arkts-ui-cross-process-->
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
     - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)

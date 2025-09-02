@@ -2,7 +2,7 @@
 
 OffscreenCanvas组件用于绘制自定义图形。
 
-使用[Canvas](ts-components-canvas-canvas.md)组件或[Canvas API](ts-canvasrenderingcontext2d.md)时，渲染、动画和用户交互通常发生在应用程序的主线程上，与画布动画和渲染相关的计算可能会影响应用程序性能。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免影响应用程序主线程性能。
+使用[Canvas](ts-components-canvas-canvas.md)组件或[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)时，渲染、动画和用户交互通常发生在应用程序的主线程上，与画布动画和渲染相关的计算可能会影响应用程序性能。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免影响应用程序主线程性能。
 
 > **说明：** 
 >
@@ -135,7 +135,7 @@ transferToImageBitmap(): ImageBitmap
 
 **返回值：**
 
-| 类型                                               | 描述                    |
+| 类型                                               | 说明                    |
 | -------------------------------------------------- | ----------------------- |
 | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 创建的ImageBitmap对象。 |
 
@@ -196,7 +196,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 **返回值：**
 
-| 类型                                                         | 描述                              |
+| 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
 | [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。如果getContext方法的入参contextType为"2d"以外类型（包括null或者undefined），返回null。 |
 

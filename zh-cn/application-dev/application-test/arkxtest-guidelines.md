@@ -1,9 +1,15 @@
 # 自动化测试框架使用指导 
 
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @inter515-->
+<!--Designer: @inter515-->
+<!--Tester: @laonie666-->
+
 
 ## 概述
 
-自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架（JsUnit）及UI测试框架（UiTest）。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。<br>本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行方法。同时，以shell命令方式，对外提供了获取截屏、控件树、录制用户操作、便捷注入UI模拟操作等能力，助力开发者更灵活方便测试和验证。
+自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架（JsUnit）及UI测试框架（UiTest）。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。<br>本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行方法。同时，以shell命令方式，对外提供了获取截屏、控件树、录制界面操作、便捷注入UI模拟操作等能力，助力开发者更灵活方便测试和验证。
 
 ## 实现原理
 
@@ -57,7 +63,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.huawei.com
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
 ```ts
-import { describe, it, expect } from '@ohos/hypium';
+import { describe, it, expect, Level } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
@@ -68,7 +74,7 @@ function sleep(time: number) {
 }
 export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
-    it('testUiExample',0, async (done: Function) => {
+    it('testUiExample',Level.LEVEL3, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
       const want: Want = {
@@ -122,7 +128,7 @@ export default function abilityTest() {
 
 2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
     ```ts
-    import { describe, it, expect } from '@ohos/hypium';
+    import { describe, it, expect, Level } from '@ohos/hypium';
     // 导入测试依赖kit
     import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
     import { UIAbility, Want } from '@kit.AbilityKit';
@@ -134,7 +140,7 @@ export default function abilityTest() {
     }
     export default function abilityTest() {
       describe('ActsAbilityTest', () => {
-        it('testUiExample',0, async (done: Function) => {
+        it('testUiExample',Level.LEVEL3, async (done: Function) => {
             console.info("uitest: TestUiExample begin");
             //start tested ability
             const want: Want = {
@@ -355,7 +361,7 @@ export default function abilityTest() {
 
 ## 基于shell命令测试
 
-在开发过程中，若需要快速进行截屏、录屏、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
+在开发过程中，若需要快速进行截屏、录制界面操作、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
 
 > **说明：**
 >
@@ -367,7 +373,7 @@ export default function abilityTest() {
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名，只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
 | dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件，也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
-| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
+| uiRecord        | uiRecord \<record \| read>|录制界面操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
 | uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
 | start-daemon|start-daemon| 拉起uitest测试进程。 |
@@ -493,13 +499,13 @@ hdc shell uitest uiInput fling 10 10 200 200 500
 
 #### uiInput swipe/drag使用示例
 
-| 配置参数  | 必填             | 描述               |      
+| 配置参数  | 必填             | 描述               |
 |------|------------------|-----------------|
-| from_x   | 是                | 滑动起点x坐标。 | 
-| from_y   | 是                | 滑动起点y坐标。 | 
+| from_x   | 是                | 滑动起点x坐标。 |
+| from_y   | 是                | 滑动起点y坐标。 |
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值：600。 |
 
 ```shell  
 # 执行慢滑操作。

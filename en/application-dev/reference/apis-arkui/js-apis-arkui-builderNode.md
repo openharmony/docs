@@ -1,6 +1,6 @@
 # BuilderNode
 
-The **BuilderNode** module provides APIs for a BuilderNode – a custom node that can be used to mount native components. A BuilderNode can be used only as a leaf node. For details, see [BuilderNode Development](../../ui/arkts-user-defined-arktsNode-builderNode.md).
+The **BuilderNode** module provides APIs for a BuilderNode – a custom node that can be used to mount built-in components. A BuilderNode can be used only as a leaf node. For details, see [BuilderNode Development](../../ui/arkts-user-defined-arktsNode-builderNode.md). For best practices, see [Dynamic Component Creation: Dynamically Adding, Updating, and Deleting Components](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012).
 
 > **NOTE**
 >
@@ -9,6 +9,15 @@ The **BuilderNode** module provides APIs for a BuilderNode – a custom node tha
 > If you encounter display issues when reusing a BuilderNode across pages, see [Cross-Page Reuse Considerations](../../ui/arkts-user-defined-arktsNode-builderNode.md#cross-page-reuse-considerations) for guidance.
 > 
 > **BuilderNode** is not available in DevEco Studio Previewer.
+> 
+> Custom components under a BuilderNode can use the [@Prop](../../ui/state-management/arkts-prop.md) decorator. The [@Link](../../ui/state-management/arkts-link.md) decorator cannot be used to synchronize data and states across BuilderNode boundaries.
+>
+> If a BuilderNode contains custom components as child nodes, these custom components cannot use the [@Reusable](../../ui/state-management/arkts-reusable.md) decorator. For details, see [Using the @Reusable Decorator with BuilderNode Child Components](../../ui/arkts-user-defined-arktsNode-builderNode.md#using-the-reusable-decorator-with-buildernode-child-components).
+> 
+> Since API version 12, custom components can receive [LocalStorage](../../ui/state-management/arkts-localstorage.md) instances. You can use LocalStorage related decorators such as [@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink) by [passing LocalStorage instances](../../ui/state-management/arkts-localstorage.md#example-of-providing-a-custom-component-with-access-to-a-localstorage-instance).
+> 
+> The behavior of other decorators is undefined. Avoid using those decorators.
+
 
 ## Modules to Import
 
@@ -33,7 +42,7 @@ Enumerates the node rendering types.
 >
 > Currently, the **RENDER_TYPE_TEXTURE** type takes effect only for the [XComponentNode](./js-apis-arkui-xcomponentNode.md) and the [BuilderNode](#buildernode-1) holding a component tree whose root node is a custom component.
 >
-> In the case of [BuilderNode](#buildernode-1), the following custom components that function as the root node support texture export: Badge, Blank, Button, CanvasGradient, CanvasPattern, CanvasRenderingContext2D, Canvas, CheckboxGroup, Checkbox, Circle, ColumnSplit, Column, ContainerSpan, Counter, DataPanel, Divider, Ellipse, Flex, Gauge, Hyperlink, ImageBitmap, ImageData, Image, Line, LoadingProgress, Marquee, Matrix2D, OffscreenCanvasRenderingContext2D, OffscreenCanvas, Path2D, Path, PatternLock, Polygon, Polyline, Progress, QRCode, Radio, Rating, Rect, RelativeContainer, RowSplit, Row, Shape, Slider, Span, Stack, TextArea, TextClock, TextInput, TextTimer, Text, Toggle, Video (not supporting the native full-screen mode), Web, XComponent
+> In the case of [BuilderNode](#buildernode-1), the following custom components that function as the root node support texture export: Badge, Blank, Button, CanvasGradient, CanvasPattern, CanvasRenderingContext2D, Canvas, CheckboxGroup, Checkbox, Circle, ColumnSplit, Column, ContainerSpan, Counter, DataPanel, Divider, Ellipse, Flex, Gauge, Hyperlink, ImageBitmap, ImageData, Image, Line, LoadingProgress, Marquee, Matrix2D, OffscreenCanvasRenderingContext2D, OffscreenCanvas, Path2D, Path, PatternLock, Polygon, Polyline, Progress, QRCode, Radio, Rating, Rect, RelativeContainer, RowSplit, Row, Shape, Slider, Span, Stack, TextArea, TextClock, TextInput, TextTimer, Text, Toggle, Video (without support for full-screen playback), Web, XComponent
 >
 > The following components support texture export since API version 12: DatePicker, ForEach, Grid, IfElse, LazyForEach, List, Scroll, Swiper, TimePicker, @Component decorated custom components, NodeContainer, and FrameNode and RenderNode mounted to a NodeContainer.
 >
@@ -49,15 +58,15 @@ Provides optional parameters for creating a BuilderNode.
 
 | Name         | Type                                  | Mandatory| Description                                                        |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | No  | Ideal size of the node.                                            |
-| type          | [NodeRenderType](#noderendertype)      | No  | Rendering type of the node.                                            |
-| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage) instance.|
+| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | No  | Ideal size of the node.<br>Default value: **{ width: 0, height: 0 }**.|
+| type          | [NodeRenderType](#noderendertype)      | No  | Rendering type of the node.<br>Default value: **NodeRenderType.RENDER_TYPE_DISPLAY**.|
+| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Typically, the texture receiver is [OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage).<br>This parameter is effective only when **type** is set to **NodeRenderType.RENDER_TYPE_TEXTURE**.<br>Default value: **""**.|
 
 ## BuilderNode
 
 class BuilderNode\<Args extends Object[]>
 
-Implements a BuilderNode, which can create a component tree through the stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) and hold the root node of the component tree. A BuilderNode cannot be defined as a state variable. The FrameNode held in the BuilderNode is only used to mount the BuilderNode to other FrameNodes as a child node. Undefined behavior may occur if you set attributes or perform operations on subnodes of the FrameNode held by the BuilderNode. Therefore, after you have obtained a [RenderNode](js-apis-arkui-renderNode.md#rendernode) through the [getFrameNode](#getframenode) method of the BuilderNode and the [getRenderNode](js-apis-arkui-frameNode.md#getrendernode) method of the [FrameNode](js-apis-arkui-frameNode.md#framenode), avoid setting the attributes or operating the subnodes through APIs of the [RenderNode](js-apis-arkui-renderNode.md#rendernode).
+Implements a BuilderNode, which can create a component tree through the stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) and hold the root node of the component tree. A BuilderNode cannot be defined as a state variable. The FrameNode held in the BuilderNode is only used to mount the BuilderNode to other FrameNodes as a child node. Undefined behavior may occur if you set attributes or perform operations on subnodes of the FrameNode held by the BuilderNode. Therefore, after you have obtained a [RenderNode](js-apis-arkui-renderNode.md) through the [getFrameNode](#getframenode) method of the BuilderNode and the [getRenderNode](js-apis-arkui-frameNode.md#getrendernode) method of the [FrameNode](js-apis-arkui-frameNode.md), avoid setting the attributes or operating the subnodes through APIs of [RenderNode](js-apis-arkui-renderNode.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -86,15 +95,19 @@ Constructor for creating a BuilderNode. When the content generated by the Builde
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 Creates a component tree based on the passed object and holds the root node of the component tree. The stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) has at most one root node.
-Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../ui/state-management/arkts-create-custom-components.md#basic-structure-of-a-custom-component), [@Link](../../ui/state-management/arkts-link.md), [@Provide](../../ui/state-management/arkts-provide-and-consume.md), and [@Consume](../../ui/state-management/arkts-provide-and-consume.md), for state synchronization with the page to which the BuilderNode is mounted.
+Custom components are allowed.
 
 > **NOTE**
 > 
 > When nesting @Builder, ensure that the input objects for the inner and outer @Builder methods are consistent.
 >
-> The outermost @Builder supports only one input argument.
+> The outermost @Builder supports only one input parameter.
+>
+> The build parameter uses the pass-by-value semantics. To implement state updates, you must explicitly use the [update](#update) API.
 > 
 > To operate objects in a BuilderNode, ensure that the reference to the BuilderNode is not garbage collected. Once a BuilderNode object is collected by the virtual machine, its FrameNode and RenderNode objects will also be dereferenced from the backend nodes. This means that any FrameNode objects obtained from a BuilderNode will no longer correspond to any actual node if the BuilderNode is garbage collected.
+>
+> The BuilderNode object maintains references to its underlying entity nodes. When the BuilderNode frontend object is no longer required for managing backend nodes, call the [dispose](#dispose12) API to release node references and unbind frontend and backend nodes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -105,33 +118,20 @@ Custom components are allowed. Yet, the custom components cannot use decorators,
 | Name | Type                                                           | Mandatory| Description                                                                                  |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) required for creating a component tree.|
-| arg     | Object                                                          | No  | Argument of the builder. Only one input argument is supported, and the type of the input argument must be consistent with the type defined by @Builder.                                         |
-
-
-### BuildOptions<sup>12+</sup>
-
-Defines the optional build options.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name         | Type                                  | Mandatory| Description                                                        |
-| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| nestingBuilderSupported |boolean | No  | Whether to support nesting **@Builder** within **@Builder**. The value **false** means that the input arguments for **@Builder** are consistent, and **true** means the opposite.<br> Default value: **false**                                         |
+| arg     | Object                                                          | No  | Argument of the builder. Only one input parameter is supported, and the type of the input parameter must be consistent with the type defined by @Builder.<br>Default value: **undefined**.|
 
 ### build<sup>12+</sup>
 
 build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buildoptions12)): void
 
 Creates a component tree based on the passed object and holds the root node of the component tree. The stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) has at most one root node.
-Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../ui/state-management/arkts-create-custom-components.md#basic-structure-of-a-custom-component), [@Link](../../ui/state-management/arkts-link.md), [@Provide](../../ui/state-management/arkts-provide-and-consume.md), and [@Consume](../../ui/state-management/arkts-provide-and-consume.md), for state synchronization with the owning page.
+Custom components are allowed.
 
 > **NOTE**
 > 
 > For details about the creation and update using @Builder, see [@Builder](../../ui/state-management/arkts-builder.md).
 > 
-> The outermost @Builder supports only one input argument.
+> The outermost @Builder supports only one input parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -142,8 +142,8 @@ Custom components are allowed. Yet, the custom components cannot use decorators,
 | Name | Type                                                           | Mandatory| Description                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) required for creating a component tree.  |
-| arg     | Object                                                          | Yes  | Argument of the builder. Only one input argument is supported, and the type of the input argument must be consistent with the type defined by @Builder.                                                           |
-| options | BuildOptions                                                    | Yes  | Build options, which determine whether to support nesting **@Builder** within **@Builder**.                                        |
+| arg     | Object                                                          | Yes  | Argument of the builder. Only one input parameter is supported, and the type of the input parameter must be consistent with the type defined by @Builder.                                                           |
+| options | [BuildOptions](#buildoptions12)                                           | Yes  | Build options, which determine whether to support nesting **@Builder** within **@Builder**.                                        |
 
 **Example**
 ```ts
@@ -177,7 +177,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -188,7 +188,7 @@ struct Index {
             let buildNode = new BuilderNode<[ParamsInterface]>(this.getUIContext());
             buildNode.build(wrapBuilder<[ParamsInterface]>(buildText), {
               text: this.message, func: () => {
-                return "FUNCTION"
+                return "FUNCTION";
               }
             }, { nestingBuilderSupported: true });
             this.content.addFrameNode(buildNode.getFrameNode());
@@ -205,6 +205,17 @@ struct Index {
 }
 ```
 
+### BuildOptions<sup>12+</sup>
+
+Defines the optional build options.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Type                                  | Mandatory| Description                                                        |
+| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| nestingBuilderSupported |boolean | No  | Whether to support nesting **@Builder** within **@Builder**. The value **false** means that the input arguments for **@Builder** are consistent, and **true** means the opposite.<br> Default value: **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### getFrameNode
 
@@ -220,7 +231,7 @@ Obtains the FrameNode in the BuilderNode. The FrameNode is generated only after 
 
 | Type                                                     | Description                                                                 |
 | --------------------------------------------------------- | --------------------------------------------------------------------- |
-| [FrameNode](js-apis-arkui-frameNode.md#framenode) \| null | **FrameNode** object. If no such object is held by the **BuilderNode** instance, null is returned.|
+| [FrameNode](js-apis-arkui-frameNode.md) \| null | **FrameNode** object. If no such object is held by the **BuilderNode** instance, null is returned.|
 
 **Example 1**
 
@@ -230,7 +241,7 @@ In this example, the BuilderNode is returned as the root node of the **NodeConta
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -257,7 +268,7 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
 
     return this.textNode.getFrameNode();
   }
@@ -266,7 +277,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -292,7 +303,7 @@ This example shows how to mount a FrameNode within a BuilderNode to another Fram
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -334,7 +345,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -360,7 +371,7 @@ This example shows how to mount a BuilderNode's RenderNode under another RenderN
 import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -408,7 +419,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -447,7 +458,7 @@ Updates this BuilderNode based on the provided parameter, which is of the same t
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -488,13 +499,13 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
-    this.message = message
+    super();
+    this.message = message;
   }
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     return this.textNode.getFrameNode();
   }
 
@@ -508,7 +519,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -579,7 +590,7 @@ Posts a raw touch event to the FrameNode created by this BuilderNode.
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "this is a text"
+  text: string = "this is a text";
 }
 
 @Builder
@@ -593,7 +604,7 @@ function ButtonBuilder(params: Params) {
       .gesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
-            console.log("TapGesture");
+            console.info("TapGesture");
           })
       )
   }
@@ -608,12 +619,12 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "this is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "this is a string" });
     return this.rootNode.getFrameNode();
   }
 
   // Coordinate system transformation
-  postTouchEvent(event: TouchEvent): boolean {
+  postTouchEvent(event: TouchEvent, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -624,12 +635,12 @@ class MyNodeController extends NodeController {
     let changedTouchLen = event.changedTouches.length;
     for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-        event.changedTouches[i].x = vp2px(offsetX + event.changedTouches[i].x);
-        event.changedTouches[i].y = vp2px(offsetY + event.changedTouches[i].y);
+        event.changedTouches[i].x = uiContext.vp2px(offsetX + event.changedTouches[i].x);
+        event.changedTouches[i].y = uiContext.vp2px(offsetY + event.changedTouches[i].y);
       }
     }
     let result = this.rootNode.postTouchEvent(event);
-    console.log("result " + result);
+    console.info("result " + result);
     return result;
   }
 }
@@ -651,7 +662,7 @@ struct MyComponent {
         .backgroundColor(Color.Pink)
         .onTouch((event) => {
           if (event != undefined) {
-            this.nodeController.postTouchEvent(event);
+            this.nodeController.postTouchEvent(event, this.getUIContext());
           }
         })
     }
@@ -663,7 +674,11 @@ struct MyComponent {
 
 dispose(): void
 
-Releases this BuilderNode immediately. Calling **dispose** on a **BuilderNode** object breaks its reference to the backend entity node, and also simultaneously severs the references of its contained FrameNode and RenderNode to their respective entity nodes.
+Immediately releases the reference relationship between this BuilderNode object and its [entity node](../../ui/arkts-user-defined-node.md#basic-concepts). For details about the scenarios involving BuilderNode unbinding, see [Canceling the Reference to the Entity Node](../../ui/arkts-user-defined-arktsNode-builderNode.md#canceling-the-reference-to-the-entity-node).
+
+> **NOTE**
+>
+> Failure to properly release BuilderNode objects may result in memory leaks. To avoid this, be sure to call **dispose()** on the BuilderNode when you no longer need it. This reduces the complexity of reference relationships and lowers the risk of memory leaks.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -685,11 +700,11 @@ struct TestComponent {
   }
 
   aboutToAppear() {
-    console.error('aboutToAppear');
+    console.info('aboutToAppear');
   }
 
   aboutToDisappear() {
-    console.error('aboutToDisappear');
+    console.info('aboutToDisappear');
   }
 }
 
@@ -754,7 +769,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-Passes the reuse event to the custom component in this BuilderNode.
+Triggers component reuse for custom components under this BuilderNode. For details about component reuse, see [\@Reusable Decorator: Reusing Components](../../ui/state-management/arkts-reusable.md). For details about the scenarios involving BuilderNode unbinding, see [Canceling the Reference to the Entity Node](../../ui/arkts-user-defined-arktsNode-builderNode.md#canceling-the-reference-to-the-entity-node).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -770,18 +785,21 @@ Passes the reuse event to the custom component in this BuilderNode.
 
 recycle(): void
 
-Passes the recycle event to the custom component in this BuilderNode.
+- Triggers recycling of custom components under this BuilderNode. Component recycling is part of the component reuse mechanism. For details, see [\@Reusable Decorator: Reusing Components](../../ui/state-management/arkts-reusable.md).
+- The BuilderNode completes the reuse event transfer between internal and external custom components through **reuse** and **recycle**. For specific usage scenarios, see [Implementing Node Reuse with the BuilderNode reuse and recycle APIs](../../ui/arkts-user-defined-arktsNode-builderNode.md#implementing-node-reuse-with-the-buildernode-reuse-and-recycle-apis).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+import { FrameNode, NodeController, BuilderNode, UIContext } from "@kit.ArkUI";
+
+const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
-  private listener: DataChangeListener | null = null
+  private listener: DataChangeListener | null = null;
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -818,7 +836,10 @@ class Params {
 
 @Builder
 function buildNode(param: Params = new Params("hello")) {
-  ReusableChildComponent2({ item: param.item });
+  Row() {
+    Text(`C${param.item} -- `)
+    ReusableChildComponent2({ item: param.item }) // This custom component cannot be correctly reused in the BuilderNode.
+  }
 }
 
 class MyNodeController extends NodeController {
@@ -834,10 +855,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+// The custom component that is reused and recycled will have its state variables updated, and the state variables of the nested custom component ReusableChildComponent3 will also be updated. However, the BuilderNode will block this propagation process.
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = '';
+  @Prop item: string = '';
+  @Prop switch: string = '';
   private controller: MyNodeController = new MyNodeController();
 
   aboutToAppear() {
@@ -845,17 +868,29 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent aboutToRecycle " + this.item);
-    this.controller?.builderNode?.recycle();
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+
+    // When the switch is open, pass the recycle event to the nested custom component, such as ReusableChildComponent2, through the BuilderNode's recycle API to complete recycling.
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.recycle();
+    }
   }
 
   aboutToReuse(params: object): void {
-    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
-    this.controller?.builderNode?.reuse(params);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+
+    // When the switch is open, pass the reuse event to the nested custom component, such as ReusableChildComponent2, through the BuilderNode's reuse API to complete reuse.
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.reuse(params);
+    }
   }
 
   build() {
-    NodeContainer(this.controller);
+    Row() {
+      Text(`A${this.item}--`)
+      ReusableChildComponent3({ item: this.item })
+      NodeContainer(this.controller);
+    }
   }
 }
 
@@ -864,16 +899,38 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
     Row() {
-      Text(this.item)
+      Text(`D${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+@Component
+struct ReusableChildComponent3 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Row() {
+      Text(`B${this.item}`)
         .fontSize(20)
         .backgroundColor(Color.Yellow)
         .margin({ left: 10 })
@@ -888,7 +945,7 @@ struct Index {
   @State data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 0;i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
       this.data.pushData(i.toString());
     }
   }
@@ -898,7 +955,10 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            ReusableChildComponent({ item: item })
+            ReusableChildComponent({
+              item: item,
+              switch: 'open' // Changing open to close can be used to observe the behavior of custom components inside the BuilderNode when reuse and recycle events are not passed through the BuilderNode's reuse and recycle APIs.
+            })
           }
         }, (item: string) => item)
       }
@@ -911,7 +971,7 @@ struct Index {
 
 ### updateConfiguration<sup>12+</sup>
 
-updateConfiguration(): void  
+updateConfiguration(): void
 
 Updates the configuration of the entire node by passing in a [system environment change](../apis-ability-kit/js-apis-app-ability-configuration.md) event.
 
@@ -925,11 +985,11 @@ Updates the configuration of the entire node by passing in a [system environment
 
 **Example**
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { NodeController, BuilderNode, FrameNode, UIContext, FrameCallback } from "@kit.ArkUI";
 import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -970,7 +1030,7 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
+    super();
     this.message = message;
   }
 
@@ -1000,9 +1060,15 @@ class TextNodeController extends NodeController {
 // Record the created custom node object.
 const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
 
+class MyFrameCallback extends FrameCallback {
+  onFrame() {
+    updateColorMode();
+  }
+}
+
 function updateColorMode() {
   builderNodeMap.forEach((value, index) => {
-    // Notify BuilderNode of the environment changes.
+    // Notify the BuilderNode of the environment changes to trigger switching between light and dark modes.
     value.updateConfiguration();
   })
 }
@@ -1010,20 +1076,20 @@ function updateColorMode() {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        console.log('onMemoryLevel');
+        console.info('onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        console.log('onConfigurationUpdated ' + JSON.stringify(config));
-        updateColorMode();
+        console.info('onConfigurationUpdated ' + JSON.stringify(config));
+        this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
-    }
+    };
     // Register a callback.
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
     // Set the application color mode to follow the system settings.

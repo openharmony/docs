@@ -37,7 +37,7 @@ Volume panel, which can be used to display the volume adjustment panel in your a
 
 | Name| Type| Mandatory| Decorator | Description                                                                                                                                                                                                   |
 | -------- | -------- | -------- |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|volumeLevel | number | No| \@Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used. For details about how to obtain the maximum and minimum volume values, see [AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9).|
+|volumeLevel | number | No| \@Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device.<br>- If the value is greater than the maximum volume supported, the maximum volume is used.<br>- If the value is less than the minimum volume supported, the minimum volume is used. <br>- If this parameter is not passed, the system default volume is used.<br>For details about how to obtain the maximum value and minimum value, see [AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9).|
 |volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No| \@Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                     |
 
 ## AVVolumePanelParameter
@@ -48,9 +48,9 @@ Describes the volume panel parameters.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name| Type| Mandatory| Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No| Position of the volume panel.|
+|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No| Position of the volume panel. If this parameter is not passed in, the system volume bar position is used.|
 
 ## Events
 
@@ -91,5 +91,3 @@ struct Index {
   }
 }
 ```
-
- <!--no_check--> 

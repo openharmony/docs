@@ -1,8 +1,8 @@
 # SoundPool (Sound Pool)
 
-The SoundPool module provides APIs for loading, unloading, playing, and stopping playing sounds, setting the volume, and setting the number of loops.
+The module provides APIs for loading, unloading, playing, and stopping playing sounds, setting the volume, and setting the number of loops.
 
-Before using these APIs, you must call [media.createSoundPool](js-apis-media.md#mediacreatesoundpool10) to create a **SoundPool** instance.
+Before using these APIs, you must call [media.createSoundPool](js-apis-media.md#mediacreatesoundpool10) to create a SoundPool instance.
 
 > **NOTE**
 >
@@ -33,11 +33,11 @@ These parameters are used to control the playback volume, number of loops, and p
 
 ## SoundPool
 
-Implements a sound pool that provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops. Before using these APIs, you must call [createSoundPool](js-apis-media.md#mediacreatesoundpool10) to create a **SoundPool** instance.
+Implements a sound pool that provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops. Before using these APIs, you must call [createSoundPool](js-apis-media.md#mediacreatesoundpool10) to create a SoundPool instance.
 
 > **NOTE**
 >
-> When using the **SoundPool** instance, you are advised to register the following callbacks to proactively obtain status changes:
+> When using the SoundPool instance, you are advised to register the following callbacks to proactively obtain status changes:
 > - [on('loadComplete')](#onloadcomplete): listens for the event indicating that the resource loading is finished.
 > - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18): listens for the event indicating that the playback is finished and returns the stream ID of the audio that finishes playing.
 > - [on('playFinished')](#onplayfinished): listens for the event indicating that the playback is finished.
@@ -1331,7 +1331,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **SoundPool** instance. This API uses an asynchronous callback to return the result.
+Releases this SoundPool instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -1384,7 +1384,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 release(): Promise\<void>
 
-Releases this **SoundPool** instance. This API uses a promise to return the result.
+Releases this SoundPool instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -1673,7 +1673,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to error events of this **SoundPool** instance. This event is used only for error prompt.
+Subscribes to error events of this SoundPool instance. This event is used only for error prompt.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -1726,7 +1726,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 off(type: 'error'): void
 
-Unsubscribes from error events of this **SoundPool** instance.
+Unsubscribes from error events of this SoundPool instance.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 

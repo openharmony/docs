@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> 由于action/entity被泛化使用，系统对应用声明action/entity的行为缺少管控，恶意应用虚假申明，抢占流量，导致跳转后功能不可用。后续系统会逐步废弃非必要action/entity，建议通过[指定类型的方式拉起应用](./start-intent-panel.md)。
+> 由于action/entity被泛化使用，系统对应用声明action/entity的行为缺少管控，恶意应用虚假声明，抢占流量，导致跳转后功能不可用。后续系统会逐步废弃非必要action/entity，建议通过[指定类型的方式拉起应用](./start-intent-panel.md)。
 
 **action**：表示调用方要执行的通用操作（如查看、分享、应用详情）。在隐式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中，您可定义该字段，配合uri或parameters来表示对数据要执行的操作。如打开，查看该uri数据。例如，当uri为一段网址，action为`ACTION_VIEW_DATA`则表示匹配可访问该网址的应用组件。在Want内声明action字段表示希望被调用方应用支持声明的操作。在被调用方应用配置文件的[skills字段](../quick-start/module-configuration-file.md#skills标签)内声明actions表示该应用支持声明操作。常见的action如下，具体的action取值请见[action常数说明](../reference/apis-ability-kit/js-apis-ability-wantConstant.md#action)。
 

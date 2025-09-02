@@ -118,7 +118,7 @@ An application can listen for the **alert** method of a web page through the [on
     build() {
       Column() {
         Button('back').onClick((event: ClickEvent) => {
-          router.back()
+          this.getUIContext().getRouter().back();
         })
         Web({ src: $rawfile('alert.html'), controller: this.webviewController })
           .onAlert((event) => {
@@ -276,7 +276,7 @@ An application can listen for the **confirm** method of a web page through the [
         // Selected state of the check box
         isChecked: this.isChecked,
         // Content of the check box
-        checkTips: 'Don't ask again after denying',
+        checkTips: 'Do not ask again after denying',
         primaryButton: {
           value: 'Disable',
           action: () => {

@@ -843,3 +843,22 @@ Decimal函数使用错误。
 使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来取消加密算法。
 
 如：Decimal.set({ crypto: false}), 取消加密算法。
+
+## 10200301 加载native模块失败
+
+**错误信息**
+
+Loading native module failed.
+
+**错误描述**
+
+当加载native模块失败时，返回该错误码。
+
+**可能原因**
+
+1. 对应路径下不存在该native模块。
+2. 模块内容有问题，无法正确加载。
+
+**处理步骤**
+
+检查待加载的native模块是否在当前包内。

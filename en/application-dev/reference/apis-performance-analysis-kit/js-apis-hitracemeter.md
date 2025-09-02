@@ -230,13 +230,13 @@ hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 2);
 const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
 // Start trace tasks with the same name in serial mode.
 // Start the first trace.
-hiTraceMeter.startTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
+hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
 // Service flow...
 // Stop the first trace.
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
 // Service flow...
 // Start the second trace with the same name. The traces with the same name are executed in serial mode.
-hiTraceMeter.startTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
+hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
 // Service flow...
 // Stop the second trace with the same name.
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);

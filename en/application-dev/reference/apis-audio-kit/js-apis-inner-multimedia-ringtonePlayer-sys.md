@@ -30,7 +30,7 @@ Enumerates the ringtone parameters.
 
 ## RingtonePlayer
 
-Provides APIs for setting and obtaining ringtone parameters as well as playing and stopping ringtones. Before calling any API in **RingtonePlayer**, you must use [getRingtonePlayer](./js-apis-systemSoundManager-sys.md#getringtoneplayer11) to obtain a **RingtonePlayer** instance.
+Provides APIs for setting and obtaining ringtone parameters as well as playing and stopping ringtones. Before calling any API in RingtonePlayer, you must use [getRingtonePlayer](./js-apis-systemSoundManager-sys.md#getringtoneplayer11) to obtain a RingtonePlayer instance.
 
 ### Attributes
 
@@ -38,7 +38,7 @@ Provides APIs for setting and obtaining ringtone parameters as well as playing a
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
-| Name | Type                       | Readable| Writable| Description              |
+| Name | Type                       | Read-Only| Optional| Description              |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
 | state | [media.AVPlayerState](../apis-media-kit/js-apis-media.md#avplayerstate9) | Yes  | No  | Audio renderer state.|
 
@@ -443,7 +443,7 @@ Subscribes to the audio interruption event, which is triggered when the audio fo
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -518,7 +518,7 @@ Unsubscribes from the audio interruption event.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|

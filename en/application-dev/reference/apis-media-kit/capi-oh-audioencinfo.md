@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AudioEncInfo struct describes the audio encoding information.
+The struct describes the audio encoding information.
 
 **Since**: 10
 

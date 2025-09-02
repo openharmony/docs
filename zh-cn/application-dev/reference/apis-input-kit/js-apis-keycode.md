@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.keyCode (键值)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 按键设备的键码值，按键设备包括键盘、电源键、拍照键等。
 
 > **说明：**
@@ -25,8 +32,8 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_HOME                     |  1 | 功能（Home）键。                  |
 | KEYCODE_BACK                     |  2 | 返回键。                         |
 | KEYCODE_SEARCH<sup>13+</sup> | 9 | 搜索键。 |
-| KEYCODE_MEDIA_PLAY_PAUSE        |  10 | 多媒体键：播放/暂停。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
-| KEYCODE_MEDIA_STOP               |  11 | 多媒体键：停止。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_PLAY_PAUSE        |  10 | 多媒体键：播放/暂停。<br/>与KEYCODE_PLAYPAUSE的区别为：<br/>KEYCODE_PLAYPAUSE是较早的定义，KEYCODE_MEDIA_PLAY_PAUSE为现代媒体键设备设计，常见于较新的媒体键设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| KEYCODE_MEDIA_STOP               |  11 | 光盘停止键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
 | KEYCODE_MEDIA_NEXT               |  12 | 多媒体键：下一首。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
 | KEYCODE_MEDIA_PREVIOUS           |  13 | 多媒体键：上一首。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
 | KEYCODE_MEDIA_REWIND            |  14 | 多媒体键：快退。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
@@ -125,9 +132,9 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_INSERT                   |  2083 | 插入键。                         |
 | KEYCODE_FORWARD                  |  2084 | 前进键。                         |
 | KEYCODE_MEDIA_PLAY               |  2085 | 多媒体键：播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
-| KEYCODE_MEDIA_PAUSE              |  2086 | 多媒体键：暂停。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
-| KEYCODE_MEDIA_CLOSE              |  2087 | 多媒体键：关闭。                     |
-| KEYCODE_MEDIA_EJECT              |  2088 | 多媒体键：弹出。                     |
+| KEYCODE_MEDIA_PAUSE              |  2086 | 光盘暂停键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_CLOSE              |  2087 | 光盘关闭键。                     |
+| KEYCODE_MEDIA_EJECT              |  2088 | 光盘弹出键。                     |
 | KEYCODE_MEDIA_RECORD             |  2089 | 多媒体键：录音。                     |
 | KEYCODE_F1                       |  2090 | 按键'F1'。                      |
 | KEYCODE_F2                       |  2091 | 按键'F2'。                      |
@@ -205,9 +212,9 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_CALC                     |  2626 | 计算器特殊功能键，用于启动计算器应用程序。        |
 | KEYCODE_FILE                     |  2627 | 文件按键。                        |
 | KEYCODE_BOOKMARKS                |  2628 | 书签键。                         |
-| KEYCODE_NEXT                     |  2629 | 下一个按键。                       |
-| KEYCODE_PLAYPAUSE                |  2630 | 播放/暂停键。                      |
-| KEYCODE_PREVIOUS                 |  2631 | 上一个按键。                       |
+| KEYCODE_NEXT                     |  2629 | Page Down键。                       |
+| KEYCODE_PLAYPAUSE                |  2630 | 多媒体键：播放/暂停。<br/>与KEYCODE_MEDIA_PLAY_PAUSE的区别为：<br/>KEYCODE_PLAYPAUSE是较早的定义，KEYCODE_MEDIA_PLAY_PAUSE为现代媒体键设备设计，常见于较新的媒体键设备。                      |
+| KEYCODE_PREVIOUS                 |  2631 | Page Up键。                       |
 | KEYCODE_STOPCD                   |  2632 | CD停止键。                       |
 | KEYCODE_CONFIG                   |  2634 | 配置键。                         |
 | KEYCODE_REFRESH                  |  2635 | 刷新键。                         |

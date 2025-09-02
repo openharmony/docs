@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_RecorderInfo struct describes the recording file information.
+The struct describes the recording file information.
 
 **Since**: 10
 
@@ -16,6 +16,6 @@ The OH_RecorderInfo struct describes the recording file information.
 
 | Name| Description|
 | -- | -- |
-| char* url | URL of the recording file.|
+| char* url | Pointer to the URL of the recording file.|
 | uint32_t urlLen | URL length.|
 | [OH_ContainerFormatType](capi-native-avscreen-capture-base-h.md#oh_containerformattype) fileFormat | Format of the recording file.|

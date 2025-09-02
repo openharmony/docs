@@ -76,7 +76,7 @@ if语句的每个分支都包含一个构建函数。此类构建函数必须创
 
 ### if ... else ...语句和子组件状态
 
-以下示例包含if ... else ...语句与拥有\@State装饰变量的子组件。
+以下示例包含if ... else ...语句与拥有[\@State](./arkts-state.md)装饰变量的子组件。
 
 ```ts
 @Component
@@ -174,7 +174,7 @@ struct MainView {
 }
 ```
 
-此处，\@State counter变量归父组件所有。因此，当CounterView组件实例被删除时，该变量不会被销毁。CounterView组件通过\@Link装饰器引用状态。状态必须从子级移动到其父级（或父级的父级），以避免在条件内容或重复内容被销毁时丢失状态。
+此处，\@State counter变量归父组件所有。因此，当CounterView组件实例被删除时，该变量不会被销毁。CounterView组件通过[\@Link](./arkts-link.md)装饰器引用状态。状态必须从子级移动到其父级（或父级的父级），以避免在条件内容或重复内容被销毁时丢失状态。
 
 ### 嵌套if语句
 

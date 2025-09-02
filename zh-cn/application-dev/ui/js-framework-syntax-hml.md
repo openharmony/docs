@@ -1,4 +1,10 @@
 # HML语法参考
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 HML是一套类HTML的标记语言，通过组件，事件构建出页面的内容。页面具备数据绑定、事件绑定、列表渲染、条件渲染和逻辑控制等高级能力。
 
@@ -163,10 +169,10 @@ export default {
   // xxx.js
   export default {
       clickfunc: function(e) {
-          console.log(e);
+          console.info(e);
       },
       touchstartfunc: function(e) {
-          console.log(e);
+          console.info(e);
       },
   }
   ```
@@ -176,7 +182,7 @@ export default {
 
 ## 捕获事件绑定<sup>5+</sup>
 
-Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获事件先到达父组件然后达到子组件。
+Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获事件先到达父组件然后到达子组件。
 
 捕获事件绑定包括：
 
@@ -199,7 +205,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
   // xxx.js
   export default {
       touchstartfunc: function(e) {
-          console.log(e);
+          console.info(e);
       },
   }
   ```
@@ -309,7 +315,7 @@ export default {
 
 ![zh-cn_image_0000001118642004](figures/zh-cn_image_0000001118642004.gif)
 
-优化渲染优化：show方法。当show为true时，节点正常渲染；当为false时，仅仅设置display样式为none。
+优化渲染：show方法。当show为true时，节点正常渲染；当为false时，仅仅设置display样式为none。
 
 ```html
 <!-- xxx.hml -->

@@ -1,9 +1,14 @@
-# AbilityStage组件容器
+# AbilityStage组件管理器
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
 
 ## 概述
 
-[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)是一个[Module](../quick-start/application-package-overview.md#应用的多module设计机制)级别的组件容器，应用的[HAP](../quick-start/hap-package.md)在首次加载时会创建一个AbilityStage实例，可以对该Module进行初始化等操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)是一个[Module](../quick-start/application-package-overview.md#应用的多module设计机制)级别的组件管理器，应用的[HAP](../quick-start/hap-package.md)在首次加载时会创建一个AbilityStage实例，可以对该Module进行初始化等操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
 
 AbilityStage拥有[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate)、[onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#ondestroy12)生命周期回调和[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onacceptwant)、[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)、[onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel)、[onNewProcessRequest()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11)、[onPrepareTermination()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onpreparetermination15)等事件回调。
 
@@ -11,7 +16,7 @@ AbilityStage拥有[onCreate()](../reference/apis-ability-kit/js-apis-app-ability
 
 - onAcceptWant()事件回调：UIAbility[指定实例模式（specified）](uiability-launch-type.md#specified启动模式)启动时候触发的事件回调，具体使用请参见[UIAbility启动模式综述](uiability-launch-type.md)。
 
-- onConfigurationUpdate()事件回调：当系统全局配置（例如系统语言、深浅色等）发生变更时触发的事件回调，配置项均定义在[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)类中。
+- onConfigurationUpdate()事件回调：当系统环境变量（例如系统语言、深浅色等）发生变更时触发的事件回调，配置项均定义在[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)类中。
 
 - onMemoryLevel()事件回调：当系统调整内存时触发的事件回调。应用被切换到后台时，系统会将在后台的应用保留在缓存中。即使应用处于缓存中，也会影响系统整体性能。当系统资源不足时，系统会通过多种方式从应用中回收内存，必要时会完全停止应用，从而释放内存用于执行关键任务。为了进一步保持系统内存的平衡，避免系统停止用户的应用进程，可以在AbilityStage中的onMemoryLevel()生命周期回调中订阅系统内存的变化情况，释放不必要的资源。
 
@@ -69,7 +74,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 - 在onCreate()生命周期中，通过EnvironmentCallback来监听系统环境变化，例如系统语言、深浅色模式、屏幕方向、字体大小缩放比例、字体粗细缩放比例等信息。
 
-- 当系统全局配置发生变更时，会触发EnvironmentCallback中的onConfigurationUpdated()回调，并打印相关信息。
+- 当系统环境变量发生变更时，会触发EnvironmentCallback中的onConfigurationUpdated()回调，并打印相关信息。
 
 - 通过关闭应用进程，可以触发AbilityStage的onDestroy()生命周期回调。
 

@@ -1,6 +1,6 @@
 # SwipeGesture
 
-用于触发滑动事件，滑动速度大于100vp/s时可识别成功。
+用于触发滑动事件，滑动速度大于速度阈值时可识别成功，默认最小速度为100vp/s。
 
 >  **说明：**
 >
@@ -9,7 +9,11 @@
 
 ## 接口
 
-SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number, isFingerCountLimited?: boolean })
+### SwipeGesture
+
+SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number })
+
+设置滑动手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -17,12 +21,25 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 
 **参数：**
 
-| 参数名称 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fingers | number | 否 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 |
-| direction | [SwipeDirection](#swipedirection枚举说明) | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
-| speed | number | 否 | 识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
-| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。如果触摸手指的数量不等于设置的触发滑动的最少手指数（即上述fingers参数），手势识别将失败。<br>true：检查触摸屏幕的手指数量。<br>false：不检查触摸屏幕的手指数量。<br>默认值：false|
+| value | { fingers?: number, direction?: SwipeDirection, speed?: number } | 否 | 设置滑动事件参数。 <br> - fingers：触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 <br> - direction：触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All <br> - speed：识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
+
+### SwipeGesture<sup>15+</sup>
+
+SwipeGesture(options?: SwipeGestureHandlerOptions)
+
+设置滑动手势事件。与[SwipeGesture](#swipegesture-1)相比，options参数新增了对isFingerCountLimited参数，表示是否检查触摸屏幕的手指数量。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [SwipeGestureHandlerOptions](./ts-uigestureevent.md#swipegesturehandleroptions) | 否 | 滑动事件处理器配置参数。 |
 
 ## SwipeDirection枚举说明
 
@@ -30,30 +47,40 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| -------- | -------- |
-| All | 所有方向。 |
-| Horizontal | 水平方向，手指滑动方向与x轴夹角小于45度时触发。 |
-| Vertical | 竖直方向，手指滑动方向与y轴夹角小于45度时触发。 |
-| None | 任何方向均不可触发。 |
+| 名称 | 值 | 说明 |
+| ---- | -- | ----- |
+| All | - | 所有方向。 |
+| Horizontal | - | 水平方向，手指滑动方向与x轴夹角小于45度时触发。 |
+| Vertical | - | 竖直方向，手指滑动方向与y轴夹角小于45度时触发。 |
+| None | - | 任何方向均不可触发。 |
 
 
 ## 事件
 
+### onAction
+
+onAction(event: (event: GestureEvent) => void)
+
+Swipe手势识别成功回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Swipe手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
 
 ## 属性
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型    |描述                                        |
-| ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | 设置Swipe手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 设置Swipe手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型    | 只读 | 可选 | 说明                 |
+| ----  | ------ | ---- | ---- |-------------------- |
+| tag<sup>11+</sup>   | string  | 否 | 否 | 设置Swipe手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 否 | 否 | 设置Swipe手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 

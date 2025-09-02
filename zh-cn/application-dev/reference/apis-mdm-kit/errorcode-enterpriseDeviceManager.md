@@ -73,7 +73,7 @@ Failed to activate the administrator application of the device.
 
 **可能原因**
 
-该错误码表示激活设备管理器失败，可能原因如下。
+该错误码表示激活设备管理器失败，可能原因如下：
 1. 同时激活多个SDA设备管理器。
 2. 重复激活设备管理器，且管理器类型发生变化。
 3. 同一个应用多个设备管理器元能力组件激活。
@@ -242,7 +242,7 @@ Failed to manage the certificate.
 
 检查用户证书是否正确。
 
-## 9201002 应用安装失败
+## 9201002 企业应用安装失败
 
 **错误信息**
 
@@ -321,7 +321,7 @@ The update packages do not exist or analyzing failed.
 
 **错误信息**
 
-1. Add keep alive applications failed.
+Add keep alive applications failed.
 
 **错误描述**
 

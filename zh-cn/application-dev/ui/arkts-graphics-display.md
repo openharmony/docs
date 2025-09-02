@@ -1,5 +1,9 @@
 # 显示图片 (Image)
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
 
 开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，不支持apng和svga格式，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
 
@@ -44,7 +48,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   当前Image组件仅支持加载简单网络图片。
 
-  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。但是，这三个图片缓存接口并不灵活，且后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife)。
+  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。但是，这三个图片缓存接口并不灵活，且后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitcode.com/openharmony-tpc/ImageKnife)。
 
   网络图片必须支持RFC 9113标准，否则会导致加载失败。如果下载的网络图片大于10MB或一次下载的网络图片数量较多，建议使用[HTTP](../network/http-request.md)工具提前预下载，提高图片加载性能，方便应用侧管理数据。
 
@@ -97,11 +101,11 @@ Image支持加载存档图、多媒体像素图两种类型。
         // 获取照片url集
         getAllImg() {
           try {
-            let PhotoSelectOptions:photoAccessHelper.PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-            PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
-            PhotoSelectOptions.maxSelectNumber = 5;
+            let photoSelectOptions:photoAccessHelper.PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+            photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+            photoSelectOptions.maxSelectNumber = 5;
             let photoPicker:photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:photoAccessHelper.PhotoSelectResult) => {
+            photoPicker.select(photoSelectOptions).then((PhotoSelectResult:photoAccessHelper.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err:Error) => {
@@ -258,11 +262,7 @@ struct Index {
 
   // 辅助方法：从资源获取PixelMap
   private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap | undefined> {
-    const unit8Array = await this.getUIContext().getHostContext()?.resourceManager.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    const unit8Array = await this.getUIContext().getHostContext()?.resourceManager.getMediaContent(resource.id);
     if (!unit8Array) {
       return undefined;
     }
@@ -325,11 +325,11 @@ struct Index {
 
 ## 显示矢量图
 
-Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
+Image组件可显示矢量图（SVG格式的图片），SVG标签文档请参考[SVG标签说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
 
-如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。SVG图片不支持通过image标签引用svg格式和gif格式的本地其他图片。
+如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。SVG图片不支持通过image标签引用SVG格式和gif格式的本地其他图片。
 
-svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
+SVG格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
 
 ```ts
@@ -342,22 +342,22 @@ Image($r('app.media.cloud'))
 
 ![屏幕截图_20230223_141141](figures/屏幕截图_20230223_141141.png)
 
-  **图4** 设置绘制颜色后的svg图片  
+  **图4** 设置绘制颜色后的SVG图片  
 
 ![屏幕截图_20230223_141404](figures/屏幕截图_20230223_141404.png)
 
 ### 矢量图引用位图
 
-如果Image加载的Svg图源中包含对本地位图的引用，则Svg图源的路径应当设置为以ets为根目录的工程路径，同时，本地位图的路径应设置为与Svg图源同级的相对路径。
+如果Image加载的SVG图源中包含对本地位图的引用，则SVG图源的路径应当设置为以ets为根目录的工程路径，同时，本地位图的路径应设置为与SVG图源同级的相对路径。
 
-Image加载的Svg图源路径设置方法如下所示：
+Image加载的SVG图源路径设置方法如下所示：
 
 ```ts
 Image("images/icon.svg")
   .width(50)
   .height(50)
 ```
-Svg图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，本地位图路径设置为跟Svg图源同级的相对路径：
+SVG图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，本地位图路径设置为跟SVG图源同级的相对路径：
 
 ```
 <svg width="200" height="200">
@@ -374,7 +374,7 @@ Svg图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，�
 
 ### 设置图片缩放类型
 
-通过objectFit属性使图片缩放到高度和宽度确定的框内。
+通过设置objectFit属性，可以使图片在高度和宽度确定的框内进行缩放。
 
 
 ```ts
@@ -450,7 +450,7 @@ struct MyComponent {
 
 ### 图片插值
 
-当原图分辨率较低并且放大显示时，图片会模糊出现锯齿。这时可以使用interpolation属性对图片进行插值，使图片显示得更清晰。
+当原图分辨率较低并放大显示时，图片会变得模糊并出现锯齿。这时可以使用interpolation属性对图片进行插值，以提高显示清晰度。
 
 
 ```ts
@@ -584,7 +584,7 @@ struct MyComponent {
 
 通过sourceSize属性设置图片解码尺寸，降低图片的分辨率。
 
-原图尺寸为1280\*960，该示例将图片解码为40\*40和90\*90。
+原图尺寸为1280×960，该示例将图片解码为40×40和90×90两个尺寸。
 
 
 ```ts
@@ -625,7 +625,7 @@ struct Index {
 
 ### 为图片添加滤镜效果
 
-通过colorFilter修改图片的像素颜色，为图片添加滤镜。
+通过colorFilter调整图片的像素颜色，为图片添加滤镜。
 
 
 ```ts

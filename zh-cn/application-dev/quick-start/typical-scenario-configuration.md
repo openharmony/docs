@@ -30,7 +30,7 @@
 
 2. 配置快捷方式文件。
 
-    在某个模块的/resources/base/profile/目录下配置[快捷方式的配置文件](module-configuration-file.md#shortcuts标签)，如shortcuts_config.json，拷贝示例代码需要删除注释。
+    在模块的/resources/base/profile/目录下配置[快捷方式的配置文件](module-configuration-file.md#shortcuts标签)，如shortcuts_config.json，拷贝示例代码需要删除注释。
 
     ```json
     {

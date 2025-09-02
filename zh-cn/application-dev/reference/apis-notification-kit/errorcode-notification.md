@@ -1,4 +1,9 @@
 # 通知错误码
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
 
 > **说明：**
 >
@@ -365,7 +370,7 @@ The application is not allowed to send notifications due to permission settings.
 
 **处理步骤**
 
-该应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)的权限管控，应用无法主动退出权限管控名单。
+该应用受到[企业设备管理](../../mdm/mdm-kit-intro.md)的权限管控，应用无法主动退出权限管控名单。
 
 ## 1600021 跨设备通信超时
 
@@ -384,40 +389,3 @@ Distributed operation timed out.
 **处理步骤**
 
 检查设备间连接是否正常（例如手机与手表是否配对成功）。
-
-## 2300007 网络无法访问
-
-**错误信息**
-
-Network unreachable.
-
-**错误描述**
-
-当网络无法访问时，系统会报此错误码。
-
-**可能原因**
-
-网络无法访问。
-
-**处理步骤**
-
-检查网络情况。
-
-## 17700001 包名不存在
-
-**错误信息**
-
-The specified bundle name was not found.
-
-**错误描述**
-
-当应用未安装或包名不正确时，系统会报此错误码。
-
-**可能原因**
-
-1. 包名不正确。
-2. 应用未安装。
-
-**处理步骤**
-
-1. 检查应用是否存在。

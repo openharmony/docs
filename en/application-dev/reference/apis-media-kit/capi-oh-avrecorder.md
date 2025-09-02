@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder struct describes an initialized AVRecorder.
+The struct initializes an AVRecorder.
 
 **Since**: 18
 

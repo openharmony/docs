@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)。
 

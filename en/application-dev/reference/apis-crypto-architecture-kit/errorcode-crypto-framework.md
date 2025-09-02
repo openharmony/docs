@@ -1,4 +1,4 @@
-#  Crypto Framework Error Codes
+# Crypto Framework Error Codes
 
 > **NOTE**
 >

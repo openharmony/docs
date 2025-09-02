@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder_MetadataTemplate struct describes the basic template of metadata.
+The struct describes the basic template of metadata.
 
 **Since**: 18
 

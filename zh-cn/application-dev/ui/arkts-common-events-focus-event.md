@@ -313,7 +313,7 @@ struct FocusEventExample {
         })
           // 监听第二个组件的失焦事件，失焦后改变颜色
         .onBlur(() => {
-          this.twoButtonColor = Color.Grey;
+          this.twoButtonColor = Color.Gray;
         })
 
       Button('Third Button')
@@ -683,7 +683,7 @@ struct morenjiaodian {
         })
           // 监听第二个组件的失焦事件，失焦后改变颜色
         .onBlur(() => {
-          this.twoButtonColor = Color.Grey;
+          this.twoButtonColor = Color.Gray;
         })
 
       Button('Third Button')
@@ -920,19 +920,78 @@ struct RequestExample {
 - 点击focusControl.requestFocus按钮，第二个Button获焦。
 - 点击clearFocus按钮，第二个Button失焦。
 
-## 自定义组件Tab键走焦顺序
+## 自定义组件走焦顺序
+
+### nextFocus自定义走焦
+
+```ts
+nextFocus(nextStep: Optional<FocusMovement>): T
+```
+
+若存在配置了nextFocus的组件，则走焦只会按照设置的nextFocus走焦顺序走焦，没有设置自定义走焦或者设置自定义走焦的组件或容器不存在时，仍进行默认走焦规则。
+
+>  **说明：**
+>
+>  - 该能力从API version 18开始支持。
+
+```ts
+@Entry
+@Component
+struct NextFocusExample {
+  build() {
+    Column({space: 30}) {
+      Row().height('30%')
+      Row({space: 10}) {
+        Button('A')
+          .id('A')
+          .nextFocus({forward: 'F', backward: 'C', down: 'B'})
+        Button('B')
+          .id('B')
+          .nextFocus({ down: 'C'})
+        Button('C')
+          .id('C')
+      }
+      Column({space: 10}) {
+        Button('D')
+          .id('D')
+        Button('E')
+          .id('E')
+          .nextFocus({forward: 'A', backward: 'M', up: 'E', right: 'F'})
+      }
+      Row({space: 10}) {
+        Button('F')
+          .id('F')
+          .nextFocus({forward: 'B', down: 'A'});
+      }
+    }.width('100%')
+  }
+}
+```
+Tab键走焦：未配置nextFocus时，Tab键走焦顺序为A->B->C->D->E->F。配置nextFocus之后，Tab键走焦顺序为A->F->B->C->D->E->A。
+
+![NextFocus_Focus_1.gif](figures/NextFocus_Focus_1.gif)
+
+方向键走焦（以方向下键为例）：未配置nextFocus时，按下Tab键激活焦点态之后，按方向下键走焦顺序为A->D->E->F。配置nextFocus之后，按下Tab键激活焦点态之后，按方向下键走焦顺序为A->B->C->D->E->F->A。
+
+![NextFocus_Focus_2.gif](figures/NextFocus_Focus_2.gif)
+
+### tabIndex自定义走焦
+
 ```ts
 tabIndex(index: number)
 ```
 
-自定义组件Tab键走焦能力。
+tabIndex自定义组件Tab键走焦顺序。
 
 若存在配置了tabIndex大于0的组件，则Tab键走焦只会在tabIndex大于0的组件内，按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。
 
 > **说明：**
 >
 > 不能同时设置tabIndex与focusScopeId属性。
+> 
 > 不建议在[层级页面](#基础概念)中通过单独设置组件的tabIndex属性为负数来控制获焦能力，可以使用focusable属性代替。
+> 
+> tabIndex只能够自定义Tab键走焦，若想同时自定义方向键等走焦能力，建议使用[nextfocus](#nextfocus自定义走焦)。
 
 ```ts
 @Entry
@@ -1247,9 +1306,7 @@ struct FocusOnclickExample {
         .fontSize(30)
         .onClick(() => {
           this.count++
-          if (this.count <= 0) {
-            this.name = "count is negative number"
-          } else if (this.count % 2 === 0) {
+          if (this.count % 2 === 0) {
             this.name = "count is even number"
           } else {
             this.name = "count is odd number"

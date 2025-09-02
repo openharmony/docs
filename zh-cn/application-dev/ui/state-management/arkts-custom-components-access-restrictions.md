@@ -33,17 +33,17 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     struct AccessRestrictions {
       @Builder
       buildTest() {
-        Text("Parent builder")
+        Text('Parent builder')
       }
     
       build() {
         Column() {
           ComponentsChild({
-            state_value: "Hello",
-            prop_value: "Hello",
-            provide_value: "Hello",
+            state_value: 'Hello',
+            prop_value: 'Hello',
+            provide_value: 'Hello',
             builder_value: this.buildTest,
-            regular_value: "Hello"
+            regular_value: 'Hello'
           })
         }
         .width('100%')
@@ -53,24 +53,24 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Component
     struct ComponentsChild {
       // 此处使用private修饰符时会出现告警日志
-      @State private state_value: string = "Hello";
+      @State private state_value: string = 'Hello';
       // 此处使用private修饰符时会出现告警日志
-      @Prop private prop_value: string = "Hello";
+      @Prop private prop_value: string = 'Hello';
       // 此处使用private修饰符时会出现告警日志
-      @Provide private provide_value: string = "Hello";
+      @Provide private provide_value: string = 'Hello';
       // 此处使用private修饰符时会出现告警日志
       @BuilderParam private builder_value: () => void = this.buildTest;
       // 此处使用private修饰符时会出现告警日志
-      private regular_value: string = "Hello";
+      private regular_value: string = 'Hello';
     
       @Builder
       buildTest() {
-        Text("Child builder")
+        Text('Child builder')
       }
     
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -95,17 +95,17 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     struct AccessRestrictions {
       @Builder
       buildTest() {
-        Text("Parent builder")
+        Text('Parent builder')
       }
     
       build() {
         Column() {
           ComponentsChild({
-            state_value: "Hello",
-            prop_value: "Hello",
-            provide_value: "Hello",
+            state_value: 'Hello',
+            prop_value: 'Hello',
+            provide_value: 'Hello',
             builder_value: this.buildTest,
-            regular_value: "Hello"
+            regular_value: 'Hello'
           })
         }
         .width('100%')
@@ -114,20 +114,20 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
     @Component
     struct ComponentsChild {
-      @State state_value: string = "Hello";
-      @Prop prop_value: string = "Hello";
-      @Provide provide_value: string = "Hello";
+      @State state_value: string = 'Hello';
+      @Prop prop_value: string = 'Hello';
+      @Provide provide_value: string = 'Hello';
       @BuilderParam builder_value: () => void = this.buildTest;
-      regular_value: string = "Hello";
+      regular_value: string = 'Hello';
     
       @Builder
       buildTest() {
-        Text("Child builder")
+        Text('Child builder')
       }
     
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -142,7 +142,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Entry
     @Component
     struct AccessRestrictions {
-      @Provide consume_value: string = "Hello";
+      @Provide consume_value: string = 'Hello';
       build() {
         Column() {
           ComponentChild()
@@ -154,19 +154,19 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Component
     struct ComponentChild {
       // 此处使用public修饰符时会出现告警日志
-      @LocalStorageProp("sessionLocalProp") public local_prop_value: string = "Hello";
+      @LocalStorageProp('sessionLocalProp') public local_prop_value: string = 'Hello';
       // 此处使用public修饰符时会出现告警日志
-      @LocalStorageLink("sessionLocalLink") public local_link_value: string = "Hello";
+      @LocalStorageLink('sessionLocalLink') public local_link_value: string = 'Hello';
       // 此处使用public修饰符时会出现告警日志
-      @StorageProp("sessionProp") public storage_prop_value: string = "Hello";
+      @StorageProp('sessionProp') public storage_prop_value: string = 'Hello';
       // 此处使用public修饰符时会出现告警日志
-      @StorageLink("sessionLink") public storage_link_value: string = "Hello";
+      @StorageLink('sessionLink') public storage_link_value: string = 'Hello';
       // 此处使用public修饰符时会出现告警日志
       @Consume public consume_value: string;
       
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -189,7 +189,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Entry
     @Component
     struct AccessRestrictions {
-      @Provide consume_value: string = "Hello";
+      @Provide consume_value: string = 'Hello';
       build() {
         Column() {
           ComponentChild()
@@ -200,14 +200,14 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
     @Component
     struct ComponentChild {
-      @LocalStorageProp("sessionLocalProp") local_prop_value: string = "Hello";
-      @LocalStorageLink("sessionLocalLink") local_link_value: string = "Hello";
-      @StorageProp("sessionProp") storage_prop_value: string = "Hello";
-      @StorageLink("sessionLink") storage_link_value: string = "Hello";
+      @LocalStorageProp('sessionLocalProp') local_prop_value: string = 'Hello';
+      @LocalStorageLink('sessionLocalLink') local_link_value: string = 'Hello';
+      @StorageProp('sessionProp') storage_prop_value: string = 'Hello';
+      @StorageLink('sessionLink') storage_link_value: string = 'Hello';
       @Consume consume_value: string;
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -222,7 +222,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Entry
     @Component
     struct AccessRestrictions {
-      @State link_value: string = "Hello";
+      @State link_value: string = 'Hello';
       @State objectLink_value: ComponentObj = new ComponentObj();
       build() {
         Column() {
@@ -244,7 +244,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
       @ObjectLink private objectLink_value: ComponentObj;
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -264,7 +264,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Entry
     @Component
     struct AccessRestrictions {
-      @State link_value: string = "Hello";
+      @State link_value: string = 'Hello';
       @State objectLink_value: ComponentObj = new ComponentObj();
       build() {
         Column() {
@@ -284,7 +284,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
       @ObjectLink objectLink_value: ComponentObj;
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -301,7 +301,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     struct AccessRestrictions {
       build() {
         Column() {
-          ComponentChild({regular_value: "Hello"})
+          ComponentChild({regular_value: 'Hello'})
         }
         .width('100%')
       }
@@ -310,10 +310,10 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Component
     struct ComponentChild {
       // 此处使用protected修饰符时会出现告警日志
-      protected regular_value: string = "Hello";
+      protected regular_value: string = 'Hello';
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -334,7 +334,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     struct AccessRestrictions {
       build() {
         Column() {
-          ComponentChild({regular_value: "Hello"})
+          ComponentChild({regular_value: 'Hello'})
         }
         .width('100%')
       }
@@ -342,10 +342,10 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
     @Component
     struct ComponentChild {
-      regular_value: string = "Hello";
+      regular_value: string = 'Hello';
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -362,7 +362,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     struct AccessRestrictions {
       build() {
         Column() {
-          ComponentChild({prop_value: "Hello"})
+          ComponentChild({prop_value: 'Hello'})
         }
         .width('100%')
       }
@@ -370,10 +370,10 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     @Component
     struct ComponentChild {
       // 此处使用private修饰符时会出现告警日志
-      @Require @Prop private prop_value: string = "Hello";
+      @Require @Prop private prop_value: string = 'Hello';
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }
@@ -395,17 +395,17 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
     struct AccessRestrictions {
       build() {
         Column() {
-          ComponentChild({prop_value: "Hello"})
+          ComponentChild({prop_value: 'Hello'})
         }
         .width('100%')
       }
     }
     @Component
     struct ComponentChild {
-      @Require @Prop prop_value: string = "Hello";
+      @Require @Prop prop_value: string = 'Hello';
       build() {
         Column() {
-          Text("Hello")
+          Text('Hello')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }

@@ -126,7 +126,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 ```ts
 import { abilityManager, Configuration, ConfigurationConstant } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';;
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
@@ -1002,6 +1002,8 @@ queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicS
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在Phone、Tablet和TV设备中可正常调用，在其他设备中返回801错误码。
 
 **参数**：
 

@@ -207,8 +207,8 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
       testNapi.nativeWebInit(this.webTag);
     }
 
-    aboutToDisAppear() {
-      console.error("aboutToDisAppear")
+    aboutToDisappear() {
+      console.error("aboutToDisappear");
     }
 
     build() {

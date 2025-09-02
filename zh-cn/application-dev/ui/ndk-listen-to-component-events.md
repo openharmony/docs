@@ -46,7 +46,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
 
 - 全局事件监听
 
-  使用registerNodeEventReceiver注册全局的事件处理函数，对事件进行统一的处理，结束后可使用ungisterNodeEventReceiver进行释放。
+  使用registerNodeEventReceiver注册全局的事件处理函数，对事件进行统一的处理，结束后可使用unregisterNodeEventReceiver进行释放。
 
   ```
   nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event){
@@ -421,6 +421,8 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
    #include "ArkUIListNode.h"
    #include "ArkUITextNode.h"
    #include <hilog/log.h>
+
+   const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
    
    namespace NativeModule {
    
@@ -507,7 +509,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
        list->RegisterOnScrollIndex([](int32_t index) { OH_LOG_INFO(LOG_APP, "on list scroll index: %{public}d", index); });
        // 4: 注册挂载事件。
        list->RegisterOnAppear([]() { OH_LOG_INFO(LOG_APP, "on list mount to tree"); });
-       // 4: 注册卸载事件。
+       // 5: 注册卸载事件。
        list->RegisterOnDisappear([]() { OH_LOG_INFO(LOG_APP, "on list unmount from tree"); });
        return list;
    }

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_VideoInfo struct describes the video information.
+The struct describes the video information.
 
 **Since**: 10
 

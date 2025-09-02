@@ -37,10 +37,12 @@ getPixelMap(): image.PixelMap
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = this.getUIContext().getHostContext()?.resourceManager
+import { image } from '@kit.ImageKit'
+let resManager = this.getUIContext().getHostContext()?.resourceManager;
+// $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
 let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
     .id)) as DrawableDescriptor;
-let pixmapNew: object = pixmap.getPixelMap()
+let pixmapNew: image.PixelMap | undefined = pixmap?.getPixelMap();
   ```
 
 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
@@ -98,7 +100,9 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       build() {
         Row() {
           Column() {
+            // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
             Image((this.resManager?.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
+            // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
             Image(((this.resManager?.getDrawableDescriptor($r('app.media.drawable')
             .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
           }.height('50%')
@@ -124,8 +128,11 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       @State maskPixel: image.PixelMap | undefined = undefined;
       @State draw : LayeredDrawableDescriptor | undefined = undefined;
       async aboutToAppear() {
+        // $r('app.media.foreground')需要替换为开发者所需的图像资源文件。
         this.fore1 = await this.getPixmapFromMedia($r('app.media.foreground'));
+        // $r('app.media.background')需要替换为开发者所需的图像资源文件。
         this.back1 = await this.getPixmapFromMedia($r('app.media.background'));
+        // $r('app.media.ohos_icon_mask')需要替换为开发者所需的图像资源文件。
         this.maskPixel = await this.getPixmapFromMedia($r('app.media.ohos_icon_mask'));
         // 使用PixelMapDrawableDescriptor创建LayeredDrawableDescriptor
         this.foregroundDraw = new PixelMapDrawableDescriptor(this.fore1);
@@ -145,11 +152,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       }
       // 根据资源，通过图片框架获取pixelMap
       private async getPixmapFromMedia(resource: Resource) {
-        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-          bundleName: resource.bundleName,
-          moduleName: resource.moduleName,
-          id: resource.id
-        });
+        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
         let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
         let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
           desiredPixelFormat: image.PixelMapFormat.BGRA_8888
@@ -204,6 +207,7 @@ struct Index {
 
   private getForeground(): DrawableDescriptor | undefined {
     let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
     let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
     if (!drawable) {
       return undefined;
@@ -259,6 +263,7 @@ struct Index {
 
   private getBackground(): DrawableDescriptor | undefined {
     let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
     let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
     if (!drawable) {
       return undefined;
@@ -312,6 +317,7 @@ struct Index {
 
   private getMask(): DrawableDescriptor | undefined {
     let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
     let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
     if (!drawable) {
       return undefined;
@@ -365,6 +371,7 @@ struct Index {
   build() {
     Row() {
       Column() {
+        // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.icon'))
           .width('200px').height('200px')
           .clipShape(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
@@ -434,13 +441,16 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct Example {
-  pixelmaps: Array<image.PixelMap>  = [];
-  options: AnimationOptions = {duration:1000, iterations:-1};
-  @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+  pixelMaps: Array<image.PixelMap> = [];
+  options: AnimationOptions = { duration: 1000, iterations: -1 };
+  @State animated: AnimatedDrawableDescriptor = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
+
   async aboutToAppear() {
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')));
-    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+    // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+    this.pixelMaps.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
   }
+
   build() {
     Column() {
       Row() {
@@ -448,12 +458,9 @@ struct Example {
       }
     }
   }
+
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888

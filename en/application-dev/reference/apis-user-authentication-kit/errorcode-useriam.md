@@ -130,8 +130,7 @@ The type of credential has not been enrolled.
 
 **Possible Causes**
 
-The **authType** parameter set in **getAvailableStatus** of the **userAuth** module is **FACE**, but no facial credential is enrolled in the device.
-**start()** is called to initiate facial authentication, but no facial credential is enrolled in the device.
+The **authType** parameter set in **getAvailableStatus** of the **userAuth** module is **FACE**, but no facial credential is enrolled in the device. **start()** is called to initiate facial authentication, but no facial credential is enrolled in the device.
 
 **Solution**
 
@@ -194,7 +193,7 @@ The authentication token has expired. The interval between the time when the Aut
 
 Initiate authentication again and issue a valid token.
 
-## 12700001 Face Enrollment Failed
+## 12700001 Failed to Enroll Faces
 
 **Error Message**
 
@@ -202,7 +201,7 @@ Operation failed.
 
 **Possible Causes**
 
-1. The facial authentication service is not started when **setSurfaceId()** of the **userAuth** module is called.
+1. The facial authentication service is not started when **setSurfaceId()** of the **faceAuth** module is called.
 2. The proxy client fails to write data over IPC.
 3. The stub server fails to parse data over IPC.
 4. An error occurs when the facial authentication driver is invoked.
