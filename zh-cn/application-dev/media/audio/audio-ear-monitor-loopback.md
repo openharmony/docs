@@ -316,5 +316,5 @@ async function disable() {
 }
 ```
 
-### Sample示例
-可参考[使用AudioLoopback启用音频低时延返听的sample示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)。
+### 音频低时延返听示例
+可参考[使用AudioLoopback启用音频低时延返听的示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)。
