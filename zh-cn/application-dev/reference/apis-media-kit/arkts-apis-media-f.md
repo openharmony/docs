@@ -66,7 +66,7 @@ media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
 
 createAVPlayer(): Promise\<AVPlayer>
 
-异步方式创建音视频播放实例，通过Promise获取返回值。
+异步方式创建音视频播放实例，使用Promise异步回调。
 
 > **说明：**
 >
