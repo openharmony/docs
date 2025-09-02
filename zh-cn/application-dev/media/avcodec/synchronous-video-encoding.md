@@ -185,8 +185,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
 6. 获取可用buffer并释放编码帧。
-   
-   以下示例包含三个主要步骤：
 
    - 调用[OH_VideoEncoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
    - 根据获取的索引（index），调用[OH_VideoEncoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
@@ -453,7 +451,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 5. 获取可用buffer并写入码流至编码器。
 
-    以下示例包含三个主要步骤：
     - 调用[OH_VideoEncoder_QueryInputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_queryinputbuffer)接口获取下一个可用的输入缓冲区（buffer）的索引（index）。
     - 根据获取的索引（index），调用[OH_VideoEncoder_GetInputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_getinputbuffer)接口获取对应的缓冲区（buffer）实例。
     - 将需要编码的数据写入该缓冲区（buffer）后，调用[OH_VideoEncoder_PushInputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_pushinputbuffer)接口将其送入编码输入队列进行编码。当所有待处理数据全部传递给编码器后，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS，通知编码器输入结束。
@@ -542,8 +539,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 
 6. 获取可用buffer并释放编码帧。
-   
-   以下示例包含三个主要步骤：
 
    - 调用[OH_VideoEncoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
    - 根据获取的索引（index），调用[OH_VideoEncoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
@@ -607,7 +602,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-7. 编码器送帧出帧处理循环。
+7. 编码器送帧/出帧处理循环。
   
     ```c++
     bool result = true;
