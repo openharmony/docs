@@ -1239,7 +1239,7 @@ getOpacity(): number
 
 isVisible(): boolean
 
-获取节点是否可见。
+获取节点在窗口画面是否可见。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
