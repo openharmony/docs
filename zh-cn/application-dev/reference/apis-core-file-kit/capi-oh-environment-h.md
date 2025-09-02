@@ -1,5 +1,12 @@
 # oh_environment.h
 
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 environment模块接口定义，使用environment提供的native接口，获取公共文件根目录的沙箱路径。
