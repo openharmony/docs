@@ -160,6 +160,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
@@ -204,6 +205,7 @@ hasRight(deviceName: string): boolean
 ```ts
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
+  return;
   console.log(`device list is empty`);
 }
 
@@ -247,6 +249,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 ```ts
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
+  return;
   console.log(`device list is empty`);
 }
 
@@ -291,6 +294,7 @@ removeRight(deviceName: string): boolean
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
@@ -341,6 +345,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
@@ -391,6 +396,7 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
@@ -438,6 +444,7 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
@@ -490,6 +497,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
@@ -536,6 +544,7 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 usbManager.requestRight(devicesList[0].name);
@@ -578,6 +587,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 usbManager.requestRight(devicesList[0].name);
@@ -646,6 +656,7 @@ let param: PARA = {
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 usbManager.requestRight(devicesList[0].name);
@@ -711,6 +722,7 @@ let param: PARA = {
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 usbManager.requestRight(devicesList[0].name);
@@ -771,6 +783,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
@@ -993,6 +1006,7 @@ closePipe(pipe: USBDevicePipe): number
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
+  return;
 }
 
 usbManager.requestRight(devicesList[0].name);
@@ -1310,6 +1324,7 @@ resetUsbDevice(pipe: USBDevicePipe): boolean
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
   console.error(`device list is empty`);
+  return;
 }
 
 usbManager.requestRight(devicesList[0].name);
