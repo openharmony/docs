@@ -2484,8 +2484,6 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
@@ -2542,10 +2540,42 @@ getAttribute(node: FrameNode, nodeType: 'Column'): ColumnAttribute | undefined
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Column');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Column
+    let col1 = typeNode.createNode(uiContext, 'Column');
+    col1.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    // 获取Column的属性
+    typeNode.getAttribute(col1, 'Column')?.backgroundColor(Color.Blue).width("100%")
+    col.appendChild(col1);
+    // 创建另一个Column用于对比
+    let col2 = typeNode.createNode(uiContext, 'Column');
+    col2.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    col.appendChild(col2);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Column sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### Row<sup>12+</sup>
@@ -2586,8 +2616,6 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 | [Row](#row12) | Row类型的FrameNode节点。 |
 
 **示例：**
-
-<!--code_no_check-->
 
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
@@ -2645,10 +2673,42 @@ getAttribute(node: FrameNode, nodeType: 'Row'): RowAttribute | undefined
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Row');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Row
+    let row1 = typeNode.createNode(uiContext, 'Row');
+    row1.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    // 获取Row的属性
+    typeNode.getAttribute(row1, 'Row')?.backgroundColor(Color.Blue).width("100%")
+    col.appendChild(row1);
+    // 创建另一个Row用于对比
+    let row2 = typeNode.createNode(uiContext, 'Row');
+    row2.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    col.appendChild(row2);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Row sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### Stack<sup>12+</sup>
@@ -2689,8 +2749,6 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 | [Stack](#stack12) | Stack类型的FrameNode节点。 |
 
 **示例：**
-
-<!--code_no_check-->
 
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
@@ -2751,10 +2809,42 @@ getAttribute(node: FrameNode, nodeType: 'Stack'): StackAttribute | undefined
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Stack');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Stack
+    let stack1 = typeNode.createNode(uiContext, 'Stack');
+    stack1.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    // 获取Stack的属性
+    typeNode.getAttribute(stack1, 'Stack')?.backgroundColor(Color.Blue).width("100%")
+    col.appendChild(stack1);
+    // 创建另一个Stack用于对比
+    let stack2 = typeNode.createNode(uiContext, 'Stack');
+    stack2.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    col.appendChild(stack2);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Row sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### GridRow<sup>12+</sup>
@@ -2795,8 +2885,6 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 | [GridRow](#gridrow12) | GridRow类型的FrameNode节点。 |
 
 **示例：**
-
-<!--code_no_check-->
 
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
@@ -2873,8 +2961,6 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
@@ -2950,8 +3036,6 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
@@ -3008,10 +3092,42 @@ getAttribute(node: FrameNode, nodeType: 'Flex'): FlexAttribute | undefined
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Flex');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Flex
+    let flex1 = typeNode.createNode(uiContext, 'Flex');
+    flex1.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    // 获取Flex的属性
+    typeNode.getAttribute(flex1, 'Flex')?.backgroundColor(Color.Blue).width("100%")
+    col.appendChild(flex1);
+    // 创建另一个Flex用于对比
+    let flex2 = typeNode.createNode(uiContext, 'Flex');
+    flex2.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    col.appendChild(flex2);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Flex sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### Swiper<sup>12+</sup>
@@ -3480,8 +3596,6 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
@@ -3538,10 +3652,42 @@ getAttribute(node: FrameNode, nodeType: 'RelativeContainer'): RelativeContainerA
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'RelativeContainer');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建RelativeContainer
+    let relative1 = typeNode.createNode(uiContext, 'RelativeContainer');
+    relative1.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    // 获取RelativeContainer的属性
+    typeNode.getAttribute(relative1, 'RelativeContainer')?.backgroundColor(Color.Blue).width("100%")
+    col.appendChild(relative1);
+    // 创建另一个RelativeContainer用于对比
+    let relative2 = typeNode.createNode(uiContext, 'RelativeContainer');
+    relative2.initialize().width("50%").height("20%").backgroundColor(Color.Pink);
+    col.appendChild(relative2);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RelativeContainer sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### Divider<sup>12+</sup>
@@ -3582,8 +3728,6 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 | [Divider](#divider12) | Divider类型的FrameNode节点。 |
 
 **示例：**
-
-<!--code_no_check-->
 
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
@@ -3833,8 +3977,6 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank
 | [Blank](#blank12) | Blank类型的FrameNode节点。 |
 
 **示例：**
-
-<!--code_no_check-->
 
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
