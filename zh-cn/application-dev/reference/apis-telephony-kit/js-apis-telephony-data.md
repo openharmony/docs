@@ -584,7 +584,7 @@ apnInfo = {
 };
 
 data.queryApnIds(apnInfo).then((data: Array<number>) => {
-    console.info(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
+    console.info(`queryApnIds success, data: ${data}`);
 }).catch((err: BusinessError) => {
     console.error(`queryApnIds failed. code: ${err.code}, message: ${err.message}`);
 });
@@ -632,7 +632,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选APN。
 data.setPreferredApn(apnId).then((data: boolean) => {
-    console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
+    console.info(`setPreferredApn success, data: ${data}`);
 }).catch((err: BusinessError) => {
     console.error(`setPreferredApn failed. code: ${err.code}, message: ${err.message}`);
 });
@@ -669,7 +669,7 @@ import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getActiveApnName().then((data: string) => {
-    console.info(`getActiveApnName success, promise: data->${JSON.stringify(data)}`);
+    console.info(`getActiveApnName success, data: ${data}`);
 }).catch((err: BusinessError) => {
     console.error(`getActiveApnName failed. code: ${err.code}, message: ${err.message}`);
 });
