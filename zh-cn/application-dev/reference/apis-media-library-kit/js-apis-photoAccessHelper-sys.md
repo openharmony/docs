@@ -6805,7 +6805,7 @@ resetCoverUri(): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -9086,7 +9086,7 @@ isVideoReady(): Promise&lt;boolean&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](./js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -9247,7 +9247,7 @@ getCustomRecords(optionCheck: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsse
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是 | 检索选项。 |
+| optionCheck | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是 | 检索选项。 |
 
 **返回值：**
 
@@ -9355,7 +9355,7 @@ removeCustomRecords(optionCheck: FetchOptions): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是 | 检索选项。 |
+| optionCheck | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是 | 检索选项。 |
 
 **返回值：**
 
