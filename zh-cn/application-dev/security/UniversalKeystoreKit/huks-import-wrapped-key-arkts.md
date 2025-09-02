@@ -566,27 +566,26 @@ let huksOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array()) // 非空填充。
 }
 
-async function isKeyItemExist(keyAlias: string, options: huks.HuksOptions): Promise<string> {
+async function isKeyItemExist(keyAlias: string, options: huks.HuksOptions): Promise<boolean> {
   console.info(`promise: enter isKeyItemExist`);
-  let ret = 'Success';
+  let ret: boolean = false;
   try {
     await huks.isKeyItemExist(keyAlias, options)
       .then((data) => {
         console.info(`promise: isKeyItemExist success, data = ${data}`);
+        ret = true;
       }).catch((error: BusinessError) => {
         console.error(`promise: isKeyItemExist failed, errCode : ${error.code}, errMsg : ${error.message}`);
-        ret = 'Failed';
       })
   } catch (error) {
     console.error(`promise: isKeyItemExist input arg invalid`);
-    ret = 'Failed';
   }
   return ret;
 }
 
 async function importWrappedKeyExistTest() {
   let retImp = await isKeyItemExist(keyAlias, huksOptions);
-  if (retImp == 'Failed') {
+  if (retImp == false) {
     console.error("importWrappedKeyExistTest failed");
     return;
   }
