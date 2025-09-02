@@ -68,7 +68,7 @@ import { rpc } from '@kit.IPCKit';
 
   在RPC或IPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
-### create
+### create<sup>9+</sup>
 
   static create(): MessageSequence
 
@@ -94,7 +94,7 @@ import { rpc } from '@kit.IPCKit';
   data.reclaim();
   ```
 
-### reclaim
+### reclaim<sup>9+</sup>
 
 reclaim(): void
 
@@ -109,7 +109,7 @@ reclaim(): void
   reply.reclaim();
   ```
 
-### writeRemoteObject
+### writeRemoteObject<sup>9+</sup>
 
 writeRemoteObject(object: IRemoteObject): void
 
@@ -155,7 +155,7 @@ writeRemoteObject(object: IRemoteObject): void
   }
   ```
 
-### readRemoteObject
+### readRemoteObject<sup>9+</sup>
 
 readRemoteObject(): IRemoteObject
 
@@ -202,7 +202,7 @@ readRemoteObject(): IRemoteObject
   }
   ```
 
-### writeInterfaceToken
+### writeInterfaceToken<sup>9+</sup>
 
 writeInterfaceToken(token: string): void
 
@@ -241,7 +241,7 @@ writeInterfaceToken(token: string): void
   }
   ```
 
-### readInterfaceToken
+### readInterfaceToken<sup>9+</sup>
 
 readInterfaceToken(): string
 
@@ -284,7 +284,7 @@ class Stub extends rpc.RemoteObject {
 }
 ```
 
-### getSize
+### getSize<sup>9+</sup>
 
 getSize(): number
 
@@ -308,7 +308,7 @@ getSize(): number
   hilog.info(0x0000, 'testTag', 'RpcClient: size is ' + size);
   ```
 
-### getCapacity
+### getCapacity<sup>9+</sup>
 
 getCapacity(): number
 
@@ -332,7 +332,7 @@ getCapacity(): number
   hilog.info(0x0000, 'testTag', 'RpcClient: capacity is ' + result);
   ```
 
-### setSize
+### setSize<sup>9+</sup>
 
 setSize(size: number): void
 
@@ -372,7 +372,7 @@ setSize(size: number): void
   }
   ```
 
-### setCapacity
+### setCapacity<sup>9+</sup>
 
 setCapacity(size: number): void
 
@@ -412,7 +412,7 @@ setCapacity(size: number): void
   }
   ```
 
-### getWritableBytes
+### getWritableBytes<sup>9+</sup>
 
 getWritableBytes(): number
 
@@ -440,7 +440,7 @@ class Stub extends rpc.RemoteObject {
 }
 ```
 
-### getReadableBytes
+### getReadableBytes<sup>9+</sup>
 
 getReadableBytes(): number
 
@@ -468,7 +468,7 @@ class Stub extends rpc.RemoteObject {
 }
 ```
 
-### getReadPosition
+### getReadPosition<sup>9+</sup>
 
 getReadPosition(): number
 
@@ -492,7 +492,7 @@ getReadPosition(): number
   hilog.info(0x0000, 'testTag', 'RpcClient: readPos is ' + readPos);
   ```
 
-### getWritePosition
+### getWritePosition<sup>9+</sup>
 
 getWritePosition(): number
 
@@ -517,7 +517,7 @@ getWritePosition(): number
   hilog.info(0x0000, 'testTag', 'RpcClient: bwPos is ' + bwPos);
   ```
 
-### rewindRead
+### rewindRead<sup>9+</sup>
 
 rewindRead(pos: number): void
 
@@ -562,7 +562,7 @@ rewindRead(pos: number): void
   hilog.info(0x0000, 'testTag', 'RpcClient: rewindRead is ' + number2);
   ```
 
-### rewindWrite
+### rewindWrite<sup>9+</sup>
 
 rewindWrite(pos: number): void
 
@@ -605,7 +605,7 @@ rewindWrite(pos: number): void
   hilog.info(0x0000, 'testTag', 'RpcClient: rewindWrite is: ' + number);
   ```
 
-### writeByte
+### writeByte<sup>9+</sup>
 
 writeByte(val: number): void
 
@@ -644,7 +644,7 @@ writeByte(val: number): void
   }
   ```
 
-### readByte
+### readByte<sup>9+</sup>
 
 readByte(): number
 
@@ -690,7 +690,7 @@ readByte(): number
   }
   ```
 
-### writeShort
+### writeShort<sup>9+</sup>
 
 writeShort(val: number): void
 
@@ -729,7 +729,7 @@ writeShort(val: number): void
   }
   ```
 
-### readShort
+### readShort<sup>9+</sup>
 
 readShort(): number
 
@@ -775,7 +775,7 @@ readShort(): number
   }
   ```
 
-### writeInt
+### writeInt<sup>9+</sup>
 
 writeInt(val: number): void
 
@@ -814,7 +814,7 @@ writeInt(val: number): void
   }
   ```
 
-### readInt
+### readInt<sup>9+</sup>
 
 readInt(): number
 
@@ -860,7 +860,7 @@ readInt(): number
   }
   ```
 
-### writeLong
+### writeLong<sup>9+</sup>
 
 writeLong(val: number): void
 
@@ -899,7 +899,7 @@ writeLong(val: number): void
   }
   ```
 
-### readLong
+### readLong<sup>9+</sup>
 
 readLong(): number
 
@@ -945,7 +945,7 @@ readLong(): number
   }
   ```
 
-### writeFloat
+### writeFloat<sup>9+</sup>
 
 writeFloat(val: number): void
 
@@ -984,7 +984,7 @@ writeFloat(val: number): void
   }
   ```
 
-### readFloat
+### readFloat<sup>9+</sup>
 
 readFloat(): number
 
@@ -1030,7 +1030,7 @@ readFloat(): number
   }
   ```
 
-### writeDouble
+### writeDouble<sup>9+</sup>
 
 writeDouble(val: number): void
 
@@ -1069,7 +1069,7 @@ writeDouble(val: number): void
   }
   ```
 
-### readDouble
+### readDouble<sup>9+</sup>
 
 readDouble(): number
 
@@ -1115,7 +1115,7 @@ readDouble(): number
   }
   ```
 
-### writeBoolean
+### writeBoolean<sup>9+</sup>
 
 writeBoolean(val: boolean): void
 
@@ -1154,7 +1154,7 @@ writeBoolean(val: boolean): void
   }
   ```
 
-### readBoolean
+### readBoolean<sup>9+</sup>
 
 readBoolean(): boolean
 
@@ -1200,7 +1200,7 @@ readBoolean(): boolean
   }
   ```
 
-### writeChar
+### writeChar<sup>9+</sup>
 
 writeChar(val: number): void
 
@@ -1239,7 +1239,7 @@ writeChar(val: number): void
   }
   ```
 
-### readChar
+### readChar<sup>9+</sup>
 
 readChar(): number
 
@@ -1285,7 +1285,7 @@ readChar(): number
   }
   ```
 
-### writeString
+### writeString<sup>9+</sup>
 
 writeString(val: string): void
 
@@ -1324,7 +1324,7 @@ writeString(val: string): void
   }
   ```
 
-### readString
+### readString<sup>9+</sup>
 
 readString(): string
 
@@ -1370,7 +1370,7 @@ readString(): string
   }
   ```
 
-### writeParcelable
+### writeParcelable<sup>9+</sup>
 
 writeParcelable(val: Parcelable): void
 
@@ -1428,7 +1428,7 @@ writeParcelable(val: Parcelable): void
   }
   ```
 
-### readParcelable
+### readParcelable<sup>9+</sup>
 
 readParcelable(dataIn: Parcelable): void
 
@@ -1489,7 +1489,7 @@ readParcelable(dataIn: Parcelable): void
   }
   ```
 
-### writeByteArray
+### writeByteArray<sup>9+</sup>
 
 writeByteArray(byteArray: number[]): void
 
@@ -1529,7 +1529,7 @@ writeByteArray(byteArray: number[]): void
   }
   ```
 
-### readByteArray
+### readByteArray<sup>9+</sup>
 
 readByteArray(dataIn: number[]): void
 
@@ -1577,7 +1577,7 @@ readByteArray(dataIn: number[]): void
   }
   ```
 
-### readByteArray
+### readByteArray<sup>9+</sup>
 
 readByteArray(): number[]
 
@@ -1624,7 +1624,7 @@ readByteArray(): number[]
   }
   ```
 
-### writeShortArray
+### writeShortArray<sup>9+</sup>
 
 writeShortArray(shortArray: number[]): void
 
@@ -1663,7 +1663,7 @@ writeShortArray(shortArray: number[]): void
   }
   ```
 
-### readShortArray
+### readShortArray<sup>9+</sup>
 
 readShortArray(dataIn: number[]): void
 
@@ -1710,7 +1710,7 @@ readShortArray(dataIn: number[]): void
   }
   ```
 
-### readShortArray
+### readShortArray<sup>9+</sup>
 
 readShortArray(): number[]
 
@@ -1756,7 +1756,7 @@ readShortArray(): number[]
   }
   ```
 
-### writeIntArray
+### writeIntArray<sup>9+</sup>
 
 writeIntArray(intArray: number[]): void
 
@@ -1795,7 +1795,7 @@ writeIntArray(intArray: number[]): void
   }
   ```
 
-### readIntArray
+### readIntArray<sup>9+</sup>
 
 readIntArray(dataIn: number[]): void
 
@@ -1842,7 +1842,7 @@ readIntArray(dataIn: number[]): void
   }
   ```
 
-### readIntArray
+### readIntArray<sup>9+</sup>
 
 readIntArray(): number[]
 
@@ -1888,7 +1888,7 @@ readIntArray(): number[]
   }
   ```
 
-### writeLongArray
+### writeLongArray<sup>9+</sup>
 
 writeLongArray(longArray: number[]): void
 
@@ -1927,7 +1927,7 @@ writeLongArray(longArray: number[]): void
   }
   ```
 
-### readLongArray
+### readLongArray<sup>9+</sup>
 
 readLongArray(dataIn: number[]): void
 
@@ -1974,7 +1974,7 @@ readLongArray(dataIn: number[]): void
   }
   ```
 
-### readLongArray
+### readLongArray<sup>9+</sup>
 
 readLongArray(): number[]
 
@@ -2020,7 +2020,7 @@ readLongArray(): number[]
   }
   ```
 
-### writeFloatArray
+### writeFloatArray<sup>9+</sup>
 
 writeFloatArray(floatArray: number[]): void
 
@@ -2059,7 +2059,7 @@ writeFloatArray(floatArray: number[]): void
   }
   ```
 
-### readFloatArray
+### readFloatArray<sup>9+</sup>
 
 readFloatArray(dataIn: number[]): void
 
@@ -2106,7 +2106,7 @@ readFloatArray(dataIn: number[]): void
   }
   ```
 
-### readFloatArray
+### readFloatArray<sup>9+</sup>
 
 readFloatArray(): number[]
 
@@ -2152,7 +2152,7 @@ readFloatArray(): number[]
   }
   ```
 
-### writeDoubleArray
+### writeDoubleArray<sup>9+</sup>
 
 writeDoubleArray(doubleArray: number[]): void
 
@@ -2191,7 +2191,7 @@ writeDoubleArray(doubleArray: number[]): void
   }
   ```
 
-### readDoubleArray
+### readDoubleArray<sup>9+</sup>
 
 readDoubleArray(dataIn: number[]): void
 
@@ -2238,7 +2238,7 @@ readDoubleArray(dataIn: number[]): void
   }
   ```
 
-### readDoubleArray
+### readDoubleArray<sup>9+</sup>
 
 readDoubleArray(): number[]
 
@@ -2284,7 +2284,7 @@ readDoubleArray(): number[]
   }
   ```
 
-### writeBooleanArray
+### writeBooleanArray<sup>9+</sup>
 
 writeBooleanArray(booleanArray: boolean[]): void
 
@@ -2323,7 +2323,7 @@ writeBooleanArray(booleanArray: boolean[]): void
   }
   ```
 
-### readBooleanArray
+### readBooleanArray<sup>9+</sup>
 
 readBooleanArray(dataIn: boolean[]): void
 
@@ -2370,7 +2370,7 @@ readBooleanArray(dataIn: boolean[]): void
   }
   ```
 
-### readBooleanArray
+### readBooleanArray<sup>9+</sup>
 
 readBooleanArray(): boolean[]
 
@@ -2416,7 +2416,7 @@ readBooleanArray(): boolean[]
   }
   ```
 
-### writeCharArray
+### writeCharArray<sup>9+</sup>
 
 writeCharArray(charArray: number[]): void
 
@@ -2455,7 +2455,7 @@ writeCharArray(charArray: number[]): void
   }
   ```
 
-### readCharArray
+### readCharArray<sup>9+</sup>
 
 readCharArray(dataIn: number[]): void
 
@@ -2502,7 +2502,7 @@ readCharArray(dataIn: number[]): void
   }
   ```
 
-### readCharArray
+### readCharArray<sup>9+</sup>
 
 readCharArray(): number[]
 
@@ -2548,7 +2548,7 @@ readCharArray(): number[]
   }
   ```
 
-### writeStringArray
+### writeStringArray<sup>9+</sup>
 
 writeStringArray(stringArray: string[]): void
 
@@ -2587,7 +2587,7 @@ writeStringArray(stringArray: string[]): void
   }
   ```
 
-### readStringArray
+### readStringArray<sup>9+</sup>
 
 readStringArray(dataIn: string[]): void
 
@@ -2634,7 +2634,7 @@ readStringArray(dataIn: string[]): void
   }
   ```
 
-### readStringArray
+### readStringArray<sup>9+</sup>
 
 readStringArray(): string[]
 
@@ -2680,7 +2680,7 @@ readStringArray(): string[]
   }
   ```
 
-### writeNoException
+### writeNoException<sup>9+</sup>
 
 writeNoException(): void
 
@@ -2725,7 +2725,7 @@ writeNoException(): void
   }
   ```
 
-### readException
+### readException<sup>9+</sup>
 
 readException(): void
 
@@ -2819,7 +2819,7 @@ readException(): void
   }
   ```
 
-### writeParcelableArray
+### writeParcelableArray<sup>9+</sup>
 
 writeParcelableArray(parcelableArray: Parcelable[]): void
 
@@ -2880,7 +2880,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
   }
   ```
 
-### readParcelableArray
+### readParcelableArray<sup>9+</sup>
 
 readParcelableArray(parcelableArray: Parcelable[]): void
 
@@ -2944,7 +2944,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
   }
   ```
 
-### writeRemoteObjectArray
+### writeRemoteObjectArray<sup>9+</sup>
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
@@ -2994,7 +2994,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
   }
   ```
 
-### readRemoteObjectArray
+### readRemoteObjectArray<sup>9+</sup>
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
 
@@ -3046,7 +3046,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
   }
   ```
 
-### readRemoteObjectArray
+### readRemoteObjectArray<sup>9+</sup>
 
 readRemoteObjectArray(): IRemoteObject[]
 
@@ -3097,7 +3097,7 @@ readRemoteObjectArray(): IRemoteObject[]
   }
   ```
 
-### closeFileDescriptor
+### closeFileDescriptor<sup>9+</sup>
 
 static closeFileDescriptor(fd: number): void
 
@@ -3137,7 +3137,7 @@ static closeFileDescriptor(fd: number): void
   }
   ```
 
-### dupFileDescriptor
+### dupFileDescriptor<sup>9+</sup>
 
 static dupFileDescriptor(fd: number): number
 
@@ -3184,7 +3184,7 @@ static dupFileDescriptor(fd: number): number
   }
   ```
 
-### containFileDescriptors
+### containFileDescriptors<sup>9+</sup>
 
 containFileDescriptors(): boolean
 
@@ -3225,7 +3225,7 @@ containFileDescriptors(): boolean
   }
   ```
 
-### writeFileDescriptor
+### writeFileDescriptor<sup>9+</sup>
 
 writeFileDescriptor(fd: number): void
 
@@ -3267,7 +3267,7 @@ writeFileDescriptor(fd: number): void
   }
   ```
 
-### readFileDescriptor
+### readFileDescriptor<sup>9+</sup>
 
 readFileDescriptor(): number
 
@@ -3316,7 +3316,7 @@ readFileDescriptor(): number
   }
   ```
 
-### writeAshmem
+### writeAshmem<sup>9+</sup>
 
 writeAshmem(ashmem: Ashmem): void
 
@@ -3363,7 +3363,7 @@ writeAshmem(ashmem: Ashmem): void
   }
   ```
 
-### readAshmem
+### readAshmem<sup>9+</sup>
 
 readAshmem(): Ashmem
 
@@ -3416,7 +3416,7 @@ readAshmem(): Ashmem
   }
   ```
 
-### getRawDataCapacity
+### getRawDataCapacity<sup>9+</sup>
 
 getRawDataCapacity(): number
 
@@ -3548,7 +3548,6 @@ readRawData(size: number): number[]
 > **说明：**
 >
 > 从API version 11 开始废弃，建议使用[readRawDataBuffer](#readrawdatabuffer11)替代。
-
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6268,7 +6267,7 @@ readRawData(size: number): number[]
 
 在进程间通信（IPC）期间，将类的对象写入MessageSequence并从MessageSequence中恢复它们。
 
-### marshalling
+### marshalling<sup>9+</sup>
 
 marshalling(dataOut: MessageSequence): boolean
 
@@ -6319,7 +6318,7 @@ marshalling(dataOut: MessageSequence): boolean
   data.readParcelable(ret);
   ```
 
-### unmarshalling
+### unmarshalling<sup>9+</sup>
 
 unmarshalling(dataIn: MessageSequence): boolean
 
@@ -8966,8 +8965,8 @@ onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequen
 
 > **说明：**
 >
->* 开发者应优先选择重载onRemoteMessageRequest方法，其中可以自由实现同步和异步的消息处理。
->* 开发者同时重载onRemoteRequest和onRemoteMessageRequest方法时，仅onRemoteMessageRequest方法生效。
+> 开发者应优先选择重载onRemoteMessageRequest方法，其中可以自由实现同步和异步的消息处理。
+> 开发者同时重载onRemoteRequest和onRemoteMessageRequest方法时，仅onRemoteMessageRequest方法生效。
 
 sendMessageRequest请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
 
@@ -8986,8 +8985,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   | 类型              | 说明                                                                                            |
   | ----------------- | ----------------------------------------------------------------------------------------------- |
-  | boolean           | 若在onRemoteMessageRequest中同步地处理请求，则返回一个布尔值：true：操作成功，false：操作失败。 |
-  | Promise\<boolean> | 若在onRemoteMessageRequest中异步地处理请求，则返回一个Promise对象。                                 |
+  | boolean \| Promise\<boolean>  | - 若在onRemoteMessageRequest中同步处理请求，则返回一个布尔值。返回true表示操作成功，返回false表示操作失败。</br>- 若在onRemoteMessageRequest中异步处理请求，则返回一个Promise对象。返回true表示操作成功，返回false表示操作失败。|
 
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
