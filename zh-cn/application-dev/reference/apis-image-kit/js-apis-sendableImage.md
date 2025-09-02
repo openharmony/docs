@@ -156,7 +156,7 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<PixelMap>
 
-从Surface id创建一个PixelMap对象。
+根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -164,8 +164,8 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8)  | 是   | 裁剪的尺寸。                         |
+| surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
+| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须为0，Region.size中width和height的取值范围分别为[1, 预览流宽度]和[1, 预览流高度]。如需截取任意区域，可先获取整个画面，再使用[crop](#crop)截取所需区域。 |
 
 **返回值：**
 | 类型                             | 说明                  |
