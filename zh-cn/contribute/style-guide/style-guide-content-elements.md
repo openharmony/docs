@@ -156,7 +156,7 @@
 
   | **正例**                                                    | **反例**                                               |
   | ----------------------------------------------------------- | ------------------------------------------------------ |
-  | Repeat具有[懒加载](./arkts-new-rendering-control-repeat.md#循环渲染能力说明)和[全量加载](./arkts-new-rendering-control-repeat.md#关闭懒加载)两种模式。 | 无 |
+  | Repeat具有\[懒加载](./arkts-new-rendering-control-repeat.md#循环渲染能力说明)和\[全量加载](./arkts-new-rendering-control-repeat.md#关闭懒加载)两种模式。 | 无 |
 
 ### 链接样式
 
