@@ -15,7 +15,7 @@
 
 ## $r
 
-function $r(value: string, ...params: any[]): Resource
+$r(value: string, ...params: any[]): Resource
 
 获取应用资源或系统资源的信息。\$r会在编译期由工具链转换为[Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9)对象。通过\$r访问应用资源或系统资源，可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
 
@@ -60,7 +60,7 @@ struct Page {
 
 ## $rawfile
 
-function $rawfile(value: string): Resource
+$rawfile(value: string): Resource
 
 获取工程rawfile目录下的资源信息。$rawfile会在编译期由工具链转换为[Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9)对象。通过\$rawfile访问应用资源或系统资源，可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
 
