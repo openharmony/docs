@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的拍照流程介绍，方便开发者了解完整的接口调用顺序。
 
@@ -64,11 +64,14 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
 
 async function cameraShootingCase(context: Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象。
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-  if (!cameraManager) {
-    console.error("camera.getCameraManager error");
+  try {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`camera.getCameraManager failed, err: ${err.code}`);
     return;
   }
+
   // 监听相机状态变化。
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
     if (err !== undefined && err.code !== 0) {
