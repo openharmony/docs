@@ -35,7 +35,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-将待执行的函数放入taskpool的内部任务队列，函数不会立即执行，而是等待分发到工作线程执行。在当前执行模式下，不支持取消任务。使用Promise异步回调。
+将待执行的函数放入taskpool的内部任务队列，函数不会立即执行，而是等待分发到工作线程执行。在当前执行模式下，不支持取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -83,7 +83,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...args: A): Promise\<R>
 
-校验并发函数的参数类型和返回类型后，将函数添加到taskpool的任务队列。使用Promise异步回调。
+校验并发函数的参数类型和返回类型后，将函数添加到taskpool的任务队列。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -149,7 +149,7 @@ taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then(
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务添加到taskpool的内部任务队列中，任务不会立即执行，而是等待分发到工作线程执行。当前模式支持设置任务优先级和通过cancel取消任务。任务不能是任务组任务、串行队列任务或异步队列任务。非长时任务可以多次调用执行。使用Promise异步回调。
+将创建好的任务添加到taskpool的内部任务队列中，任务不会立即执行，而是等待分发到工作线程执行。当前模式支持设置任务优先级和通过cancel取消任务。任务不能是任务组任务、串行队列任务或异步队列任务。非长时任务可以多次调用执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -208,7 +208,7 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priority): Promise\<R>
 
-将创建好的泛型任务放入taskpool的内部任务队列，不校验任务的参数类型和返回值类型。使用Promise异步回调。
+将创建好的泛型任务放入taskpool的内部任务队列，不校验任务的参数类型和返回值类型。
 
 execute任务的校验是结合new GenericsTask一起用的，参数、返回值类型需与new GenericsTask中的类型保持一致。
 
@@ -269,7 +269,7 @@ taskpool.execute<[number], number>(task3, taskpool.Priority.HIGH).then((value: n
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-将创建好的任务组放入taskpool内部任务队列，任务组中的任务不会立即执行，而是等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。此模式适用于执行关联任务。使用Promise异步回调。
+将创建好的任务组放入taskpool内部任务队列，任务组中的任务不会立即执行，而是等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。此模式适用于执行关联任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -330,7 +330,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。当前执行模式可以设置任务优先级，并且可以尝试调用cancel取消任务。该任务不能是任务组任务、串行队列任务、异步队列任务或周期任务。如果任务不是长时任务，可以多次调用executeDelayed执行；如果是长时任务，则仅支持执行一次。使用Promise异步回调。
+延时执行任务。当前执行模式可以设置任务优先级，并且可以尝试调用cancel取消任务。该任务不能是任务组任务、串行队列任务、异步队列任务或周期任务。如果任务不是长时任务，可以多次调用executeDelayed执行；如果是长时任务，则仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -389,7 +389,7 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000: delayTime is 1000ms
 
 executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTask\<A, R>, priority?: Priority): Promise\<R>
 
-延时执行泛型任务，不校验任务的参数类型和返回值类型。使用Promise异步回调。
+延时执行泛型任务，不校验任务的参数类型和返回值类型。
 
 executeDelayed任务的校验是结合new GenericsTask一起用的，参数、返回值类型需与new GenericsTask中的类型保持一致。
 
@@ -1419,7 +1419,7 @@ taskpoolTest();
 
 onReceiveData(callback?: Function): void
 
-为任务注册回调函数，接收并处理任务池工作线程的数据。使用此方法前，需构造Task。使用callback异步回调。
+为任务注册回调函数，接收并处理任务池工作线程的数据。使用此方法前，需构造Task。
 
 > **说明：**
 >
@@ -1599,7 +1599,7 @@ taskpool.execute(task3).then(() => {
 
 onEnqueued(callback: CallbackFunction): void
 
-注册回调函数，任务入队时将调用该函数。若任务执行前未注册回调函数，将抛出异常。使用callback异步回调。
+注册回调函数，任务入队时将调用该函数。若任务执行前未注册回调函数，将抛出异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1648,7 +1648,7 @@ taskpool.execute(task).then(() => {
 
 onStartExecution(callback: CallbackFunction): void
 
-注册回调函数，任务执行前将调用该函数。若任务执行前未注册回调函数，将抛出异常。使用callback异步回调。
+注册回调函数，任务执行前将调用该函数。若任务执行前未注册回调函数，将抛出异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1696,7 +1696,7 @@ taskpool.execute(task).then(() => {
 
 onExecutionFailed(callback: CallbackFunctionWithError): void
 
-注册一个回调函数，并在任务执行失败时调用它（周期任务不支持）。需在任务执行前注册，否则会抛异常。使用callback异步回调。
+注册一个回调函数，并在任务执行失败时调用它（周期任务不支持）。需在任务执行前注册，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1750,7 +1750,7 @@ taskpool.execute(task2).then(() => {
 
 onExecutionSucceeded(callback: CallbackFunction): void
 
-注册一个回调函数，并在任务执行成功时调用它（周期任务不支持）。需在任务执行前注册，否则会抛异常。使用callback异步回调。
+注册一个回调函数，并在任务执行成功时调用它（周期任务不支持）。需在任务执行前注册，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2206,7 +2206,7 @@ let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner1", task
 
 execute(task: Task): Promise\<Object>
 
-执行串行任务。使用该方法前需先构造SequenceRunner。串行队列不能执行任务组任务、其他串行队列任务、异步队列任务、有依赖关系的任务和已执行的任务。使用Promise异步回调。
+执行串行任务。使用该方法前需先构造SequenceRunner。串行队列不能执行任务组任务、其他串行队列任务、异步队列任务、有依赖关系的任务和已执行的任务。
 
 > **说明：**
 >
@@ -2356,7 +2356,7 @@ let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-执行异步任务。使用该方法前需要先构造AsyncRunner。使用Promise异步回调。
+执行异步任务。使用该方法前需要先构造AsyncRunner。
 
 > **说明：**
 >

@@ -687,7 +687,7 @@ workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp暂未�
 
 removeEventListener(type: string, callback?: WorkerEventListener): void
 
-移除宿主线程的Worker实例对象中类型为type的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。使用callback异步回调。
+移除宿主线程的Worker实例对象中类型为type的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -698,7 +698,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后执行。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后执行的回调函数。 |
 
 **错误码：**
 
@@ -860,7 +860,7 @@ workerPort.onmessage = (event: MessageEvents) => {
 
 removeEventListener(type: string, callback?: WorkerEventListener): void
 
-移除Worker线程实例对象中类型为type的事件监听。使用callback异步回调。
+移除Worker线程实例对象中类型为type的事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -871,7 +871,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后所执行。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调函数。 |
 
 **错误码：**
 
@@ -1670,7 +1670,7 @@ workerPort.addEventListener("alert", () => {
 
 removeEventListener(type: string, callback?: EventListener): void
 
-移除Worker的事件监听，该接口与[off<sup>(deprecated)</sup>](#offdeprecated)接口功能一致。使用callback异步回调。
+移除Worker的事件监听，该接口与[off<sup>(deprecated)</sup>](#offdeprecated)接口功能一致。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[removeEventListener<sup>9+</sup>](#removeeventlistener9)替代。
@@ -1682,7 +1682,7 @@ removeEventListener(type: string, callback?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 需要移除的事件类型。 |
-| callback | [EventListener](#eventlistenerdeprecated) | 否   | 回调函数，删除监听事件后所执行。 |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调函数。 |
 
 **示例：**
 
