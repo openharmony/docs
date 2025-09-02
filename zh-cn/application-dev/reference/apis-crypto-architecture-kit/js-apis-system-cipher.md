@@ -26,9 +26,9 @@ import cipher from '@system.cipher';
 
 **系统能力**：SystemCapability.Security.Cipher
 
-| 名称 | 类型   | 可读 | 可写 |说明         |
+| 名称 | 类型   | 只读 | 可选 |说明         |
 | ------ | ------ | ---- | ---- | ------------ |
-| text   | string | 是   | 否   | 返回的内容。 |
+| text   | string | 否   | 否   | 返回的内容。 |
 
 
 ## CipherRsaOptions
