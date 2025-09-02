@@ -36,23 +36,27 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
-| 名称                | 类型   |可读|可写| 说明                   |
+| 名称                | 类型   |只读|可选| 说明                   |
 | ------------------- | ---- |----|----| ---------------------- |
-| ageGroup  | [UserAgeGroup](#useragegroup)   |是|否| 表示具体的年龄群组（例如，儿童、成人）。 |
-| confidence  | float    |是|否| 表示年龄群组检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
+| ageGroup  | [UserAgeGroup](#useragegroup)   |否|否| 表示具体的年龄群组（例如，儿童、成人）。 |
+| confidence  | float    |否|否| 表示年龄群组检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
 
 
 ## userStatus.on('userAgeGroupDetected')
 
- on(type: 'userAgeGroupDetected', callback: Callback&lt;UserClassification&gt;): void;
+ on(type: 'userAgeGroupDetected', callback: Callback&lt;UserClassification&gt;): void
 
 订阅年龄群组检测功能。
 
 订阅成功后，可以获取用户年龄群组的分类结果，应用可根据此结果做相应的内容推荐。
 
-此功能如果设备不支持，将返回801错误码。
-
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
+
+**设备行为差异**：该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
+
+> **说明：**
+>
+> 该接口仅在部分Phone中支持使用，当Phone设备不支持时返回801错误码。
 
 **参数**：
 
@@ -91,11 +95,17 @@ try {
 
 ## userStatus.off('userAgeGroupDetected')
 
-off(type: 'userAgeGroupDetected', callback?: Callback&lt;UserClassification&gt;): void;
+off(type: 'userAgeGroupDetected', callback?: Callback&lt;UserClassification&gt;): void
 
 取消订阅年龄群组检测功能。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
+
+**设备行为差异**：该接口在Phone中可正常调用，在其他设备类型中返回33900003错误码。
+
+> **说明：**
+>
+> 该接口仅在部分Phone中支持使用，当Phone设备不支持时返回33900003错误码。
 
 **参数**：
 
