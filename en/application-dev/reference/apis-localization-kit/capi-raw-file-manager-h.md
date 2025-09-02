@@ -26,7 +26,7 @@ Provides file management functions for the **rawfile** directory. You can use th
 
 | Name| Description|
 | -- | -- |
-| [NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)](#oh_resourcemanager_initnativeresourcemanager) | Obtains the native **ResourceManager** based on the JS **ResourceManager** to implement rawfile-specific functions.|
+| [NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)](#oh_resourcemanager_initnativeresourcemanager) | Obtains the native **ResourceManager** based on the JavaScript **ResourceManager** to implement rawfile-specific functions.|
 | [void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr)](#oh_resourcemanager_releasenativeresourcemanager) | Releases the native **ResourceManager**.|
 | [RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName)](#oh_resourcemanager_openrawdir) | Traverses all files in the **rawfile** directory.|
 | [RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName)](#oh_resourcemanager_openrawfile) | Opens a rawfile and reads the data in it.|
@@ -43,7 +43,7 @@ NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env
 
 **Description**
 
-Obtains the native **ResourceManager** based on the JS **ResourceManager** to implement rawfile-specific functions.
+Obtains the native **ResourceManager** based on the JavaScript **ResourceManager** to implement rawfile-specific functions.
 
 **Since**: 8
 
@@ -53,7 +53,7 @@ Obtains the native **ResourceManager** based on the JS **ResourceManager** to im
 | Name| Description|
 | -- | -- |
 | napi_env env | Pointer to the JavaScript Native API (napi) environment.|
-| napi_value jsResMgr | JS **ResourceManager**.|
+| napi_value jsResMgr | JavaScript **ResourceManager** object.|
 
 **Returns**
 

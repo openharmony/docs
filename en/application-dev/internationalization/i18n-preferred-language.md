@@ -1,4 +1,4 @@
-# Preferred Language Setting
+# Preferred Language
 
 ## Use Cases
 

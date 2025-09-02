@@ -1,5 +1,11 @@
 # @ohos.bluetooth.baseProfile (Bluetooth baseProfile Module) (System API)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **baseProfile** module provides APIs for managing basic Bluetooth profiles.
 
 > **NOTE**
@@ -179,7 +185,7 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError, data: baseProfile.ConnectionStrategy) => {
+    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: baseProfile.ConnectionStrategy) => {
         console.info('getConnectionStrategy, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
@@ -233,7 +239,7 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data: baseProfile.ConnectionStrategy) => {
+    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX').then((data: baseProfile.ConnectionStrategy) => {
         console.info('getConnectionStrategy');
     }, (err: BusinessError) => {
         console.error('getConnectionStrategy errCode: ' + err.code + ', errMessage: ' + err.message);

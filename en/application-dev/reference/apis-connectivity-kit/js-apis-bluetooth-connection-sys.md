@@ -1,5 +1,11 @@
 # @ohos.bluetooth.connection (Bluetooth Connection Module) (System API)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **connection** module provides APIs for operating and managing Bluetooth.
 
 > **NOTE**

@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.infraredEmitter (IR Management)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+
 The **infraredEmitter** module generates IR signals of the specified frequency and size, and queries the frequency range supported by the device.
 
 > **NOTE**
@@ -74,7 +80,7 @@ Queries the frequency range of IR signals supported by the mobile phone.
 
 **Return value**
 
-| Parameter                 | Description                 |
+| Type                 | Description                 |
 | ------------------- | ------------------- |
 | Array&lt;[InfraredFrequency](#infraredfrequency15)&gt; | Frequency range, including multiple groups of maximum and minimum frequencies.|
 

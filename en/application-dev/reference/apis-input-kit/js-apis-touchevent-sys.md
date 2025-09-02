@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.touchEvent (Touch Event) (System API)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **touchEvent** module provides screen touch events reported by a device. It is inherited from [InputEvent](./js-apis-inputevent.md).
 
 > **NOTE**
@@ -16,7 +23,7 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 
 ## FixedMode
 
-Enumerates coordinate correction modes. This API takes effect only for mobile phones.
+Enumerates coordinate correction modes.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -37,8 +44,8 @@ Defines the touch point information.
 
 | Name         | Type  | Read-Only  | Optional  | Description                                 |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
-| fixedDisplayX | number| No   | Yes   | **screenX** correction value in one-handed mode.<br> **NOTE**: This API takes effect only for mobile phones.|
-| fixedDisplayY | number| No   | Yes   | **screenY** correction value in one-handed mode.<br> **NOTE**: This API takes effect only for mobile phones.   |
+| fixedDisplayX | number| No   | Yes   | **screenX** correction value in one-handed mode.|
+| fixedDisplayY | number| No   | Yes   | **screenY** correction value in one-handed mode.   |
 
 ## TouchEvent
 
@@ -50,4 +57,4 @@ Defines a touch event.
 
 | Name        | Type      | Read-Only  | Optional  | Description       |
 | ---------- | ---------- | ---- | ---- | --------- |
-| fixedMode  | [FixedMode](#fixedmode)   | No   | Yes   | Coordinate correction mode.<br> **NOTE**: This API takes effect only for mobile phones.|
+| fixedMode  | [FixedMode](#fixedmode)   | No   | Yes   | Coordinate correction mode.|

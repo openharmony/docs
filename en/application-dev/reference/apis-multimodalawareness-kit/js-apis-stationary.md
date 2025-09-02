@@ -20,7 +20,7 @@ Defines the response interface to receive the device status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | state | [ActivityState](#activitystate) | Yes| No| New device status.|
 
@@ -82,7 +82,7 @@ Subscribes to the device status.
 ```ts
 let reportLatencyNs = 1000000000;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-    console.log('data='+ JSON.stringify(data));
+    console.info('data='+ JSON.stringify(data));
 })
 ```
 
@@ -105,7 +105,7 @@ Obtains the device status.
 
 ```ts
 stationary.once('still', (data) => {
-    console.log("data="+ JSON.stringify(data));
+    console.info("data="+ JSON.stringify(data));
 })
 ```
 
@@ -123,7 +123,7 @@ Unsubscribes from the device status.
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | event  | [ActivityEvent](#activityevent)  | Yes  | Event type.             |
-| callback | Callback: \<[ActivityResponse](#activityresponse)> | No  | Callback used to receive reported data. If no value or **undefined** is passed, all callbacks associated with the specified event in the process will be unregistered. |
+| callback | Callback<[ActivityResponse](#activityresponse)\>  | No  | Callback used to receive reported data. If no value or **undefined** is passed, all callbacks associated with the specified event in the process will be unregistered. |
 
 **Example**
 

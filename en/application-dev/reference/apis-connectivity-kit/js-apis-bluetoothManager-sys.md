@@ -1,5 +1,11 @@
 # @ohos.bluetoothManager (Bluetooth) (System API)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 > **NOTE**
@@ -65,7 +71,7 @@ try {
 ```
 
 
-### connect<a name="HidHost-connect"></a>
+### connect<sup>(deprecated)</sup><a name="HidHost-connect"></a>
 
 connect(device: string): void
 
@@ -235,7 +241,7 @@ Sets tethering.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| value | boolean | Yes   | Whether to set tethering over a Bluetooth PAN.|
+| enable | boolean | Yes   | Whether to enable network sharing. The value **true** means to enable network sharing, and the value **false** means the opposite.|
 
 **Error codes**
 
@@ -273,7 +279,7 @@ Obtains the tethering status.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [pan.PanProfile#isTetheringOn](js-apis-bluetooth-pan-sys.md#isTetheringOn) instead.
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [isTetheringOn](js-apis-bluetooth-pan-sys.md#istetheringon) instead.
 
 **System API**: This is a system API.
 

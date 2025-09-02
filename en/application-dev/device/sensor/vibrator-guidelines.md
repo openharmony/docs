@@ -304,9 +304,9 @@ The following requirements must be met:
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
                  }
+                 // Close the file descriptor of the vibration configuration file.
+                 this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                }
-               // Close the file descriptor of the vibration configuration file.
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')
@@ -445,4 +445,3 @@ The following requirements must be met:
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
    }
    ```
-

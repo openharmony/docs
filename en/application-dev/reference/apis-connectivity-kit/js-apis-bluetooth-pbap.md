@@ -1,5 +1,11 @@
 # @ohos.bluetooth.pbap (Bluetooth PBAP Module)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **pbap** module provides APIs for accessing the phone book of a device using the Bluetooth Phone Book Access Profile (PBAP).
 
 > **NOTE**
@@ -19,13 +25,13 @@ import { pbap } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-Defines **BaseProfile** APIs.
+**BaseProfile** API definition.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md) | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## pbap.createPbapServerProfile
@@ -40,7 +46,7 @@ Create a **PbapServerProfile** instance.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| PbapServerProfile | **PbapServerProfile** instance created.|
+|PbapServerProfile | **PbapServerProfile** instance created.|
 
 **Error codes**
 

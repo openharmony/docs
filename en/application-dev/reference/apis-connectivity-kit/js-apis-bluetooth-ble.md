@@ -1,4 +1,10 @@
-# @ohos.bluetooth.ble (Bluetooth BLE Module)
+# @ohos.bluetooth.ble (BLE)
+
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 The **ble** module provides Bluetooth Low Energy (BLE) capabilities, including BLE scan, BLE advertising, and Generic Attribute Profile (GATT)-based connection and data transmission.
 
@@ -115,7 +121,7 @@ Obtains the BLE devices that have been connected to the local device via GATT.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of BLE devices that have been connected to the local device via GATT.<br>For security purposes, the device addresses obtained are virtual MAC addresses.<br>- If pairing with the device address is successful, the address will not change.<br>- If a device is unpaired or Bluetooth is disabled, the virtual address will change after the device is paired again.<br>- To persistently save the addresses, call [access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16).|
+| Array&lt;string&gt; | Addresses of BLE devices that have been connected to the local device via GATT.<br>For security purposes, the device addresses obtained are virtual MAC addresses.<br>- The virtual address remains unchanged after a device is paired successfully.<br>- If a device is unpaired or Bluetooth is disabled, the virtual address will change after the device is paired again.<br>- To persistently save the addresses, call [access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16).|
 
 **Error codes**
 
@@ -145,7 +151,7 @@ try {
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
-Starts a BLE scan.
+Starts BLE scanning.
 - You can obtain the scan result through the callback of [ble.on('BLEDeviceFind')](#bleonbledevicefind). Only BLE devices can be discovered. You can call [ble.stopBLEScan](#blestopblescan) to stop the BLE scan.
 - This API supports only single-channel scans. That is, the application can call this API only once at a time. Before calling this API again, you need to call [ble.stopBLEScan](#blestopblescan) to stop the previous scan.
 - To use multi-channel scans, call [BleScanner](#blescanner15).
@@ -160,7 +166,7 @@ Starts a BLE scan.
 
 | Name    | Type                                    | Mandatory  | Description                                 |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Rules for filtering the scan result. Devices that meet the filtering rules will be retained. Set this parameter to **null** if you do not want to filter the scan result.|
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Rules for filtering the scan result. Devices that meet the filtering rules will be retained.<br>If this parameter is set to **null**, all discoverable BLE devices nearby will be scanned. However, this method is not recommended as it may pick up unexpected devices and increase power consumption.|
 | options | [ScanOptions](#scanoptions)            | No   | Scan options.                    |
 
 **Error codes**
@@ -206,7 +212,7 @@ try {
 
 stopBLEScan(): void
 
-Stops the BLE scan.
+Stops BLE scanning.
 - You can call [ble.startBLEScan](#blestartblescan) to stop the BLE scan.
 - Call this API to stop the Bluetooth scan if device discovery is no longer needed.
 - Scan results will not be reported after this API is called. You need to start a Bluetooth scan again for device discovery.
@@ -260,7 +266,7 @@ Starts sending BLE advertising packets.
 
 | Name        | Type                                   | Mandatory  | Description            |
 | ----------- | ------------------------------------- | ---- | -------------- |
-| setting     | [AdvertiseSetting](#advertisesetting) | Yes   | BLE advertising settings.   |
+| setting     | [AdvertiseSetting](#advertisesetting) | Yes   | Settings related to BLE advertising.   |
 | advData     | [AdvertiseData](#advertisedata)       | Yes   | BLE advertising data.  |
 | advResponse | [AdvertiseData](#advertisedata)       | No   | BLE advertising response.|
 
@@ -1008,7 +1014,7 @@ Stops sending BLE advertising packets. This API uses an asynchronous callback to
 
 | Name                   | Type                         | Mandatory | Description                        |
 | ------------------------- | ---------------------------- | ----- | --------------------------- |
-| advertisingId             | number                       | Yes   | Advertising ID.        |
+| advertisingId             | number                       | Yes   | ID of the advertisement to stop.       |
 | callback                  | AsyncCallback&lt;void&gt;    | Yes   | Callback used to return the result.                  |
 
 **Error codes**
@@ -1110,7 +1116,7 @@ Stops sending BLE advertising packets. This API uses a promise to return the res
 
 | Name                   | Type                         | Mandatory | Description                        |
 | ------------------------- | ---------------------------- | ----- | --------------------------- |
-| advertisingId             | number                       | Yes   | Advertising ID.        |
+| advertisingId             | number                       | Yes   | ID of the advertisement to stop.       |
 
 **Return value**
 
@@ -1245,7 +1251,7 @@ try {
 
 off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
-Unsubscribes from BLE advertising state change events. No BLE advertising state change events will be received when BLE advertising is stopped or started.
+Unsubscribes from BLE advertising status. No BLE advertising state change events will be received when BLE advertising is stopped or started.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1422,9 +1428,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -1541,7 +1547,8 @@ notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharac
 
 Sends a characteristic change notification or indication from the server to the client. This API uses an asynchronous callback to return the result.
 
-- You are advised to enable notification or indication for the Client Characteristic Configuration descriptor (UUID: 00002902-0000-1000-8000-00805f9b34fb) of the characteristic.
+- You are advised to enable the notification or indication function for the Client Characteristic Configuration descriptor (UUID: 00002902-0000-1000-8000-00805f9b34fb) of the characteristic.
+- According to the Bluetooth protocol, the data length of the Client Characteristic Configuration descriptor is 2 bytes. Bit 0 and bit 1 indicate whether notification and indication are enabled, respectively. For example, **bit 0 = 1** indicates that notification is enabled.
 - This API is called when the properties of a GATT characteristic change.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
@@ -1604,6 +1611,7 @@ notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharac
 Sends a characteristic change event from the server to the client. This API uses a promise to return the result.
 
 - You are advised to enable notification or indication for the Client Characteristic Configuration descriptor of the characteristic.
+- According to the Bluetooth protocol, the data length of the Client Characteristic Configuration descriptor is 2 bytes. Bit 0 and bit 1 indicate whether notification and indication are enabled, respectively. For example, **bit 0 = 1** indicates that notification is enabled.
 - This API is called when the properties of a GATT characteristic change.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
@@ -1671,7 +1679,7 @@ A client request is received through the following APIs:
 - [on('characteristicRead')](#oncharacteristicread)
 - [on('characteristicWrite')](#oncharacteristicwrite) (Whether a response is needed is determined based on **needRsp** in [CharacteristicWriteRequest](#characteristicwriterequest)).
 - [on('descriptorRead')](#ondescriptorread)
-- [on('descriptorWrite')](#ondescriptorwrite) (Whether a response is needed is determined based on **needRsp** in [DescriptorWriteRequest](#descriptorwriterequest)).
+- [on('descriptorWrite')](#ondescriptorwrite) (Whether a response is needed is determined by **needRsp** in [DescriptorWriteRequest](#descriptorwriterequest)).
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2666,12 +2674,12 @@ function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) 
 }
 
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2734,12 +2742,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2805,13 +2813,13 @@ function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     console.info('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -2866,13 +2874,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -2924,12 +2932,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2998,12 +3006,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor>  = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -3059,13 +3067,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 22;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -3126,13 +3134,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 22;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -3150,7 +3158,7 @@ try {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the Received Signal Strength Indication (RSSI) of a GATT connection. This API uses an asynchronous callback to return the result.<br>
+Obtains the RSSI of a GATT connection. This API uses an asynchronous callback to return the result.<br>
 - You can call this API only after the GATT profile is connected by calling [connect](#connect).
 - You can call the following APIs only after receiving an asynchronous callback: [readCharacteristicValue](#readcharacteristicvalue), [readDescriptorValue](#readdescriptorvalue), [writeCharacteristicValue](#writecharacteristicvalue), [writeDescriptorValue](#writedescriptorvalue), [getRssiValue](#getrssivalue), [setCharacteristicChangeNotification](#setcharacteristicchangenotification), and [setCharacteristicChangeIndication](#setcharacteristicchangeindication).
 
@@ -3213,7 +3221,7 @@ Obtains the RSSI of a GATT connection. This API uses a promise to return the res
 
 | Type                   | Description                               |
 | --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the signal strength, in dBm.|
+| Promise&lt;number&gt; | Promise used to return the result. used to return the signal strength, in dBm.|
 
 **Error codes**
 
@@ -3311,7 +3319,7 @@ Sets whether to enable the client to receive characteristic change notifications
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Characteristic of the server.                     |
-| enable         | boolean                                 | Yes   | Whether to enable characteristic change notification.<br>The value **true** means to enable characteristic change notification, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to enable characteristic change notification.<br>The value **true** means to enable the application, and **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3332,9 +3340,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3382,7 +3390,7 @@ Sets whether to enable the client to receive characteristic change notifications
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Characteristic of the server.                     |
-| enable         | boolean                                 | Yes   | Whether to enable characteristic change notification.<br>The value **true** means to enable characteristic change notification, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to enable characteristic change notification.<br>**true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -3408,9 +3416,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3452,7 +3460,7 @@ Sets whether to enable the client to receive characteristic change indications f
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Characteristic of the server.                     |
-| enable         | boolean                                 | Yes   | Whether to enable characteristic change indication.<br>The value **true** means to enable characteristic change indication, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to enable characteristic change indication.<br>The value **true** means to enable the application, and **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3473,9 +3481,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3523,13 +3531,13 @@ Sets whether to enable the client to receive characteristic change indications f
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Characteristic of the server.                     |
-| enable         | boolean                                 | Yes   | Whether to enable characteristic change indication.<br>The value **true** means to enable characteristic change indication, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to enable characteristic change indication.<br>**true** to enable, **false** otherwise.|
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise used to return the result. that returns no value.|
 
 **Error codes**
 
@@ -3549,9 +3557,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // Use the Client Characteristic Configuration descriptor as an example. When bit 0 and bit 1 are both set to 0, the notification and indication functions are disabled.
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3867,7 +3875,7 @@ Represents the BLE scanner class, which provides scan-related APIs.<br>
 
 startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;void&gt;
 
-Starts a BLE scan. This API uses a promise to return the result.<br>
+Starts BLE scanning. This API uses a promise to return the result.<br>
 - This API can be used to scan only BLE devices.<br>
 - You can obtain the scan result through the callback of [on('BLEDeviceFind')](#onbledevicefind15).<br>
 - You can call [stopScan](#stopscan15) to stop the BLE scan.
@@ -3882,14 +3890,14 @@ Starts a BLE scan. This API uses a promise to return the result.<br>
 
 | Name    | Type                                    | Mandatory  | Description                                 |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Filter criteria for BLE advertising. Devices that meet the filter criteria will be reported.|
-| options | [ScanOptions](#scanoptions)            | No   | Defines the scan options.                    |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Filter criteria for BLE advertising. Devices that meet the filter criteria will be reported.<br>If this parameter is set to **null**, all discoverable BLE devices nearby will be scanned. However, this method is not recommended as it may pick up unexpected devices and increase power consumption.|
+| options | [ScanOptions](#scanoptions)            | No   | Defines the scan configuration parameters.                    |
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise used to return the result. that returns no value.|
 
 **Error codes**
 
@@ -3953,7 +3961,7 @@ Stops an ongoing BLE scan.<br>
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise used to return the result. that returns no value.|
 
 **Error codes**
 
@@ -4257,11 +4265,11 @@ Defines the scan result to be reported upon scanning advertising packets that me
 
 | Name      | Type       | Read-Only| Optional  | Description                                |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | No| No   | Bluetooth device address. for example, XX:XX:XX:XX:XX:XX.<br>For security purposes, the device addresses obtained are virtual MAC addresses.<br>- If pairing with the device address is successful, the address will not change.<br>- If a device is unpaired or Bluetooth is disabled, the virtual address will change after the device is paired again.<br>- To persistently save the addresses, call [access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16).|
+| deviceId | string      | No| No   | Bluetooth device address. for example, XX:XX:XX:XX:XX:XX.<br>For security purposes, the device addresses obtained are virtual MAC addresses.<br>- The virtual address remains unchanged after a device is paired successfully.<br>- If a device is unpaired or Bluetooth is disabled, the virtual address will change after the device is paired again.<br>- To persistently save the addresses, call [access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16).|
 | rssi     | number      | No| No   | Signal strength, in dBm.                   |
 | data     | ArrayBuffer | No| No   | Advertising data sent by the discovered device.                   |
 | deviceName | string | No| No   | Device name.                   |
-| connectable  | boolean | No| No   | Whether the discovered device is connectable. The value **true** means the discovered device is connectable; the value **false** means the opposite.                   |
+| connectable  | boolean | No| No   | Whether the discovered device is connectable. The value **true** indicates that the discovered device is connectable, and the value **false** indicates the opposite.                   |
 
 
 ## AdvertiseSetting
@@ -4281,7 +4289,7 @@ Defines the BLE advertising parameters.
 
 ## AdvertiseData
 
-Defines the BLE advertising packet data, which can also be used in the response to a scan request. Currently, only traditional advertising is supported. The maximum length of the packet data is 31 bytes. The advertising will fail if the maximum length (31 bytes) is exceeded. When all parameters are included (especially the Bluetooth device name), ensure the length of advertising packet data does not exceed 31 bytes.
+Defines the BLE advertising packet data, which can also be used in the response to a scan request. Currently, only traditional advertising is supported. The maximum length of the packet data is 31 bytes. The advertising will fail if the maximum length is exceeded. When all parameters are included (especially the Bluetooth device name), ensure the length of advertising packet data does not exceed 31 bytes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -4398,7 +4406,7 @@ Defines the scan options.
 
 | Name       | Type                   | Read-Only| Optional  | Description                                    |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| interval  | number                  | No| Yes   | Delay for reporting the scan result, in ms. The default value is **0**. This parameter is used together with [ScanReportMode](#scanreportmode15).<br>- This parameter does not take effect in conventional and geofence scan reporting modes. The advertising packets that meet the filtering criteria are reported immediately.<br>- This parameter takes effect in batch scan reporting mode. The advertising packets that meet the filtering criteria are stored in the cache queue and reported after the specified delay. If this parameter is not set or its value is in the range of [0, 5000), the Bluetooth subsystem sets the delay to **5000** by default.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
+| interval  | number                  | No| Yes   | Delay for reporting the scan result, in ms. The default value is **0**. This parameter is used together with [ScanReportMode](#scanreportmode15).<br>- This parameter does not take effect in normal and geofence scan reporting modes. The advertising packets that meet the filtering criteria are reported immediately.<br>- This parameter takes effect in batch scan reporting mode. The advertising packets that meet the filtering criteria are stored in the cache queue and reported after the specified delay. If this parameter is not set or its value is in the range of [0, 5000), the Bluetooth subsystem sets the delay to **5000** by default. If the number of advertising packets that meet the filtering criteria exceeds the hardware's cache capability within the specified delay, the Bluetooth subsystem reports the scan result in advance.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
 | dutyMode  | [ScanDuty](#scanduty)   | No| Yes   | Scan mode. The default value is **SCAN_MODE_LOW_POWER**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
 | matchMode | [MatchMode](#matchmode) | No| Yes   | Hardware match mode. The default value is **MATCH_MODE_AGGRESSIVE**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | phyType<sup>12+</sup> | [PhyType](#phytype12) | No| Yes   | Physical channel type. The default value is **PHY_LE_1M**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -4417,9 +4425,9 @@ Describes the properties supported by a GATT characteristic. The properties dete
 | -------- | ------ |---- |---- | ----------- |
 | write    | boolean | No| Yes | Whether the write operation is supported.<br>The value **true** indicates that the write operation is supported and a response is required, and the value **false** indicates that the write operation is not supported. The default value is **true**.|
 | writeNoResponse | boolean | No| Yes  | Whether the write operation is supported.<br>The value **true** indicates that the write operation is supported without requiring a response, and the value **false** indicates that the write operation is not supported. The default value is **true**.|
-| read | boolean   | No|  Yes   | Whether the read operation is supported.<br>The value **true** indicates that the read operation is supported, and the value **false** indicates the opposite. The default value is **true**.|
-| notify | boolean   | No| Yes   | Whether the notification operation is supported.<br>The value **true** indicates that the notification operation is supported and a response is required, and the value **false** indicates the notification operation is not supported. The default value is **false**.|
-| indicate | boolean   | No| Yes   | Whether the indication operation is supported.<br>The value **true** indicates that the indication operation is supported without requiring a response, and the value **false** indicates the indication operation is not supported. The default value is **false**.|
+| read | boolean   | No|  Yes   | Whether the read operation is supported.<br>**true** if it has flash, **false** otherwise. The default value is **true**.|
+| notify | boolean   | No| Yes   | Whether the notification operation is supported.<br>The value **true** indicates that the notification operation is supported and a response is required, and the value **false** indicates the notification operation is not supported. false|
+| indicate | boolean   | No| Yes   | Whether the indication operation is supported.<br>The value **true** indicates that the indication operation is supported without requiring a response, and the value **false** indicates the indication operation is not supported. false|
 
 
 ## GattWriteType

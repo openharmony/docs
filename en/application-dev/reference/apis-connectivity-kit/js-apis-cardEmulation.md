@@ -1,5 +1,11 @@
 # @ohos.nfc.cardEmulation (Standard NFC Card Emulation)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 The **cardEmulation** module implements Near-Field Communication (NFC) card emulation. You can use the APIs provided by this module to determine the card emulation type supported and implement Host Card Emulation (HCE).<br>
 HCE provides card emulation that does not depend on a secure element. It allows an application to emulate a card and communicate with an NFC card reader through the NFC service.
 
@@ -41,7 +47,7 @@ Before developing an application related to HCE, you must declare NFC-related at
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
         // Set reason to card_emulation_reason.
-        "reason": "$string:card_emulation_reason",
+        "reason": "$string:card_emulation_reason"
       }
     ]
   }
@@ -55,7 +61,7 @@ Before developing an application related to HCE, you must declare NFC-related at
     "abilities": [
       {
         // Other declared attributes
-        "metadata": {
+        "metaData": {
           "customizeData": [
             {
               "name": "paymentAid",
@@ -108,7 +114,7 @@ Before developing an application related to HCE, you must declare NFC-related at
 ```
 > **NOTE**
 >1. The **actions** field must contain **ohos.nfc.cardemulation.action.HOST_APDU_SERVICE** and cannot be changed.
->2. The **name** fields under **metadata** must be **payment-aid** or **other-aid** when application IDs (AIDs) are declared. Incorrect setting will cause a parsing failure.
+>2. When declaring an AID (in compliance with ISO/IEC 7816-4), ensure that **name** is set to **payment-aid** or **other-aid**. Incorrect setting will cause a parsing failure.
 >3. The **name** field of **requestPermissions** must be **ohos.permission.NFC_CARD_EMULATION** and cannot be changed.
 >4. Lite wearables support only the FA model, with attribute configurations and API invocation methods differing from those of other device types. Refer to the example code for detailed implementations.
 
@@ -176,7 +182,7 @@ Checks whether a certain type of card emulation is supported.
 
 | **Type** | **Description**                                |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the card emulation type is supported; returns **false** otherwise.|
+| boolean | **true** if the card emulation type is supported; **false** otherwise.|
 
 **Example**
 
@@ -216,7 +222,7 @@ Checks whether the device supports HCE.
 
 | **Type** | **Description**                          |
 | ------- | -------------------------------- |
-| boolean | Returns **true** if HCE is supported; returns **false** otherwise.|
+| boolean | **true** if HCE is supported; **false** otherwise.|
 
 **Error codes**
 
@@ -283,7 +289,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | **Type** | **Description**                              |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the application is the default payment application; returns **false** otherwise.|
+| boolean | **true** if the application is the default payment application; **false** otherwise.|
 
 
 **Example**
@@ -338,7 +344,7 @@ Starts HCE, including enabling this application to run in the foreground prefere
 
 | **Type** | **Description**                                |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if HCE is started or has been started; returns **false** otherwise.|
+| boolean | **true** if HCE is started or has been started; **false** otherwise.|
 
 ### start<sup>9+</sup>
 
@@ -496,7 +502,7 @@ let appName = "com.example.testquestionlite";
 export default {
   data:{
     fontSize: '30px',
-    fontClolor: '#50609f',
+    fontColor: '#50609f',
     hide: 'show',
     headCon: appName,
     paymentAid: ["A0000000041010", "A0000000041012"]
@@ -579,10 +585,6 @@ export default class EntryAbility extends UIAbility {
       abilityName: want.abilityName ?? '',
       moduleName: want.moduleName
     }
-    const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      // Implement data processing and handle exceptions.
-      console.log("got apdu data");
-    };
     hceService.on('hceCmd', apduCallback);
   }
   onDestroy() {

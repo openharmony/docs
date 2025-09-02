@@ -1,5 +1,11 @@
 # @ohos.nfc.controller (Standard NFC)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 The **nfcController** module provides APIs for opening and closing Near-Field Communication (NFC) and reading the NFC state.
 
 > **NOTE**

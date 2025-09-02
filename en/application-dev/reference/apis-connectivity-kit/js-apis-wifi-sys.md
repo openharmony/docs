@@ -99,7 +99,7 @@ Adds network configuration. This API uses a promise to return the result.
 
   | **Type**| **Description**|
   | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the network configuration fails to be added.|
+  | Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If the value is **-1**, the network configuration fails to be added.|
 
   **Example**
 
@@ -143,13 +143,13 @@ Represents the WLAN configuration.
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| creatorUid | number | Yes| No| ID of the creator.<br>**System API**: This is a system API.|
-| disableReason | number | Yes| No| Reason for disabling WLAN.<br>**System API**: This is a system API.|
-| netId | number | Yes| No| Network ID.<br>**System API**: This is a system API.|
-| randomMacType | number | Yes| No| Random MAC type.<br>**System API**: This is a system API.|
-| randomMacAddr | string | Yes| No| Random MAC address.<br>**System API**: This is a system API.|
-| ipType | [IpType](#iptype7) | Yes| No| IP address type.<br>**System API**: This is a system API.|
-| staticIp | [IpConfig](#ipconfig7) | Yes| No| Static IP address configuration.<br>**System API**: This is a system API.|
+| creatorUid | number | Yes| No| ID of the creator.<br> **System API**: This is a system API.|
+| disableReason | number | Yes| No| Reason for disabling the network.<br> **System API**: This is a system API.|
+| netId | number | Yes| No| Network ID.<br> **System API**: This is a system API.|
+| randomMacType | number | Yes| No| Random MAC type.<br> **System API**: This is a system API.|
+| randomMacAddr | string | Yes| No| Random MAC address.<br> **System API**: This is a system API.|
+| ipType | [IpType](#iptype7) | Yes| No| IP address type.<br> **System API**: This is a system API.|
+| staticIp | [IpConfig](#ipconfig7) | Yes| No| Static IP address information.<br> **System API**: This is a system API.|
 
 
 ## IpType<sup>7+</sup>
@@ -291,7 +291,7 @@ Connects to the specified network.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
@@ -369,10 +369,10 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
-| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br>**System API**: This is a system API.|
-| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br>**System API**: This is a system API.|
-| suppState | [SuppState](#suppstate) | Yes| No| Supplicant state.<br>**System API**: This is a system API.|
+| networkId | number | Yes| No| ID of the network configuration to disable.<br> **System API**: This is a system API.|
+| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br> **System API**: This is a system API.|
+| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br> **System API**: This is a system API.|
+| suppState | [SuppState](#suppstate) | Yes| No| Supplicant state.<br> **System API**: This is a system API.|
 
 
 ## SuppState
@@ -572,7 +572,7 @@ Updates network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
@@ -692,7 +692,7 @@ Removes the specified network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| id | number | Yes| ID of the network configuration to remove.|
+  | id | number | Yes| ID of the network configuration to disable.|
 
 **Return value**
 
@@ -816,7 +816,7 @@ Checks whether this hotspot is active.
 
   | **Type**| **Description**|
   | -------- | -------- |
-| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -1056,7 +1056,7 @@ Subscribes to Wi-Fi stream changes.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback used to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional. |
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the status change, which can be any of the following values:<br>- **0**: No change.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
 
 ## wifi.off('streamChange')<sup>7+</sup>
 
@@ -1075,7 +1075,7 @@ Unsubscribes from Wi-Fi stream changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. The Wi-Fi stream change can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
+| callback | Callback&lt;number&gt; | No| Callback invoked to return the status change, which can be any of the following values:<br>- **0**: No change.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
 
 **Example**
 ```ts
@@ -1098,7 +1098,7 @@ wifi.off("streamChange", recvStreamChangeFunc);
 
 on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 
-Subscribes to the event of an STA joining a Wi-Fi hotspot.
+Subscribes to the addition of a STA to a Wi-Fi hotspot.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
 
@@ -1111,13 +1111,13 @@ Subscribes to the event of an STA joining a Wi-Fi hotspot.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
-| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked when an STA is connected to a Wi-Fi hotspot.|
+  | callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked to return the WLAN state.|
 
 ## wifi.off('hotspotStaJoin')<sup>7+</sup>
 
 off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 
-Unsubscribes from the event of an STA joining a Wi-Fi hotspot.
+Unsubscribes from the addition of a STA to a Wi-Fi hotspot.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
 
@@ -1130,7 +1130,7 @@ Unsubscribes from the event of an STA joining a Wi-Fi hotspot.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
-| callback | Callback&lt;StationInfo&gt; | No| Callback to unregister.|
+  | callback | Callback&lt;StationInfo&gt; | No| Callback invoked to return the WLAN state.|
 
   **Example**
 ```ts
@@ -1152,7 +1152,7 @@ wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 
-Subscribes to the event of an STA leaving a Wi-Fi hotspot.
+Subscribes to the disconnection of a STA from a Wi-Fi hotspot.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
 
@@ -1165,13 +1165,13 @@ Subscribes to the event of an STA leaving a Wi-Fi hotspot.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
-| callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked when an STA is disconnected from a Wi-Fi hotspot.|
+  | callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked to return the WLAN state.|
 
 ## wifi.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
-Unsubscribes from the event of an STA leaving a Wi-Fi hotspot.
+Unsubscribes from the disconnection of a STA from a Wi-Fi hotspot.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
 
@@ -1184,7 +1184,7 @@ Unsubscribes from the event of an STA leaving a Wi-Fi hotspot.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
-| callback | Callback&lt;StationInf]&gt; | No| Callback to unregister.|
+  | callback | Callback&lt;StationInf]&gt; | No| Callback invoked to return the WLAN state.|
 
   **Example**
 ```ts

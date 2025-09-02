@@ -1,4 +1,4 @@
-# System Language and Region Setting
+# System Language and Region
 
 
 ## How It Works
@@ -15,7 +15,7 @@ For details about how to use related APIs, see [System](../reference/apis-locali
 1. Import the **i18n** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain the system language, region, and locale.
@@ -28,7 +28,30 @@ For details about how to use related APIs, see [System](../reference/apis-locali
    
    // Obtain the system locale.
    let systemLocale: string = i18n.System.getSystemLocale();  // systemLocale is the current system locale.
+
+   // Observe the common event COMMON_EVENT_LOCALE_CHANGED to detect the system language, region, or locale change.
+   let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+     events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+   };
+   // Create a subscriber.
+   commonEventManager.createSubscriber(subscribeInfo)
+     .then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+       console.info("CreateSubscriber");
+       subscriber = commonEventSubscriber;
+       commonEventManager.subscribe(subscriber, (err, data) => {
+         if (err) {
+           console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+           return;
+         }
+         console.info("The subscribed event has occurred."); // The system language, region, or locale has changed.
+       })
+     })
+     .catch((err: BusinessError) => {
+       console.error(`CreateSubscriber failed, code is ${err.code}, message is ${err.message}`);
+     });
    ```
+
 <!--Del-->
 3. Set the system language, region, and locale.
    ```ts

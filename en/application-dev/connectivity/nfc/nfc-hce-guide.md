@@ -1,16 +1,25 @@
 # HCE Development
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 ## Introduction
 Near Field Communication (NFC) is a short-range, high-frequency radio technology that operates at a frequency of 13.56 MHz, with a typical communication range of within 10 centimeters. Host Card Emulation (HCE) provides card emulation that does not depend on a secure element. It allows an application to emulate a card and communicate with an NFC card reader through the NFC service.
 
 ## When to Use
 An application emulates a card and communicates with an NFC card reader through the NFC service. The device can communicate with an NFC card reader by using a started application (foreground mode) or without starting an application (background mode).
 - HCE foreground card swiping<br>
-The user startS a specific application to communicate with the NFC card reader. Specifically, the user starts the application, opens the application page, and taps the device on the NFC card reader. In this case, the transaction data is distributed only to the foreground application.
+The user starts a specific application to communicate with the NFC card reader. Specifically, the user starts the application, opens the application page, and taps the device on the NFC card reader. In this case, the transaction data is distributed only to the foreground application.
 - HCE background card swiping<br>
-The user taps the device on an NFC card reader without starting any HCE application. Then, the device selects an HCE application based on the application ID (AID) provided by the NFC card reader, and completes the card swiping transaction. If multiple HCE applications are matched, an application selector will be displayed, listing all the available applications for the user to choose.
-- Constraints<br>
-1. No matter whether the foreground mode or background mode is used, the NFC service can be implemented only when the device screen is unlocked and illuminated.<br>2. The NFC card emulation permission must be declared in the **module.json5** file. For details, see the example below.<br>3. For foreground applications, the **start** and **stop** functions need to be called to register and deregister the AID. See the following development example for details.<br>
+The user taps the device on an NFC card reader without starting any HCE application. Then, the device selects an HCE application based on the Applet ID (AID, which complies with ISO/IEC 7816-4) provided by the NFC card reader, and completes the card swiping transaction. If multiple HCE applications are matched, an application selector will be displayed, listing all the available applications. In this case, the user needs to open the desired HCE application and tap the device on the NFC card reader again to trigger the card swiping transaction.
+
+## Constraints
+1. For security reasons, regardless of whether the HCE application performs card swiping in the foreground or background, the device does not support HCE card swiping operations when it is in the screen-off state.<br>
+2. A device must be equipped with an NFC controller chip to support HCE card swiping capabilities. There are no constraints on whether it has an NFC secure element.<br>
+3. An HCE application must declare the NFC card emulation permission. For specific details, see the sample code.<br>
 
 ## Available APIs
 
@@ -83,7 +92,7 @@ let hceService: cardEmulation.HceService;
 
 const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
-    if (hceCommand == null || hceCommand == undefined) {
+    if (hceCommand == null) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
       return;
     }
@@ -114,6 +123,7 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
+    // hceElementName cannot be empty. You can obtain elementName of the application through Want or fill in elementName based on the application information.
     hceElementName = {
       bundleName: want.bundleName ?? '',
       abilityName: want.abilityName ?? '',

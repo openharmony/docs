@@ -1028,6 +1028,7 @@ For details about the error codes, see [Network Connection Management Error Code
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
@@ -1438,10 +1439,19 @@ For details about the error codes, see [Network Connection Management Error Code
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  connection.reportNetDisconnected(netHandle).then( () => {
-    console.log(`report success`);
+connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If no network is connected, the obtained netId of netHandle is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
+  }
+  connection.reportNetDisconnected(netHandle, (error: BusinessError, data: void) => {
+    if (error) {
+      console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("report succeed.");
   });
 });
 ```
@@ -1499,8 +1509,6 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Required permissions**: ohos.permission.INTERNET
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -1544,8 +1552,6 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress\>\>
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1653,7 +1659,7 @@ Adds custom DNS rules for the specified host of the current application. This AP
 
 | Type                  | Description                   |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1748,7 +1754,7 @@ Removes the custom DNS rules of the specified host from the current application.
 
 | Type                  | Description                   |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 

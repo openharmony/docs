@@ -1,5 +1,10 @@
 # @ohos.multimodalInput.inputDevice (Input Device)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
 
 The inputDevice module implements input device management functions such as listening for the connection and disconnection of input devices and querying input device information such as the device name.
 
@@ -945,6 +950,12 @@ Specifies whether to enable a function key (for example, **CapsLock**). This API
 | functionKey | [FunctionKey](#functionkey15) | Yes  | Type of the function key.|
 | enabled  | boolean | Yes  | Status of the function key. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
 
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](errorcode-inputdevice.md).
@@ -995,7 +1006,7 @@ Obtains the interval (including the device sleep time) elapsed since the last sy
 
 **Return value**
 
-| Parameters                                         | Description                           |
+| Type                                         | Description                           |
 | --------------------------------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the interval since the last system input event, in μs.|
 

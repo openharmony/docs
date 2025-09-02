@@ -1,10 +1,20 @@
-# nfctech (Standard NFC Technologies)
+# nfctech (Standard NFC-Tag)
+
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
 
 The **nfctech** module provides APIs for reading and writing tags that use different Near-Field Communication (NFC) technologies.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+> **NOTE**
+>
+> If an error is reported while importing the tag module editor, the capabilities of a specific device model may exceed the capability set defined for the default device. To use these capabilities, configure a custom SysCap by following instructions in [SystemCapability Development](https://developer.huawei.com/consumer/en/doc/harmonyos-references/syscap).
 
 ## Modules to Import
 
@@ -17,6 +27,8 @@ import { tag } from '@kit.ConnectivityKit';
 Provides APIs to access NFC-A (ISO 14443-3A) properties and perform I/O operations on a tag. This class inherits from **[TagSession](js-apis-tagSession.md)**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **NfcATag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **NfcATag**.
 
@@ -78,6 +90,8 @@ Provides APIs to access NFC-B (ISO 14443-3B) properties and perform I/O operatio
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain an **NfcBTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **NfcBTag**.
 
 ### NfcBTag.getRespAppData
@@ -137,6 +151,8 @@ console.info("nfcB respProtocol: " + respProtocol);
 Provides APIs to access NFC-F (JIS 6319-4) properties and perform I/O operations on a tag. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **NfcFTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **NfcFTag**.
 
@@ -198,6 +214,8 @@ Provides APIs to access NFC-V (ISO 15693) properties and perform I/O operations 
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain an **NfcVTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **NfcVTag**.
 
 ### NfcvTag.getResponseFlags
@@ -257,6 +275,8 @@ console.info("nfcV dsfId: " + dsfId);
 Provides APIs to access ISO-DEP (ISO 14443-4) properties and I/O operations on a tag. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **IsoDepTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **IsoDepTag**.
 
@@ -340,7 +360,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -362,11 +381,10 @@ function nfcTechDemo() {
         isoDep.isExtendedApduSupported().then((response: boolean) => {
             console.info("isoDep isExtendedApduSupported Promise response: " + response);
         }).catch((err: BusinessError) => {
-            console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
+            console.error(`isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("isoDep isExtendedApduSupported Promise Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`isoDep isExtendedApduSupported Promise Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 
@@ -388,7 +406,7 @@ Checks whether an extended APDU is supported. This API uses an asynchronous call
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the operation result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -420,13 +438,13 @@ function nfcTechDemo() {
     try {
         isoDep.isExtendedApduSupported((err: BusinessError, response: boolean) => {
             if (err) {
-                console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}");
+                console.error(`isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}`);
             } else {
                 console.info("isoDep isExtendedApduSupported AsyncCallback response: " + response);
             }
         });
-    } catch (busiErr) {
-        console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${(businessError as Business).code}, " + "message: ${(businessError as Business).message}");
+    } catch (businessError) {
+        console.error(`isoDep isExtendedApduSupported AsyncCallback Code: ${(businessError as Business).code}, message: ${(businessError as Business).message}`);
     }
 }
 
@@ -468,6 +486,8 @@ console.info("ndef ndefRecords number: " + ndefRecords.length);
 Provides APIs to access the tags in the NFC Data Exchange Format (NDEF). This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **NdefTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **NdefTag**.
 
@@ -576,7 +596,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -601,8 +620,7 @@ function nfcTechDemo(){
             console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("ndef readNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, " +
-        "message: ${(businessError as BusinessError).message}");
+        console.error(`ndef readNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 
@@ -656,14 +674,13 @@ function nfcTechDemo() {
     try {
         ndefTag.readNdef((err : BusinessError, ndefmessage : tag.NdefMessage)=> {
             if (err) {
-                console.error("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
             }
         });
     } catch (businessError) {
-        console.error("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
-        " message: ${(businessError : BusinessError).message}");
+        console.error(`ndef readNdef AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 
@@ -703,7 +720,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -730,11 +746,10 @@ function nfcTechDemo() {
         ndefTag.writeNdef(ndefMessage).then(() => {
             console.info("ndef writeNdef Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
+            console.error(`ndef writeNdef err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("ndef writeNdef Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndef writeNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -756,7 +771,7 @@ Writes an NDEF message to this tag. This API uses an asynchronous callback to re
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | msg | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -799,8 +814,7 @@ function nfcTechDemo() {
             }
         }); 
     } catch (businessError) {
-        console.error("ndef writeNdef AsyncCallback catch businessError Code: ${(businessError as Businsess).code}," +
-            " message: ${(businessError as Businsess).message}");
+        console.error(`ndef writeNdef AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -870,7 +884,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -896,8 +909,7 @@ function nfcTechDemo() {
             console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("ndef setReadOnly Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndef setReadOnly Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -918,7 +930,7 @@ Sets this NDEF tag to read-only. This API uses an asynchronous callback to retur
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -951,14 +963,13 @@ function nfcTechDemo() {
     try {
         ndefTag.setReadOnly((err : BusinessError)=> {
             if (err) {
-                console.error("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndef setReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("ndef setReadOnly AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndef setReadOnly AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1005,8 +1016,7 @@ try {
     let ndefTypeString : string = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
     console.info("ndef ndefTypeString: " + ndefTypeString);
 } catch (businessError) {
-    console.error("ndef getNdefTagTypeString catch businessError Code: ${(businessError as Businsess).code}, " +
-        "message: ${(businessError as Businsess).message}");
+    console.error(`ndef getNdefTagTypeString catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -1015,6 +1025,8 @@ try {
 Provides APIs to access MIFARE Classic properties and perform I/O operations on a tag. This class inherits from [TagSession](js-apis-tagSession.md).
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain a **MifareClassicTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **MifareClassicTag**.
 
@@ -1054,7 +1066,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1082,8 +1093,7 @@ function nfcTechDemo() {
             console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("mifareClassic authenticateSector Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic authenticateSector Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1107,7 +1117,7 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 | sectorIndex | number | Yes  | Index of the sector to authenticate. The sector indexes start from **0**.|
 | key | number[]| Yes  | Key (6 bytes) used for sector authentication.|
 | isKeyA | boolean | Yes  | Whether the key is key A. The value **true** indicates key A, and **false** indicates key B.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the authentication result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1141,14 +1151,13 @@ function nfcTechDemo() {
         let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // Set a correct key. The value must contain six bytes. 
         mifareClassic.authenticateSector(sectorIndex, key, true, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
+                console.error(`mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic authenticateSector AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic authenticateSector AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic authenticateSector AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1187,7 +1196,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1211,11 +1219,10 @@ function nfcTechDemo() {
         mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
             console.info("mifareClassic readSingleBlock Promise data: " + data);
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic readSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic readSingleBlock Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1277,8 +1284,7 @@ function nfcTechDemo() {
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic readSingleBlock AsyncCallback catch businessError Code: " + 
-        " ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic readSingleBlock AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1318,7 +1324,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1347,8 +1352,7 @@ function nfcTechDemo() {
             console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("mifareClassic writeSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, "
-        + "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic writeSingleBlock Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1371,7 +1375,7 @@ Writes data to a block on this tag. This API uses an asynchronous callback to re
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to write. The block indexes start from **0**.|
 | data | number[] | Yes  | 16-byte data to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1407,15 +1411,13 @@ function nfcTechDemo() {
             0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // Set the correct data. The value must contain 16 bytes.
         mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic writeSingleBlock AsyncCallback err Code:" +
-                "${err.code}, message: ${err.message}");
+                console.error(`mifareClassic writeSingleBlock AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic writeSingleBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic writeSingleBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1455,7 +1457,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1480,11 +1481,10 @@ function nfcTechDemo() {
         mifareClassic.incrementBlock(blockIndex, value).then(() => {
             console.info("mifareClassic incrementBlock Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic incrementBlock Promise catch Code: ${(businessError as Businsess).code}, " +
-           "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic incrementBlock Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1507,7 +1507,7 @@ Increments a block with the specified value and saves the result in a buffer for
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**.|
 | value | number | Yes  | Block data to increment. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1542,14 +1542,13 @@ function nfcTechDemo() {
         let value = 0x20; // Set the correct data.
         mifareClassic.incrementBlock(blockIndex, value, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic incrementBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic incrementBlock AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic incrementBlock AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1589,7 +1588,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1617,8 +1615,7 @@ function nfcTechDemo() {
             console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("mifareClassic decrementBlock Promise catch businessError: Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic decrementBlock Promise catch businessError: Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1641,7 +1638,7 @@ Decrements a block with the specified value. This API uses an asynchronous callb
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**.|
 | value | number | Yes  | Block data to decrement. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1683,8 +1680,7 @@ function nfcTechDemo() {
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic decrementBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-          "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic decrementBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1723,7 +1719,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1747,11 +1742,10 @@ function nfcTechDemo() {
         mifareClassic.transferToBlock(blockIndex).then(() => {
             console.info("mifareClassic transferToBlock Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic transferToBlock Promise catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic transferToBlock Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}");
     }
 }
 ```
@@ -1773,7 +1767,7 @@ Transfers data from the temporary register to a block. This API uses an asynchro
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the destination block. The value starts form **0**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1807,15 +1801,13 @@ function nfcTechDemo() {
         let blockIndex = 1; // Set a correct index.
         mifareClassic.transferToBlock(blockIndex, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}," +
-                    "message: ${err.message}");
+                console.error(`mifareClassic transferToBlock AsyncCallback errCode: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic transferToBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic transferToBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic transferToBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1854,7 +1846,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1878,11 +1869,10 @@ function nfcTechDemo() {
         mifareClassic.restoreFromBlock(blockIndex).then(() => {
             console.info("mifareClassic restoreFromBlock Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic restoreFromBlock Promise catch businessError Code: ${(businessError as Businsess).code}," +
-            " message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic restoreFromBlock Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1904,7 +1894,7 @@ Restores data in the temporary register from a block. This API uses an asynchron
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the destination block. The value starts form **0**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1938,15 +1928,13 @@ function nfcTechDemo() {
         let blockIndex = 1; // Set a correct index.
         mifareClassic.restoreFromBlock(blockIndex, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}," +
-                    " message: ${err.message}");
+                console.error(`mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic restoreFromBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic restoreFromBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2021,8 +2009,7 @@ try {
     let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
     console.info("mifareClassic blockCnt: " + blockCnt);
 } catch (businessError) {
-    console.error("mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as Businsess).code}, " +
-        "message: ${(businessError as Businsess).message}");
+    console.error(`mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -2149,8 +2136,7 @@ try {
     let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
     console.info("mifareClassic blockIndex: " + blockIndex);
 } catch (businessError) {
-    console.error("mifareClassic getBlockIndex catch businessError Code: ${(businessError as Businsess).code}, " +
-        "message: ${(businessError as Businsess).message}");
+    console.error(`mifareClassic getBlockIndex catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -2197,8 +2183,7 @@ try {
     let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
     console.info("mifareClassic sectorIndex: " + sectorIndex);
 } catch (businessError) {
-    console.error("mifareClassic getSectorIndex catch businessError Code: ${(businessError as Businsess).code}, " +
-       "message: ${(businessError as Businsess).message}");
+    console.error(`mifareClassic getSectorIndex catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -2207,6 +2192,8 @@ try {
 Provides APIs to access MIFARE Ultralight properties and perform I/O operations on a tag. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain a **MifareUltralightTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **MifareUltralightTag**.
 
@@ -2244,7 +2231,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2269,11 +2255,10 @@ function nfcTechDemo() {
         mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
             console.info("mifareUltralight readMultiplePages Promise data = " + data);
         }).catch((err : BusinessError)=> {
-            console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareUltralight readMultiplePages Promise catch businessError" +
-            " Code: ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight readMultiplePages Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2329,14 +2314,13 @@ function nfcTechDemo() {
         let pageIndex = 1; // Set a correct index.
         mifareUltralight.readMultiplePages(pageIndex, (err : BusinessError, data : number[])=> {
             if (err) {
-                console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
+                console.log(`mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareUltralight readMultiplePages AsyncCallback data: " + data);
             }
         });
     } catch (businessError) {
-        console.error("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight readMultiplePages AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2376,7 +2360,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2401,11 +2384,10 @@ function nfcTechDemo() {
         mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
             console.info("mifareUltralight writeSinglePage Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareUltralight writeSinglePage Promise catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight writeSinglePage Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2428,7 +2410,7 @@ Writes one page (4 bytes) of data to this tag. This API uses an asynchronous cal
 | -------- | ----------------------- | ---- | ------------------------ |
 | pageIndex | number | Yes  | Index of the page to write. The page indexes start from **0**.|
 | data | number[] | Yes  | 4-byte data to write.|
-| callback|AsyncCallback\<void> |Yes| Callback used to return the result.|
+| callback|AsyncCallback\<void> |Yes| Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2463,15 +2445,13 @@ function nfcTechDemo() {
         let rawData = [0x01, 0x02, 0x03, 0x04];  // Set the correct data. The value must contain 4 bytes. 
         mifareUltralight.writeSinglePage(pageIndex, rawData, (err : BusinessError)=> {
         if (err) {
-                console.error("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}," +
-                    "message: ${err.message}");
+                console.error(`mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareUltralight writeSinglePage AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight writeSinglePage AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2507,6 +2487,8 @@ console.info("mifareUltralight getType: " + getType);
 Provides APIs for formatting NDEF formattable tags. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **NdefFormatableTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **NdefFormatableTag**.
 
@@ -2544,7 +2526,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2552,7 +2533,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2572,11 +2553,10 @@ function nfcTechDemo() {
         ndefFormatable.format(ndefMessage).then(() => {
             console.info("ndefFormatable format Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`defFormatable format Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("ndefFormatable format Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable format Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2598,12 +2578,7 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only (no data will be written).|
-
-**Return value**
-
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2622,7 +2597,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2640,14 +2615,13 @@ function nfcTechDemo() {
 
         ndefFormatable.format(ndefMessage, (err : BusinessError)=> {
             if (err) {
-                console.error("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
+                console.error(`ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndefFormatable format AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable format AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2686,7 +2660,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2694,7 +2667,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2714,11 +2687,10 @@ function nfcTechDemo() {
         ndefFormatable.formatReadOnly(ndefMessage).then(() => {
             console.info("ndefFormatable formatReadOnly Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
+            console.error(`ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("ndefFormatable formatReadOnly Promise catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable formatReadOnly Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2740,12 +2712,7 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written).|
-
-**Return value**
-
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2764,7 +2731,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2783,14 +2750,13 @@ function nfcTechDemo() {
 
         ndefFormatable.formatReadOnly(ndefMessage, (err : BusinessError)=> {
             if (err) {
-                console.error("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndefFormatable formatReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable formatReadOnly AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2800,6 +2766,8 @@ function nfcTechDemo() {
 Provides the capability of reading barcode label attributes and accessing I/O operations. It is inherited from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain a **BarcodeTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **BarcodeTag**.
 
@@ -2831,4 +2799,3 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 201  | Permission denied. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |

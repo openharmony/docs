@@ -24,8 +24,6 @@ static setSystemLanguage(language: string): void
 
 Sets the system language.
 
-To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
-
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
@@ -50,7 +48,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
-  import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Set the system language
   try {
@@ -59,25 +57,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
- 
-  // Subscribe to a common event.
-  let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-  let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // Define subscriber information.
-    events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
-  };
-  commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => { // Create a subscriber.
-      console.info("createSubscriber");
-      subscriber = commonEventSubscriber;
-      commonEventManager.subscribe(subscriber, (err, data) => {
-        if (err) {
-          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
-          return;
-        }
-        console.info("the subscribed event has occurred."); // Triggered when the subscribed event occurs.
-      })
-  }).catch((err: BusinessError) => {
-      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-  });  
   ```
 
 ### setSystemRegion<sup>9+</sup>

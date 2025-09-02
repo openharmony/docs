@@ -1,4 +1,10 @@
-# @ohos.bluetooth.constant (Bluetooth constant Module) (System API)
+# @ohos.bluetooth.constant (Bluetooth Constant) (System API)
+
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 The **constant** module provides definitions of the constants used in Bluetooth.
 
