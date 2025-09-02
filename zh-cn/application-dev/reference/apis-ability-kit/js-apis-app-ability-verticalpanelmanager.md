@@ -20,7 +20,7 @@ startVerticalPanel(
       wantParam: Record<string, Object>,
       panelConfig: PanelConfig,
       panelStartCallback: PanelStartCallback
-): Promise<void>
+): Promise&lt;void&gt;
 
 启动带有面板配置的垂域选择器。如果目标能力是可见的，您可以启动目标能力；如果目标能力是不可见的，
 
@@ -43,7 +43,7 @@ startVerticalPanel(
 
 | 参数名 | 说明 |
 | -------- |  -------- |
-| Promise<void> | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -229,8 +229,8 @@ let callback: verticalPanelManager.PanelStartCallback = {
 
 | 名字 | 类型 | 值 | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 导出 bundleName 的常量字符串并将其提供给 sourceAppInfo |
-| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 导出 moduleName的常量字符串并将其提供给 sourceAppInfo |
-| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 导出 abilityName的常量字符串并将其提供给 sourceAppInfo |
-| SOURCE_APP_WINDOW_ID | string | 'windowId' | 导出 windowId的常量字符串并将其提供给 sourceAppInfo |
+| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 导出 bundleName 的常量字符串并将其提供给 sourceAppInfo。 |
+| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 导出 moduleName的常量字符串并将其提供给 sourceAppInfo。 |
+| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 导出 abilityName的常量字符串并将其提供给 sourceAppInfo。 |
+| SOURCE_APP_WINDOW_ID | string | 'windowId' | 导出 windowId的常量字符串并将其提供给 sourceAppInfo。 |
 | SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 导出 screenMode 的常量字符串，并将其提供给 sourceAppInfo。 |
