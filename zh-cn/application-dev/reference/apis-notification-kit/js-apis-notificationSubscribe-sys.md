@@ -1011,7 +1011,7 @@ notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
 | CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
 | CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
 
-## OperationInfo
+## OperationInfo<sup>18+</sup>
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1019,5 +1019,5 @@ notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
 
 | 名称  | 类型   | 只读 | 可选 | 说明     |
 | ----- | ------ | --- | ---- | -------- |
-| actionName<sup>18+</sup>    | string | 否 | 是 | 描述通知中显示的操作按钮（与通知[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton)中title字段保持一致）。   |
-| userInput<sup>18+</sup> | string | 否 | 是 | 用户输入（用于通知跨设备快捷回复场景传递用户输入，与通知[NotificationUserInput](js-apis-inner-notification-notificationUserInput.md#notificationuserinput)中inputKey字段保持一致）。 |
+| actionName    | string | 否 | 是 | 描述通知中显示的操作按钮（与通知[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton)中title字段保持一致）。   |
+| userInput | string | 否 | 是 | 用户输入（用于通知跨设备快捷回复场景传递用户输入，与通知[NotificationUserInput](js-apis-inner-notification-notificationUserInput.md#notificationuserinput)中inputKey字段保持一致）。 |
