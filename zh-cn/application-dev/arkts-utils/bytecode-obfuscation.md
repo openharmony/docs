@@ -45,16 +45,21 @@ ArkGuard支持基础的名称混淆功能，不支持控制混淆、数据混淆
 假设ArkGuard支持配置指定类型的白名单，配置类A1作为白名单，类A1的属性prop1在白名单中，而A2中的prop1属性不在白名单中。此时，a2作为参数被传入test函数中，调用prop1属性时会导致功能异常。
 
 ```typescript
+//ClassTest.ts
+
 // 混淆前
 class A1 {
-  prop1: string = '';
+	prop1: string = '';
 }
+
 class A2 {
-  prop1: string = '';
+	prop1: string = '';
 }
+
 function test(input: A1) {
-  console.info(input.prop1);
+	console.info(input.prop1);
 }
+
 let a2 = new A2();
 a2.prop1 = 'prop a2';
 test(a2);
@@ -63,14 +68,17 @@ test(a2);
 ```typescript
 // 混淆后
 class A1 {
-  prop1: string = '';
+	prop1: string = '';
 }
+
 class A2 {
-  a: string = '';
+	a: string = '';
 }
+
 function test(input: A1) {
-  console.info(input.prop1);
+	console.info(input.prop1);
 }
+
 let a2 = new A2();
 a2.a = 'prop a2';
 test(a2);
@@ -126,59 +134,61 @@ test(a2);
 
 开启属性名称混淆，效果如下：
 
- ```ts
+```ts
+//TestA.ts
+ 
 // 混淆前：
 class TestA {
   static prop1: number = 0;
 }
 TestA.prop1;
- ```
+```
 
- ```ts
+```ts
 // 混淆后：
 class TestA {
-  static i: number = 0;
+	static i: number = 0;
 }
 TestA.i;
- ```
+```
 
 若配置该选项，那么所有的属性名都会被混淆，除了下面场景：
 
 * 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的类、对象的属性名不会被混淆。例如下面例子中的属性名`data`不会被混淆。
 
-    ```ts
-    export class MyClass {
-       data: string;
-    }
-    ```
+```ts
+export class MyClass {
+	data: string;
+}
+```
 
 * ArkUI组件中的属性名不会被混淆。例如下面例子中的`message`和`data`不会被混淆。
 
-    ```ts
-    @Component struct MyExample {
-     @State message: string = "hello";
-        data: number[] = [];
-        // ...
-    }
-    ```
+```ts
+@Component struct MyExample {
+	@State message: string = "hello";
+    data: number[] = [];
+    // ...
+}
+```
 
 * 被[保留选项指定的属性名](#-keep-property-name)不会被混淆。
 * SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中。
 * 字符串字面量属性名不会被混淆。例如下面例子中的`firstName`和`personAge`不会被混淆。
 
-    ```ts
-    let person = {"firstName": "abc"};
-    person["personAge"] = 22;
-    ```
+```ts
+let person = {"firstName": "abc"};
+person["personAge"] = 22;
+```
 
 * 注解成员名不会被混淆。例如下面例子中的`authorName`和`revision`不会被混淆。
 
-    ```ts
-    @interface MyAnnotation {
+```ts
+@interface MyAnnotation {
     authorName: string;
     revision: number = 1;
-    }
-    ```
+}
+```
 
 ### -enable-string-property-obfuscation
 
@@ -186,24 +196,24 @@ TestA.i;
 
 若想混淆字符串字面量属性名，需要在已配置-enable-property-obfuscation的基础上使用。例如：
 
-  ```txt
-  -enable-property-obfuscation
-  -enable-string-property-obfuscation
-  ```
+```txt
+-enable-property-obfuscation
+-enable-string-property-obfuscation
+```
 
 根据上述配置，下面例子中的"firstName"和"personAge"混淆效果如下：
 
-  ```ts
-  // 混淆前：
-  let person = {"firstName": "abc"};
-  person["personAge"] = 22;
-  ```
+```ts
+// 混淆前：
+let person = {"firstName": "abc"};
+person["personAge"] = 22;
+```
 
-  ```ts
-  // 混淆后：
-  let person = {"a": "abc"};
-  person["b"] = 22;
-  ```
+```ts
+// 混淆后：
+let person = {"a": "abc"};
+person["b"] = 22;
+```
 
 **使用该选项时，需要注意以下事项：**
 **1.** 如果字符串属性名包含特殊字符（除了`a-z、A-Z、0-9、_`之外的字符），例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#-keep-property-name)来指定保留这些名字。
@@ -213,7 +223,7 @@ TestA.i;
 ```ts
 // SDK API文件@ohos.app.ability.wantConstant片段：
 export enum Params {
-  ACTION_HOME = 'ohos.want.action.home'
+    ACTION_HOME = 'ohos.want.action.home'
 }
 // 开发者源码示例：
 let params = obj['ohos.want.action.home'];
@@ -249,14 +259,14 @@ let s = 0;
 ```ts
 // 混淆前：
 namespace ns {
-  export type customT = string;
+	export type customT = string;
 }
 ```
 
 ```ts
 // 混淆后：
 namespace ns {
-  export type h = string;
+    export type h = string;
 }
 ```
 
@@ -309,7 +319,7 @@ const module = import('../a/b');
 ```ts
 // 混淆前：
 class TestA {
-  static prop1: number = 0;
+	static prop1: number = 0;
 }
 TestA.prop1;
 ```
@@ -330,7 +340,7 @@ class TestA { static prop1: number = 0; } TestA.prop1;
 ```ts
 // 混淆前：
 if (flag) {
-  console.info("hello");
+	console.info("hello");
 }
 ```
 
@@ -345,40 +355,40 @@ if (flag) {
 1. 文件顶层的调用
     例如：
 
-    ```js
-    console.info("in tolevel");
-    ```
+```js
+console.info("in tolevel");
+```
 
 2. 代码块中的调用
     例如：
 
-    ```ts
-    function foo() {
+```ts
+function foo() {
     console.info('in block');
-    }
-    ```
+}
+```
   
 3. module或namespace中的调用
     例如：
   
-    ```ts
-    namespace ns {
+```ts
+namespace ns {
     console.info('in ns');
-    }
-    ```
+}
+```
   
 4. switch语句中的调用
     例如
   
-    ```js
-    switch (value) {
+```js
+switch (value) {
     case 1:
         console.info("in switch case");
         break;
     default:
         console.info("default");
-    }
-    ```
+}
+```
 
 ### -print-namecache
 
@@ -502,6 +512,7 @@ export class MyClass {
 
 ```ts
 import testNapi from 'library.so'
+
 testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 ```
 
@@ -521,8 +532,8 @@ import jsonData from './test.json';
 let jsonProp = jsonData.jsonProperty; // jsonProperty应该被保留
 
 class jsonTest {
-  prop1: string = '';
-  prop2: number = 0
+    prop1: string = '';
+    prop2: number = 0;
 }
 let obj = new jsonTest();
 const jsonStr = JSON.stringify(obj); // prop1 和 prop2 会被混淆，应该被保留
@@ -532,10 +543,10 @@ const jsonStr = JSON.stringify(obj); // prop1 和 prop2 会被混淆，应该被
 
 ```ts
 const valueBucket: ValuesBucket = {
-  'ID1': ID1, // ID1应该被保留
-  'NAME1': name, // NAME1应该被保留
-  'AGE1': age, // AGE1应该被保留
-  'SALARY1': salary // SALARY1应该被保留
+    'ID1': ID1, // ID1应该被保留
+    'NAME1': name, // NAME1应该被保留
+    'AGE1': age, // AGE1应该被保留
+    'SALARY1': salary // SALARY1应该被保留
 }
 ```
 
@@ -548,15 +559,15 @@ function MethodDecorator(target: Object, propertyKey: string, descriptor: Proper
 function ParamDecorator(target: Object, propertyKey: string, parameterIndex: number) {}
 
 class A {
-  // 1.成员变量装饰器
-  @CustomDecorator
-  propertyName: string = ""   // propertyName 需要被保留
-  // 2.成员方法装饰器
-  @MethodDecorator
-  methodName1(){} // methodName1 需要被保留
-  // 3.方法参数装饰器
-  methodName2(@ParamDecorator param: string): void { // methodName2 需要被保留
-  }
+    // 1.成员变量装饰器
+    @CustomDecorator
+    propertyName: string = ""   // propertyName 需要被保留
+    // 2.成员方法装饰器
+    @MethodDecorator
+    methodName1(){} // methodName1 需要被保留
+    // 3.方法参数装饰器
+    methodName2(@ParamDecorator param: string): void { // methodName2 需要被保留
+    }
 }
 ```
 
@@ -574,8 +585,8 @@ printPersonName
 
 ```ts
 export namespace Ns {
-  export const myAge = 18; // -keep-global-name myAge 保留变量myAge
-  export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
+    export const myAge = 18; // -keep-global-name myAge 保留变量myAge
+    export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
 }
 ```
 
@@ -636,17 +647,17 @@ const module2 = import(moduleName)
 
 ```json
 {
-    "routerMap": [
-      {
-        "name": "PageOne",
-        "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // 路径都应该被保留
-        "buildFunction": "PageOneBuilder",
-        "data": {
-          "description" : "this is PageOne"
-        }
+  "routerMap": [
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // 路径都应该被保留
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description" : "this is PageOne"
       }
-    ]
-  }
+    }
+  ]
+}
 ```
 
 ### -keep-dts
@@ -762,7 +773,7 @@ a*
 
 ```txt
 class A {
-  '*'= 1
+	'*'= 1
 }
 -keep-property-name
 *
