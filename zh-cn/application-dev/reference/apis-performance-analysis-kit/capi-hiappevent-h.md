@@ -109,8 +109,8 @@ enum HiAppEvent_ErrorCode
 
 **起始版本：** 15
 
-| 枚举项 | 描述                      |
-| -- |-------------------------|
+| 枚举项 | 描述 |
+| -- | -- |
 | HIAPPEVENT_SUCCESS = 0 | 操作成功。                   |
 | HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4 | 参数值长度无效。<br>**起始版本：** 18 |
 | HIAPPEVENT_PROCESSOR_IS_NULL = -7 | 事件处理者为空。<br>**起始版本：** 18                        |
@@ -755,8 +755,8 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name)
 
 **返回：**
 
-| 类型                      | 说明 |
-|-------------------------| -- |
+| 类型 | 说明 |
+| -- | -- |
 | [HiAppEvent_Watcher](capi-hiappevent-hiappevent-watcher.md)* | 接口调用成功时返回指向的新建监听器的指针，name参数异常时返回nullptr。 |
 
 ### OH_HiAppEvent_DestroyWatcher()
@@ -997,8 +997,8 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name)
 
 **返回：**
 
-| 类型                        | 说明 |
-|---------------------------| -- |
+| 类型 | 说明 |
+| -- | -- |
 | [HiAppEvent_Processor](capi-hiappevent-hiappevent-processor.md)* | 接口调用成功时返回指向的新建处理者的指针，name参数异常时返回nullptr。 |
 
 ### OH_HiAppEvent_SetReportRoute()
@@ -1301,8 +1301,8 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void)
 
 **返回：**
 
-| 类型                     | 说明 |
-|------------------------| -- |
+| 类型 | 说明 |
+| -- | -- |
 | [HiAppEvent_Config](capi-hiappevent-hiappevent-config.md)* | 指向设置系统事件触发条件的配置对象的指针。 |
 
 ### OH_HiAppEvent_DestroyConfig()
