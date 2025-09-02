@@ -490,7 +490,7 @@
         - 使用文本<!--arkts-use-text-->
           - [文本概述](ui/arkts-text-introduction.md)
           - [文本显示 (Text/Span)](ui/arkts-common-components-text-display.md)
-          - [文本输入 (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
+          - [文本输入 (TextInput/TextArea/Search)](ui/arkts-common-components-text-input.md)
           - [富文本编辑 (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
