@@ -19,7 +19,7 @@ PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-exten
 
 下图为通过PhotoEditorExtensionAbility实现的图片编辑扩展页面示意图，页面的布局与功能可以根据实际需要开发。
 
-![Targetapp_PhotoEditorExtensionAbility](figures/photo-editor-demo.jpg)
+![Targetapp_PhotoEditorExtensionAbility](figures/photo-editor-demo.png)
 
 ## 导入模块
 
