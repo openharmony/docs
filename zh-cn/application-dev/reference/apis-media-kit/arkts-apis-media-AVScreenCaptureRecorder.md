@@ -260,7 +260,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.release().then(() => {
     console.info('Succeeded in releasing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to release avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
