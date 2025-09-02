@@ -5276,7 +5276,7 @@ export default class EntryAbility extends UIAbility {
 | --------- | ------ | ---- | ---- | ------------- |
 | id        | number | 否   |  否  | 勿扰模式编号。 |
 | name      | string | 否   |  否  | 勿扰模式名称。 |
-| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 否 | 勿扰模式的信任列表。 |
+| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 是 | 勿扰模式的信任列表。 |
 
 ## NotificationLiveViewContent<sup>11+</sup>
 
