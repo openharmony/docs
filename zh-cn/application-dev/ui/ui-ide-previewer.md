@@ -88,6 +88,7 @@ struct ComponentPreviewOne {
       Text('this is component previewer One')
         .height(80)
         .fontSize(30)
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
       Image($r('app.media.startIcon'))
         .height(300)
         .width(300)
@@ -103,6 +104,7 @@ struct ComponentPreviewTwo {
         .height(80)
         .fontSize(30)
         .fontColor(Color.Pink)
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
       Image($r('app.media.startIcon'))
         .height(300)
         .width(300)
