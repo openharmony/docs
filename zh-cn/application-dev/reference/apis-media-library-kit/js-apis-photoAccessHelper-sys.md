@@ -6108,7 +6108,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 
 ### setHasAppLink<sup>21+</sup>
 
-static setHasAppLink(hasAppLink: int): Promise&lt;void&gt;
+setHasAppLink(hasAppLink: int): Promise&lt;void&gt;
 
 设置记忆链接的状态信息，使用promise方式返回异步结果。
 
@@ -6166,7 +6166,7 @@ async function example(asset: photoAccessHelper.PhotoAsset, hasAppLink: linkType
 
 ### setAppLinkInfo<sup>21+</sup>
 
-static setAppLinkInfo(appLink: string): Promise&lt;void&gt;
+setAppLinkInfo(appLink: string): Promise&lt;void&gt;
 
 设置记忆链接的信息，使用promise方式返回异步结果。
 
