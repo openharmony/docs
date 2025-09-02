@@ -41,7 +41,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, contextData: number) => {
     if(err) {
-        console.error(`getDefaultCellularDataSlotId fai. code: ${err.code}, message: ${err.message}, contextData: ${contextData}`);
+        console.error(`getDefaultCellularDataSlotId fail. code: ${err.code}, message: ${err.message}, contextData: ${contextData}`);
     } else {
         console.log(`getDefaultCellularDataSlotId success`);
     }
