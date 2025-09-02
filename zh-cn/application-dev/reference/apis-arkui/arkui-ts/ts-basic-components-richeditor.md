@@ -1265,7 +1265,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-添加用户自定义布局（BuilderSpan）。
+在RichEditor中添加用户自定义布局（BuilderSpan）。
 
 > **说明：**
 >
