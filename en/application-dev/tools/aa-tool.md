@@ -4,7 +4,7 @@ Ability Assistant (aa) is a tool used to start applications and test cases. It p
 
 ## Environment Setup
 
-Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
+Before using this tool, you need to obtain [hdc](../dfx/hdc.md) and run the hdc shell.
 
 The commands in this topic are used in the interactive CLI. To run the hdc shell [aa command] directly, use quotation marks ("") to wrap the aa command to ensure that the input parameters in the command can be correctly identified. The sample code is as follows:
 
@@ -30,6 +30,7 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 | detach |  Detaches an application to enable it to exit the debugging mode.|
 | appdebug |  Sets or cancels the waiting-for-debugging state of an application, and obtains the bundle name and persistence flag of an application in the waiting-for-debugging state. The waiting-for-debugging state takes effect only for debugging applications. The setting command of **appdebug** takes effect only for a single application. Once the command is executed repeatedly, the bundle name and persistence flag are replaced with the latest settings.|
 | process |  Debugs or optimizes an application. In DevEco Studio, this command is used to integrate debugging and optimization tools.|
+| send-memory-level | onMemoryLevel callback command. Specifies the PID and memory usage level of a process to trigger the onMemoryLevel lifecycle callback of the process.|
 
 ## help Command
 
@@ -88,7 +89,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | 10104001 | The specified ability does not exist. |
   | 10105001 | Failed to connect to the ability service. |
   | 10105002 | Failed to obtain ability information. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10100101 | Failed to obtain application information. |
   | 10100102 | The aa start command cannot be used to launch a UIExtensionAbility. |
   | 10103101 | Failed to find a matching application for implicit launch. |
@@ -128,7 +129,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
                 "scheme": "myscheme",
                 "host": "www.test.com",
                 "port": "8080",
-                "path": "path",
+                "path": "path"
               }
             ]
           }
@@ -154,17 +155,16 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
       The following is an example for the UIAbility to obtain input parameters:
   
         ```ts
-        import UIAbility from '@ohos.app.ability.UIAbility';
-        import hilog from '@ohos.hilog';
-        import Want from '@ohos.app.ability.Want';
+        import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+        import { hilog } from '@kit.PerformanceAnalysisKit';
 
         export default class TargetAbility extends UIAbility {
-          onCreate(want:Want, launchParam) {
+          onCreate(want:Want, launchParam: AbilityConstant.LaunchParam) {
             hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-            let paramNumber = want.parameters.paramNumber
-            let paramBoolean = want.parameters.paramBoolean
-            let paramString = want.parameters.paramString
-            let paramNullString = want.parameters.paramNullString
+            let paramNumber = want.parameters?.paramNumber;
+            let paramBoolean = want.parameters?.paramBoolean;
+            let paramString = want.parameters?.paramString;
+            let paramNullString = want.parameters?.paramNullString;
           }
         }
         ```
@@ -268,7 +268,7 @@ aa dump -a
   
   ```bash
   # Print the detailed information about an application component.
-  aa dump -i 12
+  aa dump -i 105
   ```
 
   ![aa-dump-i](figures/aa-dump-i.png)
@@ -290,7 +290,7 @@ aa force-stop <bundleName>
   | ID| Error Message|
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service. |
-  | 10104002 | Failed to obtain specified bundle information. |
+  | 10104002 | Failed to retrieve specified package information. |
   | 10106401 | Failed to terminate the process. |
   | 10106402 | Persistent processes cannot be terminated. |
 
@@ -311,7 +311,7 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
 
 > **NOTE**
 > 
-> For details about parameters such as **class**, **level**, **size**, and **testType**, see <!--RP2-->[Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md#cmd)<!--RP2End-->.
+> For details about parameters such as **class**, **level**, **size**, and **testType**, see <!--RP2-->[Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md)<!--RP2End-->.
 
   **Parameters**
   | Name| Description|
@@ -338,9 +338,9 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
 
   | ID| Error Message|
   | ------- | -------- |
-  | 10104002 | Failed to obtain specified bundle information. |
+  | 10104002 | Failed to retrieve specified package information. |
   | 10105001 | Failed to connect to the ability service. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10108501 | An internal error occurs during the execution of the aa test command. |
 
   **Example**
@@ -378,7 +378,7 @@ aa attach -b <bundleName>
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service. |
   | 10106001 | The current device is not in developer mode. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10103601 | The specified bundleName does not exist. |
   | 10108601 | An internal error occurs while attempting to enter/exit debug mode. |
 
@@ -413,7 +413,7 @@ aa detach -b <bundleName>
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service.|
   | 10106001 | The current device is not in developer mode. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10103601 | The specified bundleName does not exist. |
   | 10108601 | An internal error occurs while attempting to enter/exit debug mode. |
 
@@ -451,7 +451,7 @@ aa appdebug -b <bundleName> [-p]
   | ------- | -------- |
   | 10105003 | Failed to connect to the app service. |
   | 10106001 | The current device is not in developer mode. |
-  | 10106701 | The target application is not a debug application. |
+  | 10106701 | Cannot debug applications using a release certificate. |
 
   **Example**
 
@@ -501,7 +501,7 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
   | ------- | -------- |
   | 10105002 | Failed to obtain ability information. |
   | 10105003 | Failed to connect to the app service. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
 
   **Example**
 
@@ -512,6 +512,39 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
   # Optimize an application.
   aa process -b com.example.myapplication -a EntryAbility -p perf-cmd [-S]
   ```
+
+## onMemoryLevel Callback Command (send-memory-level)
+
+Since API version 13, developers can run this command to debug the [onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel) lifecycle of an application. The onMemoryLevel lifecycle callback of a process is triggered by specifying the PID and memory usage level of the process in parameters.
+
+```bash
+# Triggers the onMemoryLevel callback.
+aa send-memory-level -p <processId> -l <memoryLevel>
+```
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| -h/--help | Help information.|
+| -p | Specifies the PID of a process. This parameter is mandatory.|
+| -l | Memory usage level. This parameter is mandatory. For details, see [AbilityConstant.MemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#memorylevel).|
+
+**Return value**
+
+If the command is executed successfully, the message "send memory level successfully." is returned. If the command fails to be executed, the message " "error: failed to send memory level."" is returned. If the specified parameter value is missing, the message "fail: unknown option." is returned and the help information is printed.
+
+| ID| Error Message|
+| ------- | -------- |
+| 10104003 | The specified pid does not exist. |
+| 10104004 | The specified level does not exist. |
+
+**Example**
+
+```bash
+# Trigger the onMemoryLevel callback of the application whose process ID is 6066. The callback level is 0.
+aa send-memory-level -p 6066 -l 0
+```
 
 ## Error Codes
 
@@ -557,6 +590,42 @@ The specified ability is not installed.
     ```
     hdc shell bm dump -n bundleName
     ```
+
+### 10104003 The Specified PID Does Not Exist
+
+**Error Message**
+
+The specified pid does not exist.
+
+**Symptom**
+ 
+The specified ability name does not exist.
+
+**Possible Causes**
+
+The specified **tokenId** does not exist.
+
+**Solution**
+
+Check whether the process ID specified by the -p parameter exists on the device.
+
+### 10104004 The Specified Memory Usage Level Does Not Exist
+
+**Error Message**
+
+The specified level does not exist.
+
+**Symptom**
+ 
+If the specified memory usage level does not exist, the AA tool returns the error code.
+
+**Possible Causes**
+
+The specified memory usage level does not exist.
+
+**Solution**
+
+Check whether the memory usage level specified by the -l parameter is an integer within the range of [0, 2].
 
 ### 10105001 Failed to Connect to the Ability Service
 
@@ -632,21 +701,23 @@ The current device is not in developer mode.
 
 **Solution**
 
-Enable the developer mode in **Settings**.
+Enable the developer mode in **Settings**. The operations are show in the following figures:
 
-### 10106002 The Target Application Does Not Support the Debug Mode
+Check whether Developer options is available in Settings > System. If the PIN does not exist, go to Settings > About this device and touch Version number for seven consecutive times until the message "Enable developer mode" is displayed. Touch Enable developer mode and enter the PIN (if set). The device will automatically restart. After the device is restarted, you can view the information in Settings > System.
+
+### 10106002 Applications Cannot Be Signed by the Release Certificate
 
 **Error Message**
 
-The target application does not support debug mode.
+The aa start command's window option or the aa test command does not support app with release signature.
 
 **Symptom**
 
-The target application does not support the debug mode.
+The wl, wt, wh, ww, or aa test parameter in the aa start command cannot be used to release signed applications.
 
 **Possible Causes**
 
-The **type** parameter in the signing tool of the target application is not **debug**.
+The target application is a release signature.
 
 **Solution**
 
@@ -738,7 +809,7 @@ Check whether the **AppCloneIndex** parameter is valid.
 
 **Error Message**
 
-Another ability is being started. Wait until it finishes starting.
+The current ability will be placed in the queue to wait for the previous ability to finish launching.
 
 **Symptom**
 
@@ -913,7 +984,7 @@ The application corresponding to the specified bundle name is not installed.
 **Solution**
 
 1. Check whether the specified bundle name is correct.
-2. Check whether the application corresponding to the specified **bundleName** is installed. You can run the following command to query the list of installed applications. If **bundleName** is not in the query result, the application is not installed.
+2. Checks whether the **application** corresponding to the specified **bundleName** is installed. You can run the following command to query the list of installed applications. If **bundleName** is not in the query result, the application is not installed.
     ```
     hdc shell bm dump -a
     ```
@@ -1012,7 +1083,7 @@ The bundle name specified by the **aa attach** or **aa detach** command does not
 
 **Solution**
 
-Check whether the application corresponding to the specified **bundleName** is installed. You can run the following command to query the list of installed applications. If **bundleName** is not in the query result, the application is not installed.
+Checks whether the **application** corresponding to the specified **bundleName** is installed. You can run the following command to query the list of installed applications. If **bundleName** is not in the query result, the application is not installed.
 
   ```
   hdc shell bm dump -a
@@ -1022,7 +1093,7 @@ Check whether the application corresponding to the specified **bundleName** is i
 
 **Error Message**
 
-The target application is not a debug application.
+Cannot debug applications using a release certificate.
 
 **Symptom**
 
