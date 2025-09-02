@@ -42,7 +42,7 @@
   @Component
   struct MyComponent {
     @State count: number = 0;
-    private increaseBy: number = 1;
+    increaseBy: number = 1;
 
     build() {
     }

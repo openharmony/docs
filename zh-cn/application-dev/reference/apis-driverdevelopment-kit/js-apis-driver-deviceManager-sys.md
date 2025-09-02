@@ -132,11 +132,11 @@ try {
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称              | 类型      | 必填  | 说明          |
-|-----------------|---------|-----|-------------|
-| deviceId        | number  | 是   | 设备ID。       |
-| isDriverMatched | boolean | 是   | 设备是否匹配到驱动。`true`：匹配到驱动；`false`：未匹配到驱动。 |
-| driverUid       | string  | 否   | 设备匹配的驱动UID。 |
+| 名称              | 类型      | 只读  | 可选  | 说明          |
+|-----------------|---------|-----|-----|-------------|
+| deviceId        | number  | 否   | 否   | 设备ID。       |
+| isDriverMatched | boolean | 否   | 否   | 设备是否匹配到驱动。`true`：匹配到驱动；`false`：未匹配到驱动。 |
+| driverUid       | string  | 否   | 是   | 设备匹配的驱动UID。 |
 
 ## USBDeviceInfo
 
@@ -146,11 +146,11 @@ USB设备详细信息，继承自[DeviceInfo](#deviceinfo)。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称                | 类型                                                                 | 必填  | 说明               |
-|-------------------|--------------------------------------------------------------------|-----|------------------|
-| vendorId          | number                                                             | 是   | USB设备Vendor ID。  |
-| productId         | number                                                             | 是   | USB设备Product ID。 |
-| interfaceDescList | Array&lt;Readonly&lt;[USBInterfaceDesc](#usbinterfacedesc)&gt;&gt; | 是   | USB设备接口描述符列表。    |
+| 名称                | 类型                                                                 | 只读  | 可选  | 说明               |
+|-------------------|--------------------------------------------------------------------|-----|-----|------------------|
+| vendorId          | number                                                             | 否   | 否   | USB设备Vendor ID。  |
+| productId         | number                                                             | 否   | 否   | USB设备Product ID。 |
+| interfaceDescList | Array&lt;Readonly&lt;[USBInterfaceDesc](#usbinterfacedesc)&gt;&gt; | 是   | 否   | USB设备接口描述符列表。    |
 
 ## USBInterfaceDesc
 
@@ -160,12 +160,12 @@ USB设备接口描述符。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称               | 类型     | 必填  | 说明     |
-|------------------|--------|-----|--------|
-| bInterfaceNumber | number | 是   | 接口编号。  |
-| bClass           | number | 是   | 类型代码。  |
-| bSubClass        | number | 是   | 子类型代码。 |
-| bProtocol        | number | 是   | 协议代码。  |
+| 名称               | 类型     | 只读  | 可选  | 说明     |
+|------------------|--------|-----|-----|--------|
+| bInterfaceNumber | number | 否   | 否   | 接口编号。  |
+| bClass           | number | 否   | 否   | 类型代码。  |
+| bSubClass        | number | 否   | 否   | 子类型代码。 |
+| bProtocol        | number | 否   | 否   | 协议代码。  |
 
 ## DriverInfo
 
@@ -175,14 +175,14 @@ USB设备接口描述符。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称            | 类型                                                 | 必填  | 说明             |
-|---------------|----------------------------------------------------|-----|----------------|
-| busType       | [BusType](js-apis-driver-deviceManager.md#bustype) | 是   | 总线类型。          |
-| driverUid     | string                                             | 是   | 驱动Uid。         |
-| driverName    | string                                             | 是   | 驱动名称。          |
-| driverVersion | string                                             | 是   | 驱动版本。          |
-| driverSize    | string                                             | 是   | 驱动大小(单位为Byte)。 |
-| description   | string                                             | 是   | 驱动描述。          |
+| 名称            | 类型                                                 | 只读  | 可选  | 说明             |
+|---------------|----------------------------------------------------|-----|-----|----------------|
+| busType       | [BusType](js-apis-driver-deviceManager.md#bustype) | 否   | 否   | 总线类型。          |
+| driverUid     | string                                             | 否   | 否   | 驱动Uid。         |
+| driverName    | string                                             | 否   | 否   | 驱动名称。          |
+| driverVersion | string                                             | 否   | 否   | 驱动版本。          |
+| driverSize    | string                                             | 否   | 否   | 驱动大小(单位为Byte)。 |
+| description   | string                                             | 否   | 否   | 驱动描述。          |
 
 ## USBDriverInfo
 
@@ -192,7 +192,7 @@ USB设备驱动详细信息，继承自[DriverInfo](#driverinfo)。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称            | 类型                  | 必填  | 说明                      |
-|---------------|---------------------|-----|-------------------------|
-| productIdList | Array&lt;number&gt; | 是   | 驱动支持的USB设备product ID列表。 |
-| vendorIdList  | Array&lt;number&gt; | 是   | 驱动支持的USB设备vendor ID列表。  |
+| 名称            | 类型                  | 只读  | 可选  | 说明                      |
+|---------------|---------------------|-----|-----|-------------------------|
+| productIdList | Array&lt;number&gt; | 否   | 否   | 驱动支持的USB设备product ID列表。 |
+| vendorIdList  | Array&lt;number&gt; | 否   | 否   | 驱动支持的USB设备vendor ID列表。  |

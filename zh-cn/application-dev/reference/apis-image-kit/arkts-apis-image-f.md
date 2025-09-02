@@ -370,10 +370,10 @@ async function CreatePixelMapFromParcel() {
 
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
-根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise形式返回。
+根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise形式返回。
 
 > **说明：**
-> 当开发设备为折叠屏，折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败，需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)
+> 当设备为折叠屏，且折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败。需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -382,7 +382,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
-| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 区域信息。[Region](arkts-apis-image-i.md#region8).size的宽高需和设置的预览流大小保持一致。 |
+| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须为0，Region.size中width和height的取值范围分别为[1, 预览流宽度]和[1, 预览流高度]。如需截取任意区域，可先使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)获取整个画面，再使用[crop](arkts-apis-image-PixelMap.md#crop9)截取所需区域。 |
 
 **返回值：**
 
@@ -419,10 +419,10 @@ async function CreatePixelMapFromSurface(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
-以同步方式，根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。
+以同步方式，根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。
 
 > **说明：**
-> 当开发设备为折叠屏，折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败，需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15)。
+> 当设备为折叠屏，且折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败。需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -431,7 +431,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
-| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 区域信息。[Region](arkts-apis-image-i.md#region8).size的宽高需和设置的预览流大小保持一致。 |
+| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须为0，Region.size中width和height的取值范围分别为[1, 预览流宽度]和[1, 预览流高度]。如需截取任意区域，可先使用[image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15)获取整个画面，再使用[cropSync](arkts-apis-image-PixelMap.md#cropsync12)截取所需区域。 |
 
 **返回值：**
 
@@ -452,11 +452,9 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 async function Demo(surfaceId: string) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-  let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
+  let pixelMap: image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
   return pixelMap;
 }
 ```
@@ -465,7 +463,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 
-从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+从Surface ID创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -509,7 +507,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
 
-从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+从Surface ID创建一个PixelMap对象，同步返回PixelMap结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
