@@ -1628,7 +1628,7 @@ struct NavigationContentMsgStack {
 struct TextBuilder {
   @Prop @Watch("info") message: number = 0;
 
-  info() {
+  info(): void {
     console.info(`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
   }
 
