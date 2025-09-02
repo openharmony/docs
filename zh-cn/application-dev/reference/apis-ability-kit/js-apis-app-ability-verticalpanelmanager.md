@@ -1,5 +1,12 @@
 # @ohos.app.ability.VerticalPanelManager (启动垂域面板选择器 )
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yuhong35-->
+<!--Designer: @xukeke-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 本模块提供拉起垂域面板选择器功能。
 
 > **说明：**
@@ -20,7 +27,7 @@ startVerticalPanel(
       wantParam: Record<string, Object>,
       panelConfig: PanelConfig,
       panelStartCallback: PanelStartCallback
-): Promise&lt;void&gt;
+): Promise\<void>
 
 启动带有面板配置的垂域选择器。如果目标能力是可见的，您可以启动目标能力；如果目标能力是不可见的，
 
@@ -36,14 +43,14 @@ startVerticalPanel(
 | -------- | -------- | -------- |  -------- |
 | context | [common.UIAbilityContext](./js-apis-inner-application-uiAbilityContext.md) | 是 | 指示媒体应用程序的UI功能上下文。 |
 | wantParam | Record<string, Object> | 是 | 表示启动UIExtensionAbility组件时传递的参数。 |
-| panelConfig | [PanelConfig](##PanelConfig) | 是 | 面板配置参数。 |
-| panelStartCallback | [PanelStartCallback](##PanelStartCallback) | 是 | 拉起面板执行结果的回调。 |
+| panelConfig | [PanelConfig](#panelconfig) | 是 | 面板配置参数。 |
+| panelStartCallback | [PanelStartCallback](#panelstartcallback) | 是 | 拉起面板执行结果的回调。 |
 
 **返回值：**
 
 | 参数名 | 说明 |
 | -------- |  -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -142,7 +149,7 @@ struct Index {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [VerticalType](##VerticalType) | 否 | 否 | 垂域面板的类型 。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
+| type | [VerticalType](#verticaltype) | 否 | 否 | 垂域面板的类型 。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 | sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括包名（bundleName）、模块名（moduleName）、能力名（abilityName）、窗口ID（windowId）和屏幕模式（screenMode）。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## VerticalType 
@@ -205,7 +212,7 @@ onResult?: (parameter: AbilityResult) => void
 **参数：**
 
 | 参数名 | 类型 | 必填  | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | UIExtensionAbility调用[terminateSelfWithResult](js-apis-inner-application-uiExtensionContext.md#terminateselfwithresult12)时返回的参数。 |
 
 **示例：**
@@ -228,7 +235,7 @@ let callback: verticalPanelManager.PanelStartCallback = {
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
 | 名字 | 类型 | 值 | Description |
-| -------- | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 导出 bundleName 的常量字符串并将其提供给 sourceAppInfo。 |
 | SOURCE_APP_MODULE_NAME | string | 'moduleName' | 导出 moduleName的常量字符串并将其提供给 sourceAppInfo。 |
 | SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 导出 abilityName的常量字符串并将其提供给 sourceAppInfo。 |
