@@ -45,8 +45,7 @@ ArkGuard支持基础的名称混淆功能，不支持控制混淆、数据混淆
 假设ArkGuard支持配置指定类型的白名单，配置类A1作为白名单，类A1的属性prop1在白名单中，而A2中的prop1属性不在白名单中。此时，a2作为参数被传入test函数中，调用prop1属性时会导致功能异常。
 
 ```typescript
-//ClassTest.ts
-
+// ClassTest.ts
 // 混淆前
 class A1 {
 	prop1: string = '';
@@ -135,8 +134,7 @@ test(a2);
 开启属性名称混淆，效果如下：
 
 ```ts
-//TestA.ts
- 
+// TestA.ts
 // 混淆前：
 class TestA {
   static prop1: number = 0;
@@ -165,10 +163,13 @@ export class MyClass {
 * ArkUI组件中的属性名不会被混淆。例如下面例子中的`message`和`data`不会被混淆。
 
 ```ts
+// MyExample.ets
 @Component struct MyExample {
 	@State message: string = "hello";
     data: number[] = [];
-    // ...
+    
+    build() {
+    }
 }
 ```
 
@@ -184,9 +185,10 @@ person["personAge"] = 22;
 * 注解成员名不会被混淆。例如下面例子中的`authorName`和`revision`不会被混淆。
 
 ```ts
+// MyExample.ets
 @interface MyAnnotation {
     authorName: string;
-    revision: number = 1;
+    revision: number;
 }
 ```
 
@@ -470,6 +472,7 @@ lastName
 1.如果代码中通过字符串拼接、变量访问或使用`defineProperty`方法来定义对象属性，则这些属性名应被保留。例如：
 
 ```js
+// Example.js
 var obj = {x0: 0, x1: 0, x2: 0};
 for (var i = 0; i <= 2; i++) {
     console.info(obj['x' + i]);  // x0, x1, x2应该被保留
@@ -479,11 +482,11 @@ Object.defineProperty(obj, 'y', {});  // y应该被保留
 Object.getOwnPropertyDescriptor(obj, 'y');  // y应该被保留
 console.info(obj.y);
 
-obj.s = 0;
-let key = 's';
+obj.s1 = 'a';
+let key = 's1';
 console.info(obj[key]);        // key对应的变量值s应该被保留
 
-obj.t1 = 0;
+obj.t1 = 'b';
 console.info(obj['t' + '1']);        // t1应该被保留
 ```
 
@@ -503,6 +506,7 @@ console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保�
 2.对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`firstName`和`personAge`，如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
 
 ```ts
+// MyClass.ts
 export class MyClass {
     person = {firstName: "123", personAge: 100};
 }
@@ -511,9 +515,13 @@ export class MyClass {
 3.在ArkTS/TS/JS文件中使用so库的API（例如示例中的foo）时，需手动保留API名称。
 
 ```ts
+// src/main/cpp/types/libentry/Index.d.ts
+export const add: (a: number, b: number) => number;
+
+// Test.ets
 import testNapi from 'library.so'
 
-testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
+testNapi.add() // add需要保留，示例如：-keep-property-name foo
 ```
 
 4.JSON数据解析及对象序列化时，需要保留使用到的字段，例如：
@@ -616,7 +624,15 @@ let d = new MyClass();      // MyClass 可以被正确地混淆
 2.当以命名导入的方式导入 so 库的 API时，若同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留API的名称。
 
 ```ts
+// src/main/cpp/types/libentry/Index.d.ts
+declare function testNapi(): void;
+declare function testNapi2(): void;
+
+// example.ets
 import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
+
+testNapi();
+myNapi();
 ```
 
 ### -keep-file-name
@@ -633,12 +649,18 @@ entry
 1.在使用`require`引入文件路径时，由于`ArkTS`不支持[CommonJS](../arkts-utils/module-principle.md#commonjs模块)语法，因此这种情况下路径应该被保留。
 
 ```ts
+// example.js
 const module1 = require('./file1')   // file1 应该被保留
 ```
 
 2.对于动态导入的路径名，由于无法识别`import`函数中的参数是否为路径，因此这种情况下路径应该被保留。
 
 ```ts
+// file2.ts
+export function foo () {}
+```
+```ts
+// main.ts
 const moduleName = './file2'         // moduleName对应的路径名file2应该被保留
 const module2 = import(moduleName)
 ```
