@@ -74,7 +74,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
         .onControllerAttached(() => {
-          console.log("onControllerAttached");
+          console.info("onControllerAttached");
           try {
             let userAgent = this.controller.getUserAgent() + this.customUserAgent;
             this.controller.setCustomUserAgent(userAgent);
@@ -262,8 +262,8 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
           // 使用file协议通过XMLHttpRequest跨域访问本地js文件。
   			  var xmlHttpReq = new XMLHttpRequest();
   			  xmlHttpReq.onreadystatechange = function(){
-  			      console.log("readyState:" + xmlHttpReq.readyState);
-  			      console.log("status:" + xmlHttpReq.status);
+  			      console.info("readyState:" + xmlHttpReq.readyState);
+  			      console.info("status:" + xmlHttpReq.status);
   				  if(xmlHttpReq.readyState == 4){
   				      if (xmlHttpReq.status == 200) {
                     // 如果ets侧正确设置路径列表，则此处能正常获取资源
