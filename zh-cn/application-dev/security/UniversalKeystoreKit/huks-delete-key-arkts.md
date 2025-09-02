@@ -49,52 +49,50 @@ let deleteHuksOptions: huks.HuksOptions = {
 }
 
 /* 3.生成密钥 */
-async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
   console.info(`enter promise generateKeyItem`);
-  let ret: string = 'Success';
+  let ret: boolean = false;
   try {
     await huks.generateKeyItem(keyAlias, huksOptions)
       .then(() => {
         console.info(`promise: generateKeyItem success`);
+        ret = true;
       }).catch((error: BusinessError) => {
         console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
-        ret = 'Failed';
       });
   } catch (error) {
     console.error(`promise: generateKeyItem input arg invalid`);
-    ret = 'Failed';
   }
   return ret;
 }
 
 /* 4.删除密钥 */
-async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
   console.info(`enter promise deleteKeyItem`);
-  let ret: string = 'Success';
+  let ret: boolean = false;
   try {
     await huks.deleteKeyItem(keyAlias, huksOptions)
       .then(() => {
         console.info(`promise: deleteKeyItem success`);
+        ret = true;
       }).catch((error: BusinessError) => {
         console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
-        ret = 'Failed';
       })
   } catch (error) {
     console.error(`promise: deleteKeyItem input arg invalid`);
-    ret = 'Failed';
   }
   return ret;
 }
 
 async function testDelete() {
   let retGen = await generateKeyItem(keyAlias, generateHuksOptions);
-  if (retGen == 'Failed') {
+  if (retGen == false) {
     console.error(`generateKeyItem failed`);
     return;
   }
 
   let retDel = await deleteKeyItem(keyAlias, deleteHuksOptions);
-  if (retDel == 'Failed') {
+  if (retDel == false) {
     console.error(`deleteKeyItem failed`);
     return;
   }

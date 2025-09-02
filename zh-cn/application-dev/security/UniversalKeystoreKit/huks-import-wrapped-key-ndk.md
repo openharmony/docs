@@ -491,6 +491,8 @@ OH_Huks_Result HksImportWrappedKeyTestCommonCase(const struct HksImportWrappedKe
          */
         /* 2.设备B生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），
          *   其密钥用途设置为unwrap，导出Wrapping_Key公钥Wrapping_Pk，存放在变量huksPublicKey中
+        /* 2.设备B生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），
+         * 其密钥用途设置为unwrap，导出Wrapping_Key公钥Wrapping_Pk，存放在变量huksPublicKey中
          */
         ret = GenerateAndExportHuksPublicKey(params, &huksPublicKey);
         if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
