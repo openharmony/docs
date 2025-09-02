@@ -1851,7 +1851,7 @@ struct ListExample {
           }
         }, (item: string) => item)
       }
-      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .edgeEffect(EdgeEffect.Spring, {alwaysEnabled: true, effectEdge: EffectEdge.START})
       .width('90%').height('90%')
     }
     .width('100%')
