@@ -60,8 +60,8 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
-  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
+  import { storageStatistics } from '@kit.CoreFileKit';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
       console.error("volumes is null or length is invalid");
@@ -114,8 +114,8 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
-  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
+  import { storageStatistics } from '@kit.CoreFileKit';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
       console.error("volumes is null or length is invalid");
@@ -176,8 +176,8 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
-  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
+  import { storageStatistics } from '@kit.CoreFileKit';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
       console.error("volumes is null or length is invalid");
@@ -230,8 +230,8 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
-  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
+  import { storageStatistics } from '@kit.CoreFileKit';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
       console.error("volumes is null or length is invalid");
