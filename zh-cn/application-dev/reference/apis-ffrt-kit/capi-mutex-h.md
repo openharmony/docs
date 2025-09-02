@@ -265,6 +265,6 @@ FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex)
 
 | 类型 | 说明 |
 | -- | -- |
-| FFRT_C_API int | 销毁mutex成功返回ffrt_success，<br>          销毁mutex失败返回ffrt_error_inval。 |
+| FFRT_C_API int | 销毁mutex成功返回ffrt_success，<br>销毁mutex失败返回ffrt_error_inval。 |
 
 
