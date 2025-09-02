@@ -1914,7 +1914,7 @@ type SystemBarStyle = SystemBarStyle
 
 ## 示例
 
-示例效果请以真机为准，系统路由表不支持预览器，跨平台以及模拟器。
+示例效果请以真机为准，系统路由表不支持预览器以及模拟器。
 
 ### 示例1（Navigation页面布局）
 
@@ -1953,13 +1953,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -2224,15 +2227,18 @@ export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack();
   private menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/undo.svg'需要替换为开发者所需的资源文件
       value: "1",
       icon: 'resources/base/media/undo.svg',
     },
     {
+      // 'resources/base/media/redo.svg'需要替换为开发者所需的资源文件
       value: "2",
       icon: 'resources/base/media/redo.svg',
       isEnabled: false,
     },
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: "3",
       icon: 'resources/base/media/ic_public_ok.svg',
       isEnabled: true,
@@ -3650,7 +3656,7 @@ struct NavigationExample {
                     .backgroundColor(Color.Orange)
                     .margin({ top: 12 })
                 }
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }
           }
         }
@@ -3811,25 +3817,25 @@ struct NavigationExample {
   @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg' // 图标资源路径
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
+      // resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem2',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
     },
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
   ];
   @State toolItems: Array<ToolbarItem> = [
     {
-      // $r('sys.symbol.ohos_lungs')和$r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'toolItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
@@ -3840,7 +3846,7 @@ struct NavigationExample {
       }
     },
     {
-      // $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
+      // 'resources/base/media/ic_public_more.svg'需要替换为开发者所需的资源文件
       value: 'toolItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3849,7 +3855,6 @@ struct NavigationExample {
       }
     },
     {
-      // $r('sys.symbol.ohos_star')和$r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'toolItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3874,7 +3879,7 @@ struct NavigationExample {
         })
       }
     }
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)
@@ -3888,13 +3893,13 @@ export struct NavigationMenu {
   @Consume('navPathStack') navPathStack: NavPathStack;
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
       }
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value: 'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
@@ -3902,7 +3907,6 @@ export struct NavigationMenu {
       }
     },
     {
-      // $r('sys.symbol.repeat_1')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
       action: () => {
@@ -3921,8 +3925,8 @@ export struct NavigationMenu {
     }
     .hideTitleBar(false)
     .title('NavDestination title')
-    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))// $r('sys.color.ohos_id_color_titlebar_sub_bg')需要替换为开发者所需的资源文件
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))// $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
     .fontColor([Color.Blue]))
     .menus(this.menuItems)
   }
@@ -4075,6 +4079,7 @@ struct NavigationExample {
 export struct NavDestinationExample {
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
@@ -4441,13 +4446,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'common/ic_public_more.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -4531,17 +4539,13 @@ struct NavigationExample {
   @State enable: boolean = false
   @State menuItems:Array<NavigationMenuItem> = [
     {
-      // $r('sys.symbol.card_writer')需要替换为开发者所需的资源文件
-      value:'menuItem1',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.card_writer')),
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value:'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus'))
     },
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
@@ -4549,19 +4553,16 @@ struct NavigationExample {
 
   @State toolItems:Array<ToolbarItem> = [
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'toolItem1',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
       action:()=>{}
     },
     {
-      // $r('sys.symbol.card_migration')需要替换为开发者所需的资源文件
       value:'toolItem2',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.card_migration')),
       action:()=>{}
     },
     {
-      // 需要替换为开发者所需的资源文件
       value:'toolItem3',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       action:()=>{}
@@ -4579,7 +4580,7 @@ struct NavigationExample {
     }
     .mode(NavigationMode.Stack)
     .enableToolBarAdaptation(this.enable) //是否启用工具栏自适应能力
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)
