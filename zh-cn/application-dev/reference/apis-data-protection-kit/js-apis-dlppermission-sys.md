@@ -439,7 +439,7 @@ try {
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | dlpProperty | [DLPProperty](#dlpproperty) | 否 | 是 | 表示DLP文件授权相关信息。 |
 
@@ -1576,7 +1576,7 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
@@ -1655,7 +1655,7 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
@@ -1741,14 +1741,14 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
 | 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 | 19100019 | The DLP file has expired. |
 | 19100020 | No network connection. |
 
@@ -1820,14 +1820,14 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
 | 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 | 19100019 | The DLP file has expired. |
 | 19100020 | No network connection. |
 
@@ -2000,8 +2000,10 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
 
 **示例：**
 
@@ -2064,7 +2066,14 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
+| 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
 
 **示例：**
 
@@ -2149,7 +2158,7 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | authAccount | string | 否 | 是 | 表示被授权用户账号。不超过255字节。 |
 | authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户账号类型。 |
@@ -2176,7 +2185,7 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ownerAccount | string | 否 | 是 | 表示权限设置者账号。不超过255字节。 |
 | ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。不超过255字节。 |
