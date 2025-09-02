@@ -11,4 +11,4 @@
 
 ## ArkTS卡片界面适配多设备
 
-在不同的设备屏幕上面ArkTS卡片的尺寸会不同，进而会影响卡片内信息的展示。开发者需要再界面开发时考虑到多设备场景。具体请参考[卡片多设备适配](https://developer.huawei.com/consumer/cn/doc/design-guides/system-features-service-widget-0000002087671904#section473mcpsimp)。
+在不同的设备屏幕上ArkTS卡片的尺寸不同，为保证卡片信息展示效果，开发者需要在界面开发时考虑到多设备场景适配，适配规范具体请参考[卡片多设备适配](https://developer.huawei.com/consumer/cn/doc/design-guides/system-features-service-widget-0000002087671904#section473mcpsimp)。
