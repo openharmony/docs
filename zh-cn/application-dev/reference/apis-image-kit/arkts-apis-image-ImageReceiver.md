@@ -13,7 +13,7 @@
 
 图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)。
 
-在调用以下方法前需要先通过[createImageReceiver](../arkts-apis-image-f#imagecreateimagereceiver11)创建ImageReceiver实例。
+在调用以下方法前需要先通过[createImageReceiver](arkts-apis-image-f.md#imagecreateimagereceiver11)创建ImageReceiver实例。
 
 ## 导入模块
 

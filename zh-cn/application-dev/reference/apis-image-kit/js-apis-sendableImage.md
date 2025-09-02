@@ -42,6 +42,7 @@ createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promi
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -230,6 +231,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1575,6 +1577,7 @@ marshalling(sequence: rpc.MessageSequence): void
 | 62980097 | IPC error.             |
 
 **示例：**
+
 ```ts
 import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
@@ -1881,7 +1884,6 @@ createImageSource(buf: ArrayBuffer): ImageSource
 | --------------------------- | -------------------------------------------- |
 | [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
 
-
 **示例：**
 
 ```ts
@@ -1926,6 +1928,9 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
+import { image } from '@kit.ImageKit';
+
 async function Demo() {
     let size: image.Size = {
         height: 8192,

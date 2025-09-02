@@ -12,7 +12,7 @@
 > - 本Interface首批接口从API version 9开始支持。
 
 图像创建模块，用于请求图像数据区域，并开放给应用编译图像数据的能力。
-在调用以下方法前需要先通过[createImageCreator](../arkts-apis-image-f#imagecreateimagecreator11)创建ImageCreator实例，ImageCreator不支持多线程。
+在调用以下方法前需要先通过[createImageCreator](arkts-apis-image-f.md#imagecreateimagecreator11)创建ImageCreator实例，ImageCreator不支持多线程。
 
 ## 导入模块
 
