@@ -45,7 +45,7 @@ ArkGuard支持基础的名称混淆功能，不支持控制混淆、数据混淆
 假设ArkGuard支持配置指定类型的白名单，配置类A1作为白名单，类A1的属性prop1在白名单中，而A2中的prop1属性不在白名单中。此时，a2作为参数被传入test函数中，调用prop1属性时会导致功能异常。
 
 ```typescript
-// ClassTest.ts
+// example.ts
 // 混淆前
 class A1 {
 	prop1: string = '';
@@ -134,10 +134,10 @@ test(a2);
 开启属性名称混淆，效果如下：
 
 ```ts
-// TestA.ts
+// test.ts
 // 混淆前：
 class TestA {
-  static prop1: number = 0;
+	static prop1: number = 0;
 }
 TestA.prop1;
 ```
@@ -163,7 +163,7 @@ export class MyClass {
 * ArkUI组件中的属性名不会被混淆。例如下面例子中的`message`和`data`不会被混淆。
 
 ```ts
-// MyExample.ets
+// example.ets
 @Component struct MyExample {
 	@State message: string = "hello";
     data: number[] = [];
@@ -185,7 +185,7 @@ person["personAge"] = 22;
 * 注解成员名不会被混淆。例如下面例子中的`authorName`和`revision`不会被混淆。
 
 ```ts
-// MyExample.ets
+// example.ets
 @interface MyAnnotation {
     authorName: string;
     revision: number;
@@ -472,7 +472,7 @@ lastName
 1.如果代码中通过字符串拼接、变量访问或使用`defineProperty`方法来定义对象属性，则这些属性名应被保留。例如：
 
 ```js
-// Example.js
+// example.js
 var obj = {x0: 0, x1: 0, x2: 0};
 for (var i = 0; i <= 2; i++) {
     console.info(obj['x' + i]);  // x0, x1, x2应该被保留
@@ -506,7 +506,7 @@ console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保�
 2.对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`firstName`和`personAge`，如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
 
 ```ts
-// MyClass.ts
+// myclass.ts
 export class MyClass {
     person = {firstName: "123", personAge: 100};
 }
@@ -518,7 +518,7 @@ export class MyClass {
 // src/main/cpp/types/libentry/Index.d.ts
 export const add: (a: number, b: number) => number;
 
-// Test.ets
+// test.ets
 import testNapi from 'library.so'
 
 testNapi.add() // add需要保留，示例如：-keep-property-name foo
