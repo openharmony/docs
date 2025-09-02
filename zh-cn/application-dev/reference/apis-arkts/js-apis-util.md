@@ -3595,7 +3595,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 encode(src: Uint8Array, options?: Type): Promise&lt;Uint8Array&gt;
 
-将输入参数异步编码后输出对应Uint8Array对象。
+将输入参数异步编码后输出对应Uint8Array对象。使用Promise异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3612,7 +3612,7 @@ encode(src: Uint8Array, options?: Type): Promise&lt;Uint8Array&gt;
 
 | 类型                      | 说明                              |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8Array对象。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回异步编码后新分配的Uint8Array对象。 |
 
 **错误码：**
 
