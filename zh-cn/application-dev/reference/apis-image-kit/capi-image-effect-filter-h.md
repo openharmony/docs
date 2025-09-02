@@ -45,10 +45,10 @@
 | [OH_EffectFilterInfo *OH_EffectFilterInfo_Create()](#oh_effectfilterinfo_create) | - | 创建OH_EffectFilterInfo实例，调用[OH_EffectFilterInfo_Release](#oh_effectfilterinfo_release)进行资源释放。 |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_SetFilterName(OH_EffectFilterInfo *info, const char *name)](#oh_effectfilterinfo_setfiltername) | - | 设置滤镜名。 |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_GetFilterName(OH_EffectFilterInfo *info, char **name)](#oh_effectfilterinfo_getfiltername) | - | 获取滤镜名。 |
-| [ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t size,ImageEffect_BufferType *bufferTypeArray)](#oh_effectfilterinfo_setsupportedbuffertypes) | - | 设置滤镜所支持的内存类型。 |
-| [ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t *size,ImageEffect_BufferType **bufferTypeArray)](#oh_effectfilterinfo_getsupportedbuffertypes) | - | 获取滤镜所支持的内存类型。 |
-| [ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInfo *info, uint32_t size,ImageEffect_Format *formatArray)](#oh_effectfilterinfo_setsupportedformats) | - | 设置滤镜所支持的像素格式。 |
-| [ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInfo *info, uint32_t *size,ImageEffect_Format **formatArray)](#oh_effectfilterinfo_getsupportedformats) | - | 获取滤镜所支持的像素格式。 |
+| [ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t size, ImageEffect_BufferType *bufferTypeArray)](#oh_effectfilterinfo_setsupportedbuffertypes) | - | 设置滤镜所支持的内存类型。 |
+| [ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t *size, ImageEffect_BufferType **bufferTypeArray)](#oh_effectfilterinfo_getsupportedbuffertypes) | - | 获取滤镜所支持的内存类型。 |
+| [ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInfo *info, uint32_t size, ImageEffect_Format *formatArray)](#oh_effectfilterinfo_setsupportedformats) | - | 设置滤镜所支持的像素格式。 |
+| [ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInfo *info, uint32_t *size, ImageEffect_Format **formatArray)](#oh_effectfilterinfo_getsupportedformats) | - | 获取滤镜所支持的像素格式。 |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_Release(OH_EffectFilterInfo *info)](#oh_effectfilterinfo_release) | - | 销毁OH_EffectFilterInfo实例。 |
 | [OH_EffectBufferInfo *OH_EffectBufferInfo_Create()](#oh_effectbufferinfo_create) | - | 创建OH_EffectBufferInfo实例，调用[OH_EffectBufferInfo_Release](#oh_effectbufferinfo_release)进行资源释放。 |
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_SetAddr(OH_EffectBufferInfo *info, void *addr)](#oh_effectbufferinfo_setaddr) | - | 设置图像内存地址。 |
@@ -64,20 +64,20 @@
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_SetTextureId(OH_EffectBufferInfo *info, int32_t textureId)](#oh_effectbufferinfo_settextureid) | - | 设置OH_EffectBufferInfo的图像的textureId。 |
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_GetTextureId(OH_EffectBufferInfo *info, int32_t *textureId)](#oh_effectbufferinfo_gettextureid) | - | 从OH_EffectBufferInfo中获取图像的textureId。 |
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_Release(OH_EffectBufferInfo *info)](#oh_effectbufferinfo_release) | - | 销毁OH_EffectBufferInfo实例。 |
-| [typedef bool (\*OH_EffectFilterDelegate_SetValue)(OH_EffectFilter *filter, const char *key,const ImageEffect_Any *value)](#oh_effectfilterdelegate_setvalue) | OH_EffectFilterDelegate_SetValue | 自定义滤镜设置参数的回调函数，用于开发者校验参数及参数值。 |
+| [typedef bool (\*OH_EffectFilterDelegate_SetValue)(OH_EffectFilter *filter, const char *key, const ImageEffect_Any *value)](#oh_effectfilterdelegate_setvalue) | OH_EffectFilterDelegate_SetValue | 自定义滤镜设置参数的回调函数，用于开发者校验参数及参数值。 |
 | [typedef void (\*OH_EffectFilterDelegate_PushData)(OH_EffectFilter *filter, OH_EffectBufferInfo *info)](#oh_effectfilterdelegate_pushdata) | OH_EffectFilterDelegate_PushData | 自定义滤镜传递图像信息到下一级滤镜的函数指针。需要在[OH_EffectFilterDelegate_Render](#oh_effectfilterdelegate_render)的回调中主动调用该函数指针。 |
-| [typedef bool (\*OH_EffectFilterDelegate_Render)(OH_EffectFilter *filter, OH_EffectBufferInfo *info,OH_EffectFilterDelegate_PushData pushData)](#oh_effectfilterdelegate_render) | OH_EffectFilterDelegate_Render | 自定义滤镜渲染图像的回调函数。 |
+| [typedef bool (\*OH_EffectFilterDelegate_Render)(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_EffectFilterDelegate_PushData pushData)](#oh_effectfilterdelegate_render) | OH_EffectFilterDelegate_Render | 自定义滤镜渲染图像的回调函数。 |
 | [typedef bool (\*OH_EffectFilterDelegate_Save)(OH_EffectFilter *filter, char **info)](#oh_effectfilterdelegate_save) | OH_EffectFilterDelegate_Save | 自定义滤镜序列化的回调函数，按照JSON格式进行滤镜序列化处理。 |
 | [typedef OH_EffectFilter *(\*OH_EffectFilterDelegate_Restore)(const char *info)](#oh_effectfilterdelegate_restore) | OH_EffectFilterDelegate_Restore | 自定义滤镜反序列化的回调函数。 |
 | [OH_EffectFilter *OH_EffectFilter_Create(const char *name)](#oh_effectfilter_create) | - | 创建OH_EffectFilter实例，调用[OH_EffectFilter_Release](#oh_effectfilter_release)进行资源释放。 |
 | [ImageEffect_ErrorCode OH_EffectFilter_SetValue(OH_EffectFilter *filter, const char *key, const ImageEffect_Any *value)](#oh_effectfilter_setvalue) | - | 设置滤镜参数。 |
 | [ImageEffect_ErrorCode OH_EffectFilter_GetValue(OH_EffectFilter *filter, const char *key, ImageEffect_Any *value)](#oh_effectfilter_getvalue) | - | 获取滤镜参数。 |
-| [ImageEffect_ErrorCode OH_EffectFilter_Register(const OH_EffectFilterInfo *info,const ImageEffect_FilterDelegate *delegate)](#oh_effectfilter_register) | - | 注册自定义滤镜。 |
+| [ImageEffect_ErrorCode OH_EffectFilter_Register(const OH_EffectFilterInfo *info, const ImageEffect_FilterDelegate *delegate)](#oh_effectfilter_register) | - | 注册自定义滤镜。 |
 | [ImageEffect_FilterNames *OH_EffectFilter_LookupFilters(const char *key)](#oh_effectfilter_lookupfilters) | - | 查询满足条件的滤镜。 |
 | [void OH_EffectFilter_ReleaseFilterNames()](#oh_effectfilter_releasefilternames) | - | 释放滤镜名内存资源。 |
 | [ImageEffect_ErrorCode OH_EffectFilter_LookupFilterInfo(const char *name, OH_EffectFilterInfo *info)](#oh_effectfilter_lookupfilterinfo) | - | 查询滤镜信息。 |
-| [ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap,OH_PixelmapNative *outputPixelmap)](#oh_effectfilter_render) | - | 执行图像渲染。 |
-| [ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId,int32_t outputTextureId, int32_t colorSpace)](#oh_effectfilter_renderwithtextureid) | - | 使用纹理标识渲染滤镜效果。该函数不支持相同的输入和输出图像。 |
+| [ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap, OH_PixelmapNative *outputPixelmap)](#oh_effectfilter_render) | - | 执行图像渲染。 |
+| [ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId, int32_t outputTextureId, int32_t colorSpace)](#oh_effectfilter_renderwithtextureid) | - | 使用纹理标识渲染滤镜效果。该函数不支持相同的输入和输出图像。 |
 | [ImageEffect_ErrorCode OH_EffectFilter_Release(OH_EffectFilter *filter)](#oh_effectfilter_release) | - | 销毁OH_EffectFilter实例。 |
 
 ### 宏定义

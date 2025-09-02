@@ -42,8 +42,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [int32_t OH_PixelMap_CreatePixelMap(napi_env env, OhosPixelMapCreateOps info,void* buf, size_t len, napi_value* res)](#oh_pixelmap_createpixelmap) | 创建PixelMap对象。当前只支持输入流为BGRA格式的流。<br>该接口传入的buf不支持stride。<br>该接口不支持DMA内存。 |
-| [int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps info,void* buf, size_t len, int32_t rowStride, napi_value* res)](#oh_pixelmap_createpixelmapwithstride) | 创建PixelMap对象。<br>当前只支持输入流为BGRA格式的流。pixelmap内存在RGBA格式下，默认为DMA内存（图片512\*512以上）。 |
+| [int32_t OH_PixelMap_CreatePixelMap(napi_env env, OhosPixelMapCreateOps info, void* buf, size_t len, napi_value* res)](#oh_pixelmap_createpixelmap) | 创建PixelMap对象。当前只支持输入流为BGRA格式的流。<br>该接口传入的buf不支持stride。<br>该接口不支持DMA内存。 |
+| [int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps info, void* buf, size_t len, int32_t rowStride, napi_value* res)](#oh_pixelmap_createpixelmapwithstride) | 创建PixelMap对象。<br>当前只支持输入流为BGRA格式的流。pixelmap内存在RGBA格式下，默认为DMA内存（图片512\*512以上）。 |
 | [int32_t OH_PixelMap_CreateAlphaPixelMap(napi_env env, napi_value source, napi_value* alpha)](#oh_pixelmap_createalphapixelmap) | 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的PixelMap对象。 |
 | [NativePixelMap* OH_PixelMap_InitNativePixelMap(napi_env env, napi_value source)](#oh_pixelmap_initnativepixelmap) | 初始化NativePixelMap对象。 |
 | [int32_t OH_PixelMap_GetBytesNumberPerRow(const NativePixelMap* native, int32_t* num)](#oh_pixelmap_getbytesnumberperrow) | 获取PixelMap对象每行字节数。 |
@@ -54,7 +54,7 @@
 | [int32_t OH_PixelMap_SetDensity(const NativePixelMap* native, int32_t density)](#oh_pixelmap_setdensity) | 设置PixelMap对象像素密度。 |
 | [int32_t OH_PixelMap_SetOpacity(const NativePixelMap* native, float opacity)](#oh_pixelmap_setopacity) | 设置PixelMap对象的透明度。 |
 | [int32_t OH_PixelMap_Scale(const NativePixelMap* native, float x, float y)](#oh_pixelmap_scale) | 设置PixelMap对象的缩放。<br>从API 12开始，推荐使用新接口[OH_PixelmapNative_Scale](capi-pixelmap-native-h.md#oh_pixelmapnative_scale)。 |
-| [int32_t OH_PixelMap_ScaleWithAntiAliasing(const NativePixelMap* native, float x, float y,OH_PixelMap_AntiAliasingLevel level)](#oh_pixelmap_scalewithantialiasing) | 根据指定的缩放算法和输入的宽高对图片进行缩放。<br>从API 12开始，推荐使用新接口[OH_PixelmapNative_ScaleWithAntiAliasing](capi-pixelmap-native-h.md#oh_pixelmapnative_scalewithantialiasing)。 |
+| [int32_t OH_PixelMap_ScaleWithAntiAliasing(const NativePixelMap* native, float x, float y, OH_PixelMap_AntiAliasingLevel level)](#oh_pixelmap_scalewithantialiasing) | 根据指定的缩放算法和输入的宽高对图片进行缩放。<br>从API 12开始，推荐使用新接口[OH_PixelmapNative_ScaleWithAntiAliasing](capi-pixelmap-native-h.md#oh_pixelmapnative_scalewithantialiasing)。 |
 | [int32_t OH_PixelMap_Translate(const NativePixelMap* native, float x, float y)](#oh_pixelmap_translate) | 设置PixelMap对象的偏移。<br>从API 12开始，推荐使用新接口[OH_PixelmapNative_Translate](capi-pixelmap-native-h.md#oh_pixelmapnative_translate)。 |
 | [int32_t OH_PixelMap_Rotate(const NativePixelMap* native, float angle)](#oh_pixelmap_rotate) | 设置PixelMap对象的旋转。<br>从API 12开始，推荐使用新接口[OH_PixelmapNative_Rotate](capi-pixelmap-native-h.md#oh_pixelmapnative_rotate)。 |
 | [int32_t OH_PixelMap_Flip(const NativePixelMap* native, int32_t x, int32_t y)](#oh_pixelmap_flip) | 设置PixelMap对象的翻转。<br>从API 12开始，推荐使用新接口[OH_PixelmapNative_Flip](capi-pixelmap-native-h.md#oh_pixelmapnative_flip)。 |
