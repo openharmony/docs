@@ -407,7 +407,7 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | previewRotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation)  | 是   | 预览旋转角度 |
-| isDisplayLocked | boolean  | 否   | 是否旋转锁定(默认不锁定), true表示旋转锁定，false表示不锁定旋转。 |
+| isDisplayLocked | boolean  | 否   | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。true表示锁定方向，false表示不锁定方向。详情请参考[SurfaceRotationOptions](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#surfacerotationoptions12对象说明)|
 
 **错误码：**
 
