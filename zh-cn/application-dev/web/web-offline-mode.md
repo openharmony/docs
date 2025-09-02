@@ -8,7 +8,7 @@
 
 Web组件能够实现在不同窗口的组件树上进行挂载或移除操作，这一能力使得开发者可以预先创建Web组件，从而实现性能优化。例如，Tab页为Web组件时，页面预先渲染，便于即时显示。
 
-离线Web组件基于自定义占位组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)实现。基本原理是构建支持命令式创建的Web组件，此类组件创建后不会立即挂载到组件树中，状态为Hidden和InActive，因此不会立即对用户呈现。开发者可以在后续使用中按需动态挂载这些组件，以实现更灵活的使用方式。
+离线Web组件基于自定义占位组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)实现。基本原理是构建支持命令式创建的Web组件，此类组件创建后不会立即挂载到组件树中，状态为Hidden和Inactive，因此不会立即对用户呈现。开发者可以在后续使用中按需动态挂载这些组件，以实现更灵活的使用方式。
 
 使用离线Web组件可以预启动渲染进程和预渲染Web页面。
 
@@ -73,46 +73,46 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<Data[]>(WebBuilder);
 
-// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
-  private rootnode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  private rootNode: BuilderNode<Data[]> | null = null;
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.log(" uicontext is undefined : "+ (uiContext === undefined));
-    if (this.rootnode != null) {
+    console.info(" uicontext is undefined : "+ (uiContext === undefined));
+    if (this.rootNode != null) {
       // 返回FrameNode节点
-      return this.rootnode.getFrameNode();
+      return this.rootNode.getFrameNode();
     }
     // 返回null控制动态组件脱离绑定节点
     return null;
   }
   // 当布局大小发生变化时进行回调
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width  +  " height : " + size.height );
+    console.info("aboutToResize width : " + size.width  +  " height : " + size.height );
   }
 
   // 当controller对应的NodeContainer在Appear的时候进行回调
   aboutToAppear() {
-    console.log("aboutToAppear");
+    console.info("aboutToAppear");
   }
 
   // 当controller对应的NodeContainer在Disappear的时候进行回调
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.info("aboutToDisappear");
   }
 
   // 此函数为自定义函数，可作为初始化函数使用
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容
   initWeb(url:ResourceStr, uiContext:UIContext, control:webview.WebviewController) {
-    if(this.rootnode != null)
+    if(this.rootNode != null)
     {
       return;
     }
     // 创建节点，需要uiContext
-    this.rootnode = new BuilderNode(uiContext);
+    this.rootNode = new BuilderNode(uiContext);
     // 创建动态Web组件
-    this.rootnode.build(wrap, { url:url, controller:control });
+    this.rootNode.build(wrap, { url:url, controller:control });
   }
 }
 // 创建Map保存所需要的NodeController
@@ -214,46 +214,46 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<Data[]>(WebBuilder);
 
-// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
-  private rootnode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  private rootNode: BuilderNode<Data[]> | null = null;
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.log(" uicontext is undefined : "+ (uiContext === undefined));
-    if (this.rootnode != null) {
+    console.info(" uicontext is undefined : "+ (uiContext === undefined));
+    if (this.rootNode != null) {
       // 返回FrameNode节点
-      return this.rootnode.getFrameNode();
+      return this.rootNode.getFrameNode();
     }
     // 返回null控制动态组件脱离绑定节点
     return null;
   }
   // 当布局大小发生变化时进行回调
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width  +  " height : " + size.height );
+    console.info("aboutToResize width : " + size.width  +  " height : " + size.height );
   }
 
   // 当controller对应的NodeContainer在Appear的时候进行回调
   aboutToAppear() {
-    console.log("aboutToAppear");
+    console.info("aboutToAppear");
   }
 
   // 当controller对应的NodeContainer在Disappear的时候进行回调
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.info("aboutToDisappear");
   }
 
   // 此函数为自定义函数，可作为初始化函数使用
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容
   initWeb(url:ResourceStr, uiContext:UIContext, control:webview.WebviewController) {
-    if(this.rootnode != null)
+    if(this.rootNode != null)
     {
       return;
     }
     // 创建节点，需要uiContext 
-    this.rootnode = new BuilderNode(uiContext);
+    this.rootNode = new BuilderNode(uiContext);
     // 创建动态Web组件
-    this.rootnode.build(wrap, { url:url, controller:control });
+    this.rootNode.build(wrap, { url:url, controller:control });
   }
 }
 // 创建Map保存所需要的NodeController
@@ -394,16 +394,16 @@ function WebBuilder(data:Data) {
   }
 }
 let wrap = wrapBuilder<Data[]>(WebBuilder);
-// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
-  private rootnode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  private rootNode: BuilderNode<Data[]> | null = null;
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     console.info(" uicontext is undefined : "+ (uiContext === undefined));
-    if (this.rootnode != null) {
+    if (this.rootNode != null) {
       // 返回FrameNode节点
-      return this.rootnode.getFrameNode();
+      return this.rootNode.getFrameNode();
     }
     // 返回null控制动态组件脱离绑定节点
     return null;
@@ -425,14 +425,14 @@ export class myNodeController extends NodeController {
   // 此函数为自定义函数，可作为初始化函数使用
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容
   initWeb(url:string, uiContext:UIContext, control:webview.WebviewController) {
-    if(this.rootnode != null)
+    if(this.rootNode != null)
     {
       return;
     }
     // 创建节点，需要uiContext
-    this.rootnode = new BuilderNode(uiContext)
+    this.rootNode = new BuilderNode(uiContext)
     // 创建动态Web组件
-    this.rootnode.build(wrap, { url:url, controller:control })
+    this.rootNode.build(wrap, { url:url, controller:control })
   }
 }
 // 创建Map保存所需要的NodeController
