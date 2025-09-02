@@ -2467,7 +2467,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 值 | 说明        |
 | -------- | ------- |-----------|
-| COMPLETE | 'ohos.request.event.COMPLETE' | 表示自定义系统事件完成。在任务结束后会触发该事件，根据任务的成功或失败，事件的code返回0x40或者0x41。 |
+| COMPLETE | ohos.request.event.COMPLETE | 表示自定义系统事件完成。在任务结束后会触发该事件，根据任务的成功或失败，事件的code返回0x40或者0x41。 |
 
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。
@@ -4589,8 +4589,8 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数。当创建上传或下载任务成功，err为undefined，data为获取到的Task对象；否则为错误对象。 |
 
 **错误码：**
