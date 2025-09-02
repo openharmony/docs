@@ -679,7 +679,9 @@ setDefaultErrorHandler(defaultHandler?: ErrorHandler): ErrorHandler
 
 发生JS_CRASH异常时，支持链式回调，返回上一次注册的处理器，仅限主线程调用。
 
-如果传入非法参数或在子线程调用，将抛出错误码并返回undefined，因此建议使用try-catch逻辑进行处理。同时建议setDefaultErrorHandler的参数不为空。若参数为空，后续注册的处理器将无法与前序已注册的处理器建立关联，中断链式调用。
+如果传入非法参数或在子线程调用，将抛出错误码并返回undefined，因此建议使用try-catch逻辑进行处理。
+
+若接口参数为空，后续注册的处理器将无法与前序已注册的处理器建立关联，从而中断链式调用。
 
 **原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
 
@@ -689,7 +691,7 @@ setDefaultErrorHandler(defaultHandler?: ErrorHandler): ErrorHandler
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| defaultHandler | [ErrorHandler](#errorhandler21) | 否 | 新注册的错误处理器。默认值为空，断开之前的责任链。 |
+| defaultHandler | [ErrorHandler](#errorhandler21) | 否 | 新注册的错误处理器，缺省时默认值为空。|
 
 **返回值**：
 
@@ -711,20 +713,19 @@ setDefaultErrorHandler(defaultHandler?: ErrorHandler): ErrorHandler
 import { errorManager } from '@kit.AbilityKit';
 import { process } from '@kit.ArkTS';
 
-let handler: errorManager.ErrorHandler;
+let oldHandler: errorManager.ErrorHandler;
 const errorHandler: errorManager.ErrorHandler = (reason: Error) => {
-    // 自定义的handler实现逻辑
+    // 自定义的errorHandler实现逻辑
     console.info('[Handler]  Uncaught exception handler invoked.');
-    if (handler) {
-        handler(reason);
-    }
-    else {
+    if (oldHandler) {
+        oldHandler(reason);
+    } else {
         // 建议增加判空操作，如果为空采用同步退出方式
         const processManager = new process.ProcessManager();
         processManager.exit(0);
     }
 };
-handler = errorManager.setDefaultErrorHandler(errorHandler);
+oldHandler = errorManager.setDefaultErrorHandler(errorHandler);
 ```
 
 ## ErrorObserver

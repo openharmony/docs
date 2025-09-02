@@ -311,7 +311,10 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 ### 错误处理器责任链模式场景
+
 以下示例文件均位于同一目录。
+
+定义第一个错误处理器及注册方法，无前置处理器时退出进程:
 ```ts
 // firstErrorHandler.ets
 import { errorManager } from '@kit.AbilityKit';
@@ -319,12 +322,11 @@ import { process } from '@kit.ArkTS';
 
 let firstHandler: errorManager.ErrorHandler;
 const firstErrorHandler: errorManager.ErrorHandler = (reason: Error) => {
-    // 自定义的第一个handler实现逻辑
+    // 自定义的第一个errorHandler实现逻辑
     console.info('[FirstHandler] First uncaught exception handler invoked.');
     if (firstHandler) {
         firstHandler(reason);
-    } 
-    else {
+    } else {
         // 建议增加判空操作，如果为空采用同步退出方式
         const processManager = new process.ProcessManager();
         processManager.exit(0);
@@ -336,6 +338,8 @@ export function setFirstErrorHandler() {
     console.info('Registered First Error Handler');
 }
 ```
+
+定义第二个错误处理器及注册方法，形成链式调用:
 ```ts
 // secondErrorHandler.ets
 import { errorManager } from '@kit.AbilityKit';
@@ -343,12 +347,11 @@ import { process } from '@kit.ArkTS';
 
 let secondHandler: errorManager.ErrorHandler;
 const secondErrorHandler: errorManager.ErrorHandler = (reason: Error) => {
-    // 自定义的第二个handler实现逻辑
+    // 自定义的第二个errorHandler实现逻辑
     console.info('[SecondHandler] Second uncaught exception handler invoked.');
     if (secondHandler) {
         secondHandler(reason);
-    }
-    else {
+    } else {
         const processManager = new process.ProcessManager();
         processManager.exit(0);
     }
@@ -359,6 +362,8 @@ export function setSecondErrorHandler() {
     console.info('Registered Second Error Handler');
 }
 ```
+
+主组件通过按钮触发测试，注册两个处理器并抛错验证处理链:
 ```ts
 // Index.ets
 import { setFirstErrorHandler } from './firstErrorHandler';
@@ -366,6 +371,7 @@ import { setSecondErrorHandler } from './secondErrorHandler';
 
 @Entry
 @Component
+// 注册两个错误处理器，抛出错误以验证链式调用
 struct ErrorHandlerTest {
     private testErrorHandlers() {
       setFirstErrorHandler();
