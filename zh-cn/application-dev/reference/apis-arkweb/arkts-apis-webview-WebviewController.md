@@ -3328,7 +3328,7 @@ struct WebComponent {
         .onClick(() => {
           try {
           let result = this.controller.scrollByWithResult(50, 50);
-          console.log("original result: " + result);
+          console.info("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -6315,7 +6315,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let scrollEnabled = this.controller.getScrollable();
-            console.log("scrollEnabled: " + scrollEnabled);
+            console.info("scrollEnabled: " + scrollEnabled);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -8832,13 +8832,13 @@ struct WebComponent {
           let pageHeight = this.controller.getPageHeight();
           if (this.controllerY < 0) {
             // case1：网页向下过滚动时，可直接使用ScrollOffset.y
-            console.log(`get downwards overscroll offsetY = ${this.controllerY}`);
+            console.info(`get downwards overscroll offsetY = ${this.controllerY}`);
           } else if ((this.controllerY != 0) && (this.controllerY > (pageHeight - webHeight))) {
             // case2：网页向上过滚动时，需计算出网页下边界与Web组件下边界的偏移量
-            console.log(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
+            console.info(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
           } else {
             // case3：网页未发生过滚动时，可直接使用ScrollOffset.y
-            console.log(`get scroll offsetY = ${this.controllerY}`);
+            console.info(`get scroll offsetY = ${this.controllerY}`);
           }
         })
         .height(600)
@@ -8901,8 +8901,12 @@ struct WebComponent {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onScroll((event) => {
-          console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
-          this.controller.getPageOffset().y);
+          try {
+            console.info("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+            this.controller.getPageOffset().y);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
         })
     }
   }
