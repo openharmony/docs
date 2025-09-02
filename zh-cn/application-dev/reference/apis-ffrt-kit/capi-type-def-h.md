@@ -46,6 +46,7 @@
 | [ffrt_mutex_t](capi-ffrt-ffrt-mutex-t.md) | ffrt_mutex_t | FFRT互斥锁结构。 |
 | [ffrt_rwlock_t](capi-ffrt-ffrt-rwlock-t.md) | ffrt_rwlock_t | FFRT读写锁结构。 |
 | [ffrt_cond_t](capi-ffrt-ffrt-cond-t.md) | ffrt_cond_t | FFRT条件变量结构。 |
+| void* | [ffrt_task_handle_t](capi-ffrt-ffrt-task-handle-t.md) | 并行任务句柄。 |
 | [ffrt_fiber_t](capi-ffrt-ffrt-fiber-t.md) | ffrt_fiber_t | 纤程结构。 |
 
 ### 枚举
