@@ -1,10 +1,4 @@
 # ImageEffect_FilterNames
-<!--Kit: Image Kit-->
-<!--Subsystem: Multimedia-->
-<!--Owner: @zyj208-->
-<!--Designer: @wangshoucheng-->
-<!--Tester: @gengfei-->
-<!--Adviser: @zengyawen-->
 ## 概述
 
 滤镜名信息。
@@ -23,7 +17,6 @@
 | -- | -- |
 | uint32_t size = 0 | 滤镜名个数。 |
 | const char** nameList = nullptr | 滤镜名列表。 |
-| ImageEffect_FilterNames | 滤镜名信息。 |
 
 
 ### 成员函数
