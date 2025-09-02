@@ -256,7 +256,6 @@ export default {
     index:0,
   },
    stepperSkip(){
-    this.index = null;
     this.index=2;
   },
    skipClick(){
