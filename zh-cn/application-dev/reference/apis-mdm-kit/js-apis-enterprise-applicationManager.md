@@ -198,7 +198,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 对于API version 20及之前的版本，该接口在PC/2in1设备可正常调用，在其他设备中调用无效果。从API version 21开始，该接口在Phone、Tablet、PC/2in1中均可正常使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -257,7 +257,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 对于API version 20及之前的版本，该接口在PC/2in1设备可正常调用，在其他设备中调用无效果。从API version 21开始，该接口在Phone、Tablet、PC/2in1中均可正常使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -315,7 +315,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number)
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 对于API version 20及之前的版本，该接口在PC/2in1设备可正常调用，在其他设备中调用无效果。从API version 21开始，该接口在Phone、Tablet、PC/2in1中均可正常使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -375,7 +375,7 @@ getAutoStartApps(admin: Want): Array\<Want>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 对于API version 20及之前的版本，该接口在PC/2in1设备可正常调用，在其他设备中调用无效果。从API version 21开始，该接口在Phone、Tablet、PC/2in1中均可正常使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -432,7 +432,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 对于API version 20及之前的版本，该接口在PC/2in1设备可正常调用，在其他设备中调用无效果。从API version 21开始，该接口在Phone、Tablet、PC/2in1中均可正常使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -493,7 +493,7 @@ getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 对于API version 20及之前的版本，该接口在PC/2in1设备可正常调用，在其他设备中调用无效果。从API version 21开始，该接口在Phone、Tablet、PC/2in1中均可正常使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -550,7 +550,7 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 对于API version 20及之前的版本，该接口在PC/2in1设备可正常调用，在其他设备中调用无效果。从API version 21开始，该接口在Phone、Tablet、PC/2in1中均可正常使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
