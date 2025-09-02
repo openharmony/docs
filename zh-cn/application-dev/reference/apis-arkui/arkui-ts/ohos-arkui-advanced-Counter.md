@@ -286,7 +286,7 @@ struct NumberStyleExample {
             max: 1000,
             textWidth: 100,
             onChange: (value: number) => {
-              console.info('onDateChange Date: ' + value.toString());
+              console.info('onCounterChange Counter: ' + value.toString());
             }
           }
         }
@@ -387,7 +387,7 @@ struct CounterPage {
             max: 1000,
             textWidth: 100,
             onChange: (value: number) => {
-              console.info('onDateChange Date: ' + value.toString());
+              console.info('onCounterChange Counter: ' + value.toString());
             }
           }
         }
