@@ -176,8 +176,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 6. 获取可用buffer并写入码流至解码器。
-    
-    以下示例包含三个主要步骤：
 
     - 调用[OH_VideoDecoder_QueryInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryinputbuffer)接口获取下一个可用的输入缓冲区（buffer）的索引（index）。
     - 根据获取的索引（index），调用[OH_VideoDecoder_GetInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getinputbuffer)接口获取对应的缓冲区（buffer）实例。
@@ -254,8 +252,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 7. 获取可用buffer显示并释放解码帧。
-
-   以下示例包含三个主要步骤：
 
    - [OH_VideoDecoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
    - 根据获取的索引（index），调用[OH_VideoDecoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
@@ -338,7 +334,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-8. 解码器送帧出帧处理循环。
+8. 解码器送帧/出帧处理循环。
 
     ```c++
     bool result = true;
@@ -521,7 +517,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 5. 获取可用buffer并写入码流至解码器。
     
-    以下示例包含三个主要步骤：
     - 调用[OH_VideoDecoder_QueryInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryinputbuffer)接口获取下一个可用的输入缓冲区（buffer）的索引（index）。
     - 根据获取的索引（index），调用[OH_VideoDecoder_GetInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getinputbuffer)接口获取对应的缓冲区（buffer）实例。
     - 将待解码数据写入该缓冲区（buffer）后，调用[OH_VideoDecoder_PushInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_pushinputbuffer)接口提交至解码器进行解码。当所有待处理数据全部传递给解码器后，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS，通知解码器输入结束。
@@ -594,8 +589,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 6. 获取可用buffer并释放解码帧。
-   
-   以下示例包含三个主要步骤：
 
    - 调用[OH_VideoDecoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
    - 根据获取的索引（index），调用[OH_VideoDecoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
@@ -673,7 +666,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-7. 解码器送帧出帧处理循环。
+7. 解码器送帧/出帧处理循环。
   
     ```c++
     bool result = true;
