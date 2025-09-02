@@ -55,52 +55,50 @@ let huksOptions: huks.HuksOptions = {
 }
 
 /* 3.生成密钥 */
-async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
   console.info(`enter promise generateKeyItem`);
-  let ret: string = 'Success';
+  let ret: boolean = false;
   try {
     await huks.generateKeyItem(keyAlias, huksOptions)
       .then(() => {
         console.info(`promise: generateKeyItem success`);
+        ret = true;
       }).catch((error: BusinessError) => {
         console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
-        ret = 'Failed';
       });
   } catch (error) {
     console.error(`promise: generateKeyItem input arg invalid`);
-    ret = 'Failed';
   }
   return ret;
 }
 
 /* 4.导出密钥 */
-async function exportKeyItem(keyAlias: string, emptyOptions: huks.HuksOptions) {
+async function exportKeyItem(keyAlias: string, emptyOptions: huks.HuksOptions): Promise<boolean> {
   console.info(`enter promise exportKeyItem`);
-  let ret: string = 'Success';
+  let ret: boolean = false;
   try {
     await huks.exportKeyItem(keyAlias, emptyOptions)
       .then((data) => {
         console.info(`promise: exportKeyItem success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
+        ret = true;
       }).catch((error: BusinessError) => {
         console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
-        ret = 'Failed';
       });
   } catch (error) {
     console.error(`promise: exportKeyItem input arg invalid`);
-    ret = 'Failed';
   }
   return ret;
 }
 
 async function testExportKeyItem() {
   let retGen = await generateKeyItem(keyAlias, huksOptions);
-  if (retGen == 'Failed') {
+  if (retGen == false) {
     console.error(`generateKeyItem failed`);
     return;
   }
 
   let retExp = await exportKeyItem(keyAlias, emptyOptions);
-  if (retExp == 'Failed') {
+  if (retExp == false) {
     console.error(`exportKeyItem failed`);
     return;
   }
