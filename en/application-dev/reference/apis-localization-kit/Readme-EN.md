@@ -1,37 +1,35 @@
-# Localization Kit<!--localization-kit-->
+# Localization Kit<!--localization-api-->
 
-- [Introduction to Localization Kit](i18n-l10n.md)
-- Application Internationalization<!--i18n-->
-    - [UI Design for Internationalization](i18n-ui-design.md)
-    - [Locale and Cultural Habit Division](i18n-locale-culture.md)
-    - Language and User Preferences<!--i18n-language-user-preferences-->
-        - [System Language and Locale](i18n-system-language-region.md)
-        - [Preferred Language](i18n-preferred-language.md)
-        - [User Preferences](i18n-user-preferences.md)
-    - [Date and Time Formatting](i18n-time-date.md)
-    - [Number and Unit of Measurement Formatting](i18n-numbers-weights-measures.md)
-    - [Phone Number Formatting](i18n-phone-numbers.md)
-    - [Calendar Setting](i18n-calendar.md)
-    - Time Zone and DST Setting<!--i18n-time-zone-dst-->
-        - [Timezone Setting](i18n-time-zone.md)
-        - [DST Transition](i18n-dst-transition.md)
-    - Multilingual Sorting<!--i18n-sorting-->
-        - [Overview of Multilingual Sorting](i18n-sorting-overview.md)
-        - [Sorting by Local Habits](i18n-sorting-local.md)
-        - [Sorting by Indexes](i18n-sorting-index.md)
-    - [Character Processing](i18n-character-processing.md)
-    - Name Localization<!--i18n-name-localization-->
-        - [Language and Locale Name Localization](i18n-language-region-display.md)
-        - [Time Zone Name Localization](i18n-time-zone-display.md)
-- Application Localization<!--i10n-->
-    - [Multilingual Resource Provisioning](l10n-multilingual-resources.md)
-    - Application Translation<!--i10n-translation-->
-        - [Hard Coding and Concatenation Prevention](l10n-hard-coding-concatenate.md)
-        - [Scene and Context Clarification for Translation](l10n-translation-scene.md)
-        - [Singular/Plural Form Selection](l10n-singular-plural.md)
-- Localization Testing<!--i10n-testing-->
-    - Pseudo-Localization Testing<!--pseudo-i18n-testing-->
-        - [Overview of Pseudo-Localization Testing](pseudo-i18n-testing-overview.md)
-        - [Pseudo-Localization Testing for Translation](pseudo-i18n-testing-translation.md)
-        - [Pseudo-Localization Testing for UI Mirroring](pseudo-i18n-testing-mirror.md)
-    - [Linguistic Testing](linguistic-testing.md)
+- ArkTS API<!--localization-arkts-->
+  - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
+  - [@ohos.intl (Internationalization)](js-apis-intl.md)
+  - [@ohos.resourceManager (Resource Management)](js-apis-resource-manager.md)
+  - [@ohos.sendableResourceManager (resource management)] (js-apis-sendable-resource-manager.md)
+  <!--Del-->
+  - [@ohos.i18n (Internationalization) (System API)](js-apis-i18n-sys.md)
+  <!--DelEnd-->
+  - global<!--localization-global-arkts-->
+    - [RawFileDescriptor](js-apis-rawFileDescriptor.md) 
+    - [Resource](js-apis-resource.md)
+    - [SendableResource](js-apis-sendableResource.md)
+- C API<!--localization-c-->
+  - Modules<!--localization-module-->
+    - [rawfile](capi-rawfile.md)
+    - [resourcemanager](capi-resourcemanager.md)
+  - Header Files<!--localization-headerfile-->
+    - [ohresmgr.h](capi-ohresmgr-h.md)
+    - [raw_dir.h](capi-raw-dir-h.md)
+    - [raw_file.h](capi-raw-file-h.md)
+    - [raw_file_manager.h](capi-raw-file-manager-h.md)
+    - [resmgr_common.h](capi-resmgr-common-h.md)
+  - Structs<!--localization-struct-->
+    - [RawDir](capi-rawfile-rawdir.md)
+    - [RawFileDescriptor](capi-rawfile-rawfiledescriptor.md)
+    - [RawFileDescriptor64](capi-rawfile-rawfiledescriptor64.md)
+    - [RawFile](capi-rawfile-rawfile.md)
+    - [RawFile64](capi-rawfile-rawfile64.md)
+    - [NativeResourceManager](capi-rawfile-nativeresourcemanager.md)
+    - [ResourceManager_Configuration](capi-resourcemanager-resourcemanager-configuration.md)
+- Error Codes<!--localization-arkts-errcode-->
+  - [I18N Error Codes](errorcode-i18n.md)
+  - [Resource Manager Error Codes](errorcode-resource-manager.md)

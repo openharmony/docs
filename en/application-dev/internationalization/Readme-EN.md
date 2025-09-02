@@ -3,13 +3,11 @@
 - [Introduction to Localization Kit](i18n-l10n.md)
 - Application Internationalization<!--i18n-->
     - [UI Design for Internationalization](i18n-ui-design.md)
-    - [Locale ID and Cultural Habit Division](i18n-locale-culture.md)
-    - Language and User Preference Setting<!--i18n-language-user-preferences-->
-        - [System Language and Region Setting](i18n-system-language-region.md)
-        - [Preferred Language Setting](i18n-preferred-language.md)
-        <!--Del-->
-        - [Setting User Preferences (for System Applications Only)](i18n-user-preferences.md)
-        <!--DelEnd-->
+    - [Locale and Cultural Habit Division](i18n-locale-culture.md)
+    - Language and User Preferences<!--i18n-language-user-preferences-->
+        - [System Language and Locale](i18n-system-language-region.md)
+        - [Preferred Language](i18n-preferred-language.md)
+        - [User Preferences](i18n-user-preferences.md)
     - [Date and Time Formatting](i18n-time-date.md)
     - [Number and Unit of Measurement Formatting](i18n-numbers-weights-measures.md)
     - [Phone Number Formatting](i18n-phone-numbers.md)

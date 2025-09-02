@@ -30,7 +30,7 @@ Pseudo-localization testing simulates the translation process of an application 
 
 ## **Test Item**
 
-![zh-cn_image_0000001737423156](figures/zh-cn_image_0000001737423156.png)
+![image_0000001737423156](figures/image_0000001737423156.png)
 
 1. Check the UI for text truncation or distortion, or abnormal layout. Text truncation can be observed by checking whether the text ends with **]** (a right square bracket). If the text does not end with **]**, it is not completely displayed.
 
