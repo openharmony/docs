@@ -626,7 +626,7 @@ let d = new MyClass();      // MyClass 可以被正确地混淆
 ```ts
 // src/main/cpp/types/libentry/Index.d.ts
 declare function testNapi(): void;
-declare function testNapi2(): void;
+declare function testNapi1(): void;
 
 // example.ets
 import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
