@@ -373,3 +373,13 @@ ArkWeb内核版本，请参考[M114内核在OpenHarmony6.0系统上的适配指�
 | SYSTEM_DEFAULT   | 0     | 系统默认内核，OpenHarmony 6.0版本默认为M132。|
 | M114             | 1     | OpenHarmony 6.0版本的遗留内核。开发者可选择此遗留内核，若系统版本上不存在此内核则设置无效。|
 | M132             | 2     | OpenHarmony 6.0版本的常青内核，M132为此版本的默认内核。若系统版本上不存在此内核则设置无效。|
+  ## SiteIsolationMode<sup>21+</sup>
+
+站点隔离机制将不同源的网站，隔离在不同的render进程中，减少跨域攻击面。如：pc上原有进程模型是每一个tab对应一个render进程，站点隔离打开后，可以让不同源的iframe运行在独立的render进程中。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| PARTIAL | 0 | 部分站点隔离，同一个render进程内加载新的站点。 |
+| STRICT  | 1 | 严格站点隔离，跨站点iframe切换新的render进程 。 |
