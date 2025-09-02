@@ -50,18 +50,18 @@
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getFileBuffer(context: Context): Promise<ArrayBuffer | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            // 获取资源文件内容，返回Uint8Array。
-            const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-            console.info('Successfully got RawFileContent');
-            // 转为ArrayBuffer并返回。
-            const buffer: ArrayBuffer = fileData.buffer.slice(0);
-            return buffer;
-         } catch (error) {
-            console.error("Failed to get RawFileContent");
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          // 获取资源文件内容，返回Uint8Array。
+          const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+          console.info('Successfully got RawFileContent');
+          // 转为ArrayBuffer并返回。
+          const buffer: ArrayBuffer = fileData.buffer.slice(0);
+          return buffer;
+        } catch (error) {
+          console.error("Failed to get RawFileContent");
+          return undefined;
+        }
       }
       ```
 
@@ -70,15 +70,15 @@
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getRawFd(context: Context): Promise<resourceManager.RawFileDescriptor | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
-            console.info('Successfully got RawFileDescriptor');
-            return rawFileDescriptor;
-         } catch (error) {
-            console.error('Failed to get RawFileDescriptor:');
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+          console.info('Successfully got RawFileDescriptor');
+          return rawFileDescriptor;
+        } catch (error) {
+          console.error('Failed to get RawFileDescriptor:');
+          return undefined;
+        }
       }
       ```
 
@@ -121,30 +121,30 @@
       let imageSource : image.ImageSource = image.createImageSource(fd);
       // 配置解码选项参数。
       let options: image.DecodingOptionsForPicture = {
-         desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。
+        desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。
       };
       // 创建picture。
       imageSource.createPicture(options).then((picture: image.Picture) => {
-         console.info("Create picture succeeded.");
-         let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
-         let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
-         // 获取辅助图信息。
-         if(auxPicture != null) {
-            let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
-            console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
-               ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
-               ' rowStride: ' +  auxInfo.rowStride +  ' pixelFormat: ' + auxInfo.pixelFormat +
-               ' colorSpace: ' +  auxInfo.colorSpace);
-            // 将辅助图数据读到ArrayBuffer。
-            auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
-               console.info('Read pixels to buffer success.');
-            }).catch((error: BusinessError) => {
-               console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
-            });
-            auxPicture.release();
-         }
+        console.info("Create picture succeeded.");
+        let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
+        let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
+        // 获取辅助图信息。
+        if(auxPicture != null) {
+          let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+          console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
+            ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
+            ' rowStride: ' +  auxInfo.rowStride +  ' pixelFormat: ' + auxInfo.pixelFormat +
+            ' colorSpace: ' +  auxInfo.colorSpace);
+          // 将辅助图数据读到ArrayBuffer。
+          auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
+            console.info('Read pixels to buffer success.');
+          }).catch((error: BusinessError) => {
+            console.error(`Read pixels to buffer failed, error.code: ${error.code}, error.message: ${error.message}`);
+          });
+          auxPicture.release();
+        }
       }).catch((err: BusinessError) => {
-         console.error("Create picture failed.");
+        console.error("Create picture failed.");
       });
       ```
 
@@ -152,5 +152,6 @@
 
    确认picture的异步方法已经执行完成，不再使用该变量后，可按需手动调用下面方法释放。
    ```ts
-   picture.release();
+   // 请务必在确认picture不需要再使用时，再进行释放。
+   // picture.release();
    ```

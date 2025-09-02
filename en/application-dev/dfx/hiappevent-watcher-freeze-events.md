@@ -41,8 +41,8 @@ The **params** attribute in the event information is described as follows.
 | exception | object | Exception information. For details, see **exception**.|
 | hilog | string[] | Log information.|
 | event_handler | string[] | Events not yet handled by the main thread.|
-| event_handler_size_3s | string | Number of tasks in the task stack at 3s during the [THREAD_BLOCK_6S event](appfreeze-guidelines.md#application-main-thread-timeout). This parameter is available only in the application freeze event.|
-| event_handler_size_6s | string | Number of tasks in the task stack at 6s during the [THREAD_BLOCK_6S event](appfreeze-guidelines.md#application-main-thread-timeout). This parameter is available only in the application freeze event.|
+| event_handler_size_3s | string | Number of tasks in the task stack at 3s during the [THREAD_BLOCK_6S event](appfreeze-guidelines.md#thread_block_6s-application-main-thread-timeout). This parameter is available only in the application freeze event.|
+| event_handler_size_6s | string | Number of tasks in the task stack at 6s during the [THREAD_BLOCK_6S event](appfreeze-guidelines.md#thread_block_6s-application-main-thread-timeout). This parameter is available only in the application freeze event.|
 | peer_binder | string[] | Binder call information.|
 | threads | object[] | Full thread call stack. For details, see **thread**.|
 | memory | object | Memory information. For details, see **memory**.|

@@ -167,6 +167,8 @@ type DataObserver = (sessionId: string, fields: Array&lt;string&gt;) => void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
+**参数：**
+
 | 参数名     | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sessionId | string                           | 是   |   标识变更对象的sessionId。长度需小于128字节，且只能包含字母、数字或下划线_。                                          |
@@ -179,6 +181,8 @@ type StatusObserver = (sessionId: string, networkId: string, status: string) => 
 定义获取分布式对象状态变更的监听回调函数。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -193,6 +197,8 @@ type ProgressObserver = (sessionId: string, progress: number) => void
 定义传输进度的监听回调函数。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

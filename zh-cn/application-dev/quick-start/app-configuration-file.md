@@ -64,7 +64,7 @@ app.json5配置文件包含以下标签。
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | bundleName | 标识应用的Bundle名称，用于标识应用的唯一性。命名规则如下&nbsp;：<br/>-&nbsp;必须为以点号（.）分隔的字符串，且至少包含三段，每段中仅允许使用英文字母、数字、下划线（_）。<br/>-&nbsp;首段以英文字母开头，非首段以数字或英文字母开头，每一段以数字或者英文字母结尾。<br/>-&nbsp;不允许多个点号（.）连续出现。<br/>-&nbsp;字符串最小长度为7字节，最大长度128字节。<br/>-&nbsp;推荐采用反域名形式命名（如“com.example.demo”，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。 | 字符串 | 该标签不可缺省。 |
-| bundleType| 标识应用的Bundle类型。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，三方应用配置无法安装，仅支持系统应用。<br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅系统应用生效。<br/>-&nbsp;appPlugin：当前Bundle为应用的插件包。从API version 19开始，支持该标签。 | 字符串| 该标签可缺省，缺省值为app。 |
+| bundleType| 标识应用的Bundle类型。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，仅支持系统应用配置，三方应用配置后应用无法安装。<br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅系统应用生效。<br/>-&nbsp;appPlugin：当前Bundle为应用的插件包。从API version 19开始，支持该标签。 | 字符串| 该标签可缺省，缺省值为app。 |
 | debug | 标识应用是否可调试。<br/>-&nbsp;true：可调试，一般用于开发阶段。<br/>-&nbsp;false：不可调试，一般用于发布阶段。 | 布尔值 | 由DevEco Studio编译构建时生成。该标签可缺省，缺省值为false。 |
 | icon | 标识应用的图标，取值为图标资源文件的索引。支持配置单层图标和分层图标，配置规则和示例请参考[配置应用图标和名称](layered-image.md)。 | 字符串 | 该标签不可缺省。 |
 | label | 标识应用的名称，取值为字符串资源的索引，以支持多语言，字符串长度不超过63字节，具体请参考[配置应用图标和名称](layered-image.md) 。 | 字符串 | 该标签不可缺省。 |
@@ -72,7 +72,7 @@ app.json5配置文件包含以下标签。
 | vendor | 标识对应用开发厂商的描述，取值为长度不超过255字节的字符串。该标签可用于展示开发厂商信息，如在应用的关于页面，取该标签展示开发厂商信息。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | versionCode | 标识应用的版本号，取值范围为0~2147483647。此数字仅用于确定某个版本是否比另一个版本新，数值越大表示版本越新。<br/>开发者可以将该值设置为任何正整数，但是必须确保应用的新版本都使用比旧版本更大的值。 | 数值 | 该标签不可缺省。 |
 | versionName | 标识向用户展示的应用版本号。<br/>取值为长度不超过127字节的字符串，仅由数字和点构成，推荐采用“A.B.C.D”四段式的形式。四段式推荐的含义如下所示。<br/>第一段：主版本号/Major，重大修改的版本，如实现新的大功能或重大变化。<br/>第二段：次版本号/Minor，表示实现较突出的特点，如新功能添加或大问题修复。<br/>第三段：特性版本号/Feature，标识规划的新版本特性。<br/>第四段：修订版本号/Patch，表示维护版本，如修复bug。 | 字符串 | 该标签不可缺省。 |
-| minCompatibleVersionCode | 标识应用能够兼容的最低历史版本号，用于应用多设备之间协同、数据迁移、跨设备兼容性判断，该标签为预留标签，暂未使用。取值范围为0~2147483647。 | 数值 | 该标签可缺省，缺省值等于versionCode标签值。 |
+| minCompatibleVersionCode | 标识应用能够兼容的最低历史版本号，用于应用多设备之间协同、数据迁移、跨设备兼容性判断，该标签为预留字段，暂未使用。取值范围为0~2147483647。 | 数值 | 该标签可缺省，缺省值等于versionCode标签值。 |
 | minAPIVersion | 标识应用运行所需的最小SDK API版本。取值范围为0~2147483647。 | 数值 | 该标签在应用编译构建时自动生成，手动配置无效，对应[工程级build-profile.json5文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app#section45865492619)中的compatibleSdkVersion标签。<!--RP1--><!--RP1End--> |
 | targetAPIVersion | 标识应用运行需要的API目标版本。取值范围为0~2147483647。 | 数值 | 该标签在应用编译构建时自动生成，手动配置无效，对应[工程级build-profile.json5文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app#section45865492619)中的targetSdkVersion标签，如果未配置targetSdkVersion标签，则由工程级build-profile.json5文件中的compileSdkVersion自动生成。<!--RP1--><!--RP1End--> |
 | apiReleaseType | 标识应用运行需要的API目标版本的类型，采用字符串类型表示。取值为“CanaryN”、“BetaN”或者“ReleaseN”，其中，N代表大于零的整数。<br/>-&nbsp;Canary：受限发布的版本。<br/>-&nbsp;Beta：公开发布的Beta版本。<br/>-&nbsp;Release：公开发布的正式版本。 | 字符串 | 应用编译构建时根据当前使用的SDK的版本类型自动生成。手动配置无效。 |
