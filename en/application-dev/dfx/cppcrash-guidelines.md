@@ -173,7 +173,7 @@ The following table describes the fields in a fault log.
 | Device info | Device information.| 8 | Yes| - |
 | Build info | Build information.| 8 | Yes| - |
 | Fingerprint | Fault feature, which is a hash value for faults of the same type.| 8 | Yes| - |
-| Enabled app log configs | List of enabled configuration parameters.| 20 | No| This field is displayed when only when it is configured by users. For details, see [Application Crash Log Configured by HiAppEvent](application-crash-log-configured-by-hiappevent).|
+| Enabled app log configs | List of enabled configuration parameters.| 20 | No| This field is displayed when only when it is configured by users. For details, see [Application Crash Log Configured by HiAppEvent](#application-crash-log-configured-by-hiappevent).|
 | Module name | Module name.| 8 | Yes| - |
 | Version | Application version (in dotted format).| 8 | No| This field is displayed only for application processes.|
 | Version Code | Application version (in integer format).| 8 | No| This field is displayed only for application processes.|
@@ -213,7 +213,7 @@ The log specifications vary slightly according to different fault scenarios. The
 
 - [Asynchronous Thread Stack Tracing Faults](#asynchronous-thread-stack-tracing-faults)
 
-- [Application Crash Log Configured by HiAppEvent](application-crash-log-configured-by-hiappevent)
+- [Application Crash Log Configured by HiAppEvent](#application-crash-log-configured-by-hiappevent)
 
 - [Faults with Page Switching History](#faults-with-page-switching-history)
 

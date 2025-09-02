@@ -1,4 +1,10 @@
-# EDM
+# Enterprise Device Manager
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 Enterprise Device Manager (edm) provides debugging and testing capabilities for device management applications. For example, it can be used to enable or disable extended enterprise device management capabilities.
 
@@ -6,7 +12,7 @@ Enterprise Device Manager (edm) provides debugging and testing capabilities for 
 
 Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the **hdc shell** command.
 
-## edm Commands
+## Commands
 
 | Command         | Description                                                        |
 | ------------- | ------------------------------------------------------------ |
@@ -14,7 +20,7 @@ Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--
 | enable-admin  | Enables the extended enterprise device management capabilities of a component. The target component must be an [EnterpriseAdminExtensionAbility](../mdm/mdm-kit-admin.md).|
 | disable-admin | Disables the extended enterprise device management capabilities of a component.            |
 
-## help Command
+## help
 
 
   ```bash
@@ -22,7 +28,7 @@ Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--
 edm help
   ```
 
-## enable-admin Command
+## enable-admin
 
 
   ```bash
@@ -32,7 +38,7 @@ edm enable-admin -h
 edm enable-admin -n <bundleName> -a <abilityName> [-t <adminType>]
   ```
 
-**Parameters in the enable-admin command**
+**Parameters**
 
 | Parameter             | Description                                                    |
 | ----------------- | ------------------------------------------------------------ |
@@ -51,7 +57,7 @@ enable-admin success.
 ```
 
 
-## disable-admin Command
+## disable-admin
 
   ```bash
 # Display the help information.
@@ -60,7 +66,7 @@ edm disable-admin -h
 edm disable-admin -n <bundleName>
   ```
 
-**Parameters in the disable-admin command**
+**Parameters**
 
 | Parameter            | Description              |
 | ---------------- | ---------------------- |
@@ -165,7 +171,7 @@ Add **-n \<bundle-name\>** to the command.
 
 Add **-a \<ability-name\>** to the command.
 
-### error: the administrator ability component is invalid
+### 9200003 error: the administrator ability component is invalid
 
 **Symptom**
 
@@ -183,7 +189,7 @@ The input value of **bundleName** or **abilityName** is incorrect, or the compon
 
 Obtain the **bundleName** of the application and the **abilityName** of the **EnterpriseAdminExtensionAbility**, and pass them to the parameter.
 
-### error: failed to enable the administrator application of the device
+### 9200004 error: failed to enable the administrator application of the device
 
 **Symptom**
 
@@ -203,7 +209,7 @@ The component fails to be enabled.
 
 2. Use an uncontrolled device for debugging.
 
-### error: failed to disable the administrator application of the device
+### 9200005 error: failed to disable the administrator application of the device
 
 **Symptom**
 

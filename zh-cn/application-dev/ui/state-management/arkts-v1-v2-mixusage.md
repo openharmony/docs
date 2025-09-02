@@ -541,7 +541,7 @@ struct ArrayCompV2 {
 ```
 **不推荐写法**
 
-在下面的例子中，没有调用enableV2Compatibility和makeV1Observed，则有V1和V2双重代理和刷新不一致的问题。
+在下面的例子中，没有调用enableV2Compatibility和makeV1Observed，则有V1和V2双重代理的问题。
 ```ts
 @Entry
 @Component
@@ -551,7 +551,7 @@ struct ArrayCompV1 {
   build() {
     Column() {
       Text(`V1 ${this.arr[0]}`).onClick(() => {
-        // V1代理，可触发ArrayCompV1的刷新，但无法触发ArrayCompV2的刷新
+        // V1代理，可触发ArrayCompV1的刷新并通知ArrayCompV2更新@Param的值
         this.arr[0]++;
       })
       // 传递给ArrayCompV2，被再次包装V2的代理
