@@ -1302,7 +1302,7 @@ if (options != undefined) {
   console.info('index = ' + options.index);
   console.info('name = ' + options.name);
   console.info('path = ' + options.path);
-  console.info('params = ' + options.params);
+  console.info(`params = ${JSON.stringify(options.params)}`);
 }
 ```
 ## router.getStateByUrl<sup>(deprecated)</sup>
