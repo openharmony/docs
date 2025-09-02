@@ -103,7 +103,7 @@ struct Index {
       .onTouch((event)=>{
         if (event.type == TouchType.Down) {
           console.info("outside column touch down")
-          this.messageOut = "inner column touch down"
+          this.messageOut = "outside column touch down"
         }
       })
     }
