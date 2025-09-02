@@ -63,7 +63,7 @@ import { HalfScreenLaunchComponent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  appId: string = "5765880207853275489"; //原子化服务appId
+  appId: string = "576****************"; // 原子化服务appId。
 
   build() {
     Column() {
@@ -84,7 +84,7 @@ struct Index {
           Image($r('app.media.app_icon'))
           Text('拉起手机充值')
         }.width("80vp").height("80vp").margin({bottom:30})
-      } // 通过尾随必包形式传入content
+      } // 通过尾随必包形式传入content。
     }
   }
 
