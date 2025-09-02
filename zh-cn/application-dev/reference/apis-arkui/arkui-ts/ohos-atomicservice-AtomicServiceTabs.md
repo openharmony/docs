@@ -78,9 +78,9 @@ AtomicServiceTabs ({
 
 ## TabContentBuilder
 
-内容视图容器。
-
 type TabContentBuilder = () => void
+
+内容视图容器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
