@@ -1,4 +1,12 @@
 # 合理运行后台任务
+
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介 
 
 设备返回主界面、锁屏、应用切换等操作会使应用退至后台。为了降低设备耗电速度、保障用户使用流畅度，系统会对退至后台的应用进行管控，包括进程挂起和进程终止。为了保障后台音乐播放、日历提醒等功能的正常使用，系统提供了受规范约束的后台任务，扩展应用在后台的运行时间。  
@@ -12,13 +20,13 @@
 
 ### 场景示例
 
-下面代码在申请短时任务后执行了一个耗时计算任务。源代码可访问[短时任务示例程序](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/TransientTaskView.ets)获取。
+下面代码在申请短时任务后执行了一个耗时计算任务。源代码可访问[短时任务示例程序](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/TransientTaskView.ets)获取。
 
 ```typescript
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import { BusinessError } from '@ohos.base';
-import util from '@ohos.util';
-import hiTraceMeter from '@ohos.hiTraceMeter';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const totalTimes: number = 50000000; // 循环次数
 const calculateResult: string = 'Total time costed = %s ms.'; // 文本格式
@@ -145,9 +153,9 @@ struct Index {
 
 ### 场景示例
 
-下面模拟一个后台定位的场景。应用订阅设备位置变化，每隔一秒获取位置信息，为了保证应用在退到后台后仍然可以使用定位服务，申请了定位类型的长时任务。源代码可访问[长时任务示例程序](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/LongTermTaskView.ets)获取。
+下面模拟一个后台定位的场景。应用订阅设备位置变化，每隔一秒获取位置信息，为了保证应用在退到后台后仍然可以使用定位服务，申请了定位类型的长时任务。源代码可访问[长时任务示例程序](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/LongTermTaskView.ets)获取。
 
-首先需要在 [module.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 配置文件中为需要使用长时任务的 EntryAbility 声明任务类型。
+首先需要在 [module.json5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 配置文件中为需要使用长时任务的 EntryAbility 声明任务类型。
 
 ```javascript
 {
@@ -174,18 +182,16 @@ struct Index {
 - ohos.permission.LOCATION
 - ohos.permission.KEEP_BACKGROUND_RUNNING
 
-权限申请方式参考[配置文件权限申明](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)，在 [module.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 中进行配置。其中部分权限申请以及打开使能通知开关需要用户手动确认。系统为申请的长时任务发布通知栏消息时，应用的使能通知开关必须处于开启状态，否则用户无法感知后台正在运行的长时任务。
+权限申请方式参考[配置文件权限申明](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)，在 [module.json5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 中进行配置。其中部分权限申请以及打开使能通知开关需要用户手动确认。系统为申请的长时任务发布通知栏消息时，应用的使能通知开关必须处于开启状态，否则用户无法感知后台正在运行的长时任务。
 
 后台定位的实现代码如下：
 
 ```javascript
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import common from '@ohos.app.ability.common';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import { BusinessError } from '@ohos.base';
-import geolocation from '@ohos.geoLocationManager';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import notificationManager from '@ohos.notificationManager';
+import { notificationManager } from "@kit.NotificationKit";
+import { abilityAccessCtrl, common, WantAgent, wantAgent } from "@kit.AbilityKit";
+import { geoLocationManager } from "@kit.LocationKit";
+import { backgroundTaskManager } from "@kit.BackgroundTasksKit";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'BackgroundLocation';
 
@@ -210,10 +216,10 @@ export struct LongTermTaskView {
             console.info(`[EntryAbility], data: ${JSON.stringify(data)}`);
           })
           .catch((err: BusinessError) => {
-            console.info(`[EntryAbility], err: ${JSON.stringify(err)}`);
+            console.error(`[EntryAbility], err: ${JSON.stringify(err)}`);
           })
       } catch (err) {
-        console.info(`[EntryAbility], catch err->${JSON.stringify(err)}`);
+        console.error(`[EntryAbility], catch err->${JSON.stringify(err)}`);
       }
     }).catch((err: BusinessError) => {
       console.error(`[EntryAbility] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
@@ -221,7 +227,7 @@ export struct LongTermTaskView {
   }
 
   // 位置变化回调
-  locationChange = async (location: geolocation.Location) => {
+  locationChange = async (location: geoLocationManager.Location) => {
     console.info(TAG, `locationChange location =${JSON.stringify(location)}`);
     this.latitude = location.latitude;
     this.longitude = location.longitude;
@@ -230,15 +236,15 @@ export struct LongTermTaskView {
   // 获取定位
   async getLocation() {
     console.info(TAG, `enter getLocation`);
-    let requestInfo: geolocation.LocationRequest = {
-      priority: geolocation.LocationRequestPriority.FIRST_FIX, // 快速获取位置优先
-      scenario: geolocation.LocationRequestScenario.UNSET, // 未设置场景信息
+    let requestInfo: geoLocationManager.LocationRequest = {
+      priority: geoLocationManager.LocationRequestPriority.FIRST_FIX, // 快速获取位置优先
+      scenario: geoLocationManager.LocationRequestScenario.UNSET, // 未设置场景信息
       timeInterval: 1, // 上报位置信息的时间间隔
       distanceInterval: 0, // 上报位置信息的距离间隔
       maxAccuracy: 100 // 精度信息
     };
     console.info(TAG, `on locationChange before`);
-    geolocation.on('locationChange', requestInfo, this.locationChange);
+    geoLocationManager.on('locationChange', requestInfo, this.locationChange);
     console.info(TAG, `on locationChange end`);
   }
 
@@ -253,7 +259,7 @@ export struct LongTermTaskView {
           abilityName: context.abilityInfo.name
         }
       ],
-      operationType: wantAgent.OperationType.START_ABILITY,
+      actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
@@ -292,7 +298,7 @@ export struct LongTermTaskView {
           })
         Button('关闭定位服务')
           .onClick(async () => {
-            await geolocation.off('locationChange');
+            await geoLocationManager.off('locationChange');
             this.stopContinuousTask();
           })
           .margin({ top: 10 })
