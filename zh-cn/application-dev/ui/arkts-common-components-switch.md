@@ -141,9 +141,9 @@ struct ToggleExample {
           .margin({ left: 200, right: 10 })
           .onChange((isOn: boolean) => {
             if (isOn) {
-              this.getUIContext().getPromptAction().showToast(this.BOnSt);
+              this.getUIContext().getPromptAction().showToast(this.bOnSt);
             } else {
-              this.getUIContext().getPromptAction().showToast(this.BOffSt);
+              this.getUIContext().getPromptAction().showToast(this.bOffSt);
             }
           })
       }
