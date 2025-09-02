@@ -90,7 +90,7 @@ struct KeyEventExample {
           this.columnType = 'Up';
         }
         this.columnText = 'Column: \n' +
-        'KeyType:' + this.buttonType + '\n' +
+        'KeyType:' + this.columnType + '\n' +
         'KeyCode:' + event.keyCode + '\n' +
         'KeyText:' + event.keyText;
       }
@@ -166,7 +166,7 @@ struct KeyEventExample {
           this.columnType = 'Up';
         }
         this.columnText = 'Column: \n' +
-          'KeyType:' + this.buttonType + '\n' +
+          'KeyType:' + this.columnType + '\n' +
           'KeyCode:' + event.keyCode + '\n' +
           'KeyText:' + event.keyText;
       }
@@ -223,7 +223,7 @@ struct Index {
           console.info("button1");
           return true
         })
-        Button('button1').id('button2').onKeyEvent((event) => {
+        Button('button2').id('button2').onKeyEvent((event) => {
           console.info("button2");
           return true
         })
