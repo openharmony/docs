@@ -1305,7 +1305,6 @@ struct SelectExample {
         .width('90%')
         .margin({ top: 20,left:30 })
         .borderRadius(12)
-        .width(200)
         .padding(9)
         .backgroundColor(Color.White)
         .shadow({ radius: 10, color: '#888888', offsetX: 0, offsetY: 10 })
