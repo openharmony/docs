@@ -133,21 +133,21 @@ test(a2);
 
 开启属性名称混淆，效果如下：
 
- ```ts
+```ts
 // test.ts
 // 混淆前：
 class TestA {
 	static prop1: number = 0;
 }
 TestA.prop1;
- ```
- ```ts
+```
+```ts
 // 混淆后：
 class TestA {
 	static i: number = 0;
 }
 TestA.i;
- ```
+```
 
 若配置该选项，那么所有的属性名都会被混淆，除了下面场景：
 
