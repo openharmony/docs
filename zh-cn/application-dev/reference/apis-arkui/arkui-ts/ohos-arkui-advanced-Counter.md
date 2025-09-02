@@ -334,7 +334,6 @@ struct DataStyleExample {
 设置direction属性，实现列表型、紧凑型、数字内联型、日期内联型Counter的镜像布局。
 
 ```ts
-// xxx.ets
 import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 
 @Entry
