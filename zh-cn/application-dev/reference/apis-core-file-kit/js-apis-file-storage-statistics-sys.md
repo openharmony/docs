@@ -64,7 +64,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
   import { BusinessError } from '@ohos.base';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
-      console.error("volumes is null");
+      console.error("volumes is null or length is invalid");
       return;
     }
     let uuid: string = volumes[0].uuid;
@@ -118,7 +118,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
   import { BusinessError } from '@ohos.base';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
-      console.error("volumes is null");
+      console.error("volumes is null or length is invalid");
       return;
     }
     let uuid: string = volumes[0].uuid;
@@ -180,7 +180,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
   import { BusinessError } from '@ohos.base';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
-      console.error("volumes is null");
+      console.error("volumes is null or length is invalid");
       return;
     }
     let uuid: string = volumes[0].uuid;
@@ -234,7 +234,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
   import { BusinessError } from '@ohos.base';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
-      console.error("volumes is null");
+      console.error("volumes is null or length is invalid");
       return;
     }
     let uuid: string = volumes[0].uuid;
