@@ -29,12 +29,12 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                                                                                                     |
-| -------- | ----------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------|
-| mimeType  | string     | 是   | 媒体类型，DRM解决方案名称，可通过[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)查询。 |
-| initData  | Uint8Array     | 是   | 初始数据。                                                                                                  |
-| mediaKeyType| number     | 是   | 媒体密钥类型。0表示在线，1表示离线。                                                                                    |
-| options  | [OptionsData[]](arkts-apis-drm-i.md#optionsdata)     | 否   | 可选数据。                                                                                                  |
+| 参数名     | 类型                                         | 只读 | 可选                                                                                                   | 说明                                                                                                     |
+| -------- | -------------------------------------------|----|------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| mimeType  | string  |   否 | 否  | 媒体类型，DRM解决方案名称，可通过[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)查询。 |
+| initData  | Uint8Array |否| 否  | 初始数据。                                                                                                |
+| mediaKeyType| number  |  否  | 否  | 媒体密钥类型。0表示在线，1表示离线。                                                                                  |
+| options  | [OptionsData[]](arkts-apis-drm-i.md#optionsdata) |   否 | 否  | 可选数据。                                                                                                |
 
 **返回值：**
 
@@ -81,9 +81,9 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| response  | Uint8Array     | 是   | 媒体密钥响应。                   |
+| 参数名     | 类型                                            | 只读 | 可选 | 说明                           |
+| -------- | --------------------------------------------|----|----| ---------------------------- |
+| response  | Uint8Array  | 否  | 否  | 媒体密钥响应。                   |
 
 **返回值：**
 
@@ -213,9 +213,9 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array    | 是   | 离线媒体密钥标识。                   |
+| 参数名     | 类型                                          | 只读 | 可选 | 说明                           |
+| -------- | ---------------------------------------------|----|----| ---------------------------- |
+| mediaKeyId  | Uint8Array  | 否   | 否  | 离线媒体密钥标识。                   |
 
 **返回值：**
 
@@ -262,10 +262,10 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | 是   | 离线媒体密钥标识。                   |
-| response  | Uint8Array     | 是   | 离线媒体密钥释放响应。                   |
+| 参数名     | 类型                                        | 只读 | 可选 | 说明                           |
+| -------- | -------------------------------------------|----|----| ---------------------------- |
+| mediaKeyId  | Uint8Array  |  否  | 否   | 离线媒体密钥标识。                   |
+| response  | Uint8Array  |  否  | 否 | 离线媒体密钥释放响应。                   |
 
 **返回值：**
 
@@ -319,9 +319,9 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | 是   | 离线媒体密钥标识。                   |
+| 参数名     | 类型                                       | 只读 | 可选 | 说明                           |
+| -------- | ------------------------------------------|----|----| ---------------------------- |
+| mediaKeyId  | Uint8Array  |  否  | 否  | 离线媒体密钥标识。                   |
 
 **返回值：**
 
@@ -409,9 +409,9 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                                                                                                     |
-| -------- | ----------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------|
-| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，可通过[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)查询。 |
+| 参数名     | 类型                                       | 只读 | 可选 | 说明                                                                                                     |
+| -------- | -----------------------------------------|----|----|--------------------------------------------------------------------------------------------------------|
+| mimeType  | string  | 否  | 否  | 媒体类型，支持的媒体类型取决于DRM解决方案，可通过[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)查询。 |
 
 **返回值：**
 
@@ -457,10 +457,10 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 事件类型，固定为'keyRequired'，当播放DRM节目需要获取媒体密钥时触发。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 是   | 回调函数，返回事件信息。                 |
+| 参数名      | 类型            | 只读 | 可选 | 说明                                  |
+| -------- | ----------------|----|----| ------------------------------------- |
+| type     | string           |  否  | 否   | 事件类型，固定为'keyRequired'，当播放DRM节目需要获取媒体密钥时触发。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void | 否   | 否 | 回调函数，返回事件信息。                 |
 
 **错误码：**
 
@@ -495,10 +495,10 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，固定为'keyRequired'。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 否   | 回调函数，返回事件信息。可选。                |
+| 参数名      | 类型              |  只读  | 可选 | 说明                               |
+| -------- | --------------------|----|----|----------------------------------|
+| type     | string           |  否  | 否  | 监听事件类型，固定为'keyRequired'。         |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void| 否 | 是  | 回调函数，返回事件信息。可选。                  |
 
 **错误码：**
 
@@ -531,10 +531,10 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，固定为'keyExpired'。密钥过期时触发。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 是   | 回调函数，返回事件信息。                 |
+| 参数名      | 类型             | 只读 | 可选 | 说明                                  |
+| -------- | -----------------|----|----| ------------------------------------- |
+| type     | string            |  否  | 否  | 监听事件类型，固定为'keyExpired'。密钥过期时触发。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void|  否  | 否  | 回调函数，返回事件信息。                 |
 
 **错误码：**
 
@@ -569,10 +569,10 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，固定为'keyExpired'。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 否   | 回调函数，返回事件信息。可选。                |
+| 参数名      | 类型               | 只读 | 可选 | 说明                                  |
+| -------- | ------------------|----|----| ------------------------------------- |
+| type     | string            |  否  | 否  | 监听事件类型，固定为'keyExpired'。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void|   否 | 是  | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -605,10 +605,10 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'vendorDefined'。自定义事件发生时触发。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 是   | 回调函数，返回事件信息。                 |
+| 参数名      | 类型               | 只读 | 可选 | 说明                                  |
+| -------- | ------------------|----|----| ------------------------------------- |
+| type     | string             |  否  | 否  | 监听事件，固定为'vendorDefined'。自定义事件发生时触发。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void|  否  | 否  | 回调函数，返回事件信息。                 |
 
 **错误码：**
 
@@ -643,10 +643,10 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'vendorDefined'。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 否   | 回调函数，返回事件信息。可选。                |
+| 参数名      | 类型               | 只读 | 可选 | 说明                                  |
+| -------- | ----------------|----|----| ------------------------------------- |
+| type     | string           |  否  | 否  | 监听事件，固定为'vendorDefined'。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void | 否   | 是  | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -679,10 +679,10 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，固定为'expirationUpdate'。密钥过期更新时触发。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 是   | 回调函数，返回事件信息。                 |
+| 参数名      | 类型                  | 只读 |可选 | 说明                              |
+| -------- | -------------------- |----| -----|---------------------------------|
+| type     | string           |  否  | 否  | 监听事件类型，固定为'expirationUpdate'。密钥过期更新时触发。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void|  否  | 否  | 回调函数，返回事件信息。                 |
 
 **错误码：**
 
@@ -717,10 +717,10 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，固定为'expirationUpdate'。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 否   | 回调函数，返回事件信息。可选。                |
+| 参数名      | 类型              | 只读 | 可选 | 说明                                  |
+| -------- | -----------------|----|----| ------------------------------------- |
+| type     | string           |  否  | 否  | 监听事件类型，固定为'expirationUpdate'。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void| 否   | 是  | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -753,10 +753,10 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，固定为'keysChange'。密钥变化时触发。 |
-| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) => void | 是   | 回调函数，返回事件信息，包含密钥标识和密钥状态描述的列表及密钥是否可用。                 |
+| 参数名      | 类型               | 只读 | 可选 | 说明                                  |
+| -------- | -----------------|----|----| ------------------------------------- |
+| type     | string            | 否  | 否  | 监听事件类型，固定为'keysChange'。密钥变化时触发。 |
+| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) => void| 否  | 否  | 回调函数，返回事件信息，包含密钥标识和密钥状态描述的列表及密钥是否可用。                 |
 
 **错误码：**
 
@@ -793,10 +793,10 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，固定为'keysChange'。 |
-| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) => void | 否   | 回调函数，返回事件信息，包含密钥标识和密钥状态描述的列表及密钥是否可用。                |
+| 参数名      | 类型               |只读   | 可选 | 说明                                   |
+| -------- | -------------------- | ---- | ----|--------------------------------------|
+| type     | string           |  否  | 否   | 监听事件类型，固定为'keysChange'。              |
+| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) => void|否 | 是   | 回调函数，返回事件信息，包含密钥标识和密钥状态描述的列表及密钥是否可用。 |
 
 **错误码：**
 
