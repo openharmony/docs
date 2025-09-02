@@ -2507,7 +2507,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | mode | [Mode](#mode10) | 否 | 任务模式，默认为后台任务。从API version 20开始，下载到用户文件场景必须为request.agent.Mode.FOREGROUND。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。<br/>从API version 20开始，下载到用户文件场景必须为true。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。<br/>从API version 20开始，下载到用户文件场景必须为true。<br/>设置为 `true` 时，不建议创建多个任务同时往同一个文件下载内容，会导致文件内容混乱。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | method | string | 否 | 上传或下载HTTP的标准方法，包括GET、POST和PUT，不区分大小写。<br/>- 上传时，使用PUT或POST，默认值为PUT。<br/>- 下载时，使用GET或POST，默认值为GET。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>- 上传请求，默认的Content-Type为"multipart/form-data"。<br/>- 下载请求，默认的Content-Type为"application/json"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | - 下载时，data为字符串类型，通常情况下使用json格式（object将被转换为json文本），默认为空。<br/>- 上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;。从API version 15开始，创建单个任务可以上传最多100个文件。默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
