@@ -22,6 +22,6 @@
 | 名称 | 描述 |
 | -- | -- |
 | [ImageEffect_DataType](capi-image-effect-filter-h.md#imageeffect_datatype) dataType = [ImageEffect_DataType](capi-image-effect-filter-h.md#imageeffect_datatype)::EFFECT_DATA_TYPE_UNKNOWN | 参数类型，默认为未定义类型。 |
-| [ImageEffect_DataValue](capi-image-effect-filter-h.md#imageeffect_datatype) dataValue = { 0 } | 参数值，默认为空。 |
+| [ImageEffect_DataValue](capi-image-effect-filter-h.md#imageeffect_datavalue) dataValue = { 0 } | 参数值，默认为空。 |
 
 
