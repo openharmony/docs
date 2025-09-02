@@ -6108,9 +6108,9 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 
 ### setHasAppLink<sup>21+</sup>
 
-setHasAppLink(hasAppLink: int): Promise&lt;void&gt;
+setHasAppLink(hasAppLink: int): void
 
-设置记忆链接的状态信息，使用promise方式返回异步结果。
+设置记忆链接的状态信息。
 
 
 **系统接口**：此接口为系统接口。
@@ -6122,12 +6122,6 @@ setHasAppLink(hasAppLink: int): Promise&lt;void&gt;
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
 | hasAppLink | int | 是    | 设置记忆链接的状态信息。 |
-
-**返回值：**
-
-| 类型                  | 说明         |
-| ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **错误码：**
 
@@ -6166,9 +6160,9 @@ async function example(asset: photoAccessHelper.PhotoAsset, hasAppLink: linkType
 
 ### setAppLinkInfo<sup>21+</sup>
 
-setAppLinkInfo(appLink: string): Promise&lt;void&gt;
+setAppLinkInfo(appLink: string): void
 
-设置记忆链接的信息，使用promise方式返回异步结果。
+设置记忆链接的信息。
 
 
 **系统接口**：此接口为系统接口。
@@ -6180,12 +6174,6 @@ setAppLinkInfo(appLink: string): Promise&lt;void&gt;
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
 | appLink | string | 是    | 设置记忆链接的信息。 |
-
-**返回值：**
-
-| 类型                  | 说明         |
-| ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **错误码：**
 
