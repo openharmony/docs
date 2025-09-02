@@ -568,7 +568,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统接口**：此接口为系统接口。
 
-| 名称        | 类型   | 只读 | 可选 | 说明     |
-| ----------- | ------ | ---- | ---- |------------ |
-| data        | [EnabledNotificationCallbackData](#enablednotificationcallbackdata8) | 否   | 否    |   回调返回监听到的角标使能状态信息。 |
+| 名称        | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | ------------ |
+| data        | [EnabledNotificationCallbackData](#enablednotificationcallbackdata8) | 是    |   回调返回监听到的角标使能状态信息。 |
 
