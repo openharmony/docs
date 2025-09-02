@@ -1,4 +1,4 @@
-# @ohos.app.ability.VerticalPanelManager (启动垂域面板选择器 )
+# @ohos.app.ability.verticalPanelManager (启动垂域面板选择器)(系统接口)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -11,31 +11,30 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口仅可在Stage模型下使用。
+> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
+> 本模块接口仅可在Stage模型下使用。<br>
+> 本模块接口均为系统接口。
+
 ## 导入模块
 
 ```ts
 import { verticalPanelManager } from '@kit.AbilityKit';
 ```
 
-## StartVerticalPanel
+## verticalPanelManager.StartVerticalPanel
 
-startVerticalPanel(
-      context: common.UIAbilityContext,
-      wantParam: Record<string, Object>,
-      panelConfig: PanelConfig,
-      panelStartCallback: PanelStartCallback
+startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string, Object&gt;, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback
 ): Promise\<void>
 
-启动带有面板配置的垂域选择器。如果目标能力是可见的，您可以启动目标能力；如果目标能力是不可见的，
+启动带有面板配置的垂域选择器。仅支持处于前台的应用调用。
 
-您需要申请权限：ohos.permission.START_INVISIBLE_ABILITY 来启动目标不可见能力。
+> **说明：**
+>
+> 如果目标能力是可见的，可以启动目标能力；如果目标能力是不可见的，需要申请权限：ohos.permission.START_INVISIBLE_ABILITY 来启动目标不可见能力。
 
-如果调用方应用处于后台，不允许调用此接口。
+**系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
-**系统能力**：SystemCapability.Ability.AppExtension.VerticalPanel
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -50,7 +49,7 @@ startVerticalPanel(
 
 | 参数名 | 说明 |
 | -------- |  -------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -62,9 +61,9 @@ startVerticalPanel(
 | 16000050 | Failed to connect to the system service or system server handle failed. |
 | 16000135 | The main window of this ability of this context does not exits. |
 
-**实例：**
+**示例：**
 
-```typescript
+```ts
 import { common, verticalPanelManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
@@ -145,46 +144,57 @@ struct Index {
 
 垂域面板的配置。
 
-**系统能力**：SystemCapability.Ability.AppExtension.VerticalPanel
+**系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [VerticalType](#verticaltype) | 否 | 否 | 垂域面板的类型 。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
-| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括包名（bundleName）、模块名（moduleName）、能力名（abilityName）、窗口ID（windowId）和屏幕模式（screenMode）。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+| type | [VerticalType](#verticaltype) | 否 | 否 | 垂域面板的类型 。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括包名（bundleName）、模块名（moduleName）、能力名（abilityName）、窗口ID（windowId）和屏幕模式（screenMode）。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## VerticalType 
 
 提供能力类型定义的枚举。
 
-**元服务API：**从API version 20开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
-**系统能力：**SystemCapability.Ability.AppExtension.VerticalPanel
+**系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
+
+**系统接口：** 此接口为系统接口。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NAVIGATION | 'navigation' | 指示导航的类型。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+| NAVIGATION | 'navigation' | 指示导航的类型。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## PanelStartCallback
 
 开启垂域面板的回调。
 
-### onError
+**系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
-onError?: (code: number, name: string, message: string) => void
+**系统接口：** 此接口为系统接口。
 
-在发生除与UIAbility或UIExtensionAbility断开连接之外的错误时调用。 
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| onError | [OnErrorFn](#onerrorfn) | 否 | 是 | 在发生除与UIAbility或UIExtensionAbility断开连接之外的错误时调用。|
+| onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 在UIExtensionAbility终止并返回结果时调用。 |
 
-**元服务API：**从API version 20开始，该接口支持在元服务中使用。
+## OnErrorFn
 
-**系统能力：**SystemCapability.Ability.AppExtension.VerticalPanel
+type OnErrorFn = (code: number, name: string, message: string) => void
+ 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型  | 必填  | 说明 |
 | -------- | -------- | -------- | -------- |
-| code | number | Yes | 如果UIAbility或UIExtensionAbility无法启动，则返回的代码。 |
-| name | string | Yes | UIAbility或UIExtensionAbility启动失败时返回的名称。 |
-| message | string | Yes | UIAbility或UIExtensionAbility启动失败时返回的消息。 |
+| code | number | 是 | 如果UIAbility或UIExtensionAbility无法启动，则返回的代码。 |
+| name | string | 是 | UIAbility或UIExtensionAbility启动失败时返回的名称。 |
+| message | string | 是 | UIAbility或UIExtensionAbility启动失败时返回的消息。 |
 
 **示例：**
 
@@ -199,15 +209,15 @@ let callback: verticalPanelManager.PanelStartCallback = {
 }
 ```
 
-### onResult
+## OnResultFn
 
-onResult?: (parameter: AbilityResult) => void
+type OnResultFn = (parameter: AbilityResult) => void
 
-在UIExtensionAbility终止并返回结果时调用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
-**元服务API：**从API version 20开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
-**系统能力：**SystemCapability.Ability.AppExtension.VerticalPanel
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -230,14 +240,16 @@ let callback: verticalPanelManager.PanelStartCallback = {
 
 ## Constants
 
-**元服务API：**从API version 20开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
-| 名字 | 类型 | 值 | Description |
+**系统接口：** 此接口为系统接口。
+
+| 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 导出 bundleName 的常量字符串并将其提供给 sourceAppInfo。 |
-| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 导出 moduleName的常量字符串并将其提供给 sourceAppInfo。 |
-| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 导出 abilityName的常量字符串并将其提供给 sourceAppInfo。 |
-| SOURCE_APP_WINDOW_ID | string | 'windowId' | 导出 windowId的常量字符串并将其提供给 sourceAppInfo。 |
-| SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 导出 screenMode 的常量字符串，并将其提供给 sourceAppInfo。 |
+| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 导出bundleName的常量字符串并将其提供给sourceAppInfo。 |
+| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 导出moduleName的常量字符串并将其提供给sourceAppInfo。 |
+| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 导出abilityName的常量字符串并将其提供给sourceAppInfo。 |
+| SOURCE_APP_WINDOW_ID | string | 'windowId' | 导出windowId的常量字符串并将其提供给sourceAppInfo。 |
+| SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 导出screenMode的常量字符串，并将其提供给sourceAppInfo。 |
