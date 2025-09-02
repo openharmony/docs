@@ -267,7 +267,7 @@ display.on('change', async (data) => {
   let windowClass: window.Window = await window.getLastWindow(this.context);
   // window后更新，获取到的还是原来的宽高
   let windowProperties = windowClass.getWindowProperties();
-  console.info(', Width: ' + windowProperties.windowRect.width +
+  console.info('Width: ' + windowProperties.windowRect.width +
     ', height: ' + windowProperties.windowRect.height);
   // 请确保已获取到相关Window实例，即windowClass
   windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
@@ -281,7 +281,7 @@ display.on('change', (data) => {
   console.info('Succeeded in enabling the listener for display changes. Data: ' +
   JSON.stringify(data));
   let newDisplay: display.Display = display.getDefaultDisplaySync();
-  console.info('Orientation: ' + newDisplay.orientation + 'width: ' +
+  console.info('Orientation: ' + newDisplay.orientation + ', width: ' +
   newDisplay.width + ', height: ' + newDisplay.height);
 });
 ```
