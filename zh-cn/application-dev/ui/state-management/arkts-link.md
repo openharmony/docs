@@ -57,12 +57,11 @@
 
 - 当装饰的对象是Array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
 
-- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性，详见[装饰Date类型变量](#装饰date类型变量)。
+- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性，示例请参考[装饰Date类型变量](#装饰date类型变量)。
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值，示例请参考[装饰Map类型变量](#装饰map类型变量)。
 
-- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
-
-- 当装饰的变量是Set时，可以观察Set整体的赋值，以及通过调用Set的`add`、`clear`、`delete`接口更新其值。详见[装饰Set类型变量](#装饰set类型变量)。
+- 当装饰的变量是Set时，可以观察Set整体的赋值，以及通过调用Set的`add`、`clear`、`delete`接口更新其值，示例请参考[装饰Set类型变量](#装饰set类型变量)。
 ### 框架行为
 
 \@Link装饰的变量和所属的自定义组件共享生命周期。
