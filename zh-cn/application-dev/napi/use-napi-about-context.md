@@ -245,11 +245,6 @@ node_api_get_module_file_name | 否 |
 
         status = napi_call_function(newEnv2, nullptr, args[0], 1, args2, &result);
         if (status != napi_ok) {
-            OH_LOG_INFO(LOG_APP, "napi_get_global of env failed");
-            return nullptr;
-        }
-        status = napi_call_function(newEnv2, globalObj, args[0], 1, args2, &result);
-        if (status != napi_ok) {
             OH_LOG_INFO(LOG_APP, "call function of env failed");
         }
         int32_t ret = 0;
