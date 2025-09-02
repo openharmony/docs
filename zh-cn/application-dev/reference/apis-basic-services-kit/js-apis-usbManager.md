@@ -205,8 +205,8 @@ hasRight(deviceName: string): boolean
 ```ts
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (!devicesList || devicesList.length == 0) {
-  return;
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
