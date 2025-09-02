@@ -564,11 +564,19 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>
 
+### (data: EnabledNotificationCallbackData)<sup>12+</sup>
+
+(data: EnabledNotificationCallbackData): void
+
+注册应用角标使能状态变化的回调函数类型。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
-| 名称        | 类型   | 必填 | 说明     |
+**参数**：
+
+| 参数名        | 类型   | 必填 | 说明     |
 | --------- | ------ | ---- | ------------ |
 | data        | [EnabledNotificationCallbackData](#enablednotificationcallbackdata8) | 是    |   回调返回监听到的角标使能状态信息。 |
 
