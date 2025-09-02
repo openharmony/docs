@@ -584,7 +584,7 @@ try {
 | valueNow<sup>20+</sup>             | number                                                             | 否  | 是  | 当前值。<br>默认值：0。|
 | windowId<sup>20+</sup>             | number                                                             | 否  | 是  | 窗口ID。<br>默认值：-1。|
 | offset<sup>20+</sup>             | number              | 否  | 是  | 内容区域相对于可滚动组件（如List和Grid）顶部坐标的像素偏移量。<br>默认值：0。|
-| textType<sup>20+</sup>             | string                                                             | 否  | 是  | 元素的无障碍文本类型，由组件的 accessibilityTextHint属性配置。|
+| textType<sup>20+</sup>             | string                                                             | 否  | 是  | 元素的无障碍文本类型，由组件的accessibilityTextHint属性配置。|
 | accessibilityText<sup>20+</sup> | string                                                  | 否  | 是  | 元素的无障碍文本信息。|
 | hotArea<sup>20+</sup>             | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                              | 否  | 是  | 元素的可触摸区域。|
 | customComponentType<sup>20+</sup>             | string                                                             | 否  | 是  | 自定义组件类型。|
