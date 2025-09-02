@@ -9,13 +9,17 @@
 
 PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过[startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability)拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
 
-![Targetapp_PhotoEditorExtensionAbility](figures/photo-editor-demo.jpg)
-
 > **说明：**
 > 
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > 本模块接口仅可在Stage模型下使用。
+
+## 实现效果
+
+下图为通过PhotoEditorExtensionAbility实现的图片编辑扩展页面示意图，页面的布局与功能可以根据实际需要开发。
+
+![Targetapp_PhotoEditorExtensionAbility](figures/photo-editor-demo.jpg)
 
 ## 导入模块
 
@@ -95,7 +99,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onForeground(): void
 
-当PhotoEditorExtensionAbility从后台转到前台时，系统会触发该生命周期回调。
+当PhotoEditorExtensionAbility从后台转到前台时，系统会触发该回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -120,7 +124,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onBackground(): void
 
-当PhotoEditorExtensionAbility从前台转到后台时，系统会触发该生命周期回调。
+当PhotoEditorExtensionAbility从前台转到后台时，系统会触发该回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -145,7 +149,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onDestroy(): void | Promise\<void>
 
-当PhotoEditorExtensionAbility被销毁时，系统触发该回调。开发者可以在该生命周期中执行资源清理等相关操作。使用同步回调或Promise异步回调。
+当PhotoEditorExtensionAbility被销毁时，系统会触发该回调。开发者可以在该生命周期中执行资源清理等相关操作。使用同步回调或Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
