@@ -470,7 +470,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| iccid  | string | 是 | 配置文件的Id。 |
+| iccid  | string | 是 | 配置文件的ID。 |
 
 **返回值：**
 
@@ -523,7 +523,7 @@ forceDisableProfile: boolean\): Promise\<ResultCode\>
 | ------ | ------ | ----- | ----- |
 | slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
-| iccid               | string  | 是 | 配置文件的Id。   |
+| iccid               | string  | 是 | 配置文件的ID。   |
 | forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
 
 **返回值：**
@@ -575,7 +575,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId   | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| iccid    | string | 是 | 配置文件的Id。 |
+| iccid    | string | 是 | 配置文件的ID。 |
 | nickname | string | 是 | 昵称。 |
 
 **返回值：**
@@ -912,7 +912,7 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 | ----- |-------------------------------------|----|---| -----|
 | responseResult | [ResultCode](#resultcode18)         | 否  | 否 | 操作结果码。 |
 | solvableErrors | [SolvableErrors](#solvableerrors18) | 否  | 否 | 可解决错误。 |
-| cardId         | number                | 否  | 否 | 获取卡Id。 |
+| cardId         | number                | 否  | 否 | 获取卡ID。 |
 
 ## GetEuiccProfileInfoListResult<sup>18+</sup>
 
@@ -940,8 +940,8 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 | ----- | ----- |---| ----- | -----|
 | mcc  | string | 否 | 否 | 移动国家代码。 |
 | mnc  | string | 否 | 否 | 网络代码。    |
-| gid1 | string | 否 | 否 | 组id级别1。  |
-| gid2 | string | 否 | 否 | 组id级别2。  |
+| gid1 | string | 否 | 否 | 组ID级别1。  |
+| gid2 | string | 否 | 否 | 组ID级别2。  |
 
 ## EuiccProfile<sup>18+</sup>
 
