@@ -616,7 +616,7 @@ on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocatio
 
 ```ts
 function callback(data: cooperate.MouseLocation) {
-  console.info('displayX:' + data.displayX + 'displayY:' + data.displayX + 'displayWidth:' +
+  console.info('displayX:' + data.displayX + 'displayY:' + data.displayY + 'displayWidth:' +
     data.displayWidth + 'displayHeight:' + data.displayHeight );
 }
 try {
