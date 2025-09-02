@@ -4531,7 +4531,7 @@ const callback = (rectChangeOptions: window.RectChangeOptions) => {
 try {
   windowClass.on('rectChangeInGlobalDisplay', callback);
 } catch (exception) {
-  console.error(`Failed to disable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -5484,7 +5484,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 允许应用主窗口设置屏幕亮度值，使用Promise异步回调。
 
-非2in1设备，窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度；
+非2in1设备，窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心和快捷键可以调整系统屏幕亮度；
 2in1设备，窗口设置屏幕亮度和控制中心调整屏幕亮度的优先级相同，窗口设置屏幕亮度生效后，控制中心也可以调整系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
