@@ -1231,6 +1231,8 @@ let registerObj = new TestObj();
 // 在ThreadWorker实例上注册registerObj
 workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.postMessage("start worker");
+// 需要在组件生命周期结束时调用：
+// workerInstance.unregisterGlobalCallObject("myObj");
 ```
 
 ```ts
@@ -1343,7 +1345,8 @@ workerInstance.addEventListener("alert", (event: Event) => {
   console.info("event type is: ", JSON.stringify(event.type));
 });
 
-workerInstance.dispatchEvent({ type: "alert", timeStamp: 0 }); // timeStamp暂未支持
+const eventToDispatch : Event = { type: "alert", timeStamp: 0 };
+workerInstance.dispatchEvent(eventToDispatch); // timeStamp暂未支持
 ```
 
 
@@ -1853,7 +1856,7 @@ import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (): void => {
+workerInstance.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
     console.info("receive data from worker.ets");
 }
