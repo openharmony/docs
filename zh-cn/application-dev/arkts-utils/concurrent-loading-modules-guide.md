@@ -15,42 +15,42 @@
 
    ```ts
    // sdk/Calculator.ets
-   import { collections } from '@kit.ArkTS'
+   import { collections } from '@kit.ArkTS';
    
    @Sendable
    export class Calculator {
-     history?: collections.Array<collections.Array<string>>
-     totalCount: number = 0
+     history?: collections.Array<collections.Array<string>>;
+     totalCount: number = 0;
    
      static init(): Calculator {
-       let calc = new Calculator()
-       calc.totalCount = 0
+       let calc = new Calculator();
+       calc.totalCount = 0;
        calc.history = collections.Array.create(calc.totalCount, collections.Array.create(2, ""));
-       return calc
+       return calc;
      }
    
      add(a: number, b: number) {
        let result = a + b;
        this.newCalc(`${a} + ${b}`, `${result}`);
-       return result
+       return result;
      }
    
      sub(a: number, b: number) {
        let result = a - b;
        this.newCalc(`${a} - ${b}`, `${result}`);
-       return result
+       return result;
      }
    
      mul(a: number, b: number) {
        let result = a * b;
        this.newCalc(`${a} * ${b}`, `${result}`);
-       return result
+       return result;
      }
    
      div(a: number, b: number) {
        let result = a / b;
        this.newCalc(`${a} / ${b}`, `${result}`);
-       return result
+       return result;
      }
    
      getHistory(): collections.Array<collections.Array<string>> {
@@ -59,13 +59,13 @@
    
      showHistory() {
        for (let i = 0; i < this.totalCount; i++) {
-         console.info(`${i}: ${this.history![i][0]} = ${this.history![i][1]}`)
+         console.info(`${i}: ${this.history![i][0]} = ${this.history![i][1]}`);
        }
      }
    
      private newCalc(opt: string, ret: string) {
-       let newRecord = new collections.Array<string>(opt, ret)
-       this.totalCount = this.history!.unshift(newRecord)
+       let newRecord = new collections.Array<string>(opt, ret);
+       this.totalCount = this.history!.unshift(newRecord);
      }
    }
    ```
@@ -78,15 +78,15 @@
    @Sendable
    export class TimerSdk {
      static init(): TimerSdk {
-       let timer = new TimerSdk()
-       return timer
+       let timer = new TimerSdk();
+       return timer;
      }
    
      async countDown(time: number) {
        return new Promise((resolve: (value: boolean) => void) => {
          setTimeout(() => {
-           resolve(true)
-         }, time)
+           resolve(true);
+         }, time);
        })
      }
    }
@@ -97,18 +97,18 @@
 
    ```ts
    // Index.ets
-   import { Calculator } from '../sdk/Calculator'
-   import { TimerSdk } from '../sdk/TimerSdk'
+   import { Calculator } from '../sdk/Calculator';
+   import { TimerSdk } from '../sdk/TimerSdk';
    import { taskpool } from '@kit.ArkTS';
    
    @Concurrent
    function initCalculator(): Calculator {
-     return Calculator.init()
+     return Calculator.init();
    }
    
    @Concurrent
    function initTimerSdk(): TimerSdk {
-     return TimerSdk.init()
+     return TimerSdk.init();
    }
    
    @Entry
@@ -119,10 +119,10 @@
    
      aboutToAppear(): void {
        taskpool.execute(initCalculator).then((ret) => {
-         this.calc = ret as Calculator
+         this.calc = ret as Calculator;
        })
        taskpool.execute(initTimerSdk).then((ret) => {
-         this.timer = ret as TimerSdk
+         this.timer = ret as TimerSdk;
        })
      }
    
@@ -138,8 +138,8 @@
                middle: { anchor: '__container__', align: HorizontalAlign.Center }
              })
              .onClick(async () => {
-               let result = this.calc?.add(1, 2)
-               console.info(`Result is ${result}`)
+               let result = this.calc?.add(1, 2);
+               console.info(`Result is ${result}`);
              })
            Text("show history")
              .id('show')
@@ -150,7 +150,7 @@
                middle: { anchor: '__container__', align: HorizontalAlign.Center }
              })
              .onClick(async () => {
-               this.calc?.showHistory()
+               this.calc?.showHistory();
              })
            Text("countdown")
              .id('get')
@@ -161,9 +161,9 @@
                middle: { anchor: '__container__', align: HorizontalAlign.Center }
              })
              .onClick(async () => {
-               console.info(`Timer start`)
+               console.info(`Timer start`);
                await this.timer?.countDown(1000);
-               console.info(`Timer end`)
+               console.info(`Timer end`);
              })
          }
          .width('100%')
