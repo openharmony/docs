@@ -514,11 +514,11 @@ try {
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称        | 类型                | 必填 | 说明       |
-| ----------- | ------------------- | ---- | ---------- |
-| busType     | [BusType](#bustype) | 是   | 总线类型。 |
-| deviceId    | number              | 是   | 设备ID。   |
-| description | string              | 是   | 设备描述。 |
+| 名称        | 类型                | 只读 | 可选 | 说明       |
+| ----------- | ------------------- | ---- | ---- | ---------- |
+| busType     | [BusType](#bustype) | 否   | 否   | 总线类型。 |
+| deviceId    | number              | 否   | 否   | 设备ID。   |
+| description | string              | 否   | 否   | 设备描述。 |
 
 ## USBDevice
 
@@ -526,10 +526,10 @@ USB设备信息，继承自[Device](#device)。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称      | 类型   | 必填 | 说明                |
-| --------- | ------ | ---- | ------------------- |
-| vendorId  | number | 是   | USB设备Vendor ID。  |
-| productId | number | 是   | USB设备Product ID。 |
+| 名称      | 类型   | 只读 | 可选 | 说明                |
+| --------- | ------ | ---- | ---- | ------------------- |
+| vendorId  | number | 否   | 否   | USB设备Vendor ID。  |
+| productId | number | 否   | 否   | USB设备Product ID。 |
 
 ## BusType
 
@@ -547,7 +547,7 @@ USB设备信息，继承自[Device](#device)。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称      | 类型   | 必填 | 说明                |
-| --------- | ------ | ---- | ------------------- |
-| deviceId<sup>11+</sup>  | number | 是   | 设备ID。  |
-| remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
+| 名称      | 类型   | 只读 | 可选 | 说明                |
+| --------- | ------ | ---- | ---- | ------------------- |
+| deviceId<sup>11+</sup>  | number | 否   | 否   | 设备ID。  |
+| remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | 否   | 否   | 远程驱动程序对象。 |
