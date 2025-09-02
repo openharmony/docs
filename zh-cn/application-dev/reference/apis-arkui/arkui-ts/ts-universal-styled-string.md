@@ -1467,7 +1467,6 @@ struct styled_string_bind_events_demo {
       styledKey: StyledStringKey.FONT,
       styledValue: new TextStyle({ fontColor: Color.Pink })
     }]);
-  @State fontColor1: ResourceColor = Color.Red;
   @State backgroundColor1: ResourceColor | undefined = undefined;
   controller3: TextController = new TextController();
 
@@ -1631,7 +1630,7 @@ struct styled_string_set_text_style_demo {
                   console.info('mutableStyledString1 fontSize:' + fontAttr.fontSize);
                   console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight);
                   console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle);
-                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily);
+                  console.info('mutableStyledString1 fontFamily:' + fontAttr.fontFamily);
                   console.info('mutableStyledString1 superscript:' + fontAttr.superscript);
                 }
               }
