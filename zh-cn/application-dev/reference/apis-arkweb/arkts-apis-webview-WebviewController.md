@@ -10197,7 +10197,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 > **说明：**
 >
-> 不能在单render下设置严格站点隔离。
+> 不能在单render下设置严格站点隔离。</br>
 > 函数只能调用一次。
 
 
