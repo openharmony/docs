@@ -618,7 +618,7 @@ strip-language-default
 
 注：以下均以`// @KeepSymbol`为例，`// @KeepAsConsumer`支持的场景和`// @KeepSymbol`相同。
 
-#### 类
+**类**
 
 当前支持对类中的以下语法进行标记：
 
@@ -655,7 +655,7 @@ class MyClass03 {
 }
 ```
 
-#### 接口
+**接口**
 
 当前支持对接口中的以下语法进行标记：
 
@@ -680,7 +680,7 @@ interface MyInterface02 {
 }
 ```
 
-#### 枚举
+**枚举**
 
 当前支持对枚举中的以下语法进行标记：
 
@@ -705,7 +705,7 @@ enum Color02 {
 }
 ```
 
-#### 函数
+**函数**
 
 支持对函数名进行标记。
 
@@ -719,7 +719,7 @@ function MyAdd(a: number, b:number): number {
 }
 ```
 
-#### 命名空间
+**命名空间**
 
 支持对命名空间名称进行标记。
 
@@ -734,7 +734,7 @@ namespace MyNameSpace {
 }
 ```
 
-#### 全局变量
+**全局变量**
 
 当前仅支持全局变量的标记，不支持局部变量。
 
@@ -746,7 +746,7 @@ namespace MyNameSpace {
 const myVal = 1;
 ```
 
-#### 白名单添加规则
+**白名单添加规则**
 
 被标记的名称根据以下规则添加到混淆白名单，被KeepAsConsumer保留的名称还会生成到`obfuscation.txt`文件中。
 
@@ -768,7 +768,7 @@ export class MyClass {
 ```
 上述示例中`MyClass`会被添加到-keep-global-name和-keep-property-name中，`prop01`会被添加到-keep-property-name中，同时，该规则还会写入`obfuscation.txt`文件中。
 
-#### -use-keep-in-source不支持的场景
+**-use-keep-in-source不支持的场景**
 
 暂不支持字符串属性、数字属性以及计算属性。
 
@@ -889,12 +889,12 @@ export class MyClass1 {
 
 ```ts
 // src/main/cpp/types/libentry/Index.d.ts
-export const add: (a: number, b: number) => number;
+export const addNum: (a: number, b: number) => number;
 
 // example.ets
 import testNapi from 'libentry.so';
 
-testNapi.add(2, 3); // add需要保留，示例如：-keep-property-name add
+testNapi.addNum(2, 3); // addNum需要保留，示例如：-keep-property-name addNum
 ```
 
 4.JSON数据解析和对象序列化时，需要保留使用到的字段，例如：
@@ -1101,7 +1101,7 @@ StartupConfig
 
 ### -keep-comments
 
-保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释，支持使用[名称类通配符](#名称类通配符)。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释，支持使用[名称类通配符](#保留选项支持的通配符)。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 ```
 -keep-comments
 Human
@@ -1127,7 +1127,7 @@ Human
 ### -keep
 
 保留指定相对路径*filepath*中的所有名称（例如变量名、类名、属性名等）不被混淆。*filepath*可以是文件或文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
-*filepath*仅支持相对路径，`./`和`../`为相对于混淆配置文件所在目录，支持使用[路径类通配符](#路径类通配符)。
+*filepath*仅支持相对路径，`./`和`../`为相对于混淆配置文件所在目录，支持使用[路径类通配符](#保留选项支持的通配符)。
 
 ```
 -keep
@@ -1171,7 +1171,7 @@ Human
 
 ### 保留选项支持的通配符
 
-#### 名称类通配符
+**名称类通配符**
 
 名称类通配符使用方式如下：
 
@@ -1203,7 +1203,7 @@ a*
 *
 ```
 
-#### 路径类通配符
+**路径类通配符**
 
 路径类通配符使用方式如下：
 
@@ -1308,7 +1308,7 @@ a*
 构建HSP时，生成的远程HSP中的obfuscation.txt仅包含自身的consumerFiles属性。
 构建HAP时，不会生成obfuscation.txt文件。
 
-#### 混淆规则合并逻辑
+**混淆规则合并逻辑**
 
 混淆选项：使用或运算进行合并，即开关选项只要在参与合并的任意一个规则文件中存在，最终的合并结果中就会包含该开关选项。  
 保留选项：合并时，对于白名单选项，其内容取并集。
