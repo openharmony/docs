@@ -4704,7 +4704,6 @@
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-systemmeminfo.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-threadcpuusage.md)
             - [HiDebug_MallocDispatch](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-mallocdispatch.md)
-            - [HiDebug_GraphicsMemorySummary](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-graphicsmemorysummary.md)
             - [HiDebug_Backtrace_Object__*](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-backtrace-object--8h.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/capi-hitrace-hitraceid.md)
         - 错误码<!--performance-analysis-errcode-->
