@@ -591,7 +591,7 @@ try {
 | accessibilityNextFocusId<sup>20+</sup>             | number                | 否  | 是  | 下一个要获得焦点的组件的ID。<br>默认值：-1。|
 | accessibilityPreviousFocusId<sup>20+</sup>             | number                | 否  | 是  | 上一个要获得焦点的组件的ID。<br>默认值：-1。|
 | extraInfo<sup>20+</sup>             | string     | 否  | 是  | 元素的额外信息。值为JSON字符串。|
-| accessibilityScrollable<sup>20+</sup>             | boolean                 | 否  | 是  | 元素是否因无障碍目的而可滚动。此属性优先级高于scrollable。<br>-true表示元素可滚动，false表示元素不可滚动。<br>默认值：true。|
+| accessibilityScrollable<sup>20+</sup>             | boolean                 | 否  | 是  | 元素是否因无障碍目的而可滚动。此属性优先级高于scrollable。<br>true表示元素可滚动，false表示元素不可滚动。<br>默认值：true。|
 | supportedActionNames<sup>20+</sup> | Array&lt;string&gt;                                                | 否  | 是  | 支持的操作名称。|
 | accessibilityGroup<sup>20+</sup>  | boolean                                                            | 否  | 是  | 元素是否为无障碍组。true表示元素是无障碍组，false表示元素不是无障碍组。<br>默认值：false。|
 | accessibilityLevel<sup>20+</sup>             | string                                                             | 否  | 是  | 组件的无障碍级别。<br>'auto'：当前组件由无障碍分组服务和ArkUI进行综合判断组件是否可被辅助功能识别。<br>'yes'：当前组件可被辅助功能识别。<br>'no'：当前组件不可被辅助功能识别。<br>'no-hide-descendants'：当前组件及其所有子组件不可被辅助功能识别。|
