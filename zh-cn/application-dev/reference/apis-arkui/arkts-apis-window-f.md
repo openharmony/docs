@@ -830,6 +830,8 @@ import { BusinessError } from "@kit.BasicServicesKit";
 
 let color: ArrayBuffer = new ArrayBuffer(96);
 let initializationOptions: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: image.PixelMapFormat.RGBA_8888,
   size: {
     height: 4,
     width: 6,
