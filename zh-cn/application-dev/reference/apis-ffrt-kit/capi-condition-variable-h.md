@@ -186,6 +186,6 @@ FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond)
 
 | 类型 | 说明 |
 | -- | -- |
-| FFRT_C_API int | 销毁条件变量成功返回ffrt_success，<br>          销毁条件变量失败返回ffrt_error_inval。 |
+| FFRT_C_API int | 销毁条件变量成功返回ffrt_success，<br>销毁条件变量失败返回ffrt_error_inval。 |
 
 

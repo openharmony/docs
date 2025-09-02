@@ -11,7 +11,7 @@
 
 定义所有预定义事件的参数名称。除了与特定应用关联的自定义事件之外，开发者还可以使用预定义事件进行打点。
 
-**引用文件：** <hiappevent/hiappevent_param.h>
+**引用文件：** &lt;hiappevent/hiappevent_param.h&gt;
 
 **库：** libhiappevent_ndk.z.so
 
