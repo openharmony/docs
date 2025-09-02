@@ -10151,3 +10151,84 @@ struct WebComponent {
   }
 }
 ```
+## getSiteIsolationMode<sup>21+</sup>
+
+static getSiteIsolationMode(): SiteIsolationMode
+
+查询站点隔离模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 站点隔离模式类型。<br>getSiteIsolationMode()获取当前站点隔离模式，枚举值0为部分站点隔离，枚举值1为严格站点隔离。
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getSiteIsolationMode')
+        .onClick(() => {
+          let mode = webview.WebviewController.getSiteIsolationMode();
+          console.info("getSiteIsolationMode: " + mode);
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+## setSiteIsolationMode<sup>21+</sup>
+
+setSiteIsolationMode(mode: SiteIsolationMode): void
+
+设置站点隔离模式。站点隔离机制将不同源的网站，隔离在不同的render进程中，减少跨域攻击面。如：pc上原有进程模型是每一个tab对应一个render进程，站点隔离打开后，可以让不同源的iframe运行在独立的render进程中。对于业务上只加载可信网页的三方应用是可以关闭的，提升部分性能减少内存占用，同时减少跨域访问的拦截。默认值取决于不同的设备，PC/平板/坚盾模式下严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，手机默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。
+
+> **说明：**
+>
+> 不能在单render下设置严格站点隔离。
+> 函数只能调用一次。
+
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#SiteIsolationMode21) | 是 | 设置站点隔离模式。<br>默认值取决于不同的设备，PC/平板/坚盾模式下严格站点隔离，手机默认部分站点隔离 |
+
+**示例：**
+
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setSiteIsolationMode')
+        .onClick(() => {
+          webview.WebviewController.setSiteIsolationMode();          
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
