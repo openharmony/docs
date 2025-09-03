@@ -555,7 +555,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event)
 **描述：**
 
 
-返回长按手势定时触发次数。
+返回是否为重复触发事件。
 
 **起始版本：** 12
 
@@ -570,7 +570,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 长按手势定时触发次数。 |
+| int32_t | 是否为重复触发事件。1表示为重复触发事件，0表示为非重复触发事件。 |
 
 ### OH_ArkUI_PanGesture_GetVelocity()
 
