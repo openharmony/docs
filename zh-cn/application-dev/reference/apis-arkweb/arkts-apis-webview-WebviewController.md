@@ -10209,6 +10209,16 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 | -------- | ------- | ---- | -------------------------------------- |
 | mode | [SiteIsolationMode](./arkts-apis-webview-e.md#SiteIsolationMode21) | 是 | 设置站点隔离模式。<br>默认值取决于不同的设备，PC/平板/坚盾模式下严格站点隔离，手机默认部分站点隔离 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 |InitError 17100001: Site Isolation mode already set by developer|
+| 17100001 |InitError 17100001: cannot change (AdvancedSecurityMode active)|
+| 17100001 |InitError 17100001: Site Isolation mode cannot be strict when single render|
+
 **示例：**
 
 
