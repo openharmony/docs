@@ -4955,10 +4955,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称   | 类型     | 必填   | 说明          |
-| ----- | ------ | ---- | ----------- |
-| owner | string | 是    | 应用账号所有者的包名。 |
-| name  | string | 是    | 应用账号的名称。    |
+| 名称   | 类型     | 只读  | 可选   | 说明          |
+| ----- | ------ | ---- | ---- | ----------- |
+| owner | string | 否 | 否    | 应用账号所有者的包名。 |
+| name  | string | 否 | 否    | 应用账号的名称。    |
 
 ## AuthTokenInfo<sup>9+</sup>
 
@@ -4966,11 +4966,11 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称               | 类型            | 必填  | 说明              |
-| -------------------- | -------------- | ----- | ---------------- |
-| authType<sup>9+</sup>             | string         | 是    | 令牌的鉴权类型。   |
-| token<sup>9+</sup>                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的账号信息，默认为空。|
+| 名称               | 类型            | 只读  | 可选   | 说明              |
+| -------------------- | -------------- | -----| ----- | ---------------- |
+| authType<sup>9+</sup>             | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token<sup>9+</sup>                | string         | 否 | 否    | 令牌的取值。       |
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -4982,10 +4982,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称               | 类型            | 必填  | 说明              |
-| -------------------- | -------------- | ----- | ---------------- |
-| authType             | string         | 是    | 令牌的鉴权类型。   |
-| token                | string         | 是    | 令牌的取值。       |
+| 名称               | 类型            | 只读  | 可选   | 说明              |
+| -------------------- | -------------- | ----- | ----- | ---------------- |
+| authType             | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token                | string         | 否 | 否    | 令牌的取值。       |
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4993,11 +4993,11 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| owner   | string | 是    | 认证器的所有者的包名。 |
-| iconId  | number | 是    | 认证器的图标标识。  |
-| labelId | number | 是    | 认证器的标签标识。  |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| owner   | string | 否 | 否    | 认证器的所有者的包名。 |
+| iconId  | number | 否 | 否    | 认证器的图标标识。  |
+| labelId | number | 否 | 否    | 认证器的标签标识。  |
 
 ## AuthResult<sup>9+</sup>
 
@@ -5005,10 +5005,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的账号信息，默认为空。 |
-| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息，默认为空。  |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| account   | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。 |
+| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否 | 是    | 令牌信息，默认为空。  |
 
 ## CreateAccountOptions<sup>9+</sup>
 
@@ -5016,9 +5016,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| customData   | Record<string, string> | 否    | 自定义数据，默认为空。 |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| customData   | Record<string, string> | 否 | 是    | 自定义数据，默认为空。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -5026,22 +5026,23 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| requiredLabels   | Array&lt;string&gt; | 否    | 所需的标签，默认为空。 |
-| authType   | string | 否    | 鉴权类型，默认为空。 |
-| parameters   | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| requiredLabels   | Array&lt;string&gt; | 否 | 是    | 所需的标签，默认为空。 |
+| authType   | string | 否 | 是    | 鉴权类型，默认为空。 |
+| parameters   | Record<string, Object> | 否 | 是    | 自定义参数对象，默认为空。 |
+
 ## SelectAccountsOptions<sup>9+</sup>
 
 表示用于选择账号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称          | 类型                         | 必填  | 说明                |
-| --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的账号数组，默认为空。     |
-| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的账号所有者数组，默认为空。 |
-| requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识，默认为空。  |
+| 名称          | 类型                         | 只读  | 可选   | 说明                |
+| --------------- | --------------------------- | ----- | ----- | ------------------- |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否 | 是    | 允许的账号数组，默认为空。     |
+| allowedOwners   | Array&lt;string&gt;         | 否 | 是    | 允许的账号所有者数组，默认为空。 |
+| requiredLabels  | Array&lt;string&gt;         | 否 | 是    | 认证器的标签标识，默认为空。  |
 
 ## VerifyCredentialOptions<sup>9+</sup>
 
@@ -5049,11 +5050,11 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称          | 类型                   | 必填  | 说明           |
-| -------------- | ---------------------- | ----- | -------------- |
-| credentialType | string                 | 否    | 凭据类型，默认为空。      |
-| credential     | string                 | 否    | 凭据取值，默认为空。      |
-| parameters     | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
+| 名称          | 类型                   | 只读  | 可选   | 说明           |
+| -------------- | ---------------------- | ----- | ----- | -------------- |
+| credentialType | string                 | 否 | 是    | 凭据类型，默认为空。      |
+| credential     | string                 | 否 | 是    | 凭据取值，默认为空。      |
+| parameters     | Record<string, Object> | 否 | 是    | 自定义参数对象，默认为空。 |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -5062,10 +5063,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称     | 类型                    | 必填  | 说明           |
-| ---------- | ---------------------- | ----- | -------------- |
-| properties | Record<string, Object> | 否    | 属性对象，默认为空。      |
-| parameters | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
+| 名称     | 类型                    | 只读  | 可选   | 说明           |
+| ---------- | ---------------------- | ----- | ----- | -------------- |
+| properties | Record<string, Object> | 否 | 是    | 属性对象，默认为空。      |
+| parameters | Record<string, Object> | 否 | 是    | 自定义参数对象，默认为空。 |
 
 ## Constants<sup>8+</sup>
 
