@@ -562,7 +562,7 @@ beacon设备制造商数据。当前仅支持ibeacon数据类型。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | manufactureId | number | 否 | 否 | 制造商标识。例如：0X004C |
-| manufactureData | ArrayBuffer | 否 | 否 | 制造商数据的广播报文。格式：类型标识 + uuid。例如：[0x02,0x15,0x00...0xFF] |
+| manufactureData | ArrayBuffer | 否 | 否 | 制造商数据的广播报文。格式：类型标识 + 数据剩余长度 + uuid。例如：[0x02,0x10,0x00...0xFF] |
 | manufactureDataMask | ArrayBuffer | 否 | 否 | 搭配manufactureData使用，可设置过滤部分制造商数据，0xFF为全匹配，0x00为模糊匹配。例如：[0xFF,0xFF,0xFF...0xFF] |
 
 
@@ -2861,7 +2861,7 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
   import { geoLocationManager } from '@kit.LocationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   try {
-    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X02, 0X15, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
+    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X02, 0X10, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
       0X10, 0X00, 0X80, 0X00, 0X00, 0X80, 0X5F, 0X9B, 0X34, 0XFB]);
     let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
       0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF]);
