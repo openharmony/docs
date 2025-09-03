@@ -10155,7 +10155,7 @@ struct WebComponent {
 
 static getSiteIsolationMode(): SiteIsolationMode
 
-获取当前生效的站点隔离模式。
+查询当前生效的站点隔离模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10235,7 +10235,7 @@ struct WebComponent {
     Column() {
       Button('setSiteIsolationMode')
         .onClick(() => {
-          webview.WebviewController.setSiteIsolationMode();          
+          webview.WebviewController.setSiteIsolationMode(web_webview.SiteIsolationMode.PARTIAL);          
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
