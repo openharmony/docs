@@ -2039,7 +2039,7 @@ enableNativeEmbedMode(mode: boolean)
 
 | 参数名   | 类型                      | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。<br>默认值：false。 |
+| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。|
 
 **示例：**
 
@@ -2195,20 +2195,20 @@ defaultTextEncodingFormat(textEncodingFormat: string)
     }
   }
   ```
-
-```html
-<!--index.html-->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>My test html5 page</title>
-</head>
-<body>
-    <p>hello world, 你好世界!</p>
-</body>
-</html>
-```
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta name="viewport" content="width=device-width" />
+      <title>My test html5 page</title>
+  </head>
+  <body>
+      <p>hello world, 你好世界!</p>
+  </body>
+  </html>
+  ```
 ## metaViewport<sup>12+</sup>
 
 metaViewport(enabled: boolean)
@@ -2248,7 +2248,7 @@ struct WebComponent {
   }
 }
   ```
-
+加载的html文件。
 ```html
 <!--index.html-->
 <!DOCTYPE html>
@@ -2803,7 +2803,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
     <script>
       const inputElement = document.getElementById('input_a');
       inputElement.addEventListener('blur', function() {
-        console.log('Input has lost focus');
+        console.info('Input has lost focus');
       });
     </script>
   </body>
@@ -2826,7 +2826,7 @@ enableFollowSystemFontWeight(follow: boolean)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化。<br>true表示字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。false表示字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。<br>默认值：false。 |
+| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化。<br>true表示字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。false表示字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。 |
 
 **示例：**
 
