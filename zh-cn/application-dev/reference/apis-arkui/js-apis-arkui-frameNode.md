@@ -561,7 +561,7 @@ class MyNodeController extends NodeController {
 
   getPositionToWindow() {
     let positionToWindow = this.rootNode?.getPositionToWindow();
-    console.info(TEST_TAG + JSON.stringify(positionToWindow));
+    console.info(`${TEST_TAG}${JSON.stringify(positionToWindow)}`);
   }
 }
 
