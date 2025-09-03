@@ -111,15 +111,19 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoFrameRate: 30,
     isHdr: isHdr
   };
-  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // 本地沙箱路径。
+
+  let avMetadata: media.AVMetadata = {
+    videoOrientation: '0', // 合理值0、90、180、270，非合理值prepare接口将报错。
+    location: { latitude: 30, longitude: 130 }
+  }
+  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // 本地沙箱路径。
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
     url: `fd://${file.fd.toString()}`, // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45--file:///data/media/01.mp4
-    rotation: 0, // 合理值0、90、180、270，非合理值prepare接口将报错。
-    location: { latitude: 30, longitude: 130 }
+    metadata: avMetadata
   };
 
   let avRecorder: media.AVRecorder | undefined = undefined;
@@ -224,7 +228,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to add cameraInput. error: ${err}`);
   }
 
-  // 创建预览输出流，其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface。
+  // 创建预览输出流，预览流为XComponent组件提供的surface。
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   let previewProfile = previewProfilesArray.find((previewProfile: camera.Profile) => {
     return Math.abs((previewProfile.size.width / previewProfile.size.height) - (videoProfile.size.width / videoProfile.size.height)) < Number.EPSILON;
@@ -313,20 +317,42 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   await videoSession.stop();
 
   // 关闭文件。
-  fs.closeSync(file);
+  try {
+    fs.closeSync(file);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`closeSync failed, error: ${err}`);
+  }
+
 
   // 释放相机输入流。
   await cameraInput.close();
 
   // 释放预览输出流。
-  await previewOutput.release();
+  try {
+    await previewOutput.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release previewOutput failed, error: ${err.code}`);
+  }
+
 
   // 释放录像输出流。
-  await videoOutput.release();
+  try {
+    await videoOutput.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release videoOutput failed, error: ${err.code}`);
+  }
 
   // 释放会话。
-  await videoSession.release();
-
+  try {
+    await videoSession.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release videoSession failed, error: ${err.code}`);
+  }
+  
   // 会话置空。
   videoSession = undefined;
 }
