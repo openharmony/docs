@@ -1473,7 +1473,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
