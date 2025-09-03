@@ -308,11 +308,11 @@ class SdkU3d {
   }
 }
 
-const workerInstance = new
-worker.ThreadWorker("xx/worker.ts");
+const workerInstance = new worker.ThreadWorker("xx/worker.ts");
 let sdk = SdkU3d.getInst()
 workerInstance.registerGlobalCallObject("instance_xx", sdk);
 workerInstance.postMessage("start");
+// 工作线程
 const mainPort = worker.workerPort;
 mainPort.onmessage = (e: MessageEvents): void => {
   let ret = mainPort.callGlobalCallObjectMethod("instance_xx", "getPropStr", "xx");
