@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 属性
+## NotificationActionButton
 
 **系统能力：** SystemCapability.Notification.Notification
 
