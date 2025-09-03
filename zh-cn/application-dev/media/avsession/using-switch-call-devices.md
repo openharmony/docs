@@ -182,6 +182,9 @@
 
    // 设备更新后刷新自定义资源pickerImage。
    private changePickerShow(desc: audio.AudioDeviceDescriptors) {
+     if(!desc || !desc.length || !desc[0]) {
+      return;
+     }
      if (desc[0].deviceType === 2) {
        this.pickerImage = $r('app.media.sound');
      } else if (desc[0].deviceType === 7) {
@@ -211,7 +214,7 @@
 
    // 设备列表显示状态变化回调（可选）。
    private onStateChange(state: AVCastPickerState) {
-     if (state == AVCastPickerState.STATE_APPEARING) {
+     if (state === AVCastPickerState.STATE_APPEARING) {
        console.info('The picker starts showing.');
      } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
        console.info('The picker finishes presenting.');
