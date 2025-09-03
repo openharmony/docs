@@ -10193,11 +10193,12 @@ struct WebComponent {
 
 setSiteIsolationMode(mode: SiteIsolationMode): void
 
-设置站点隔离模式。站点隔离机制将不同源的网站，隔离在不同的render进程中，减少跨域攻击面。如：pc上原有进程模型是每一个tab对应一个render进程，站点隔离打开后，可以让不同源的iframe运行在独立的render进程中。对于业务上只加载可信网页的三方应用是可以关闭的，提升部分性能减少内存占用，同时减少跨域访问的拦截。默认值取决于不同的设备，PC/平板/坚盾模式下严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，手机默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。
+设置站点隔离模式。站点隔离机制将不同源的网站，隔离在不同的render进程中，减少跨域攻击面。如：pc上原有进程模型是每一个tab对应一个render进程，站点隔离打开后，可以让不同源的iframe运行在独立的render进程中。对于业务上只加载可信网页的三方应用是可以关闭的，提升部分性能减少内存占用，同时减少跨域访问的拦截。默认值取决于不同的设备，PC/tablet/坚盾模式下严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。
 
 > **说明：**
 >
-> 不能在单子进程模式下设置严格站点隔离。</br>
+> 不能在单子进程模式下设置严格站点隔离。
+
 > 接口只能在初始化时调用一次，不支持反复修改。
 
 
@@ -10207,7 +10208,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | -------------------------------------- |
-| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 是 | 设置站点隔离模式。<br>默认值取决于不同的设备，PC/平板/坚盾模式下严格站点隔离，手机默认部分站点隔离 |
+| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 是 | 设置站点隔离模式。<br>默认值取决于不同的设备，PC/tablet/坚盾模式下严格站点隔离，phone默认部分站点隔离 |
 
 **错误码：**
 
