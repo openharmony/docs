@@ -518,9 +518,9 @@ some(predicate: TypedArrayPredicateFn\<number, Uint16Array>): boolean
 **示例：**
 
 ```ts
-let arrayLike = [-10, 20, -30, 40, -50];
+let arrayLike = [10, 20, 30, 40, 50];
 let uint16Array: collections.Uint16Array = new collections.Uint16Array(arrayLike);
-uint16Array.some((element: number) => element < 0); // false
+uint16Array.some((element: number) => element < 1); // false
 ```
 
 ## every
@@ -557,9 +557,9 @@ every(predicate: TypedArrayPredicateFn\<number, Uint16Array>): boolean
 **示例：**
 
 ```ts
-let arrayLike = [-10, 20, -30, 40, -50];
+let arrayLike = [10, 20, 30, 40, 50];
 let uint16Array: collections.Uint16Array = new collections.Uint16Array(arrayLike);
-uint16Array.every((element: number) => element > 0);  // true
+uint16Array.every((element: number) => element > 1);  // true
 ```
 
 ## fill
