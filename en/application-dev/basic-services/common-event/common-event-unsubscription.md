@@ -10,7 +10,7 @@ After a service is finished in the dynamic mode, the subscriber should proactive
 
 | API| Description|
 | -------- | -------- |
-| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#commoneventsubscriber),&nbsp;callback?:&nbsp;AsyncCallback<void\>) | Unsubscribes from a common event.|
+| [unsubscribe](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback?:&nbsp;AsyncCallback<void\>) | Unsubscribes from a common event.|
 
 
 ## How to Develop

@@ -16,6 +16,7 @@ The **CommonEventSubscriber** module provides APIs for describing the common eve
 
 Before using the **CommonEventSubscriber** module, you must obtain a **subscriber** object by calling **commonEventManager.createSubscriber**.
 
+<!--code_no_check-->
 ```ts
 import { commonEventManager } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -24,19 +25,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let subscriber: commonEventManager.CommonEventSubscriber;
 // Subscriber information.
 let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-	events: ["event"]
+	events: ['event']
 };
 // Callback for subscriber creation.
-function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
-  if (err != null) {
-    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in creating subscriber`);
-    subscriber = commonEventSubscriber;
-  }
-}
-// Create a subscriber.
-commonEventManager.createSubscriber(subscribeInfo, createCB);
+subscriber = commonEventManager.createSubscriberSync(subscribeInfo);
 ```
 
 ### getCode
@@ -61,20 +53,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for result code obtaining of an ordered common event.
-function getCodeCallback(err: BusinessError, code: number) {
-  if (err != null) {
+subscriber.getCode((err: BusinessError, code: number) => {
+  if (err) {
     console.error(`Failed to get code. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in getting code, code is ` + JSON.stringify(code));
+    return;
   }
-}
-subscriber.getCode(getCodeCallback);
+  console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
+});
 ```
 
 ### getCode
@@ -95,9 +87,11 @@ Obtains the result code of an ordered common event. This API uses a promise to r
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getCode().then((code: number) => {
-  console.info(`Succeeded in getting code, code is ` + JSON.stringify(code));
+  console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get code. Code is ${err.code}, message is ${err.message}`);
 });
@@ -121,9 +115,11 @@ Obtains the result code of an ordered common event.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-let code = subscriber.getCodeSync();
-console.info(`Succeeded in getting code, code is ` + JSON.stringify(code));
+let code: number = subscriber.getCodeSync();
+console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
 ```
 
 ### setCode
@@ -149,20 +145,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for result code setting of an ordered common event.
-function setCodeCallback(err: BusinessError) {
-  if (err != null) {
+subscriber.setCode(1, (err: BusinessError) => {
+  if (err) {
     console.error(`Failed to set code. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in setting code.`);
+    return;
   }
-}
-subscriber.setCode(1, setCodeCallback);
+  console.info(`Succeeded in setting code.`);
+});
 ```
 
 ### setCode
@@ -193,9 +189,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setCode(1).then(() => {
@@ -231,6 +229,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 try {
   subscriber.setCodeSync(1);
@@ -262,20 +262,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 // Callback for result data obtaining of an ordered common event.
-function getDataCallback(err: BusinessError, data: string) {
-  if (err != null) {
+subscriber.getData((err: BusinessError, data: string) => {
+  if (err) {
     console.error(`Failed to get data. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in getting data, data is ` + JSON.stringify(data));
+    return;
   }
-}
-subscriber.getData(getDataCallback);
+  console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
+});
 ```
 
 ### getData
@@ -296,9 +297,11 @@ Obtains the result data of an ordered common event. This API uses a promise to r
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getData().then((data: string) => {
-  console.info(`Succeeded in getting data, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get data. Code is ${err.code}, message is ${err.message}`);
 });
@@ -322,8 +325,10 @@ Obtains the result data of an ordered common event.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-let data = subscriber.getDataSync();
+let data: string = subscriber.getDataSync();
 console.info(`Succeeded in getting data, data is ${data}`);
 ```
 
@@ -350,20 +355,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for result data setting of an ordered common event
-function setDataCallback(err: BusinessError) {
-  if (err != null) {
+subscriber.setData('publish_data_changed', (err: BusinessError) => {
+  if (err) {
     console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in setting code.`);
+    return;
   }
-}
-subscriber.setData("publish_data_changed", setDataCallback);
+  console.info(`Succeeded in setting data.`);
+});
 ```
 
 ### setData
@@ -394,12 +399,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-subscriber.setData("publish_data_changed").then(() => {
+subscriber.setData('publish_data_changed').then(() => {
   console.info(`Succeeded in setting data.`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
@@ -432,9 +439,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 try {
-  subscriber.setDataSync("publish_data_changed");
+  subscriber.setDataSync('publish_data_changed');
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
@@ -465,20 +474,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for code and data setting of an ordered common event.
-function setCodeAndDataCallback(err: BusinessError) {
-  if (err != null) {
+subscriber.setCodeAndData(1, 'publish_data_changed', (err: BusinessError) => {
+  if (err) {
     console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in setting code and data.`);
+    return;
   }
-}
-subscriber.setCodeAndData(1, "publish_data_changed", setCodeAndDataCallback);
+  console.info(`Succeeded in setting code and data.`);
+});
 ```
 
 ### setCodeAndData
@@ -510,12 +519,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
+subscriber.setCodeAndData(1, 'publish_data_changed').then(() => {
   console.info(`Succeeded in setting code and data.`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
@@ -549,9 +560,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 try {
-  subscriber.setCodeAndDataSync(1, "publish_data_changed");
+  subscriber.setCodeAndDataSync(1, 'publish_data_changed');
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
@@ -579,20 +592,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for checking whether the current common event is an ordered one.
-function isOrderedCommonEventCallback(err: BusinessError, isOrdered:boolean) {
-  if (err != null) {
+subscriber.isOrderedCommonEvent((err: BusinessError, isOrdered:boolean) => {
+  if (err) {
     console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
+    return;
   }
-}
-subscriber.isOrderedCommonEvent(isOrderedCommonEventCallback);
+  console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
+});
 ```
 
 ### isOrderedCommonEvent
@@ -611,9 +624,11 @@ Checks whether the current common event is an ordered common event. This API use
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
-  console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
+  console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
 }).catch((err: BusinessError) => {
   console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -635,9 +650,11 @@ Checks whether the current common event is an ordered common event.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-let isOrdered  = subscriber.isOrderedCommonEventSync();
-console.info("isOrderedCommonEventSync " + JSON.stringify(isOrdered));
+let isOrdered: boolean = subscriber.isOrderedCommonEventSync();
+console.info(`isOrderedCommonEventSync ${JSON.stringify(isOrdered)}`);
 ```
 
 ### isStickyCommonEvent
@@ -660,20 +677,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for checking whether the current common event is a sticky one.
-function isStickyCommonEventCallback(err: BusinessError, isSticky:boolean) {
-  if (err != null) {
+subscriber.isStickyCommonEvent((err: BusinessError, isSticky:boolean) => {
+  if (err) {
     console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
+    return;
   }
-}
-subscriber.isStickyCommonEvent(isStickyCommonEventCallback);
+  console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
+});
 ```
 
 ### isStickyCommonEvent
@@ -692,9 +709,11 @@ Checks whether a common event is a sticky one. This API uses a promise to return
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
-  console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
+  console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
 }).catch((err: BusinessError) => {
   console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -716,9 +735,11 @@ Checks whether a common event is a sticky one.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-let isSticky  = subscriber.isStickyCommonEventSync();
-console.info("isStickyCommonEventSync " + JSON.stringify(isSticky));
+let isSticky: boolean = subscriber.isStickyCommonEventSync();
+console.info(`isStickyCommonEventSync ${JSON.stringify(isSticky)}`);
 ```
 
 ### abortCommonEvent
@@ -741,28 +762,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for ordered common event aborting.
-function abortCommonEventCallback(err: BusinessError) {
-  if (err != null) {
+subscriber.abortCommonEvent((err: BusinessError) => {
+  if (err) {
     console.error(`Failed to abort common event. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in aborting common event.`);
+    return;
   }
-}
-function finishCommonEventCallback(err: BusinessError) {
-  if (err != null) {
+  console.info(`Succeeded in aborting common event.`);
+});
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
     console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in finishing common event.`);
+    return;
   }
-}
-subscriber.abortCommonEvent(abortCommonEventCallback);
-subscriber.finishCommonEvent(finishCommonEventCallback);
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
 ### abortCommonEvent
@@ -780,6 +800,8 @@ Aborts an ordered common event when used with [finishCommonEvent](#finishcommone
 | Promise\<void>   | Promise that returns no value.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.abortCommonEvent().then(() => {
@@ -803,6 +825,7 @@ Aborts an ordered common event when used with [finishCommonEvent](#finishcommone
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Example**
+<!--code_no_check-->
 
 ```ts
 subscriber.abortCommonEventSync();
@@ -833,28 +856,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for clearing the aborted state of the current common event.
-function clearAbortCommonEventCallback(err: BusinessError) {
-  if (err != null) {
+subscriber.clearAbortCommonEvent((err: BusinessError) => {
+  if (err) {
     console.error(`Failed to clear abort common event. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in clearing abort common event.`);
+    return;
   }
-}
-function finishCommonEventCallback(err: BusinessError) {
-  if (err != null) {
+  console.info(`Succeeded in clearing abort common event.`);
+});
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
     console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in finishing common event.`);
+    return;
   }
-}
-subscriber.clearAbortCommonEvent(clearAbortCommonEventCallback);
-subscriber.finishCommonEvent(finishCommonEventCallback);
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
 ### clearAbortCommonEvent
@@ -872,6 +894,8 @@ Clears the aborted state of an ordered common event when used with [finishCommon
 | Promise\<void>   | Promise that returns no value.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
@@ -895,6 +919,8 @@ Clears the aborted state of an ordered common event when used with [finishCommon
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.clearAbortCommonEventSync();
@@ -925,20 +951,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for checking whether the ordered common event is in the aborted state.
-function getAbortCommonEventCallback(err: BusinessError, abortEvent: boolean) {
-  if (err != null) {
+subscriber.getAbortCommonEvent((err: BusinessError, abortEvent: boolean) => {
+  if (err) {
     console.error(`Failed to get abort common event. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in getting abort common event, abortEvent is ` + JSON.stringify(abortEvent));
-  }
-}
-subscriber.getAbortCommonEvent(getAbortCommonEventCallback);
+    return;
+  } 
+  console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
+});
 ```
 
 ### getAbortCommonEvent
@@ -957,9 +983,11 @@ Checks whether this ordered common event should be aborted. This API uses a prom
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getAbortCommonEvent().then((abortEvent: boolean) => {
-  console.info(`Succeeded in getting abort common event, abortEvent is ` + JSON.stringify(abortEvent));
+  console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get abort common event. Code is ${err.code}, message is ${err.message}`);
 });
@@ -981,9 +1009,11 @@ Checks whether this ordered common event should be aborted.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-let abortEvent = subscriber.getAbortCommonEventSync();
-console.info(`Succeeded in getting abort common event, abortEvent is ` + JSON.stringify(abortEvent));
+let abortEvent: boolean = subscriber.getAbortCommonEventSync();
+console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
 ```
 
 ### getSubscribeInfo
@@ -1008,20 +1038,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for subscriber information obtaining.
-function getSubscribeInfoCallback(err: BusinessError, subscribeInfo: commonEventManager.CommonEventSubscribeInfo) {
-  if (err != null) {
+subscriber.getSubscribeInfo((err: BusinessError, subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
+  if (err) {
     console.error(`Failed to get subscribe info. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in getting subscribe info, subscribe info is ` + JSON.stringify(subscribeInfo));
+    return;
   }
-}
-subscriber.getSubscribeInfo(getSubscribeInfoCallback);
+  console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
+});
 ```
 
 ### getSubscribeInfo
@@ -1042,9 +1072,11 @@ Obtains the subscriber information. This API uses a promise to return the result
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getSubscribeInfo().then((subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
-  console.info(`Succeeded in getting subscribe info, subscribe info is ` + JSON.stringify(subscribeInfo));
+  console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get subscribe info. Code is ${err.code}, message is ${err.message}`);
 });
@@ -1068,9 +1100,11 @@ Obtains the subscriber information.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 let subscribeInfo = subscriber.getSubscribeInfoSync();
-console.info(`Succeeded in getting subscribe info, subscribe info is ` + JSON.stringify(subscribeInfo));
+console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
 ```
 
 ### finishCommonEvent<sup>9+</sup>
@@ -1093,20 +1127,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
-// Callback for ordered common event finishing.
-function finishCommonEventCallback(err: BusinessError) {
-  if (err != null) {
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
     console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in finishing common event.`);
+    return;
   }
-}
-subscriber.finishCommonEvent(finishCommonEventCallback);
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
 ### finishCommonEvent<sup>9+</sup>
@@ -1124,6 +1158,8 @@ Finishes this ordered common event. This API uses a promise to return the result
 | Promise\<void>   | Promise that returns no value.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.finishCommonEvent().then(() => {

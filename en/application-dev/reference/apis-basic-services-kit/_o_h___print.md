@@ -8,6 +8,12 @@ Provides applications with the ability to access the print system using CAPI.
 
 ## Summary
 
+### Files
+
+| Name | Description |
+| -------- | -------- |
+| [ohprint.h](ohprint_8h.md) |Declares APIs for discovering and connecting to printers, printing files, and querying the list of added printers and printer information. |
+
 ### Types
 
 | Name| Description|

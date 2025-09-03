@@ -25,7 +25,7 @@ Defines the APIs for subscribing to and unsubscribing from common events.
 |typedef struct [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) | Defines a struct for the common event data. |
 |typedef void [CommonEvent_Parameters](./capi-common-event.md#commonevent_parameters) | Defines the additional information about a common event.|
 |typedef void (*[CommonEvent_ReceiveCallback](./capi-common-event.md#commonevent_receivecallback))(const [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) *data) | Defines the callback function of a common event.|
-|typedef struct [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) | Defines a struct for an attribute object used for publishing a custom common event. |
+|typedef struct [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) | Defines a struct for a property object used for publishing a common event. |
 
 ### Enums
 
@@ -74,15 +74,15 @@ Defines the APIs for subscribing to and unsubscribing from common events.
 | CommonEvent_ErrCode [OH_CommonEvent_SetBoolArrayToParameters](./capi-common-event.md#oh_commonevent_setboolarraytoparameters)(CommonEvent_Parameters* param, const char* key, const bool* value, const size_t num);| Sets the additional information of a common event. The value is the content of the Boolean array type.|
 | CommonEvent_ErrCode [OH_CommonEvent_SetCharToParameters](./capi-common-event.md#oh_commonevent_setchartoparameters)(CommonEvent_Parameters* param, const char* key, const char value);| Sets the additional information of a common event. The value is the content of the character type.|
 | CommonEvent_ErrCode [OH_CommonEvent_SetCharArrayToParameters](./capi-common-event.md#oh_commonevent_setchararraytoparameters)(CommonEvent_Parameters* param, const char* key, const char* value, const size_t num);| Sets the additional information of a common event. The value is the content of the character array type.|
-| CommonEvent_PublishInfo* [OH_CommonEvent_CreatePublishInfo](./capi-common-event.md#oh_commonevent_createpublishinfo)(const bool ordered);| Creates an attribute object of a common event.|
-| void [OH_CommonEvent_DestroyPublishInfo](./capi-common-event.md#oh_commonevent_destroypublishinfo)(CommonEvent_PublishInfo* info);| Destroys an attribute object of a common event.|
+| CommonEvent_PublishInfo* [OH_CommonEvent_CreatePublishInfo](./capi-common-event.md#oh_commonevent_createpublishinfo)(const bool ordered);| Creates a property object of a common event. |
+| void [OH_CommonEvent_DestroyPublishInfo](./capi-common-event.md#oh_commonevent_destroypublishinfo)(CommonEvent_PublishInfo* info);| Destroys a property object of a common event. |
 | CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoBundleName](./capi-common-event.md#oh_commonevent_setpublishinfobundlename)(CommonEvent_PublishInfo* info, const char* bundleName);| Sets the bundle name of a common event.|
 | CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoPermissions](./capi-common-event.md#oh_commonevent_setpublishinfopermissions)(CommonEvent_PublishInfo* info, const char* permissions[], const int32_t num);| Sets the common event permissions.|
 | CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoCode](./capi-common-event.md#oh_commonevent_setpublishinfocode)(CommonEvent_PublishInfo* info, const int32_t code);| Sets the result code of a common event.|
 | CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoData](./capi-common-event.md#oh_commonevent_setpublishinfodata)(CommonEvent_PublishInfo* info, const char* data, const size_t length);| Sets the result data of a common event.|
 | CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoParameters](./capi-common-event.md#oh_commonevent_setpublishinfoparameters)(CommonEvent_PublishInfo* info, CommonEvent_Parameters* param);| Sets the additional information of a common event.|
-| CommonEvent_ErrCode [OH_CommonEvent_Publish](./capi-common-event.md#oh_commonevent_publish)(const char* event);| Publishes a custom common event.|
-| CommonEvent_ErrCode [OH_CommonEvent_PublishWithInfo](./capi-common-event.md#oh_commonevent_publishwithinfo)(const char* event, const CommonEvent_PublishInfo* info);| Publishes a custom common event with specified attributes.|
+| CommonEvent_ErrCode [OH_CommonEvent_Publish](./capi-common-event.md#oh_commonevent_publish)(const char* event);| Publishes a common event.|
+| CommonEvent_ErrCode [OH_CommonEvent_PublishWithInfo](./capi-common-event.md#oh_commonevent_publishwithinfo)(const char* event, const CommonEvent_PublishInfo* info);| Publishes a common event with specified properties. |
 | bool [OH_CommonEvent_IsOrderedCommonEvent](./capi-common-event.md#oh_commonevent_isorderedcommonevent)(const CommonEvent_Subscriber* subscriber);| Checks whether a common event is an ordered common event.|
 | bool [OH_CommonEvent_FinishCommonEvent](./capi-common-event.md#oh_commonevent_finishcommonevent)(CommonEvent_Subscriber* subscriber);| Finishes an ordered common event.|
 | bool [OH_CommonEvent_GetAbortCommonEvent](./capi-common-event.md#oh_commonevent_getabortcommonevent)(const CommonEvent_Subscriber* subscriber);| Checks whether an ordered common event is aborted.|
