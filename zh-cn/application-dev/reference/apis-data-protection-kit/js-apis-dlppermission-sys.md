@@ -441,7 +441,7 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpProperty | [DLPProperty](#dlpproperty) | 否 | 是 | 表示DLP文件授权相关信息。 |
+| dlpProperty | [DLPProperty](#dlpproperty) | 否 | 否 | 表示DLP文件授权相关信息。 |
 
 ### addDLPLinkFile
 
@@ -1568,7 +1568,7 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1647,7 +1647,7 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1733,7 +1733,7 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1812,7 +1812,7 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2160,10 +2160,10 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | 否 | 是 | 表示被授权用户账号。不超过255字节。 |
-| authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户账号类型。 |
-| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 |
-| permExpiryTime | number | 否 | 是 | 表示授权到期时间。 |
+| authAccount | string | 否 | 否 | 表示被授权用户账号。不超过255字节。 |
+| authAccountType | [AccountType](#accounttype) | 否 | 否 | 表示被授权用户账号类型。 |
+| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 否 | 表示被授予的权限。 |
+| permExpiryTime | number | 否 | 否 | 表示授权到期时间。 |
 
 ## CustomProperty<sup>20+</sup>
 
@@ -2187,15 +2187,15 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | 否 | 是 | 表示权限设置者账号。不超过255字节。 |
-| ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。不超过255字节。 |
-| ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者账号类型。 |
-| authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 |
-| contactAccount | string | 否 | 是 | 表示联系人账号。不超过255字节。 |
-| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
-| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
-| expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
-| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 否 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
+| ownerAccount | string | 否 | 否 | 表示权限设置者账号。不超过255字节。 |
+| ownerAccountID | string | 否 | 否 | 表示权限设置者账号的ID。不超过255字节。 |
+| ownerAccountType | [AccountType](#accounttype) | 否 | 否 | 表示权限设置者账号类型。 |
+| authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 是 | 表示授权用户列表，默认为空。 |
+| contactAccount | string | 否 | 否 | 表示联系人账号。不超过255字节。 |
+| offlineAccess | boolean | 否 | 否 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
+| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 是 | 表示授予所有人的权限，默认为空。 |
+| expireTime<sup>11+</sup> | number | 否 | 是 | 表示文件权限到期时间戳，默认为空。 |
+| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
 
 ## GatheringPolicyType
 
