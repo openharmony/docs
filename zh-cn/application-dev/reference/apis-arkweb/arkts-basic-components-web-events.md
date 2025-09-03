@@ -1039,7 +1039,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
 
      async selectFile(result: FileSelectorResult): Promise<void> {
        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();

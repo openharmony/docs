@@ -610,7 +610,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
             height:6000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
           }
       </style>
   </head>
@@ -692,7 +692,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
             height:6000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
           }
       </style>
   </head>
@@ -2111,7 +2111,7 @@ forceDisplayScrollBar(enabled: boolean)
           height:2560px;
           padding-right:170px;
           padding-left:170px;
-          border:5px solid blueviolet
+          border:5px solid blueviolet;
         }
       </style>
   </head>
