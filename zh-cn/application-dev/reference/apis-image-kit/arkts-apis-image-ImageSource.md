@@ -158,7 +158,7 @@ getImageInfoSync(index?: number): ImageInfo
 
 ```ts
 function GetImageInfoSync(context : Context) {
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   let filePath: string = context.filesDir + "/test.jpg";
   let imageSource = image.createImageSource(filePath);
   let imageInfo = imageSource.getImageInfoSync(0);
@@ -549,7 +549,7 @@ createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 ```ts
 async function CreatePicture(imageSourceObj : image.ImageSource) {
   let options: image.DecodingOptionsForPicture = {
-    desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] //GAINMAP为需要解码的辅助图类型。 
+    desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。 
   };
   let pictureObj: image.Picture = await imageSourceObj.createPicture(options);
   if (pictureObj != null) {
@@ -758,7 +758,7 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 
 ```ts
 function CreatePixelMapSync(context : Context) {
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   let filePath: string = context.filesDir + "/test.jpg";
   let imageSource = image.createImageSource(filePath);
   let decodingOptions: image.DecodingOptions = {
