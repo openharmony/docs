@@ -253,7 +253,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 7. 获取可用buffer显示并释放解码帧。
 
-   - [OH_VideoDecoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
+   - 调用[OH_VideoDecoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
    - 根据获取的索引（index），调用[OH_VideoDecoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
    - 根据开发者设置的isRender标志决定后续操作：若无需送显，则调用[OH_VideoDecoder_FreeOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_freeoutputbuffer)接口释放解码帧。若需送显，则可调用[OH_VideoDecoder_RenderOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_renderoutputbuffer)接口显示并自动释放解码帧，或调用[OH_VideoDecoder_RenderOutputBufferAtTime](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_renderoutputbufferattime)接口在指定时间点显示并释放解码帧。
 
