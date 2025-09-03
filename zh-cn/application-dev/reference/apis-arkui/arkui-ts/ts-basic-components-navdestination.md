@@ -754,12 +754,12 @@ getConfigInRouteMap(): RouteMapConfig | undefined
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值**
+**返回值：**
 
 | 类型 | 说明 |
 | --- | --- |
-| [RouteMapConfig](#routemapconfig12) | 当前页面路由配置信息。 |
-| undefined | 当该页面不是通过路由表配置时返回undefined。 |
+| [RouteMapConfig](#routemapconfig12) \| undefined | 当前页面路由配置信息。<br/> 当该页面不是通过路由表配置时返回undefined。 |
+
 
 ## RouteMapConfig<sup>12+</sup>
 
