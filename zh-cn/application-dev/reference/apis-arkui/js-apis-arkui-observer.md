@@ -7,7 +7,7 @@
 <!--Tester: @fredyuan912-->
 <!--Adviser: @HelloCrease-->
 
-提供UI组件行为变化的无感监听能力。
+提供UI组件行为变化的无感监听能力。推荐使用[UIObserver](./arkts-apis-uicontext-uiobserver.md)进行组件监听。
 
 > **说明：**
 >
@@ -260,7 +260,7 @@ struct Index {
 
   aboutToAppear() {
     uiObserver.on('navDestinationUpdate', (info) => {
-      console.info('NavDestination state update', JSON.stringify(info));
+      console.info(`NavDestination state update ${JSON.stringify(info)}`);
     });
   }
 
@@ -352,7 +352,7 @@ struct Index {
 
   aboutToAppear() {
     uiObserver.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-      console.info('NavDestination state update', JSON.stringify(info));
+      console.info(`NavDestination state update ${JSON.stringify(info)}`);
     });
   }
 
@@ -519,7 +519,7 @@ struct Index {
         Button('UIObserver on')
           .onClick(() => {
             uiObserver.on('scrollEvent', (info) => {
-              console.info('scrollEventInfo', JSON.stringify(info));
+              console.info(`scrollEventInfo ${JSON.stringify(info)}`);
             });
           })
         Button('UIObserver off')
@@ -532,12 +532,12 @@ struct Index {
         Button('UIObserverWithId on')
           .onClick(() => {
             uiObserver.on('scrollEvent', this.options, (info) => {
-              console.info('scrollEventInfo', JSON.stringify(info));
+              console.info(`scrollEventInfo ${JSON.stringify(info)}`);
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            uiObserver.off('scrollEvent', this.options);
+            uiObserver.off('scrollEvent',this.options);
           })
       }
     }
@@ -578,7 +578,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 注册监听，范围是abilityContext内的page
     uiObserver.on('routerPageUpdate', this.context, (info: uiObserver.RouterPageInfo) => {
-      console.info('[uiObserver][abilityContext] got info: ' + JSON.stringify(info))
+      console.info(`[uiObserver][abilityContext] got info: ${JSON.stringify(info)}`)
     })
   }
 
@@ -590,7 +590,7 @@ export default class EntryAbility extends UIAbility {
         this.uiContext = windowInfo.getUIContext();
         // 注册监听，范围是uiContext内的page
         uiObserver.on('routerPageUpdate', this.uiContext, (info: uiObserver.RouterPageInfo)=>{
-          console.info('[uiObserver][uiContext] got info: ' + JSON.stringify(info))
+          console.info(`[uiObserver][uiContext] got info: ${JSON.stringify(info)}`)
         })
       })
     });
@@ -1241,7 +1241,7 @@ on(type: 'tabContentUpdate', callback: Callback\<TabContentInfo\>): void
 import { uiObserver } from '@kit.ArkUI';
 
 function callbackFunc(info: uiObserver.TabContentInfo) {
-  console.info('tabContentUpdate', JSON.stringify(info));
+  console.info(`tabContentUpdate ${JSON.stringify(info)}`);
 }
 
 @Entry
@@ -1329,7 +1329,7 @@ on(type: 'tabContentUpdate', options: ObserverOptions, callback: Callback\<TabCo
 import { uiObserver } from '@kit.ArkUI';
 
 function callbackFunc(info: uiObserver.TabContentInfo) {
-  console.info('tabContentUpdate', JSON.stringify(info));
+  console.info(`tabContentUpdate ${JSON.stringify(info)}`);
 }
 
 @Entry

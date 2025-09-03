@@ -248,6 +248,7 @@ on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'connectionAccepted'，收到对端连接，触发该事件。   |
@@ -296,6 +297,8 @@ off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
@@ -347,6 +350,8 @@ on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
+
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'serverStopped'，底层服务异常时，触发该事件。   |
@@ -396,6 +401,8 @@ off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |

@@ -45,8 +45,8 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onAlert',
                 message: 'text',
@@ -123,9 +123,9 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
-              console.log("event.isReload:" + event?.isReload ?? 'false');
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
+              console.info("event.isReload:" + event?.isReload ?? 'false');
               this.uiContext.showAlertDialog({
                 title: 'onBeforeUnload',
                 message: 'text',
@@ -204,8 +204,8 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onConfirm',
                 message: 'text',
@@ -340,9 +340,9 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
           .onPrompt((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
-              console.log("event.value:" + event.value);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
+              console.info("event.value:" + event.value);
               this.title = "来自" + event.url + "的消息";
               this.message = event.message;
               this.promptResult = event.value;
@@ -415,10 +415,10 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage());
-              console.log('getSourceId:' + event.message.getSourceId());
-              console.log('getLineNumber:' + event.message.getLineNumber());
-              console.log('getMessageLevel:' + event.message.getMessageLevel());
+              console.info('getMessage:' + event.message.getMessage());
+              console.info('getSourceId:' + event.message.getSourceId());
+              console.info('getLineNumber:' + event.message.getLineNumber());
+              console.info('getMessageLevel:' + event.message.getMessageLevel());
             }
             return false;
           })
@@ -435,7 +435,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
   <body>
   <script>
       function myFunction() {
-          console.log("onconsole printf");
+          console.info("onconsole printf");
       }
   </script>
   </body>
@@ -472,11 +472,11 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onDownloadStart((event) => {
             if (event) {
-              console.log('url:' + event.url)
-              console.log('userAgent:' + event.userAgent)
-              console.log('contentDisposition:' + event.contentDisposition)
-              console.log('contentLength:' + event.contentLength)
-              console.log('mimetype:' + event.mimetype)
+              console.info('url:' + event.url)
+              console.info('userAgent:' + event.userAgent)
+              console.info('contentDisposition:' + event.contentDisposition)
+              console.info('contentLength:' + event.contentLength)
+              console.info('mimetype:' + event.mimetype)
             }
           })
       }
@@ -514,17 +514,17 @@ onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
             if (event) {
-              console.log('getErrorInfo:' + event.error.getErrorInfo());
-              console.log('getErrorCode:' + event.error.getErrorCode());
-              console.log('url:' + event.request.getRequestUrl());
-              console.log('isMainFrame:' + event.request.isMainFrame());
-              console.log('isRedirect:' + event.request.isRedirect());
-              console.log('isRequestGesture:' + event.request.isRequestGesture());
-              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
+              console.info('getErrorInfo:' + event.error.getErrorInfo());
+              console.info('getErrorCode:' + event.error.getErrorCode());
+              console.info('url:' + event.request.getRequestUrl());
+              console.info('isMainFrame:' + event.request.isMainFrame());
+              console.info('isRedirect:' + event.request.isRedirect());
+              console.info('isRequestGesture:' + event.request.isRequestGesture());
+              console.info('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
               let result = event.request.getRequestHeader();
-              console.log('The request header result size is ' + result.length);
+              console.info('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
+                console.info('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
               }
             }
           })
@@ -563,24 +563,24 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl());
-              console.log('isMainFrame:' + event.request.isMainFrame());
-              console.log('isRedirect:' + event.request.isRedirect());
-              console.log('isRequestGesture:' + event.request.isRequestGesture());
-              console.log('getResponseData:' + event.response.getResponseData());
-              console.log('getResponseEncoding:' + event.response.getResponseEncoding());
-              console.log('getResponseMimeType:' + event.response.getResponseMimeType());
-              console.log('getResponseCode:' + event.response.getResponseCode());
-              console.log('getReasonMessage:' + event.response.getReasonMessage());
+              console.info('url:' + event.request.getRequestUrl());
+              console.info('isMainFrame:' + event.request.isMainFrame());
+              console.info('isRedirect:' + event.request.isRedirect());
+              console.info('isRequestGesture:' + event.request.isRequestGesture());
+              console.info('getResponseData:' + event.response.getResponseData());
+              console.info('getResponseEncoding:' + event.response.getResponseEncoding());
+              console.info('getResponseMimeType:' + event.response.getResponseMimeType());
+              console.info('getResponseCode:' + event.response.getResponseCode());
+              console.info('getReasonMessage:' + event.response.getReasonMessage());
               let result = event.request.getRequestHeader();
-              console.log('The request header result size is ' + result.length);
+              console.info('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+                console.info('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
               let resph = event.response.getResponseHeader();
-              console.log('The response header result size is ' + resph.length);
+              console.info('The response header result size is ' + resph.length);
               for (let i of resph) {
-                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+                console.info('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
             }
           })
@@ -619,7 +619,7 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -657,7 +657,7 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -695,7 +695,7 @@ onLoadStarted(callback: Callback\<OnLoadStartedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadStarted((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -733,7 +733,7 @@ onLoadFinished(callback: Callback\<OnLoadFinishedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadFinished((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -770,7 +770,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
             if (event) {
-              console.log('newProgress:' + event.newProgress);
+              console.info('newProgress:' + event.newProgress);
             }
           })
       }
@@ -808,8 +808,8 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
             if (event) {
-              console.log('title:' + event.title);
-              console.log('isRealTitle:' + event.isRealTitle);
+              console.info('title:' + event.title);
+              console.info('isRealTitle:' + event.isRealTitle);
             }
           })
       }
@@ -847,7 +847,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
             if (event) {
-              console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
+              console.info('url:' + event.url + ' isReload:' + event.isRefreshed);
             }
           })
       }
@@ -891,7 +891,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
             if (event) {
-              console.log('reason:' + event.renderExitReason);
+              console.info('reason:' + event.renderExitReason);
             }
           })
       }
@@ -931,7 +931,7 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessNotResponding((data) => {
-            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+            console.info("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
               ", [process]=" + data.pid + ", [reason]=" + data.reason);
           })
       }
@@ -968,7 +968,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessResponding(() => {
-            console.log("onRenderProcessResponding again");
+            console.info("onRenderProcessResponding again");
           })
       }
     }
@@ -1008,7 +1008,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
        Column() {
          Web({ src: $rawfile('index.html'), controller: this.controller })
            .onShowFileSelector((event) => {
-             console.log('MyFileUploader onShowFileSelector invoked')
+             console.info('MyFileUploader onShowFileSelector invoked')
              const documentSelectOptions = new picker.DocumentSelectOptions();
              let uri: string | null = null;
              const documentViewPicker = new picker.DocumentViewPicker();
@@ -1039,7 +1039,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
 
      async selectFile(result: FileSelectorResult): Promise<void> {
        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -1102,11 +1102,11 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
            .onShowFileSelector((event) => {
              openCamera((result) => {
                if (event) {
-                 console.log('Title is ' + event.fileSelector.getTitle());
-                 console.log('Mode is ' + event.fileSelector.getMode());
-                 console.log('Accept types are ' + event.fileSelector.getAcceptType());
-                 console.log('Capture is ' + event.fileSelector.isCapture());
-                 console.log('Mime types are ' + event.fileSelector.getMimeTypes());
+                 console.info('Title is ' + event.fileSelector.getTitle());
+                 console.info('Mode is ' + event.fileSelector.getMode());
+                 console.info('Accept types are ' + event.fileSelector.getAcceptType());
+                 console.info('Capture is ' + event.fileSelector.isCapture());
+                 console.info('Mime types are ' + event.fileSelector.getMimeTypes());
                  event.result.handleFileList([result]);
                }
              }, this.getUIContext())
@@ -1161,7 +1161,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onResourceLoad((event) => {
-            console.log('onResourceLoad: ' + event.url);
+            console.info('onResourceLoad: ' + event.url);
           })
       }
     }
@@ -1197,7 +1197,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
-            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
+            console.info('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           })
       }
     }
@@ -1245,7 +1245,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl());
+              console.info('url:' + event.request.getRequestUrl());
             }
             let head1: Header = {
               headerKey: "Connection",
@@ -1258,7 +1258,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
             // 将新元素追加到数组的末尾，并返回数组的新长度。
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
-            console.log('The response header result length is :' + length);
+            console.info('The response header result length is :' + length);
             const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
               this.responseWeb.setResponseHeader(this.heads);
               this.responseWeb.setResponseData(this.webData);
@@ -1269,7 +1269,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
               resolve("success");
             })
             promise.then(() => {
-              console.log("prepare response ready");
+              console.info("prepare response ready");
               this.responseWeb.setResponseIsReady(true);
             })
             this.responseWeb.setResponseIsReady(false);
@@ -1376,7 +1376,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   
   function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
     if (!(certChainData instanceof Array)) {
-      console.log('failed, cert chain data type is not array');
+      console.info('failed, cert chain data type is not array');
       return;
     }
 
@@ -1389,8 +1389,8 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
         if (error) {
           console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
-          console.log('createX509Cert success');
-          console.log(ParseX509CertInfo(x509Cert));
+          console.info('createX509Cert success');
+          console.info(ParseX509CertInfo(x509Cert));
         }
       });
     }
@@ -1479,7 +1479,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
   function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
     if (!(certChainData instanceof Array)) {
-      console.log('failed, cert chain data type is not array');
+      console.info('failed, cert chain data type is not array');
       return;
     }
 
@@ -1492,8 +1492,8 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
         if (error) {
           console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
-          console.log('createX509Cert success');
-          console.log(ParseX509CertInfo(x509Cert));
+          console.info('createX509Cert success');
+          console.info(ParseX509CertInfo(x509Cert));
         }
       });
     }
@@ -1528,12 +1528,12 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEvent((event: SslErrorEvent) => {
-            console.log("onSslErrorEvent url: " + event.url);
-            console.log("onSslErrorEvent error: " + event.error);
-            console.log("onSslErrorEvent originalUrl: " + event.originalUrl);
-            console.log("onSslErrorEvent referrer: " + event.referrer);
-            console.log("onSslErrorEvent isFatalError: " + event.isFatalError);
-            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame);
+            console.info("onSslErrorEvent url: " + event.url);
+            console.info("onSslErrorEvent error: " + event.error);
+            console.info("onSslErrorEvent originalUrl: " + event.originalUrl);
+            console.info("onSslErrorEvent referrer: " + event.referrer);
+            console.info("onSslErrorEvent isFatalError: " + event.isFatalError);
+            console.info("onSslErrorEvent isMainFrame: " + event.isMainFrame);
             LogCertInfo(event.certChainData);
             this.uiContext.showAlertDialog({
               title: 'onSslErrorEvent',
@@ -1610,7 +1610,7 @@ struct Index {
         let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
         certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
           async (err: BusinessError, data: certificateManager.CMResult) => {
-            console.log(`installPrivateCertificate, uri==========${JSON.stringify(data.uri)}`)
+            console.info(`installPrivateCertificate, uri==========${JSON.stringify(data.uri)}`)
             if (!err && data.uri) {
               this.uri = data.uri;
             }
@@ -1626,15 +1626,15 @@ struct Index {
       }).domStorageAccess(true)
         .fileAccess(true)
         .onPageBegin(event => {
-          console.log("extensions onpagebegin url " + event.url);
+          console.info("extensions onpagebegin url " + event.url);
         })
         .onClientAuthenticationRequest((event) => {
-          console.log("onClientAuthenticationRequest ");
+          console.info("onClientAuthenticationRequest ");
           event.handler.confirm(this.uri);
           return true;
         })
         .onSslErrorEventReceive(e => {
-          console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+          console.info(`onSslErrorEventReceive->${e.error.toString()}`);
         })
         .onErrorReceive((event) => {
           if (event) {
@@ -1642,13 +1642,13 @@ struct Index {
               message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
               alignment: Alignment.Center
             })
-            console.log('getErrorInfo:' + event.error.getErrorInfo());
-            console.log('getErrorCode:' + event.error.getErrorCode());
-            console.log('url:' + event.request.getRequestUrl());
+            console.info('getErrorInfo:' + event.error.getErrorInfo());
+            console.info('getErrorCode:' + event.error.getErrorCode());
+            console.info('url:' + event.request.getRequestUrl());
           }
         })
         .onTitleReceive(event  => {
-          console.log("title received " + event.title);
+          console.info("title received " + event.title);
         })
 
     }
@@ -1770,19 +1770,19 @@ struct Index {
           }).domStorageAccess(true)
             .fileAccess(true)
             .onPageBegin(event => {
-              console.log("extensions onpagebegin url " + event.url);
+              console.info("extensions onpagebegin url " + event.url);
             })
             .onClientAuthenticationRequest((event) => {
-              console.log("onClientAuthenticationRequest ");
+              console.info("onClientAuthenticationRequest ");
 
               this.certManager.grantAppPm().then(result => {
-                console.log(`grantAppPm, URI==========${result}`);
+                console.info(`grantAppPm, URI==========${result}`);
                 event.handler.confirm(result);
               })
               return true;
             })
             .onSslErrorEventReceive(e => {
-              console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+              console.info(`onSslErrorEventReceive->${e.error.toString()}`);
             })
             .onErrorReceive((event) => {
               if (event) {
@@ -1790,13 +1790,13 @@ struct Index {
                   message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
                   alignment: Alignment.Center
                 })
-                console.log('getErrorInfo:' + event.error.getErrorInfo());
-                console.log('getErrorCode:' + event.error.getErrorCode());
-                console.log('url:' + event.request.getRequestUrl());
+                console.info('getErrorInfo:' + event.error.getErrorInfo());
+                console.info('getErrorCode:' + event.error.getErrorCode());
+                console.info('url:' + event.request.getRequestUrl());
               }
             })
             .onTitleReceive(event  => {
-              console.log("title received " + event.title);
+              console.info("title received " + event.title);
             })
 
         }
@@ -2125,7 +2125,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuHide(() => {
-            console.log("onContextMenuHide callback");
+            console.info("onContextMenuHide callback");
           })
       }
     }
@@ -2536,7 +2536,7 @@ onActivateContent(callback: Callback\<void>)
           })
           .onActivateContent(() => {
             //该Web需要展示到前面，建议应用在这里进行tab或window切换的动作展示此web
-            console.log("NewWebViewComp onActivateContent")
+            console.info("NewWebViewComp onActivateContent")
           })
       }.height("50%")
     }
@@ -2624,7 +2624,7 @@ onWindowExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onWindowExit(() => {
-            console.log("onWindowExit...");
+            console.info("onWindowExit...");
           })
       }
     }
@@ -2661,7 +2661,7 @@ onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onSearchResultReceive(ret => {
             if (ret) {
-              console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              console.info("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
                 "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
             }
           })
@@ -2709,7 +2709,7 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
           })
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onDataResubmitted((event) => {
-            console.log('onDataResubmitted');
+            console.info('onDataResubmitted');
             event.handler.resend();
           })
       }
@@ -2763,7 +2763,7 @@ onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageVisible((event) => {
-            console.log('onPageVisible url:' + event.url);
+            console.info('onPageVisible url:' + event.url);
           })
       }
     }
@@ -2839,7 +2839,7 @@ onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
       Column() {
         Web({ src: 'www.baidu.com', controller: this.controller })
           .onTouchIconUrlReceived((event) => {
-            console.log('onTouchIconUrlReceived:' + JSON.stringify(event));
+            console.info('onTouchIconUrlReceived:' + JSON.stringify(event));
           })
       }
     }
@@ -2877,7 +2877,7 @@ onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFaviconReceived((event) => {
-            console.log('onFaviconReceived');
+            console.info('onFaviconReceived');
             this.icon = event.favicon;
           })
       }
@@ -2953,7 +2953,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
             if (event) {
-              console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+              console.info("onFirstContentfulPaint:" + "[navigationStartTick]:" +
               event.navigationStartTick + ", [firstContentfulPaintMs]:" +
               event.firstContentfulPaintMs);
             }
@@ -3029,7 +3029,7 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](./arkts-ba
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onLargestContentfulPaint((details) => {
-            console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+            console.info("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
               ", [largestImagePaintTime]=" + details.largestImagePaintTime +
               ", [largestTextPaintTime]=" + details.largestTextPaintTime +
               ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
@@ -3070,10 +3070,10 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadIntercept((event) => {
-            console.log('url:' + event.data.getRequestUrl());
-            console.log('isMainFrame:' + event.data.isMainFrame());
-            console.log('isRedirect:' + event.data.isRedirect());
-            console.log('isRequestGesture:' + event.data.isRequestGesture());
+            console.info('url:' + event.data.getRequestUrl());
+            console.info('isMainFrame:' + event.data.isMainFrame());
+            console.info('isRedirect:' + event.data.isRedirect());
+            console.info('isRequestGesture:' + event.data.isRequestGesture());
             return true;
           })
       }
@@ -3110,7 +3110,7 @@ onRequestSelected(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRequestSelected(() => {
-            console.log('onRequestSelected');
+            console.info('onRequestSelected');
           })
       }
     }
@@ -3267,7 +3267,7 @@ onControllerAttached(callback: () => void)
           .onControllerAttached(() => {
             try {
               let id = this.controller.getWebId();
-              console.log("id: " + id);
+              console.info("id: " + id);
             } catch (error) {
               let code = (error as BusinessError).code;
               let message = (error as BusinessError).message;
@@ -3318,7 +3318,7 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](./arkt
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onNavigationEntryCommitted((details) => {
-            console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
+            console.info("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
               ", [isSameDocument]=" + details.isSameDocument +
               ", [didReplaceEntry]=" + details.didReplaceEntry +
               ", [navigationType]=" + details.navigationType +
@@ -3372,7 +3372,7 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
           .onSafeBrowsingCheckResult((callback) => {
             let jsonData = JSON.stringify(callback);
             let json: OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData);
-            console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
+            console.info("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
           })
       }
     }
@@ -3519,16 +3519,16 @@ export default class EntryAbility extends UIAbility {
             if (event.status == NativeEmbedStatus.LEAVE_BFCACHE) {
               this.embedStatus = 'Leave BFCache';
             }
-            console.log("status = " + this.embedStatus);
-            console.log("surfaceId = " + event.surfaceId);
-            console.log("embedId = " + event.embedId);
+            console.info("status = " + this.embedStatus);
+            console.info("surfaceId = " + event.surfaceId);
+            console.info("embedId = " + event.embedId);
             if (event.info) {
-              console.log("id = " + event.info.id);
-              console.log("type = " + event.info.type);
-              console.log("src = " + event.info.src);
-              console.log("width = " + event.info.width);
-              console.log("height = " + event.info.height);
-              console.log("url = " + event.info.url);
+              console.info("id = " + event.info.id);
+              console.info("type = " + event.info.type);
+              console.info("src = " + event.info.src);
+              console.info("width = " + event.info.width);
+              console.info("height = " + event.info.height);
+              console.info("url = " + event.info.url);
             }
           })
       }
@@ -3682,13 +3682,13 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
                 if (event.result) {
                   event.result.setGestureEventResult(ret, true);
                 }
-                console.log("embedId = " + event.embedId);
-                console.log("touchType = " + this.eventType);
-                console.log("x = " + event.touchEvent.touches[0].x);
-                console.log("y = " + event.touchEvent.touches[0].y);
-                console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
-                console.log("width = " + event.touchEvent.target.area.width);
-                console.log("height = " + event.touchEvent.target.area.height);
+                console.info("embedId = " + event.embedId);
+                console.info("touchType = " + this.eventType);
+                console.info("x = " + event.touchEvent.touches[0].x);
+                console.info("y = " + event.touchEvent.touches[0].y);
+                console.info("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+                console.info("width = " + event.touchEvent.target.area.width);
+                console.info("height = " + event.touchEvent.target.area.height);
               }
             })
         }
@@ -3754,7 +3754,7 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
           })
         Web({ src: 'www.example.com', controller: this.controller })
           .onIntelligentTrackingPreventionResult((details) => {
-            console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
+            console.info("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
               ", [trackerHost]=" + details.trackerHost);
           })
       }
@@ -3978,7 +3978,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
           if (attributes) {
             if (attributes['data-keyboard'] == 'customKeyboard') {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
-              console.log('WebCustomKeyboard use custom keyboard')
+              console.info('WebCustomKeyboard use custom keyboard')
               option.useSystemKeyboard = false;
               // 设置自定义键盘builder
               option.customKeyboard = () => {
@@ -4062,7 +4062,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-当网页中同层标签（例如<embed\>标签或<embed\>标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
+当网页中同层标签（例如<embed\>标签或<object\>标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4173,8 +4173,8 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
               } else {
                 this.embedVisibility = 'Hidden';
               }
-              console.log("embedId = " + embed.embedId);
-              console.log("visibility = " + embed.visibility);
+              console.info("embedId = " + embed.embedId);
+              console.info("visibility = " + embed.visibility);
             })
         }
       }
@@ -4460,7 +4460,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
             if (event) {
-              console.log('onUrlLoadIntercept ' + event.data.toString());
+              console.info('onUrlLoadIntercept ' + event.data.toString());
             }
             return true
           })

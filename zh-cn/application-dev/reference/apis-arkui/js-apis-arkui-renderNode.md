@@ -381,7 +381,7 @@ struct Index {
           for (let i = 0; i < 11; i++) {
             let childNode: RenderNode | null = renderNode.getChild(i);
             if (childNode == null) {
-              console.info(`the ${i} of renderNode's childNode is null`);
+              console.error(`the ${i} of renderNode's childNode is null`);
             } else {
               console.info(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
             }
@@ -453,7 +453,7 @@ struct Index {
         .onClick(() => {
           const firstChild = renderNode.getFirstChild();
           if (firstChild === null) {
-            console.info('the fist child is null');
+            console.error('the fist child is null');
           } else {
             console.info(`the position of fist child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
           }
@@ -594,7 +594,7 @@ struct Index {
           const child = renderNode.getChild(1);
           const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
-            console.info('the child or previousChild is null');
+            console.error('the child or previousChild is null');
           } else {
             console.info(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
               `the position of previousSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
@@ -1689,7 +1689,7 @@ const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
 renderNode.shadowOffset = { x: 10, y: 10 };
-renderNode.shadowAlpha = 0.7
+renderNode.shadowAlpha = 0.7;
 renderNode.shadowElevation = 30;
 const shadowElevation = renderNode.shadowElevation;
 
@@ -1767,7 +1767,7 @@ renderNode.frame = {
   height: 100
 };
 renderNode.shadowOffset = { x: 10, y: 10 };
-renderNode.shadowAlpha = 0.7
+renderNode.shadowAlpha = 0.7;
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
 console.info(`FrameNode ${shadowRadius}`);
@@ -2516,12 +2516,10 @@ struct Index {
               bottomRight: { x: 32, y: 32 }
             }
           });
-          renderNode.shapeClip = renderNode.shapeClip;
         })
       Button("setCircleShape")
         .onClick(() => {
           renderNode.shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
-          renderNode.shapeClip = renderNode.shapeClip;
 
         })
       Button("setOvalShape")
@@ -2532,12 +2530,10 @@ struct Index {
             top: 0,
             bottom: this.getUIContext().vp2px(100)
           });
-          renderNode.shapeClip = renderNode.shapeClip;
         })
       Button("setCommandPath")
         .onClick(() => {
           renderNode.shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
-          renderNode.shapeClip = renderNode.shapeClip;
         })
     }
   }

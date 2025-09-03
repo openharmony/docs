@@ -1,5 +1,12 @@
 # 应用性能优化常见问题解决指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 本文总结了实际开发应用时常见的性能优化规范，配合举例实际开发中常见的正反例代码，帮助开发者解决大部分性能问题。
@@ -58,6 +65,10 @@ struct ViewA {
     let context = this.getUIContext().getHostContext() as Context;
     this.text = context.resourceManager.getStringSync($r('app.string.task_text').id);
   }
+
+  build() {
+    // ...
+  }
 }
 ```
 #### 正例
@@ -93,6 +104,10 @@ struct ViewB {
       this.computeTask();
     }, this.DELAYED_TIME)
   }
+  
+  build() {
+    // ...
+  }
 }
 ```
 #### 高频程度&收益（5满分）
@@ -105,7 +120,7 @@ struct ViewB {
 排查所有的回调函数(或者通过Trace查看)，尤其是ArkUI接口，网络回调函数，查看是否有耗时操作，是否使用了await操作，改为setTimeOut或者在TaskPool中执行。
 #### 反例
 ```typescript
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 async aboutToAppear() {
   // ...
@@ -622,7 +637,7 @@ struct CEMineButtomView {
 例如只打印了日志，删除函数回调。
 #### 反例
 ```typescript
-import promptAction from '@ohos.promptAction';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
@@ -656,8 +671,6 @@ struct ViewA {
 ```
 #### 正例
 ```typescript
-import promptAction from '@ohos.promptAction';
-
 @Entry
 @Component
 struct ViewB {

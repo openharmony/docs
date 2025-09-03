@@ -405,3 +405,17 @@ No network connection.
 
 请连接网络。
 <!--DelEnd-->
+
+## 19100021 设置企业应用策略失败
+
+**错误信息**
+
+Failed to set the enterprise policy.
+
+**错误描述**
+
+设置企业应用策略失败。
+
+**处理步骤**
+
+请检查策略格式，并进行重试。

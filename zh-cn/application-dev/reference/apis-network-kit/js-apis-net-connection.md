@@ -1701,6 +1701,100 @@ connection.clearCustomDnsRules().then(() => {
 })
 ```
 
+## connection.setPacFileUrl<sup>20+</sup>
+
+setPacFileUrl(pacFileUrl: string): void
+
+设置当前PAC脚本的URL地址。通过解析脚本地址可以获取代理信息。
+
+**需要权限**：ohos.permission.SET_PAC_URL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                           |
+| ----------- | ------ | ---- | ------------------------------ |
+| pacFileUrl  | string | 是   | 当前PAC脚本的URL地址。         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息     |
+|---------|----------|
+| 201     | Permission denied.   |
+| 2100002 | Failed to connect to the service. |
+
+**示例：**
+
+```typescript
+import { connection } from '@kit.NetworkKit';
+
+let pacFileUrl = "http://example.com/proxy.pac";
+connection.setPacFileUrl(pacFileUrl);
+```
+## connection.getPacFileUrl<sup>20+</sup>
+
+getPacFileUrl(): string
+
+获取当前PAC脚本的URL地址。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型 | 说明                                            |
+| -------- | ----------------------------------------------- |
+| string   | 当前PAC脚本的URL地址，如果没有PAC脚本则返回空字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 2100002  | Failed to connect to the service.                 |
+
+**示例：**
+
+```typescript
+import { connection } from '@kit.NetworkKit';
+
+let pacFileUrl = connection.getPacFileUrl();
+console.info(pacFileUrl);
+```
+
+## connection.findProxyForUrl<sup>20+</sup>
+
+findProxyForUrl(url: string): string
+
+根据给定的URL查找PAC代理信息。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明              |
+| ------ | ------ | ---- | ----------------- |
+| url    | string | 是   | 要查找代理信息的URL。 |
+
+**返回值：**
+
+| 类型 | 说明                     |
+| -------- | ------------------------ |
+| string   | 返回代理信息。              |
+
+
+**示例：**
+
+```typescript
+import { connection } from '@kit.NetworkKit';
+
+let proxyInfo = connection.findProxyForUrl("http://example.com");
+console.info(proxyInfo);
+```
+
 ## connection.setPacUrl<sup>15+</sup>
 
 setPacUrl(pacUrl: string): void

@@ -1066,7 +1066,7 @@ let res2: boolean = storage.setOrCreate('PropB', null); // true (API12及之后�
 
 ### ref<sup>12+</sup>
 
-public ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
+ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回LocalStorage中propName对应数据的引用。否则，返回undefined。
 
@@ -1100,7 +1100,7 @@ refToPropA1?.set(48); // refToPropA1.get() == refToPropA2.get() == 48
 
 ### setAndRef<sup>12+</sup>
 
-public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
 与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
@@ -1632,9 +1632,9 @@ let link = AppStorage.setAndLink('PropB', 49); // PropA -> 47, PropB -> 49
 link.aboutToBeDeleted();
 ```
 
-### info
+### info<sup>10+</sup>
 
-info(): string;
+info(): string
 
 返回属性名称。
 
@@ -1836,7 +1836,7 @@ PersistentStorage.DeleteProp('highScore');
 
 ### PersistProps<sup>(deprecated)</sup>
 
-static PersistProps(properties: {key: string, defaultValue: any;}[]): void
+static PersistProps(properties: {key: string; defaultValue: any;}[]): void
 
 行为和[PersistProp](#persistpropdeprecated)类似，不同在于可以一次性持久化多个数据，适合在应用启动的时候初始化。
 
@@ -1849,7 +1849,7 @@ static PersistProps(properties: {key: string, defaultValue: any;}[]): void
 
 | 参数名     | 类型                               | 必填 | 说明                                                     |
 | ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| properties | {key: string, defaultValue: any}[] | 是   | 持久化数组，启动key为属性名，defaultValue为默认值。规则同PersistProp。 |
+| properties | {key: string; defaultValue: any}[] | 是   | 持久化数组，启动key为属性名，defaultValue为默认值。规则同PersistProp。 |
 
 **示例：**
 
@@ -2034,7 +2034,7 @@ static EnvProps(props: {key: string; defaultValue: any;}[]): void
 
 | 参数名 | 类型                                              | 必填 | 说明                             |
 | ------ | ------------------------------------------------- | ---- | ------------------------------------ |
-| props  | {key:&nbsp;string,&nbsp;defaultValue:&nbsp;any}[] | 是   | 系统环境变量和默认值的键值对的数组。 |
+| props  | {key:&nbsp;string; &nbsp;defaultValue:&nbsp;any}[] | 是   | 系统环境变量和默认值的键值对的数组。 |
 
 **示例：**
 ```ts
