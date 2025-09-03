@@ -33,23 +33,18 @@
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考步骤3.创建录像输出流。
      let avRecorder: media.AVRecorder | undefined = undefined;
+     let videoSurfaceId: string | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return videoSurfaceId;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
+       videoSurfaceId = await avRecorder.getInputSurface();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
      }
-     if (avRecorder === undefined) {
-       return undefined;
-     }
-     avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
-       if (err == null) {
-         console.info('prepare success');
-       } else {
-         console.error('prepare failed and error is ' + err.message);
-       }
-     });
-     let videoSurfaceId = await avRecorder.getInputSurface();
      return videoSurfaceId;
    }
    ```
@@ -70,9 +65,12 @@
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
+     if (!cameraManager || !videoSurfaceId || !cameraOutputCapability || !cameraOutputCapability.videoProfiles) {
+       return;
+     }
      let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCapability.videoProfiles;
-     if (!videoProfilesArray) {
-       console.error("createOutput videoProfilesArray == null || undefined");
+     if (!videoProfilesArray || videoProfilesArray.length === 0) {
+       console.error("videoProfilesArray is null or []");
        return undefined;
      }
      // AVRecorderProfile。
@@ -95,19 +93,21 @@
        url: 'fd://35', // 此处为样例示范，需要根据开发需求填写实际的路径。
        metadata: avMetadata
      };
-     // 创建avRecorder。
+     // 创建avRecorder，设置视频录制的参数。
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return undefined;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
+       await avRecorder?.release();
+       return;
      }
-     if (avRecorder === undefined) {
-       return undefined;
-     }
-     // 设置视频录制的参数。
-     avRecorder.prepare(aVRecorderConfig);
+
      // 创建VideoOutput对象。
      let videoOutput: camera.VideoOutput | undefined = undefined;
      // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。
@@ -116,13 +116,15 @@
      });
      if (!videoProfile) {
        console.error('videoProfile is not found');
-       return;
+       await avRecorder.release();
+       return undefined;
      }
      try {
        videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
+       await avRecorder.release();
      }
      return videoOutput;
    }

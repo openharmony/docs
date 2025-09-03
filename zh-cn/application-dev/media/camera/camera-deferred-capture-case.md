@@ -134,7 +134,7 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.error(`Camera input error code: ${error.code}`);
-  })
+  });
 
   // 打开相机。
   await cameraInput.open();
