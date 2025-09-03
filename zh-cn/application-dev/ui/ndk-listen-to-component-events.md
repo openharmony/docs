@@ -131,6 +131,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
               ", sourceType: " + std::to_string(sourceType) + ", type: " + std::to_string(type);
           OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfoOfCommonEvent", "eventInfo = %{public}s",
                        eventInfo.c_str());
+          break;
       }
       default: {
           break;
@@ -457,6 +458,9 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
            auto onClick = [](ArkUI_NodeEvent *event) {
                // 从组件事件中获取基础事件对象
                auto *inputEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
+               if (inputEvent == nullptr) {
+                    return;
+               }
                // 从组件事件获取事件类型
                auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfo", "inputEvent = %{public}p", inputEvent);
@@ -467,6 +471,9 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
                             componentEvent);
                // 获取触发该事件的组件对象
                auto nodeHandle = OH_ArkUI_NodeEvent_GetNodeHandle(event);
+               if (nodeHandle == nullptr) {
+                    return;
+               }
                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfo", "nodeHandle = %{public}p", nodeHandle);
                // 根据eventType来区分事件类型，进行差异化处理，其他获取事件信息的接口也可类似方式来进行差异化的处理
                switch (eventType) {
