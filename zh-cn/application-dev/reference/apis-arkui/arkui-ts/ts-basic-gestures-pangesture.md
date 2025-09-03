@@ -30,7 +30,7 @@
 
 PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: number } | PanGestureOptions)
 
-创建滑动手势对象。继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)
+创建滑动手势对象。继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
