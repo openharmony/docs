@@ -83,6 +83,8 @@ int32_t (*OH_AudioRenderer_OnStreamEvent)(OH_AudioRenderer* renderer, void* user
 
 该函数指针将指向用于处理音频播放流事件的回调函数。
 
+OH_AudioRenderer_OnStreamEvent无法触发回调，为预留接口。从API 11开始，开发者如果需要监听设备变化，可直接使用[OH_AudioRenderer_OutputDeviceChangeCallback](capi-native-audiostream-base-h.md#oh_audiorenderer_outputdevicechangecallback)替代。
+
 **起始版本：** 10
 
 **废弃版本：** 20
