@@ -381,6 +381,7 @@ setFrameRate(minFps: number, maxFps: number): void
 > **说明：**
 >
 > 仅在[PhotoSession](arkts-apis-camera-PhotoSession.md)或[VideoSession](arkts-apis-camera-VideoSession.md)模式下支持。
+>
 > 接口调用前，先调用[getActiveFrameRate](arkts-apis-camera-VideoOutput.md#getactiveframerate12)接口查询当前VideoSession的帧率，若下发的帧率与当前帧率相等，则下发的帧率不会生效。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
