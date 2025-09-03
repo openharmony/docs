@@ -70,7 +70,6 @@ async function hasKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Prom
   try {
     await huks.hasKeyItem(keyAlias, huksOptions)
       .then((data) => {
-        let outData = data.outData;
         console.info(`promise: hasKeyItem success, data = ${data}`);
         ret = true;
       }).catch((error: BusinessError) => {
