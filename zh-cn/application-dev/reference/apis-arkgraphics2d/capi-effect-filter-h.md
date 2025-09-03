@@ -1,4 +1,10 @@
 # effect_filter.h
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @hanamaru-->
+<!--Designer: @gaoweihua-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -117,7 +123,7 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
 
 **描述**
 
-创建一个毛玻璃滤镜效果，然后添加到滤镜里面。
+创建一个毛玻璃滤镜效果，然后添加到滤镜里面，支持着色器效果平铺模式选择。
 
 **起始版本：** 14
 
@@ -154,7 +160,7 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
-| float brightness | 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变。 |
+| float brightness | 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变，取值为1时图像全白。 |
 
 **返回：**
 
