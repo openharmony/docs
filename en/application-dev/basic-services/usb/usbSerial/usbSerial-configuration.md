@@ -72,6 +72,8 @@ You can obtain and set the serial port configuration as follows:
 
     ```ts
     // Check whether the first USB device in the list has the access permission.
+    // Name the function based on the specific service.
+    async function serialDefault() {
     let portId: number = portList[0].portId;
     if (!serial.hasSerialRight(portId)) {
       await serial.requestSerialRight(portId).then(result => {
@@ -81,6 +83,7 @@ You can obtain and set the serial port configuration as follows:
           return;
         }
       });
+      }
     }
     ```
 

@@ -1,5 +1,11 @@
 # Subscribing to Common Events in C
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
@@ -53,11 +59,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        // Create the subscriber information.
        CommonEvent_SubscribeInfo* info = OH_CommonEvent_CreateSubscribeInfo(events, eventsNum);
 
-       // Set the subscriber permission.
+       // Set the publisher permission.
        ret = OH_CommonEvent_SetPublisherPermission(info, permission);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherPermission ret <%{public}d>.", ret);
        
-       // Set a bundle name of the subscriber.
+       // Set a bundle name of the publisher.
        ret = OH_CommonEvent_SetPublisherBundleName(info, bundleName);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherBundleName ret <%{public}d>.", ret);
        return info;
@@ -88,9 +94,6 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        
        // Obtain the bundle name of a common event.
        const char *bundle = OH_CommonEvent_GetBundleNameFromRcvData(data);
-       
-       // Obtain the additional information of a common event.
-       const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "event: %{public}s, code: %{public}d, data: %{public}s, bundle: %{public}s", event, code, retData, bundle);
    }
    ```
@@ -193,7 +196,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    }
    ```
 
-   Use [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscriber) to create a subscriber and pass in the subscriber information [CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_subscribeinfo) and event callback function [OnReceive](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_receivecallback).
+   Create a subscriber through [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscriber), and pass in [CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_subscribeinfo) and the **OnReceive** callback function defined in step 4.
 
    ```c++
    // Create a subscriber.

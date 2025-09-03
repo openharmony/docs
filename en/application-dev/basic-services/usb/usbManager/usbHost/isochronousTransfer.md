@@ -25,8 +25,8 @@ Isochronous transfer is a transfer mode in which data is transferred in a fixed 
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
-- Update the public SDK to API version 16 or later. For details, see [Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
-- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/hdc).
+- Update the public SDK to API version 16 or later.<!--Del--> For details, see [Switching to Full SDK](../../../../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
+- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS.
 - Use a USB cable to connect a device to the PC.
 
 ## How to Develop
@@ -71,6 +71,8 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
 
     ```ts
     // Check whether the first USB device in the list has the access permission.
+    // Name the function based on the specific service.
+    async function transferDefault() {
     let usbDevice: usbManager.USBDevice = usbDevices[0];
     if(!usbManager.hasRight(usbDevice.name)) {
       await usbManager.requestRight(usbDevice.name).then(result => {
@@ -80,6 +82,7 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
           return;
         }
       });
+        }
     }
     ```
 
@@ -91,23 +94,23 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
    let usbInterfaces: usbManager.USBInterface[] = [];
    let usbInterface: usbManager.USBInterface | undefined = undefined
    let usbEndpoints: usbManager.USBEndpoint[] = [];
-   let usbEndprint: usbManager.USBEndpoint | undefined = undefined
+   let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
      for (let i = 0; i < usbInterfaces.length; i++) {
        usbEndpoints = usbInterfaces[i].endpoints;
-       usbEndprint = usbEndpoints.find((value) => {
+       usbEndpoint = usbEndpoints.find((value) => {
          // direction indicates the request direction. The value 0 indicates the written data, and the value 128 indicates the read data.
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS;
        })
-       if (usbEndprint !== undefined) {
+       if (usbEndpoint !== undefined) {
          usbInterface = usbInterfaces[i];
          break;
        }
      }
    }
-   if (usbEndprint === undefined) {
-     console.error(`get usbEndprint error`)
+   if (usbEndpoint === undefined) {
+     console.error(`get usbEndpoint error`)
      return;
    }
    ```
@@ -140,7 +143,7 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
      let transferParams: usbManager.UsbDataTransferParams = {
        devPipe: devicePipe,
        flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
-       endpoint: usbEndprint.address,
+       endpoint: usbEndpoint.address,
        type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS,
        timeout: 2000,
        length: 10,

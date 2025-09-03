@@ -1,9 +1,15 @@
 # Publishing Common Events in C
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
-You can use the [OH_CommonEvent_Publish](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publish) and [OH_CommonEvent_PublishWithInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publishwithinfo) methods to publish a custom common event, which can carry data for subscribers to parse and process.
+You can use the [OH_CommonEvent_Publish](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publish) and [OH_CommonEvent_PublishWithInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publishwithinfo) methods to publish a common event, which can carry data for subscribers to parse and process.
 
 ## Available APIs
 
@@ -11,11 +17,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
 | API                              | Description                                                            |
 | ------------------------------------ | ---------------------------------------------------------------- |
-|[struct CommonEvent_PublishInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_publishinfo)|Describes an attribute object used for publishing a custom common event.|
-|[CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publish)|Publishes a custom common event.|
-|[CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publishwithinfo)| Publishes a custom common event with specified attributes.|
-|[CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createpublishinfo)|Creates an attribute object of a common event.|
-|[void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroypublishinfo)|Destroys an attribute object of a common event.|
+|[struct CommonEvent_PublishInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_publishinfo)|Describes a property object used for publishing a common event.|
+|[CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publish)|Publishes a common event.|
+|[CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publishwithinfo)| Publishes a common event with specified properties.|
+|[CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createpublishinfo)|Creates a property object of a common event.|
+|[void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroypublishinfo)|Destroys a property object of a common event.|
 |[CommonEvent_Parameters* OH_CommonEvent_CreateParameters()](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createparameters)|Creates an additional information object of a common event.|
 |[void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroyparameters)|Destroys an additional information object of a common event.|
 
@@ -42,12 +48,12 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    )
    ```
 
-3. (Optional) Create an attribute object of a common event.
+3. (Optional) Create a property object of a common event.
 
-   When publishing a custom common event that carries data, you need to create an attribute object of the common event using [OH_CommonEvent_CreatePublishInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createpublishinfo) and set the attributes using the following APIs:
+   When publishing a common event that carries data, you need to create a property object of the common event using [OH_CommonEvent_CreatePublishInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createpublishinfo) and set the properties using the following APIs:
 
    ```c++
-   // Create and add additional information of common event attributes.
+   // Create and add additional information of common event properties.
    CommonEvent_Parameters* CreateParameters()
    {
        int32_t ret = -1;
@@ -96,14 +102,14 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetCharToParameters ret <%{public}d>.", ret);
 
        // Set the additional information and key of the char array type.
-       char* value= "AAAAAAAAAAAAAA";
+       const char* value= "Char Array";
        size_t valueLength = strlen(value);
        ret = OH_CommonEvent_SetCharArrayToParameters(param, "charArrayKey", value, valueLength);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetCharArrayToParameters ret <%{public}d>.", ret);
        return param;
    }
    
-   // Set common event attributes.
+   // Set common event properties.
    void SetPublishInfo(const char* bundleName, const char* permissions[], int32_t num, const int32_t code, const char* data)
    {
        int32_t ret = -1;
@@ -155,7 +161,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
      ```c++
      void PublishWithInfo(const char* event, CommonEvent_PublishInfo* info)
      {
-         // Create a common event with the attribute object.
+         // Create a common event with the property object.
          int32_t ret = OH_CommonEvent_PublishWithInfo(event, info);
          OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_PublishWithInfo ret <%{public}d>.", ret);
      }

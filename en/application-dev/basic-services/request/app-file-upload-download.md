@@ -1,4 +1,9 @@
 # Uploading and Downloading Application Files
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
 
 This topic describes how to upload an application file to a network server and download a network resource file from a network server to a local application file directory.
 
@@ -11,11 +16,13 @@ You can use **uploadFile()** in [ohos.request](../../reference/apis-basic-servic
 > Currently, only files in the **cacheDir** directory can be uploaded using **request.uploadFile**; user public files and files in the **cacheDir** directory can be uploaded together using **request.agent**.
 >
 > To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
+>
+> The **ohos.request** module does not support proxy packet capture tools such as Charles and Fiddler.
 
-The following code demonstrates how to upload files from a cache directory of an application to a network server in two approaches:
+The following code demonstrates how to upload files from a cache directory of an application to a network server in two ways:
 
 ```ts
-// Approach 1: Use request.uploadFile.
+// Method 1: Use request.uploadFile.
 // pages/xxx.ets
 import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
@@ -34,9 +41,14 @@ struct Index {
           let cacheDir = context.cacheDir;
 
           // Create an application file locally.
-          let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-          fs.writeSync(file.fd, 'upload file test');
-          fs.closeSync(file);
+          try {
+            let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, 'upload file test');
+            fs.closeSync(file);
+          } catch (error) {
+            let err: BusinessError = error as BusinessError;
+            console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
+          }
 
           // Configure the upload task.
           let files: Array<request.File> = [
@@ -80,7 +92,7 @@ struct Index {
 ```
 
 ```ts
-// Approach 2: Use request.agent.
+// Method 2: Use request.agent.
 // pages/xxx.ets
 import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
@@ -160,10 +172,10 @@ You can use **downloadFile()** in [ohos.request](../../reference/apis-basic-serv
 >
 > To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
 
-The following code demonstrates how to download files from a network server to an application directory in two approaches:
+The following code demonstrates how to download files from a network server to an application directory in two ways:
 
 ```ts
-// Approach 1: Use request.downloadFile.
+// Method 1: Use request.downloadFile.
 // pages/xxx.ets
 // Download the network resource file to the local application file directory, and read data from the file.
 import { common } from '@kit.AbilityKit';
@@ -211,7 +223,7 @@ struct Index {
 }
 ```
 ```ts
-// Approach 2: Use request.agent.
+// Method 2: Use request.agent.
 // pages/xxx.ets
 // Download the network resource file to the local application file directory, and read data from the file.
 import { common } from '@kit.AbilityKit';
