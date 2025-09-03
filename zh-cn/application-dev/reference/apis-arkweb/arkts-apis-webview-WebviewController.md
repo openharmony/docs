@@ -10155,7 +10155,7 @@ struct WebComponent {
 
 static getSiteIsolationMode(): SiteIsolationMode
 
-查询站点隔离模式。
+获取当前生效的站点隔离模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10197,7 +10197,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 > **说明：**
 >
-> 不能在单render下设置严格站点隔离。</br>
+> 不能在单子进程模式下设置严格站点隔离。</br>
 > 函数只能调用一次。
 
 
