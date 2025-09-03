@@ -178,14 +178,24 @@ removeAllStartupTaskResults(): void
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try {
+      startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
+        hilog.info(0x0000, 'testTag', "StartupTask_001 init successful");
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
+
+
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -237,13 +247,21 @@ getStartupTaskResult(startupTask: string): Object
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try {
+      startupManager.run(["StartupTask_001"]).then(() => {
+        hilog.info(0x0000, 'testTag', "StartupTask_001 init successful");
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -296,13 +314,21 @@ isStartupTaskInitialized(startupTask: string): boolean
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try {
+      startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
+      hilog.info(0x0000, 'testTag', "StartupTask_001 init successful");
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -363,13 +389,21 @@ removeStartupTaskResult(startupTask: string): void
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try{
+      startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
+        hilog.info(0x0000, 'testTag', "StartupTask_001 init successful");
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
