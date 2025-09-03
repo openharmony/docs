@@ -1134,6 +1134,106 @@ Errors related to file operations occurs, such as insufficient space at the dest
 **Solution**<br>
 1. Ensure that the destination path has sufficient space.
 2. Ensure the files in the source path are still present.
+## 17700087 Unsupported Plugin Installation
+
+**Error Message**<br>
+Failed to install the plugin because the current device does not support plugins. 
+
+**Description**<br>
+The plugin fails to be installed on the current device.
+
+**Possible Causes**<br>
+The device does not have the plugin capability.
+
+**Solution**<br>
+Use the [param tool](../../tools/param-tool.md) to set **const.bms.support_plugin** to **true**, that is, run the **hdc shell param set const.bms.support_plugin true** command.
+
+## 17700088 Plugin Installation Failure Due to No Permission
+
+**Error Message**<br>
+Failed to install the plugin because the host application lacks ohos.permission.kernel.SUPPORT_PLUGIN.
+
+**Description**<br>
+The plugin fails to be installed because the application does not have the ohos.permission.kernel.SUPPORT_PLUGIN permission.
+
+**Possible Causes**<br>
+1. The application does not have the ohos.permission.kernel.SUPPORT_PLUGIN permission.
+2. The application has requested the permission, but the permission does not take effect.
+
+**Solution**<br>
+1. Request the [ohos.permission.kernel.SUPPORT_PLUGIN permission](../../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin) by referring to [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+2. The permission APL is system_basic. If the [application APL](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism) is lower than system_basic, request the permission by referring to [Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md).
+
+## 17700089 Plugin Installation Failure Because of Plugin ID Parsing Failure
+
+**Error Message**<br>
+Failed to install the plugin because the plugin id fails to be parsed.
+
+**Description**<br>
+The plugin fails to be installed because its ID fails to be parsed.
+
+**Possible Causes**<br>
+The **pluginDistributionIDs** in the signing certificate profile does not conform to the specifications.
+
+**Solution**<br>
+Reconfigure the **app-services-capabilities** field in the [profile](../../security/app-provision-structure.md) as follows:
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+```
+
+
+## 17700090 Plugin Installation Failure Because of Plugin ID Verification Failure
+
+**Error Message**<br>
+Failed to install the plugin because the plugin id fails to be verified.
+
+**Description**<br>
+The **pluginDistributionIDs** between the plugin and the application do not share any common values, leading to a failed verification and preventing the plugin from being installed on this application.
+
+**Possible Causes**<br>
+The **pluginDistributionIDs** between the plugin and the application do not share any common values.
+
+**Solution**<br>
+Reconfigure the **pluginDistributionIDs** field in the [profile](../../security/app-provision-structure.md) as follows:
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+```
+
+## 17700091 Plugin Installation Failure Because of the Same Plugin Name and Host Bundle Name
+
+**Error Message**<br>
+Failed to install the plugin because the plugin name is the same as the host bundle name.
+
+**Description**<br>
+The plugin fails to be installed because the plugin name is the same as the host bundle name.
+
+**Possible Causes**<br>
+The bundle name of the plugin is the same as that of the application.
+
+**Solution**<br>
+Reconfigure the plugin bundle name.
+
+## 17700092 Plugin Uninstall Failure Because of Nonexistent Plugin Bundle Name
+
+**Error Message**<br>
+Failed to uninstall the plugin because the specified plugin is not found.
+
+**Description**<br>
+The plugin bundle name does not exist, leading to a failed plugin uninstall.
+
+**Possible Causes**<br>
+The plugin is not installed in the application.
+
+**Solution**<br>
+Run the [bm dump -n command](../../tools/bm-tool.md#dump) to query application information and check whether the plugin is installed.
 <!--DelEnd-->
 
 ## 17700101 Bundle Manager Service Abnormal

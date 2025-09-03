@@ -1,7 +1,7 @@
 # @ohos.application.appManager (appManager)
 <!--deprecated_code_no_check-->
 
-The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
+The appManager module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
 > **NOTE**
 > 
@@ -25,7 +25,7 @@ Checks whether this application is undergoing a stability test. This API uses an
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. **true** if undergoing a stability test, **false** otherwise.| 
 
 **Example**
     
@@ -54,7 +54,7 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+  | Promise&lt;boolean&gt; | Promise used to return the result. **true** if undergoing a stability test, **false** otherwise.| 
 
 **Example**
     
@@ -82,7 +82,7 @@ Checks whether this application is running on a RAM constrained device. This API
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+  | Promise&lt;boolean&gt; | Promise used to return the result. **true** if running on a RAM constrained device, **false** otherwise.| 
 
 **Example**
     
@@ -109,7 +109,7 @@ Checks whether this application is running on a RAM constrained device. This API
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. **true** if running on a RAM constrained device, **false** otherwise.| 
 
 **Example**
     

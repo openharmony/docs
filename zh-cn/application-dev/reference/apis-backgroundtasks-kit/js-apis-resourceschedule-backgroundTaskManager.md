@@ -1,5 +1,12 @@
 # @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
 
 >  **说明：**
@@ -252,8 +259,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+// 在原子化服务中，请删除WantAgent导入
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -283,10 +291,11 @@ export default class EntryAbility extends UIAbility {
 
         try {
             // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+            // 在原子化服务中，请使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
-                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+                        backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj, callback)
                 } catch (error) {
                     console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
                 }
@@ -346,8 +355,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+// 在原子化服务中，请删除WantAgent导入
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -369,10 +379,11 @@ export default class EntryAbility extends UIAbility {
 
         try {
             // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+            // 在原子化服务中，请使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
-                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                        backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
                         console.info("Operation startBackgroundRunning succeeded");
                     }).catch((error: BusinessError) => {
                         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
@@ -554,8 +565,9 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { notificationManager } from '@kit.NotificationKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+// 在原子化服务中，请删除WantAgent导入
 
 export default class EntryAbility extends UIAbility {
   id: number = 0; // 保存通知id
@@ -579,9 +591,11 @@ export default class EntryAbility extends UIAbility {
 
     try {
       // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+      // 在原子化服务中，请使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
           let list: Array<string> = ["dataTransfer"];
+          // 在原子化服务中，let list: Array<string> = ["audioPlayback"];
           backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info("Operation startBackgroundRunning succeeded");
             // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知
@@ -599,7 +613,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   // 应用更新进度
-  updateProcess(process: Number) {
+  updateProcess(process: number) {
     // 应用定义下载类通知模版
     let downLoadTemplate: notificationManager.NotificationTemplate = {
       name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
@@ -687,19 +701,15 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
-                try {
-                    // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning。这里假设已经申请过
-                    let list: Array<string> = ["audioPlayback"];
-                    backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
-                        console.info("Operation updateBackgroundRunning succeeded");
-                    }).catch((error: BusinessError) => {
-                        console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                    });
-                } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-                }
+            // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，这里假设已经申请过
+            let list: Array<string> = ["audioPlayback"];
+            backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
+                console.info("Operation updateBackgroundRunning succeeded");
+            }).catch((error: BusinessError) => {
+                console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
         } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            console.error(`Operation updateBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };

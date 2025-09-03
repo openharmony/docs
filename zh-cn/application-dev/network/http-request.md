@@ -1,4 +1,4 @@
-# HTTP数据请求
+# 使用HTTP访问网络
 
 ## 场景介绍
 
@@ -26,7 +26,7 @@
 | 证书验证     | 设置支持传输客户端证书。            | 支持传输客户端证书，包括证书路径、证书类型、证书密钥路径和密码信息。 | API version 11    |
 | 基础功能     | 设置下载起始位置和结束位置。         | 指定客户端要获取的数据范围，通常用户下载文件。 |  API version 11  |
 | 基础功能     | 设置需要上传的数据字段表单列表。        |设置多部分表单数据，通常用于上传文件。 |  API version 11   |
-| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析。  | 设置使用HTTPS协议的服务器进行DNS解析。- 参数必须以以下格式进行URL编码:"https://host:port/path"。 | API version 11    |
+| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析。  | 设置使用HTTPS协议的服务器进行DNS解析。参数必须以以下格式进行URL编码:'https://host:port/path'。 | API version 11    |
 | DNS设置     | 设置指定的DNS服务器进行DNS解析。         | 设置指定的DNS服务器进行DNS解析。- 可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。- 服务器必须是IPV4或者IPV6地址。 |  API version 11   |
 | 基础功能     | 设置响应消息的最大字节限制。            | 响应消息的最大字节限制。默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。 |   API version 11  |
 | 证书验证     | 设置动态设置证书锁定配置。             | 动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |   API version 12  |
@@ -315,7 +315,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
         "domains": [
           {
             "include-subdomains": true,
-            "name": "server.com"
+            "name": "*.server.com"
           }
         ],
         "pin-set": {

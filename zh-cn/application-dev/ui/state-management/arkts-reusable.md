@@ -4,7 +4,7 @@
 
 ## 概述
 
-使用\@Reusable装饰器时，表示该自定义组件可以复用。与\@Component结合使用，标记为\@Reusable的自定义组件在从组件树中移除时，组件及其对应的JS对象将被放入复用缓存中。后续创建新自定义组件节点时，将复用缓存中的节点，从而节约组件重新创建的时间。
+使用\@Reusable装饰器时，表示该自定义组件可以复用。与[\@Component装饰器](arkts-create-custom-components.md#component)结合使用，标记为\@Reusable的自定义组件在从组件树中移除时，组件及其对应的JS对象将被放入复用缓存中。后续创建新自定义组件节点时，将复用缓存中的节点，从而节约组件重新创建的时间。
 
 > **说明：**
 >
@@ -724,7 +724,7 @@ class ListItemObject {
 
 示例中使用\@Reusable装饰器修饰GridItem中的自定义组件ReusableChildComponent，即表示其具备组件复用的能力。
 使用aboutToReuse可以在 Grid 滑动时，从复用缓存中加入到组件树之前触发，从而更新组件状态变量，展示正确内容。
-需要注意的是无需在aboutToReuse中对\@Link、\@StorageLink、\@ObjectLink、\@Consume等自动更新值的状态变量进行更新，可能触发不必要的组件刷新。
+需要注意的是无需在aboutToReuse中对[\@Link](arkts-link.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@Consume](arkts-provide-and-consume.md)等自动更新值的状态变量进行更新，可能触发不必要的组件刷新。
 
 ```ts
 // MyDataSource类实现IDataSource接口。
@@ -1293,11 +1293,11 @@ class DataSrc2 implements IDataSource {
 
 ### 多种条目类型使用场景
 
-#### 标准型
+**标准型**
 
 复用组件的布局相同，示例参见本文列表滚动部分的描述。
 
-#### 有限变化型
+**有限变化型**
 
 复用组件间存在差异，但类型有限。例如，可以通过显式设置两个reuseId或使用两个自定义组件来实现复用。
 
@@ -1386,7 +1386,7 @@ struct ReusableComponent {
 }
 ```
 
-#### 组合型
+**组合型**
 
 复用组件间存在多种差异，但通常具备共同的子组件。将三种复用组件以组合型方式转换为Builder函数后，内部的共享子组件将统一置于父组件MyComponent之下。复用这些子组件时，缓存池在父组件层面实现共享，减少组件创建过程中的资源消耗。
 

@@ -71,31 +71,31 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
 
   ```ts
   // 示例代码
-  import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+  import { common, abilityAccessCtrl, Permissions, PermissionRequestResult } from '@kit.AbilityKit';
   import { contact } from '@kit.ContactsKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct Contact {
     addContactByPermissions() {
+      // 在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
       let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
       const contactInfo: contact.Contact = {
         name: { fullName: '王小明' },
         phoneNumbers: [{ phoneNumber: '13912345678' }]
       }
-      abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissions).then(() => {
-        try {
-          contact.addContact(context, contactInfo, (err, data) => {
-            if (err) {
-              console.error('addContact callback, errCode:' + err.code + ', errMessage:' + err.message);
-              return;
-            }
-            console.info('addContact callback: data->' + JSON.stringify(data));
-          })
-        } catch (err) {
-          console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+      abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissions).then((result: PermissionRequestResult) => {
+        if (result.authResults[0] !== 0) { // 0 表示请求权限成功，其他任何非零值表示请求失败
+          console.error('request contact permissions failed');
+          return;
         }
+        contact.addContact(context, contactInfo).then((data) => {
+          console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
+        });
       })
     }
 

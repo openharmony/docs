@@ -4993,6 +4993,7 @@ Obtains the status of a local socket server connection. This API uses a promise 
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5051,6 +5052,7 @@ Sets other properties of the local socket server connection. This API uses a pro
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5109,6 +5111,7 @@ Obtains other properties of a local socket server connection. This API uses a pr
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5162,6 +5165,7 @@ Obtains the local socket address of a **LocalSocketServer** connection. This API
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -5458,6 +5462,7 @@ Obtains the local socket address of a **LocalSocketConnection** connection. This
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 

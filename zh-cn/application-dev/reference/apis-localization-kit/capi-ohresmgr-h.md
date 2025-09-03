@@ -1,8 +1,16 @@
 # ohresmgr.h
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+
 ## 概述
 
 提供资源管理native侧获取资源的能力。
+
+**引用文件：** <resourcemanager/ohresmgr.h>
 
 **库：** libohresmgr.so
 

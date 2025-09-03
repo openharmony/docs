@@ -38,9 +38,9 @@ napi_status napi_load_module_with_info(napi_env env, const char* path, const cha
 > 3. 如果在HAP/HSP中直接或间接使用了三方包，该三方包中使用napi_load_module_with_info接口加载其他模块A，则需要在HAP/HSP中也添加A的依赖。
 
 ## 异常场景
-1. 例如当hsp的moduleName错误时，会导致加载hsp失败，返回错误码`napi_generic_failure`。
-2. 在模块加载过程中，若出现链接关系错误或包内未找到对应文件等问题，该API将抛出referenceError异常，并返回错误码`napi_pending_exception`。
-3. 系统侧发生非预期行为导致加载模块无法正常执行，将抛出cppcrash。
+1. 在模块加载过程中，若出现包内未找到对应文件或build-profile.json5配置错误等问题，返回错误码`napi_generic_failure`，并打印报错日志。
+![napi_load_module_with_info](figures/napi_load_module_with_info.png)
+2. 系统侧发生非预期行为导致加载模块无法正常执行，将抛出cppcrash。
 
 ## 使用示例
 
@@ -89,7 +89,7 @@ export {value, test};
         // 1. 使用napi_load_module_with_info加载Test文件中的模块
         napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
         if (status != napi_ok) {
-        return nullptr;
+            return nullptr;
         }
 
         napi_value testFn;
@@ -162,14 +162,20 @@ export {value, test};
         // 2. 使用napi_get_named_property获取test函数
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+           return nullptr;
+        }
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. 使用napi_get_property获取变量value
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+           return nullptr;
+        }
         return result;
     }
     ```
@@ -226,16 +232,25 @@ export {value, test};
 
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. 使用napi_call_function调用函数test
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
 
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. 使用napi_get_property获取变量value
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -363,7 +378,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
     // 2. 使用napi_get_named_property获取info函数
     napi_value infoFn;
-    napi_get_named_property(env, result, "info", &infoFn);
+    status = napi_get_named_property(env, result, "info", &infoFn);
+    if (status != napi_ok) {
+        return nullptr;
+    }
 
     napi_value tag;
     std::string formatStr = "test";
@@ -378,7 +396,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
     napi_value args[3] = {flag, tag, outputString};
     // 3. 使用napi_call_function调用info函数
-    napi_call_function(env, result, infoFn, 3, args, nullptr);
+    status = napi_call_function(env, result, infoFn, 3, args, nullptr);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     return result;
 }
 ```
@@ -500,16 +521,25 @@ export {value, test};
 
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. 使用napi_call_function调用函数test
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. 使用napi_get_property获取变量value
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```

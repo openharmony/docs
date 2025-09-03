@@ -4,7 +4,7 @@
 
 Basic UI-free drivers are applicable to simple devices that do not require setting of driver capabilities via a UI, such as mouse devices and keyboards. These drivers are designed to ensure that these devices can be used immediately upon connection, enabling seamless plug-and-play functionality. You can use **DriverExtensionAbility** to develop such applications.
 
-## Basic Concepts
+## Fundamental Concepts
 
  - DriverExtensionAbility
 
@@ -19,7 +19,7 @@ Before you get started, make necessary preparations by following instructions in
 
 To implement a driver, create a DriverExtensionAbility in the DevEco Studio project. The procedure is as follows:
 
-1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project). (If a project has been created in [UI-based Driver Development](externaldevice-guidelines.md), skip this step.)
+1. Create a project following instructions in [Creating a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project). (If a project has been created in [UI-based Driver Development](externaldevice-guidelines.md), skip this step.)
 
 2. In the **ets** directory of the project, right-click **New** > **Directory** to create a directory named **driverextability**.
 
@@ -35,7 +35,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     const REQUEST_CODE = 99; // Negotiate the request code with the peripheral client.
     ```
 
-5. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_VALUE** is used to verify the service request code sent by the application.
+5. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_CODE** is used to verify the service request code sent by the application.
 
     ```ts
     class StubTest extends rpc.RemoteObject {
@@ -101,7 +101,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
             "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // Peripheral-specific permission, which is mandatory.
           },
           {
-            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // Peripheral access permission, which is mandatory.
+            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // Peripheral driver access permission, which is mandatory.
           }
         ],
         "deliveryWithInstall": true,
@@ -123,7 +123,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
                   "entity.system.home"
                 ],
                 "actions": [
-                  "action.system.home"
+                  "ohos.want.action.home"
                 ]
               }
             ]
@@ -139,7 +139,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
             "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
             "metadata": [
               {
-                "name": "bus", // Bus, which is mandatory.
+                "name": "bus", // The bus is mandatory.
                 "value": "USB"
               },
               {
@@ -173,7 +173,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     }
     ```
 
-8. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-run-device-V13), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
+8. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Atomic Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-device), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
 
 ## Driver Development
 
@@ -210,5 +210,5 @@ You need to configure a signature file for your application to run on a device. 
       }
       ```
 
-Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)
+Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)
 <!--RP1End-->

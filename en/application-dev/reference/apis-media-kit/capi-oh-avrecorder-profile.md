@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder_Profile struct describes the parameters used for audio and video recording.
+The struct describes the parameters used for audio and video recording.
 
 You can choose to record only audio or only video by setting the parameters.
 

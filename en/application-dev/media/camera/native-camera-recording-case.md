@@ -186,7 +186,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         photoProfile = cameraOutputCapability->photoProfiles[0];
 
         if (cameraOutputCapability->videoProfiles == nullptr) {
-            OH_LOG_ERROR(LOG_APP, "videorofiles == null");
+            OH_LOG_ERROR(LOG_APP, "videoProfiles == null");
             return;
         }
         // Ensure that the aspect ratio of the preview stream is the same as that of the video stream. To record HDR videos, choose Camera_VideoProfile that supports HDR.

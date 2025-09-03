@@ -6,6 +6,10 @@ Provides file management functions for the **rawfile** directory. You can use th
 
 **File to include**: \<rawfile/raw_file_manager.h>
 
+**Library**: librawfile.z.so
+
+**System capability**: SystemCapability.Global.ResourceManager
+
 **Since**: 8
 
 **Related module**: [rawfile](capi-rawfile.md)

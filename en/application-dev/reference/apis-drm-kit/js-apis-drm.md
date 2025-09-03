@@ -27,8 +27,8 @@ Enumerates the DRM error codes.
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
 | ERROR_UNKNOWN       | 24700101    | Unknown error.  |
-| MAX_SYSTEM_NUM_REACHED   | 24700103    | The number of **MediaKeySystem** instances reaches the upper limit (64).   |
-| MAX_SESSION_NUM_REACHED    | 24700104    | The number of **MediaKeySession** instances reaches the upper limit (64).    |
+| MAX_SYSTEM_NUM_REACHED   | 24700103    | The number of MediaKeySystem instances reaches the upper limit (64).   |
+| MAX_SESSION_NUM_REACHED    | 24700104    | The number of MediaKeySession instances reaches the upper limit (64).    |
 | SERVICE_FATAL_ERROR  | 24700201    | DRM service error.    |
 
 ## PreDefinedConfigName
@@ -247,7 +247,7 @@ Describes the plugin information.
 
 createMediaKeySystem(name: string): MediaKeySystem
 
-Creates a **MediaKeySystem** instance.
+Creates a MediaKeySystem instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -263,7 +263,7 @@ Creates a **MediaKeySystem** instance.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystem](#mediakeysystem)           | **MediaKeySystem** instance.                  |
+| [MediaKeySystem](#mediakeysystem)           | MediaKeySystem instance.                  |
 
 **Error codes**
 
@@ -309,7 +309,7 @@ Checks whether the device supports the specified DRM solution.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Returns **true** if the device supports the DRM solution; returns **false** otherwise.                    |
+| boolean          | Check result for the support of the DRM solution. **true** if supported, **false** otherwise.                  |
 
 **Error codes**
 
@@ -357,7 +357,7 @@ Checks whether the device supports the combination of the DRM solution and MIME 
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                    |
+| boolean          | Check result for the support of the combination. **true** if supported, **false** otherwise.                  |
 
 **Error codes**
 
@@ -406,7 +406,7 @@ Checks whether the device supports the combination of the DRM solution, MIME typ
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                    |
+| boolean          | Check result for the support of the combination. **true** if supported, **false** otherwise.                  |
 
 **Error codes**
 
@@ -518,7 +518,7 @@ try {
 ```
 
 ## MediaKeySystem
-Implements **MediaKeySystem** instance management. Specifically, it provides APIs to request and process DRM certificates, creates session, manages offline media key, obtain DRM statistical information, and obtain device configuration information. Before calling any API in **MediaKeySystem**, you must use [createMediaKeySystem](#drmcreatemediakeysystem) to create a **MediaKeySystem** instance.
+Implements MediaKeySystem instance management. Specifically, it provides APIs to request and process DRM certificates, creates session, manages offline media key, obtain DRM statistical information, and obtain device configuration information. Before calling any API in MediaKeySystem, you must use [createMediaKeySystem](#drmcreatemediakeysystem) to create a MediaKeySystem instance.
 
 ### setConfigurationString
 
@@ -923,8 +923,8 @@ Subscribes to events indicating that the application requires a DRM certificate.
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application requests a DRM certificate.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, a DRM certificate must be requested.                |
+| type     | string               | Yes  | Event type. The event can be listened for when a MediaKeySystem instance is created. This event is triggered when the application requests a DRM certificate.|
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | Yes  | Callback used to return the event information. If this event callback is returned, a DRM certificate must be requested.                |
 
 **Error codes**
 
@@ -960,8 +960,8 @@ Unsubscribes from events indicating that the application requests a DRM certific
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
+| type     | string               | Yes  | Event type. The event can be listened for when a MediaKeySystem instance is created.|
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -983,7 +983,7 @@ mediaKeySystem.off('keySystemRequired');
 
 createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
-Creates a **MediaKeySession** instance with the specified content protection level.
+Creates a MediaKeySession instance with the specified content protection level.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -999,7 +999,7 @@ Creates a **MediaKeySession** instance with the specified content protection lev
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySession](#mediakeysession)          | **MediaKeySession** instance.                  |
+| [MediaKeySession](#mediakeysession)          | MediaKeySession instance.                  |
 
 **Error codes**
 
@@ -1031,7 +1031,7 @@ try {
 
 createMediaKeySession(): MediaKeySession
 
-Creates a **MediaKeySession** instance with the default content protection level of the DRM solution.
+Creates a MediaKeySession instance with the default content protection level of the DRM solution.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -1041,7 +1041,7 @@ Creates a **MediaKeySession** instance with the default content protection level
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySession](#mediakeysession)          | **MediaKeySession** instance.                  |
+| [MediaKeySession](#mediakeysession)          | MediaKeySession instance.                  |
 
 **Error codes**
 
@@ -1205,7 +1205,7 @@ try {
 
 destroy(): void
 
-Destroys this **MediaKeySystem** instance.
+Destroys this MediaKeySystem instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -1236,7 +1236,7 @@ try {
 ```
 
 ## MediaKeySession
-Implements media key management. Before calling any API in **MediaKeySession**, you must use [createMediaKeySession](#createmediakeysession) to create a **MediaKeySession** instance.
+Implements media key management. Before calling any API in MediaKeySession, you must use [createMediaKeySession](#createmediakeysession) to create a MediaKeySession instance.
 
 ### generateMediaKeyRequest
 
@@ -1638,7 +1638,7 @@ Checks whether secure decoding is required.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Whether secure decoding is required. The value **true** means that secure decoding is required, and **false** means the opposite.                  |
+| boolean          | Whether secure decoding is required. **true** if required, **false** otherwise.                  |
 
 **Error codes**
 
@@ -1681,7 +1681,7 @@ Subscribes to events indicating that the application requests a media key.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**. This event is triggered when the application requires a media key.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1719,7 +1719,7 @@ Unsubscribes from events indicating that the application requests a media key.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1755,7 +1755,7 @@ Subscribes to events indicating that a media key expires.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**. This event is triggered when a media key expires.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1793,7 +1793,7 @@ Unsubscribes from events indicating that a media key expires.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1829,7 +1829,7 @@ Subscribes to vendor-defined events.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**. This event is triggered when a vendor-defined event occurs.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1867,7 +1867,7 @@ Unsubscribes from vendor-defined events.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1903,7 +1903,7 @@ Subscribes to events indicating that a media key updates on expiry.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**. This event is triggered when a media key updates on expiry.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1941,7 +1941,7 @@ Unsubscribes from events indicating that a media key updates on expiry.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: \<[EventInfo](#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -1977,7 +1977,7 @@ Subscribes to events indicating that a media key changes.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**. This event is triggered when a media key changes.|
-| callback | Callback\<[KeysInfo[]](#keysinfo), boolean\> | Yes  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.                |
+| callback | (keyInfo: [KeysInfo[]](#keysinfo), newKeyAvailable: boolean) | Yes  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.                |
 
 **Error codes**
 
@@ -2017,7 +2017,7 @@ Unsubscribes from events indicating that a media key changes.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**.|
-| callback | Callback\<[KeysInfo[]](#keysinfo), boolean\> | No  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.               |
+| callback | (keyInfo: [KeysInfo[]](#keysinfo), newKeyAvailable: boolean) | No  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.               |
 
 **Error codes**
 
@@ -2042,7 +2042,7 @@ mediaKeySession.off('keysChange');
 
 destroy(): void
 
-Destroys this **MediaKeySession** instance.
+Destroys this MediaKeySession instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

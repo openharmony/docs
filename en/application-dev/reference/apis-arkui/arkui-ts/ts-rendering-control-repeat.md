@@ -4,7 +4,7 @@
 > 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-**Repeat** is used to perform repeated rendering based on array data. Generally, it is used together with container components.
+**Repeat** is used to perform iterative rendering based on array data. Generally, it is used together with container components.
 
 This document provides API parameter descriptions. For details about the component descriptions and usage guidelines, see [Repeat: Reusable Repeated Rendering](../../../ui/state-management/arkts-new-rendering-control-repeat.md).
 
@@ -236,6 +236,8 @@ Defines a union type for **Repeat** data source parameters.
 
 ## VirtualScrollOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type  | Mandatory| Description                                                        |
@@ -255,7 +257,7 @@ Defines a union type for **Repeat** data source parameters.
 
 > **NOTE**
 >
-> When the value of **totalCount** is greater than the value of **arr.length**, during the scrolling of the parent component container, the application needs to ensure that subsequent data is requested when the list is about to scroll to the end of the data source. You need to handle error scenarios (such as network delays) for data requests until all data sources are loaded; otherwise, scrolling exceptions may occur during list scrolling. For solutions, see [The totalCount Value Is Greater Than the Length of Data Source](../../../ui/state-management/arkts-new-rendering-control-repeat.md#the-totalcount-value-is-greater-than-the-length-of-data-source).
+> When the value of **totalCount** is greater than the value of **arr.length**, during the scrolling of the parent component container, the application needs to ensure that subsequent data is requested when the list is about to scroll to the end of the data source. You need to handle error scenarios (such as network delays) for data requests until all data sources are loaded; otherwise, scrolling exceptions may occur during list scrolling. For solutions, see [Handling Cases Where the totalCount Value Exceeds the Data Source Length](../../../ui/state-management/arkts-new-rendering-control-repeat.md#handling-cases-where-the-totalcount-value-exceeds-the-data-source-length).
 
 ### onLazyLoading<sup>19+</sup>: Precise Lazy Loading
 

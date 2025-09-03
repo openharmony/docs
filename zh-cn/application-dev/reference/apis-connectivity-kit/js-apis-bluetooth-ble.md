@@ -1,5 +1,11 @@
 # @ohos.bluetooth.ble (蓝牙ble模块)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 提供了基于低功耗蓝牙（Bluetooth Low Energy）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，GATT）的连接和传输数据。
 
 > **说明：**
@@ -160,7 +166,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备发现会保留。如果不使用过滤的方式，该参数设置为null。 |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备发现会保留。<br>-若该参数设置为null，将扫描所有可发现的周边BLE设备，但是不建议使用此方式，可能扫描到非预期设备，并增加功耗。 |
 | options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置。                     |
 
 **错误码**：
@@ -1422,9 +1428,9 @@ server端添加服务。该操作会在蓝牙子系统中注册该服务，表�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -1541,8 +1547,10 @@ notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharac
 
 server端发送特征值变化通知或者指示给client端。使用Callback异步回调。
 
-- 建议该特征值的Client Characteristic Configuration描述符（UUID：00002902-0000-1000-8000-00805f9b34fb）的通知或指示能力已被开启。
+- 建议该特征值的Client Characteristic Configuration描述符（UUID：00002902-0000-1000-8000-00805f9b34fb）notification（通知）或indication（指示）能力已被使能。
+- 蓝牙标准协议规定Client Characteristic Configuration描述符的数据内容长度为2字节，bit0和bit1分别表示notification（通知）和indication（指示）能力是否使能，例如bit0 = 1表示notification enabled。
 - 该特征值数据内容变化时调用。
+- [notifyCharacteristic](#notifycharacteristic)入参的characteristicValue数据长度默认限制为（MTU-3）字节，MTU大小可从订阅的回调[on('BLEMtuChange')](#onblemtuchange)获取。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1603,7 +1611,8 @@ notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharac
 
 server端发送特征值变化通知或者指示给对端设备。使用Promise异步回调。
 
-- 建议该特征值的Client Characteristic Configuration描述符通知或指示能力已被使能。
+- 建议该特征值的Client Characteristic Configuration描述符notification（通知）或indication（指示）能力已被使能。
+- 蓝牙标准协议规定Client Characteristic Configuration描述符的数据内容长度为2字节，bit0和bit1分别表示notification（通知）和indication（指示）能力是否使能，例如bit0 = 1表示notification enabled。
 - 该特征值数据内容变化时调用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
@@ -2624,7 +2633,8 @@ readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallba
 
 client端从指定的server端特征值读取数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会读取失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。<br>
+- 读取特征值过程中，需确保[BLECharacteristic](#blecharacteristic)入参特征值的serviceUuid、characteristicUuid准确。characteristicValue表示的数据内容长度可由用户任意指定，不会影响实际读取到的特征值数据内容。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2666,12 +2676,12 @@ function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) 
 }
 
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2696,7 +2706,8 @@ readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharac
 
 client端从指定的server端特征值读取数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会读取失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。<br>
+- 读取特征值过程中，需确保[BLECharacteristic](#blecharacteristic)入参特征值的serviceUuid、characteristicUuid准确。characteristicValue表示的数据内容长度可由用户任意指定，不会影响实际读取到的特征值数据内容。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2734,12 +2745,12 @@ client端从指定的server端特征值读取数据。使用Promise异步回调�
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2765,6 +2776,7 @@ readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDes
 client端从指定的server端描述符读取数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会读取失败。<br>
 - 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 读取描述符过程中，需确保[BLEDescriptor](#bledescriptor)入参描述符的serviceUuid、characteristicUuid、descriptorUuid准确。descriptorValue表示的数据内容长度可由用户任意指定，不会影响实际读取到的描述符数据内容。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2805,13 +2817,13 @@ function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     console.info('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -2829,7 +2841,8 @@ readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
 client端从指定的server端描述符读取数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会读取失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。<br>
+- 读取描述符过程中，需确保[BLEDescriptor](#bledescriptor)入参描述符的serviceUuid、characteristicUuid、descriptorUuid准确。descriptorValue表示的数据内容长度可由用户任意指定，不会影响实际读取到的描述符数据内容。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2866,13 +2879,13 @@ client端从指定的server端描述符读取数据。使用Promise异步回调�
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -2890,7 +2903,8 @@ writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWrite
 
 client端向指定的server端特征值写入数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。<br>
+- 应用单次可写入的特征值数据长度默认限制为（MTU-3）字节，MTU大小可由[setBLEMtuSize](#setblemtusize)接口指定。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2924,12 +2938,12 @@ client端向指定的server端特征值写入数据。使用Callback异步回调
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -2959,7 +2973,8 @@ writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWrite
 
 client端向指定的server端特征值写入数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。<br>
+- 应用单次可写入的特征值数据长度默认限制为（MTU-3）字节，MTU大小可由[setBLEMtuSize](#setblemtusize)接口指定。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2998,12 +3013,12 @@ client端向指定的server端特征值写入数据。使用Promise异步回调�
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor>  = [];
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
 
 let bufferCCC = new ArrayBuffer(8);
@@ -3027,7 +3042,9 @@ writeDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;void&
 
 client端向指定的server端描述符写入数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。<br>
+- 应用单次可写入的描述符数据长度默认限制为（MTU-3）字节，MTU大小可由[setBLEMtuSize](#setblemtusize)接口指定。<br>
+- Client Characteristic Configuration描述符（UUID：00002902-0000-1000-8000-00805f9b34fb）和 Server Characteristic Configuration描述符（UUID：00002903-0000-1000-8000-00805f9b34fb）较为特殊，蓝牙标准协议规定内容长度为2字节，写入内容长度应设置为2字节。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3059,13 +3076,13 @@ client端向指定的server端描述符写入数据。使用Callback异步回调
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 22;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -3089,7 +3106,9 @@ writeDescriptorValue(descriptor: BLEDescriptor): Promise&lt;void&gt;
 
 client端向指定的server端描述符写入数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。<br>
+- 应用单次可写入的描述符数据长度默认限制为（MTU-3）字节，MTU大小可由[setBLEMtuSize](#setblemtusize)接口指定。<br>
+- Client Characteristic Configuration描述符（UUID：00002902-0000-1000-8000-00805f9b34fb）和 Server Characteristic Configuration描述符（UUID：00002903-0000-1000-8000-00805f9b34fb）较为特殊，蓝牙标准协议规定内容长度为2字节，写入内容长度应设置为2字节。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3126,13 +3145,13 @@ client端向指定的server端描述符写入数据。使用Promise异步回调�
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let bufferDesc = new ArrayBuffer(8);
+let bufferDesc = new ArrayBuffer(2);
 let descV = new Uint8Array(bufferDesc);
-descV[0] = 22;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
@@ -3246,9 +3265,10 @@ try {
 
 setBLEMtuSize(mtu: number): void
 
-client端同server端协商MTU（最大传输单元）大小。<br>
+client端同server端协商[MTU](../../connectivity/terminology.md#mtu)（最大传输单元）大小。<br>
 - 需先调用[connect](#connect)方法，等GATT profile连接成功后才能使用。<br>
-- 通过[on('BLEMtuChange')](#onblemtuchange-1)，订阅MTU协商结果。
+- 通过[on('BLEMtuChange')](#onblemtuchange-1)，订阅MTU协商结果。<br>
+- 如果未协商，MTU大小默认为23字节。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3332,9 +3352,9 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3408,9 +3428,9 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3473,9 +3493,9 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3549,9 +3569,9 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
-let arrayBuffer = new ArrayBuffer(8);
+let arrayBuffer = new ArrayBuffer(2);
 let descV = new Uint8Array(arrayBuffer);
-descV[0] = 11;
+descV[0] = 0; // 以Client Characteristic Configuration描述符为例，表示bit0、bit1均为0，notification和indication均不开启
 let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
@@ -3882,7 +3902,7 @@ startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;v
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 扫描BLE广播的过滤条件集合，符合过滤条件的设备会被上报。 |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 扫描BLE广播的过滤条件集合，符合过滤条件的设备会被上报。<br>- 若该参数设置为null，将扫描所有可发现的周边BLE设备，但是不建议使用此方式，可能扫描到非预期设备，并增加功耗。<br>- 围栏模式下（[ScanReportMode](#scanreportmode15)设置为FENCE_SENSITIVITY_LOW或FENCE_SENSITIVITY_HIGH时），该参数不可设置为null，需传入非空过滤器。<br>- 过滤器资源为所有应用共享，建议单个应用使用过滤器数量不超过3个，否则过滤器资源占满将导致开启扫描失败，返回2900009错误码。 |
 | options | [ScanOptions](#scanoptions)            | 否    | 扫描的配置参数。                     |
 
 **返回值：**
@@ -4398,7 +4418,7 @@ BLE扫描的配置参数。
 
 | 名称        | 类型                    | 只读 | 可选   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| interval  | number                  | 否 | 是    | 扫描结果上报的延迟时间，，单位：ms，默认值为0。搭配 [ScanReportMode](#scanreportmode15)使用。<br>- 该值在常规或围栏扫描上报模式下不生效，当扫描到符合过滤条件的广播报文后，立刻上报。<br>- 该值在批量扫描上报模式下生效，当扫描到符合过滤条件的广播报文后，会存入缓存队列，延时上报。若不设置该值或该值在[0, 5000)范围内，蓝牙子系统会默认设置延时时间为5000。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
+| interval  | number                  | 否 | 是    | 扫描结果上报的延迟时间，单位：ms，默认值为0。搭配[ScanReportMode](#scanreportmode15)使用。<br>- 在常规或围栏扫描上报模式下，该值不生效，扫描到符合过滤条件的广播报文后立即上报。<br>- 在批量扫描上报模式下，该值生效，扫描到符合过滤条件的广播报文后，会存入缓存队列，延迟上报。若不设置该值或设置在[0, 5000)范围内，蓝牙子系统会默认设置延迟时间为5000ms。延迟时间内，若符合过滤条件的广播报文数量超过硬件缓存能力，蓝牙子系统会提前上报扫描结果。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
 | dutyMode  | [ScanDuty](#scanduty)   | 否 | 是    | 扫描模式，默认值为SCAN_MODE_LOW_POWER。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
 | matchMode | [MatchMode](#matchmode) | 否 | 是    | 硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | phyType<sup>12+</sup> | [PhyType](#phytype12) | 否 | 是    | 扫描中使用的物理通道类型，默认值为PHY_LE_1M。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |

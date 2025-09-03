@@ -1,4 +1,9 @@
 # @ohos.app.form.formProvider (formProvider)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 
 The **formProvider** module provides APIs to obtain widget information, update widgets, and set the update time.
 
@@ -472,7 +477,7 @@ Opens the Widget Manager page.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
@@ -527,7 +532,7 @@ Obtains the information of the widget that has been added to the home screen on 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |

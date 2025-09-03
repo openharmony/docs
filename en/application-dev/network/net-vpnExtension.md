@@ -1,10 +1,10 @@
-# VPN Extension Ability Development
+# Connecting to a VPN
 
 ## Introduction
 
 A virtual private network (VPN) is a dedicated network established on a public network. Unlike a traditional private network, a VPN does not require an end-to-end physical link between any two nodes. It is built over a network platform (for example, Internet) provided by a public network service provider. User data is transmitted over the logical link.
 
-OpenHarmony provides the VPN Extension solution for enhanced VPN management. The following guides you through on how to develop your own VPN client.
+OpenHarmony provides the VPN Extension solution for enhanced VPN management. Currently, the VPN capabilities provided to third-party applications are primarily used for creating virtual NICs and configuring VPN routing information. The connection tunnel process and internal connection protocols need to be implemented by the applications themselves. The following guides you through on how to develop your own VPN client.
 
 > **NOTE**
 >
@@ -12,7 +12,7 @@ OpenHarmony provides the VPN Extension solution for enhanced VPN management. The
 
 ## VPN Extension Ability UI
 
-With the VPN Extension APIs provided by OpenHarmony, you can build VPN services that support different protocols. OpenHarmony provides a UI for users to learn about VPN startup and connection.
+With the APIs provided by vpnExtension module, you can build VPN services that support different protocols. OpenHarmony provides a UI for users to learn about VPN startup and connection.
 
 - When the VPN application sets up a connection for the first time, the VPN connection authorization dialog box is displayed. The dialog box prompts users whether to trust the VPN application and accept the VPN connection request.
 - If the VPN connection is successful, a VPN icon (a key) is displayed in the status bar to remind the user that the VPN is connected.
@@ -166,21 +166,21 @@ To ensure network connectivity, the system automatically stops the VPN connectio
 - The application process that calls **startVpnExtensionAbility** exits.
 - The VPN service process is destroyed.
 
-## Description of VPN Config parameters
+## Description of VPN Config Parameters
 
 | Name               | Type                                                        | Mandatory| Description                                                        |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | addresses           | Array\<[LinkAddress](../reference/apis-network-kit/js-apis-net-connection.md#linkaddress)\> | Yes  | IP addresses of virtual network interface cards (vNICs).                                       |
 | routes              | Array\<[RouteInfo](../reference/apis-network-kit/js-apis-net-connection.md#routeinfo)\> | No  | Routes of vNICs. Currently, a maximum of 1024 routes can be configured.           |
-| dnsAddresses        | Array\<string\>                                              | No  | IP addresses of DNS servers. Trusted VPN applications can access the network through these IP addresses. If this parameter is not configured, IP address allocated by the system will be used.|
+| dnsAddresses        | Array\<string\>                                              | No  | IP addresses of DNS servers. After the IP address is configured, when the VPN is active and proxy-enabled applications access the Internet, the configured DNS server will be used for DNS queries.|
 | searchDomains       | Array\<string\>                                              | No  | List of DNS search domains.                                           |
 | mtu                 | number                                                       | No  | Maximum transmission unit (MTU), in bytes.                              |
-| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**.                                |
-| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**.                               |
-| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**.                            |
-| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**.                               |
-| trustedApplications | Array\<string\>                                              | No  | Trusted VPN applications, which are represented by bundle names of the string type             |
-| blockedApplications | Array\<string\>                                              | No  | Blocked VPN applications, which are represented by bundle names of the string type           |
+| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**. The value **true** indicates that IPV4 is supported, and the value **false** indicates the opposite.                                |
+| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**. The value **true** indicates that IPV6 is supported, and the value **false** indicates the opposite.                               |
+| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite.                            |
+| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite.                               |
+| trustedApplications | Array\<string\>                                              | No  | List of trusted applications, which are represented by package names of the string type. After such a list is configured, only the applications in the list can be proxied by the VPN according to the specified **routes**.<br>Note: Configure either **trustedApplications** or **blockedApplications** as they are mutually exclusive.             |
+| blockedApplications | Array\<string\>                                              | No  | List of blocked applications, which are represented by package names of the string type. After such a list is configured, only applications that are not in the list can be proxied by the VPN according to the specified **routes**.<br>Note: Configure either **trustedApplications** or **blockedApplications** as they are mutually exclusive.         |
 
 **Example**
 

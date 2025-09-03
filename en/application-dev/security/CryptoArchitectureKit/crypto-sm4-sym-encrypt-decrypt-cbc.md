@@ -1,10 +1,8 @@
 # Encryption and Decryption with an SM4 Symmetric Key (CBC Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
 
 **Encryption**
-
 
 1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit SM4 symmetric key (**SymKey**).
    
@@ -24,7 +22,6 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
    - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
    - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
-
 **Decryption**
 
 1. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'SM4_128|CBC|PKCS7'** to create a **Cipher** instance for decryption. The key type is **SM4_128**, block cipher mode is **CBC**, and the padding mode is **PKCS7**.
@@ -34,7 +31,6 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 3. Call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be decrypted (ciphertext).
 
 4. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the decrypted data.
-
 
 - Example (using asynchronous APIs):
 

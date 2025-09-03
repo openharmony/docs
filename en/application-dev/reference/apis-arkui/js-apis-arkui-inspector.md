@@ -4,21 +4,26 @@ The **Inspector** module provides APIs for registering the component layout and 
 
 > **NOTE**
 >
-> The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
->
-> Since API version 10, you can use the [getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [UIInspector](./js-apis-arkui-UIContext.md#uiinspector) object associated with the current UI context.
+> The initial APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
+<!--deprecated_code_no_check-->
 ```ts
-import { inspector } from '@kit.ArkUI'
+import { inspector } from '@kit.ArkUI';
 ```
 
-## inspector.createComponentObserver
+## inspector.createComponentObserver<sup>(deprecated)</sup>
 
 createComponentObserver(id: string): ComponentObserver
 
-Creates an observer for the specified component.
+Binds to the specified component and returns the corresponding observation handle.
+
+> **NOTE**
+> 
+> This API is deprecated since API version 18. You are advised to use [createComponentObserver](js-apis-arkui-UIContext.md#createcomponentobserver) instead on the obtained [UIInspector](js-apis-arkui-UIContext.md#uiinspector) object.
+>
+> Since API version 10, you can use the [getUIInspector](js-apis-arkui-UIContext.md#getuiinspector) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [UIInspector](js-apis-arkui-UIContext.md#uiinspector) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -34,23 +39,22 @@ Creates an observer for the specified component.
 
 | Type             | Description                                            |
 | ----------------- | ------------------------------------------------ |
-|[ComponentObserver](#componentobserver)| Component observer, which is used to register and unregister listeners.|
+|[ComponentObserver](#componentobserver)| Component observer handle, which is used to register and unregister callbacks.|
 
 **Example**
-
 ```ts
-let listener:inspector.ComponentObserver = inspector.createComponentObserver('COMPONENT_ID'); // Listen for callback events of the component whose ID is COMPONENT_ID.
+let listener:inspector.ComponentObserver = inspector.createComponentObserver('COMPONENT_ID'); // Listen for callback events for the component whose ID is COMPONENT_ID.
 ```
 
 ## ComponentObserver
 
 Implements an observer for layout and drawing completion callbacks for components, containing the initial query results from when the observer was created.
 
-### on
+### on('layout')
 
 on(type: 'layout', callback: () => void): void
 
-Registers a listener for completion of component layout.
+Registers a layout completion callback through this handle.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -60,14 +64,14 @@ Registers a listener for completion of component layout.
 
 | Name  | Type  | Mandatory| Description|
 | -------- | ------ | ---- | -------------------------------------|
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | () => void   | Yes  | Callback invoked upon completion of component layout or drawing.|
+| type     | string | Yes  | Event type. The value is fixed at **'layout'**.<br>**'layout'**: completion of component layout.|
+| callback | () => void   | Yes  | Layout completion callback.|
 
-### off
+### off('layout')
 
 off(type: 'layout', callback?: () => void): void
 
-Unregisters the listener for completion of component layout.
+Unregisters the layout completion callback through this handle.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -77,14 +81,14 @@ Unregisters the listener for completion of component layout.
 
 | Name  | Type  | Mandatory| Description|
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
+| type     | string | Yes  | Event type. The value is fixed at **'layout'**.<br>**'layout'**: completion of component layout.|
+| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, all callbacks under this handle are unregistered. The callback must be the same object as the one registered with the [on('layout')](#onlayout) API to successfully unregister.|
 
-### on
+### on('draw')
 
 on(type: 'draw', callback: () => void): void
 
-Registers a listener for completion of component drawing.
+Registers a drawing completion callback through this handle.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -94,14 +98,14 @@ Registers a listener for completion of component drawing.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | () => void   | Yes  | Callback invoked upon completion of component layout or drawing.                                    |
+| type     | string | Yes  | Event type. The value is fixed at **'draw'**.<br>**'draw'**: completion of component drawing.|
+| callback | () => void   | Yes  | Drawing completion callback.                                    |
 
-### off
+### off('draw')
 
 off(type: 'draw', callback?: () => void): void
 
-Unregisters the listener for completion of component drawing.
+Unregisters the drawing completion callback through this handle.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -111,8 +115,8 @@ Unregisters the listener for completion of component drawing.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered. The callback must be the same object as the one registered with the **on** API to successfully unregister.|
+| type     | string | Yes  | Event type. The value is fixed at **'draw'**.<br>**'draw'**: completion of component drawing.|
+| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, all callbacks under this handle are unregistered. The callback must be the same object as the one registered with the [on('draw')](#ondraw) API to successfully unregister.|
 
 **Example**
 
@@ -140,7 +144,7 @@ Unregisters the listener for completion of component drawing.
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // You are advised to use this.getUIContext().getUIInspector().createComponentObserver().
+    listener:inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{
@@ -157,7 +161,7 @@ Unregisters the listener for completion of component drawing.
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)
 
-      // Unregister the callback with the corresponding query condition by using the handle. You can determine when to call this API.
+      // Unregister callbacks through the handle. You should decide when to call these APIs.
       // this.listener.off('layout', OffFuncLayout)
       // this.listener.off('draw', OffFuncDraw)
     }

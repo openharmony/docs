@@ -1140,7 +1140,7 @@ Enumerates the storage types of preferences.
 | Name| Value  | Description|
 | ---- | ---- | ---- |
 | XML |  0    | XML, which is the default storage mode of preferences.<br> In this mode, data is stored in XML format. Data operations are performed in the memory. To persist data, call **flush()**.    |
-| CLKV |  1    |CLKV.<br> Data is stored in CLKV database mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
+| GSKV |  1    |GSKV.<br>Data is stored in GSKV database mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
 
 
 > **NOTE**
@@ -1479,7 +1479,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 
   > **NOTE**
   >
-  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  > If the value contains a string that is not in UTF-8 format, store it in a Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1527,7 +1527,7 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 
   > **NOTE**
   >
-  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  > If the value contains a string that is not in UTF-8 format, store it in a Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1579,7 +1579,7 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 
   > **NOTE**
   >
-  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  > If the value contains a string that is not in UTF-8 format, store it in a Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **putSync()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1649,7 +1649,7 @@ dataPreferences.has('startup', (err: BusinessError, val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.info("The key 'startup' dose not contain.");
+    console.info("The key 'startup' does not contain.");
   }
 })
 ```
@@ -1696,7 +1696,7 @@ promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.info("The key 'startup' dose not contain.");
+    console.info("The key 'startup' does not contain.");
   }
 }).catch((err: BusinessError) => {
   console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1742,7 +1742,7 @@ let isExist: boolean = dataPreferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
-  console.info("The key 'startup' dose not contain.");
+  console.info("The key 'startup' does not contain.");
 }
 ```
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **OH_VideoEncInfo** struct describes the video encoding information.
+The struct describes the video encoding information.
 
 **Since**: 10
 

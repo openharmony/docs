@@ -422,6 +422,8 @@ enableHapticFeedback(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
 | value | boolean | 是  | 是否支持触控反馈。<br/>默认值：true，支持触控反馈。 |
@@ -936,6 +938,7 @@ struct AlphabetIndexerSample {
       }
       .width('100%')
       .height('100%')
+      // $r('app.media.image')需要替换为开发者所需的图像资源文件。
       .backgroundImage($r("app.media.image"))
     }
   }

@@ -1,12 +1,18 @@
 # 加解密(ArkTS)
 
-以AES 128、RSA 2048和SM2为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-encryption-decryption-overview.md#支持的算法)。
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
+以AES128、RSA2048和SM2为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-encryption-decryption-overview.md#支持的算法)。
 
 ## 开发步骤
 
 **生成密钥**
 
-1. 指定密钥别名。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化密钥属性集。
 
@@ -72,7 +78,7 @@ let plainText = '123456';
 let IV = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -263,6 +269,14 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateAesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
+}
 ```
 
 ### AES/GCM/NoPadding
@@ -280,7 +294,7 @@ let cipherData: Uint8Array;
 let AAD = '1234567890123456';
 let NONCE = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -481,6 +495,14 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateAesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
+}
 ```
 
 ### RSA/ECB/PKCS1_V1_5
@@ -496,7 +518,7 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -686,6 +708,14 @@ async function DeleteKey() {
     }).catch((error: Error) => {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
+}
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateRsaKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 
@@ -702,7 +732,7 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -893,6 +923,14 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateRsaKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
+}
 ```
 
 ### SM2
@@ -908,7 +946,7 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -1087,6 +1125,14 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateSm2Key();
+  await EncryptDataSm2();
+  await DecryptDataSm2();
+  await DeleteKey();
+}
 ```
 
 <!--Del-->
@@ -1104,7 +1150,7 @@ let plainText = '12345678';
 let IV = '12345678'; // 此处为样例代码，实际使用需采用随机值。
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -1294,6 +1340,14 @@ async function DeleteKey() {
     }).catch((error: Error) => {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
+}
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateDesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 <!--DelEnd-->

@@ -1,4 +1,4 @@
-# Interacting with the System Clipboard
+# Processing Web Page Content by Interacting with the System Clipboard
 
 ArkWeb provides the capability of interacting with the system clipboard to cut, copy, and paste various types of data through the following methods: the [Menu](web_menu.md) component, keyboard shortcuts, and [W3C clipboard API and events](https://www.w3.org/TR/clipboard-apis/).
 

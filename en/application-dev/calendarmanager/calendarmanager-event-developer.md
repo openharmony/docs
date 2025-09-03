@@ -10,15 +10,15 @@ After obtaining the **Calendar** object, you can create, delete, modify and quer
 
 The table below lists the main APIs used for event management. For details about more APIs and their usage, see [@ohos.calendarManager](../reference/apis-calendar-kit/js-apis-calendarManager.md).
 
-| API                                     | Description                                                        |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| getCalendarManager(context: Context): CalendarManager | Obtains a **CalendarManager** object based on the context.           |
-| createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | Creates a **Calendar** object based on the calendar account information. This API uses a promise to return the result.|
-| addEvent(event: Event): Promise\<number>  | Creates an event, with no event ID specified in **Event**. This API uses a promise to return the result.        |
-| editEvent(event: Event): Promise\<number> | Creates a single event. If the input parameter **Event** is not set to the event ID, the event creation screen is displayed when this API is called. This API uses a promise to return the result.|
-| deleteEvent(id: number): Promise\<void>   | Deletes an event with the specified ID. This API uses a promise to return the result.                 |
-| updateEvent(event: Event): Promise\<void> | Updates an event. This API uses a promise to return the result.                             |
-| getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]> | Obtains all events in a calendar that match the filter criteria. This API uses a promise to return the result.    |
+| API                                     | Description                                            |
+| ----------------------------------------- |------------------------------------------------|
+| getCalendarManager(context: Context): CalendarManager | Obtains a **CalendarManager** object based on the context.              |
+| createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | Creates a **Calendar** object based on the calendar account information. This API uses a promise to return the result.        |
+| addEvent(event: Event): Promise\<number>  | Adds an event, with no event ID specified in **Event**. This API uses a promise to return the result.             |
+| editEvent(event: Event): Promise\<number> | Edits an event on the event creation page, with no event ID specified in **Event**. This API uses a promise to return the result.|
+| deleteEvent(id: number): Promise\<void>   | Deletes an event with the specified ID. This API uses a promise to return the result.                    |
+| updateEvent(event: Event): Promise\<void> | Updates an event. This API uses a promise to return the result.                           |
+| getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]> | Obtains all events in a calendar that match the filter criteria. This API uses a promise to return the result.        |
 
 ## How to Develop
 

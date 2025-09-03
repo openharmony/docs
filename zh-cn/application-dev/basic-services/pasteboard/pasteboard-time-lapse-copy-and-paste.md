@@ -120,7 +120,7 @@
        char** recordTypes = OH_UdmfRecord_GetTypes(record, &typeCount);
 
        // 12. 遍历数据类型。
-       for (unsigned int typeIndex = 0; typeIndex < typeCount; ++typeCount) {
+       for (unsigned int typeIndex = 0; typeIndex < typeCount; ++typeIndex) {
            char* recordType = recordTypes[typeIndex];
 
            // 纯文本类型
@@ -223,10 +223,10 @@
        let records = outputData.getRecords();
        if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
          let record = records[0] as unifiedDataChannel.PlainText;
-         console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
+         console.info('GetPlainText success, type:' + records[0].getType() + ', details:' +
          JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
        } else {
-         console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+         console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
        }
      }).catch((error: BusinessError) => {
        //处理异常场景

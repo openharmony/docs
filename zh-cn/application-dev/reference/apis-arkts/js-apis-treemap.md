@@ -42,7 +42,7 @@ import { TreeMap } from '@kit.ArkTS';
 
 constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
-TreeMap的构造函数，支持通过比较函数对元素进行升序或降序排序。
+TreeMap的构造函数，支持通过比较函数使元素按照自定义规则排序。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

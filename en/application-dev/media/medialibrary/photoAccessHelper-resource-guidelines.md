@@ -1,12 +1,12 @@
 # Managing Media Assets
 
-Applications can call **photoAccessHelper** APIs to manage media assets (images and videos).
+Applications can call photoAccessHelper APIs to manage media assets (images and videos).
 
 > **NOTE**
 >
-> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> - Before you get started, obtain a PhotoAccessHelper instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
 >
-> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> - Unless otherwise specified, the PhotoAccessHelper instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call photoAccessHelper APIs. If the code for obtaining the PhotoAccessHelper instance is missing, an error will be reported to indicate that photoAccessHelper is not defined.
 
 To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
@@ -20,7 +20,7 @@ To obtain the object at the specified position (for example, the first one, the 
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 - The [dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md) module is imported.
 
@@ -33,11 +33,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -59,11 +55,11 @@ async function example() {
 
 To display images and videos in Gallery or to preview edits, applications must obtain image and video thumbnails.
 
-The thumbnails offer a quick preview on images and videos. You can use [PhotoAsset.getThumbnail](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail-2)  with the thumbnail size specified to obtain the image or video thumbnail.
+The thumbnails offer a quick preview on images and videos. You can use [PhotoAsset.getThumbnail](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail-2) with the thumbnail size specified to obtain the image or video thumbnail.
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 - The [dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md) module is imported.
 
@@ -84,11 +80,7 @@ import { image } from '@kit.ImageKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -117,7 +109,7 @@ Use [MediaAssetChangeRequest](../../reference/apis-media-library-kit/js-apis-pho
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.WRITE_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 ### Creating an Image or Video Asset (for System Applications Only)
@@ -136,11 +128,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
     let displayName: string = 'testPhoto' + Date.now() + '.jpg';
     let createOption: photoAccessHelper.PhotoCreateOptions = {
@@ -149,7 +137,7 @@ async function example() {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
     // write date into fd.
-    await fileIoclose(fd);
+    await fileIo.close(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
     console.error(`create asset failed with error: ${err.code}, ${err.message}`);
@@ -168,7 +156,7 @@ Use [FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelp
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Rename the first image in the obtained image assets.
@@ -186,11 +174,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: ['title'],
@@ -219,7 +203,7 @@ The file moved to the trash will be retained for 30 days before being deleted pe
 
 **Prerequisites**
 
-- A **PhotoAccessHelper** instance is obtained.
+- A PhotoAccessHelper instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Move the first file in the result set to the trash.
@@ -236,11 +220,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],

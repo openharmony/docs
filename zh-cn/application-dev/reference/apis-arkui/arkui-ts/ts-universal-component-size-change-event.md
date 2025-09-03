@@ -40,7 +40,7 @@ onSizeChange(event: SizeChangeCallback): T
 
 ## SizeChangeCallback
 
-SizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => void
+type SizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => void
 
 组件区域变化时的回调类型。
 

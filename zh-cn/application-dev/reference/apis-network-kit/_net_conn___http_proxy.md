@@ -18,8 +18,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [host](#host) [NETCONN_MAX_STR_LEN] | 主机名。 | 
-| [exclusionList](#exclusionlist) [NETCONN_MAX_EXCLUSION_SIZE][NETCONN_MAX_STR_LEN] | 代理服务器的排除列表。 | 
+| [host](#host) [[NETCONN_MAX_STR_LEN]](_net_connection.md#宏定义) | 主机名。 | 
+| [exclusionList](#exclusionlist) [[NETCONN_MAX_EXCLUSION_SIZE]](_net_connection.md#宏定义)[[NETCONN_MAX_STR_LEN]](_net_connection.md#宏定义) | 代理服务器的排除列表。 | 
 | [exclusionListSize](#exclusionlistsize) | 排除列表的实际大小。 | 
 | [port](#port) | 端口号。 | 
 

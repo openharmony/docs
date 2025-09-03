@@ -846,7 +846,7 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 | Asset<sup>10+</sup>  | [Asset](#asset10).<br>If the value type is Asset, the type in the SQL statement for creating a table must be ASSET.|
 | Assets<sup>10+</sup> | [Assets](#assets10).<br>If the value type is Assets, the type in the SQL statement for creating a table must be ASSETS.|
 | Float32Array<sup>12+</sup> | Array of 32-bit floating-point numbers.<br>If the field type is Float32Array, the type in the SQL statement for creating a table must be floatvector(128).|
-| bigint<sup>12+</sup> | Integer of any length.<br>If the value type is bigint, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example,'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint.|
+| bigint<sup>12+</sup> | Integer of any length.<br>If the value type is bigint, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThan**, **lessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example,'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint.|
 
 ## ValuesBucket
 
@@ -4082,6 +4082,12 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.       |
 | columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
 
+**Return value**
+
+| Type                                                   | Description                                              |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
@@ -4092,12 +4098,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-
-**Return value**
-
-| Type                                                   | Description                                              |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 
@@ -4140,6 +4140,12 @@ Queries data in a database based on specified conditions. This API returns the r
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.                     |
 | columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. <br>Default value: null.|
 
+**Return value**
+
+| Type                   | Description                               |
+| ----------------------- | ----------------------------------- |
+| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
@@ -4150,12 +4156,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800000     | Inner error.                                                 |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-
-**Return value**
-
-| Type                   | Description                               |
-| ----------------------- | ----------------------------------- |
-| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 
@@ -5369,7 +5369,7 @@ if (store != undefined) {
       console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
     });
   }).catch((err: BusinessError) => {
-    console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
   });
 }
 ```
@@ -6389,7 +6389,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
-    console.info(`Progess: ${progressDetails}`);
+    console.info(`Progress: ${progressDetails}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -6481,7 +6481,7 @@ const tables = ["table1", "table2"];
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`Progess: ${progressDetail}`);
+    console.info(`Progress: ${progressDetail}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -7741,6 +7741,12 @@ Due to the limit of the shared memory (max. 2 MB), a single data record cannot e
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.       |
 | columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
 
+**Return value**
+
+| Type                                                   | Description                                              |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
@@ -7766,12 +7772,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800032  | SQLite: Abort due to constraint violation. |
 | 14800033  | SQLite: Data type mismatch. |
 | 14800034  | SQLite: Library used incorrectly. |
-
-**Return value**
-
-| Type                                                   | Description                                              |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 
@@ -10112,6 +10112,12 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.       |
 | columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
 
+**Return value**
+
+| Type                                                   | Description                                              |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
@@ -10128,12 +10134,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800026  | SQLite: The database is out of memory. |
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800047  | The WAL file size exceeds the default limit. |
-
-**Return value**
-
-| Type                                                   | Description                                              |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 
@@ -10181,6 +10181,12 @@ Queries data in a database based on specified conditions. This API returns the r
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.                     |
 | columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. <br>Default value: null.|
 
+**Return value**
+
+| Type                   | Description                               |
+| ----------------------- | ----------------------------------- |
+| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
@@ -10198,12 +10204,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800026  | SQLite: The database is out of memory. |
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800047  | The WAL file size exceeds the default limit. |
-
-**Return value**
-
-| Type                   | Description                               |
-| ----------------------- | ----------------------------------- |
-| [ResultSet](#resultset) | If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 

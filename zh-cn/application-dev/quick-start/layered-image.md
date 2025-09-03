@@ -27,7 +27,7 @@
 >
 > **说明：**
 > 
-> 在编译构建时，app.json5文件所在AppScope目录下的资源文件会合入到模块下面资源目录中，如果两个目录下存在重名文件，编译打包后只会保留AppScope目录下的资源文件。
+> 在编译构建时，AppScope目录下的资源文件会合入到模块下相同路径的资源目录中，如果两个目录下存在重名文件，编译打包后AppScope目录下的资源文件会覆盖模块下的资源。
 >
 > 例如，app.json5和module.json5中配置的分层图标的资源文件名称一致、图标不一致，AppScope目录下的资源文件会覆盖模块中的文件，最后的效果是app.json5中的配置图标生效。
 > 
@@ -137,21 +137,23 @@
       {
         "module": {
           "abilities": [
-            "name": "EntryAbility",
-            // ...
-            "icon": "$media:layered_image", // icon配置为分层图标资源文件的索引
-            "label": "$string:EntryAbility_label", // 需要在entry/src/main/resources/base/element/string.json配置name为EntryAbility_label的资源，已存在可以忽略
-            "skills": [
-              {
-                "entities": [
-                  "entity.system.home"
-                ],
-                "actions": [
-                  "ohos.want.action.home"
-                ]
-              }
-            ],
-            // ...
+            {
+              "name": "EntryAbility",
+              // ...
+              "icon": "$media:layered_image", // icon配置为分层图标资源文件的索引
+              "label": "$string:EntryAbility_label", // 需要在entry/src/main/resources/base/element/string.json配置name为EntryAbility_label的资源，已存在可以忽略
+              "skills": [
+                {
+                  "entities": [
+                    "entity.system.home"
+                  ],
+                  "actions": [
+                    "ohos.want.action.home"
+                  ]
+                }
+              ],
+              // ...
+            }
           ]
           // ...
         }

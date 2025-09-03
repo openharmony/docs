@@ -1,5 +1,11 @@
 # @ohos.bluetooth.pan (蓝牙pan模块)（系统接口）
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 pan模块提供了访问蓝牙个人区域网相关功能的方法。
 
 > **说明：**

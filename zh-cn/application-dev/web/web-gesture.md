@@ -26,7 +26,7 @@ ArkUI提供了[手势绑定](../ui/arkts-gesture-events-binding.md)，Web组件�
 - 在Web上使用双指捏合时，Web组件中的内容将会缩放。这是由于ArkWeb识别了Pinch事件并将其作用于网页上。
 - 使用三指捏合，Web组件本身会进行缩放。这是因为ArkWeb接收到ArkUI识别出的[PinchGesture](../ui/arkts-gesture-events-single-gesture.md#捏合手势pinchgesture)，执行绑定的回调函数。同时，ArkWeb支持scale方法，能够调整Web组件的缩放比例。
 
-> **说明：** 
+> **说明：**
 >
 > 该示例仅用于说明ArkUI手势和ArkWeb手势的区别，不建议使用此方法进行Web组件的缩放。
 ```ts
@@ -73,7 +73,7 @@ struct Index {
 ## Web组件的手势拦截
 - ArkUI手势
 
-  ArkWeb会消费部分ArkUI手势，例如[PanGesture](../ui/arkts-gesture-events-single-gesture.md#捏合手势pinchgesture)，若希望自行处理这些手势而非由ArkWeb消费，可以参考ArkUI的[手势拦截](../ui/arkts-gesture-events-gesture-judge.md)。
+  ArkWeb会消费部分ArkUI手势，例如[拖动手势](../ui/arkts-gesture-events-single-gesture.md#拖动手势pangesture)，若希望自行处理这些手势而非由ArkWeb消费，可以参考ArkUI的[手势拦截](../ui/arkts-gesture-events-gesture-judge.md)。
 
 - ArkWeb手势
 
@@ -96,15 +96,18 @@ Web组件提供了接口[zoomAccess](../reference/apis-arkweb/ts-basic-component
 
 ```ts
 import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'https://www.example.com', controller: this.controller })//需要手动替换为真实网站
     }
   }
+
   onBackPress() {
     // 当前页面是否可前进或者后退给定的step步(-1),正数代表前进，负数代表后退
     if (this.controller.accessStep(-1)) {

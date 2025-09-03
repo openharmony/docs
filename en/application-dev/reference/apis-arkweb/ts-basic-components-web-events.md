@@ -959,7 +959,7 @@ Called to process an HTML form whose input type is **file**. If this function is
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // Set the maximum number of media files that can be selected.
        photoSelectOptions.maxSelectNumber = 5;
-       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
        // Obtain the list of selected files.
        result.handleFileList(chooseFile.photoUris);
      }
@@ -1762,6 +1762,7 @@ Called when a context menu is displayed after the user clicks the right mouse bu
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+    uiContext: UIContext = this.getUIContext();
 
     @Builder
     // Build and trigger a custom menu.
@@ -1847,7 +1848,7 @@ Called when a context menu is displayed after the user clicks the right mouse bu
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 0;
-            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
+            this.offsetY = Math.max(this.uiContext!.px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
           .bindPopup(this.showMenu,

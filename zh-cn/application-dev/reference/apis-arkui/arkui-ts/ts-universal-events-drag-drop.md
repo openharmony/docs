@@ -14,7 +14,8 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 - 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)，开发者可通过设置这些组件的[allowDrop](ts-universal-attributes-drag-drop.md#allowdrop)属性为null来禁用对默认拖入能力的支持。
 
-<!--RP1--><!--RP1End-->其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
+其他组件需要开发者将draggable属性设置为true，并在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)等接口中实现数据传输相关内容，才能正确处理拖拽。
+<!--RP1--><!--RP1End-->
 
 > **说明：**
 >
@@ -42,7 +43,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
 
 **返回值：**
 
@@ -199,17 +200,17 @@ onPreDrag(callback: Callback\<PreDragStatus>)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | callback    | Callback<[PreDragStatus](#predragstatus12枚举说明)>     | 是   | 回调函数。|
 
-## DragItemInfo说明
+## DragItemInfo
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                     | 必填   | 描述                                |
-| --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。 |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
-| extraInfo | string                                   | 否    | 拖拽项的描述。                           |
+| 名称      | 类型                  | 只读| 可选   | 说明                               |
+| --------- | ---------------------------------------- | ---- | ---- | --------------------------------- |
+| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    |   是   |设置拖拽过程中显示的图片。 |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    |   是   |拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
+| extraInfo | string                                   | 否    |   是   |拖拽项的描述。                           |
 
 ## PreviewConfiguration<sup>15+</sup>
 
@@ -252,7 +253,7 @@ onPreDrag(callback: Callback\<PreDragStatus>)
 
 ### setData<sup>10+</sup>
 
-setData(unifiedData: UnifiedData)
+setData(unifiedData: UnifiedData): void
 
 向DragEvent中设置拖拽相关数据。
 
@@ -260,9 +261,11 @@ setData(unifiedData: UnifiedData)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名      | 类型                                                         | 必填 | 说明             |
 | ----------- | ------------------------------------------------------------ | ---- | ---------------- |
-| unifiedData | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 拖拽相关的数据。 |
+| unifiedData | [UnifiedData](#unifieddata10) | 是   | 拖拽相关的数据。 |
 
 ### getData<sup>10+</sup>
 
@@ -303,17 +306,19 @@ getSummary(): Summary
 
 | 类型                                                         | 说明                                  |
 | ------------------------------------------------------------ | ------------------------------------- |
-| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
+| [Summary](#summary10) | 从DragEvent中获取拖拽相关数据的简介。 |
 
 ### setResult<sup>10+</sup>
 
-setResult(dragResult: DragResult)
+setResult(dragResult: DragResult): void
 
 向DragEvent中设置拖拽结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名     | 类型                                | 必填 | 说明       |
 | ---------- | ----------------------------------- | ---- | ---------- |
@@ -501,6 +506,8 @@ startDataLoading(options: DataSyncOptions): string
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名  | 类型                                  | 必填 | 说明                                                         |
 | ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。 |
@@ -512,7 +519,7 @@ startDataLoading(options: DataSyncOptions): string
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-| 190003    | Operation not allowed for current pharse. |
+| 190003    | Operation not allowed for current phase. |
  
 **返回值：** 
 
@@ -592,6 +599,34 @@ getY(): number
 | ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
 | PREPARING_FOR_DRAG_DETECTION<sup>18+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
 
+## UnifiedData<sup>10+</sup>
+
+type UnifiedData = UnifiedData
+
+拖拽相关的数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) |  拖拽相关的数据。|
+
+## Summary<sup>10+</sup>
+
+type Summary = Summary
+
+拖拽相关数据的简介。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 拖拽相关数据的简介。|
+
 ## executeDropAnimation<sup>18+</sup>
 
 设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
@@ -600,9 +635,9 @@ getY(): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型  | 描述             |
-| ------ | ------ | ---------------- |
-| customDropAnimation | Callback\<void\>  |  在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+| 参数名    | 类型  | 必填 | 说明      |
+| ------ | ------ | --- | --------- |
+| customDropAnimation | Callback\<void\>  | 是 |在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
 
 ## DataSyncOptions<sup>15+</sup>
 

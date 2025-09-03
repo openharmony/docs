@@ -5,7 +5,7 @@
 ## 基本概念
 
 * 拖拽操作：在可响应拖出的组件上长按并滑动以触发拖拽行为，当用户释放手指或鼠标时，拖拽操作即告结束。
-* 拖拽背景（背板）：用户拖动数据时的形象化表示。开发者可以通过[onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)的[CustomerBuilder](../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)或[DragItemInfo](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)进行设置，也可以通过[dragPreview](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreview11)通用属性进行自定义。
+* 拖拽背景（背板）：用户拖动数据时的形象化表示。开发者可以通过[onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)的[CustomerBuilder](../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)或[DragItemInfo](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)进行设置，也可以通过[dragPreview](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreview11)通用属性进行自定义。
 * 拖拽内容：被拖动的数据，使用UDMF统一API [UnifiedData](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) 进行封装，确保数据的一致性和安全性。
 * 拖出对象：触发拖拽操作并提供数据的组件，通常具有响应拖拽的特性。
 * 拖入目标：可接收并处理拖动数据的组件，能够根据拖入的数据执行相应的操作。
@@ -125,7 +125,7 @@
     })
     ```
    
-   pixmap的生成可以调用[this.getUIContext().getComponentSnapshot().createFromBuilder()](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilderdeprecated)来实现。
+   pixmap的生成可以调用[this.getUIContext().getComponentSnapshot().createFromBuilder()](../reference/apis-arkui/js-apis-arkui-UIContext.md#createfrombuilder12)来实现。
 
       ```ts
       @Builder
@@ -204,7 +204,7 @@
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
         this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
-        this.imgState = Visibility.None；
+        this.imgState = Visibility.None;
         // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
         event.setResult(DragResult.DRAG_SUCCESSFUL);
     })
@@ -469,7 +469,7 @@ struct Index {
     })
     ```
 
-   截图的获取可以在选中组件时通过调用[this.getUIContext().getComponentSnapshot().get()](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotgetdeprecated)方法获取。以下示例通过获取组件对应id的方法进行截图。
+   截图的获取可以在选中组件时通过调用[this.getUIContext().getComponentSnapshot().get()](../reference/apis-arkui/js-apis-arkui-UIContext.md#get12)方法获取。以下示例通过获取组件对应id的方法进行截图。
 
     ```ts
     @State previewData: DragItemInfo[] = []
@@ -832,7 +832,6 @@ struct DropAnimationExample {
         this.numberBadge--;
         for (let i=0; i<this.isSelectedGrid.length; i++) {
           if (this.isSelectedGrid[i] === true) {
-            this.isSelectedGrid[i] = true;
             let data: UDC.Image = new UDC.Image();
             data.uri = '/resource/image.jpeg';
             if (!this.unifiedData) {
@@ -996,7 +995,6 @@ struct GridEts {
               this.numberBadge--;
               for (let i=0; i<this.isSelectedGrid.length; i++) {
                 if (this.isSelectedGrid[i] === true) {
-                  this.isSelectedGrid[i] = true;
                   let data: UDC.Image = new UDC.Image();
                   data.uri = '/resource/image.jpeg';
                   if (!this.unifiedData) {

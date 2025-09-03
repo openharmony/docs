@@ -29,7 +29,7 @@ In the following example, the **Image** and **Stack** components are located in 
    Image($r('sys.media.ohos_app_icon'))
      .draggable(true)
      .onDragStart(()=>{
-       promptAction.showToast({ message: ""Drag the lower blue area. The Image component responds." });
+       promptAction.showToast({ message: "Drag the lower blue area. The Image component responds." });
      })
      .width('200vp').height('200vp')
    ```
@@ -204,7 +204,7 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
    .parallelGesture ( // Bind a PanGesture as a dynamic controller.
      PanGesture()
        .onActionUpdate((event: GestureEvent)=>{
-         if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL || this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // If neither recognizer is in the SUCCESSFUL state, no control is applied.
+         if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL || this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // If the recognizer is not in the SUCCESSFUL state, no control is applied.
            return;
          }
          let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
@@ -250,7 +250,7 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
      private childRecognizer: GestureRecognizer = new GestureRecognizer();
      private currentRecognizer: GestureRecognizer = new GestureRecognizer();
      private lastOffset: number = 0;
-   
+
      build() {
        Stack({ alignContent: Alignment.TopStart }) {
          Scroll(this.scroller) { // Outer scroll container.
@@ -302,7 +302,8 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
          .shouldBuiltInRecognizerParallelWith((current: GestureRecognizer, others: Array<GestureRecognizer>) => {
            for (let i = 0; i < others.length; i++) {
              let target = others[i].getEventTargetInfo();
-             if (target.getId() == "inner" && others[i].isBuiltIn() && others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // Identify the recognizer to work in parallel.
+             if (target.getId() == "inner" && others[i].isBuiltIn() &&
+               others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // Identify the recognizer to work in parallel.
                this.currentRecognizer = current; // Save the recognizer of the current component.
                this.childRecognizer = others[i]; // Save the recognizer to work in parallel.
                return others[i]; // Return the recognizer to work in parallel with the current one.
@@ -310,9 +311,11 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
            }
            return undefined;
          })
-         .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => { // When gesture recognition is about to be successful, set the recognizer's enabled state based on the current component state.       
+         .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+           others: Array<GestureRecognizer>) => { // When gesture recognition is about to be successful, set the recognizer's enabled state based on the current component state.
            let target = current.getEventTargetInfo();
-           if (target.getId() == "outer" && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+           if (target && target.getId() == "outer" && current.isBuiltIn() &&
+             current.getType() == GestureControl.GestureType.PAN_GESTURE) {
              for (let i = 0; i < others.length; i++) {
                let target = others[i].getEventTargetInfo() as ScrollableTargetInfo;
                if (target instanceof ScrollableTargetInfo && target.getId() == "inner") { // Identify the recognizer to work in parallel on the response chain.
@@ -337,8 +340,9 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
          })
          .parallelGesture ( // Bind a PanGesture as a dynamic controller.
            PanGesture()
-             .onActionUpdate((event: GestureEvent)=>{
-               if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL || this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // If neither recognizer is in the SUCCESSFUL state, no control is applied.
+             .onActionUpdate((event: GestureEvent) => {
+               if (this.childRecognizer?.getState() != GestureRecognizerState.SUCCESSFUL ||
+                 this.currentRecognizer?.getState() != GestureRecognizerState.SUCCESSFUL) { // If neither recognizer is in the SUCCESSFUL state, no control is applied.
                  return;
                }
                let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;

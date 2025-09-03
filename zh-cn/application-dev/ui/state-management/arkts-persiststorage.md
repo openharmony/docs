@@ -333,7 +333,7 @@ struct PersistedSet {
         Column() {
           Text(`Persisted Set is `)
             .margin(20)
-          ForEach(Array.from(this.persistedSet.entries()), (item: [number, string]) => {
+          ForEach(Array.from(this.persistedSet.entries()), (item: [number, number]) => {
             Text(`${item[1]}`)
           })
 

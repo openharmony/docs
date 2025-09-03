@@ -1,8 +1,11 @@
 # @ohos.arkui.UIContext (UIContext)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 In the stage model, a window stage or window can use the [loadContent](js-apis-window.md#loadcontent9) API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in API execution errors.
-
-**@ohos.window** adds the [getUIContext](js-apis-window.md#getuicontext10) API in API version 10 for obtaining the **UIContext** object of a UI instance. The API provided by the **UIContext** object can be directly applied to the corresponding UI instance.
 
 > **NOTE**
 >
@@ -80,6 +83,8 @@ Obtains a **Font** object.
 
 **Example**
 
+See the example for [Font](#font).
+
 <!--code_no_check-->
 ```ts
 uiContext.getFont();
@@ -102,10 +107,7 @@ Obtains the **ComponentUtils** object.
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getComponentUtils();
-```
+See the example for [getComponentUtils](js-apis-arkui-componentUtils.md).
 
 ### getUIInspector
 
@@ -125,10 +127,7 @@ Obtains the **UIInspector** object.
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getUIInspector();
-```
+See the example for [UIInspector](#uiinspector).
 
 ### getUIObserver<sup>11+</sup>
 
@@ -148,9 +147,50 @@ Obtains the **UIObserver** object.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.getUIObserver();
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### getMediaQuery
@@ -170,6 +210,8 @@ Obtains a **MediaQuery** object.
 | [MediaQuery](#mediaquery) | **MediaQuery** object.|
 
 **Example**
+
+See the [mediaquery Example](js-apis-mediaquery.md#example).
 
 <!--code_no_check-->
 ```ts
@@ -194,10 +236,7 @@ Obtains a **Router** object.
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getRouter();
-```
+See the example for [pushUrl](#pushurl).
 
 ### getPromptAction
 
@@ -217,10 +256,7 @@ Obtains a **PromptAction** object.
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getPromptAction();
-```
+See the example for [PromptAction](#promptaction).
 
 ### getOverlayManager<sup>12+</sup>
 
@@ -471,7 +507,7 @@ Obtains the context of this ability.
 
 | Type| Description                            |
 | ------ | ------------------------------- |
-| [Context](#context12) \| undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext. If the ability context does not exist, **undefined** is returned.|
+| [Context](#context12) \| undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called in a page within a UIAbility window, the returned context type is [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext-1). If this API is called in a page within an ExtensionAbility window, the returned context type is [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md). If the ability context does not exist, **undefined** is returned.|
 
 **Example**
 
@@ -484,8 +520,14 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text("cacheDir='"+this.uiContext?.getHostContext()?.cacheDir+"'").fontSize(25)
-        Text("bundleCodeDir='"+this.uiContext?.getHostContext()?.bundleCodeDir+"'").fontSize(25)
+        Text("cacheDir='"+this.uiContext?.getHostContext()?.cacheDir+"'")
+          .fontSize(25)
+          .border({ color:Color.Red, width:2 })
+          .padding(50)
+        Text("bundleCodeDir='"+this.uiContext?.getHostContext()?.bundleCodeDir+"'")
+          .fontSize(25)
+          .border({ color:Color.Red, width:2 })
+          .padding(50)
       }
       .width('100%')
     }
@@ -514,7 +556,7 @@ Obtains a FrameNode on the component tree based on the component ID.
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node.|
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode of the component or **null** if no matching component is found.|
 
 > **NOTE**
 >
@@ -522,16 +564,13 @@ Obtains a FrameNode on the component tree based on the component ID.
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getFrameNodeById("TestNode");
-```
+See [Example of Obtaining the Root Node](js-apis-arkui-frameNode.md#example-of-obtaining-the-root-node).
 
 ### getAttachedFrameNodeById<sup>12+</sup>
 
 getAttachedFrameNodeById(id: string): FrameNode | null
 
-Obtains the entity node attached to the current window based on its component ID.
+Obtains the FrameNode attached to the current window based on its component ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -547,7 +586,7 @@ Obtains the entity node attached to the current window based on its component ID
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node.|
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode of the component or **null** if no matching component is found.|
 
 > **NOTE**
 >
@@ -555,16 +594,38 @@ Obtains the entity node attached to the current window based on its component ID
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.getAttachedFrameNodeById("TestNode");
+@Entry
+@Component
+struct MyComponent {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          let node = this.getUIContext().getAttachedFrameNodeById("HelloWorld");
+          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
 
 getFrameNodeByUniqueId(id: number): FrameNode | null
 
-Obtains the entity node, FrameNode, of a component on the component tree using its **uniqueId**. The return value depends on the type of component associated with the **uniqueId**.
+Obtains the FrameNode of a component on the component tree using its **uniqueId**. The return value depends on the type of component associated with the **uniqueId**.
 1. If the **uniqueId** corresponds to a built-in component, the associated FrameNode is returned.
 2. If the **uniqueId** corresponds to a custom component: If the component has rendered content, its root node is returned, with the type __Common__; if the component has no rendered content, the FrameNode of its first child component is returned.
 3. If the **uniqueId** does not correspond to any component, **null** is returned.
@@ -583,7 +644,7 @@ Obtains the entity node, FrameNode, of a component on the component tree using i
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [FrameNode](js-apis-arkui-frameNode.md)  \| null | Entity node of the component or **null** if no matching component is found.|
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode of the component or **null** if no matching component is found.|
 
 **Example**
 
@@ -727,27 +788,39 @@ Shows an alert dialog box.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.showAlertDialog(
-  {
-    title: 'title',
-    message: 'text',
-    autoCancel: true,
-    alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: -20 },
-    gridCount: 3,
-    confirm: {
-      value: 'button',
-      action: () => {
-        console.info('Button-clicking callback')
-      }
-    },
-    cancel: () => {
-      console.info('Closed callbacks')
-    }
+@Entry
+@Component
+struct Index {
+  uiContext: UIContext = this.getUIContext()
+
+  build() {
+    Column() {
+      Button('showAlertDialog')
+        .onClick(() => {
+          this.uiContext.showAlertDialog(
+            {
+              title: 'title',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Bottom,
+              offset: { dx: 0, dy: -20 },
+              gridCount: 3,
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback')
+                }
+              },
+              cancel: () => {
+                console.info('Closed callbacks')
+              }
+            }
+          );
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
   }
-);
+}
 ```
 
 ### showActionSheet
@@ -768,44 +841,56 @@ Shows an action sheet in the given settings.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.showActionSheet({
-  title: 'ActionSheet title',
-  message: 'message',
-  autoCancel: true,
-  confirm: {
-    value: 'Confirm button',
-    action: () => {
-      console.info('Get Alert Dialog handled');
-    }
-  },
-  cancel: () => {
-    console.info('actionSheet canceled');
-  },
-  alignment: DialogAlignment.Bottom,
-  offset: { dx: 0, dy: -10 },
-  sheets: [
-    {
-      title: 'apples',
-      action: () => {
-        console.info('apples');
-      }
-    },
-    {
-      title: 'bananas',
-      action: () => {
-        console.info('bananas');
-      }
-    },
-    {
-      title: 'pears',
-      action: () => {
-        console.info('pears');
-      }
-    }
-  ]
-});
+@Entry
+@Component
+struct Index {
+  uiContext: UIContext = this.getUIContext()
+
+  build() {
+    Column() {
+      Button('showActionSheet')
+        .onClick(() => {
+          this.uiContext.showActionSheet({
+            title: 'ActionSheet title',
+            message: 'message',
+            autoCancel: true,
+            confirm: {
+              value: 'Confirm button',
+              action: () => {
+                console.info('Get ActionSheet handled');
+              }
+            },
+            cancel: () => {
+              console.info('ActionSheet canceled');
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.info('apples');
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.info('bananas');
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.info('pears');
+                }
+              }
+            ]
+          });
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showDatePickerDialog
@@ -818,6 +903,8 @@ Shows a date picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 | Name | Type                                                        | Mandatory| Description                          |
@@ -826,25 +913,53 @@ Shows a date picker dialog box in the given settings.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1");
-uiContext.showDatePickerDialog({
-  start: new Date("2000-1-1"),
-  end: new Date("2100-12-31"),
-  selected: selectedDate,
-  onAccept: (value: DatePickerResult) => {
-    // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
-  },
-  onCancel: () => {
-    console.info("DatePickerDialog:onCancel()");
-  },
-  onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          this.getUIContext().showDatePickerDialog({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            showTime: true,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
+            onDateAccept: (value: Date) => {
+              // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
+            },
+            onCancel: () => {
+              console.info("DatePickerDialog:onCancel()");
+            },
+            onDateChange: (value: Date) => {
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
+            },
+            onDidAppear: () => {
+              console.info("DatePickerDialog:onDidAppear()");
+            },
+            onDidDisappear: () => {
+              console.info("DatePickerDialog:onDidDisappear()");
+            },
+            onWillAppear: () => {
+              console.info("DatePickerDialog:onWillAppear()");
+            },
+            onWillDisappear: () => {
+              console.info("DatePickerDialog:onWillDisappear()");
+            }
+          })
+        })
+    }.width('100%')
   }
-});
+}
 ```
 
 ### showTimePickerDialog
@@ -856,6 +971,8 @@ Shows a time picker dialog box in the given settings.
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -917,6 +1034,8 @@ Shows a text picker dialog box in the given settings.
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -1012,32 +1131,34 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // EntryAbility.ets
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options:AnimatorOptions = {
-      duration: 1500,
-      easing: "friction",
-      delay: 0,
-      fill: "forwards",
-      direction: "normal",
-      iterations: 3,
-      begin: 200.0,
-      end: 400.0
-    };
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    //Create the main window and set the home page for this ability.
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options:AnimatorOptions = {
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 3,
+        begin: 200.0,
+        end: 400.0
+      };
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 
@@ -1074,23 +1195,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// used in UIAbility
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    if (err.code) {
-      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-      return;
-    }
-    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    let uiContext = windowStage.getMainWindowSync().getUIContext();
-    let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
-    uiContext.createAnimator(options);
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Create the main window and set the home page for this ability.
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let uiContext = windowStage.getMainWindowSync().getUIContext();
+      let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
+      uiContext.createAnimator(options);
+    });
+  }
 }
 ```
 
@@ -1112,13 +1235,26 @@ Executes the specified callback in this UI context.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.runScopedTask(
-  () => {
-    console.info('Succeeded in runScopedTask');
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Button("run task").onClick(()=>{
+          this.uiContext.runScopedTask(()=>{
+            // do something
+          })
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
-);
+}
 ```
 
 ### setKeyboardAvoidMode<sup>11+</sup>
@@ -1137,7 +1273,17 @@ Sets the avoidance mode for the virtual keyboard.
 | -------- | ---------- | ---- | ---- |
 | value | [KeyboardAvoidMode](#keyboardavoidmode11)| Yes   | Avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**|
 
+>  **NOTE**
+>
+>  With **KeyboardAvoidMode.RESIZE**, the page is resized to prevent the virtual keyboard from obstructing the view. Regarding components on the page, those whose width and height are set in percentage are resized with the page, and those whose width and height are set to specific values are laid out according to their settings. With **KeyboardAvoidMode.RESIZE**, **expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])** does not take effect.
+>
+>  With **KeyboardAvoidMode.NONE**, keyboard avoidance is disabled, and the page will be covered by the displayed keyboard.
+>
+>  **setKeyboardAvoidMode** only affects page layouts. It does not apply to popup components, including the following: **Dialog**, **Popup**, **Menu**, **BindSheet**, **BindContentCover**, **Toast**, **OverlayManager**. For details about the avoidance mode of popup components, see [CustomDialogControllerOptions](./arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions).
+
 **Example**
+
+See [Example 4: Setting the Keyboard Avoidance Mode to Resize](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-4-setting-the-keyboard-avoidance-mode-to-resize), [Example 5: Setting Keyboard Avoidance Mode to Offset](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-5-setting-keyboard-avoidance-mode-to-offset), and [Example 6: Switching Avoidance Modes](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-6-switching-avoidance-modes).
 
 ```ts
 // EntryAbility.ets
@@ -1177,6 +1323,8 @@ Obtains the avoidance mode for the virtual keyboard.
 | [KeyboardAvoidMode](#keyboardavoidmode11)| Avoidance mode for the virtual keyboard.|
 
 **Example**
+
+See [Example 4: Setting the Keyboard Avoidance Mode to Resize](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-4-setting-the-keyboard-avoidance-mode-to-resize), [Example 5: Setting Keyboard Avoidance Mode to Offset](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-5-setting-keyboard-avoidance-mode-to-offset), and [Example 6: Switching Avoidance Modes](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-6-switching-avoidance-modes).
 
 ```ts
 // EntryAbility.ets
@@ -1221,20 +1369,23 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 
 ```ts
 // EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-    } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      } else {
+        hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 ### getDragController<sup>11+</sup>
@@ -1255,10 +1406,7 @@ Obtains the **DragController** object, which can be used to create and initiate 
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getDragController();
-```
+See the example for [DragController](#dragcontroller11).
 
 ### keyframeAnimateTo<sup>11+</sup>
 
@@ -1276,6 +1424,66 @@ Generates a key frame animation. For details about how to use this API, see [key
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam) | Yes     | Overall animation parameter of the keyframe animation.    |
 | keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate)&gt;  | Yes     | States of all keyframes.           |
+
+**Example**
+
+```ts
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct KeyframeDemo {
+  @State myScale: number = 1.0;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+  }
+
+  build() {
+    Column() {
+      Circle()
+        .width(100)
+        .height(100)
+        .fill("#46B1E3")
+        .margin(100)
+        .scale({ x: this.myScale, y: this.myScale })
+        .onClick(() => {
+          if (!this.uiContext) {
+            console.info("no uiContext, keyframe failed");
+            return;
+          }
+          this.myScale = 1;
+          // Configure the keyframe animation to play three times.
+          this.uiContext.keyframeAnimateTo({
+              iterations: 3,
+              expectedFrameRateRange: {
+                min: 10,
+                max: 120,
+                expected: 60,
+              }
+            }, [
+            {
+              // The first keyframe animation lasts for 800 ms, during which the scale attribute changes from 1 to 1.5.
+              duration: 800,
+              event: () => {
+                this.myScale = 1.5;
+              }
+            },
+            {
+              // The second keyframe animation lasts for 500 ms, during which the scale attribute changes from 1.5 to 1.
+              duration: 500,
+              event: () => {
+                this.myScale = 1;
+              }
+            }
+          ]);
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
 
 ### getFocusController<sup>12+</sup>
 
@@ -1295,10 +1503,7 @@ Obtains a [FocusController](js-apis-arkui-UIContext.md#focuscontroller12) object
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getFocusController();
-```
+See the example for [FocusController](js-apis-arkui-UIContext.md#focuscontroller12).
 
 ### getFilteredInspectorTree<sup>12+</sup>
 
@@ -1314,13 +1519,13 @@ Obtains the component tree and component attributes. This API has a long process
 
 | Name | Type           | Mandatory| Description                                                        |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following filter fields are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>The following filter field is supported since API version 20:<br>**"isLayoutInspector"**: whether to display attributes of custom components.<br>If **filters** includes one or more fields, unspecified fields will be filtered out from the results. If **filters** is not provided or is an empty array, none of the aforementioned fields will be filtered out.<br>Other filter fields are used only in testing scenarios.|
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following filter fields are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>If **filters** includes one or more fields, unspecified fields will be filtered out from the results. If **filters** is not provided or is an empty array, none of the aforementioned fields will be filtered out.<br>The following filter field is supported since API version 20:<br>**"isLayoutInspector"**: whether the component tree contains [custom components](../../ui/state-management/arkts-create-custom-components.md). If **filters** is omitted or does not contain **"isLayoutInspector"**, the returned component tree will not include custom component details.<br>Other filter fields are used only in testing scenarios.|
 
 **Return value**
 
 | Type  | Description                              |
 | ------ | ---------------------------------- |
-| string | JSON string of the component tree and component attributes.|
+| string | JSON string of the component tree and component attributes. For details about each field in the component, see the return value description of [getInspectorInfo](./js-apis-arkui-frameNode.md#getinspectorinfo12).|
 
 **Error codes**
 
@@ -1328,7 +1533,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed.  |
 
 **Example**
 
@@ -1416,13 +1621,13 @@ Obtains the attributes of the specified component and its child components. This
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
 | id      | string          | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
 | depth   | number          | Yes  | Number of layers of child components. If the value is **0**, the attributes of the specified component and all its child components are obtained. If the value is **1**, only the attributes of the specified component are obtained. If the value is **2**, the attributes of the specified component and its level-1 child components are obtained. The rest can be deduced by analogy.|
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following filter fields are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>Other filter fields are used only in testing scenarios.|
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following filter fields are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>If **filters** includes one or more fields, unspecified fields will be filtered out from the results. If **filters** is not provided or is an empty array, none of the aforementioned fields will be filtered out.<br>Other filter fields are used only in testing scenarios.|
 
 **Return value**
 
 | Type  | Description                                        |
 | ------ | -------------------------------------------- |
-| string | JSON string of the attributes of the specified component and its child components.|
+| string | JSON string of the attributes of the specified component and its child components. For details about each field in the component, see the return value description of [getInspectorInfo](./js-apis-arkui-frameNode.md#getinspectorinfo12).|
 
 
 **Error codes**
@@ -1431,7 +1636,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed.  |
 
 **Example**
 
@@ -1439,6 +1644,47 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 ```
+
+<!--code_no_check-->
+```ts
+import { UIContext } from '@kit.ArkUI';
+@Entry
+@Component
+struct ComponentPage {
+  build() {
+    Column() {
+      Text("Hello World")
+        .fontSize(20)
+        .id("TEXT")
+      Button('getFilteredInspectorTreeById').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        try {
+          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["id", "src"]);
+          console.info(`result1: ${inspectorStr}`);
+          inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
+          console.info(`result2: ${inspectorStr}`);
+          inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["src"]);
+          inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
+          console.info(`result3: ${inspectorStr}`);
+        } catch(e) {
+          console.info(`getFilteredInspectorTreeById error: ${e}`);
+        }
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+This JSON string structure is as follows:
+<!--code_no_check-->
+```ts
+result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}]}
+result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
+result3: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
+```
+To obtain the component specified by the **id** parameter in the **getFilteredInspectorTreeById** API, you must first convert the API's result into a JSON object (as demonstrated in the sample code), and then extract the first item from the **$children** array. A comparison between **result2** and **result3** reveals that, if the **filters** parameter is changed from **["id", "src"]** to **["src"]**, the **$attrs** property obtained does not contain the **id** key.
+
 
 ### getCursorController<sup>12+</sup>
 
@@ -1458,10 +1704,7 @@ Obtains a [CursorController](js-apis-arkui-UIContext.md#cursorcontroller12) obje
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.CursorController();
-```
+See the example for [CursorController](#cursorcontroller12).
 
 ### getContextMenuController<sup>12+</sup>
 
@@ -1504,6 +1747,8 @@ Obtains a **MeasureUtils** object for text calculation.
 
 **Example**
 
+See the example for [MeasureUtils](#measureutils12).
+
 <!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
@@ -1529,10 +1774,7 @@ For typical use cases (for example, long screenshots) and best practices of comp
 
 **Example**
 
-<!--code_no_check-->
-```ts
-uiContext.getComponentSnapshot();
-```
+See the example for [ComponentSnapshot](#componentsnapshot12).
 
 ### vp2px<sup>12+</sup>
 
@@ -1543,6 +1785,10 @@ Converts a value in units of vp to a value in units of px.
 Conversion formula: px value = vp value × pixel density
 
 Pixel density: effective pixel density of the current window, which is the screen's physical pixel density [VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16).
+
+> **NOTE**
+>
+> **getUIContext** must be called after [windowStage.loadContent](./js-apis-window.md#loadcontent9) to ensure the UIContext is initialized before this API is called. Otherwise, accurate results cannot be guaranteed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1562,9 +1808,28 @@ Pixel density: effective pixel density of the current window, which is the scree
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.vp2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().vp2px(50),
+          centerY: this.getUIContext().vp2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### px2vp<sup>12+</sup>
@@ -1577,6 +1842,10 @@ Conversion formula: vp value = px value/pixel density
 
 Pixel density: effective pixel density of the current window, which is the screen's physical pixel density [VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16).
 
+> **NOTE**
+>
+> **getUIContext** must be called after [windowStage.loadContent](./js-apis-window.md#loadcontent9) to ensure the UIContext is initialized before this API is called. Otherwise, accurate results cannot be guaranteed.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1595,9 +1864,28 @@ Pixel density: effective pixel density of the current window, which is the scree
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.px2vp(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2vp(50),
+          centerY: this.getUIContext().px2vp(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### fp2px<sup>12+</sup>
@@ -1612,6 +1900,10 @@ Pixel density: effective pixel density of the current window, which is the scree
 
 Font scale factor: system font scaling coefficient ([Configuration.fontScale](arkui-ts/ts-types.md#configuration)).
 
+> **NOTE**
+>
+> **getUIContext** must be called after [windowStage.loadContent](./js-apis-window.md#loadcontent9) to ensure the UIContext is initialized before this API is called. Otherwise, accurate results cannot be guaranteed.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1630,9 +1922,28 @@ Font scale factor: system font scaling coefficient ([Configuration.fontScale](ar
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.fp2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().fp2px(50),
+          centerY: this.getUIContext().fp2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### px2fp<sup>12+</sup>
@@ -1647,6 +1958,10 @@ Pixel density: effective pixel density of the current window, which is typically
 
 Font scale factor: system font scaling coefficient ([Configuration.fontScale](arkui-ts/ts-types.md#configuration)).
 
+> **NOTE**
+>
+> **getUIContext** must be called after [windowStage.loadContent](./js-apis-window.md#loadcontent9) to ensure the UIContext is initialized before this API is called. Otherwise, accurate results cannot be guaranteed.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1665,9 +1980,28 @@ Font scale factor: system font scaling coefficient ([Configuration.fontScale](ar
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.px2fp(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2fp(50),
+          centerY: this.getUIContext().px2fp(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### lpx2px<sup>12+</sup>
@@ -1678,6 +2012,10 @@ Converts a value in units of lpx to a value in units of px.
 
 Conversion formula: px value = lpx value × (actual screen width/logical width), where the logical width is configured using [designWidth](../../quick-start/module-configuration-file.md#pages)
 
+> **NOTE**
+>
+> **getUIContext** must be called after [windowStage.loadContent](./js-apis-window.md#loadcontent9) to ensure the UIContext is initialized before this API is called. Otherwise, accurate results cannot be guaranteed.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1696,9 +2034,28 @@ Conversion formula: px value = lpx value × (actual screen width/logical width),
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.lpx2px(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().lpx2px(50),
+          centerY: this.getUIContext().lpx2px(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### px2lpx<sup>12+</sup>
@@ -1709,6 +2066,10 @@ Converts a value in units of px to a value in units of lpx.
 
 Conversion formula: lpx value = px value/(actual screen width/logical width), where the logical width is configured using [designWidth](../../quick-start/module-configuration-file.md#pages)
 
+> **NOTE**
+>
+> **getUIContext** must be called after [windowStage.loadContent](./js-apis-window.md#loadcontent9) to ensure the UIContext is initialized before this API is called. Otherwise, accurate results cannot be guaranteed.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1727,9 +2088,28 @@ Conversion formula: lpx value = px value/(actual screen width/logical width), wh
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.px2lpx(200);
+@Entry
+@Component
+struct MatrixExample {
+  build() {
+    Column({ space: 100 }) {
+      Text('Hello1')
+        .textAlign(TextAlign.Center)
+        .width(100)
+        .height(60)
+        .backgroundColor(0xAFEEEE)
+        .borderWidth(1)
+        .rotate({
+          z: 1,
+          angle: 90,
+          centerX: this.getUIContext().px2lpx(50),
+          centerY: this.getUIContext().px2lpx(30)
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### getWindowName<sup>12+</sup>
@@ -1818,9 +2198,8 @@ struct Index {
         }
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
-          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1869,8 +2248,7 @@ struct Index {
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
-          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window heightBP: ${heightBp}`);
         })
       }
       .width('100%')
@@ -2001,9 +2379,52 @@ Requests the dynamic sync scene of a component for customizing related frame rat
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-uiContext.DynamicSyncScene("dynamicSyncScene");
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Frame {
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30};
+  private scenes: SwiperDynamicSyncScene[] = [];
+
+  build() {
+    Column() {
+      Text("Animation"+ JSON.stringify(this.ANIMATION))
+      Text("Responsive"+ JSON.stringify(this.GESTURE))
+      Row(){
+        Swiper() {
+          Text("one")
+          Text("two")
+          Text("three")
+        }
+        .width('100%')
+        .height('300vp')
+        .id("dynamicSwiper")
+        .backgroundColor(Color.Blue)
+        .autoPlay(true)
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
+        })
+      }
+
+      Button("set frame")
+        .onClick(() => {
+          this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
+
+            if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION);
+            }
+
+            if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
+              scenes.setFrameRateRange(this.GESTURE);
+            }
+          });
+        })
+    }
+  }
+}
 ```
 
 ### openBindSheet<sup>12+</sup>
@@ -2720,7 +3141,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 
 **Example**
+
 ```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
@@ -2744,8 +3169,22 @@ Destroys the UI instance created using [createUIContextWithoutWindow](#createuic
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
+
 ```ts
-UIContext.destroyUIContextWithoutWindow();
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+    UIContext.destroyUIContextWithoutWindow();
+  }
+
+  // ......
+}
 ```
 
 ### dispatchKeyEvent<sup>15+</sup>
@@ -2757,6 +3196,8 @@ Dispatches a key event to the specified component. To ensure predictable behavio
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
 
 | Name| Type                         | Mandatory| Description              |
 | ------ | ----------------------------- | ---- | ------------------ |
@@ -2897,6 +3338,8 @@ registerFont(options: font.FontOptions): void
 
 Registers a custom font with the font manager.
 
+This API is asynchronous and does not support concurrent calls.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -2911,13 +3354,32 @@ Registers a custom font with the font manager.
 
 <!--code_no_check-->
 ```ts
+// xxx.ets
 import { Font } from '@kit.ArkUI';
 
-let font:Font = uiContext.getFont();
-font.registerFont({
-  familyName: 'medium',
-  familySrc: '/font/medium.ttf'
-});
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+
+  aboutToAppear() {
+    this.font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
+    })
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('medium') // medium: name of the registered custom font. (Registered fonts such as $r('app.string.mediumFamilyName') and 'mediumRawFile' can also be used.)
+    }.width('100%')
+  }
+}
 ```
 ### getSystemFontList
 
@@ -2943,11 +3405,27 @@ Obtains the list of supported fonts.
 
 <!--code_no_check-->
 ```ts
+// xxx.ets
 import { Font } from '@kit.ArkUI';
 
-let font: Font | undefined = uiContext.getFont();
-if (font) {
-  font.getSystemFontList();
+@Entry
+@Component
+struct Index {
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+  fontList: Array<string> = new Array<string>();
+
+  build() {
+    Column() {
+      Button("getSystemFontList")
+        .width('60%')
+        .height('6%')
+        .onClick(() => {
+          this.fontList = this.font.getSystemFontList();
+          console.log('getSystemFontList', JSON.stringify(this.fontList))
+        })
+    }.width('100%')
+  }
 }
 ```
 
@@ -2977,11 +3455,36 @@ Obtains information about a system font based on the font name.
 
 <!--code_no_check-->
 ```ts
-import { Font } from '@kit.ArkUI';
+// xxx.ets
+import { Font, font } from '@kit.ArkUI';
 
-let font: Font | undefined = uiContext.getFont();
-if (font) {
-  font.getFontByName('Sans Italic');
+@Entry
+@Component
+struct Index {
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+  fontInfo: font.FontInfo = this.font.getFontByName('')
+
+  build() {
+    Column() {
+      Button("getFontByName")
+        .width('60%')
+        .height('6%')
+        .onClick(() => {
+          this.fontInfo = this.font.getFontByName('HarmonyOS Sans Italic');
+          console.info("getFontByName(): path = " + this.fontInfo.path);
+          console.info("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.info("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.info("getFontByName(): Family = " + this.fontInfo.family);
+          console.info("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.info("getFontByName(): weight = " + this.fontInfo.weight);
+          console.info("getFontByName(): width = " + this.fontInfo.width);
+          console.info("getFontByName(): italic = " + this.fontInfo.italic);
+          console.info("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.info("getFontByName(): symbolic = " + this.fontInfo.symbolic);
+        })
+    }.width('100%')
+  }
 }
 ```
 
@@ -3010,6 +3513,10 @@ In the following API examples, you must first use [getComponentUtils()](#getcomp
 getRectangleById(id: string): componentUtils.ComponentInfo
 
 Obtains the size, position, translation, scaling, rotation, and affine matrix information of the specified component.
+
+> **NOTE**
+>
+> This API should be called after the target component's layout is complete to obtain its size information. It is recommended that you use this API within [onAppear](./arkui-ts/ts-universal-events-show-hide.md#onappear).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3041,10 +3548,36 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
-let componentUtils: ComponentUtils = uiContext.getComponentUtils();
-let modePosition = componentUtils.getRectangleById("onClick");
-let localOffsetWidth = modePosition.size.width;
-let localOffsetHeight = modePosition.size.height;
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          this.message = 'Welcome';
+          let componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
+          let modePosition = componentUtils.getRectangleById("HelloWorld");
+          let width = modePosition.size.width; // Obtain the width of the component.
+          let height = modePosition.size.height; // Obtain the height of the component.
+          let localOffsetX = modePosition.localOffset.x; // Obtain the x-axis offset of the component relative to its parent component.
+          let localOffsetY = modePosition.localOffset.y; // Obtain the y-axis offset of the component relative to its parent component.
+          console.info(`width: ${width}, height: ${height}, localOffsetX: ${localOffsetX}, localOffsetY: ${localOffsetY}`);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
 
 ## UIInspector
@@ -3077,10 +3610,44 @@ Registers a callback for layout and rendering completion notifications for a spe
 
 <!--code_no_check-->
 ```ts
-import { UIInspector } from '@kit.ArkUI';
+import { inspector, UIInspector } from '@kit.ArkUI'
 
-let inspector: UIInspector = uiContext.getUIInspector();
-let listener = inspector.createComponentObserver('COMPONENT_ID');
+@Entry
+@Component
+struct UIInspectorExample {
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Text("UIInspector")
+            .width(110)
+            .height(110)
+            .border({ width: 1 })
+            .id('TEXT_ID')
+        }.width(80).width(80)
+      }.width(80).width(80)
+    }.height(320).width(360).padding({ right: 10, top: 10 })
+  }
+
+  uiInspector: UIInspector = this.getUIContext().getUIInspector();
+  listener:inspector.ComponentObserver = this.uiInspector.createComponentObserver("TEXT_ID")
+
+  aboutToAppear() {
+    let onLayoutComplete:()=>void=():void=>{
+      console.info("TEXT_ID layout complete")
+    }
+    let onDrawComplete:()=>void=():void=>{
+      console.info("TEXT_ID draw complete")
+    }
+
+    this.listener.on('layout', onLayoutComplete)
+    this.listener.on('draw', onDrawComplete)
+
+    // Unregister callbacks through the handle. You should decide when to call these APIs.
+    // this.listener.off('layout', onLayoutComplete)
+    // this.listener.off('draw', onDrawComplete)
+  }
+}
 ```
 
 ## PageInfo<sup>12+</sup>
@@ -3454,6 +4021,9 @@ Subscribes to state changes of the page in the router.
 
 **Example**
 
+See the example for [on('navDestinationUpdate')](#onnavdestinationupdate11).
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
@@ -3482,6 +4052,9 @@ Unsubscribes to state changes of the page in the router.
 
 **Example**
 
+See the example for [on('navDestinationUpdate')](#onnavdestinationupdate11).
+
+<!--code_no_check-->
 ```ts
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
@@ -3942,7 +4515,7 @@ For the sample code, see the sample code of the **UIObserver.on('navDestinationS
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
+Subscribes to the dispatch of click event instructions. The callback type is [GestureEventListenerCallback](#gestureeventlistenercallback12). Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3958,13 +4531,83 @@ Subscribes to the dispatch of click event instructions. Currently, the screen re
 **Example**
 
 ```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
+// Define callbacks for event listeners.
+function willClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+  console.info('Example willClickCallback GestureEvent is called');
+}
 
-// callback is a callback defined by you.
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('willClick', callback);
+function willClickCallback(event: ClickEvent, node?: FrameNode) {
+  console.info('Example willClickCallback ClickEvent is called');
+}
+
+function didClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+  console.info('Example didClickCallback GestureEvent is called');
+}
+
+function didClickCallback(event: ClickEvent, node?: FrameNode) {
+  console.info('Example didClickCallback ClickEvent is called');
+}
+
+@Entry
+@Component
+struct ClickExample {
+  @State clickCount: number = 0;
+  @State tapGestureCount: number = 0;
+
+  aboutToAppear(): void {
+    // Add event listeners.
+    let observer = this.getUIContext().getUIObserver();
+    observer.on('willClick', willClickGestureCallback);
+    observer.on('willClick', willClickCallback);
+    observer.on('didClick', didClickGestureCallback);
+    observer.on('didClick', didClickCallback);
+  }
+
+  aboutToDisappear(): void {
+    // Remove event listeners.
+    let observer = this.getUIContext().getUIObserver();
+    observer.off('willClick', willClickGestureCallback);
+    observer.off('willClick', willClickCallback);
+    // If no callback is specified, all callbacks for this event will be removed.
+    observer.off('didClick');
+  }
+
+  build() {
+    Column() {
+      /**
+       * onClick and TapGesture are handled in the same way in the backend.
+       * Therefore, whether onClick or TapGesture is triggered,
+       * both callback types (GestureEvent and ClickEvent) registered with on('willClick') will be triggered.
+       * Similarly, both callback types registered with on('didClick') will be triggered.
+       */
+      Column() {
+        Text('Click Count: ' + this.clickCount)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .onClick((event: ClickEvent) => {
+        this.clickCount++;
+        console.info('Example Click event is called');
+      })
+
+      Column() {
+        Text('TapGesture Count: ' + this.tapGestureCount)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .gesture(TapGesture({ count: 2 }).onAction((event: TapGestureEvent) => {
+        this.tapGestureCount++;
+        console.info('Example Click event is called');
+      }))
+    }
+  }
+}
 ```
 
 ### off('willClick')<sup>12+</sup>
@@ -3986,21 +4629,13 @@ Unsubscribes from the dispatch of click event instructions. Currently, the scree
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('willClick', callback);
-```
+See the example for [on('willClick')](#onwillclick12).
 
 ### on('didClick')<sup>12+</sup>
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
+Subscribes to the dispatch of click event instructions. The callback type is [GestureEventListenerCallback](#gestureeventlistenercallback12). Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4015,15 +4650,7 @@ Subscribes to the dispatch of click event instructions. Currently, the screen re
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('didClick', callback);
-```
+See the example for [on('willClick')](#onwillclick12).
 
 ### off('didClick')<sup>12+</sup>
 
@@ -4044,21 +4671,13 @@ Unsubscribes from the dispatch of click event instructions. Currently, the scree
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('didClick', callback);
-```
+See the example for [on('willClick')](#onwillclick12).
 
 ### on('willClick')<sup>12+</sup>
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
+Subscribes to the dispatch of click event instructions. The callback type is [ClickEventListenerCallback](#clickeventlistenercallback12). Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4073,15 +4692,7 @@ Subscribes to the dispatch of click event instructions. Currently, the screen re
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('willClick', callback);
-```
+See the example for [on('willClick')](#onwillclick12).
 
 ### off('willClick')<sup>12+</sup>
 
@@ -4102,21 +4713,13 @@ Unsubscribes from the dispatch of click event instructions. Currently, the scree
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('willClick', callback);
-```
+See the example for [on('willClick')](#onwillclick12).
 
 ### on('didClick')<sup>12+</sup>
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
+Subscribes to the dispatch of click event instructions. The callback type is [ClickEventListenerCallback](#clickeventlistenercallback12). Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4131,15 +4734,7 @@ Subscribes to the dispatch of click event instructions. Currently, the screen re
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('didClick', callback);
-```
+See the example for [on('willClick')](#onwillclick12).
 
 ### off('didClick')<sup>12+</sup>
 
@@ -4160,15 +4755,7 @@ Unsubscribes from the dispatch of click event instructions. Currently, the scree
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('didClick', callback);
-```
+See the example for [on('willClick')](#onwillclick12).
 
 ### on('tabContentUpdate')<sup>12+</sup>
 
@@ -4486,15 +5073,7 @@ Unsubscribes from the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#e
 
 **Example**
 
-```ts
-// Used in page components.
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback is a callback defined by you.
-let callback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('beforePanStart', callback);
-```
+See the example for [on('beforePanStart')](#onbeforepanstart19).
 
 ### on('afterPanStart')<sup>19+</sup>
 
@@ -4700,13 +5279,7 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 **Example**
 
-<!--code_no_check-->
-```ts
-import { MediaQuery } from '@kit.ArkUI';
-
-let mediaquery: MediaQuery = uiContext.getMediaQuery();
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
-```
+See the [mediaquery Example](js-apis-mediaquery.md#example).
 
 ## Router
 
@@ -5982,8 +6555,12 @@ Returns to the previous page or a specified page.
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -6007,15 +6584,23 @@ Returns to the specified page.
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
+See the example for [PushUrl](#pushurl).
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'From Home'}); // Returning with parameters.
@@ -6033,8 +6618,12 @@ Clears all historical pages in the stack and retains only the current page at th
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.clear();    
@@ -6058,8 +6647,12 @@ Obtains the number of pages in the current stack.
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
@@ -6084,9 +6677,12 @@ Obtains state information about the current page.
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let page = router.getState();
@@ -6119,9 +6715,12 @@ Obtains the status information about a page by its index.
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let options: router.RouterState | undefined = router.getStateByIndex(1);
@@ -6156,9 +6755,12 @@ Obtains the status information about a page by its URL.
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
@@ -6196,11 +6798,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-
+let uiContext: UIContext = this.getUIContext();
 let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
@@ -6225,9 +6829,12 @@ Disables the display of a confirm dialog box before returning to the previous pa
 
 **Example**
 
+See the example for [PushUrl](#pushurl).
+
 <!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
@@ -6251,10 +6858,12 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 **Example**
 
-<!--code_no_check-->
+See the example for [PushUrl](#pushurl).
 
+<!--code_no_check-->
 ```ts
-import { Router } from '@kit.ArkUI';
+import { Router , UIContext } from '@kit.ArkUI';
+let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 router.getParams();
@@ -6324,22 +6933,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 This example demonstrates how to display a toast by calling **showToast**.
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showToast({            
-    message: 'Message Info',
-    duration: 2000 
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showToast args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showToast')
+        .onClick(() => {
+          try {
+            this.promptAction.showToast({
+              message: 'Message Info',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showToast args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### openToast<sup>18+</sup>
@@ -6383,7 +7003,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct toastExample {
+struct Index {
   @State toastId: number = 0;
   promptAction: PromptAction = this.getUIContext().getPromptAction();
 
@@ -6393,7 +7013,7 @@ struct toastExample {
         .height(100)
         .onClick(() => {
           this.promptAction.openToast({
-            message: 'Toast Massage',
+            message: 'Toast Message',
             duration: 10000,
           }).then((toastId: number) => {
             this.toastId = toastId;
@@ -6476,41 +7096,51 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-<!--code_no_check-->
-
 This example demonstrates how to display a dialog box and return the dialog box response result using the **showDialog** API.
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.error('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showDialog')
+        .onClick(() => {
+          try {
+            this.promptAction.showDialog({
+              title: 'showDialog Title Info',
+              message: 'Message Info',
+              buttons: [
+                {
+                  text: 'button1',
+                  color: '#000000'
+                },
+                {
+                  text: 'button2',
+                  color: '#000000'
+                }
+              ]
+            }, (err, data) => {
+              if (err) {
+                console.error('showDialog err: ' + err);
+                return;
+              }
+              console.info('showDialog success callback, click button: ' + data.index);
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showDialog args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showDialog
@@ -6548,31 +7178,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 This example demonstrates how to display a dialog box and return the dialog box response result through a promise using the **showDialog** API.
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-promptAction.showDialog({
-  title: 'Title Info',
-  message: 'Message Info',
-  buttons: [
-    {
-      text: 'button1',
-      color: '#000000'
-    },
-    {
-      text: 'button2',
-      color: '#000000'
-    }
-  ],
-})
-  .then(data => {
-    console.info('showDialog success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.error('showDialog error: ' + err);
-  })
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showDialog')
+        .onClick(() => {
+          this.promptAction.showDialog({
+            title: 'Title Info',
+            message: 'Message Info',
+            buttons: [
+              {
+                text: 'button1',
+                color: '#000000'
+              },
+              {
+                text: 'button2',
+                color: '#000000'
+              }
+            ],
+          })
+            .then(data => {
+              console.info('showDialog success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.error('showDialog error: ' + err);
+            })
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showActionMenu<sup>11+</sup>
@@ -6603,37 +7244,48 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { PromptAction, promptAction  } from '@kit.ArkUI';
+import { PromptAction, promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptActionF: PromptAction = uiContext.getPromptAction();
-try {
-  promptActionF.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      }
-    ]
-  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.error('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          try {
+            this.promptAction.showActionMenu({
+              title: 'Title Info',
+              buttons: [
+                {
+                  text: 'item1',
+                  color: '#666666'
+                },
+                {
+                  text: 'item2',
+                  color: '#000000'
+                }
+              ]
+            }, (err: BusinessError, data: promptAction.ActionMenuSuccessResponse) => {
+              if (err) {
+                console.error('showDialog err: ' + err);
+                return;
+              }
+              console.info('showDialog success callback, click button: ' + data.index);
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showActionMenu<sup>(deprecated)</sup>
@@ -6664,33 +7316,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-This example demonstrates how to display an action menu and return the action menu response result using the **showActionMenu** API.
-
-<!--code_no_check-->
 ```ts
-import { PromptAction,promptAction  } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptActionF: PromptAction = uiContext.getPromptAction();
-try {
-  promptActionF.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      }
-    ]
-  }, { index:0 });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          try {
+            this.promptAction.showActionMenu({
+              title: 'Title Info',
+              buttons: [
+                {
+                  text: 'item1',
+                  color: '#666666'
+                },
+                {
+                  text: 'item2',
+                  color: '#000000'
+                }
+              ]
+            }, { index:0 });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### showActionMenu
@@ -6728,37 +7389,47 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 This example demonstrates how to display an action menu and return the action menu response result through a promise using the **showActionMenu** API.
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-promptAction.showActionMenu({
-  title: 'showActionMenu Title Info',
-  buttons: [
-    {
-      text: 'item1',
-      color: '#666666'
-    },
-    {
-      text: 'item2',
-      color: '#000000'
-    },
-  ]
-})
-  .then(data => {
-    console.info('showActionMenu success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.error('showActionMenu error: ' + err);
-  })
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          this.promptAction.showActionMenu({
+            title: 'showActionMenu Title Info',
+            buttons: [
+              {
+                text: 'item1',
+                color: '#666666'
+              },
+              {
+                text: 'item2',
+                color: '#000000'
+              },
+            ]
+          })
+            .then(data => {
+              console.info('showActionMenu success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.error('showActionMenu error: ' + err);
+            })
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ### openCustomDialog<sup>12+</sup>
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-Creates and displays a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported.
+Creates and displays a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported. If they are used together, only **showInSubWindow = true** takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6892,7 +7563,7 @@ Creates and displays a custom dialog box corresponding to **dialogContent**. Thi
 
 The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**.
 
-Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported.
+Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported. If they are used together, only **showInSubWindow = true** takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -7188,7 +7859,7 @@ struct Index {
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID for use with **closeCustomDialog**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID for use with **closeCustomDialog**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time. If they are used together, only **showInSubWindow = true** takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -7204,7 +7875,7 @@ Creates and displays a custom dialog box. This API uses a promise to return the 
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | ID of the custom dialog box, which can be used with **closeCustomDialog**.|
+| Promise&lt;number&gt; | ID of the custom dialog box, which can be used with **closeCustomDialog**.|
 
 **Error codes**
 
@@ -7223,7 +7894,7 @@ Creates and displays a custom dialog box. This API uses a promise to return the 
 
 The dialog box ID can be included in the dialog box content for related operations. A dialog box controller can be bound to the custom dialog box, allowing for subsequent control of the dialog box through the controller.
 
-**isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+**isModal = true** and **showInSubWindow = true** cannot be used at the same time. If they are used together, only **showInSubWindow = true** takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -7795,6 +8466,8 @@ Creates and displays a menu with the specified content. This API uses a promise 
 > 2. You must maintain the provided **content**, on which [updateMenu](#updatemenu18) and [closeMenu](#closemenu18) rely to identify the target menu.
 >
 > 3. If your **wrapBuilder** includes other components (such as [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup) or [Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)), the [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1) constructor must include four parameters, and the **options** parameter must be **{ nestingBuilderSupported: true }**.
+>
+> 4. Nested subwindow dialog boxes are not supported. For example, when [openMenu](#openmenu18) has **showInSubWindow** set to **true**, another dialog box with **showInSubWindow=true** cannot be displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -8096,7 +8769,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -8181,7 +8854,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -8352,7 +9025,7 @@ export default class EntryAbility extends UIAbility {
 ```
 2. Call **this.getUIContext().getSharedLocalStorage()** to obtain the UI context and then use the **DragController** object obtained to perform subsequent operations.
 ```ts
-import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI";
+import { dragController, componentSnapshot, UIContext, DragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -8518,6 +9191,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. |
 | 190004      | Operation failed. |
 
+**Example**
+
+See [Example 3: Obtaining Data Asynchronously Through Drag-and-Drop](./arkui-ts/ts-universal-events-drag-drop.md#example-3-obtaining-data-asynchronously-through-drag-and-drop).
+
 ### notifyDragStartRequest<sup>18+</sup>
 
 notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): void
@@ -8539,7 +9216,7 @@ Controls whether the application can initiate a drag operation.
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 
 // xxx.ets
 @Entry
@@ -8629,7 +9306,7 @@ Adds a specified **ComponentContent** node to the **OverlayManager**.
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to add to the new node on the **OverlayManager**.<br>**NOTE**<br> By default, the new node is centered on the page and stacked according to its stacking level.|
-| index | number | No   | Stacking level of the new node on the **OverlayManager**.<br>**NOTE**<br> If the value is greater than or equal to 0, a larger value means a higher layer for the **ComponentContent** node. If multiple **ComponentContent** nodes have the same index, the later-added ones appear above earlier ones.<br> If the value is less than 0 or is **null** or **undefined**, the **ComponentContent** node is added at the highest level by default.<br>If the same **ComponentContent** node is added multiple times, only the last added one is retained.|
+| index | number | No   | Stacking level of the new node on the **OverlayManager**.<br>**NOTE**<br> If the value is greater than or equal to 0, a larger value means a higher layer for the **ComponentContent** node. If multiple **ComponentContent** nodes have the same index, the later-added ones appear above earlier ones.<br> If the value is less than 0 or is **null** or **undefined**, the **ComponentContent** node is added at the highest level by default.<br>If the same **ComponentContent** node is added multiple times, only the last added one is retained.
 
 **Example**
 
@@ -8960,22 +9637,25 @@ Sets whether the atomic service menu bar is visible.
 **Example**
 
 ```ts
-import {UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-      atomicServiceBar.setVisible(false);
-    } else {
-      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        atomicServiceBar.setVisible(false);
+      } else {
+        hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 
@@ -9001,21 +9681,25 @@ Sets the background color of the atomic service menu bar.
 **Example**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-      atomicServiceBar.setBackgroundColor(0x88888888);
-    } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        atomicServiceBar.setBackgroundColor(0x88888888);
+      } else {
+        hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 
@@ -9041,22 +9725,24 @@ Sets the title content of the atomic service menu bar.
 **Example**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-      atomicServiceBar.setTitleContent('text2');
-    } else {
-      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        atomicServiceBar.setTitleContent('text2');
+      } else {
+        hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 
@@ -9082,22 +9768,24 @@ Sets the font style of the atomic service menu bar.
 **Example**
 
 ```ts
-import { UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-      atomicServiceBar.setTitleFontStyle(FontStyle.Normal);
-    } else {
-      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        atomicServiceBar.setTitleFontStyle(FontStyle.Normal);
+      } else {
+        hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 
@@ -9124,22 +9812,24 @@ Sets the color of the atomic service icon.
 **Example**
 
 ```ts
-import { UIContext, Font, window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-  // Main window is created, set main page for this ability
-  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
-  windowStage.loadContent('pages/Index', (err, data) => {
-    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
-    if (atomicServiceBar != undefined) {
-      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-      atomicServiceBar.setIconColor(0x12345678);
-    } else {
-      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
-    }
-  });
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+      if (atomicServiceBar != undefined) {
+        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        atomicServiceBar.setIconColor(0x12345678);
+      } else {
+        hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      }
+    });
+  }
 }
 ```
 
@@ -9966,7 +10656,7 @@ Captures a snapshot of an offscreen-rendered component created from a [CustomBui
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.     |
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.<br>If the root component of the builder has a width or height of zero, the snapshot operation will fail with error code 100001.     |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. The coordinates and size of the off-screen component's drawing area can be obtained through the callback.|
 | delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms<br> Value range: [0, +∞). If the value is less than 0, the default value is used.|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
@@ -10045,7 +10735,7 @@ Captures a snapshot of an offscreen-rendered component created from a [CustomBui
 
 > **NOTE**
 >
-> Due to the need to wait for the component to be built and rendered, there is a delay of not more than 500 ms in the promise for off-screen snapshot capturing. Therefore, this API is not recommended for performance-sensitive scenarios.
+> Due to the need to wait for the component to be built and rendered, there is a delay of not more than 500 ms in the callback for off-screen snapshot capturing. Therefore, this API is not recommended for performance-sensitive scenarios.
 >
 > If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
@@ -10057,7 +10747,7 @@ Captures a snapshot of an offscreen-rendered component created from a [CustomBui
 
 | Name | Type                                                | Mandatory| Description                                                   |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.|
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.<br>If the root component of the builder has a width or height of zero, the snapshot operation will fail with error code 100001.|
 | delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms<br> Value range: [0, +∞). If the value is less than 0, the default value is used.|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot.|
@@ -10412,6 +11102,12 @@ Takes a snapshot of the provided **content** object. This API uses a promise to 
 | delay   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Value range: [0, +∞). If the value is less than 0, the default value is used.<br>Default value: **300**<br> Unit: ms|
 | checkImageStatus  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | No   | Custom settings of the snapshot. You can specify the scale ratio for the pixelmap during rendering and whether to force the system to complete all rendering commands before taking the snapshot.|
+
+**Return value**
+
+| Type                           | Description      |
+| ----------------------------- | -------- |
+| Promise<image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | Promise used to return the result.|
 
 **Error codes**
 

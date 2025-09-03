@@ -174,7 +174,7 @@ const age: number = params.info.age; // 获取age属性的值
 
 ![router-back-to-home](figures/router-back-to-home.gif)
 
-直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 可以使用以下几种方式返回页面：
 
@@ -239,7 +239,7 @@ const age: number = params.info.age; // 获取age属性的值
 
 > **说明：**
 > 
-> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 ```ts
 @Entry
@@ -369,7 +369,7 @@ struct Page {
 
 为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)和[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)来实现这个功能。
 
-直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 如果想要在目标界面开启页面返回询问框，需要在调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法之前，通过调用[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 

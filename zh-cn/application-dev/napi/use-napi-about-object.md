@@ -217,6 +217,9 @@ static napi_value ObjectSeal(napi_env env, napi_callback_info info)
     napi_status status = napi_object_seal(env, objSeal);
     if (status == napi_ok) {
         OH_LOG_INFO(LOG_APP, "Node-API napi_object_seal success");
+    } else {
+        napi_throw_error(env, nullptr, "Node-API napi_object_seal failed");
+        return nullptr;
     }
     // 将封闭后的object传回ArkTS侧
     return objSeal;
@@ -245,7 +248,7 @@ try {
     data: number = 0
     message: string = ""
     // 可选属性
-    address?: number = 0
+    address?: number
   }
   let obj: Obj = { data: 0, message: "hello world"};
   let objSeal = testNapi.objectSeal(obj);
@@ -330,7 +333,7 @@ static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiTypeOf : <T>(value: T) => string | void;
+export const napiTypeOf : <T>(value: T) => string | undefined;
 ```
 
 ArkTS侧示例代码
@@ -355,8 +358,8 @@ try {
   }
   let varObject: Obj = {id: 1, name: "LiLei"};
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varObject));
-  const addNum = (a: number, b: number): number => a * b;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(addNum));
+  const mulNum = (a: number, b: number): number => a * b;
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(mulNum));
   let varBigint = BigInt("1234567890123456789012345678901234567890");
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varBigint));
 } catch (error) {
@@ -398,7 +401,7 @@ static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
@@ -499,7 +502,7 @@ static napi_value CheckObjectTypeTag(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const setTypeTagToObject: (obj: Object, index: number) => boolean | void;
+export const setTypeTagToObject: (obj: Object, index: number) => boolean | undefined;
 export const checkObjectTypeTag: (obj: Object, index: number) => boolean;
 ```
 
@@ -529,6 +532,7 @@ cpp部分代码
 ```cpp
 #include <cstdlib>
 #include <string>
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 // 用于释放外部数据的回调函数
@@ -561,13 +565,17 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     const size_t dataSize = 10;
     // 分配外部数据
     void *data = malloc(dataSize);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
     // 初始化外部数据
     memset(data, 0, dataSize);
     napi_value result = nullptr;
     // 返回带有外部数据的对象
     napi_status status = napi_create_external(env, data, finalizeCallback, nullptr, &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, " Node-API Failed to create external data");
+        OH_LOG_ERROR(LOG_APP, " Node-API Failed to create external data");
         return nullptr;
     }
     return result;
@@ -640,16 +648,25 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateSymbol(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     const char *des = "only";
     // 使用napi_create_string_utf8创建描述字符串
-    napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    napi_status status = napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_string_utf8 failed");
+        return nullptr;
+    }
     napi_value returnSymbol = nullptr;
     // 创建一个symbol类型，并返回
-    napi_create_symbol(env, result, &returnSymbol);
+    status = napi_create_symbol(env, result, &returnSymbol);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_symbol failed");
+        return nullptr;
+    }
     return returnSymbol;
 }
 ```
@@ -676,5 +693,5 @@ hilog.info(0x0000, 'Node-API', 'createSymbol:%{public}s', typeof varSymbol);
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

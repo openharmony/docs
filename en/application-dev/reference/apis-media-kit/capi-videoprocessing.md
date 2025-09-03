@@ -2,7 +2,7 @@
 
 ## Overview
 
-The VideoProcessing module provides the APIs for video processing.
+The module provides the APIs for video processing.
 
 <!--RP1--><!--RP1End-->
 

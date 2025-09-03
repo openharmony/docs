@@ -2280,7 +2280,7 @@ inputMethodController.off('insertText');
 
 on(type: 'deleteLeft', callback: (length: number) => void): void
 
-订阅输入法应用向左删除事件。使用callback异步回调。
+订阅输入法应用向左删除文本事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2341,7 +2341,7 @@ inputMethodController.off('deleteLeft');
 
 on(type: 'deleteRight', callback: (length: number) => void): void
 
-订阅输入法应用向右删除事件。使用callback异步回调。
+订阅输入法应用向右删除文本事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2438,7 +2438,7 @@ try {
 
 off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => void): void
 
-取消订阅输入法应用发送软键盘状态事件。
+取消订阅输入法应用发送输入法软键盘状态事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

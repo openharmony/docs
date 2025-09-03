@@ -1,4 +1,9 @@
 # 应用文件上传下载
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
 
 应用可以将应用文件上传到网络服务器，也可以从网络服务器下载网络资源文件到本地应用文件目录。
 
@@ -11,8 +16,10 @@
 > 当前上传应用文件功能。request.uploadFile方式仅支持上传应用缓存文件路径（cacheDir）下的文件，request.agent方式支持上传用户公共文件和应用缓存文件路径下的文件。
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
+>
+> 上传下载模块不支持Charles、Fiddler等代理抓包工具。
 
-以下示例代码演示两种将应用缓存文件路径下的文件上传至网络服务器的方式：
+以下示例代码演示两种将缓存文件上传至服务器的方法：
 
 ```ts
 // 方式一:request.uploadFile
@@ -34,9 +41,14 @@ struct Index {
           let cacheDir = context.cacheDir;
 
           // 新建一个本地应用文件
-          let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-          fs.writeSync(file.fd, 'upload file test');
-          fs.closeSync(file);
+          try {
+            let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, 'upload file test');
+            fs.closeSync(file);
+          } catch (error) {
+            let err: BusinessError = error as BusinessError;
+            console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
+          }
 
           // 上传任务配置项
           let files: Array<request.File> = [
@@ -160,7 +172,7 @@ struct Index {
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
-以下示例代码演示两种将网络资源文件下载到应用文件目录的方式：
+以下示例代码演示两种下载网络资源文件到应用文件目录的方式：
 
 ```ts
 // 方式一:request.downloadFile
@@ -275,7 +287,7 @@ struct Index {
 
 ### HTTP拦截
 
-开发者可以通过设置配置文件实现HTTP拦截功能，上传下载模块在应用配置禁用HTTP后，无法创建明文HTTP传输的上传下载任务。配置文件在APP中的路径是：`src/main/resources/base/profile/network_config.json`。请参考网络管理模块[配置文件](../../reference/apis-network-kit/js-apis-net-connection.md#connectionsetapphttpproxy11)配置参数
+开发者可以通过设置配置文件实现HTTP拦截功能，上传下载模块在应用配置文件中禁用HTTP后，无法创建明文HTTP传输的上传下载任务。配置文件在APP中的路径是：`src/main/resources/base/profile/network_config.json`。请参考网络管理模块[配置文件](../../reference/apis-network-kit/js-apis-net-connection.md#connectionsetapphttpproxy11)配置参数
 
 参考配置文件如下：
 

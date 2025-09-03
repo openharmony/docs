@@ -187,7 +187,7 @@ struct Index {
 
 ## Resampling and Historical Points
 
-The reporting frequency of raw input events depends on the device type. For example, touchscreens typically report events every 5¨C7 ms, while high-precision mouse devices may report events every 1 ms. Since the ultimate purpose of processing these input events is to drive UI updates that respond to user actions, the system optimizes this process by resampling the raw input event stream. Between each display frame, the system collects all received input events and processes them through a resampling algorithm. This resampling occurs independently for each active touch point, ensuring that multi-touch interactions remain accurate.
+The reporting frequency of raw input events depends on the device type. For example, touchscreens typically report events every 5-7 ms, while high-precision mouse devices may report events every 1 ms. Since the ultimate purpose of processing these input events is to drive UI updates that respond to user actions, the system optimizes this process by resampling the raw input event stream. Between each display frame, the system collects all received input events and processes them through a resampling algorithm. This resampling occurs independently for each active touch point, ensuring that multi-touch interactions remain accurate.
 
 ![resample](figures/events-resample.png)
 

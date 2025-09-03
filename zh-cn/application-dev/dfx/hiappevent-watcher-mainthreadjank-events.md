@@ -170,7 +170,7 @@
 log_type=0，用于采样栈或采样trace。
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
 let params: Record<string, hiAppEvent.ParamType> = {
 "log_type": "0"
@@ -185,7 +185,7 @@ hilog.error(0x0000, 'hiAppEvent', `Failed to set default value. Code: ${err.code
 log_type=1，仅用于采集调用栈。
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
 let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "1",
@@ -204,7 +204,7 @@ hilog.error(0x0000, 'hiAppEvent', `Failed to set sample stack value. Code: ${err
 log_type=2，仅用于采集trace。
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
 let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "2"

@@ -1,15 +1,13 @@
 # Obtaining Key Properties (C/C++)
 
-
 This topic describes how to obtain properties of a key. Before the operation, ensure that the key exists in HUKS.
->**NOTE**<br>
+>**Note**
 > The mini-system devices do not support the operation for obtaining key properties.
 
-## Add the dynamic library in the CMake script.
+## Adding the Dynamic Library in the CMake Script
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
-
 ## How to Develop
 
 1. Set parameters.
@@ -24,6 +22,7 @@ This topic describes how to obtain properties of a key. Before the operation, en
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 static napi_value GetKeyParamSet(napi_env env, napi_callback_info info)
 {

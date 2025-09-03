@@ -188,7 +188,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最小的字体缩放倍数。<br/>取值范围：[0, 1] <br/>设置为0，缩放最小。<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。   |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最小的字体缩放倍数。<br/>取值范围：[0, 1] <br/>设置为0，缩放最小。<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。   |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -204,7 +204,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
 ## ScaleSymbolEffect<sup>12+</sup>
 
@@ -218,10 +218,10 @@ ScaleSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -254,9 +254,9 @@ HierarchicalSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 是 | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
 ### constructor<sup>12+</sup>
 
@@ -288,9 +288,9 @@ AppearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -322,9 +322,9 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -356,10 +356,10 @@ BounceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
-| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 是 | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
 ### constructor<sup>12+</sup>
 
@@ -392,9 +392,9 @@ ReplaceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明  |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
 
@@ -513,7 +513,7 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 ###  示例1（设置渲染和动效策略）
 
-该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
+从API version 11开始，该示例通过[renderingStrategy](#renderingstrategy)、[effectStrategy](#effectstrategy)属性展示了不同的渲染和动效策略。
 
 ```ts
 // xxx.ets
@@ -601,7 +601,7 @@ struct Index {
 
 ###  示例2（设置动效）
 
-该示例通过symbolEffect属性展示了可变颜色动效和替换动效的效果。
+从API version 12开始，该示例通过[symbolEffect](#symboleffect12)属性展示了可变颜色动效和替换动效的效果。
 
 ```ts
 // xxx.ets

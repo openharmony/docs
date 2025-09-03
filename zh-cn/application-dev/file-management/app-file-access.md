@@ -229,7 +229,8 @@ function copyFileWithReadable(context: common.UIAbilityContext): void {
   });
 }
 
-function copyFileWithData(): void {
+function copyFileWithData(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // 创建文件可读流
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // 创建文件可写流

@@ -2,7 +2,7 @@
 
 Core File Kit provides capabilities for accessing and managing application files and user files. You can use the APIs provided by Core File Kit to manage, search for, and back up different types of files efficiently.
 
-## Core File Kit Overview
+## Overview
 
 In Core File Kit, the files are classified into the following types based on the file owner:
 
@@ -40,13 +40,13 @@ You can use Core File Kit in any of the following scenarios:
 - Accessing the data backup and restore framework to customize data backup and restore behaviors, such as whether to allow backup and restore and specifying the data to be backed up, by modifying the configuration file.<!--Del-->
 - Triggering data backup and restore (available only for system applications).
 <!--DelEnd-->
-- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files<!--Del--> , and develop the user file manager (only for system applications)<!--DelEnd-->.
+- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files<!--Del--> and developing a user file manager (available only for system applications)<!--DelEnd-->.
 - Accessing and copying files across devices.
 
 ## Features
 
 - Sandbox isolation:
-Each application has a dedicated [sandbox directory](app-sandbox-directory.md) in the internal storage. The sandbox directory is a collection of the [application file directory](app-sandbox-directory.md#application-file-directory-and-application-file-path) and the system files required for application running. The sandbox feature stands out with the following advantages:
+Each application has a dedicated [sandbox directory](app-sandbox-directory.md#application-sandbox) in the internal storage. The sandbox directory is a collection of the [application file directory](app-sandbox-directory.md#application-file-directory-and-application-file-path) and the system files required for application running. The sandbox feature stands out with the following advantages:
   - Isolation: The application sandbox provides a completely isolated environment to ensure secure access to application files.
   - Security: The application sandbox defines the minimum data visible to each application, which protects application file security.
 - Application share:

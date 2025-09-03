@@ -1,4 +1,10 @@
 # SegmentButtonV2
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--Designer: @youzhi92-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 **SegmentButtonV2** is a versatile component that organizes related options into visually grouped buttons. It supports three variants: tab-style, capsule-style single-select, and capsule-style multi-select.
 
@@ -60,6 +66,8 @@ TabSegmentButtonV2({
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name                            | Type                                                                                                                                          | Read-Only| Optional| Decorator        | Description                                                                                                                                                                                                                                                                                                    |
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---- | ---- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -141,6 +149,8 @@ CapsuleSegmentButtonV2({
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name                            | Type                                                                                                                                          | Read-Only| Optional| Decorator        | Description                                                                                                                                                                                                                                                                                                    |
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---- | ---- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | items                            | [SegmentButtonV2Items](#segmentbuttonv2items)                                                                                                  | Yes  | No  | @Require<br>@Param | Items of the **CapsuleSegmentButtonV2** component.                                                                                                                                                                                                                                                                        |
@@ -217,6 +227,8 @@ MultiCapsuleSegmentButtonV2({
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name                          | Type                                                                                                                                          | Read-Only| Optional| Decorator        | Description                                                                                                                                                                                                                                                                                                    |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---- | ---- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | items                          | [SegmentButtonV2Items](#segmentbuttonv2items)                                                                                                  | Yes  | No  | @Require<br>@Param | Items of the **MultiCapsuleSegmentButtonV2** component.                                                                                                                                                                                                                                                                        |
@@ -260,6 +272,8 @@ This parameter is inherited from Array\<[SegmentButtonV2Item](#segmentbuttonv2it
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 ### constructor
 
 constructor(items: SegmentButtonV2ItemOptions[])
@@ -269,6 +283,8 @@ Constructs a **SegmentButtonV2ItemOptions** instance.
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -286,6 +302,8 @@ Obtains whether there is an item with both an icon and text.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Return value**
 
 | Type   | Description                |
@@ -300,11 +318,15 @@ Obtains whether there is an item with both an icon and text.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 ### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name                    | Type                                                                | Mandatory| Decorator| Description                                           |
 | ------------------------ | -------------------------------------------------------------------- | ------ | ---- | ----------------------------------------------- |
@@ -334,6 +356,8 @@ Constructs a **SegmentButtonV2ItemOptions** instance.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 | Name   | Type                                                     | Mandatory| Description                  |
@@ -350,6 +374,8 @@ Obtains whether the item is set with both an icon and text.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Return value**
 
 | Type   | Description                          |
@@ -363,6 +389,8 @@ Represents options of the item of the **SegmentButtonV2** component.
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 ### Properties
 
@@ -394,6 +422,8 @@ Defines a callback invoked when the selected item of the **SegmentButtonV2** com
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 | Name       | Type  | Mandatory| Description              |
@@ -409,6 +439,8 @@ Defines a callback invoked when selected items of the **SegmentButtonV2** compon
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 

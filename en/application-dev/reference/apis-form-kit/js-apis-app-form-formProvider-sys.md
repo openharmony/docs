@@ -209,7 +209,7 @@ Checks whether a widget can be published to the widget host. This API uses an as
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the widget can be published to the widget host.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback function that returns the query result.<br>**true**: The widget can be added to the widget host.<br>**false**: The widget cannot be added to the widget host.|
 
 **Error codes**
 
@@ -276,7 +276,7 @@ Checks whether a widget can be published to the widget host. This API uses a pro
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return whether the widget can be published to the widget host.|
+| Promise&lt;boolean&gt; | Promise that returns whether a widget can be added to the widget host.<br>**true**: The widget can be added to the widget host.<br>**false**: The widget cannot be added to the widget host.|
 
 **Error codes**
 

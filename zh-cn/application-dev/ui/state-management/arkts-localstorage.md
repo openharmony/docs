@@ -759,11 +759,11 @@ struct MyNavigationTestStack {
   PageMap(name: string) {
     if (name === 'pageOne') {
       // 传递不同的LocalStorage实例
-      pageOneStack({}, localStorageA)
+      PageOneStack({}, localStorageA)
     } else if (name === 'pageTwo') {
-      pageTwoStack({}, localStorageB)
+      PageTwoStack({}, localStorageB)
     } else if (name === 'pageThree') {
-      pageThreeStack({}, localStorageC)
+      PageThreeStack({}, localStorageC)
     }
   }
 
@@ -788,7 +788,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropA') PropA: string = 'Hello World';
 
@@ -815,7 +815,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
@@ -843,7 +843,7 @@ struct pageTwoStack {
 }
 
 @Component
-struct pageThreeStack {
+struct PageThreeStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropC') PropC: string = 'pageThreeStack';
 

@@ -4,13 +4,13 @@
 
 A geofence is a group of virtual bounds defining an area on the map. When a user device enters or leaves a geofence, or stays in a geofence, your app on the user device can automatically receive notifications and alarms.
 
-Currently, only circular fences are supported. In addition, the geo-fencing function of the GNSS chip is required. Events of entering or leaving the fence can be accurately identified only in open outdoor areas.
+Currently, only circular fences are supported. In addition, the geofencing function of the GNSS chip is required. Events of entering or leaving the fence can be accurately identified only in open outdoor areas.
 
 A typical application of geofencing is to create a geofence around an enterprise for targeted advertising. In different areas, you can provide differentiated promotions for mobile devices.
 
 ## Available APIs
 
-Geo-fencing uses the following interfaces. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
+Geofencing uses the following interfaces. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 | API| Description| 
 | -------- | -------- |
@@ -19,7 +19,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 
 ## How to Develop
 
-1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#location-permission-guidelines.md).
+1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](location-permission-guidelines.md).
 
 2. Import the **geoLocationManager**, **wantAgent**, and **BusinessError** modules.
 
@@ -118,7 +118,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 6. Delete a geofence.
 
    ```ts
-   // fenceId is obtained after geoLocationManager.addGnssGeofence is successfully executed.
+   // fenceId is the one obtained via geoLocationManager.addGnssGeofence.
    let fenceId = 1;
    try {
      geoLocationManager.removeGnssGeofence(fenceId).then(() => {

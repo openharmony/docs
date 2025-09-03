@@ -1,4 +1,4 @@
-# \@Computed Decorator: Computed Property
+# \@Computed Decorator: Declaring Computed Properties
 
 When \@Computed is used, the computation is performed only once when the value changes. It is mainly used to solve the performance problem caused by repeated computation when the UI reuses the property for multiple times.
 

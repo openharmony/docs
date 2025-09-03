@@ -297,7 +297,7 @@ struct ToDoDemo {
 @Entry
 @Component
 struct ToDo {
-  // @Provide装饰的变量index由入口组件ToDo提供其后代组件
+  // @Provide装饰的变量count由入口组件ToDo提供其后代组件
   @Provide count: number = 0;
 
   build() {

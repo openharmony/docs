@@ -86,7 +86,7 @@ width(widthValue: Length | LayoutPolicy): T
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
+| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
 
 **返回值：**
 
@@ -110,7 +110,7 @@ height(heightValue: Length | LayoutPolicy): T
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
+| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
 
 **返回值：**
 
@@ -140,7 +140,7 @@ size(value: SizeOptions): T
 
 | 参数名   | 类型                              | 必填   | 说明                |
 | ----- | ------------------------------- | ---- | ----------------- |
-| value | [SizeOptions](#sizeoptions对象说明) | 是    | 设置高宽尺寸。<br/>单位：vp |
+| value | [SizeOptions](ts-types.md#sizeoptions) | 是    | 设置宽高尺寸。<br/>异常值：参数为undefined时，属性设置不生效；其它异常值时，size属性恢复到不配置时的默认行为。<br/>单位：vp |
 
 **返回值：**
 
@@ -178,7 +178,7 @@ padding(value: Padding | Length | LocalizedPadding): T
 
 margin(value: Margin | Length | LocalizedMargin): T
 
-设置组件的外边距属性。
+设置组件的外边距属性。在计算位置时外边距视为组件大小的一部分，从而影响组件位置。
 
 从API version 10开始，该接口支持calc计算特性。
 
@@ -266,7 +266,7 @@ constraintSize(value: ConstraintSizeOptions): T
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
+| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>异常值：数值开头的字符串仅解析出数字部分，非数值开头的字符串解析为0；其它异常值时，constraintSize属性恢复到不配置时的默认行为。<br/>单位：vp<br/> |
 
 **返回值：**
 
@@ -288,37 +288,25 @@ constraintSize(value: ConstraintSizeOptions): T
 | width与minWidth与maxWidth | 使用父容器传递的布局限制进行布局。 |
 | height与minHeight与maxHeight | 使用父容器传递的布局限制进行布局。 |
 
-## SizeOptions对象说明
+## LayoutPolicy<sup>15+</sup>
 
-宽高尺寸类型，用于描述组件布局时的宽高尺寸大小。
+用于组件宽度和高度的布局策略。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称   | 类型                                       | 必填   | 说明                                       |
-| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| width  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件宽度。 |
-| height | [Length](ts-types.md#length) | &nbsp;否 | 设置组件高度。 |
-
-## ConstraintSizeOptions对象说明
-
-约束尺寸类型，用于描述组件布局时对尺寸大小的范围限制。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称   | 类型                                       | 必填   | 说明                                       |
-| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| minWidth  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最小宽度。 |
-| maxWidth  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最大宽度。 |
-| minHeight | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最小高度。 |
-| maxHeight | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最大高度。 |
+| 名称      | 类型   | 只读 | 可选 | 说明 |
+| --------- | ------ | ---- | ---- |---------- |
+| 名称      | 类型   | 只读 | 说明 |
+| --------- | ------ | ---- |---------- |
+| matchParent | LayoutPolicy | 否|是 | 适应父组件布局。 |
 
 >  **说明：**
 >
->  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
+>  - 当线性布局组件的父容器设定了长度，组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，线性布局组件则会等待所有子组件完成布局后，再进行自身调整以适应父组件布局。
+> 
+>  - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
+> 
+>  - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
 
 ## 示例
 

@@ -207,3 +207,23 @@ ComponentA() {
 ```
 In the preceding example, the **.parallelGesture** method is used to bind the parent component to the tap gesture, and both the parent and child components can respond to the bound gesture.
 In this case, when component B is touched, both the tap gestures of components A and B are triggered.
+
+### Implementing Event Passthrough in OverlayManager
+In the event mechanism of **OverlayManager**, events are first received by components within **WrappedBuilder** by default and are not propagated downward.
+
+To enable the underlying page below the **OverlayManager** to detect events, you can use **hitTestBehavior(HitTestMode.Transparent)** to pass through events. Refer to the following pseudocode:
+
+```ts
+@Builder
+function builderOverlay(params: Params) {
+    Component().hitTestBehavior(HitTestMode.Transparent)
+}
+
+aboutToAppear(): void {
+    let componentContent = new ComponentContent(
+        this.context, wrapBuilder<[Params]>(builderOverlay),
+        new Params(uiContext, {x:0, y: 100})
+    );
+    this.overlayManager.addComponentContent(componentContent, 0);
+}
+```

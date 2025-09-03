@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVMetadataExtractor struct describes the OH_AVMetadataExtractor type.
+The struct describes the OH_AVMetadataExtractor type.
 
 **Since**: 18
 

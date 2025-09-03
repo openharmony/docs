@@ -318,7 +318,7 @@ struct MyComponent {
 
   build() {
     List() {
-      LazyForEach(this.source, (item:string) => {
+      LazyForEach(this.source, (item:number) => {
         ListItem() {
           Text("Hello" + item)
             .fontSize(50)

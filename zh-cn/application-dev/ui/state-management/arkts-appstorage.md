@@ -49,7 +49,7 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 | 传递/访问      | 说明                                       |
 | ---------- | ---------------------------------------- |
 | 从父节点初始化和更新 | 禁止从父节点初始化和更新@StorageProp。仅支持使用AppStorage中对应key的属性进行初始化，如果不存在对应key，则使用本地默认值进行初始化。 |
-| 初始化子节点     | 支持，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
+| 初始化子节点     | 支持，可用于初始化[\@State](./arkts-state.md)、[\@Link](./arkts-link.md)、[\@Prop](./arkts-prop.md)、[\@Provide](./arkts-provide-and-consume.md)。 |
 | 是否支持组件外访问  | 否。                                       |
 
   **图1** \@StorageProp初始化规则图示  
@@ -253,7 +253,7 @@ struct Index {
 
 示例代码中，`TapImage`中的点击事件会触发`AppStorage`中`tapIndex`对应属性的改变。由于`@StorageLink`是双向同步的，修改会同步回`AppStorage`中，因此所有绑定`AppStorage`的`tapIndex`自定义组件都能感知到`tapIndex`的变化。使用`@Watch`监听到`tapIndex`的变化后，修改状态变量`tapColor`，从而触发UI刷新（此处`tapIndex`未直接绑定在UI上，因此`tapIndex`的变化不会直接触发UI刷新）。
 
-使用该机制实现事件通知时，应确保AppStorage中的变量不直接被绑定到UI上，同时控制@Watch函数的复杂度。如果@Watch函数执行时间过长，会影响UI刷新效率。
+使用该机制实现事件通知时，应确保AppStorage中的变量不直接被绑定到UI上，同时控制[@Watch](./arkts-watch.md)函数的复杂度。如果@Watch函数执行时间过长，会影响UI刷新效率。
 
 ```ts
 // xxx.ets
@@ -342,7 +342,7 @@ export struct TapImage {
 // xxx.ets
 import { emitter } from '@kit.BasicServicesKit';
 
-let NextID: number = 0;
+let nextId: number = 0;
 
 class ViewData {
   title: string;
@@ -353,7 +353,7 @@ class ViewData {
   constructor(title: string, uri: Resource) {
     this.title = title;
     this.uri = uri;
-    this.id = NextID++;
+    this.id = nextId++;
   }
 }
 
@@ -726,7 +726,7 @@ struct Index {
   @StorageProp('PropA') @Watch('onChange') propA: boolean = false;
 
   onChange() {
-    console.log(`propA change`);
+    console.info(`propA change`);
   }
 
   aboutToAppear(): void {
@@ -739,7 +739,7 @@ struct Index {
       Button('change')
         .onClick(() => {
           AppStorage.setOrCreate('PropA', false);
-          console.log(`PropA: ${this.propA}`);
+          console.info(`PropA: ${this.propA}`);
         })
     }
   }

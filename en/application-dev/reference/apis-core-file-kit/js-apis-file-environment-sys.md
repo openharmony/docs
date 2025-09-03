@@ -31,7 +31,7 @@ Obtains the root directory of the memory. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -67,7 +67,7 @@ Obtains the root directory of the memory. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -105,7 +105,7 @@ Obtains the root directory of user files. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -141,7 +141,7 @@ Obtains the root directory of user files. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -181,7 +181,7 @@ Obtains the sandbox path of the root directory of an external storage card. This
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID                    | Error Message      |
 | ---------------------------- | --------- |
@@ -197,9 +197,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getExternalStorageDirExample() {
   try {
     let path = Environment.getExternalStorageDir();
-    console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
+    console.info(`Succeeded in getExternalStorageDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getExternalStorageDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -224,7 +224,7 @@ Obtains the sandbox path of the built-in card directory of the current user. Thi
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID                    | Error Message      |
 | ---------------------------- | --------- |
@@ -240,9 +240,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserHomeDirExample() {
   try {
     let path = Environment.getUserHomeDir();
-    console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);
+    console.info(`Succeeded in getUserHomeDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserHomeDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```

@@ -11,6 +11,8 @@
 >  - Refresh和内容大小小于组件自身的List组件嵌套使用并且中间还有其他组件时，手势可能会被中间组件响应，导致Refresh未产生下拉刷新效果，可以将[alwaysEnabled](./ts-container-scrollable-common.md#edgeeffectoptions11对象说明)参数设为true，此时List会响应手势并通过嵌套滚动带动Refresh组件产生下拉刷新效果，具体可以参考[示例8不满一屏实现下拉刷新](#示例8不满一屏场景实现下拉刷新)。
 >
 >  - 组件内部已绑定手势实现跟手滚动等功能，需要增加自定义手势操作时请参考[手势拦截增强](ts-gesture-blocking-enhancement.md)进行处理。
+>
+>  - 组件无法通过鼠标按下拖动操作进行下拉刷新。
 
 ## 子组件
 
@@ -92,7 +94,7 @@ pullToRefresh(value: boolean)
 
 ### pullDownRatio<sup>12+</sup>
 
-pullDownRatio(ratio: [Optional](ts-universal-attributes-custom-property.md#optional12)\<number>)
+pullDownRatio(ratio: [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number>)
 
 设置下拉跟手系数。
 
@@ -104,7 +106,7 @@ pullDownRatio(ratio: [Optional](ts-universal-attributes-custom-property.md#optio
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| ratio  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> |  是 | 下拉跟手系数。数值越大，跟随手势下拉的反应越灵敏。0表示不跟随手势下拉，1表示等比例跟随手势下拉。<br/>没有设置或设置为undefined时，默认使用动态下拉跟手系数，下拉距离越大，跟手系数越小。<br/>有效值为0-1之间的值，小于0的值会被视为0，大于1的值会被视为1。
+| ratio  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> |  是 | 下拉跟手系数。数值越大，跟随手势下拉的反应越灵敏。0表示不跟随手势下拉，1表示等比例跟随手势下拉。<br/>没有设置或设置为undefined时，默认使用动态下拉跟手系数，下拉距离越大，跟手系数越小。<br/>有效值为0-1之间的值，小于0的值会被视为0，大于1的值会被视为1。
 
 ## 事件
 
@@ -135,6 +137,12 @@ onRefreshing(callback: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| callback | () => void | 是 | 进入刷新状态时触发的回调。 |
 
 ### onOffsetChange<sup>12+</sup>
 
@@ -553,7 +561,7 @@ struct RefreshExample {
 
 ### 示例6（实现下拉刷新上拉加载更多）
 
-[Refresh](#refresh)组件与[List](ts-container-list.md)组件组合实现下拉刷新上拉加载更多效果。
+Refresh组件与[List](ts-container-list.md)组件组合实现下拉刷新上拉加载更多效果。
 
 ```ts
 // xxx.ets

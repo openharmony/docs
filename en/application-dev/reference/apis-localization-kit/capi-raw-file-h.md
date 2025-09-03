@@ -6,6 +6,10 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 
 **File to include**: <rawfile/raw_file.h>
 
+**Library**: librawfile.z.so
+
+**System capability**: SystemCapability.Global.ResourceManager
+
 **Since**: 8
 
 **Related module**: [rawfile](capi-rawfile.md)
@@ -32,8 +36,8 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 | [void OH_ResourceManager_CloseRawFile(RawFile *rawFile)](#oh_resourcemanager_closerawfile) | Closes a [RawFile](capi-rawfile-rawfile.md) and releases all associated resources.                       |
 | [long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile)](#oh_resourcemanager_getrawfileoffset) | Obtains the current offset of a rawfile, in long. Current offset of the rawfile.                                       |
 | [bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor)](#oh_resourcemanager_getrawfiledescriptor) | Opens a rawfile based on the specified offset (in long) and file length (in long) and obtains the file descriptor. The file descriptor obtained can be used to read the file.  |
-| [bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor)](#oh_resourcemanager_releaserawfiledescriptor) | Releases a file descriptor. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.                                |
-| [bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *descriptor)](#oh_resourcemanager_releaserawfiledescriptordata) | Releases a file descriptor. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.                                |
+| [bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor)](#oh_resourcemanager_releaserawfiledescriptor) | Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.                                |
+| [bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *descriptor)](#oh_resourcemanager_releaserawfiledescriptordata) | Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.                                |
 | [int64_t OH_ResourceManager_ReadRawFile64(const RawFile64 *rawFile, void *buf, int64_t length)](#oh_resourcemanager_readrawfile64) | Reads data of the specified length from the current position in a large rawfile.                                             |
 | [int OH_ResourceManager_SeekRawFile64(const RawFile64 *rawFile, int64_t offset, int whence)](#oh_resourcemanager_seekrawfile64) | Searches for the data read/write position in a large rawfile based on the specified offset.                                            |
 | [int64_t OH_ResourceManager_GetRawFileSize64(RawFile64 *rawFile)](#oh_resourcemanager_getrawfilesize64) | Obtains the length of a large rawfile, in int64_t.                                                 |
@@ -41,7 +45,7 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 | [void OH_ResourceManager_CloseRawFile64(RawFile64 *rawFile)](#oh_resourcemanager_closerawfile64) | Closes an opened [RawFile64](capi-rawfile-rawfile64.md) and releases all associated resources.                                     |
 | [int64_t OH_ResourceManager_GetRawFileOffset64(const RawFile64 *rawFile)](#oh_resourcemanager_getrawfileoffset64) | Obtains the offset of a large rawfile, in int64_t.                                                |
 | [bool OH_ResourceManager_GetRawFileDescriptor64(const RawFile64 *rawFile, RawFileDescriptor64 *descriptor)](#oh_resourcemanager_getrawfiledescriptor64) | Opens a large rawfile based on the specified offset (in int64_t) and file length (in int64_t) and obtains the file descriptor. The file descriptor obtained can be used to read the file.|
-| [bool OH_ResourceManager_ReleaseRawFileDescriptor64(const RawFileDescriptor64 *descriptor)](#oh_resourcemanager_releaserawfiledescriptor64) | Releases a file descriptor. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.                                |
+| [bool OH_ResourceManager_ReleaseRawFileDescriptor64(const RawFileDescriptor64 *descriptor)](#oh_resourcemanager_releaserawfiledescriptor64) | Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.                                |
 
 ## Function Description
 
@@ -231,7 +235,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descri
 
 **Description**
 
-Releases the file descriptor of a file in **rawfile**. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.
+Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.
 
 **Since**: 8
 
@@ -256,7 +260,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *de
 
 **Description**
 
-Releases the file descriptor of a file in **rawfile**. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.
+Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.
 
 **Since**: 12
 
@@ -459,7 +463,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor64(const RawFileDescriptor64 *de
 
 **Description**
 
-Releases the file descriptor of a file in **rawfile**. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.
+Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.
 
 **Since**: 11
 

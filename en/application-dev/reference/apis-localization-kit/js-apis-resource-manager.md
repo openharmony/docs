@@ -1,6 +1,6 @@
 # @ohos.resourceManager (Resource Management)
 
-The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Resource Matching](../../quick-start/resource-categories-and-access.md#resource-matching).
+The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Matching Resources](../../quick-start/resource-categories-and-access.md#matching-resources).
 
 The configuration includes language, region, screen orientation, mobile country code (MCC), mobile network code (MNC), device capability, and density.
 
@@ -176,6 +176,11 @@ getSystemResourceManager(): ResourceManager
 
 Obtains a **ResourceManager** object.
 
+> **NOTE**
+>
+> The **Configuration** field in the **ResourceManager** object obtained via this API uses the default value, which is as follows:
+>{"locale":"","direction":-1,"deviceType":-1,"screenDensity":0,"colorMode":1,"mcc":0,"mnc":0}.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
@@ -343,7 +348,7 @@ Provides APIs for accessing application resources and system resources.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain resource values such as strings, string arrays, and colors based on the specified **resName**, **resId**, or **Resource** object. **resName** indicates the resource name, **resId** indicates the resource ID, which can be obtained through `$r(*resource-address*).id`, for example, `$r('app.string.test').id`.
 >
-> - No matter whether resources are in the same HAP or different HAPs or HSPs, you are advised to use the API with **resName** or **resId** specified. Using the **Resource** object will take a longer time. If the resources are in different HAPs or HSPs, you first need to use [createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to create the context of the corresponding module and then call the API with **resName** or **resId** specified. For details, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
+> - No matter whether resources are in the same HAP or different HAPs or HSPs, you are advised to use the API with **resName** or **resId** specified. Using the **Resource** object will take a longer time. If the resources are in different HAPs or HSPs, you first need to use [createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to create the context of the corresponding module and then call the API with **resName** or **resId** specified. For details, see [Accessing Resources](../../quick-start/resource-categories-and-access.md#accessing-resources).
 >
 > - For details about the content of the test files used in the sample code, see [Appendix](#appendix).
 
@@ -4183,7 +4188,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { display } from '@kit.ArkUI';
 
   try {
-    // An integer refers to the original value.
+    // integer refers to the original value.
     let intValue = this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
     console.log(`getNumber, int value: ${intValue}`);
     // Print the output result: getNumber, int value: 100
@@ -6695,7 +6700,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resId    | number                      | Yes  | Resource ID.                                                  |
-| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.          |
 
 **Error codes**
@@ -6845,7 +6850,7 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)      | Yes  | Resource object.                                                  |
-| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.      |
 
 **Error codes**
@@ -7007,7 +7012,7 @@ Obtains singular/plural strings based on the specified quantity and resource nam
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resName  | string                      | Yes  | Resource name.                                                  |
-| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.            |
 
 **Error codes**
@@ -7194,7 +7199,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the obtained singular/plural string.|
 
 **Example**
@@ -7431,11 +7436,13 @@ Closes the fd of the raw file in the **resources/rawfile** directory. This API u
 
 ## AsyncCallback<sup>(deprecated)</sup>
 
-  ```ts
-  AsyncCallback<T> {
-    (err: Error, data: T): void;
-  }
-  ```
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback) instead.
+
+### (err: Error, data: T)<sup>(deprecated)</sup>
+
+(err: Error, data: T): void;
 
 Defines an asynchronous callback that carries an error parameter and asynchronous return value.
 
@@ -7444,6 +7451,8 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
 
 | Name| Type                                                        | Mandatory| Description                        |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |

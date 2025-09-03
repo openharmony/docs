@@ -1,6 +1,6 @@
 # @ohos.app.ability.StartOptions (StartOptions) (System API)
 
-**StartOptions** is used as an input parameter of [startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1) to specify the window mode of an ability.
+StartOptions can be used as an input parameter for APIs used to launch a UIAbility (for example, [startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1)). It specifies the options for starting the target UIAbility, including but not limited to the window mode and the display where the target UIAbility is started.
 
 > **NOTE**
 >

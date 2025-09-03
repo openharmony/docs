@@ -135,8 +135,8 @@ function add(left: number = 0, right: number = 0): number {
 
 优化前的代码示例：
 ``` TypeScript
-const arr1 = new Array<number>([1, 2, 3]);
-const arr2 = new Array<number>([4, 5, 6]);
+const arr1 = new Array<number>(1, 2, 3);
+const arr2 = new Array<number>(4, 5, 6);
 let res = new Array<number>(3);
 for (let i = 0; i < 3; i++) {
   res[i] = arr1[i] + arr2[i];
@@ -145,8 +145,8 @@ for (let i = 0; i < 3; i++) {
 
 优化后的代码示例：
 ``` TypeScript
-const typedArray1 = new Int8Array([1, 2, 3]);
-const typedArray2 = new Int8Array([4, 5, 6]);
+const typedArray1 = Int8Array.from([1, 2, 3]);
+const typedArray2 = Int8Array.from([4, 5, 6]);
 let res = new Int8Array(3);
 for (let i = 0; i < 3; i++) {
   res[i] = typedArray1[i] + typedArray2[i];

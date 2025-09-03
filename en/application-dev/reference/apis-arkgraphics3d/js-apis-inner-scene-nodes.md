@@ -1,6 +1,6 @@
 # SceneNode
 
-The SceneNode module provides the types and operation methods of scene nodes in 3D graphics.
+The module provides the types and operation methods of scene nodes in 3D graphics.
 
 > **NOTE**
 >
@@ -31,7 +31,7 @@ Checks whether the mask is enabled for a layer of a given index.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| boolean | Check result. The value **true** means that the layer mask is enabled, and **false** means the opposite.|
+| boolean | Check result for whether the layer mask is enabled. **true** if enabled, **false** otherwise.|
 
 **Example**
 ```ts
@@ -64,7 +64,7 @@ Enables the mask of a layer of a given index.
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
 | index | number | Yes| Index of the layer. The value is an integer greater than or equal to 0.|
-| enabled | boolean | Yes| Enabled status to set. The value **true** means to enable the layer mask, and **false** means the opposite.|
+| enabled | boolean | Yes| Whether to enable the layer mask. **true** to enable, **false** otherwise.|
 
 **Example**
 ```ts
@@ -278,7 +278,7 @@ function count() : void {
 ```
 
 ## Node
-The 3D scene consists of nodes in a tree hierarchy, where each node implements a **Node** interface. This class inherits from [SceneResource](js-apis-inner-scene-resources.md#sceneresource).
+The 3D scene consists of nodes in a tree hierarchy, where each node implements a **Node** interface. This class inherits from [SceneResource](js-apis-inner-scene-resources.md#sceneresource-1).
 
 ### Properties
 
@@ -289,7 +289,7 @@ The 3D scene consists of nodes in a tree hierarchy, where each node implements a
 | position | [Position3](js-apis-inner-scene-types.md#position3) | No| No| Position of the node.|
 | rotation | [Quaternion](js-apis-inner-scene-types.md#quaternion) | No| No| Rotation angle of the node.|
 | scale | [Scale3](js-apis-inner-scene-types.md#scale3) | No| No| Scale factor of the node.|
-| visible | boolean | No| No| Whether the node is visible. The value **true** means that the node is visible, and **false** means the opposite.|
+| visible | boolean | No| No| Whether the node is visible. **true** if visible, **false** otherwise.|
 | nodeType | [NodeType](#nodetype) | Yes| No| Type of the node.|
 | layerMask | [LayerMask](#layermask) | Yes| No| Layer mask of the node.|
 | path | string | Yes| No| Path of the node.|
@@ -311,7 +311,7 @@ Obtains a node by path. If no node is obtained, null is returned.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| [Node](#node) \| null | **Node** object.|
+| [Node](#node) \| null | Node object.|
 
 **Example**
 ```ts
@@ -338,7 +338,7 @@ Geometric node type, which inherits from [Node](#node).
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | Yes| No| Mesh attribute.|
+| mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | Yes| No| Mesh property.|
 
 
 ## LightType
@@ -363,8 +363,8 @@ Light node, which inherits from [Node](#node).
 | lightType | [LightType](#lighttype) | Yes| No| Light type.|
 | color | [Color](js-apis-inner-scene-types.md#color) | No| No| Color.|
 | intensity | number | No| No| Light intensity. The value is a real number greater than 0.|
-| shadowEnabled | boolean | No| No| Whether the shadow effect is enabled. The value **true** means that the shadow effect is enabled, and **false** means the opposite.|
-| enabled | boolean | No| No| Whether the light is used. The value **true** means that the light is used, and **false** means the opposite.|
+| shadowEnabled | boolean | No| No| Whether the shadow effect is enabled. **true** if enabled, **false** otherwise.|
+| enabled | boolean | No| No| Whether the light is used. **true** if used, **false** otherwise.|
 
 ## SpotLight
 Spot light, which inherits from [Light](#light).
@@ -389,6 +389,6 @@ Camera node, which inherits from [Node](#node).
 | fov | number | No| No| Field of view. The value ranges from 0 to π radians.|
 | nearPlane | number | No| No| Near plane. The value is greater than 0.|
 | farPlane | number | No| No| Remote plane. The value must be greater than that of **nearPlane**.|
-| enabled | boolean | No| No| Whether the camera is enabled. The value **true** means that the camera is enabled, and **false** means the opposite.|
+| enabled | boolean | No| No| Whether the camera is enabled. **true** if enabled, **false** otherwise.|
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | No| No| Post-processing settings.|
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | No| No| Color after the render target is cleared.|

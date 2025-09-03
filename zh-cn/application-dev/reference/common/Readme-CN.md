@@ -2,6 +2,7 @@
 
 - ArkTS API<!--common-basic-arkts-->
   - [Console (控制台)](js-apis-logs.md)
+  - [loadNativeModule (同步动态加载系统库接口)](js-apis-common-load-native-module.md)
   - [SysCap (系统能力)](js-apis-syscap.md)
   - [Timer (定时器)](js-apis-timer.md)
 - C API<!--common-basic-c-->

@@ -1,13 +1,13 @@
 # Exporting a Key (C/C++)
 
-
 This topic walks you through on how to export the public key of a persistently stored asymmetric key. Currently, HUKS supports export of the ECC, RSA, Ed25519, X25519, and SM2 public keys.
->**NOTE**<br>
+
+>**NOTE**
 > The mini-system devices support export of only the RSA public keys.
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## How to Develop
@@ -24,6 +24,7 @@ This topic walks you through on how to export the public key of a persistently s
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 static napi_value ExportKey(napi_env env, napi_callback_info info)
 {
@@ -31,7 +32,7 @@ static napi_value ExportKey(napi_env env, napi_callback_info info)
     const char *alias = "test_key";
     struct OH_Huks_Blob aliasBlob = { .size = (uint32_t)strlen(alias), .data = (uint8_t *)alias };
     /* Request the memory for holding the public key to be exported. */
-    uint8_t *pubKey = (uint8_t *)malloc(512); // Request memory based on the key size.
+    uint8_t *pubKey = (uint8_t *)malloc(256); // Request memory based on the key size.
     if (pubKey == nullptr) {
         return nullptr;
     }

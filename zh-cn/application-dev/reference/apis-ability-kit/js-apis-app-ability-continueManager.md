@@ -150,7 +150,7 @@ export default class MigrationAbility extends UIAbility {
 
 | 名称 | 类型                                                                            | 只读 | 可选 | 说明       |
 | -------- |-------------------------------------------------------------------------------|----|----|----------|
-| resultState | [ContinueStateCode](js-apis-app-ability-continueManager.md#continuestatecode) | 是  | 否  | 操作结果状态码。 |
+| resultState | [ContinueStateCode](js-apis-app-ability-continueManager.md#continuestatecode) | 否  | 否  | 操作结果状态码。 |
 | resultInfo | string                                                                        | 否  | 是  | 操作结果的说明。 |
 
 ## ContinueStateCode

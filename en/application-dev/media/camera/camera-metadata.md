@@ -17,7 +17,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    ```
 
 2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class, and then use [createMetadataOutput](../../reference/apis-camera-kit/js-apis-camera.md#createmetadataoutput) to create a metadata output stream.
-     
+
    ```ts
    function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
      let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
@@ -35,6 +35,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 3. Call [Session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11) to start outputting metadata, and obtain the data through subscription to the **'metadataObjectsAvailable'** event. If the call fails, an error code is returned. For details, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
 
    For details about how to obtain preview output, see [Camera Preview (ArkTS)](camera-preview.md).
+
    ```ts
    async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
      let cameraArray: Array<camera.CameraDevice> = [];
@@ -84,7 +85,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 During camera application development, you can listen for the status of metadata objects and output stream.
 
-- Register the **'metadataObjectsAvailable'** event to listen for metadata objects that are available. When a valid metadata object is detected, the callback function returns the metadata. This event can be registered when a **MetadataOutput** object is created.
+- Register the **'metadataObjectsAvailable'** event to listen for metadata objects that are available. When a valid metadata object is detected, the callback function returns the metadata. This event can be registered when a MetadataOutput object is created.
     
   ```ts
   function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {

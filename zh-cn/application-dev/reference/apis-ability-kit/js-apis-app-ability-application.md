@@ -1,6 +1,12 @@
-#  @ohos.app.ability.application (应用基础能力)
+#  @ohos.app.ability.application (应用工具类)
 
-开发者可以通过该模块创建[Context](../../application-models/application-context-stage.md)。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+
+开发者可以通过该模块管理和获取应用的上下文[Context](../../application-models/application-context-stage.md)，以及控制应用进程的状态。
 
 > **说明：**
 >
@@ -17,7 +23,7 @@ import { application } from '@kit.AbilityKit';
 
 createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
-根据入参Context创建相应模块的Context。
+创建指定模块的上下文。创建出的模块上下文中[resourceManager.Configuration](../apis-localization-kit/js-apis-resource-manager.md#configuration)资源继承自入参上下文，便于开发者获取[跨HAP/HSP包应用资源](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
 
 **原子化服务API**：从API version 12开始，该接口支持在元服务中使用。
 
@@ -38,7 +44,7 @@ createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息        |
 | -------- | --------------- |
@@ -56,7 +62,7 @@ export default class EntryAbility extends UIAbility {
     try {
       application.createModuleContext(this.context, 'entry').then((data: Context) => {
         moduleContext = data;
-        console.info('createBundleContext success!');
+        console.info('createModuleContext success!');
       }).catch((error: BusinessError) => {
         let code: number = (error as BusinessError).code;
         let message: string = (error as BusinessError).message;
@@ -75,10 +81,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContext(): ApplicationContext
 
-获取应用程序上下文。
-> **说明：**
->
->通过该接口取得的ApplicationContext，只支持获取对应的[应用信息](js-apis-bundleManager-applicationInfo.md)和全部的[沙箱路径](js-apis-inner-application-context.md#属性)。
+获取应用上下文。开发者使用该接口时，无需依赖Context基类。
 
 **原子化服务API**：从API version 14开始，该接口支持在元服务中使用。
 
@@ -88,7 +91,7 @@ getApplicationContext(): ApplicationContext
 
 | 类型                                                         | 说明                |
 | ------------------------------------------------------------ | ------------------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文。 |
 
 **错误码：**
 

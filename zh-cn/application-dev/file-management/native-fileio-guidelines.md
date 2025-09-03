@@ -4,10 +4,6 @@
 
 FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc标准库](../reference/native-lib/musl.md)/[标准C++库](../reference/native-lib/cpp.md)。
 
-## 基本概念
-
-**结果集**：满足使用场景正确的URI。
-
 ## 约束限制
 
 进行文件操作之前，必须保证传入正确有效的URI或path。

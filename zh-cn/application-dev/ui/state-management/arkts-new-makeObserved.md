@@ -62,12 +62,12 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
   // 错误用法：传入对象为makeObserved封装过的代理数据，此次makeObserved不做处理
   let observedInfo2: Info2 = UIUtils.makeObserved(observedInfo1);
   ```
-- makeObserved可以用在@Component装饰的自定义组件中，但不能和状态管理V1的状态变量装饰器配合使用，如果一起使用，则会抛出运行时异常。
+- makeObserved可以用在[@Component](./arkts-create-custom-components.md#component)装饰的自定义组件中，但不能和状态管理V1的状态变量装饰器配合使用，如果一起使用，则会抛出运行时异常。
   ```ts
   // 错误写法，运行时异常
   @State message: Info = UIUtils.makeObserved(new Info(20));
   ```
-  下面`message2`的写法不会抛异常，原因是this.message是@State装饰的，其实现等同于@Observed，而UIUtils.makeObserved的入参是@Observed装饰的class，会直接返回自身。因此对于`message2`来说，他的初始值不是makeObserved的返回值，而是@State装饰的变量。
+  下面`message2`的写法不会抛异常，原因是this.message是[@State](./arkts-state.md)装饰的，其实现等同于@Observed，而UIUtils.makeObserved的入参是@Observed装饰的class，会直接返回自身。因此对于`message2`来说，他的初始值不是makeObserved的返回值，而是@State装饰的变量。
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   class Person {
@@ -95,7 +95,7 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
   ```
 ### makeObserved仅对入参生效，不会改变接受返回值的观察能力
 
- - `message`被@Local装饰，本身具有观察自身赋值的能力。其初始值为makeObserved的返回值，具有深度观察能力。
+ - `message`被[@Local](./arkts-new-local.md)装饰，本身具有观察自身赋值的能力。其初始值为makeObserved的返回值，具有深度观察能力。
  - 点击`change id`可以触发UI刷新。
  - 点击`change Info`将`this.message`重新赋值为不可观察数据后，再次点击`change id`无法触发UI刷新。
  - 再次点击`change Info1`将`this.message`重新赋值为可观察数据后，点击`change id`可以触发UI刷新。
@@ -222,9 +222,10 @@ struct ObservedSendableTest {
 
 ### makeObserved和collections.Array/Set/Map配合使用
 collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../../reference/apis-arkts/js-apis-arkts-collections.md)。
-makeObserved可以在ArkUI中导入可观察的colletions容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和@Prop等配合使用，否则会抛出运行时异常。
+makeObserved可以在ArkUI中导入可观察的colletions容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和[@Prop](./arkts-prop.md)等配合使用，否则会抛出运行时异常。
 
-#### collections.Array
+**collections.Array**
+
 collections.Array可以触发UI刷新的API有：
 - 改变数组长度：push、pop、shift、unshift、splice、shrinkTo、extendTo
 - 改变数组项本身：sort、fill
@@ -349,7 +350,8 @@ struct Index {
   }
 }
 ```
-#### collections.Map
+
+**collections.Map**
 
 collections.Map可以触发UI刷新的API有：set、clear、delete。
 ```ts
@@ -404,7 +406,8 @@ struct CollectionMap {
 }
 ```
 
-#### collections.Set
+**collections.Set**
+
 collections.Set可以触发UI刷新的API有：add、clear、delete。
 
 ```ts
@@ -438,7 +441,7 @@ struct Index {
       // add
       Button('add').onClick(() => {
         this.set.add(new Info(30));
-        console.log('size:' + this.set.size);
+        console.info('size:' + this.set.size);
       })
       // delete
       Button('delete').onClick(() => {
@@ -502,7 +505,7 @@ struct Index {
 ```
 
 ### makeObserved和V2装饰器配合使用
-makeObserved可以和V2的装饰器一起使用。对于@Monitor和@Computed，因为makeObserved传入@Observed或ObservedV2装饰的类实例会返回其自身，所以@Monitor或者@Computed不能定义在class中，只能定义在自定义组件里。
+makeObserved可以和V2的装饰器一起使用。对于[@Monitor](./arkts-new-monitor.md)和[@Computed](./arkts-new-Computed.md)，因为makeObserved传入@Observed或ObservedV2装饰的类实例会返回其自身，所以@Monitor或者@Computed不能定义在class中，只能定义在自定义组件里。
 
 例子如下：
 ```ts
@@ -524,7 +527,7 @@ struct Index {
 
   @Monitor('message.id')
   onStrChange(monitor: IMonitor) {
-    console.log(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   @Computed

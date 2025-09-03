@@ -50,17 +50,25 @@ RichText(content:string)
 
 onStart(callback: () => void)
 
-加载网页时触发。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名 | 类型 | 必填  | 说明 |
+| ------- | -------- | ------------- | -------- |
+|  callback | callback: () => void | 是   | 加载网页时触发回调。 |
 
 ### onComplete
 
 onComplete(callback: () => void)
 
-网页加载结束时触发。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名 | 类型 | 必填  | 说明 |
+| ------- | -------- | ------------- | -------- |
+|  callback | callback: () => void | 是   | 网页加载结束时触发回调。 |
 
 ## 属性
 

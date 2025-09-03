@@ -1,5 +1,11 @@
 # @ohos.bluetooth.constant (蓝牙constant模块)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 constant模块提供了蓝牙中常量的定义。
 
 > **说明：**

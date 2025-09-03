@@ -1,5 +1,10 @@
 # @ohos.app.form.formHost (formHost) (System API)
 
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 The **formHost** module provides APIs related to the widget host, which is an application that displays the widget content and controls the position where the widget is displayed. You can use the APIs to delete, release, and update widgets installed by the same user, and obtain widget information and status.
 
 > **NOTE**
@@ -186,7 +191,7 @@ Releases a widget. After this API is called, the application can no longer use t
 | Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | Yes  | Whether to release the cache.|
+| isReleaseCache | boolean | Yes  | Whether to release the cache.<br>**true**: Release the cache.<br>**false**: Not release the cache.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is released, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -237,7 +242,7 @@ Releases a widget. After this API is called, the application can no longer use t
 | Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**. |
+| isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**.<br>**true**: Release the cache.<br>**false**: Not release the cache. |
 
 **Return value**
 
@@ -1661,7 +1666,7 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isVisible | boolean | Yes  | Whether to make the widgets visible.|
+| isVisible | boolean | Yes  | Whether the widget is visible.<br>**true**: The widget is visible.<br>**false**: The widget is invisible.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1711,7 +1716,7 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isVisible | boolean | Yes  | Whether to make the widgets visible.|
+| isVisible | boolean | Yes  | Whether the widget is visible.<br>**true**: The widget is visible.<br>**false**: The widget is invisible.|
 
 **Return value**
 
@@ -1766,7 +1771,7 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
+| isEnableUpdate | boolean | Yes  | Whether the widget can be updated.<br>**true**: The widget can be updated. **false**: The widget cannot be updated.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1816,7 +1821,7 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
+| isEnableUpdate | boolean | Yes  | Whether the widget can be updated.<br>**true**: The widget can be updated.<br>**false**: The widget cannot be updated.|
 
 **Return value**
 
@@ -1977,7 +1982,7 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array\<string\> | Yes  | ID of the widgets.|
-| isProtected | boolean | Yes  | Whether privacy protection is enabled.|
+| isProtected | boolean | Yes  | Whether a widget requires privacy protection.<br>**true**: The widget requires privacy protection.<br>**false**: The widget does not require privacy protection.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If privacy protection is set successfully, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -2026,7 +2031,7 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formIds     | Array\<string\> | Yes  | ID of the widgets.|
-| isProtected | boolean         | Yes  | Whether privacy protection is enabled.              |
+| isProtected | boolean         | Yes  | Whether a widget requires privacy protection.<br>**true**: The widget requires privacy protection.<br>**false**: The widget does not require privacy protection.|
 
 **Return value**
 
@@ -2165,8 +2170,8 @@ try {
   }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+} catch (e) {
+  console.error(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2680,7 +2685,7 @@ try {
 
 recycleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Recycles widgets, that is, reclaims their memory. This API uses a promise to return the result.
+Recycles widgets, that is, reclaiming widget memory. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 

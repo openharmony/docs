@@ -48,7 +48,7 @@ struct OverlayExample {
   @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
   @StorageLink('componentContentIndex') componentContentIndex: number = 0;
   @StorageLink('arrayIndex') arrayIndex: number = 0;
-  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 30 };
 
   build() {
     Column({ space: 10 }) {
@@ -96,7 +96,7 @@ struct OverlayExample {
           console.info("Invalid arrayIndex.");
         }
       })
-      Button("��ʾ����ComponentContent").onClick(() => {
+      Button("Show All ComponentContent").onClick(()=>{
         this.overlayNode.showAllComponentContents();
       })
       Button("Hide All ComponentContent").onClick(()=>{

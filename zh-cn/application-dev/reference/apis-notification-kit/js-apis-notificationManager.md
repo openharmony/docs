@@ -1,4 +1,9 @@
 # @ohos.notificationManager (NotificationManager模块)
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
 
 本模块提供通知管理的能力，包括发布、更新、取消通知，创建、获取、移除通知渠道，获取发布通知应用的使能状态，获取通知的相关信息等。
 
@@ -31,7 +36,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[通知错误码](./errorcode-notification.md)、[HTTP错误码](../apis-network-kit/errorcode-net-http.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
@@ -102,7 +107,7 @@ publish(request: NotificationRequest): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[通知错误码](./errorcode-notification.md)、[HTTP错误码](../apis-network-kit/errorcode-net-http.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
@@ -786,7 +791,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[通知错误码](./errorcode-notification.md)、[包管理子系统通用错误码](../../reference/apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
@@ -829,7 +834,7 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)、[包管理子系统通用错误码](../../reference/apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -890,9 +895,9 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
-该接口不支持wearable设备。
-
 **系统能力**：SystemCapability.Notification.Notification
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **参数：**
 
@@ -940,9 +945,9 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
-该接口不支持wearable设备。
-
 **系统能力**：SystemCapability.Notification.Notification
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **参数：**
 
@@ -1603,9 +1608,9 @@ openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
 拉起应用的通知设置界面，该页面以半模态形式呈现，可用于设置通知开关、通知提醒方式等。使用Promise异步回调。
 
-该接口不支持wearable设备。
-
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **系统能力**：SystemCapability.Notification.NotificationSettings
 

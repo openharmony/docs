@@ -66,15 +66,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
-```
-
-预计的输出结果：
-```
-JSVM OH_JSVM_GetVM: success
 ```
 
 ### OH_JSVM_GetHeapStatistics
@@ -133,7 +128,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
@@ -157,7 +152,7 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 以下接口的示例代码可以参考链接：
 
-[JSVM-API调试&定位](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+[JSVM-API调试&定位](./jsvm-debugger-cpuprofiler-heapsnapshot.md)
 
 ### OH_JSVM_StartCpuProfiler
 

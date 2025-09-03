@@ -1,6 +1,6 @@
 # Accessing and Managing Moving Photos
 
-A moving photo is a photo form that combines an image and a video, empowering a static image with dynamic video effect. It helps users capture dynamic moment and improves the fault tolerance rate of photographing.
+A moving photo is a photo form that combines an image and a video, empowering a static image with dynamic video effect. It helps users capture dynamic moments and improves the fault tolerance rate of photographing.
 
 The media library provides the capabilities of accessing and managing moving photo assets, including:
 
@@ -103,11 +103,22 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+        example(phAccessHelper, context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
     // Use Picker to select the URI of the moving photo.
     let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -152,10 +163,23 @@ Call [MediaAssetManager.loadMovingPhoto](../../reference/apis-media-library-kit/
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+@Entry
+@Component
+struct Index {
+  @State outputText: string = 'Supported formats:\n';
 
-async function example() {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        example(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+
+async function example(context: Context) {
   try {
     let imageFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/local_moving_photo.jpg';
     let videoFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/local_moving_photo.mp4';

@@ -57,7 +57,7 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 
 根据添加的事件观察者类型，目前有如下三种使用方法：
 
-方法一：如果观察者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理。
+方法一：设置回调条件triggerCondition，实现onTrigger()回调。当满足回调条件时，系统将自动触发回调。
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -96,7 +96,7 @@ hiAppEvent.addWatcher({
 });
 ```
 
-方法二：如果观察者未传入回调的相关参数，则可以选择使用返回的holder对象手动去处理订阅事件。
+方法二：未设置回调条件参数，使用事件订阅返回的holder对象主动获取监听的事件。
 <br>针对异常退出时产生的崩溃事件（hiAppEvent.event.APP_CRASH）和卡死事件（hiAppEvent.event.APP_FREEZE），系统捕获维测日志有一定耗时，典型情况下30s内完成，极端情况下2min左右完成。
 <br>在手动处理订阅事件的方法中，由于事件可能未生成或日志信息未抓取完成，建议在进程启动后延时重试调用takeNext()获取此类事件。
 
@@ -127,7 +127,7 @@ if (holder != null) {
 }
 ```
 
-方法三：观察者可以在实时回调函数onReceive中处理订阅事件。
+方法三：实现onReceive()回调，当监听的事件发生后实时触发回调。
 
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -1048,7 +1048,7 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 | BEHAVIOR  | 4    | 行为类型事件。 |
 
 
-## hiappevent.domain<sup>11+</sup>
+## hiAppEvent.domain<sup>11+</sup>
 
 提供领域名称常量。
 
@@ -1061,7 +1061,7 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 | OS   | string | 是 | 系统领域。 |
 
 
-## hiappevent.event
+## hiAppEvent.event
 
 提供事件名称常量。包含系统事件名称常量和应用事件名称常量，其中应用事件名称常量是为开发者在调用[Write](#hiappeventwrite-1)接口进行应用事件打点时预留的可选自定义事件名称。
 
@@ -1078,12 +1078,12 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 | SCROLL_JANK<sup>12+</sup> | string | 是 | 应用滑动丢帧事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | CPU_USAGE_HIGH<sup>12+</sup> | string | 是 | 应用CPU高负载事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | BATTERY_USAGE<sup>12+</sup> | string | 是 | 应用24h功耗器件分解统计事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 是 | 应用资源泄露事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 是 | 应用资源泄漏事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | ADDRESS_SANITIZER<sup>12+</sup> | string | 是 | 应用踩内存事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | MAIN_THREAD_JANK<sup>12+</sup> | string | 是 | 应用主线程超时事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
-## hiappevent.param
+## hiAppEvent.param
 
 提供参数名称常量。
 

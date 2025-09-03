@@ -313,6 +313,7 @@
            // 解压输入缓冲区中数据到输出缓冲区
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // 更新流的状态
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;
@@ -369,7 +370,7 @@
            let inFile = fs.openSync(path + '/data.gz', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            inflateGzipFile(inFile, outFile).then(() => {
-             console.info('deflateGzipFile success');
+             console.info('inflateGzipFile success');
              fs.closeSync(inFile.fd);
              fs.closeSync(outFile.fd);
            })
@@ -466,6 +467,7 @@
            // 解压输入缓冲区中数据到输出缓冲区
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // 更新流的状态
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;

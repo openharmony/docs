@@ -27,7 +27,7 @@ onCompleted?(error: BusinessError\<void\>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| error | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror) | 是 | 错误信息。 |
+| error | [BusinessError\<void>](../apis-basic-services-kit/js-apis-base.md#businesserror) | 是 | 错误信息。 |
 
 **示例：**
 

@@ -119,7 +119,7 @@ struct Index {
     }
     .height(200)
     .width('100%')
-    // 以下组合手势为并行并别，单击手势识别成功后，若在规定时间内再次点击，双击手势也会识别成功
+    // 以下组合手势为并行识别，单击手势识别成功后，若在规定时间内再次点击，双击手势也会识别成功
     .gesture(
       GestureGroup(GestureMode.Parallel,
         TapGesture({ count: 1 })
@@ -172,7 +172,7 @@ struct Index {
     }
     .height(200)
     .width('100%')
-    //以下组合手势为互斥并别，单击手势识别成功后，双击手势会识别失败
+    //以下组合手势为互斥识别，单击手势识别成功后，双击手势会识别失败
     .gesture(
       GestureGroup(GestureMode.Exclusive,
         TapGesture({ count: 1 })
@@ -200,3 +200,70 @@ struct Index {
 >当只有单次点击时，单击手势识别成功，双击手势识别失败。
 >
 >当有两次点击时，手势响应取决于绑定手势的顺序。若先绑定单击手势后绑定双击手势，单击手势在第一次点击时即宣告识别成功，此时双击手势已经失败。即使在规定时间内进行了第二次点击，双击手势事件也不会进行响应，此时会触发单击手势事件的第二次识别成功。若先绑定双击手势后绑定单击手势，则会响应双击手势不响应单击手势。
+
+## 场景示例
+
+以下示例实现了子组件绑定长按和拖动手势，长按手势和拖动手势需要可以同时触发，但是在长按手势未成功时，需要让父组件Swiper的内置拖动手势触发的功能。由于子组件的拖动手势和父组件的内置拖动手势是竞争关系，且子组件的拖动手势的优先级更高，因此需要通过动态控制子组件的拖动手势是否触发。
+
+```ts
+// xxx.ets
+import { PromptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct CombinedGestureDemo {
+  @State isLongPress: boolean = false;
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Swiper() {
+      // 页面1
+      Row()
+        .width('100%')
+        .height('100%')
+        .backgroundColor(Color.Grey)
+        .borderRadius(12)
+        // 通过自定义手势判定回调，判断在长按手势未成功时，拒绝子组件的拖动手势，从而让父组件Swiper的拖动手势成功
+        .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>)=>{
+          if (current.getType() !== GestureControl.GestureType.PAN_GESTURE) {
+            return GestureJudgeResult.CONTINUE;
+          }
+          if (this.isLongPress) {
+            return GestureJudgeResult.CONTINUE;
+          }
+          return GestureJudgeResult.REJECT;
+        })
+        .gesture(
+          // 绑定并行手势组，实现长按手势和拖动手势可以同时触发
+          GestureGroup(GestureMode.Parallel,
+            LongPressGesture()
+              .onAction(() => {
+                this.isLongPress = true;
+                this.promptAction.showToast({ message: "LongPress trigger" })
+              })
+              .onActionEnd(() => {
+                this.isLongPress = false;
+              })
+            ,
+            PanGesture()
+              .onActionStart(() => {
+                this.promptAction.showToast({ message: "child pan start" })
+              })
+          )
+        )
+      // 页面2
+      Row()
+        .width('100%')
+        .height('100%')
+        .backgroundColor(Color.Pink)
+        .borderRadius(12)
+    }
+    .borderWidth(2)
+    .width('100%')
+    .height(300)
+    .padding(20)
+  }
+}
+```
+
+![combined-gesture](figures/combined-gesture.gif)

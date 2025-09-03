@@ -1,5 +1,10 @@
 # Using startAbilityByType to Start a Navigation Application
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: AGC-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @yizhixiaosiqin-->
 
 This topic describes how to open the vertical domain panel of navigation applications.
 

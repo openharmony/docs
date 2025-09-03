@@ -93,7 +93,7 @@ colorFilter(filter: ColorFilter | DrawingColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| filter  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](ts-basic-components-image.md#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image_matrix_1.png)<br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
+| filter  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](ts-basic-components-image.md#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image_matrix_1.png)<br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>该接口中的DrawingColorFilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
 
 ## 事件
 
@@ -153,17 +153,17 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 类型   | 必填 | 说明                                                         |
-| ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
-| width                        | number | 是   | 图片的宽。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
-| height                       | number | 是   | 图片的高。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
-| componentWidth               | number | 是   | 组件的宽。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
-| componentHeight              | number | 是   | 组件的高。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
-| loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
-| contentWidth   | number | 是   | 图片实际绘制的宽度。<br/>单位：[px](ts-pixel-units.md#像素单位)<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentHeight  | number | 是   | 图片实际绘制的高度。<br/>单位：[px](ts-pixel-units.md#像素单位)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetX | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：[px](ts-pixel-units.md#像素单位)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetY | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：[px](ts-pixel-units.md#像素单位)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| 名称                       | 类型   | 只读 | 可选 | 说明                                                         |
+| ---------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| width                        | number | 否   | 否 | 图片的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
+| height                       | number | 否   | 否   | 图片的高。<br/>单位：[px](ts-pixel-units.md)                                    |
+| componentWidth               | number | 否   | 否   | 组件的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
+| componentHeight              | number | 否   | 否   | 组件的高。<br/>单位：[px](ts-pixel-units.md)                                    |
+| loadingStatus                | number | 否   | 否   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
+| contentWidth   | number | 否   | 否   | 图片实际绘制的宽度。<br/>单位：[px](ts-pixel-units.md)<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight  | number | 否   | 否   | 图片实际绘制的高度。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX | number | 否   | 否   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY | number | 否   | 否   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 
 
@@ -171,7 +171,7 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 ### 示例1（设置对齐方式）
 
-该示例通过verticalAlign、objectFit属性展示了ImageSpan的对齐方式以及缩放效果。
+从API version 10开始，该示例通过[verticalAlign](#verticalalign)、[objectFit](#objectfit)属性展示了ImageSpan组件的对齐方式以及缩放效果。
 
 ```ts
 // xxx.ets
@@ -222,7 +222,7 @@ struct SpanExample {
 
 ### 示例2（设置背景样式）
 
-该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
+从API version 11开始，该示例通过[textBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11)属性展示了文本设置背景样式的效果。
 
 ```ts
 // xxx.ets
@@ -249,7 +249,7 @@ struct Index {
 
 ### 示例3（为图片添加事件）
 
-该示例通过onComplete、onError为图片添加加载成功和加载异常的事件。
+从API version 12开始，该示例通过[onComplete](#oncomplete12)、[onError](#onerror12)为图片添加加载成功和加载异常的事件。
 
 ```ts
 // xxx.ets
@@ -276,7 +276,7 @@ struct Index {
 ```
 ### 示例4（设置颜色滤镜）
 
-该示例通过colorFilter属性展示了给ImageSpan图像设置颜色滤镜的效果。
+从API version 14开始，该示例通过[colorFilter](#colorfilter14)属性展示了给ImageSpan图像设置颜色滤镜的效果。
 
 ```ts
 // xxx.ets
@@ -320,7 +320,7 @@ struct SpanExample {
 
 ### 示例5（设置加载占位图）
 
-该示例alt属性展示了ImageSpan设置加载网络图片时占位图的效果。
+从API version 12开始，该示例[alt](#alt12)属性展示了ImageSpan设置加载网络图片时占位图的效果。
 
 ```ts
 // xxx.ets

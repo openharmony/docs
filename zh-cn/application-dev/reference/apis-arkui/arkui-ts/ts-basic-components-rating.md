@@ -66,7 +66,7 @@ stars(starCount: Optional\<number>)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                       |
 | --------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| starCount | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置评分总数。<br/>当starCount的值为undefined时，默认值：5 |
+| starCount | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> | 是   | 设置评分总数。<br/>当starCount的值为undefined时，默认值：5 |
 
 ### stepSize
 
@@ -102,7 +102,7 @@ stepSize(size: Optional\<number>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size   | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 操作评级的步长。<br/>当size的值为undefined时，默认值：0.5<br/>取值范围：[0.1, stars] |
+| size   | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> | 是   | 操作评级的步长。<br/>当size的值为undefined时，默认值：0.5<br/>取值范围：[0.1, stars] |
 
 ### starStyle
 
@@ -148,7 +148,7 @@ starStyle(options: Optional\<StarStyleOptions>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
 
 >  **说明：**
 >
@@ -186,7 +186,7 @@ contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明)> | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明)> | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -224,7 +224,7 @@ onChange(callback:Optional\<OnRatingChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星变化时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星变化时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnRatingChangeCallback<sup>18+</sup>
 
@@ -281,10 +281,10 @@ type OnRatingChangeCallback = (rating: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 类型    | 必填 | 说明                                                         |
-| ---------------------- | ------- | ---- | ------------------------------------------------------------ |
-| rating<sup>7+</sup>    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| indicator<sup>7+</sup> | boolean | 否   | 设置评分组件作为指示器使用，值为true时，不可改变评分。<br/>默认值：false，可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称                   | 类型    | 只读 | 可选 | 说明                                                         |
+| ---------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| rating<sup>7+</sup>    | number  | 否   | 否   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| indicator<sup>7+</sup> | boolean | 否   | 是   | 设置评分组件作为指示器使用，值为true时，不可改变评分。<br/>默认值：false，可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## StarStyleOptions<sup>18+</sup>对象说明
 
@@ -546,7 +546,7 @@ struct ratingExample {
   @State rating: number = 0;
   @State ratingIndicator: boolean = true;
   @State ratingStars: number = 0;
-  @State ratingStepsize: number = 0.5;
+  @State ratingStepSize: number = 0.5;
   @State ratingEnabled: boolean = true;
 
   build() {
@@ -556,7 +556,7 @@ struct ratingExample {
           rating: 0,
           indicator: this.ratingIndicator
         })
-          .stepSize(this.ratingStepsize)
+          .stepSize(this.ratingStepSize)
           .stars(this.ratingStars)
           .backgroundColor(Color.Transparent)
           .width('100%')
@@ -590,12 +590,12 @@ struct ratingExample {
             }
           }).margin({ top: 5 })
 
-        Button(this.ratingStepsize == 0.5 ? "ratingStepsize : 0.5" : "ratingStepsize : 1")
+        Button(this.ratingStepSize == 0.5 ? "ratingStepSize : 0.5" : "ratingStepSize : 1")
           .onClick((event) => {
-            if (this.ratingStepsize == 0.5) {
-              this.ratingStepsize = 1;
+            if (this.ratingStepSize == 0.5) {
+              this.ratingStepSize = 1;
             } else {
-              this.ratingStepsize = 0.5;
+              this.ratingStepSize = 0.5;
             }
           }).margin({ top: 5 })
       }

@@ -36,7 +36,7 @@ You can implement these functions by using APIs of the Unicode class. For exampl
 // Import the i18n module.
 import { i18n } from '@kit.LocalizationKit';
 
-// Check whether the input character is a digit.
+// Check whether a character is a digit.
 let isDigit: boolean = i18n.Unicode.isDigit('1'); // isDigit = true
 
 // Check whether a character is of the RTL language.
@@ -81,17 +81,17 @@ import { i18n } from '@kit.LocalizationKit';
 
 // Transliterate the text into the Latn format.
 let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let text: string = '中国'
+let text: string = 'China'
 let translatedText: string = transliterator.transform(text); // translatedText = 'zhōng guó'
 
 // Chinese transliteration and tone removal
 let toneLessTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-translatedText = toneLessTransliterator.transform ('中国'); // translatedText ='zhong guo'
+translatedText = toneLessTransliterator.transform ('中国') // translatedText ='zhong guo'
 
 // Chinese surname pronunciation
 let nameTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
-translatedText = nameTransliterator.transform('单老师'); // translatedText = 'shàn lǎo shī'
-translatedText = nameTransliterator.transform('长孙无忌'); // translatedText = 'zhǎng sūn wú jì'
+translatedText = nameTransliterator.transform ('单老师') // translatedText = 'shàn lǎo shī'
+translatedText = nameTransliterator.transform ('长孙无忌') // translatedText = 'zhǎng sūn wú jì'
 
 // Obtain the list of available transliterator IDs.
 let ids: string[] = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Latin', 'Accents-Any', ...]
@@ -137,7 +137,7 @@ You can use APIs of the [BreakIterator](../reference/apis-localization-kit/js-ap
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Create a **BreakIterator** object to obtain line break points of the text for the specified locale. The object calculates the line break points in the text according to the rules of the specified locale.
+2. Create a **BreakIterator** object to obtain line break points. Pass a valid locale to create a **BreakIterator** object. This object calculates the positions of line breaks based on the rules of the specified locale.
 
    ```ts
    let iterator: i18n.BreakIterator = i18n.getLineInstance(locale: string);
@@ -200,7 +200,6 @@ File path mirroring means to localize file paths for an RTL language, so as to a
 **Development Example**
 ```ts
 // Import the i18n module.
-import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n, intl } from '@kit.LocalizationKit';
 
 try {

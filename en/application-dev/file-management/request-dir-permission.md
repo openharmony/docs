@@ -117,7 +117,7 @@ In addition to ArkTS APIs, you can use C/C++ APIs to allow a third-party applica
 
 ### Available APIs
 
-For details about the APIs, see [Environment](../reference/apis-core-file-kit/_environment.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/_environment.md).
 
 | API                                                                | Description                          |
 | ------------------------------------------------------------------------ | ------------------------------ |
@@ -179,7 +179,7 @@ void ScanUserDownloadDirPathExample()
         return;
     }
     // View the files in the Download directory.
-    struct dirent **namelist = {nullptr};
+    struct dirent **namelist = nullptr;
     int num = scandir(downloadPath, &namelist, nullptr, nullptr);
     if (num < 0) {
         free(downloadPath);
@@ -190,6 +190,9 @@ void ScanUserDownloadDirPathExample()
         OH_LOG_INFO(LOG_APP, "%{public}s", namelist[i]->d_name);
     }
     free(downloadPath);
+    for (int i = 0; i < num; i++) {
+        free(namelist[i]);
+    }
     free(namelist);
 }
 ```

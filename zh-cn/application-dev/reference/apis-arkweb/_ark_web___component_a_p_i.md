@@ -21,7 +21,7 @@ Component相关的Native API结构体。
 | size_t [size](#size) | 结构体的大小。  | 
 | void(\* [onControllerAttached](#oncontrollerattached) )(const char \*webTag, [ArkWeb_OnComponentCallback](_web.md#arkweb_oncomponentcallback) callback, void \*userData) | 当Controller成功绑定到Web组件时触发该回调。  | 
 | void(\* [onPageBegin](#onpagebegin) )(const char \*webTag, [ArkWeb_OnComponentCallback](_web.md#arkweb_oncomponentcallback) callback, void \*userData) | 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。  | 
-| void(\* [onPageEnd](#onpageend) )(const char \*webTag, [ArkWeb_OnComponentCallback](_web.md#arkweb_oncomponentcallback) callback, void \*userData) | 网页加载完成时触发该回调，且只在主frame触发。  | 
+| void(\* [onPageEnd](#onpageend) )(const char \*webTag, [ArkWeb_OnComponentCallback](_web.md#arkweb_oncomponentcallback) callback, void \*userData) | 网页加载完成时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。  | 
 | void(\* [onDestroy](#ondestroy) )(const char \*webTag, [ArkWeb_OnComponentCallback](_web.md#arkweb_oncomponentcallback) callback, void \*userData) | 当前Web组件销毁时触发该回调。  | 
 
 
@@ -65,7 +65,7 @@ void(* ArkWeb_ComponentAPI::onPageEnd) (const char *webTag, ArkWeb_OnComponentCa
 ```
 **描述：**
 
-网页加载完成时触发该回调，且只在主frame触发。
+网页加载完成时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
 
 ### size

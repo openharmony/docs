@@ -160,7 +160,7 @@ formattedNumber = halfCeilFormat.format(11.21); // formattedNumber = '$11.20'
 
 ### Number Range Formatting
 
-Number range formatting is implemented through the **formatRange** API of the [NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat) class. The development procedure is as follows:
+Number range formatting is implemented through the [formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange18) API of the [NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat) class. The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts
@@ -230,7 +230,7 @@ Assume that the unit name is **hectare** and the value is **-12300**.
 
 | Value| Display Effect| 
 | -------- | -------- |
-| long | -12,3000 hectares | 
+| long | -12,300 hectares | 
 | short | -12,300 ha | 
 | narrow | -12,300ha | 
 
@@ -287,7 +287,7 @@ Units of measurement conversion and formatting are implemented by the [unitConve
 
 2. Change the unit of measurement.
 
-   Convert the unit of measurement from **fromUnit** to **toUnit**, and format the unit based on the specified locale and formatting style. The display effect varies according to the style. For details, see Table 13.
+   Convert the unit of measurement from **fromUnit** to **toUnit** for the specified value, and format the unit based on the specified locale and formatting style. The display effect varies according to the style. For details, see Table 13.
    ```ts
    let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
    ```

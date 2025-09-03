@@ -53,6 +53,7 @@ struct ZIndexExample {
           .zIndex(1)
         Text('3, zIndex(0)')
           .size({ width: '90%', height: '80%' }).backgroundColor(0xc1cbac).align(Alignment.TopStart)
+          .zIndex(0)
       }.width('100%').height(200)
     }.width('100%').height(200)
   }

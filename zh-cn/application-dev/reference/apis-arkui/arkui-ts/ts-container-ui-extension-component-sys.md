@@ -192,7 +192,7 @@ onDrawReady(callback: Callback\<void>)
 
 |  名称 | 类型   | 只读 |可选 | 说明                                                 |
 | ------- | ------ | ------ | ------ |---------------------------------------------------  |
-| code    | number | 否 | 是 | 被拉起UIExtensionAbility退出时返回的结果码。 |
+| code    | number | 否 | 是 | 被拉起UIExtensionAbility退出时返回的结果码，返回的结果码由`terminateSelfWithResult`或者`terminateSelf`被调用时传入的数据决定。 |
 | want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 否 | 是 | 被拉起UIExtensionAbility退出时返回的数据。   |
 
 ## ReceiveCallback<sup>18+</sup>
@@ -378,6 +378,7 @@ UIExtensionComponent组件使用分为使用方和提供方。本示例仅展示
 使用方入口界面Index.ets内容如下:
 ```ts
 import { ComponentContent } from '@kit.ArkUI';
+
 class Params {
 }
 @Builder

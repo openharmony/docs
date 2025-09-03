@@ -12,7 +12,7 @@ The module defines the information required for triggering a WantAgent object. T
 import { wantAgent as abilityWantAgent } from '@kit.AbilityKit';
 ```
 
-## Properties
+## WantAgentInfo
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

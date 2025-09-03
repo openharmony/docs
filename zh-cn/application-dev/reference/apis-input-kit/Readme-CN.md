@@ -1,5 +1,12 @@
 # Input Kit（多模输入服务）<!--input-api-->
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 - ArkTS API<!--input-arkts-->
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
   - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)

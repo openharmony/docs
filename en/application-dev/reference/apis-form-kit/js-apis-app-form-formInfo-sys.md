@@ -59,17 +59,17 @@ Defines the information about an added widget, which can be either in use or not
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formId  | string               | Yes   | No    | Widget ID.                  |
-| bundleName<sup>10+</sup>  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
 | hostBundleName  | string               | Yes   | No    | Name of the bundle to which the widget host belongs.                  |
+| bundleName<sup>10+</sup>  | string               | Yes    | No     | Name of the bundle to which the widget provider belongs.                   |
+| hostBundleName  | string               | Yes    | No     | Name of the bundle to which the widget host belongs.                   |
 | visibilityType  | [VisibilityType](js-apis-app-form-formInfo.md#visibilitytype)               | Yes   | No    | Visibility types of the widget.                  |
-| moduleName<sup>10+</sup>  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
-| abilityName<sup>10+</sup> | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
-| formName<sup>10+</sup>        | string               | Yes   | No    | Widget name.                                |
-| dimension | number               | Yes   | No    | Widget specifications.  |
+| moduleName<sup>10+</sup>  | string               | Yes    | No     | Name of the module to which the widget belongs.                      |
+| abilityName<sup>10+</sup> | string               | Yes    | No     | Name of the ability to which the widget belongs.                       |
+| formName<sup>10+</sup>        | string               | Yes    | No     | Widget name.                                 |
+| dimension | number               | Yes    | No     | Widget dimension.   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | Yes   | No    | Usage status of the widget.  |
 | formDescription<sup>11+</sup> | string         | Yes   | No    | Description in the widget configuration file of the provider.  |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| Yes   | No    | Location of the widget.  |
+| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| Yes    | No     | Location of the widget.   |
 
 ## formProviderFilter<sup>10+</sup>
 

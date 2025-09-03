@@ -1,12 +1,12 @@
 # TypeScript Compiler Error Codes
 
-Error codes of Typescript Compiler (TSC) start with '105' and serve as error indicators during the TSC compilation process. These error codes and their corresponding descriptions are shown in the editor, console, or log files.
+Error codes of TypeScript Compiler (TSC) start with '105' and serve as error indicators during the TSC compilation process. These error codes and their corresponding descriptions are shown in the editor, console, or log files.
 
 ## 10505001 TSC Native Errors
 
 TSC native errors, ending with '001', represent existing native error rules checked by TSC. Common causes of TSC native errors during compilation include: missing keywords or symbols, type mismatches in assignments, and undefined types or variables. These issues typically arise from not adhering to [language specifications](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/introduction-to-arkts) when writing code. Developers can adjust the code based on the error descriptions.
 
-### Missing Keywords Or Symbols
+### Missing Keywords or Symbols
 
 **Error Example Scenario**
 

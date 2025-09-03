@@ -59,7 +59,7 @@ export class AVPlayerSubtitleDemo {
   constructor(context: Context) {
     this.context = context; // this.getUIContext().getHostContext();
   }
-  // Set AVPlayer callback functions.
+  // Set the AVPlayer callback.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
     avPlayer.on('error', (err: BusinessError) => {

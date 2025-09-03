@@ -47,7 +47,7 @@
 
 - 排查HTML页面是否存在\<math>标签嵌入的MathML语法，坚盾守护模式下，MathML语法无法解析，导致显示异常。
 
-- 排查前端代码是否存在SpeechRecognition（语言识别）、SpeechSynthesis（语音合成）等接口调用，坚盾守护模式下，相关接口无法调用。
+- 排查前端代码是否存在SpeechRecognition（语音识别）、SpeechSynthesis（语音合成）等接口调用，坚盾守护模式下，相关接口无法调用。
 
 - 排查前端代码是否存在RTCDataChannel/createDataChannel等接口调用，该类接口属于WebRTC API，用于建立双向数据通道，实现对等端之间的实时数据交换。坚盾守护模式下，相关接口无法调用。
 

@@ -1,9 +1,14 @@
 # Context (Stage Model)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2; @xuzhihao666-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
 
 ## Overview
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) serves as the context environment for objects within an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) (resource management), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md) (current application information), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context) (application file paths), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (file partitions).
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) serves as the context environment for objects within an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) (resource management), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md) (current application information), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (file partitions).
 
 ## Comparison of Different Context Types
 
@@ -19,7 +24,7 @@ The following table describes how to obtain different types of context and their
 
 | Context Type| Description| Acquisition Method| Usage Scenario|
 | -------- | -------- | -------- | -------- |
-| [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) | Global context of an application, providing application-level information and capabilities.| - From API version 14 onwards, you can directly call [getApplicationContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationgetapplicationcontext14) to obtain it.<br>- In versions earlier than API version 14, you can obtain it by calling [getApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext) of a Context instance.| - [Obtain basic information about the current application](#obtaining-basic-information).<br>- [Obtain application file paths](#obtaining-application-file-paths).<br>- [Obtain and modifying encryption levels](#obtaining-and-modifying-encryption-levels).<br>- [Register a lifecycle listener](#listening-for-application-foregroundbackground-changes).|
+| [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) | Global context of an application, providing application-level information and capabilities.| - From API version 14 onwards, you can directly call [getApplicationContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationgetapplicationcontext14) to obtain it.<br>- In versions earlier than API version 14, you can obtain it by calling [getApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext) of a Context instance.| - [Obtain basic information about the current application](#obtaining-basic-information).<br>- [Obtain application file paths](#obtaining-application-file-paths).<br>- [Obtain and modifying encryption levels](#obtaining-and-modifying-encryption-levels).<br>- [Register a listener for application foreground/background changes](#listening-for-application-foregroundbackground-changes).|
 | [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md) | Context of a module, providing module-level information and capabilities.| - To obtain the context of the current AbilityStage, you can directly access the [context](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#properties) property of the AbilityStage instance.<br> - To obtain the context of another module in the same application, you can call [createModuleContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12).| - Obtain basic information about the current module.<br>- [Obtain module file paths](#obtaining-application-file-paths).|
 | [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Context of a UIAbility, providing external information and capabilities of the UIAbility.| - You can directly access the [context](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#properties) property through a UIAbility instance.<br>- To load a UI component instance in the window of a UIAbility, call [getHostContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12) of the UIContext.| - Obtain basic information about the current UIAbility.<br>- Start other applications or atomic services, and connect to or disconnect from ServiceExtensionAbility components created by system applications.<br>- Destroy the current UIAbility.|
 | [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) | Context of an ExtensionAbility. Each type of ExtensionContext provides different information and capabilities.| Directly access the context property through an ExtensionAbility instance.| The capabilities provided by the context corresponding to different types of ExtensionAbility vary. For example, [InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md) mainly provides the following capabilities:<br>- Obtain the basic information about the InputMethodExtensionAbility.<br>- Destroy the current input method.|
@@ -46,7 +51,7 @@ If you need to obtain application resources, application paths, or use the metho
 
 ### Obtains AbilityStageContext (Module-Level Context)
 
-Compared with the base class Context, [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md) additionally provides information such as [HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties) and [Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties).
+Compared with the base class Context, [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md) additionally provides information such as [HapModuleInfo](../reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md) and [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).
 
   ```ts
   import { AbilityStage } from '@kit.AbilityKit';
@@ -61,7 +66,7 @@ Compared with the base class Context, [AbilityStageContext](../reference/apis-ab
 
 ### Obtaining Context of Another Module in the Current Application (Module-Level Context)
 
-Call [createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
+Call [createModuleContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
 
   ```ts
   import { common, application } from '@kit.AbilityKit';
@@ -253,7 +258,7 @@ Different types of Context classes, which inherit from [Context](../reference/ap
 
 You can obtain basic information about the current application, module, UIAbility, or ExtensionAbility through the context property (such as the resource manager object and application information). Below is an example of acquiring information for the UIAbility.
 
-If you need to obtain resource objects across packages, see [Resource Access](../quick-start/resource-categories-and-access.md#resource-access).
+If you need to obtain resource objects across packages, see [Accessing Resources](../quick-start/resource-categories-and-access.md#accessing-resources).
 
   ```ts
   import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
@@ -406,7 +411,7 @@ In practice, you need to select a proper encryption level based on scenario-spec
 - EL2: For sensitive files, such as personal privacy data, the application can place them in a directory with the user-level encryption (EL2).
 - EL3: For step recording, file download, or music playback that needs to read, write, and create files when the screen is locked, the application can place these files in EL3.
 - EL4: For files that are related to user security information and do not need to be read, written, or created when the screen is locked, the application can place them in EL4.
-- EL5: By default, sensitive user privacy files cannot be read or written on the lock screen. If such files need to be read or written on the lock screen, you can call [Access](../reference/apis-ability-kit/js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess) to apply for reading or writing files before the screen is locked or create new files that can be read and written after the screen is locked. It is more appropriate to place these files in EL5.
+- EL5: By default, sensitive user privacy files cannot be read or written on the lock screen. If such files need to be read or written on the lock screen, you can call [acquireAccess](../reference/apis-ability-kit/js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess) to apply for reading or writing files before the screen is locked or create new files that can be read and written after the screen is locked. It is more appropriate to place these files in EL5.
 
 You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md).
 

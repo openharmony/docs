@@ -55,7 +55,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 | 名称           | 类型                      | 必填 | 说明                                                          |
 | -------------- | ------------------------- | ---- |-------------------------------------------------------------|
-| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.text |
+| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.TEXT |
 | imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸，单位vp。<br />取值范围：大于等于0。<br />默认值：56vp                 |
 | normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题。<br />默认值：频道。                                   |
 | showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题。<br />默认值：长按拖动排序。                              |
@@ -85,7 +85,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number&nbsp;\|&nbsp;string             | 是   | 数据id序号，不可重复。<br />默认值：空字符串。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                       |
 | text     | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示文本信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                               |
-| selected | boolean                                | 是   | 是否已经被添加，添加：true，未添加：false。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| selected | boolean                                | 是   | 是否已经被添加，已添加：true，未添加：false。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入Symbol图标资源。配置优先级高于url。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | order    | number                                 | 是   | 顺序序号。<br />取值范围：大于等于0。<br />默认值：0 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                   |

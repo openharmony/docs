@@ -1,6 +1,6 @@
 # @ohos.security.certManager (Certificate Management)
 
-The **certManager** module provides system-level certificate management capabilities to ensure secure use and management of certificates throughout their lifecycle (installation, storage, use, and destruction).
+The **certManager** module provides system-level certificate management capabilities to implement management and secure use of certificates throughout their lifecycle (installation, storage, use, and destruction).
 
 > **NOTE**
 >
@@ -20,8 +20,8 @@ Enumerates the purposes of using the key.
 
 | Name      | Value|  Description     |
 | ---------- | ------ | --------- |
-| CM_KEY_PURPOSE_SIGN | 4      | The key is used for signing.|
-| CM_KEY_PURPOSE_VERIFY | 8      | The key is used for signature verification.|
+| CM_KEY_PURPOSE_SIGN | 4      | Signs data.|
+| CM_KEY_PURPOSE_VERIFY | 8      | Verifies a signature.|
 
 ## CmKeyDigest
 
@@ -38,7 +38,7 @@ Enumerates the digest algorithms that can be used for signing and signature veri
 | CM_DIGEST_SHA256 | 4      | SHA-256.|
 | CM_DIGEST_SHA384 | 5      | SHA-384.|
 | CM_DIGEST_SHA512 | 6      | SHA-512.|
-| CM_DIGEST_SM3<sup>16+</sup> | 7 | SM3.|
+| CM_DIGEST_SM3<sup>18+</sup> | 7 | SM3.|
 
 ## CmKeyPadding
 
@@ -73,16 +73,16 @@ Represents detailed information about a certificate.
 
 | Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | No  | No | Unique identifier of the certificate.|
-| certAlias          | string   | No | No | Alias of the certificate.|
+| uri          | string         | No  | No | Unique identifier of a certificate. The value contains up to 256 bytes.|
+| certAlias          | string   | No | No | Alias of a certificate. The value contains up to 128 bytes.|
 | state          | boolean     | No | No | Certificate state. The value **true** indicates that the certificate is enabled, and **false** means the opposite.|
-| issuerName          | string         | No | No | Issuer of the certificate.|
-| subjectName          | string   | No | No | User of the certificate.|
-| serial          | string     | No | No | Serial number of the certificate.|
-| notBefore          | string         | No | No | Date from which the certificate takes effect.|
-| notAfter          | string   | No | No | Date when the certificate expires.|
-| fingerprintSha256     | string     | No | No | Fingerprint value of the certificate.|
-| cert          | Uint8Array         | No | No | Certificate data in binary format.|
+| issuerName          | string         | No | No | Name of the certificate issuer. The value contains up to 256 bytes.|
+| subjectName          | string   | No | No | Name of the certificate subject. The value contains up to 1024 bytes.|
+| serial          | string     | No | No | Serial number of a certificate. The value contains up to 64 bytes.|
+| notBefore          | string         | No | No | Start date of a certificate. The value contains up to 32 bytes.|
+| notAfter          | string   | No | No | Expiry date of a certificate. The value contains up to 32 bytes.|
+| fingerprintSha256     | string     | No | No | Fingerprint of a certificate. The value contains up to 128 bytes.|
+| cert          | Uint8Array         | No | No | Binary data of a certificate. The value contains up to 8196 bytes.|
 
 ## CertAbstract
 
@@ -92,10 +92,10 @@ Represents brief information about a certificate.
 
 | Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | No | No | Unique identifier of the certificate.|
-| certAlias          | string   | No | No | Alias of the certificate.|
+| uri          | string         | No | No | Unique identifier of a certificate. The value contains up to 256 bytes.|
+| certAlias          | string   | No | No | Alias of a certificate. The value contains up to 128 bytes.|
 | state          | boolean     | No | No | Certificate state. The value **true** indicates that the certificate is enabled, and **false** means the opposite.|
-| subjectName          | string   | No | No | User of the certificate.|
+| subjectName          | string   | No | No | Name of the certificate subject. The value contains up to 1024 bytes.|
 
 ## Credential
 
@@ -105,12 +105,12 @@ Represents detailed information about a credential.
 
 | Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | No | No | Type of the credential.|
-| alias          | string   | No | No | Alias of the credential.|
-| keyUri          | string     | No | No | Unique identifier of the credential.|
+| type          | string         | No | No | Type of a credential. The value contains up to 8 bytes.|
+| alias          | string   | No | No | Alias of a credential. The value contains up to 128 bytes.|
+| keyUri          | string     | No | No | Unique identifier of a credential. The value contains up to 256 bytes.|
 | certNum          | number         | No | No | Number of certificates contained in the credential.|
 | keyNum          | number   | No | No | Number of keys contained in the credential.|
-| credentialData          | Uint8Array   | No | No | Credential data in binary format.|
+| credentialData          | Uint8Array   | No | No | Binary data of a credential. The value contains up to 24588 bytes.|
 
 ## CredentialAbstract
 
@@ -120,9 +120,9 @@ Represents brief information about a credential.
 
 | Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | No| No | Type of the credential.|
-| alias          | string   | No | No | Alias of the credential.|
-| keyUri          | string     | No | No | Unique identifier of the credential.|
+| type          | string         | No| No | Type of a credential. The value contains up to 8 bytes.|
+| alias          | string   | No | No | Alias of a credential. The value contains up to 128 bytes.|
+| keyUri          | string     | No | No | Unique identifier of a credential. The value contains up to 256 bytes.|
 
 ## CMResult
 
@@ -137,7 +137,7 @@ Represents the result returned.
 | credentialList          | Array<[CredentialAbstract](#credentialabstract)> | No | Yes  | Brief credential information.|
 | credential         | [Credential](#credential) | No | Yes  | Detailed credential information.|
 | appUidList        | Array\<string>     | No | Yes  | List of authorized applications.|
-| uri         | string    | No | Yes  | Unique identifier of the certificate or credential.|
+| uri         | string    | No | Yes  | Unique identifier of a certificate or credential. The value contains up to 256 bytes.|
 | outData         | Uint8Array    | No | Yes  | Signature generated.|
 
 ## CMHandle
@@ -148,7 +148,7 @@ Represents the handle to a signing or signature verification operation.
 
 | Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| handle         | Uint8Array        | No | No  | Handle returned by **certManager.init()** for the subsequent signing or signature verification operation.|
+| handle         | Uint8Array        | No | No  | Handle of the initialization for signing and signature verification. The value contains up to 8 bytes.|
 
 ## CMErrorCode
 
@@ -165,8 +165,9 @@ Enumerates the error codes used in the certificate management APIs.
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | The certificate or credential is in invalid format.|
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | The number of certificates or credentials has reached the limit.|
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | The application has not obtained user authorization.|
+| CM_ERROR_DEVICE_ENTER_ADVSECMODE<sup>18+</sup> | 17500007 | The device enters the advanced security mode.|
 
-## CertType<sup>16+</sup>
+## CertType<sup>18+</sup>
 
 Enumerates the certificate types.
 
@@ -177,7 +178,7 @@ Enumerates the certificate types.
 | CA_CERT_SYSTEM   | 0      | System CA certificate.|
 | CA_CERT_USER   | 1      | User CA certificate.|
 
-## CertScope<sup>16+</sup>
+## CertScope<sup>18+</sup>
 
 Enumerates the certificate scopes.
 
@@ -188,7 +189,7 @@ Enumerates the certificate scopes.
 | CURRENT_USER   | 1      | The certificate is accessible only to the current user.|
 | GLOBAL_USER   | 2      | The certificate is accessible to all users.|
 
-## CertStoreProperty<sup>16+</sup>
+## CertStoreProperty<sup>18+</sup>
 
 Represents the storage information about a certificate, including the certificate type and location.
 
@@ -196,9 +197,20 @@ Represents the storage information about a certificate, including the certificat
 
 | Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| certType          | [CertType](#certtype16)                     | No | No | Type of the certificate.|
-| certScope        | [CertScope](#certscope16)                     | No  | Yes | Scope of the certificate. This parameter is mandatory when **certType** is **CA_CERT_USER**.|
+| certType          | [CertType](#certtype18)                     | No | No | Type of the certificate.|
+| certScope        | [CertScope](#certscope18)                     | No  | Yes | Scope of the certificate. This parameter is mandatory when **certType** is **CA_CERT_USER**.|
 
+## AuthStorageLevel<sup>18+</sup>
+
+Enumerates the credential storage levels.
+
+**System capability**: SystemCapability.Security.CertificateManager
+
+| Name        | Value  | Description                                      |
+| ------------ | ---- | ------------------------------------------ |
+| EL1  | 1    | The credential can be accessed after the device is started.              |
+| EL2  | 2    | The credential can be accessed after the device is unlocked for the first time.          |
+| EL4  | 4    | The credential can be accessed after the device is unlocked.            |
 
 ## certificateManager.installPrivateCertificate
 
@@ -214,7 +226,7 @@ Installs a private credential. This API uses an asynchronous callback to return 
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keystore | Uint8Array                   | Yes  | Keystore file containing the key pair and certificate.|
+| keystore | Uint8Array                   | Yes  | Keystore file with a key pair and certificate. The value contains up to 20480 bytes.|
 | keystorePwd | string | Yes  | Password of the keystore file. The password cannot exceed 32 bytes.|
 | certAlias | string | Yes  | Credential alias. Currently, the alias can contain only digits, letters, and underscores (_) and should not exceed 32 bytes.|
 | callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **uri** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
@@ -229,7 +241,7 @@ For details about the following error codes, see [Certificate Management Error C
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001 | Internal error.     |
 | 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
-| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
+| 17500004 | The number of certificates or credentials reaches the maximum allowed. |
 
 **Example**
 ```ts
@@ -268,7 +280,7 @@ Installs a private credential. This API uses a promise to return the result.
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keystore | Uint8Array                   | Yes  | Keystore file containing the key pair and certificate.|
+| keystore | Uint8Array                   | Yes  | Keystore file with a key pair and certificate. The value contains up to 20480 bytes.|
 | keystorePwd | string | Yes  | Password of the keystore file. The password cannot exceed 32 bytes.|
 | certAlias | string | Yes  | Credential alias. Currently, the alias can contain only digits, letters, and underscores (_) and should not exceed 32 bytes.|
 
@@ -288,7 +300,7 @@ For details about the following error codes, see [Certificate Management Error C
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001 | Internal error.     |
 | 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
-| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
+| 17500004 | The number of certificates or credentials reaches the maximum allowed. |
 
 **Example**
 
@@ -313,6 +325,68 @@ try {
 }
 ```
 
+## certificateManager.installPrivateCertificate<sup>18+</sup>
+
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, level: AuthStorageLevel): Promise\<CMResult>
+
+Installs a private credential and specifies its storage level. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name     | Type      | Mandatory| Description                                                        |
+| ----------- | ---------- | ---- | ------------------------------------------------------------ |
+| keystore    | Uint8Array | Yes  | Keystore file with a key pair and certificate. The value contains up to 20480 bytes.                          |
+| keystorePwd | string     | Yes  | Password of the keystore file.<br>The value contains up to 32 bytes.                  |
+| certAlias   | string     | Yes  | Alias of the credential entered by the user. Only digits, letters, and underscores (_) are supported.<br>The value should contain up to 32 bytes.|
+| level   | [AuthStorageLevel](#authstoragelevel18)   | Yes  | Credential storage level.|
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the operation result, that is, **uri** in the [CMResult](#cmresult) object.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID              | Error Message                                                    |
+| ---------------------- | ------------------------------------------------------------ |
+| 201                    | Permission verification failed. The application does not have the permission required to call the API. |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                              |
+| 17500003               | The keystore is in an invalid format or the keystore password is incorrect. |
+| 17500004               | The number of certificates or credentials reaches the maximum allowed. |
+
+**Example**
+
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+/* The data of the credential to be installed must be assigned based on the service. The data in this example is not the real credential data. */
+let keystore: Uint8Array = new Uint8Array([
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+]);
+let keystorePwd: string = "123456";
+try {
+  /* The credential can be used after the device is unlocked for the first time. */
+  let level = certificateManager.AuthStorageLevel.EL2;
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test', level).then((cmResult) => {
+    let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
+    console.info('Succeeded in installing private certificate.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## certificateManager.getPrivateCertificate
 
 getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
@@ -327,7 +401,7 @@ Obtains detailed information about a private credential. This API uses an asynch
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | Yes  | Unique identifier of the target credential.|
+| keyUri | string                   | Yes  | Unique identifier of the credential to be obtained. The value contains up to 256 bytes.|
 | callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **credential** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -345,7 +419,7 @@ For details about the following error codes, see [Certificate Management Error C
 ```ts
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 try {
   certificateManager.getPrivateCertificate(uri, (err, cmResult) => {
     if (err != null) {
@@ -378,7 +452,7 @@ Obtains detailed information about a private credential. This API uses a promise
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | Yes  | Unique identifier of the target credential.|
+| keyUri | string                   | Yes  | Unique identifier of the credential to be obtained. The value contains up to 256 bytes.|
 
 **Return value**
 
@@ -402,7 +476,7 @@ For details about the following error codes, see [Certificate Management Error C
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 try {
   certificateManager.getPrivateCertificate(uri).then((cmResult) => {
     if (cmResult?.credential == undefined) {
@@ -433,7 +507,7 @@ Uninstalls a private credential. This API uses an asynchronous callback to retur
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | Yes  | Unique identifier of the credential to uninstall.|
+| keyUri | string                   | Yes  | Unique identifier of the credential to be uninstalled. The value contains up to 256 bytes.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -451,7 +525,7 @@ For details about the following error codes, see [Certificate Management Error C
 ```ts
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 try {
   certificateManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
@@ -479,7 +553,7 @@ Uninstalls a private credential. This API uses a promise to return the result.
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | Yes  | Unique identifier of the credential to uninstall.|
+| keyUri | string                   | Yes  | Unique identifier of the credential to be uninstalled. The value contains up to 256 bytes.|
 
 **Return value**
 
@@ -503,7 +577,7 @@ For details about the following error codes, see [Certificate Management Error C
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 try {
   certificateManager.uninstallPrivateCertificate(uri).then((cmResult) => {
     console.info('Succeeded in uninstalling private certificate.');
@@ -515,7 +589,7 @@ try {
 }
 ```
 
-## certificateManager.installUserTrustedCertificateSync<sup>16+</sup>
+## certificateManager.installUserTrustedCertificateSync<sup>18+</sup>
 
 installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMResult
 
@@ -529,8 +603,8 @@ Installs a user CA certificate.
 
 | Name      | Type                        | Mandatory| Description          |
 |-----------|----------------------------|----|--------------|
-| cert      | Uint8Array                 | Yes | Data of the CA certificate to install.   |
-| certScope | [CertScope](#certscope16)  | Yes | Scope of the CA certificate.|
+| cert      | Uint8Array                 | Yes | CA certificate data. The value contains up to 8196 bytes.   |
+| certScope | [CertScope](#certscope18)  | Yes | Scope of the CA certificate.|
 
 **Return value**
 
@@ -548,8 +622,8 @@ For details about the following error codes, see [Certificate Management Error C
 | 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001               | Internal error.                                                                                                                                 |
 | 17500003               | Indicates that the certificate is in an invalid format.                                                                                         |
-| 17500004<sup>12+</sup> | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
-| 17500007<sup>16+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
+| 17500004               | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
+| 17500007               | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
 
 **Example**
 
@@ -573,7 +647,7 @@ try {
 }
 ```
 
-## certificateManager.uninstallUserTrustedCertificateSync<sup>16+</sup>
+## certificateManager.uninstallUserTrustedCertificateSync<sup>18+</sup>
 
 uninstallUserTrustedCertificateSync(certUri: string) : void
 
@@ -587,7 +661,7 @@ Uninstalls a user CA certificate.
 
 | Name      | Type                        | Mandatory| Description          |
 |-----------|----------------------------|----|--------------|
-| certUri     | string                 | Yes | Unique identifier of the certificate to uninstall.   |
+| certUri     | string                 | Yes | Unique identifier of the certificate to be uninstalled. The value contains up to 256 bytes.   |
 
 **Error codes**
 
@@ -627,7 +701,7 @@ Initializes the signing or signature verification operation using the specified 
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| authUri | string                   | Yes  | Unique identifier of the credential to use.|
+| authUri | string                   | Yes  | Unique identifier of the credential to be used. The value contains up to 256 bytes.|
 | spec | [CMSignatureSpec](#cmsignaturespec) | Yes  | Parameters for the signing or signature verification operation.|
 | callback | AsyncCallback\<[CMHandle](#cmhandle)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the obtained **CMHandle**. Otherwise, **err** is an error object.|
 
@@ -647,7 +721,7 @@ For details about the following error codes, see [Certificate Management Error C
 ```ts
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
@@ -680,7 +754,7 @@ Initializes the signing or signature verification operation using the specified 
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| authUri | string                   | Yes  | Unique identifier of the credential to use.|
+| authUri | string                   | Yes  | Unique identifier of the credential to be used. The value contains up to 256 bytes.|
 | spec | [CMSignatureSpec](#cmsignaturespec) | Yes  | Parameters for the signing or signature verification operation.|
 
 **Return value**
@@ -706,7 +780,7 @@ For details about the following error codes, see [Certificate Management Error C
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
@@ -737,7 +811,7 @@ Updates the data for the signing or signature verification operation. This API u
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
+| handle | Uint8Array                   | Yes  | Handle of initialization. The value contains up to 8 bytes.|
 | data | Uint8Array                   | Yes  | Data to be signed or verified.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -789,7 +863,7 @@ Updates the data for the signing or signature verification operation. This API u
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
+| handle | Uint8Array                   | Yes  | Handle of initialization. The value contains up to 8 bytes.|
 | data | Uint8Array                   | Yes  | Data to be signed or verified.|
 
 **Return value**
@@ -845,7 +919,7 @@ Finishes the signing operation. This API uses an asynchronous callback to return
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
+| handle | Uint8Array                   | Yes  | Handle of initialization. The value contains up to 8 bytes.|
 | callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the signature, that is, **outData** of the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -898,8 +972,8 @@ Finishes the signature verification operation. This API uses an asynchronous cal
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
-| signature | Uint8Array                   | Yes  | Signature data to verify.|
+| handle | Uint8Array                   | Yes  | Handle of initialization. The value contains up to 8 bytes.|
+| signature | Uint8Array                   | Yes  | Data to sign or verify.|
 | callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -950,14 +1024,14 @@ Finishes the signing or signature verification operation. This API uses a promis
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
+| handle | Uint8Array                   | Yes  | Handle of initialization. The value contains up to 8 bytes.|
 | signature | Uint8Array                   | No  | Data to sign or verify.|
 
 **Return value**
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](#cmresult)> | Promise used to return the result. For a signing operation, the promise returns the signature, that is, **outData** in the [CMResult](#cmresult) object, is returned. For a signature verification operation, the promise returns no value.|
+| Promise\<[CMResult](#cmresult)> | Promise used to return the signature of a signing operation, that is, **outData** in the [CMResult](#cmresult) object. For a signature verification operation, the promise returns no value.|
 
 **Error codes**
 
@@ -1020,7 +1094,7 @@ Aborts the signing or signature verification operation. This API uses an asynchr
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
+| handle | Uint8Array                   | Yes  | Handle of initialization. The value contains up to 8 bytes.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1068,7 +1142,7 @@ Aborts the signing or signature verification operation. This API uses a promise 
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
+| handle | Uint8Array                   | Yes  | Handle of initialization. The value contains up to 8 bytes.|
 
 **Return value**
 
@@ -1120,7 +1194,7 @@ Obtains detailed information about a public credential. This API uses a promise 
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | Yes  | Unique identifier of the public credential.|
+| keyUri | string                   | Yes  | Unique identifier of a user's public credential. The value contains up to 256 bytes.|
 
 **Return value**
 
@@ -1176,13 +1250,13 @@ Checks whether this application is authorized by the specified user credential. 
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | Yes  | Unique identifier of the credential.|
+| keyUri | string                   | Yes  | Unique identifier of the credential authorized by the user to the application. The value contains up to 256 bytes.|
 
 **Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return a Boolean value, which indicates whether the application is authorized by the specified user credential.|
+| Promise\<boolean> | Promise used to return whether the application is authorized. The value **true** means authorized; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -1247,7 +1321,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // If the number of root CA certificates is 0, return undefined in cmResult.
+    if (cmResult == undefined) { // If the number of root CA certificates is 0, the returned cmResult is undefined.
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
@@ -1263,7 +1337,7 @@ try {
 }
 ```
 
-## certificateManager.getAllUserTrustedCertificates<sup>16+</sup>
+## certificateManager.getAllUserTrustedCertificates<sup>18+</sup>
 
 getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult>
 
@@ -1277,7 +1351,7 @@ Obtains the user root CA certificates based on the certificate scope. This API u
 
 | Name| Type                     | Mandatory| Description            |
 | ------ | ------------------------- | ---- | ---------------- |
-| scope  | [CertScope](#certscope16) | Yes  | Scope of the certificates to obtain.|
+| scope  | [CertScope](#certscope18) | Yes  | Scope of the certificates to obtain.|
 
 **Return value**
 
@@ -1305,7 +1379,7 @@ try {
   /* Obtain the user root CA certificates of the current user. To obtain the user root CA certificates accessible to all users, pass in GLOBAL_USER. */
   let scope: certificateManager.CertScope = certificateManager.CertScope.CURRENT_USER;
   certificateManager.getAllUserTrustedCertificates(scope).then((cmResult) => {
-    if (cmResult == undefined) { // If the number of root CA certificates is 0, return undefined in cmResult.
+    if (cmResult == undefined) { // If the number of root CA certificates is 0, the returned cmResult is undefined.
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting current user trusted certificates is undefined.');
@@ -1335,7 +1409,7 @@ Obtains the detailed information about a user root CA certificate. This API uses
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| certUri | string                   | Yes  | Unique identifier of the user root CA certificate.|
+| certUri | string                   | Yes  | Unique identifier of a user's root CA certificate. The value contains up to 256 bytes.|
 
 **Return value**
 
@@ -1389,7 +1463,7 @@ Obtains the credentials for installing the application. This API uses a promise 
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](#cmresult)> | Promise used to return the credentials obtained, which is **credentialList** in [CMResult](#cmresult).|
+| Promise\<[CMResult](#cmresult)> | Promise used to return credentials obtained, which is **credentialList** in [CMResult](#cmresult).|
 
 **Error codes**
 
@@ -1422,7 +1496,7 @@ try {
   console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
 }
 ```
-## certificateManager.getCertificateStorePath<sup>16+</sup>
+## certificateManager.getCertificateStorePath<sup>18+</sup>
 
 getCertificateStorePath(property: CertStoreProperty): string;
 
@@ -1434,13 +1508,13 @@ Obtains the certificate storage path.
 
 | Name  | Type                                     | Mandatory| Description                            |
 | -------- | ----------------------------------------- | ---- | -------------------------------- |
-| property | [CertStoreProperty](#certstoreproperty16) | Yes  | Storage information about the target certificate.|
+| property | [CertStoreProperty](#certstoreproperty18) | Yes  | Storage information about the target certificate.|
 
 **Return value**
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | Certificate storage path obtained.|
+| string | Certificate storage path.|
 
 **Error codes**
 
@@ -1462,7 +1536,7 @@ try {
   }
   let systemCAPath = certificateManager.getCertificateStorePath(property1);
   console.info(`Success to get system ca path: ${systemCAPath}`);
-    
+
   /* Obtain the storage path of the CA certificates for the current user. */
   let property2: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,
@@ -1470,7 +1544,7 @@ try {
   }
   let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
   console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
-  
+
   /* Obtain the storage path of the CA certificates for all users. */
   let property3: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,

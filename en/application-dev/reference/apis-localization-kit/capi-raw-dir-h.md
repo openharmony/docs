@@ -6,6 +6,10 @@ Provides functions related to the **rawfile** directory. These functions include
 
 **File to include**: <rawfile/raw_dir.h>
 
+**Library**: librawfile.z.so
+
+**System capability**: SystemCapability.Global.ResourceManager
+
 **Since**: 8
 
 **Related module**: [rawfile](capi-rawfile.md)

@@ -5,7 +5,7 @@
 
 提供标准的JavaScript引擎能力。
 
-功能概述： 标准JS引擎是严格遵守Ecmascript规范的JavaScript代码执行引擎。 支持Ecmascript规范定义的标准库，提供完备的C++交互JS的native API。 通过jit加速代码执行，为应用提供安全、高效的JS执行能力。 标准JS引擎的能力通过一套稳定的ABI，即JSVM-API提供。JSVM-API支持动态链接到不同版本的JS引擎库， 从而为开发者屏蔽掉不同引擎接口的差异。JSVM-API提供引擎生命周期管理、JS context管理、 JS代码执行、JS/C++互操作、执行环境快照、codecache等能力。
+功能概述： 标准JS引擎是严格遵守ECMAscript规范的JavaScript代码执行引擎。 支持ECMAscript规范定义的标准库，提供完备的C++交互JS的native API。 通过jit加速代码执行，为应用提供安全、高效的JS执行能力。 标准JS引擎的能力通过一套稳定的ABI，即JSVM-API提供。JSVM-API支持动态链接到不同版本的JS引擎库， 从而为开发者屏蔽掉不同引擎接口的差异。JSVM-API提供引擎生命周期管理、JS context管理、 JS代码执行、JS/C++互操作、执行环境快照、codecache等能力。
 
 使用平台：arm64平台。
 

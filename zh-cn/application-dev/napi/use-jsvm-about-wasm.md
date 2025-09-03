@@ -219,6 +219,5 @@ const char *srcCallNative = R"JS(wasmDemo())JS";
 ```
 预期输出
 ```
-JSVM Init
 JSVM resultInt: 975178312
 ```

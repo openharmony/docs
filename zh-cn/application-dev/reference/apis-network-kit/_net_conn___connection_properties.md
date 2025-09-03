@@ -18,15 +18,15 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ifaceName](#ifacename) [NETCONN_MAX_STR_LEN] | 网络接口的名称。 | 
-| [domain](#domain) [NETCONN_MAX_STR_LEN] | 网络连接的域名信息。 | 
-| [tcpBufferSizes](#tcpbuffersizes) [NETCONN_MAX_STR_LEN] | TCP 缓冲区大小。 | 
+| [ifaceName](#ifacename) [[NETCONN_MAX_STR_LEN]](_net_connection.md#宏定义) | 网络接口的名称。 | 
+| [domain](#domain) [[NETCONN_MAX_STR_LEN]](_net_connection.md#宏定义) | 网络连接的域名信息。 | 
+| [tcpBufferSizes](#tcpbuffersizes) [[NETCONN_MAX_STR_LEN]](_net_connection.md#宏定义) | TCP 缓冲区大小。 | 
 | [mtu](#mtu) | MTU。 | 
-| [netAddrList](#netaddrlist) [NETCONN_MAX_ADDR_SIZE] | 地址列表。 | 
+| [netAddrList](#netaddrlist) [[NETCONN_MAX_ADDR_SIZE]](_net_connection.md#宏定义) | 地址列表。 | 
 | [netAddrListSize](#netaddrlistsize) | 地址列表的实际size。 | 
-| [dnsList](#dnslist) [NETCONN_MAX_ADDR_SIZE] | DNS 列表。 | 
+| [dnsList](#dnslist) [[NETCONN_MAX_ADDR_SIZE]](_net_connection.md#宏定义) | DNS 列表。 | 
 | [dnsListSize](#dnslistsize) | DNS 列表的实际size。 | 
-| [routeList](#routelist) [NETCONN_MAX_ROUTE_SIZE] | 路由列表。 | 
+| [routeList](#routelist) [[NETCONN_MAX_ROUTE_SIZE]](_net_connection.md#宏定义) | 路由列表。 | 
 | [routeListSize](#routelistsize) | 路由列表的实际大小。 | 
 | [httpProxy](#httpproxy) | HTTP 代理信息。 | 
 

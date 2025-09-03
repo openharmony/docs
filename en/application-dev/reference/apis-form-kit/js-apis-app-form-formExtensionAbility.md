@@ -272,8 +272,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-Called when system configuration items change.
- The **onConfigurationUpdate** callback is triggered only when the FormExtensionAbility is alive. If no operation is performed within 10 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
+Called when the configuration of the environment where the widget is running is being updated.
+This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive. If no operation is performed within 10 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
 
 **Model restriction**: This API can be used only in the stage model.
 

@@ -380,4 +380,4 @@ async deleteAllBackTasks() {
 
 针对断点续传，有以下相关实例可以参考：  
 
-- [上传和下载](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
+- [上传和下载](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)

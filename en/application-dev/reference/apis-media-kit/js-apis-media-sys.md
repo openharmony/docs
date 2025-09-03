@@ -17,9 +17,9 @@ import { media } from '@kit.MediaKit';
 
 createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
-Creates a **VideoRecorder** instance. This API uses an asynchronous callback to return the result.
+Creates a VideoRecorder instance. This API uses an asynchronous callback to return the result.
 
-Only one **VideoRecorder** instance can be created per device.
+Only one VideoRecorder instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -29,7 +29,7 @@ Only one **VideoRecorder** instance can be created per device.
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, a VideoRecorder instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
 
 **Error codes**
 
@@ -60,9 +60,9 @@ media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => 
 
 createVideoRecorder(): Promise\<VideoRecorder>
 
-Creates a **VideoRecorder** instance. This API uses a promise to return the result.
+Creates a VideoRecorder instance. This API uses a promise to return the result.
 
-Only one **VideoRecorder** instance can be created per device.
+Only one VideoRecorder instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -72,7 +72,7 @@ Only one **VideoRecorder** instance can be created per device.
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, a VideoRecorder instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
 
 **Error codes**
 
@@ -155,7 +155,7 @@ try {
 
 getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
 
-Obtains a **ScreenCaptureMonitor** instance. This API uses a promise to return the result.
+Obtains a ScreenCaptureMonitor instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -165,7 +165,7 @@ Obtains a **ScreenCaptureMonitor** instance. This API uses a promise to return t
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise used to return the result. The instance can be used to query and monitor the status of the system screen recorder.<br>If the operation is successful, a **ScreenCaptureMonitor** instance is returned; otherwise, **null** is returned.|
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise used to return the result. The instance can be used to query and monitor the status of the system screen recorder.<br>If the operation is successful, a ScreenCaptureMonitor instance is returned; otherwise, **null** is returned.|
 
 **Error codes**
 
@@ -213,7 +213,7 @@ Enumerates the color formats supported by the video thumbnail.
 
 ## AVMetadataExtractor<sup>11+</sup>
 
-Provides APIs to obtain metadata from media assets. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
+Provides APIs to obtain metadata from media assets. Before calling any API of AVMetadataExtractor, you must use [createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11) to create an AVMetadataExtractor instance.
 
 ### getTimeByFrameIndex<sup>12+</sup>
 
@@ -307,7 +307,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 
 ## AVRecorder<sup>9+</sup>
 
-A recording management class that provides APIs to record media assets. Before calling any API in **AVRecorder**, you must use [createAVRecorder()](js-apis-media.md#mediacreateavrecorder9) to create an **AVRecorder** instance.
+A recording management class that provides APIs to record media assets. Before calling any API in AVRecorder, you must use [createAVRecorder()](js-apis-media.md#mediacreateavrecorder9) to create an AVRecorder instance.
 
 > **NOTE**
 >
@@ -1180,7 +1180,7 @@ videoRecorder.on('error', (error: BusinessError) => { // Set the 'error' event c
 
 ## VideoRecordState<sup>9+</sup>
 
-Enumerates the video recording states. You can obtain the state through the **state** attribute.
+Enumerates the video recording states. You can obtain the state through the **state** property.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 

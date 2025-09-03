@@ -5,13 +5,13 @@ The **dragController** module provides APIs for initiating drag actions. When re
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is ambiguous](../../ui/arkts-global-interface.md#ambiguous-ui-context). For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
 > You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## Modules to Import
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 ```
 
 ## dragController.executeDrag<sup>(deprecated)</sup>
@@ -54,7 +54,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -169,7 +169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -273,9 +273,9 @@ struct DragControllerPage {
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
 Defines the attributes required for initiating a drag action and information carried in the dragging process.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -292,7 +292,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 Creates a drag action object for initiating drag and drop operations. You need to explicitly specify one or more drag previews, the drag data, and the drag handle point. If a drag operation initiated by an existing drag action object is not completed, no new object can be created, and calling the API will throw an exception. After the lifecycle of the drag action object ends, the callback functions registered on this object become invalid. Therefore, it is necessary to hold this object within a longer scope and replace the old value with a new object returned by **createDragAction** before each drag initiation.
 
 > **NOTE**
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [createDragAction](js-apis-arkui-UIContext.md#createdragaction11) instead on the obtained [DragController](js-apis-arkui-UIContext.md#dragcontroller11) object.
+> This API is supported since API version 11 and deprecated since API version 18. You are advised to use [createDragAction](js-apis-arkui-UIContext.md#createdragaction11) instead on the obtained [DragController](js-apis-arkui-UIContext.md#dragcontroller11) object.
 >
 > Since API version 11, you can use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [DragController](js-apis-arkui-UIContext.md#dragcontroller11) object associated with the current UI context.
 >
@@ -330,7 +330,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -377,7 +377,7 @@ struct DragControllerPage {
       Button('Drag Multiple Objects').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            console.info("muti drag Down by listener");
+            console.info("multi drag Down by listener");
             this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -439,6 +439,12 @@ Starts the drag service. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 | ID| Error Message     |
@@ -452,7 +458,7 @@ Starts the drag service. This API uses a promise to return the result.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -473,7 +479,7 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button('Touch to Drag').onTouch((event?:TouchEvent) => {
+      Button('touch to execute drag').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
             this.customBuilders.splice(0, this.customBuilders.length);
@@ -529,7 +535,7 @@ Subscribes to drag state changes.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -611,7 +617,7 @@ Unsubscribes from drag state changes.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -673,11 +679,11 @@ struct DragControllerPage {
 
 ## DragAndDropInfo<sup>11+</sup>
 
+Provides the data reported when the state changes during dragging.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Provides the data reported when the state changes during dragging.
 
 | Name         | Type                                                  | Mandatory| Description                                    |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -687,11 +693,11 @@ Provides the data reported when the state changes during dragging.
 
 ## DragStatus<sup>11+</sup>
 
+Describes the dragging start and end states.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Describes the dragging start and end states.
 
 | Name         | Value                                                  | Description                                    |
 | -----------   | ------------------------------------------------------| ---------------------------------------- |
@@ -700,29 +706,29 @@ Describes the dragging start and end states.
 
 ## AnimationOptions<sup>11+</sup>
 
+Defines parameters related to drag-and-drop animation effects.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Defines the attributes required for initiating a drag action and information carried in the dragging process.
 
 | Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | duration    | number                                                 | No  | Animation duration, in ms.<br>Default value: **1000**<br>**NOTE**<br>- If this parameter is set to a value less than 0, the value **0** is used.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
-| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve9) | No   | Animation curve.<br>Default value: **Curve.EaseInOut**|                          |
+| curve       | [Curve](arkui-ts/ts-appendix-enums.md#curve) \| [ICurve](js-apis-curve.md#icurve9) | No   | Animation curve.<br>Default value: **Curve.EaseInOut**|                          |
 
 ## DragEventParam<sup>12+</sup>
+
+Callback used to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-Represents the callback used to return the result after a drag ends.
-
 | Name       | Type                                                        | Mandatory| Description                          |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | Yes  | Drag event information that includes only the drag result.|
-| extraParams | string                                                       | Yes  | Additional information about the drag event.            |
+| event<sup>10+</sup>       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | Yes  | Drag event information that includes only the drag result.|
+| extraParams<sup>10+</sup> | string                                                       | Yes  | Additional information about the drag event.            |
 
 ## dragController.getDragPreview<sup>(deprecated)</sup>
 
@@ -732,7 +738,7 @@ Obtains the **DragPreview** object, which represents the preview displayed durin
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getDragPreview](js-apis-arkui-UIContext.md#getdragpreview11) instead on the obtained [DragController](js-apis-arkui-UIContext.md#dragcontroller11) object.
+> This API is supported since API version 11 and deprecated since API version 18. You are advised to use [getDragPreview](js-apis-arkui-UIContext.md#getdragpreview11) instead on the obtained [DragController](js-apis-arkui-UIContext.md#dragcontroller11) object.
 >
 > Since API version 11, you can use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [DragController](js-apis-arkui-UIContext.md#dragcontroller11) object associated with the current UI context.
 
@@ -832,7 +838,7 @@ export default class EntryAbility extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',  `Code is ${err.code}, message is ${err.message}`);
       windowStage.getMainWindow((err, data) => {
         if (err.code) {
-          hilog.error(0x0000, 'Failed to obtain the main window. Cause:' + err.message, '');
+          hilog.error(0x0000, `Failed to obtain the main window. Cause: ${err.message}`, '');
           return;
         }
         let windowClass: window.Window = data;
@@ -848,7 +854,7 @@ export default class EntryAbility extends UIAbility {
 
 import { unifiedDataChannel } from '@kit.ArkData';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { dragController, curves, promptAction, UIContext } from "@kit.ArkUI";
+import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -921,7 +927,7 @@ struct DragControllerPage {
             this.getUIContext().getDragController().executeDrag(() => { // You are advised to usethis.getUIContext().getDragController().executeDrag().
               this.DraggingBuilder()
             }, dragInfo, (err , eve) => {
-              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              hilog.info(0x0000, `${JSON.stringify(err)}`, '')
               if (eve && eve.event) {
                 if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                   hilog.info(0x0000, 'success', '');

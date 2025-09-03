@@ -1,4 +1,4 @@
-# DataAbility Configuration
+# DataAbility Component Configuration
 
 
 ## URI Introduction

@@ -229,7 +229,8 @@ function copyFileWithReadable(context: common.UIAbilityContext): void {
   });
 }
 
-function copyFileWithData(): void {
+function copyFileWithData(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // Create a readable stream.
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // Create a writable stream.

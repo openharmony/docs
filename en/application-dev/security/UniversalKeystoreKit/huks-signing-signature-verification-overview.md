@@ -1,8 +1,6 @@
 # Signing and Signature Verification Overview and Algorithm Specifications
 
-
 To ensure data integrity and non-repudiation, you can use the generated or imported key to perform signing and signature verification.
-
 
 ## Supported Algorithms
 
@@ -20,13 +18,13 @@ The key management service specifications include mandatory specifications and o
 | RSA/NoDigest/PKCS1_V1_5 | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**. The service side hashes the plaintext and passes in the hashed data. The length of the hashed data must meet the MD algorithm specifications supported by RSA signing and signature verification.| 9+ | Yes|
 | <!--DelRow-->DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512 | - | 8+ | No|
 | <!--DelRow-->DSA/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
-| <!--DelRow-->ECC/SHA1<br>ECC/SHA224 | - | 8+ | No|
-| ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512 | The ECC algorithm supports elliptic curve functions P-256, P-384, and P-521.| 8+ | Yes|
-| <!--DelRow-->ECC/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
+| <!--DelRow-->ECC/SHA1<br>ECC/SHA224 | The signature is in the ASN1 format.| 8+ | No|
+| ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512 | The signature is in the ASN1 format.<br>The ECC algorithm supports the following elliptic curve functions: P-256, P-384, and P-521.| 8+ | Yes|
+| <!--DelRow-->ECC/NoDigest | The signature is in the ASN1 format.<br>**TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
 | ED25519/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 8+ | Yes|
-| SM2/SM3 | - | 9+ | Yes|
+| SM2/SM3 | The signature is in the ASN1 format.| 9+ | Yes|
 
-**Specifications for Mini-System Devices**
+**Specifications for Mini-system Device**
 
 <!--Del-->
 Before implementing the specifications for mini-system devices, determine whether your device supports the related specifications.
@@ -37,3 +35,5 @@ Before implementing the specifications for mini-system devices, determine whethe
 | RSA/SHA256/PKCS1_V1_5 | - | 12+ |
 | RSA/SHA256/PSS | - | 12+ |
 | RSA/SHA1/ISO_IEC_9796_2 | Minimum data length = Key length - 21 bytes| 12+ |
+
+<!--RP1--><!--RP1End-->

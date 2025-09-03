@@ -9,7 +9,7 @@
 > 从API Version 9开始该模块不再维护，替代接口仅向系统应用开放。<!--Del-->建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)替代。<!--DelEnd-->
 
 ## ShortcutInfo<sup>(deprecated)<sup>
-> 从API version 9开始不再维护，替代接口仅向系统应用开放。<!--Del-->建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md#shortcutinfo)替代。<!--DelEnd-->
+> 从API version 9开始不再维护，替代接口仅向系统应用开放。<!--Del-->建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md#shortcutinfo-1)替代。<!--DelEnd-->
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 

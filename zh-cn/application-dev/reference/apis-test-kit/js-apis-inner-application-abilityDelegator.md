@@ -1,5 +1,11 @@
 # AbilityDelegator
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2; @xuzhihao666-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+
 AbilityDelegator提供对[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)生命周期的监控与管理能力。开发者通过[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例，可以实现获取UIAbility当前状态（如是否已创建/是否在前台等）、查询当前获焦的UIAbility、等待UIAbility进入某个生命周期节点（如等待UIAbility进入onForeground）、启动指定UIAbility、设置超时机制等功能。
 
 > **说明：**
@@ -58,7 +64,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 
@@ -114,7 +120,7 @@ function onAbilityCreateCallback(data: UIAbility) {
 }
 
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -162,7 +168,7 @@ function onAbilityCreateCallback(data: UIAbility) {
 }
 
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 
@@ -210,7 +216,7 @@ function onAbilityCreateCallback(data: UIAbility) {
 }
 
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
+    abilityName: 'abilityName',
     onAbilityCreate: onAbilityCreateCallback
 };
 
@@ -259,7 +265,7 @@ import { UIAbility } from '@kit.AbilityKit';
 
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 
@@ -306,7 +312,7 @@ import { UIAbility } from '@kit.AbilityKit';
 
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 
@@ -353,7 +359,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 
@@ -408,7 +414,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 
@@ -468,7 +474,7 @@ import { UIAbility } from '@kit.AbilityKit';
 
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-  abilityName: 'abilityname',
+  abilityName: 'abilityName',
   onAbilityCreate: onAbilityCreateCallback
 };
 

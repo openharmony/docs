@@ -278,13 +278,13 @@ try {
 try {
   testNapi.napiThrowError(5, 0);
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorManager: %{public}s', error.code, error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorMessage: %{public}s', error.code, error.message);
 }
 ```
 
 ### napi_throw_type_error
 
-创建并抛出一个带文本信息的ArkTS TypeError。
+抛出一个带文本信息的ArkTS TypeError。
 
 cpp部分代码
 
@@ -343,7 +343,7 @@ try {
 
 ### napi_throw_range_error
 
-创建并获取一个带文本信息的ArkTS RangeError。
+抛出一个带文本信息的ArkTS RangeError。
 
 cpp部分代码
 
@@ -386,7 +386,7 @@ static napi_value ThrowRangeError(napi_env env, napi_callback_info info)
 ```ts
 // index.d.ts
 export const throwRangeErrorMessage: () => void;
-export const throwRangeError: (num: number) => number | void;
+export const throwRangeError: (num: number) => number | undefined;
 ```
 
 ArkTS侧示例代码
@@ -482,7 +482,7 @@ static napi_value GetAndClearLastException(napi_env env, napi_callback_info info
 
 ```ts
 // index.d.ts
-export const getAndClearLastException: () => Error | void;
+export const getAndClearLastException: () => Error | undefined;
 ```
 
 ArkTS侧示例代码
@@ -533,7 +533,7 @@ static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isExceptionPending: () => Object | void;
+export const isExceptionPending: () => Object | undefined;
 ```
 
 ArkTS侧示例代码
@@ -645,5 +645,5 @@ testNapi.fatalException(err);
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

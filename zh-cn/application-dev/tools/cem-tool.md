@@ -4,7 +4,7 @@ Common Event Manager（公共事件管理工具， 简称cem）是实现公共�
 
 ## 环境要求
 
-在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
+在使用本工具前，开发者需要先获取[hdc工具](../dfx/hdc.md#环境准备)，执行hdc shell。
 
 ## cem工具命令列表
 

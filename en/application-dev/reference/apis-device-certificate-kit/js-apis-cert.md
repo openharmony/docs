@@ -34,7 +34,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | Failed to obtain the certificate issuer.       |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | The key cannot be used for signing a certificate.  |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  The key cannot be used for digital signature. |
-| ERR_MAYBE_WRONG_PASSWORD<sup>16+</sup>              | 19030008 | The password for the private key is incorrect.               |
+| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | The password for the private key is incorrect.<br> **Atomic service API**: This API can be used in atomic services since API version 18.       |
 
 ## DataBlob
 Defines a binary data array.
@@ -42,9 +42,9 @@ Defines a binary data array.
  **Atomic service API**: This API can be used in atomic services since API version 12.
 
  **System capability**: SystemCapability.Security.Cert
-| Name          | Type          | Readable| Writable| Description             |
+| Name          | Type          | Read-Only| Optional| Description             |
 | -------------- | -------------- | ---- | ---- | ----------------|
-| data           | Uint8Array     | Yes  | Yes  | Data.   |
+| data           | Uint8Array     | No  | No  | Data.   |
 
 ## DataArray
 
@@ -53,9 +53,9 @@ Defines a list of data arrays.
  **Atomic service API**: This API can be used in atomic services since API version 12.
 
  **System capability**: SystemCapability.Security.Cert
-| Name          | Type          | Readable| Writable| Description              |
+| Name          | Type          | Read-Only| Optional| Description              |
 | -------------- | -------------- | ---- | ---- | ----------------|
-| data           | Uint8Array     | Yes  | Yes  | Data list.   |
+| data           | Array\<Uint8Array>     | No  | No  | Data list.   |
 
 ## EncodingFormat
 
@@ -71,11 +71,11 @@ Defines a list of data arrays.
 | FORMAT_PEM | 1      | Privacy-Enhanced Mail (PEM) format.|
 | FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS #7 format.|
 
-## EncodingBaseFormat<sup>16+</sup>
+## EncodingBaseFormat<sup>18+</sup>
 
  Enumerates the CSR encoding formats.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
  **System capability**: SystemCapability.Security.Cert
 
@@ -84,33 +84,33 @@ Defines a list of data arrays.
 | PEM | 0      | Privacy-Enhanced Mail (PEM) format.|
 | DER | 1      | Distinguished Encoding Rules (DER) format.|
 
-## CsrAttribute<sup>16+</sup>
-Defines the extension attributes for the CSR encoding format configuration.
+## CsrAttribute<sup>18+</sup>
+ Defines the extension attributes for the CSR encoding format configuration.
 
 OpenSSL defines extension types, such as challengePassword and keyUsage.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
  **System capability**: SystemCapability.Security.Cert
 
-| Name      | Value|  Description     |
-| ---------- | ------ | --------- |
-| type | Extension type.| Extension type defined by OpenSSL.|
-| value | Extension type value.| Extension type value.|
+| Name   | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| type | string | No  | No  | Extension type defined by OpenSSL.|
+| value | string | No  | No | Extended value.|
 
-## CsrGenerationConfig<sup>16+</sup>
+## CsrGenerationConfig<sup>18+</sup>
 Represents the configuration for generating a CSR using an RSA private key, including the subject, extension, message digest algorithm, and output format.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name   | Type  | Readable| Writable| Description                                                        |
+| Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| subject | [X500DistinguishedName](#x500distinguishedname12) | Yes  | Yes  | DN object defined by X.509.|
-| mdName | string | Yes  | Yes  | MD algorithm name.|
-| attributes | [CsrAttribute](#csrattribute16) | Yes  | Yes  | Extension attributes.|
-| outFormat | [EncodingBaseFormat](#encodingbaseformat16) | Yes  | Yes  | Output format.|
+| subject | [X500DistinguishedName](#x500distinguishedname12) | No  | No  | Provides APIs for managing the **X500DistinguishedName** instance.|
+| mdName | string | No  | No  | MD algorithm to use.|
+| attributes | Array\<[CsrAttribute](#csrattribute18)> | No  | Yes  | Extension.|
+| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | No  | Yes  | Output format.|
 
 > **NOTE**
 >
@@ -188,10 +188,10 @@ Defines a certificate binary array in encoding format.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Readable| Writable| Description                          |
+| Name          | Type                             | Read-Only| Optional| Description                          |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------ |
-| data           | Uint8Array                        | Yes  | Yes  | Certificate data.|
-| encodingFormat | [EncodingFormat](#encodingformat) | Yes  | Yes  | Certificate encoding format.            |
+| data           | Uint8Array                        | No  | No  | Certificate data.|
+| encodingFormat | [EncodingFormat](#encodingformat) | No  | No  | Certificate encoding format.            |
 
 
 ## CertChainData
@@ -204,11 +204,11 @@ Defines the certificate chain data, which is passed in as input parameters durin
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Readable| Writable| Description                                                        |
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| data           | Uint8Array                        | Yes  | Yes  | Certificate data, in the *length* (2 bytes) + *data* format. For example, **08ABCDEFGH07ABCDEFG**. The first two bytes indicate the length of the first certificate is eight bytes, and the following eight bytes indicate the certificate data. Then, the next two bytes indicate the length of another certificate is seven bytes, and the seven bytes followed indicate the certificate data.|
-| count          | number                            | Yes  | Yes  | Number of certificates contained in the input data.                              |
-| encodingFormat | [EncodingFormat](#encodingformat) | Yes  | Yes  | Certificate encoding format.                                          |
+| data           | Uint8Array                        | No  | No  | Certificate data, which is a combination of the certificate length (2 bytes) and data. For example, **08ABCDEFGH07ABCDEFG** indicates that the first certificate is an 8-byte certificate, followed by 8-byte certificate data. The second certificate is a 7-byte certificate, followed by 7-byte certificate data.|
+| count          | number                            | No  | No  | Number of certificates contained in the input data.                              |
+| encodingFormat | [EncodingFormat](#encodingformat) | No  | No  | Certificate encoding format.                                          |
 
 ## GeneralNameType<sup>12+</sup>
 
@@ -256,13 +256,13 @@ Defines the parameters used to match a certificate. If no parameter is specified
 | x509Cert | [X509Cert](#x509cert)    | No|  Certificate object. |
 | validDate | string    | No |  Certificate validity period. |
 | issuer | Uint8Array | No | Certificate issuer, in DER format.|
-| keyUsage | Array\<boolean> | No | Whether to match the key usage.|
+| keyUsage | Array\<boolean> | No | Whether to match the key usage. **true**: yes; **false**: no.|
 | serialNumber | bigint    | No |  Serial number of the certificate. |
 | subject | Uint8Array | No | Certificate subject, in DER format.|
 | publicKey | [DataBlob](#datablob) | No | Public key of the certificate, in DER format.|
 | publicKeyAlgID | string | No | Algorithm of the certificate public key.|
 | subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | No | Subject Alternative Names (SANs) of the certificate.|
-| matchAllSubjectAltNames<sup>12+</sup> | boolean | No | Whether to match all SANs of the certificate.|
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | No | Whether to match all SANs of the certificate. **true**: yes; **false**: no.|
 | authorityKeyIdentifier<sup>12+</sup> | Uint8Array | No | Key of the certificate authority (CA).|
 | minPathLenConstraint<sup>12+</sup> | number | No | Minimum length of the certification path (chain of trust) that can be built from the certificate to a trusted root CA.|
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | No | Usage of the certificate.|
@@ -322,12 +322,12 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name     | Type                 | Readable| Writable| Description                       |
+| Name     | Type                 | Read-Only| Optional| Description                       |
 | --------- | --------------------- | ---- | ---- | --------------------------- |
-| CACert    | [X509Cert](#x509cert) | Yes  | Yes  | Trusted CA certificate.             |
-| CAPubKey  | Uint8Array            | Yes  | Yes  | Public key of the trusted CA certificate, in DER format.|
-| CASubject | Uint8Array            | Yes  | Yes  | Subject of the trusted CA certificate, in DER format.|
-| nameConstraints<sup>12+</sup> | Uint8Array      | Yes  | Yes  | Name constraints, in DER format.|
+| CACert    | [X509Cert](#x509cert) | No  | Yes  | Trusted CA certificate.             |
+| CAPubKey  | Uint8Array            | No  | Yes  | Public key of the trusted CA certificate, in DER format.|
+| CASubject | Uint8Array            | No  | Yes  | Subject of the trusted CA certificate, in DER format.|
+| nameConstraints<sup>12+</sup> | Uint8Array      | No  | Yes  | Name constraints, in DER format.|
 
 ## RevocationCheckOptions<sup>12+</sup>
 
@@ -360,6 +360,7 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 ## KeyUsageType<sup>12+</sup>
 
  Enumerates the purposes, for which the key in the certificate is used.
+ 
  **Atomic service API**: This API can be used in atomic services since API version 12.
 
  **System capability**: SystemCapability.Security.Cert
@@ -392,7 +393,7 @@ Represents the parameters for checking the certificate revocation status for a c
 | ocspResponses | Uint8Array | No  | Alternative OCSP responses.|
 | crlDownloadURI | string | No  | Address used to download the CRLs.|
 | options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | No  | A set of rules for obtaining the certificate revocation status.|
-| ocspDigest | string | No  | Hash algorithm used to create a certificate ID during OCSP communication. The default algorithm is SHA256. The MD5, SHA1, SHA224, SHA256, SHA384 and SHA512 algorithms are supported.|
+| ocspDigest | string | No  | Hash algorithm used to create a certificate ID during OCSP communication. The options **MD5**, **SHA1**, **SHA224**, **SHA256**, **SHA384**, and **SHA512** are supported. The default value is **SHA256**.|
 
 ## CertChainValidationParameters<sup>11+</sup>
 
@@ -420,16 +421,16 @@ Represents the return value of certificate chain validation.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name       | Type                                 | Readable| Writable| Description          |
+| Name       | Type                                 | Read-Only| Optional| Description          |
 | ----------- | ------------------------------------- | ---- | ---- | -------------- |
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | Yes  | No  | Trust anchor.  |
 | entityCert  | [X509Cert](#x509cert)                 | Yes  | No  | Entity certificate.|
 
-## EncodingBaseFormat<sup>16+</sup>
+## EncodingBaseFormat<sup>18+</sup>
 
 Enumerates the basic encoding formats.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -438,11 +439,11 @@ Enumerates the basic encoding formats.
 | PEM  | 0   | PEM.     |
 | DER  | 1   | DER.     |
 
-## Pkcs12Data<sup>16+</sup>
+## Pkcs12Data<sup>18+</sup>
 
 Represents data of the parsed PKCS #12 (.p12) file.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -452,27 +453,27 @@ Represents data of the parsed PKCS #12 (.p12) file.
 | cert         | [X509Cert](#x509cert)                             | No  | X.509 certificate obtained after the .p12 file is parsed.                      |
 | otherCerts   | Array\<[X509Cert](#x509cert)>                     | No  | Other certificates obtained after the .p12 file is parsed.|
 
-## Pkcs12ParsingConfig<sup>16+</sup>
+## Pkcs12ParsingConfig<sup>18+</sup>
 
 Represents the configuration for parsing .p12 files.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
 | Name        | Type                                             | Mandatory| Description                                  |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | password     | string                                            | Yes  | Password of the .p12 file.            |
-| needsPrivateKey  | boolean                                       | No  | Whether to obtain the private key. The default value is **true**.                      |
-| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat16)                      | No  | Format of the private key obtained. The default value is **PEM**.|
-| needsCert    | boolean                                           | No  | Whether to obtain the certificate. The default value is **true**.|
-| needsOtherCerts  | boolean                                       | No  | Whether to obtain other certificates. The default value is **false**.|
+| needsPrivateKey  | boolean                                       | No  | Whether to obtain the private key. The default value is **true**. **true**: yes; **false**: no.                      |
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | No  | Format of the private key obtained. The default value is **PEM**.|
+| needsCert    | boolean                                           | No  | Whether to obtain the certificate. The default value is **true**. **true**: yes; **false**: no.|
+| needsOtherCerts  | boolean                                       | No  | Whether to obtain other certificates. The default value is **false**. **true**: yes; **false**: no.|
 
-## CmsContentType<sup>16+</sup>
+## CmsContentType<sup>18+</sup>
 
 Enumerates the Cryptographic Message Syntax (CMS) message types.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -480,11 +481,11 @@ Enumerates the Cryptographic Message Syntax (CMS) message types.
 | --------------------------------------| -------- | -----------------------------|
 | SIGNED_DATA | 0 | Signature data.|
 
-## CmsContentDataFormat<sup>16+</sup>
+## CmsContentDataFormat<sup>18+</sup>
 
 Enumerates the CMS message formats.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -493,11 +494,11 @@ Enumerates the CMS message formats.
 | BINARY | 0   | Binary.    |
 | TEXT   | 1   | Text.      |
 
-## CmsFormat<sup>16+</sup>
+## CmsFormat<sup>18+</sup>
 
 Enumerates the CMS signature formats.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -506,11 +507,11 @@ Enumerates the CMS signature formats.
 | PEM  | 0   | PEM.     |
 | DER  | 1   | DER.     |
 
-## PrivateKeyInfo<sup>16+</sup>
+## PrivateKeyInfo<sup>18+</sup>
 
 Represents the private key information.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -519,34 +520,34 @@ Represents the private key information.
 | key          | string \| Uint8Array                     | Yes  | Encrypted or unencrypted private key in PEM or DER format.|
 | password     | string                                  | No  | Password of the private key, if the private key is encrypted.        |
 
-## CmsSignerConfig<sup>16+</sup>
+## CmsSignerConfig<sup>18+</sup>
 
 Represents the configuration of the CMS signer.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
 | Name        | Type                                                 | Mandatory| Description                                  |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | mdName                | string              | Yes  | Message digest algorithm, for example, **SHA384**. Currently, **SHA1**, **SHA256**, **SHA384**, and **SHA512** are supported.                |
-| addCert               | boolean            | No  | Whether to add a certificate. The default value is **true**.                            |
-| addAttr               | boolean            | No  | Whether to add the signature attribute. The default value is **true**.          |
-| addSmimeCapAttr       | boolean            | No  | Whether to add the SMIME capability to the CMS object. The default value is **true**.           |
+| addCert               | boolean            | No  | Whether to add a certificate. The default value is **true**. **true**: yes; **false**: no.                             |
+| addAttr               | boolean            | No  | Whether to add the signature attribute. The default value is **true**. **true**: yes; **false**: no.           |
+| addSmimeCapAttr       | boolean            | No  | Whether to add the SMIME capability to the CMS object. The default value is **true**. **true**: yes; **false**: no.            |
 
-## CmsGeneratorOptions<sup>16+</sup>
+## CmsGeneratorOptions<sup>18+</sup>
 
 Represents the configuration for generating the CMS signing result.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
 | Name                 | Type                         | Mandatory| Description                                                  |
 | --------------------- | ----------------------------- | ---- | ------------------------------------------------------ |
-| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat16)               | No  | Format of the content. The default value is **CmsContentDataFormat.BINARY**.  |
-| outFormat             | [CmsFormat](#cmsformat16)                          | No  | Format of the CMS data generated. The default value is **DER**.        |
-| isDetached     | boolean                            | No  | Whether the final CMS data does not contain the raw data. The default value is **false**.        |
+| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat18)               | No  | Format of the content. The default value is **CmsContentDataFormat.BINARY**.  |
+| outFormat             | [CmsFormat](#cmsformat18)                          | No  | Format of the CMS data generated. The default value is **DER**.        |
+| isDetached     | boolean                            | No  | Whether the final CMS data does not contain the raw data. The default value is **false**. **true**: raw data is contained; **false**: raw data is not contained.        |
 
 ## cert.createX509Cert
 
@@ -563,7 +564,7 @@ Creates an X.509 certificate instance. This API uses an asynchronous callback to
 | Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | Yes  | X.509 certificate serialization data.        |
-| callback | AsyncCallback\<[X509Cert](#x509cert)> | Yes  | Callback used to return the **X509Cert** instance created.|
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | Yes  | Callback invoked to return the **X509Cert** instance created.|
 
 **Error codes**
 
@@ -573,7 +574,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **Example**
 
@@ -589,7 +591,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -602,7 +604,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -635,7 +637,7 @@ Creates an X.509 certificate instance. This API uses a promise to return the res
 
 | Type    | Description            |
 | ------- | ---------------- |
-| Promise\<[X509Cert](#x509cert)> | Promise used to return the **X509Cert** instance created.|
+| Promise\<[X509Cert](#x509cert)> | return the **X509Cert** instance created.|
 
 **Error codes**
 
@@ -645,7 +647,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **Example**
 
@@ -662,7 +665,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -675,7 +678,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -731,7 +734,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -744,7 +747,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -794,7 +797,7 @@ Verifies the signature of an X.509 certificate. This API uses a promise to retur
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return|
 
 **Error codes**
 
@@ -820,7 +823,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -833,7 +836,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -870,7 +873,7 @@ Obtains the serialized X.509 certificate data. This API uses an asynchronous cal
 
 | Name  | Type                                         | Mandatory| Description                            |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 certificate data obtained.|
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized X.509 certificate data obtained.|
 
 **Error codes**
 
@@ -879,8 +882,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -897,7 +900,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -910,7 +913,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -944,7 +947,7 @@ Obtains the serialized X.509 certificate data. This API uses a promise to return
 
 | Type                                   | Description                  |
 | --------------------------------------- | ---------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized X.509 certificate data obtained.|
+| Promise\<[EncodingBlob](#encodingblob)> | Serialized X.509 certificate data obtained.|
 
 **Error codes**
 
@@ -953,8 +956,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -972,7 +975,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
   'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
@@ -983,10 +986,10 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob).then(x509Cert => {
@@ -1015,7 +1018,7 @@ Obtains the public key of this X.509 certificate.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
+| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Public key of the X.509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
 
 **Error codes**
 
@@ -1023,7 +1026,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
+| 19020001 | memory malloc failed.                                     |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1041,7 +1044,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1054,7 +1057,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1096,7 +1099,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
+| 19020001 | memory malloc failed.                                     |
 | 19030001 | crypto operation error.|
 | 19030003 | the certificate has not taken effect.                                     |
 | 19030004 | the certificate has expired.|
@@ -1116,7 +1119,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1129,7 +1132,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1181,7 +1184,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1194,7 +1197,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
@@ -1239,7 +1242,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1252,7 +1255,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1288,7 +1291,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020002 | runtime error.                                    |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 
 **Example**
 
@@ -1305,7 +1308,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1318,7 +1321,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1343,6 +1346,10 @@ getIssuerName() : DataBlob
 
 Obtains the X.509 certificate issuer.
 
+> **NOTE**
+>
+> The obtained X.509 certificate issuer name contains a string terminator.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
@@ -1359,8 +1366,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1378,7 +1385,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1391,7 +1398,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1416,6 +1423,10 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 Obtains the subject of this X.509 certificate.
 
+> **NOTE**
+>
+> The obtained X.509 certificate subject name contains a string terminator.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
@@ -1430,7 +1441,7 @@ Obtains the subject of this X.509 certificate.
 
 | Type                 | Description                |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | Subject name obtained.|
+| [DataBlob](#datablob) | Subject name of an X.509 certificate, separated by commas (,) after being converted into a string.|
 
 **Error codes**
 
@@ -1439,8 +1450,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1458,7 +1469,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1471,7 +1482,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1518,8 +1529,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1537,7 +1548,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1550,7 +1561,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1591,8 +1602,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1611,7 +1622,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1624,7 +1635,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1665,8 +1676,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1685,7 +1696,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1698,7 +1709,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1739,8 +1750,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1759,7 +1770,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1772,7 +1783,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1805,7 +1816,7 @@ Obtains the object identifier (OID) of the X.509 certificate signing algorithm. 
 
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| string | OID obtained.|
+| string | OID obtained. It will be truncated if the length exceeds 128 bytes.|
 
 **Error codes**
 
@@ -1813,8 +1824,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1832,7 +1843,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1845,7 +1856,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1887,8 +1898,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1906,7 +1917,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1919,7 +1930,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1960,7 +1971,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                    |
+| 19020001 | memory malloc failed.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -1978,7 +1989,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1991,7 +2002,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2032,8 +2043,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -2051,7 +2062,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2064,7 +2075,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2113,7 +2124,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2126,7 +2137,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2146,6 +2157,10 @@ getSubjectAltNames() : DataArray
 
 Obtains the Subject Alternative Names (SANs) of this X.509 certificate.
 
+> **NOTE**
+>
+> The obtained SANs contain a string terminator.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
@@ -2162,8 +2177,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -2181,7 +2196,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2194,7 +2209,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2219,6 +2234,10 @@ getIssuerAltNames() : DataArray
 
 Obtains the Issuer Alternative Names (IANs) of this X.509 certificate.
 
+> **NOTE**
+>
+> The obtained IANs contain a string terminator.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
@@ -2235,8 +2254,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **Example**
@@ -2254,7 +2273,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2267,7 +2286,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2296,6 +2315,12 @@ Obtains the fields in the X.509 certificate.
 
 **System capability**: SystemCapability.Security.Cert
 
+**Parameters**
+
+| Name   | Type  | Mandatory| Description                                      |
+| --------- | ------ | ---- | ------------------------------------------ |
+| itemType | [CertItemType](#certitemtype10) | Yes  | Certificate field to obtain.|
+
 **Return value**
 
 | Type                 | Description                                     |
@@ -2309,8 +2334,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2328,7 +2353,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2341,7 +2366,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2389,7 +2414,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2431,7 +2456,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2448,7 +2473,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
-    // The data varies with the service.
+    // Set the value to match your case.
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20241121074700Z',
@@ -2477,7 +2502,7 @@ Obtains the CRL distribution points of this X.509 certificate.
 
 | Type                   | Description                      |
 | ----------------------- | -------------------------- |
-| [DataArray](#dataarray) | URIs of the CRL distribution points obtained.|
+| [DataArray](#dataarray) | URIs of the distribution points for this X.509 CRL obtained.|
 
 **Error codes**
 
@@ -2485,8 +2510,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2518,10 +2543,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
   "AiAtRlOa6/mTD68faQTdhsAaQP955QfW34B4yFqU2Bq72A==\n" +
   "-----END CERTIFICATE-----\n";
 
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2560,8 +2585,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2603,10 +2628,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2645,8 +2670,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2688,10 +2713,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2730,8 +2755,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2773,10 +2798,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2815,8 +2840,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2858,10 +2883,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2900,8 +2925,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -2943,10 +2968,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2977,8 +3002,8 @@ Creates a **CertExtension** instance. This API uses an asynchronous callback to 
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)                     | Yes  | Serialized data of the certificate extension.|
-| callback | AsyncCallback\<[CertExtension](#certextension10)> | Yes  | Callback used to return the **CertExtension** instance created.|
+| inStream | [EncodingBlob](#encodingblob)                     | Yes  | Serialized data obtained.|
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | Yes  | Callback for the **CertExtension** instance.|
 
 **Error codes**
 
@@ -2988,14 +3013,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **Example**
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// Binary data of the certificate extension, which varies with the services.
+// Binary data of the certificate extension, which needs to be set to match your case.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3037,7 +3063,7 @@ Creates a **CertExtension** instance. This API uses a promise to return the resu
 
 | Name  | Type                         | Mandatory| Description                      |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized data of the certificate extension.|
+| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized data obtained.|
 
 **Return value**
 
@@ -3053,7 +3079,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **Example**
 
@@ -3061,7 +3088,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extension, which varies with the services.
+// Binary data of the certificate extension, which needs to be set to match your case.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3113,8 +3140,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -3123,7 +3150,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extension, which varies with the services.
+// Binary data of the certificate extension, which needs to be set to match your case.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3186,8 +3213,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -3196,7 +3223,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extension, which varies with the services.
+// Binary data of the certificate extension, which needs to be set to match your case.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3260,8 +3287,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -3270,7 +3297,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extension, which varies with the services.
+// Binary data of the certificate extension, which needs to be set to match your case.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3331,8 +3358,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -3341,7 +3368,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extension, which varies with the services.
+// Binary data of the certificate extension, which needs to be set to match your case.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3396,8 +3423,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -3448,7 +3475,7 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 | Name  | Type                               | Mandatory| Description                          |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob)       | Yes  | Serialized CRL data.    |
-| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | Yes  | Callback used to return the **X509Crl** instance created.|
+| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | Yes  | Callback invoked to return the **X509Crl** instance created.|
 
 **Error codes**
 
@@ -3458,7 +3485,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **Example**
 
@@ -3483,10 +3510,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3521,7 +3548,7 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 
 | Type                         | Description                |
 | ----------------------------- | -------------------- |
-| Promise\<[X509Crl](#x509crldeprecated)> | Promise used to return the **X509Crl** instance created.|
+| Promise\<[X509Crl](#x509crldeprecated)> | **X509Crl** instance created.|
 
 **Error codes**
 
@@ -3531,7 +3558,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **Example**
 
@@ -3557,10 +3584,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3585,8 +3612,8 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 | Name  | Type                                 | Mandatory| Description                          |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | Yes  | Serialized CRL data.    |
-| callback | AsyncCallback\<[X509CRL](#x509crl11)> | Yes  | Callback used to return the **X509Crl** instance created.|
+| inStream | [EncodingBlob](#encodingblob)         | Yes  | Serialized CRL data. The data length cannot exceed 8192 bytes.    |
+| callback | AsyncCallback\<[X509CRL](#x509crl11)> | Yes  | Callback invoked to return the **X509Crl** instance created.|
 
 **Error codes**
 
@@ -3596,7 +3623,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **Example**
 
@@ -3621,10 +3648,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3651,13 +3678,13 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 
 | Name  | Type                         | Mandatory| Description                      |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized CRL data.|
+| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized CRL data. The data length cannot exceed 8192 bytes.|
 
 **Return value**
 
 | Type                           | Description                |
 | ------------------------------- | -------------------- |
-| Promise\<[X509CRL](#x509crl11)> | Promise used to return the **X509Crl** instance created.|
+| Promise\<[X509CRL](#x509crl11)> | **X509Crl** instance created.|
 
 **Error codes**
 
@@ -3667,7 +3694,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **Example**
 
@@ -3693,10 +3720,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3737,7 +3764,7 @@ Checks whether an X.509 certificate is revoked.
 
 | Type     | Description                                          |
 | --------- | --------------------------------------------- |
-| boolean   | Returns **true** if the certificate is revoked; returns **false** otherwise.|
+| boolean   | Whether the certificate is revoked. The value **true** indicates that the certificate is revoked, and **false** indicates the opposite.|
 
 **Error codes**
 
@@ -3781,16 +3808,16 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3857,10 +3884,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3890,7 +3917,7 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 | Name  | Type                        | Mandatory| Description                                      |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | Yes  | Callback used to return the serialized X.509 CRL data obtained.|
+| callback | AsyncCallback\<EncodingBlob> | Yes  | Callback invoked to return the serialized X.509 CRL data obtained.|
 
 **Error codes**
 
@@ -3899,8 +3926,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -3926,10 +3953,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3974,8 +4001,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4002,10 +4029,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4131,10 +4158,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4197,7 +4224,7 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return|
 
 **Error codes**
 
@@ -4290,10 +4317,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4345,7 +4372,7 @@ Obtains the version of the X.509 CRL.
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| number | Version of the X.509 CRL obtained.|
+| number | Obtains the version of the X.509 CRL.|
 
 **Example**
 
@@ -4370,10 +4397,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4411,8 +4438,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4439,10 +4466,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4485,8 +4512,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4513,10 +4540,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4559,8 +4586,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4587,10 +4614,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4640,7 +4667,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4667,10 +4694,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4721,7 +4748,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4751,7 +4778,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -4775,14 +4802,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4823,7 +4850,7 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 | Name  | Type                                                | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Yes  | Callback used to return a list of revoked X.509 certificates.|
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Yes  | Callback invoked to return the revoked X.509 certificates obtained.|
 
 **Error codes**
 
@@ -4832,7 +4859,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4859,10 +4886,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4898,7 +4925,7 @@ Obtains the revoked X.509 certificates. This API uses a promise to return the re
 
 | Type                                          | Description                  |
 | ---------------------------------------------- | ---------------------- |
-| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Promise used to return a list of revoked X.509 certificates.|
+| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | A list of revoked X.509 certificates.|
 
 **Error codes**
 
@@ -4907,7 +4934,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -4934,10 +4961,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4977,8 +5004,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -5005,10 +5032,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5051,8 +5078,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -5079,10 +5106,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5125,8 +5152,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -5153,10 +5180,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5199,8 +5226,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -5227,10 +5254,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5274,8 +5301,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -5302,10 +5329,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5347,7 +5374,7 @@ Checks whether an X.509 certificate is revoked.
 
 | Type   | Description                                             |
 | ------- | ------------------------------------------------- |
-| boolean | Returns **true** if the certificate is revoked; returns **false** otherwise.|
+| boolean | Whether the certificate is revoked. The value **true** indicates that the certificate is revoked, and **false** indicates the opposite.|
 
 **Error codes**
 
@@ -5391,16 +5418,16 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5465,10 +5492,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5496,7 +5523,7 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 | Name  | Type                                         | Mandatory| Description                                      |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 CRL data obtained.|
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized X.509 CRL data obtained.|
 
 **Error codes**
 
@@ -5505,8 +5532,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -5532,10 +5559,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5577,8 +5604,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -5605,10 +5632,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5732,10 +5759,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5796,7 +5823,7 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return|
 
 **Error codes**
 
@@ -5889,10 +5916,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5942,7 +5969,7 @@ Obtains the version of the X.509 CRL.
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| number | Version of the X.509 CRL obtained.|
+| number | Obtains the version of the X.509 CRL.|
 
 **Example**
 
@@ -5967,10 +5994,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5990,6 +6017,10 @@ getIssuerName() : DataBlob
 
 Obtains the issuer of the X.509 CRL.
 
+> **NOTE**
+>
+> The obtained X.509 CRL issuer name contains a string terminator.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
@@ -6006,8 +6037,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6034,10 +6065,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6078,8 +6109,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6106,10 +6137,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6150,8 +6181,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6178,10 +6209,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6229,7 +6260,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6256,10 +6287,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6308,7 +6339,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6338,7 +6369,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// Certificate binary data, which varies with the service.
+// Certificate binary data, which needs to match your case.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -6362,14 +6393,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6408,7 +6439,7 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 | Name  | Type                                                  | Mandatory| Description                            |
 | -------- | ------------------------------------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback used to return a list of revoked X.509 certificates.|
+| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback invoked to return the revoked X.509 certificates obtained.|
 
 **Error codes**
 
@@ -6417,7 +6448,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6444,10 +6475,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6481,7 +6512,7 @@ Obtains the revoked X.509 certificates. This API uses a promise to return the re
 
 | Type                                            | Description                  |
 | ------------------------------------------------ | ---------------------- |
-| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | Promise used to return a list of revoked X.509 certificates.|
+| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | A list of revoked X.509 certificates.|
 
 **Error codes**
 
@@ -6490,7 +6521,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6517,10 +6548,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6558,8 +6589,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6586,10 +6617,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6630,8 +6661,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6658,10 +6689,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6702,8 +6733,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6730,10 +6761,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6775,8 +6806,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6803,10 +6834,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6847,8 +6878,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6875,10 +6906,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6919,8 +6950,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -6950,10 +6981,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6986,13 +7017,13 @@ Checks whether this CRL matches the specified parameters.
 
 | Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
-| param | [X509CRLMatchParameters](#x509crlmatchparameters11)| Yes  | Parameters specified for matching the CRL. |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11)| Yes  | Parameters specified for matching the certificate.|
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| boolean | Returns **true** if the CRL matches the parameters specified; returns **false** otherwise. |
+| boolean | Returns **true** if the certificate matches the parameters specified; returns **false** otherwise.|
 
 **Error codes**
 
@@ -7001,7 +7032,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message      |
 | -------- | -------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.  |
+| 19020001 | memory malloc failed.  |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7028,10 +7059,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7091,7 +7122,7 @@ async function crlMatch() {
 
 getIssuerX500DistinguishedName(): X500DistinguishedName
 
-Obtains the DN of the X.509 certificate issuer.
+Obtains the distinguished name (DN) of the X.509 certificate issuer.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -7109,8 +7140,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message      |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7137,10 +7168,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7179,8 +7210,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message      |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7207,10 +7238,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7249,8 +7280,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message      |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7277,10 +7308,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7319,8 +7350,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message      |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7352,10 +7383,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
     '+X48g7VE2o2X4cfy\n' +
     '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which varies with the service.
+// Binary data of the CRL, which needs to match your case.
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7402,8 +7433,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7425,13 +7456,11 @@ try {
 Provides APIs for certificate chain validator operations.
 
 
-### Properties
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name   | Type  | Readable| Writable| Description                        |
+| Name   | Type  | Read-Only| Optional| Description                        |
 | ------- | ------ | ---- | ---- | -------------------------- |
 | algorithm  | string | Yes  | No  | Algorithm used by the X509 certificate chain validator.|
 
@@ -7451,8 +7480,8 @@ The certificate chain validator does not verify the certificate validity period 
 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| certChain | [CertChainData](#certchaindata) | Yes  | Serialized X.509 certificate chain data.                                    |
-| callback  | AsyncCallback\<void>            | Yes  | Callback used to return the result. If **error** is **null**, the X.509 certificate chain is valid. If **error** is not **null**, the X.509 certificate chain is not valid.|
+| certChain | [CertChainData](#certchaindata) | Yes  | Serialized X.509 certificate chain data.                                   |
+| callback  | AsyncCallback\<void>            | Yes  | Callback used to return the result. If **error** is **null**, the validation is successful. If **error** is not **null**, the validation fails.|
 
 **Error codes**
 
@@ -7461,8 +7490,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -7544,7 +7573,7 @@ let certChainData: cert.CertChainData = {
   data: certChainBuff,
   // Number of certificates in the certificate chain. It must be set based on the service.
   count: 2,
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7584,7 +7613,7 @@ The certificate chain validator does not verify the certificate validity period 
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return|
 
 **Error codes**
 
@@ -7593,8 +7622,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -7676,7 +7705,7 @@ let certChainData: cert.CertChainData = {
   data: certChainBuff,
   // Number of certificates in the certificate chain. It must be set based on the service.
   count: 2,
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7717,7 +7746,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 | Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained.|
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate.|
 
 **Error codes**
 
@@ -7726,8 +7755,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7756,7 +7785,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7809,8 +7838,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -7839,7 +7868,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7909,7 +7938,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7935,7 +7964,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
 
 getCertIssuer() : DataBlob
 
-Obtains the issuer of this revoked certificate. This API uses an asynchronous callback to return the result.
+Obtains the issuer of a revoked certificate.
 
 > **NOTE**
 >
@@ -7956,8 +7985,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message      |
 | -------- | -------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 
 **Example**
 
@@ -7985,7 +8014,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8031,8 +8060,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8061,7 +8090,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8101,7 +8130,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 | Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained.|
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate.|
 
 **Error codes**
 
@@ -8110,8 +8139,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8140,7 +8169,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8191,8 +8220,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8221,7 +8250,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8269,8 +8298,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8299,7 +8328,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8325,7 +8354,11 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getCertIssuer() : DataBlob
 
-Obtains the issuer of this revoked certificate.
+Obtains the issuer of a revoked certificate.
+
+> **NOTE**
+>
+> The obtained issuer of this revoked certificate contains a string terminator.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -8344,8 +8377,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8374,7 +8407,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8400,7 +8433,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getRevocationDate() : string
 
-Obtains the date when the certificate is revoked.
+Obtains the date when the certificate was revoked.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -8410,7 +8443,7 @@ Obtains the date when the certificate is revoked.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | Certificate revocation date obtained, in ASN.1 format.|
+| string | Promise used to return the certificate revocation date obtained.|
 
 **Error codes**
 
@@ -8418,8 +8451,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8448,7 +8481,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8484,7 +8517,7 @@ Obtains the CRL extensions.
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | CRL extensions obtained.|
+| [DataBlob](#datablob) | CRl extensions obtained.|
 
 **Error codes**
 
@@ -8492,8 +8525,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8525,7 +8558,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8569,8 +8602,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8599,7 +8632,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8625,7 +8658,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getCertIssuerX500DistinguishedName(): X500DistinguishedName
 
-Obtains the DN of the certificate issuer.
+Obtains the distinguished name of the X.509 certificate issuer.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -8643,8 +8676,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8673,7 +8706,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8712,8 +8745,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8742,7 +8775,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8781,8 +8814,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8811,7 +8844,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8850,8 +8883,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -8947,7 +8980,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8994,7 +9027,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 
 **Example**
 
@@ -9021,10 +9054,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // Binary data of the CRL, which varies with the service.
+  // Binary data of the CRL, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9050,7 +9083,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9100,7 +9133,7 @@ Selects certificates that match the specified parameters. This API uses a promis
 
 | Type                                   | Description                                   |
 | --------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[X509Cert](#x509cert)>> | Promise used to return the matched certificates.|
+| Promise\<Array\<[X509Cert](#x509cert)>> | Promise used to return Matched certificates.|
 
 **Error codes**
 
@@ -9109,7 +9142,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -9140,7 +9173,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9189,7 +9222,7 @@ Selects certificates that match the specified parameters. This API uses an async
 | Name   | Type                           | Mandatory| Description           |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters used to match the certificates.  |
-| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | Yes  | Callback used to return the matched certificates.|
+| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | Yes  | Callback invoked to return the matched certificates.|
 
 **Error codes**
 
@@ -9198,7 +9231,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -9229,7 +9262,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9246,7 +9279,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 async function selectCerts() {
   const x509Cert = await createX509Cert();
   const collection = cert.createCertCRLCollection([x509Cert]);
-  // The value varies with the service.
+  // Set the value to match your case.
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
@@ -9293,7 +9326,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -9321,10 +9354,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // Binary data of the CRL, which varies with the service.
+  // Binary data of the CRL, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9413,7 +9446,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -9441,10 +9474,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // Binary data of the CRL, which varies with the service.
+  // Binary data of the CRL, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9530,7 +9563,7 @@ Creates an X.509 certificate chain instance. This API uses a promise to return t
 
 | Type                           | Description            |
 | ------------------------------- | ---------------- |
-| Promise\<[X509CertChain](#x509certchain11)> | Promise used to return the **X509CertChain** object created.|
+| Promise\<[X509CertChain](#x509certchain11)> | **X509CertChain** object created.|
 
 **Error codes**
 
@@ -9539,7 +9572,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -9613,10 +9646,10 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // Certificate chain binary data, which varies with the service.
+  // Binary data of the certificate chain, which needs to be assigned by the service.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
-    // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+    // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -9647,7 +9680,7 @@ Creates an X.509 certificate chain instance. This API uses an asynchronous callb
 | Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | Yes  | X.509 certificate serialization data.       |
-| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | Yes  | Callback used to return the **X509CertChain** object created.|
+| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | Yes  | Callback invoked to return the **X509CertChain** instance created.|
 
 **Error codes**
 
@@ -9656,7 +9689,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -9728,10 +9761,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// Certificate chain binary data, which varies with the service.
+// Binary data of the certificate chain, which needs to be assigned by the service.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+  // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -9773,7 +9806,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -9802,10 +9835,10 @@ async function createX509Cert(): Promise<cert.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9848,7 +9881,7 @@ Builds an X.509 certificate chain with a **CertChainBuildParameters** object. Th
 
 | Name  | Type                 | Mandatory| Description                      |
 | -------- | -------------------- | ---- | -------------------------- |
-| param | [CertChainBuildParameters](#certchainbuildparameters12) | Yes  | Object used to build the certificate chain.|
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | Yes  | Object used to build the certificate chain.<br> The value of **maxLength** in [CertChainBuildParameters](#certchainbuildparameters12) must be less than the number of certificates in the certificate set.|
 
 **Return value**
 
@@ -9863,8 +9896,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -9931,10 +9964,10 @@ let caPem = '-----BEGIN CERTIFICATE-----\n' +
 '-----END CERTIFICATE-----';
 
 async function createX509Cert(certData: string): Promise<cert.X509Cert> {
-  // Certificate binary data, which varies with the service.
+  // Certificate binary data, which needs to match your case.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9952,7 +9985,7 @@ async function buildX509CertChain() {
   try {
     const caCert = await createX509Cert(caPem);
     const x509Cert = await createX509Cert(certPem);
-    let certCrlCollection = await cert.createCertCRLCollection([x509Cert]);
+    let certCrlCollection = cert.createCertCRLCollection([x509Cert]);
     let param: cert.CertChainBuildParameters = {
       certMatchParameters: {validDate:'20240812080000Z'},
       maxLength: 3,
@@ -9974,13 +10007,13 @@ async function buildX509CertChain() {
 buildX509CertChain();
 ```
 
-## cert.parsePkcs12<sup>16+</sup>
+## cert.parsePkcs12<sup>18+</sup>
 
 parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 
 Parses a .p12 file. 
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -9989,13 +10022,13 @@ Parses a .p12 file.
 | Name  | Type                 | Mandatory| Description                      |
 | -------- | -------------------- | ---- | -------------------------- |
 | data | Uint8Array | Yes| .p12 file to parse, in DER format.|
-| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig16) | Yes| Configuration for parsing the file.|
+| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig18) | Yes| Configuration for parsing the file.|
 
 **Return value**
 
 | Type                             | Description                |
 | --------------------------------- | -------------------- |
-| [Pkcs12Data](#pkcs12data16) | Data parsed from the .p12 file.|
+| [Pkcs12Data](#pkcs12data18) | Data parsed from the .p12 file.|
 
 **Error codes**
 
@@ -10004,8 +10037,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030008 | maybe wrong password.            |
 
@@ -10216,8 +10249,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -10272,7 +10305,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -10345,10 +10378,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// Certificate chain binary data, which varies with the service.
+// Binary data of the certificate chain, which needs to be assigned by the service.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+  // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10396,8 +10429,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error.           |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect.           |
@@ -10477,10 +10510,10 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // Certificate chain binary data, which varies with the service.
+  // Binary data of the certificate chain, which needs to be assigned by the service.
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
-    // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+    // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -10496,7 +10529,7 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
 
 async function validate() {
   const certChain = await createX509CertChain();
-  // Certificate chain validation data, which varies with the service.
+  // Certificate chain verification data, which needs to be assigned by the service.
   const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{
@@ -10540,8 +10573,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error.           |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect.           |
@@ -10619,14 +10652,14 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// Certificate chain binary data, which varies with the service.
+// Binary data of the certificate chain, which needs to be assigned by the service.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+  // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// Certificate chain validation data, which varies with the service.
+// Certificate chain verification data, which needs to be assigned by the service.
 let param: cert.CertChainValidationParameters = {
   date: '20231212080000Z',
   trustAnchors: [{
@@ -10673,8 +10706,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -10759,10 +10792,10 @@ let certChainData = '-----BEGIN CERTIFICATE-----\n' +
   'tPO+\n' +
   '-----END CERTIFICATE-----\n';
 
-// Certificate chain binary data, which varies with the service.
+// Binary data of the certificate chain, which needs to be assigned by the service.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+  // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10800,8 +10833,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -10886,10 +10919,10 @@ let certChainData = '-----BEGIN CERTIFICATE-----\n' +
   'tPO+\n' +
   '-----END CERTIFICATE-----\n';
 
-// Certificate chain binary data, which varies with the service.
+// Binary data of the certificate chain, which needs to be assigned by the service.
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+  // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10906,13 +10939,13 @@ async function certChainHashCode() {
 }
 ```
 
-## cert.generateCsr<sup>16+</sup>
+## cert.generateCsr<sup>18+</sup>
 
 generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint8Array
 
 Generates a CSR.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -10920,14 +10953,14 @@ Generates a CSR.
 
 | Name  | Type                         | Mandatory| Description                |
 | -------- | ----------------------------- | ---- | -------------------- |
-| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | Yes| Private key information.|
-| config | [CsrGenerationConfig](#csrgenerationconfig16) | Yes| Configuration for generating the CSR.|
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | Yes| Private key information.|
+| config | [CsrGenerationConfig](#csrgenerationconfig18) | Yes| Configuration for generating the CSR.|
 
 **Return value**
 
 | Type                           | Description            |
 | ------------------------------- | ---------------- |
-| string | Uint8Array | CSR generated.|
+| string \| Uint8Array | CSR generated.|
 
 **Error codes**
 
@@ -10936,15 +10969,10 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect. |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer. |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for digital signature. |
+| 19030008 | maybe wrong password. |
 
 **Example**
 
@@ -11014,7 +11042,7 @@ async function createCsrTest() {
 
 createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
-Creates an **X500DistinguishedName** object in the form of a string. This API uses a promise to return the result.
+Creates an **X500DistinguishedName** object in string format. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -11039,8 +11067,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect. |
@@ -11110,8 +11138,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect. |
@@ -11168,8 +11196,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -11225,8 +11253,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -11267,7 +11295,7 @@ Obtains the data of the X.509 certificate **extensions** field.
 
 | Type   | Description                                             |
 | ------- | ------------------------------------------------- |
-| [EncodingBlob](#encodingblob) | X.509 certificate extensions data obtained.|
+| [EncodingBlob](#encodingblob) | X.509 certificate serialization data obtained.|
 
 **Error codes**
 
@@ -11275,8 +11303,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -11303,13 +11331,13 @@ async function getEncoded() {
 }
 ```
 
-## cert.createCmsGenerator<sup>16+</sup>
+## cert.createCmsGenerator<sup>18+</sup>
 
 createCmsGenerator(contentType: CmsContentType): CmsGenerator
 
 Creates a **CmsGenerator** object.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -11317,13 +11345,13 @@ Creates a **CmsGenerator** object.
 
 | Name  | Type                         | Mandatory| Description                |
 | -------- | ----------------------------- | ---- | -------------------- |
-| contentType | [CmsContentType](#cmscontenttype16) | Yes| CMS message type.|
+| contentType | [CmsContentType](#cmscontenttype18) | Yes| CMS message type.|
 
 **Return value**
 
 | Type                           | Description            |
 | ------------------------------- | ---------------- |
-| [CmsGenerator](#cmsgenerator16) | **CmsGenerator** object created.|
+| [CmsGenerator](#cmsgenerator18) | **CmsGenerator** object created.|
 
 **Error codes**
 
@@ -11332,8 +11360,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -11358,10 +11386,19 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
 
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 function testcreateCmsGenerator() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11381,7 +11418,7 @@ function testcreateCmsGenerator() {
 }
 ```
 
-## CmsGenerator<sup>16+</sup>
+## CmsGenerator<sup>18+</sup>
 
 Provides APIs for generating the messages in CMS format.
 
@@ -11390,13 +11427,13 @@ Provides APIs for generating the messages in CMS format.
 > PKCS #7 is a standard syntax for storing signed or encrypted data. CMS is an extension of PKCS #7. PKCS#7 supports data types including data, signature data, envelope data,
 > signature and envelope data, message digest data, and encrypted data. It is often used to protect data integrity and confidentiality.
 
-### addSigner<sup>16+</sup>
+### addSigner<sup>18+</sup>
 
 addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): void;
 
 Adds signer information.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -11405,8 +11442,8 @@ Adds signer information.
 | Name      | Type  | Mandatory| Description          |
 | ------------ | ------ | ---- | -------------- |
 | cert |  [X509Cert](#x509cert) | Yes| X.509 certificate.|
-| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | Yes| Private key information.|
-| config | [CmsSignerConfig](#cmssignerconfig16) | Yes| Signer configuration.|
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | Yes| Private key information.|
+| config | [CmsSignerConfig](#cmssignerconfig18) | Yes| Signer configuration.|
 
 **Error codes**
 
@@ -11415,8 +11452,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030008 | maybe wrong password. |
 
@@ -11473,7 +11510,7 @@ function stringToUint8Array(str: string): Uint8Array {
 function testAddSigner() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11506,13 +11543,13 @@ function testAddSigner() {
 }
 ```
 
-### addCert<sup>16+</sup>
+### addCert<sup>18+</sup>
 
 addCert(cert: X509Cert): void
 
 Adds a certificate, for example, the issuer certificate of a signing certificate.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -11529,8 +11566,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -11567,7 +11604,7 @@ function stringToUint8Array(str: string): Uint8Array {
 function testAddCert() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11590,13 +11627,13 @@ function testAddCert() {
 }
 ```
 
-### doFinal<sup>16+</sup>
+### doFinal<sup>18+</sup>
 
 doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | string>
 
 Generates the CMS data, for example, the CMS signature data.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -11605,7 +11642,7 @@ Generates the CMS data, for example, the CMS signature data.
 | Name     | Type               | Mandatory| Description                                      |
 | ----------- | ------------------- | ---- | ------------------------------------------ |
 | data        | Uint8Array         | Yes  | Data to be operated.                          |
-| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | No  | Configuration of the CMS operation.                      |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | No  | Configuration of the CMS operation.                      |
 
 **Return value**
 
@@ -11620,8 +11657,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -11677,7 +11714,7 @@ function stringToUint8Array(str: string): Uint8Array {
 async function testDoFinalByPromise() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11723,13 +11760,13 @@ async function testDoFinalByPromise() {
 }
 ```
 
-### doFinalSync<sup>16+</sup>
+### doFinalSync<sup>18+</sup>
 
 doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | string
 
 Generates the CMS data, for example, the CMS signature data. This API returns the result synchronously.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -11738,7 +11775,7 @@ Generates the CMS data, for example, the CMS signature data. This API returns th
 | Name     | Type               | Mandatory| Description                                      |
 | ----------- | ------------------- | ---- | ------------------------------------------ |
 | data        | Uint8Array         | Yes  | Data to be operated.                          |
-| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | No  | Configuration of the CMS operation.                      |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | No  | Configuration of the CMS operation.                      |
 
 **Return value**
 
@@ -11753,8 +11790,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **Example**
@@ -11810,7 +11847,7 @@ function stringToUint8Array(str: string): Uint8Array {
 function testDoFinalSync() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {

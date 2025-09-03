@@ -58,9 +58,9 @@ namespace A {
 原函数名代表函数在源代码中的名字，匿名函数则为空字符串。同样的，如果源码中相同作用域下出现了同名的函数，重名的名称后面会加上重名序号（包括匿名函数）。
 
 ```ts
-function foo() {}                           // 原函数名为"foo"
-() => { }                                   // 原函数名为""
-() => { }                                   // 原函数名为"^1"
+function foo() {};                           // 原函数名为"foo"
+() => { };                                   // 原函数名为""
+() => { };                                   // 原函数名为"^1"
 ```
 
 #### 特殊情况
@@ -78,7 +78,7 @@ function foo() {}                           // 原函数名为"foo"
 * 如果属性名包含`\`，`.`，为防止二义性，其原函数名会按照匿名函数命名。
     ```ts
     let a = {
-        "a.b#c^2": () => {}                     // 原函数名为""
+        "a.b#c^2": () => {},                     // 原函数名为""
         "x\\y#": () => {}                       // 原函数名为"^1"
     }
     ```
@@ -95,17 +95,6 @@ namespace A {                               // namespace在字节码中的函数
     }
     enum E {                                // enum在字节码中的函数名为"#&A%#E"
 
-    }
-}
-```
-```ts
-namespace LongNamespaceName {               // namespace在字节码中的函数名为"#&#LongNamespaceName"
-    class LongClassName {                   // 构造函数在字节码中的函数名为"#&@1~@0=#LongClassName"
-        longFunctionName() {                // 实例函数在字节码中的函数名为"#&@1~@0>#longFunctionName"
-        }
-        longFunctionName() {                // 函数在字节码中的函数名为"#&@1~@0>#longFunctionName^1"
-            function inSecondFunction() {}  // 函数在字节码中的函数名为"#&@1~@0>@2^1*#inSecondFunction"
-        }
     }
 }
 ```

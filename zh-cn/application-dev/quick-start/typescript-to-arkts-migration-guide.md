@@ -521,10 +521,6 @@ class C {
 }
 ```
 
-**说明**
-
-当前不支持静态块的语法。支持该语法后，在.ets文件中使用静态块需遵循此约束。
-
 ### 不支持index signature
 
 **规则：**`arkts-no-indexed-signatures`
@@ -3277,7 +3273,7 @@ function f() {
   e5.prop;               // 编译时错误：不能访问ESObject类型变量的属性
 
   let e6: ESObject = foo(); // OK，显式标注ESObject类型
-  let e7 = e6;              // OK，使用ESObject类型赋值
+  let e7: ESObject = e6;    // OK，使用ESObject类型赋值
   bar(e7);                  // OK，ESObject类型变量传给跨语言调用的函数
 }
 ```

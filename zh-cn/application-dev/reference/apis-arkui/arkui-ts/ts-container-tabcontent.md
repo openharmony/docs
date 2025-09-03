@@ -38,7 +38,7 @@ tabBar(options: string | Resource | CustomBuilder | TabBarOptions)
 
 如果icon采用svg格式图源，需删除svg图源内置的宽高属性值。否则，icon大小将使用svg图源内置的宽高属性值。
 
-设置的内容超出tabbar页签时进行裁切。
+设置的内容超出tabBar页签时进行裁切。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

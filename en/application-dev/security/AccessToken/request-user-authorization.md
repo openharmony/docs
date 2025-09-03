@@ -1,6 +1,6 @@
 # Requesting User Authorization
 
-Before an application accesses user privacy information or use a system capability, for example, to obtain location information, access the Calendar, or use the camera to take a photo or record a video, the application needs to request user authorization. The permissions that must be authorized by users are user_grant permissions.
+Before an application accesses user privacy information or uses a system capability, for example, to obtain location information, access the Calendar, or use the camera to take a photo or record a video, the application needs to request user authorization. The permissions that must be authorized by users are user_grant permissions.
 
 The procedure for requesting user_grant permissions is as follows:
 

@@ -1,14 +1,20 @@
-# @ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)
+# @ohos.app.ability.AbilityConstant (Ability相关常量)(系统接口)
 
-提供UIAbility中窗口类型的枚举。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+
+AbilityConstant提供Ability相关的枚举，包括WindowMode等。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.AbilityConstant (AbilityConstant)](js-apis-app-ability-abilityConstant.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.AbilityConstant (Ability相关常量)](js-apis-app-ability-abilityConstant.md)。
 
 ## 导入模块
 
@@ -44,12 +50,12 @@ let option: StartOptions = {
 };
 
 // 确保从上下文获取到context
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
     }).catch((error: BusinessError) => {
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
   }
 }

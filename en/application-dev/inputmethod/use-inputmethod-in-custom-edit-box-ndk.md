@@ -7,7 +7,7 @@ IME Kit allows you to use input method in the custom edit box to interact with i
 
 ## APIs
 
-For details about the APIs, see [InputMethod](../reference/apis-ime-kit/_input_method.md).
+For details about the APIs, see [API Reference](../reference/apis-ime-kit/_input_method.md).
 
 ## Adding Dynamic Link Libraries
 
@@ -26,7 +26,7 @@ libohinputmethod.so
 
 ## Binding an Input Method
 
-When the input box is focused, you can call the [OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach) API to bind the input method. After the binding is successful, you can use the input method to enter text.
+When the text box is focused, you can call the [OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach) API to bind the input method. After the binding is successful, you can use the input method to enter text.
 
 1. Create an **InputMethod_TextEditorProxy** instance. The sample code is as follows:
 

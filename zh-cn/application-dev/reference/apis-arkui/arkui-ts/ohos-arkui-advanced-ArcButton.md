@@ -73,7 +73,7 @@ ArcButton({ options: ArcButtonOptions })
 | fontFamily | string \| [Resource](ts-types.md#resource)                   | 是   | 弧形按钮字体名。                                             |
 | fontMargin | [LocalizedMargin](ts-types.md#localizedmargin12)             | 是   | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp } |
 |onTouch | [Callback](ts-types.md#voidcallback12)&lt; [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)&gt; | 否   | 弧形按钮手指触摸动作触发该回调。 |
-|onClick | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent对象说明)) &gt; | 否   | 弧形按钮点击动作触发该回调。 |
+|onClick | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent对象说明) &gt; | 否   | 弧形按钮点击动作触发该回调。 |
 
 ### constructor
 
@@ -99,24 +99,24 @@ ArcButton的默认样式或自定义样式参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 名称                | 类型                                                         | 必填 | 说明                                                         |
-| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| position            | [ArcButtonPosition](#arcbuttonposition)                      |否  | 上下弧形按钮类型属性。<br/>默认值：ArcButtonPosition.BOTTOM_EDGE |
-| styleMode           | [ArcButtonStyleMode](#arcbuttonstylemode)                    | 否  | 弧形按钮样式模式。<br>默认值：ArcButtonStyleMode.EMPHASIZED_LIGHT |
-| status              | [ArcButtonStatus](#arcbuttonstatus)                          |否   | 弧形按钮状态。<br/>默认值：ArcButtonStatus.NORMAL            |
-| label               | [ResourceStr](ts-types.md#resourcestr)                       |否 | 弧形按钮显示文本。                                           |
-| backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否  | 弧形按钮背景模糊能力。<br/>默认值：BlurStyle.NONE            |
-| backgroundColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否 | 弧形按钮背景颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.Black                   |
-| shadowColor         | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否  | 弧形按钮阴影颜色。<br/>默认值：Color.Black                   |
-| shadowEnabled       | boolean                                                      | 否 | 弧形按钮阴影开关。<br/>默认值：false<br/>值为true时，显示阴影。值为false时，不显示阴影。 |
-| fontSize            | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 弧形按钮文本大小。<br/>默认值：19fp                          |
-| fontColor           | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  |否  | 弧形按钮文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White                   |
-| pressedFontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否  | 弧形按钮按下文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White               |
-| fontStyle           | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否  | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal              |
-| fontFamily          | string \| [Resource](ts-types.md#resource)                   |否  | 弧形按钮字体名。                                             |
-| fontMargin          | [LocalizedMargin](ts-types.md#localizedmargin12)             | 否  | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp } |
-| onTouch             | [Callback](ts-types.md#voidcallback12)&lt; [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)&gt; | 否   | 弧形按钮手指触摸动作触发该回调。                             |
-| onClick             | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent对象说明)) &gt; | 否   | 弧形按钮点击动作触发该回调。                                 |
+| 名称                | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| position            | [ArcButtonPosition](#arcbuttonposition)                      |否  |是  | 上下弧形按钮类型属性。<br/>默认值：ArcButtonPosition.BOTTOM_EDGE |
+| styleMode           | [ArcButtonStyleMode](#arcbuttonstylemode)                    | 否  | 是 | 弧形按钮样式模式。<br>默认值：ArcButtonStyleMode.EMPHASIZED_LIGHT |
+| status              | [ArcButtonStatus](#arcbuttonstatus)                          |否   |是   | 弧形按钮状态。<br/>默认值：ArcButtonStatus.NORMAL            |
+| label               | [ResourceStr](ts-types.md#resourcestr)                       |否 |是 | 弧形按钮显示文本。                                           |
+| backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否  | 是 | 弧形按钮背景模糊能力。<br/>默认值：BlurStyle.NONE            |
+| backgroundColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否 | 是 | 弧形按钮背景颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.Black                   |
+| shadowColor         | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否  | 是 | 弧形按钮阴影颜色。<br/>默认值：Color.Black                   |
+| shadowEnabled       | boolean                                                      | 否 | 是 | 弧形按钮阴影开关。<br/>默认值：false<br/>值为true时，显示阴影。值为false时，不显示阴影。 |
+| fontSize            | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 是 | 弧形按钮文本大小。<br/>默认值：19fp                          |
+| fontColor           | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  |否  |是  | 弧形按钮文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White                   |
+| pressedFontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否  | 是 | 弧形按钮按下文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White               |
+| fontStyle           | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否  | 是 | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal              |
+| fontFamily          | string \| [Resource](ts-types.md#resource)                   |否  |是  | 弧形按钮字体名。                                             |
+| fontMargin          | [LocalizedMargin](ts-types.md#localizedmargin12)             | 否  | 是 | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp } |
+| onTouch             | [Callback](ts-types.md#voidcallback12)&lt; [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)&gt; | 否   | 是  | 弧形按钮手指触摸动作触发该回调。                             |
+| onClick             | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent对象说明) &gt; | 否   | 是  | 弧形按钮点击动作触发该回调。                                 |
 
 ## ArcButtonPosition
 
@@ -166,11 +166,27 @@ ArcButton的默认样式或自定义样式参数。
 
 ## 示例
 
-ArcButton使用示例。
+从API version18开始，该示例展示了ArcButton的基本用法。
 
 topOptions定义了上弧形按钮，按钮文本为ButtonTop，字体大小为15fp，按钮状态为正常状态，按钮样式为亮色强调，启用阴影。
 
 bottomOptions定义了底部弧形按钮，按钮文本为ButtonBottom，字体大小为15fp，按钮样式为亮色强调，启用阴影，设置了按钮的点击事件。
+
+运行该示例需要Wearable设备的支持。在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中[deviceTypes标签](../../../quick-start/module-configuration-file.md#devicetypes标签)内配置wearable。
+
+```json
+// module.json5
+{
+  "module": {
+    // ...
+    "deviceTypes": [
+      "wearable",
+      "phone"
+    ]
+    // ...
+  }
+}
+```
 
 ```ts
 // xxx.ets

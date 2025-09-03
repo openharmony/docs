@@ -18,7 +18,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [netHandles](#nethandles) [NETCONN_MAX_NET_SIZE] | netHandle列表。 | 
+| [netHandles](#nethandles) [[NETCONN_MAX_NET_SIZE]](_net_connection.md#宏定义) | netHandle列表。 | 
 | [netHandleListSize](#nethandlelistsize) | netHandleList的实际大小。 | 
 
 

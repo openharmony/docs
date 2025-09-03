@@ -299,7 +299,7 @@ Subscribes to data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Error codes**
 
@@ -335,7 +335,7 @@ Unsubscribes from the data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Error codes**
 
@@ -374,7 +374,7 @@ Subscribes to status changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
 
 **Error codes**
 
@@ -405,7 +405,7 @@ Unsubscribes from the status change of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
 
 **Error codes**
 
@@ -912,7 +912,7 @@ Subscribes to data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Example**
 
@@ -958,7 +958,7 @@ Unsubscribes from the data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Example**
 
@@ -1007,7 +1007,7 @@ Subscribes to status changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
 
@@ -1049,7 +1049,7 @@ Unsubscribes from the status change of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all status change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
 
 
 **Example**

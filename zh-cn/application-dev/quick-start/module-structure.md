@@ -97,7 +97,7 @@ module示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| moduleName | 标识当前HAP的名称，最大长度为31个字节。 在应用升级时，该名称允许修改，但需要应用适配Module相关数据目录的迁移，可使用[文件操作接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。| 字符串 | 不可缺省。 |
+| moduleName | 标识当前HAP的名称，最大长度为31个字节。 在应用升级时，该名称允许修改，但需要应用适配Module相关数据目录的迁移，可使用[文件操作接口](../reference/apis-core-file-kit/js-apis-file-fs.md)。| 字符串 | 不可缺省。 |
 | moduleType | 标识当前HAP的类型，包括三种类型：entry、feature和har。 | 字符串 | 不可缺省。 |
 | installationFree | 标识当前HAP是否支持免安装特性。true：表示支持免安装特性，且符合免安装约束。false：表示不支持免安装特性。另外还需注意：当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为true。当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务需求配置true或false。 | 布尔值 | 不可缺省。 |
 | deliveryWithInstall | 标识当前HAP是否在用户主动安装HAP所在应用的时候一起安装。true：&nbsp;安装应用时当前HAP随应用一起下载安装。false：安装应用时当前HAP并不下载安装，后续使用是按需下载。 | 布尔值 | 不可缺省。 |
@@ -217,7 +217,7 @@ metadata对象示例：
 | grantPermission | 指定是否可以向Ability内任何数据授予权限。<br/>-&nbsp;true：表示可以向Ability内任何数据授予权限。<br/>-&nbsp;false：表示不可以向Ability内任何数据授予权限。 | 布尔值 | 可缺省，缺省值为空。 |
 | readPermission | 标识读取Ability的数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省为空。 |
 | writePermission | 标识向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省为空。 |
-| configChanges | 标识Ability关注的系统配置集合。当已关注的配置发生变更后，Ability会收到onConfigurationUpdated回调。取值范围：<br/>mcc：表示IMSI移动设备国家/地区代码（MCC）发生变更。典型场景：检测到SIM并更新MCC。<br/>mnc：IMSI移动设备网络代码（MNC）发生变更。典型场景：检测到SIM并更新MNC。<br/>locale：表示语言区域发生变更。典型场景：用户已为设备文本的文本显示选择新的语言类型。<br/>layout：表示屏幕布局发生变更。典型场景：当前有不同的显示形态都处于活跃状态。<br/>fontSize：表示字号发生变更。典型场景：用户已设置新的全局字号。<br/>orientation：表示屏幕方向发生变更。典型场景：用户旋转设备。<br/>density：表示显示密度发生变更。典型场景：用户可能指定不同的显示比例，或当前有不同的显示形态同时处于活跃状态。<br/>size：显示窗口大小发生变更。<br/>smallestSize：显示窗口较短边的边长发生变更。<br/>colorMode：颜色模式发生变更。 | 字符串数组 | 可缺省，缺省为空。 |
+| configChanges | 标识Ability关注的环境变量集合。当已关注的环境变量更新后，Ability会收到onConfigurationUpdated回调。取值范围：<br/>mcc：表示IMSI移动设备国家/地区代码（MCC）发生变更。典型场景：检测到SIM并更新MCC。<br/>mnc：IMSI移动设备网络代码（MNC）发生变更。典型场景：检测到SIM并更新MNC。<br/>locale：表示语言区域发生变更。典型场景：用户已为设备文本的文本显示选择新的语言类型。<br/>layout：表示屏幕布局发生变更。典型场景：当前有不同的显示形态都处于活跃状态。<br/>fontSize：表示字号发生变更。典型场景：用户已设置新的全局字号。<br/>orientation：表示屏幕方向发生变更。典型场景：用户旋转设备。<br/>density：表示显示密度发生变更。典型场景：用户可能指定不同的显示比例，或当前有不同的显示形态同时处于活跃状态。<br/>size：显示窗口大小发生变更。<br/>smallestSize：显示窗口较短边的边长发生变更。<br/>colorMode：颜色模式发生变更。 | 字符串数组 | 可缺省，缺省为空。 |
 | mission | 标识Ability指定的任务栈。该标签仅适用于page类型的Ability。默认情况下应用中所有Ability同属一个任务栈。 | 字符串 | 可缺省，缺省为应用的包名。 |
 | targetAbility | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其他属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。 | 字符串 | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
 | formsEnabled | 标识Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br/>true：支持卡片能力。<br/>false：不支持卡片能力。 | 布尔值 | 可缺省，缺省值为false。 |
@@ -559,7 +559,7 @@ forms示例：
 ```json
 "forms": [
   {
-    "name": "Form_Js",
+    "name": "Form_Js1",
     "description": "It's Js Form",
     "type": "JS",
     "jsComponentName": "card",
@@ -576,9 +576,9 @@ forms示例：
     ]
   },
   {
-    "name": "Form_Js",
+    "name": "Form_Js2",
     "description": "It's JS Form",
-    "type": "Js",
+    "type": "JS",
     "colorMode": "auto",
     "isDefault": false,
     "updateEnabled": true,

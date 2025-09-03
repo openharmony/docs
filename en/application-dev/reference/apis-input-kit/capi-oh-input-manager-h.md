@@ -2940,7 +2940,7 @@ Obtains the modifier key.
 
 | Type| Description|
 | -- | -- |
-| [Input_Result](#input_result) | Status code of the **OH_Input_GetpressedKeys** function, which is<br>         [INPUT_SUCCESS](#input_result) if the operation is successful; [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
+| [Input_Result](#input_result) | Status code of the **OH_Input_GetPreKeys** function, which is<br>         [INPUT_SUCCESS](#input_result) if the operation is successful; [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
 
 ### OH_Input_SetFinalKey()
 
@@ -2990,7 +2990,7 @@ Obtains the modified key.
 
 | Type| Description|
 | -- | -- |
-| [Input_Result](#input_result) | Status code of the **OH_Input_GetfinalKey** function, which is<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
+| [Input_Result](#input_result) | Status code of the **OH_Input_GetFinalKey** function, which is<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
 
 ### OH_Input_CreateAllSystemHotkeys()
 
@@ -3017,7 +3017,7 @@ Creates an array of [Input_Hotkey](capi-input-hotkey.md) instances.
 
 | Type| Description|
 | -- | -- |
-| [Input_Hotkey](capi-input-hotkey.md) | OH_Input_CreateAllSystemHotkey status code,<br>         which is [INPUT_SUCCESS](#input_result) if the operation is successful.|
+| [Input_Hotkey](capi-input-hotkey.md) | OH_Input_CreateAllSystemHotkeys status code,<br>         which is [INPUT_SUCCESS](#input_result) if the operation is successful.|
 
 ### OH_Input_DestroyAllSystemHotkeys()
 
@@ -3117,7 +3117,7 @@ Checks whether to report repeated key events.
 
 | Type| Description|
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetIsRepeat status code, specifically,<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
+| [Input_Result](#input_result) | OH_Input_GetRepeat status code, specifically,<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
 
 ### OH_Input_AddHotkeyMonitor()
 

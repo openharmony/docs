@@ -268,8 +268,8 @@ Inverts this matrix object. The original matrix that calls this API will be chan
 import { matrix4 } from '@kit.ArkUI';
 
 // The effect of matrix 1 (width scaled up by 2x) is opposite to that of matrix 2 (width scaled down by 2x).
-let matrix1 = matrix4.identity().scale({ x: 2 })
-let matrix2 = matrix1.copy().invert()
+let matrix1 = matrix4.identity().scale({ x: 2 });
+let matrix2 = matrix1.copy().invert();
 
 @Entry
 @Component
@@ -323,7 +323,7 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 })
+  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 });
 
   build() {
     Column() {
@@ -376,7 +376,7 @@ struct Test {
       z: 4,
       centerX: 50,
       centerY: 50
-    })
+    });
 
   build() {
     Column() {
@@ -525,10 +525,10 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private originPoint: number[] = [50, 50]
-  private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 })
-  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]])
-  private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] })
+  private originPoint: number[] = [50, 50];
+  private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 });
+  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]]);
+  private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] });
 
   build() {
     Column() {
@@ -609,6 +609,8 @@ struct Index {
 ![en-us_image_0000001174422898](figures/setPolyTopoly.png)
 ## TranslateOption
 
+Describes the translation parameters.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -620,6 +622,8 @@ struct Index {
 | z    | number | No  | Translation distance along the z-axis.<br>Unit: px<br>Default value: **0**<br>Value range: (-∞, +∞)|
 
 ## ScaleOption
+
+Describes the scale parameters.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -634,6 +638,8 @@ struct Index {
 | centerY | number | No  | Y coordinate of the center point.<br>Unit: px<br>Default value: Y-coordinate of the component center<br>Value range: (-∞, +∞)   |
 
 ## RotateOption
+
+Describes the rotation parameters.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -650,19 +656,23 @@ struct Index {
 
 ## PolyToPolyOptions<sup>12+</sup>
 
+Describes the configuration options for polygon-to-polygon transformation mapping.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type  | Mandatory | Description                                                       |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| src    |  Array<[Point](#point12)> | Yes  | Coordinates of the source point. |
-| srcIndex    | number | No  | Start index of the source point coordinates.<br>Default value: **0**|
-| dst    |  Array<[Point](#point12)>  | Yes  | Coordinates of the destination point. |
-| dstIndex    | number | No  |  Start index of the destination point coordinates.<br>Default value: **0** |
-| pointCount    | number | No  | Number of used points.<br>Default value: **src.length/2**|
+| src    |  Array<[Point](#point12)> | Yes  | Coordinates of the source point.|
+| srcIndex    | number | No  | Start index of the source point coordinates.<br>Default value: **0**.<br> Value range: [0, +∞).|
+| dst    |  Array<[Point](#point12)>  | Yes  | Coordinates of the destination point.|
+| dstIndex    | number | No  |  Start index of the destination point coordinates.<br>Default value: **src.length/2**.<br> Value range: [0, +∞).|
+| pointCount    | number | No  | Number of used points.<br>Default value: **0**.<br> Value range: [0, +∞).|
 
 ## Point<sup>12+</sup>
+
+Defines the data structure of a coordinate point.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

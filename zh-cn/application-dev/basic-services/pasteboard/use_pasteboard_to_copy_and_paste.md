@@ -19,7 +19,7 @@
 ### ArkTS接口与NDK接口数据类型对应关系
 | ArkTS数据类型 | NDK数据类型                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------|
-| MIMETYPE_PIXELMAP : "pixelMap" | UDMF_META_OPENHARMONY_PIXEL_MAP : "openharmony.pixle-map" |
+| MIMETYPE_PIXELMAP : "pixelMap" | UDMF_META_OPENHARMONY_PIXEL_MAP : "openharmony.pixel-map" |
 | MIMETYPE_TEXT_HTML : "text/html" | UDMF_META_HTML : "general.html" |
 | MIMETYPE_TEXT_PLAIN : "text/plain" | UDMF_META_PLAIN_TEXT : "general.plain-text" |
 | MIMETYPE_TEXT_URI : "text/uri" | UDMF_META_GENERAL_FILE_URI : "general.file-uri" |
@@ -63,7 +63,7 @@ export default class EntryAbility extends UIAbility {
       // 从剪贴板数据中获取对应条目信息
       for (let i = 0; i < recordCount; i++) {
         let record = outputData.getRecord(i).toPlainText();
-        console.log('Get data success, record:' + record);
+        console.info('Get data success, record:' + record);
       }
     }).catch((error: BusinessError) => {
       // 处理异常场景

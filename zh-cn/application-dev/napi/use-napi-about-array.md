@@ -145,7 +145,7 @@ static napi_value GetArrayLength(napi_env env, napi_callback_info info)
     bool is_array;
     napi_is_array(env, args[0], &is_array);
     if (!is_array) {
-        napi_throw_type_error(env, nullptr, "Argument must be an array");
+        napi_throw_error(env, nullptr, "Argument must be an array");
         return nullptr;
     }
     napi_get_array_length(env, args[0], &length);
@@ -247,12 +247,16 @@ static napi_value NapiSetElement(napi_env env, napi_callback_info info)
     bool isArr = false;
     napi_is_array(env, args[0], &isArr);
     if (!isArr) {
-        napi_throw_type_error(env, nullptr, "Argument should be an object of type array");
+        napi_throw_error(env, nullptr, "Argument should be an object of type array");
         return nullptr;
     }
     // 获取要设置的元素索引
     double index = 0;
-    napi_get_value_double(env, args[1], &index);
+    napi_status status = napi_get_value_double(env, args[1], &index);
+    if (status != napi_ok || index < 0) {
+        napi_throw_error(env, nullptr, "The index should be a non-negative number");
+        return nullptr;
+    }
     // 将传入的值设置到数组指定索引位置
     napi_set_element(env, args[0], static_cast<uint32_t>(index), args[INT_ARG_2]);
 
@@ -271,22 +275,26 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
-let arr = [10, 20, 30];
-testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
-testNapi.napiSetElement<number | string>(arr, 2, 50);
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr: %{public}s', arr.toString());
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[3]: %{public}s', arr[3]);
-interface MyObject {
-  first: number;
-  second: number;
+try {
+  let arr = [10, 20, 30];
+  testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
+  testNapi.napiSetElement<number | string>(arr, 2, 50);
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr: %{public}s', arr.toString());
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[3]: %{public}s', arr[3]);
+  interface MyObject {
+    first: number;
+    second: number;
+  }
+  let obj: MyObject = {
+    first: 1,
+    second: 2
+  };
+  testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
+  let objAsString = JSON.stringify(arr[4]);
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_set_element error: %{public}s', error.message);
 }
-let obj: MyObject = {
-  first: 1,
-  second: 2
-};
-testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
-let objAsString = JSON.stringify(arr[4]);
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
 ```
 
 ### napi_get_element
@@ -462,7 +470,7 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
     size_t elementSize = 0;
     // 根据传递的类型值选择创建对应的类型数组
     arrayType = static_cast<napi_typedarray_type>(typeNum);
-    switch (typeNum) {
+    switch (arrayType) {
     case napi_int8_array:
     case napi_uint8_array:
     case napi_uint8_clamped_array:
@@ -519,7 +527,7 @@ export const enum TypedArrayTypes {
   FLOAT32_ARRAY,
   FLOAT64_ARRAY,
   BIGINT64_ARRAY,
-  BIGuINT64_ARRAY,
+  BIGUINT64_ARRAY,
 }
 export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ```
@@ -651,7 +659,7 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
     napi_value arraybuffer;
     // 调用接口napi_get_typedarray_info获得TypedArray类型数据的信息
     napi_get_typedarray_info(env, args[0], &type, &length, &data, &arraybuffer, &byteOffset);
-    napi_value result;
+    napi_value result = nullptr;
     // 根据属性名，返回TypedArray对应的属性值
     switch (infoTypeParam) {
     case INFO_TYPE:
@@ -677,6 +685,7 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
         result = arraybuffer;
         break;
     default:
+        napi_throw_error(env, nullptr, "infoType is not the InfoType");
         break;
     }
     return result;
@@ -706,13 +715,17 @@ enum InfoType {
     ARRAY_BUFFER = 3, // TypedArray下的ArrayBuffer
     BYTE_OFFSET = 4 // 数组的第一个元素所在的基础原生数组中的字节偏移量
 };
-let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-// 将arraybuffer转为数组
-let arr = new Array(new Int8Array(arrbuff));
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+try {
+  let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+  // 将arraybuffer转为数组
+  let arr = new Array(new Int8Array(arrbuff));
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_typedarray_info error: %{public}s', error.message);
+}
 ```
 
 ### napi_create_dataview
@@ -858,7 +871,7 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
     enum InfoType { BYTE_LENGTH = 0, ARRAY_BUFFER, BYTE_OFFSET };
     // 获取dataview信息
     napi_get_dataview_info(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
-    napi_value result;
+    napi_value result = nullptr;
     switch (infoType) {
         case BYTE_LENGTH:
             // 返回查询DataView的字节数
@@ -877,6 +890,7 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
             result = napiByteOffset;
             break;
         default:
+            napi_throw_error(env, nullptr, "infoType is not the InfoType");
             break;
     }
     return result;
@@ -906,15 +920,19 @@ enum InfoType {
     ARRAY_BUFFER = 1,
     BYTE_OFFSET = 2,
 };
-// 传入DataView类型参数查询DataView的字节数
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
-// 传入DataView类型参数查询DataView的ArrayBuffer
-let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-// 将arraybuffer转为数组
-let arr = Array.from(new Int8Array(arrbuff));
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
-// 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+try {
+  // 传入DataView类型参数查询DataView的字节数
+  hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
+  // 传入DataView类型参数查询DataView的ArrayBuffer
+  let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+  // 将arraybuffer转为数组
+  let arr = Array.from(new Int8Array(arrbuff));
+  hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
+  // 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
+  hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_dataview_info error: %{public}s', error.message);
+}
 ```
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
@@ -923,5 +941,5 @@ hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNa
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

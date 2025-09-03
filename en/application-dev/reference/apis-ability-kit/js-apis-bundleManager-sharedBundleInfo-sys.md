@@ -25,7 +25,7 @@ Defines the shared bundle information.
 | Name            | Type                          | Read-Only| Optional| Description                  |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | name             | string                         | Yes  | No  | Name of the shared bundle.      |
-| compatiblePolicy | bundleManager.CompatiblePolicy | Yes  | No  | Compatibility type of the shared bundle.|
+| compatiblePolicy | bundleManager.[CompatiblePolicy](js-apis-bundleManager.md#compatiblepolicy10) | Yes  | No  | Compatibility type of the shared bundle.|
 | sharedModuleInfo | Array\<SharedModuleInfo>       | Yes  | No  | Information about the shared module.    |
 
 ## SharedModuleInfo

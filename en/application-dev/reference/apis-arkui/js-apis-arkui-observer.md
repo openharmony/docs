@@ -6,6 +6,8 @@ The **Observer** module provides APIs for listening for UI component behavior ch
 >
 > The initial APIs of this module are supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> UIObserver can only listen for relevant information within the current process and does not support obtaining information in cross-process scenarios<!--Del--> such as [UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)<!--DelEnd-->.
+
 
 ## Modules to Import
 
@@ -25,12 +27,12 @@ Describes the state of the **NavDestination** component.
 | ON_HIDDEN | 1   | The **NavDestination** component is hidden. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | ON_APPEAR<sup>12+</sup> | 2   | The **NavDestination** component is attached to the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | ON_DISAPPEAR<sup>12+</sup> | 3   | The **NavDestination** component is detached from the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| ON_WILL_SHOW<sup>12+</sup> | 4   | The **NavDestination** is about to be displayed. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_WILL_SHOW<sup>12+</sup> | 4   | The **NavDestination** component is about to be displayed. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | ON_WILL_HIDE<sup>12+</sup> | 5   | The **NavDestination** component is about to be hidden. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | ON_WILL_APPEAR<sup>12+</sup>| 6   | The **NavDestination** component is about to be mounted to the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | The **NavDestination** component is about to be unmounted from the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| ON_ACTIVE<sup>18+</sup> | 8 | The **NavDestination** component is active. **Atomic service API**: This API can be used in atomic services since API version 18.|
-| ON_INACTIVE<sup>18+</sup> | 9 | The **NavDestination** component is inactive. **Atomic service API**: This API can be used in atomic services since API version 18.|
+| ON_ACTIVE<sup>17+</sup> | 8 | The **NavDestination** component is active. **Atomic service API**: This API can be used in atomic services since API version 17.|
+| ON_INACTIVE<sup>17+</sup> | 9 | The **NavDestination** component is inactive. **Atomic service API**: This API can be used in atomic services since API version 17.|
 | ON_BACKPRESS<sup>12+</sup> | 100   | The back button is pressed on the **NavDestination** component. **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ScrollEventType<sup>12+</sup>
@@ -86,7 +88,7 @@ Provides information about the **NavDestination** component.
 | navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | ID of the **Navigation** component that contains the target **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | Name of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | state        | [NavDestinationState](#navdestinationstate)        | Yes  | State of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| index<sup>12+</sup>        | number        | Yes  | Index of the **NavDestination** component in the navigation stack.<br>**Atomic service API**: This API can be used in atomic services since API version 12.              |
+| index<sup>12+</sup>        | number        | Yes  | Index of the **NavDestination** component in the navigation stack.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br> Value range: [0, +∞)     |
 | param<sup>12+</sup>        | Object        | No  | Parameters of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.              |
 | navDestinationId<sup>12+</sup>        | string        | Yes  | Unique ID of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.           |
 | mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode11)        | No  | Mode of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 15.              |
@@ -102,8 +104,8 @@ Provides information about the **Navigation** component.
 
 | Name        | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | string | Yes  | ID of the **Navigation** component.|
-| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | Yes  | Routing stack of the **Navigation** component.                  |
+| navigationId | string | Yes  | ID of the **Navigation** component.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | Yes  | Navigation controller of the **Navigation** component.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                  |
 
 ## ScrollEventInfo<sup>12+</sup>
 
@@ -115,10 +117,10 @@ Provides the scroll event information.
 
 | Name        | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| id           | string                                             | Yes  | ID of the scrollable component.                              |
-| uniqueId           | number                                             | Yes  | Unique ID of the scrollable component.                              |
-| scrollEvent    | [ScrollEventType](#scrolleventtype12)                | Yes  | Type of the scroll event.                            |
-| offset       | number                                             | Yes  | Current offset of the scrollable component.                       |
+| id           | string                                             | Yes  | ID of the scrollable component.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| uniqueId           | number                                             | Yes  | Unique ID of the scrollable component.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| scrollEvent    | [ScrollEventType](#scrolleventtype12)                | Yes  | Enumerates the scroll event types.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| offset       | number                                             | Yes  | Current offset of the scrollable component.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ObserverOptions<sup>12+</sup>
 
@@ -143,7 +145,7 @@ Provides the information about a page during routing.
 | Name                | Type                                                        | Mandatory| Description                                          |
 | -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context of the router page that invokes the lifecycle callback.|
-| index                | number                                                       | Yes  | Position of the router page that invokes the lifecycle callback, in the navigation stack.        |
+| index                | number                                                       | Yes  | Position of the router page that invokes the lifecycle callback, in the navigation stack.<br> Value range: [0, +∞)        |
 | name                 | string                                                       | Yes  | Name of the page that invokes the lifecycle callback.          |
 | path                 | string                                                       | Yes  | Path of the page that invokes the lifecycle callback.          |
 | state                | [RouterPageState](#routerpagestate)                          | Yes  | State of the router page that invokes the lifecycle callback.          |
@@ -395,7 +397,7 @@ See the example for [uiObserver.on('navDestinationUpdate')](#uiobserveronnavdest
 
 on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
-Subscribes to the start and end of a scroll event.
+Subscribes to the start and end of scroll events of all scrollable components, including [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -416,7 +418,7 @@ See the example for [offscrollevent](#uiobserveroffscrollevent12-1).
 
 off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
-Unsubscribes from the start and end of a scroll event.
+Unsubscribes from the start and end of scroll events of all scrollable components, including [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -437,7 +439,7 @@ See the example for [offscrollevent](#uiobserveroffscrollevent12-1).
 
 on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEventInfo\>): void
 
-Subscribes to the start and end of a scroll event.
+Subscribes to the start and end of scroll events of a specific scrollable component identified by its ID. Supported components include [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -459,7 +461,7 @@ See the example for [offscrollevent](#uiobserveroffscrollevent12-1).
 
 off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEventInfo\>): void
 
-Unsubscribes from the start and end of a scroll event.
+Unsubscribes from the start and end of scroll events of a specific scrollable component identified by its ID. Supported components include [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -482,7 +484,7 @@ import { uiObserver } from '@kit.ArkUI'
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: uiObserver.ObserverOptions = { id: "testId" };
+  options: uiObserver.ObserverOptions = { id: 'testId' };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
@@ -502,7 +504,7 @@ struct Index {
             }, (item: string) => item)
           }.width('100%')
         }
-        .id("testId")
+        .id('testId')
         .height('80%')
       }
       .width('100%')
@@ -766,7 +768,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.info("willDraw instruction dispatched.")
+    console.info("willDraw instruction dispatched.");
   }
   build() {
     Column() {
@@ -933,7 +935,7 @@ Subscribes to the page switching event of the **Navigation** component.
 // uiObserver.off('navDestinationSwitch', UIAbilityContext, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { uiObserver, window } from '@kit.ArkUI';
-import { hilog } from "@kit.PerformanceAnalysisKit"
+import { hilog } from "@kit.PerformanceAnalysisKit";
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)

@@ -23,7 +23,7 @@ Environment提供了读取系统环境变量并将其值写入AppStorage的功�
 
 ### 从UI中访问Environment参数
 
-- 使用Environment.envProp将设备运行的环境变量存入AppStorage中。
+- 使用Environment.[envProp](../../reference/apis-arkui/arkui-ts/ts-state-management.md#envprop10)将设备运行的环境变量存入AppStorage中。
 
   ```ts
   // 将设备的语言code存入AppStorage，默认值为en

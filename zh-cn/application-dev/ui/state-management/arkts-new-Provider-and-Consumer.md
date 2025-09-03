@@ -7,8 +7,9 @@
 
 >**说明：**
 >
->\@Provider和\@Consumer装饰器从API version 12开始支持。
+> \@Provider和\@Consumer装饰器从API version 12开始支持。
 >
+> 从API version 12开始，\@Provider和\@Consumer装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -127,7 +128,9 @@ struct Child {
 ## 使用场景
 
 ### \@Provider和\@Consumer双向同步
-#### 建立双向绑定
+
+**建立双向绑定**
+
 1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
     - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
@@ -167,7 +170,8 @@ struct Child {
   }
 }
 ```
-#### 未建立双向绑定
+
+**未建立双向绑定**
 
 下面的例子中，\@Provider和\@Consumer由于aliasName值不同，无法建立双向同步关系。
 1. 自定义组件Parent和Child初始化：

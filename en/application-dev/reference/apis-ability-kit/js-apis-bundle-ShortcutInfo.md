@@ -24,6 +24,6 @@ This API is deprecated since API version 9. The substitute API is open only to s
 | labelId<sup>8+</sup>    | number                                     | Yes  | No  | Name ID of the shortcut.            |
 | disableMessage          | string                                     | Yes  | No  | Message displayed when the shortcut is disabled.          |
 | wants                   | Array&lt;<!--Del-->[<!--DelEnd-->ShortcutWant<!--Del-->](js-apis-bundle-ShortcutInfo-sys.md#shortcutwantdeprecated)<!--DelEnd-->&gt; | Yes  | No  | Want list for the shortcut.        |
-| isStatic                | boolean                                    | Yes  | No  | Whether the shortcut is static. The value **true** means that the shortcut is static, and **false** means the opposite.         |
-| isHomeShortcut          | boolean                                    | Yes  | No  | Whether the shortcut is a home shortcut. The value **true** means that the shortcut is a home shortcut, and **false** means the opposite.|
-| isEnabled               | boolean                                    | Yes  | No  | Whether the shortcut is enabled. The value **true** means that the shortcut is enabled, and **false** means the opposite.            |
+| isStatic                | boolean                                    | Yes  | No  | Whether the shortcut is static. **true** if static, **false** otherwise.         |
+| isHomeShortcut          | boolean                                    | Yes  | No  | Whether the shortcut is a home shortcut. **true** if the shortcut is a home shortcut, **false** otherwise.|
+| isEnabled               | boolean                                    | Yes  | No  | Whether the shortcut is enabled. **true** if enabled, **false** otherwise.            |

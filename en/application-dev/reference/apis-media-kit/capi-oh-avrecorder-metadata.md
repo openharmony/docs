@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_AVRecorder_Metadata struct describes the metadata.
+The struct describes the metadata.
 
 **Since**: 18
 

@@ -202,9 +202,9 @@ static JSVM_Value HasProperty(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_HasProperty success:%{public}d", result);
     }
     // 若传入属性存在传入对象中，则输出true将结果转化为JSVM_Value类型抛出
-    JSVM_Value returnReslut = nullptr;
-    OH_JSVM_GetBoolean(env, result, &returnReslut);
-    return returnReslut;
+    JSVM_Value returnResult = nullptr;
+    OH_JSVM_GetBoolean(env, result, &returnResult);
+    return returnResult;
 }
 // HasProperty注册回调
 static JSVM_CallbackStruct param[] = {
@@ -609,6 +609,11 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
+        if (buf == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "malloc failed");
+            return nullptr;
+        }
+        memset(buf, 0, length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM defineStringPropertiesExample success:%{public}s", buf);
         free(buf);
@@ -621,6 +626,11 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
+        if (buf == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "malloc failed");
+            return nullptr;
+        }
+        memset(buf, 0, length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM getterCallback success:%{public}s", buf);
         free(buf);
@@ -662,7 +672,7 @@ cpp部分代码
 // OH_JSVM_GetAllPropertyNames的样例方法
 static JSVM_Value GetAllPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // // 获取js侧传入的一个参数
+    // 获取js侧传入的一个参数
     size_t argc = 1;
     JSVM_Value args[1];
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);

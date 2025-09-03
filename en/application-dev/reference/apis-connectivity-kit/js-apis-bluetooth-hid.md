@@ -1,7 +1,12 @@
 # @ohos.bluetooth.hid (Bluetooth HID Module)
 
-The **hid** module provides APIs for using the Bluetooth Human Interface Device Profile (HID).
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
+The **hid** module provides Bluetooth capabilities based on Bluetooth Classic's Human Interface Device Profile (HID), and supports functions such as obtaining the connection status. All the APIs in this module are also accessible to devices using Bluetooth Low Energy (BLE)'s HID over GATT Profile (HOGP).
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -25,7 +30,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md) | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## hid.createHidHostProfile

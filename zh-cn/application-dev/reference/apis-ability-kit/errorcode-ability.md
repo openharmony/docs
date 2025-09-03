@@ -1,5 +1,11 @@
 # 元能力子系统错误码
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -47,7 +53,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接，并且[module.json5配置文件](../../quick-start/module-configuration-file.md)中`extensionAbilities`的`type`需要是与接口匹配的`service`。
 
 ## 16000003 指定的ID不存在
 
@@ -326,17 +332,16 @@ Internal error.
 
 **错误描述**
 
-当内存申请、多线程处理异常等内部处理错误时，方法将返回该错误码。
+当出现了开发者无法解决的内部异常错误（如内存申请失败、多线程处理异常、跨进程通信失败等）时，方法将返回该错误码。
 
 **可能原因**
 
-内存申请、多线程处理等内核通用错误。具体原因可能包括：内部对象为空、处理超时、包管理获取应用信息失败、系统服务获取失败、启动的ability实例已达到上限等等。
+该错误码是一个通用的系统异常错误码，不同的接口可能由不同的原因导致。主要包括：内部对象为空指针、处理超时、IPC跨进程通信失败、包管理获取应用信息失败、系统服务获取失败、启动的Ability实例已达到上限等。
 
 **处理步骤**
 
-1. 确认系统内存是否足够，设备使用的系统版本是否存在异常。
-2. 检查是否启动了过多的ability。
-3. 尝试重启设备。
+1. 内部错误属于系统异常导致开发者无法处理的错误。开发者可以尝试重试。
+2. 对于启动Ability失败时，可以检查传入的Want数据是否过大。
 
 ## 16000051 网络异常
 
@@ -768,7 +773,7 @@ The caller does not exist.
 
 **错误描述**
 
-通过backTocallerAbilityResult接口向调用方返回结果时，如果根据传入的requestCode无法找到调用方，返回该错误码。
+通过backToCallerAbilityWithResult接口向调用方返回结果时，如果根据传入的requestCode无法找到调用方，返回该错误码。
 
 **可能原因**
 

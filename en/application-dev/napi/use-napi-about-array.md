@@ -6,7 +6,7 @@ Node-API provides APIs for directly managing ArkTS arrays.
 
 ## Basic Concepts
 
-Node-API can be used to create, access, modify, and traverse arrays. Before using Node-API, it's helpful if you understand the following concepts:
+Node-API can be used to create, access, modify, and traverse arrays. Before using Node-API, it is helpful if you understand the following concepts:
 
 - Array creation: You can use **api_create_array** to create an array and pass it to the ArkTS layer.
 - Array-related operations: You can use the APIs provides by the Node-API module to obtain the length of an ArkTS array, retrieve the element at the specified index, and set the element value at the specified index.

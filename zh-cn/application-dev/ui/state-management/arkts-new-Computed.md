@@ -17,8 +17,9 @@ Text(`${this.sum}`) // 读取@Computed sum的缓存值，节省上述重复计�
 
 >**说明：**
 >
->\@Computed装饰器从API version 12开始支持。
+> \@Computed装饰器从API version 12开始支持。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 

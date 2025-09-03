@@ -26,7 +26,8 @@
 | on(type: 'freeze', observer: FreezeObserver): void<sup>18+</sup> | 注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
 | off(type: 'freeze', observer?: FreezeObserver): void<sup>18+</sup> | 以FreezeObserver的形式解除应用主线程消息处理耗时监听。  |
 
-当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
+当采用callback作为异步回调时，可以在callback中进行下一步处理。
+当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值，具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
 **错误监听(ErrorObserver)接口功能介绍：**
 
@@ -46,7 +47,7 @@
 | 结果码 | 原因                        |
 | ------ | ---------------------------  |
 | 0      |  正常返回。                          |
-| -1     | 传入的number不存在。              |
+| -1     | 传入的number参数不存在。              |
 | -2     | 参数错误。       |
 
 ## 开发示例
@@ -137,7 +138,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);
@@ -199,7 +200,7 @@ function promiseFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);

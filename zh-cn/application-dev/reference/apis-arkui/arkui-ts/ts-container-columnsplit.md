@@ -66,10 +66,10 @@ divider(value: ColumnSplitDividerStyle | null)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型      | 必填 | 说明                       |
-| ----------- | ------------- | ---- |--------------------------|
-| startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其上方子组件的距离。<br/>默认值：0 <br />非法值：按默认值处理。 |
-| endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其下方子组件的距离。<br/>默认值：0 <br />非法值：按默认值处理。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| startMargin | [Dimension](ts-types.md#dimension10)       | 否 | 是  | 分割线与其上方子组件的距离。<br/>默认值：0 <br />非法值：按默认值处理。 |
+| endMargin   | [Dimension](ts-types.md#dimension10)       | 否 | 是  | 分割线与其下方子组件的距离。<br/>默认值：0 <br />非法值：按默认值处理。 |
 
 >  **说明：**
 >

@@ -102,7 +102,7 @@ struct Page2 {
 
 在上面的示例中：
 
-1.点击页面1中的Button “first page storageLink + 1”，storageLink状态变量改变，@Watch中注册的方法first会被调用。
+1.点击页面1中的Button “first page storageLink + 1”，storageLink状态变量改变，[@Watch](./arkts-watch.md)中注册的方法first会被调用。
 
 2.通过router.pushUrl({url: 'pages/second'})，跳转到页面2，页面1隐藏，状态由active变为inactive。
 
@@ -355,11 +355,11 @@ struct MyNavigationTestStack {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneStack({ message: this.message, logNumber: this.logNumber })
+      PageOneStack({ message: this.message, logNumber: this.logNumber })
     } else if (name === 'pageTwo') {
-      pageTwoStack({ message: this.message, logNumber: this.logNumber })
+      PageTwoStack({ message: this.message, logNumber: this.logNumber })
     } else if (name === 'pageThree') {
-      pageThreeStack({ message: this.message, logNumber: this.logNumber })
+      PageThreeStack({ message: this.message, logNumber: this.logNumber })
     }
   }
 
@@ -387,7 +387,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 1;
   @Link message: number;
@@ -424,7 +424,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 2;
   @Link message: number;
@@ -461,7 +461,7 @@ struct pageTwoStack {
 }
 
 @Component
-struct pageThreeStack {
+struct PageThreeStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 3;
   @Link message: number;
@@ -526,21 +526,21 @@ struct NavigationContentMsgStack {
 
 1.点击“change message”更改message的值，当前正在显示的MyNavigationTestStack组件中的@Watch中注册的方法info被触发。
 
-2.点击“Next Page”切换到PageOne，创建pageOneStack节点。
+2.点击“Next Page”切换到PageOne，创建PageOneStack节点。
 
-3.再次点击“change message”更改message的值，仅pageOneStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
+3.再次点击“change message”更改message的值，仅PageOneStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
 
 4.再次点击“Next Page”切换到PageTwo，创建pageTwoStack节点。
 
-5.再次点击“change message”更改message的值，仅pageTwoStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
+5.再次点击“change message”更改message的值，仅PageTwoStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
 
-6.再次点击“Next Page”切换到PageThree，创建pageThreeStack节点。
+6.再次点击“Next Page”切换到PageThree，创建PageThreeStack节点。
 
 7.再次点击“change message”更改message的值，仅pageThreeStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
 
-8.点击“Back Page”回到PageTwo，此时，仅pageTwoStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
+8.点击“Back Page”回到PageTwo，此时，仅PageTwoStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
 
-9.再次点击“Back Page”回到PageOne，此时，仅pageOneStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
+9.再次点击“Back Page”回到PageOne，此时，仅PageOneStack中的NavigationContentMsgStack子组件中的@Watch中注册的方法info被触发。
 
 10.再次点击“Back Page”回到初始页，此时，无任何触发。
 
@@ -550,7 +550,8 @@ struct NavigationContentMsgStack {
 
 [组件复用](./arkts-reusable.md)通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
 
-#### 组件复用、if和组件冻结混用场景
+**组件复用、if和组件冻结混用场景**
+
 下面是组件复用、if组件和组件冻结混合使用场景的例子，if组件绑定的状态变量变化成false时，触发子组件`ChildComponent`的下树，由于`ChildComponent`被标记了组件复用，所以不会被销毁，而是进入复用池，这个时候如果同时开启了组件冻结，则可以使在复用池里不再刷新。
 具体流程如下：
 1. 点击`change flag`，改变`flag`为false：
@@ -561,16 +562,17 @@ struct NavigationContentMsgStack {
     - 但因为`ChildComponent`是inactive状态，且开启了组件冻结，所以这次变化并不会触发`@Watch('descChange')`的回调，以及`ChildComponent`UI刷新。如果没有开启组件冻结，当前`@Watch('descChange')`会立即回调，且复用池内的`ChildComponent`组件也会对应刷新。
 3. 再次点击`change flag`，改变`flag`为true：
     - `ChildComponent`从复用池中重新加入到组件树上。
-    - 回调aboutToReuse生命周期，将当前最新的`count`值同步给子组件。`desc`是通过@State->@Link同步的，所以无需开发者手动在aboutToReuse中赋值。
+    - 回调aboutToReuse生命周期，将当前最新的`count`值同步给子组件。`desc`是通过[@State](./arkts-state.md)->[\@Link](./arkts-link.md)同步的，所以无需开发者手动在aboutToReuse中赋值。
     - 设置ChildComponent为active状态，并且刷新在inactive时没有刷新的组件，在当前例子中，就是Text(ChildComponent desc: ${this.desc})。
 
 
 ```ts
 @Reusable
-@Component({freezeWhenInactive: true})
+@Component({ freezeWhenInactive: true })
 struct ChildComponent {
   @Link @Watch('descChange') desc: string;
   @State count: number = 0;
+
   descChange() {
     console.info(`ChildComponent messageChange ${this.desc}`);
   }
@@ -582,13 +584,14 @@ struct ChildComponent {
   aboutToRecycle(): void {
     console.info(`ChildComponent has been recycled`);
   }
+
   build() {
     Column() {
       Text(`ChildComponent desc: ${this.desc}`)
         .fontSize(20)
       Text(`ChildComponent count ${this.count}`)
         .fontSize(20)
-    }.border({width: 2, color: Color.Pink})
+    }.border({ width: 2, color: Color.Pink })
   }
 }
 
@@ -598,6 +601,7 @@ struct Page {
   @State desc: string = 'Hello World';
   @State flag: boolean = true;
   @State count: number = 0;
+
   build() {
     Column() {
       Button(`change desc`).onClick(() => {
@@ -605,17 +609,18 @@ struct Page {
       })
       Button(`change flag`).onClick(() => {
         this.count++;
-        this.flag =! this.flag;
+        this.flag = !this.flag;
       })
       if (this.flag) {
-        ChildComponent({desc: this.desc, count: this.count})
+        ChildComponent({ desc: this.desc, count: this.count })
       }
     }
     .height('100%')
   }
 }
 ```
-#### LazyForEach、组件复用和组件冻结混用场景
+**LazyForEach、组件复用和组件冻结混用场景**
+
 在数据很多的长列表滑动场景下，开发者会使用LazyForEach来按需创建组件，同时配合组件复用降低在滑动过程中因创建和销毁组件带来的开销。
 但是开发者如果根据其复用类型不同，设置了[reuseId](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md#reuseid)，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
 在这种情况下，如果开发者触发List下所有子节点的刷新，就会带来节点刷新数量过大的问题，这个时候，可以考虑搭配组件冻结使用。
@@ -768,9 +773,9 @@ struct Page {
   build() {
     Column() {
       Button(`change desc`).onClick(() => {
-        hiTraceMeter.startTrace('change decs', 1);
+        hiTraceMeter.startTrace('change desc', 1);
         this.desc += '!';
-        hiTraceMeter.finishTrace('change decs', 1);
+        hiTraceMeter.finishTrace('change desc', 1);
       })
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string, index: number) => {
@@ -784,7 +789,7 @@ struct Page {
   }
 }
 ```
-#### LazyForEach、if、组件复用和组件冻结混用场景
+**LazyForEach、if、组件复用和组件冻结混用场景**
 
 下面的场景中展示了LazyForEach、if、组件复用和组件冻结混用场景。在同一个父自定义组件下，可复用的节点可能通过不同的方式进入复用池，比如：
 - 通过滑动从LazyForEach的缓存区域下树，进入复用池。
@@ -941,9 +946,9 @@ struct Page {
   build() {
     Column() {
       Button(`change desc`).onClick(() => {
-        hiTraceMeter.startTrace('change decs', 1);
+        hiTraceMeter.startTrace('change desc', 1);
         this.desc += '!';
-        hiTraceMeter.finishTrace('change decs', 1);
+        hiTraceMeter.finishTrace('change desc', 1);
       })
 
       Button(`change flag`).onClick(() => {
@@ -975,7 +980,7 @@ struct Page {
 
 组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点。
 
-#### Navigation和TabContent的混用
+**Navigation和TabContent的混用**
 
 代码示例如下：
 
@@ -986,7 +991,7 @@ struct ChildOfParamComponent {
   @Prop @Watch('onChange') child_val: number;
 
   onChange() {
-    console.log(`Appmonitor ChildOfParamComponent: child_val changed:${this.child_val}`);
+    console.info(`Appmonitor ChildOfParamComponent: child_val changed:${this.child_val}`);
   }
 
   build() {
@@ -998,20 +1003,19 @@ struct ChildOfParamComponent {
 
 @Component
 struct ParamComponent {
-  @Prop @Watch('onChange')  paramVal: number;
+  @Prop @Watch('onChange') paramVal: number;
 
   onChange() {
-    console.log(`Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
+    console.info(`Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
   }
 
   build() {
     Column() {
       Text(`val： ${this.paramVal}`)
-      ChildOfParamComponent({child_val: this.paramVal});
+      ChildOfParamComponent({ child_val: this.paramVal });
     }
   }
 }
-
 
 
 @Component
@@ -1019,9 +1023,8 @@ struct DelayComponent {
   @Prop @Watch('onChange') delayVal: number;
 
   onChange() {
-    console.log(`Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
+    console.info(`Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
   }
-
 
   build() {
     Column() {
@@ -1030,36 +1033,39 @@ struct DelayComponent {
   }
 }
 
-@Component ({freezeWhenInactive: true})
+@Component({ freezeWhenInactive: true })
 struct TabsComponent {
   private controller: TabsController = new TabsController();
   @State @Watch('onChange') tabState: number = 47;
 
   onChange() {
-    console.log(`Appmonitor TabsComponent: tabState changed:${this.tabState}`);
+    console.info(`Appmonitor TabsComponent: tabState changed:${this.tabState}`);
   }
 
   build() {
-    Column({space: 10}) {
+    Column({ space: 10 }) {
       Button(`Incr state ${this.tabState}`)
         .fontSize(25)
         .onClick(() => {
-          console.log('Button increment state value');
+          console.info('Button increment state value');
           this.tabState = this.tabState + 1;
         })
 
-      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller}) {
+      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
         TabContent() {
-          ParamComponent({paramVal: this.tabState});
+          ParamComponent({ paramVal: this.tabState });
         }.tabBar('Update')
+
         TabContent() {
-          DelayComponent({delayVal: this.tabState});
+          DelayComponent({ delayVal: this.tabState });
         }.tabBar('DelayUpdate')
       }
       .vertical(false)
       .scrollable(true)
       .barMode(BarMode.Fixed)
-      .barWidth(400).barHeight(150).animationDuration(400)
+      .barWidth(400)
+      .barHeight(150)
+      .animationDuration(400)
       .width('100%')
       .height(200)
       .backgroundColor(0xF5F5F5)
@@ -1075,9 +1081,9 @@ struct MyNavigationTestStack {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneStack()
+      PageOneStack()
     } else if (name === 'pageTwo') {
-      pageTwoStack()
+      PageTwoStack()
     }
   }
 
@@ -1101,7 +1107,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {
@@ -1126,7 +1132,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {
@@ -1175,7 +1181,7 @@ struct pageTwoStack {
 
 ![freeze](figures/freeze_tabcontent_back_api16.png)
 
-#### 页面和LazyForEach
+**页面和LazyForEach**
 
 Navigation和TabContent混用时，之所以会解锁TabContent标签的子节点，是因为回到前一个页面时会从父组件开始递归解冻子组件，与此行为类似的还有页面生命周期：OnPageShow。OnPageShow会将当前Page中的根节点设置为active状态，TabContent作为页面的子节点，也会被设置为active状态。在屏幕灭屏和屏幕亮屏时会分别触发页面的生命周期：OnPageHide和OnPageShow，因此页面中使用LazyForEach时，手动灭屏和亮屏也能实现页面路由一样的效果，如以下示例代码：
 
@@ -1375,13 +1381,13 @@ class Params {
 
 // 定义一个buildNodeChild组件，它包含一个message属性和一个index属性
 @Component
-struct buildNodeChild {
+struct BuildNodeChild {
   @StorageProp("buildNodeTest") @Watch("onMessageUpdated") message: string = "hello world";
   @State index: number = 0;
 
   // 当message更新时，调用此方法
   onMessageUpdated() {
-    console.log(`FreezeBuildNode builderNodeChild message callback func ${this.message},index：${this.index}`);
+    console.info(`FreezeBuildNode builderNodeChild message callback func ${this.message},index：${this.index}`);
   }
 
   build() {
@@ -1393,7 +1399,7 @@ struct buildNodeChild {
 @Builder
 function buildText(params: Params) {
   Column() {
-    buildNodeChild({ index: params.index })
+    BuildNodeChild({ index: params.index })
   }
 }
 
@@ -1453,7 +1459,7 @@ struct FreezeBuildNode {
 
   // 当message更新时，调用此方法
   onMessageUpdated() {
-    console.log(`FreezeBuildNode message callback func ${this.message}, index: ${this.index}`);
+    console.info(`FreezeBuildNode message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

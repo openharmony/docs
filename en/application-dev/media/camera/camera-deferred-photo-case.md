@@ -254,7 +254,7 @@ async function deferredPhotoCase(context: Context, surfaceId: string): Promise<v
   // Register a callback to listen for original images.
   photoOutput.on('photoAvailable', (err: BusinessError, photoObj: camera.Photo): void => {
     if (err) {
-      console.info(`photoAvailable error: ${err}.`);
+      console.error(`photoAvailable error: ${err}.`);
       return;
     }
     savePicture(photoObj, context).then(() => {
@@ -266,7 +266,7 @@ async function deferredPhotoCase(context: Context, surfaceId: string): Promise<v
   // Register a callback to listen for thumbnail proxies.
   photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
     if (err) {
-      console.info(`deferredPhotoProxyAvailable error: ${err}.`);
+      console.error(`deferredPhotoProxyAvailable error: ${err}.`);
       return;
     }
     console.info('photoOutPutCallBack deferredPhotoProxyAvailable');

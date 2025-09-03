@@ -2,7 +2,7 @@
 
 The **userIAM.userAuth** module provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app login.
 
-> **NOTE**
+> **NOTE**<br>
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md).
@@ -75,7 +75,7 @@ Sends a notification from the user authentication widget.
 | Name    | Type                       | Mandatory| Description      |
 | ---------- | --------------------------- | ---- | ---------- |
 | noticeType | [NoticeType](#noticetype10) | Yes  | Notification type.|
-| eventData  | string                | Yes  | Event data. The data cannot exceed 65536 bytes.   |
+| eventData  | string                      | Yes  | Event data. The data length range is 0 to 65536.|
 
 **Error codes**
 
@@ -138,7 +138,7 @@ Subscribes to commands from the user authentication framework for the user authe
 
 | Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'command'                                     | Yes  | Event type. The vlaue is **command**, which indicates the command sent from the user authentication framework to the user authentication widget. |
+| type     | 'command'                                     | Yes  | Event type. **command** indicates the command sent from the user authentication framework to the user authentication widget.|
 | callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | Yes  | Callback used to return the command from the user authentication framework to the user authentication widget.|
 
 **Error codes**
@@ -184,8 +184,8 @@ Unsubscribes from commands sent from the user authentication framework.
 
 | Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'command'                                     | Yes  | Event type. The value is **command**, which indicates the command sent from the user authentication framework to the user authentication widget. |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | No  | Callback to unregister.|
+| type     | 'command'                                     | Yes  | Event type. **command** indicates the command sent from the user authentication framework to the user authentication widget.|
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | No  | Callback used to return the command from the user authentication framework to the user authentication widget.|
 
 **Error codes**
 
@@ -286,7 +286,7 @@ Called to return the command sent from the user authentication framework to the 
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | ---------------------------------- |
-| cmdData | string | Yes  | Command sent from the user authentication framework to the user authentication widget.|
+| cmdData | string | Yes  | Command from the user authentication framework to the user authentication widget.|
 
 **Example**
 
@@ -310,17 +310,17 @@ try {
 
 ## UserAuthType<sup>8+</sup>
 
-Enumerates the identity authentication types.
+Enumerates the types of credentials for identity authentication.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PRIVATE_PIN<sup>14+</sup>  | 16   | Private password authentication. |
+| PRIVATE_PIN<sup>14+</sup>  | 16   | Privacy password.|
 
 **Example**
 
-Initiate private password authentication with the authentication trust level greater than or equal to ATL3.
+Initiate privacy PIN authentication with the authentication trust level greater than or equal to ATL3.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -349,6 +349,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

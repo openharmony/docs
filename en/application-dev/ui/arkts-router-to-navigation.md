@@ -430,7 +430,7 @@ Both **Router** and **Navigation** offer built-in system transition animations a
 
 For **Router**, custom page transition animations are implemented through the universal method **pageTransition()**. For details, see [Page Transition Animation](arkts-page-transition-animation.md).
 
-For **Navigation**, a routing container component, page transition animations are essentially property animations between components. You can custom page transition animations through the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) event in **Navigation**. For details, see [Customizing a Transition](arkts-navigation-navigation.md#customizing-a-transition). (Note: Dialog-type pages currently do not have transition animations.)
+For **Navigation**, a routing container component, page transition animations are essentially property animations between components. You can custom page transition animations through the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) event in **Navigation**. For details, see [Defining a Custom Transition](arkts-navigation-navigation.md#defining-a-custom-transition). (Note: Dialog-type pages currently do not have transition animations.)
 
 ## Shared Element Transition
 

@@ -1,5 +1,11 @@
 # GATT-based Connection and Data Transmission
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 ## Introduction
 This document guides you through implementing Bluetooth Low Energy (BLE) connection and data transmission between devices in accordance with the Generic Attribute Profile (GATT). When two devices communicate via GATT, they can be distinguished as client and server based on their respective functions. This guide describes the implementation methods for both the client and server.
 
@@ -25,7 +31,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ```
 ### Client
 
-#### 1. Creating a Client Instance
+**1. Creating a Client Instance**<br>
 After the client discovers the target device through the device discovery process, it can instantiate a client object. All subsequent operations will be performed using this client instance.
 ```ts
 // The following is pseudo code.
@@ -38,7 +44,7 @@ try {
 }
 ```
 
-#### 2. Subscribing to Connection State Changes
+**2. Subscribing to Connection State Changes**<br>
 You can subscribe to connection state changes to obtain the real-time GATT connection state. The connection process involves various state transitions. [STATE_CONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) indicates that the connection is established, and [STATE_DISCONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) indicates that the connection is disconnected.
 ```ts
 // The following is pseudo code.
@@ -57,7 +63,7 @@ try {
 }
 ```
 
-#### 3. Initiating a Connection
+**3. Initiating a Connection**<br>
 Initiate a connection using the created client instance. Determine whether the connection is successful based on the connection state change event.
 ```ts
 // The following is pseudo code.
@@ -71,7 +77,7 @@ try {
 }
 ```
 
-#### 4. Implementing Service Discovery
+**4. Performing Service Discovery**<br>
 Service discovery is a process of obtaining all the service capabilities supported by the server. The client needs to determine whether the server supports the service capabilities required by the application based on the service discovery result.
 - Characteristics and descriptors can be read or written only after service discovery is complete.
 - The characteristics or descriptors specified in subsequent read and write operations must be included in the service capability set. Otherwise, the operations will fail.
@@ -90,7 +96,7 @@ try {
 }
 ```
 
-#### 5. Transmitting Data
+**5. Transmitting Data**<br>
 Data transmission is implemented by operating the characteristic or descriptor of the server.
 
 **5.1 Reading or Writing a Characteristic**<br>
@@ -260,7 +266,7 @@ try {
 }
 ```
 
-#### 6. Terminating the Connection
+**6. Disconnecting the Connection**<br>
 If a connection is no longer needed, the application must disconnect the connection.
 ```ts
 // The following is pseudo code.
@@ -280,7 +286,7 @@ try {
 
 ### Server
 
-#### 1. Creating a Server Instance
+**1. Creating a Server Instance**<br>
 Create a server instance. All subsequent operations will be performed using this server instance.
 ```ts
 try {
@@ -290,7 +296,7 @@ try {
 }
 ```
 
-#### 2. Adding Services
+**2. Adding Services**<br>
 Add a service required by the application. The service will be registered with the Bluetooth subsystem using the specified UUID. The client initiates a service query to check whether the service is supported by the server.
 ```ts
 // Create descriptors.
@@ -334,7 +340,7 @@ try {
 }
 ```
 
-#### 3. Subscribing to Connection State Changes
+**3. Subscribing to Connection State Changes**<br>
 You can subscribe to connection state changes to obtain the real-time GATT connection state and the device address of the client. The connection process involves various state transitions. [STATE_CONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) indicates that the connection is established, and [STATE_DISCONNECTED](../../reference/apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) indicates that the connection is disconnected.
 ```ts
 function ServerConnectStateChanged(state: ble.BLEConnectionChangeState) {
@@ -351,7 +357,7 @@ try {
 }
 ```
 
-#### 4. Transmitting Data
+**4. Transmitting Data**<br>
 Data transmission can be implemented by reading and writing characteristics, reading and writing descriptors, and actively sending notifications or indications of characteristic changes.
 
 **4.1 Subscribing to Characteristic Read or Write Events**<br>
@@ -521,7 +527,7 @@ try {
 }
 ```
 
-#### 5. Closing the Server Instance
+**5. Closing the Server Instance**<br>
 If the server instance is no longer needed, you need to close it to release related resources. For example, if you want to delete the registered service and unsubscribe from change events, use the following code:
 ```ts
 try {
@@ -843,7 +849,7 @@ export class GattClientManager {
     try {
       // Subscribe to characteristic value changes.
       this.gattClient.on('BLECharacteristicChange', this.onCharacteristicChange);
-      // Enable the notification function for characteristic value changes. The value true means to enable the the notification function, and the value false means the opposite.
+      // Enable the notification function for characteristic value changes. The value true means to enable the notification function, and the value false means the opposite.
       this.gattClient.setCharacteristicChangeNotification(this.myCharacteristic, enable, (err: BusinessError) => {
         if (err) {
           console.error('setCharacteristicChangeNotification callback failed');
@@ -872,7 +878,7 @@ export class GattClientManager {
     try {
       // Subscribe to characteristic value changes.
       this.gattClient.on('BLECharacteristicChange', this.onCharacteristicChange);
-      // Enable the indication function for characteristic value changes. The value true means to enable the the indication function, and the value false means the opposite.
+      // Enable the indication function for characteristic value changes. The value true means to enable the indication function, and the value false means the opposite.
       this.gattClient.setCharacteristicChangeIndication(this.myCharacteristic, enable, (err: BusinessError) => {
         if (err) {
           console.error('setCharacteristicChangeIndication callback failed');

@@ -17,40 +17,34 @@ import { huks } from '@kit.UniversalKeystoreKit';
 
 调用接口使用的options中的properties数组中的param。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| tag    | [HuksTag](#hukstag)                 | 是   | 标签。       |
-| value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。 |
+| tag    | [HuksTag](#hukstag)                 | 是   | 标签。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## HuksOptions
 
 调用接口使用的options。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称     | 类型              | 必填 | 说明                     |
 | ---------- | ----------------- | ---- | ------------------------ |
-| properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。 |
-| inData     | Uint8Array        | 否   | 输入数据。               |
+| properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| inData     | Uint8Array        | 否   | 输入数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 
 ## HuksSessionHandle<sup>9+</sup>
 
 huks Handle结构体。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称    | 类型       | 必填 | 说明                                                 |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
-| handle    | number     | 是   | 表示uint64类型的handle值。                                       |
-| challenge | Uint8Array | 否   | 表示[initSession](#huksinitsession9)操作之后获取到的challenge信息。 |
+| handle    | number     | 是   | 表示无符号整数类型的handle值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
+| challenge | Uint8Array | 否   | 表示[initSession](#huksinitsession9)操作之后获取到的challenge信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## HuksReturnResult<sup>9+</sup>
 
@@ -68,16 +62,13 @@ huks Handle结构体。
 
 调用接口返回的result。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Security.Huks.Extension
 
 
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
-| keyAliases | Array\<string>                  | 是   | 表示密钥别名集。 |
-
+| keyAliases | Array\<string>                  | 是   | 表示密钥别名集。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## huks.generateKeyItem<sup>9+</sup>
 
@@ -257,7 +248,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **错误码：**
@@ -311,7 +302,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。            |
 
 **返回值：**
 
@@ -496,7 +487,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-/* 以导入AES128为例 */
+/* 以导入AES256为例 */
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
@@ -574,8 +565,6 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -587,10 +576,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key attest";
+
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -600,7 +586,12 @@ function stringToUint8Array(str: string) {
     return tmpUint8Array;
 }
 
-async function generateKeyThenattestKey(alias: string) {
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
+async function generateKeyThenAttestKey() {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
     let generateProperties: Array<huks.HuksParam> = [
@@ -658,7 +649,7 @@ async function generateKeyThenattestKey(alias: string) {
         properties: attestProperties
     };
     try {
-        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
@@ -715,8 +706,6 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -729,10 +718,6 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key attest";
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -741,6 +726,12 @@ function stringToUint8Array(str: string) {
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
+
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
 async function generateKey(alias: string) {
     let properties: Array<huks.HuksParam> = [
         {
@@ -857,8 +848,6 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -870,10 +859,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key anon attest";
+
 function stringToUint8Array(str: string): Uint8Array {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -883,7 +869,12 @@ function stringToUint8Array(str: string): Uint8Array {
     return tmpUint8Array;
 }
 
-async function generateKeyThenAttestKey(alias: string): Promise<void> {
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+
+async function generateKeyThenAttestKey(): Promise<void> {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
     let generateProperties: Array<huks.HuksParam> = [
@@ -941,7 +932,7 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
         properties: anonAttestProperties
     };
     try {
-        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
@@ -1001,8 +992,6 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1015,10 +1004,6 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key anon attest";
 function stringToUint8Array(str: string): Uint8Array {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -1027,6 +1012,12 @@ function stringToUint8Array(str: string): Uint8Array {
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
+
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+
 async function generateKey(alias: string): Promise<void> {
     let properties: Array<huks.HuksParam> = [
         {
@@ -1062,7 +1053,7 @@ async function generateKey(alias: string): Promise<void> {
         properties: properties
     };
     try {
-        let data = await huks.generateKeyItem(alias, options);
+        await huks.generateKeyItem(alias, options);
     } catch (error) {
         console.error(`promise: generateKeyItem failed`);
     }
@@ -1093,7 +1084,7 @@ async function anonAttestKey(): Promise<void> {
     };
     await generateKey(aliasString);
     try {
-        let data = await huks.anonAttestKeyItem(aliasString, options);
+        await huks.anonAttestKeyItem(aliasString, options);
     } catch (error) {
         console.error(`promise: anonAttestKeyItem fail`);
     }
@@ -1172,7 +1163,7 @@ function genKey(alias: string, options: huks.HuksOptions) {
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1200,7 +1191,7 @@ function exportKey(alias: string, options: huks.HuksOptions) {
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1228,7 +1219,7 @@ function importWrappedKey(alias: string, wrappingAlias: string, options: huks.Hu
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1413,7 +1404,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
-| options  | [HuksOptions](#huksoptions)                          | 是   | 空对象（此处传空即可）。                                     |
+| options  | [HuksOptions](#huksoptions)                          | 是   | 用于导出密钥时指定密钥的属性，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需导出密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **错误码：**
@@ -1425,8 +1416,6 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1488,8 +1477,6 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1548,8 +1535,6 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1611,8 +1596,6 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1655,7 +1638,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出密钥不存在的error code。 |
 
 **错误码：**
@@ -1666,8 +1649,6 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1706,7 +1687,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。 |
 
 **返回值：**
 
@@ -1722,8 +1703,6 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1763,7 +1742,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，data为false。 |
 
 **错误码：**
@@ -1774,8 +1753,6 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -1820,7 +1797,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
 
 **返回值：**
 
@@ -1836,8 +1813,6 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -2569,7 +2544,7 @@ async function testListAliases() {
 
 表示密钥用途。
 
-一个密钥仅能用于单个用途，不能既用于加解密又用于签名验签。
+一个密钥仅能用于单类用途，不能既用于加解密又用于签名验签。
 
 **系统能力：** SystemCapability.Security.Huks.Core
 
@@ -3975,7 +3950,7 @@ huks Handle结构体。
 | 名称     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
 | errorCode  | number           | 是   | 表示错误码。 |
-| handle    | number       | 是 | 表示uint64类型的handle值。 |
+| handle    | number       | 是 | 表示无符号整数类型的handle值。 |
 | token | Uint8Array | 否 | 表示[init](#huksinitdeprecated)操作之后获取到的challenge信息。 |
 
 ## HuksResult<sup>(deprecated)</sup>

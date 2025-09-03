@@ -40,6 +40,10 @@ tabIndex(index: number): T
 
 自定义组件tab键走焦能力。当组件未设置tabIndex时，默认按照预设的焦点移动规则进行焦点移动。
 
+>  **说明：**
+>
+>  - tabIndex只能够自定义Tab键走焦，若想同时自定义方向键等走焦能力，建议使用[nextFocus](#nextfocus18)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -170,7 +174,7 @@ requestFocus(value: string): boolean
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
 | value | string | 是   | 目标组件使用接口key(value: string)或id(value: string)绑定的字符串。 |
 
@@ -225,11 +229,11 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 描述        |
-| ----------- | --------- |
-| AUTO | 默认的优先级，缺省时组件的获焦优先级。 |
-| PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
-| PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
+| 名称    | 值      | 说明        |
+| ----------- | ----- |-------- |
+| AUTO | 0|默认的优先级，缺省时组件的获焦优先级。 |
+| PRIOR | 2000|容器内优先获焦的优先级。优先级高于AUTO。 |
+| PREVIOUS | 3000|上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
 ### KeyProcessingMode<sup>15+</sup>
 
@@ -331,7 +335,7 @@ nextFocus(nextStep: Optional\<FocusMovement>): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| nextStep  | Optional\<[FocusMovement](#focusmovement18对象说明)> | 否 | 设置当前容器组件的自定义走焦规则。<br/>**说明：** <br/>默认值为重置nextStep为空。<br/>没设置自定义走焦或者设置自定义组件容器不存在，仍进行默认走焦规则。|
+| nextStep  | Optional\<[FocusMovement](#focusmovement18对象说明)> | 是 | 设置当前容器组件的自定义走焦规则。<br/>**说明：** <br/>默认值为重置nextStep为空。<br/>没设置自定义走焦或者设置自定义组件容器不存在，仍进行默认走焦规则。|
 
 **返回值：**
 

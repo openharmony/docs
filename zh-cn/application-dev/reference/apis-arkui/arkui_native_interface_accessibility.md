@@ -31,8 +31,8 @@
 | [ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments) | Action附加字段，对需要执行的Action进行处理的说明。           |
 | [ArkUI_AccessibleRect](#arkui_accessiblerect)                | 节点所在坐标位置。                                           |
 | [ArkUI_AccessibleRangeInfo](#arkui_accessiblerangeinfo)      | 用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。 |
-| [ArkUI_AccessibleGridInfo](#arkui_accessiblegridinfo)        | 用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。 |
-| [ArkUI_AccessibleGridItemInfo](#arkui_accessiblegriditeminfo) | 用于特定组件设置组件的属性值，如list、flex、select、swiper组件。 |
+| [ArkUI_AccessibleGridInfo](#arkui_accessiblegridinfo)        | 用于特定组件设置组件的行数、列数以及选择模式，如List、Flex、Select、Swiper组件。 |
+| [ArkUI_AccessibleGridItemInfo](#arkui_accessiblegriditeminfo) | 用于特定组件设置组件的属性值，如List、Flex、Select、Swiper组件。 |
 | [ArkUI_AccessibleAction](#arkui_accessibleaction)            | 无障碍操作内容结构。                                         |
 
 ### 枚举
@@ -225,7 +225,7 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 **描述：**
 
-用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。
+用于特定组件设置组件的行数、列数以及选择模式，如List、Flex、Select、Swiper组件。
 
 **参数:**
 
@@ -245,7 +245,7 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 **描述：**
 
-用于特定组件设置组件的属性值，如list、flex、select、swiper组件。
+用于特定组件设置组件的属性值，如List、Flex、Select、Swiper组件。
 
 **参数:**
 
@@ -665,7 +665,7 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* i
 
 **描述：**
 
-多实例场景第三方平台注册回调函数。
+无障碍多实例场景第三方平台注册回调函数。
 
 **起始版本：** 15
 
@@ -702,7 +702,7 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(
 | --------- | -------------------------- |
 | provider  | 第三方平台接入provider句柄。 |
 | eventInfo | 上报事件。                 |
-| callback  | 结果返回回调。             |
+| void (*callback)(int32_t errorCode)  | 结果返回回调。             |
 
 **返回：** 无
 

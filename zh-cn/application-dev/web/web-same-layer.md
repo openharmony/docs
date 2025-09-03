@@ -435,7 +435,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 **完整示例：**
 
-使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
   ```
   "requestPermissions":[

@@ -1,5 +1,5 @@
 # @ohos.arkui.Prefetcher (Prefetching)
-Used in conjunction with **LazyForEach**, the **Prefetcher** module provides content prefetching capabilities for container components such as **List**, **Grid**, **Waterfall**, and **Swiper** during scrolling, to enhance the user browsing experience.
+Used in conjunction with **LazyForEach**, the **Prefetcher** module provides content prefetching capabilities for container components such as **List**, **Grid**, **WaterFlow**, and **Swiper** during scrolling, to enhance the user browsing experience.
 
 >  **NOTE**
 >
@@ -13,7 +13,7 @@ import { BasicPrefetcher, IDataSourcePrefetching, IPrefetcher } from '@kit.ArkUI
 
 
 ## IPrefetcher
-Implement this API to provide prefetching capabilities.
+Provides prefetching capabilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -51,7 +51,7 @@ class MyPrefetcher implements IPrefetcher {
 ### visibleAreaChanged
 visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
-Called when the boundaries of the visible area change. It works with the **List**, **Grid**, **Waterfall**, and **Swiper** components.
+Called when the boundaries of the visible area change. This API works with the **List**, **Grid**, **WaterFlow**, and **Swiper** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -79,7 +79,7 @@ class MyPrefetcher implements IPrefetcher {
 ```
 
 ## BasicPrefetcher
-As a fundamental implementation of **IPrefetcher**, offers an intelligent data prefetching algorithm that decides which data items to prefetch based on real-time changes in the visible area on the screen and variations in the prefetch duration. It can also determine which prefetch requests should be canceled based on the user's scrolling actions.
+**BasicPrefetcher** is a fundamental implementation of **IPrefetcher**. It offers an intelligent data prefetching algorithm that decides the data items to prefetch based on real-time changes in the visible area on the screen and variations in the prefetch duration. It can also determine the prefetch requests to be canceled based on the user's scrolling actions.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -88,7 +88,7 @@ As a fundamental implementation of **IPrefetcher**, offers an intelligent data p
 ### constructor
 constructor(dataSource?: IDataSourcePrefetching);
 
-A constructor used to create a **DataSource** instance.
+A constructor used to create a prefetching-capable data source to bind to the **Prefetcher**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -118,7 +118,7 @@ Sets the prefetching-capable data source to bind to the **Prefetcher** object.
 ### visibleAreaChanged
 visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
-Called when the boundaries of the visible area change. It works with the **List**, **Grid**, **Waterfall**, and **Swiper** components.
+Called when the boundaries of the visible area change. This API works with the **List**, **Grid**, **WaterFlow**, and **Swiper** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -133,7 +133,7 @@ Called when the boundaries of the visible area change. It works with the **List*
 
 ## IDataSourcePrefetching
 
-Extends the [IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10) API to provide a data source with prefetching capabilities.
+Inherits from [IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource). to provide a data source with prefetching capabilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -154,6 +154,12 @@ Prefetches a specified data item from the dataset. This API can be either synchr
 |-------|--------|----|----------|
 | index | number | Yes | Index of the data item to prefetch.|
 
+**Return value**
+
+| Type| Description|
+| ----------------------- | -------- |
+| Promise\<void\> \| void | Promise when this API is executed asynchronously; no return value when this API is executed synchronously. The promise only indicates that the operation is completed and contains no actual return content.|
+
 ### cancel
 cancel?(index: number): Promise\<void\> | void;
 
@@ -169,7 +175,13 @@ Cancels the prefetching of a specified data item from the dataset. This API can 
 |-------|--------|----|------------|
 | index | number | Yes | Index of the data item to cancel prefetching for.|
 
-When list content moves off the screen (for example, during fast scrolling scenarios), once the prefetching algorithm determines which items outside the screen can have their prefetching canceled, this API is called. For instance, if the HTTP framework supports request cancellation, network requests initiated in the **prefetch** API can be canceled here.
+**Return value**
+
+| Type| Description|
+| ----------------------- | -------- |
+| Promise\<void\> \| void | Promise when this API is executed asynchronously; no return value when this API is executed synchronously. The promise only indicates that the operation is completed and contains no actual return content.|
+
+When list content moves off the screen (for example, during fast scrolling), the prefetching algorithm identifies which off-screen items can have their prefetching canceled. This API is then called to handle the cancellation. For example, if the HTTP framework supports request cancellation, this API can be used to terminate the network requests initiated by the **prefetch** API.
 
 ## Example
 

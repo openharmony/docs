@@ -1572,7 +1572,7 @@ Ensure that the **_bundlename_**, **_localpath_** and **_remotepath_** parameter
 
 **Error Message**
 
-SDK/Device ROM doesn't support -b option. 
+SDK/Device ROM does not support -b option. 
 
 **Symptom**
 

@@ -1,6 +1,6 @@
 # 自定义组件冻结功能
 
-当@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，即@Monitor不会调用，状态变量关联的节点不会刷新。该冻结机制在复杂UI场景下能显著优化性能，避免非激活组件因状态变量更新进行无效刷新，从而减少资源消耗。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：[页面路由](../../reference/apis-arkui/js-apis-router.md)、[TabContent](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)、[Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)、[Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
+当@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，即[@Monitor](./arkts-new-monitor.md)不会调用，状态变量关联的节点不会刷新。该冻结机制在复杂UI场景下能显著优化性能，避免非激活组件因状态变量更新进行无效刷新，从而减少资源消耗。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：[页面路由](../../reference/apis-arkui/js-apis-router.md)、[TabContent](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)、[Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)、[Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
 
 在阅读本文档前，开发者需要了解\@ComponentV2基本语法。建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)。
 
@@ -44,7 +44,7 @@ export struct Page1 {
 
   @Monitor("bookTest.name")
   onMessageChange(monitor: IMonitor) {
-    console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -88,7 +88,7 @@ struct Page2 {
 
 1. 点击页面1中的Button “changeBookName”，bookTest变量的name属性改变，@Monitor中注册的方法onMessageChange会被调用。
 
-2. 点击页面1中的Button “go to next page”，跳转到页面2，然后延迟1s更新状态变量“bookTest”。在更新“bookTest”的时候，已经跳转到页面2，页面1处于inactive状态，状态变量`@Local bookTest`将不响应更新，其@Monitor不会调用，状态变量关联的节点不会刷新。
+2. 点击页面1中的Button “go to next page”，跳转到页面2，然后延迟1s更新状态变量“bookTest”。在更新“bookTest”的时候，已经跳转到页面2，页面1处于inactive状态，[@Local](./arkts-new-local.md)装饰的状态变量bookTest将不响应更新，其@Monitor不会调用，关联的节点不会刷新。
 
 Trace如下：
 
@@ -181,11 +181,11 @@ struct MyNavigationTestStack {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneStack({ message: this.message })
+      PageOneStack({ message: this.message })
     } else if (name === 'pageTwo') {
-      pageTwoStack({ message: this.message })
+      PageTwoStack({ message: this.message })
     } else if (name === 'pageThree') {
-      pageThreeStack({ message: this.message })
+      PageThreeStack({ message: this.message })
     }
   }
 
@@ -210,7 +210,7 @@ struct MyNavigationTestStack {
 }
 
 @ComponentV2
-struct pageOneStack {
+struct PageOneStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = 1;
   @Param message: number = 0;
@@ -239,7 +239,7 @@ struct pageOneStack {
 }
 
 @ComponentV2
-struct pageTwoStack {
+struct PageTwoStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = 2;
   @Param message: number = 0;
@@ -268,7 +268,7 @@ struct pageTwoStack {
 }
 
 @ComponentV2
-struct pageThreeStack {
+struct PageThreeStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = 3;
   @Param message: number = 0;
@@ -321,21 +321,21 @@ struct NavigationContentMsgStack {
 
 1.点击“change message”更改message的值，当前正在显示的MyNavigationTestStack组件中的@Monitor中注册的方法info被触发。
 
-2.点击“Next Page”切换到PageOne，创建pageOneStack节点。 
+2.点击“Next Page”切换到PageOne，创建PageOneStack节点。 
 
-3.再次点击“change message”更改message的值，仅pageOneStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
+3.再次点击“change message”更改message的值，仅PageOneStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
-4.再次点击“Next Page”切换到PageTwo，创建pageTwoStack节点。pageOneStack节点状态由active变为inactive。
+4.再次点击“Next Page”切换到PageTwo，创建PageTwoStack节点。PageOneStack节点状态由active变为inactive。
 
-5.再次点击“change message”更改message的值，仅pageTwoStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
+5.再次点击“change message”更改message的值，仅PageTwoStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
 
-6.再次点击“Next Page”切换到PageThree，创建pageThreeStack节点。pageTwoStack节点状态由active变为inactive。
+6.再次点击“Next Page”切换到PageThree，创建PageThreeStack节点。PageTwoStack节点状态由active变为inactive。
 
-7.再次点击“change message”更改message的值，仅pageThreeStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
+7.再次点击“change message”更改message的值，仅PageThreeStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
 
-8.点击“Back Page”回到PageTwo，此时，pageTwoStack节点状态由inactive变为active，其NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
+8.点击“Back Page”回到PageTwo，此时，PageTwoStack节点状态由inactive变为active，其NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
-9.再次点击“Back Page”回到PageOne，此时，pageOneStack节点状态由inactive变为active，其NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
+9.再次点击“Back Page”回到PageOne，此时，PageOneStack节点状态由inactive变为active，其NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
 10.再次点击“Back Page”回到初始页。
 
@@ -404,7 +404,7 @@ struct ChildComponent {
   @Monitor(`bgColor`)
   onBgColorChange(monitor: IMonitor) {
     // bgColor改变时，缓存池中组件不刷新，不会打印日志
-    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -432,7 +432,7 @@ struct ChildComponent {
   @Monitor(`bgColor`)
   onBgColorChange(monitor: IMonitor) {
     // bgColor改变时，缓存池组件也会刷新，并打印日志
-    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -487,11 +487,11 @@ export struct Child {
 
   @Monitor('bookTest.name')
   onMessageChange(monitor: IMonitor) {
-    console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   textUpdate(): number {
-    console.log('The text is update');
+    console.info('The text is update');
     return 25;
   }
 
@@ -564,7 +564,7 @@ struct Page2 {
 
 组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点，详细说明见[\@Component的自定义组件冻结的混用场景](./arkts-custom-components-freeze.md#组件混用)。
 
-#### Navigation和TabContent的混用
+**Navigation和TabContent的混用**
 
 ```ts
 @ComponentV2
@@ -572,7 +572,7 @@ struct ChildOfParamComponent {
   @Require @Param child_val: number;
 
   @Monitor('child_val') onChange(m: IMonitor) {
-    console.log(`Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -587,7 +587,7 @@ struct ParamComponent {
   @Require @Param val: number;
 
   @Monitor('val') onChange(m: IMonitor) {
-    console.log(`Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -603,7 +603,7 @@ struct DelayComponent {
   @Require @Param delayVal1: number;
 
   @Monitor('delayVal1') onChange(m: IMonitor) {
-    console.log(`Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -612,14 +612,14 @@ struct DelayComponent {
     }
   }
 }
- 
+
 @ComponentV2 ({freezeWhenInactive: true})
 struct TabsComponent {
   private controller: TabsController = new TabsController();
   @Local tabState: number = 47;
 
   @Monitor('tabState') onChange(m: IMonitor) {
-    console.log(`Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -627,7 +627,7 @@ struct TabsComponent {
       Button(`Incr state ${this.tabState}`)
         .fontSize(25)
         .onClick(() => {
-          console.log('Button increment state value');
+          console.info('Button increment state value');
           this.tabState = this.tabState + 1;
         })
 
@@ -658,9 +658,9 @@ struct MyNavigationTestStack {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneStack()
+      PageOneStack()
     } else if (name === 'pageTwo') {
-      pageTwoStack()
+      PageTwoStack()
     }
   }
 
@@ -684,7 +684,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {
@@ -709,7 +709,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {
@@ -780,7 +780,7 @@ struct buildNodeChild {
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor("storage.message")
   onMessageChange(monitor: IMonitor) {
-    console.log(`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
+    console.info(`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
   }
 
   build() {
@@ -858,7 +858,7 @@ struct FreezeBuildNode {
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor("storage.message")
   onMessageChange(monitor: IMonitor) {
-    console.log(`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
+    console.info(`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
   }
 
   build() {
@@ -870,6 +870,6 @@ struct FreezeBuildNode {
 }
 ```
 
-点击Button("change")。改变message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。未显示的TabContent中的BuilderNode节点下组件的@Watch方法onMessageUpdated也被触发，并没有被冻结。
+点击Button("change")。改变message的值，当前正在显示的TabContent组件中的[@Watch](./arkts-watch.md)中注册的方法onMessageUpdated被触发。未显示的TabContent中的BuilderNode节点下组件的@Watch方法onMessageUpdated也被触发，并没有被冻结。
 
 ![builderNode.gif](figures/builderNode.gif)

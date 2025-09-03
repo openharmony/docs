@@ -2,14 +2,14 @@
 
 The **PluginComponentManager** module provides APIs for the **PluginComponent** user to request components and data and send component templates and data.
 
->  **NOTE**
+> **NOTE**
 >
->  - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ## PluginComponentTemplate
@@ -20,10 +20,10 @@ Describes the **PluginComponent** template parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type  | Mandatory| Description                       |
-| ------- | ------ | ---- | --------------------------- |
-| source  | string | Yes  | Component template name.               |
-| ability | string | Yes  | Bundle name of the provider ability.|
+| Name   | Type  | Read-only| Optional| Description                       |
+| ------- | ------ | ---- | ---- | --------------------------- |
+| source  | string | No| No| Component template name.               |
+| ability | string | No| No| Bundle name of the provider ability.|
 
 ## pluginComponentManager
 
@@ -33,21 +33,15 @@ Implements a plugin component manager.
 
 type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
-Stores information in key-value pairs in JSON format.
+Defines a key-value pair data structure that conforms to JSON format.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-
-| Type             | Description                                    |
-| --------------------- | ---------------------------------------- |
-| [key: string]         | Keyword. The value is a string and can be an empty string.|
-| number                | Key value of the number type.                |
-| string                | Key value of the string type. The value can be an empty string.|
-| boolean               | Key value of the Boolean type.              |
-| []                    | Key value. The value can be [].                      |
-| [KVObject](#kvobject) | Key value of the KVObject type.            |
+| Name   | Type  | Read-only| Optional| Description                       |
+| ------- | ------ | ---- | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | No| No  | Key-value pair:<br>**number**: numeric value type.<br> **string**: string value type. The value can be an empty string.<br> **boolean**: boolean value type.<br> **[]**: empty array value.<br>**[KVObject](#kvobject)**: nested KVObject value type.           |
 
 
 ### PushParameters
@@ -58,13 +52,13 @@ Defines the parameters required when using the **PluginManager.Push** API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Type                                 | Mandatory  | Description                                      |
-| --------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | Yes   | Ability information of the component user.                         |
-| name      | string                              | Yes   | Component name.                                   |
-| data      | [KVObject](#kvobject)               | Yes   | Component data value.                                  |
-| extraData | [KVObject](#kvobject)               | Yes   | Additional data value.                                  |
-| jsonPath  | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
+| Name       | Type                              | Read-only| Optional  | Description                                      |
+| --------- | ----------------------------------- | ---- | ---- | ---------------------------------------- |
+| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | No| No   | Ability information of the component user.                         |
+| name      | string                              | No| No   | Component name.                                   |
+| data      | [KVObject](#kvobject)               | No| No   | Component data.                                  |
+| extraData | [KVObject](#kvobject)               | No| No   | Additional data.                                  |
+| jsonPath  | string                              | No| Yes   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### RequestParameters
 
@@ -74,12 +68,12 @@ Defines the parameters required when using the **PluginManager.Request** API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                                 | Mandatory  | Description                                      |
-| -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | Yes   | Ability information of the component provider.                         |
-| name     | string                              | Yes   | Name of the requested component.                                 |
-| data     | [KVObject](#kvobject)               | Yes   | Additional data.                                   |
-| jsonPath | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set.|
+| Name      | Type                              | Mandatory| Optional| Description                                      |
+| -------- | ----------------------------------- | ---- | ---- |---------------------------------------- |
+| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | No| No   | Ability information of the component provider.                         |
+| name     | string                              | No| No   | Name of the requested component.                                 |
+| data     | [KVObject](#kvobject)               | No| No   | Component data.                                   |
+| jsonPath | string                              | No| Yes   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. If the **jsonPath** field is not empty, the Request communication is not triggered.|
 
 ### RequestCallbackParameters
 
@@ -89,11 +83,11 @@ Provides the result returned after the **PluginManager.Request** API is called.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name               | Type                                      | Mandatory  | Description   |
-| ----------------- | ---------------------------------------- | ---- | ----- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Component template.|
-| data              | [KVObject](#kvobject)                    | Yes   | Component data.|
-| extraData         | [KVObject](#kvobject)                    | Yes   | Additional data.|
+| Name             | Type                                     | Read-only| Optional| Description |
+| ----------------- | ---------------------------------------- | ---- | ---- | ----- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | No| No   | Component template.|
+| data              | [KVObject](#kvobject)                    | No| No   | Component data.|
+| extraData         | [KVObject](#kvobject)                    | No| No   | Additional data.|
 
 ### RequestEventResult
 
@@ -103,11 +97,11 @@ Provides the result returned after the request listener is registered and the re
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Type                   | Description   |
-| --------------------- | ----- |
-| string                | Component template.|
-| [KVObject](#kvobject) | Component data.|
-| [KVObject](#kvobject) | Additional data.|
+| Name      | Type                 | Read-only| Optional | Description   |
+| --------- | --------------------- | ---- | ---- | ----- |
+| template  | string                | No| Yes   | Component template.|
+| data      | [KVObject](#kvobject) | No| Yes   | Component data.|
+| extraData | [KVObject](#kvobject) | No| Yes   | Additional data.|
 
 ### OnPushEventCallback
 
@@ -125,7 +119,7 @@ Registers the listener for the push event.
 | Name       | Type                                      | Mandatory  | Description                    |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md)      | Yes   | Information about the push request sender.        |
-| template  | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Name of the request component template for the push request sender.|
+| template  | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Name of the requested component template.|
 | data      | [KVObject](#kvobject)                    | Yes   | Data.                   |
 | extraData | [KVObject](#kvobject)                    | Yes   | Additional data.                 |
 
@@ -161,7 +155,13 @@ Registers the listener for the request event.
 | --------- | ----------------------------------- | ---- | ----------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md) | Yes   | Information about the request sender.|
 | name      | string                              | Yes   | Template name.            |
-| data | [KVObject](#kvobject)               | Yes   | Additional data.            |
+| data | [KVObject](#kvobject)               | Yes   | Data.            |
+
+**Return value**
+
+| Type                                      | Description                                                      |
+| ---------------------------------------- | --------------------------------------------------------- |
+| [RequestEventResult](#requesteventresult) | Provides the result returned after the request listener is registered and the requested event is received.|
 
 **Example**
 

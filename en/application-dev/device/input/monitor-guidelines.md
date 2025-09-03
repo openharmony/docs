@@ -1,6 +1,6 @@
 # Event Listening Development (C/C++)
 
-## Introduction
+## When to Use
 
 The multimodal module provides applications with the ability to listen for key and input events (mouse, touch, and axis events). Currently, event listening is available only for screen recording applications. For example, when a user starts screen recording, your application can listen for key, mouse, touch, and axis events of the device.
 
@@ -23,9 +23,9 @@ The following table lists the APIs for event listening. For details, see [Input]
 
 ## How to Develop
 
-### Linking Dynamic Libraries
+### Linking a Dynamic Library
 
-Before calling interception-related APIs, you need to link the related dynamic libraries. To link dynamic libraries, add the following configuration to the **CMakeList.txt** file:
+Before calling interception-related APIs, you need to link the related dynamic library. To link dynamic libraries, add the following configuration to the **CMakeList.txt** file:
 
 ```txt
 target_link_libraries(entry PUBLIC libohinput.so)
@@ -43,9 +43,9 @@ Declare the required permission in the **module.json5** file. For details, see [
 ]
 ```
 
-### Creating an Event Listener
+### Enabling Event Listening
 
-#### Key Events
+- **Key event**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -66,7 +66,7 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
 }
 
-void TestMonitor()
+void TestKeyEventMonitor()
 {
     // Add a key event listener.
     Input_Result ret = OH_Input_AddKeyEventMonitor(OnKeyEventCallback);
@@ -75,7 +75,7 @@ void TestMonitor()
 }
 ```
 
-#### Mouse Events
+- **Mouse event**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -104,7 +104,7 @@ void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
     event.actionTime = OH_Input_GetMouseEventActionTime(mouseEvent);
 }
 
-void TestMonitor()
+void TestMouseEventMonitor()
 {
     // Add a mouse event listener.
     Input_Result ret = OH_Input_AddMouseEventMonitor(OnMouseEventCallback);
@@ -113,7 +113,7 @@ void TestMonitor()
 }
 ```
 
-#### Touch Events
+- **Touch event**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -138,7 +138,7 @@ void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
     event.actionTime = OH_Input_GetTouchEventActionTime(touchEvent);
 }
 
-void TestMonitor()
+void TestTouchEventMonitor()
 {
     // Add a touch event listener.
     Input_Result ret = OH_Input_AddTouchEventMonitor(OnTouchEventCallback);
@@ -147,7 +147,7 @@ void TestMonitor()
 }
 ```
 
-#### Axis Events
+- **Axis event**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -246,7 +246,7 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
     event.axisValues.insert(std::make_pair(AXIS_TYPE_SCROLL_HORIZONTAL, value));
 }
 
-void TestMonitor()
+void TestAxisEventMonitor()
 {
     // Add a listener for all axis events.
     Input_Result ret = OH_Input_AddAxisEventMonitorForAll(OnAllAxisEventCallback);

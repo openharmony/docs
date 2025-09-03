@@ -30,9 +30,9 @@ type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
+| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 否 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
 
 ### onWorkStart
 
@@ -52,10 +52,12 @@ onWorkStart(work: workScheduler.WorkInfo): void
 
   ```ts
   import { workScheduler } from '@kit.BackgroundTasksKit';
+  import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {
-        console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
+        console.info(`MyWorkSchedulerExtensionAbility onWorkStart, workId: ${workInfo.workId},
+            bundleName: ${workInfo.bundleName}, abilityName: ${workInfo.abilityName}.`);
     }
   }
   ```
@@ -79,10 +81,12 @@ onWorkStop(work: workScheduler.WorkInfo): void
 
   ```ts
   import { workScheduler } from '@kit.BackgroundTasksKit';
+  import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStop(workInfo: workScheduler.WorkInfo) {
-        console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
+        console.info(`MyWorkSchedulerExtensionAbility onWorkStop, workId: ${workInfo.workId},
+            bundleName: ${workInfo.bundleName}, abilityName: ${workInfo.abilityName}.`);
     }
   }
   ```

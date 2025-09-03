@@ -16,7 +16,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum reuse duration of the authentication result, in milliseconds. The value is **300000**.<br>**System capability**: SystemCapability.UserIAM.UserAuth.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum reuse duration of the unlock authentication result, in milliseconds. The value is **300000**.<br> **System capability**: SystemCapability.UserIAM.UserAuth.Core<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## EnrolledState<sup>12+</sup>
 
@@ -26,10 +26,10 @@ Represents the state of a credential enrolled.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name        | Type   | Readable| Writable| Description                |
+| Name        | Type   | Read-Only| Optional| Description                |
 | ------------ | ---------- | ---- | ---- | -------------------- |
-| credentialDigest       | number | Yes  |  No| Credential digest, which is randomly generated when a credential is added.|
-| credentialCount        | number | Yes  |  No| Number of enrolled credentials.      |
+| credentialDigest       | number | No  |  No| Credential digest, which is randomly generated when a credential is added.|
+| credentialCount        | number | No  |  No| Number of enrolled credentials.      |
 
 ## ReuseMode<sup>12+</sup>
 
@@ -39,7 +39,7 @@ Enumerates the modes for reusing authentication results.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | The device unlock authentication result can be reused within the validity period if the authentication type matches any of the authentication types specified for this authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| AUTH_TYPE_RELEVANT    | 1   | The device unlock authentication result can be reused within the validity period if the authentication type matches any of the authentication types specified for this authentication.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUTH_TYPE_IRRELEVANT  | 2   | The device unlock authentication result can be reused within the validity period regardless of the authentication type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | Any identity authentication result (including device unlock authentication result) can be reused within the validity period if the authentication type matches any of the authentication types specified for this authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | Any identity authentication result (including device unlock authentication result) can be reused within the validity period regardless of the authentication type.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
@@ -49,9 +49,7 @@ Enumerates the modes for reusing authentication results.
 Represents information about the authentication result reuse.
 > **NOTE**
 >
-> If the credential changes within the reuse duration after a successful identity authentication (including device unlock authentication), the authentication result can still be reused and the actual **EnrolledState** is returned in the authentication result. 
->
-> If the credential used for the previous authentication has been deleted when the authentication result is used:<br>- If the deleted credential is face or fingerprint, the authentication result can still be reused, but **credentialCount** and **credentialDigest** in the **EnrolledState** returned are both **0**.<br>- If the deleted credential is a lock screen password, the reuse will fail.
+> If the credential changes within the reuse duration after a successful identity authentication (including device unlock authentication), the authentication result can still be reused and the actual **EnrolledState** is returned in the authentication result. If the credential used for the previous authentication has been deleted when the authentication result is used:<br>- If the deleted credential is face or fingerprint, the authentication result can still be reused, but **credentialCount** and **credentialDigest** in the **EnrolledState** returned are both **0**.<br>- If the deleted credential is a lock screen password, the reuse will fail.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -134,9 +132,9 @@ Represents the information presented on the user authentication page.
 
 | Name                | Type                               | Mandatory| Description                                                        |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| title                | string                              | Yes  | Title of the user authentication page. It cannot exceed 500 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters. It is supported in single fingerprint or facial authentication before API version 18. Since API version 18, it is also supported in combined facial and fingerprint authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| uiContext<sup>18+</sup>            | Context               | No  | Whether to display the authentication dialog box in modal application mode. This mode is applicable only to 2-in-1 devices. If this mode is not used or other types of devices are used, the authentication dialog box is displayed in modal system mode.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| title                | string                              | Yes  | Title of the user authentication page. It cannot exceed 500 characters.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters. It is supported in single fingerprint or facial authentication before API version 18. Since API version 18, it is also supported in combined facial and fingerprint authentication.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| uiContext<sup>18+</sup>            | Context               | No  | Whether to display the authentication dialog box in modal application mode. This mode is applicable only to 2-in-1 devices. If this mode is not used or other types of devices are used, the authentication dialog box is displayed in modal system mode.<br> **Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## UserAuthResult<sup>10+</sup>
 
@@ -204,6 +202,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -245,6 +245,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -286,6 +288,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -353,6 +357,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -396,6 +402,8 @@ struct Index {
         }
       });
       console.info('auth on success');
+      userAuthInstance.start();
+      console.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -586,6 +594,8 @@ try {
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // The cancel() API can be called only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.start();
+  console.info('auth start success');
   userAuthInstance.cancel();
   console.info('auth cancel success');
 } catch (error) {
@@ -694,7 +704,7 @@ type EventInfo = AuthResultInfo | TipInfo
 
 Enumerates the authentication event information types.
 
-The event information type consists of the fields in **Type** in the following table.
+It consists of the fields in **Type** in the following table.
 
 > **NOTE**<br>
 > This parameter is supported since API version 9 and deprecated since API version 11. Use [UserAuthResult](#userauthresult10) instead.
@@ -771,7 +781,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // Handle error.
+  // do error.
 }
 // Obtain the authentication tip information via a callback.
 try {
@@ -784,7 +794,7 @@ try {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // Do something.
         default:
-          // Do others.
+          // do others.
       }
     }
   } as userAuth.AuthEvent);
@@ -792,7 +802,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // Handle error.
+  // do error.
 }
 ```
 
@@ -859,7 +869,7 @@ try {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // Do something.
         default:
-          // Do others.
+          // do others.
       }
     }
   } as userAuth.AuthEvent);
@@ -867,7 +877,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // Handle error.
+  // do error.
 }
 ```
 
@@ -1100,7 +1110,6 @@ Checks whether the specified authentication capability is supported.
 > - Error code 12500013 is returned if the authentication executor has been registered, the authentication functionality is not disabled, but the password has expired.
 
 > **NOTE**
->
 > - If **getAvailableStatus** is called to check whether lock screen password authentication at ATL4 is supported for a user who has enrolled a 4-digit PIN as the lock screen password (the authentication trust level is ATL3), error code 12500010 will be returned.
 
 **Error codes**
@@ -1123,7 +1132,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
-  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
+  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL3);
   console.info('current auth trust level is supported');
 } catch (error) {
   console.error(`current auth trust level is not supported, error = ${error}`);
@@ -1530,7 +1539,7 @@ Enumerates the identity authentication types.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PIN<sup>10+</sup>         | 1    | Password authentication. |
+| PIN<sup>10+</sup>         | 1    | PIN authentication.|
 | FACE        | 2    | Facial authentication.|
 | FINGERPRINT | 4    | Fingerprint authentication.|
 
@@ -1557,27 +1566,27 @@ type SecureLevel = string
 
 Enumerates the authentication security levels.
 
-> **NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
+**NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| string | Authentication security level, which can be any of the following:<br>\- **S1**: authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.<br>\- **S2**: authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device.<br>\- **S3**: authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.<br>\- **S4**: authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
+| string | Authentication security level, which can be any of the following:|  | | <br>\- **S1**: authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.<br>\- **S2**: authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device.<br>\- **S3**: authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.<br>\- **S4**: authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
 
 ## AuthType<sup>(deprecated)</sup>
 
 type AuthType = string
 
-Defines the authentication type.
+Enumerates the authentication types.
 
-> **NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
+**NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| string  | Authentication type, which can be any of the following:<br>\- **ALL**: reserved and not supported by the current version.<br>\- **FACE_ONLY**: facial authentication.|
+| string  | Authentication type, which can be any of the following:| <br>\- **ALL**: reserved and not supported by the current version.<br>\- **FACE_ONLY**: facial authentication.|
 
 ## userAuth.getAuthenticator<sup>(deprecated)</sup>
 

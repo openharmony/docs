@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_Rect struct describes the width, height, and image information of the rectangle used for screen capture.
+The struct describes the width, height, and image information of the rectangle used for screen capture.
 
 **Since**: 10
 

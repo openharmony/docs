@@ -183,8 +183,6 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
 import { commonType, distributedDataObject } from '@kit.ArkData';
 import { fileIo, fileUri } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -351,9 +349,7 @@ export default class EntryAbility extends UIAbility {
  The sample code is as follows:
 
 ```ts
-import { AbilityConstant, Caller, common, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
+import { AbilityConstant, Caller, UIAbility, Want } from '@kit.AbilityKit';
 import { distributedDataObject } from '@kit.ArkData';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';

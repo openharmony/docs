@@ -20,10 +20,10 @@ Tid:15894, Name:e.myapplication
 使用Node-API时如果出现高概率闪退，崩溃栈顶在系统库libark_jsruntime.so，一般是开发者Node-API接口使用不当导致。   
 - 以下定位问题的思路，可作为参考：   
 1. 排查是否存在多线程安全问题（概率较大）。   
-IDE中提供了相关开关，开启开关后，重新编译打包并运行，看看崩溃栈是不是符合下面这个文档的描述，如果是，那就是在使用Node-API时，存在多线程安全问题。   
+DevEco Studio中提供了相关开关，开启开关后，重新编译打包并运行，看看崩溃栈是不是符合下面这个文档的描述，如果是，那就是在使用Node-API时，存在多线程安全问题。   
 [常见多线程安全问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-ark-runtime-detection#section19357830121120)  
-IDE开关：   
-![IDE多线程开关](figures/zh_cn_image_20-25-06-40-15-09.png)   
+DevEco Studio开关：   
+![DevEco Studio多线程开关](figures/zh_cn_image_20-25-06-40-15-09.png)   
 2. 使用Node-API接口时入参非法导致。   
 - 这种情况一般是崩溃栈上的so会很浅，so调用了某个具体的Node-API接口，比如调用了napi_call_function之类的接口，然后Node-API又调到了libark_jsruntime的so，然后直接崩溃在libark_jsruntime里面。  
 示例栈结构如下。  

@@ -11,12 +11,12 @@ For details about the corresponding algorithm specifications, see [HKDF](crypto-
    - **key**: original key material.
       If **key** is of the string type, pass in the data used for key derivation instead of the string type such as HexString or base64. In addition, ensure that the string is encoded in UTF-8 format. Otherwise, the derived key may be different from what you expected.
    - **salt**: salt value.
-   - **info**: optional context and application information used to expand the short key. This parameter can be empty.
+   - **info**: optional context and application information used to extend the short key. This parameter can be empty.
    - **keySize**: length of the key to derive, in bytes. The value must be a positive integer.
 
-2. Call [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'HKDF|SHA256|EXTRACT_AND_EXPAND'**** to create a **Kdf** instance. The key derivation algorithm is **HKDF**, HMAC algorithm is **SHA256**, and mode is **extract and expand**.
+2. Use [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'HKDF|SHA256|EXTRACT_AND_EXPAND'**** to create a **Kdf** instance. The key derivation algorithm is **HKDF**, HMAC algorithm is **SHA256**, and mode is **extract and expand**.
 
-3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **HKDFSpec** object to generate a derived key.
+3. Use [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **HKDFSpec** object to generate a derived key.
    
    The following table lists how **Kdf.generateSecret** delivers the return value.
    

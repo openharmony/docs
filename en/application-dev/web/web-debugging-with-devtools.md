@@ -8,7 +8,7 @@ The **Web** component supports debugging of web frontend pages by using DevTools
 
 ### Enabling Web Debugging for Application Code
 
-Before debugging a web page, call the [setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess) API to enable the web debugging function. 
+Before debugging a web page, call the [setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess) API to enable the web debugging feature. 
 If the web debugging function is not enabled, DevTools cannot detect the web page to be debugged.
 
 1. Enable web frontend page debugging in the application code.
@@ -65,13 +65,13 @@ Connect the device to a PC and enable Developer mode for subsequent port forward
    ![hdc_list_targets_empty](figures/devtools_resources_hdc_list_targets_empty.jpg)
 
 3. Enter the hdc shell.  
-   After hdc is connected to the device, run the following command to enter hdc shell.
+   After the device is connected, run the following command to enter hdc shell:
    ```shell
    hdc shell
    ```
 
 ### Port Forwarding
-After the application code calls the **setWebDebuggingAccess** API to enable web debugging, the ArkWeb kernel starts a domain socket listener to enable DevTools to debug web pages. 
+After the application code calls the **setWebDebuggingAccess** API to enable web debugging, the ArkWeb kernel starts a domain socket listener to enable DevTools to debug web pages. For details, see [Automatically Mapping the WebView Debugging Link](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118). 
 However, Chrome cannot directly access the domain socket on the device. Therefore, the domain socket on the device needs to be forwarded to the PC.
 
 1. Run the following command in hdc shell to obtain the domain socket created by ArkWeb on the device. 
@@ -96,8 +96,8 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
    ```
    > **NOTE**
    >
-   > The number following **webview_devtools_remote_** indicates the process ID of the application where the **Web** component is located. The number is not fixed. Change the number to the obtained value. 
-   > If the process ID of the application changes (for example, the application is restarted), forward the port again.
+   > The number following **webview_devtools_remote_** indicates the process ID of the application where the **Web** component is located. The number is not fixed. Change the number following **webview_devtools_remote_** to the obtained value. 
+   > If the process ID of the application changes (for example, the application is restarted), configure port forwarding again.
 
    The following figure shows a successful forwarding. 
    ![hdc_fport_38532_success](figures/devtools_resources_hdc_fport_38532_success.jpg)
@@ -200,11 +200,11 @@ Copy the following information to create a .bat file, enable application debuggi
    pause >nul
 
    :: Try to open the page in Edge
-   start msedge chrome://inspect/#devices.com
+   start msedge chrome://inspect/#devices
 
    :: If Edge is not available, then open the page in Chrome
    if errorlevel 1 (
-       start chrome chrome://inspect/#devices.com
+       start chrome chrome://inspect/#devices
    )
 
    endlocal
@@ -314,7 +314,7 @@ This script will delete all port forwarding. If other tools (such as DevEco Stud
   * Ensure that the step of [Enabling Web Debugging for Application Code](#enabling-web-debugging-for-application-code) is performed.
   * Ensure that the application uses the **Web** component to load the web page.
 
-### What should I do if port forwarding fails?
+### What should I do if port forwarding fails
 **Symptom**
 
    The configured forwarding task is not displayed after the following command is executed.
@@ -353,12 +353,10 @@ The port forwarding may be invalid due to the following reasons:
     - If the web page is normally displayed, the port forwarding is successful. On the Chrome debugging page, perform the operation of [Waiting for the Page to Be Debugged](#waiting-for-the-page-to-be-debugged). 
     ![chrome_localhost](figures/devtools_resources_chrome_localhost.jpg)
 
-    - If an error page is displayed, port forwarding fails. For details about the solution, see [What should I do if port forwarding fails](#what-should-i-do-if-port-forwarding-fails). 
+    - If an error page is displayed, port forwarding fails. For details, see [What should I do if port forwarding fails](#what-should-i-do-if-port-forwarding-fails). 
     ![chrome_localhost_refused](figures/devtools_resources_chrome_localhost_refused.jpg)
 
   * If the **http://localhost:9222/json** page is normally displayed on Chrome, but the debugging target cannot be found on the Chrome debugging page, perform the following operations:
     - Ensure that the port number in **Configure** on the Chrome debugging page is the same as the TCP port number specified for port forwarding.
     - In this topic, the default TCP port number is **9222**.  
       If you use another TCP port number (for example, **9223**), change the TCP port number in [Port Forwarding](#port-forwarding) and [Opening the Debugging Tool Page in Chrome](#opening-the-debugging-tool-page-in-chrome).
-
-<!--no_check-->

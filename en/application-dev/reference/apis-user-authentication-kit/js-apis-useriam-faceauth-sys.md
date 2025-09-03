@@ -32,7 +32,7 @@ A constructor used to create a **FaceAuthManager** object.
 
 | Type                  | Description                |
 | ---------------------- | -------------------- |
-| [FaceAuthManager](#faceauthmanager) | **FaceAuthManager** object.|
+| [FaceAuthManager](#faceauthmanager) | **FaceAuthManager** object|
 
 **Example**
 
@@ -46,7 +46,7 @@ let faceAuthManager = new faceAuth.FaceAuthManager();
 
 setSurfaceId(surfaceId: string): void;
 
-Sets an [XComponent surface ID](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) for the face preview page in the face enrollment process. This API must be used with [addCredential](../apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8).
+Sets an [XComponent surface ID](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9) for the face preview page in the face enrollment process. This API must be used with [addCredential](../apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8).
 
 **System capability**: SystemCapability.UserIAM.UserAuth.FaceAuth
 
@@ -58,7 +58,7 @@ Sets an [XComponent surface ID](../apis-arkui/arkui-ts/ts-basic-components-xcomp
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| surfaceId       | string     | Yes  | ID of the surface held by [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
+| surfaceId       | string     | Yes  | ID of the surface held by [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9).|
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 

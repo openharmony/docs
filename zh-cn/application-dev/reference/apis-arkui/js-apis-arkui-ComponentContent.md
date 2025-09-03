@@ -452,7 +452,7 @@ struct Index {
                 setTimeout(() => {
                   promptAction.closeCustomDialog(contentNode)
                     .then(() => {
-                      console.info('customdialog closed.');
+                      console.info('customDialog closed.');
                       if (contentNode !== null) {
                         contentNode.dispose();   //释放contentNode
                       }

@@ -26,7 +26,7 @@ Web组件能够实现在不同窗口的组件树上进行挂载或移除操作�
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import { createNWeb } from "../pages/common"
+import { createNWeb } from '../pages/common'
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
     let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
@@ -133,7 +133,7 @@ export const getNWeb = (url: ResourceStr) : myNodeController | undefined => {
 ```ts
 // 使用NodeController的Page页
 // Index.ets
-import { getNWeb } from "./common"
+import { getNWeb } from './common'
 @Entry
 @Component
 struct Index {
@@ -167,7 +167,7 @@ struct Index {
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import { createNWeb } from "../pages/common"
+import { createNWeb } from '../pages/common'
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
     let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
@@ -331,7 +331,7 @@ struct index2 {
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import {createNWeb} from "../pages/common";
+import {createNWeb} from '../pages/common';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
@@ -452,7 +452,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // 使用NodeController的Page页
 // Index.ets
-import {createNWeb, getNWeb} from "./common";
+import {createNWeb, getNWeb} from './common';
 
 @Entry
 @Component
@@ -477,7 +477,7 @@ struct Index {
 
 1.排查应用上网权限配置。
 
-检查是否已在module.json5中添加网络权限，添加方法请参考在[配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+检查是否已在module.json5中添加网络权限，添加方法请参考在[配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
 ```ts
 "requestPermissions":[

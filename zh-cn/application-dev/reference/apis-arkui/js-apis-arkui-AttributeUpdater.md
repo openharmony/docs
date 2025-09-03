@@ -1,4 +1,9 @@
 # AttributeUpdater
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
 
@@ -44,6 +49,8 @@ type Initializer\<T> = () => T
 为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifiert)的实现类，开发者需要自定义class继承AttributeUpdater。
 
 其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等，仅在使用updateConstructorParams时才需要传递C类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -115,11 +122,12 @@ struct Index {
             // 需要注意先通过组件的attributeModifier属性方法建立组件与AttributeUpdater绑定关系
             this.modifier.attribute?.backgroundColor('#ff2787d9').labelStyle({ maxLines: 5 });
           })
-        Button('Change The message to flush the Button')
+          .margin('10%')
+        Button('Trigger Button Update')
           .width('80%')
           .labelStyle({ maxLines: 2 })
           .onClick(() => {
-            this.flushTheButton = 'Updates' + this.flushTheButton;
+            this.flushTheButton = this.flushTheButton + ' Updated' ;
           })
       }
       .width('100%')
@@ -128,7 +136,7 @@ struct Index {
   }
 }
 ```
-![attributeUpdater1](figures/attribute-updater1.PNG)
+![attributeUpdater1](figures/attribute-updater1.gif)
 
 
 ### attribute
@@ -142,7 +150,7 @@ get attribute(): T | undefined
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T \| undefined |如果AttributeUpdater中组件的属性类实例存在，则返回对应组件的属性类实例，否则返回undefined。|
 
@@ -194,6 +202,12 @@ updateConstructorParams: C
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型             | 说明                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| C   |C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等。|
 
 **示例：** 
 

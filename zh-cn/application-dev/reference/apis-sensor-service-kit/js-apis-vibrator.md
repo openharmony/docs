@@ -750,7 +750,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                                                        |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------- |
-| effectId | string                       | 是   | 待确认的预置振动效果。                                      |
+| effectId | string                       | 是   | 待确认的预置振动效果，字符串最大长度64，超出截取64。|
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，返回false不支持。 |
 
 **错误码**：
@@ -817,7 +817,7 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| effectId | string | 是   | 待确认的预置振动效果。 |
+| effectId | string | 是   | 待确认的预置振动效果，字符串最大长度64，超出截取64。 |
 
 **返回值**： 
 
@@ -884,7 +884,7 @@ isSupportEffectSync(effectId: string): boolean
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| effectId | string | 是   | 待确认的预置振动效果。 |
+| effectId | string | 是   | 待确认的预置振动效果，字符串最大长度64，超出截取64。 |
 
 **返回值**：
 
@@ -930,7 +930,7 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
 
 | 参数名   | 类型                                                         | 必填 | 说明                          |
 | -------- | ------------------------------------------------------------ | ---- |-----------------------------|
-| effectId | string | 是   | 待确认的预置振动效果。                 |
+| effectId | string | 是   | 待确认的预置振动效果，字符串最大长度64，超出截取64。                 |
 | param     | [VibratorInfoParam](#vibratorinfoparam19)                       | 否   | 指出需要查询的设备和马达信息，默认查询的是本地设备。 |
 
 **错误码**：
@@ -983,7 +983,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 | 类型                            | 说明                                                      |
 |-------------------------------| --------------------------------------------------------- |
-| [VibratorInfo](#vibratorinfo19) | 马达设备的信息。 |
+| Array&lt;[VibratorInfo](#vibratorinfo19)&gt; | 马达设备的信息。 |
 
 
 **示例**：
@@ -1404,7 +1404,7 @@ build(): VibratorPattern;
 
 ## VibrateEffect<sup>9+</sup>
 
-马达振动效果，支持以下三种。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)接口时，此参数的三种类型表示以三种不同的形式触发振动。
+马达振动效果，支持以下四种。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)接口时，此参数的四种类型表示以四种不同的形式触发振动。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1437,7 +1437,7 @@ build(): VibratorPattern;
 | 名称                    | 类型     | 必填 | 说明                                                         |
 | ----------------------- | -------- | ---- | ------------------------------------------------------------ |
 | type                    | 'preset' | 是   | 值为'preset'，按照预置振动效果触发马达振动。                 |
-| effectId                | string   | 是   | 预置的振动效果ID。                                           |
+| effectId                | string   | 是   | 预置的振动效果ID，字符串最大长度64，超出截取64。                                           |
 | count                   | number   | 否   | 可选参数，振动的重复次数，默认值为1。                        |
 | intensity<sup>12+</sup> | number   | 否   | 可选参数，振动调节强度，取值范围(0,100]内所有整数，默认值为100。若振动效果不支持强度调节或设备不支持时，则按默认强度振动。 |
 
@@ -1677,7 +1677,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 | 参数名   | 类型                  | 必填 | 说明               |
 | -------- | --------------------- | ---- | ------------------ |
-| effectId | [EffectId](#effectid) | 是   | 预置的振动效果ID。 |
+| effectId | [EffectId](#effectid) | 是   | 预置的振动效果ID，字符串最大长度64，超出截取64，建议先查询是否支持。 |
 
 **返回值**：
 
@@ -1715,7 +1715,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。                                         |
+| effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID，字符串最大长度64，超出截取64，建议先查询是否支持。                                         |
 | callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
 
 **示例**：

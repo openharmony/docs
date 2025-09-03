@@ -140,8 +140,8 @@ This JSON file contains three attributes: **MetaData**, **Channels**, and **Para
 
      | Name     | Mandatory| Description                                                        |
      | --------- | ------ | ------------------------------------------------------------ |
-     | Intensity | Yes    | Vibration intensity. The value range is [0, 100].                          |
-     | Frequency | Yes    | Vibration frequency. The value range is [0, 100].                          |
+     | Intensity | Yes    | Vibration intensity. The value range is [0, 100]. The specified value indicates the percentage of the maximum vibration intensity.|
+     | Frequency | Yes    | Vibration frequency. The value range is [0, 100]. For vibrators that support frequency adjustment, the value is usually set to **55**, which is the resonance frequency. In this case, the vibration intensity is the highest. The closer the vibration frequency is to the resonance frequency, the higher the vibration intensity is.|
      | Curve     | No    | Vibration curve. This parameter is valid only when **Type** is set to **continuous**. It is a JSON array that holds 4 to 16 adjustment points. Each adjustment point must contain the following attributes:<br>**Time**: offset relative to the event start time. The value ranges from 0 to the vibration duration.<br>**Intensity**: gain relative to the vibration intensity. The value range is [0, 1]. This value multiplied by the vibration intensity is the adjusted intensity at the corresponding time point.<br>**Frequency**: change relative to the vibration frequency. The value range is [-100, 100]. This value plus the vibration frequency is the adjusted frequency at the corresponding time point.|
 
 The following requirements must be met:
@@ -159,7 +159,7 @@ The following requirements must be met:
 2. Query vibrator information.
 
   Scenario 1: Query information about all vibrators.
-  
+
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -174,7 +174,7 @@ The following requirements must be met:
   ```
 
   Scenario 2: Query information about one or more vibrators of the specified device.
-  
+
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -388,7 +388,7 @@ The following requirements must be met:
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+    
    const vibratorInfoParam: vibrator.VibratorInfoParam = {
      deviceId: 1   // The device ID must be the one that actually exists.
    }
@@ -445,3 +445,4 @@ The following requirements must be met:
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
    }
    ```
+

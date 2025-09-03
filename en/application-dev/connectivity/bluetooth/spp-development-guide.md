@@ -1,5 +1,11 @@
 # SPP-based Connection and Data Transmission
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 ## Introduction
 This document provides guidance on how to connect devices and transfer data via Serial Port Profile (SPP). When two devices communicate via SPP, they can be distinguished as client and server based on their respective functions. This guide describes the implementation methods for both the client and server.
 
@@ -24,7 +30,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ### Client
 
-#### 1. Initiating a Connection
+**1. Initiating a Connection**<br>
 The client can initiate a connection after searching for the target device through the device discovery process. The UUID service to be connected to must be consistent with the UUID service constructed when the server creates the socket. During the connection process, the Bluetooth subsystem will check whether the server supports this UUID service; if not, the connection will fail. Therefore, the application must ensure that the target device supports the required UUID service; otherwise, the connection initiated will be invalid.
 ```ts
 // Obtain the device address through the device discovery process.
@@ -51,7 +57,7 @@ socket.sppConnect(peerDevice, option, (err, num: number) => {
 console.info('startConnect after ' + peerDevice);
 ```
 
-#### 2. Transmitting Data
+**2. Transmitting Data**<br>
 
 **2.1 Sending Data**<br>
 After the connection between the client and server is established, the client can send data to the server.
@@ -87,7 +93,7 @@ try {
 }
 ```
 
-#### 3. Terminating the Connection
+**3. Disconnecting the Connection**<br>
 When an application no longer needs an established connection, it can proactively disconnect from the client. Before that, you need to disable listening for data read events.
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the client initiates a connection. The ID here is a pseudo-code ID.
@@ -114,7 +120,7 @@ try {
 
 ### Server
 
-#### 1. Create a server socket.
+**1. Creating a Server Socket**<br>
 The server needs to register the specified UUID service in the Bluetooth subsystem by creating a socket. The UUID service can be named freely, such as using the application name. When a client sends a connection request, it includes a UUID to specify the target service. Connection establishment is permitted only when the server's and client's UUIDs are identical.
 ```ts
 // Define the server socket ID.
@@ -138,7 +144,7 @@ socket.sppListen("demonstration", option, (err, num: number) => {
 });
 ```
 
-#### 2. Enable listening for client connections.
+**2. Listening for Client Connections**<br>
 After the server socket is created, the server can listen for client connections. When a connection request is received, the server obtains the socket ID of the client. At this time, the connection between the server and client is successfully established.
 ```ts
 let serverNumber = 1; // Note: The value is the server socket ID in the asynchronous callback returned when the server socket is created. The ID here is a pseudo-code ID.
@@ -156,7 +162,7 @@ socket.sppAccept(serverNumber, (err, num: number) => {
 });
 ```
 
-#### 3. Transmitting Data
+**3. Transmitting Data**<br>
 
 **3.1 Sending Data**<br>
 After the connection between the server and client is established, the server can send data to the client.
@@ -177,7 +183,7 @@ try {
 **3.2 Receiving Data**<br>
 After the connection between the server and client is established, the server can receive data from the client. This is implemented through [socket.on('sppRead ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread).
 ```ts
-let clientNumber = 1; // Note: This value is the client socket ID obtained by the asynchronous callback when the server listens to the connection. This is a pseudo code ID.
+let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. The ID here is a pseudo-code ID.
 
 // Define the callback for data read events.
 function read(dataBuffer: ArrayBuffer) {
@@ -192,12 +198,12 @@ try {
   console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
-#### 4. Terminating the Connection
+**4. Disconnecting the Connection**<br>
 When an application no longer needs an established connection, it can proactively disconnect from the server.
 
 - Before that, you need to disable listening for data read events.
 ```ts
-let clientNumber = 1; // Note: This value is the client socket ID obtained by the asynchronous callback when the server listens to the connection. This is a pseudo code ID.
+let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. The ID here is a pseudo-code ID.
 
 // Define the callback for data read events.
 function read(dataBuffer: ArrayBuffer) {
@@ -219,11 +225,12 @@ try {
 }
 ```
 
-#### 5. Deleting the Server Socket
+**5. Deleting the Server Socket**<br>
 When the application no longer needs the server socket, it needs to proactively close the socket. The Bluetooth subsystem then deletes the corresponding UUID service registered earlier. If the client initiates a connection at this time, the connection fails.
 
 - The application can also disconnect from the server when deleting the socket. Before that, the application needs to disable listening for data read events.
 ```ts
+let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. The ID here is a pseudo-code ID.
 let serverNumber = 1; // Note: The value is the server socket ID in the asynchronous callback returned when the server socket is created. The ID here is a pseudo-code ID.
 
 // Define the callback for data read events.
@@ -281,6 +288,10 @@ class SppClientManager {
   // Send data.
   public sendData() {
     console.info('sendData ' + this.clientNumber);
+    if (this.clientNumber == -1) {
+      console.error('invalid clientNumber');
+      return;
+    }
     let arrayBuffer = new ArrayBuffer(2);
     let data = new Uint8Array(arrayBuffer);
     data[0] = 3;
@@ -302,6 +313,10 @@ class SppClientManager {
   public readData() {
     try {
       // Enable listening for data read events.
+      if (this.clientNumber == -1) {
+        console.error('invalid clientNumber');
+        return;
+      }
       socket.on('sppRead', this.clientNumber, this.read);
     } catch (err) {
       console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -311,6 +326,10 @@ class SppClientManager {
   // Terminate the connection.
   public stopConnect() {
     console.info('closeSppClient ' + this.clientNumber);
+    if (this.clientNumber == -1) {
+      console.error('invalid clientNumber');
+      return;
+    }
     try {
       // Disable listening for data read events.
       socket.off('sppRead', this.clientNumber, this.read);
@@ -364,6 +383,10 @@ class SppServerManager {
   // Enable listening for connection requests and wait for connections.
   public accept() {
     console.info('accept ' + this.serverNumber);
+    if (this.serverNumber == -1) {
+      console.error('invalid serverNumber');
+      return;
+    }
     socket.sppAccept(this.serverNumber, (err, num: number) => {
       if (err) {
         console.error('accept errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -377,6 +400,10 @@ class SppServerManager {
   // Send data.
   public sendData() {
     console.info('sendData serverNumber: ' + this.serverNumber + ' clientNumber: ' + this.clientNumber);
+    if (this.clientNumber == -1) {
+      console.error('invalid clientNumber');
+      return;
+    }
     let arrayBuffer = new ArrayBuffer(2);
     let data = new Uint8Array(arrayBuffer);
     data[0] = 9;
@@ -398,6 +425,10 @@ class SppServerManager {
   public readData() {
     try {
       // Enable listening for data read events.
+      if (this.clientNumber == -1) {
+        console.error('invalid clientNumber');
+        return;
+      }
       socket.on('sppRead', this.clientNumber, this.read);
     } catch (err) {
       console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -409,6 +440,10 @@ class SppServerManager {
     console.info('stopConnect');
     try {
       // Disable listening for data read events.
+      if (this.clientNumber == -1) {
+        console.error('invalid clientNumber');
+        return;
+      }
       socket.off('sppRead', this.clientNumber, this.read);
     } catch (err) {
       console.error('off sppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -426,6 +461,10 @@ class SppServerManager {
     console.info('closeSppServer');
     try {
       // If the application no longer needs the server socket, proactively delete it.
+      if (this.serverNumber == -1) {
+        console.error('invalid serverNumber');
+        return;
+      }
       socket.sppCloseServerSocket(this.serverNumber);
     } catch (err) {
       console.error('sppCloseServerSocket errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

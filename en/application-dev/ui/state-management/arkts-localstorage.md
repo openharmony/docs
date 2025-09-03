@@ -1,4 +1,4 @@
-# LocalStorage: Storing UI State
+# LocalStorage: Storing Page-Level UI State
 
 
 LocalStorage provides storage for the page-level UI state. The parameters of the LocalStorage type accepted through the \@Entry decorator share the same LocalStorage instance on the page. LocalStorage also allows for state sharing between pages with UIAbility instances.

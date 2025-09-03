@@ -15,7 +15,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 以实现对写数组越界场景生成的踩内存事件订阅为例，说明开发步骤。
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
+1. 参考[三方开源库jsoncpp代码仓](https://github.com/open-source-parsers/jsoncpp)README中**Using JsonCpp in your project**介绍的使用方法获取到jsoncpp.cpp、json.h和json-forwards.h三个文件。
+
+2. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
 
    ```yml
    entry:
@@ -38,7 +40,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
+3. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -47,7 +49,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
+4. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
    #include "napi/native_api.h"
@@ -59,7 +61,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅系统事件：
+5. 订阅系统事件：
 
    - onReceive类型观察者：
 
@@ -87,7 +89,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                          auto pid = params["pid"].asInt();
                          auto uid = params["uid"].asInt();
                          auto type = params["type"].asString();
-                         auto boolFlag = params["log_over_limit"].asBool();
                          std::string logOverLimit = params["log_over_limit"].asBool() ? "true" : "false";
                          auto externalLog = writer.write(params["external_log"]);
                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
@@ -185,7 +186,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
 
-5. 构造地址越界错误：
+6. 构造地址越界错误：
    
    编辑"napi_init.cpp"文件，定义Test方法, 方法中对一个整数数组进行越界访问：
 
@@ -198,7 +199,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-6. 将RegisterWatcher和Test注册为ArkTS接口：
+7. 将RegisterWatcher和Test注册为ArkTS接口：
 
    编辑"napi_init.cpp"文件，将RegisterWatcher和Test注册为ArkTS接口：
 
@@ -221,7 +222,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const test: () => void;
    ```
 
-7. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
+8. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
    // 导入依赖模块
@@ -232,7 +233,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    testNapi.registerWatcher();
    ```
 
-8. 编辑“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
+9.  编辑“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
 
    ```ts
    import testNapi from 'libentry.so';
@@ -254,7 +255,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-9. 点击DevEco Studio界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
+10. 点击DevEco Studio界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent eventInfo.domain=OS
@@ -270,7 +271,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.params.log_over_limit=false
    ```
 
-10. 移除事件观察者：
+11. 移除事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -280,7 +281,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁事件观察者：
+12. 销毁事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

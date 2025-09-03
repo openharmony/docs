@@ -127,7 +127,7 @@
           }
           .onAppear(() => {
             // 即将触底时提前增加数据
-            if (item.id + 10 === this.dataSource.totalCount(), ) {
+            if (item.id + 10 === this.dataSource.totalCount()) {
               // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
               taskpoolExecute(this.dataSource.totalCount(),
                 this.getUIContext().getHostContext() as common.UIAbilityContext).then((data: ModelDetailVO[]) => {

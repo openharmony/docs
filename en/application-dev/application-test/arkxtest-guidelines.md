@@ -11,7 +11,7 @@ arkXtest is divided into two parts: unit test framework and UI test framework.<b
 
 ### Unit Test Framework
 
-  Figure 1 Main functions of the unit test framework
+  Figure 1 Main features of the unit test framework
 
   ![](figures/UnitTest.PNG)
 
@@ -21,11 +21,11 @@ arkXtest is divided into two parts: unit test framework and UI test framework.<b
 
 ### UI Test Framework
 
-  Figure 3 Main functions of the UI test framework
+  Figure 3 Main features of the UI test framework
 
   ![](figures/Uitest.PNG)
 
-## Compile and Execute Tests Based on ArkTS
+## Compiling and Executing Tests Based on ArkTS
 
 ### Setting Up the Environment
 
@@ -36,15 +36,15 @@ arkXtest is divided into two parts: unit test framework and UI test framework.<b
 #### Creating a Test Script
 
 <!--RP2-->
-1. Open DevEco Studio and create a project, in which the **ohos** directory is where the test script is located.
+Open DevEco Studio and create a project, in which the **ohos** directory is where the test script is located.
 
-2. Open the .ets file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class. For more details, see [DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415).
+Open the .ets file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class. For more details, see [DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415).
 
 <!--RP2End-->
 
 #### Writing a Unit Test Script
 
-This section describes how to use the unit test framework to write a unit test script. For details about the functionality of the unit test framework, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
+This section describes how to use the unit test framework to write a unit test script. For details about the functionality of the unit test framework, see [JsUnit Features](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md#jsunit-features).
 
 The unit test script must contain the following basic elements:
 
@@ -57,7 +57,7 @@ The unit test script must contain the following basic elements:
 The following sample code is used to start the test page to check whether the page displayed on the device is the expected page.
 
 ```ts
-import { describe, it, expect } from '@ohos/hypium';
+import { describe, it, expect, Level } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
@@ -68,7 +68,7 @@ function sleep(time: number) {
 }
 export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
-    it('testUiExample',0, async (done: Function) => {
+    it('testUiExample',Level.LEVEL3, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
       const want: Want = {
@@ -97,7 +97,7 @@ export default function abilityTest() {
     @Component
     struct Index {
       @State message: string = 'Hello World'
-
+    
       build() {
         Row() {
           Column() {
@@ -122,7 +122,7 @@ export default function abilityTest() {
 
 2. Write test code in the .test.ets file under **ohosTest** > **ets** > **test**.
     ```ts
-    import { describe, it, expect } from '@ohos/hypium';
+    import { describe, it, expect, Level } from '@ohos/hypium';
     // Import the test dependencies.
     import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
     import { UIAbility, Want } from '@kit.AbilityKit';
@@ -134,7 +134,7 @@ export default function abilityTest() {
     }
     export default function abilityTest() {
       describe('ActsAbilityTest', () => {
-        it('testUiExample',0, async (done: Function) => {
+        it('testUiExample',Level.LEVEL3, async (done: Function) => {
             console.info("uitest: TestUiExample begin");
             //start tested ability
             const want: Want = {
@@ -215,12 +215,12 @@ The framework supports multiple test case execution modes, which are triggered b
 | notClass     | Test suite or test case that does not need to be executed.                              | {describeName}#{itName}, {describeName}                     | -s notClass attributeTest#testAttributeIt |
 | itName       | Test case to be executed.                                        | {itName}                                                     | -s itName testAttributeIt                 |
 | timeout      | Timeout interval for executing a test case.                                       | Positive integer (unit: ms). If no value is set, the default value **5000** is used.                       | -s timeout 15000                          |
-| breakOnError | Whether to enable break-on-error mode. When this mode is enabled, the test execution process exits if a test assertion failure or error occurs.| **true**/**false** (default value)                                          | -s breakOnError true                      |
-| random | Whether to execute test cases in random sequence.| **true**/**false** (default value)                                          | -s random true                      |
-| testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
-| level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
-| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small        
-| stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
+| breakOnError | Whether to enable break-on-error mode. When this mode is enabled, the test execution process exits if a test assertion failure or error occurs.| **true** or **false** (default value)                                         | -s breakOnError true                      |
+| random | Whether to execute test cases in random sequence.                 | **true** or **false** (default value)                                          | -s random true                      |
+| testType     | Type of the test case to be executed.                    | **function**, **performance**, **power**, **reliability**, **security**, **global**, **compatibility**, **user**, **standard**, **safety**, **resilience**| -s testType function                      |
+| level        | Level of the test case to be executed.                    | 0, 1, 2, 3, 4                                              | -s level 0                                |
+| size         | Size of the test case to be executed.                    | small, medium, large                                       | -s size small        
+| stress       | Number of times that the test case is executed.                    |  Positive integer                                        | -s stress 1000                            |
 
 **Running Commands**
 
@@ -444,16 +444,16 @@ The following describes the fields in the recording data:
 | Command  | Mandatory| Description             |
 |------|------|-----------------|
 | help   | Yes   | Displays help information about the uiInput commands.|
-| click   | Yes   | Simulates a click event.     |
-| doubleClick   | Yes   | Simulates a double-click event.     |
-| longClick   | Yes   | Simulates a long-click event.    |
-| fling   | Yes   | Simulates a fling event.  |
-| swipe   | Yes   | Simulates a swipe event.    |
-| drag   | Yes   | Simulates a drag event.    |
-| dircFling   | Yes   | Simulates a directional fling event.    |
-| inputText   | Yes   | Simulates text input in a text box at specified coordinates.                  |
-| text   | Yes   | Simulates text input in a text box at the focused position without specifying coordinates.                          |
-| keyEvent   | Yes   | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.    |
+| click   | Yes   | Simulates a click event. For details, see **Examples of Using uiInput click/doubleClick/longClick**.     |
+| doubleClick   | Yes   | Simulates a double-click event. For details, see **Examples of Using uiInput click/doubleClick/longClick**.     |
+| longClick   | Yes   | Simulates a long-click event. For details, see **Examples of Using uiInput click/doubleClick/longClick**.    |
+| fling   | Yes   | Simulates a fling event. For details, see **Examples of Using uiInput fling**.  |
+| swipe   | Yes   | Simulates a swipe event. For details, see **Examples of Using uiInput swipe/drag**.    |
+| drag   | Yes   | Simulates a drag event. For details, see **Examples of Using uiInput swipe/drag**.    |
+| dircFling   | Yes   | Simulates a directional fling event. For details, see **Examples of Using uiInput dircFling**.    |
+| inputText   | Yes   | Simulates text input in a text box at specified coordinates. For details, see **Examples of Using uiInput inputText**.                  |
+| text   | Yes   | Simulates text input in a text box at the focused position without specifying coordinates. For details, see **Examples of Using uiInput text**.                          |
+| keyEvent   | Yes   | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination. For details, see **Examples of Using uiInput keyEvent**.    |
 
 
 #### Example of Running the click/doubleClick/longClick Commands
@@ -499,7 +499,7 @@ hdc shell uitest uiInput fling 10 10 200 200 500
 | from_y   | Yes               | The y-coordinate of the start point.|
 | to_x   | Yes               | The x-coordinate of the stop point.|
 | to_y   | Yes               | The y-coordinate of the stop point.|
-| swipeVelocityPps_   | No     | Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.|
+| swipeVelocityPps_   | No     | Swipe speed, in px/s. The value ranges from 200 to 40000.<br> The default value is **600**.|
 
 ```shell  
 # Execute the swipe event.
@@ -514,7 +514,7 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 | Parameter            | Mandatory      | Description|
 |-------------------|-------------|----------|
 | direction         | No| Fling direction, which can be **0**, **1**, **2**, or **3**. The default value is **0**.<br> The value **0** indicates leftward fling, **1** indicates rightward fling, **2** indicates upward fling, and **3** indicates downward fling.   |
-| swipeVelocityPps_ | No| Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   |
+| swipeVelocityPps_ | No| Swipe speed, in px/s. The value ranges from 200 to 40000.<br> The default value is 600.   |
 | stepLength        | No       | Step length.<br> The default value is the swipe distance divided by 50. To achieve better simulation effect, you are advised to use the default value.|
 
 ```shell  
@@ -554,15 +554,11 @@ hdc shell uitest uiInput text hello
 
 #### Example of Running the uiInput keyEvent Command
 
-| Parameter            | Mandatory      | Description|
-|------|------|----------|
-| keyID1   | Yes   | ID of a physical key, which can be **KeyCode**, **Back**, **Home**, or **Power**.<br>When the value is set to **Back**, **Home**, or **Power**, the combination keys are not supported.|
-| keyID2    | No   | ID of a physical key.|
-| keyID3    | No   | ID of a physical key.|
-
->**NOTE**
->
-> A maximum of three key values can be passed. <!--RP3-->For details about the key values, see [KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->.
+| Parameter            | Mandatory      | Description                                                                                                                             |
+|------|------|---------------------------------------------------------------------------------------------------------------------------------|
+| keyID1   | Yes   | ID of a physical key, which can be **Back**, **Home**, **Power**, or [a keycode value](../reference/apis-input-kit/js-apis-keycode.md#keycode).<br>When the value is set to **Back**, **Home**, or **Power**, combination keys are not supported.<br>Currently, the Caps Lock key (**KeyCode**=**2074**) does not take effect. Use composition keys to input uppercase letters. For example, press **Shift+V** to input uppercase letter V.|
+| keyID2    | No   | ID of a physical key. Value range: [KeyCode](../reference/apis-input-kit/js-apis-keycode.md#keycode). This parameter is left empty by default.                                              |
+| keyID3    | No   | ID of a physical key. Value range: [KeyCode](../reference/apis-input-kit/js-apis-keycode.md#keycode). This parameter is left empty by default.                                              |
 
 ```shell  
 # Back to home page.
@@ -571,6 +567,10 @@ hdc shell uitest uiInput keyEvent Home
 hdc shell uitest uiInput keyEvent Back
 # Perform a key combination to copy and paste text.
 hdc shell uitest uiInput keyEvent 2072 2038
+# Input the lowercase letter v.
+hdc shell uitest uiInput keyEvent 2038
+# Input the uppercase letter V.
+hdc shell uitest uiInput keyEvent 2047 2038
 ```
 
 ### Obtaining the Version Information
@@ -621,16 +621,16 @@ For details about how to simulate a click event, a long-click event or a double-
 For details about how to simulate a mouse left-click event, a mouse right-click event, or a mouse scroll wheel event, see [Example of Simulating Mouse Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets).
 
 #### Simulating Input Events
-For details about how to simulate the input of Chinese and English text, see [Example of Simulating Input Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets).
+For details about how to simulate Chinese and English text input, see [Example of Simulating Text Input Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets).
 
 #### Simulating Screenshot Events
 For details about how to simulate capturing a screenshot (in a specified area), see [Example of Simulating Screenshot Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets).
 
 #### Simulating Fling Events
-For details about how to simulate a fling event (the finger leaves the screen after sliding), see [Example of Simulating Fling Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets).
+For details about how to simulate a fling event (the finger leaves the screen after swiping), see [Example of Simulating Fling Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets).
 
 #### Simulating Swipe Events
-For details about how to simulate a swipe event (the finger stays on the screen after sliding), see [Example of Simulating Swipe Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/SwipeEvent.test.ets).
+For details about how to simulate a swipe event (the finger stays on the screen after swiping), see [Example of Simulating Swipe Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/SwipeEvent.test.ets).
 
 #### Simulating Pinch Events
 For details about how to simulate a zoom-in and zoom-out operation on pictures, see [Example of Simulating Pinch Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/PinchEvent.test.ets).
@@ -641,7 +641,7 @@ For details about how to simulate components scrolling, see [Example of Simulati
 ### UI Test Scripts for Windows
 
 #### Searching for Specified Windows
-For details about how to search for an application window by using the bundle name of the application, see [Example of Searching for Specified Windows](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets).
+For details about how to search for an application window based on the bundle name of the application, see [Example of Searching for Specified Windows](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets).
 
 #### Simulating Window Move Events
 For details about how to simulate moving a window to a specified position, see [Example of Simulating Window Move Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/MoveToEvent.test.ets).
@@ -728,7 +728,7 @@ hdc shell param set persist.ace.testmode.enabled 1
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "uitest-api does not allow calling concurrently."
+The UI test case fails to be executed. The HiLog file contains the error message "uitest-api does not allow calling concurrently".
 
 **Possible Causes**
 

@@ -442,9 +442,9 @@ static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
     bool checkResult = false;
     JSVM_Status status = OH_JSVM_CheckObjectTypeTag(env, args[0], &TagsData[index], &checkResult);
     if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM SetTypeTagToObject fail");
+        OH_LOG_ERROR(LOG_APP, "JSVM CheckObjectTypeTag fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM SetTypeTagToObject:%{public}d", checkResult);
+        OH_LOG_INFO(LOG_APP, "JSVM CheckObjectTypeTag:%{public}d", checkResult);
     }
     // 将bool结果转换为JSVM_Value并返回
     JSVM_Value checked = nullptr;
@@ -476,7 +476,7 @@ const char* srcCallNative = R"JS(
 预期的输出结果
 ```ts
 JSVM SetTypeTagToObject success
-JSVM SetTypeTagToObject:1
+JSVM CheckObjectTypeTag:1
 ```
 
 ### OH_JSVM_CreateExternal

@@ -4721,7 +4721,7 @@ Measures the text width.
 
 > **NOTE**
 >
-> This API is used to measure the text width of the original string. To measure the text width after typesetting, call [measure.measureText](../apis-arkui/js-apis-measure.md#measuretextmeasuretext).
+> This API is used to measure the text width of the original string. To measure the text width after typesetting, call [measure.measureText](../apis-arkui/js-apis-arkui-UIContext.md#measuretext12).
 
 **System capability**: SystemCapability.Graphics.Drawing
 

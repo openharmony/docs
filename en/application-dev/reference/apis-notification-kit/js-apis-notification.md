@@ -75,9 +75,9 @@ Publishes a notification. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -155,9 +155,9 @@ Cancels a notification with the specified ID and optional label. This API uses a
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -246,9 +246,9 @@ Cancels all notifications. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -309,9 +309,9 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -494,9 +494,9 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -550,9 +550,9 @@ Removes all notification slots. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -729,9 +729,9 @@ Cancels notifications under a notification group of this application. This API u
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -851,9 +851,9 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|  
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 

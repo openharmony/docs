@@ -70,7 +70,7 @@ function destroy() : void {
 ```
 
 ## Shader
-Shader resource, which inherits from [SceneResource](#sceneresource).
+Shader resource, which inherits from [SceneResource](#sceneresource-1).
 
 ### Properties
 
@@ -90,7 +90,8 @@ Enumerates the material types in a scene.
 | SHADER | 1 | Shader-defined.|
 
 ## Material
-Material resource, which inherits from [SceneResource](#sceneresource).
+Material resource, which inherits from [SceneResource](#sceneresource-1).
+
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -109,6 +110,7 @@ Shader material, which inherits from [Material](#material).
 | ---- | ---- | ---- | ---- | ---- |
 | colorShader | [Shader](#shader) | No| Yes| Shader. The default value is undefined.|
 
+
 ## SubMesh
 Sub-mesh resource.
 ### Properties
@@ -122,7 +124,7 @@ Sub-mesh resource.
 | aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | Yes| No| Axis aligned bounding box.|
 
 ## Mesh
-Mesh resource, which inherits from [SceneResource](#sceneresource).
+Mesh resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -134,21 +136,21 @@ Mesh resource, which inherits from [SceneResource](#sceneresource).
 | materialOverride | [Material](#material) | No| Yes| Material. The default value is undefined.|
 
 ## MeshResource<sup>18+</sup>
-Mesh resource, which inherits from [SceneResource](#sceneresource).
+Mesh resource, which inherits from [SceneResource](#sceneresource-1).
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 ## Animation
-Animation resource, which inherits from [SceneResource](#sceneresource).
+Animation resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| enabled | boolean | No| No| Whether the animation is enabled. The value **true** means that the animation can be played, and **false** means the opposite.|
-| duration | number | Yes| No| Duration of the animation. The value is greater than or equal to 0.|
-| running | boolean | Yes| No| Running status of the animation. The value **true** means that the animation is being played, and **false** means the opposite.|
+| enabled | boolean | No| No| Whether the animation is enabled. **true** if enabled, **false** otherwise.|
+| duration | number | Yes| No| Animation duration, in seconds. The value must be greater than or equal to 0.|
+| running | boolean | Yes| No| Whether the animation is running. **true** if running, **false** otherwise.|
 | progress | number | Yes| No| Playing progress of the animation. The value range is [0, 1].|
 
 ### onFinished
@@ -376,7 +378,7 @@ Enumerates the environment background types.
 | BACKGROUND_EQUIRECTANGULAR | 3 | Equirectangular background.|
 
 ## Environment
-Environment resource, which inherits from [SceneResource](#sceneresource).
+Environment resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -392,12 +394,12 @@ Environment resource, which inherits from [SceneResource](#sceneresource).
 | irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | No| Yes| Irradiance coefficients. The default value is undefined.|
 
 ## Image
-Image resource, which inherits from [SceneResource](#sceneresource).
+Image resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| width | number | Yes| No| Image width. The value is greater than 0.|
-| height | number | Yes| No| Image height. The value is greater than 0.|
+| width | number | Yes| No| Image width, in px. The value must be greater than 0.|
+| height | number | Yes| No| Image height, in px. The value must be greater than 0.|

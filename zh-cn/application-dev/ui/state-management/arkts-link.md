@@ -333,7 +333,7 @@ struct Child {
         .margin(12)
         .width(312)
         .height(40)
-        .fontColor('#FFFFFF，90%')
+        .fontColor('#FFFFFF')
         .onClick(() => {
           this.items.push(this.items.length + 1);
         })
@@ -341,7 +341,7 @@ struct Child {
         .margin(12)
         .width(312)
         .height(40)
-        .fontColor('#FFFFFF，90%')
+        .fontColor('#FFFFFF')
         .onClick(() => {
           this.items = [100, 200, 300];
         })

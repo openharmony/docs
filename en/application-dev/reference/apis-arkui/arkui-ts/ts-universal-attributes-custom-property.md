@@ -10,9 +10,7 @@ You can set custom properties on components. These custom properties can be obta
 
 customProperty(name: string, value: Optional\<Object>): T
 
-Sets a custom property for this component. This API does not work for [custom components](../../../ui/state-management/arkts-create-custom-components.md#creating-a-custom-component).
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+Sets a custom property for this component. This API does not work for [custom components](../../../ui/state-management/arkts-create-custom-components.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -32,9 +30,9 @@ Sets a custom property for this component. This API does not work for [custom co
 | T | Current component.|
 
 
-## Optional<sup>12+</sup>
+## Optional\<T><sup>12+</sup>
 
-Optional\<T>
+type Optional\<T> = T | undefined
 
 Defines the Optional type. The value can be **undefined**.
 

@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.mouseEvent (鼠标输入事件)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 设备上报的鼠标事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 > **说明：**
@@ -93,12 +100,12 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | action         | [Action](#action)      | 否    | 否    | 鼠标事件动作。                                   |
-| screenX        | number      | 否    | 否    | 鼠标光标在屏幕中的横坐标。                             |
-| screenY        | number      | 否    | 否    | 鼠标光标在屏幕中的纵坐标。                             |
-| windowX        | number      | 否    | 否    | 鼠标所在窗口的横坐标。                               |
-| windowY        | number      | 否    | 否    | 鼠标所在窗口的纵坐标。                               |
-| rawDeltaX      | number      | 否    | 否    | 鼠标本次操作横坐标偏移值。 |
-| rawDeltaY      | number      | 否    | 否    | 鼠标本次操作纵坐标偏移值。                          |
+| screenX        | number      | 否    | 否    | 该鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。 |
+| screenY        | number      | 否    | 否    | 该鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。 |
+| windowX        | number      | 否    | 否    | 鼠标所在窗口左上角为原点的相对坐标系的X坐标。当前仅支持整数。  |
+| windowY        | number      | 否    | 否    | 鼠标所在窗口左上角为原点的相对坐标系的Y坐标。当前仅支持整数。  |
+| rawDeltaX      | number      | 否    | 否    | 鼠标当前事件相对于上次事件的X坐标偏移值。当前仅支持整数。 |
+| rawDeltaY      | number      | 否    | 否    | 鼠标当前事件相对于上次事件的Y坐标偏移值。当前仅支持整数。 |
 | button         | [Button](#button)      | 否    | 否    | 鼠标按钮。                               |
 | pressedButtons | [Button](#button)[]    | 否    | 否    | 当前处于按下状态的鼠标按钮。                              |
 | axes           | [AxisValue](#axisvalue)[] | 否    | 否    | 事件包含的所有轴数据。                               |

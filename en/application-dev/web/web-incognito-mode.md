@@ -3,7 +3,7 @@
 
 When creating a **Web** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#weboptions) to **true**. When incognito mode is enabled, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **Web** component is destroyed.
 
-- Create a [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component in incognito mode.
+- Create a [Web](../reference/apis-arkweb/ts-basic-components-web.md) component in incognito mode.
  
    ```ts
   // xxx.ets
@@ -22,7 +22,7 @@ When creating a **Web** component, you can enable incognito mode for it by setti
   }
   ```
 
-- Use [isIncognitoMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#isincognitomode11) to check whether the current **Web** component is in incognito mode.
+- Use [isIncognitoMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#isincognitomode11) to determine whether incognito mode is enabled for the current **Web** component.
 
   ```ts
   // xxx.ets
@@ -307,7 +307,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#clearallcookiessync11) to delete all cookies.
+- Use [clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#clearallcookiessync11) to clear all cookies.
 
   ```ts
   // xxx.ets

@@ -14,7 +14,9 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 import { common } from '@kit.AbilityKit';
 ```
 
-## Context.createBundleContext<sup>(deprecated)</sup>
+## Context
+
+### createBundleContext<sup>(deprecated)</sup>
 
 createBundleContext(bundleName: string): Context
 
@@ -71,7 +73,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createModuleContext<sup>(deprecated)</sup>
+### createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(bundleName: string, moduleName: string): Context
 
@@ -125,7 +127,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createModuleResourceManager<sup>11+</sup>
+### createModuleResourceManager<sup>11+</sup>
 
 createModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
@@ -148,7 +150,7 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 
 | 类型 | 说明 |
 | -------- | -------- |
-| resmgr.ResourceManager | 资源管理对象。 |
+| [resmgr.ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 资源管理对象。 |
 
 **错误码**：
 
@@ -156,6 +158,8 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
@@ -177,7 +181,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## Context.createSystemHspModuleResourceManager<sup>12+</sup>
+### createSystemHspModuleResourceManager<sup>12+</sup>
 
 createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 

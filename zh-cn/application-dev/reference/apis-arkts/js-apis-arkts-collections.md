@@ -2439,7 +2439,7 @@ const myMap = new collections.Map<string, string>([
 // Expected output: "world"
 console.info(myMap.get("hello"));
 // Expected output: undefined
-console.info(myMap.get("world"));
+console.info(myMap.get("hel"));
 ```
 
 ### has
@@ -2522,7 +2522,7 @@ set(key: K, value: V): Map<K, V>
 ```ts
 // 正例：
 const myMap = new collections.Map<string, string>();
-myMap.set("foo", "bar")
+myMap.set("foo", "bar");
 ```
 
 <!--code_no_check-->

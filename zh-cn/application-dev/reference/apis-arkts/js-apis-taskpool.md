@@ -111,8 +111,8 @@ execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...a
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-    console.info("printArgs: " + args);
-    return args;
+  console.info("printArgs: " + args);
+  return args;
 }
 
 @Concurrent
@@ -130,12 +130,12 @@ taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 
 });
 
 taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {
-	console.info("taskpool result: " + value); // "taskpool result: test"
+  console.info("taskpool result: " + value); // "taskpool result: test"
 });
 
 taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {
-	console.info("taskpool result: " + value); // "taskpool result: success"
-);
+  console.info("taskpool result: " + value); // "taskpool result: success"
+});
 ```
 
 
@@ -202,7 +202,9 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priority): Promise\<R>
 
-校验并发函数的参数类型和返回类型后，将创建好的泛型任务放入taskpool内部任务队列，任务不会立即执行，而是等待分发到工作线程执行。
+将创建好的泛型任务放入taskpool的内部任务队列，不校验任务的参数类型和返回值类型。
+
+execute任务的校验是结合new GenericsTask一起用的，参数、返回值类型需与new GenericsTask中的类型保持一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -381,7 +383,9 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 
 executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTask\<A, R>, priority?: Priority): Promise\<R>
 
-校验并发函数的参数类型和返回类型后，延时执行泛型任务。
+延时执行泛型任务，不校验任务的参数类型和返回值类型。
+
+executeDelayed任务的校验是结合new GenericsTask一起用的，参数、返回值类型需与new GenericsTask中的类型保持一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -513,8 +517,9 @@ taskpoolTest();
 
 executePeriodically<A extends Array\<Object>, R>(period: number, task: GenericsTask\<A, R>, priority?: Priority): void
 
-校验并发函数的参数类型和返回类型后，周期执行泛型任务，每隔period时长执行一次。
+周期执行泛型任务，每隔period时长执行一次。不校验任务的参数类型和返回值类型。
 
+executePeriodically任务的校验是结合new GenericsTask一起用的，参数、返回值类型需与new GenericsTask中的类型保持一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1798,7 +1803,7 @@ isDone(): boolean
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 2s sleep
+  // 1s sleep
   let t: number = Date.now();
   while (Date.now() - t < 1000) {
     continue;
@@ -2654,7 +2659,7 @@ function inspectStatus(arg: number): number {
   if (taskpool.Task.isCanceled()) {
     return arg + 2;
   }
-  // 延时2s
+  // 延时0.5s
   let t: number = Date.now();
   while (Date.now() - t < 500) {
     continue;
