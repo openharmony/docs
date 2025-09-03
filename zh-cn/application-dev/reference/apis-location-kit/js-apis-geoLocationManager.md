@@ -2741,6 +2741,8 @@ addBeaconFence(fenceRequest: BeaconFenceRequest): Promise&lt;number&gt;
 
 添加一个beacon围栏，并订阅地理围栏事件。使用Promise异步回调。
 
+beacon围栏是指通过蓝牙beacon设备和手机应用配合，实现“虚拟围栏”的功能。当用户靠近或离开某个特定的beacon设备时，手机应用会收到通知。
+
 应用可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函数用于接收围栏事件；也可以传入[FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称，在系统识别到围栏事件发生时通知APP。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
