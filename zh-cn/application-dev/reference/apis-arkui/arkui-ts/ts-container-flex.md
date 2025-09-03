@@ -69,6 +69,10 @@ Flex布局容器。
 | main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | Flex容器主轴上的space。<br/> 默认值：LengthMetrics.px(0) |
 | cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Flex容器交叉轴上的space。<br/> 默认值：LengthMetrics.px(0) |
 
+## 属性
+
+支持[通用属性](ts-component-general-attributes.md)。
+
 ## 事件
 
 支持[通用事件](ts-component-general-events.md)。

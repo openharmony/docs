@@ -16,12 +16,10 @@
 > - 公钥需满足X.509规范、PKCS\#1规范、PEM编码格式。
 >
 > - 私钥需满足PKCS\#8规范、PKCS\#1规范、PEM编码格式。
->
-> - 当前只支持RSA非对称密钥的转换。
 
-## 指定PEM格式字符串数据转换RSA密钥对
+## 指定PEM格式字符串数据转换密钥对
 
-对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)。
+对应的算法规格请查看[非对称密钥生成和转换规格](crypto-asym-key-generation-conversion-spec.md)。
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'RSA1024'，创建RSA密钥类型为RSA1024、素数个数为2的非对称密钥生成器（AsyKeyGenerator）。
 

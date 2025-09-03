@@ -698,7 +698,6 @@ export struct VCard {
     .width('100%')
   }
 }
-
 ```
 
 ![CapsuleSegmentButtonV2](figures/CapsuleSegmentButtonV2.gif)
@@ -825,7 +824,6 @@ export struct VCard {
     .width('100%')
   }
 }
-
 ```
 
 ![MultiCapsuleSegmentButtonV2.gif](figures/MultiCapsuleSegmentButtonV2.gif)

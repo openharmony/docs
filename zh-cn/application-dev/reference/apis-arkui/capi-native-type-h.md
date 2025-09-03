@@ -599,6 +599,25 @@ enum ArkUI_TextVerticalAlignment
 | ARKUI_TEXT_VERTICAL_ALIGNMENT_CENTER | 居中对齐。 |
 | ARKUI_TEXT_VERTICAL_ALIGNMENT_TOP | 顶部对齐。 |
 
+### ArkUI_TextContentAlign
+
+```
+enum ArkUI_TextContentAlign
+```
+
+**描述：**
+
+
+定义文本内容区垂直对齐样式枚举值。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_TEXT_CONTENT_ALIGN_TOP = 0 | 顶部对齐。 |
+| ARKUI_TEXT_CONTENT_ALIGN_CENTER = 1 | 居中对齐。 |
+| ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2 | 底部对齐。 |
+
 ### ArkUI_EnterKeyType
 
 ```

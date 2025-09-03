@@ -99,7 +99,8 @@ struct ImageExample {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row({ space: 5 }) {
-          Image($r('app.media.app_icon'))
+          // 可以替换成本地存在的图片
+          Image($r('app.media.startIcon'))
             .width(110)
             .height(110)
             .border({ width: 1 })

@@ -1,5 +1,12 @@
 # @ohos.account.appAccount (Application Account Management)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The **appAccount** module provides APIs for adding, deleting, modifying, and querying application account information, and supports inter-application authentication and distributed data synchronization.
 
 > **NOTE**
@@ -54,6 +61,8 @@ Creates an application account with the given name. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -97,6 +106,8 @@ Creates an application account with custom data. This API uses an asynchronous c
 | callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -152,6 +163,8 @@ Creates an application account with custom data. This API uses a promise to retu
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -197,6 +210,8 @@ Creates an application account implicitly based on the specified account owner. 
 | callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -269,6 +284,8 @@ Creates an application account implicitly based on the specified account owner a
 | callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.        |
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -345,6 +362,8 @@ Removes an application account. This API uses an asynchronous callback to return
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -392,6 +411,8 @@ Removes an application account. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -433,6 +454,8 @@ Sets the access to the data of an account for an application. This API uses an a
 | callback     | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -484,6 +507,8 @@ Sets the access to the data of an account for an application. This API uses a pr
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -525,6 +550,8 @@ Checks whether an application can access the data of an account. This API uses a
 | callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means the application can access the account data; the value **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -575,6 +602,8 @@ Checks whether an application can access the data of an account. This API uses a
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -617,6 +646,8 @@ Sets data synchronization for an application account. This API uses an asynchron
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -665,6 +696,8 @@ Sets data synchronization for an application account. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 201 | Permission denied.|
@@ -679,7 +712,7 @@ Sets data synchronization for an application account. This API uses a promise to
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-      appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
+      appAccountManager.setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
       }).catch((err: BusinessError) => {
           console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
@@ -707,6 +740,8 @@ Checks whether data synchronization is enabled for an application account. This 
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the application account; the value **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -758,6 +793,8 @@ Checks whether data synchronization is enabled for an application account. This 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 201 | Permission denied.|
@@ -800,6 +837,8 @@ Sets a credential for an application account. This API uses an asynchronous call
 | callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the credential is set successfully, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -850,6 +889,8 @@ Sets a credential for an application account. This API uses a promise to return 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -890,6 +931,8 @@ Obtains the credential of an application account. This API uses an asynchronous 
 | callback       | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -940,6 +983,8 @@ Obtains the credential of an application account. This API uses a promise to ret
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -982,6 +1027,8 @@ Sets custom data for an application account. This API uses an asynchronous callb
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1033,6 +1080,8 @@ Sets custom data for an application account. This API uses a promise to return t
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1074,6 +1123,8 @@ Obtains the custom data of an application account based on the specified key. Th
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the custom data value obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1124,6 +1175,8 @@ Obtains the custom data of an application account based on the specified key. Th
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1171,6 +1224,8 @@ Obtains the custom data of an application account based on the specified key. Th
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1184,7 +1239,7 @@ Obtains the custom data of an application account based on the specified key. Th
   ```ts
   try {
       let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
-      console.info('getCustomDataSync successfully, vaue: ' + value);
+      console.info('getCustomDataSync successfully, value: ' + value);
   } catch (err) {
     console.error('getCustomDataSync failed, error: ' + JSON.stringify(err));
   }
@@ -1205,6 +1260,8 @@ Obtains information about all accessible application accounts. This API uses an 
 | callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible application accounts. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1245,6 +1302,8 @@ Obtains information about all accessible application accounts. This API uses a p
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
@@ -1281,6 +1340,8 @@ Obtains the application accounts that can be accessed by the invoker based on th
 | callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is null and **data** is the application account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1329,6 +1390,8 @@ Obtains the application accounts that can be accessed by the invoker based on th
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1370,6 +1433,8 @@ Subscribes to account information changes of apps.
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1405,6 +1470,8 @@ Unsubscribes from account information changes.
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1449,6 +1516,8 @@ Authenticates an application account. This API uses an asynchronous callback to 
 | callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1523,6 +1592,8 @@ Authenticates an application account. This API uses an asynchronous callback to 
 | callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1600,6 +1671,8 @@ Obtains the authorization token of the specified authentication type for an appl
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1651,6 +1724,8 @@ Obtains the authorization token of the specified authentication type for an appl
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1693,6 +1768,8 @@ Sets an authorization token of the specific authentication type for an applicati
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1744,6 +1821,8 @@ Sets an authorization token of the specific authentication type for an applicati
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1787,6 +1866,8 @@ Deletes the authorization token of the specified authentication type for an appl
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -1840,6 +1921,8 @@ Deletes the authorization token of the specified authentication type for an appl
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1883,6 +1966,8 @@ Sets the visibility of an authorization token to an application. This API uses a
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -1937,6 +2022,8 @@ Sets the visibility of an authorization token to an application. This API uses a
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1980,6 +2067,8 @@ Checks the visibility of an authorization token of the specified authentication 
 | callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the application) or **false** (the authorization token is not visible to the application). If the operation fails, **err** is an error object.   |
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -2032,6 +2121,8 @@ Checks the visibility of an authorization token of the specified authentication 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2074,6 +2165,8 @@ Obtains all tokens visible to the invoker for an application account. This API u
 | callback | AsyncCallback&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all tokens visible to the invoker. Otherwise, **err** is an error object.   |
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -2124,6 +2217,8 @@ Obtains all tokens visible to the invoker for an application account. This API u
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2165,6 +2260,8 @@ Obtains the authorization list of the specified authentication type for an appli
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -2215,6 +2312,8 @@ Obtains the authorization list of the specified authentication type for an appli
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2255,6 +2354,8 @@ Obtains the authenticator callback for an authentication session. This API uses 
 | callback  | AsyncCallback&lt;[AuthCallback](#authcallback9)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -2319,6 +2420,8 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2375,6 +2478,8 @@ Obtains the authenticator information of an application. This API uses an asynch
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2423,6 +2528,8 @@ Obtains the authenticator information of an application. This API uses a promise
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2465,6 +2572,8 @@ Checks whether an application account has specific labels. This API uses an asyn
 | callback       | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** or **false**. The value **true** means the application account has the labels; the value **false** means the opposite. If the operation fails, **err** is an error object. |
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -2520,6 +2629,8 @@ Checks whether an application account has specific labels. This API uses a promi
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2565,6 +2676,8 @@ Deletes the credential of the specified type from an application account. This A
 | callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -2615,6 +2728,8 @@ Deletes the credential of the specified type from an application account. This A
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2655,6 +2770,8 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 | callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accounts selected. Otherwise, **err** is an error object. |
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -2709,6 +2826,8 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2753,6 +2872,8 @@ Verifies the credential of an application account. This API uses an asynchronous
 | callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -2802,6 +2923,8 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 | callback | [AuthCallback](#authcallback9)   | Yes   | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------|
@@ -2854,6 +2977,8 @@ Sets the authenticator attributes of an application. This API uses an asynchrono
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2900,6 +3025,8 @@ Sets the authenticator properties. This API uses an asynchronous callback to ret
 | callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ------- |
@@ -2971,6 +3098,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 Adds an application account name and additional information. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -3035,7 +3163,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 Adds an application account implicitly based on the specified owner. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This enum is supported since API version 8 and deprecated since API version 9. Use [createAccountImplicitly](#createaccountimplicitly9) instead.
 
@@ -3455,7 +3583,7 @@ Sets additional information for an application account. This API uses an asynchr
 
 | Name      | Type                       | Mandatory  | Description             |
 | --------- | ------------------------- | ---- | --------------- |
-| name      | string                    | Yes   | Name of the target application account.        |
+| name      | string                    | Yes   | Name of the application account to create.        |
 | extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the application account password and token.      |
 | callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -3579,7 +3707,7 @@ Sets data synchronization for an application account. This API uses a promise to
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err: BusinessError) => {
       console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
@@ -4830,7 +4958,7 @@ Defines application account information.
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
 | owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
-| name  | string | Yes   | Name of the target application account.   |
+| name  | string | Yes   | Name of the application account.   |
 
 ## AuthTokenInfo<sup>9+</sup>
 
@@ -5117,11 +5245,15 @@ Provides OAuth authenticator callbacks.
 >
 > This enum is supported since API version 8 and deprecated since API version 9. Use [AuthCallback](#authcallback9) instead.
 
-### onResult<sup>8+</sup>
+### onResult<sup>(deprecated)</sup>
 
 onResult: (code: number, result: {[key: string]: any;}) =&gt; void
 
 Called to return the result of an authentication request.
+
+> **NOTE**
+>
+> This enum is supported since API version 8 and deprecated since API version 9. You are advised to use [onResult](#onresult9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5151,11 +5283,15 @@ Called to return the result of an authentication request.
   });
   ```
 
-### onRequestRedirected<sup>8+</sup>
+### onRequestRedirected<sup>(deprecated)</sup>
 
 onRequestRedirected: (request: Want) =&gt; void
 
 Called to redirect a request.
+
+> **NOTE**
+>
+> This enum is supported since API version 8 and deprecated since API version 9. You are advised to use [onRequestRedirected](#onrequestredirected9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5235,7 +5371,7 @@ Adds an application account implicitly based on the specified authentication typ
 
 auth(name: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
-Authenticates an application account to obtain the authorization token. This API uses an asynchronous callback to return the result.
+Authenticates an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5252,7 +5388,7 @@ Authenticates an application account to obtain the authorization token. This API
 
 authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-Authenticates an application account to obtain the authorization token. This API uses an asynchronous callback to return the result.
+Authenticates an application account to obtain the OAuth token. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >

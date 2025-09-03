@@ -93,7 +93,7 @@ listener.on('change', onPortrait);
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| and              | 将多个媒体特征（Media&nbsp;Feature）以“与”的方式连接成一个媒体查询，只有当所有媒体特征都为true，查询条件成立。另外，它还可以将媒体类型和媒体功能结合起来。例如：screen&nbsp;and&nbsp;(device-type:&nbsp;wearable)&nbsp;and&nbsp;(max-height:&nbsp;600px)&nbsp;表示当设备类型是智能穿戴且应用的最大高度小于等于600个像素单位时成立。 |
+| and              | 将多个媒体特征（Media&nbsp;Feature）以“与”的方式连接成一个媒体查询，只有当所有媒体特征都为true时，查询条件成立。另外，它还可以将媒体类型和媒体功能结合起来。例如：screen&nbsp;and&nbsp;(device-type:&nbsp;wearable)&nbsp;and&nbsp;(max-height:&nbsp;600px)&nbsp;表示当设备类型是智能穿戴且应用的最大高度小于等于600个像素单位时成立。 |
 | or               | 将多个媒体特征以“或”的方式连接成一个媒体查询，如果存在结果为true的媒体特征，则查询条件成立。例如：screen&nbsp;and&nbsp;(max-height:&nbsp;1000px)&nbsp;or&nbsp;(round-screen:&nbsp;true)&nbsp;表示当应用高度小于等于1000个像素单位或者设备屏幕是圆形时，条件成立。 |
 | not              | not操作符必须搭配screen使用，取反媒体查询结果，媒体查询结果不成立时返回true，否则返回false。例如：not&nbsp;screen&nbsp;and&nbsp;(min-height:&nbsp;50px)&nbsp;and&nbsp;(max-height:&nbsp;600px)&nbsp;表示当应用高度小于50个像素单位或者大于600个像素单位时成立。 |
 | only             | only操作符必须搭配screen使用, 当前效果与单独使用screen相同。例如：only&nbsp;screen&nbsp;and&nbsp;(height&nbsp;&lt;=&nbsp;50)&nbsp;。|
@@ -117,7 +117,7 @@ listener.on('change', onPortrait);
 
   **表3** 媒体特征说明表
 
-比较height、width等宽高尺寸时，支持vp和px单位，无单位默认为px。
+比较height、width等宽高尺寸时，支持vp和px单位，无单位时默认为px。
 
 | 类型                | 说明                                       |
 | ----------------- | ---------------------------------------- |
@@ -147,7 +147,7 @@ listener.on('change', onPortrait);
 
 ## 场景示例
 
-下例中使用媒体查询，实现屏幕横竖屏切换时，给页面文本应用添加不同的内容和样式。
+下例中使用媒体查询，实现屏幕横竖屏切换时，为页面文本应用添加不同的内容和样式。
 
 Stage模型下的示例：
 
@@ -278,6 +278,6 @@ struct MediaQueryExample {
 
 ## 相关实例
 
-针对媒体查询开发，有以下相关实例可供参考：
+针对媒体查询开发，以下相关实例可供参考：
 
 - [横竖屏切换（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)

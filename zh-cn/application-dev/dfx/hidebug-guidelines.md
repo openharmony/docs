@@ -52,22 +52,24 @@ HiDebug可用于获取整机内存、应用进程内存占用、应用线程内�
 
 HiDebug可获取应用占用的显存资源数据。在图形密集型应用中，显存管理至关重要，滥用显存资源将导致应用严重卡顿，影响用户体验。显存资源包括两部分：
 
-1. MemoryTracker统计的内存是由GPU驱动程序使用物理页面分配器直接分配的，这部分内存的大小取决于GPU硬件驱动程序的实现。
+1. graph：进程统计的DMA内存占用，包括直接通过接口申请的DMA buffer和通过allocator_host申请的DMA buffer。
 
-2. RenderService渲染进程加载所需资源占用的内存，例如图片、纹理等。
+2. gl：RenderService渲染进程加载所需资源占用的内存，例如图片、纹理等。
 
 ### 接口说明（ArkTS）
 
-| 接口名 | 描述   |
-| -------- | -------- |
-| hidebug.getGraphicsMemory | 使用异步方式获取应用程序的显存大小。 |
-| hidebug.getGraphicsMemorySync | 使用同步方式获取应用程序的显存大小。 |
+| 接口名 | 描述                                                 |
+| -------- |----------------------------------------------------|
+| hidebug.getGraphicsMemory | 使用异步方式获取应用的显存总大小（graph + gl）。                      |
+| hidebug.getGraphicsMemorySync | 使用同步方式获取应用的显存总大小（graph + gl）。                    
+| hidebug.getGraphicsMemorySummary | 使用异步方式获取应用程序的显存数据。<br/>说明：从API version 21开始，支持该接口。 |
 
 ### 接口说明（C/C++）
 
-| 接口名 | 描述   |
-| -------- | -------- |
-| OH_HiDebug_GetGraphicsMemory | 用于获取应用程序的显存大小。 |
+| 接口名 | 描述                                             |
+| -------- |------------------------------------------------|
+| OH_HiDebug_GetGraphicsMemory | 用于获取应用程序的显存总大小（graph + gl）。                    |
+| OH_HiDebug_GetGraphicsMemorySummary | 用于获取应用程序的显存数据。<br/>说明：从API version 21开始，支持该接口。 |
 
 ## 获取CPU使用率
 

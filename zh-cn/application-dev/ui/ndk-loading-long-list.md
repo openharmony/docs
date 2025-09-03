@@ -230,7 +230,9 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST)) {}
    
        ~ArkUIListNode() override {
-           nativeModule_->unregisterNodeEvent(handle_, NODE_LIST_ON_SCROLL_INDEX);
+           if (nativeModule_) {
+               nativeModule_->unregisterNodeEvent(handle_, NODE_LIST_ON_SCROLL_INDEX);
+           }
            if (adapter_) {
                // 析构的时候卸载adapter下的UI组件。
                nativeModule_->resetAttribute(handle_, NODE_LIST_NODE_ADAPTER);
