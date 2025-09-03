@@ -103,7 +103,7 @@ struct Index {
           .gestureModifier(this.modifier)
           .width(500)
           .height(500)
-          .backgroundColor(Color.Blue)
+          .backgroundColor(Color.Gray)
         Button('changeGesture')
           .onClick(() => {
             this.modifier.supportDoubleTap = !this.modifier.supportDoubleTap;
@@ -179,7 +179,7 @@ struct Index {
           .gestureModifier(this.modifier)
           .width(500)
           .height(500)
-          .backgroundColor(Color.Blue)
+          .backgroundColor(Color.Gray)
 
         Button('changeGestureGroupType')
           .onClick(() => {
