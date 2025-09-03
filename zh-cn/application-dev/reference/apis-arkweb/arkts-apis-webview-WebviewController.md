@@ -6644,6 +6644,14 @@ static pauseAllTimers(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
 **示例：**
 
 ```ts
@@ -6703,6 +6711,14 @@ static resumeAllTimers(): void
 恢复从pauseAllTimers()接口中被暂停的所有的定时器。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
