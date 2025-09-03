@@ -682,12 +682,14 @@ struct ImageDrag {
           .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
+            if (extraParams === null || extraParams === undefined) {
+              return;
+            }
             // 通过extraParams获取图片
             let arr: Record<string, object> = JSON.parse(extraParams) as Record<string, object>;
             let uri = arr['extraInfo'];
             if (typeof uri == 'string') {
               this.targetImage1 = uri;
-
               try {
                 request.downloadFile(this.context, {
                   url: uri,
