@@ -103,7 +103,7 @@
        return undefined;
      }
      // 设置视频录制的参数。
-     avRecorder.prepare(aVRecorderConfig);
+     await avRecorder.prepare(aVRecorderConfig);
      // 创建VideoOutput对象。
      let videoOutput: camera.VideoOutput | undefined = undefined;
      // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。

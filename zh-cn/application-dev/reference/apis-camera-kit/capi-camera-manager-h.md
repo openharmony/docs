@@ -111,7 +111,7 @@ typedef void (*OH_CameraManager_TorchStatusCallback)(Camera_Manager* cameraManag
 ### OH_CameraManager_OnFoldStatusInfoChange()
 
 ```
-typedef void (*OH_CameraManager_OnFoldStatusInfoChange)(Camera_Manager* cameraManager,Camera_FoldStatusInfo* foldStatusInfo)
+typedef void (*OH_CameraManager_OnFoldStatusInfoChange)(Camera_Manager* cameraManager, Camera_FoldStatusInfo* foldStatusInfo)
 ```
 
 **描述**
@@ -287,7 +287,7 @@ Camera_ErrorCode OH_CameraManager_UnregisterFoldStatusInfoCallback(Camera_Manage
 ### OH_CameraManager_GetSupportedCameras()
 
 ```
-Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraManager,Camera_Device** cameras, uint32_t* size)
+Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraManager, Camera_Device** cameras, uint32_t* size)
 ```
 
 **描述**
@@ -314,7 +314,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraMana
 ### OH_CameraManager_DeleteSupportedCameras()
 
 ```
-Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraManager,Camera_Device* cameras, uint32_t size)
+Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraManager, Camera_Device* cameras, uint32_t size)
 ```
 
 **描述**
@@ -341,7 +341,7 @@ Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraM
 ### OH_CameraManager_GetSupportedCameraOutputCapability()
 
 ```
-Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapability(Camera_Manager* cameraManager,const Camera_Device* camera, Camera_OutputCapability** cameraOutputCapability)
+Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapability(Camera_Manager* cameraManager, const Camera_Device* camera, Camera_OutputCapability** cameraOutputCapability)
 ```
 
 **描述**
@@ -368,7 +368,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapability(Camera_Mana
 ### OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode()
 
 ```
-Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(Camera_Manager* cameraManager,const Camera_Device* camera, Camera_SceneMode sceneMode, Camera_OutputCapability** cameraOutputCapability)
+Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(Camera_Manager* cameraManager, const Camera_Device* camera, Camera_SceneMode sceneMode, Camera_OutputCapability** cameraOutputCapability)
 ```
 
 **描述**
@@ -396,7 +396,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMod
 ### OH_CameraManager_DeleteSupportedCameraOutputCapability()
 
 ```
-Camera_ErrorCode OH_CameraManager_DeleteSupportedCameraOutputCapability(Camera_Manager* cameraManager,Camera_OutputCapability* cameraOutputCapability)
+Camera_ErrorCode OH_CameraManager_DeleteSupportedCameraOutputCapability(Camera_Manager* cameraManager, Camera_OutputCapability* cameraOutputCapability)
 ```
 
 **描述**
@@ -448,7 +448,7 @@ Camera_ErrorCode OH_CameraManager_IsCameraMuted(Camera_Manager* cameraManager, b
 ### OH_CameraManager_CreateCaptureSession()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreateCaptureSession(Camera_Manager* cameraManager,Camera_CaptureSession** captureSession)
+Camera_ErrorCode OH_CameraManager_CreateCaptureSession(Camera_Manager* cameraManager, Camera_CaptureSession** captureSession)
 ```
 
 **描述**
@@ -474,7 +474,7 @@ Camera_ErrorCode OH_CameraManager_CreateCaptureSession(Camera_Manager* cameraMan
 ### OH_CameraManager_CreateCameraInput()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreateCameraInput(Camera_Manager* cameraManager,const Camera_Device* camera, Camera_Input** cameraInput)
+Camera_ErrorCode OH_CameraManager_CreateCameraInput(Camera_Manager* cameraManager, const Camera_Device* camera, Camera_Input** cameraInput)
 ```
 
 **描述**
@@ -503,7 +503,7 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput(Camera_Manager* cameraManage
 ### OH_CameraManager_CreateCameraInput_WithPositionAndType()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_Manager* cameraManager,Camera_Position position, Camera_Type type, Camera_Input** cameraInput)
+Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_Manager* cameraManager, Camera_Position position, Camera_Type type, Camera_Input** cameraInput)
 ```
 
 **描述**
@@ -533,7 +533,7 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_M
 ### OH_CameraManager_CreatePreviewOutput()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreatePreviewOutput(Camera_Manager* cameraManager, const Camera_Profile* profile,const char* surfaceId, Camera_PreviewOutput** previewOutput)
+Camera_ErrorCode OH_CameraManager_CreatePreviewOutput(Camera_Manager* cameraManager, const Camera_Profile* profile, const char* surfaceId, Camera_PreviewOutput** previewOutput)
 ```
 
 **描述**
@@ -561,7 +561,7 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutput(Camera_Manager* cameraMana
 ### OH_CameraManager_CreatePreviewOutputUsedInPreconfig()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreatePreviewOutputUsedInPreconfig(Camera_Manager* cameraManager,const char* surfaceId, Camera_PreviewOutput** previewOutput)
+Camera_ErrorCode OH_CameraManager_CreatePreviewOutputUsedInPreconfig(Camera_Manager* cameraManager, const char* surfaceId, Camera_PreviewOutput** previewOutput)
 ```
 
 **描述**
@@ -588,7 +588,7 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutputUsedInPreconfig(Camera_Mana
 ### OH_CameraManager_CreatePhotoOutput()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreatePhotoOutput(Camera_Manager* cameraManager, const Camera_Profile* profile,const char* surfaceId, Camera_PhotoOutput** photoOutput)
+Camera_ErrorCode OH_CameraManager_CreatePhotoOutput(Camera_Manager* cameraManager, const Camera_Profile* profile, const char* surfaceId, Camera_PhotoOutput** photoOutput)
 ```
 
 **描述**
@@ -616,7 +616,7 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutput(Camera_Manager* cameraManage
 ### OH_CameraManager_CreatePhotoOutputUsedInPreconfig()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreatePhotoOutputUsedInPreconfig(Camera_Manager* cameraManager,const char* surfaceId, Camera_PhotoOutput** photoOutput)
+Camera_ErrorCode OH_CameraManager_CreatePhotoOutputUsedInPreconfig(Camera_Manager* cameraManager, const char* surfaceId, Camera_PhotoOutput** photoOutput)
 ```
 
 **描述**
@@ -643,7 +643,7 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutputUsedInPreconfig(Camera_Manage
 ### OH_CameraManager_CreatePhotoOutputWithoutSurface()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreatePhotoOutputWithoutSurface(Camera_Manager *cameraManager,const Camera_Profile *profile, Camera_PhotoOutput **photoOutput)
+Camera_ErrorCode OH_CameraManager_CreatePhotoOutputWithoutSurface(Camera_Manager *cameraManager, const Camera_Profile *profile, Camera_PhotoOutput **photoOutput)
 ```
 
 **描述**
@@ -670,7 +670,7 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutputWithoutSurface(Camera_Manager
 ### OH_CameraManager_CreateVideoOutput()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreateVideoOutput(Camera_Manager* cameraManager, const Camera_VideoProfile* profile,const char* surfaceId, Camera_VideoOutput** videoOutput)
+Camera_ErrorCode OH_CameraManager_CreateVideoOutput(Camera_Manager* cameraManager, const Camera_VideoProfile* profile, const char* surfaceId, Camera_VideoOutput** videoOutput)
 ```
 
 **描述**
@@ -698,7 +698,7 @@ Camera_ErrorCode OH_CameraManager_CreateVideoOutput(Camera_Manager* cameraManage
 ### OH_CameraManager_CreateVideoOutputUsedInPreconfig()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreateVideoOutputUsedInPreconfig(Camera_Manager* cameraManager,const char* surfaceId, Camera_VideoOutput** videoOutput)
+Camera_ErrorCode OH_CameraManager_CreateVideoOutputUsedInPreconfig(Camera_Manager* cameraManager, const char* surfaceId, Camera_VideoOutput** videoOutput)
 ```
 
 **描述**
@@ -725,7 +725,7 @@ Camera_ErrorCode OH_CameraManager_CreateVideoOutputUsedInPreconfig(Camera_Manage
 ### OH_CameraManager_CreateMetadataOutput()
 
 ```
-Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraManager,const Camera_MetadataObjectType* profile, Camera_MetadataOutput** metadataOutput)
+Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraManager, const Camera_MetadataObjectType* profile, Camera_MetadataOutput** metadataOutput)
 ```
 
 **描述**
@@ -752,7 +752,7 @@ Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraMan
 ### OH_CameraManager_GetSupportedSceneModes()
 
 ```
-Camera_ErrorCode OH_CameraManager_GetSupportedSceneModes(Camera_Device* camera,Camera_SceneMode** sceneModes, uint32_t* size)
+Camera_ErrorCode OH_CameraManager_GetSupportedSceneModes(Camera_Device* camera, Camera_SceneMode** sceneModes, uint32_t* size)
 ```
 
 **描述**
@@ -831,7 +831,7 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupported(Camera_Manager* cameraManager
 ### OH_CameraManager_IsTorchSupportedByTorchMode()
 
 ```
-Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* cameraManager,Camera_TorchMode torchMode, bool* isTorchSupported)
+Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* cameraManager, Camera_TorchMode torchMode, bool* isTorchSupported)
 ```
 
 **描述**
@@ -858,7 +858,7 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* ca
 ### OH_CameraManager_SetTorchMode()
 
 ```
-Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager,Camera_TorchMode torchMode)
+Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager, Camera_TorchMode torchMode)
 ```
 
 **描述**
@@ -884,7 +884,7 @@ Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager,Cam
 ### OH_CameraManager_GetCameraDevice()
 
 ```
-Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager, Camera_Position position,Camera_Type type, Camera_Device* camera)
+Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager, Camera_Position position, Camera_Type type, Camera_Device* camera)
 ```
 
 **描述**
@@ -912,7 +912,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager,
 ### OH_CameraManager_GetCameraConcurrentInfos()
 
 ```
-Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* cameraManager, const Camera_Device* camera,uint32_t deviceSize,Camera_ConcurrentInfo** cameraConcurrentInfo,uint32_t* infoSize)
+Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* cameraManager, const Camera_Device* camera,uint32_t deviceSize, Camera_ConcurrentInfo** cameraConcurrentInfo, uint32_t* infoSize)
 ```
 
 **描述**

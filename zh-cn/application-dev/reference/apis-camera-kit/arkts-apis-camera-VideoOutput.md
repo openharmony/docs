@@ -607,7 +607,7 @@ function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation
 }
 
 //获取deviceDegree。
-function getDeviceDegree(): number {
+async function getDeviceDegree(): Promise<number> {
   let deviceDegree: number = -1;
   try {
     sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
@@ -624,6 +624,7 @@ function getDeviceDegree(): number {
         let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
         deviceDegree = 90 - Number(sc);
         deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+        return deviceDegree;
       }
     });
   } catch (error) {

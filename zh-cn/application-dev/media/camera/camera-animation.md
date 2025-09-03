@@ -175,7 +175,7 @@
    @State shotImgBlur: number = 0; // 截图组件模糊度。
    @State shotImgOpacity: number = 1; // 截图组件透明度。
    @State shotImgScale: ScaleOptions = { x: 1, y: 1 }; // 截图组件比例。
-   @State shotImgRotation: RotateOptions = { y: 0.5, angle: 0 } // 截图组件旋转角度。
+   @State shotImgRotation: RotateOptions = { y: 0.5, angle: 0 }; // 截图组件旋转角度。
    ```
 
    截图组件的实现参考：
