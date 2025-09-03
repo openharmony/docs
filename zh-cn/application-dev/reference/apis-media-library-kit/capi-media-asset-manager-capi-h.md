@@ -1,5 +1,12 @@
 # media_asset_manager_capi.h
 
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义媒体资产管理器的接口。使用由媒体资产管理器提供的C API来请求媒体库资源。

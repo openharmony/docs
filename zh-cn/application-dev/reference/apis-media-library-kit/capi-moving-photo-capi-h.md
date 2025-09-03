@@ -1,5 +1,12 @@
 # moving_photo_capi.h
 
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义与动态照片相关的API。提供获取动态照片信息的功能。

@@ -1,5 +1,12 @@
 # media_asset_capi.h
 
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义与媒体资源相关的API。提供获取图像或视频信息的能力。
