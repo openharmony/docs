@@ -28,6 +28,8 @@ getContext(component?: Object):Context
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：** 
 
 | 参数名 | 类型          | 必填 | 说明                             |
@@ -38,15 +40,17 @@ getContext(component?: Object):Context
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](#context11)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+| [Context](#context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
 
-## Context<sup>11+</sup>
+## Context
 
 type Context = Context
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
