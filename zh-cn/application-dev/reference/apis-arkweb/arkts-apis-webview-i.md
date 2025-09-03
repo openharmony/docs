@@ -97,7 +97,7 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | id | string | 否 | 是 | snapshot的id。|
 | status | boolean | 否 | 是 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | 是 | web绘制的真实尺寸，number类型，单位vp。|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 全量绘制结果image.pixelMap格式。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 全量绘制结果为image.PixelMap格式。|
 
 ## OfflineResourceMap<sup>12+</sup>
 
