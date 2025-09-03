@@ -91,10 +91,11 @@
       - [Types](arkts-apis-window-t.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
-    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
-    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
     <!--DelEnd-->
+  - 已停止维护的接口<!--arkui-arkts-dep-->
+    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
+    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
   - 屏幕管理<!--display-manager-api-->
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)

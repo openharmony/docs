@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @chbchb12-->
-<!--SE: @stupidb-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @stupidb-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 WindowExtensionContext模块是WindowExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
