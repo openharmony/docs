@@ -162,6 +162,10 @@
 
    获取拍照旋转角度的方法为，通过[PhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md)中的[getPhotoRotation](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#getphotorotation12)方法获取rotation实际的值。
 
+   **说明：**
+   >
+   > [camera.Location](../../reference/apis-camera-kit/arkts-apis-camera-i.md#location)，参考请见[capture](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#capture-3)的示例。
+
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
      let settings: camera.PhotoCaptureSetting = {
