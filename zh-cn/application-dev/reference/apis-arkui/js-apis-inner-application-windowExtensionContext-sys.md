@@ -111,7 +111,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 > **说明：**
 >
->  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-2)。
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionContext.startability](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-2)。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
