@@ -1,4 +1,10 @@
 # @ohos.deviceInfo (设备信息)
+<!--Kit: NDK deviceInfo-->
+<!--Subsystem: startup-->
+<!--Owner: @chenjinxiang3-->
+<!--Designer: @liveery-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供终端设备信息查询，开发者不可配置。
 
