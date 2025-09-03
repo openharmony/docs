@@ -597,39 +597,45 @@ import { Decimal } from '@kit.ArkTS';
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation {
+async function getVideoRotation(videoOutput: camera.VideoOutput): Promise<camera.ImageRotation> {
+  let deviceDegree = await getDeviceDegree();
   let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
-    videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
+    videoRotation = videoOutput.getVideoRotation(deviceDegree);
   } catch (error) {
     let err = error as BusinessError;
+    console.error('Failed to get video rotation: ' + JSON.stringify(err));
   }
   return videoRotation;
 }
 
-//获取deviceDegree。
-function getDeviceDegree(): number {
-  let deviceDegree: number = -1;
-  try {
-    sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
-      console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
-      console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
-      console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
-      let x = data.x;
-      let y = data.y;
-      let z = data.z;
-      if ((x * x + y * y) * 3 < z * z) {
-        deviceDegree = -1;
-      } else {
-        let sd: Decimal = Decimal.atan2(y, -x);
-        let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
-        deviceDegree = 90 - Number(sc);
-        deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-  }
-  return deviceDegree;
+// 获取设备旋转角度
+function getDeviceDegree(): Promise<number> {
+  return new Promise<number>((resolve) => {
+    try {
+      sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+        console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+        console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+        console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+        let x = data.x;
+        let y = data.y;
+        let z = data.z;
+        let deviceDegree: number;
+        if ((x * x + y * y) * 3 < z * z) {
+          deviceDegree = -1;
+        } else {
+          let sd: Decimal = Decimal.atan2(y, -x);
+          let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
+          deviceDegree = 90 - Number(sc);
+          deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+        }
+        resolve(deviceDegree);
+      });
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error('Failed to register gravity sensor: ' + JSON.stringify(err));
+      resolve(-1); // 异常时返回默认值
+    }
+  });
 }
 ```
