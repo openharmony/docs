@@ -1,5 +1,10 @@
 # image_effect_filter.h
-
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zyj208-->
+<!--Designer: @wangshoucheng-->
+<!--Tester: @gengfei-->
+<!--Adviser: @zengyawen-->
 ## 概述
 
 声明滤镜相关接口。<br>开发者可以通过滤镜的接口快速实现基本的效果处理，也可以将滤镜添加到效果器中，组合成滤镜链串联执行。系统提供了如“亮度”、“裁剪”等基本的效果处理滤镜。
