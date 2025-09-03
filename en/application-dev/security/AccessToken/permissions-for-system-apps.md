@@ -5096,11 +5096,11 @@ With this permission, the HAP can load independent binary .so files with a devel
 
 Allows a system application to query the certificate information of independent binary programs.
 
-**Permission level**: ：system_core
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Supported devices**: PC/2in1
 
@@ -5110,11 +5110,11 @@ Allows a system application to query the certificate information of independent 
 
 Allows a system application to set the certificate status of independent binary programs.
 
-**Permission level**: ：system_core
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Supported devices**: PC/2in1
 

@@ -110,7 +110,7 @@ toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, opt
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| toolbarParam | &nbsp;Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。<br/>使用Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>-工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>-文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，工具栏最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后截断。<br/>-竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标中，点击更多图标，可以展示剩余内容。横屏时，如果为[Split](ts-basic-components-navigation.md#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](ts-basic-components-navigation.md#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| toolbarParam | &nbsp;Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。<br/>使用Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>-工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>-竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标中，点击更多图标，可以展示剩余内容。横屏时，如果为[Split](ts-basic-components-navigation.md#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](ts-basic-components-navigation.md#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | options      | [NavigationToolbarOptions](ts-basic-components-navigation.md#navigationtoolbaroptions11) | 否   | 工具栏选项。包含工具栏背景颜色、工具栏背景模糊样式及模糊选项、工具栏背景属性、工具栏布局方式、是否隐藏工具栏的文本、工具栏更多图标的菜单选项。                                                 |
 
 > **说明：**
@@ -921,6 +921,7 @@ struct MyPageOne {
     .title('PageOne', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
+        // $r('sys.symbol.phone_badge_star')需要替换为开发者所需的资源文件
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }
@@ -961,6 +962,7 @@ struct MyPageTwo {
     .title('PageTwo', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
+        // $r('sys.symbol.phone_badge_star')需要替换为开发者所需的资源文件
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }
@@ -1067,24 +1069,24 @@ struct NavDest {
     .customTransition(
       (op: NavigationOperation, isEnter: boolean)
         : Array<NavDestinationTransition> | undefined => {
-        console.log('[NavDestinationTransition]', 'reached delegate in frontend, op: ' + op + ', isEnter: ' + isEnter);
+        console.info('[NavDestinationTransition]', 'reached delegate in frontend, op: ' + op + ', isEnter: ' + isEnter);
 
-        let transitionOneEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOne, empty now!'); }
-        let transitionOneFinishEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOneFinish, empty now!'); }
+        let transitionOneEvent: voidFunc = () => { console.info('[NavDestinationTransition]', 'reached transitionOne, empty now!'); }
+        let transitionOneFinishEvent: voidFunc = () => { console.info('[NavDestinationTransition]', 'reached transitionOneFinish, empty now!'); }
         let transitionOneDuration: number = 500;
         if (op === NavigationOperation.PUSH) {
           if (isEnter) {
             // ENTER_PUSH
             this.y = '100%';
             transitionOneEvent = () => {
-              console.log('[NavDestinationTransition]', 'transitionOne, push & isEnter');
+              console.info('[NavDestinationTransition]', 'transitionOne, push & isEnter');
               this.y = '0';
             }
           } else {
             // EXIT_PUSH
             this.y = '0';
             transitionOneEvent = () => {
-              console.log('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
+              console.info('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
               this.y = '0';
             }
             transitionOneDuration = 450;
@@ -1094,19 +1096,19 @@ struct NavDest {
             // ENTER_POP
             this.y = '0';
             transitionOneEvent = () => {
-              console.log('[NavDestinationTransition]', 'transitionOne, pop & isEnter');
+              console.info('[NavDestinationTransition]', 'transitionOne, pop & isEnter');
               this.y = '0';
             }
           } else {
             // EXIT_POP
             this.y = '0';
             transitionOneEvent = () => {
-              console.log('[NavDestinationTransition]', 'transitionOne, pop & !isEnter');
+              console.info('[NavDestinationTransition]', 'transitionOne, pop & !isEnter');
               this.y = '100%';
             }
           }
         } else {
-          console.log('[NavDestinationTransition]', '----- NOT-IMPL BRANCH of NAV-DESTINATION CUSTOM TRANSITION -----');
+          console.info('[NavDestinationTransition]', '----- NOT-IMPL BRANCH of NAV-DESTINATION CUSTOM TRANSITION -----');
         }
 
         let transitionOne: NavDestinationTransition = {
@@ -1117,13 +1119,13 @@ struct NavDest {
           onTransitionEnd: transitionOneFinishEvent
         };
 
-        let transitionTwoEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionTwo, empty now!'); }
+        let transitionTwoEvent: voidFunc = () => { console.info('[NavDestinationTransition]', 'reached transitionTwo, empty now!'); }
         let transitionTwo: NavDestinationTransition = {
           duration: 1000,
           delay: 0,
           curve: Curve.EaseInOut,
           event: transitionTwoEvent,
-          onTransitionEnd: () => { console.log('[NavDestinationTransition]', 'reached Two\'s finish'); }
+          onTransitionEnd: () => { console.info('[NavDestinationTransition]', 'reached Two\'s finish'); }
         };
 
         return [

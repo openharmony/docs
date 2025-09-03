@@ -104,7 +104,7 @@ ChipItemStyle定义了Chip的共通属性。
 
 | 名称                    | 类型                                                         | 必填 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | Chip尺寸，使用时需要从Chip组件引入ChipSize类型。<br/>默认值：ChipSize.NORMAL<br/> 为undefined时，使用默认值。 |
+| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | Chip尺寸，使用时需要从Chip组件引入ChipSize类型。<br/>默认值：ChipSize.NORMAL或{ height: 0, width: 0 }<br/> 为undefined时，使用默认值。 |
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Chip背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>为undefined时，backgroundColor走默认值。 |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Chip文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')<br/>为undefined时，fontColor走默认值。 |
 | selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Chip激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary')<br/>为undefined时，selectedFontColor走默认值。 |
@@ -229,8 +229,8 @@ IconOptions定义图标的共通属性。
 
 | 名称 | 类型                                   | 必填 | 说明                                                         |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| src  | [ResourceStr](ts-types.md#resourcestr) | 是   | 图标图片或图片地址引用。                                     |
-| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 图标大小，不支持百分比。|
+| src  | [ResourceStr](ts-types.md#resourcestr) | 是   | 图标图片或图片地址引用请参考[Image](ts-basic-components-image.md#image-1)。 |
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 图标大小，不支持百分比。                                     |
 
 ## LabelOptions
 
@@ -260,6 +260,7 @@ import { ChipSize, ChipGroup } from '@kit.ArkUI';
 @Component
 struct Index {
   @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6]
+
   build() {
     Column() {
       ChipGroup({
@@ -308,8 +309,8 @@ struct Index {
         multiple: false,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
-        onChange: (activatedChipsIndex:Array<number>) => {
-          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+        onChange: (activatedChipsIndex: Array<number>) => {
+          console.info('chips on clicked, activated index ' + activatedChipsIndex)
         },
       })
     }
@@ -324,7 +325,7 @@ struct Index {
 通过配置suffix实现最右侧的自定义组件效果。
 
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI';
+import { ChipSize, ChipGroup, IconGroupSuffix } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -401,7 +402,7 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
-          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex)
         },
         suffix: this.ChipGroupSuffix
       })
@@ -424,9 +425,11 @@ struct Index {
   @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6];
   @State selected_state: boolean = true;
   @State prefixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star'));
-  @State prefixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State prefixModifierActivated: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
   @State suffixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
-  @State suffixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
+  @State suffixModifierActivated: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
 
   @LocalBuilder
   ChipGroupSuffix(): void {
@@ -494,14 +497,13 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
-          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex)
         },
         suffix: this.ChipGroupSuffix
       })
     }
   }
 }
-
 ```
 ![](figures/chipGroupDemo3.jpeg)
 
@@ -512,7 +514,9 @@ struct Index {
 ```typescript
 import { ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
 
-@Builder function DefaultFunction(): void {}
+@Builder
+function DefaultFunction(): void {
+}
 
 @Component
 struct SectionGroup {
@@ -536,6 +540,7 @@ struct SectionGroup {
     .width('100%')
   }
 }
+
 @Component
 struct SectionItem {
   @Prop
@@ -652,6 +657,7 @@ export struct ChipGroupExample2 {
                 ]
               })
             }
+
             SectionItem({ title: '单选 有后缀区域' }) {
               ChipGroup({
                 items: [
@@ -665,7 +671,7 @@ export struct ChipGroupExample2 {
                   { label: { text: "选项8" } },
                   { label: { text: "选项9" } },
                 ],
-                suffix: this.Suffix.bind(this),
+                suffix: this.Suffix,
               })
             }
           }
@@ -675,7 +681,8 @@ export struct ChipGroupExample2 {
         top: 8,
         bottom: 8,
         left: 16,
-        right: 16, })
+        right: 16,
+      })
     }
     .title('基础用法')
     .backgroundColor('#F1F3F5')
@@ -690,7 +697,9 @@ export struct ChipGroupExample2 {
 ```typescript
 import { ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
 
-@Builder function DefaultFunction(): void {}
+@Builder
+function DefaultFunction(): void {
+}
 
 @Component
 struct SectionGroup {
@@ -714,6 +723,7 @@ struct SectionGroup {
     .width('100%')
   }
 }
+
 @Component
 struct SectionItem {
   @Prop
@@ -798,6 +808,7 @@ export struct ChipGroupExample2 {
                 multiple: true
               })
             }
+
             SectionItem({ title: '多选 有后缀区域' }) {
               ChipGroup({
                 items: [
@@ -811,7 +822,7 @@ export struct ChipGroupExample2 {
                   { label: { text: "选项8" } },
                   { label: { text: "选项9" } },
                 ],
-                suffix: this.Suffix.bind(this),
+                suffix: this.Suffix,
                 multiple: true,
               })
             }
@@ -822,7 +833,8 @@ export struct ChipGroupExample2 {
         top: 8,
         bottom: 8,
         left: 16,
-        right: 16, })
+        right: 16,
+      })
     }
     .title('基础用法')
     .backgroundColor('#F1F3F5')

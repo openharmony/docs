@@ -180,7 +180,7 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏时，如果为[Split](#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏时，如果为[Split](#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | 否   | 工具栏选项。 包含工具栏背景颜色、工具栏背景模糊样式及模糊选项、工具栏背景属性、工具栏布局方式、是否隐藏工具栏的文本、工具栏更多图标的菜单选项。                                                |
 
 ### hideToolBar
@@ -512,7 +512,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
-控制分栏场景下是否显示拖拽条。
+控制分栏场景下是否显示拖拽条。该属性在PC/2in1设备上不生效。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -684,11 +684,12 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [NavigationAnimatedTransition](#navigationanimatedtransition11)&nbsp;\|&nbsp;undefined | <br/>NavigationAnimatedTransition：自定义转场动画协议。<br/>undefined: 返回未定义，执行默认转场动效。 |
+| [NavigationAnimatedTransition](#navigationanimatedtransition11)&nbsp;\|&nbsp;undefined | NavigationAnimatedTransition：自定义转场动画协议。<br/>undefined: 返回未定义，执行默认转场动效。 |
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation导航控制器，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDeatination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。使用示例参见[示例10](#示例10定义导航控制器派生类)。
+Navigation导航控制器，以栈的数据结构管理Navigation中所有的子页面，并提供栈操作的方法用于控制Navigation中子页面的切换。
+从API version 12开始，NavPathStack允许被继承，派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10定义导航控制器派生类)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1612,7 +1613,7 @@ Navigation跳转拦截对象。
 
 ### InterceptionShowCallback<sup>12+</sup>
 
-type InterceptionShowCallback = (from: NavDestinationContext|NavBar, to: NavDestinationContext|NavBar, operation: NavigationOperation, isAnimated: boolean) => void
+type InterceptionShowCallback = (from: NavDestinationContext | NavBar, to: NavDestinationContext | NavBar, operation: NavigationOperation, isAnimated: boolean) => void
 
 navigation页面跳转前和页面跳转后的拦截回调。
 
@@ -1624,8 +1625,8 @@ navigation页面跳转前和页面跳转后的拦截回调。
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
-| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
+| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \| [NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
+| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \| [NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
 | operation | [NavigationOperation](#navigationoperation11枚举说明) | 是 | 当前页面跳转类型。 |
 | isAnimated | boolean | 是 | 页面跳转是否有动画。<br/>true：页面跳转有动画。<br/>false：页面跳转没有动画。 |
 
@@ -1914,7 +1915,7 @@ type SystemBarStyle = SystemBarStyle
 
 ## 示例
 
-示例效果请以真机为准，系统路由表不支持预览器，跨平台以及模拟器。
+示例效果请以真机为准，系统路由表不支持预览器以及模拟器。
 
 ### 示例1（Navigation页面布局）
 
@@ -1953,13 +1954,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -1999,14 +2003,17 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
+          // $r("app.string.navigation_toolbar_add")和$r("app.media.ic_public_highlightsed")需要替换为开发者所需的资源文件
           value: $r("app.string.navigation_toolbar_add"),
           icon: $r("app.media.ic_public_highlightsed")
         },
         {
+          // $r("app.string.navigation_toolbar_app")和$r("app.media.ic_public_highlights")需要替换为开发者所需的资源文件
           value: $r("app.string.navigation_toolbar_app"),
           icon: $r("app.media.ic_public_highlights")
         },
         {
+          // $r("app.string.navigation_toolbar_collect")和$r("app.media.ic_public_highlights")需要替换为开发者所需的资源文件
           value: $r("app.string.navigation_toolbar_collect"),
           icon: $r("app.media.ic_public_highlights")
         }
@@ -2150,8 +2157,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToName('pageTwo'); //回退路由栈到第一个名为name的NavDestination页面
-            console.info('popToName' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')));
+            console.info(`popToName ${JSON.stringify(this.pageInfos)}，` + 
+              `返回值 ${JSON.stringify(this.pageInfos.popToName('pageTwo'))}`); 
           })
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2159,7 +2166,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToIndex(1); // 回退路由栈到index指定的NavDestination页面
-            console.info('popToIndex' + JSON.stringify(this.pageInfos));
+            console.info(`popToIndex ${JSON.stringify(this.pageInfos)}`);
           })
         Button('moveToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2167,8 +2174,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveToTop('pageTwo'); // 将第一个名为name的NavDestination页面移到栈顶
-            console.info('moveToTop' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')));
+            console.info(`moveToTop ${JSON.stringify(this.pageInfos)}，` + 
+              `返回值 ${JSON.stringify(this.pageInfos.popToName('pageTwo'))}`); 
           })
         Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2176,7 +2183,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveIndexToTop(1); // 将index指定的NavDestination页面移到栈顶
-            console.info('moveIndexToTop' + JSON.stringify(this.pageInfos));
+            console.info(`moveIndexToTop ${JSON.stringify(this.pageInfos)}`);
           })
         Button('clear', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2191,20 +2198,17 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             console.info('-------------------');
-            console.info('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()));
-            console.info('获取index指定的NavDestination页面的参数信息',
-              JSON.stringify(this.pageInfos.getParamByIndex(1)));
-            console.info('获取全部名为name的NavDestination页面的参数信息',
-              JSON.stringify(this.pageInfos.getParamByName('pageTwo')));
-            console.info('获取全部名为name的NavDestination页面的位置索引',
-              JSON.stringify(this.pageInfos.getIndexByName('pageOne')));
-            console.info('获取栈大小', JSON.stringify(this.pageInfos.size()));
+            console.info(`获取栈中所有NavDestination页面的名称 ${JSON.stringify(this.pageInfos.getAllPathName())}`);
+            console.info(`获取index指定的NavDestination页面的参数信息 ${JSON.stringify(this.pageInfos.getParamByIndex(1))}`);
+            console.info(`获取全部名为name的NavDestination页面的参数信息 ${JSON.stringify(this.pageInfos.getParamByName('pageTwo'))}`);
+            console.info(`获取全部名为name的NavDestination页面的位置索引 ${JSON.stringify(this.pageInfos.getIndexByName('pageOne'))}`);
+            console.info(`获取栈大小 ${JSON.stringify(this.pageInfos.size())}`);
           })
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      console.info(`pop 返回值 ${JSON.stringify(popDestinationInfo)}`);
       return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;
@@ -2224,15 +2228,18 @@ export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack();
   private menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/undo.svg'需要替换为开发者所需的资源文件
       value: "1",
       icon: 'resources/base/media/undo.svg',
     },
     {
+      // 'resources/base/media/redo.svg'需要替换为开发者所需的资源文件
       value: "2",
       icon: 'resources/base/media/redo.svg',
       isEnabled: false,
     },
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: "3",
       icon: 'resources/base/media/ic_public_ok.svg',
       isEnabled: true,
@@ -2258,16 +2265,14 @@ export struct PageTwo {
     })
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;
-      console.info("current page config info is " + JSON.stringify(context.getConfigInRouteMap()));
+      console.info(`current page config info is ${JSON.stringify(context.getConfigInRouteMap())}`);
     })
   }
 }
 ```
 
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
-
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -2748,9 +2753,8 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -2836,7 +2840,7 @@ export struct PageOne {
             this.pageInfo.pushPath({
               name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
                 this.message =
-                  '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+                  `[pushPath]last page is: ${popInfo.info.name},result: ${JSON.stringify(popInfo.result)}`;
               }
             }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
@@ -2849,7 +2853,7 @@ export struct PageOne {
             let tmp = new TmpClass();
             this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo) => {
               this.message =
-                '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+                `[pushPathByName]last page is: ${popInfo.info.name}, result: ${JSON.stringify(popInfo.result)}`;
             }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
 
@@ -2863,7 +2867,7 @@ export struct PageOne {
             this.pageInfo.pushDestination({
               name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
                 this.message =
-                  '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+                  `[pushDestination]last page is: ${popInfo.info.name}, result: ${JSON.stringify(popInfo.result)}`;
               }
             }).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
@@ -2880,8 +2884,8 @@ export struct PageOne {
             let tmp = new TmpClass();
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo) => {
-              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' +
-              JSON.stringify(popInfo.result);
+              this.message = 
+                `[pushDestinationByName]last page is: ${popInfo.info.name}, result: ${JSON.stringify(popInfo.result)}`;
             }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
@@ -3035,9 +3039,8 @@ export struct PageTwo {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3363,9 +3366,8 @@ export function PageOneBuilder(name: string) {
   .title(name)
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3474,9 +3476,8 @@ struct NavigationExample2 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3593,9 +3594,8 @@ struct NavigationExample3 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3630,6 +3630,7 @@ struct NavigationExample {
         Column() {
           Scroll(this.scrollerForScroll) {
             Column() {
+              // $r('app.media.image_1')需要替换为开发者所需的资源文件
               Image($r('app.media.image_1'))// 设置与标题栏高度一致，以便观察STACK效果
                 .height(138)
                 .width('100%')
@@ -3656,7 +3657,7 @@ struct NavigationExample {
                     .backgroundColor(Color.Orange)
                     .margin({ top: 12 })
                 }
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }
           }
         }
@@ -3817,10 +3818,12 @@ struct NavigationExample {
   @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg' // 图标资源路径
     },
     {
+      // resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem2',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
@@ -3833,6 +3836,7 @@ struct NavigationExample {
   ];
   @State toolItems: Array<ToolbarItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'toolItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
@@ -3843,6 +3847,7 @@ struct NavigationExample {
       }
     },
     {
+      // 'resources/base/media/ic_public_more.svg'需要替换为开发者所需的资源文件
       value: 'toolItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3889,6 +3894,7 @@ export struct NavigationMenu {
   @Consume('navPathStack') navPathStack: NavPathStack;
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
@@ -3921,7 +3927,8 @@ export struct NavigationMenu {
     .hideTitleBar(false)
     .title('NavDestination title')
     .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Blue]))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
+    .fontColor([Color.Blue]))
     .menus(this.menuItems)
   }
 }
@@ -4073,6 +4080,7 @@ struct NavigationExample {
 export struct NavDestinationExample {
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
@@ -4373,9 +4381,8 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -4440,13 +4447,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'common/ic_public_more.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -4486,14 +4496,17 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
+          // $r("app.string.navigation_toolbar_add")和$r("app.media.startIcon")需要替换为开发者所需的图像资源文件
           value: $r("app.string.navigation_toolbar_add"),
           icon: $r("app.media.startIcon")
         },
         {
+          // $r("app.string.navigation_toolbar_app")和$r("app.media.startIcon")需要替换为开发者所需的图像资源文件
           value: $r("app.string.navigation_toolbar_app"),
           icon: $r("app.media.startIcon")
         },
         {
+          // $r("app.string.navigation_toolbar_collect")和$r("app.media.startIcon")需要替换为开发者所需的图像资源文件
           value: $r("app.string.navigation_toolbar_collect"),
           icon: $r("app.media.startIcon")
         }
@@ -4516,7 +4529,7 @@ struct NavigationExample {
 
 该示例主要展示Navigation工具栏的自适应能力的启用及关闭。
 
-工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中配置 {"orientation": "landscape"}
+在工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的abilities字段里配置"orientation": "landscape"。
 ```ts
 import { SymbolGlyphModifier } from '@kit.ArkUI';
 
@@ -4527,7 +4540,6 @@ struct NavigationExample {
   @State enable: boolean = false
   @State menuItems:Array<NavigationMenuItem> = [
     {
-      value:'menuItem1',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.card_writer')),
     },
     {

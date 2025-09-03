@@ -434,7 +434,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
-该配置只支持[Text](ts-basic-components-text.md#text)组件和[RichEditor](ts-basic-components-richeditor.md#richeditor)组件。
+该配置只支持[Text](ts-basic-components-text.md)组件和[RichEditor](ts-basic-components-richeditor.md)组件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -461,7 +461,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 ## FontSettingOptions<sup>12+</sup>对象说明
 
-字体配置项，比如通过设置应用内组件的字体粗细，进行字体粗细的无极调节（指在一定范围内无限制的调节的状态）。
+字体配置项，比如通过设置应用内组件的字体粗细，进行可变字重调节。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -471,7 +471,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 | 名称     | 类型                                             | 只读 | 可选 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | 否 | 是  | 是否支持字重无极调节。<br/>默认值：false<br/>值为true，表示支持字重调节，值为false，表示不支持字重调节。 |
+| enableVariableFontWeight | boolean | 否 | 是  | 是否支持可变字重调节。<br/>默认值：false<br/>值为true，表示支持字重调节，值为false，表示不支持字重调节。 |
 
 ## OnDidChangeCallback<sup>12+</sup>
 
@@ -739,7 +739,7 @@ getStyledString(): MutableStyledString
 | type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 否   | 否 | 装饰线类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 否   | 装饰线颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 是   | 装饰线样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| thicknessScale<sup>20+</sup> | number | 否   | 是   | 装饰线粗细缩放比例。<br/>默认值：1.0<br/>**说明：** 负值按默认值处理。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| thicknessScale<sup>20+</sup> | number | 否   | 是   | 装饰线粗细缩放比例。<br/>默认值：1.0<br/>取值范围：[0, +∞) <br/>**说明：** 负值按默认值处理。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## LineMetrics<sup>12+</sup>
 
@@ -1157,3 +1157,17 @@ constructor(options?: NumericTextTransitionOptions)
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | constraintWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | 设置被计算文本布局宽度。若不设置则宽度为单行布局所占最大宽度值。 |
+
+## TextContentAlign<sup>21+</sup>
+
+文本内容区垂直对齐方向。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 值  | 说明                  |
+| --------------------- | -------  | ------------------- |
+| TOP                   | 0  | 内容区顶部对齐。 |
+| CENTER                | 1  | 内容区中心对齐。 |
+| BOTTOM                | 2  | 内容区底部对齐。 |

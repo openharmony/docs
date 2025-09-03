@@ -2822,7 +2822,7 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise对象，返回调用方可访问的账号列表。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回调用方可访问的账号列表。 |
 
 **错误码：**
 

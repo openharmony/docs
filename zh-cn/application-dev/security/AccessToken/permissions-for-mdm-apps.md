@@ -622,9 +622,9 @@
 
 **起始版本**：20
 
-## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
+## ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE
 
-允许设备管理应用（MDM）生成、解密DLP文件，查询DLP文件策略。
+允许MDM应用识别文件敏感内容。
 
 **权限级别**：system_core
 
@@ -635,4 +635,4 @@
 
 **支持设备**：PC/2in1
 
-**起始版本**：20
+**起始版本**：21

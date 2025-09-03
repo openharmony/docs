@@ -379,6 +379,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
           OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                         "OH_UdmfData_HasType not contain UDMF_META_PLAIN_TEXT");
       }
+      OH_UdmfData_Destroy(data);
       break;
     }
     ```

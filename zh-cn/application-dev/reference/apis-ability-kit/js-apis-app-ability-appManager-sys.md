@@ -1710,7 +1710,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 >
 >- 应用如果需要支持保活，其[module.json5配置文件](../../quick-start/module-configuration-file.md)中的mainElement必须是UIAbility。只有当mainElement启动后，系统才会执行应用保活操作。
 >- 在2in1设备上，被保活的应用需要在启动后5秒内添加至状态栏。否则，系统将取消该应用的保活设置，并杀死保活重启的进程。
->- 当被保活的应用进程退出时，系统将尝试重启该进程，连续3次重启失败后将取消该应用的保活设置。
+>- 当被保活的应用进程退出时，系统将尝试重启该进程，连续3次重启失败后将不再继续重启。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
@@ -1776,11 +1776,13 @@ try {
 getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<KeepAliveBundleInfo>>
 
 获取指定用户下指定类型的保活应用信息。该应用信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。
-使用Promise异步回调。本接口当前仅支持2in1设备。
+使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -1835,11 +1837,13 @@ try {
 
 killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
-批量查杀进程。本接口当前仅支持2in1设备。
+批量查杀进程。
 
 **需要权限**：ohos.permission.KILL_APP_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -1894,12 +1898,13 @@ setKeepAliveForAppServiceExtension(bundleName: string, enabled: boolean): Promis
 为AppServiceExtensionAbility设置保活或取消保活。使用Promise异步回调。
 > **说明：**
 >
-> - 本接口当前仅支持2in1设备。
 > - 仅当应用安装在userId为1的用户下，且应用中entry类型的HAP的module.json5配置文件中的mainElement字段配置为AppServiceExtensionAbility时，该接口才生效。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -1957,11 +1962,12 @@ getKeepAliveAppServiceExtensions(): Promise\<Array\<KeepAliveBundleInfo>>
 
 获取所有保活的AppServiceExtensionAbility应用信息，此信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。使用Promise异步回调。
 
-本接口当前仅支持2in1设备。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 

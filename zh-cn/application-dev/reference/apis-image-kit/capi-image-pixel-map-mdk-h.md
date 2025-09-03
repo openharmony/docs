@@ -1,5 +1,4 @@
 # image_pixel_map_mdk.h
-
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yaozhupeng-->
@@ -14,6 +13,8 @@
 **引用文件：** <multimedia/image_framework/image_pixel_map_mdk.h>
 
 **库：** libpixelmapndk.z.so
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 10
 

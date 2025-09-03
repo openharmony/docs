@@ -1,9 +1,9 @@
-# OHIPCRemoteOhject
+# OHIPCRemoteObject
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
 <!--Designer: @zhaopeng_gitee-->
-<!--Tester: @maxiaorong2-->
+<!--Tester: @maxiaorong-->
 <!--Adviser: @zhang_yixin13-->
 
 ## 概述

@@ -83,7 +83,7 @@ int (*putInt64)(OH_VBucket *bucket, const char *field, int64_t value)
 | ------------------ | ------------------------------ |
 | OH_VBucket *bucket | 表示指向OH_VBucket实例的指针。 |
 | const char *field  | 数据库表中的列名               |
-| const char *value  | 数据库表中指定列名对应的值。   |
+| int64_t value      | 数据库表中指定列名对应的值。   |
 
 **返回：**
 
@@ -135,7 +135,7 @@ int (*putBlob)(OH_VBucket *bucket, const char *field, const uint8_t *value, uint
 | ------------------ | ------------------------------ |
 | OH_VBucket *bucket | 表示指向OH_VBucket实例的指针。 |
 | const char *field  | 数据库表中的列名               |
-| const char *value  | 数据库表中指定列名对应的值。   |
+| const uint8_t *value | 数据库表中指定列名对应的值。 |
 | uint32_t size      | 表示value的长度。              |
 
 **返回：**

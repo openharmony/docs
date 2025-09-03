@@ -29,7 +29,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[AudioCodec](../../reference/apis-avcodec-kit/_audio_codec.md)。
+详细的API说明请参考[AudioCodec](../../reference/apis-avcodec-kit/capi-native-avcodec-audiocodec-h.md)。
 
 参考以下示例代码，完成音频编码的全流程，包括：创建编码器、设置编码参数（采样率/码率/声道数等）、开始/刷新/重置/销毁资源。
 

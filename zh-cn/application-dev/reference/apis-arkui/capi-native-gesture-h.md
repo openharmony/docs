@@ -1326,6 +1326,7 @@ int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify(ArkUI_GestureRecognizer*
 
 设置手势识别器对象析构通知回调函数。
 
+**起始版本：** 12
 
 **参数：**
 

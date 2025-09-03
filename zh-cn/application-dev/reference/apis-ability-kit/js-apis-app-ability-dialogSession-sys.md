@@ -15,7 +15,7 @@ dialogSession模块用于支持系统应用弹框功能。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块为系统接口。
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -44,21 +44,21 @@ import { dialogSession } from '@kit.AbilityKit';
 
 ## DialogSessionInfo
 
-提供会话信息，包括请求方信息、目标应用列表信息、其他参数。
+提供会话信息，包括请求方信息、目标组件信息列表、其他参数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 是 | 否 | 表示请求方组件信息。 |
-| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 是 | 否 | 表示目标应用列表信息。 |
-| parameters | Record<string, Object> | 是 | 是 | 表示其他参数。 |
+| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 否 | 否 | 表示请求方组件信息。 |
+| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 否 | 否 | 表示目标组件信息列表。 |
+| parameters | Record<string, Object> | 否 | 是 | 表示其他参数。 |
 
 ## getDialogSessionInfo
 
 getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessioninfo)
 
-根据dialogSessionId获取会话信息。
+通过dialogSessionId获取会话信息。
 
 **系统接口**：此接口为系统接口。
 

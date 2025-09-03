@@ -13,7 +13,7 @@
 
 ## KeyboardAvoidMode<sup>11+</sup>
 
-配置键盘避让时页面的避让模式。
+配置键盘弹出时页面的避让模式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

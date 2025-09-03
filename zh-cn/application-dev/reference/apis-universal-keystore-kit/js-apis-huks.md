@@ -3152,12 +3152,17 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-let result = huks.deleteKey(keyAlias, emptyOptions);
+let result = huks.deleteKey(keyAlias, emptyOptions).then((data) => {
+    console.info('delete key seccuss');
+}).catch((err: BusinessError) => {
+    console.error("密钥删除失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+});
 ```
 
 ## huks.importKey<sup>(deprecated)</sup>

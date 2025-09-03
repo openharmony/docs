@@ -218,7 +218,7 @@ safeAreaPadding(paddingValue: Padding | LengthMetrics | LocalizedPadding): T
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| paddingValue | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;&nbsp; [LocalizedPadding](ts-types.md#localizedpadding12)| 是    | 设置组件的安全区边距。<br/>默认值：0 <br/>单位：vp |
+| paddingValue | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[LocalizedPadding](ts-types.md#localizedpadding12)| 是    | 设置组件的安全区边距。<br/>默认值：0 <br/>单位：vp |
 
 **返回值：**
 
@@ -314,7 +314,7 @@ constraintSize(value: ConstraintSizeOptions): T
 >
 > - wrapContent和fixAtIdealSize场景，组件无法通过内容确定大小时，如果组件大小有默认值，则按照默认值进行测算；如果没有默认值，则按照宽高(0,0)进行测算。
 > 
-> - 容器设置wrapContent，并且有子组件设置matchParent时，容器先由确定大小的子组件撑大，设置matchParent的孩子再匹配父组件大小；如果没有确定大小的孩子，容器和孩子大小均为0。
+> - 容器设置wrapContent，并且有子组件设置matchParent时，容器先由确定大小的子组件撑大，设置matchParent的子组件再匹配容器大小；如果没有确定大小的子组件，容器和子组件大小均为0。
 >
 > - LayoutPolicy优先级低于constraintSize。
 

@@ -64,7 +64,7 @@ onTouch(event: (event: TouchEvent) => void): T
 
 getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
-获取当前帧所有的历史点。不同设备每帧的触摸事件频率不同，且该接口仅能在[TouchEvent](#touchevent对象说明)中调用，用于获取触发[onTouch](#ontouch)时当前帧历史点的相关信息。[onTouch](#ontouch)一帧通常只会调用一次，如果当前帧收到的[TouchEvent](#touchevent对象说明)数目大于1，会将该帧最后一个点通过[onTouch](#ontouch)返还，其余点作为历史点。如果多指在同一帧上报事件，可能触发多次onTouch。
+获取当前帧的所有历史点。不同设备每帧的触摸事件频率不同，且该接口仅能在[TouchEvent](#touchevent对象说明)中调用，用于获取触发[onTouch](#ontouch)时当前帧历史点的相关信息。[onTouch](#ontouch)一帧通常只会调用一次，如果当前帧收到的[TouchEvent](#touchevent对象说明)数目大于1，会将该帧最后一个点通过[onTouch](#ontouch)返还，其余点作为历史点。如果多指在同一帧上报事件，可能触发多次onTouch。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

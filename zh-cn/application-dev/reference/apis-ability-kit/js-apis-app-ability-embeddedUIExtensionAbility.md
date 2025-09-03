@@ -25,6 +25,8 @@ import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
 EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。
 
-目前EmbeddedUIExtensionAbility只能被同应用的UIAbility拉起，并且仅在2in1和Tablet设备上生效。
+目前EmbeddedUIExtensionAbility只能被同应用的UIAbility拉起。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1、Tablet中可正常调用，在其他设备类型中无法被启动。

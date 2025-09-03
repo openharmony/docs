@@ -105,6 +105,7 @@ type OnBufferingUpdateHandler = (infoType: BufferingInfoType, value: number) => 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | infoType  | [BufferingInfoType](arkts-apis-media-e.md#bufferinginfotype8) | 是 | 缓存时间类型。     |
+| value  | number | 是 | 缓存时间类型的值。     |
 
 ## OnVideoSizeChangeHandler<sup>12+</sup>
 

@@ -1,8 +1,15 @@
 # webSocket错误码
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **说明：**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码](../errorcode-universal.md)说明文档。
 
 ## 200 连接失败
 
@@ -118,7 +125,7 @@ It is not allowed to access this domain.
 
 **处理步骤**
 
-可参考[配置服务器域名文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)完成服务器域名相关配置。
+可参考[配置服务器域名](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)文档完成服务器域名相关配置。
 
 ## 2302999 内部错误
 

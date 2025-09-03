@@ -1,5 +1,11 @@
 # HiDebug CpuUsage Error Codes
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).

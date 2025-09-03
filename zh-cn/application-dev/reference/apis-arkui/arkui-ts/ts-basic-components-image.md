@@ -54,7 +54,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 
 | 参数名  | 类型                                     | 必填   | 说明                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](ts-image-common.md#pixelmap)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。<br>- 传入的字符串为https网络图片地址时，建议参考[示例2下载与显示静态网络图片](#示例2下载与显示静态网络图片)。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。沙箱路径需要使用[fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)方法将路径转换为[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)，然后传入显示。同时需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。传入[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)类型可播放PixelMap数组动画。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
+| src  | [PixelMap](ts-image-common.md#pixelmap)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当[使用相对路径引用本地图片](#示例25使用相对路径显示图片)时，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。<br>- 传入的字符串为https网络图片地址时，建议参考[示例2下载与显示静态网络图片](#示例2下载与显示静态网络图片)。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。沙箱路径需要使用[fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)方法将路径转换为[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)，然后传入显示。同时需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式，具体示例参考[跨HAP/HSP包应用资源](../../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。传入[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)类型可播放PixelMap数组动画。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
 
 >**说明：**
 >
@@ -295,7 +295,7 @@ fitOriginalSize(value: boolean)
 
 fillColor(value: ResourceColor)
 
-设置填充颜色，设置后填充颜色会覆盖在图片上。仅对SVG图源生效，设置后会替换SVG图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。
+设置填充颜色。仅对SVG图源生效，设置后会替换SVG图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
@@ -315,7 +315,7 @@ fillColor(value: ResourceColor)
 
 fillColor(color: ResourceColor|ColorContent)
 
-设置填充颜色，设置后填充颜色会覆盖在图片上。仅对SVG图源生效，设置后会替换SVG图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。
+设置填充颜色。仅对SVG图源生效，设置后会替换SVG图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
@@ -333,7 +333,7 @@ fillColor(color: ResourceColor|ColorContent)
 
 fillColor(color: ResourceColor|ColorContent|ColorMetrics)
 
-设置填充颜色，设置后填充颜色会覆盖在图片上。仅对SVG图源生效，设置后会替换SVG图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。支持通过传入[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型设置P3色域颜色值，可在支持高色域的设备上获得更丰富的色彩表现。
+设置填充颜色。仅对SVG图源生效，设置后会替换SVG图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。支持通过传入[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型设置P3色域颜色值，可在支持高色域的设备上获得更丰富的色彩表现。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
@@ -458,13 +458,13 @@ enableAnalyzer(enable:&nbsp;boolean)
 
 设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。<!--RP3--><!--RP3End-->
 
-不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
+不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中[CustomBuilder](ts-types.md#custombuilder8)属性将失效。该特性依赖设备能力。
 
 分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)类型，使用方式见[示例5开启图像AI分析](#示例5开启图像ai分析)。
 
-alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。
+[alt](#alt)占位图不支持分析，[objectRepeat](#objectrepeat)属性仅在[ImageRepeat](ts-appendix-enums.md#imagerepeat).NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。
 
-基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。 copyOption属性不影响AI分析功能。
+基于完整原始图像进行分析，设置[clip](ts-universal-attributes-sharp-clipping.md#clip12)、[margin](ts-universal-attributes-size.md#margin)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[position](ts-universal-attributes-location.md#position)和[objectFit](#objectfit)属性导致图像显示不完整，或使用[renderMode](#rendermode)设置蒙层，仍基于完整原始图像进行分析。 [copyOption](#copyoption9)属性不影响AI分析功能。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
@@ -528,7 +528,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 设置期望展示的图像动态范围。SVG类型图源不支持该属性。
 
-只在手机、PC/2in1和Tablet设备上生效。
+**设备行为差异：** 该接口在手机、PC/2in1和Tablet设备中可正常生效，在其他设备类型中无效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -674,6 +674,10 @@ SVG类型图源不支持该属性。
 
 图片解码尺寸。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -765,7 +769,6 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -775,15 +778,15 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
-| width                        | number | 是   | 图片的宽。<br/>单位：像素                                    |
-| height                       | number | 是   | 图片的高。<br/>单位：像素                                    |
-| componentWidth               | number | 是   | 组件的宽。<br/>单位：像素                                    |
-| componentHeight              | number | 是   | 组件的高。<br/>单位：像素                                    |
-| loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
-| contentWidth<sup>10+</sup>   | number | 是   | 图片实际绘制的宽度。<br/>单位：像素<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentHeight<sup>10+</sup>  | number | 是   | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetX<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetY<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| width                        | number | 是   | 图片的宽。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素                                    |
+| height                       | number | 是   | 图片的高。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素                                    |
+| componentWidth               | number | 是   | 组件的宽。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素                                    |
+| componentHeight              | number | 是   | 组件的高。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素                                    |
+| loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
+| contentWidth<sup>10+</sup>   | number | 是   | 图片实际绘制的宽度。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight<sup>10+</sup>  | number | 是   | 图片实际绘制的高度。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 ### onError<sup>9+</sup>
 
@@ -1036,9 +1039,9 @@ struct Index {
     try {
       // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。
       cacheDownload.download(this.src, options);
-      console.error(`success to download the resource. `);
+      console.info(`success to download the resource. `);
     } catch (err) {
-      console.error(`Failed to download the resource. err: ${JSON.stringify(err)}`);
+      console.error(`Failed to download the resource: code: ${err.code}, message: ${err.message}`);
     }
   }
 
@@ -2204,3 +2207,24 @@ struct Index {
 ```
 
 ![sandBox](figures/cloud1.png)
+
+### 示例25（使用相对路径显示图片）
+
+在工程`pages`目录同级位置创建`common`目录，在`common`目录下预置一张名为`cloud1.png`的图片，随后使用相对路径显示该图片。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column({ space: 10 }) {
+      Image('common/cloud1.png')
+        .width(100)
+        .height(100)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+![relativePath](figures/cloud1.png)

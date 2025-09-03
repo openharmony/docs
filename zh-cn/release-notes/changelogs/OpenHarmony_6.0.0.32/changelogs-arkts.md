@@ -58,4 +58,8 @@ for (let i = 0; i < 2; i++) {
 [0,0]
 ```
 
+> **说明：**
+> 
+> 在ets文件中[不支持使用delete](../../../application-dev/quick-start/typescript-to-arkts-migration-guide.md#不支持delete运算符)，但可在三方库中或者js文件中使用。
+
 本变更修复该问题，通过字面量定义的数组在删除元素后再使用该字面量定义数组时，新数组为字面量展示的数组。

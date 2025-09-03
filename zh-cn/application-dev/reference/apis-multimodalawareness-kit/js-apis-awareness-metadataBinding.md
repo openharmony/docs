@@ -19,7 +19,7 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## metadataBinding.submitMetadata
-submitMetadata(metadata: string): void;
+submitMetadata(metadata: string): void
 
 第三方应用将需要编码的内容传递给MSDP，MSDP决定适时将内容传递给调用编码接口的系统应用或服务。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -54,7 +54,7 @@ try {
 ```
 
 ## metadataBinding.on('operationSubmitMetadata')
-on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback&lt;number&gt;): void;  
+on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback&lt;number&gt;): void 
 
 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -89,13 +89,13 @@ try {
     }
   });
 } catch (error) {
-  console.info("register screenshot event error");
+  console.error("register screenshot event error");
 }
 ```
 
 
 ## metadataBinding.off('operationSubmitMetadata')
-off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback&lt;number&gt;): void;
+off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback&lt;number&gt;): void
 
 取消订阅系统获取编码内容的事件。取消注册回调接口。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。

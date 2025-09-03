@@ -125,7 +125,6 @@ Text可通过以下两种方式来创建：
         Column() {
           Text() {
             Span('I am Upper-span')
-              .fontSize(12)
               .textCase(TextCase.UpperCase)
               .fontSize(30)
               .onClick(() => {
@@ -472,17 +471,28 @@ Text可通过以下两种方式来创建：
 - 从API version 20开始，支持通过[lineSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#linespacing20)设置文本的行间距。当不配置[LineSpacingOptions](../reference/apis-arkui/arkui-ts/ts-text-common.md#linespacingoptions20对象说明)时，首行上方和尾行下方默认会有行间距，当onlyBetweenLines设置为true时，行间距仅适用于行与行之间，首行上方无额外的行间距。
 
   ```ts
+  import { LengthMetrics } from '@kit.ArkUI';
+  
+  @Extend(Text)
   function style() {
-  .width(250)
-  .height(100)
-  .maxFontSize(30)
-  .minFontSize(15)
-  .border({ width: 1 })
+    .width(250)
+    .height(100)
+    .maxFontSize(30)
+    .minFontSize(15)
+    .border({ width: 1 })
   }
-
-  Text('The line spacing of this context is set to 20_px, and the spacing is effective only between the lines.')
-   .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
-   .style()
+  
+  @Entry
+  @Component
+  struct demo {
+    build() {
+      Column() {
+        Text('The line spacing of this context is set to 20_px, and the spacing is effective only between the lines.')
+          .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
+          .style()
+      }
+    }
+  }
   ```
   ![Text_line_spacing](figures/Text_line_spacing.jpg)
 
@@ -632,17 +642,22 @@ struct Index {
   - Text组件通过设置[bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#bindselectionmenu11)属性绑定自定义选择菜单。
 
     ```ts
-    Text("这是一段文本，用来展示选中菜单", this.options)
-      .fontSize(30)
-      .copyOption(CopyOptions.InApp)
-      .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
-        onAppear: () => {
-          console.info('自定义选择菜单弹出时触发该回调');
-        },
-        onDisappear: () => {
-          console.info('自定义选择菜单关闭时触发该回调');
-        }
-      })
+    controller:TextController = new TextController()
+    build() {
+      Column() {
+        Text("这是一段文本，用来展示选中菜单", {controller:this.controller})
+          .fontSize(30)
+          .copyOption(CopyOptions.InApp)
+          .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
+            onAppear: () => {
+              console.info('自定义选择菜单弹出时触发该回调');
+            },
+            onDisappear: () => {
+              console.info('自定义选择菜单关闭时触发该回调');
+            }
+          })
+      }
+    }
     ```
 
     ```ts
