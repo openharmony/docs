@@ -53,6 +53,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
    - [HSP与HAR中使用启动框架](#hsp与har中使用启动框架)：在HSP与HAR中配置启动任务、so预加载任务。实现跨模块的启动任务依赖管理，提升大型应用的启动效率和代码可维护性。
    - [修改启动模式](#修改启动模式)：将启动任务、so预加载任务修改为手动模式，灵活控制任务执行时机，避免不必要的启动开销。
    - [添加任务匹配规则](#添加任务匹配规则)：根据场景通过匹配规则过滤启动任务。精准控制任务执行范围，避免加载无关任务。
+   - [设置启动任务调度阶段](#设置启动任务调度阶段)：设置启动任务的调度阶段，提前执行任务，节省启动时间。
 
 
 ## 定义启动框架配置文件
@@ -193,6 +194,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 | runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
 | waitOnMainThread | 主线程是否需要等待启动框架执行。当runOnThread取值为`taskPool`时，该字段生效。 <br/>-&nbsp;true：主线程等待启动框架执行完之后，才会加载应用首页。 <br/>-&nbsp;false：主线程不等待启动任务执行。 | 布尔值 | 该标签可缺省，缺省值为true。 |
 | matchRules | 该字段用于筛选需要以自动模式启动的启动任务，加速应用启动过程。适用于快速拉起某个页面的场景，例如，通过桌面卡片、通知或意图调用等方式触发的页面跳转，实现功能服务的一步直达体验。操作指导详见[添加任务匹配规则](#添加任务匹配规则)。<br/>**说明：** <br/>- 从API version 20开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 该字段的优先级高于excludeFromAutoStart。如果所有启动任务均匹配失败，则按任务的excludeFromAutoStart配置处理。 | 对象 | 该标签可缺省。|
+| schedulerPhase | 启动任务的调度阶段。操作指导详见[设置启动任务调度阶段](#设置启动任务调度阶段)。<br/>-&nbsp;`preAbilityStageLoad`：启动任务及其依赖任务在AbilityStage模块加载前调度执行。<br/>-&nbsp;`postAbilityStageLoad`：启动任务及其依赖任务在AbilityStage模块加载后调度执行。<br/> **说明：** <br/>- 从API version 21开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 这里的AbilityStage模块加载指的是AbilityStage.ets文件及其所依赖模块的加载。关于模块加载的详细介绍，请参考[模块化运行加载流程](../arkts-utils/module-principle.md#模块化运行加载流程)。 | 字符串 | 该标签可缺省，缺省值为`postAbilityStageLoad`。 |
 
 ### 定义预加载so任务配置
 
@@ -630,3 +632,31 @@ struct Index {
         "configEntry": "./ets/startup/StartupConfig.ets"
       }
       ```
+
+### 设置启动任务调度阶段
+
+从API version 21开始，支持设置启动任务调度阶段。启动任务默认在AbilityStage模块加载后、[AbilityStage.onCreate](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate)生命周期之前开始执行。对于大型应用，AbilityStage模块的加载可能耗时较长，开发者可以将启动任务的schedulerPhase字段配置为preAbilityStageLoad，使启动任务在AbilityStage模块加载前被调度，并在异步线程中与AbilityStage模块加载并发执行，从而缩短应用启动时间。
+
+> **说明：**
+>
+> 由于启动任务在AbilityStage模块加载前被调度执行，改变了原有的执行顺序。如果启动任务依赖于AbilityStage模块的加载，可能会导致运行结果不符合预期，请参考[模块加载副作用及优化](../arkts-utils/arkts-module-side-effects.md)对依赖部分进行适配。
+
+例如，应用首页需要通过网络请求获取Feed流数据，且希望该任务能在异步线程中与AbilityStage模块加载并发执行。假设网络请求任务为[定义启动任务配置](#定义启动任务配置)步骤中的StartupTask_004，开发步骤如下：
+
+  1. 配置任务在AbilityStage模块加载前调度执行。在startup_config.json文件中，将StartupTask_004任务的`schedulerPhase`字段设为`preAbilityStageLoad`。
+  2. 配置任务在异步线程中与AbilityStage模块加载并发执行。将StartupTask_004任务的`runOnThread`设为`taskPool`，`waitOnMainThread`设为`false`。
+
+  ```json
+  {
+    "startupTasks": [
+      {
+        "name": "StartupTask_004",
+        "srcEntry": "./ets/startup/StartupTask_004.ets",
+        "runOnThread": "taskPool",
+        "waitOnMainThread": false,
+        "schedulerPhase": "preAbilityStageLoad"
+      }
+    ],
+    "configEntry": "./ets/startup/StartupConfig.ets"
+  }
+  ```
