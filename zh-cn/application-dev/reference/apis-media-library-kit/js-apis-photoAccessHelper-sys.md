@@ -7934,7 +7934,7 @@ setRelationship(relationship: string): Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example(context: Context) {
+async function SetRelationshipExample(context: Context, relationship: string) {
   try {
     console.info('setRelationship');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -7942,7 +7942,7 @@ async function example(context: Context) {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     };
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
       console.error('No album');
@@ -7952,9 +7952,9 @@ async function example(context: Context) {
     albumFetchResult.close();
     let changeRequest: photoAccessHelper.MediaAnalysisAlbumChangeRequest =
       new photoAccessHelper.MediaAnalysisAlbumChangeRequest(portraitAlbum);
-    changeRequest.setRelationship(assets, indexes);
+    changeRequest.setRelationship(relationship);
     await helper.applyChanges(changeRequest);
-    console.info(`setRelationship ${indexes}`);
+    console.info(`setRelationship ${relationship}`);
   } catch (err) {
     console.error(`setRelationship error: ${err}`);
   }
@@ -8122,7 +8122,7 @@ getRelationship(): Promise&lt;string&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example(context: Context) {
+async function GetRelationshipExample(context: Context) {
   try {
     console.info('getRelationship');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -8138,7 +8138,7 @@ async function example(context: Context) {
     }
     let portraitAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let analysisAlbum = new photoAccessHelper.AnalysisAlbum(portraitAlbum);
-    let relationship = string | undefined = await analysisAlbum?.getRelationship();
+    let relationship: string | undefined = await analysisAlbum?.getRelationship();
     console.info(`getRelationship ${relationship}`);
   } catch (err) {
     console.error(`relationship error: ${err}`);
