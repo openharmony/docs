@@ -161,7 +161,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 
   wifiManagerExt.getSupportedPowerMode().then(data => {
       console.info("get supported power mode info: " + JSON.stringify(data));
-  }).catch((error:number) => {
+  }).catch((error) => {
       console.error("get supported power mode error");
   });
 ```

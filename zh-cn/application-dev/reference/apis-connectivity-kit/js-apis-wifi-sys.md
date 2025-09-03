@@ -120,8 +120,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-			ipAddress: 0,
-			gateway: 0,
+			ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}
@@ -243,8 +243,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-			ipAddress: 0,
-			gateway: 0,
+			ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}
@@ -338,8 +338,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-		ipAddress: 0,
-			gateway: 0,
+		    ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}
@@ -619,8 +619,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-			ipAddress: 0,
-			gateway: 0,
+			ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}
