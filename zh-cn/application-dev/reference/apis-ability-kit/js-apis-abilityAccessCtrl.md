@@ -387,6 +387,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | 12100010 | The request already exists. |
 | 12100011 | All permissions in the permission list have been granted. |
 | 12100012 | The permission list contains the permission that has not been revoked by the user. |
+| 12100014 | Unexpected permission. You cannot request this type of permission from users via a pop-up window. |
 
 **示例：**
 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
