@@ -1092,17 +1092,13 @@ struct WebComponent {
     Column() {
       Button('clearAllCookies')
         .onClick(() => {
-          try {
-            webview.WebCookieManager.clearAllCookies()
-              .then(() => {
-                console.info("clearAllCookies success!");
-              })
-              .catch((error: BusinessError) => {
-                console.error("error: " + error);
-              });
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
+          webview.WebCookieManager.clearAllCookies()
+            .then(() => {
+              console.log("clearAllCookies success!");
+            })
+            .catch((error: BusinessError) => {
+              console.error("error: " + error);
+            });
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
