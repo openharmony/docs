@@ -112,19 +112,18 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     isHdr: isHdr
   };
 
-  avMetadata: media.AVMetadata = {
-    videoOrientation: 0
+  let avMetadata: media.AVMetadata = {
+    videoOrientation: '0', // 合理值0、90、180、270，非合理值prepare接口将报错。
     location: { latitude: 30, longitude: 130 }
   }
-  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(newDate().toString()) + '.mp4'; // 本地沙箱路径。
+  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // 本地沙箱路径。
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
     url: `fd://${file.fd.toString()}`, // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45--file:///data/media/01.mp4
-    rotation: avMetadata.videoOrientation, // 合理值0、90、180、270，非合理值prepare接口将报错。
-    location: avMetadata.location
+    metadata: avMetadata
   };
 
   let avRecorder: media.AVRecorder | undefined = undefined;
@@ -330,14 +329,30 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   await cameraInput.close();
 
   // 释放预览输出流。
-  await previewOutput.release();
+  try {
+    await previewOutput.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release previewOutput failed, error: ${err.code}`);
+  }
+
 
   // 释放录像输出流。
-  await videoOutput.release();
+  try {
+    await videoOutput.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release videoOutput failed, error: ${err.code}`);
+  }
 
   // 释放会话。
-  await videoSession.release();
-
+  try {
+    await videoSession.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release videoSession failed, error: ${err.code}`);
+  }
+  
   // 会话置空。
   videoSession = undefined;
 }
