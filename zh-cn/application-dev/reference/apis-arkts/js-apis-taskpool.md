@@ -1741,7 +1741,7 @@ task2.onExecutionFailed((e: Error) => {
 })
 taskpool.execute(task2).then(() => {
   console.info("taskpool: execute task success");
-}).catch((e: BusinessError) => {
+}).catch((e:BusinessError) => {
   console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
 })
 ```
@@ -2698,7 +2698,7 @@ export async function func1(): Promise<void> {
 export async function func2(): Promise<void> {
   console.info("taskpoolTest2 start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
-  taskpool.execute(strSort, strArray).then((result: object) => {
+  taskpool.execute(strSort, strArray).then((result: Object) => {
     console.info("func2 result: " + result);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
