@@ -32,7 +32,7 @@ Isochronous transfer is a transfer mode in which data is transferred in a fixed 
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
-- Update the public SDK to API version 16 or later.<!--Del--> For details, see [Switching to Full SDK](../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
+- Update the public SDK to API version 16 or later.<!--Del--> For details, see [Switching to Full SDK](../../../../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
 - Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS.
 - Use a USB cable to connect a device to the PC.
 
