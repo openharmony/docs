@@ -21,7 +21,7 @@ ConsoleMessage的信息级别。
 | Debug | 1 | 调试级别。 |
 | Error | 4 | 错误级别。 |
 | Info  | 2 | 消息级别。 |
-| Log   | 5 | 日志级别。 |
+| Log   | 2 | 日志级别。 |
 | Warn  | 3 | 警告级别。 |
 
 ## MixedMode
