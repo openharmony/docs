@@ -1,4 +1,4 @@
-# @ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)<sup>(deprecated)</sup>
+# @ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @chbchb12-->
@@ -9,14 +9,14 @@
 WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示的内容可作为一个控件（AbilityComponent）内容展示在其他应用窗口中。
 
 > **说明：**
+> 
+> - 从API version 21开始废弃，推荐使用[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
 >
-> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口为系统接口。
 >
 > - 本模块接口仅可在Stage模型下使用。
-> 
-> - 从API version 21开始废弃，推荐使用[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
 
 ## 导入模块
 
@@ -30,7 +30,7 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 | 名称      | 类型 | 只读 | 可选 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context<sup>(deprecated)</sup>  | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 否   | 否   | 上下文。<br>- **说明：** 从API version 21开始，该接口废弃，推荐使用[UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。<br/>      |
+| context<sup>(deprecated)</sup>  | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 否   | 否   | 上下文。从API version 9开始支持 <br>- **说明：** 从API version 21开始，该接口废弃，推荐使用[UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#属性)。<br/>      |
 
 ## WindowExtensionAbility.onConnect<sup>(deprecated)</sup>
 
