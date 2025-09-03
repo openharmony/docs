@@ -143,7 +143,7 @@ async function Demo() {
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
 
@@ -474,7 +474,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
-      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
+      console.info('Succeeded in reading the image data in the area.'); // 符合条件则进入。
     }).catch((error: BusinessError) => {
       console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
     })
@@ -1628,7 +1628,7 @@ async function Demo() {
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -1718,7 +1718,7 @@ async function Demo() {
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret : MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -2266,7 +2266,7 @@ async function Demo() {
   }
   let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
   receiver.on('imageArrival', () => {
-    // image arrival, do something.
+    // 接收到图片，实现回调函数逻辑。
   })
 }
 ```

@@ -71,7 +71,7 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function PackToData(context : Context) {
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
   let filePath: string = context.filesDir + "/test.jpg";
   const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
@@ -374,7 +374,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function PackToFile(context : Context) {
-  //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  // 此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
   const path: string = context.filesDir + "/test.png";
   const imageSourceObj: image.ImageSource = image.createImageSource(path);
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
@@ -436,7 +436,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function PackToFile(context : Context) {
-  //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  // 此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
   const path: string = context.filesDir + "/test.png";
   const imageSourceObj: image.ImageSource = image.createImageSource(path);
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
@@ -734,7 +734,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Packing(context : Context) {
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
   let filePath: string = context.filesDir + "/test.jpg";
   const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
@@ -782,7 +782,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Packing(context : Context) {
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
   let filePath: string = context.filesDir + "/test.jpg";
   const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
