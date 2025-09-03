@@ -118,7 +118,7 @@ struct ListExample {
           }.borderRadius(24)
           .backgroundColor(Color.White)
           .padding({ left: 12, right: 12 })
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .listDirection(Axis.Vertical)
       .scrollBar(BarState.Off)
@@ -128,7 +128,7 @@ struct ListExample {
         console.info('last' + end)
       })
       .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
+        console.info(`onScroll scrollState = ScrollState` + scrollState.toString() + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
       .height('65%')
@@ -193,7 +193,7 @@ struct ListExample {
           }.borderRadius(24)
           .backgroundColor(Color.White)
           .padding({ left: 12, right: 12 })
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .listDirection(Axis.Vertical)
       .scrollBar(BarState.Off)
@@ -268,7 +268,7 @@ struct ListExample {
           }.borderRadius(24)
           .backgroundColor(Color.White)
           .padding({ left: 12, right: 12 })
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .listDirection(Axis.Vertical)
       .scrollBar(BarState.Off)
@@ -278,7 +278,7 @@ struct ListExample {
         console.info('last' + end)
       })
       .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
+        console.info(`onScroll scrollState = ScrollState` + scrollState.toString() + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
       .height('65%')
