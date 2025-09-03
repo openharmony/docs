@@ -53,7 +53,7 @@ OH_DisplaySoloist回调函数类型。
 
 | 参数项 | 描述 |
 | -- | -- |
-| long long timestamp | VSync时间戳。 |
+| long long timestamp | 当前帧VSync时间戳。 |
 |  long long targetTimestamp | 预期的下一帧VSync时间戳。 |
 |  void* data | 用户自定义数据。 |
 
