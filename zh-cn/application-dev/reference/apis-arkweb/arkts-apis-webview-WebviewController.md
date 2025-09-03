@@ -10207,7 +10207,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | -------------------------------------- |
-| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#SiteIsolationMode21) | 是 | 设置站点隔离模式。<br>默认值取决于不同的设备，PC/平板/坚盾模式下严格站点隔离，手机默认部分站点隔离 |
+| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#siteIsolationMode21) | 是 | 设置站点隔离模式。<br>默认值取决于不同的设备，PC/平板/坚盾模式下严格站点隔离，手机默认部分站点隔离 |
 
 **错误码：**
 
