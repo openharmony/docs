@@ -138,6 +138,14 @@
                   srcPixelFormat: pixelMapFormat,
                 })
               }
+              // 确保当前pixelMap没有在使用的情况下，可进行资源释放。
+              if (pixelMap != undefined) {
+                await pixelMap.release().then(() => {
+                  console.info('Succeeded in releasing pixelMap object.');
+                }).catch((error: BusinessError) => {
+                  console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
+                })
+              }
             } else {
               console.error('byteBuffer is null');
             }
@@ -397,6 +405,14 @@ struct Index {
               pixelMap = await image.createPixelMap(dstArr.buffer, {
                 size: { height: height, width: width },
                 srcPixelFormat: pixelMapFormat,
+              })
+            }
+            // 确保当前pixelMap没有在使用的情况下，注意要进行资源释放。
+            if (pixelMap != undefined) {
+              await pixelMap.release().then(() => {
+                console.info('Succeeded in releasing pixelMap object.');
+              }).catch((error: BusinessError) => {
+                console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
               })
             }
           } else {

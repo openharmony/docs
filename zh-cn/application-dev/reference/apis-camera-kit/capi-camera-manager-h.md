@@ -912,7 +912,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager,
 ### OH_CameraManager_GetCameraConcurrentInfos()
 
 ```
-Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* cameraManager, const Camera_Device* camera,uint32_t deviceSize, Camera_ConcurrentInfo** cameraConcurrentInfo, uint32_t* infoSize)
+Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* cameraManager, const Camera_Device* camera, uint32_t deviceSize, Camera_ConcurrentInfo** cameraConcurrentInfo, uint32_t* infoSize)
 ```
 
 **描述**
