@@ -379,6 +379,7 @@ setFrameRate(minFps: number, maxFps: number): void
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12)查询支持的帧率范围。
 
 > **说明：**
+>
 > 仅在[PhotoSession](arkts-apis-camera-PhotoSession.md)或[VideoSession](arkts-apis-camera-VideoSession.md)模式下支持。
 > 接口调用前，先调用[getActiveFrameRate](arkts-apis-camera-VideoOutput.md#getactiveframerate12)接口查询当前VideoSession的帧率，若下发的帧率与当前帧率相等，则下发的帧率不会生效。
 
@@ -390,8 +391,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率，单位fps。当传入的最大值小于最小值时，传参异常，接口不生效。 |
-| maxFps   | number        | 是   | 最大帧率，单位fps。当传入的最小值大于最大值时，传参异常，接口不生效。 |
+| minFps   | number        | 是   | 最小帧率，单位：fps。当传入的最大值小于最小值时，传参异常，接口不生效。 |
+| maxFps   | number        | 是   | 最大帧率，单位：fps。当传入的最小值大于最大值时，传参异常，接口不生效。 |
 
 **错误码：**
 
