@@ -10198,7 +10198,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 > **说明：**
 >
 > 不能在单子进程模式下设置严格站点隔离。</br>
-> 函数只能调用一次。
+> 接口只能在初始化时调用一次，不支持反复修改。
 
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -10215,9 +10215,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 |InitError 17100001: Site Isolation mode already set by developer|
-| 17100001 |InitError 17100001: cannot change (AdvancedSecurityMode active)|
-| 17100001 |InitError 17100001: Site Isolation mode cannot be strict when single render|
+| 17100001 |Init Error 17100001 . Possible causes: 1. Site Isolation mode already set by developer. 2. cannot change (AdvancedSecurityMode active). 3.Site Isolation mode cannot be strict when single render. |
 
 **示例：**
 
@@ -10231,7 +10229,7 @@ import { webview } from '@kit.ArkWeb';
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
 
-  build() {
+  aboutToAppear() {
     Column() {
       Button('setSiteIsolationMode')
         .onClick(() => {
