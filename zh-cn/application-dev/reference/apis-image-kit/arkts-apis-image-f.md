@@ -137,10 +137,10 @@ async function Marshalling_UnMarshalling(context: Context) {
   if (pictureObj != null) {
     let parcelable: MySequence = new MySequence(pictureObj);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    // marshalling.
+    // 序列化。
     data.writeParcelable(parcelable);
     let ret: MySequence = new MySequence(pictureObj);
-    // unmarshalling.
+    // 反序列化。
     data.readParcelable(ret);
   } else {
     console.error('PictureObj is null');
@@ -352,7 +352,7 @@ async function CreatePixelMapFromParcel() {
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
 
@@ -952,7 +952,7 @@ createImageSource(uri: string): ImageSource
 **示例：**
 ```ts
 async function CreateImageSource(context : Context) {
-  //此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
   const path: string = context.filesDir + "/test.jpg";
   const imageSourceObj: image.ImageSource = image.createImageSource(path);
 }
@@ -988,7 +988,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 ```ts
 async function CreateImageSource(context : Context) {
   let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-  //此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  // 此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
   const path: string = context.filesDir + "/test.png";
   let imageSourceObj: image.ImageSource = image.createImageSource(path, sourceOptions);
 }
@@ -1022,7 +1022,7 @@ createImageSource(fd: number): ImageSource
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function CreateImageSource(context : Context) {
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
   let filePath: string = context.filesDir + "/test.jpg";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   const imageSourceObj: image.ImageSource = image.createImageSource(file.fd);
@@ -1061,7 +1061,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function CreateImageSource(context : Context) {
   let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   const filePath: string = context.filesDir + "/test.jpg";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   const imageSourceObj: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
@@ -1168,7 +1168,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function CreateImageSource(context : Context) {
   // 获取resourceManager资源管理器。
   const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-  //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
     const imageSourceObj: image.ImageSource = image.createImageSource(rawFileDescriptor);
   }).catch((error: BusinessError) => {
@@ -1387,7 +1387,7 @@ createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureTy
 async function CreateAuxiliaryPicture(context: Context) {
   let funcName = "CreateAuxiliaryPicture";
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // 需要支持hdr的图片。
   let auxBuffer: ArrayBuffer = rawFile.buffer as ArrayBuffer;
   let auxSize: Size = {
     height: 180,
