@@ -1,4 +1,10 @@
 # JS卡片开发指导（FA模型）
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 FA模型从API version 7开始支持，已经不再主推。该应用模型通过导出匿名对象、固定入口文件的方式指定应用组件，开发者无法进行派生，不利于扩展能力。建议使用新的Stage模型进行开发。
 
 ## 接口说明
@@ -15,7 +21,7 @@ FormAbility生命周期接口如下：
 | onDestroy(formId:&nbsp;string):&nbsp;void | 卡片提供方接收销毁卡片的通知接口。 |
 | onAcquireFormState?(want:&nbsp;Want):&nbsp;formInfo.FormState | 卡片提供方接收查询卡片状态的通知接口。 |
 | onShare?(formId:&nbsp;string):&nbsp;{[key:&nbsp;string]:&nbsp;any} | 卡片提供方接收卡片分享的通知接口。 |
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | 卡片提供方接收卡片分享的通知接口。推荐使用该接口替代onShare接口。如果了实现该接口，onShare将不再被回调。 |
+| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | 卡片提供方接收卡片分享的通知接口。推荐使用该接口替代onShare接口。如果实现了该接口，onShare将不再被回调。 |
 
 FormProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
 
@@ -153,7 +159,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
         return formData;
       },
       onCastToNormal(formId: string) {
-        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理，当前卡片使用方不存在临时卡片场景
         hilog.info(domain, TAG, 'FormAbility onCastToNormal');
       },
       onUpdate(formId: string) {
@@ -209,7 +215,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
 
 卡片需要在应用配置文件config.json中进行配置。
 
-- js模块，用于对应卡片的js相关资源，内部字段结构说明：
+- JS模块，用于对应卡片的JS相关资源，内部字段结构说明：
     | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
   | -------- | -------- | -------- | -------- |
   | name | 表示JS&nbsp;Component的名字。该标签不可缺省，默认值为default。 | 字符串 | 否 |
@@ -388,7 +394,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
 
 - 常态卡片：卡片使用方会持久化的卡片。如添加到桌面的卡片。
 
-- 临时卡片：卡片使用方不会持久化的卡片。如上划卡片应用时显示的卡片。
+- 临时卡片：卡片使用方不会持久化的卡片。当前卡片使用方不存在临时卡片场景。
 
 临时卡片转常态卡片：上划卡片应用后，此时会显示的卡片为临时卡片；点击卡片上的“图钉”按钮后添加到桌面，此时卡片转为常态卡片。
 

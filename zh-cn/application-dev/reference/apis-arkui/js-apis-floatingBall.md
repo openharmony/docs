@@ -1,4 +1,10 @@
 # @ohos.window.floatingBall (闪控球窗口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @betafringe007-->
+<!--Designer: @zhoulin_-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 该模块提供闪控球的基础功能，包括判断设备是否支持闪控球功能，以及创建闪控球控制器来启动、更新或停止闪控球。适用于比价、搜题或抢单等场景，以小窗模式呈现内容。闪控球以悬浮小组件形式显示在其他应用之上，即时呈现应用的关键信息。
 
@@ -40,6 +46,8 @@ create(config: FloatingBallConfiguration): Promise&lt;FloatingBallController&gt;
 创建闪控球控制器，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -135,9 +143,9 @@ startFloatingBall(params: FloatingBallParams): Promise&lt;void&gt;
 |------------|------------|
 | 201 | Permission verification failed, usually returned by VerifyAccessToken. |
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300020 | Failed to create the floating Ball window. |
-| 1300021 | Failed to start multiple floating Ball windows. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300020 | Failed to create the floating ball window. |
+| 1300021 | Failed to start multiple floating ball windows. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 | 1300025 | The floating ball state does not support this operation. |
@@ -240,7 +248,7 @@ stopFloatingBall(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 |------------|------------|
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -278,7 +286,7 @@ on(type: 'stateChange', callback: Callback&lt;FloatingBallState&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -328,7 +336,6 @@ let onStateChange = (state: floatingBall.FloatingBallState) => {
 };
 try {
   floatingBallController.off('stateChange', onStateChange);
-  floatingBallController.off('stateChange');
 } catch(e) {
   console.error(`Failed to off stateChange floating ball. Cause:${e.code}, message:${e.message}`);
 }
@@ -356,7 +363,7 @@ on(type: 'click', callback: Callback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -406,7 +413,6 @@ let onClick = () => {
 };
 try {
   floatingBallController.off('click', onClick);
-  floatingBallController.off('click');
 } catch(e) {
   console.error(`Failed to off click floating ball. Cause:${e.code}, message:${e.message}`);
 }
@@ -455,7 +461,7 @@ floatingBallController.getFloatingBallWindowInfo().then((data: floatingBall.Floa
 
 restoreMainWindow(want: Want): Promise&lt;void&gt;
 
-恢复应用主窗口并加载指定页面。仅支持在闪控球点击事件回调上下文的5秒内调用，使用Promise异步回调。
+恢复应用主窗口并加载指定页面。仅支持在点击闪控球后调用，使用Promise异步回调。
 
 **需要权限：** ohos.permission.USE_FLOAT_BALL
 
@@ -493,6 +499,7 @@ restoreMainWindow(want: Want): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   bundleName: 'xxx.xxx.xxx',
@@ -517,11 +524,11 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------------|------------|------------|------------|------------|
-| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。静态布局时，icon必选，content无效；普通文本布局和强调文本布局时，icon无效；纯文本布局时，content和icon均无效。 |
+| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。 |
 | title | string | 否 | 否 | 闪控球标题，不可为空字符串，大小不超过64字节。 |
-| content | string | 否 | 是 | 闪控球内容，可选字段，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。 |
-| backgroundColor | string | 否 | 是 | 闪控球背景颜色，可选字段，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球使用默认颜色（浅色模式'#FFFFFF'，深色模式'#000000'）。 |
-| icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 闪控球图标，可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式，不传入时不显示闪控球图标。 |
+| content | string | 否 | 是 | 闪控球内容，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。 |
+| backgroundColor | string | 否 | 是 | 闪控球背景颜色，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球跟随系统深浅色模式的默认背景色。 |
+| icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 闪控球图标，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式。 |
 
 ## FloatingBallState
 
@@ -542,10 +549,10 @@ try {
 
 | 名称 | 值 | 说明 |
 |------------|------------|------------|
-| STATIC | 1 | 静态布局，支持图标和标题。 |
-| NORMAL | 2 | 普通文本布局，支持标题和内容，主要使用不同颜色区分。 |
-| EMPHATIC | 3 | 强调文本布局，支持标题和内容，使用不同字号区分。 |
-| SIMPLE | 4 | 纯文本布局，只支持标题，可双行展示。 |
+| STATIC | 1 | 静态布局，支持标题和图标。使用此模板时，FloatingBallParams中的title参数和icon参数必传。 |
+| NORMAL | 2 | 普通文本布局，支持标题和内容。使用此模板时，FloatingBallParams中的title参数必传。 |
+| EMPHATIC | 3 | 强调文本布局，支持图标、标题和内容。使用此模板时，FloatingBallParams中的title参数必传。 |
+| SIMPLE | 4 | 纯文本布局，只支持标题。使用此模板时，FloatingBallParams中的title参数必传。 |
 
 ## FloatingBallWindowInfo
 

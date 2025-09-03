@@ -2,23 +2,19 @@
 <!--Kit: ArkUI--> 
 <!--Subsystem: ArkUI--> 
 <!--Owner: @Cuecuexiaoyu--> 
-<!--SE: @lixingchi1--> 
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1--> 
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 `$$`运算符为系统组件提供TS变量的引用，使得TS变量和系统组件的内部状态保持同步。
 
 
-内部状态具体指什么取决于组件。例如，[TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)组件的text参数。
-
-
-> **说明：**
->
-> `$$`还用于[@Builder装饰器的按引用传递参数](arkts-builder.md#按引用传递参数)，开发者需要注意两种用法的区别。
+内部状态的具体含义取决于组件。例如，[TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)组件的text参数。
 
 
 ## 使用规则
 
-- 当前`$$`支持基础类型变量，以及[\@State](arkts-state.md)、[\@Link](arkts-link.md)和[\@Prop](arkts-prop.md)装饰的变量。
+- 当前`$$`支持基础类型变量，当该变量使用[\@State](arkts-state.md)、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)等状态管理V1装饰器装饰，或者[\@Local](arkts-new-local.md)等状态管理V2装饰器装饰时，变量值的变化会触发UI刷新。
 
 - 当前`$$`支持的组件：
 

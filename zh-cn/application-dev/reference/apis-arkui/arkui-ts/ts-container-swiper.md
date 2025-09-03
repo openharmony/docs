@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Hu_ZeQi-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
  滑块视图容器，提供子组件滑动轮播显示的能力。 
 
@@ -161,6 +162,10 @@ indicator(indicator: IndicatorComponentController | DotIndicator | DigitIndicato
 
 设置外部绑定的导航点组件控制器。
 
+>  **说明：** 
+>
+> 设置外部绑定的导航点组件控制器后，可以和外部导航点结合使用。外部导航点支持自定义设置显示位置和大小。详细介绍可参看[Indicator](ts-swiper-components-indicator.md)。
+
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
@@ -297,6 +302,10 @@ cachedCount(value: number)
 cachedCount(count: number, isShown: boolean)
 
 设置预加载子组件个数。
+
+>  **说明：** 
+>
+>  - isShown属性为true，且设置的count过大时，如果前后预加载范围内可加载的节点不足，循环场景下同一个可加载节点只会布局在一侧。
 
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
@@ -743,7 +752,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 | 参数名   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。<br/>默认值：空数组。 |
+| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。|
 
 **返回值：**
 
@@ -1418,6 +1427,10 @@ onChange(event: Callback\<number>)
 
 Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
 
+>  **说明：** 
+>
+>  - 回调会在页面动画结束、动画打断、索引设置等时机，引起页面索引变化时触发，在动画过程中不触发。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1687,6 +1700,8 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |

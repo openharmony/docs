@@ -1,4 +1,10 @@
 # PluginBundleInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 插件信息，通过接口[bundleManager.getAllPluginInfo](js-apis-bundleManager-sys.md#bundlemanagergetallplugininfo19)获取。
 
@@ -28,7 +34,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | icon   | string | 是   | 否   | 插件的图标。   |
 | iconId   | number | 是   | 否   | 插件图标的资源id值。   |
 | pluginBundleName   | string | 是   | 否   | 安装插件的应用包名。   |
-| versionCode   | string | 是   | 否   | 插件的版本号。   |
+| versionCode   | number | 是   | 否   | 插件的版本号。   |
 | versionName   | string | 是   | 否   | 插件的版本名称。   |
 | pluginModuleInfos   | Array<[PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo)> | 是   | 否   | 插件的模块信息。   |
 

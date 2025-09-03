@@ -1,14 +1,20 @@
 # @ohos.abilityAccessCtrl (Application Access Control)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 The **abilityAccessCtrl** module provides APIs for application permission management, including authentication and authorization.
 
-> **NOTE**<br>
+> **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import { abilityAccessCtrl } from '@kit.AbilityKit'
+import { abilityAccessCtrl } from '@kit.AbilityKit';
 ```
 
 ## abilityAccessCtrl.createAtManager
@@ -42,7 +48,7 @@ Provides APIs for application access control.
 
 checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
 
-Checks whether a permission is granted to an application. This API uses a promise to return the result.
+Checks whether the user has granted the permission. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -53,13 +59,13 @@ Checks whether a permission is granted to an application. This API uses a promis
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Identifier of the target application, which is the value of **accessTokenId** contained in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the authorization result.|
 
 **Error codes**
 
@@ -89,7 +95,7 @@ atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
-Checks whether a permission is granted to an application. This API returns the result synchronously.
+Verifies whether a permission is granted to an application. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -100,7 +106,7 @@ Checks whether a permission is granted to an application. This API returns the r
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Identifier of the target application, which is the value of **accessTokenId** contained in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -148,7 +154,7 @@ The same callback cannot be registered for overlapping permission lists.
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type. The value is **'selfPermissionStateChange'**, which indicates the changes in the permission states specific to this application alone. |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. If this parameter is not specified, this API will subscribe to state changes of all permissions for this application. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. If this parameter is not specified, this API will subscribe to state changes of all permissions. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | Yes| Callback used to return the permission state change.|
 
 **Error codes**
@@ -158,9 +164,9 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The permissionName exceeds 256 characters. |
+| 12100001 | Invalid parameter. Possible causes: 1. The permissionList exceeds the size limit; 2. The permissionNames in the list are all invalid. |
 | 12100004 | The API is used repeatedly with the same input. |
-| 12100005 | The registration time has exceeded the limitation. |
+| 12100005 | The registration time has exceeded the limit. |
 | 12100007 | The service is abnormal. |
 
 **Example**
@@ -229,7 +235,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses an asynchronous callback to return the result.
 
-If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
+If the user rejects to grant permissions, the dialog box cannot be displayed again. If permission granting is required, the user can manually grant permissions on the **Settings** page or call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant permissions.
 
 > **NOTE**
 >
@@ -262,7 +268,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 For details about the process and example of applying for user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -287,7 +293,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses a promise to return the result.
 
-If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
+If the user rejects to grant permissions, the dialog box cannot be displayed again. If permission granting is required, the user can manually grant permissions on the **Settings** page or call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant permissions.
 
 > **NOTE**
 >
@@ -304,7 +310,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -325,7 +331,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 For details about the process and example of applying for user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -387,7 +393,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -407,7 +413,7 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 Displays a dialog box for setting a global switch.
 
-When the features such as recording and photographing are disabled, the application can call this API to open the dialog box, asking the user to enable the related features. If the global switch is turned on, no dialog box will be displayed.
+When the features such as recording and photographing are disabled, the application can display the dialog box, asking the user to enable the related features. If the global switch is turned on, no dialog box will be displayed.
 
 > **NOTE**
 >
@@ -423,14 +429,14 @@ When the features such as recording and photographing are disabled, the applicat
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the UIAbility/UIExtensionAbility.|
+| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the UIAbility/UIExtensionAbility that requests the permissions.|
 | type | [SwitchType](#switchtype12) | Yes| Type of the global switch.|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the global switch status.|
+| Promise&lt;boolean&gt; | Promise used to return the global switch status. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -445,7 +451,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -457,6 +463,52 @@ atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then
 }).catch((err: BusinessError) => {
   console.error('data:' + JSON.stringify(err));
 });
+```
+
+### getSelfPermissionStatus<sup>20+</sup>
+
+getSelfPermissionStatus(permissionName: Permissions): PermissionStatus
+
+Queries the permission status of an application. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| [PermissionStatus](#permissionstatus20) | Permission status.|
+
+**Error codes**
+
+For details about the error codes, see [Access Control Error Codes](errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 12100001 | Invalid parameter. The permissionName is empty or exceeds 256 characters. |
+| 12100007 | The service is abnormal. |
+
+**Example**
+
+```ts
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+try {
+  let data: abilityAccessCtrl.PermissionStatus = atManager.getSelfPermissionStatus('ohos.permission.CAMERA');
+  console.info(`data->${JSON.stringify(data)}`);
+} catch(err) {
+  console.error(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### verifyAccessTokenSync<sup>9+</sup>
@@ -508,7 +560,7 @@ try {
 
 verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
 
-Verifies whether a permission is granted to an application. This API uses a promise to return the result.
+Checks whether the user has granted the permission. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -549,7 +601,7 @@ atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCt
 
 verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
 
-Verifies whether a permission is granted to an application. This API uses a promise to return the result.
+Checks whether the user has granted the permission. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -670,3 +722,19 @@ Represents the context for the ability or application. It allows access to appli
 | Type| Description|
 | -------- | -------- |
 | [_Context](js-apis-inner-application-context.md) | Context for an ability or application to access to application-specific resources.|
+
+## PermissionStatus<sup>20+</sup>
+
+Enumerates the permission states.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Name              |    Value| Description       |
+| ------------------ | ----- | ----------- |
+| DENIED  | -1    | The permission is not granted.|
+| GRANTED | 0     | The permission is granted.|
+| NOT_DETERMINED | 1     | The permission state is not determined. This value is returned when the application declares [user_grant permissions](../../security/AccessToken/permissions-for-all-user.md) and does not call [requestPermissionsFromUser](#requestpermissionsfromuser9) to request user authorization, or when the user changes the permission state to **Ask each time** in **Settings**.|
+| INVALID | 2     | The permission is invalid. The application does not [declare permissions](../../security/AccessToken/declare-permissions.md) or cannot process the request. For example, if the status of the approximate location permission is **NOT_DETERMINED**, this value will be returned when the status of the precise location permission is queried.|
+| RESTRICTED | 3     | The permission is restricted. <!--RP2-->The application is not allowed to call [requestPermissionsFromUser](#requestpermissionsfromuser9) to request user authorization.<!--RP2End--> |

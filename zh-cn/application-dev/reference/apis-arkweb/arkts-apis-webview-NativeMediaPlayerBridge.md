@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhangyao75477-->
-<!--SE: @qiu-gongkai-->
-<!--TSE: @ghiker-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 [CreateNativeMediaPlayerCallback](./arkts-apis-webview-t.md#createnativemediaplayercallback12) 回调函数的返回值类型。
 接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。
@@ -29,10 +30,10 @@ updateRect(x: number, y: number, width: number, height: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| x | number | 是 | surface 相对于 Web 组件的 x 坐标信息。 |
-| y | number | 是 | surface 相对于 Web 组件的 y 坐标信息。 |
-| width  | number | 是 | surface 的宽度。 |
-| height | number | 是 | surface 的高度。 |
+|x|number| 是 |surface相对于Web组件的x坐标信息。 |
+|y|number| 是 |surface相对于Web组件的y坐标信息。 |
+|width|number| 是 |surface的宽度。<br>单位：像素。 |
+|height|number| 是 |surface的高度。<br>单位：像素。 |
 
 **示例：**
 

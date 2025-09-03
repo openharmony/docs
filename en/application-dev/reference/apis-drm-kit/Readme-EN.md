@@ -1,26 +1,34 @@
 # DRM Kit
 
 - ArkTS APIs<!--drm-arkts-->
-  - [@ohos.multimedia.drm (Digital Rights Management)](js-apis-drm.md)
+  - @ohos.multimedia.drm (Digital Rights Management)<!--js-apis-drm-->
+    - [Module Description](arkts-apis-drm.md)
+    - [Functions](arkts-apis-drm-f.md)
+    - [Interface (MediaKeySession)](arkts-apis-drm-MediaKeySession.md)
+    - [Interface (MediaKeySystem)](arkts-apis-drm-MediaKeySystem.md)
+    - [Interfaces (Others)](arkts-apis-drm-i.md)
+    - [Enums](arkts-apis-drm-e.md)
 - C APIs<!--drm-c-->
   - Modules<!--drm-module-->
-    - [Drm](_drm.md)
+    - [Drm](capi-drm.md)
   - Header Files<!--drm-headerfile-->
-    - [native_drm_common.h](native__drm__common_8h.md)
-    - [native_drm_err.h](native__drm__err_8h.md)
-    - [native_mediakeysession.h](native__mediakeysession_8h.md)
-    - [native_mediakeysystem.h](native__mediakeysystem_8h.md)
+    - [native_drm_common.h](capi-native-drm-common-h.md)
+    - [native_drm_err.h](capi-native-drm-err-h.md)
+    - [native_mediakeysession.h](capi-native-mediakeysession-h.md)
+    - [native_mediakeysystem.h](capi-native-mediakeysystem-h.md)
   - Structs<!--drm-struct-->
-    - [DRM_KeysInfo](_d_r_m___keys_info.md)
-    - [DRM_MediaKeyRequest](_d_r_m___media_key_request.md)
-    - [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md)
-    - [DRM_MediaKeyStatus](_d_r_m___media_key_status.md)
-    - [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md)
-    - [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md)
-    - [DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md)
-    - [DRM_PsshInfo](_d_r_m___pssh_info.md)
-    - [DRM_Statistics](_d_r_m___statistics.md)
-    - [MediaKeySession_Callback](_media_key_session___callback.md)
-    - [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md)
+    - [DRM_MediaKeyRequestInfo](capi-drm-drm-mediakeyrequestinfo.md)
+    - [DRM_MediaKeyRequest](capi-drm-drm-mediakeyrequest.md)
+    - [DRM_Statistics](capi-drm-drm-statistics.md)
+    - [DRM_OfflineMediakeyIdArray](capi-drm-drm-offlinemediakeyidarray.md)
+    - [DRM_KeysInfo](capi-drm-drm-keysinfo.md)
+    - [DRM_MediaKeyStatus](capi-drm-drm-mediakeystatus.md)
+    - [DRM_PsshInfo](capi-drm-drm-psshinfo.md)
+    - [DRM_MediaKeySystemInfo](capi-drm-drm-mediakeysysteminfo.md)
+    - [DRM_MediaKeySystemDescription](capi-drm-drm-mediakeysystemdescription.md)
+    - [MediaKeySystem](capi-drm-mediakeysystem.md)
+    - [MediaKeySession](capi-drm-mediakeysession.md)
+    - [MediaKeySession_Callback](capi-drm-mediakeysession-callback.md)
+    - [OH_MediaKeySession_Callback](capi-drm-oh-mediakeysession-callback.md)
 - Error Codes<!--drm-arkts-errcode-->
   - [DRM Error Codes](errorcode-drm.md)

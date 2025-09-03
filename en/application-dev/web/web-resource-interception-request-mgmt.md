@@ -19,7 +19,7 @@ In the following example, the **Web** component intercepts the web page request 
       <meta charset="utf-8">
   </head>
   <body>
-  <!-- Page resource request ->
+  <!-- Page resource request -->
   <a href="https://www.example.com/test.html">intercept test!</a>
   </body>
   </html>

@@ -1,4 +1,10 @@
 # @ohos.screenshot (屏幕截图)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供屏幕截图的能力。
 
@@ -56,11 +62,13 @@ import { screenshot } from '@kit.ArkUI';
 
 pick(): Promise&lt;PickInfo&gt;
 
-获取屏幕截图。此接口仅可在2in1设备上使用。当前仅支持获取displayId为0的屏幕截图。使用Promise异步回调。
+获取屏幕截图，当前仅支持获取displayId为0的屏幕截图。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -85,11 +93,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let promise = screenshot.pick();
   promise.then((pickInfo: screenshot.PickInfo) => {
-    console.log('pick Pixel bytes number: ' + pickInfo.pixelMap.getPixelBytesNumber());
-    console.log('pick Rect: ' + pickInfo.pickRect);
+    console.info('pick Pixel bytes number: ' + pickInfo.pixelMap.getPixelBytesNumber());
+    console.info('pick Rect: ' + pickInfo.pickRect);
     pickInfo.pixelMap.release(); // PixelMap使用完后及时释放内存
   }).catch((err: BusinessError) => {
-    console.log(`Failed to pick. Code: ' + Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to pick. Code: ' + Code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
   console.error(`Failed to pick Code: ' + Code: ${exception.code}, message: ${exception.message}`);
@@ -100,12 +108,14 @@ try {
 
 capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
-获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用。使用Promise异步回调。
+获取屏幕全屏截图，使用Promise异步回调。
 此接口可以通过设置不同的displayId截取不同屏幕的截图，且只能截取全屏；[pick](#screenshotpick)接口可实现区域截屏。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **需要权限**：ohos.permission.CUSTOM_SCREEN_CAPTURE
 
@@ -144,7 +154,7 @@ let captureOption: screenshot.CaptureOption = {
 try {
   let promise = screenshot.capture(captureOption);
   promise.then((pixelMap: image.PixelMap) => {
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // PixelMap使用完后及时释放内存
   }).catch((err: BusinessError) => {
     console.error(`Failed to save screenshot. Code: ${err.code}, message: ${err.message}`);

@@ -1,5 +1,11 @@
 # hilog
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liuyifeifei;@buzhenwang-->
+<!--Designer: @shenchenkai-->
+<!--Tester: @liyang2235-->
+<!--Adviser: @foryourself-->
 
 HiLog日志系统，提供给系统框架、服务、以及应用，用于打印日志，记录用户操作、系统运行状态等。开发者可以通过hilog命令行查询相关日志信息。
 
@@ -30,6 +36,10 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
   开启/关闭落盘任务，参考[查看和设置落盘任务](#查看和设置落盘任务)。
 
 ### hilog日志格式说明
+
+```text
+04-19 17:02:14.735  5394  5394 I A03200/testTag: this is a info level hilog
+```
 
 | 第一列 | 第二列 | 第三列 | 第四列 |  第五列 | 第六列 | 第七列 |
 | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
@@ -332,7 +342,7 @@ hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
 
 **使用样例**：
 
-显示本地时间，以纳秒为单位显示时间。
+显示本地时间，以毫秒为单位显示时间。
 
 <!--RP10-->
    ```shell

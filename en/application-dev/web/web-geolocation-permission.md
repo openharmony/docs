@@ -26,7 +26,6 @@ In the following example, when a user clicks the **Get Location** button on the 
 
   ```html
   <!DOCTYPE html>
-  <html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">

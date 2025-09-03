@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zju_ljz-->
-<!--SE: @lanshouren-->
-<!--TSE: @liuli0427-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 将子组件横向布局，并在每个子组件之间插入纵向分割线。
 
@@ -32,6 +33,10 @@ RowSplit()
 
 除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
+> **说明：**
+>
+> RowSplit组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
+
 ### resizeable
 
 resizeable(value: boolean)
@@ -51,8 +56,6 @@ resizeable(value: boolean)
 >  **说明：**
 >
 > RowSplit的分割线可以改变左右两边子组件的宽度，子组件可改变宽度的范围取决于子组件的最大最小宽度。
->
-> 支持[clip](ts-universal-attributes-sharp-clipping.md#clip12)、[margin](ts-universal-attributes-size.md#margin)等通用属性，clip不设置的时候默认值为true。
 
 ## 事件
 

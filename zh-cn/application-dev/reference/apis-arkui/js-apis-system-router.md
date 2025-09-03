@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 通过不同的uri访问不同的页面。
 
@@ -113,7 +114,7 @@ export default new C()
 class Area {
   data:Record<string,string> = {'data1': 'default'}
   onInit() {
-    console.info('showData1:' + this.data)
+    console.info(`showData1: ${JSON.stringify(this.data)}`);
   }
 }
 export default new Area()

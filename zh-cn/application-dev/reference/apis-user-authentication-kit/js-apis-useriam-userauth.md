@@ -3,8 +3,9 @@
 <!--Kit: User Authentication Kit-->
 <!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
-<!--SE: @lichangting518-->
-<!--TSE: @jane_lz-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
+<!--Adviser: @zengyawen-->
 
 提供用户认证能力，应用于设备解锁、支付、应用登录等场景。
 
@@ -38,8 +39,9 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 | TIMEOUT            | 2    | 认证超时。 |
 | TEMPORARILY_LOCKED | 3    | 临时冻结。 |
 | PERMANENTLY_LOCKED | 4    | 永久冻结。 |
-| WIDGET_LOADED      | 5    | 身份认证控件已拉起。 |
-| WIDGET_RELEASED    | 6    | 身份认证控件已退出。 |
+| WIDGET_LOADED      | 5    | 身份认证界面加载完毕。 |
+| WIDGET_RELEASED    | 6    | 当前的身份认证界面退出，切换其他认证界面或身份认证控件关闭。 |
+| COMPARE_FAILURE_WITH_FROZEN    | 7    | 认证失败并触发了认证冻结。 |
 
 ## EnrolledState<sup>12+</sup>
 
@@ -156,7 +158,7 @@ try {
 
 | 名称                 | 类型                                | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| title                | string                              | 是   | 用户认证界面的标题，建议传入认证目的，例如用于支付、登录应用等，不支持传空字串，最大长度为500字符。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。在单指纹、单人脸场景下支持，从API 18开始，增加支持人脸+指纹场景。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | uiContext<sup>18+</sup>            | Context               | 否   | 以模应用方式显示身份认证对话框，仅支持在2in1设备上使用，如果没有此参数或其他类型的设备，身份认证对话框将以模系统方式显示。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
@@ -674,16 +676,13 @@ start(): void
 | -------- | ------------------------------------------------ |
 | 201      | Permission denied. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
-| 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | Authentication service is busy.                  |
 | 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | Switched to the custom authentication process.   |
+| 12500011 | Switched to the customized authentication process.   |
 | 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
@@ -817,7 +816,6 @@ on(type: 'authTip', callback: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
 **示例：**
 
@@ -892,7 +890,6 @@ off(type: 'authTip', callback?: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
 **示例：**
 
@@ -1494,19 +1491,19 @@ try {
 
 | 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
-| SUCCESS<sup>9+</sup>    | 12500000      | 执行成功。           |
-| FAIL<sup>9+</sup>                    | 12500001      | 认证失败。           |
-| GENERAL_ERROR<sup>9+</sup>           | 12500002      | 操作通用错误。       |
-| CANCELED<sup>9+</sup>                | 12500003      | 认证取消。           |
-| TIMEOUT<sup>9+</sup>                 | 12500004      | 认证超时。           |
-| TYPE_NOT_SUPPORT<sup>9+</sup>        | 12500005      | 认证类型不支持。      |
-| TRUST_LEVEL_NOT_SUPPORT<sup>9+</sup> | 12500006      | 认证等级不支持。      |
-| BUSY<sup>9+</sup>                    | 12500007      | 系统繁忙。           |
-| INVALID_PARAMETERS<sup>20+</sup>      | 12500008      | 参数校验失败。           |
-| LOCKED<sup>9+</sup>                  | 12500009      | 认证器已锁定。       |
-| NOT_ENROLLED<sup>9+</sup>            | 12500010      | 用户未录入指定的系统身份认证凭据。 |
-| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 用户取消了系统认证方式，选择应用自定义认证。需调用者拉起自定义认证界面。 |
-| PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏口令过期。 |
+| SUCCESS                          | 12500000      | 执行成功。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| FAIL                             | 12500001      | 认证失败。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| GENERAL_ERROR                    | 12500002      | 操作通用错误。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CANCELED                         | 12500003      | 认证取消。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| TIMEOUT                          | 12500004      | 认证超时。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| TYPE_NOT_SUPPORT                 | 12500005      | 认证类型不支持。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TRUST_LEVEL_NOT_SUPPORT          | 12500006      | 认证等级不支持。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| BUSY                             | 12500007      | 系统繁忙。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| INVALID_PARAMETERS<sup>20+</sup> | 12500008      | 参数校验失败。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| LOCKED                           | 12500009      | 认证器已锁定。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| NOT_ENROLLED                     | 12500010      | 用户未录入指定的系统身份认证凭据。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 用户取消了系统认证方式，选择应用自定义认证。需调用者拉起自定义认证界面。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏口令过期。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## UserAuth<sup>(deprecated)</sup>
 

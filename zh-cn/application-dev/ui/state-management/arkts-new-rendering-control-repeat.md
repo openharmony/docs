@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liubihao-->
-<!--SE: @lixingchi1-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 > 
@@ -37,7 +38,7 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 >
 > Repeat功能依赖数组属性的动态修改。如果数组对象被密封（sealed）或冻结（frozen），将导致Repeat部分功能失效，因为密封操作会禁止对象扩展属性并锁定现有属性的配置。
 >
-> 常见触发场景：<br>1）可观察数据的转换：使用[makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)将普通数组（如[collections.Array](../../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray)）转换为可观察数据时，某些实现会自动密封数组。<br>2）主动对象保护：显式调用`Object.seal()`或`Object.freeze()`防止数组被修改。
+> 常见触发场景：<br>1）可观察数据的转换：使用[makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)将普通数组（如[collections.Array](../../reference/apis-arkts/arkts-apis-arkts-collections-Array.md)）转换为可观察数据时，某些实现会自动密封数组。<br>2）主动对象保护：显式调用`Object.seal()`或`Object.freeze()`防止数组被修改。
 
 ## 循环渲染能力说明
 
@@ -81,14 +82,14 @@ struct RepeatExample {
 
 运行后界面如下图所示：
 
-![Repeat-Example-With-Each](./figures/Repeat-Example-With-Each.png)
+![Repeat-Example-With-Each](./figures/Repeat-Example-With-Each.png) 
 
 Repeat提供渲染模板（template）能力，可以在同一个数据源中渲染多种子组件。每个数据项会根据`.templateId()`得到template type，从而渲染type对应的`.template()`中的子组件。
 
-- 如果`.templateId()`缺省，则type默认为空字符串。
-- 当多个template type相同时，Repeat会覆盖先定义的`.template()`函数，仅生效最后定义的`.template()`。
-- 如果找不到对应的template type，Repeat会优先渲染type为空的`.template()`中的子组件，如果没有，则渲染`.each()`中的子组件。
-- 只有相同template的节点可以互相复用。
+- `.each()`等价于template type为空字符串的`.template()`。
+- 当多个template type相同时（包括template type为空字符串），Repeat仅生效最新定义的`.each()`或`.template()`。
+- 如果`.templateId()`缺省，或`templateId()`计算得到的template type不存在，则template type取默认值空字符串。
+- 只有相同template type的节点可以互相复用。
 
 下列示例代码中使用Repeat组件进行循环渲染，并使用了多个渲染模板。
 
@@ -388,10 +389,10 @@ struct RepeatVirtualScrollOnMove {
               Text(obj.item)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-                .size({height: 100, width: "100%"})
+                .size({height: 100, width: '100%'})
             }.margin(10)
             .borderRadius(10)
-            .backgroundColor("#FFFFFFFF")
+            .backgroundColor('#FFFFFFFF')
           })
           .key((item: string, index: number) => {
             return item;
@@ -399,7 +400,7 @@ struct RepeatVirtualScrollOnMove {
           .virtualScroll({ totalCount: this.simpleList.length })
       }
       .border({ width: 1 })
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
       .width('100%')
       .height('100%')
     }
@@ -452,24 +453,24 @@ struct PreInsertDemo {
               Row() {
                 Text(`index: ${obj.index}  `)
                   .fontSize(16)
-                  .fontColor("#70707070")
+                  .fontColor('#70707070')
                   .textAlign(TextAlign.End)
-                  .size({ height: 100, width: "40%" })
+                  .size({ height: 100, width: '40%' })
                 Text(`item: ${obj.item}`)
                   .fontSize(16)
                   .textAlign(TextAlign.Start)
-                  .size({ height: 100, width: "60%" })
+                  .size({ height: 100, width: '60%' })
               }
             }.margin(10)
             .borderRadius(10)
-            .backgroundColor("#FFFFFFFF")
+            .backgroundColor('#FFFFFFFF')
           })
           .key((item: string, index: number) => item)
           .virtualScroll({ totalCount: this.simpleList.length })
       }
       .maintainVisibleContentPosition(true) // 启用前插保持
       .border({ width: 1 })
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
       .width('100%')
       .height('100%')
     }
@@ -508,7 +509,7 @@ struct RepeatVirtualScroll2T {
   @Local selectOptions: SelectOption[] = [];
   @Local selectIdx: number = 0;
 
-  @Monitor("simpleList")
+  @Monitor('simpleList')
   reloadSelectOptions(): void {
     this.selectOptions = [];
     for (let i = 0; i < this.simpleList.length; ++i) {
@@ -670,7 +671,7 @@ struct RepeatNest {
                           .fontSize(20)
                       }
                     })
-                    .key((item) => "innerList_" + item)
+                    .key((item) => 'innerList_' + item)
                     .virtualScroll()
                 }
                 .width('80%')
@@ -682,7 +683,7 @@ struct RepeatNest {
             }
             .border({ width: 1 })
           })
-          .key((item) => "outerList_" + item)
+          .key((item) => 'outerList_' + item)
           .virtualScroll()
       }
       .width('80%')
@@ -727,8 +728,8 @@ struct DemoList {
     for (let i = 0; i < 10; i++) {
       // 此处app.media.listItem0、app.media.listItem1、app.media.listItem2仅作示例，请开发者自行替换
       this.videoList.push(new DemoListItemInfo('视频' + i,
-        i % 3 == 0 ? $r("app.media.listItem0") :
-        i % 3 == 1 ? $r("app.media.listItem1") : $r("app.media.listItem2")));
+        i % 3 == 0 ? $r('app.media.listItem0') :
+        i % 3 == 1 ? $r('app.media.listItem1') : $r('app.media.listItem2')));
     }
   }
 
@@ -830,16 +831,16 @@ struct DemoGrid {
   private layoutOptions: GridLayoutOptions = {
     regularSize: [1, 1],
     irregularIndexes: [10]
-  }
-  private GridScroller: Scroller = new Scroller();
+  };
+  private gridScroller: Scroller = new Scroller();
   private num: number = 0;
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
       // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
       this.itemList.push(new DemoGridItemInfo('视频' + i,
-        i % 3 == 0 ? $r("app.media.gridItem0") :
-        i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
+        i % 3 == 0 ? $r('app.media.gridItem0') :
+        i % 3 == 1 ? $r('app.media.gridItem1') : $r('app.media.gridItem2')));
     }
   }
 
@@ -850,7 +851,7 @@ struct DemoGrid {
         .fontColor(Color.Gray)
 
       Refresh({ refreshing: $$this.isRefreshing }) {
-        Grid(this.GridScroller, this.layoutOptions) {
+        Grid(this.gridScroller, this.layoutOptions) {
           Repeat<DemoGridItemInfo>(this.itemList)
             .each((obj: RepeatItem<DemoGridItemInfo>) => {
               if (obj.index === 10 ) {
@@ -861,7 +862,7 @@ struct DemoGrid {
                 .height(30)
                 .border({ width: 1 })
                 .onClick(() => {
-                  this.GridScroller.scrollToIndex(0);
+                  this.gridScroller.scrollToIndex(0);
                   this.isRefreshing = true;
                 })
                 .onAppear(() => {
@@ -906,8 +907,8 @@ struct DemoGrid {
           for (let i = 0; i < 10; i++) {
             // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
             this.itemList.unshift(new DemoGridItemInfo('新视频' + this.num,
-              i % 3 == 0 ? $r("app.media.gridItem0") :
-              i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
+              i % 3 == 0 ? $r('app.media.gridItem0') :
+              i % 3 == 1 ? $r('app.media.gridItem1') : $r('app.media.gridItem2')));
             this.num++;
           }
           this.isRefreshing = false;
@@ -921,7 +922,7 @@ struct DemoGrid {
 
       Button('刷新')
         .onClick(() => {
-          this.GridScroller.scrollToIndex(0);
+          this.gridScroller.scrollToIndex(0);
           this.isRefreshing = true;
         })
     }
@@ -1147,12 +1148,12 @@ struct RepeatTemplateSingle {
           })
           .template('number', (r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "Reuse");
+              Text(r.index! + ':' + r.item + 'Reuse');
             }
           })
           .each((r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "eachMessage");
+              Text(r.index! + ':' + r.item + 'eachMessage');
             }
           })
       }
@@ -1204,12 +1205,12 @@ struct RepeatTemplateSingle {
           })
           .template('number', (r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "Reuse")
+              Text(r.index! + ':' + r.item + 'Reuse')
             }
           })
           .each((r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "eachMessage")
+              Text(r.index! + ':' + r.item + 'eachMessage')
             }
           })
       }
@@ -1301,7 +1302,7 @@ struct entryCompSucc {
           }, { cachedCount: 5 })
           .each((ri) => {
             ListItem() {
-              Text("Wrong: " + `${ri.item.name} + ${ri.index}`)
+              Text('Wrong: ' + `${ri.item.name} + ${ri.index}`)
                 .width('90%')
                 .height(this.listChildrenSize.childDefaultSize)
                 .backgroundColor(0xFFA07A)
@@ -1322,7 +1323,7 @@ struct entryCompSucc {
         if (this.vehicleItems.length < 50) {
           for (let i = 0; i < 10; i++) {
             if (this.vehicleItems.length < 50) {
-              this.vehicleItems.push(new VehicleData("Vehicle_loaded", i));
+              this.vehicleItems.push(new VehicleData('Vehicle_loaded', i));
             }
           }
         }
@@ -1367,7 +1368,7 @@ struct RepeatBuilderPage {
           Repeat<number>(this.simpleList1)
             .each((ri) => {})
             .virtualScroll({ totalCount: this.simpleList1.length })
-            .templateId((item: number, index: number) => "default")
+            .templateId((item: number, index: number) => 'default')
             .template('default', (ri) => {
               ListItem() {
                 Column() {
@@ -1388,7 +1389,7 @@ struct RepeatBuilderPage {
           Repeat<number>(this.simpleList2)
             .each((ri) => {})
             .virtualScroll({ totalCount: this.simpleList2.length })
-            .templateId((item: number, index: number) => "default")
+            .templateId((item: number, index: number) => 'default')
             .template('default', (ri) => {
               ListItem() {
                 Column() {

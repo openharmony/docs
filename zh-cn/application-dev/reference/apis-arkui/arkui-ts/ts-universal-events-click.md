@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 组件被点击时触发的事件。
 
@@ -33,8 +34,8 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 >  **说明：**
 >
 >  从API version 12开始，在使用卡片能力时，存在以下限制：
->  1. 如果手指按下超过800ms，不能触发点击事件。
->  2. 如果手指按下之后移动位移超过20px，不能触发点击事件。
+>  1. 如果手指按下的持续时间超过800ms，不能触发点击事件。
+>  2. 如果手指按下后移动位移超过20px，不能触发点击事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -49,7 +50,7 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 >  **说明：**
 >
->  如果是滑动操作，但是滑动距离未超过点击事件移动阈值并且抬手时手指在组件热区范围内，也会触发点击事件。
+>  如果执行滑动操作，但滑动距离未超过点击事件移动阈值，并且抬手时手指在组件热区范围内，也会触发点击事件。
 
 **返回值：**
 
@@ -69,9 +70,9 @@ onClick(event: (event: ClickEvent) => void): T
 
 >  **说明：**
 >
->  从API version 9开始，在使用卡片能力时，存在以下限制：
->  1. 如果手指按下超过800ms，不能触发点击事件。
->  2. 如果手指按下之后移动位移超过20px，不能触发点击事件。
+>  从API version 9开始，使用卡片能力时存在以下限制：
+>  1. 如果手指按下的持续时间超过800ms，不能触发点击事件。
+>  2. 如果手指按下后移动位移超过20px，不能触发点击事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -91,26 +92,24 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## ClickEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                 | 描述                                                     |
-| ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| x                   | number                               | 点击位置相对于被点击元素左边缘的X坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
-| y                   | number                               | 点击位置相对于被点击元素原始区域左上角的Y坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
-| target<sup>8+</sup> | [EventTarget](#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| windowX<sup>10+</sup> | number                             | 点击位置相对于应用窗口左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| windowY<sup>10+</sup> | number                             | 点击位置相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| displayX<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| displayY<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| screenX<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的X坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowX代替。 |
-| screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowY代替。 |
-| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| targetDisplayId<sup>15+</sup> | number | 事件发生的屏幕ID。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| globalDisplayX<sup>20+</sup> | number | 点击位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| globalDisplayY<sup>20+</sup> | number | 点击位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| 名称            | 类型                         | 只读 | 可选        | 说明                                                     |
+| ------------------- | ------------------------- | ------ | -------- | -------------------------------------------------------- |
+| x                   | number                               | 否 | 否 | 点击位置相对于被点击元素左边缘的X坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| y                   | number                               | 否 | 否 | 点击位置相对于被点击元素原始区域左上角的Y坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
+| windowX<sup>10+</sup> | number                             | 否 | 否 | 点击位置相对于应用窗口左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| windowY<sup>10+</sup> | number                             | 否 | 否 | 点击位置相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayX<sup>10+</sup> | number                            | 否 | 否 | 点击位置相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayY<sup>10+</sup> | number                            | 否 | 否 | 点击位置相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| screenX<sup>(deprecated)</sup> | number                    | 否 | 否 | 点击位置相对于应用窗口左上角的X坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowX代替。 |
+| screenY<sup>(deprecated)</sup> | number                    | 否 | 否 | 点击位置相对于应用窗口左上角的Y坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowY代替。 |
+| preventDefault<sup>12+</sup>      | () => void | 否 | 否 | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| globalDisplayX<sup>20+</sup> | number | 否 | 是 | 点击位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number | 否 | 是 | 点击位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **错误码：**
 
@@ -122,22 +121,20 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## EventTarget<sup>8+</sup>对象说明
 
-触发事件的元素对象显示区域。
+[BaseEvent](ts-gesture-customize-judge.md#baseevent8)中参数target的类型。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+触发事件的元素对象的显示区域。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 参数类型                      | 描述         |
-| ---- | ------------------------- | ---------- |
-| area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
-| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | 开发者设置的节点id。默认值：undefined |
+| 名称   | 类型                    | 只读 | 可选 | 说明         |
+| ---- | ------------------------- |-----|------| ---------- |
+| area | [Area](ts-types.md#area8) | 否 | 否 | 目标元素的区域信息。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | 否 | 是 | 开发者设置的节点id。默认值：undefined <br/>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## 示例
 
-该示例通过按钮设置了点击事件，点击按钮可获取点击事件的相关参数。
+该示例通过按钮设置点击事件，点击按钮可获取点击事件的相关参数。
 
 ```ts
 // xxx.ets
@@ -155,8 +152,8 @@ struct ClickExample {
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
                 + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
                 + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
-                + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
-                + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
+                + event.target.area.width + '\n  height:' + event.target.area.height + '\n  id:'+ event.target.id
+                + '\ntargetDisplayId:' + event.targetDisplayId + '\ntimestamp' + event.timestamp;
             }
           }, 20)
         Button('Click').width(200).height(50).id('click2')
@@ -165,8 +162,8 @@ struct ClickExample {
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
                 + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
                 + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
-                + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
-                + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
+                + event.target.area.width + '\n  height:' + event.target.area.height + '\n  id:'+ event.target.id
+                + '\ntargetDisplayId:' + event.targetDisplayId + '\ntimestamp' + event.timestamp;
             }
           }, 20)
       }.margin(20)

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 在 clipShape 和 maskShape 接口中可以传入对应的形状。
 
@@ -44,6 +45,8 @@ constructor(options?: ShapeSize)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | 否 | 形状的大小。 |
@@ -72,6 +75,8 @@ constructor(options?: ShapeSize)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | 否 | 形状的大小。 |
@@ -94,11 +99,13 @@ constructor(options?: PathShapeOptions)
 
 创建PathShape对象。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -152,6 +159,8 @@ constructor(options?: RectShapeOptions | RoundRectShapeOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [RectShapeOptions](#rectshapeoptions) &nbsp;\|&nbsp; [RoundRectShapeOptions](#roundrectshapeoptions) | 否 | 矩形形状参数。 |
@@ -172,7 +181,7 @@ radiusWidth(rWidth: number | string): RectShape
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rWidth | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 | 
+| rWidth | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 | 
 
 **返回值：**
 
@@ -196,7 +205,7 @@ radiusHeight(rHeight: number | string): RectShape
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rHeight | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的高度。 <br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
+| rHeight | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的高度。 <br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 |
 
 **返回值：**
 
@@ -220,7 +229,7 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 是 | 矩形形状的圆角半径。仅接受数组的前四个元素，分别为矩形左上，右上，左下，右下的圆角半径。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
+| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 是 | 矩形形状的圆角半径。仅接受数组的前四个元素，分别为矩形左上，右上，左下，右下的圆角半径。<br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 |
 
 **返回值：**
 
@@ -239,10 +248,10 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填                                             | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |<br/>单位：vp |
-| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。 <br/> 类型为number时取值范围是[0, +∞)，string时是length。 |<br/>单位：vp|
+| 名称         | 类型                                               | 只读                                             | 可选                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| width | number &nbsp;\|&nbsp; string | 否 | 是 | 形状的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 |<br/>单位：vp |
+| height | number &nbsp;\|&nbsp; string | 否 | 是 | 形状的高度。 <br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 |<br/>单位：vp|
 
 ## PathShapeOptions
 
@@ -254,9 +263,9 @@ PathShape 的构造函数参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填                                             | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| commands | string | 否 | 绘制路径的指令。更多说明请参考commands支持的[绘制命令](./arkui-ts/ts-drawing-components-path.md#commands)。 |
+| 名称         | 类型                                               | 只读                                             | 可选                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| commands | string | 否 | 是 | 绘制路径的指令。更多说明请参考commands支持的[绘制命令](./arkui-ts/ts-drawing-components-path.md#commands)。 |
 
 ## RectShapeOptions
 
@@ -270,9 +279,9 @@ RectShape 的构造函数参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填                                             | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 否 | 矩形形状的圆角半径。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
+| 名称         | 类型                                               | 只读                                             | 可选                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 否 | 是 | 矩形形状的圆角半径。<br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 |
 
 ## RoundRectShapeOptions
 
@@ -286,10 +295,10 @@ RectShape 带有半径的构造函数参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填                                             | 说明                                         |
-| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radiusWidth | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
-| radiusHeight | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的高度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
+| 名称         | 类型                                               | 只读                                             | 可选                                             | 说明                                         |
+| ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| radiusWidth | number &nbsp;\|&nbsp; string | 否 | 是 | 矩形形状圆角半径的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 |
+| radiusHeight | number &nbsp;\|&nbsp; string | 否 | 是 | 矩形形状圆角半径的高度。<br/> 类型为number时取值范围是[0, +∞)，string时是[Length](arkui-ts/ts-types.md#length)。 |
 
 ## BaseShape
 

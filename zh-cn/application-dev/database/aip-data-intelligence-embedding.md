@@ -1,15 +1,16 @@
 # 应用数据向量化 (ArkTS)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
-<!--Owner: @my-2024-->
-<!--SE: @cuile44; @fysun17; @AnruiWang; @xd_94; @pancodax-->
-<!--TSE: @yippo; @logic42-->
+<!--Owner: @my-2024; @cuile44; @pancodax-->
+<!--Designer: @fysun17; @AnruiWang; @xd_94-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
 在数字化向智能化演进的关键阶段，构建智慧化服务已成为应用开发者提升产品竞争力的必然选择。
 
-当前，系统提供ArkData智慧数据平台（Arkdata Intelligence Platform，AIP），提供端侧数据智慧化构建，使应用数据向量化，通过嵌入模型将非结构化的文本、图像等多模态数据，转换成具有语义的向量。
+当前，系统提供ArkData智慧数据平台（ArkData Intelligence Platform，AIP），提供端侧数据智慧化构建，使应用数据向量化，通过嵌入模型将非结构化的文本、图像等多模态数据，转换成具有语义的向量。
 
 ## 基本概念
 
@@ -164,7 +165,7 @@
    ```
 
 2. 获取图像嵌入模型。
-   调用getTextEmbeddingModel方法，获取图像嵌入模型。示例代码如下所示：
+   调用getImageEmbeddingModel方法，获取图像嵌入模型。示例代码如下所示：
 
    ```ts
    let imageConfig:intelligence.ModelConfig = {

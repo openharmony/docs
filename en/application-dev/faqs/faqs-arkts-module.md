@@ -125,7 +125,7 @@ load libentry.so failed.
 
 **Possible cause, locating method, and solution** 
 
-For details, see [Node-API FAQs](https://gitee.com/openharmony/docs/blob/master/en/application-dev/napi/use-napi-faqs.md).
+For details, see [Node-API FAQs](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/napi/use-napi-faqs.md).
 
 
 ## Initialization Errors at Runtime Caused by Inter-Module Circular Dependency

@@ -1,8 +1,20 @@
 # Permissions for Enterprise Applications
 
-The following permissions are available to <!--Del-->system applications and <!--DelEnd-->enterprise applications. Enterprise applications include normal enterprise apps and Mobile Device Management (MDM) applications.
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
 
-The distribution type of enterprise applications can be **enterprise_normal** (normal enterprise application) or **enterprise_mdm** (MDM application). You can <!--RP1-->obtain the distribution type from the **app-distribution-type** field in the [HarmonyAppProvision configuration file](../app-provision-structure.md).<!--RP1End-->
+The following permissions are open to <!--Del-->system applications and <!--DelEnd-->enterprise applications.
+
+Enterprise applications include normal enterprise applications and mobile device management (MDM) applications.
+
+Enterprise applications have the following characteristics:
+
+- It runs only on enterprise-customized devices and does not run on common consumer devices.
+- The distribution types are enterprise_normal (normal enterprise applications) and enterprise_mdm (MDM applications).
+<!--RP1--><!--RP1End-->
 
 For details about how to request the permissions for enterprise applications, see [declaring permissions](declare-permissions.md).
 
@@ -29,6 +41,8 @@ Allows an application to update the file guard policy.
 
 Allows an application to scan media and sandbox and set file extended properties.
 
+Currently, the extended attributes include the file security level and file label.
+
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
@@ -53,9 +67,9 @@ With this permission, the application can obtain the write permission on user fi
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported Devices**：PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -75,6 +89,8 @@ Allows an application to interact across local accounts.
 ## ohos.permission.GET_RUNNING_INFO
 
 Allows an application to obtain running status information of another application.
+
+With this permission, the application can obtain the runtime information of other applications, including the **Ability**, **Extension**, and **Application** information.
 
 **Permission level**: system_basic
 
@@ -104,7 +120,9 @@ Allows an application to listen for the state of another application.
 
 ## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-Allows an application to obtain basic information and sensitive information about another application.
+Allows an application to obtain basic information and sensitive information about another application,
+
+such as the app bundle name and version.
 
 **Permission level**: system_basic
 
@@ -121,11 +139,11 @@ Allows an application to obtain basic information and sensitive information abou
 
 Allows an application to obtain the Wi-Fi configuration.
 
-Currently, this permission is available only to applications running on PCs and 2-in-1 devices.
-
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
+
+**Supported devices**: PCs/2-in-1 devices
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
@@ -137,6 +155,8 @@ Currently, this permission is available only to applications running on PCs and 
 ## ohos.permission.SET_WIFI_CONFIG
 
 Allows an application to configure Wi-Fi information.
+
+With this permission, the application can add and delete Wi-Fi networks, and modify Wi-Fi configurations.
 
 **Permission level**: system_basic
 
@@ -166,7 +186,7 @@ Allows an application to obtain domain account information.
 
 ## ohos.permission.QUERY_AUDIT_EVENT
 
-Allows an application to query security audit events.
+Allows an enterprise security application to query security audit events.
 
 **Permission level**: system_basic
 
@@ -181,7 +201,9 @@ Allows an application to query security audit events.
 
 ## ohos.permission.KILL_APP_PROCESSES
 
-Allows a system application to kill other applications.
+Allows a system application to kill other application processes.
+
+With this permission, the system application can terminate other running applications and manage processes in the system when necessary.
 
 **Permission level**: system_basic
 
@@ -194,7 +216,7 @@ Allows a system application to kill other applications.
 
 **Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
 
-### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
 
@@ -207,11 +229,13 @@ Allows a system application or carrier application to set the eSIM nickname and 
 
 **Valid since**: 14
 
-**Changelog**: Since API version 14, the permission level is changed to system_basic, and this permission is available only to normal enterprise applications instead of all applications.
+**Changelog**: The permission level is **normal** in API versions 13 and **system_basic** since API versions 14.
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 Allows an application to manage Wi-Fi connections.
+
+With this permission, the application can enable or disable Wi-Fi, connect to Wi-Fi, and disconnect from Wi-Fi.
 
 **Permission level**: system_basic
 
@@ -339,24 +363,7 @@ Allows an application to obtain visible window information of the current screen
 
 Allows an enterprise security application to block security audit events.
 
-With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Supported devices**: PC/2in1
-
-**Valid since**：20
-
-## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
-
-Allows an application to be launched as an AppServiceExtension.
-
-With this permission, the application can be launched or connected as an AppServiceExtension by the same application or applications in appidentifierAllowList.
+With this permission, the enterprise security application can block security audit events, including file creation, opening, and deletion.
 
 **Permission level**: system_basic
 
@@ -365,15 +372,32 @@ With this permission, the application can be launched or connected as an AppServ
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported Devices**：PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20
+
+## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
+
+Allows an application to be started as an **AppServiceExtension**.
+
+With this permission, the application can be started or connected as an **AppServiceExtension** by the same application or an application in the **appidentifierAllowList** configuration.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PCs/2-in-1 devices
+
+**Valid since**: 20
 
 ## ohos.permission.ENTERPRISE_MANAGE_EAP
 
 Allows enterprise network security software to add private information to EAP packets.
 
-With this permission, the software can obtain 802.1x packets and add information to complete customized authentication.
+With this permission, the software can obtain 802.1X packets and add information to complete custom authentication.
 
 **Permission level**: system_basic
 
@@ -382,43 +406,43 @@ With this permission, the software can obtain 802.1x packets and add information
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported Devices**：PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.SUPPORT_INSTALL_ON_U1
 
-Allows an application to install on user 1.
+Allows an application to be installed under User1.
 
-User 1 is a user who supports third-party applications running in singleton mode.
+User1 is a user who supports third-party applications running in singleton mode.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.QUERY_LOCAL_WORKSPACES
 
-Allows a normal enterprise application to query workspace and the list of non-deletable workspaces.
+Allows a normal enterprise application to query workspaces and the list of workspaces that cannot be deleted.
 
-With this permission, the application can query basic workspace information and the list of non-deletable workspaces.
+With this permission, the application can query the basic information about workspaces and the workspaces that cannot be deleted.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.SET_NET_EXT_ATTRIBUTE
 
@@ -426,75 +450,75 @@ Allows an application to set network-specific extended attributes.
 
 With this permission, the application can specify whether a network is identified as internal or external.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.MANAGE_ANTIVIRUS
 
 Allows an enterprise application to manage antivirus software.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.REGISTER_ANTIVIRUS
 
 Allows enterprise antivirus software to register with the system and update basic information.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Supported devices**: phones | PCs/2-in-1 devices | tablets
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.CALL_TPM_CMD
 
-Allows an application to call Trusted Platform Module(TPM) commands.
+Allows an application to call Trusted Platform Module (TPM) commands.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20
 
 ## ohos.permission.ENTERPRISE_WORKSPACES_EVENT_SUBSCRIBE
 
 Allows an enterprise application to subscribe to events related to the enterprise workspace.
 
-With this permission, the application can call spaceManager.subscribeEvent or spaceManager.unsubscribeEvent to subscribe to or unsubscribe from events related to the enterprise workspace.
+With this permission, the application can call **spaceManager.subscribeEvent** or **spaceManager.unsubscribeEvent** to subscribe to or unsubscribe from events related to the enterprise workspace.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Supported devices**: PC/2in1
+**Supported devices**: PCs/2-in-1 devices
 
-**Valid since**：20
+**Valid since**: 20

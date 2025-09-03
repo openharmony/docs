@@ -1,10 +1,16 @@
 # Combined Gestures
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 Continuous recognition, parallel recognition, and exclusive recognition are supported for a group of gestures.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## APIs
 
@@ -19,7 +25,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 | Name | Type                                                    | Mandatory| Description                                                    |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode    | [GestureMode](#gesturemode)                          | Yes  | Recognition mode of combined gestures.<br>Default value: **GestureMode.Sequence**     |
-| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md)<br>\| [SwipeGesture](ts-basic-gestures-swipegesture.md)<br>\| [GestureGroup](#combined-gestures) | No  | One or more basic gestures to be recognized simultaneously. If this parameter is left empty, simultaneous recognition will not take effect.<br>**NOTE**<br>To add both tap and double-tap gestures for a component, add two TapGestures, with the tap gesture added after the double-tap gesture.|
+| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md)<br>\| [SwipeGesture](ts-basic-gestures-swipegesture.md)<br>\| GestureGroup | No  | One or more basic gestures to be recognized simultaneously. If this parameter is left empty, simultaneous recognition will not take effect.<br>**NOTE**<br>To add both tap and double-tap gestures for a component, add two TapGestures, with the tap gesture added after the double-tap gesture.|
 
 ## GestureMode
 
@@ -27,21 +33,34 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Description                                      |
-| --------- | ---------------------------------------- |
-| Sequence  | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized.<br>Only the last gesture in the sequential recognition gesture group can respond to **onActionEnd**.|
-| Parallel  | Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The recognition result of each gesture does not affect each other.    |
-| Exclusive | Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully recognized, gesture recognition ends.      |
+| Name   | Value   | Description                                      |
+| --------- | -------| ------------------------------------- |
+| Sequence | - | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized.<br>Only the last gesture in the sequential recognition gesture group can respond to **onActionEnd**.|
+| Parallel | - | Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The recognition result of each gesture does not affect each other.    |
+| Exclusive| - | Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully recognized, gesture recognition ends.      |
 
 
 ## Events
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                                      | Description                                |
-| ---------------------------------------- | ------------------------------------ |
-| onCancel(event: () =&gt; void) | Callback for the GestureMode.Sequence cancellation event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+### onCancel
 
+onCancel(event: () => void)
+
+Invoked when a tap cancellation event is received after a gesture is recognized.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  event: () => void | Yes  | Callback for the gesture event.|
 
 ## Example
 
@@ -109,7 +128,7 @@ struct GestureGroupExample {
 
 Diagram:
 
-In sequence recognition mode the long press gesture event is triggered first.
+In sequence recognition mode, the long press gesture event is triggered first.
 
 ![en-us_image_0000001174104384](figures/en-us_image_0000001174104384.png)
 

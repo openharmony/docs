@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @ding-xin88-->
-<!--SE: @LongLie-->
-<!--TSE: @ghiker-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 在系统中，应用可以使用Web组件加载Web网页。当非系统框架的UI组件功能或性能不如系统组件时，可使用同层渲染技术，通过ArkUI组件渲染这些组件（简称为同层组件）。
 
@@ -19,7 +20,7 @@
 ### 三方UI框架
 Flutter提供了PlatformView与Texture抽象组件，这些组件可使用系统组件渲染，用来支持Flutter组件功能不足的部分。Weex2.0框架的Camera、Video和Canvas组件可以使用系统组件渲染，以增强功能和性能。
 
-- 在三方框架页面侧，由于Flutter、Weex等三方框架不在操作系统范围，本文不列举可被同层渲染的三方框架UI组件的范围与使用方式。
+- 在三方框架页面侧，由于Flutter、Weex等三方框架不在操作系统范围内，本文不列举可被同层渲染的三方框架UI组件的范围与使用方式。
 
 - 在应用侧，应用开发者可以使用ArkUI的NodeContainer等接口，构建三方框架同层标签对应的同层渲染组件。可支持同层渲染的ArkUI常用组件包括：[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md), [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [Web](../reference/apis-arkweb/arkts-basic-components-web.md)。具体规格可参见[同层渲染规格](#规格约束)。
 
@@ -338,11 +339,11 @@ display，position，z-index，visibility，opacity, background-color，backgrou
               .registerNativeEmbedRule("object", "test")
                 // 获取<embed>标签的生命周期变化数据。
               .onNativeEmbedLifecycleChange((embed) => {
-                console.log("NativeEmbed surfaceId" + embed.surfaceId);
+                console.info("NativeEmbed surfaceId" + embed.surfaceId);
                 // 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id。
                 const componentId = embed.info?.id?.toString() as string
                 if (embed.status == NativeEmbedStatus.CREATE) {
-                  console.log("NativeEmbed create" + JSON.stringify(embed.info));
+                  console.info("NativeEmbed create" + JSON.stringify(embed.info));
                   // 创建节点控制器、设置参数并rebuild。
                   let nodeController = new MyNodeController()
                   // embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp。
@@ -363,14 +364,14 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                   this.componentIdArr.push(componentId)
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   let nodeController = this.nodeControllerMap.get(componentId);
-                  console.log("NativeEmbed update" + JSON.stringify(embed));
+                  console.info("NativeEmbed update" + JSON.stringify(embed));
                   this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   this.positionMap.set(componentId, this.edges);
                   this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
                   this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
                   nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
                 } else if (embed.status == NativeEmbedStatus.DESTROY) {
-                  console.log("NativeEmbed destroy" + JSON.stringify(embed));
+                  console.info("NativeEmbed destroy" + JSON.stringify(embed));
                   let nodeController = this.nodeControllerMap.get(componentId);
                   nodeController?.setDestroy(true);
                   this.nodeControllerMap.delete(componentId);
@@ -379,7 +380,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                   this.heightMap.delete(componentId);
                   this.componentIdArr = this.componentIdArr.filter((value: string) => value !== componentId);
                 } else {
-                  console.log("NativeEmbed status" + embed.status);
+                  console.info("NativeEmbed status" + embed.status);
                 }
               })
           }.height("80%")
@@ -414,16 +415,16 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                 // 生命周期变化实现。
               })
               .onNativeEmbedGestureEvent((touch) => {
-                console.log("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
+                console.info("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                   if(nodeController?.getEmbedId() == touch.embedId) {
                     let ret = nodeController?.postEvent(touch.touchEvent)
                     if(ret) {
-                      console.log("onNativeEmbedGestureEvent success " + componentId);
+                      console.info("onNativeEmbedGestureEvent success " + componentId);
                     } else {
-                      console.log("onNativeEmbedGestureEvent fail " + componentId);
+                      console.info("onNativeEmbedGestureEvent fail " + componentId);
                     }
                     if(touch.result) {
                       // 通知Web组件手势事件消费结果。
@@ -470,16 +471,16 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                 // 处理同层渲染手势事件。
               })
               .onNativeEmbedMouseEvent((mouse) => {
-                console.log("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
+                console.info("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                   if(nodeController?.getEmbedId() == mouse.embedId) {
                     let ret = nodeController?.postInputEvent(mouse.mouseEvent)
                     if(ret) {
-                      console.log("onNativeEmbedMouseEvent success " + componentId);
+                      console.info("onNativeEmbedMouseEvent success " + componentId);
                     } else {
-                      console.log("onNativeEmbedMouseEvent fail " + componentId);
+                      console.info("onNativeEmbedMouseEvent fail " + componentId);
                     }
                     if(mouse.result) {
                       // 通知Web组件鼠标事件消费结果。
@@ -495,7 +496,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
     ```
 **完整示例：**
 
-使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
   ```
   "requestPermissions":[
@@ -652,11 +653,11 @@ display，position，z-index，visibility，opacity, background-color，backgrou
               .enableNativeEmbedMode(true)
               // 获取<embed>标签的生命周期变化数据。
               .onNativeEmbedLifecycleChange((embed) => {
-                 console.log("NativeEmbed surfaceId" + embed.surfaceId);
+                 console.info("NativeEmbed surfaceId" + embed.surfaceId);
                  // 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id。
                  const componentId = embed.info?.id?.toString() as string
                  if (embed.status == NativeEmbedStatus.CREATE) {
-                   console.log("NativeEmbed create" + JSON.stringify(embed.info));
+                   console.info("NativeEmbed create" + JSON.stringify(embed.info));
                    // 创建节点控制器、设置参数并rebuild。
                    let nodeController = new MyNodeController()
                    // embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp。
@@ -677,14 +678,14 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                    this.componentIdArr.push(componentId)
                  } else if (embed.status == NativeEmbedStatus.UPDATE) {
                    let nodeController = this.nodeControllerMap.get(componentId);
-                   console.log("NativeEmbed update" + JSON.stringify(embed));
+                   console.info("NativeEmbed update" + JSON.stringify(embed));
                    this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                    this.positionMap.set(componentId, this.edges);
                    this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
                    this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
                    nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
                  } else if (embed.status == NativeEmbedStatus.DESTROY) {
-                   console.log("NativeEmbed destroy" + JSON.stringify(embed));
+                   console.info("NativeEmbed destroy" + JSON.stringify(embed));
                    let nodeController = this.nodeControllerMap.get(componentId);
                    nodeController?.setDestroy(true);
                    this.nodeControllerMap.delete(componentId);
@@ -693,20 +694,20 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                    this.heightMap.delete(componentId);
                    this.componentIdArr = this.componentIdArr.filter((value: string) => value !== componentId);
                  } else {
-                   console.log("NativeEmbed status" + embed.status);
+                   console.info("NativeEmbed status" + embed.status);
                  }
                })// 获取同层渲染组件触摸事件信息。
               .onNativeEmbedGestureEvent((touch) => {
-                console.log("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
+                console.info("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                   if(nodeController?.getEmbedId() == touch.embedId) {
                     let ret = nodeController?.postEvent(touch.touchEvent)
                     if(ret) {
-                      console.log("onNativeEmbedGestureEvent success " + componentId);
+                      console.info("onNativeEmbedGestureEvent success " + componentId);
                     } else {
-                      console.log("onNativeEmbedGestureEvent fail " + componentId);
+                      console.info("onNativeEmbedGestureEvent fail " + componentId);
                     }
                     if(touch.result) {
                       // 通知Web组件手势事件消费结果。
@@ -716,16 +717,16 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                 })
               })
               .onNativeEmbedMouseEvent((mouse) => {
-                console.log("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
+                console.info("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                   if(nodeController?.getEmbedId() == mouse.embedId) {
                     let ret = nodeController?.postInputEvent(mouse.mouseEvent)
                     if(ret) {
-                      console.log("onNativeEmbedMouseEvent success " + componentId);
+                      console.info("onNativeEmbedMouseEvent success " + componentId);
                     } else {
-                      console.log("onNativeEmbedMouseEvent fail " + componentId);
+                      console.info("onNativeEmbedMouseEvent fail " + componentId);
                     }
                     if(mouse.result) {
                       // 通知Web组件鼠标事件消费结果。
@@ -897,11 +898,11 @@ display，position，z-index，visibility，opacity, background-color，backgrou
               .enableNativeEmbedMode(true)
                 // 获取<embed>标签的生命周期变化数据。
               .onNativeEmbedLifecycleChange((embed) => {
-                console.log("NativeEmbed surfaceId" + embed.surfaceId);
+                console.info("NativeEmbed surfaceId" + embed.surfaceId);
                 // 1. 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id。
                 const componentId = embed.info?.id?.toString() as string
                 if (embed.status == NativeEmbedStatus.CREATE) {
-                  console.log("NativeEmbed create" + JSON.stringify(embed.info))
+                  console.info("NativeEmbed create" + JSON.stringify(embed.info))
                   // 创建节点控制器，设置参数并rebuild。
                   let nodeController = new MyNodeController()
                   // 1. embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp。
@@ -933,20 +934,20 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                   this.heightMap.delete(componentId);
                   this.componentIdArr = this.componentIdArr.filter((value: string) => value !== componentId);
                 } else {
-                  console.log("NativeEmbed status" + embed.status);
+                  console.info("NativeEmbed status" + embed.status);
                 }
               })// 获取同层渲染组件触摸事件信息。
               .onNativeEmbedGestureEvent((touch) => {
-                console.log("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
+                console.info("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId)
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                   if (nodeController?.getEmbedId() === touch.embedId) {
                     let ret = nodeController?.postEvent(touch.touchEvent)
                     if (ret) {
-                      console.log("onNativeEmbedGestureEvent success " + componentId)
+                      console.info("onNativeEmbedGestureEvent success " + componentId)
                     } else {
-                      console.log("onNativeEmbedGestureEvent fail " + componentId)
+                      console.info("onNativeEmbedGestureEvent fail " + componentId)
                     }
                     if (touch.result) {
                       // 通知Web组件手势事件消费结果。
@@ -956,16 +957,16 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                 })
               })
               .onNativeEmbedMouseEvent((mouse) => {
-                console.log("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
+                console.info("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                   if(nodeController?.getEmbedId() == mouse.embedId) {
                     let ret = nodeController?.postInputEvent(mouse.mouseEvent)
                     if(ret) {
-                      console.log("onNativeEmbedMouseEvent success " + componentId);
+                      console.info("onNativeEmbedMouseEvent success " + componentId);
                     } else {
-                      console.log("onNativeEmbedMouseEvent fail " + componentId);
+                      console.info("onNativeEmbedMouseEvent fail " + componentId);
                     }
                     if(mouse.result) {
                       // 通知Web组件鼠标事件消费结果。
@@ -994,7 +995,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
     private isSeek: boolean = true; // 用于区分模式是否支持seek操作。
 
     setSurfaceID(surface_id: string){
-      console.log('setSurfaceID : ' + surface_id);
+      console.info('setSurfaceID : ' + surface_id);
       this.surfaceID = surface_id;
     }
     // 注册avplayer回调函数。
@@ -1283,11 +1284,11 @@ display，position，z-index，visibility，opacity, background-color，backgrou
               .enableNativeEmbedMode(true)
                 // 获取<embed>标签的生命周期变化数据。
               .onNativeEmbedLifecycleChange((embed) => {
-                console.log("NativeEmbed surfaceId" + embed.surfaceId);
+                console.info("NativeEmbed surfaceId" + embed.surfaceId);
                 // 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id。
                 const componentId = embed.info?.id?.toString() as string
                 if (embed.status == NativeEmbedStatus.CREATE) {
-                  console.log("NativeEmbed create" + JSON.stringify(embed.info));
+                  console.info("NativeEmbed create" + JSON.stringify(embed.info));
                   // 创建节点控制器、设置参数并rebuild。
                   let nodeController = new MyNodeController()
                   // embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp。
@@ -1308,14 +1309,14 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                   this.componentIdArr.push(componentId)
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   let nodeController = this.nodeControllerMap.get(componentId);
-                  console.log("NativeEmbed update" + JSON.stringify(embed));
+                  console.info("NativeEmbed update" + JSON.stringify(embed));
                   this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   this.positionMap.set(componentId, this.edges);
                   this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
                   this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
                   nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
                 } else if (embed.status == NativeEmbedStatus.DESTROY) {
-                  console.log("NativeEmbed destroy" + JSON.stringify(embed));
+                  console.info("NativeEmbed destroy" + JSON.stringify(embed));
                   let nodeController = this.nodeControllerMap.get(componentId);
                   nodeController?.setDestroy(true);
                   this.nodeControllerMap.delete(componentId);
@@ -1324,20 +1325,20 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                   this.heightMap.delete(componentId);
                   this.componentIdArr = this.componentIdArr.filter((value: string) => value !== componentId);
                 } else {
-                  console.log("NativeEmbed status" + embed.status);
+                  console.info("NativeEmbed status" + embed.status);
                 }
               })// 获取同层渲染组件触摸事件信息。
               .onNativeEmbedGestureEvent((touch) => {
-                console.log("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
+                console.info("NativeEmbed onNativeEmbedGestureEvent" + JSON.stringify(touch.touchEvent));
                 this.componentIdArr.forEach((componentId: string) => {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                   if(nodeController?.getEmbedId() == touch.embedId) {
                     let ret = nodeController?.postEvent(touch.touchEvent)
                     if(ret) {
-                      console.log("onNativeEmbedGestureEvent success " + componentId);
+                      console.info("onNativeEmbedGestureEvent success " + componentId);
                     } else {
-                      console.log("onNativeEmbedGestureEvent fail " + componentId);
+                      console.info("onNativeEmbedGestureEvent fail " + componentId);
                     }
                     if(touch.result) {
                       // 通知Web组件手势事件消费结果。

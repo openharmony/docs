@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -13,7 +14,7 @@
 
 **错误信息**
 
-This component is not focusable.
+the component cannot be focused.
 
 **错误描述**
 
@@ -49,7 +50,7 @@ NA
 
 **错误信息**
 
-The component doesn't exist, is currently invisible, or has been disabled.
+the component is not on tree or does not exist.
 
 **错误描述**
 

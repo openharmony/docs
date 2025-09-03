@@ -1,4 +1,9 @@
 # Using Image_NativeModule to Edit EXIF Data
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 Image Kit provides the capabilities of reading and editing Exchangeable Image File Format (EXIF) data.
 

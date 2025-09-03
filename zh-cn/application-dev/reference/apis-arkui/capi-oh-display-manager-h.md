@@ -1,4 +1,10 @@
 # oh_display_manager.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -73,8 +79,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint6
 
 获取默认屏幕的id号。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -99,8 +103,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(in
 **描述**
 
 获取默认屏幕的宽度。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -127,8 +129,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(i
 
 获取默认屏幕的高度。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -153,8 +153,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation
 **描述**
 
 获取默认屏幕的顺时针旋转角度。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -181,8 +179,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientat
 
 获取默认屏幕的旋转方向。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -207,8 +203,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualP
 **描述**
 
 获取默认屏幕的虚拟像素密度。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -235,8 +229,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
 
 获取默认屏幕的刷新率。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -244,7 +236,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t *refreshRate | 屏幕的刷新率，该参数应为整数，单位为hz，此处作为出参返回。 |
+| uint32_t *refreshRate | 屏幕的刷新率，该参数应为整数，单位为Hz，此处作为出参返回。 |
 
 **返回：**
 
@@ -261,8 +253,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityD
 **描述**
 
 获取屏幕的物理像素密度。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -289,8 +279,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityP
 
 获取屏幕逻辑像素的密度。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -315,8 +303,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDe
 **描述**
 
 获取屏幕显示字体的缩放因子。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -343,8 +329,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityX
 
 获取屏幕X方向中每英寸屏幕的物理像素值。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -369,8 +353,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityY
 **描述**
 
 获取Y方向中每英寸屏幕的物理像素值。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -397,8 +379,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
 
 获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -423,8 +403,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCuto
 **描述**
 
 销毁挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -451,8 +429,6 @@ bool OH_NativeDisplayManager_IsFoldable()
 
 查询设备是否可折叠。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 **返回：**
@@ -471,9 +447,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(Native
 
 获取可折叠设备的显示模式。
 
-**系统能力：** SystemCapability.Window.SessionManager
-
 **起始版本：** 12
+
+**设备行为差异：** 该接口在2in1设备、非折叠设备中返回0，在其他设备中可正常调用。
 
 
 **参数：**
@@ -498,8 +474,6 @@ typedef void (*OH_NativeDisplayManager_DisplayChangeCallback)(uint64_t displayId
 
 注册屏幕状态变化的回调函数。
 
-**系统能力：** SystemCapability.Window.SessionManager
-
 **起始版本：** 12
 
 
@@ -518,8 +492,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeList
 **描述**
 
 注册屏幕状态变化监听（如旋转变化、刷新率、DPI、分辨率等变化）。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -547,8 +519,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeLi
 
 取消屏幕状态变化的监听。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 
@@ -574,8 +544,6 @@ typedef void (*OH_NativeDisplayManager_FoldDisplayModeChangeCallback)(NativeDisp
 
 注册屏幕展开、折叠状态变化的回调函数。
 
-**系统能力：** SystemCapability.Window.SessionManager
-
 **起始版本：** 12
 
 
@@ -594,8 +562,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
 **描述**
 
 注册屏幕展开、折叠状态变化的监听。
-
-**系统能力：** SystemCapability.Window.SessionManager
 
 **起始版本：** 12
 
@@ -623,8 +589,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayMode
 
 取消屏幕展开、折叠状态变化的监听。
 
-**系统能力：** SystemCapability.Window.SessionManager
-
 **起始版本：** 12
 
 
@@ -649,8 +613,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(NativeD
 **描述**
 
 获取当前所有屏幕信息对象。
-
-**系统能力：** SystemCapability.Window.SessionManager.Core
 
 **起始版本：** 14
 
@@ -677,8 +639,6 @@ void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInf
 
 销毁所有屏幕的信息对象。
 
-**系统能力：** SystemCapability.Window.SessionManager.Core
-
 **起始版本：** 14
 
 
@@ -697,8 +657,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_
 **描述**
 
 获取指定屏幕的信息对象。
-
-**系统能力：** SystemCapability.Window.SessionManager.Core
 
 **起始版本：** 14
 
@@ -726,8 +684,6 @@ void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *di
 
 销毁指定屏幕的信息对象。
 
-**系统能力：** SystemCapability.Window.SessionManager.Core
-
 **起始版本：** 14
 
 
@@ -746,8 +702,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(Nati
 **描述**
 
 获取主屏信息对象。除2in1之外的设备获取的是设备自带屏幕的屏幕信息；2in1设备外接屏幕时获取的是当前主屏幕的屏幕信息；2in1设备没有外接屏幕时获取的是自带屏幕的屏幕信息。
-
-**系统能力：** SystemCapability.Window.SessionManager.Core
 
 **起始版本：** 14
 
@@ -842,9 +796,11 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint6
 
 **描述**
 
-获取屏幕的可用区域。该接口仅可在2in1设备使用。
+获取屏幕的可用区域。
 
 **起始版本：** 20
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过[OH_NativeDisplayManager_GetDefaultDisplayWidth()](#oh_nativedisplaymanager_getdefaultdisplaywidth)、[OH_NativeDisplayManager_GetDefaultDisplayHeight()](#oh_nativedisplaymanager_getdefaultdisplayheight)获取当前设备屏幕的可用区域。
 
 
 **参数：**
@@ -868,7 +824,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(Nati
 
 **描述**
 
-销毁屏幕的可用区域。该接口仅可在2in1设备使用。
+销毁屏幕的可用区域。
 
 **起始版本：** 20
 

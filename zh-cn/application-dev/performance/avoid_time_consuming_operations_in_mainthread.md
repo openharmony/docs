@@ -1,4 +1,12 @@
 # 避免在主线程中执行耗时操作
+
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介
 在应用开发中，经常会调用执行耗时的接口，比如服务端数据接口，本地文件读取接口。如果不进行合理的处理，可能会引起卡顿等性能问题。
 ## 问题场景
@@ -38,12 +46,10 @@
   async mockRequestData(): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
     // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
-    await this.getUIContext().getHostContext()?.resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
-      // 耗时回调函数
-      let jsonData = buffer.from(data).toString();
-      let res: responseData = JSON.parse(jsonData);
-      result = res.data;
-    })
+    let data: Uint8Array = await context.resourceManager.getRawFileContent("data.json");
+    let jsonData: string = buffer.from(data).toString();
+    let res: responseData = JSON.parse(jsonData);
+    result = res.data;
     return this.transArrayDTO2VO(result);
   }
   // ...
@@ -54,9 +60,9 @@
 
 从图中可以看到，在主线程中出现了大块的耗时，直接导致用户在滑动的时候能感受到明显的卡顿。异步回调函数最后也由主线程执行，所以应该尽量避免在回调函数中执行耗时操作。
 
-### 优化代码
 
-#### 优化思路：使用多线程能力
+
+### 优化思路：使用多线程能力
 使用系统自带的[TaskPool](../arkts-utils//taskpool-introduction.md)多线程能力。
 ```ts
   build() {
@@ -97,11 +103,10 @@
   async function mockRequestData(index: number, context: Context): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
     // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
-    await context.resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
-      let jsonData = buffer.from(data).toString();
-      let res: responseData = JSON.parse(jsonData);
-      result = res.data;
-    })
+    let data: Uint8Array = await context.resourceManager.getRawFileContent("data.json");
+    let jsonData: string = buffer.from(data).toString();
+    let res: responseData = JSON.parse(jsonData);
+    result = res.data;
     return transArrayDTO2VO(result, index);
   }
 ```
@@ -112,7 +117,7 @@
 
 从图中可以看到，主线程阻塞耗时明显减少，同时在右上角出现了新的trace，__H:Deserialize__，这个trace表示在反序列化taskpool线程返回的数据。依然存在一定耗时(17ms) 容易出现丢帧等问题。针对跨线程的序列化耗时问题，系统提供了[@Sendable装饰器](../arkts-utils/arkts-sendable.md#sendable装饰器)来实现内存共享。可以在返回的类对象ModelDetailVO上使用@Sendable装饰器，继续优化性能。
 
-#### 优化思路：可以使用@Sendable装饰器提升数据传输和同步效率
+### 优化思路：可以使用@Sendable装饰器提升数据传输和同步效率
 多线程存在线程间通信耗时问题，如果涉及数据较大的情况，可以使用[@Sendable](../arkts-utils/arkts-sendable.md)。
 
 ```c++

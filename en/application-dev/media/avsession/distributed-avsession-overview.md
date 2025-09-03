@@ -1,4 +1,9 @@
 # Distributed AVSession Overview (for System Applications Only)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 With distributed AVSession, OpenHarmony allows users to project locally played media to a distributed device for a better playback effect. For example, users can project audio played on a tablet to a smart speaker.
 
@@ -11,21 +16,21 @@ After the local device is paired with a distributed device, the controller on th
 
 ![Distributed AVSession Interaction Process](figures/distributed-avsession-interaction-process.png)
 
-The AVSession service on the distributed device automatically creates an **AVSession** object for information synchronization with the local device. The information to synchronize includes the session information, control commands, and events.
+The AVSession service on the distributed device automatically creates an AVSession object for information synchronization with the local device. The information to synchronize includes the session information, control commands, and events.
 
 ## Distributed AVSession Process
 
-After the user triggers a projection, the remote device automatically creates an **AVSession** object to associate it with that on the local device. The detailed process is as follows:
+After the user triggers a projection, the remote device automatically creates an AVSession object to associate it with that on the local device. The detailed process is as follows:
 
 1. After receiving an audio device switching command, the AVSession service on the local device synchronizes the session information to the distributed device.
 
-2. The controller (for example, Media Controller) on the distributed device detects the new **AVSession** object and creates an **AVSessionController** object for it.
+2. The controller (for example, Media Controller) on the distributed device detects the new AVSession object and creates an AVSessionController object for it.
 
-3. Through the **AVSessionController** object, the controller on the distributed device sends a control command to the **AVSession** object on the local device.
+3. Through the AVSessionController object, the controller on the distributed device sends a control command to the AVSession object on the local device.
 
-4. Upon the receipt of the control command, the **AVSession** object on the local device triggers a callback to the local audio application.
+4. Upon the receipt of the control command, the AVSession object on the local device triggers a callback to the local audio application.
 
-5. The **AVSession** object on the local device synchronizes the new session information to the controller on the distributed device in real time.
+5. The AVSession object on the local device synchronizes the new session information to the controller on the distributed device in real time.
 
 6. When the remote device is disconnected, the audio stream is switched back to the local device and the playback is paused. (The audio module completes the switchback, and the AVSession service instructs the application to pause the playback.)
 

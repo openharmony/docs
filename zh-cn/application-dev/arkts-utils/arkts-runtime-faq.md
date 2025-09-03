@@ -1,4 +1,10 @@
 # ArkTS运行时常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @DaiHuina1997-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 方舟正则运算与预期输出结果不一致场景
 
@@ -9,7 +15,7 @@
    ```ts
    let str = "\u2642";
    let res = str.replace(/\b/g, "/");
-   console.log("res = " + res);
+   console.info("res = " + res);
    // 期望输出: res = ♂
    // 实际输出: res = /♂/
    ```
@@ -22,7 +28,7 @@
 ### 方舟正则运算对于先行断言((?=pattern)或(?!pattern)) 嵌套在后行断言((?<=pattern)或(?<!pattern))内部的场景与预期不一致
 
    ```ts
-   console.log('res:${"abcdef".match(/(?<=ab(?=c)cd)ef/)}');
+   console.info(`res:${"abcdef".match(/(?<=ab(?=c)cd)ef/)}`);
    // 期望输出: res:ef
    // 实际输出: res:null
    ```
@@ -33,7 +39,7 @@
 
    ```ts
    let res = /\u{10400}/ui.test("\u{10428}");
-   console.log("res = " + res);
+   console.info("res = " + res);
    // 期望输出: res = true
    // 实际输出: res = false
    ```
@@ -45,11 +51,10 @@
    ```ts
    let L = "\ud800";
    let T = "\udc00";
-   let x = "x";
    let u = /()/ug;
    u.lastIndex = 1;
    u.exec(L + T + L + T);
-   console.log("u.lastIndex = " + u.lastIndex);
+   console.info("u.lastIndex = " + u.lastIndex);
    // 期望输出: u.lastIndex = 0
    // 实际输出: u.lastIndex = 1
    ```
@@ -61,7 +66,7 @@
    ```ts
    let str =  "a-b";
    let reg = /[+-\s]/;
-   console.log("reg.exec(str) = " + reg.exec(str));
+   console.info("reg.exec(str) = " + reg.exec(str));
    // 期望输出: reg.exec(str) = -
    // 实际输出: reg.exec(str) = null
    ```
@@ -70,7 +75,7 @@
    ```ts
    let str =  "a-b";
    let reg = /[+\-\s]/;
-   console.log("reg.exec(str) = " + reg.exec(str));
+   console.info("reg.exec(str) = " + reg.exec(str));
    ```
 
 ### 方舟正则运算具名捕获组获取与预期不一致
@@ -78,7 +83,7 @@
    ```ts
    let reg = new RegExp("(a)(?<b>b)");
    let res = reg.exec("ab");
-   console.log("JSON.stringify(res?.groups) = " + JSON.stringify(res?.groups));
+   console.info("JSON.stringify(res?.groups) = " + JSON.stringify(res?.groups));
    // 期望输出: JSON.stringify(res?.groups) = {"b":"b"}
    // 实际输出: JSON.stringify(res?.groups) = {"b":"a"}
    ```
@@ -87,8 +92,8 @@
 
    ```ts
    let reg = new RegExp("(a)(?<b>b)");
-   let res = reg.exec("ab");
-   console.log(JSON.stringify(res[2]));
+   let res = reg.exec("ab") as Array<string>;
+   console.info(JSON.stringify(res[2]));
    ```
 
 ### 方舟正则匹配使用'|'与预期不一致
@@ -98,7 +103,7 @@
    ```ts
    let reg = /a(?:|x)$/;
    let res = reg.exec("ax");
-   console.log("JSON.stringify(res) = " + JSON.stringify(res));
+   console.info("JSON.stringify(res) = " + JSON.stringify(res));
    // 期望输出: JSON.stringify(res) = ["ax"]
    // 实际输出: JSON.stringify(res) = null
    ```
@@ -109,6 +114,25 @@
    let reg1 = /a(?:|x)$/;
    let reg2 = /a(?:x)?$/;
    let reg3 = /a(?:x){0,1}$/;
+   ```
+
+### 方舟字符串 `replace` 接口对于第一个参数为空字符串的场景与预期不一致
+
+   在使用字符串replace接口时，如果第一个参数是空字符串，则直接返回原始字符串。
+
+   ```ts
+   let str = "dddd"
+   let res = str.replace("", "abc");
+   console.info("res = " + res);
+   // 期望输出: res = abcdddd
+   // 实际输出: res = dddd
+   ```
+
+   规避方案：使用正则表达式 `/^/` 表示字符串起始符，作为第一个参数。
+
+   ```ts
+   let str = "dddd"
+   let res = str.replace(/^/, "abc");
    ```
 
 ## Async函数内部异常的处理机制
@@ -123,7 +147,7 @@
 
    ```ts
       errorManager.on("unhandledRejection", (a:ESObject, b:Promise<ESObject>) => {
-         console.log("Async test", a);
+         console.info("Async test", a);
       })
    ```
 
@@ -143,4 +167,65 @@
 ```
 
 然后点击DevEco Studio下方HiLog选项卡，输入过滤条件“Throw error:”，即可查看到Async函数内产生的异常信息。
-![alt text](image.png)
+![alt text](figures/arkts-runtime-faq.png)
+
+## 方舟Array.flatMap()接口常见问题
+
+Array.flatMap()接口在处理包含Proxy的Array时，未正确展平嵌套的Proxy Array，导致返回结果与预期不一致。
+
+### ArkTS使用场景
+
+```ts
+let arr1 = [0, 1];
+let arr2 = [2, 3];
+const emptyHandler = new Object() as ProxyHandler<number[]>;
+let proxy1 = new Proxy(arr1, emptyHandler);
+let proxy2 = new Proxy(arr2, emptyHandler);
+let arr3 = [proxy1, proxy2];
+let res = arr3.flatMap(x => x);
+
+console.log("res length:", res.length.toString());
+// 期望输出: res length: 4
+// 实际输出: res length: 2
+console.log("res[0] is: ", res[0].toString());
+// 期望输出: res[0] is: 0
+// 实际输出: res[0] is: 0,1
+```
+
+### ArkUI使用场景
+
+ArkUI状态管理框架会为使用状态变量装饰器（如@State、@Trace、@Local）装饰的Array添加一层代理，用于观测API调用产生的变化。如果状态修饰器与Array组合，并且调用Array.flatMap，会出现如下问题。
+
+以状态管理V2为例：
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+   @Local p: number[] = [0, 1];
+   @Local q: number[] = [2, 3];
+   c: number[][] = [this.p, this.q];
+   d: number[] = [];
+
+   aboutToAppear(): void {
+      this.d = this.c.flatMap(it => it);
+   }
+
+   build() {
+      Column() {
+         Text(`${this.d[0]}`); // 预期显示：0; 实际显示：0,1
+      }
+   }
+}
+```
+
+### Array.flatMap规避方案
+
+避免使用Array.flatMap()接口，改为调用Array.map()接口后再调用深度为1的Array.flat()接口。以上文ArkTS使用场景为例：
+
+```ts
+// 使用规避方案前
+let res = arr3.flatMap(x => x);
+// 使用规避方案后
+let res = arr3.map(x => x).flat();
+```

@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统账号的凭据。
 
@@ -111,8 +112,8 @@
    ```ts
    userIDM.addCredential(credentialInfo, {
      onResult: (code: number, result: osAccount.RequestResult) => {
-       console.log('addCredential code = ' + code);
-       console.log('addCredential result = ' + result);
+       console.info('addCredential code = ' + code);
+       console.info('addCredential result = ' + result);
      }
    });
    ```
@@ -137,8 +138,8 @@
    let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-       console.log('pin auth result = ' + result);
-       console.log('pin auth extraInfo = ' + JSON.stringify(extraInfo));
+       console.info('pin auth result = ' + result);
+       console.info('pin auth extraInfo = ' + JSON.stringify(extraInfo));
        let authToken = extraInfo.token;
      }
    });
@@ -167,8 +168,8 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    ```ts
    userIDM.addCredential(faceCredInfo, {
      onResult: (code: number, result: osAccount.RequestResult) => {
-       console.log('add face credential, resultCode: ' + code);
-       console.log('add face credential, request result: ' + result);
+       console.info('add face credential, resultCode: ' + code);
+       console.info('add face credential, request result: ' + result);
      }
    });
    ```
@@ -188,8 +189,8 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    ```ts
    userIDM.addCredential(fingerprintCredInfo, {
      onResult: (code: number, result: osAccount.RequestResult) => {
-       console.log('add fingerprint credential, resultCode: ' + code);
-       console.log('add fingerprint credential, request result: ' + result);
+       console.info('add fingerprint credential, resultCode: ' + code);
+       console.info('add fingerprint credential, request result: ' + result);
      }
    });
    ```
@@ -214,8 +215,8 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-       console.log('face auth result = ' + result);
-       console.log('face auth extraInfo = ' + JSON.stringify(extraInfo));
+       console.info('face auth result = ' + result);
+       console.info('face auth extraInfo = ' + JSON.stringify(extraInfo));
      }
    });
    ```
@@ -243,8 +244,8 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    ```ts
    userIDM.updateCredential(credentialInfo, {
      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-       console.log('updateCredential result = ' + result);
-       console.log('updateCredential extraInfo = ' + extraInfo);
+       console.info('updateCredential result = ' + result);
+       console.info('updateCredential extraInfo = ' + extraInfo);
      }
    });
    ```
@@ -277,7 +278,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
+   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
    let credInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    if (credInfoList.length != 0) {
      credentialId = credInfoList[0].credentialId;
@@ -291,8 +292,8 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    ```ts
    userIDM.delCred(credentialId, token, {
      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-       console.log('delCred result = ' + result);
-       console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
+       console.info('delCred result = ' + result);
+       console.info('delCred extraInfo = ' + JSON.stringify(extraInfo));
      }
    });
    ```

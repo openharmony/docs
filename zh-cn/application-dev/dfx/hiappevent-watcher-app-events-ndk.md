@@ -1,5 +1,12 @@
 # 事件订阅（C/C++）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 HiAppEvent提供了事件订阅接口，用于获取应用的事件。
 
 ## 接口说明

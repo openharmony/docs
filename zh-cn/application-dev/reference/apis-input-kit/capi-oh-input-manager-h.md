@@ -1,8 +1,17 @@
 # oh_input_manager.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 提供事件注入和关键状态查询等功能。
+
+**引用文件：** <multimodalinput/oh_input_manager.h>
 
 **库：** libohinput.so
 
@@ -114,7 +123,7 @@
 | [void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId)](#oh_input_settoucheventdisplayid) | - | 设置触屏事件的屏幕Id。 |
 | [int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayid) | - | 获取触屏事件的屏幕Id。 |
 | [void OH_Input_CancelInjection()](#oh_input_cancelinjection) | - | 取消事件注入并撤销授权。 |
-| [Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)](#oh_input_requestinjection) | - | 当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。该接口仅在PC/2in1设备上生效。 |
+| [Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)](#oh_input_requestinjection) | - | 当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。 |
 | [Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status)](#oh_input_queryauthorizedstatus) | - | 查询当前应用注入的权限状态。 |
 | [Input_AxisEvent* OH_Input_CreateAxisEvent(void)](#oh_input_createaxisevent) | - | 创建轴事件对象实例。 |
 | [Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent)](#oh_input_destroyaxisevent) | - | 销毁轴事件对象实例。 |
@@ -779,6 +788,10 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)
 **描述**
 
 注入按键事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1944,7 +1957,11 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)
 
 **描述**
 
-当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。该接口仅在PC/2in1设备上生效。
+当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**设备行为差异**：该接口仅在PC/2in1设备上生效，在其他设备上返回801错误码。
 
 **起始版本：** 20
 
@@ -3053,7 +3070,7 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetpressedKeys 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
+| [Input_Result](#input_result) | OH_Input_GetPreKeys 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
 
 ### OH_Input_SetFinalKey()
 
@@ -3103,7 +3120,7 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey* hotkey, int32_t *finalKeyC
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetfinalKey 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
+| [Input_Result](#input_result) | OH_Input_GetFinalKey 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
 
 ### OH_Input_CreateAllSystemHotkeys()
 
@@ -3130,7 +3147,7 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Hotkey](capi-input-input-hotkey.md) | OH_Input_CreateAllSystemHotkey 函数错误码。<br>         [INPUT_SUCCESS](#input_result) 创建实例数组的双指针成功。 |
+| [Input_Hotkey](capi-input-input-hotkey.md) | OH_Input_CreateAllSystemHotkeys 函数错误码。<br>         [INPUT_SUCCESS](#input_result) 创建实例数组的双指针成功。 |
 
 ### OH_Input_DestroyAllSystemHotkeys()
 
@@ -3230,7 +3247,7 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetIsRepeat 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
+| [Input_Result](#input_result) | OH_Input_GetRepeat 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
 
 ### OH_Input_AddHotkeyMonitor()
 
@@ -3720,6 +3737,10 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)
 
 使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏事件。
 
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
+
 **起始版本：** 12
 
 
@@ -3744,6 +3765,10 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)
 **描述**
 
 使用以指定屏幕左上角为原点的相对坐标系的坐标注入鼠标事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3821,6 +3846,10 @@ int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEven
 **描述**
 
 使用以主屏左上角为原点的全局坐标系的坐标注入鼠标事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **起始版本：** 20
 
@@ -3930,6 +3959,10 @@ int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEven
 **描述**
 
 使用以主屏左上角为原点的全局坐标系的坐标注入触屏事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **起始版本：** 20
 

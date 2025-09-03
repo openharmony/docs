@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @dutie123-->
-<!--SE: @lmleon-->
-<!--TSE: @fredyuan0912-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 全屏启动原子化服务组件，当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
@@ -73,7 +74,7 @@ struct Index {
     Row() {
       Column() {
         FullScreenLaunchComponent({
-          content: ColumChild,
+          content: ColumnChild,
           appId: this.appId,
           options: {},
           onTerminated: (info) => {
@@ -94,7 +95,7 @@ struct Index {
 }
 
 @Builder
-function ColumChild() {
+function ColumnChild() {
   Column() {
     Image($r('app.media.startIcon'))
     Text('test')

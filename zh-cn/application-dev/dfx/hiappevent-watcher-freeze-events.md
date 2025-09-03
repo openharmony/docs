@@ -1,8 +1,14 @@
 # 应用冻屏事件介绍
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
-用户在使用应用时，如果出现点击无反应或应用无响应等情况，并且持续时间超过一定限制，就会被定义为应用冻屏，也被称为应用无响应或应用卡死。为了应对应用冻屏问题，系统会提供资应用冻屏检测、维测日志抓取、日志上报的能力，为开发者提供详细的维测日志以辅助故障定位。
+用户在使用应用时，如果出现点击无反应或应用无响应等情况，并且持续时间超过一定限制，就会被定义为应用冻屏，也被称为应用无响应或应用卡死。为了应对应用冻屏问题，系统会提供应用冻屏检测、维测日志抓取、日志上报的能力，为开发者提供详细的维测日志以辅助故障定位。
 
 ## 检测原理
 
@@ -77,8 +83,8 @@ Js帧frame字段说明
 | file | string | 文件名 |
 | packageName | string | 模块的包名 |
 | symbol | string | 函数名称 |
-| line | number | 异常所在代码行号 |
-| column | number | 异常所在代码列号 |
+| line | number | 代码行号 |
+| column | number | 代码列号 |
 
 ### memory字段说明
 

@@ -2,7 +2,7 @@
 
 ## When to Use
 
-Web Graphic Library (WebGL) is used for rendering interactive 2D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the HTML5 **\<canvas>** element without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
+Web Graphics Library (WebGL) is used for rendering interactive 2D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the HTML5 **\<canvas>** element without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
 
 > **NOTE**
 >
@@ -12,7 +12,7 @@ Web Graphic Library (WebGL) is used for rendering interactive 2D graphics. WebGL
 
 ### Shader program
 
-The shader program, also known as WebGL program, is a JavaScript object responsible for associating the shader with the buffer. A **WebGLProgram** object consists of two compiled WebGL shaders: a vertex shader and a fragment shader.
+The shader program, also known as WebGL program, is a JavaScript object responsible for associating the shader with the buffer. A WebGLProgram object consists of two compiled WebGL shaders: a vertex shader and a fragment shader.
 
 ###  Shader
 
@@ -67,13 +67,13 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 | webgl.bindBuffer(target: GLenum, buffer: WebGLBuffer \| null): void | Binds a WebGL buffer to the target.                     |
 | webgl.bufferData(target: GLenum, srcData: ArrayBufferView, usage: GLenum, srcOffset: GLuint, length?: GLuint): void | Creates and initializes the WebGL buffer's data store.                       |
 | webgl.getAttribLocation(program: WebGLProgram, name: string): GLint | Obtains the address of the **attribute** variable in the shader from the given WebGL program.|
-| webgl.vertexAttribPointer(index GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr): void | Assigns a **Buffer** object to a variable.                              |
-| webgl.enableVertexAttribArray(index: GLuint): void           | Connects a variable to the **Buffer** object allocated to it.                      |
+| webgl.vertexAttribPointer(index GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr): void | Assigns a Buffer object to a variable.                              |
+| webgl.enableVertexAttribArray(index: GLuint): void           | Connects a variable to the Buffer object allocated to it.                      |
 | webgl.clearColor(red: GLclampf, green:GLclampf, blue: GLclampf, alpha: GLclampf): void | Clears the specified color on the canvas.                        |
 | webgl.clear(mask: GLbitfield): void                          | Clears the canvas.                                  |
 | webgl.drawArrays(mode: GLenum, first:;GLint, count: GLsizei): void | Draws data.                                        |
 | webgl.flush(): void                                          | Flushes data to the GPU and clears the buffer.                           |
-| webgl.createProgram(): WebGLProgram \| null                  | Creates a **WebGLProgram** object.                                  |
+| webgl.createProgram(): WebGLProgram \| null                  | Creates a WebGLProgram object.                                  |
 
 ## How to Develop
 
@@ -115,7 +115,11 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 
    The vertex shader needs to perform the necessary transformation (for example, adjustment or calculation) on the vertex coordinates, saves the new vertices in a special variable provided by GLSL, and returns the variable.
 
+   Before performing matrix calculations, you need to import the open-source library gl-matrix. You can download it from the [gl-matrix official website](https://glmatrix.net/) or install it using the following npm command:
+   `npm install gl-matrix`
    ```js
+   // Import mat4.
+   import { mat4 } from 'gl-matrix'
    const vsSource = `
        attribute vec4 aVertexPosition;
        uniform mat4 uModelViewMatrix;

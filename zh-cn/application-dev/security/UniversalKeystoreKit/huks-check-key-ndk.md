@@ -3,8 +3,9 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 HUKS提供了接口供应用查询指定密钥是否存在。
 
@@ -15,7 +16,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ## 开发步骤
 
 1. 构造对应参数。
-   - 指定密钥别名keyAlias，密钥别名最大长度为128字节。
+   - 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
    - 查询密钥需要的[属性TAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag)（默认传空）。
 
 2. 调用接口[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_iskeyitemexist)，查询密钥是否存在。

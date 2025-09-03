@@ -1,6 +1,13 @@
 # @ohos.resourceManager (Resource Management)
 
-The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Resource Matching](../../quick-start/resource-categories-and-access.md#resource-matching).
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
+The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Matching Resources](../../quick-start/resource-categories-and-access.md#matching-resources).
 
 The configuration includes language, region, screen orientation, mobile country code (MCC), mobile network code (MNC), device capability, and density.
 
@@ -60,6 +67,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
       console.error("error is " + error);
       return;
     }
+    // Replace 'app.string.test' with the actual resource.
     mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -93,6 +101,7 @@ Obtains the **ResourceManager** object of the specified application. This API us
   import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "com.example.myapplication" with the actual package name.
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
@@ -124,6 +133,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
   import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
+    // Replace 'app.string.test' with the actual resource.
     mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -164,6 +174,7 @@ Obtains the **ResourceManager** object of the specified application. This API us
   import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "com.example.myapplication" with the actual package name.
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
     console.error("error is " + error);
@@ -201,6 +212,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let systemResourceManager = resourceManager.getSysResourceManager();
+    // Replace 'sys.string.ohos_lab_vibrate' with the actual resource.
     systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
@@ -319,7 +331,7 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|File descriptor (fd) of the HAP where the raw file is located.|
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|File descriptor (fd) of the HAP where the rawfile is located.|
 
 ## Resource<sup>9+</sup>
 
@@ -343,7 +355,7 @@ Provides APIs for accessing application resources and system resources.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain resource values such as strings, string arrays, and colors based on the specified **resName**, **resId**, or **Resource** object. **resName** indicates the resource name, **resId** indicates the resource ID, which can be obtained through `$r(*resource-address*).id`, for example, `$r('app.string.test').id`.
 >
-> - No matter whether resources are in the same HAP or different HAPs or HSPs, you are advised to use the API with **resName** or **resId** specified. Using the **Resource** object will take a longer time. If the resources are in different HAPs or HSPs, you first need to use [createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to create the context of the corresponding module and then call the API with **resName** or **resId** specified. For details, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
+> - No matter whether resources are in the same HAP or different HAPs or HSPs, you are advised to use the API with **resName** or **resId** specified. Using the **Resource** object will take a longer time. If the resources are in different HAPs or HSPs, you first need to use [createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to create the context of the corresponding module and then call the API with **resName** or **resId** specified. For details, see [Accessing Resources](../../quick-start/resource-categories-and-access.md#accessing-resources).
 >
 > - For details about the content of the test files used in the sample code, see [Appendix](#appendix).
 
@@ -396,6 +408,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.string.test' with the actual resource.
     let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id);
     console.log(`getStringSync, result: ${testStr}`);
     // Print the output result: getStringSync, result: I'm a test string resource.
@@ -457,6 +470,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.string.test' with the actual resource.
     let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
     console.log(`getStringSync, result: ${testStr}`);
     // Print the output result: getStringSync, result: I'm a format string, format int: 10, format float: 98.78.
@@ -516,6 +530,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     let testStr = this.context.resourceManager.getStringByNameSync("test");
     console.log(`getStringByNameSync, result: ${testStr}`);
     // Print the output result: getStringByNameSync, result: I'm a test string resource.
@@ -577,6 +592,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     let testStr = this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
     console.log(`getStringByNameSync, result: ${testStr}`);
     // Print the output result: getStringByNameSync, result: I'm a format string, format int: 10, format float: 98.78.
@@ -630,6 +646,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace 'app.string.test' with the actual resource.
   this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
     if (error != null) {
       console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
@@ -688,6 +705,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace 'app.string.test' with the actual resource.
   this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
     console.log(`getStringValue, result: ${value}`);
     // Print the output result: getStringValue, result: I'm a test string resource.
@@ -739,6 +757,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "test" with the actual resource.
   this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
     if (error != null) {
       console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -797,6 +816,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "test" with the actual resource.
   this.context.resourceManager.getStringByName("test").then((value: string) => {
     console.log(`getStringByName, result: ${value}`);
     // Print the output result: getStringByName, result: I'm a test string resource.
@@ -858,6 +878,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.strarray.test' with the actual resource.
     let strArray: Array<string> = this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
     console.log(`getStringArrayValueSync, result: ${strArray[0]}`);
     // Print the output result: getStringArrayValueSync, result: I'm one of the array's values.
@@ -921,6 +942,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     let strArray: Array<string> = this.context.resourceManager.getStringArrayByNameSync("test");
     console.log(`getStringArrayByNameSync, result: ${strArray[0]}`);
     // Print the output result: getStringArrayByNameSync, result: I'm one of the array's values.
@@ -978,6 +1000,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace 'app.strarray.test' with the actual resource.
   this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id,
     (error: BusinessError, value: Array<string>) => {
       if (error != null) {
@@ -1041,6 +1064,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace 'app.strarray.test' with the actual resource.
   this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id)
     .then((value: Array<string>) => {
       console.log(`getStringArrayValue, result: ${value[0]}`);
@@ -1098,6 +1122,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "test" with the actual resource.
   this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
     if (error != null) {
       console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -1161,6 +1186,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "test" with the actual resource.
   this.context.resourceManager.getStringArrayByName("test")
     .then((value: Array<string>) => {
       console.log(`getStringArrayByName, result: ${value[0]}`);
@@ -1237,6 +1263,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   try {
     // If num is 1, the single/plural type is one in the English environment.
     // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    // Replace 'app.plural.format_test' with the actual resource.
     let pluralStr = this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "basket", 0.3);
     console.log(`getIntPluralStringValueSync, result: ${pluralStr}`);
     // Print the output result: getIntPluralStringValueSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
@@ -1313,6 +1340,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   try {
     // If num is 1, the single/plural type is one in the English environment.
     // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    // Replace "format_test" with the actual resource.
     let pluralStr = this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "basket", 0.3);
     console.log(`getIntPluralStringByNameSync, result: ${pluralStr}`);
     // Print the output result: getIntPluralStringByNameSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
@@ -1389,6 +1417,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   try {
     // If num is 2.1, the single/plural type is other in the English environment.
     // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is other is obtained.
+    // Replace 'app.plural.format_test' with the actual resource.
     let pluralStr = this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "basket", 0.6);
     console.log(`getDoublePluralStringValueSync, result: ${pluralStr}`);
     // Print the output result: getDoublePluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
@@ -1465,6 +1494,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   try {
     // If num is 2.1, the single/plural type is other in the English environment.
     // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is other is obtained.
+    // Replace "format_test" with the actual resource.
     let pluralStr = this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "basket", 0.6);
     console.log(`getDoublePluralStringByNameSync, result: ${pluralStr}`);
     // Print the output result: getIntPluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
@@ -1513,6 +1543,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // Default screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1521,6 +1552,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id, 120); // Specified screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1567,6 +1599,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaByNameSync("test"); // Default screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1575,6 +1608,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaByNameSync("test", 120); // Specified screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1615,6 +1649,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
@@ -1662,6 +1697,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
@@ -1713,6 +1749,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -1763,6 +1800,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -1807,6 +1845,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
@@ -1854,6 +1893,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -1905,6 +1945,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -1955,6 +1996,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaByName("test", 120).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2005,6 +2047,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // Default screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2013,6 +2056,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id, 120); // Specified screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2059,6 +2103,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // Default screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2067,6 +2112,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaBase64ByNameSync("test", 120); // Specified screen density
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2107,6 +2153,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -2154,6 +2201,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
@@ -2205,6 +2253,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2255,6 +2304,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.media.test' with the actual resource.
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2299,6 +2349,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaBase64ByName("test", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -2350,6 +2401,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -2401,6 +2453,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2451,6 +2504,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     this.context.resourceManager.getMediaBase64ByName("test", 120).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2503,6 +2557,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
+    // Replace 'app.media.icon' with the actual resource.
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2510,6 +2565,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // Replace 'app.media.icon' with the actual resource.
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2517,6 +2573,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // Replace 'app.media.icon' with the actual resource.
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2565,6 +2622,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
+    // Replace "icon" with the actual resource.
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2572,6 +2630,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // Replace "icon" with the actual resource.
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2579,6 +2638,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // Replace "icon" with the actual resource.
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2636,6 +2696,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.boolean.boolean_test' with the actual resource.
     let boolTest = this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
     console.log(`getBoolean, result: ${boolTest}`);
     // Print the output result: getBoolean, result: true
@@ -2695,6 +2756,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "boolean_test" with the actual resource.
     let boolTest = this.context.resourceManager.getBooleanByName("boolean_test");
     console.log(`getBooleanByName, result: ${boolTest}`);
     // Print the output result: getBooleanByName, result: true
@@ -2768,6 +2830,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
   try {
     // An integer refers to the original value.
+    // Replace 'app.integer.integer_test' with the actual resource.
     let intValue = this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
     console.log(`getNumber, int value: ${intValue}`);
     // Print the output result: getNumber, int value: 100
@@ -2779,6 +2842,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
   try {
     // A float number without a unit indicates the original value, and a float number with the unit of vp or fp indicates the px value (float number with the unit of vp or fp = original value x densityPixels).
+    // Replace 'app.float.float_test' with the actual resource.
     let floatValue = this.context.resourceManager.getNumber($r('app.float.float_test').id);
     console.log(`getNumber, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
     // Print the output result: getNumber, densityPixels: 3.25, float value: 99.45000457763672
@@ -2853,6 +2917,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
   try {
     // An integer refers to the original value.
+    // Replace "integer_test" with the actual resource.
     let intValue = this.context.resourceManager.getNumberByName("integer_test");
     console.log(`getNumberByName, int value: ${intValue}`);
     // Print the output result: getNumberByName, int value: 100
@@ -2864,6 +2929,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
   try {
     // A float number without a unit indicates the original value, and a float number with the unit of vp or fp indicates the px value (float number with the unit of vp or fp = original value x densityPixels).
+    // Replace "float_test" with the actual resource.
     let floatValue = this.context.resourceManager.getNumberByName("float_test");
     console.log(`getNumberByName, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
     // Print the output result: getNumberByName, densityPixels: 3.25, float value: 99.45000457763672
@@ -2923,6 +2989,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'app.color.test' with the actual resource.
     let colorValue = this.context.resourceManager.getColorSync($r('app.color.test').id);
     console.log(`getColorSync, result: ${colorValue}`);
     // Print the output result: getColorSync, result: 4294967295
@@ -2983,6 +3050,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test" with the actual resource.
     let colorValue = this.context.resourceManager.getColorByNameSync("test");
     console.log(`getColorByNameSync, result: ${colorValue}`);
     // Print the output result: getColorByNameSync, result: 4294967295
@@ -3036,6 +3104,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace 'app.color.test' with the actual resource.
   this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
     if (error != null) {
       console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
@@ -3094,6 +3163,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace 'app.color.test' with the actual resource.
   this.context.resourceManager.getColor($r('app.color.test').id)
     .then((value: number) => {
       console.log(`getColor, result: ${value}`);
@@ -3148,6 +3218,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "test" with the actual resource.
   this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
     if (error != null) {
       console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -3206,6 +3277,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "test" with the actual resource.
   this.context.resourceManager.getColorByName("test")
     .then((value: number) => {
       console.log(`getColorByName, result: ${value}`);
@@ -3220,7 +3292,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFileContentSync(path: string): Uint8Array
 
-Obtains the content of a raw file in the **resources/rawfile** directory. This API returns the result synchronously.
+Obtains the content of a rawfile in the **resources/rawfile** directory. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3230,13 +3302,13 @@ Obtains the content of a raw file in the **resources/rawfile** directory. This A
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | Yes   | Path of the raw file.            |
+| path     | string                          | Yes   | Path of the rawfile.            |
 
 **Return value**
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Uint8Array | Content of the raw file.|
+| Uint8Array | Content of the rawfile.|
 
 **Error codes**
 
@@ -3252,6 +3324,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.getRawFileContentSync("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3264,7 +3337,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the content of a rawfile in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3274,8 +3347,8 @@ Obtains the content of a raw file in the **resources/rawfile** directory. This A
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | Yes   | Path of the raw file.            |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the content of the raw file.|
+| path     | string                          | Yes   | Path of the rawfile.            |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the content of the rawfile.|
 
 **Error codes**
 
@@ -3291,6 +3364,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
@@ -3309,7 +3383,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the content of a rawfile in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3319,13 +3393,13 @@ Obtains the content of a raw file in the **resources/rawfile** directory. This A
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the rawfile.|
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the content of the raw file.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the content of the rawfile.|
 
 **Error codes**
 
@@ -3341,6 +3415,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
       let rawFile = value;
     }).catch((error: BusinessError) => {
@@ -3394,6 +3469,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
   try {
     // Passing "" means to obtain the list of files in the root directory (that is, /rawfile). Assume that the test.txt file exists in the root directory.
+    // Replace "" with the actual file path in the rawfile directory.
     let fileList: Array<string> = this.context.resourceManager.getRawFileListSync("");
     console.log(`getRawFileListSync, result: ${JSON.stringify(fileList)}`);
     // Print the output result: getRawFileListSync, result: ["test.txt"]
@@ -3439,6 +3515,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   // Passing "" means to obtain the list of files in the root directory (that is, /rawfile). Assume that the test.txt file exists in the root directory.
+  // Replace "" with the actual file path in the rawfile directory.
   this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
     if (error != null) {
       console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
@@ -3489,6 +3566,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   // Passing "" means to obtain the list of files in the root directory (that is, /rawfile). Assume that the test.txt file exists in the root directory.
+  // Replace "" with the actual file path in the rawfile directory.
   this.context.resourceManager.getRawFileList("")
     .then((value: Array<string>) => {
       console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
@@ -3503,7 +3581,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFdSync(path: string): RawFileDescriptor
 
-Obtains the fd of the HAP where a specific raw file in the **resources/rawfile** directory is located.
+Obtains the fd of the HAP where a specific rawfile in the **resources/rawfile** directory is located.
 
 > **NOTE**
 >
@@ -3517,13 +3595,13 @@ Obtains the fd of the HAP where a specific raw file in the **resources/rawfile**
 
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | Yes   | Path of the raw file.                    |
+| path     | string                                   | Yes   | Path of the rawfile.                    |
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor9) | fd of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor9) | fd of the HAP where the rawfile is located.|
 
 **Error codes**
 
@@ -3539,6 +3617,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.getRawFdSync("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3551,7 +3630,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-Obtains the fd of the HAP where a specific raw file in the **resources/rawfile** directory is located.
+Obtains the fd of the HAP where a specific rawfile in the **resources/rawfile** directory is located.
 
 > **NOTE**
 >
@@ -3565,7 +3644,7 @@ Obtains the fd of the HAP where a specific raw file in the **resources/rawfile**
 
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | Yes   | Path of the raw file.                     |
+| path     | string                                   | Yes   | Path of the rawfile.                     |
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the fd of the HAP.|
 
 **Error codes**
@@ -3583,6 +3662,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { resourceManager } from '@kit.LocalizationKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
       if (error != null) {
         console.error(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
@@ -3603,7 +3683,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-Obtains the fd of the HAP where a specific raw file in the **resources/rawfile** directory is located.
+Obtains the fd of the HAP where a specific rawfile in the **resources/rawfile** directory is located.
 
 > **NOTE**
 >
@@ -3617,7 +3697,7 @@ Obtains the fd of the HAP where a specific raw file in the **resources/rawfile**
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the rawfile.|
 
 **Return value**
 
@@ -3640,6 +3720,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { resourceManager } from '@kit.LocalizationKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
       let fd = value.fd;
       let offset = value.offset;
@@ -3658,7 +3739,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFdSync(path: string): void
 
-Closes the fd of the HAP where a specific raw file in the **resources/rawfile** directory is located.
+Closes the fd of the HAP where a specific rawfile in the **resources/rawfile** directory is located.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3668,7 +3749,7 @@ Closes the fd of the HAP where a specific raw file in the **resources/rawfile** 
 
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | Yes   | Path of the raw file.|
+| path     | string                    | Yes   | Path of the rawfile.|
 
 **Error codes**
 
@@ -3684,6 +3765,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.closeRawFdSync("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3696,7 +3778,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
-Closes the fd of the HAP where a specific raw file in the **resources/rawfile** directory is located. This API uses an asynchronous callback to return the result.
+Closes the fd of the HAP where a specific rawfile in the **resources/rawfile** directory is located. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3706,7 +3788,7 @@ Closes the fd of the HAP where a specific raw file in the **resources/rawfile** 
 
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | Yes   | Path of the raw file.|
+| path     | string                    | Yes   | Path of the rawfile.|
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3723,6 +3805,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
       if (error != null) {
         console.error("error is " + error);
@@ -3739,7 +3822,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-Closes the fd of the HAP where a specific raw file in the **resources/rawfile** directory is located. This API uses a promise to return the result.
+Closes the fd of the HAP where a specific rawfile in the **resources/rawfile** directory is located. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3749,7 +3832,7 @@ Closes the fd of the HAP where a specific raw file in the **resources/rawfile** 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the rawfile.|
 
 **Return value**
 
@@ -3771,6 +3854,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "test.txt" with the actual resource.
     this.context.resourceManager.closeRawFd("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -4000,6 +4084,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "/library1-default-signed.hsp" with the actual file path.
   let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
@@ -4043,6 +4128,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Replace "/library1-default-signed.hsp" with the actual file path.
   let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
@@ -4143,6 +4229,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace 'sys.symbol.message' with the actual resource.
     let symbolValue = this.context.resourceManager.getSymbol($r('sys.symbol.message').id);
     console.log(`getSymbol, result: ${symbolValue}`);
     // Print the output result: getSymbol, result: 983183
@@ -4192,6 +4279,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace "message" with the actual resource.
     let symbolValue = this.context.resourceManager.getSymbolByName("message");
     console.log(`getSymbolByName, result: ${symbolValue}`);
     // Print the output result: getSymbolByName, result: 983183
@@ -4216,7 +4304,7 @@ Checks whether a path is a subdirectory in the **rawfile** directory. This API r
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| path | string | Yes   | Path of a raw file.|
+| path | string | Yes   | Path of a rawfile.|
 
 **Return value**
 
@@ -4239,11 +4327,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
   try {
     // Assume that a non-empty folder named sub exists in the root directory (that is, /rawfile). The value of isRawDir is true in the return result.
+    // Replace "sub" with the actual directory.
     let isRawDir = this.context.resourceManager.isRawDir("sub");
     // Print the output result: sub isRawDir, result: true
     console.log(`sub isRawDir, result: ${isRawDir}`);
 
     // If the test.txt file exists in the root directory, the value of isRawDir is false.
+    // Replace "test.txt" with the actual resource.
     isRawDir = this.context.resourceManager.isRawDir("test.txt");
     // Print the output result: test.txt isRawDir, result: false
     console.log(`test.txt isRawDir, result: ${isRawDir}`);
@@ -6283,7 +6373,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resId    | number                      | Yes  | Resource ID.                                                  |
-| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.          |
 
 **Error codes**
@@ -6433,7 +6523,7 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)      | Yes  | Resource object.                                                  |
-| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.      |
 
 **Error codes**
@@ -6595,7 +6685,7 @@ Obtains singular/plural strings based on the specified quantity and resource nam
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resName  | string                      | Yes  | Resource name.                                                  |
-| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.            |
 
 **Error codes**
@@ -6782,7 +6872,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| num      | number                      | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the obtained singular/plural string.|
 
 **Example**
@@ -7209,7 +7299,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the content of a rawfile in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -7221,8 +7311,8 @@ Obtains the content of a raw file in the **resources/rawfile** directory. This A
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | Yes   | Path of the raw file.            |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the raw file content.|
+| path     | string                          | Yes   | Path of the rawfile.            |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the rawfile content.|
 
 **Example**
   ```ts
@@ -7244,7 +7334,7 @@ Obtains the content of a raw file in the **resources/rawfile** directory. This A
 
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the content of a rawfile in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -7256,13 +7346,13 @@ Obtains the content of a raw file in the **resources/rawfile** directory. This A
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the rawfile.|
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the raw file content.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the rawfile content.|
 
 **Example**
   ```ts
@@ -7282,7 +7372,7 @@ Obtains the content of a raw file in the **resources/rawfile** directory. This A
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-Obtains the fd of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the fd of the rawfile in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -7294,7 +7384,7 @@ Obtains the fd of the raw file in the **resources/rawfile** directory. This API 
 
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | Yes   | Path of the raw file.                     |
+| path     | string                                   | Yes   | Path of the rawfile.                     |
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the obtained fd.|
 
 **Example**
@@ -7318,7 +7408,7 @@ Obtains the fd of the raw file in the **resources/rawfile** directory. This API 
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-Obtains the fd of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the fd of the rawfile in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -7330,7 +7420,7 @@ Obtains the fd of the raw file in the **resources/rawfile** directory. This API 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the rawfile.|
 
 **Return value**
 
@@ -7357,7 +7447,7 @@ Obtains the fd of the raw file in the **resources/rawfile** directory. This API 
 
 closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the fd of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Closes the fd of the rawfile in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -7371,7 +7461,7 @@ Closes the fd of the raw file in the **resources/rawfile** directory. This API u
 
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | Yes   | Path of the raw file.|
+| path     | string                    | Yes   | Path of the rawfile.|
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -7391,7 +7481,7 @@ Closes the fd of the raw file in the **resources/rawfile** directory. This API u
 
 closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
-Closes the fd of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Closes the fd of the rawfile in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -7403,7 +7493,7 @@ Closes the fd of the raw file in the **resources/rawfile** directory. This API u
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| path | string | Yes   | Path of the rawfile.|
 
 **Return value**
 
@@ -7472,11 +7562,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ## AsyncCallback<sup>(deprecated)</sup>
 
-  ```ts
-  AsyncCallback<T> {
-    (err: Error, data: T): void;
-  }
-  ```
+> **NOTE**
+>
+> This API is supported since API version 6 and is deprecated since API version 9. You are advised to use [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback) instead.
+
+### (err: Error, data: T)<sup>(deprecated)</sup>
+
+(err: Error, data: T): void;
 
 Defines an asynchronous callback that carries an error parameter and asynchronous return value.
 
@@ -7485,6 +7577,8 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
 > This API is supported since API version 6 and is deprecated since API version 9. You are advised to use [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
 
 | Name| Type                                                        | Mandatory| Description                        |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |

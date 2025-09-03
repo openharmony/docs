@@ -11,7 +11,7 @@ Supported
 
 This component limits the height of its child components through dividers. During initialization, the divider positions are calculated based on the height of its child components. After initialization, changes to the height of the child components do not take effect. Still, the space occupied by the child components can be changed by dragging the dividers between them.
 
-After initialization, if, due to dynamic changes to the [margin](ts-universal-attributes-size.md#margin), [border](ts-universal-attributes-border.md#border), or [padding](ts-universal-attributes-size.md#padding) attributes, the size of the child components is greater than the allowable distance between adjacent dividers, dividers cannot be dragged to adjust the height of the child components.
+After initialization, dynamic changes to the [margin](ts-universal-attributes-size.md#margin), [border](ts-universal-attributes-border.md#border), or [padding](ts-universal-attributes-size.md#padding) attributes may cause the size of the child components to exceed the allowable distance between adjacent dividers. In such cases, dividers cannot be dragged to adjust the height of the child components.
 ## APIs
 
 ColumnSplit()

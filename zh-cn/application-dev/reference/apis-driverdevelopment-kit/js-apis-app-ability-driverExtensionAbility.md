@@ -1,4 +1,10 @@
 # @ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 DriverExtensionAbility模块提供驱动相关扩展能力，提供驱动创建、销毁、连接、断开等生命周期回调。
 
@@ -24,7 +30,7 @@ import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)  | 是 | 否 | DriverExtension的上下文环境，继承自ExtensionContext。 |
+| context | [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)  | 否 | 否 | DriverExtension的上下文环境，继承自ExtensionContext。 |
 
 ### onInit
 

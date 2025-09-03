@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -29,6 +30,7 @@
 | [FFRT_C_API int ffrt_cond_broadcast(ffrt_cond_t* cond)](#ffrt_cond_broadcast) | 唤醒阻塞在条件变量上的所有任务。 |
 | [FFRT_C_API int ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)](#ffrt_cond_wait) | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
 | [FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point)](#ffrt_cond_timedwait) | 条件变量超时等待函数，条件变量不满足时阻塞当前任务，超时等待返回。如果达到最大等待时间点时没有调用ffrt_cond_signal或ffrt_cond_broadcast函数解除线程阻塞，则线程会被自动解除阻塞。 |
+| [FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond)](#ffrt_cond_destroy) | 销毁条件变量。 |
 
 ## 函数说明
 
@@ -160,5 +162,30 @@ FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const
 | 类型 | 说明 |
 | -- | -- |
 | FFRT_C_API int | 等待后被成功唤醒返回ffrt_success，<br>          等待超时返回ffrt_error_timedout，<br>          等待失败ffrt_error_inval。 |
+
+### ffrt_cond_destroy()
+
+```
+FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond)
+```
+
+**描述**
+
+销毁条件变量。
+
+**起始版本：** 10
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ffrt_cond_t](capi-ffrt-ffrt-cond-t.md)* cond | 条件变量指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| FFRT_C_API int | 销毁条件变量成功返回ffrt_success，<br>销毁条件变量失败返回ffrt_error_inval。 |
 
 

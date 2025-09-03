@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -50,6 +51,7 @@
 | [FFRT_C_API uint32_t ffrt_task_handle_dec_ref(ffrt_task_handle_t handle)](#ffrt_task_handle_dec_ref) | 减少任务句柄的引用计数。 |
 | [FFRT_C_API void ffrt_task_handle_destroy(ffrt_task_handle_t handle)](#ffrt_task_handle_destroy) | 销毁任务句柄。 |
 | [FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps)](#ffrt_wait_deps) | 等待依赖的任务完成，当前任务开始执行。 |
+| [FFRT_C_API void ffrt_wait(void)](#ffrt_wait) | 等待之前所有提交任务完成，当前任务开始执行。 |
 
 ## 函数说明
 
@@ -157,8 +159,8 @@ FFRT_C_API void ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)
 
 **参数：**
 
-| 参数项                                                     | 描述 |
-|---------------------------------------------------------| -- |
+| 参数项 | 描述 |
+| -- | -- |
 | [ffrt_task_attr_t](capi-ffrt-ffrt-task-attr-t.md)* attr | 任务属性指针。 |
 | [ffrt_qos_t](capi-type-def-h.md#变量) qos                 | 任务QoS。 |
 
@@ -273,8 +275,8 @@ FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_ta
 
 **返回：**
 
-| 类型                                                      | 说明 |
-|---------------------------------------------------------| -- |
+| 类型 | 说明 |
+| -- | -- |
 | FFRT_C_API [ffrt_queue_priority_t](capi-type-def-h.md#ffrt_queue_priority_t) | 返回任务优先级。 |
 
 ### ffrt_task_attr_set_stack_size()
@@ -454,8 +456,8 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_header_t* f, cons
 
 **返回：**
 
-| 类型                                | 说明 |
-|-----------------------------------| -- |
+| 类型 | 说明 |
+| -- | -- |
 | FFRT_C_API [ffrt_task_handle_t](capi-ffrt-ffrt-task-handle-t.md) | 提交任务成功返回非空任务句柄，<br>          提交任务失败返回空指针。 |
 
 ### ffrt_submit_f()
@@ -607,5 +609,17 @@ FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps)
 | 参数项 | 描述 |
 | -- | -- |
 | [const ffrt_deps_t](capi-ffrt-ffrt-deps-t.md)* deps | 依赖的指针。 |
+
+### ffrt_wait()
+
+```
+FFRT_C_API void ffrt_wait(void)
+```
+
+**描述**
+
+等待之前所有提交任务完成，当前任务开始执行。
+
+**起始版本：** 10
 
 

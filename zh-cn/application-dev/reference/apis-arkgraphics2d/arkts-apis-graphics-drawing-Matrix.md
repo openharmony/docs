@@ -1,5 +1,12 @@
 # Class (Matrix)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 > **说明：**
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -343,6 +350,8 @@ setMatrix(matrix: Array\<number\> \| Matrix): void
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
+**参数：**
+
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
 | matrix | Array\<number\> \| [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于更新的数组或矩阵。 |
@@ -365,6 +374,8 @@ setConcat(matrixA: Matrix, matrixB: Matrix): void
 用两个矩阵的乘积更新当前矩阵。
 
 **系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
@@ -390,6 +401,8 @@ postConcat(matrix: Matrix): void
 用当前矩阵右乘一个矩阵。
 
 **系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
@@ -772,6 +785,8 @@ mapRadius(radius: number): number
 返回半径为radius的圆经过当前矩阵映射形成的椭圆的平均半径。平均半径的平方为椭圆长轴长度和短轴长度的乘积。若当前矩阵包含透视变换，则该结果无意义。
 
 **系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |

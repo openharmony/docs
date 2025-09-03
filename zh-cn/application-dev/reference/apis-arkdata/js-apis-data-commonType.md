@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @lvcong_oh-->
-<!--SE: @hollokin; @yuchaozhng-->
-<!--TSE: @lj_liujing; @yippo; @logic42-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 数据通用类型（commonType）是数据管理中通用的数据类型。
 

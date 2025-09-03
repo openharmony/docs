@@ -401,3 +401,35 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 }
 ```
+
+### FormExtensionAbility.onSizeChanged<sup>20+</sup>
+
+onSizeChanged(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect): void
+
+Called when the widget size changes.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+  
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| formId | string | Yes  | Widget ID.|
+| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | Yes| Widget dimension. For example, **Dimension_1_2** indicates a 1 x 2 widget.|
+| newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | Yes| Widget position information, including the X and Y coordinates of the widget's top-left corner, as well as its width and height.|
+
+**Example**
+
+```ts
+import { FormExtensionAbility, formInfo } from '@kit.FormKit';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onSizeChanged(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect) {
+    console.info(`FormExtensionAbility onSizeChanged, formId: ${formId}, newDimension: ${newDimension}`);
+  }
+}
+```

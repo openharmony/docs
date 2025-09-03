@@ -1,8 +1,16 @@
 # native_audio_volume_manager.h
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 声明音频音量管理器接口。该文件接口用于创建AudioVolumeManager。
+
+**引用文件：** <ohaudio/native_audio_volume_manager.h>
 
 **库：** libohaudio.so
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zju_ljz-->
-<!--SE: @lanshouren-->
-<!--TSE: @liuli0427-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 栅格布局容器根节点，使用grid-row与grid-col进行栅格布局。具体请参考[Grid-container](../reference/apis-arkui/arkui-js/js-components-grid-container.md)。
 
@@ -117,7 +118,7 @@ export default {
 
 创建grid-container组件并添加grid-row，在grid-row组件内添加grid-col组件形成布局。
 
-
+<!--code_no_check-->
 ```html
 <!-- index.hml -->
 <div class="container">

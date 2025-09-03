@@ -1,4 +1,10 @@
 # Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 - [Sensor Service Kit开发简介](sensorservice-kit-intro.md)
 - 传感器<!--sensor-->

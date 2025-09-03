@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zzq212050299-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 如果开发者需要获取应用程序运行设备的环境参数（如多语言、深浅色模式等）以进行不同的场景判断，可以使用Environment设备环境查询。
 
@@ -17,7 +18,7 @@ Environment提供了读取系统环境变量并将其值写入AppStorage的功�
 
 | 键 | 数据类型 | 描述                                      |
 | ------------------ | ------------------ | ------------------ |
-| accessibilityEnabled              | boolean                  | 是否启用获取无障碍屏幕读取。true表示启用，false表示不启用。|
+| accessibilityEnabled              | string                  | 是否启用获取无障碍屏幕读取。'true'表示启用，'false'表示不启用。|
 | colorMode              | ColorMode                  | 色彩模型类型。<br>- ColorMode.LIGHT：浅色。<br>- ColorMode.DARK：深色。                 |
 | fontScale              | number                  | 字体大小比例。开发者需要配置configuration，设置fontSizeScale为"followSystem"，具体配置步骤可参考[configuration](../../quick-start/app-configuration-file.md#configuration标签)使fontScale跟随系统变化。<br>默认值跟随系统默认参数。                |
 | fontWeightScale              | number                  | 字体粗细程度。在不同的系统或者机型中，fontWeightScale的取值范围可能会有所不同。<br>默认值跟随系统默认参数。                |

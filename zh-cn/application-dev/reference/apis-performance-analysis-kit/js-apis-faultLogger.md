@@ -1,4 +1,10 @@
 # @ohos.faultLogger (故障日志获取)
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @chenshi51-->
+<!--Designer: @Maplestory91-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 应用可以使用faultLogger接口查询系统侧缓存的当前应用的故障日志。接口以应用包名和系统分配的UID作为唯一键值。
 系统侧保存的应用故障日志数量受系统日志的压力限制，推荐使用[@ohos.hiviewdfx.hiAppEvent](js-apis-hiviewdfx-hiappevent.md)订阅APP_CRASH及APP_FREEZE等故障事件。
@@ -77,20 +83,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function queryFaultLogCallback(error: BusinessError, value: Array<FaultLogger.FaultLogInfo>) {
     if (error) {
-        console.info('error is ' + error);
+        console.error(`error code:${error.code}, error msg:${error.message}`);
     } else {
         console.info("value length is " + value.length);
         let len: number = value.length;
         for (let i = 0; i < len; i++) {
-            console.info("log: " + i);
-            console.info("Log pid: " + value[i].pid);
-            console.info("Log uid: " + value[i].uid);
-            console.info("Log type: " + value[i].type);
-            console.info("Log timestamp: " + value[i].timestamp);
-            console.info("Log reason: " + value[i].reason);
-            console.info("Log module: " + value[i].module);
-            console.info("Log summary: " + value[i].summary);
-            console.info("Log text: " + value[i].fullLog);
+            console.info(`log: ${i}`);
+            console.info(`Log pid: ${value[i].pid}`);
+            console.info(`Log uid: ${value[i].uid}`);
+            console.info(`Log type: ${value[i].type}`);
+            console.info(`Log timestamp: ${value[i].timestamp}`);
+            console.info(`Log reason: ${value[i].reason}`);
+            console.info(`Log module: ${value[i].module}`);
+            console.info(`Log summary: ${value[i].summary}`);
+            console.info(`Log text: ${value[i].fullLog}`);
         }
     }
 }
@@ -141,18 +147,18 @@ async function getLog() {
   try {
     let value: Array<FaultLogger.FaultLogInfo> = await FaultLogger.query(FaultLogger.FaultType.JS_CRASH);
     if (value) {
-      console.info("value length is " + value.length);
+      console.info(`value length: ${value.length}`);
       let len: number = value.length;
       for (let i = 0; i < len; i++) {
-        console.info("log: " + i);
-        console.info("Log pid: " + value[i].pid);
-        console.info("Log uid: " + value[i].uid);
-        console.info("Log type: " + value[i].type);
-        console.info("Log timestamp: " + value[i].timestamp);
-        console.info("Log reason: " + value[i].reason);
-        console.info("Log module: " + value[i].module);
-        console.info("Log summary: " + value[i].summary);
-        console.info("Log text: " + value[i].fullLog);
+        console.info(`log: ${i}`);
+        console.info(`Log pid: ${value[i].pid}`);
+        console.info(`Log uid: ${value[i].uid}`);
+        console.info(`Log type: ${value[i].type}`);
+        console.info(`Log timestamp: ${value[i].timestamp}`);
+        console.info(`Log reason: ${value[i].reason}`);
+        console.info(`Log module: ${value[i].module}`);
+        console.info(`Log summary: ${value[i].summary}`);
+        console.info(`Log text: ${value[i].fullLog}`);
       }
     }
   } catch (err) {
@@ -188,20 +194,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function queryFaultLogCallback(error: BusinessError, value: Array<FaultLogger.FaultLogInfo>) {
   if (error) {
-    console.info('error is ' + error);
+    console.error(`error code:${error.code}, error msg:${error.message}`);
   } else {
-    console.info("value length is " + value.length);
+    console.info(`value length: ${value.length}`);
     let len: number = value.length;
     for (let i = 0; i < len; i++) {
-      console.info("log: " + i);
-      console.info("Log pid: " + value[i].pid);
-      console.info("Log uid: " + value[i].uid);
-      console.info("Log type: " + value[i].type);
-      console.info("Log timestamp: " + value[i].timestamp);
-      console.info("Log reason: " + value[i].reason);
-      console.info("Log module: " + value[i].module);
-      console.info("Log summary: " + value[i].summary);
-      console.info("Log text: " + value[i].fullLog);
+      console.info(`log: ${i}`);
+      console.info(`Log pid: ${value[i].pid}`);
+      console.info(`Log uid: ${value[i].uid}`);
+      console.info(`Log type: ${value[i].type}`);
+      console.info(`Log timestamp: ${value[i].timestamp}`);
+      console.info(`Log reason: ${value[i].reason}`);
+      console.info(`Log module: ${value[i].module}`);
+      console.info(`Log summary: ${value[i].summary}`);
+      console.info(`Log text: ${value[i].fullLog}`);
     }
   }
 }
@@ -240,18 +246,18 @@ import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 async function getLog() {
   let value: Array<FaultLogger.FaultLogInfo> = await FaultLogger.querySelfFaultLog(FaultLogger.FaultType.JS_CRASH);
   if (value) {
-    console.info("value length is " + value.length);
+    console.info(`value length: ${value.length}`);
     let len: number = value.length;
     for (let i = 0; i < len; i++) {
-      console.info("log: " + i);
-      console.info("Log pid: " + value[i].pid);
-      console.info("Log uid: " + value[i].uid);
-      console.info("Log type: " + value[i].type);
-      console.info("Log timestamp: " + value[i].timestamp);
-      console.info("Log reason: " + value[i].reason);
-      console.info("Log module: " + value[i].module);
-      console.info("Log summary: " + value[i].summary);
-      console.info("Log text: " + value[i].fullLog);
+      console.info(`log: ${i}`);
+      console.info(`Log pid: ${value[i].pid}`);
+      console.info(`Log uid: ${value[i].uid}`);
+      console.info(`Log type: ${value[i].type}`);
+      console.info(`Log timestamp: ${value[i].timestamp}`);
+      console.info(`Log reason: ${value[i].reason}`);
+      console.info(`Log module: ${value[i].module}`);
+      console.info(`Log summary: ${value[i].summary}`);
+      console.info(`Log text: ${value[i].fullLog}`);
     }
   }
 }

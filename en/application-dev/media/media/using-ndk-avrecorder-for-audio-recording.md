@@ -240,7 +240,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    OH_AVRecorder_Start(g_avRecorder);
    ```
 
-5. Call **OH_AVRecorder_Pause()** to pause recording. The AVRecorder enters the **paused** state. In addition, pause data input,
+5. Call **OH_AVRecorder_Pause()** to pause recording. The AVRecorder enters the **paused** state. In addition, pause data input.
 
    ```C++
    OH_AVRecorder_Pause(g_avRecorder);
@@ -273,7 +273,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 
 ## Development Example
 
-Refer to the sample code below to complete the process of creating a recorder instance, preparing for, starting, pausing, resuming, and stopping recording, resetting the recording state, and releasing the recording resources.
+Refer to the sample code below to complete the process of creating a recorder instance; preparing for recording; starting, pausing, resuming, and stopping recording; resetting the recording state; and releasing the recording resources.
 
    ```C++
    #include <fcntl.h>

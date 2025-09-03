@@ -1,4 +1,10 @@
 # @ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)
+<!--Kit: Location Kit-->
+<!--Subsystem: Location-->
+<!--Owner: @liu-binjun-->
+<!--Designer: @liu-binjun-->
+<!--Tester: @mhy123456789-->
+<!--Adviser: @RayShih-->
 
 FenceExtensionAbility为开发者提供的地理围栏相关的能力，继承自ExtensionAbility。
 

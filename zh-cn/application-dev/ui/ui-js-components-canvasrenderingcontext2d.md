@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sd-wu-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 使用CanvasRenderingContext2D在Canvas画布组件上进行绘制，绘制对象可以是图形、文本、线段、图片等。具体请参考[CanvasRenderingContext2D对象](../reference/apis-arkui/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)。
@@ -235,6 +236,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;
@@ -331,6 +333,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;
@@ -501,7 +504,7 @@ export default {
       // 初始化textBaseline
       this.ctx.textBaseline = 'alphabetic';
       // 设置字体
-      this.ctx.font = '30px';
+      this.ctx.font = '30px Arial';
       let text = "Hello World";
       // 获取字体width
       this.ctx.fillText("with:"+this.ctx.measureText(text).width, 200, 300);
@@ -640,6 +643,7 @@ export default {
     // 创建图片对象
     let img = new Image();
     // 设置图片路径
+    // "common/images/2.png"需要替换为开发者所需的图像资源文件
     img.src = 'common/images/2.png';
     // 设置图片宽度
     img.width= 150;
@@ -666,6 +670,7 @@ export default {
       ctx.drawImage(img, 150, 20, 200, 200);
     };
     let img1 = new Image();
+    // "common/images/3.png"需要替换为开发者所需的图像资源文件
     img1.src = 'common/images/3.png';
     img1.onload = function() {
       // 画上图片

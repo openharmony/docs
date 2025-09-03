@@ -1,4 +1,10 @@
 # @ohos.app.appstartup.StartupTask (Startup Task)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The module provides APIs related to startup tasks.
 
@@ -15,6 +21,8 @@ import { StartupTask } from '@kit.AbilityKit';
 ```
 
 ## StartupTask
+
+Provides capabilities related to startup tasks. It is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md#sendable-decorator).
 
 ### onDependencyCompleted
 

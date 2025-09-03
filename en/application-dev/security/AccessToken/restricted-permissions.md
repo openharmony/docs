@@ -1,5 +1,11 @@
 # Restricted Permissions
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 ## How to Request
 
 <!--RP1-->
@@ -25,9 +31,7 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 
 <!--RP1End-->
 
-## Restricted Permissions
-
-### ohos.permission.SYSTEM_FLOAT_WINDOW
+## ohos.permission.SYSTEM_FLOAT_WINDOW
 
 Allows an application to be displayed in a floating window on top of other applications.
 
@@ -37,9 +41,9 @@ Allows an application to be displayed in a floating window on top of other appli
 
 **Authorization mode**: system_grant
 
-**Valid since**: 7
+**Since**: 7
 
-### ohos.permission.READ_CONTACTS
+## ohos.permission.READ_CONTACTS
 
 Allows an application to read **Contacts**.
 
@@ -49,9 +53,9 @@ Allows an application to read **Contacts**.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 8
+**Since**: 8
 
-### ohos.permission.WRITE_CONTACTS
+## ohos.permission.WRITE_CONTACTS
 
 Allows an application to add, remove, and modify **Contacts**.
 
@@ -61,9 +65,9 @@ Allows an application to add, remove, and modify **Contacts**.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 8
+**Since**: 8
 
-### ohos.permission.READ_AUDIO
+## ohos.permission.READ_AUDIO
 
 Allows an application to access the audio files in a user directory.
 
@@ -73,9 +77,9 @@ Allows an application to access the audio files in a user directory.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 9
+**Since**: 9
 
-### ohos.permission.WRITE_AUDIO
+## ohos.permission.WRITE_AUDIO
 
 Allows an application to modify the audio files in a user directory.
 
@@ -85,9 +89,9 @@ Allows an application to modify the audio files in a user directory.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 9
+**Since**: 9
 
-### ohos.permission.READ_IMAGEVIDEO
+## ohos.permission.READ_IMAGEVIDEO
 
 Allows an application to access the images/videos in a user directory.
 
@@ -97,9 +101,9 @@ Allows an application to access the images/videos in a user directory.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 9
+**Since**: 9
 
-### ohos.permission.WRITE_IMAGEVIDEO
+## ohos.permission.WRITE_IMAGEVIDEO
 
 Allows an application to modify the images/videos in a user directory.
 
@@ -109,10 +113,10 @@ Allows an application to modify the images/videos in a user directory.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 9
+**Since**: 9
 
 <!--Del-->
-### ohos.permission.WRITE_DOCUMENT
+## ohos.permission.WRITE_DOCUMENT
 
 Allows an application to modify the documents in a user directory.
 
@@ -120,7 +124,7 @@ Allows an application to modify the documents in a user directory.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 9
+**Since**: 9
 
 **Deprecated from**: 12
 
@@ -128,7 +132,7 @@ Allows an application to modify the documents in a user directory.
 
 See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
 
-### ohos.permission.READ_DOCUMENT
+## ohos.permission.READ_DOCUMENT
 
 Allows an application to access the documents in a user directory.
 
@@ -136,7 +140,7 @@ Allows an application to access the documents in a user directory.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 9
+**Since**: 9
 
 **Deprecated from**: 12
 
@@ -145,21 +149,21 @@ Allows an application to access the documents in a user directory.
 See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
 <!--DelEnd-->
 
-### ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+## ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
 Allows an application to access the **Desktop** directory and its subdirectories in the user directory.
 
 <!--RP15-->
-Currently, this permission is available only to 2-in-1 device applications.
+Currently, only applications on 2-in-1 devices and tablets can request this permission.
 <!--RP15End-->
 
 **Permission level**: system_basic
 
 **Authorization mode**: user_grant
 
-**Valid since**: 11
+**Since**: 11
 
-### ohos.permission.ACCESS_DDK_USB
+## ohos.permission.ACCESS_DDK_USB
 
 Allows extended peripheral drivers to access the USB DDK interfaces to implement development of USB extended peripheral drivers.
 
@@ -169,9 +173,9 @@ Allows extended peripheral drivers to access the USB DDK interfaces to implement
 
 **Authorization mode**: system_grant
 
-**Valid since**: 11
+**Since**: 11
 
-### ohos.permission.ACCESS_DDK_HID
+## ohos.permission.ACCESS_DDK_HID
 
 Allows extended peripheral drivers to access the HID DDK interfaces to implement development of HID extended peripheral drivers.
 
@@ -181,9 +185,9 @@ Allows extended peripheral drivers to access the HID DDK interfaces to implement
 
 **Authorization mode**: system_grant
 
-**Valid since**: 11
+**Since**: 11
 
-### ohos.permission.READ_PASTEBOARD
+## ohos.permission.READ_PASTEBOARD
 
 Allows an application to read **Pasteboard** data.
 
@@ -193,9 +197,9 @@ Allows an application to read **Pasteboard** data.
 
 **Authorization mode**: user_grant
 
-**Valid since**: 11
+**Since**: 11
 
-### ohos.permission.FILE_ACCESS_PERSIST
+## ohos.permission.FILE_ACCESS_PERSIST
 
 Allows an application to support persistent access to file URIs.
 
@@ -205,11 +209,11 @@ Allows an application to support persistent access to file URIs.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 11
+**Since**: 11
 
 **Changelog**: The permission level is system_basic in API version 11, and is changed to normal since API version 12.
 
-### ohos.permission.INTERCEPT_INPUT_EVENT
+## ohos.permission.INTERCEPT_INPUT_EVENT
 
 Allows an application to intercept input events.
 
@@ -219,11 +223,11 @@ Allows an application to intercept input events.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 11
+**Since**: 11
 
 **Changelog**: The permission level is system_core in API version 11, and is changed to system_basic since API version 12.
 
-### ohos.permission.INPUT_MONITORING
+## ohos.permission.INPUT_MONITORING
 
 Allows an application to listen for input events.
 
@@ -233,11 +237,11 @@ Allows an application to listen for input events.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 7
+**Since**: 7
 
 **Changelog**: The permission level is system_core in API versions 7 to 11, and is changed to system_basic since API version 12.
 
-### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+## ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
 
 Allows an application to save images and videos to the user's directory within
 
@@ -249,9 +253,9 @@ up to 30 minutes after obtaining the permission. If it exceeds 30 minutes, a dia
 
 **Authorization mode**: user_grant
 
-**Valid since**: 12
+**Since**: 12
 
-### ohos.permission.READ_WRITE_USER_FILE
+## ohos.permission.READ_WRITE_USER_FILE
 
 Allows an application to access and modify files in user directories.
 
@@ -263,9 +267,9 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 13
+**Since**: 13
 
-### ohos.permission.READ_WRITE_USB_DEV
+## ohos.permission.READ_WRITE_USB_DEV
 
 Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
 
@@ -277,9 +281,9 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 13
+**Since**: 13
 
-### ohos.permission.GET_WIFI_PEERS_MAC
+## ohos.permission.GET_WIFI_PEERS_MAC
 
 Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
@@ -291,11 +295,11 @@ This permission is required if you want to obtain the MAC address of the peer de
 
 **Authorization mode**: system_grant
 
-**Valid since**: 8
+**Since**: 8
 
 **Changelog**: The permission level is system_core in API versions 8 to 13, and is changed to system_basic since API version 14.
 
-### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+## ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 Allows an application to disable its runtime code integrity protection.
 
@@ -307,9 +311,9 @@ For the application developed using the cross-platform framework, this permissio
 
 **Authorization mode**: system_grant
 
-**Valid since**: 14
+**Since**: 14
 
-### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+## ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
 
 Allows an application to apply for writable and executable anonymous memory.
 
@@ -321,9 +325,9 @@ For the application developed using the cross-platform framework, this permissio
 
 **Authorization mode**: system_grant
 
-**Valid since**: 14
+**Since**: 14
 
-### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
 
@@ -335,9 +339,9 @@ After the application has this permission, the system JS engine can request anon
 
 **Authorization mode**: system_grant
 
-**Valid since**: 14
+**Since**: 14
 
-### ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+## ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
 
 Allows an application to set or remove the pasteable range of pasteboard data.
 
@@ -347,9 +351,9 @@ Allows an application to set or remove the pasteable range of pasteboard data.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 14
+**Since**: 14
 
-### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+## ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
 Allows an application to set or remove the sharing range of the data supported by the UDMF.
 
@@ -359,9 +363,9 @@ Allows an application to set or remove the sharing range of the data supported b
 
 **Authorization mode**: system_grant
 
-**Valid since**: 14
+**Since**: 14
 
-### ohos.permission.ACCESS_DISK_PHY_INFO
+## ohos.permission.ACCESS_DISK_PHY_INFO
 
 Allows an application to obtain the disk hardware information.
 
@@ -371,9 +375,9 @@ Allows an application to obtain the disk hardware information.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Since**: 15
 
-### ohos.permission.PRELOAD_FILE
+## ohos.permission.PRELOAD_FILE
 
 Allows an application to preload files to improve the file opening speed.
 
@@ -383,9 +387,9 @@ Allows an application to preload files to improve the file opening speed.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Since**: 15
 
-### ohos.permission.SET_PAC_URL
+## ohos.permission.SET_PAC_URL
 
 Allows an application to set the URL of the proxy auto config (PAC) script.
 
@@ -397,9 +401,9 @@ After the script address is configured, other applications can read and parse th
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Since**: 15
 
-### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
 
 Allows a device administrator application to manage personal device restrictions.
 
@@ -409,9 +413,9 @@ Allows a device administrator application to manage personal device restrictions
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Since**: 15
 
-### ohos.permission.START_PROVISIONING_MESSAGE
+## ohos.permission.START_PROVISIONING_MESSAGE
 
 Allows an application to start the device management service deployment process, which activates the application as a personal device administrator application.
 
@@ -421,9 +425,9 @@ Allows an application to start the device management service deployment process,
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Since**: 15
 
-### ohos.permission.USE_FRAUD_CALL_LOG_PICKER
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
 Allows an application to use the fraud call log Picker to obtain call logs.
 
@@ -433,9 +437,9 @@ Allows an application to use the fraud call log Picker to obtain call logs.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Since**: 15
 
-### ohos.permission.USE_FRAUD_MESSAGES_PICKER
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
 
 Allows an application to use the fraud message Picker to obtain SMS messages.
 
@@ -445,9 +449,9 @@ Allows an application to use the fraud message Picker to obtain SMS messages.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Since**: 15
 
-### ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
+## ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
 
 Allows an application to persist the virtual random address corresponding to the MAC address of the peer Bluetooth device.
 
@@ -459,9 +463,9 @@ With this permission, the application can persist the virtual random address of 
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Since**: 16
 
-### ohos.permission.ACCESS_VIRTUAL_SCREEN
+## ohos.permission.ACCESS_VIRTUAL_SCREEN
 
 Allows an application to manage virtual screens.
 
@@ -473,13 +477,11 @@ With this permission, the application can call APIs to perform virtual screen ma
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Since**: 18
 
-### ohos.permission.MANAGE_APN_SETTING
+## ohos.permission.MANAGE_APN_SETTING
 
 Allows an application to read or set APN information.
-
-This permission is required for the applications that need to use private network APN information.
 
 <!--RP38--><!--RP38End-->
 
@@ -487,9 +489,23 @@ This permission is required for the applications that need to use private networ
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Since**: 16
 
-### ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
+## ohos.permission.GET_WIFI_LOCAL_MAC
+
+Allows an application to obtain the MAC address of the local Wi-Fi device.
+
+<!--RP43--><!--RP43End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Since**: 8
+
+**Change history:** For API versions 8 to 15, this permission is available only to system applications. For API versions 16 and later, this permission is available to common applications on PCs/2-in-1 devices, and is available only to system applications on other devices.
+
+## ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
 
 Allows an application to call the JITFort API to update the content in MAP_FORT.
 
@@ -499,9 +515,9 @@ Allows an application to call the JITFort API to update the content in MAP_FORT.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Since**: 16
 
-### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
+## ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
 
 Allows an application to disable the read-only protection on .got.plt.
 
@@ -511,9 +527,9 @@ Allows an application to disable the read-only protection on .got.plt.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 17
+**Since**: 17
 
-### ohos.permission.USE_FRAUD_APP_PICKER
+## ohos.permission.USE_FRAUD_APP_PICKER
 
 Allows an application to use the fraud app Picker to obtain application information.
 
@@ -523,9 +539,26 @@ Allows an application to use the fraud app Picker to obtain application informat
 
 **Authorization mode**: system_grant
 
-**Valid since**: 18
+**Since**: 18
 
-### ohos.permission.kernel.SUPPORT_PLUGIN
+## ohos.permission.ACCESS_DDK_DRIVERS
+
+Allows a peripheral extension driver client to bind to the driver server.
+
+This permission can be requested successfully only when:
+
+1. The target extension driver server in the value field of the permission declaration for the peripheral extension driver client has been launched or both the server and client have been launched.
+2. The capabilities provided by the target extension driver server comply with the requirements of the peripheral extension driver client.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Extra data**: Yes. For details about the configuration method, see [UI-based Driver Development](../../device/driver/externaldevice-guidelines.md#application-signing).
+
+**Since**: 18
+
+## ohos.permission.kernel.SUPPORT_PLUGIN
 
 Allows an application to install plugins.
 
@@ -535,9 +568,9 @@ Allows an application to install plugins.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 19
+**Since**: 19
 
-### ohos.permission.CUSTOM_SANDBOX
+## ohos.permission.CUSTOM_SANDBOX
 
 Allows an application to set the sandbox type to dynamic sandbox.
 
@@ -547,9 +580,9 @@ Allows an application to set the sandbox type to dynamic sandbox.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 18
+**Since**: 18
 
-### ohos.permission.MANAGE_SCREEN_TIME_GUARD
+## ohos.permission.MANAGE_SCREEN_TIME_GUARD
 
 Allows an application to call the screen time guard APIs to restrict screen usage, apply application access control, and control the screen usage time.
 
@@ -559,13 +592,11 @@ Allows an application to call the screen time guard APIs to restrict screen usag
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+**Since**: 20
 
-**Valid since**: 20
+## ohos.permission.CUSTOMIZE_SAVE_BUTTON
 
-### ohos.permission.CUSTOMIZE_SAVE_BUTTON
-
-Allows an application to customize the icon and text of SaveButton.
+Allows an application to customize the icon and text of **SaveButton**.
 
 <!--RP41--><!--RP41End-->
 
@@ -573,13 +604,13 @@ Allows an application to customize the icon and text of SaveButton.
 
 **Authorization mode**: system_grant
 
-**Supported devices**: General
+**Device**: general devices
 
-**Valid since**: 20
+**Since**: 20
 
 ## ohos.permission.GET_ABILITY_INFO
 
-Allows an application to obtain ability information based on a URI.
+Allows an application to query **Ability** information based on the URI.
 
 <!--RP42--><!--RP42End-->
 
@@ -587,9 +618,9 @@ Allows an application to obtain ability information based on a URI.
 
 **Authorization mode**: system_grant
 
-**Supported devices**: PC/2in1
+**Device**: PCs/2-in-1 devices
 
-**Valid since**: 20
+**Since**: 20
 
 ## ohos.permission.ACCESS_FIDO2_ONLINEAUTH
 
@@ -601,9 +632,9 @@ Allows an application to use the Native Development Kit (NDK) of the passkey ser
 
 **Authorization mode**: system_grant
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Device**: phones | PCs/2-in-1 devices | tablets
 
-**Valid since**: 20
+**Since**: 20
 
 ## ohos.permission.USE_FLOAT_BALL
 
@@ -615,9 +646,9 @@ Allows an application to use the global float ball.
 
 **Authorization mode**: system_grant
 
-**Supported devices**: Phone | Tablet
+**Device**: phones | tablets
 
-**Valid since**: 20
+**Since**: 20
 
 ## ohos.permission.DLP_GET_HIDE_STATUS
 
@@ -631,9 +662,9 @@ With this permission, the application can obtain the current screen peeping stat
 
 **Authorization mode**: system_grant
 
-**Supported devices**: Phone
+**Device**: phones
 
-**Valid since**: 18
+**Since**: 18
 
 **Changelog**: This permission is available only to system applications in API versions 18 to 19. From API version 20, it's also available to normal applications.
 
@@ -641,7 +672,7 @@ With this permission, the application can obtain the current screen peeping stat
 
 Allows an application to obtain the local device name.
 
-With this permission, the application can obtain the device name on the About screen in Settings. Without this permission, the application can only obtain the default device name.
+With this permission, the application can obtain the device name on the **About** screen in **Settings**. Without this permission, the application can only obtain the default device name.
 
 <!--RP47--><!--RP47End-->
 
@@ -649,9 +680,9 @@ With this permission, the application can obtain the device name on the About sc
 
 **Authorization mode**: system_grant
 
-**Supported devices**:  Phone | PC/2in1 | Tablet
+**Device**: phones | PCs/2-in-1 devices | tablets
 
-**Valid since**: 20
+**Since**: 20
 
 <!--Del-->
 ## ohos.permission.atomicService.MANAGE_STORAGE
@@ -662,9 +693,9 @@ Allows an atomic service to request differentiated storage space.
 
 **Authorization mode**: system_grant
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Device**: phones | PCs/2-in-1 devices | tablets
 
-**Valid since**: 20
+**Since**: 20
 <!--DelEnd-->
 
 ## ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM
@@ -677,9 +708,9 @@ Allows an application to request continuous tasks of special types, such as comp
 
 **Authorization mode**: system_grant
 
-**Supported devices**: General
+**Device**: general devices
 
-**Valid since**: 20
+**Since**: 20
 
 ## ohos.permission.LINKTURBO
 
@@ -693,13 +724,13 @@ With this permission, the application can initiate operations such as multi-netw
 
 **Authorization mode**: system_grant
 
-**Supported devices**: Phone | PC/2in1 | Tablet
+**Device**: phones | PCs/2-in-1 devices | tablets
 
-**Valid since**: 20
+**Since**: 20
 
 ## ohos.permission.ACCESS_NET_TRACE_INFO
 
-Allows an application to detect the network and obtain the TraceRoute information to determine the possible causes of high network latency. 
+Allows an application to detect the network and obtain the TraceRoute information to determine the possible causes of high network latency.
 
 <!--RP50--><!--RP50End-->
 
@@ -707,6 +738,6 @@ Allows an application to detect the network and obtain the TraceRoute informatio
 
 **Authorization mode**: system_grant
 
-**Supported devices**: General
+**Device**: general devices
 
-**Valid since**: 20
+**Since**: 20

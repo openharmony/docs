@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @shiwei75-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xdlinc-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -55,7 +56,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -133,7 +134,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -290,7 +291,7 @@ updateRotation(rotation: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -859,6 +860,7 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeIn
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit';
 
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
@@ -902,6 +904,7 @@ getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit';
 
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
@@ -944,6 +947,8 @@ getAudioCapturerMaxAmplitude(callback: AsyncCallback\<number>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) => {
@@ -986,6 +991,8 @@ getAudioCapturerMaxAmplitude(): Promise\<number>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
@@ -1022,6 +1029,8 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let encoderInfo: media.EncoderInfo;
 
 avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
@@ -1038,7 +1047,7 @@ avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) =
 
 getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
-异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+异步方式获取可用的编码器参数。通过Promise获取返回值。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1060,6 +1069,8 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let encoderInfo: media.EncoderInfo;
 
 avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
@@ -1184,7 +1195,7 @@ on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 
 ```ts
 avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-  console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
+  console.info('case state has changed, new state is: ' + state + ', and reason is: ' + reason);
 });
 ```
 
@@ -1232,7 +1243,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1299,6 +1310,8 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
@@ -1356,6 +1369,8 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 **错误码：**
 
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400103  | IO error. Return by callback.             |
@@ -1368,12 +1383,12 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
-private context: Context | undefined;
+let context: Context | undefined;
 constructor(context: Context) {
   this.context = context; // this.getUIContext().getHostContext();
 }
 
-// 例:处理photoAsset回调，保存video。
+// 例：处理photoAsset回调，保存video。
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
@@ -1392,7 +1407,7 @@ avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
   if (asset != undefined) {
     photoAsset = asset;
     // 处理photoAsset回调。
-    // 例: this.saveVideo(asset);
+    // 例：this.saveVideo(asset);
   } else {
     console.error('photoAsset is undefined');
   }

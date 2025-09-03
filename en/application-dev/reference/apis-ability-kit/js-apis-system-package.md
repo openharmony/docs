@@ -1,4 +1,10 @@
 # @system.package (Bundle Management)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 
 > **NOTE**
@@ -59,7 +65,7 @@ Checks whether a bundle has been installed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|result | boolean | Yes| The value **true** means that the bundle has been installed, and **false** means the opposite.|
+|result | boolean | Yes| Check result for whether the bundle has been installed. **true** if installed, **false** otherwise.|
 
 ## CheckPackageHasInstalledOptions
 

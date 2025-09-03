@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
-<!--SE: @liyi0309-->
-<!--TSE: @lxl007-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 提供在给定范围内选择评分的组件。
 
@@ -258,7 +259,7 @@ type OnRatingChangeCallback = (rating: number) => void
 
 ## RatingConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -438,11 +439,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 0.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(0.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(1);
               return
             }
@@ -459,11 +460,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 1.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(1.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(2);
               return
             }
@@ -480,11 +481,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 2.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(2.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(3);
               return
             }
@@ -501,11 +502,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 3.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(3.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(4);
               return
             }
@@ -522,11 +523,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 4.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(4.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(5);
               return
             }
@@ -551,7 +552,7 @@ struct ratingExample {
   @State rating: number = 0;
   @State ratingIndicator: boolean = true;
   @State ratingStars: number = 0;
-  @State ratingStepsize: number = 0.5;
+  @State ratingStepSize: number = 0.5;
   @State ratingEnabled: boolean = true;
 
   build() {
@@ -561,7 +562,7 @@ struct ratingExample {
           rating: 0,
           indicator: this.ratingIndicator
         })
-          .stepSize(this.ratingStepsize)
+          .stepSize(this.ratingStepSize)
           .stars(this.ratingStars)
           .backgroundColor(Color.Transparent)
           .width('100%')
@@ -595,12 +596,12 @@ struct ratingExample {
             }
           }).margin({ top: 5 })
 
-        Button(this.ratingStepsize == 0.5 ? "ratingStepsize : 0.5" : "ratingStepsize : 1")
+        Button(this.ratingStepSize == 0.5 ? "ratingStepSize : 0.5" : "ratingStepSize : 1")
           .onClick((event) => {
-            if (this.ratingStepsize == 0.5) {
-              this.ratingStepsize = 1;
+            if (this.ratingStepSize == 0.5) {
+              this.ratingStepSize = 1;
             } else {
-              this.ratingStepsize = 0.5;
+              this.ratingStepSize = 0.5;
             }
           }).margin({ top: 5 })
       }
@@ -632,6 +633,7 @@ struct RatingExample {
         .stars(5)
         .stepSize(0.5)
         .starStyle({
+          // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
           backgroundUri: $r('app.media.imag1'),
           foregroundUri: $r('app.media.imag2'),
           secondaryUri: $r('app.media.imag3')

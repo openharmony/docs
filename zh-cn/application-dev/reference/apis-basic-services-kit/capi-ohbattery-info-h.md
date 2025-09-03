@@ -1,5 +1,12 @@
 # ohbattery_info.h
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 概述
 
 声明电池API以获取当前电池容量和电源类型的信息，定义电池相应常见事件。

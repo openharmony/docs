@@ -1,5 +1,11 @@
 # 拉起导航类应用（startAbilityByType）
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: AGC-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @yizhixiaosiqin-->
+<!--Adviser: @huipeizi-->
 
 本章节介绍如何拉起导航类应用扩展面板。
 
@@ -135,19 +141,19 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
               {
               "uris": [
                   {
-                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
                   "host": "navigation",
                   "path": "",
                   "linkFeature": "Navigation" // 声明应用支持导航功能
                   },
                   {
-                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
                   "host": "routePlan",
                   "path": "",
                   "linkFeature": "RoutePlan" // 声明应用支持路线规划功能
                   },
                   {
-                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "scheme": "maps", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
                   "host": "search",
                   "path": "",
                   "linkFeature": "PlaceSearch" // 声明应用支持位置搜索功能

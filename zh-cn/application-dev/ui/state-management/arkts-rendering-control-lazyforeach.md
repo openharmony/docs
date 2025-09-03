@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @maorh-->
-<!--SE: @lixingchi1-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 API参数说明见：[LazyForEach API参数说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)。
 
@@ -31,6 +32,12 @@ LazyForEach为开发者提供了基于数据源渲染出一系列子组件的能
 - LazyForEach和[\@ReusableV2](./arkts-new-reusableV2.md)装饰器一起使用能触发节点复用。详见[在LazyForEach组件中使用\@ReusableV2](./arkts-new-reusableV2.md#在lazyforeach组件中使用)。
 
 ## 基本用法
+
+### 设置数据源
+
+为了管理[DataChangeListener](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#datachangelistener7)监听器和通知LazyForEach更新数据，开发者需要使用如下方法：首先实现LazyForEach提供的[IDataSource](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource)接口，将其作为LazyForEach的数据源，然后管理监听器和更新数据。
+
+为实现基本的数据管理和监听能力，开发者需要实现`IDataSource`的[totalCount](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#totalcount)、[getData](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#getdata)、[registerDataChangeListener](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#registerdatachangelistener)和[unregisterDataChangeListener](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#unregisterdatachangelistener)方法，具体请参考[BasicDataSource示例代码](#basicdatasource示例代码)。当数据源变化时，通过调用监听器的接口通知LazyForEach更新，具体请参考[数据更新](#数据更新)。
 
 ### 键值生成规则
 
@@ -180,7 +187,7 @@ LazyForEach(this.data, (item: string) => {
 
 ### 数据更新
 
-当`LazyForEach`数据源发生变化，需要再次渲染时，开发者应根据数据源的变化情况调用`listener`对应的接口，通知`LazyForEach`做相应的更新，各使用场景如下。
+当`LazyForEach`数据源发生变化，需要再次渲染时，开发者应根据数据源的变化情况调用`listener`对应的接口，通知`LazyForEach`做相应的更新。`LazyForEach`的更新操作包括：添加数据、删除数据、交换数据、改变单个数据、改变多个数据以及精准批量修改数据，各使用场景示例如下。
 
 **添加数据**
 
@@ -685,9 +692,9 @@ struct MyComponent {
 
 ```ts
 // 修改之前的数组
-["Hello a","Hello b","Hello c","Hello d","Hello e","Hello f","Hello g","Hello h","Hello i","Hello j","Hello k","Hello l","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+['Hello a','Hello b','Hello c','Hello d','Hello e','Hello f','Hello g','Hello h','Hello i','Hello j','Hello k','Hello l','Hello m','Hello n','Hello o','Hello p','Hello q','Hello r']
 // 修改之后的数组
-["Hello a","Hello c","Hello d","Hello b","Hello g","Hello f","Hello e","Hello h","Hello 1","Hello 2","Hello i","Hello j","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+['Hello a','Hello c','Hello d','Hello b','Hello g','Hello f','Hello e','Hello h','Hello 1','Hello 2','Hello i','Hello j','Hello m','Hello n','Hello o','Hello p','Hello q','Hello r']
 ```
 "Hello b" 从第2项变成第4项，因此第一个 operation 为 `{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }`。
 "Hello e" 跟 "Hello g" 对调了，而 "Hello e" 在修改前的原数组中的 index=4，"Hello g" 在修改前的原数组中的 index=6, 因此第二个 operation 为 `{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }`。
@@ -830,10 +837,10 @@ class SecondLayer {
 
 @ObservedV2
 class ThirdLayer {
-  @Trace forthLayer: String;
+  @Trace fourthLayer: string;
 
-  constructor(forthLayer: String) {
-    this.forthLayer = forthLayer;
+  constructor(fourthLayer: string) {
+    this.fourthLayer = fourthLayer;
   }
 }
 
@@ -852,9 +859,9 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          Text(item.firstLayer.secondLayer.thirdLayer.forthLayer.toString()).fontSize(50)
+          Text(item.firstLayer.secondLayer.thirdLayer.fourthLayer).fontSize(50)
             .onClick(() => {
-              item.firstLayer.secondLayer.thirdLayer.forthLayer += '!';
+              item.firstLayer.secondLayer.thirdLayer.fourthLayer += '!';
             })
         }
       }, (item: StringData, index: number) => index.toString())
@@ -1061,10 +1068,10 @@ struct Parent {
             Text(item.toString())
               .fontSize(16)
               .textAlign(TextAlign.Center)
-              .size({ height: 100, width: "100%" })
+              .size({ height: 100, width: '100%' })
           }.margin(10)
           .borderRadius(10)
-          .backgroundColor("#FFFFFFFF")
+          .backgroundColor('#FFFFFFFF')
         }, (item: string) => item)
           .onMove((from: number, to: number) => {
             this.data.moveDataWithoutNotify(from, to);
@@ -1072,7 +1079,7 @@ struct Parent {
       }
       .width('100%')
       .height('100%')
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
     }
   }
 }

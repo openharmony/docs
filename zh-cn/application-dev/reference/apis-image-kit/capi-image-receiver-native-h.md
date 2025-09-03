@@ -2,12 +2,15 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 声明从native层获取图片数据的方法。
+
+**引用文件：** <multimedia/image_framework/image/image_receiver_native.h>
 
 **库：** libimage_receiver.so
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fenglinbailu-->
-<!--SE: @lanshouren-->
-<!--TSE: @liuli0427-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 要将页面的基本元素组装在一起，需要使用容器组件。在页面布局中常用到三种容器组件，分别是div、list和tabs。在页面结构相对简单时，可以直接用div作为容器，因为div作为单纯的布局容器，可以支持多种子组件，使用起来更为方便。
 

@@ -1,5 +1,12 @@
 # 事件订阅简介
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 事件介绍
 
 HiAppEvent能够订阅应用事件和系统事件。
@@ -25,6 +32,8 @@ HiAppEvent能够订阅应用事件和系统事件。
 [主线程超时事件介绍](hiappevent-watcher-mainthreadjank-events.md)
 
 [任务执行超时事件介绍](hiappevent-watcher-apphicollie-events.md)
+
+[应用查杀事件介绍](hiappevent-watcher-app-killed-events.md)
 
 <!--RP1-->
 <!--RP1End-->

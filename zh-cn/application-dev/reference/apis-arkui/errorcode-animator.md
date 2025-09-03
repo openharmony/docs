@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -13,7 +14,7 @@
 
 **错误信息**
 
-Internal error.
+The specified page is not found or the object property list is not obtained.
 
 **错误描述**
 

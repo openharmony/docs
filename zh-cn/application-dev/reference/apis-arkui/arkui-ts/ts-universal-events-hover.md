@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 光标滑动或手写笔在屏幕上悬浮移动扫过组件时触发。
 
@@ -16,7 +17,7 @@
 
 onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
-鼠标或手写笔进入或退出组件时触发hover事件。
+鼠标或手写笔进入或退出组件时，触发hover事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -58,7 +59,7 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 ## HoverEvent<sup>10+</sup>对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +71,7 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 | windowY<sup>15+</sup> |number|否|是|鼠标光标或手写笔位置相对于应用窗口左上角的y轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
 | displayX<sup>15+</sup> |number|否|是|鼠标光标或手写笔位置相对于应用屏幕左上角的x轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
 | displayY<sup>15+</sup> |number|否|是|鼠标光标或手写笔位置相对于应用屏幕左上角的y轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
-| stopPropagation | () => void |否|否| 阻塞事件冒泡。 <br> **原子化服务API：**  从API version 10开始，该接口支持在原子化服务中使用。|
+| stopPropagation | () => void |否|否| 阻塞事件冒泡。 <br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。|
 | globalDisplayX<sup>20+</sup> | number |否|是| 鼠标光标或手写笔位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | globalDisplayY<sup>20+</sup> | number |否|是| 鼠标光标或手写笔位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
@@ -90,7 +91,7 @@ struct HoverEventExample {
 
   build() {
     Column({ space: 20 }) {
-      Button(this.hoverText)
+      Button(this.hoverText, { type: ButtonType.Capsule })
         .width(180).height(80)
         .backgroundColor(this.color)
         .onHover((isHover: boolean, event: HoverEvent) => {
@@ -137,7 +138,7 @@ struct OnHoverMoveEventExample {
 
   build() {
     Column({ space: 20 }) {
-      Button('onHoverMove')
+      Button('onHoverMove', { type: ButtonType.Capsule })
         .width(180).height(80)
         .onHoverMove((event: HoverEvent) => {
           this.hoverMoveText = 'onHoverMove:\nXY = (' + event.x + ', ' + event.y + ')' + 

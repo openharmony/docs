@@ -2,14 +2,15 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @yanhuii-->
-<!--SE: @houpengtao1-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 用户首选项（Preferences）模块主要提供轻量级Key-Value操作，支持本地存储少量数据，数据存储在文件和内存中，访问速度快。如果存在大量数据场景，请考虑使用键值型数据库或关系型数据库。
 
 ## 约束限制
-- API version 18之前：ArkTS API仅支持XML格式存储；C API仅支持GSKV存储格式；存储模式互不兼容，不支持ArkTS和C API操作同一个Preferences实例。
+- API version 18之前：ArkTS API仅支持[XML存储模式](./data-persistence-by-preferences.md#xml存储)；C API仅支持[GSKV存储模式](./data-persistence-by-preferences.md#gskv存储)；存储模式互不兼容，不支持ArkTS和C API操作同一个Preferences实例。
 - API version 18及之后：ArkTS和C API均支持XML和GSKV双模式；ArkTS和C API使用相同的存储模式时，可以正常操作同一Preferences实例；禁止ArkTS和C API选择不同的存储模式，来操作同一个Preferences实例。
 - Key的最大长度限制为1024个字节，Value的最大长度限制为16MB。
 

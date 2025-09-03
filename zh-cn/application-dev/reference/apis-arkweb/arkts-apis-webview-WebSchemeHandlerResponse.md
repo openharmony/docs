@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
 
@@ -55,13 +56,13 @@ struct WebComponent {
           response.setEncoding("utf-8")
           response.setHeaderByName("header1", "value1", false)
           response.setNetErrorCode(WebNetErrorList.NET_OK)
-          console.log("[schemeHandler] getUrl:" + response.getUrl())
-          console.log("[schemeHandler] getStatus:" + response.getStatus())
-          console.log("[schemeHandler] getStatusText:" + response.getStatusText())
-          console.log("[schemeHandler] getMimeType:" + response.getMimeType())
-          console.log("[schemeHandler] getEncoding:" + response.getEncoding())
-          console.log("[schemeHandler] getHeaderByValue:" + response.getHeaderByName("header1"))
-          console.log("[schemeHandler] getNetErrorCode:" + response.getNetErrorCode())
+          console.info("[schemeHandler] getUrl:" + response.getUrl())
+          console.info("[schemeHandler] getStatus:" + response.getStatus())
+          console.info("[schemeHandler] getStatusText:" + response.getStatusText())
+          console.info("[schemeHandler] getMimeType:" + response.getMimeType())
+          console.info("[schemeHandler] getEncoding:" + response.getEncoding())
+          console.info("[schemeHandler] getHeaderByValue:" + response.getHeaderByName("header1"))
+          console.info("[schemeHandler] getNetErrorCode:" + response.getNetErrorCode())
 
         } catch (error) {
           console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

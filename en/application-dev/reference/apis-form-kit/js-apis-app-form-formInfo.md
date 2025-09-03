@@ -1,4 +1,10 @@
 # @ohos.app.form.formInfo (formInfo)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The **formInfo** module provides types and enums related to the widget information and state.
 
@@ -124,6 +130,7 @@ Enumerates the widget parameters.
 | FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | Widget location.<br>OTHER                         -1    (Other locations)<br>DESKTOP                       0     (Home screen)<br>FORM_CENTER                   1     (Widget center of the home screen)<br>FORM_MANAGER                  2     (Widget Manager of the home screen)<br>NEGATIVE_SCREEN               3     (Minus-one screen)<br>FORM_CENTER_NEGATIVE_SCREEN   4     (Widget center of the minus-one screen)<br>FORM_MANAGER_NEGATIVE_SCREEN  5     (Widget Manager of the minus-one screen)<br>SCREEN_LOCK                   6     (Screen lock)<br>AI_SUGGESTION                 7     (Celia suggestions area)|
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | Name of the permission.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | Whether the permission is granted.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| ORIGINAL_FORM_KEY<sup>20+</sup> | 'ohos.extra.param.key.original_form_id' | Original widget ID. When a group of widgets associated by **groupId** is resized, new-sized widgets are created before old-sized widgets are deleted. When a new-sized widget is created, the old-sized widget ID is passed through this key in the **want** parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## FormDimension
 
@@ -137,7 +144,7 @@ Enumerates the widget dimensions.
 | Dimension_2_2      | 2   | 2 x 2.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Dimension_2_4      | 3   | 2 x 4.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Dimension_4_4      | 4   | 4 x 4.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Dimension_2_1      | 5   | 2 x 1.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Dimension_2_1<sup>(deprecated)</sup>      | 5   | 2 x 1.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Note**: This field is supported since API version 9 and deprecated since API version 20.|
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | DIMENSION_2_3<sup>18+<sup>      | 8   | 2 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 18.|
@@ -195,30 +202,36 @@ Enumerates the reasons for creating a widget.
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | The widget is created by default.|
 | FORM_SHARE   | 2   | The widget is created for sharing.|
+| FORM_SIZE_CHANGE<sup>20+<sup>    | 3   | The widget is created due to dimension changes.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## OverflowInfo<sup>20+</sup>
 
 Describes the widget animation information.
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **System capability**: SystemCapability.Ability.Form
 
 | Name| Type| Read-Only| Optional | Description                             |
 |-----|-----|------|-----|---------------------------------|
-| area     | [Rect](#rect20) | Yes| No  | Overflow animation area. The upper left corner of the widget is used as the origin, in vp.  |
-| duration | number | Yes| No  | Animation duration. The value is an integer greater than 0 and less than or equal to 3,500, in milliseconds.|
+| area     | [Rect](#rect20) | No| No  | Overflow animation area. The upper left corner of the widget is used as the origin, in vp.  |
+| duration | number | No| No  | Animation duration. The value is an integer greater than 0 and less than or equal to 3,500, in milliseconds.|
+| useDefaultAnimation | boolean | No| Yes  | Whether to enable the default animation provided by the system when the interactive widget state is switched. The default value is **true**. The value **false** indicates the image is directly switched without animation, with the widget UI in the inactive state matching that in the active state during the switch.|
 
 ## Rect<sup>20+</sup>
 
 Defines the common rectangular area information, including the widget position and animation area.
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **System capability**: SystemCapability.Ability.Form
 
 | Name| Type| Read-Only| Optional | Description|
 |-----|-----|------|-----|-------|
-| left   | number | Yes| No  | X coordinate of the upper left vertex of the rectangle, in vp.|
-| top    | number | Yes| No  | Y coordinate of the upper left vertex of the rectangle, in vp.|
-| width  | number | Yes| No  | Width of the rectangle, in vp.|
-| height | number | Yes| No  | Height of the rectangle, in vp.|
+| left   | number | No| No  | X coordinate of the upper left vertex of the rectangle, in vp.|
+| top    | number | No| No  | Y coordinate of the upper left vertex of the rectangle, in vp.|
+| width  | number | No| No  | Width of the rectangle, in vp.|
+| height | number | No| No  | Height of the rectangle, in vp.|
 ## FormLocation<sup>20+</sup>
 
 Enumerates the widget locations.
@@ -231,3 +244,21 @@ Enumerates the widget locations.
 | FORM_CENTER                  | 1    | The widget is located in the widget center of the home screen.    |
 | FORM_MANAGER                 | 2    | The widget is located in the Widget Manager of the home screen.  |
 <!--RP1--><!--RP1End-->
+
+## RunningFormInfo<sup>20+</sup>
+
+Information about the widget that has been added to the home screen.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       | Type                | Readable   | Writable   | Description                                                        |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| formId  | string               | Yes   | No    | Widget ID.                  |
+| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
+| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
+| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
+| formName        | string               | Yes   | No    | Widget name.                                |
+| dimension | number               | Yes   | No    | Widget dimension. For details about the values and meanings, see [FormDimension](#formdimension).  |
+| formLocation | [FormLocation](#formlocation20)| Yes   | No    | Location of the widget.  |

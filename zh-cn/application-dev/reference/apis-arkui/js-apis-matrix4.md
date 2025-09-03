@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供矩阵变换功能，支持对图形进行平移、旋转和缩放等。
 
@@ -79,6 +80,7 @@ let matrix = matrix4.init(
 struct Tests {
   build() {
     Column() {
+      // $r("app.media.zh")需要替换为开发者所需的图像资源文件。 
       Image($r("app.media.zh"))
         .width("40%")
         .height(100)
@@ -123,10 +125,12 @@ let matrix2 = matrix4.identity();
 struct Tests {
   build() {
     Column() {
+      // $r("app.media.zh")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.zh"))
         .width("40%")
         .height(100)
         .transform(matrix1)
+      // $r("app.media.zh")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.zh"))
         .width("40%")
         .height(100)
@@ -177,13 +181,16 @@ struct Test {
 
   build() {
     Column({ space: "50px" }) {
+      // $r("app.media.testImage")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.testImage"))
         .width(this.imageSize)
         .height(this.imageSize)
+      // $r("app.media.testImage")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.testImage"))
         .width(this.imageSize)
         .height(this.imageSize)
         .transform(this.matrix1)
+      // $r("app.media.testImage")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.testImage"))
         .width(this.imageSize)
         .height(this.imageSize)
@@ -233,11 +240,13 @@ struct Test {
   build() {
     Column() {
       // 矩阵变换前
+      // $r("app.media.icon")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.icon"))
         .width("40%")
         .height(100)
         .margin({ top: 50 })
       // 先平移x轴200px，再缩放两倍x轴，得到矩阵变换后的效果图
+      // $r("app.media.icon")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.icon"))
         .transform(this.matrix1.copy().combine(this.matrix2))
         .width("40%")
@@ -281,11 +290,13 @@ let matrix2 = matrix1.copy().invert();
 struct Tests {
   build() {
     Column() {
+      // $r("app.media.zh")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.zh"))
         .width(200)
         .height(100)
         .transform(matrix1)
         .margin({ top: 100 })
+      // $r("app.media.zh")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.zh"))
         .width(200)
         .height(100)
@@ -332,6 +343,7 @@ struct Test {
 
   build() {
     Column() {
+      // $r("app.media.bg1")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.bg1")).transform(this.matrix1)
         .width("40%")
         .height(100)
@@ -385,6 +397,7 @@ struct Test {
 
   build() {
     Column() {
+      // $r("app.media.testImage")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.testImage")).transform(this.matrix1)
         .width("300px")
         .height("300px")
@@ -432,6 +445,7 @@ struct Test {
 
   build() {
     Column() {
+      // $r("app.media.bg1")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.bg1")).transform(this.matrix1)
         .height(100)
         .margin({
@@ -488,6 +502,7 @@ struct Test {
 
   build() {
     Column() {
+      // $r("app.media.bg1")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.bg1")).transform(this.matrix1)
         .width("40%")
         .height(100)
@@ -539,6 +554,7 @@ struct Test {
     Column() {
       Text(`矩阵变换前的坐标：[${this.originPoint}]`)
         .fontSize(16)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.image"))
         .width('600px')
         .height('300px')
@@ -546,6 +562,7 @@ struct Test {
       Text(`矩阵变换后的坐标：[${this.transformPoint}]`)
         .fontSize(16)
         .margin({ top: 100 })
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.image"))
         .width('600px')
         .height('300px')
@@ -601,6 +618,7 @@ struct Index {
       Column().backgroundColor(Color.Blue)
         .width('500px')
         .height('500px')
+      // $r("app.media.transition_image1")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.transition_image1'))
         .scale({ centerX: 0, centerY: 0, x: 1 })
         .transform(this.matrix1)
@@ -672,7 +690,7 @@ struct Index {
 | srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞)|
 | dst    |  Array<[Point](#point12)>  | 是   | 目标点坐标。 |
 | dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值: src.length/2 <br/> 取值范围：[0, +∞) |
-| pointCount    | number | 否   | 使用到的点数量。<br>默认值: 0 <br/> 取值范围：[0, +∞)|
+| pointCount    | number | 否   | 使用到的点数量。要使用的点的数量如果为0，则返回单位矩阵。如果为1，则返回一个将两个点改变之前的平移矩阵。如果为2-4，则返回一个变换矩阵。<br>默认值: 0 <br/> 取值范围：[0, +∞)|
 
 ## Point<sup>12+</sup>
 
@@ -722,10 +740,12 @@ struct Test {
 
   build() {
     Column() {
+      // $r("app.media.bg1")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.bg1"))
         .width("40%")
         .height(100)
         .transform(this.matrix1)
+      // $r("app.media.bg2")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.bg2"))
         .width("40%")
         .height(100)

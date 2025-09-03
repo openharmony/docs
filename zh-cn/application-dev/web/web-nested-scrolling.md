@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件嵌套滚动的典型应用场景为，在页面中，多个独立区域需进行滚动，当用户滚动Web区域内容时，可联动其他滚动区域，实现上下左右全方位滑动页面的嵌套滚动体验。内嵌于可滚动容器（[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)、[Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md)、[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)）中的Web组件，接收到滑动手势事件后，需要设置ArkUI的[NestedScrollMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)枚举属性，实现Web组件与ArkUI可滚动容器的嵌套滚动。
 
@@ -11,7 +12,7 @@ Web组件嵌套滚动可通过[方案1：使用nestedScroll属性实现嵌套滚
 
 > **说明：**
 >
-> 如果Web组件用到了全量展开的场景（layoutMode为`WebLayoutMode.FIT_CONTENT`），需要显式指明渲染模式(`RenderMode.SYNC_RENDER`)，[详见](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#layoutmode11)
+> 如果Web组件用到了全量展开的场景（layoutMode为`WebLayoutMode.FIT_CONTENT`），需要显式指明渲染模式(`RenderMode.SYNC_RENDER`)，详见[layoutMode](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#layoutmode11)。
 
 ## 使用nestedScroll属性实现嵌套滚动
 
@@ -118,20 +119,18 @@ struct NestedScroll {
 1. 如何禁用Web组件滚动手势。
 
     (1) 首先调用Web组件滚动控制器方法，设置Web禁用触摸（[setScrollable](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setscrollable12)）的滚动。
-
     ```ts
     this.webController.setScrollable(false, webview.ScrollType.EVENT);
     ```
     (2) 再使用[onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin13)方法，禁止Web组件自带的滑动手势触发。
-
-		```ts
-		.onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => {
-		if (current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
-			return GestureJudgeResult.REJECT;
-		}
-		return GestureJudgeResult.CONTINUE;
-		})
-		```
+    ```ts
+    .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, otherArray<GestureRecognizer>) => {
+      if (current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+        return GestureJudgeResult.REJECT;
+      }
+      return GestureJudgeResult.CONTINUE;
+    })
+    ```
 2. 如何禁止[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件的手势。
     ```ts
 	  .enableScrollInteraction(false)
@@ -184,7 +183,6 @@ struct Index {
   private webController: webview.WebviewController = new webview.WebviewController()
   private isWebAtEnd:boolean = false
   private webHeight:number = 0
-  private scrollTop:number = 0
   @Local arr: Array<number> = []
 
   aboutToAppear(): void {
@@ -208,7 +206,7 @@ struct Index {
     }
   }
 
-  getWebScrollTop() {
+  checkScrollBottom() {
   	this.isWebAtEnd = false;
   	if (this.webController.getPageOffset().y + this.webHeight >= this.webController.getPageHeight()) {
   	  this.isWebAtEnd = true;
@@ -252,7 +250,7 @@ struct Index {
       }
     }
     .onScrollFrameBegin((offset: number, state: ScrollState)=>{
-      this.getWebScrollTop();
+      this.checkScrollBottom();
       if (offset > 0) {
         if (!this.isWebAtEnd) {
           this.webController.scrollBy(0, offset)

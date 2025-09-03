@@ -1,8 +1,17 @@
 # oh_axis_type.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Overview
 
 Defines the axis event structures and enumerations.
+
+**File to include**: <multimodalinput/oh_axis_type.h>
 
 **Library**: libohinput.so
 
@@ -56,7 +65,7 @@ Event type of the input device.
 
 **Since**: 12
 
-| Enum | Description|
+| Enum| Description|
 | -- | -- |
 | AXIS_EVENT_TYPE_PINCH = 1 | Two-finger pinch event. The value can be **AXIS_TYPE_PINCH** or **AXIS_TYPE_ROTATE**.		<br>**Since**: 12|
 | AXIS_EVENT_TYPE_SCROLL = 2 | Scroll axis event. The value can be **AXIS_TYPE_SCROLL_VERTICAL** and **AXIS_TYPE_SCROLL_HORIZONTAL**. For mouse wheel events, the value can only be **AXIS_TYPE_SCROLL_VERTICAL**.		<br>**Since**: 12|

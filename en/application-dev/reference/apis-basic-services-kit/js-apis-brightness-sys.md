@@ -1,5 +1,12 @@
 # @ohos.brightness (Screen Brightness) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 The **brightness** module provides an API for setting the screen brightness.
 
 > **NOTE**

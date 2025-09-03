@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 简介
 本指南主要提供了BLE扫描和BLE广播相关操作的开发指导。可以实现发现周边BLE设备和其他设备发现本机设备的场景。
@@ -226,7 +227,7 @@ let advData: ble.AdvertiseData = {
 let advResponse: ble.AdvertiseData = {
   serviceUuids: [],
   manufactureData: [],
-  serviceData: [serviceDataUnit1, serviceDataUnit2],
+  serviceData: [serviceDataUnit1, serviceDataUnit2]
 };
 // 构造广播启动完整参数AdvertisingParams
 let advertisingParams: ble.AdvertisingParams = {
@@ -309,7 +310,7 @@ let advData: ble.AdvertiseData = {
 let advResponse: ble.AdvertiseData = {
   serviceUuids: [],
   manufactureData: [],
-  serviceData: [serviceDataUnit1, serviceDataUnit2],
+  serviceData: [serviceDataUnit1, serviceDataUnit2]
 };
 try {
   // 启动广播
@@ -658,7 +659,7 @@ export class BleAdvertisingManager {
     let advResponse: ble.AdvertiseData = {
       serviceUuids: [],
       manufactureData: [],
-      serviceData: [serviceDataUnit1, serviceDataUnit2],
+      serviceData: [serviceDataUnit1, serviceDataUnit2]
     };
     // 2.3 构造广播启动完整参数AdvertisingParams
     let advertisingParams: ble.AdvertisingParams = {
@@ -710,9 +711,7 @@ export class BleAdvertisingManager {
   public async stopAdvertising() {
     try {
       await ble.stopAdvertising(this.advHandle);
-      ble.off('advertisingStateChange', (data: ble.AdvertisingStateChangeInfo) => {
-        console.info(TAG, 'bluetooth advertising state = ' + JSON.stringify(data));
-      });
+      ble.off('advertisingStateChange', this.onReceiveEvent);
     } catch (err) {
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }

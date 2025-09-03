@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 Image为图片组件，常用于在应用中显示图片。
 
@@ -29,7 +30,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 | 参数名 | 类型                                          | 必填 | 说明         |
 | ------ | --------------------------------------------- | ---- | ------------ |
-| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是   | AI分析类型。 |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是   | AI分析类型。 |
 
 ### edgeAntialiasing<sup>11+</sup>
 

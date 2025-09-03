@@ -3,8 +3,9 @@
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
-<!--SE: @lanming-->
-<!--TSE: @PAFT-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 以校验证书有效性为例，完成证书对象的创建、解析和校验。
 

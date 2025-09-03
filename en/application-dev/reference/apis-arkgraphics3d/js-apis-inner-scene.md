@@ -1,5 +1,11 @@
 # Scene
-The Scene module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParameters** and **SceneNodeParameters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
+
+The module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParameters** and **SceneNodeParameters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
 
 > **NOTE**
 >
@@ -109,7 +115,7 @@ Creates a shader based on the scene resource parameters. This API uses a promise
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Shader](js-apis-inner-scene-resources.md#shader)> | Promise used to return the **Shader** object created.|
+| Promise\<[Shader](js-apis-inner-scene-resources.md#shader)> | Promise used to return the Shader object created.|
 
 **Example**
 ```ts
@@ -117,20 +123,16 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function createShaderResource(): Promise<Shader> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let shaderParams: SceneResourceParameters = {
-        name: "custom_shader",
-        uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
-      };
-      return renderResourceFactory.createShader(shaderParams);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  let shaderParams: SceneResourceParameters = {
+    name: "custom_shader",
+    uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
+  };
+  return renderResourceFactory.createShader(shaderParams);
 }
 ```
 ### createImage
@@ -148,7 +150,7 @@ Creates an image based on the scene resource parameters. This API uses a promise
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Image](js-apis-inner-scene-resources.md#image)> | Promise used to return the **Image** object created.|
+| Promise\<[Image](js-apis-inner-scene-resources.md#image)> | Promise used to return the Image object created.|
 
 **Example**
 ```ts
@@ -156,20 +158,16 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function createImageResource(): Promise<Image> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let imageParams: SceneResourceParameters = {
-        name: "sampleImage",
-        uri: $rawfile("image/Cube_BaseColor.png")
-      };
-      return renderResourceFactory.createImage(imageParams);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  let imageParams: SceneResourceParameters = {
+    name: "sampleImage",
+    uri: $rawfile("image/Cube_BaseColor.png")
+  };
+  return renderResourceFactory.createImage(imageParams);
 }
 ```
 
@@ -189,80 +187,76 @@ Creates a mesh based on the scene resource parameters and geometry definition. T
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource)> | Promise used to return the **Mesh** object created.|
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource18)> | Promise used to return the Mesh object created.|
 
 **Example**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  GeometryDefinition, MeshResource } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node }  from '@kit.ArkGraphics3D';
+import { CustomGeometry, PrimitiveTopology, RenderContext, RenderResourceFactory,
+  MeshResource } from '@ohos.graphics.scene';
 
 function createMeshResource(): Promise<MeshResource> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let geometry = new CustomGeometry(
-        [
-          { x: 0, y: 0, z: 0 },
-          { x: 1, y: 0, z: 0 },
-          { x: 1, y: 1, z: 0 },
-          { x: 0, y: 1, z: 0 },
-          { x: 0, y: 0, z: 1 },
-          { x: 1, y: 0, z: 1 },
-          { x: 1, y: 1, z: 1 },
-          { x: 0, y: 1, z: 1 }
-        ],
-        [
-          0, 1, 2, 2, 3, 0,
-          4, 5, 6, 6, 7, 4,
-          0, 4, 5, 5, 1, 0,
-          1, 5, 6, 6, 2, 1,
-          2, 6, 7, 7, 3, 2,
-          3, 7, 4, 4, 0, 3
-        ]
-      );
-      geometry.topology = PrimitiveTopology.TRIANGLE_LIST;
-      geometry.normals = [
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 }
-      ];
-
-      geometry.uvs = [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-        { x: 1, y: 1 },
-        { x: 0, y: 1 },
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-        { x: 1, y: 1 },
-        { x: 0, y: 1 }
-      ];
-      geometry.colors = [
-        { r: 1, g: 0, b: 0, a: 1 },
-        { r: 0, g: 1, b: 0, a: 1 },
-        { r: 0, g: 0, b: 1, a: 1 },
-        { r: 1, g: 1, b: 0, a: 1 },
-        { r: 1, g: 0, b: 1, a: 1 },
-        { r: 0, g: 1, b: 1, a: 1 },
-        { r: 1, g: 1, b: 1, a: 1 },
-        { r: 0, g: 0, b: 0, a: 1 }
-      ];
-      let sceneResourceParameter: SceneResourceParameters = {
-        name: "cubeMesh",
-        uri: $rawfile("models/cube.obj")
-      };
-      return renderResourceFactory.createMesh(sceneResourceParameter, geometry);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  const geometry = new CustomGeometry();
+  geometry.vertices = [
+    { x: 0, y: 0, z: 0 },
+    { x: 1, y: 0, z: 0 },
+    { x: 1, y: 1, z: 0 },
+    { x: 0, y: 1, z: 0 },
+    { x: 0, y: 0, z: 1 },
+    { x: 1, y: 0, z: 1 },
+    { x: 1, y: 1, z: 1 },
+    { x: 0, y: 1, z: 1 }
+  ];
+  geometry.indices = [
+    0, 1, 2, 2, 3, 0,     // front
+    4, 5, 6, 6, 7, 4,     // back
+    0, 4, 5, 5, 1, 0,     // bottom
+    1, 5, 6, 6, 2, 1,     // right
+    3, 2, 6, 6, 7, 3,     // top
+    3, 7, 4, 4, 0, 3      // left
+  ];
+  geometry.topology = PrimitiveTopology.TRIANGLE_LIST;
+  geometry.normals = [
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 }
+  ];
+  geometry.uvs = [
+    { x: 0, y: 0 },
+    { x: 1, y: 0 },
+    { x: 1, y: 1 },
+    { x: 0, y: 1 },
+    { x: 0, y: 0 },
+    { x: 1, y: 0 },
+    { x: 1, y: 1 },
+    { x: 0, y: 1 }
+  ];
+  geometry.colors = [
+    { r: 1, g: 0, b: 0, a: 1 },
+    { r: 0, g: 1, b: 0, a: 1 },
+    { r: 0, g: 0, b: 1, a: 1 },
+    { r: 1, g: 1, b: 0, a: 1 },
+    { r: 1, g: 0, b: 1, a: 1 },
+    { r: 0, g: 1, b: 1, a: 1 },
+    { r: 1, g: 1, b: 1, a: 1 },
+    { r: 0, g: 0, b: 0, a: 1 }
+  ];
+  let sceneResourceParameter: SceneResourceParameters = {
+    name: "cubeMesh",
+    uri: $rawfile("image/Cube_BaseColor.png")
+  };
+  return renderResourceFactory.createMesh(sceneResourceParameter, geometry);
 }
 ```
 
@@ -281,7 +275,7 @@ Creates a sampler based on the scene resource parameters. This API uses a promis
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Sampler](js-apis-inner-scene-resources.md#sampler)> | Promise used to return the **Sampler** object created.|
+| Promise\<[Sampler](js-apis-inner-scene-resources.md#sampler20)> | Promise used to return the Sampler object created.|
 
 **Example**
 ```ts
@@ -290,20 +284,16 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   Sampler } from '@kit.ArkGraphics3D';
 
 function createSamplerResource(): Promise<Sampler> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let samplerParams: SceneResourceParameters = {
-        name: "sampler1",
-        uri: $rawfile("image/Cube_BaseColor.png")
-      };
-      return renderResourceFactory.createSampler(samplerParams);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  let samplerParams: SceneResourceParameters = {
+    name: "sampler1",
+    uri: $rawfile("image/Cube_BaseColor.png")
+  };
+  return renderResourceFactory.createSampler(samplerParams);
 }
 ```
 
@@ -322,31 +312,29 @@ Creates a scene from the specified resource URI. If no URI is specified, an empt
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Scene](#scene-1)> | Promise used to return the **Scene** object created.|
+| Promise\<[Scene](#scene-1)> | Promise used to return the Scene object created.|
 
 **Example**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  ResourceStr } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { RenderContext, RenderResourceFactory } from '@ohos.graphics.scene';
 
+// fromFile=true: loads a scene from the specified GLB file. fromFile=false: creates an empty scene. This parameter illustrates two typical methods for creating scenes.
 function createScenePromise(fromFile: boolean = false): Promise<Scene> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
 
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      if (fromFile) {
-        // Create a scene from a file.
-        return renderResourceFactory.createScene($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
-      } else {
-        // Create an empty scene.
-        return renderResourceFactory.createScene();
-      }
-    });
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  if (fromFile) {
+    // Create a scene from a file.
+    return renderResourceFactory.createScene($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
+  } else {
+    // Create an empty scene.
+    return renderResourceFactory.createScene();
+  }
 }
 ```
 
@@ -368,7 +356,7 @@ Creates a camera based on scene node parameters. This API uses a promise to retu
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Camera](js-apis-inner-scene-nodes.md#camera)> | Promise used to return the **Camera** object created.|
+| Promise\<[Camera](js-apis-inner-scene-nodes.md#camera)> | Promise used to return the Camera object created.|
 
 **Example**
 ```ts
@@ -405,7 +393,7 @@ Creates a light based on the scene node parameters and light type. This API uses
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Light](js-apis-inner-scene-nodes.md#light)> | Promise used to return the **Light** object created.|
+| Promise\<[Light](js-apis-inner-scene-nodes.md#light)> | Promise used to return the Light object created.|
 
 **Example**
 ```ts
@@ -441,7 +429,7 @@ Creates a node. This API uses a promise to return the result.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Node](js-apis-inner-scene-nodes.md#node)> | Promise used to return the **Node** object.|
+| Promise\<[Node](js-apis-inner-scene-nodes.md#node)> | Promise used to return the Node object.|
 
 **Example**
 ```ts
@@ -479,7 +467,7 @@ Creates a material based on the scene resource parameters and material type. Thi
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Material](js-apis-inner-scene-resources.md#material)> | Promise used to return the **Material** object.|
+| Promise\<[Material](js-apis-inner-scene-resources.md#material)> | Promise used to return the Material object.|
 
 **Example**
 ```ts
@@ -515,7 +503,7 @@ Creates an environment based on the scene resource parameters. This API uses a p
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Environment](js-apis-inner-scene-resources.md#environment)> | Promise used to return the **Environment** object created.|
+| Promise\<[Environment](js-apis-inner-scene-resources.md#environment)> | Promise used to return the Environment object created.|
 
 **Example**
 ```ts
@@ -552,7 +540,7 @@ Creates a geometry object based on the scene node parameters and mesh data. This
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Geometry](js-apis-inner-scene-nodes.md#geometry)> | Promise used to return the **Geometry** object created.|
+| Promise\<[Geometry](js-apis-inner-scene-nodes.md#geometry)> | Promise used to return the Geometry object created.|
 
 **Example**
 ```ts
@@ -603,26 +591,22 @@ Obtains the rendering resource factory, which provides APIs for creating differe
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| [RenderResourceFactory](#renderresourcefactory20) | **RenderResourceFactory** instance for creating rendering resources.|
+| [RenderResourceFactory](#renderresourcefactory20) | RenderResourceFactory instance for creating rendering resources.|
 
 **Example**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  RenderContext } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
+  RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function getRenderResourceFactory(): void {
-  Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        console.error("RenderContext is null");
-        return;
-      }
-
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      console.info("TEST getRenderResourceFactory");
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    console.error("RenderContext is null");
+    return;
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  console.info("TEST getRenderResourceFactory");
 }
 ```
 
@@ -646,24 +630,58 @@ Loads a plugin by name. The API locates and loads the corresponding plugin resou
 **Example**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  RenderContext } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
+  RenderResourceFactory } from '@kit.ArkGraphics3D';
 
-function loadPlugin(): void {
-  Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
+function loadPlugin(): Promise<boolean> {
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    console.error("RenderContext is null");
+    return Promise.resolve(false);
+  }
+  return renderContext.loadPlugin("pluginName");
+}
+```
+
+### registerResourcePath<sup>20+</sup>
+registerResourcePath(protocol: string, uri: string): boolean
+
+Registers the directory path and retrieval name for asset files, such as shaders. It allows the system to find and replace the path descriptions of related files within the shaders using the retrieval name. This ensures that the correct paths for assets and their associated files are located and loaded properly.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| protocol | string | Yes| Retrieval name for the path. It must be a non-empty string that is not already predefined or registered by the system.|
+| uri | string | Yes| Directory path of the assets, which corresponds to the retrieval name. It must be the path to the folder containing the asset files.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| boolean | Result indicating whether the registration is successful. **true** if successful, and **false** otherwise. The possible cause of a registration failure is that the retrieval name has been registered or an input parameter is invalid.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
+  RenderResourceFactory } from '@kit.ArkGraphics3D';
+
+function registerResourcePath(): void {
+  Scene.load($rawfile("shaders/custom_shader/custom_material_sample.shader"))
     .then(scene => {
-      const renderContext = scene.getRenderContext();
+      const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
       if (!renderContext) {
         console.error("RenderContext is null");
-        return Promise.resolve(false);
+        return false;
       }
-      return renderContext.loadPlugin("pluginName");
+      return renderContext.registerResourcePath("protocol", "OhosRawFile://uri");
     })
     .then(result => {
       if (result) {
-        console.info("plugin load success");
+        console.info("resource path registration success");
       } else {
-        console.error("plugin load failed");
+        console.error("resource path registration failed");
       }
     });
 }
@@ -706,7 +724,7 @@ Loads a resource by path. This API uses a promise to return the result.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[Scene](#scene)> | Promise used to return the **Scene** object created.|
+| Promise\<[Scene](#scene-1)> | Promise used to return the Scene object created.|
 
 **Example**
 ```ts
@@ -736,7 +754,7 @@ Obtains a node by path.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| [Node](js-apis-inner-scene-nodes.md#node) \| null | Returns the **Node** object requested. If no node is found in the specified path or the found node type does not match the expected type, null is returned.|
+| [Node](js-apis-inner-scene-nodes.md#node) \| null | Returns the Node object requested. If no node is found in the specified path or the found node type does not match the expected type, null is returned.|
 
 **Example**
 ```ts
@@ -933,25 +951,28 @@ Creates a component and attaches it to a node. This API uses a promise to return
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| Promise\<[SceneComponent](#scenecomponent20)> | Promise used to return the **SceneComponent** object created.|
+| Promise\<[SceneComponent](#scenecomponent20)> | Promise used to return the SceneComponent object created.|
 
 **Example**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource, SceneComponent } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneComponent } from '@ohos.graphics.scene';
+
 
 function createComponentTest(): Promise<SceneComponent> {
   return Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"))
-    .then(result => {
-      if (!result) {
-        console.error("Scene load failed: result is undefined");
+    .then(scene => {
+      if (!scene) {
         return Promise.reject(new Error("Scene load failed"));
       }
-      console.info("TEST createComponentTest");
-      return result.createComponent(result.root, "myComponent");
+      // RenderConfigurationComponent is an internal component of the engine. You do not need to install plugins when creating the component.
+      return scene.createComponent(scene.root, "RenderConfigurationComponent");
     })
     .then(component => {
-      console.info("createComponent success");
+      if (!component) {
+        return Promise.reject(new Error("createComponent failed"));
+      }
       return component;
     });
 }
@@ -973,7 +994,7 @@ Obtains the component instance from a node based on the component name.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| [SceneComponent](#scenecomponent20) \| null | **SceneComponent** object corresponding to the given name, or **null** if not found.|
+| [SceneComponent](#scenecomponent20) \| null | SceneComponent object corresponding to the given name, or **null** if not found.|
 
 **Example**
 ```ts
@@ -998,8 +1019,8 @@ function getComponentTest() {
 }
 ```
 
-### getRenderContext<sup>20+</sup>
-getRenderContext(): RenderContext | null
+### getDefaultRenderContext<sup>20+</sup>
+static getDefaultRenderContext(): RenderContext | null
 
 Obtains the rendering context associated with the current graphics object.
 
@@ -1013,16 +1034,13 @@ Obtains the rendering context associated with the current graphics object.
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource, SceneComponent, RenderContext } from '@kit.ArkGraphics3D';
 
-function getRenderContextTest() {
-  Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"))
-    .then(result => {
-      console.info("TEST getRenderContextTest");
-      const context = result.getRenderContext();
-      if (context) {
-        console.info("getRenderContext success");
-      } else {
-        console.warn("RenderContext is null");
-      }
-    });
+function getDefaultRenderContextTest() {
+  console.info("TEST getDefaultRenderContextTest");
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (renderContext) {
+    console.info("getDefaultRenderContext success");
+  } else {
+    console.error("RenderContext is null");
+  }
 }
 ```

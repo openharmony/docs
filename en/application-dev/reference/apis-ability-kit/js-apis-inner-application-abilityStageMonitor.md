@@ -1,12 +1,19 @@
 # AbilityStageMonitor
 
-The module provides conditions for matching AbilityStage instances. The most recently matched AbilityStage instance is saved in an AbilityStageMonitor instance.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+The module provides the capability to listen for a specified [AbilityStage](js-apis-app-ability-abilityStage.md) object. You can use AbilityStageMonitor as an input parameter of [abilityDelegator.waitAbilityStageMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#waitabilitystagemonitor9) to register a listener.
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
-## Attributes
+## AbilityStageMonitor
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -14,18 +21,20 @@ The module provides conditions for matching AbilityStage instances. The most rec
 
 | Name| Type| Read-Only| Optional| Description |
 | ---- | ---- | ---- | ---- | ---- |
-| moduleName | string | No  | No  | Module name of the AbilityStage instance.|
-| srcEntrance | string | No  | No  | Source path of the AbilityStage instance.|
+| moduleName | string | No  | No  | Module name of the AbilityStage object.|
+| srcEntrance | string | No  | No  | Source path of the AbilityStage object.|
 
 **Example**
 ```ts
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor({
+let monitor: abilityDelegatorRegistry.AbilityStageMonitor = {
   moduleName: 'feature_as1',
   srcEntrance: './ets/Application/MyAbilityStage.ts',
-}, (error, data) => {
+}
+
+let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
   if (error) {
     console.error(`waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}`);
   } else {

@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @woodenarow-->
-<!--SE: @woodenarow; @xuelei3-->
-<!--TSE: @chenwan188; @logic42-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 **DataShare**用于应用管理其自身数据，同时支持同个设备上不同应用间的数据共享。
 
@@ -191,7 +192,7 @@ export default class EntryAbility extends UIAbility {
       dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
         console.info("createDataShareHelper succeed, data : " + data);
         dataShareHelper = data;
-      }). catch((err: BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       });
     } catch (err) {
@@ -251,7 +252,7 @@ export default class EntryAbility extends UIAbility {
     let context = this.context;
     dataShare.enableSilentProxy(context, uri).then(() => {
       console.info("enableSilentProxy succeed");
-    }). catch((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
     });
   };
@@ -306,7 +307,7 @@ export default class EntryAbility extends UIAbility {
     let context = this.context;
     dataShare.disableSilentProxy(context, uri).then(() => {
       console.info("disableSilentProxy succeed");
-    }). catch((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
     });
   };
@@ -434,9 +435,9 @@ DataShare管理工具实例，可使用此实例访问或管理服务端的数�
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-订阅指定URI对应数据的数据变更事件。若订阅者已注册了观察者，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知。使用callback异步回调。该功能不支持跨用户订阅通知。
+订阅指定URI对应数据的数据变更事件。若订阅者已注册了观察者，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知。使用callback异步回调。该功能不支持跨用户订阅通知。同一应用内对单个URI的重复订阅上限为51次。
 
-触发通知：非静默场景下，通知者调用了下文中的notifyChange方法，就会触发通知；或者静默场景下，通知者使用静默访问修改了数据，也会自动触发通知。
+触发通知：非静默场景下，调用[notifyChange](#notifychange-1)方法，就会触发对指定URI订阅者的通知；或者静默场景下，使用指定URI的静默访问修改了数据，也会自动触发通知。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -474,9 +475,9 @@ if (dataShareHelper !== undefined) {
 
 on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
 
-订阅指定URI对应数据的数据变更事件。若订阅者已注册变更通知，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。仅支持非静默访问。该功能不支持跨用户订阅通知。
+订阅指定URI对应数据的数据变更事件。若订阅者已注册变更通知，当有其他通知者触发了变更通知时，订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。该功能不支持跨用户订阅通知。同一应用内对单个URI的重复订阅上限为51次。
 
-触发通知：非静默场景下，通知者调用了下文中的notifyChange方法，就会触发通知；或者静默场景下，通知者使用静默访问修改了数据，也会自动触发通知。
+触发通知：非静默场景下，调用[notifyChange](#notifychange12)方法，就会触发对指定URI订阅者的通知；或者静默场景下，使用指定URI的静默访问修改了数据，也会自动触发通知, 但此时callback通知中的changeInfo无效。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -558,7 +559,7 @@ if (dataShareHelper != undefined) {
 
 off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt;): void
 
-取消订阅指定URI下指定callback对应的数据资源的变更通知。仅支持非静默访问。
+取消订阅指定URI下指定callback对应的数据资源的变更通知。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -733,6 +734,10 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
+  if (!node.data.length) {
+    console.error("node.data.length is empty");
+    return;
+  }
   console.info("onCallback " + JSON.stringify(node.uri));
   console.info("onCallback " + JSON.stringify(node.templateId));
   console.info("onCallback " + node.data.length);
@@ -1709,18 +1714,10 @@ import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let key1: string = "name";
-let value11: string = "roe11";
-let key2: string = "age";
-let value21: number = 21;
-let key3: string = "salary";
-let value31: number = 20.5;
-let valuesBucket1: ValuesBucket = {
-  key1: value11,
-  key2: value21,
-  key3: value31,
-};
-let vbs = new Array(valuesBucket1);
+let vbs: ValuesBucket[] = [
+  { "name": "roe11", "age": 21, "salary": 20.5 }
+]
+
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs, (err, data) => {
@@ -1776,18 +1773,10 @@ import { ValuesBucket } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let key1: string = "name";
-let value11: string = "roe11";
-let key2: string = "age";
-let value21: number = 21;
-let key3: string = "salary";
-let value31: number = 20.5;
-let valuesBucket1: ValuesBucket = {
-  key1: value11,
-  key2: value21,
-  key3: value31,
-};
-let vbs = new Array(valuesBucket1);
+let vbs: ValuesBucket[] = [
+  { "name": "roe11", "age": 21, "salary": 20.5 }
+]
+
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs).then((data: number) => {
@@ -2119,10 +2108,12 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 import { ValuesBucket } from '@kit.ArkData';
 
 let dsUri = ("datashare:///com.acts.datasharetest");
-let bucket1: ValuesBucket = {"name": "LiSi"};
-let bucket2: ValuesBucket = {"name": "WangWu"};
-let bucket3: ValuesBucket = {"name": "ZhaoLiu"};
-let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
+let people: ValuesBucket[] = [
+  { "name": "LiSi" },
+  { "name": "WangWu" },
+  { "name": "ZhaoLiu" }
+]
+
 let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);

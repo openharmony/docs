@@ -1,5 +1,12 @@
 # Class (Font)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 > **说明：**
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -1061,7 +1068,7 @@ class DrawingRenderNode extends RenderNode {
     let font = new drawing.Font();
     font.setSize(50)
     let myString: string = "你好, HarmonyOS";
-    let length = buffer.from(myString).length;
+    let length: number = myString.length;
     let path = font.getTextPath(myString, length, 0, 100)
     canvas.drawPath(path)
   }

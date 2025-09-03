@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 
 文本选择菜单，适用于[RichEditor](ts-basic-components-richeditor.md)组件通过[bindSelectionMenu](ts-basic-components-richeditor.md#bindselectionmenu)或[Text](ts-basic-components-text.md)组件通过[bindSelectionMenu](ts-basic-components-text.md#bindselectionmenu11)绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
@@ -12,8 +13,6 @@
 > **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -38,6 +37,8 @@ SelectionMenu(options: SelectionMenuOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常， 异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -51,6 +52,8 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -69,12 +72,14 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 否 | 图标资源。<br/>**原子化服务API：** 从API version 12始，该接口支持在原子化服务中使用。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 否 | 图标资源。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | builder | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击时显示用户自定义组件，自定义组件在构造时结合@Builder使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 是 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-text-style.md#symbolglyphmodifier12) | 否 | 是 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 
 ## ExpandedMenuOptions
@@ -87,6 +92,8 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击菜单项的事件回调。 |
@@ -98,6 +105,8 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -141,6 +150,7 @@ struct Index {
   private editorMenuOptions: Array<EditorMenuOptions> =
     [
       {
+        // $r('app.media.ic_notepad_textbold')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_textbold"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -168,6 +178,7 @@ struct Index {
       }
       },
       {
+        // $r('app.media.ic_notepad_texttilt')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_texttilt"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -195,6 +206,7 @@ struct Index {
       }
       },
       {
+        // $r('app.media.ic_notepad_underline')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_underline"),
         action: () => {
           if (this.controller) {
@@ -227,10 +239,12 @@ struct Index {
         }
       },
       {
+        // $r('app.media.ic_notepad_fontsize')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_fontsize"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
       {
+        // $r('app.media.ic_notepad_textcolor')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_textcolor"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -259,17 +273,19 @@ struct Index {
       }]
   private expandedMenuOptions: Array<ExpandedMenuOptions> =
     [{
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '词典', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '翻译', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '搜索', action: () => {
       }
     }]
-  private expandedMenuOptions1: Array<ExpandedMenuOptions> = []
-  private editorMenuOptions1: Array<EditorMenuOptions> = []
+  private expandedMenuOptions1: Array<ExpandedMenuOptions> = [];
   private selectionMenuOptions: SelectionMenuOptions = {
     editorMenuOptions: this.editorMenuOptions,
     expandedMenuOptions: this.expandedMenuOptions,
@@ -318,7 +334,7 @@ struct Index {
         })
       }
     }
-  }
+  };
 
   @Builder
   sliderPanel() {
@@ -438,7 +454,7 @@ struct Index {
 
 ### 示例2（设置Symbol类型图标）
 
-该示例通过设置EditorMenuOptions的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 11开始，该示例通过设置[EditorMenuOptions](#editormenuoptions)的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import {
@@ -558,6 +574,7 @@ struct Index {
         }
       },
       {
+        // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.app_icon"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
@@ -590,12 +607,15 @@ struct Index {
       }]
   private expandedMenuOptions: Array<ExpandedMenuOptions> =
     [{
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '词典', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '翻译', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '搜索', action: () => {
       }
     }]

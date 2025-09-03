@@ -1,8 +1,14 @@
 # Interface (Metadata)
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 13. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this interface are supported since API version 13.
 
 The **Metadata** class is used to store image metadata. For details about the supported metadata types, see [MetadataType](arkts-apis-image-e.md#metadatatype13).
 

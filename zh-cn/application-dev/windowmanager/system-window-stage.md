@@ -1,4 +1,10 @@
 # 管理系统窗口（仅Stage模型支持）
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 管理系统窗口概述
 

@@ -1,5 +1,12 @@
 # AutoFillExtensionContext (系统接口) 
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 AutoFillExtensionContext模块是AutoFillExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
 
 > **说明：**
@@ -59,7 +66,7 @@ reloadInModal(customData: CustomData): Promise\<void>
 
 通过点击账号密码输入框触发自动填充服务时，在[AutoFillExtensionAbility](js-apis-app-ability-autoFillExtensionAbility-sys.md)的onFillRequest生命周期中拉起账号选择界面。
 
-当点击账号选择界面选择任意账号时，调用reloadInModal接口再次触发自动填充服务时，在AutoFillExtensionAbility的onFillRequest生命周期中拉起模态页面。
+当点击账号选择界面选择任意账号时，调用reloadInModal接口再次触发自动填充服务，在AutoFillExtensionAbility的onFillRequest生命周期中拉起模态页面。
 
 ```ts
 // AutoFillAbility.ts

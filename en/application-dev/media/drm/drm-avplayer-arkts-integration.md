@@ -68,10 +68,10 @@ You can call the ArkTS APIs of DRM Kit and Media Kit to implement the playback o
      mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
        console.info("processMediaKeyResponse success");
      }).catch((err:BusinessError) =>{
-       console.info("processMediaKeyResponse err end", err.code);
+       console.error("processMediaKeyResponse err end", err.code);
      });
    }).catch((err:BusinessError) =>{
-     console.info("generateMediaKeyRequest err end", err.code);
+     console.error("generateMediaKeyRequest err end", err.code);
    });
    ```
 

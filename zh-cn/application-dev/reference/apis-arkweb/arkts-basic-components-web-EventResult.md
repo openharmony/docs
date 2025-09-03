@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通知Web组件同层事件消费结果，支持的事件：[触摸事件的类型](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype)和[鼠标事件的类型](../apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8)，鼠标仅支持[左中右按键](../apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton8)。
 

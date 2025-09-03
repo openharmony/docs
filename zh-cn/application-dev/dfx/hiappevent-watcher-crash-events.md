@@ -2,8 +2,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @chenshi51-->
-<!--SE: @Maplestory-->
-<!--TSE: @yufeifei-->
+<!--Designer: @Maplestory91-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -37,7 +38,7 @@
 
 ### JsError崩溃类型检测原理
 
-在ArkTS中，JsError崩溃类型检测主要通过全局异常捕获（如AppStorage或UIAbility的错误回调）和try-catch捕获运行时错误，收集完错误对象的类型（如 Error、TypeError、ReferenceError 等和堆栈等信息后，上报给Hiview进程。Hiview进程将事件信息存储到[应用沙箱目录](../file-management/app-sandbox-directory.md)，HiAppEvent注册的崩溃事件观察者监听到应用沙箱目录的文件变化，将事件回调给应用进程，帮助开发者快速定位和修复问题。
+在ArkTS中，JsError崩溃类型检测主要通过全局异常捕获错误，收集完错误对象的类型（如 Error、TypeError、ReferenceError） 上报给Hiview进程。Hiview进程将事件信息存储到[应用沙箱目录](../file-management/app-sandbox-directory.md)，HiAppEvent注册的崩溃事件观察者监听到应用沙箱目录的文件变化，将事件回调给应用进程，帮助开发者快速定位和修复问题。
 
 ## 崩溃日志规格自定义参数设置
 
@@ -107,6 +108,7 @@ Timestamp:2025-05-17 19:17:07.000
 | threads | object[] | 全量线程调用栈，详见[thread字段说明](#thread字段说明)。仅在NativeCrash类型的崩溃事件提供。 |
 | external_log<sup></sup> | string[] | 故障日志文件[应用沙箱路径](../file-management/app-sandbox-directory.md)。开发者可通过路径读取故障日志文件内容。**为避免目录空间超限导致新生成的日志文件写入失败，日志文件处理完后请及时删除，超限规格请参考log_over_limit字段。** |
 | log_over_limit | boolean | 生成的与已存在的故障日志文件的大小总和是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
+| process_name | string | 故障进程名。<br>**说明**：从API version 21开始支持。 |
 
 ### exception字段说明
 
@@ -117,6 +119,7 @@ Timestamp:2025-05-17 19:17:07.000
 | name | string | 异常类型。 |
 | message | string | 异常原因。 |
 | stack | string | 异常调用栈。 |
+| thread_name | string | 线程名称。<br>**说明**：从API version 21开始支持。 |
 
 **NativeCrash类型exception字段说明**
 
@@ -165,8 +168,8 @@ Timestamp:2025-05-17 19:17:07.000
 | file | string | 文件名。 |
 | packageName | string | 模块的包名。 |
 | symbol | string | 函数名称。 |
-| line | number | 异常所在代码行号。 |
-| column | number | 异常所在代码列号。 |
+| line | number | 代码行号。 |
+| column | number | 代码列号。 |
 
 ## 崩溃事件自定义参数设置
 

@@ -1,5 +1,12 @@
 # @ohos.settings (设置数据项名称)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @YingCong-->
+<!--Designer: @Kun_Wu-->
+<!--Tester: @dyx118186878-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块提供访问设置数据项的能力。
 
 > **说明：**
@@ -666,6 +673,8 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
+**参数**：
+
 | 参数名   | 类型                   | 必填 | 说明                                                                                                                                                                                                                                               |
 | -------- | ---------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。                                                                                                       |
@@ -699,6 +708,8 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
+
+**设备行为差异**：该接口在Phone、PC/2in1、Tablet设备中可正常调用，在其他设备调用不生效。
 
 **参数**：
 

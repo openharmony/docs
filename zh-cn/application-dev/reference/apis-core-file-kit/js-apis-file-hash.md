@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
-<!--SE: @gsl_1234; @wangke25-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块提供文件哈希处理能力，对文件内容进行哈希处理。
 
@@ -121,7 +122,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
   ```
 ## hash.createHash<sup>12+</sup>
 
-createHash(algorithm: string): HashStream;
+createHash(algorithm: string): HashStream
 
 创建并返回 HashStream 对象，该对象可用于使用给定的 algorithm 生成哈希摘要。
 
@@ -185,6 +186,12 @@ update(data: ArrayBuffer): void
 使用给定的 data 更新哈希内容，可多次调用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ----------- | -- | ----------------- |
+| data | ArrayBuffer | 是 | 待计算哈希值的数据。|
 
 **错误码：**
 

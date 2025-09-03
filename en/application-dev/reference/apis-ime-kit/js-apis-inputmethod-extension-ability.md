@@ -1,4 +1,10 @@
 # @ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 The **InputMethodExtensionAbility** module provides APIs for developing input methods and managing their lifecycles.
 
@@ -19,7 +25,7 @@ Defines the **InputMethodExtensionAbility** class.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-### context
+### Properties
 
 Context of the **InputMethodExtensionAbility**.
 

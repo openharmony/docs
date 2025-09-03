@@ -1,8 +1,14 @@
 # 使用UI上下文接口操作界面（UIContext）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
-OpenHarmony支持Stage模型后，存在一个ArkTS引擎里面运行多个ArkUI实例的场景。此时，一个ArkTS引擎下可能会有多个Ability，每个Ability可能有多个Window，每个Window通过loadContent加载页面，生成一个ArkUI实例。
+OpenHarmony支持Stage模型后，存在一个ArkTS引擎里面运行多个ArkUI实例的场景。此时，一个ArkTS引擎下可能会有多个Ability，每个Ability可能有多个Window，每个Window通过[loadContent](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)加载页面，生成一个ArkUI实例。
 
 **图1** 多实例关系图  
 ![multi-instance](figures/multi-instance.png)
@@ -133,7 +139,7 @@ struct Index {
 <!--deprecated_code_no_check-->
 ```ts
 // 执行绑定实例的闭包
-import { promptAction } from '@kit.ArkUI'
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -143,6 +149,7 @@ struct Index {
       Button()
         .onClick(() => {
           let uiContext = this.getUIContext();
+          let promptAction: PromptAction = uiContext.getPromptAction();
           uiContext.runScopedTask(() => {
             promptAction.showToast({            
               message: 'Message Info',

@@ -1,4 +1,10 @@
 # 分段式拍照实践(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -70,7 +76,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): vo
   //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
   photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
     console.info('getPhotoAsset start');
-    console.info(`err: ${JSON.stringify(err)}`);
+    console.error(`err: ${err}`);
     if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
       console.error('getPhotoAsset failed');
       return;
@@ -78,7 +84,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): vo
     // 调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片。
     mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
     // 调用媒体库接口注册低质量图或高质量图buffer回调，自定义处理。
-    mediaLibRequestBuffer(photoAsset, context);
+    // mediaLibRequestBuffer(photoAsset, context);
   });
 }
 

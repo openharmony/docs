@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhangyao75477-->
-<!--SE: @qiu-gongkai-->
-<!--TSE: @ghiker-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 [CreateNativeMediaPlayerCallback](./arkts-apis-webview-t.md#createnativemediaplayercallback12) 回调函数的参数。
 应用通过该对象，将播放器的状态报告给ArkWeb内核。
@@ -46,7 +47,7 @@ handleVolumeChanged(volume: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| volume | number | 是 | 播放器的音量。 |
+| volume | number | 是 | 播放器的音量，取值范围：[0, 1.0]。|
 
 **示例：**
 
@@ -82,7 +83,7 @@ handlePlaybackRateChanged(playbackRate: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| playbackRate | number | 是 | 播放速率。 |
+| playbackRate | number | 是 | 播放速率，取值范围：[0, +∞) |
 
 **示例：**
 
@@ -100,7 +101,7 @@ handleDurationChanged(duration: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| duration | number | 是 | 媒体的总时长。<br>单位：秒。 |
+| duration | number | 是 | 媒体的总时长。<br>单位：秒，取值范围：[0, +∞) |
 
 **示例：**
 
@@ -118,7 +119,7 @@ handleTimeUpdate(currentPlayTime: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| currentPlayTime | number | 是 | 当前播放时间。单位： 秒。  |
+| currentPlayTime | number | 是 | 当前播放时间。<br>单位：秒，取值范围：[0, duration]  |
 
 **示例：**
 
@@ -136,7 +137,7 @@ handleBufferedEndTimeChanged(bufferedEndTime: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| bufferedEndTime | number | 是 | 媒体缓冲的时长。 |
+| bufferedEndTime | number | 是 | 媒体缓冲的时长。<br>单位：秒，取值范围：[0, duration] |
 
 **示例：**
 
@@ -263,8 +264,8 @@ handleVideoSizeChanged(width: number, height: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| width  | number | 是 | 视频的宽。 |
-| height | number | 是 | 视频的高。 |
+| width  | number | 是 | 视频的宽，单位为像素，取值范围：[0, +∞) |
+| height | number | 是 | 视频的高，单位为像素，取值范围：[0, +∞) |
 
 **示例：**
 

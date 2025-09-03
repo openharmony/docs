@@ -1,4 +1,10 @@
 # 高性能拍照(仅对系统应用开放)(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 高性能拍照是相机的重要功能之一，优化了拍照响应时延，提升用户体验。高性能拍照又名分段式拍照，应用下发拍照请求后，**第一阶段**系统会很快返回给应用一张**缩略图**，应用需将该图片及相关信息存入媒体库；**第二阶段**子服务会根据系统压力及定制化场景进行调度，将后处理好的**原图**回传给媒体库。
 
@@ -30,7 +36,7 @@
 
 2. 确定拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 

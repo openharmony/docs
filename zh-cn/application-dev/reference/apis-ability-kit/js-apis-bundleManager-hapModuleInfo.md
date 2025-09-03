@@ -1,4 +1,10 @@
 # HapModuleInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 HAP信息，可以通过[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的HAP信息，其中参数[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE。
 
@@ -18,17 +24,17 @@ import { bundleManager } from '@kit.AbilityKit';
 | 名称                              | 类型                                                         | 只读 | 可选 | 说明                 |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
 | name                              | string                                                       | 是   | 否   | 模块名称。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| icon                              | string                                                       | 是   | 否   | 模块图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| iconId                            | number                                                       | 是   | 否   | 模块图标的资源id值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| label                             | string                                                       | 是   | 否   | 模块标签。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| labelId                           | number                                                       | 是   | 否   | 模块标签的资源id值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon                              | string                                                       | 是   | 否   | 当前模块入口Ability的[图标](../../quick-start/layered-image.md)，取值为图标资源文件的索引，与模块配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)或[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的icon字段值一致。若未配置入口Ability，则为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| iconId                            | number                                                       | 是   | 否   | 当前模块入口Ability的图标[资源id](../../quick-start/resource-categories-and-access.md#资源目录)值。若未配置入口Ability，则为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| label                             | string                                                       | 是   | 否   | 当前模块入口Ability的名称，取值为字符串资源的索引，与模块配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)或[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的label字段值一致。若未配置入口Ability，则为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| labelId                           | number                                                       | 是   | 否   | 当前模块入口Ability名称的[资源id](../../quick-start/resource-categories-and-access.md#资源目录)值。若未配置入口Ability，则为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description                       | string                                                       | 是   | 否   | 模块描述信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | descriptionId                     | number                                                       | 是   | 否   | 描述信息的资源id值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | mainElementName                   | string                                                       | 是   | 否   | 当前模块的入口UIAbility名称或者ExtensionAbility名称。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| abilitiesInfo                     | Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>         | 是   | 否   | Ability信息。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| extensionAbilitiesInfo            | Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | 是   | 否   | ExtensionAbility信息。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| metadata                          | Array\<[Metadata](js-apis-bundleManager-metadata.md)>               | 是   | 否   | Ability的元信息。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_METADATA获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| deviceTypes                       | Array\<string>                                               | 是   | 否   | 模块支持安装的运行设备类型的集合。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| abilitiesInfo                     | Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>         | 是   | 否   | 当前模块所有Ability的信息。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| extensionAbilitiesInfo            | Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | 是   | 否   | 当前模块所有ExtensionAbility的信息。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| metadata                          | Array\<[Metadata](js-apis-bundleManager-metadata.md)>               | 是   | 否   | 当前模块的元数据。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_METADATA获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| deviceTypes                       | Array\<string>                                               | 是   | 否   | 模块支持安装运行的[设备类型](../../quick-start/module-configuration-file.md#devicetypes标签)的集合。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | installationFree                  | boolean                                                      | 是   | 否   | 模块是否支免安装（无需用户通过应用市场显式安装），取值为true表示支持免安装，取值为false表示不支持免安装。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | hashValue                         | string                                                       | 是   | 否   | 模块的Hash值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | type                              | [bundleManager.ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

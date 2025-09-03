@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @maorh-->
-<!--SE: @lixingchi1-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ForEach接口基于数组循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../../reference/apis-arkui/arkui-ts/ts-container-list.md)。
 
@@ -489,10 +490,10 @@ struct ForEachSort {
             Text(item.toString())
               .fontSize(16)
               .textAlign(TextAlign.Center)
-              .size({ height: 100, width: "100%" })
+              .size({ height: 100, width: '100%' })
           }.margin(10)
           .borderRadius(10)
-          .backgroundColor("#FFFFFFFF")
+          .backgroundColor('#FFFFFFFF')
         }, (item: string) => item)
           .onMove((from: number, to: number) => {
             // 以下两行代码是为了确保拖拽后屏幕上组件的顺序与数组arr中每一项的顺序保持一致。
@@ -503,7 +504,7 @@ struct ForEachSort {
       }
       .width('100%')
       .height('100%')
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
     }
   }
 

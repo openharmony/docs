@@ -1,4 +1,10 @@
 # SubHeaderV2
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
@@ -10,8 +16,7 @@
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 
-> - 该组件不支持在Wearable设备上使用。
+>
 
 
 ## 导入模块
@@ -48,6 +53,8 @@ titleBuild?: SubHeaderV2TitleBuilder;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型                                                      | 必填 | 装饰器类型 | 说明                                     |
 | -------- |---------------------------------------------------------| -------- | -------- |----------------------------------------|
 | icon| [SubHeaderV2IconType](#subheaderv2icontype)             | 否 | @Param | 图标设置项。<br />默认值：undefined              |
@@ -67,10 +74,12 @@ type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 类型                        | 说明                     |
 | ----------------------------- |------------------------|
-| ResourceStr                 | 资源类型，用于定义普通图标。         |
-| SymbolGlyphModifier | Symbol类型，用于定义Symbol图标。 |
+| [ResourceStr](ts-types.md#resourcestr)                 | 资源类型，用于定义普通图标。         |
+| [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | Symbol类型，用于定义Symbol图标。 |
 
 ## SubHeaderV2Title
 标题设置项
@@ -83,12 +92,14 @@ type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明                           |
 | -------- | -------- | -------- | -------- |------------------------------|
 | primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 标题内容。<br />默认值：undefined                        |
 | secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 副标题内容。<br />默认值：undefined                       |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined   |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined   |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ### constructor
 
@@ -99,6 +110,8 @@ constructor(options: SubHeaderV2TitleOptions)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -114,12 +127,14 @@ constructor(options: SubHeaderV2TitleOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填  | 说明                          |
 | -------- | -------- | -------- |-----------------------------|
 | primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 标题内容。<br />默认值：undefined                       |
 | secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 副标题内容。<br />默认值：undefined                      |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ## SubHeaderV2Select
 
@@ -132,6 +147,8 @@ select内容以及事件。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型                                                               | 必填 | 装饰器类型| 说明                                                                        |
 | -------- |------------------------------------------------------------------| -------- | -------- |---------------------------------------------------------------------------|
@@ -151,6 +168,8 @@ select内容以及事件构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名    | 类型                            | 必填 | 说明             |
@@ -164,6 +183,8 @@ select内容以及事件构造函数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型                                                               | 必填  | 说明                                                                        |
 | -------- |------------------------------------------------------------------| -------- |---------------------------------------------------------------------------| 
@@ -183,6 +204,8 @@ type SubHeaderV2SelectOnSelect = (selectedIndex: number, selectedContent?: strin
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名            | 类型     | 必填 | 说明                       |
@@ -197,6 +220,8 @@ type SubHeaderV2SelectOnSelect = (selectedIndex: number, selectedContent?: strin
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -215,10 +240,12 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 类型                        | 说明                                |
 | ----------------------------- |-----------------------------------|
-| ResourceStr                 | 字符串类型用于定义文本显示或普通图标；资源类型，用于定义普通图标。 |
-| SymbolGlyphModifier | Symbol类型，用于定义Symbol图标。            |
+| [ResourceStr](ts-types.md#resourcestr)                 | 字符串类型用于定义文本显示或普通图标；资源类型，用于定义普通图标。 |
+| [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | Symbol类型，用于定义Symbol图标。            |
 
 ## SubHeaderV2OperationItem
 
@@ -231,6 +258,8 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明                                                  |
 | -------- | -------- | -------- | -------- |-----------------------------------------------------|
@@ -251,11 +280,13 @@ constructor(options: SubHeaderV2OperationItemOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
-| 参数名    | 类型             | 必填 | 说明             |
-| --------- | -------------------- | ------ | ------------------ |
-| options | SubHeaderV2OperationItemOptions| 是   | 下拉选项信息。 |
+| 参数名    | 类型                                                                  | 必填 | 说明             |
+| --------- |---------------------------------------------------------------------| ------ | ------------------ |
+| options | [SubHeaderV2OperationItemOptions](#subheaderv2operationitemoptions) | 是   | 下拉选项信息。 |
 
 ## SubHeaderV2OperationItemAction
 
@@ -267,6 +298,9 @@ type SubHeaderV2OperationItemAction = () => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+
 ## SubHeaderV2OperationItemOptions
 
 用于构建SubHeaderV2OperationItem对象。
@@ -274,6 +308,8 @@ type SubHeaderV2OperationItemAction = () => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称                       | 类型                                          | 必填  | 说明                                                  |
 |--------------------------|---------------------------------------------| -------- |-----------------------------------------------------|
@@ -293,6 +329,9 @@ type SubHeaderV2TitleBuilder= () => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
@@ -444,7 +483,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        Prompt.showToast({ message: 'selectdemo' })
+        Prompt.showToast({ message: 'selectDemo' })
       }
     })
 
@@ -614,7 +653,7 @@ struct SubHeaderExample {
 ![子标题5](figures/zh-cn_image_subheader_example05.png)
 
 ### 示例6（自定义标题内容）
- 该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
+ 该示例主要演示SubHeaderV2设置titleBuilder自定义标题内容的效果。
 
 ```ts
 import {
@@ -671,7 +710,7 @@ struct SubHeaderExample {
 ![子标题6](figures/zh-cn_image_subheader_example06.png)
 
 ### 示例7（自定义标题样式）
-该示例主要演示SubHeader设置标题和副标题字体样式。
+该示例主要演示SubHeaderV2设置标题和副标题字体样式。
 
 ```ts
 import {
@@ -722,7 +761,7 @@ struct SubHeaderExample {
 
 
 ### 示例8（右侧按钮自定义播报）
-该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+该示例通过设置SubHeaderV2的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import {
   SubHeaderV2OperationType,
@@ -819,7 +858,7 @@ struct SubHeaderExample {
 ![子标题8](figures/zh-cn_image_subheader_example08.png)
 
 ### 示例9（右侧按钮自定义播报）
-该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+该示例通过设置SubHeaderV2的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import {
   SubHeaderV2OperationType,
@@ -839,7 +878,7 @@ struct SubHeaderExample {
   @Local index: number = 1;
   @Local primaryTitle: ResourceStr = '一级标题';
   @Local secondaryTitle: ResourceStr = '二级标题';
-  @Local subHeaderIcon: Resource = $r('app.media.app_icon');
+  @Local subHeaderIcon: Resource = $r('sys.media.ohos_ic_public_email');
   @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题' });
   @Local primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
   @Local secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);

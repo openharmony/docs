@@ -31,8 +31,8 @@
     <!--DelEnd-->
 - C APIs
   - Module
-    - [Notification](capi-notification.md)
+      - [NOTIFICATION](capi-notification.md)
   - Header File
-    - [notification.h](notification_8h.md)
+      - [notification.h](capi-notification-h.md)
 - Error Codes
   - [Notification Error Codes](errorcode-notification.md)

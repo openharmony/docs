@@ -1,4 +1,10 @@
 # @ohos.data.commonType (Common Data Types)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **commonType** module defines common data types in data management.
 
@@ -29,7 +35,7 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 ## Asset
 
-Represents asset (such as a file, image, or video) information. For details, see the sample code in [Using Distributed Data Objects in Cross-Device Migration](../../database/data-sync-of-distributed-data-object.md#using-distributed-data-objects-in-cross-device migration).
+Represents asset (such as a file, image, or video) information. For details, see the sample code in [Using Distributed Data Objects in Cross-Device Migration](../../database/data-sync-of-distributed-data-object.md#using-distributed-data-objects-in-cross-device-migration).
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 
@@ -71,7 +77,7 @@ Enumerates the value types, which vary with the parameter function.
 | boolean    | The value is true or false.                   |
 | Uint8Array | The value is a Uint8 array.          |
 | Asset      | The value is an [Asset](#asset).      |
-| Assets     | The value is an [Asset array](#assets).|
+| Assets     | The value is an array of [Assets](#assets).|
 
 ## ValuesBucket
 

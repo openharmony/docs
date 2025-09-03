@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 本模块提供管理系统账号的基础能力，包括系统账号的添加、删除、查询、设置、订阅、启动等功能。
 
@@ -66,11 +67,12 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
       if (err) {
         console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('activateOsAccount successfully');
+        console.info('activateOsAccount successfully');
       }
     });
   } catch (err) {
-    console.error('activateOsAccount failed, error:' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -119,12 +121,13 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId).then(() => {
-      console.log('activateOsAccount successfully');
+      console.info('activateOsAccount successfully');
     }).catch((err: BusinessError) => {
-      console.error('activateOsAccount failed, err:' + JSON.stringify(err));
+      console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('activateOsAccount exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`activateOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -171,12 +174,13 @@ deactivateOsAccount(localId: number): Promise&lt;void&gt;
   let localId: number = 100;
   try {
     accountManager.deactivateOsAccount(localId).then(() => {
-      console.log('deactivateOsAccount successfully');
+      console.info('deactivateOsAccount successfully');
     }).catch((err: BusinessError) => {
-      console.error('deactivateOsAccount failed, err:' + JSON.stringify(err));
+      console.error(`deactivateOsAccount failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('deactivateOsAccount exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`deactivateOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -222,12 +226,13 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
   let localId: number = 100;
   try {
     accountManager.isOsAccountActivated(localId).then((isActivated: boolean) => {
-      console.log('isOsAccountActivated successfully, isActivated: ' + isActivated);
+      console.info('isOsAccountActivated successfully, isActivated: ' + isActivated);
     }).catch((err: BusinessError) => {
-      console.error('isOsAccountActivated failed, error: ' + JSON.stringify(err));
+      console.error(`isOsAccountActivated failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('isOsAccountActivated exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`isOsAccountActivated exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -275,12 +280,13 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
   let constraint: string = 'constraint.wifi';
   try {
     accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
-      console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
+      console.info('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
-      console.error('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+      console.error(`isOsAccountConstraintEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`isOsAccountConstraintEnabled exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -326,12 +332,13 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
   let localId: number = 100;
   try {
     accountManager.isOsAccountUnlocked(localId).then((isVerified: boolean) => {
-      console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
+      console.info('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
     }).catch((err: BusinessError) => {
-      console.error('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+      console.error(`isOsAccountUnlocked failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`isOsAccountUnlocked exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -378,14 +385,15 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo) => {
         accountManager.removeOsAccount(osAccountInfo.localId, (err: BusinessError)=>{
           if (err) {
-            console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
+            console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);
           } else {
-            console.log('removeOsAccount successfully');
+            console.info('removeOsAccount successfully');
           }
       });
     });
   } catch (err) {
-    console.error('removeOsAccount exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`removeOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -436,13 +444,14 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
     accountManager.createOsAccount(accountName, osAccount.OsAccountType.NORMAL,
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
         accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
-          console.log('removeOsAccount successfully');
+          console.info('removeOsAccount successfully');
         }).catch((err: BusinessError) => {
-            console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
+            console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);
         });
     });
   } catch (err) {
-    console.error('removeOsAccount exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`removeOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -489,13 +498,14 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
   try {
     accountManager.setOsAccountConstraints(localId, [constraint], true, (err: BusinessError) => {
       if (err) {
-        console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+        console.error(`setOsAccountConstraints failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setOsAccountConstraints successfully');
+        console.info('setOsAccountConstraints successfully');
       }
     });
   } catch (err) {
-    console.error('setOsAccountConstraints exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setOsAccountConstraints exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -547,10 +557,11 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
       console.info('setOsAccountConstraints successfully');
     }).catch((err: BusinessError) => {
-      console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+      console.error(`setOsAccountConstraints failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('setOsAccountConstraints exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setOsAccountConstraints exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -596,13 +607,14 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
   try {
     accountManager.setOsAccountName(localId, name, (err: BusinessError) => {
       if (err) {
-        console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
+        console.error(`setOsAccountName failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setOsAccountName successfully');
+        console.info('setOsAccountName successfully');
       }
     });
   } catch (err) {
-    console.error('setOsAccountName exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setOsAccountName exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -652,12 +664,13 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
   let name: string = 'testName';
   try {
     accountManager.setOsAccountName(localId, name).then(() => {
-      console.log('setOsAccountName successfully');
+      console.info('setOsAccountName successfully');
     }).catch((err: BusinessError) => {
-      console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
+      console.error(`setOsAccountName failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('setOsAccountName exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setOsAccountName exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -693,13 +706,14 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
   try {
     accountManager.queryMaxOsAccountNumber((err: BusinessError, maxCnt: number) => {
       if (err) {
-        console.error('queryMaxOsAccountNumber failed, error:' + JSON.stringify(err));
+        console.error(`queryMaxOsAccountNumber failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('queryMaxOsAccountNumber successfully, maxCnt:' + maxCnt);
+        console.info('queryMaxOsAccountNumber successfully, maxCnt:' + maxCnt);
       }
     });
   } catch (err) {
-    console.error('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`queryMaxOsAccountNumber exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -733,12 +747,13 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryMaxOsAccountNumber().then((maxCnt: number) => {
-      console.log('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
+      console.info('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
     }).catch((err: BusinessError) => {
-      console.error('queryMaxOsAccountNumber failed, error: ' + JSON.stringify(err));
+      console.error(`queryMaxOsAccountNumber failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`queryMaxOsAccountNumber exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -772,12 +787,13 @@ queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryMaxLoggedInOsAccountNumber().then((maxNum: number) => {
-      console.log('queryMaxLoggedInOsAccountNumber successfully, maxNum: ' + maxNum);
+      console.info('queryMaxLoggedInOsAccountNumber successfully, maxNum: ' + maxNum);
     }).catch((err: BusinessError) => {
-      console.error('queryMaxLoggedInOsAccountNumber failed, error: ' + JSON.stringify(err));
+      console.error(`queryMaxLoggedInOsAccountNumber failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('queryMaxLoggedInOsAccountNumber exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`queryMaxLoggedInOsAccountNumber exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -823,12 +839,13 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
   let localId: number = 100;
   try {
     accountManager.getEnabledOsAccountConstraints(localId).then((constraints: string[]) => {
-      console.log('getEnabledOsAccountConstraints, constraints: ' + constraints);
+      console.info('getEnabledOsAccountConstraints, constraints: ' + constraints);
     }).catch((err: BusinessError) => {
-      console.error('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
+      console.error(`getEnabledOsAccountConstraints err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getEnabledOsAccountConstraints exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -867,13 +884,14 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
   try {
     accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
       if (err) {
-        console.error('queryAllCreatedOsAccounts exception:' + JSON.stringify(err));
+        console.error(`queryAllCreatedOsAccounts exception:code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
+        console.info('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
       }
     });
   } catch (e) {
-    console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`queryAllCreatedOsAccounts exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -910,12 +928,13 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryAllCreatedOsAccounts().then((accountArr: osAccount.OsAccountInfo[]) => {
-      console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
+      console.info('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
-      console.error('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
+      console.error(`queryAllCreatedOsAccounts err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`queryAllCreatedOsAccounts exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -962,13 +981,14 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
     accountManager.createOsAccount('testName', osAccount.OsAccountType.NORMAL,
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
       if (err) {
-        console.error('createOsAccount exception:' + JSON.stringify(err));
+        console.error(`createOsAccount exception:code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
+        console.info('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
       }
     });
   } catch (e) {
-    console.error('createOsAccount exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`createOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1026,12 +1046,13 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
   try {
     accountManager.createOsAccount('testAccountName', osAccount.OsAccountType.NORMAL, options).then(
       (accountInfo: osAccount.OsAccountInfo) => {
-      console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
+      console.info('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.error('createOsAccount err: ' + JSON.stringify(err));
+      console.error(`createOsAccount err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('createOsAccount exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`createOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1081,13 +1102,14 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
     accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
       if (err) {
-        console.error('createOsAccountForDomain exception:' + JSON.stringify(err));
+        console.error(`createOsAccountForDomain exception:code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+        console.info('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
       }
     });
   } catch (e) {
-    console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`createOsAccountForDomain exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1146,12 +1168,13 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, opt
   try {
     accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo, options).then(
       (accountInfo: osAccount.OsAccountInfo) => {
-      console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
+      console.info('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.error('createOsAccountForDomain err: ' + JSON.stringify(err));
+      console.error(`createOsAccountForDomain err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`createOsAccountForDomain exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1188,12 +1211,13 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryOsAccount().then((accountInfo: osAccount.OsAccountInfo) => {
-      console.log('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
+      console.info('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.error('queryOsAccount err: ' + JSON.stringify(err));
+      console.error(`queryOsAccount err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('queryOsAccount exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`queryOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1236,13 +1260,14 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
   try {
     accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
       if (err) {
-        console.error('queryOsAccountById exception:' + JSON.stringify(err));
+        console.error(`queryOsAccountById exception:code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
+        console.info('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
       }
     });
   } catch (e) {
-    console.error('queryOsAccountById exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`queryOsAccountById exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1289,12 +1314,13 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
   let localId: number = 100;
   try {
     accountManager.queryOsAccountById(localId).then((accountInfo: osAccount.OsAccountInfo) => {
-      console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
+      console.info('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.error('queryOsAccountById err: ' + JSON.stringify(err));
+      console.error(`queryOsAccountById err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('queryOsAccountById exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`queryOsAccountById exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1337,13 +1363,14 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
   try {
     accountManager.getOsAccountProfilePhoto(localId, (err: BusinessError, photo: string)=>{
       if (err) {
-        console.error('getOsAccountProfilePhoto exception:' + JSON.stringify(err));
+        console.error(`getOsAccountProfilePhoto exception:code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('get photo:' + photo + ' by localId: ' + localId);
+        console.info('get photo:' + photo + ' by localId: ' + localId);
       }
     });
   } catch (e) {
-    console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getOsAccountProfilePhoto exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1390,12 +1417,13 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId).then((photo: string) => {
-      console.log('getOsAccountProfilePhoto: ' + photo);
+      console.info('getOsAccountProfilePhoto: ' + photo);
     }).catch((err: BusinessError) => {
-      console.error('getOsAccountProfilePhoto err: ' + JSON.stringify(err));
+      console.error(`getOsAccountProfilePhoto err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getOsAccountProfilePhoto exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1444,13 +1472,14 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
   try {
     accountManager.setOsAccountProfilePhoto(localId, photo, (err: BusinessError)=>{
       if (err) {
-        console.error('setOsAccountProfilePhoto exception:' + JSON.stringify(err));
+        console.error(`setOsAccountProfilePhoto exception:code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setOsAccountProfilePhoto successful.');
+        console.info('setOsAccountProfilePhoto successful.');
       }
     });
   } catch (e) {
-    console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`setOsAccountProfilePhoto exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1503,12 +1532,13 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
   '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
   try {
     accountManager.setOsAccountProfilePhoto(localId, photo).then(() => {
-      console.log('setOsAccountProfilePhoto success');
+      console.info('setOsAccountProfilePhoto success');
     }).catch((err: BusinessError) => {
-      console.error('setOsAccountProfilePhoto err: ' + JSON.stringify(err));
+      console.error(`setOsAccountProfilePhoto err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`setOsAccountProfilePhoto exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1547,12 +1577,13 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
   ```ts
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function onCallback(receiveLocalId: number){
-    console.log('receive localId:' + receiveLocalId);
+    console.info('receive localId:' + receiveLocalId);
   }
   try {
     accountManager.on('activating', 'osAccountOnOffNameA', onCallback);
   } catch (e) {
-    console.error('receive localId exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`receive localId exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1591,12 +1622,13 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
   ```ts
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function offCallback(){
-    console.log('off enter')
+    console.info('off enter')
   }
   try {
     accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
   } catch (e) {
-    console.error('off exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`off exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1634,12 +1666,13 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
   ```ts
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function onSwitchingCallback(eventData: osAccount.OsAccountSwitchEventData){
-    console.log('receive eventData:' + JSON.stringify(eventData));
+    console.info('receive eventData:' + JSON.stringify(eventData));
   }
   try {
     accountManager.on('switching', onSwitchingCallback);
   } catch (e) {
-    console.error('receive eventData exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`receive eventData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1679,7 +1712,8 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
   try {
     accountManager.off('switching');
   } catch (e) {
-    console.error('off exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`off exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1717,12 +1751,13 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
   ```ts
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function onSwitchedCallback(eventData: osAccount.OsAccountSwitchEventData){
-    console.log('receive eventData:' + JSON.stringify(eventData));
+    console.info('receive eventData:' + JSON.stringify(eventData));
   }
   try {
     accountManager.on('switched', onSwitchedCallback);
   } catch (e) {
-    console.error('receive eventData exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`receive eventData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1762,7 +1797,8 @@ off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
   try {
     accountManager.off('switched');
   } catch (e) {
-    console.error('off exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`off exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1801,13 +1837,14 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
   try {
     accountManager.getBundleIdForUid(testUid, (err: BusinessError, bundleId: number) => {
       if (err) {
-        console.error('getBundleIdForUid errInfo:' + JSON.stringify(err));
+        console.error(`getBundleIdForUid errInfo:code is ${err.code}, message is ${err.message}`);
       } else {
         console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
       }
     });
   } catch (e) {
-    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getBundleIdForUid exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1852,10 +1889,11 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
     accountManager.getBundleIdForUid(testUid).then((result: number) => {
       console.info('getBundleIdForUid bundleId:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.error('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      console.error(`getBundleIdForUid errInfo:code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getBundleIdForUid exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1898,7 +1936,8 @@ getBundleIdForUidSync(uid: number): number
     let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
     console.info('getBundleIdForUidSync bundleId:' + bundleId);
   } catch (e) {
-    console.error('getBundleIdForUidSync exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getBundleIdForUidSync exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1937,13 +1976,14 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
   try {
     accountManager.isMainOsAccount((err: BusinessError,result: boolean)=>{
       if (err) {
-        console.error('isMainOsAccount errInfo:' + JSON.stringify(err));
+        console.error(`isMainOsAccount errInfo:code is ${err.code}, message is ${err.message}`);
       } else {
         console.info('isMainOsAccount result:' + JSON.stringify(result));
       }
     });
   } catch (e) {
-    console.error('isMainOsAccount exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`isMainOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1982,10 +2022,11 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
     accountManager.isMainOsAccount().then((result: boolean) => {
       console.info('isMainOsAccount result:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.error('isMainOsAccount errInfo:' + JSON.stringify(err));
+      console.error(`isMainOsAccount errInfo:code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('isMainOsAccount exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`isMainOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2029,13 +2070,14 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',
       (err: BusinessError,sourceTypeInfos: osAccount.ConstraintSourceTypeInfo[])=>{
       if (err) {
-        console.error('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+        console.error(`getOsAccountConstraintSourceTypes errInfo:code is ${err.code}, message is ${err.message}`);
       } else {
         console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
       }
     });
   } catch (e) {
-    console.error('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getOsAccountConstraintSourceTypes exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2085,10 +2127,11 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
       (result: osAccount.ConstraintSourceTypeInfo[]) => {
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.error('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      console.error(`getOsAccountConstraintSourceTypes errInfo:code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getOsAccountConstraintSourceTypes exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2136,10 +2179,11 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
     accountManager.getOsAccountType(localId).then((type: osAccount.OsAccountType) => {
       console.info('getOsAccountType Type:' + type);
     }).catch((err: BusinessError) => {
-      console.error('getOsAccountType errInfo:' + JSON.stringify(err));
+      console.error(`getOsAccountType errInfo:code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getOsAccountType exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getOsAccountType exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2200,7 +2244,7 @@ bindDomainAccount(localId: number, domainAccountInfo: DomainAccountInfo): Promis
       console.error(`bindDomainAccount failed, errCode=${error.code}, errMsg=${error.message}`);
     });
   } catch (e) {
-    let error = e as BusinessError;
+    const err = e as BusinessError;
     console.error(`bindDomainAccount error, errCode=${error.code}, errMsg=${error.message}`);
   }
   ```
@@ -2258,7 +2302,7 @@ getVersion(): number;
   ```ts
   let userAuth = new osAccount.UserAuth();
   let version: number = userAuth.getVersion();
-  console.log('getVersion version = ' + version);
+  console.info('getVersion version = ' + version);
   ```
 
 ### getAvailableStatus<sup>8+</sup>
@@ -2303,9 +2347,10 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
   let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     let status: number = userAuth.getAvailableStatus(authType, authTrustLevel);
-    console.log('getAvailableStatus status = ' + status);
+    console.info('getAvailableStatus status = ' + status);
   } catch (e) {
-    console.error('getAvailableStatus exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getAvailableStatus exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2355,13 +2400,14 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
   try {
     userAuth.getProperty(request, (err: BusinessError, result: osAccount.ExecutorProperty) => {
       if (err) {
-        console.error('getProperty exception = ' + JSON.stringify(err));
+        console.error(`getProperty exception = code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getProperty result = ' + JSON.stringify(result));
+        console.info('getProperty result = ' + JSON.stringify(result));
       }
     });
   } catch (e) {
-    console.error('getProperty exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getProperty exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2415,12 +2461,13 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
   };
   try {
     userAuth.getProperty(request).then((result: osAccount.ExecutorProperty) => {
-      console.log('getProperty result = ' + JSON.stringify(result));
+      console.info('getProperty result = ' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.error('getProperty error = ' + JSON.stringify(err));
+      console.error(`getProperty error = code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getProperty exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getProperty exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2469,11 +2516,12 @@ getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyTy
     try {
       credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
     } catch (e) {
-      console.error('getAuthInfo exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+      console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
       return;
     }
     if (credInfo.length == 0) {
-      console.log('no credential infos');
+      console.info('no credential infos');
       return;
     }
     let testCredentialId: Uint8Array = credInfo[0].credentialId;
@@ -2485,12 +2533,13 @@ getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyTy
     try {
       let userAuth = new osAccount.UserAuth();
       userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
-        console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
+        console.info('getPropertyByCredentialId result = ' + JSON.stringify(result));
       }).catch((err: BusinessError) => {
-        console.error('getPropertyByCredentialId error = ' + JSON.stringify(err));
+        console.error(`getPropertyByCredentialId error = code is ${err.code}, message is ${err.message}`);
       });
     } catch (e) {
-      console.error('getPropertyByCredentialId exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+      console.error(`getPropertyByCredentialId exception = code is ${err.code}, message is ${err.message}`);
     }
   }
   ```
@@ -2536,13 +2585,14 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
   try {
     userAuth.setProperty(request, (err: BusinessError) => {
       if (err) {
-        console.error('setProperty failed, error = ' + JSON.stringify(err));
+        console.error(`setProperty failed, error = code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setProperty successfully');
+        console.info('setProperty successfully');
       }
     });
   } catch (e) {
-    console.error('setProperty exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`setProperty exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2591,12 +2641,13 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
   };
   try {
     userAuth.setProperty(request).then(() => {
-      console.log('setProperty successfully');
+      console.info('setProperty successfully');
     }).catch((err: BusinessError) => {
-      console.error('setProperty failed, error = ' + JSON.stringify(err));
+      console.error(`setProperty failed, error = code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('setProperty exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`setProperty exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2648,13 +2699,14 @@ prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
       try {
         if (data.length > 0 && data[0].networkId != null) {
           userAuth.prepareRemoteAuth(data[0].networkId).then(() => {
-            console.log('prepareRemoteAuth successfully');
+            console.info('prepareRemoteAuth successfully');
           }).catch((err: BusinessError) => {
-            console.error('prepareRemoteAuth failed, error = ' + JSON.stringify(err));
+            console.error(`prepareRemoteAuth failed, error = code is ${err.code}, message is ${err.message}`);
           });
         }
       } catch (e) {
-        console.error('prepareRemoteAuth exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+        console.error(`prepareRemoteAuth exception = code is ${err.code}, message is ${err.message}`);
       }
     }
   )
@@ -2723,12 +2775,13 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
       onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-          console.log('auth result = ' + result);
-          console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+          console.info('auth result = ' + result);
+          console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.error('auth exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2800,12 +2853,13 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
   try {
     userAuth.auth(challenge, authType, authTrustLevel, options, {
       onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-          console.log('auth result = ' + result);
-          console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+          console.info('auth result = ' + result);
+          console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.error('auth exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2875,12 +2929,13 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
       onResult: (result,extraInfo) => {
-        console.log('authUser result = ' + result);
-        console.log('authUser extraInfo = ' + JSON.stringify(extraInfo));
+        console.info('authUser result = ' + result);
+        console.info('authUser extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.error('authUser exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`authUser exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2919,14 +2974,15 @@ cancelAuth(contextID: Uint8Array): void
   let challenge = new Uint8Array([0]);
   let contextId: Uint8Array = userAuth.auth(challenge, osAccount.AuthType.PIN, osAccount.AuthTrustLevel.ATL1, {
     onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-      console.log('auth result = ' + result);
-      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+      console.info('auth result = ' + result);
+      console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   try {
     userAuth.cancelAuth(contextId);
   } catch (e) {
-    console.error('cancelAuth exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`cancelAuth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2996,9 +3052,10 @@ registerInputer(inputer: IInputer): void
           callback.onSetData(authSubType, password);
         }
     });
-    console.log('registerInputer success.');
+    console.info('registerInputer success.');
   } catch (e) {
-    console.error('registerInputer exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`registerInputer exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3072,9 +3129,10 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
           callback.onSetData(authSubType, password);
         }
     });
-    console.log('registerInputer success.');
+    console.info('registerInputer success.');
   } catch (e) {
-    console.error('registerInputer exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`registerInputer exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3110,9 +3168,9 @@ static unregisterInputer(authType: AuthType): void
   let authType: osAccount.AuthType = osAccount.AuthType.DOMAIN;
   try {
     osAccount.InputerManager.unregisterInputer(authType);
-    console.log('unregisterInputer success.');
+    console.info('unregisterInputer success.');
   } catch(err) {
-    console.error('unregisterInputer err:' + JSON.stringify(err));
+    console.error(`unregisterInputer code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3178,12 +3236,13 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
       onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-          console.log('auth resultCode = ' + resultCode);
-          console.log('auth authResult = ' + JSON.stringify(authResult));
+          console.info('auth resultCode = ' + resultCode);
+          console.info('auth authResult = ' + JSON.stringify(authResult));
       }
     });
   } catch (err) {
-    console.error('auth exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3652,9 +3711,9 @@ static registerPlugin(plugin: DomainPlugin): void
   }
   try {
     osAccount.DomainAccountManager.registerPlugin(plugin);
-    console.log('registerPlugin success.');
+    console.info('registerPlugin success.');
   } catch(err) {
-    console.error('registerPlugin err:' + JSON.stringify(err));
+    console.error(`registerPlugin code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3682,9 +3741,9 @@ static unregisterPlugin(): void
   ```ts
   try {
     osAccount.DomainAccountManager.unregisterPlugin();
-    console.log('unregisterPlugin success.');
+    console.info('unregisterPlugin success.');
   } catch(err) {
-    console.error('unregisterPlugin err:' + JSON.stringify(err));
+    console.error(`unregisterPlugin code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3739,12 +3798,13 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
   try {
     osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
       onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-        console.log('auth resultCode = ' + resultCode);
-        console.log('auth authResult = ' + JSON.stringify(authResult));
+        console.info('auth resultCode = ' + resultCode);
+        console.info('auth authResult = ' + JSON.stringify(authResult));
       }
     });
   } catch (err) {
-    console.error('auth exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3793,12 +3853,13 @@ authWithPopup(callback: IUserAuthCallback): void
   try {
     osAccount.DomainAccountManager.authWithPopup({
       onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-        console.log('auth resultCode = ' + resultCode);
-        console.log('auth authResult = ' + JSON.stringify(authResult));
+        console.info('auth resultCode = ' + resultCode);
+        console.info('auth authResult = ' + JSON.stringify(authResult));
       }
     })
   } catch (err) {
-    console.error('auth exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3849,12 +3910,13 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
   try {
     osAccount.DomainAccountManager.authWithPopup(100, {
       onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-        console.log('authWithPopup resultCode = ' + resultCode);
-        console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
+        console.info('authWithPopup resultCode = ' + resultCode);
+        console.info('authWithPopup authResult = ' + JSON.stringify(authResult));
       }
     })
   } catch (err) {
-    console.error('authWithPopup exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`authWithPopup exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3903,13 +3965,14 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
   try {
     osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err: BusinessError, result: boolean) => {
       if (err) {
-        console.error('call hasAccount failed, error: ' + JSON.stringify(err));
+        console.error(`call hasAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('hasAccount result: ' + result);
+        console.info('hasAccount result: ' + result);
       }
     });
   } catch (err) {
-    console.error('hasAccount exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`hasAccount exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3962,12 +4025,13 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
   }
   try {
     osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result: boolean) => {
-      console.log('hasAccount result: ' + result);
+      console.info('hasAccount result: ' + result);
     }).catch((err: BusinessError) => {
-        console.error('call hasAccount failed, error: ' + JSON.stringify(err));
+        console.error(`call hasAccount failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('hasAccount exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`hasAccount exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4014,13 +4078,14 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
   try {
     osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err: BusinessError) => {
       if (err != null) {
-        console.error('updateAccountToken failed, error: ' + JSON.stringify(err));
+        console.error(`updateAccountToken failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('updateAccountToken successfully');
+        console.info('updateAccountToken successfully');
       }
     })
   } catch (err) {
-    console.error('updateAccountToken exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`updateAccountToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4071,12 +4136,13 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
   let token = new Uint8Array([0])
   try {
     osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
-      console.log('updateAccountToken successfully');
+      console.info('updateAccountToken successfully');
     }).catch((err: BusinessError) => {
-        console.error('updateAccountToken failed, error: ' + JSON.stringify(err));
+        console.error(`updateAccountToken failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('updateAccountToken exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`updateAccountToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4126,13 +4192,14 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
     osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
       (err: BusinessError, result: osAccount.DomainAccountInfo) => {
       if (err) {
-        console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
+        console.error(`call getAccountInfo failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getAccountInfo result: ' + result);
+        console.info('getAccountInfo result: ' + result);
       }
     });
   } catch (err) {
-    console.error('getAccountInfo exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAccountInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4186,12 +4253,13 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
   try {
     osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
       .then((result: osAccount.DomainAccountInfo) => {
-      console.log('getAccountInfo result: ' + result);
+      console.info('getAccountInfo result: ' + result);
     }).catch((err: BusinessError) => {
-      console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
+      console.error(`call getAccountInfo failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getAccountInfo exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAccountInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4239,13 +4307,14 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
     osAccount.DomainAccountManager.getAccessToken(businessParams,
       (err: BusinessError, result: Uint8Array) => {
       if (err) {
-        console.error('getAccessToken failed, error: ' + JSON.stringify(err));
+        console.error(`getAccessToken failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getAccessToken result: ' + result);
+        console.info('getAccessToken result: ' + result);
       }
     });
   } catch (err) {
-    console.error('getAccessToken exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAccessToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4297,12 +4366,13 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
   try {
     osAccount.DomainAccountManager.getAccessToken(businessParams)
       .then((result: Uint8Array) => {
-      console.log('getAccessToken result: ' + result);
+      console.info('getAccessToken result: ' + result);
     }).catch((err: BusinessError) => {
-      console.error('getAccessToken failed, error: ' + JSON.stringify(err));
+      console.error(`getAccessToken failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getAccessToken exception = ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAccessToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4348,11 +4418,12 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
     {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     osAccount.DomainAccountManager.isAuthenticationExpired(domainInfo).then((result: boolean) => {
-      console.log('isAuthenticationExpired, result: ' + result);
+      console.info('isAuthenticationExpired, result: ' + result);
     }).catch((err: BusinessError) => {
       console.error('isAuthenticationExpired err: ' + err);
     });
   } catch (e) {
+    const err = e as BusinessError;
     console.error('isAuthenticationExpired exception: ' + e);
   }
   ```
@@ -4418,13 +4489,14 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
   try {
     userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
       if (err) {
-        console.error('openSession exception = ' + JSON.stringify(err));
+        console.error(`openSession exception = code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('openSession challenge = ' + JSON.stringify(challenge));
+        console.info('openSession challenge = ' + JSON.stringify(challenge));
       }
     });
   } catch (e) {
-    console.error('openSession exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`openSession exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4472,10 +4544,11 @@ openSession(accountId?: number): Promise&lt;Uint8Array&gt;
     userIDM.openSession(accountId).then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
-        console.error('openSession error = ' + JSON.stringify(err));
+        console.error(`openSession error = code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('openSession exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`openSession exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4536,12 +4609,13 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
     try {
     userIDM.addCredential(credentialInfo, {
       onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-        console.log('addCredential result = ' + result);
-        console.log('addCredential extraInfo = ' + extraInfo);
+        console.info('addCredential result = ' + result);
+        console.info('addCredential extraInfo = ' + extraInfo);
       }
     });
     } catch (e) {
-      console.error('addCredential exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+      console.error(`addCredential exception = code is ${err.code}, message is ${err.message}`);
     }
   });
   ```
@@ -4611,12 +4685,13 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
         try {
           userIDM.updateCredential(credentialInfo, {
             onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-                console.log('updateCredential result = ' + result);
-                console.log('updateCredential extraInfo = ' + extraInfo);
+                console.info('updateCredential result = ' + result);
+                console.info('updateCredential extraInfo = ' + extraInfo);
             }
           });
         } catch (e) {
-          console.error('updateCredential exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+          console.error(`updateCredential exception = code is ${err.code}, message is ${err.message}`);
         }
       }
     });
@@ -4694,7 +4769,7 @@ cancel(challenge: Uint8Array): void
   try {
     userIDM.cancel(challenge);
   } catch(err) {
-    console.error('cancel err:' + JSON.stringify(err));
+    console.error(`cancel code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4734,12 +4809,13 @@ delUser(token: Uint8Array, callback: IIdmCallback): void
   try {
     userIDM.delUser(token, {
       onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-        console.log('delUser result = ' + result);
-        console.log('delUser extraInfo = ' + JSON.stringify(extraInfo));
+        console.info('delUser result = ' + result);
+        console.info('delUser extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.error('delUser exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`delUser exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4783,12 +4859,13 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
   try {
     userIDM.delCred(credentialId, token, {
       onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-          console.log('delCred result = ' + result);
-          console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
+          console.info('delCred result = ' + result);
+          console.info('delCred extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.error('delCred exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`delCred exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4826,13 +4903,14 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
   try {
     userIDM.getAuthInfo((err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
       if (err) {
-        console.error('getAuthInfo exception = ' + JSON.stringify(err));
+        console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getAuthInfo result = ' + JSON.stringify(result));
+        console.info('getAuthInfo result = ' + JSON.stringify(result));
       }
     });
   } catch (e) {
-    console.error('getAuthInfo exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4873,13 +4951,14 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
     userIDM.getAuthInfo(osAccount.AuthType.PIN,
       (err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
       if (err) {
-        console.error('getAuthInfo exception = ' + JSON.stringify(err));
+        console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getAuthInfo result = ' + JSON.stringify(result));
+        console.info('getAuthInfo result = ' + JSON.stringify(result));
       }
     });
   } catch (e) {
-    console.error('getAuthInfo exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4923,12 +5002,13 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
   let userIDM = new osAccount.UserIdentityManager();
   try {
     userIDM.getAuthInfo(osAccount.AuthType.PIN).then((result: osAccount.EnrolledCredInfo[]) => {
-      console.log('getAuthInfo result = ' + JSON.stringify(result))
+      console.info('getAuthInfo result = ' + JSON.stringify(result))
     }).catch((err: BusinessError) => {
-      console.error('getAuthInfo error = ' + JSON.stringify(err));
+      console.error(`getAuthInfo error = code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getAuthInfo exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4977,12 +5057,13 @@ getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&
   };
   try {
     userIDM.getAuthInfo(options).then((result: osAccount.EnrolledCredInfo[]) => {
-      console.log('getAuthInfo result = ' + JSON.stringify(result))
+      console.info('getAuthInfo result = ' + JSON.stringify(result))
     }).catch((err: BusinessError) => {
-      console.error('getAuthInfo error = ' + JSON.stringify(err));
+      console.error(`getAuthInfo error = code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getAuthInfo exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -5034,10 +5115,11 @@ getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
     userIDM.getEnrolledId(authType, accountId).then((enrolledId: Uint8Array) => {
         console.info('getEnrolledId enrolledId = ' + JSON.stringify(enrolledId));
     }).catch((err: BusinessError) => {
-        console.error('getEnrolledId error = ' + JSON.stringify(err));
+        console.error(`getEnrolledId error = code is ${err.code}, message is ${err.message}`);
     });
   } catch (e) {
-    console.error('getEnrolledId exception = ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`getEnrolledId exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -5127,7 +5209,7 @@ onGetData: (authSubType: AuthSubType, callback: IInputData, options: GetInputDat
   };
   let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let result = pinAuth.registerInputer(inputer);
-  console.log('registerInputer result: ' + result);
+  console.info('registerInputer result: ' + result);
   ```
 
 ## IUserAuthCallback<sup>8+</sup>
@@ -5157,8 +5239,8 @@ onResult: (result: number, extraInfo: AuthResult) => void;
   ```ts
   let authCallback: osAccount.IUserAuthCallback = {
     onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-      console.log('auth result = ' + result);
-      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+      console.info('auth result = ' + result);
+      console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
   ```
@@ -5185,12 +5267,12 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
   ```ts
   let authCallback: osAccount.IUserAuthCallback = {
     onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-      console.log('auth result = ' + result)
-      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+      console.info('auth result = ' + result)
+      console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
     onAcquireInfo: (module: number, acquire: number, extraInfo: Uint8Array) => {
-      console.log('auth module = ' + module);
-      console.log('auth acquire = ' + acquire);
+      console.info('auth module = ' + module);
+      console.info('auth acquire = ' + acquire);
       console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -5223,7 +5305,7 @@ onResult: (result: number, extraInfo: RequestResult) => void;
   ```ts
   let idmCallback: osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-      console.log('callback result = ' + result)
+      console.info('callback result = ' + result)
       console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -5251,13 +5333,13 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
   ```ts
   let idmCallback: osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: Object) => {
-      console.log('callback result = ' + result)
-      console.log('callback onResult = ' + JSON.stringify(extraInfo));
+      console.info('callback result = ' + result)
+      console.info('callback onResult = ' + JSON.stringify(extraInfo));
     },
     onAcquireInfo: (module: number, acquire: number, extraInfo: Uint8Array) => {
-      console.log('callback module = ' + module);
-      console.log('callback acquire = ' + acquire);
-      console.log('callback onacquireinfo = ' + JSON.stringify(extraInfo));
+      console.info('callback module = ' + module);
+      console.info('callback acquire = ' + acquire);
+      console.info('callback onacquireinfo = ' + JSON.stringify(extraInfo));
     }
   };
   ```

@@ -144,7 +144,7 @@ Saves the application state. This API can be used together with the APIs of [err
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the application state is saved. The value **true** is returned if the application state is saved, and **false** is returned otherwise.|
+| boolean | Whether the application state is saved. **true** if saved, **false** otherwise.|
 
 **Example**
     
@@ -188,7 +188,7 @@ Saves the ability state, which will be used for recovery. This API can be used t
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the application state is saved. The value **true** is returned if the application state is saved, and **false** is returned otherwise.|
+| boolean | Whether the application state is saved. **true** if saved, **false** otherwise.|
 
 **Example**
 

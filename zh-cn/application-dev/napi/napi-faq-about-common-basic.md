@@ -2,8 +2,9 @@
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 模块加载失败，报错信息显示`Error message: is not callable`.
 
@@ -311,3 +312,9 @@ void FinalizeB(napi_env env, void* data, void* hint) {
 原因一：`napi_call_threadsafe_function`函数调用返回值不为`napi_ok`。请确认调用`napi_call_threadsafe_function`相关函数的返回值是否都是`napi_ok`，若不是，请根据[Node-API接口返回状态码介绍](napi_status_introduction.md)排查返回值非`napi_ok`的原因。  
 原因二：env所在的ArkTS线程被阻塞。`napi_call_threadsafe_function`函数的回调将执行在env所在的ArkTS线程上，若ArkTS线程被阻塞，则线程安全函数回调不会被执行。  
 原因三：线程安全函数被重复初始化的`uv_async_t`句柄影响，导致任务不执行。若某个`uv_async_t`句柄被重新初始化，第一次初始化和重复初始化范围内所创建所有`uv_async_t`句柄将无法被uv访问。线程安全函数是基于`uv_async_t`机制实现，在该特殊场景下创建线程安全函数将失效。  
+
+## 使用开发工具支撑C/C++代码快速进行Node-API开发
+
+OpenHarmony提供了丰富的Node-API接口示例。参考开发指南和示例工程，可以快速掌握Node-API模块开发流程。
+
+可以使用[AKI](https://gitcode.com/openharmony-sig/aki)或[napi-generator](https://gitee.com/openharmony/napi_generator)等开发工具，辅助Node-API开发，降低学习难度并提高开发效率。

@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 本模块提供管理分布式账号的一些基础功能，主要包括查询和更新账号登录状态。
 
@@ -59,6 +60,8 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -74,13 +77,13 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
     accountAbility.getOsAccountDistributedInfo(
       (err: BusinessError, data: distributedAccount.DistributedInfo) => {
         if (err) {
-          console.error('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+          console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('distributed information: ' + JSON.stringify(data));
+          console.info('distributed information: ' + JSON.stringify(data));
         }
       });
   } catch (err) {
-    console.error('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -102,6 +105,8 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -114,12 +119,12 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
-        console.log('distributed information: ' + JSON.stringify(data));
+        console.info('distributed information: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-        console.error('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+        console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -150,9 +155,9 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
   accountAbility.queryOsAccountDistributedInfo(
     (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
-        console.error('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+        console.error(`queryOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('distributed information: ' + JSON.stringify(data));
+        console.info('distributed information: ' + JSON.stringify(data));
       }
     });
   ```
@@ -183,9 +188,9 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
-      console.log('distributed information: ' + JSON.stringify(data));
+      console.info('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-      console.error('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+      console.error(`queryOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -208,6 +213,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -226,13 +233,13 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
       if (err) {
-        console.error('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+        console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setOsAccountDistributedInfo successfully');
+        console.info('setOsAccountDistributedInfo successfully');
       }
     });
   } catch (err) {
-      console.error('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -260,6 +267,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -277,12 +286,12 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
-        console.log('setOsAccountDistributedInfo successfully');
+        console.info('setOsAccountDistributedInfo successfully');
     }).catch((err: BusinessError) => {
-        console.error('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+        console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-      console.error('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -356,9 +365,9 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
-      console.log('updateOsAccountDistributedInfo successfully');
+      console.info('updateOsAccountDistributedInfo successfully');
    }).catch((err: BusinessError) => {
-      console.error('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+      console.error(`updateOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   });
   ```
 

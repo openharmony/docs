@@ -1,5 +1,12 @@
 # hiappevent_param.h
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 定义所有预定义事件的参数名称。除了与特定应用关联的自定义事件之外，开发者还可以使用预定义事件进行打点。
@@ -18,8 +25,8 @@
 
 ### 宏定义
 
-| 名称                                                                                               | 描述         |
-|--------------------------------------------------------------------------------------------------|------------|
+| 名称 | 描述 |
+| -- | -- |
 | [PARAM_USER_ID](#param_user_id) "user_id"                                                        | 用户ID。<br>**起始版本：** 8  |
 | [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name) "ds_name"                      | 分布式服务名称。<br>**起始版本：** 8   |
 | [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id) "ds_instance_id" | 分布式服务实例ID。<br>**起始版本：** 8 |

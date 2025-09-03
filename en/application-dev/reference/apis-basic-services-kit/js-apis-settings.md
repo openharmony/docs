@@ -1,5 +1,12 @@
 # @ohos.settings (Data Item Settings)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @YingCong-->
+<!--Designer: @Kun_Wu-->
+<!--Tester: @dyx118186878-->
+<!--Adviser: @zhang_yixin13-->
+
 The **settings** module provides APIs for setting data items.
 
 > **NOTE**
@@ -17,7 +24,7 @@ import { settings } from '@kit.BasicServicesKit';
 
 Provides the domain name.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -30,7 +37,7 @@ Provides the domain name.
 
 Provides data items for setting the time and date formats. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -45,13 +52,13 @@ Provides data items for setting the time and date formats. (Not supported yet.)
 
 Provides data items for setting the display effects. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
 | Name                         | Type  | Readable| Writable| Description                                                                                                                  |
 | ----------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------------------|
-| FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number. (In the current version, only fixed values can be queried.)                                                                                     |
+| FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number.                                                                                     |
 | SCREEN_BRIGHTNESS_STATUS      | string | Yes  | Yes  | Screen brightness, with the value ranging from 0 to 255.                                                                                                    |
 | AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>- **AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br>- **MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.        |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is enabled.                                                                                |
@@ -67,7 +74,7 @@ Provides data items for setting the display effects. (Not supported yet.)
 
 Provides data items for setting the general information about the device. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -94,7 +101,7 @@ Provides data items for setting the general information about the device. (Not s
 
 Provides data items for setting input methods. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -113,7 +120,7 @@ Provides data items for setting input methods. (Not supported yet.)
 
 Provides data items for setting network information. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -127,7 +134,7 @@ Provides data items for setting network information. (Not supported yet.)
 
 Provides data items for setting the modes of answering incoming and outgoing calls. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -139,7 +146,7 @@ Provides data items for setting the modes of answering incoming and outgoing cal
 
 Provides data items for setting the sound effects. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -161,7 +168,7 @@ Provides data items for setting the sound effects. (Not supported yet.)
 
 Provides data items for setting text-to-speech (TTS) information. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -177,7 +184,7 @@ Provides data items for setting text-to-speech (TTS) information. (Not supported
 
 Provides data items for setting wireless network information. (Not supported yet.)
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -384,7 +391,7 @@ Obtains the value of a data item in the **DEVICE_SHARD** domain of the database.
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the result. return the value of the data item.|
+| Promise\<string> | Promise used to return the result.|
 
 **Example**
 
@@ -425,7 +432,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the result. return the value of the data item.|
+| Promise\<string> | Promise used to return the result.|
 
 **Example**
 
@@ -650,12 +657,7 @@ import { common } from '@kit.AbilityKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
-  if (err) {
-    console.error(`Failed to get the setting. ${err.message} `);
-    return;
-  }
-  console.log(`callback:value -> ${JSON.stringify(val)}`)
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
   let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
   console.log(`Promise:value -> ${value}`);
 });
@@ -670,6 +672,8 @@ Unregisters the observer under the specified domain name. This API returns the r
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Applications.Settings.Core
+
+**Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                                                                                                                                              |
 | -------- | ---------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -924,7 +928,7 @@ Obtains the URI of a data item. This API uses a promise to return the result. (N
 
 | Type            | Description                                |
 | ---------------- | ------------------------------------ |
-| Promise\<object> | Promise used to return the result. return the URI of the data item.|
+| Promise\<object> | Promise used to return the result.|
 
 **Example**
 

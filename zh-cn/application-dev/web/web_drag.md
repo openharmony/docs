@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ArkWeb的拖拽功能使应用能够在网页中实现元素的拖放，用户可以长按可拖拽的元素，将其拖至可放置的元素上，然后松手完成放置。ArkWeb在网页内容中的拖拽功能满足H5标准。
 
@@ -24,7 +25,7 @@ ArkWeb拖拽不同于ArkUI的组件级拖拽，主要针对网页内容的拖拽
 
 | 监听方法    | 说明                                                  |
 | ----------- | ----------------------------------------------------- |
-| [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)  | 不支持该方法，不应该实现，否则会影响Web组件的拖拽行为。 |
+| [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)  | 不建议使用此方法，否则会影响Web组件的拖拽行为，造成拖拽逻辑不符合预期，如无法触发html拖拽事件监听，预览图无法创建或预览图错误，拖拽数据无法预置等。|
 |  [onDragEnter](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter) | 拖拽的元素进入Web区域。 |
 | [onDragMove](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)  | 拖拽的元素在Web区域移动。  |
 | [onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave) | 拖拽的元素离开Web区域。          |
@@ -60,15 +61,15 @@ struct DragDrop {
         this.ports = this.controller.createWebMessagePorts();
         this.ports[1].onMessageEvent((result: webview.WebMessage) => {
           //ArkTS收到html传来的数据后的处理，可以先打日志确认下消息，双端的消息格式可以自己约定，能唯一识别就行
-          console.log("ETS receive Message: typeof (result) = " + typeof (result) + ";" + result);
+          console.info("ETS receive Message: typeof (result) = " + typeof (result) + ";" + result);
           //这里添加result中消息接收到后的处理,可进行耗时任务
         });
-        console.log("ETS postMessage set h5port ");
+        console.info("ETS postMessage set h5port ");
         //完成通信端口注册后，向前端发送注册完成消息，完成双向的端口绑定
         this.controller.postMessage('__init_port__', [this.ports[0]], '*');
       })// onDrop 可做简单逻辑，例如暂存一些关键数据
         .onDrop((DragEvent: DragEvent) => {
-          console.log("ETS onDrop!")
+          console.info("ETS onDrop!")
           let data: UnifiedData = DragEvent.getData();
           if(!data) {
             return false;
@@ -178,10 +179,10 @@ html示例:
     // 	scriptproxy端口在js侧设置
     var h5Port;
     window.addEventListener('message', function (event) {
-    console.log("H5 receive settingPort message");
+    console.info("H5 receive settingPort message");
         if (event.data == '__init_port__') {
             if (event.ports[0] != null) {
-                console.log("H5 set h5Port " + event.ports[0]);
+                console.info("H5 set h5Port " + event.ports[0]);
                 h5Port = event.ports[0];
             }
         }
@@ -189,7 +190,7 @@ html示例:
 
     // 通过scriptproxy方式,发送数据到ArkTS侧的实现
     function PostMsgToArkTS(data) {
-        console.log("H5 PostMsgToArkTS, h5Port " + h5Port);
+        console.info("H5 PostMsgToArkTS, h5Port " + h5Port);
         if (h5Port) {
           h5Port.postMessage(data);
         } else {

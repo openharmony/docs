@@ -1,4 +1,10 @@
 # Interface (AudioRoutingManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -108,10 +114,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data: audio.AudioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
-  console.info(`Indicate that the device list is obtained ${data}`);
+  console.info('Succeeded in doing getDevicesSync.');
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtain the device list. ${error}`);
+   console.error(`Failed to getDevicesSync. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -366,10 +372,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
-  console.info(`Indicate that the device list is obtained ${data}`);
+  console.info('Succeeded in doing getAvailableDevices.');
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtain the device list. ${error}`);
+   console.error(`Failed to getAvailableDevices. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 

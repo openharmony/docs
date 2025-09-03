@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 在鼠标的单个动作触发多个事件时，事件的顺序是固定的，鼠标事件默认透传。
 
@@ -36,7 +37,7 @@ onMouse(event: (event: MouseEvent) => void): T
 
 ## MouseEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -92,8 +93,8 @@ struct MouseEventExample {
         })
       Button('onMouse')
         .width(180).height(80)
-        .onMouse((event: MouseEvent):void => {
-          if(event){
+        .onMouse((event: MouseEvent): void => {
+          if (event) {
             switch (event.button) {
               case MouseButton.None:
                 this.mouseBtn = 'None';
@@ -129,12 +130,12 @@ struct MouseEventExample {
                 break;
             }
             this.mouseText = 'onMouse:\nButton = ' + this.mouseBtn +
-            '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
-            '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')' +
-            '\ntargetDisplayId = ' + event.targetDisplayId +
-            '\nrawDeltaX = ' + event.rawDeltaX +
-            '\nrawDeltaY = ' + event.rawDeltaY +
-            '\nlength = ' + event.pressedButtons?.length;
+              '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
+              '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')' +
+              '\ntargetDisplayId = ' + event.targetDisplayId +
+              '\nrawDeltaX = ' + event.rawDeltaX +
+              '\nrawDeltaY = ' + event.rawDeltaY +
+              '\nlength = ' + event.pressedButtons?.length;
           }
         })
       Text(this.mouseText)

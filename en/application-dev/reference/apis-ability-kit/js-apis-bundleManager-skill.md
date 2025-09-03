@@ -1,4 +1,10 @@
 # Skill
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module defines a skill object. Such an object can be obtained through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with at least **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_SKILL** passed in to **bundleFlags**. (The skill information is contained in [BundleInfo](./js-apis-bundleManager-bundleInfo.md) -> [HapModuleInfo](./js-apis-bundleManager-hapModuleInfo.md) -> [AbilityInfo](./js-apis-bundleManager-abilityInfo.md) or [ExtensionAbilityInfo](./js-apis-bundleManager-extensionAbilityInfo.md).)
 
@@ -22,7 +28,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | actions     | Array\<string> | Yes  | No  | [Actions](js-apis-ability-wantConstant.md#action) received by the skill.|
 | entities    | Array\<string> | Yes  | No  | [Entities](js-apis-ability-wantConstant.md#entity) received by the skill.  |
 | uris | Array\<SkillUri> | Yes  | No  | URIs that match Want.|
-| domainVerify     | boolean | Yes  | No  | DomainVerify value received by the skill. This parameter exists only in **AbilityInfo** and specifies whether domain name verification is enabled. The value **true** means that domain name verification is enabled, and **false** means the opposite.|
+| domainVerify     | boolean | Yes  | No  | DomainVerify value received by the skill. This parameter exists only in **AbilityInfo** and specifies whether domain name verification is enabled. **true** if enabled, **false** otherwise.|
 
 ## SkillUri
 
