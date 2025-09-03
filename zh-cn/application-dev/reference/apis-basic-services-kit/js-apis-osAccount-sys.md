@@ -131,6 +131,67 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
   }
   ```
 
+### activateOsAccount<sup>21+</sup>
+
+activateOsAccount(localId: number, displayId: number): Promise&lt;void&gt;
+
+在指定逻辑屏激活（前台启动或切换）目标系统账号。使用Promise异步回调。
+当前不支持跨逻辑屏激活，即在指定逻辑屏上激活另一个已在逻辑屏前台运行的系统账号。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明           |
+| --------- | ------ | ---- | -------------- |
+| localId   | number | 是   | 系统账号ID。   |
+| displayId | number | 是   | 逻辑屏ID。   |
+
+**返回值：**
+
+| 类型                | 说明                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[账号管理错误码](./errorcode-account.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
+| 12300018 | Display not found. |
+| 12300019 | Cross-display activation not supported. |
+
+**示例：**
+在ID为0的逻辑屏上激活ID为100的系统账号。
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let localId: number = 100;
+  let displayId: number = 0;
+  try {
+    accountManager.activateOsAccount(localId, displayId).then(() => {
+      console.info('activateOsAccount with displayId successfully');
+    }).catch((err: BusinessError) => {
+      console.error(`activateOsAccount with displayId failed, err: ${err.code} ${err.message}`);
+    });
+  } catch (err) {
+    console.error(`activateOsAccount with displayId exception: ${err.code} ${err.message}`);
+  }
+  ```
+
 ### deactivateOsAccount<sup>12+</sup>
 
 deactivateOsAccount(localId: number): Promise&lt;void&gt;
@@ -1640,7 +1701,9 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**说明：** 从API version 21 开始，权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS开始生效。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1649,7 +1712,7 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'switching'                 | 是   | 订阅类型，switching表示订阅的是系统账号的前后台正在切换事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台正在切换事件回调，表示切换前和切换后的系统账号ID。    |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台正在切换事件回调，包含切换来源和切换目标的系统账号ID。<br/>**说明：** 从API version 21开始，事件数据中新增可选字段displayId，表示发生切换事件的逻辑屏ID。    |
 
 **错误码：**
 
@@ -1684,7 +1747,9 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**说明：** 从API version 21 开始，权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS开始生效。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1725,7 +1790,9 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**说明：** 从API version 21 开始，权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS开始生效。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1734,7 +1801,7 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'switched'                 | 是   | 订阅类型，switched表示订阅的是系统账号的前后台切换结束事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台切换结束事件回调，表示切换前和切换后的系统账号ID。    |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台切换结束事件回调，包含切换来源和切换目标的系统账号ID。<br/>**说明：** 从API version 21开始，事件数据中新增可选字段displayId，表示发生切换事件的逻辑屏ID。    |
 
 **错误码：**
 
@@ -1769,7 +1836,9 @@ off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**说明：** 从API version 21 开始，权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS开始生效。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2027,6 +2096,108 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
   } catch (e) {
     const err = e as BusinessError;
     console.error(`isMainOsAccount exception: code is ${err.code}, message is ${err.message}`);
+  }
+  ```
+
+### getForegroundOsAccountLocalId<sup>21+</sup>
+
+getForegroundOsAccountLocalId(displayId: number): Promise&lt;number&gt;
+
+获取指定逻辑屏上运行的前台系统账号ID。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| displayId | number | 是   | 逻辑屏ID。 |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | ---------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回系统账号ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[账号管理错误码](./errorcode-account.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
+| 12300017 | The foreground OS account is not found. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let displayId: number = 0;
+  try {
+    accountManager.getForegroundOsAccountLocalId(displayId).then((localId: number) => {
+      console.info('foreground account on display ' + displayId + ' is ' + localId);
+    }).catch((err: BusinessError) => {
+      console.error(`getForegroundOsAccountLocalId failed: ${err.code} ${err.message}`);
+    });
+  } catch (err) {
+    console.error(`getForegroundOsAccountLocalId exception: ${err.code} ${err.message}`);
+  }
+  ```
+
+### getForegroundOsAccountDisplayId<sup>21+</sup>
+
+getForegroundOsAccountDisplayId(localId: number): Promise&lt;number&gt;
+
+获取指定前台系统账号所运行的逻辑屏ID。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明       |
+| ------- | ------ | ---- | ---------- |
+| localId | number | 是   | 系统账号ID。 |
+
+**返回值：**
+
+| 类型                  | 说明                           |
+| --------------------- | ------------------------------ |
+| Promise&lt;number&gt; | Promise对象，返回逻辑屏ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[账号管理错误码](./errorcode-account.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
+| 12300017 | The foreground OS account is not found. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.getForegroundOsAccountDisplayId(localId).then((displayId: number) => {
+      console.info('account ' + localId + ' foreground displayId: ' + displayId);
+    }).catch((err: BusinessError) => {
+      console.error(`getForegroundOsAccountDisplayId failed: ${err.code} ${err.message}`);
+    });
+  } catch (err) {
+    console.error(`getForegroundOsAccountDisplayId exception: ${err.code} ${err.message}`);
   }
   ```
 
@@ -5735,10 +5906,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| fromAccountId | number | 是   | 切换前系统账号ID。 |
-| toAccountId | number | 是   | 切换后系统账号ID。 |
+| 名称      | 类型   | 只读 | 可选 | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| fromAccountId | number | 否 | 否 | 切换来源系统账号ID。 |
+| toAccountId | number | 否 | 否 | 切换目标系统账号ID。 |
+| displayId<sup>21+</sup> | number | 否 | 是 | 切换事件发生的逻辑屏ID。 |
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
