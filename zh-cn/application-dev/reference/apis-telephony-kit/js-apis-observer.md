@@ -737,7 +737,7 @@ observer.off('cellularDataFlowChange');
 
 on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
-订阅sim状态更改事件，使用callback方式作为异步方法。
+订阅sim卡状态更改事件，使用callback方式作为异步方法。sim卡状态更改指sim卡在UNKNOWN（未知状态）、NOT_PRESENT（未插卡）、LOCKED（卡被锁定）、NOT_READY（已插卡但无法正常工作）、READY（已插卡且正常工作）、LOADED（已插卡且卡文件加载完成）等状态变化，不包含sim卡是否激活。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
