@@ -1457,7 +1457,7 @@ for (const value of iterator) {
 
 | 类型                      | 说明             |
 | ------------------------- | ---------------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
 
 **错误码：**
 
