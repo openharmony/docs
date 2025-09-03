@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)
+# @ohos.app.ability.autoStartupManager (开机自启管理能力)(系统接口)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
