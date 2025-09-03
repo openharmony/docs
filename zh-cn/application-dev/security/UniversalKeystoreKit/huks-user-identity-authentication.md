@@ -94,12 +94,6 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 import { BusinessError } from "@kit.BasicServicesKit";
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 
-class propertyEncryptType {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-  value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
-    | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_SM4;
-}
-
 /*
  * 确定密钥别名和封装密钥属性参数集。
  */
@@ -113,7 +107,7 @@ let finishOutData: Uint8Array;
 let authType = userAuth.UserAuthType.FINGERPRINT;
 let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 /* 集成生成密钥参数集&加密参数集。 */
-let properties: propertyEncryptType[] = [{
+let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM4,
   }, {
@@ -268,9 +262,10 @@ async function testAuthControl() {
   /* 初始化密钥会话获取挑战值。 */
   await initSession(srcKeyAlias, huksOptions);
   /* 调用userIAM进行身份认证。 */
+  /* 需要在超时10秒之前完成指纹认证。 */
   userIAMAuthFinger(challenge);
   setTimeout(() => {
     testSm4Cipher();
-  }, 5 * 1000);
+  }, 10 * 1000);
 }
 ```

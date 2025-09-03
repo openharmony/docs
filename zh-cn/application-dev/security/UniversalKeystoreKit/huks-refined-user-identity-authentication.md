@@ -94,12 +94,6 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 import { BusinessError } from "@kit.BasicServicesKit";
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 
-class propertyDecryptType {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-  value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
-    | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_SM4
-}
-
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
@@ -129,7 +123,7 @@ let challenge: Uint8Array;
 let authType = userAuth.UserAuthType.FINGERPRINT;
 let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 /* 加密参数集。 */
-let propertiesEncrypt: propertyDecryptType[] = [{
+let propertiesEncrypt: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM4,
   }, {
@@ -154,7 +148,7 @@ let encryptOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array())
 }
 /* 解密参数集。 */
-let propertiesDecrypt: propertyDecryptType[] = [{
+let propertiesDecrypt: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM4,
   }, {
@@ -280,6 +274,7 @@ async function testSm4Decrypt() {
   userIAMAuthFinger(challenge);
   setTimeout(() => {
     /* 认证成功后进行解密，需要传入Auth获取到的authToken值。 */
+    /* 需要在超时10秒之前完成指纹认证。 */
     decryptOptions.inData = cipherText;
     finishDecrypt(handle, decryptOptions, fingerAuthToken);
   }, 10 * 1000)
