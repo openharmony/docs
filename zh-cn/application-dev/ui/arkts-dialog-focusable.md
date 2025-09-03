@@ -62,40 +62,42 @@ ArkUI的弹出框焦点策略可以设定是否中断用户当前操作，并聚
 
 当用户正在文本框中输入内容时，新弹出的弹出框不会关闭软键盘，焦点仍保留在文本框中。
 
-  ```ts
-  @Entry
-  @Component
-  export struct Index {
-    private message = '弹窗'
-    @State dialogIdIndex: number = 0
-    @Builder customDialogComponent() {
-      Column({ space: 5 }) {
-        Text(this.message + this.dialogIdIndex)
-          .fontSize(30)
-      }
-      .height(200)
-      .padding(5)
-      .justifyContent(FlexAlign.SpaceBetween)
-    }
+```ts
+@Entry
+@Component
+export struct Index {
+  private message = '弹窗';
+  @State dialogIdIndex: number = 0;
 
-    build() {
-      Column({ space: 5 }) {
-        TextInput()
-          .onChange(() => {
-            this.dialogIdIndex++
-            this.getUIContext().getPromptAction().openCustomDialog({
-              builder: () => {
-                this.customDialogComponent()
-              },
-              focusable: false
-            }).then((dialogId: number) => {
-              setTimeout(() => {
-                this.getUIContext().getPromptAction().closeCustomDialog(dialogId);
-              }, 3000)
-            })
-          })
-      }.width('100%')
+  @Builder
+  customDialogComponent() {
+    Column({ space: 5 }) {
+      Text(this.message + this.dialogIdIndex)
+        .fontSize(30)
     }
+    .height(200)
+    .padding(5)
+    .justifyContent(FlexAlign.SpaceBetween)
   }
-  ```
+
+  build() {
+    Column({ space: 5 }) {
+      TextInput()
+        .onChange(() => {
+          this.dialogIdIndex++;
+          this.getUIContext().getPromptAction().openCustomDialog({
+            builder: () => {
+              this.customDialogComponent()
+            },
+            focusable: false
+          }).then((dialogId: number) => {
+            setTimeout(() => {
+              this.getUIContext().getPromptAction().closeCustomDialog(dialogId);
+            }, 3000)
+          })
+        })
+    }.width('100%')
+  }
+}
+```
 ![dialog-focusable-demo1](figures/dialog-focusable-demo1.gif)
