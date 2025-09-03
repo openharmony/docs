@@ -1345,8 +1345,8 @@ workerInstance.addEventListener("alert", (event: Event) => {
   console.info("event type is: ", JSON.stringify(event.type));
 });
 
-const eventToDispatch : Event = { type: "alert", timeStamp: 0 };
-workerInstance.dispatchEvent(eventToDispatch); // timeStamp暂未支持
+const eventToDispatch : Event = { type: "alert", timeStamp: 0 }; // timeStamp暂未支持
+workerInstance.dispatchEvent(eventToDispatch);
 ```
 
 

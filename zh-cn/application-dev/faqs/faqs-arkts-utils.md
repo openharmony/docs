@@ -308,7 +308,7 @@ class SdkU3d {
   }
 }
 
-const workerInstance = new worker.ThreadWorker("xx/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 let sdk = SdkU3d.getInst()
 workerInstance.registerGlobalCallObject("instance_xx", sdk);
 workerInstance.postMessage("start");
