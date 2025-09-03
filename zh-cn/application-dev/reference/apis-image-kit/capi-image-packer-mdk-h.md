@@ -46,7 +46,7 @@
 | [int32_t OH_ImagePacker_Create(napi_env env, napi_value *res)](#oh_imagepacker_create) | 获取JavaScript native层ImagePacker对象。 |
 | [ImagePacker_Native* OH_ImagePacker_InitNative(napi_env env, napi_value packer)](#oh_imagepacker_initnative) | 从输入JavaScript native层ImagePacker对象中，转换成ImagePacker_Native值。 |
 | [int32_t OH_ImagePacker_PackToData(ImagePacker_Native* native, napi_value source,ImagePacker_Opts* opts, uint8_t* outData, size_t* size)](#oh_imagepacker_packtodata) | 通过一个给定的选项ImagePacker_Opts结构体，将输入JavaScript native层PixelMap对象或者ImageSource对象编码并输出到指定的缓存区outData中。 |
-| [int32_t OH_ImagePacker_PackToFile(ImagePacker_Native* native, napi_value source,ImagePacker_Opts* opts, int fd)](#oh_imagepacker_packtofile) | 通过一个给定的选项ImagePacker_Opts结构体，将输入JavaScript native层PixelMap对象或者ImageSource对象编码并输出到指定的文件中。 |
+| [int32_t OH_ImagePacker_PackToFile(ImagePacker_Native* native, napi_value source, ImagePacker_Opts* opts, int fd)](#oh_imagepacker_packtofile) | 通过一个给定的选项ImagePacker_Opts结构体，将输入JavaScript native层PixelMap对象或者ImageSource对象编码并输出到指定的文件中。 |
 | [int32_t OH_ImagePacker_Release(ImagePacker_Native* native)](#oh_imagepacker_release) | 释放native层编码器对象[ImagePacker_Native](capi-image-imagepacker-native-.md)。<br>此API不用于释放JavaScript原生API ImagePacker对象，它用于释放native层对象ImagePacker_Native。 |
 
 ## 函数说明
