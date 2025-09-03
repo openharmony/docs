@@ -40,3 +40,4 @@ try {
     console.error(`current auth trust level is not supported. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [obtain_supported_capabilities](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->
