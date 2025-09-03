@@ -22,13 +22,12 @@
 
 - ArkTS接口仅支持PasteData级别的延迟复制粘贴（不建议使用）。
 
-- 复制的数据量不大，准备数据的时间不影响用户体验时，不建议应用使用延迟复制功能，推荐应用将数据直接写入剪贴板。
+- 当复制的数据量较小且准备数据所需时间不会影响用户体验时，不建议应用程序使用延迟复制功能，推荐将数据直接写入剪贴板。
 
 ## 使用基于Record级别的延迟复制粘贴（推荐）
 
 本方案可以在粘贴前查询数据type信息，应用可以据此决定是否向剪贴板请求数据，因此建议使用本方案实现延迟复制功能。
 
-**注意：**
 1. 当应用使用延迟复制功能复制时，仅将应用支持的数据类型写入剪贴板。应用应在退出时，重新调用[OH_Pasteboard_SetData](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_setdata)接口主动提交所有复制数据或调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口通知剪贴板获取全量数据，等待数据同步完成再继续退出，否则可能导致其他应用粘贴获取不到数据。
 
 2. 调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口会延长退出过程，建议应用直接设置数据到剪贴板，而不是调用延迟复制接口[OH_UdmfRecordProvider_SetData](../../reference/apis-arkdata/capi-udmf-h.md#oh_udmfrecordprovider_setdata)和同步延迟数据接口[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)。
@@ -103,7 +102,7 @@
    }
    ```
 
-4. 在剪贴板中准备延迟复制数据。需要注意，此步骤完成后纯文本类型数据与HTML类型数据并未真正写入剪贴板服务，只有当数据使用者从`OH_UdmfRecord`中获取`OH_UdsPlainText`或`OH_UdsHtml`时，才会触发上文定义的`GetDataCallback`数据提供函数，从中得到数据。
+4. 在剪贴板中准备延迟复制数据。此步骤完成后纯文本类型数据与HTML类型数据并未真正写入剪贴板服务，只有当数据使用者从`OH_UdmfRecord`中获取`OH_UdsPlainText`或`OH_UdsHtml`时，才会触发上文定义的`GetDataCallback`数据提供函数，从中得到数据。
    
    ```c
    // 4. 创建OH_UdmfRecord对象。
