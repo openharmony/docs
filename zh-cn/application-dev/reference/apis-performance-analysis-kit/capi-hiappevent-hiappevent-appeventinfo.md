@@ -21,11 +21,11 @@
 
 ### 成员变量
 
-| 名称                                                    | 描述 |
-|-------------------------------------------------------| -- |
-| const char* domain                                    | 事件领域。 |
-| const char* name                                      | 事件名称。 |
+| 名称 | 描述 |
+| -- | -- |
+| const char* domain | 事件领域。 |
+| const char* name | 事件名称。 |
 | enum [EventType](capi-hiappevent-h.md#eventtype) type | 事件类型。 |
-| const char* params                                    | Json格式字符串类型的事件参数列表。 |
+| const char* params | Json格式字符串类型的事件参数列表。 |
 
 
