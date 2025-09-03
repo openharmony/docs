@@ -120,7 +120,7 @@ target_link_libraries(entry PUBLIC libnative_display_manager.so )
                cutOutInfo->waterfallDisplayAreaRects.right.width, cutOutInfo->waterfallDisplayAreaRects.right.height);
                OH_LOG_INFO(LOG_APP, "cutOutInfo waterfall bottom rect=[%{public}d %{public}d %{public}d %{public}d]",
                cutOutInfo->waterfallDisplayAreaRects.bottom.left, cutOutInfo->waterfallDisplayAreaRects.bottom.top,
-               cutOutInfo->waterfallDisplayAreaRects.bottom.width, cutOutInfo->waterfallDisplayAreaRects.bottomheight);            
+               cutOutInfo->waterfallDisplayAreaRects.bottom.width, cutOutInfo->waterfallDisplayAreaRects.bottom.height);            
            }
            napi_value boundingRectsLength;
            napi_create_int32(env, cutOutInfo->boundingRectsLength, &boundingRectsLength);
