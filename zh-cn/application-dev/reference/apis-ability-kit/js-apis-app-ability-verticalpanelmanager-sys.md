@@ -92,7 +92,7 @@ struct Index {
 
   callStartVerticalPanelNapi() {
     // Param[0] UIAbilityContext
-    const context = getContext(this) as common.UIAbilityContext;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     // Param[1] wantParam: Record<string, Object>
     let wantParam: Record<string, Object> = {
@@ -148,14 +148,12 @@ struct Index {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [VerticalType](#verticaltype) | 否 | 否 | 垂域面板的类型 。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括包名（bundleName）、模块名（moduleName）、能力名（abilityName）、窗口ID（windowId）和屏幕模式（screenMode）。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| type | [VerticalType](#verticaltype) | 否 | 否 | 垂域面板的类型。 |
+| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括bundleName、moduleName、abilityName、windowId和screenMode。 |
 
 ## VerticalType 
 
 提供能力类型定义的枚举。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -163,7 +161,7 @@ struct Index {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NAVIGATION | 'navigation' | 指示导航的类型。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| NAVIGATION | 'navigation' | 指示导航的类型。 |
 
 ## PanelStartCallback
 
@@ -181,8 +179,6 @@ struct Index {
 ## OnErrorFn
 
 type OnErrorFn = (code: number, name: string, message: string) => void
- 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -200,20 +196,18 @@ type OnErrorFn = (code: number, name: string, message: string) => void
 
 ```ts
 let callback: verticalPanelManager.PanelStartCallback = {
-    onError: (code: number, name: string, message: string): void => {
-        console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
-    },
-    onResult: (result: common.AbilityResult):void => {
-        console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
-    },
+  onError: (code: number, name: string, message: string): void => {
+    console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
+  },
+  onResult: (result: common.AbilityResult):void => {
+    console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
+  },
 }
 ```
 
 ## OnResultFn
 
 type OnResultFn = (parameter: AbilityResult) => void
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -229,18 +223,16 @@ type OnResultFn = (parameter: AbilityResult) => void
 
 ```ts
 let callback: verticalPanelManager.PanelStartCallback = {
-    onError: (code: number, name: string, message: string): void => {
-        console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
-    },
-    onResult: (result: common.AbilityResult):void => {
-        console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
-    },
+  onError: (code: number, name: string, message: string): void => {
+    console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
+  },
+  onResult: (result: common.AbilityResult):void => {
+    console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
+  },
 }
 ```
 
-## Constants
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+## 常量
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
