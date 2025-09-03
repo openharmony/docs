@@ -1,12 +1,12 @@
 # Media Data Multiplexing
 
-You can call the native APIs provided by the AVMuxer module to multiplex audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
+You can call native APIs to multiplex audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
 
 For details about the supported multiplexing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-multiplexing).
 
 <!--RP2--><!--RP2End-->
 
-**Usage Scenario**
+**When to Use**
 
 - Video and audio recording
   
@@ -20,15 +20,15 @@ For details about the supported multiplexing formats, see [AVCodec Supported For
 
   After you transcode audio and video, multiplex them into files.
 
-## How to Develop
+## Development Guidelines
 
 Read [AVMuxer](../../reference/apis-avcodec-kit/_a_v_muxer.md) for the API reference.
 
 > **NOTE**
 >
-> To call the AVMuxer module to write a local file, request the **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** permissions by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+> To call the AVMuxer module to write a local file, request the ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA permissions by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
-### Linking the Dynamic Library in the CMake Script
+### Linking the Dynamic Libraries in the CMake Script
 
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
@@ -51,7 +51,7 @@ For details about the keys to be configured for different container formats, see
    #include <fcntl.h>
    ```
 
-2. Call **OH_AVMuxer_Create()** to create an **OH_AVMuxer** instance.
+2. Call **OH_AVMuxer_Create()** to create an OH_AVMuxer instance.
 
    ```c++
    // Set the container format to MP4.
@@ -70,7 +70,7 @@ For details about the keys to be configured for different container formats, see
 
 4. Add file-level data.
    ```c++
-   OH_AVFormat *format = OH_AVFormat_Create(); // Use OH_AVFormat_Create to create a format.
+   OH_AVFormat *format = OH_AVFormat_Create(); // Call OH_AVFormat_Create to create a format.
    OH_AVFormat_SetStringValue(format, OH_MD_KEY_CREATION_TIME, "2024-12-28T00:00:00:000000Z"); // Set the creation time (UTC time in ISO 8601 format).
    int ret = OH_AVMuxer_SetFormat(muxer, format); // Set format data to the muxer.
    if (ret != AV_ERR_OK) {
@@ -87,7 +87,7 @@ For details about the keys to be configured for different container formats, see
    int audioTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size = ...;  // Length of the encoding configuration data. Set this parameter based on project requirements.
-   OH_AVFormat *formatAudio = OH_AVFormat_Create(); // Call OH_AVFormat_Create to create a format. The following showcases how to multiplex an AAC-LC audio with the sampling rate of 44100 Hz and two audio channels.
+   OH_AVFormat *formatAudio = OH_AVFormat_Create(); // Call OH_AVFormat_Create to create a format. The following showcases how to multiplex an AAC-LC audio with the sample rate of 44100 Hz and two audio channels.
    OH_AVFormat_SetStringValue(formatAudio, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_AUDIO_AAC); // Mandatory.
    OH_AVFormat_SetIntValue(formatAudio, OH_MD_KEY_AUD_SAMPLE_RATE, 44100); // Mandatory.
    OH_AVFormat_SetIntValue(formatAudio, OH_MD_KEY_AUD_CHANNEL_COUNT, 2); // Mandatory.
@@ -154,6 +154,7 @@ For details about the keys to be configured for different container formats, see
    }
    OH_AVFormat_Destroy(formatVideo); // Destroy the format.
    ```
+
 
 7. Add a cover track.
 

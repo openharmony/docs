@@ -3,14 +3,13 @@
 
 ## Overview
 
-The **native_avcodec_videodecoder.h** file declares the native APIs used for video decoding.
+The file declares the native APIs used for video decoding.
 
 **Library**: libnative_media_vdec.so
 
 **Since**: 9
 
 **Related module**: [VideoDecoder](_video_decoder.md)
-
 
 ## Summary
 
@@ -41,4 +40,4 @@ The **native_avcodec_videodecoder.h** file declares the native APIs used for vid
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBufferAtTime](_video_decoder.md#oh_videodecoder_renderoutputbufferattime) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, int64_t renderTimestampNs) | Frees an output buffer with a rendering timestamp of a video decoder and instructs the decoder to render the decoded data in the buffer on the output surface. |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](_video_decoder.md#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Frees an output buffer of a video decoder.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](_video_decoder.md#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | Checks whether a video decoder instance is valid.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](_video_decoder.md#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | Sets the decryption configuration.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](_video_decoder.md#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | Sets the decryption configuration.|

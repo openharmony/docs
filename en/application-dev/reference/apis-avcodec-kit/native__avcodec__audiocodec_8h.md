@@ -3,9 +3,10 @@
 
 ## Overview
 
-The **native_avcodec_audiocodec.h** file declares the native APIs used for audio encoding and decoding.
+The file declares the native APIs used for audio encoding and decoding.
 
 **Library**: libnative_media_acodec.so
+
 
 **Since**: 11
 
