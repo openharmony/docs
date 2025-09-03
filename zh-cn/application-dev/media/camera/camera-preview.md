@@ -152,7 +152,6 @@
 
 ```ts
 import { camera } from '@kit.CameraKit';
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 

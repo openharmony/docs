@@ -51,13 +51,12 @@
 
     需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
    ```ts
-   function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context) {
-   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
+   function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
+   // 设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
      photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
         console.info('getPhoto start');
-        console.error(`err: ${errCode}`);
         if (errCode || photo === undefined) {
-          console.error('getPhoto failed');
+          console.error('getPhoto failed, err: ${errCode}');
           return;
         }
         let imageObj: image.Image = photo.main;
