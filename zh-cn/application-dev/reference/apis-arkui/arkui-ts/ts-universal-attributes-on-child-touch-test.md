@@ -28,7 +28,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | Array<[TouchTestInfo>](#touchtestinfo) | 是   | 包含子节点信息的数组。 |
+| event  | (value: Array<[TouchTestInfo>](#touchtestinfo)) => TouchResult | 是   | 触摸事件信息。value的值为包含子节点信息的数组。 |
 
 **返回值：** 
 
