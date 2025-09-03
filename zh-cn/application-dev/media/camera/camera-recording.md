@@ -28,7 +28,7 @@
 
 2. 创建Surface。
 
-   系统提供的media接口可以创建一个录像[AVRecorder](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreateavrecorder9)实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
+   系统提供的media接口可以创建一个录像[AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考步骤3.创建录像输出流。
@@ -85,15 +85,15 @@
        videoFrameRate : 30 // 视频帧率。
      };
      // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致。
-     avMetadata: media.AVMetadata = {
-      videoOrientation: 90
+     let avMetadata: media.AVMetadata = {
+      videoOrientation: '90' // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法。
      }
      
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
-       url: 'fd://35', // 需要根据开发需求填写实际的路径。
-       rotation: avMetadata.videoOrientation // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法。
+       url: 'fd://35', // 此处为样例示范，需要根据开发需求填写实际的路径。
+       metadata: avMetadata
      };
      // 创建avRecorder。
      let avRecorder: media.AVRecorder | undefined = undefined;
@@ -134,19 +134,19 @@
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     videoOutput.start();
-     try {
-       await avRecorder.start(async (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to start the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output start success.');
-     });
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder start error: ${err}`);
-     }
+    try {
+      videoOutput.start();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`start videoOutput failed, error: ${err.code}`);
+    }
+    await avRecorder.start(async (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to start the video output ${err.message}`);
+      return;
+    }
+    console.info('Callback invoked to indicate the video output start success.');
+    });
    }
    ```
 
@@ -156,18 +156,13 @@
 
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     try {
-       await avRecorder.stop((err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to stop the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output stop success.');
-     });
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder stop error: ${err}`);
+     await avRecorder.stop((err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to stop the video output ${err.message}`);
+       return;
      }
+     console.info('Callback invoked to indicate the video output stop success.');
+     });
      videoOutput.stop();
    }
    ```

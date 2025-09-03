@@ -50,7 +50,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start((err: BusinessError) => {
-    if (err) {
+    if (err.code) {
       console.error(`Failed to start the video output, error code: ${err.code}.`);
       return;
     }
@@ -183,7 +183,7 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
-  if (err) {
+  if (err.code) {
     console.error(`Callback Error, errorCode: ${err.code}`);
     return;
   }
@@ -248,7 +248,7 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
-  if (err) {
+  if (err.code) {
     console.error(`Callback Error, errorCode: ${err.code}`);
     return;
   }
@@ -380,7 +380,7 @@ setFrameRate(minFps: number, maxFps: number): void
 
 > **说明：**
 > 仅在[PhotoSession](arkts-apis-camera-PhotoSession.md)或[VideoSession](arkts-apis-camera-VideoSession.md)模式下支持。
-> 接口调用前，先使用[getActiveFrameRate](arkts-apis-camera-VideoOutput.md#getactiveframerate12)查询当前帧率，若与下发帧率相等，则不会生效。
+> 接口调用前，先调用[getActiveFrameRate](arkts-apis-camera-VideoOutput.md#getactiveframerate12)接口查询当前VideoSession的帧率，若下发的帧率与当前帧率相等，则下发的帧率不会生效。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -512,7 +512,7 @@ enableMirror(enabled: boolean): void
 
 - 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported15)查询是否支录像镜像功能。
 
-- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)获取旋转角度以及[updateRotation](../apis-media-kit/arkts-apis-media-AVRecorder.md#updaterotation12)更新旋转角度。
+- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)获取录像旋转角度以及[updateRotation](../apis-media-kit/arkts-apis-media-AVRecorder.md#updaterotation12)更新旋转角度。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
