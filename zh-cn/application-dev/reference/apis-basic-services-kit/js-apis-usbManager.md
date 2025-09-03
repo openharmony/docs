@@ -249,8 +249,8 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 ```ts
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (!devicesList || devicesList.length == 0) {
-  return;
   console.log(`device list is empty`);
+  return;
 }
 
 let device: usbManager.USBDevice = devicesList[0];
