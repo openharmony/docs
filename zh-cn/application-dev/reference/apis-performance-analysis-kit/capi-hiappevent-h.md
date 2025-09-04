@@ -1359,7 +1359,11 @@ int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config)
 
 **描述**
 
-设定系统事件订阅触发条件。
+事件相关的配置参数设置方法。
+
+不同的事件有不同的配置项，目前仅支持以下事件：
+
+MAIN_THREAD_JANK（参数配置详见[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义参数)）
 
 **起始版本：** 15
 
