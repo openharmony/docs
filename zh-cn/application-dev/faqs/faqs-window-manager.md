@@ -283,9 +283,9 @@ display.on('change', async (data) => {
 
 ```ts
 display.on('change', (data) => {
-  console.info('Succeeded in enabling the listener for display changes. Data: ${data}');
+  console.info(`Succeeded in enabling the listener for display changes. Data: ${data}`);
   let newDisplay: display.Display = display.getDefaultDisplaySync();
-  console.info('Orientation: ${newDisplay.orientation} , width: ${newDisplay.width} , height: ${newDisplay.height}');
+  console.info(`Orientation: ${newDisplay.orientation} , width: ${newDisplay.width} , height: ${newDisplay.height}`);
 });
 ```
 
