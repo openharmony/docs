@@ -1,4 +1,4 @@
-# @ohos.multimodalAwareness.deviceStatus（设备状态感知）
+# @ohos.multimodalAwareness.deviceStatus（设备状态感知）（系统接口）
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
@@ -10,7 +10,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块为系统接口。
 
@@ -24,9 +24,9 @@
 
 getDeviceRotationRadian(): Promise&lt;DeviceRotationRadian&gt;
 
-获取设备的姿态信息。
+获取设备的姿态数据。
 
-其中，姿态信息包含x、y、z三轴的旋转信息，三轴定义与设备sensor定义相同，为右手系。姿态旋转角在ZXY旋转顺序、内旋下计算。
+姿态数据包含x、y、z三轴的姿态旋转角，三轴定义与设备sensor定义相同，为右手系。姿态旋转角在ZXY旋转顺序、内旋下计算。
 
 **系统能力**：SystemCapability.MultimodalAwareness.DeviceStatus
 
