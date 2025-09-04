@@ -41,7 +41,7 @@
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want)](#oh_abilityruntime_startselfuiability) | 启动当前应用的UIAbility。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,AbilityRuntime_StartOptions *options)](#oh_abilityruntime_startselfuiabilitywithstartoptions) | 通过StartOptions启动当前应用的UIAbility。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)](#oh_abilityruntime_applicationcontextgetversioncode) | 获取应用版本号。 |
-| [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want, AbilityRuntime_StartOptions *options, int32_t &targetPid)](#oh_abilityruntime_startselfuiabilitywithpidresult) | 通过StartOptions启动当前应用的UIAbility，并获取目标UIAbility的进程号。 |
+| [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want, AbilityRuntime_StartOptions *options, int32_t *targetPid)](#oh_abilityruntime_startselfuiabilitywithpidresult) | 通过StartOptions启动当前应用的UIAbility，并获取目标UIAbility的进程号。 |
 
 ## 函数说明
 
@@ -477,7 +477,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int6
 ### OH_AbilityRuntime_StartSelfUIAbilityWithPidResult()
 
 ```
-AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want, AbilityRuntime_StartOptions *options, int32_t &targetPid)
+AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want, AbilityRuntime_StartOptions *options, int32_t *targetPid)
 ```
 
 **描述**
@@ -499,7 +499,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(Abili
 | -- | -- |
 | [AbilityBase_Want](capi-abilitybase-want.md) *want | 启动当前应用UIAbility时需要的Want信息。 |
 | [AbilityRuntime_StartOptions](capi-abilityruntime-startoptions.md) *options | 启动当前应用UIAbility时需要的StartOptions信息。如果该参数中[startVisibility](capi-context-constant-h.md#abilityruntime_startvisibility)属性的值不为空，必须确保当前应用已添加到状态栏，否则会返回[ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED](capi-ability-runtime-common-h.md#abilityruntime_errorcode)错误码。 |
-| int32_t &targetPid | 目标UIAbility所在的进程号，作为出参使用。 |
+| int32_t *targetPid | 目标UIAbility所在的进程号，作为出参使用。 |
 
 **返回：**
 
@@ -534,7 +534,7 @@ void demo()
         return;
     }
     int32_t pid = -1;
-    AbilityRuntime_ErrorCode err = OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(want, options, pid);
+    AbilityRuntime_ErrorCode err = OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(want, options, &pid);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // 记录错误日志以及其他业务处理
     }
