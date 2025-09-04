@@ -4965,7 +4965,7 @@ getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt;
 
 | 参数名          | 类型                                                         | 必填 | 说明     |
 | --------------- | ------------------------------------------------------------ | ---- |--------|
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。 |
 
 
 **返回值**：
@@ -5007,7 +5007,7 @@ getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&
 | 参数名          | 类型                                                         | 必填 | 说明       |
 | --------------- | ------------------------------------------------------------ | ---- |----------|
 | type     | [SensorId](#sensorid9) | 是   | 指定传感器类型。 |
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。 |
 
 
 **返回值**：
@@ -6324,7 +6324,7 @@ try {
 
 | 名称          | 类型     | 必填 | 说明                                                                                                                                                     |
 |-------------|--------|----|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| deviceId    | number | 否  | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。      |
+| deviceId    | number | 否  | 设备ID：默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。      |
 | sensorIndex | number | 否  | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |
 
 
