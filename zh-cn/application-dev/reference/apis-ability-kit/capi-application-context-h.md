@@ -41,6 +41,8 @@
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want)](#oh_abilityruntime_startselfuiability) | 启动当前应用的UIAbility。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,AbilityRuntime_StartOptions *options)](#oh_abilityruntime_startselfuiabilitywithstartoptions) | 通过StartOptions启动当前应用的UIAbility。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)](#oh_abilityruntime_applicationcontextgetversioncode) | 获取应用版本号。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetLaunchParameter(const char* buffer, const int32_t bufferSize, int32_t* writeLength)](#oh_abilityRuntime_applicationcontextgetlaunchparameter)| 获取本应用首次启动UIAbility的启动参数。|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetLatestParameter(const char* buffer, const int32_t bufferSize, int32_t* writeLength)](#oh_abilityruntime_applicationcontextgetlatestparameter)| 获取本应用最近一次启动UIAbility的启动参数。|
 
 ## 函数说明
 
@@ -472,3 +474,112 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int6
 | 类型 | 说明 |
 | -- | -- |
 | [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime_errorcode) | 返回执行结果。<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参versionCode为空。<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 应用上下文不存在，如在应用创建的[子进程](capi-childprocess.md)中应用级别上下文不存在。<br>ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED  - 获取应用信息失败。 |
+
+### OH_AbilityRuntime_ApplicationContextGetLaunchParameter
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+```
+
+**描述**
+
+查询本应用首次启动UIAbility的启动参数。
+
+**起始版本：** 21
+
+**参数：**
+
+| 名称     | 描述                     |
+| -------- | ------------------------ |
+| char* buffer | 指向缓冲区的指针，用于接收启动参数。|
+| const int32_t bufferSize | 缓冲区的大小（单位为字节）。|
+| int32_t* writeLength | 在返回[ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime_errorcode)时，表示实际写入到缓冲区的字符串长度，单位为字节。|
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或writeLength为空，或缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST  - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+**示例代码：**
+```cpp
+#include "napi/native_api.h"
+#include "AbilityKit/ability_runtime/application_context.h"
+#include <string>
+#include <hilog/log.h>
+
+static napi_value GetLaunchParameter(napi_env env, napi_callback_info info)
+{
+    const int32_t bufferSize = 2048; // 根据实际需要调整缓冲区大小
+    char buffer[bufferSize] = {0};
+    int32_t writeLength = 0;
+    int32_t ret = OH_AbilityRuntime_ApplicationContextGetLaunchParameter(buffer, bufferSize, &writeLength);
+
+    if (ret != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
+        // 失败处理
+    }
+    // 创建 JS 字符串返回
+    napi_value result;
+    napi_create_string_utf8(env, buffer, writeLength, &result);
+    return result;
+}
+```
+
+### OH_AbilityRuntime_ApplicationContextGetLatestParameter
+
+```
+
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
+    char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+```
+
+**描述**
+
+查询本应用最近一次启动UIAbility时的启动参数。
+
+**起始版本：** 21
+
+**参数：**
+
+| 名称     | 描述                     |
+| -------- | ------------------------ |
+| char* buffer | 指向缓冲区的指针，用于接收启动参数。|
+| const int32_t bufferSize | 缓冲区的大小（单位为字节）。|
+| int32_t* writeLength | 在返回[ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime_errorcode)时，表示实际写入到缓冲区的字符串长度，单位为字节。|
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或writeLength为空，或缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST  - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+**示例代码：**
+```cpp
+#include "napi/native_api.h"
+#include "AbilityKit/ability_runtime/application_context.h"
+#include <string>
+#include <hilog/log.h>
+
+static napi_value GetLatestParameter(napi_env env, napi_callback_info info)
+{
+    const int32_t bufferSize = 2048; // 根据实际需要调整缓冲区大小
+    char buffer[bufferSize] = {0};
+    int32_t writeLength = 0;
+    int32_t ret = OH_AbilityRuntime_ApplicationContextGetLatestParameter(buffer, bufferSize, &writeLength);
+
+    if (ret != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
+        // 失败处理
+    }
+    OH_LOG_INFO(LOG_APP, "GetLatestParameter:%{public}s.", buffer);
+    // 创建 JS 字符串返回
+    napi_value result;
+    napi_create_string_utf8(env, buffer, writeLength, &result);
+    return result;
+}
+```
