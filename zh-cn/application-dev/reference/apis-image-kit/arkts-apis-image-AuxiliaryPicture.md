@@ -52,7 +52,7 @@ writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 ```ts
 async function WritePixelsFromBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // 需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -91,7 +91,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadPixelsToBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // 需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -175,7 +175,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function SetAuxPictureObjMetadata(exifContext: Context, auxPictureObj: image.AuxiliaryPicture) {
   const exifResourceMgr = exifContext.resourceManager;
-  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//图片包含exif metadata。
+  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");// 图片包含exif metadata。
   let exifOps: image.SourceOptions = {
     sourceDensity: 98,
   }

@@ -109,14 +109,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function QueueImage(creator : image.ImageCreator) {
   creator.dequeueImage().then((img: image.Image) => {
-    //绘制图片。
+    // 绘制图片。
     img.getComponent(4).then((component : image.Component) => {
       let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
       for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 0; //B
-        bufferArr[i + 1] = 0; //G
-        bufferArr[i + 2] = 255; //R
-        bufferArr[i + 3] = 255; //A
+        bufferArr[i] = 0; // B
+        bufferArr[i + 1] = 0; // G
+        bufferArr[i + 2] = 255; // R
+        bufferArr[i + 3] = 255; // A
       }
     })
     creator.queueImage(img, (err: BusinessError) => {
@@ -157,14 +157,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function QueueImage(creator : image.ImageCreator) {
   creator.dequeueImage().then((img: image.Image) => {
-    //绘制图片。
+    // 绘制图片。
     img.getComponent(4).then((component: image.Component) => {
       let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
       for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 0; //B
-        bufferArr[i + 1] = 0; //G
-        bufferArr[i + 2] = 255; //R
-        bufferArr[i + 3] = 255; //A
+        bufferArr[i] = 0; // B
+        bufferArr[i + 1] = 0; // G
+        bufferArr[i + 2] = 255; // R
+        bufferArr[i + 3] = 255; // A
       }
     })
     creator.queueImage(img).then(() => {
@@ -227,7 +227,7 @@ off(type: 'imageRelease', callback?: AsyncCallback\<void>): void
 ```ts
 async function Off(creator : image.ImageCreator) {
   let callbackFunc = ()=>{
-      // do something.
+      // 实现回调函数逻辑。
   }
   creator.on('imageRelease', callbackFunc)
   creator.off('imageRelease', callbackFunc)
