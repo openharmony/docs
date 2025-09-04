@@ -6,7 +6,7 @@
 <!--Tester: @sally__-->
 <!--Adviser: @HelloCrease-->
 
-如果需要在页面中获得当前Ability的Context，可调用getContext接口获取当前页面关联的UIAbilityContext或ExtensionContext。
+如果需要在页面中获得当前Ability的Context，可调用getContext接口获取当前页面关联的[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)或[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
 > **说明：**
 > - 该接口从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getHostContext](arkts-apis-uicontext-uicontext.md#gethostcontext12)替代。
