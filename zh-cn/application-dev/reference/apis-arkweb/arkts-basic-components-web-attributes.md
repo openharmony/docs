@@ -152,18 +152,18 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     }
 
     test(data1: string, data2: string, data3: string): string {
-      console.log("data1:" + data1);
-      console.log("data2:" + data2);
-      console.log("data3:" + data3);
+      console.info("data1:" + data1);
+      console.info("data2:" + data2);
+      console.info("data3:" + data3);
       return "AceString";
     }
 
     asyncTest(data: string): void {
-      console.log("async data:" + data);
+      console.info("async data:" + data);
     }
 
     toString(): void {
-      console.log('toString' + "interface instead.");
+      console.info('toString' + "interface instead.");
     }
   }
 
@@ -2372,10 +2372,10 @@ onAdsBlocked(callback: OnAdsBlockedCallback)
         Web({ src: 'https://www.example.com', controller: this.controller })
         .onAdsBlocked((details: AdsBlockedDetails) => {
           if (details) {
-            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            console.info(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
             let adList: Array<string> = Array.from(new Set(details.adsBlocked));
             this.totalAdsBlockCounts += adList.length;
-            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+            console.info('Total blocked counts :' + this.totalAdsBlockCounts);
           }
         })
       }
@@ -2508,19 +2508,19 @@ struct WebComponent {
   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
     if (menuItem.id.equals(TextMenuItemId.CUT)) {
       // 用户自定义行为
-      console.log("拦截 id：CUT")
+      console.info("拦截 id：CUT")
       return true; // 返回true不执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
       // 用户自定义行为
-      console.log("不拦截 id：COPY")
+      console.info("不拦截 id：COPY")
       return false; // 返回false执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // 用户自定义行为
-      console.log("拦截 id：customItem1")
+      console.info("拦截 id：customItem1")
       return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
       // 用户自定义行为
-      console.log("拦截 id：app.string.customItem2")
+      console.info("拦截 id：app.string.customItem2")
       return true;
     }
     return false;// 返回默认值false

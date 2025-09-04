@@ -240,8 +240,6 @@ NavDestination
 
 示例：
 
-其中，NavDestination的内容区需自行构造，可参考[开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-navigation.md)。
-
 ```ts
 @Entry
 @Component
@@ -271,12 +269,12 @@ struct NavigationDemo {
 		Column({ space: 10 }) {
 			Button('Pop Dialog')
 			.onClick(() => {
-				// set true to open system pop animation
+				// Set true to enable system animations, or set false to disable system animations.
 				this.pageInfos.pop(true)
 			})
 			Button('Push Dialog')
 			.onClick(() => {
-				// set true to open system push animation
+				// Set true to enable system animations, or set false to disable system animations.
 				this.pageInfos.pushPath({ name: 'pageOne' }, true)
 			})
 			Navigation(this.pageInfos) {

@@ -587,6 +587,25 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>默认返回字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)  | 是   | 是   | 获取属性字符串的文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 
+`fontWeight`参数与返回值的关系如下：
+| 参数        | 返回值 |
+| ----------- | ----------- |  
+| 100 |  0  | 
+| 200  |  1  |  
+| 300 |  2  |  
+| 400  |  3  |  
+| 500    |  4  | 
+| 600  |  5  | 
+| 700  |  6  |  
+| 800    |  7  | 
+| 900  |  8  | 
+| FontWeight.Bold (or 'bold')|  9  | 
+| FontWeight.Normal (or 'normal') |  10  |  
+| FontWeight.Bolder (or 'bolder') |  11  |  
+| FontWeight.Lighter (or 'lighter')|  12  |  
+| FontWeight.Medium (or 'medium') |  13  | 
+| FontWeight.Regular (or 'regular') |  14  |  
+
 ### constructor
 
 constructor(value?: TextStyleInterface)

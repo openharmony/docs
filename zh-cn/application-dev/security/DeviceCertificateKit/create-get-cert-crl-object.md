@@ -112,7 +112,7 @@ async function sample() {
   }
   try {
     let crls: cert.X509CRL[] = await collection.selectCRLs(crlParam);
-    console.error('selectCRLs success');
+    console.info('selectCRLs success');
   } catch (err) {
     console.error('selectCRLs failed');
   }

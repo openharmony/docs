@@ -33,7 +33,7 @@ rating是评分组件，用于展示用户对某项内容的评价等级。具�
   align-items: center;
   background-color: #F1F3F5;
 }
-rating {
+.rating {
   width: 80%;
   height: 150px;
 }
@@ -66,7 +66,7 @@ rating组件通过设置numstars和rating属性设置评分条的星级总数和
   align-items: center;
   background-color: #F1F3F5;
 }
-rating {
+.rating {
   width: 80%;
   height: 150px;
 }
@@ -151,7 +151,7 @@ export default {
   align-items: center;
   background-color: #F1F3F5;
 }
-rating {
+.rating {
   width: 80%;
   height: 150px;
 }
@@ -211,7 +211,7 @@ export default {
     width: 500px;
     height: 100px;
 }
-switch{
+.switch{
     font-size: 40px;
 }
 ```
