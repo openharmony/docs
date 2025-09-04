@@ -1,12 +1,13 @@
 # Media Data Demultiplexing
 
-You can call the native APIs provided by the AVDemuxer module to demultiplex media data. The demultiplexing involves extracting media samples such as audio, video, and subtitles from bit stream data, and obtaining information related to Digital Rights Management (DRM).
+
+You can call native APIs to demultiplex media data. The demultiplexing involves extracting media samples such as audio, video, and subtitles from bit stream data, and obtaining information related to Digital Rights Management (DRM).
 
 Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
 For details about the supported demultiplexing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-demultiplexing).
 
-**Usage Scenario**
+**When to Use**
 
 - Audio and video playback
   
@@ -20,14 +21,14 @@ For details about the supported demultiplexing formats, see [AVCodec Supported F
 
   Demultiplex media streams, and encapsulate them into a new file format.
 
-## How to Develop
+## Development Guidelines
 
 Read [AVDemuxer](../../reference/apis-avcodec-kit/_a_v_demuxer.md) and [AVSource](../../reference/apis-avcodec-kit/_a_v_source.md) for the API reference.
 
 > **NOTE**
 >
-> - To call the demuxer APIs to parse a network playback path, declare the **ohos.permission.INTERNET** permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
-> - To call the demuxer APIs to write a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+> - To call the demuxer APIs to parse a network playback path, declare the ohos.permission.INTERNET permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+> - To call the demuxer APIs to write a local file, request the ohos.permission.READ_MEDIA permission by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
 
 ### Linking the Dynamic Libraries in the CMake Script
@@ -65,11 +66,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```c++
    // Create the FD. You must have the read permission on the file instance to open the file. (filePath indicates the path of the file to be demultiplexed. The file must exist.)
    std::string filePath = "test.mp4";
-   int fd = open(filePath.c_str(), O_RDONLY);
+   int32_t fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
-   size_t fileSize = 0;
+   int64_t fileSize = 0;
    if (stat(filePath.c_str(), &fileStatus) == 0) {
-      fileSize = static_cast<size_t>(fileStatus.st_size);
+      fileSize = static_cast<int64_t>(fileStatus.st_size);
    } else {
       printf("get stat failed");
       return;
@@ -174,7 +175,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
-   After obtaining and parsing DRM information, create [MediaKeySystem and MediaKeySession](../drm/drm-c-dev-guide.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 in [Surface Output in Video Decoding](video-decoding.md#surface-output) or step 4 in [Buffer Output in Video Decoding](video-decoding.md#buffer-output).
+   After obtaining and parsing DRM information, create [MediaKeySystem and MediaKeySession](../drm/drm-c-dev-guide.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 in [Surface Mode in Video Decoding](video-decoding.md#surface-mode) or step 4 in [Buffer Mode in Video Decoding](video-decoding.md#buffer-mode).
 
 5. Obtain file information.
 
@@ -191,7 +192,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    //    The example key is for demonstration only. Replace it with the actual custom string.
    //    For example, if the key used during multiplexing is com.openharmony.custom.meta.abc.efg,
    //       you must use the full key. Using a truncated key like com.openharmony.custom.meta.abc will fail.
-   // 2. The type of value must match the data type used during multiplexing. (The example uses a string type. For int or float, use the corresponding interface.)
+   // 2. The value type must match the data type used during multiplexing. In this example, it is a string. For other types, use the right API. The types ints and floats are supported. Starting from API version 20, the type buffer is also supported.
    const char *customKey = "com.openharmony.custom.meta.string"; // Replace it with the actual key used during multiplexing.
    const char *customValue;
    if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {
@@ -222,6 +223,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    uint32_t videoTrackIndex = 0;
    int32_t w = 0;
    int32_t h = 0;
+   int64_t bitRate = 0; // Configure the bit rate, in bit/s.
+   double frameRate = 0.0;
+   const char* mimetype = nullptr;
+   uint8_t *codecConfig = nullptr;
+   size_t bufferSize = 0;
    int32_t trackType;
    for (uint32_t index = 0; index < (static_cast<uint32_t>(trackCount)); index++) {
       // Obtain the track information. You can call the API to obtain track-level attributes. For details, see Table 2 in Appendix.
@@ -245,6 +251,23 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
             printf("get track height from track format failed");
             return;
          }
+         if (!OH_AVFormat_GetLongValue(format, OH_MD_KEY_BITRATE, &bitRate)) {
+            printf("get track bitRate from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_FRAME_RATE, &frameRate)) {
+            printf("get track frameRate from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetStringValue(format, OH_MD_KEY_CODEC_MIME, &mimetype)) {
+            printf("get track mimetype from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetBuffer(format, OH_MD_KEY_CODEC_CONFIG, &codecConfig, &bufferSize)) {
+            printf("get track codecConfig from track format failed");
+            return;
+         }
+         printf(" track width%d, track height: %d, track bitRate: %ld, track frameRate: %f, track mimetype: %s\n", w, h, bitRate, frameRate, mimetype);
       }
       OH_AVFormat_Destroy(trackFormat);
    }
@@ -278,7 +301,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 9. Start demultiplexing and cyclically obtain samples. The code snippet below uses a file that contains audio and video tracks as an example.
 
-   A **BufferAttr** object contains the following attributes.
+   A BufferAttr object contains the following attributes.
    - **size**: sample size.
    - **offset**: offset of the data in the AVBuffer. The value is generally 0.
    - **pts**: timestamp when the file is multiplexed.
@@ -296,7 +319,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    The **OH_AVDemuxer_ReadSampleBuffer** function can be time-consuming, particularly due to file I/O operations. You are advised to call this function in asynchronous mode.
    ```c++
    // Define a processing function for each thread.
-   void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
+   void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, uint32_t trackIndex, int buffer_size, 
                          std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished)
    {
       // Create a buffer.
@@ -348,12 +371,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. Destroy the demuxer instance.
       ```c++
-      // Manually set the instance to a null pointer after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
+      // Manually set the instance to nullptr after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
       if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
          printf("destroy source pointer error");
       }
       source = nullptr;
-      // Manually set the instance to a null pointer after OH_AVDemuxer_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
+      // Manually set the instance to nullptr after OH_AVDemuxer_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
       if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
          printf("destroy demuxer pointer error");
       }
@@ -395,10 +418,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 > **NOTE**
 >
 > Attribute data can be obtained only when the file is parsed normally. If the file information is incorrect or missing, the parsing is abnormal and the corresponding data cannot be obtained.
->
+> 
 > For details about the data type and value range, see [Media Data Key-Value Pairs](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
 
 **Table 2** Supported track-level attributes
+
 | Name| Description| Supported by Video Tracks| Supported by Audio Tracks| Supported by Subtitle Tracks|
 | -- | -- | -- | -- | -- |
 |OH_MD_KEY_CODEC_MIME|Stream codec type.|Supported|Supported|Supported|
@@ -418,7 +442,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 |OH_MD_KEY_TRANSFER_CHARACTERISTICS|Video transfer characteristics of the video stream. This key is valid only for H.265 streams.|Supported|Not supported|Not supported|
 |OH_MD_KEY_MATRIX_COEFFICIENTS|Video matrix coefficient. This key is valid only for H.265 streams.|Supported|Not supported|Not supported|
 |OH_MD_KEY_VIDEO_IS_HDR_VIVID|Flag indicating whether the video stream is HDR Vivid. This key is valid only for HDR Vivid streams.|Supported|Not supported|Not supported|
-|OH_MD_KEY_AUD_SAMPLE_RATE|Audio stream sampling rate.|Not supported|Supported|Not supported|
+|OH_MD_KEY_AUD_SAMPLE_RATE|Audio stream sample rate.|Not supported|Supported|Not supported|
 |OH_MD_KEY_AUD_CHANNEL_COUNT|Number of audio stream channels.|Not supported|Supported|Not supported|
 |OH_MD_KEY_CHANNEL_LAYOUT|Encoding channel layout required by the audio stream.|Not supported|Supported|Not supported|
 |OH_MD_KEY_AUDIO_SAMPLE_FORMAT|Audio stream sample format.|Not supported|Supported|Not supported|

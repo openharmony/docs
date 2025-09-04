@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_avcodec_audioencoder.h** file declares the native APIs used for audio encoding.
+The file declares the native APIs used for audio encoding.
 
 **Library**: libnative_media_aenc.so
 
