@@ -9,7 +9,7 @@
 
 ## A
 ### A2DP
-Advanced Audio Distribution Profile，即高级音频分发协议。支持传输高品质音频。例如：使用蓝牙耳机听音乐。该协议定义了2种角色：[A2DP Source](#a2dp-source)和[A2DP Sink](#a2dp-sink)。
+Advanced Audio Distribution Profile，即增强音频分发协议。支持传输高品质音频。例如：使用蓝牙耳机听音乐。该协议定义了2种角色：[A2DP Source](#a2dp-source)和[A2DP Sink](#a2dp-sink)。
 ### A2DP Sink
 [A2DP](#a2dp)协议中的音频接收设备，负责解码并播放音频。典型设备如：蓝牙耳机、音箱等。
 ### A2DP Source
