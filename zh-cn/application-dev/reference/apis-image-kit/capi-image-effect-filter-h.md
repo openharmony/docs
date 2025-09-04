@@ -1176,4 +1176,3 @@ ImageEffect_ErrorCode OH_EffectFilter_Release(OH_EffectFilter *filter)
 | -- | -- |
 | [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
-
