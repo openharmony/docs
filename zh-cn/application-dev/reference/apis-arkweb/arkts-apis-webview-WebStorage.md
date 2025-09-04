@@ -119,7 +119,7 @@ struct WebComponent {
             });
 
             transaction.oncomplete = function () {
-                console.log('Transaction completed: data added');
+                console.info('Transaction completed: data added');
             }
             
             transaction.onerror = function (event) {
@@ -132,11 +132,11 @@ struct WebComponent {
             var query = queryObjectStore.get(2);
             
             query.onsuccess = function (event) {
-                console.log('query succ');
-                console.log('Customer:', event.target.result);
-                console.log('Customer id:', event.target.result.id);
-                console.log('Customer name:', event.target.result.name);
-                console.log('Customer email:', event.target.result.email);
+                console.info('query succ');
+                console.info('Customer:', event.target.result);
+                console.info('Customer id:', event.target.result.id);
+                console.info('Customer name:', event.target.result.name);
+                console.info('Customer email:', event.target.result.email);
             };
             
             queryObjectStore.openCursor().onsuccess = (event) => {
@@ -146,10 +146,10 @@ struct WebComponent {
                     document.querySelector("#status").innerHTML += msg;
                     var msg = "<p><b>" + cursor.value.name + "</b></p>";
                     document.querySelector("#status").innerHTML += msg;
-                    console.log(`SSN ${cursor.key} 对应的名字是 ${cursor.value.name}`);
+                    console.info(`SSN ${cursor.key} 对应的名字是 ${cursor.value.name}`);
                     cursor.continue();
                 } else {
-                    console.log("没有更多记录了")
+                    console.info("没有更多记录了")
                 }
             }
         };
@@ -213,9 +213,9 @@ struct WebComponent {
                 return;
               }
               for (let i = 0; i < origins.length; i++) {
-                console.log('origin: ' + origins[i].origin);
-                console.log('usage: ' + origins[i].usage);
-                console.log('quota: ' + origins[i].quota);
+                console.info('origin: ' + origins[i].origin);
+                console.info('usage: ' + origins[i].usage);
+                console.info('quota: ' + origins[i].quota);
               }
             })
           } catch (error) {
@@ -274,13 +274,13 @@ struct WebComponent {
             webview.WebStorage.getOrigins()
               .then(origins => {
                 for (let i = 0; i < origins.length; i++) {
-                  console.log('origin: ' + origins[i].origin);
-                  console.log('usage: ' + origins[i].usage);
-                  console.log('quota: ' + origins[i].quota);
+                  console.info('origin: ' + origins[i].origin);
+                  console.info('usage: ' + origins[i].usage);
+                  console.info('quota: ' + origins[i].quota);
                 }
               })
               .catch((e: BusinessError) => {
-                console.log('error: ' + JSON.stringify(e));
+                console.error('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -342,7 +342,7 @@ struct WebComponent {
                 console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
-              console.log('quota: ' + quota);
+              console.info('quota: ' + quota);
             })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -406,10 +406,10 @@ struct WebComponent {
           try {
             webview.WebStorage.getOriginQuota(this.origin)
               .then(quota => {
-                console.log('quota: ' + quota);
+                console.info('quota: ' + quota);
               })
               .catch((e: BusinessError) => {
-                console.log('error: ' + JSON.stringify(e));
+                console.error('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -471,7 +471,7 @@ struct WebComponent {
                 console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
-              console.log('usage: ' + usage);
+              console.info('usage: ' + usage);
             })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -535,7 +535,7 @@ struct WebComponent {
           try {
             webview.WebStorage.getOriginUsage(this.origin)
               .then(usage => {
-                console.log('usage: ' + usage);
+                console.info('usage: ' + usage);
               }).catch((e: BusinessError) => {
               console.error('error: ' + JSON.stringify(e));
             })
