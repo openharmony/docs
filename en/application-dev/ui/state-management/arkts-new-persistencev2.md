@@ -179,7 +179,7 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 2. Types such as **collections.Set** and **collections.Map** are not supported.
 
-3. Non-buildin types, such as native PixelMap, NativePointer, and ArrayList types, are not supported.
+3. Non-built-in types, such as native PixelMap, NativePointer, and ArrayList types, are not supported.
 
 4. A single key supports a maximum of 8 KB data. If the data is too large, the persistence fails.
 

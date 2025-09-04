@@ -32,7 +32,7 @@ In normal calculations, the vertical direction (top and bottom) correspond to th
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | Yes| Rounding policy for the bounds of the component.<br>**NOTE**<br>This attribute is applicable in scenarios where artifacts occur due to floating-point drawing. The rounding result is related not only to the component's width and height but also to its position. Even if the component's width and height are set to be the same, due to different floating-point positions described, the final width and height of the component may also be different after rounding.|
+| value | [PixelRoundPolicy](#pixelroundpolicy) | Yes| Rounding policy for the bounds of the component.<br>**NOTE**<br>This attribute is applicable in scenarios where artifacts occur due to floating-point drawing. The rounding result is related not only to the component's width and height but also to its position. Even if the component's width and height are set to be the same, due to different floating-point positions described, the final width and height of the component may also be different after rounding.|
 
 **Return value**
 
@@ -40,11 +40,28 @@ In normal calculations, the vertical direction (top and bottom) correspond to th
 | --- | --- |
 |  T | Current component.|
 
+## PixelRoundPolicy
+
+Enumerates the directions of pixel rounding at the component level.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) |No| No| Rounding alignment for the component's start edge.|
+| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) |No| No| Rounding alignment for the component's top edge.|
+| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) |No| No| Rounding alignment for the component's end edge.|
+| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) |No| No| Rounding alignment for the component's bottom edge.|
+
 ## FAQs
 
 | Issue                                                    | Solution                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| When a child component completely fills its parent container, and the offset and size cause the parent container to round up while the child component rounds down, there is a 1 px gap revealed in the parent container.| 1. Use the ceil rounding method for the child component in the direction where the gap is revealed.<br>2. Disable pixel rounding for both parent and child components.|
+| When a child component is intended to fully fill its parent container, a 1px gap appears due to inconsistent rounding behaviors (the parent container rounds up, while the child component rounds down) of offset and size values.| 1. Use the ceil rounding method for the child component in the direction where the gap appears.<br>2. Disable pixel rounding for both parent and child components.|
 | When a **List** component is used with dividers set, the dividers disappear under specific cases.          | 1. Set a 2 px space on the **List** component.<br>2. Disable pixel rounding on the corresponding components.|
 | Overlapping occurs on specific devices.                                        | 1. Set a 2 px space on the **List** component.<br>2. Disable pixel rounding on the component.<br>3. Obtain the DPI value of the device through media query APIs and implement customized adaptation.|
 | When a component rendered with an animation, there is a slight flicker.                            | Disable pixel rounding on the corresponding components.                                  |
