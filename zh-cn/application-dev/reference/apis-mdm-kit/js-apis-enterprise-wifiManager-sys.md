@@ -30,6 +30,7 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -83,6 +84,7 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -140,6 +142,7 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -200,6 +203,7 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -264,7 +268,7 @@ isWifiDisabled(admin: Want): boolean
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统API：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -321,7 +325,7 @@ setWifiDisabled(admin: Want, disabled: boolean): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统API：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
