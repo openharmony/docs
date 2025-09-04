@@ -1,4 +1,10 @@
 # LazyForEach迁移Repeat指导文档
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @maorh-->
+<!--Designer: @keerecles-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 [Repeat](./arkts-new-rendering-control-repeat.md)是ArkUI在API version 12中新引入的循环渲染组件，相比[LazyForEach](./arkts-rendering-control-lazyforeach.md)具有更简洁的API、更丰富的功能以及更强的性能优化能力。本指南帮助开发者将LazyForEach平滑地迁移到Repeat。
 
@@ -213,7 +219,7 @@ struct MyComponent {
 
 **LazyForEach用例**
 
-当LazyForEach的数据源发生变化时，开发者需要根据数据源的变化情况调用[DataChangeListener](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#datachangelistener7)对应的接口，通知LazyForEach做相应的更新。主要的数据操作包括：添加数据、删除数据、交换数据、修改单个数据、修改多个数据、精准批量修改数据。
+当LazyForEach的数据源发生变化时，开发者需要根据数据源的变化情况调用[DataChangeListener](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#datachangelistener)对应的接口，通知LazyForEach做相应的更新。主要的数据操作包括：添加数据、删除数据、交换数据、修改单个数据、修改多个数据、精准批量修改数据。
 
 示例2演示了主要的数据操作。
 
