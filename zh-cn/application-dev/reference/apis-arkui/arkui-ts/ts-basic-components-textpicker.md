@@ -468,7 +468,7 @@ defaultTextStyle(style: TextPickerTextStyle)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -495,7 +495,7 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -744,8 +744,8 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 | 名称 | 类型                                       | 只读 | 可选 | 说明                                              |
 | ------ | ------------------------------------- | ---- | ------------------------------------------------- | ------------------------------------------------- |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 选中项的背景颜色，默认值为'sys.color.comp_background_tertiary'。   |
-| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否  | 是  | 选中项的边框圆角半径。[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位；[BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。默认值为{ value:24, unit:LengthUnit.VP }，即四个圆角半径均为24VP。 |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 选中项的背景颜色。<br/>默认值：'sys.color.comp_background_tertiary'。   |
+| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否  | 是  | 选中项的边框圆角半径。<br/>默认值：{ value:24, unit:LengthUnit.VP }，即四个圆角半径均为24VP。<br/>**说明：**<br/>1. [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位。<br/>2. [BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。<br/>3. [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。 |
 ## 示例
 
 ### 示例1（设置选择器列数）
