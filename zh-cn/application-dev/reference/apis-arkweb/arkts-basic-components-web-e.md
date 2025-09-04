@@ -251,6 +251,18 @@ Web布局模式的配置。
 | ENTER_BFCACHE<sup>12+</sup>   | 3 | 同层标签进入BFCache。   |
 | LEAVE_BFCACHE<sup>12+</sup>   | 4 | 同层标签离开BFCache。 |
 
+## NativeEmbedParamStatus<sup>21+</sup>
+
+定义同层渲染object标签内嵌param元素的状态变化类型，当添加param元素时触发ADD，修改param元素属性触发UPDATE，删除param元素触发DELETE。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                           | 值 | 说明           |
+| ----------------------------- | -- | ------------ |
+| ADD                           | 0 | 添加param元素。   |
+| UPDATE                        | 1 | 更改param元素属性。   |
+| DELETE                        | 2 | 删除param元素。 |
+
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
 支持以按位或的方式使用此枚举。例如，如果需要同时支持CAN_CUT、CAN_COPY和CAN_SELECT_ALL，可使用CAN_CUT | CAN_COPY | CAN_SELECT_ALL或11。
