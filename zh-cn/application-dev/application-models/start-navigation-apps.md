@@ -4,7 +4,7 @@
 <!--Subsystem: AGC-->
 <!--Owner: @liusu23-->
 <!--Designer: @xukeke-->
-<!--Tester: @yizhixiaosiqin-->
+<!--Tester: @lusq-->
 <!--Adviser: @huipeizi-->
 
 本章节介绍如何拉起导航类应用扩展面板。

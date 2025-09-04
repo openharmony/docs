@@ -1,5 +1,12 @@
 # 拉起金融类应用（startAbilityByType）
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: AGC-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @lusq-->
+<!--Adviser: @huipeizi-->
+
 本章节介绍如何拉起金融类应用扩展面板。
 
 ## 金融类应用扩展面板参数说明
