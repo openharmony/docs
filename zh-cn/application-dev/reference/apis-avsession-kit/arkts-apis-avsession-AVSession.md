@@ -1233,15 +1233,21 @@ struct Index {
     Column() {
       Text(this.message)
         .onClick(async ()=>{
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
-          let avsessionController: avSession.AVSessionController;
-          currentAVSession.getController().then(async (avcontroller: avSession.AVSessionController) => {
-            avsessionController = avcontroller;
-            console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
-          }).catch((err: BusinessError) => {
-            console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-          });
+          try {
+            let context: Context = this.getUIContext().getHostContext() as Context;
+            let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+            let avSessionController: avSession.AVSessionController;
+            currentAVSession.getController().then((avController: avSession.AVSessionController) => {
+              avsessionController = avController;
+              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+            }).catch((err: BusinessError) => {
+              console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (err) {
+            if (err) {
+              console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+            }
+          }
         })
     }
     .width('100%')

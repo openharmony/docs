@@ -183,7 +183,6 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let g_controller = new Array<AVSessionManager.AVSessionController>();
-   // g_controller的实际数据依赖步骤1和2。此处只是示例，取第一个controller用于演示
    if (g_controller && g_controller.length > 0 && g_controller[0]) {
     let controller = g_controller[0];
     let g_validCmd:Set<AVSessionManager.AVControlCommandType>;
@@ -217,7 +216,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
     // 注册会话支持的命令变更监听。
     controller.on('validCommandChange', (cmds) => {
       console.info(`validCommandChange : SUCCESS : size : ${cmds.length}`);
-      console.info(`validCommandChange : SUCCESS : cmds : ${cmds.values()}`);
+      console.info(`validCommandChange : SUCCESS : cmds : ${Array.from(cmds)}`);
       g_validCmd.clear();
       let centerSupportCmd = Array.from(g_centerSupportCmd.values())
       for (let c of centerSupportCmd) {
