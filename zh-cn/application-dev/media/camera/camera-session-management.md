@@ -72,11 +72,16 @@
        let err = error as BusinessError;
        console.error(`Failed to addInput. error: ${err.code}`);
      }
+     let canAddPreviewOutput : boolean = false;
      try {
-       videoSession.canAddOutput(previewOutput);
+       canAddPreviewOutput = videoSession.canAddOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to add previewOutput. error: ${err.code}`);
+     } 
+     if (!canAddPreviewOutput) {
+       console.error(`Failed to add preview output.`);
+       return;
      }
      try {
        videoSession.addOutput(previewOutput);
@@ -84,11 +89,16 @@
        let err = error as BusinessError;
        console.error(`Failed to add previewOutput. error: ${err.code}`);
      }
+     let canAddPhotoOutput : boolean = false
      try {
-       videoSession.canAddOutput(photoOutput);
+       canAddPhotoOutput = videoSession.canAddOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to add photoOutput error: ${err.code}`);
+     }
+     if (!canAddPhotoOutput) {
+       console.error(`Failed to add photo output.`);
+       return;
      }
      try {
        videoSession.addOutput(photoOutput);
