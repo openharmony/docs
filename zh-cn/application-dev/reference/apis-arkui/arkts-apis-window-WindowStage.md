@@ -65,7 +65,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to obtain the main window. Cause code: ${errCode}, message: ${err.message}`);
         return;
       }
       windowClass = data;
@@ -220,7 +220,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
-          console.error(`Failed to create the subwindow. Cause code: ${errCode}, message: ${err.message}`);
+          console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
