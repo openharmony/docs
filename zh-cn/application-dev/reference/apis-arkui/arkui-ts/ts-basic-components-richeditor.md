@@ -1315,7 +1315,7 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 | 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | [Resource](ts-types.md#resource)         | 是    | 图标小符号。 |
+| value   | [Resource](ts-types.md#resource)         | 是    | symbol资源信息。 |
 | options | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11) | 否    | symbol选项。 |
 
 **返回值：**
