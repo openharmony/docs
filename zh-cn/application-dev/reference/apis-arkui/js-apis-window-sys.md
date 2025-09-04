@@ -1551,7 +1551,7 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -1648,7 +1648,7 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -3426,7 +3426,7 @@ try {
 }
 ```
 
-## setWindowContainerModalColor<sup>20+</sup>
+### setWindowContainerModalColor<sup>20+</sup>
 
 setWindowContainerModalColor(activeColor: string, inactiveColor: string): void
 
@@ -3859,7 +3859,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('disableWindowDecor');
+    console.info('disableWindowDecor');
     windowStage.disableWindowDecor();
   }
 };
@@ -3904,7 +3904,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
