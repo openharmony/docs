@@ -104,7 +104,7 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
     }
   }
 
-  fetchConfigFile()
+  fetchConfigFile();
   ```
 
 ## getCfgFiles
