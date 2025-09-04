@@ -537,7 +537,7 @@ struct Child {
 
   build() {
     Row() {
-      Button(`ViewChild [${this.label}] this.info.info = ${this.info ? this.info.info : "undefined"}`)
+      Button(`ViewChild [${this.label}] this.info.info = ${this.info ? this.info.info : 'undefined'}`)
         .width(320)
         .margin(10)
         .onClick(() => {
@@ -584,7 +584,7 @@ struct Parent {
           if (this.arrA.length > 0) {
             this.arrA.shift();
           } else {
-            console.log("length <= 0");
+            console.info('length <= 0');
           }
         })
       Button(`ViewParent: item property in middle`)
@@ -784,7 +784,7 @@ export class MyMap<K, V> extends Map<K, V> {
 
   constructor(name?: string, args?: [K, V][]) {
     super(args);
-    this.name = name ? name : "My Map";
+    this.name = name ? name : 'My Map';
   }
 
   getName() {
@@ -795,7 +795,7 @@ export class MyMap<K, V> extends Map<K, V> {
 @Entry
 @Component
 struct MapSampleNested {
-  @State message: Info = new Info(new MyMap("myMap", [[0, "a"], [1, "b"], [3, "c"]]));
+  @State message: Info = new Info(new MyMap('myMap', [[0, 'a'], [1, 'b'], [3, 'c']]));
 
   build() {
     Row() {
@@ -825,7 +825,7 @@ struct MapSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(4, "d");
+            this.myMap.set(4, 'd');
           })
         Button('clear')
           .width(200)
@@ -837,7 +837,7 @@ struct MapSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(0, "aa");
+            this.myMap.set(0, 'aa');
           })
         Button('delete the first one')
           .width(200)
@@ -880,7 +880,7 @@ export class MySet<T> extends Set<T> {
 
   constructor(name?: string, args?: T[]) {
     super(args);
-    this.name = name ? name : "My Set";
+    this.name = name ? name : 'My Set';
   }
 
   getName() {
@@ -891,7 +891,7 @@ export class MySet<T> extends Set<T> {
 @Entry
 @Component
 struct SetSampleNested {
-  @State message: Info = new Info(new MySet("Set", [0, 1, 2, 3, 4]));
+  @State message: Info = new Info(new MySet('Set', [0, 1, 2, 3, 4]));
 
   build() {
     Row() {
@@ -943,7 +943,7 @@ struct SetSampleNestedChild {
 
 ![Observed_ObjectLink_inherit_set](figures/Observed_ObjectLink_inherit_set.gif)
 
-## ObjectLink支持联合类型
+### ObjectLink支持联合类型
 
 \@ObjectLink支持\@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
@@ -1211,19 +1211,19 @@ struct MyView {
   build() {
     Column({ space: 10 }) {
       Text(`parentId: ${this.cousin.parentId}`)
-      Button("Change Parent.parent")
+      Button('Change Parent.parent')
         .onClick(() => {
           this.cousin.parentId += 1;
         })
 
       Text(`cousinId: ${this.cousin.cousinId}`)
-      Button("Change Cousin.cousinId")
+      Button('Change Cousin.cousinId')
         .onClick(() => {
           this.cousin.cousinId += 1;
         })
 
       Text(`childId: ${this.cousin.child.childId}`)
-      Button("Change Cousin.Child.childId")
+      Button('Change Cousin.Child.childId')
         .onClick(() => {
           // 点击时上面的Text组件不会刷新
           this.cousin.child.childId += 1;
@@ -1312,7 +1312,7 @@ struct ViewChild {
   build() {
     Column({ space: 10 }) {
       Text(`childId: ${this.child.getChildId()}`)
-      Button("Change childId")
+      Button('Change childId')
         .onClick(() => {
           this.child.setChildId(this.child.getChildId() + 1);
         })
@@ -1328,19 +1328,19 @@ struct MyView {
   build() {
     Column({ space: 10 }) {
       Text(`parentId: ${this.cousin.parentId}`)
-      Button("Change Parent.parentId")
+      Button('Change Parent.parentId')
         .onClick(() => {
           this.cousin.parentId += 1;
         })
 
       Text(`cousinId: ${this.cousin.cousinId}`)
-      Button("Change Cousin.cousinId")
+      Button('Change Cousin.cousinId')
         .onClick(() => {
           this.cousin.cousinId += 1;
         })
 
       ViewChild({ child: this.cousin.child }) // Text(`childId: ${this.cousin.child.childId}`)的替代写法
-      Button("Change Cousin.Child.childId")
+      Button('Change Cousin.Child.childId')
         .onClick(() => {
           this.cousin.child.childId += 1;
         })
@@ -1462,11 +1462,11 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 ```ts
 CounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
-@ObjectLink value：ParentCounter; // @ObjectLink 接收 ParentCounter
+@ObjectLink value: ParentCounter; // @ObjectLink 接收 ParentCounter
 
 // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
 CounterChild({ subValue: this.value.subCounter });
-@ObjectLink subValue：SubCounter; // @ObjectLink 接收 SubCounter
+@ObjectLink subValue: SubCounter; // @ObjectLink 接收 SubCounter
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
@@ -1658,7 +1658,7 @@ class RenderClass {
   constructor() {
     setTimeout(() => {
       this.waitToRender = true;
-      console.log("更改waitToRender的值为：" + this.waitToRender);
+      console.info('更改waitToRender的值为：' + this.waitToRender);
     }, 1000)
   }
 }
@@ -1670,16 +1670,16 @@ struct Index {
   @State textColor: Color = Color.Black;
 
   renderClassChange() {
-    console.log("renderClass的值被更改为：" + this.renderClass.waitToRender);
+    console.info('renderClass的值被更改为：' + this.renderClass.waitToRender);
   }
 
   build() {
     Row() {
       Column() {
-        Text("renderClass的值为：" + this.renderClass.waitToRender)
+        Text('renderClass的值为：' + this.renderClass.waitToRender)
           .fontSize(20)
           .fontColor(this.textColor)
-        Button("Show")
+        Button('Show')
           .onClick(() => {
             // 使用其他状态变量强行刷新UI的做法并不推荐，此处仅用来检测waitToRender的值是否更新
             this.textColor = Color.Red;
@@ -1711,20 +1711,20 @@ struct Index {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
 
   renderClassChange() {
-    console.log("renderClass的值被更改为：" + this.renderClass.waitToRender);
+    console.info('renderClass的值被更改为：' + this.renderClass.waitToRender);
   }
 
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
-      console.log("更改renderClass的值为：" + this.renderClass.waitToRender);
+      console.info('更改renderClass的值为：' + this.renderClass.waitToRender);
     }, 1000)
   }
 
   build() {
     Row() {
       Column() {
-        Text("renderClass的值为：" + this.renderClass.waitToRender)
+        Text('renderClass的值为：' + this.renderClass.waitToRender)
           .fontSize(20)
       }
       .width('100%')
@@ -1767,7 +1767,7 @@ struct Parent {
   @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10));
 
   onChange01() {
-    console.log(':::onChange01:' + this.info.person.name); // 2
+    console.info(':::onChange01:' + this.info.person.name); // 2
   }
 
   build() {
@@ -1775,9 +1775,9 @@ struct Parent {
       Text(this.info.person.name).height(40)
       Child({
         per: this.info.person, clickEvent: () => {
-          console.log(':::clickEvent before', this.info.person.name); // 1
+          console.info(':::clickEvent before', this.info.person.name); // 1
           this.info.person = new Person('Jack', 12);
-          console.log(':::clickEvent after', this.info.person.name); // 3
+          console.info(':::clickEvent after', this.info.person.name); // 3
         }
       })
     }
@@ -1790,7 +1790,7 @@ struct Child {
   clickEvent?: () => void;
 
   onChange02() {
-    console.log(':::onChange02:' + this.per.name); // 5
+    console.info(':::onChange02:' + this.per.name); // 5
   }
 
   build() {
@@ -1807,7 +1807,7 @@ struct Child {
     if (this.clickEvent) {
       this.clickEvent();
     }
-    console.log(':::--------此时Child中的this.per.name值仍然是：' + this.per.name); // 4
+    console.info(':::--------此时Child中的this.per.name值仍然是：' + this.per.name); // 4
   }
 }
 ```
@@ -1834,9 +1834,9 @@ struct Child {
 ```ts
 Child({
   per: this.info.person, clickEvent: () => {
-    console.log(':::clickEvent before', this.info.person.name); // 1
+    console.info(':::clickEvent before', this.info.person.name); // 1
     this.info.person.name = 'Jack';
-    console.log(':::clickEvent after', this.info.person.name); // 3
+    console.info(':::clickEvent after', this.info.person.name); // 3
   }
 })
 ```

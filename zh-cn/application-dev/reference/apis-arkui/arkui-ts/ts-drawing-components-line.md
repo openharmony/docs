@@ -36,7 +36,8 @@ Line(options?: LineOptions)
 | options | [LineOptions](ts-drawing-components-line.md#lineoptions18对象说明) | 否 | Line绘制区域。 |
 
 ## LineOptions<sup>18+</sup>对象说明
-用于描述Line绘制区域。
+
+用于描述Line组件绘制属性。
 
 > **说明：**
 >
@@ -48,10 +49,10 @@ Line(options?: LineOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 

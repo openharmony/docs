@@ -24,6 +24,8 @@ Called to initialize a wallpaper extension ability when it is launched. Multi-th
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name| Type         | Mandatory| Description                            |
@@ -51,6 +53,8 @@ Called when the wallpaper changes. Multi-thread concurrent calls are not support
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name| Type       | Mandatory| Description                  |
@@ -77,6 +81,8 @@ onDestroy(): void
 Called when this wallpaper extension ability is destroyed to clear resources. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
 
 **Example**
 

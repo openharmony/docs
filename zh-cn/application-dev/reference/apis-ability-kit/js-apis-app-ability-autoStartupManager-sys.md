@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)
+# @ohos.app.ability.autoStartupManager (开机自启管理能力)(系统接口)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -399,7 +399,7 @@ import { autoStartupManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications((err, data: common.AutoStartupInfo[]) => {
+  autoStartupManager.queryAllAutoStartupApplications((err: BusinessError, data: common.AutoStartupInfo[]) => {
     if (err) {
       console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
       return;

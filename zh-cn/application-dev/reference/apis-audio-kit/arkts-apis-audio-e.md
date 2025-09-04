@@ -643,3 +643,28 @@
 | UNAVAILABLE_SCENE  | -1     | 表示返听由于音频场景而不可用（如音频焦点、低时延管控）。 |
 | AVAILABLE_IDLE     |  0     | 表示返听可用。     |
 | AVAILABLE_RUNNING  |  1     | 表示返听运行中。   |
+
+## AudioLoopbackReverbPreset<sup>21+</sup>
+
+表示返听混响模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称      | 值     | 说明             |
+| --------- | ------ | ---------------- |
+| ORIGINAL  | 1     | 保持原始混响，不进行任何增强。   |
+| KTV       | 2     | 提供类似KTV的混响效果。 |
+| THEATER   | 3     | 提供类似剧场的混响效果（默认的混响模式）。 |
+| CONCERT   | 4     | 提供类似演唱会的混响效果。   |
+
+## AudioLoopbackEqualizerPreset<sup>21+</sup>
+
+表示返听均衡器类型的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称      | 值     | 说明             |
+| --------- | ------ | ---------------- |
+| FLAT   | 1     | 保持原始声音，不进行均衡调节。|
+| FULL   | 2     | 使人声更饱满（默认的均衡器类型）。|
+| BRIGHT | 3     | 使人声更明亮。|

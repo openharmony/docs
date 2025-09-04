@@ -20,6 +20,19 @@
 
 ## 汇总
 
+### 结构体
+
+| 名称 | typedef关键字 | 描述 |
+| -- | -- | -- |
+| [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md) | ArkWeb_BlanklessInfo | 页面首屏加载预测信息，主要包括首屏相似度预测值，首屏加载耗时预测值，预测错误码，应用需根据此信息来决策是否启用无白屏加载插帧方案。 |
+
+### 枚举
+
+| 名称 | typedef关键字 | 描述 |
+| -- | -- | -- |
+| [ArkWebEngineVersion](#arkwebengineversion) | ArkWebEngineVersion | ArkWeb内核版本，请参考[M114内核在OpenHarmony6.0系统上的适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)。 |
+
+
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
@@ -44,6 +57,33 @@
 | [ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char* webTag, const char* key, bool isStarted)](#oh_nativearkweb_setblanklessloadingwithkey) | - | 设置无白屏加载是否启用。本接口必须与[OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey)接口配套使用。 |
 | [void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size)](#oh_nativearkweb_clearblanklessloadingcache) | - | 清除指定key值页面无白屏优化缓存，本接口只清除缓存。 |
 | [uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity)](#oh_nativearkweb_setblanklessloadingcachecapacity) | - | 设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。 |
+| [void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion)](#oh_nativearkweb_setactivewebengineversion) | - | 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效。该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。 |
+| [ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion()](#oh_nativearkweb_getactivewebengineversion) | - | 获取当前使用的ArkWeb内核版本。 |
+
+## 枚举类型说明
+
+### ArkWebEngineVersion
+
+```
+enum ArkWebEngineVersion
+```
+
+**描述：**
+
+ArkWeb内核版本，请参考[M114内核在OpenHarmony6.0系统上的适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)。
+
+| **内核类型** | **英文** | **说明** |
+| ----------- | -------- | -------- |
+| 常青内核     | EVERGREEN WebCore | 当前系统的最新Web内核，系统基于此内核进行完整的功能实现，推荐应用使用。|
+| 遗留内核     | LEGACY WebCore    | 复用上一版本的内核，只做安全补丁及舆情问题修复，仅作为兼容性回滚使用，且遗留内核的支持有时间限制。 |
+
+**起始版本：** 20
+
+| 枚举项               | 描述                 |
+| -------------------- | ------------------- |
+| SYSTEM_DEFAULT = 0   | 系统默认内核，OpenHarmony 6.0版本默认为M132。           |
+| ARKWEB_M114 = 1      | OpenHarmony 6.0版本的遗留内核。开发者可选择此遗留内核，若系统版本上不存在此内核则设置无效。 |
+| ARKWEB_M132 = 2      | OpenHarmony 6.0版本的常青内核，M132为此版本的默认内核。若系统版本上不存在此内核则设置无效。    |
 
 ## 函数说明
 
@@ -387,6 +427,8 @@ ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag,
 > - 调用本接口后，会启用页面加载快照检测及生成过渡帧计算，产生一定资源开销。
 > - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加量约为12*w*h B。页面打开后，内存会被回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
 
+**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
+
 **起始版本：** 20
 
 **设备行为差异：** 该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
@@ -419,6 +461,8 @@ ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char*
 > - 需在触发页面加载的接口之后调用。其他约束同[OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey)。
 > - 页面的加载必须在调用本套接口的组件中进行。
 > - 当相似度较低时，系统将判定为跳变过大，启用插帧会失败。
+
+**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
 
 **起始版本：** 20
 
@@ -485,3 +529,45 @@ uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity)
 | 类型 | 说明 |
 | -- | -- |
 | uint32_t | 返回实际生效的容量值，范围0~100。<br>小于0时生效值为0，大于100时生效值为100。 |
+
+### OH_NativeArkWeb_SetActiveWebEngineVersion()
+
+```
+void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion)
+```
+
+**描述：**
+
+设置ArkWeb内核版本。若系统不支持指定版本，则设置无效。
+
+该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
+
+**遗留内核适配：**
+
+在OpenHarmony 6.0及以后，使用遗留内核时，部分ArkWeb接口不会生效，参考[M114内核在OpenHarmony6.0系统上的适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项                                                 | 描述 |
+|-----------------------------------------------------| -- |
+| ArkWebEngineVersion webEngineVersion  | ArkWeb内核版本（详细说明见[ArkWebEngineVersion](#arkwebengineversion)）。 |
+
+### OH_NativeArkWeb_GetActiveWebEngineVersion()
+
+```
+ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion()
+```
+
+**描述：**
+
+获取当前使用的ArkWeb内核版本。
+
+**起始版本：** 20
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| ArkWebEngineVersion | 返回由[ArkWebEngineVersion](#arkwebengineversion)枚举所定义的当前使用的ArkWeb内核版本。 |

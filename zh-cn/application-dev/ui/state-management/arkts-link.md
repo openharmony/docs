@@ -28,7 +28,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无。                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件状态变量与子组件\@Link建立双向同步，当其中一方改变时，另一方也会同步更新。 |
-| 允许装饰的变量类型                                           |object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[Link支持联合类型实例](#link支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
+| 允许装饰的变量类型                                           |Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[Link支持联合类型实例](#link支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
 | 不允许装饰的变量类型 | 不支持装饰Function类型。      |
 | 被装饰变量的初始值                                           | 禁止本地初始化。                                         |
 
@@ -57,12 +57,11 @@
 
 - 当装饰的对象是Array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
 
-- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性，详见[装饰Date类型变量](#装饰date类型变量)。
+- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性，示例请参考[装饰Date类型变量](#装饰date类型变量)。
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值，示例请参考[装饰Map类型变量](#装饰map类型变量)。
 
-- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
-
-- 当装饰的变量是Set时，可以观察Set整体的赋值，以及通过调用Set的`add`、`clear`、`delete`接口更新其值。详见[装饰Set类型变量](#装饰set类型变量)。
+- 当装饰的变量是Set时，可以观察Set整体的赋值，以及通过调用Set的`add`、`clear`、`delete`接口更新其值，示例请参考[装饰Set类型变量](#装饰set类型变量)。
 ### 框架行为
 
 \@Link装饰的变量和所属的自定义组件共享生命周期。
@@ -84,7 +83,7 @@
 
 ## 限制条件
 
-1. \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#entry)装饰的自定义组件中使用。
+1. \@Link装饰器不建议在[\@Entry](./arkts-create-custom-components.md#entry)装饰的自定义组件中使用，否则编译时会抛出警告；若该自定义组件作为页面根节点使用，则会抛出运行时错误。
 
 2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
 
@@ -411,16 +410,16 @@ struct Child {
         Divider()
       })
       Button('child init map').onClick(() => {
-        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+        this.value = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
       })
       Button('child set new one').onClick(() => {
-        this.value.set(4, "d");
+        this.value.set(4, 'd');
       })
       Button('child clear').onClick(() => {
         this.value.clear();
       })
       Button('child replace the first one').onClick(() => {
-        this.value.set(0, "aa");
+        this.value.set(0, 'aa');
       })
       Button('child delete the first one').onClick(() => {
         this.value.delete(0);
@@ -433,7 +432,7 @@ struct Child {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @State message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Row() {
@@ -607,7 +606,7 @@ struct Child {
 }
 ```
 
-## Link支持联合类型实例
+### Link支持联合类型实例
 
 `@Link`支持联合类型、`undefined`和`null`。在以下示例中，`name`类型为`string | undefined`。点击父组件`Index`中的按钮可以改变`name`的属性或类型，`Child`组件也会相应刷新。
 
@@ -621,7 +620,7 @@ struct Child {
 
       Button('Child change name to Bob')
         .onClick(() => {
-          this.name = "Bob";
+          this.name = 'Bob';
         })
 
       Button('Child change name to undefined')
@@ -636,7 +635,7 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State name: string | undefined = "mary";
+  @State name: string | undefined = 'mary';
 
   build() {
     Column() {
@@ -646,7 +645,7 @@ struct Index {
 
       Button('Parents change name to Peter')
         .onClick(() => {
-          this.name = "Peter";
+          this.name = 'Peter';
         })
 
       Button('Parents change name to undefined')

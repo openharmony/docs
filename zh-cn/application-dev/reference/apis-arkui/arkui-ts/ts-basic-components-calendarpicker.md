@@ -52,8 +52,8 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 | 参数名    | 类型                                    | 必填 | 说明                                                         |
 | --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign.END                 |
-| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+| alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式的类型。<br/>默认值：CalendarAlign.END                 |
+| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐方式对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
 
 ### edgeAlign<sup>18+</sup>
 
@@ -69,8 +69,8 @@ edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| alignType | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CalendarAlign](#calendaralign枚举说明)> | 是   | 对齐方式类型。<br/>当alignType的值为undefined时，默认值：CalendarAlign.END |
-| offset    | [Offset](ts-types.md#offset)                                 | 否   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+| alignType | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CalendarAlign](#calendaralign枚举说明)> | 是   | 对齐方式的类型。<br/>默认值：CalendarAlign.END<br/>当alignType的值为undefined时，使用默认值。 |
+| offset    | [Offset](ts-types.md#offset)                                 | 否   | 按照对齐方式对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
 
 ### textStyle
 
@@ -86,7 +86,7 @@ textStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>18+</sup>
 
@@ -102,13 +102,13 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 ### markToday<sup>19+</sup>
 
 markToday(enabled: boolean)
 
-日历选择器在系统当前日期时，通过该属性设置其是否保持高亮显示。
+设置日历选择器中系统当前日期是否保持高亮显示。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -118,7 +118,7 @@ markToday(enabled: boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enabled  | boolean | 是   | 设置日历选择器在系统当前日期时，是否保持高亮显示。<br />默认值：false。true表示日历选择器在系统当前日期时，保持高亮显示。false表示日历选择器在系统当前日期时，不保持高亮显示。 |
+| enabled  | boolean | 是   | 设置日历选择器中系统当前日期是否保持高亮显示。<br/>- true：系统当前日期在日历选择器内保持高亮显示。<br/>- false：系统当前日期在日历选择器内不保持高亮显示。<br/>默认值：false |
 
 ## 事件
 
@@ -164,11 +164,11 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 | 名称      | 类型       | 只读 | 可选        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- | --------------------------------- |
-| hintRadius | number \| [Resource](ts-types.md#resource) | 否   | 是    | 描述日期选中态底板样式。<br />取值范围：[0, 16]<br />单位：vp<br/>默认值：底板样式为圆形。<br />**说明：**<br />当hintRadius为0时，底板样式为直角矩形。当hintRadius的值在0到16之间时，底板样式为圆角矩形。当hintRadius大于或等于16时，底板样式为圆形。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| selected | Date | 否   | 是    | 设置选中项的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br/>默认值：当前系统日期。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| start<sup>18+</sup> | Date | 否   | 是    | 设置开始日期。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| end<sup>18+</sup> | Date | 否   | 是    | 设置结束日期。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| disabledDateRange<sup>19+</sup> | [DateRange](ts-picker-common.md#daterange19对象说明)[] | 否   | 是    | 设置禁用日期区间。<br />**说明：**<br />1. 若日期区间内的开始日期或结束日期为异常值，则该日期区间无效。<br />2. 若在日期区间内，结束日期早于开始日期，则该日期区间无效。<br />3. 当在入口区选定某日期，通过上下箭头调整日期进行增加或减少操作时，若遇到禁用日期，系统将自动跳过整个禁用区间。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| hintRadius | number \| [Resource](ts-types.md#resource) | 否   | 是    | 描述日期选中态底板样式。<br />取值范围：[0, 16]<br />单位：vp<br/>默认值：16.0vp，即底板样式为圆形。<br />**说明：**<br />当hintRadius为0时，底板样式为直角矩形。当hintRadius的值在0到16之间时，底板样式为圆角矩形。当hintRadius大于或等于16时，底板样式为圆形。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selected | Date | 否   | 是    | 设置选中项的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br/>默认值：当前系统日期。<br/>取值范围：\[Date('0001-01-01'), Date('5000-12-31')]<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| start<sup>18+</sup> | Date | 否   | 是    | 设置开始日期。<br/>默认值：Date('0001-01-01')<br/>取值范围：\[Date('0001-01-01'), Date('5000-12-31')]<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| end<sup>18+</sup> | Date | 否   | 是    | 设置结束日期。<br/>默认值：Date('5000-12-31')<br/>取值范围：\[Date('0001-01-01'), Date('5000-12-31')]<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| disabledDateRange<sup>19+</sup> | [DateRange](ts-picker-common.md#daterange19对象说明)[] | 否   | 是    | 设置禁用日期区间。<br/>**说明：**<br />1. 若日期区间内的开始日期或结束日期未设置或设置为异常值，则该日期区间无效。<br/>2. 若在日期区间内，结束日期早于开始日期，则该日期区间无效。<br/>3. 当在入口区选定某日期，通过上下箭头调整日期进行增加或减少操作时，若遇到禁用日期，系统将自动跳过整个禁用区间。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 **start和end设置规则：**
 
@@ -191,9 +191,9 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 | 名称   | 值 | 说明                     |
 | ------ | - | ------------------------ |
-| START  | 0 | 设置选择器与入口组件左对齐的对齐方式。   |
-| CENTER | 1 | 设置选择器与入口组件居中对齐的对齐方式。 |
-| END    | 2 | 设置选择器与入口组件右对齐的对齐方式。   |
+| START  | 0 | 设置选择器与入口组件的对齐方式为左对齐。   |
+| CENTER | 1 | 设置选择器与入口组件的对齐方式为居中对齐。 |
+| END    | 2 | 设置选择器与入口组件的对齐方式为右对齐。   |
 
 ## 示例
 ### 示例1（设置下拉日历弹窗）
@@ -215,7 +215,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value));
+            console.info(`CalendarPicker onChange: ${value.toString()}`);
           })
       }.alignItems(HorizontalAlign.End).width("100%")
 
@@ -248,7 +248,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value));
+            console.info(`CalendarPicker onChange: ${value.toString()}`);
           })
       }.alignItems(HorizontalAlign.End).width("100%")
     }.width('100%').margin({ top: 350 })
@@ -281,7 +281,7 @@ struct CalendarPickerExample {
         .margin(10)
         .markToday(true)
         .onChange((value) => {
-          console.info("CalendarPicker onChange:" + JSON.stringify(value));
+          console.info(`CalendarPicker onChange: ${value.toString()}`);
         })
     }.alignItems(HorizontalAlign.End).width('100%')
   }

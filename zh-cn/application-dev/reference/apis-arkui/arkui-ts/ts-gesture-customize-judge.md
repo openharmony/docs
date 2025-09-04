@@ -17,7 +17,7 @@
 
 onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
 
-为组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。
+为组件绑定自定义手势判定回调。当手势即将成功时，触发用户定义的回调获取结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 **参数：**
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult11) | 是     | 给组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。 |
+| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult) | 是     | 自定义手势判定回调。当手势即将成功时，触发用户定义的回调获取结果。 |
 
 **返回值：**
 
@@ -35,7 +35,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | T | 返回当前组件。 |
 
 
-## GestureJudgeResult<sup>11+</sup>
+## GestureJudgeResult
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -44,7 +44,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | 名称  | 值 | 说明                               |
 | ----- | -------- | ----------------------- |
 | CONTINUE  | 0 | 不影响系统手势判定流程。|
-| REJECT  | 1 | 对于用户自定义的手势判定结果为失败。|
+| REJECT  | 1 | 手势判定结果为失败。|
 
 ## GestureInfo对象说明
 
@@ -54,11 +54,11 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 | 名称            | 类型                  | 只读 | 可选 | 说明         |
 | ---------------  | ---------------------|----|------| -----------|
-| tag              | string                | 否 | 是 | 手势标记。<br/>**说明：**<br/>未设置事件标识tag属性时，tag不返回或返回undefined。      |
-| type             | [GestureControl.GestureType](#gesturetype11) | 否 | 否 | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
-| isSystemGesture  | boolean                 | 否 | 否 | 判断当前手势是否为组件自带手势。true表示是，false表示否。<br/>默认值：false |
+| tag              | string                | 否 | 是 | 手势标志。<br/>**说明：**<br/>未设置事件标志tag属性时，tag不返回或返回undefined。      |
+| type             | [GestureControl.GestureType](#gesturetype) | 否 | 否 | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
+| isSystemGesture  | boolean                 | 否 | 否 | 当前手势是否为组件自带手势。true表示是，false表示否。<br/>默认值：false |
 
-## GestureType<sup>11+</sup>
+## GestureType
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -181,7 +181,7 @@ getModifierKeyState?(keys: Array&lt;string&gt;): boolean
 
 | 名称      | 类型   | 只读 | 可选                                | 说明         |
 | ---------  | --- | ------|-------------------------------  | -----------|
-| tapLocation<sup>20+</sup>  | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20对象说明)| 否 | 是 | 获取点击手势的坐标信息。<br/>取值范围：[0, +∞)<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| tapLocation<sup>20+</sup>  | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20对象说明)| 否 | 是 | 获取点击手势的坐标信息。 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## LongPressGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。

@@ -25,7 +25,7 @@
 | cameraType                      | [CameraType](arkts-apis-camera-e.md#cameratype)           | 是   | 否  | 相机类型。    |
 | connectionType                  | [ConnectionType](arkts-apis-camera-e.md#connectiontype)   | 是   | 否  | 相机连接类型。 |
 | cameraOrientation<sup>12+</sup> | number                              | 是   | 否  | 相机安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°，单位：度。 |
-| hostDeviceName<sup>15+</sup>    | string                              | 是   | 否  | 远端设备名称。 |
+| hostDeviceName<sup>15+</sup>    | string                              | 是   | 否  | 远端设备名称。若当前无远端设备，返回为空。 |
 | hostDeviceType<sup>15+</sup>    | [HostDeviceType](arkts-apis-camera-e.md#hostdevicetype15) | 是   | 否  | 远端设备类型。 |
 
 ## CameraStatusInfo
@@ -77,8 +77,8 @@
 
 | 名称      | 类型                          | 只读 | 可选 | 说明            |
 | -------- | ----------------------------- |----- |---| -------------- |
-| min      | number                        |  是  | 否 | 最小帧率。      |
-| max      | number                        |  是  | 否 | 最大帧率。      |
+| min      | number                        |  是  | 否 | 最小帧率，单位：fps。      |
+| max      | number                        |  是  | 否 | 最大帧率，单位：fps。      |
 
 ## VideoProfile
 
@@ -172,9 +172,9 @@
 
 | 名称          | 类型   | 只读 | 可选  |说明         |
 | ------------ | ------ | ---- |-----|------------ |
-| latitude     | number |  否  | 否   |纬度(度)。    |
-| longitude    | number |  否  | 否   |经度(度)。    |
-| altitude     | number |  否  | 否   |海拔(米)。    |
+| latitude     | number |  否  | 否   |纬度（度）。取值范围：[-90, 90]。    |
+| longitude    | number |  否  | 否   |经度（度）。取值范围：[-180, 180]。    |
+| altitude     | number |  否  | 否   |海拔（米）。    |
 
 ## PhotoCaptureSetting
 
@@ -189,7 +189,7 @@
 | quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量（默认低）。                                                           |
 | rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度（默认0度，顺时针旋转）。                                                  |
 | location | [Location](#location)           | 否   | 是   | 图片地理位置信息（默认以设备硬件信息为准）。                                               |
-| mirror   | boolean                         | 否   | 是   | 镜像使能开关（默认关）。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。ture表示使能，false表示不使能。 |
+| mirror   | boolean                         | 否   | 是   | 镜像使能开关（默认关）。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。true表示使能，false表示不使能。 |
 
 ## FrameShutterInfo
 

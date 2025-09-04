@@ -63,7 +63,7 @@ onStart(callback: () => void)
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
-|  callback | callback: () => void | 是   | 加载网页时触发回调。 |
+|  callback | () => void | 是   | 加载网页时触发回调。 |
 
 ### onComplete
 
@@ -75,7 +75,7 @@ onComplete(callback: () => void)
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
-|  callback | callback: () => void | 是   | 网页加载结束时触发回调。 |
+|  callback | () => void | 是   | 网页加载结束时触发回调。 |
 
 ## 属性
 

@@ -17,5 +17,6 @@
   - [串行队列(C++)](ffrt-concurrency-serial-queue-cpp.md)
   - [并发队列(C++)](ffrt-concurrency-concurrent-queue-cpp.md)
   - [图依赖并发(C++)](ffrt-concurrency-graph-cpp.md)
+  - [任务伙伴(C++)](ffrt-concurrency-job-partner-cpp.md)
 - [Function Flow Runtime开发指导](ffrt-development-guideline.md)
 - [Function Flow Runtime C API](ffrt-api-guideline-c.md)

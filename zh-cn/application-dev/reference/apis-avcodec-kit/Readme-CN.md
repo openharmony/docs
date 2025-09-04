@@ -1,9 +1,16 @@
 # AVCodec Kit（音视频编解码服务）
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy; @zhanghongran; @yang-xiaoyu5-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao; @cyakee-->
+<!--Adviser: @zengyawen-->
+
 - C API<!--avcodec-c-->
   - 模块<!--avcodec-module-->
-    - [AudioCodec](_audio_codec.md)
-    - [AVCapability](_a_v_capability.md)
+    - [AVCapability](capi-avcapability.md)
+    - [AudioCodec](capi-audiocodec.md)
     - [AVDemuxer](_a_v_demuxer.md)
     - [AVMuxer](_a_v_muxer.md)
     - [AVSource](_a_v_source.md)
@@ -13,12 +20,12 @@
     - [VideoEncoder](_video_encoder.md)
     - [Multimedia_Drm](_multimedia___drm.md)
   - 头文件<!--avcodec-headerfile-->
+    - [native_avcapability.h](capi-native-avcapability-h.md)
+    - [native_avcodec_audiocodec.h](capi-native-avcodec-audiocodec-h.md)
     - [media_types.h](media__types_8h.md)
     - [native_audio_channel_layout.h](native__audio__channel__layout_8h.md)
     - [native_avbuffer.h](native__avbuffer_8h.md)
     - [native_avbuffer_info.h](native__avbuffer__info_8h.md)
-    - [native_avcapability.h](native__avcapability_8h.md)
-    - [native_avcodec_audiocodec.h](native__avcodec__audiocodec_8h.md)
     - [native_avcodec_base.h](native__avcodec__base_8h.md)
     - [native_avcodec_videodecoder.h](native__avcodec__videodecoder_8h.md)
     - [native_avcodec_videoencoder.h](native__avcodec__videoencoder_8h.md)
@@ -30,12 +37,14 @@
     - [native_avsource.h](native__avsource_8h.md)
     - [native_cencinfo.h](native__cencinfo_8h.md)
   - 结构体<!--avcodec-struct-->
+    - [OH_AVRange](capi-avcapability-oh-avrange.md)
+    - [OH_AVCapability](capi-avcapability-oh-avcapability.md)
+    - [MediaKeySession](capi-audiocodec-mediakeysession.md)
     - [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)
     - [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)
     - [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)
     - [OH_AVDataSource](_o_h___a_v_data_source.md)
     - [OH_AVDataSourceExt](_o_h___a_v_data_source_ext.md)
-    - [OH_AVRange](_o_h___a_v_range.md)
     - [DrmSubsample](_drm_subsample.md)
   - 已停止维护的接口<!--avcodec-arkts-dep-->
     - 模块<!--avcodec-module-arkts-dep-->

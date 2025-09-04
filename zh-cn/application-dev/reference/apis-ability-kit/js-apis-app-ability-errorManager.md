@@ -685,6 +685,61 @@ errorManager.on("freeze", freezeCallback);
 errorManager.off("freeze", freezeCallback);
 ```
 
+## errorManager.setDefaultErrorHandler<sup>21+</sup>
+
+setDefaultErrorHandler(defaultHandler?: ErrorHandler): ErrorHandler
+
+发生JS_CRASH异常时，支持链式回调，返回上一次注册的处理器，仅限主线程调用。
+
+如果传入非法参数或在子线程调用，将抛出错误码并返回undefined，因此建议使用try-catch逻辑进行处理。
+
+若接口参数为空，后续注册的处理器将无法与前序已注册的处理器建立关联，从而中断链式调用。
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| defaultHandler | [ErrorHandler](#errorhandler21) | 否 | 新注册的错误处理器，缺省时默认值为空。|
+
+**返回值**：
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ErrorHandler](#errorhandler21) | 返回上一次注册的错误处理器。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000205      | The API is not called in the main thread. |
+
+**示例**：
+    
+```ts
+import { errorManager } from '@kit.AbilityKit';
+import { process } from '@kit.ArkTS';
+
+let oldHandler: errorManager.ErrorHandler;
+const errorHandler: errorManager.ErrorHandler = (reason: Error) => {
+    // 自定义的errorHandler实现逻辑
+    console.info('[Handler]  Uncaught exception handler invoked.');
+    if (oldHandler) {
+        oldHandler(reason);
+    } else {
+        // 建议增加判空操作，如果为空采用同步退出方式
+        const processManager = new process.ProcessManager();
+        processManager.exit(0);
+    }
+};
+oldHandler = errorManager.setDefaultErrorHandler(errorHandler);
+```
+
 ## ErrorObserver
 
 type ErrorObserver = _ErrorObserver.default
@@ -784,3 +839,21 @@ type GlobalObserver = (reason: GlobalError) => void
 | WORKER   | 1   | 表示工作虚拟机实例。 |
 | TASKPOOL | 2   | 表示任务池虚拟机实例。 |
 | CUSTOM   | 3   | 表示用户通过[napi_create_ark_runtime](../native-lib/napi.md#napi_create_ark_runtime)从本机代码创建的虚拟机实例。 |
+
+
+## ErrorHandler<sup>21+</sup>
+
+type ErrorHandler = (errObject: Error) => void
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名  | 类型          | 必填 | 说明 |
+|--------| ------------- | ---- | --- |
+| errObject | Error   | 是   | 有关异常事件名字、消息、错误堆栈信息的对象。 |
+
+
+

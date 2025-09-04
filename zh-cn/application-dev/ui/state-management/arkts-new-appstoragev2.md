@@ -83,13 +83,15 @@ static keys(): Array<string>;
 
 ## 使用限制
 
-1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable。
+1、只支持class类型。
 
-2、不支持collections.Set、collections.Map等类型。
+2、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
+3、不支持collections.Set、collections.Map等类型。
 
-4、不支持存储基本类型，如string、number、boolean等。
+4、不支持非built-in类型，如PixelMap、NativePointer、ArrayList等Native类型。
+
+5、不支持存储基本类型，如string、number、boolean等。注意：不支持存储基本类型意味着[connect](#connect创建或获取存储的数据)接口传入的类型不能是基本类型，但connect传入的class中可以包含基本类型。
 
 ## 使用场景
 

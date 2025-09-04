@@ -148,7 +148,7 @@ getSelection(): TextRange
 
 clearPreviewText(): void
 
-清除当前的预上屏文本内容。
+通知输入法清除当前的预上屏文本内容。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 

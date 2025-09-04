@@ -20,6 +20,8 @@
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
+**相关示例：** <!--RP1-->[NdkGestureSetting](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkGestureSetting)<!--RP1End-->、<!--RP2-->[NdkGestureNestScroll](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkGestureNestScroll)<!--RP2End-->
+
 ## 汇总
 
 ### 结构体
@@ -553,7 +555,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event)
 **描述：**
 
 
-返回长按手势定时触发次数。
+返回是否为重复触发事件。
 
 **起始版本：** 12
 
@@ -568,7 +570,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 长按手势定时触发次数。 |
+| int32_t | 是否为重复触发事件。1表示为重复触发事件，0表示为非重复触发事件。 |
 
 ### OH_ArkUI_PanGesture_GetVelocity()
 
@@ -1326,6 +1328,7 @@ int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify(ArkUI_GestureRecognizer*
 
 设置手势识别器对象析构通知回调函数。
 
+**起始版本：** 12
 
 **参数：**
 

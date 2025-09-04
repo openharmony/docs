@@ -14,7 +14,6 @@
 >
 > 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -36,6 +35,8 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称                                | 类型                                                            | 必填 | 装饰器类型  | 说明                                                                                                                                      |
 |-----------------------------------|---------------------------------------------------------------|----|--------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | progress                          | number                                                        | 是  | \@Prop | 下载按钮的当前进度值。<br/>取值范围：[0,100]。设置小于0的数值时置为0，设置大于100的数值置为100。<br/>默认值：0<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                |
@@ -53,6 +54,8 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称              | 类型                                     | 必填 | 说明                                                               |
 |-----------------|----------------------------------------|----|------------------------------------------------------------------|
@@ -97,6 +100,7 @@ struct Index {
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
+                    clearInterval(timer);
                   } else {
                     this.progressIndex++;
                     if (this.progressIndex === 100) {
@@ -158,6 +162,7 @@ struct Index {
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
+                    clearInterval(timer);
                   } else {
                     this.progressIndex++;
                     if (this.progressIndex === 100) {
@@ -211,6 +216,7 @@ struct Index {
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
+                    clearInterval(timer);
                   } else {
                     this.progressIndex++;
                     if (this.progressIndex === 100) {

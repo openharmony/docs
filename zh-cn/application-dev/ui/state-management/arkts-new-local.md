@@ -475,7 +475,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // 遍历Set的元素并渲染UI
+        ForEach(Array.from(this.message.entries()), (item: [number, number]) => { // 遍历Set的元素并渲染UI
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
@@ -587,7 +587,7 @@ struct Index {
 
 ### 在状态管理V2中使用animateTo动画效果异常
 
-在下面的场景中，[animateTo](../../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)暂不支持直接在状态管理V2中使用。
+在下面的场景中，[animateTo](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)暂不支持直接在状态管理V2中使用。
 
 ```ts
 @Entry
@@ -647,7 +647,7 @@ struct Index {
           // 在执行动画前，存在额外的修改
           this.w = 100;
           this.h = 100;
-          this.message = 'Hello Word';
+          this.message = 'Hello World';
           animateToImmediately({
             duration: 0
           }, () => {

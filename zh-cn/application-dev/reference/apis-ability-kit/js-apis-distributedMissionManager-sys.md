@@ -1,4 +1,10 @@
 # @ohos.distributedMissionManager (分布式任务管理)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: DistributedAbilityManager-->
+<!--Owner: @hobbycao-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @huipeizi-->
 
 分布式任务管理模块提供跨设备任务管理能力，包括注册和取消任务状态监听、开始和停止同步远端设备任务列表、通过任务ID和包名进行迁移任务等。
 
@@ -784,43 +790,39 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
 
 ## MissionCallback
 
-开始同步后，建立的回调函数。
+type MissionCallback = _MissionCallback
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS
+作为可以[registerMissionListener](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener)的入参，表示开始同步后，建立的回调函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称                    | 类型       | 可读   | 可写   | 说明                 |
-| --------------------- | -------- | ---- | ---- | ------------------ |
-| notifyMissionsChanged | function | 是    | 否    | 通知任务变化，返回设备ID。     |
-| notifySnapshot        | function | 是    | 否    | 通知快照变化，返回设备ID，任务ID。 |
-| notifyNetDisconnect   | function | 是    | 否    | 通知断开连接，返回设备ID，网络状态。 |
+| 类型 | 说明 |
+| --- | --- |
+| [_MissionCallback](js-apis-inner-application-missionCallbacks-sys.md) | 作为可以registerMissionListener的入参，表示开始同步后，建立的回调函数。 |
 
 ## MissionParameter
 
-同步时所需参数的枚举。
+type MissionParameter = _MissionParameter
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS
+作为[startSyncRemoteMissions](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerstartsyncremotemissions)的入参，表示同步时所需参数的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称          | 类型    | 可读   | 可写   | 说明          |
-| ----------- | ------- | ---- | ---- | ----------- |
-| deviceId    | string  | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)     |
-| fixConflict | boolean | 是    | 是    | 表示是否存在版本冲突。 |
-| tag         | number  | 是    | 是    | 表示特定的标签。    |
+| 类型 | 说明 |
+| --- | --- |
+| [_MissionParameter](js-apis-inner-application-missionParameter-sys.md) | 作为startSyncRemoteMissions的入参，表示同步时所需参数的枚举。 |
 
 ## MissionDeviceInfo
 
-注册监听时所需参数的枚举。
+type MissionDeviceInfo = _MissionDeviceInfo
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS
+可以作为[registerMissionListener](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener)的入参，表示注册监听时所需参数的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称       | 类型   | 可读   | 可写   | 说明      |
-| -------- | ------ | ---- | ---- | ------- |
-| deviceId | string | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync) |
+| 类型 | 说明 |
+| --- | --- |
+| [_MissionDeviceInfo](js-apis-inner-application-missionDeviceInfo-sys.md) | 可以作为registerMissionListener的入参，表示注册监听时所需参数的枚举。 |
 
 ## ContinueState<sup>10+</sup>
 
@@ -839,7 +841,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称       | 类型    | 可读   | 可写   | 说明          |
+| 名称       | 类型    | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| state | [ContinueState](#continuestate10)   | 是    | 否    |   表示当前任务的流转状态。 |
-| info  | [ContinuableInfo](./js-apis-inner-application-continuableInfo-sys.md) | 是    | 否    |   表示当前任务的流转信息。 |
+| state | [ContinueState](#continuestate10)   | 否    | 否    |   表示当前任务的流转状态。 |
+| info  | [ContinuableInfo](./js-apis-inner-application-continuableInfo-sys.md) | 否    | 否    |   表示当前任务的流转信息。 |

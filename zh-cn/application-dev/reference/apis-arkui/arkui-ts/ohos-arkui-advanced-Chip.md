@@ -51,7 +51,7 @@ ChipOptions定义Chip的样式及具体式样参数。
 
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | Chip尺寸。<br/>默认值：ChipSize.NORMAL<br/>SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | Chip尺寸。<br/>默认值：ChipSize.NORMAL<br/>SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**说明**：[适老化](../../../ui/arkui-support-for-aging-adaptation.md)在size指定具体宽高时不生效，size设置为{ height: 0, width: 0 }除外。 |
 | enabled         | boolean                                                      | 否   | Chip是否可选中。<br>默认值：true。<br>true：操作块可选中；false：操作块不可选中。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activated<sup>12+</sup>    | boolean                                        | 否   | Chip是否为激活态。<br>默认值：false。<br>true：操作块为激活态；false：操作块为非激活态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -396,9 +396,9 @@ struct Index {
         enabled: true,
         backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
-        onClose:()=>{
-          console.log("chip on close")
-      }
+        onClose: () => {
+          console.info("chip on close")
+        }
       })
     }
   }
@@ -445,15 +445,15 @@ struct Index {
         backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
         activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
-        onClose:()=>{
-          console.log("chip on close")
+        onClose: () => {
+          console.info("chip on close")
         },
-        onClicked:()=>{
-          console.log("chip on clicked")
+        onClicked: () => {
+          console.info("chip on clicked")
         }
       })
 
-      Button('改变激活状态').onClick(()=>{
+      Button('改变激活状态').onClick(() => {
         this.isActivated = !this.isActivated
       })
     }
@@ -486,10 +486,10 @@ struct Index {
           fillColor: Color.Blue,
           activatedFillColor: $r('sys.color.ohos_id_color_text_primary_contrary')
         },
-		prefixSymbol: {
+        prefixSymbol: {
           normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontSize(16).fontColor([Color.Green]),
           activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontSize(16).fontColor([Color.Red]),
-		},
+        },
         label: {
           text: "操作块",
           fontSize: 12,
@@ -505,15 +505,15 @@ struct Index {
         backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
         activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
-        onClose:()=>{
-          console.log("chip on close")
+        onClose: () => {
+          console.info("chip on close")
         },
-        onClicked:()=>{
-          console.log("chip on clicked")
+        onClicked: () => {
+          console.info("chip on clicked")
         }
       })
 
-      Button('改变激活状态').onClick(()=>{
+      Button('改变激活状态').onClick(() => {
         this.isActivated = !this.isActivated
       })
     }
@@ -528,13 +528,11 @@ struct Index {
 配置direction实现Chip布局镜像化展示。
 
 ```ts
-
-import { Chip, ChipSize,LengthMetrics } from '@kit.ArkUI';
+import { Chip, ChipSize, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ChipPage {
-
   build() {
     Column() {
       Chip({
@@ -553,7 +551,7 @@ struct ChipPage {
           localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
         },
         suffixIcon: {
-          // 此处'app.media.close'仅作示例，请替换为实际使用图片。
+          // 'app.media.close'仅作示例，请替换为实际使用图片。
           src: $r('app.media.close'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red,
@@ -579,7 +577,6 @@ struct ChipPage {
 该示例代码实现Chip组件Image类型后缀图标的无障碍朗读功能。
 
 ```ts
-// xxx.ets
 import { Chip } from '@kit.ArkUI';
 
 @Builder
@@ -671,7 +668,6 @@ struct ChipExample2 {
 该示例代码实现Chip组件symbol类型后缀图标的无障碍朗读功能。
 
 ```ts
-
 import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Builder
@@ -730,68 +726,69 @@ struct ChipExample2 {
   build() {
     NavDestination() {
       Scroll() {
-          SectionGroup({ title: '后缀Symbol播报' }) {
-            SectionItem({ title: 'activatedAccessibility' }) {
-              Chip({
-                label: { text: '操作块' },
-                activated: true,
-                suffixSymbol: {
-                  activated: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
-                    .fontSize(72),
+        SectionGroup({ title: '后缀Symbol播报' }) {
+          SectionItem({ title: 'activatedAccessibility' }) {
+            Chip({
+              label: { text: '操作块' },
+              activated: true,
+              suffixSymbol: {
+                activated: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
+                  .fontSize(72),
+              },
+              suffixSymbolOptions: {
+                activatedAccessibility: {
+                  accessibilityText: '音乐',
+                  accessibilityDescription: '新手提醒'
                 },
-                suffixSymbolOptions: {
-                  activatedAccessibility: {
-                    accessibilityText: '音乐',
-                    accessibilityDescription: '新手提醒'
-                  },
-                  action: () => {
-                    this.getUIContext().getPromptAction().showToast({
-                      message: '后缀Symbol被点击！'
-                    });
-                  }
-                },
-                onClicked: () => {
+                action: () => {
                   this.getUIContext().getPromptAction().showToast({
-                    message: '操作块被点击！'
+                    message: '后缀Symbol被点击！'
                   });
                 }
-              })
-            }
-            SectionItem({ title: 'normalAccessibility' }) {
-              Chip({
-                label: { text: '操作块' },
-                suffixSymbol: {
-                  normal: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
-                    .fontSize(72),
+              },
+              onClicked: () => {
+                this.getUIContext().getPromptAction().showToast({
+                  message: '操作块被点击！'
+                });
+              }
+            })
+          }
+
+          SectionItem({ title: 'normalAccessibility' }) {
+            Chip({
+              label: { text: '操作块' },
+              suffixSymbol: {
+                normal: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
+                  .fontSize(72),
+              },
+              suffixSymbolOptions: {
+                normalAccessibility: {
+                  accessibilityText: '音乐',
+                  accessibilityDescription: '新手提醒'
                 },
-                suffixSymbolOptions: {
-                  normalAccessibility: {
-                    accessibilityText: '音乐',
-                    accessibilityDescription: '新手提醒'
-                  },
-                  action: () => {
-                    this.getUIContext().getPromptAction().showToast({
-                      message: '后缀Symbol被点击！'
-                    });
-                  }
-                },
-                onClicked: () => {
+                action: () => {
                   this.getUIContext().getPromptAction().showToast({
-                    message: '操作块被点击！'
+                    message: '后缀Symbol被点击！'
                   });
                 }
-              })
-            }
+              },
+              onClicked: () => {
+                this.getUIContext().getPromptAction().showToast({
+                  message: '操作块被点击！'
+                });
+              }
+            })
           }
         }
       }
-      .padding({
-        top: 8,
-        bottom: 8,
-        left: 16,
-        right: 16,
-      })
     }
+    .padding({
+      top: 8,
+      bottom: 8,
+      left: 16,
+      right: 16,
+    })
+  }
 }
 ```
 

@@ -60,7 +60,7 @@
      }
    
      onDestroy(): void {
-       console.log("onDestroy.");
+       console.info("onDestroy.");
        keyboardController.onDestroy(); // 销毁窗口并去注册事件监听
      }
    }
@@ -72,6 +72,7 @@
    ```ts
    import { display } from '@kit.ArkUI';
    import { inputMethodEngine, InputMethodExtensionContext } from '@kit.IMEKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
    const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
@@ -132,11 +133,13 @@
        };
        inputMethodAbility.createPanel(this.mContext, panelInfo).then(async (inputPanel: inputMethodEngine.Panel) => {
          this.panel = inputPanel;
-         if(this.panel) {
+         if (this.panel) {
            await this.panel.resize(dWidth, keyHeight);
            await this.panel.moveTo(0, nonBarPosition);
            await this.panel.setUiContent('InputMethodExtensionAbility/pages/Index');
          }
+       }).catch((err: BusinessError) => {
+         console.error(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
        });
      }
    
@@ -146,20 +149,22 @@
        // 注册隐藏键盘事件监听等
      }
    
-     private registerInputListener(): void { // 注册对输入法框架服务的开启及停止事件监听
+     private registerInputListener(): void {
+       // 注册开始输入的事件监听
        inputMethodAbility.on('inputStart', (kbController, textInputClient) => {
          this.textInputClient = textInputClient; // 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
          this.keyboardController = kbController;
        })
-       inputMethodAbility.on('inputStop', () => {
-         this.onDestroy(); // 销毁KeyboardController
-       });
+       inputMethodAbility.on('inputStop', this.inputStopCallback);
      }
    
-     private unRegisterListener(): void
-     {
+     private inputStopCallback(): void {
+       this.onDestroy(); // 销毁KeyboardController
+     }
+   
+     private unRegisterListener(): void {
        inputMethodAbility.off('inputStart');
-       inputMethodAbility.off('inputStop', () => {});
+       inputMethodAbility.off('inputStop', this.inputStopCallback);
      }
    }
    
@@ -167,7 +172,7 @@
    
    export default keyboardController;
    ```
-<!--RP2End-->
+   <!--RP2End-->
 3. KeyboardKeyData.ts文件。
 
    定义软键盘的按键显示内容。
@@ -177,7 +182,7 @@
      content: string,
    }
    
-   export let numberSourceListData: sourceListType[] = [
+   export const numberSourceListData: sourceListType[] = [
      {
        content: '1'
      },

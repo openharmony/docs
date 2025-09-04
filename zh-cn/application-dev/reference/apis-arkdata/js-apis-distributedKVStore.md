@@ -238,7 +238,7 @@ constructor(name: string)
 
 | 参数名 | 类型 | 必填 | 说明            |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | 是   | FieldNode的值，不能为空。 |
+| name   | string   | 是   | FieldNode的值，不能为空，且不大于64个字符。|
 
 **错误码：**
 
@@ -4941,7 +4941,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名                | 类型                  | 必填 | 说明                                         |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | 是   | 表示一个延时时间，以毫秒为单位。 |
+| defaultAllowedDelayMs | number                    | 是   | 表示一个延时时间，单位为毫秒（ms），取值范围为0或[100, 86400000]。|
 | callback              | AsyncCallback&lt;void&gt; | 是   | 回调函数。设置成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -4988,7 +4988,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 | 参数名                | 类型 | 必填 | 说明                                         |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | 是   | 表示一个延时时间，以毫秒为单位。 |
+| defaultAllowedDelayMs | number   | 是   | 表示一个延时时间，单位为毫秒（ms），取值范围为0或[100, 86400000]。|
 
 **返回值：**
 
@@ -5126,8 +5126,8 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | 参数名    | 类型              | 必填 | 说明                                           |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
-| mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件。                      |
+| mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。设置delayMs后，调用sync接口时延时时间为delayMs。未设置时以[setSyncParam](#setsyncparam)设置的时长为准。|
 
 **错误码：**
@@ -7061,6 +7061,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -7138,6 +7139,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**

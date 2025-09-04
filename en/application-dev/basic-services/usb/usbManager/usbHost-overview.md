@@ -1,5 +1,12 @@
 # USB Service Development Overview
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## Basic Concepts
 
 The USB service is an abstraction of underlying hardware-based USB devices. It is classified into a host and a device.

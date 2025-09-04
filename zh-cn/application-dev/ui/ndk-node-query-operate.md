@@ -475,6 +475,178 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
 
 ![moveToNativeDemo](figures/moveToNativeDemo.gif)
 
+## 在当前即时帧触发节点属性更新
+
+从API version 21开始，使用[OH_ArkUI_NativeModule_InvalidateAttributes](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nativemodule_invalidateattributes)接口，在当前帧即时触发节点属性更新，避免组件切换过程中出现闪烁。
+
+1. ArkTS侧接入Native组件。
+    ```ts
+    // index.ets
+    @Component
+    struct ImageContent {
+      private nodeContent: NodeContent = new NodeContent();
+    
+      aboutToAppear() {
+        // 通过C-API创建节点，并添加到管理器nodeContent上
+        testNapi.createNativeNode(this.nodeContent);
+      }
+      build() {
+        Column() {
+          // 显示nodeContent管理器里存放的Native侧的组件
+          ContentSlot(this.nodeContent)
+        }
+      }
+    }
+    
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+      @State showParent: boolean = true;
+      build() {
+        Row() {
+          Column() {
+             Button("切换").onClick(()=>{
+                 this.showParent = !this.showParent;
+             }).margin(20)
+            if(this.showParent) {
+              ImageContent()
+            } else {
+              ImageContent()
+            }
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```
+
+2. 新建`Attribute_util .h`用于设置组件属性。
+    ```c++
+    //
+    // Created on 2025/8/14.
+    //
+    // Node APIs are not fully supported. To solve the compilation error of the interface cannot be found,
+    // please include "napi/native_api.h".
+    
+    #ifndef MYAPPLICATION_ATTRIBUTE_UTIL_H
+    #define MYAPPLICATION_ATTRIBUTE_UTIL_H
+    #include <arkui/native_node.h>
+    #include <cstdint>
+    #include <string>
+    class AttributeUtil {
+    public:
+        ArkUI_NativeNodeAPI_1 *api_;
+        ArkUI_NodeHandle node_;
+        AttributeUtil(ArkUI_NodeHandle node, ArkUI_NativeNodeAPI_1 *api) {
+            this->node_ = node;
+            api_ = api;
+        }
+        int32_t width(float width) {
+            ArkUI_NumberValue NODE_WIDTH_value[] = {width};
+            ArkUI_AttributeItem NODE_WIDTH_Item = {NODE_WIDTH_value, 1};
+            return api_->setAttribute(node_, NODE_WIDTH, &NODE_WIDTH_Item);
+        }
+        int32_t height(float height) {
+            ArkUI_NumberValue NODE_HEIGHT_value[] = {height};
+            ArkUI_AttributeItem NODE_HEIGHT_Item = {NODE_HEIGHT_value, 1};
+            return api_->setAttribute(node_, NODE_HEIGHT, &NODE_HEIGHT_Item);
+        }
+         int32_t imageSrc(std::string src) {
+             ArkUI_AttributeItem NODE_IAMGE_SRC_VALUE = {.string = src.c_str()};
+            return api_->setAttribute(node_, NODE_IMAGE_SRC , &NODE_IAMGE_SRC_VALUE);
+        }
+        int32_t imageSyncLoad() {
+                ArkUI_NumberValue NODE_TRANSLATE_ITEM_VALUE[] = {{.i32 = 1}};
+              ArkUI_AttributeItem NODE_BORDER_WIDTH_ITEM = {NODE_TRANSLATE_ITEM_VALUE, 1};
+            return api_->setAttribute(node_, NODE_IMAGE_SYNC_LOAD , &NODE_BORDER_WIDTH_ITEM);
+        }
+    //     int32_t getId() { return api_->getAttribute(node_, NODE_UNIQUE_ID)->value[0].i32; }
+    };
+    #endif // MYAPPLICATION_ATTRIBUTE_UTIL_H
+    ```
+
+3. 在`nai_init.cpp`中，挂载Native节点。
+    ```c
+    #include "attribute_util.h"
+    #include "napi/native_api.h"
+    #include <arkui/native_interface.h>
+    #include <arkui/native_node.h>
+    #include <arkui/native_node_napi.h>
+    #include <hilog/log.h>
+    #include <js_native_api.h>
+    #include <js_native_api_types.h>
+    
+    static napi_value Add(napi_env env, napi_callback_info info) {
+        size_t argc = 2;
+        napi_value args[2] = {nullptr};
+    
+        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+        napi_valuetype valuetype0;
+        napi_typeof(env, args[0], &valuetype0);
+    
+        napi_valuetype valuetype1;
+        napi_typeof(env, args[1], &valuetype1);
+    
+        double value0;
+        napi_get_value_double(env, args[0], &value0);
+    
+        double value1;
+        napi_get_value_double(env, args[1], &value1);
+    
+        napi_value sum;
+        napi_create_double(env, value0 + value1, &sum);
+    
+        return sum;
+    }
+    
+    static ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
+    
+    static napi_value NAPI_Global_createNativeNode(napi_env env, napi_callback_info info) {
+        size_t argc = 1;
+        napi_value args[1] = {nullptr};
+        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+        ArkUI_NodeContentHandle contentHandle;
+        OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+        auto imageNode = nodeAPI->createNode(ARKUI_NODE_IMAGE);
+        AttributeUtil imageNodeAttr(imageNode, nodeAPI);
+        imageNodeAttr.imageSrc("/pages/common/startIcon.png");
+        imageNodeAttr.imageSyncLoad();
+        imageNodeAttr.width(100);
+        imageNodeAttr.height(100);
+        OH_ArkUI_NativeModule_InvalidateAttributes(imageNode);
+        OH_ArkUI_NodeContent_AddNode(contentHandle, imageNode);
+        return nullptr;
+    }
+    EXTERN_C_START
+    static napi_value Init(napi_env env, napi_value exports) {
+        napi_property_descriptor desc[] = {
+            {"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"createNativeNode", nullptr, NAPI_Global_createNativeNode, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+        return exports;
+    }
+    EXTERN_C_END
+    
+    static napi_module demoModule = {
+        .nm_version = 1,
+        .nm_flags = 0,
+        .nm_filename = nullptr,
+        .nm_register_func = Init,
+        .nm_modname = "entry",
+        .nm_priv = ((void *)0),
+        .reserved = {0},
+    };
+    extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+    ```
+
+4. 运行程序，点击按钮，切换图片正常展示。
+
+![moveToNativeDemo](figures/OH_ArkUI_NativeModule_InvalidateAttributes_test.png)
+
 ## 用不同的展开模式获取对应下标的子节点
 
 NDK支持通过不同的展开方式获取目标节点下的有效节点信息。例如，在LazyForEach场景下，可以处理存在多个子节点的情况。
@@ -759,7 +931,7 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
     uint32_t index1 = 0;
     OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(childNode, &index1);
     ArkUI_NodeHandle child = nullptr;
-    auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, child, 0);
+    auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, &child, 0);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "firstChildIndex - lastChildIndex == %{public}d -- %{public}d, -- getResult= %{public}d",
         index, index1, result);
     ```
