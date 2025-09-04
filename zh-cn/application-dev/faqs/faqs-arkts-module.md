@@ -10,7 +10,7 @@
 
 通过动态加载传入表达式作为入参时，模块路径参数书写有误。
 ``` typescript
-  import(module).then(m=>{m.foo();}).catch((e: Error)=>{console.info(e.message)});
+  import(module).then(m=>{m.foo();}).catch((e: Error)=>{console.error(e.message)});
 ```
 
 **定位方法:**
