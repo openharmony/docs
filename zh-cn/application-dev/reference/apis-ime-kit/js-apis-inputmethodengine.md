@@ -1079,8 +1079,8 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 import type { KeyEvent } from '@kit.InputKit';
 
 inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
-  console.info('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
-  console.info('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
+  console.info(`inputMethodEngine keyEvent.action:${ keyEvent.action}`);
+  console.info(`inputMethodEngine keyEvent.key.code: ${keyEvent.key.code}`);
   console.info(`inputMethodEngine keyEvent.ctrlKey: ${keyEvent.ctrlKey}`);
   console.info(`inputMethodEngine keyEvent.unicodeChar: ${keyEvent.unicodeChar}`);
   return true;
@@ -1485,8 +1485,8 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标面板的宽度，单位为px。|
-| height | number | 是   | 目标面板的高度，单位为px。|
+| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。|
+| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
@@ -1527,8 +1527,8 @@ resize(width: number, height: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标面板的宽度，单位为px。|
-| height | number | 是   | 目标面板的高度，单位为px。|
+| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。|
+| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。|
 
 **返回值：**
 
@@ -1568,8 +1568,8 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | x轴方向移动的值，值大于0表示右移，单位为px。|
-| y | number | 是   | y轴方向移动的值，值大于0表示下移，单位为px。|
+| x | number | 是   | 横轴方向移动的值，值大于0表示右移，单位为px。该参数应为整数。|
+| y | number | 是   | 纵轴方向移动的值，值大于0表示下移，单位为px。该参数应为整数。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
@@ -1606,8 +1606,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   |x轴方向移动的值，值大于0表示右移，单位为px。|
-| y | number | 是   |y轴方向移动的值，值大于0表示下移，单位为px。|
+| x | number | 是   |横轴方向移动的值，值大于0表示右移，单位为px。该参数应为整数。|
+| y | number | 是   |纵轴方向移动的值，值大于0表示下移，单位为px。该参数应为整数。|
 
 **返回值：**
 
@@ -2040,7 +2040,8 @@ panel.on('sizeChange', (windowSize: window.Size) => {
 });
 
 panel.on('sizeChange', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
-  console.info(`panel size changed, windowSize: ${JSON.stringify(windowSize)}, keyboardArea: ${JSON.stringify(keyboardArea)}`);
+  console.info(`panel size changed, windowSize: ${windowSize.width}, ${windowSize.height}, ` +
+    `keyboardArea: ${keyboardArea.top}, ${keyboardArea.bottom}, ${keyboardArea.left}, ${keyboardArea.right}`);
 });
 ```
 
@@ -4099,8 +4100,8 @@ getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getCallingWindowInfo().then((windowInfo: inputMethodEngine.WindowInfo) => {
-  console.info(`windowInfo.rect: ${JSON.stringify(windowInfo.rect)}`);
-  console.info('windowInfo.status: ' + JSON.stringify(windowInfo.status));
+  console.info(`windowInfo.rect: ${windowInfo.rect.left}, ${windowInfo.rect.top}, ${windowInfo.rect.width}, ${windowInfo.rect.height}`);
+  console.info(`windowInfo.status: ${windowInfo.status}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getCallingWindowInfo. Code is ${err.code}, message is ${err.message}`);
 });
@@ -4769,7 +4770,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let length: number = 1;
 textInputClient.getBackward(length).then((text: string) => {
-  console.info('Succeeded in getting backward: ' + JSON.stringify(text));
+  console.info(`'Succeeded in getting backward: ${text}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getBackward. Code is ${err.code}, message is ${err.message}`);
 });
@@ -5147,8 +5148,8 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-  console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`);
+  console.info(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute. Code is ${err.code}, message is ${err.message}`);
 });
