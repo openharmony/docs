@@ -52,7 +52,7 @@ Binds a menu to this component, which is displayed when the user clicks the comp
 
 | Name              | Type                                                        | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isShow<sup>11+</sup> | boolean                                                      | Yes  | Whether to show the menu. The default value is **false**. The menu can be displayed only after the entire page is fully constructed. Therefore, to avoid incorrect display positions and shapes, do not set this parameter to **true** while the page is still being constructed. Since API version 13, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
+| isShow<sup>11+</sup> | boolean                                                      | Yes  | Whether to show the menu. The default value is **false**. The menu can be displayed only after the entire page is fully constructed. Therefore, to avoid incorrect display positions and shapes, do not set this parameter to **true** while the page is still being constructed. Since API version 18, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | content              | Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Array of menu item icons and text, or custom component.                |
 | options              | [MenuOptions](#menuoptions10)                                | No  | Parameters of the context menu.                                        |
 
@@ -164,7 +164,7 @@ Inherits from [ContextMenuOptions](#contextmenuoptions10).
 
 ## AnimationRange<sup>11+</sup>
 
-type AnimationRange\<T>=[from: T, to: T]
+type AnimationRange\<T> = [from: T, to: T]
 
 Describes the scale ratio relative to the preview image at the beginning and end of the scale animation.
 
@@ -210,13 +210,13 @@ struct MenuExample {
           {
             value: 'Menu1',
             action: () => {
-              console.info('handle Menu1 select')
+              console.info('handle Menu1 select');
             }
           },
           {
             value: 'Menu2',
             action: () => {
-              console.info('handle Menu2 select')
+              console.info('handle Menu2 select');
             }
           },
         ])
@@ -237,7 +237,7 @@ This example shows how to use **bindMenu** with a custom builder to create a cus
 @Entry
 @Component
 struct MenuExample {
-  @State listData: number[] = [0, 0, 0]
+  @State listData: number[] = [0, 0, 0];
 
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
@@ -252,7 +252,7 @@ struct MenuExample {
           .justifyContent(FlexAlign.Center)
           .align(Alignment.Center)
           .onClick(() => {
-            console.info(`Menu${index as number + 1} Clicked!`)
+            console.info(`Menu${index as number + 1} Clicked!`);
           })
 
           if (index != this.listData.length - 1) {
@@ -268,7 +268,7 @@ struct MenuExample {
       Text('click for menu')
         .fontSize(20)
         .margin({ top: 20 })
-        .bindMenu(this.MenuBuilder)
+        .bindMenu(this.MenuBuilder, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
     }
     .height('100%')
     .width('100%')
@@ -348,7 +348,8 @@ struct DirectiveMenuExample {
           .textAlign(TextAlign.Center)
           .bindContextMenu(this.MenuBuilder, ResponseType.RightClick, {
             enableArrow: true,
-            placement: Placement.Bottom
+            placement: Placement.Bottom,
+            hapticFeedbackMode: HapticFeedbackMode.ENABLED
           })
       }
     }
@@ -465,8 +466,8 @@ This example demonstrates how to use **bindContextMenu** with a state variable t
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon")
-  @State isShown: boolean = false
+  private iconStr: ResourceStr = $r("app.media.icon");
+  @State isShown: boolean = false;
 
   @Builder
   MyMenu() {
@@ -499,7 +500,7 @@ struct Index {
             .bindContextMenu(this.isShown, this.MyMenu,
               {
                 preview: this.MyPreview,
-                onDisappear: ()=>{
+                aboutToDisappear: ()=>{
                     this.isShown = false;
                 }
               })
@@ -525,31 +526,34 @@ This example demonstrates how to use **bindContextMenu** with custom animations 
 @Entry
 @Component
 struct MenuExample {
-  @Builder MenuBuilder() {
+  @Builder
+  MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text('Test menu item 1')
+      Text('Menu item 1')
         .fontSize(12)
         .width(200)
         .height(30)
         .textAlign(TextAlign.Center)
       Divider().height(10)
-      Text('Test menu item 2')
+      Text('Menu item 2')
         .fontSize(12)
         .width(100)
         .height(30)
         .textAlign(TextAlign.Center)
     }.width(100)
   }
+
   @Builder
   MyPreview() {
     Column() {
-      Image($r('app.media.icon'))
+      Image($r('app.media.startIcon'))
         .width(50)
         .height(50)
     }
   }
-  @State isShow:boolean = false
-  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @State isShow: boolean = false;
+  private iconStr: ResourceStr = $r("app.media.startIcon");
 
   @Builder
   MyMenu() {
@@ -559,13 +563,14 @@ struct MenuExample {
       MenuItem({ startIcon: this.iconStr, content: "Menu option" })
     }
   }
+
   build() {
     Column() {
       Button('LongPress bindContextMenu')
         .margin({ top: 15 })
         .bindContextMenu(
           this.MenuBuilder,
-          ResponseType.LongPress,{
+          ResponseType.LongPress, {
           transition: TransitionEffect.OPACITY.animation({ duration: 4000, curve: Curve.Ease }).combine(
             TransitionEffect.rotate({ z: 1, angle: 180 })),
           preview: this.MyPreview,
@@ -607,14 +612,14 @@ struct MenuExample {
         value: 'Menu1',
         symbolIcon:this.symbolIconModifier1,
         action: () => {
-          console.info('handle Menu1 select')
+          console.info('handle Menu1 select');
         }
       },
       {
         value: 'Menu2',
         symbolIcon:this.symbolIconModifier2,
         action: () => {
-          console.info('handle Menu2 select')
+          console.info('handle Menu2 select');
         }
       },
     ])
@@ -622,7 +627,7 @@ struct MenuExample {
 }
 ```
 
-![en-us_image_0000001174582862](figures/preview-symbol.jpeg)
+![preview-symbol](figures/preview-symbol.png)
 
 ### Example 10: Using Shared Element Transition
 
@@ -633,7 +638,7 @@ This example demonstrates how to use **bindContextMenu** with **hoverScale** to 
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon")
+  private iconStr: ResourceStr = $r("app.media.app_icon");
 
   @Builder
   MyMenu() {
@@ -744,13 +749,13 @@ struct MenuExample {
             {
               value: 'Menu1',
               action: () => {
-                console.info('handle Menu1 select')
+                console.info('handle Menu1 select');
               }
             },
             {
               value: 'Menu2',
               action: () => {
-                console.info('handle Menu2 select')
+                console.info('handle Menu2 select');
               }
             },
           ],

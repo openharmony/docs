@@ -222,7 +222,7 @@ struct ObservedSendableTest {
 
 ### Using makeObserved and collections.Array/collections.Set/collections.Map Together
 **collections** provide ArkTS container sets for high-performance data passing in concurrent scenarios. For details, see [@arkts.collections (ArkTS Collections)](../../reference/apis-arkts/js-apis-arkts-collections.md).
-makeObserved can be used to import an observable **colletions** container to ArkUI. However, makeObserved cannot be used together with the state variable decorators of V1, such as @State and @Prop. Otherwise, a runtime exception will be thrown.
+makeObserved can be used to import an observable **collections** container to ArkUI. However, makeObserved cannot be used together with the state variable decorators of V1, such as @State and @Prop. Otherwise, a runtime exception will be thrown.
 
 #### collections.Array
 The following APIs can trigger UI re-rendering:
