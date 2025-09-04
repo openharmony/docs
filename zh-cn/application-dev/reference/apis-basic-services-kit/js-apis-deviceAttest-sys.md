@@ -1,5 +1,12 @@
 # @ohos.deviceAttest (设备证明)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: XTS-->
+<!--Owner: @fengqiang-->
+<!--Designer: @fengqiang-->
+<!--Tester: @jiyong_sd-->
+<!--Adviser: @fang-jinxu-->
+
 为了证明设备是OpenHarmony生态中的合法设备，设备证明模块会把设备信息通过云端进行一致性合法校验。
 通过本模块接口，可查询设备在云端校验的结果。
 
@@ -12,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import deviceAttest from '@ohos.deviceAttest';
+import { deviceAttest } from '@kit.BasicServicesKit';
 ```
 
 ## deviceAttest.getAttestStatus
@@ -40,10 +47,10 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 **示例：**
 
 ```ts
-import base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    deviceAttest.getAttestStatus((error: base.BusinessError, value: deviceAttest.AttestResultInfo) => {
+    deviceAttest.getAttestStatus((error: BusinessError, value: deviceAttest.AttestResultInfo) => {
     if (typeof error != 'undefined') {
         console.error("error code:" + error.code + " message:" + error.message);
     } else {
@@ -56,8 +63,8 @@ try {
     }
     })
 } catch (error) {
-    let code: number = (error as base.BusinessError).code;
-    let message: string = (error as base.BusinessError).message;
+    let code: number = (error as BusinessError).code;
+    let message: string = (error as BusinessError).message;
     console.error("error code:" + code + " message:" + message);
 }
 ```
@@ -87,7 +94,7 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 **示例：**
 
 ```ts
-import base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     deviceAttest.getAttestStatus().then((value: deviceAttest.AttestResultInfo) => {
@@ -97,12 +104,12 @@ try {
         " rootHashResult:" + value.softwareResultDetail[2],
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
-    }).catch((error: base.BusinessError) => {
+    }).catch((error: BusinessError) => {
         console.error("error code:" + error.code + " message:" + error.message);
     });
 } catch (error) {
-    let code: number = (error as base.BusinessError).code;
-    let message: string = (error as base.BusinessError).message;
+    let code: number = (error as BusinessError).code;
+    let message: string = (error as BusinessError).message;
     console.error("error code:" + code + " message:" + message);
 }
 ```
@@ -132,7 +139,7 @@ getAttestStatusSync() : AttestResultInfo
 **示例：**
 
 ```ts
-import base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let value: deviceAttest.AttestResultInfo = deviceAttest.getAttestStatusSync();
@@ -143,8 +150,8 @@ try {
     " PCIDResult:" + value.softwareResultDetail[3],
     " reserver:" + value.softwareResultDetail[4]);
 } catch (error) {
-    let code: number = (error as base.BusinessError).code;
-    let message: string = (error as base.BusinessError).message;
+    let code: number = (error as BusinessError).code;
+    let message: string = (error as BusinessError).message;
     console.error("error code:" + code + " message:" + message);
 }
 ```
