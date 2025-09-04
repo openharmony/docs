@@ -10193,7 +10193,7 @@ struct WebComponent {
 
 setSiteIsolationMode(mode: SiteIsolationMode): void
 
-设置站点隔离模式。站点隔离机制将不同源的网站，隔离在不同的Render进程中，减少跨域攻击面。如：PC上原有进程模型是每一个tab对应一个Render进程，站点隔离打开后，可以让不同源的Iframe运行在独立的Render进程中。对于业务上只加载可信网页的三方应用是可以关闭的，提升部分性能减少内存占用，同时减少跨域访问的拦截。默认值取决于不同的设备，PC/Tablet/坚盾模式下严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，Phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。
+设置站点隔离模式。站点隔离机制将不同源的网站，隔离在不同的Render进程中，减少跨域攻击面。如：PC上原有进程模型是每一个Tab对应一个Render进程，站点隔离打开后，可以让不同源的Iframe运行在独立的Render进程中。对于业务上只加载可信网页的三方应用是可以关闭的，提升部分性能减少内存占用，同时减少跨域访问的拦截。默认值取决于不同的设备，PC/Tablet/坚盾模式下严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，Phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。
 
 > **说明：**
 >
