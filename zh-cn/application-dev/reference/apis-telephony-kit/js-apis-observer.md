@@ -737,7 +737,7 @@ observer.off('cellularDataFlowChange');
 
 on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
-订阅sim状态更改事件，使用callback方式作为异步方法。
+订阅sim状态更改事件，使用callback方式作为异步方法。不包含sim是否激活，sim卡是否激活详见sim.isSimActive接口。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
