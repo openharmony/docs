@@ -318,8 +318,6 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 当使用该接口创建模应用子窗口时（即[SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11)中的[ModalityType](arkts-apis-window-e.md#modalitytype14)为APPLICATION_MODALITY），该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回801错误码。当使用该接口创建其他类型子窗口时，该接口在所有设备中可正常调用。
-
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明           |
