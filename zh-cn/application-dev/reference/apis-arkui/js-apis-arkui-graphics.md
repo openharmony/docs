@@ -528,6 +528,15 @@ static resource(value: Resource): LengthMetrics
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[系统资源错误码](errorcode-system-resource.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 180001   | System resources does not exist.             |
+| 180002   | The type of system resources is incorrect.         |
+
 ## ColorMetrics<sup>12+</sup>
 
 用于混合颜色。
@@ -1367,7 +1376,6 @@ struct Index {
               bottomRight: { x: 32, y: 32 }
             }
           });
-          renderNode.shapeClip = renderNode.shapeClip;
         })
     }
   }
@@ -1435,7 +1443,6 @@ struct Index {
       Button("setCircleShape")
         .onClick(() => {
           renderNode.shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
-          renderNode.shapeClip = renderNode.shapeClip;
 
         })
     }
@@ -1509,7 +1516,6 @@ struct Index {
             top: 0,
             bottom: this.getUIContext().vp2px(100)
           });
-          renderNode.shapeClip = renderNode.shapeClip;
         })
     }
   }
@@ -1572,7 +1578,6 @@ struct Index {
       Button("setCommandPath")
         .onClick(()=>{
           renderNode.shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
-          renderNode.shapeClip = renderNode.shapeClip;
         })
     }
   }

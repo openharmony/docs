@@ -288,6 +288,8 @@ Wrong parameters for operating the floating ball.
 
 3.参数的格式不正确。
 
+4.必传的参数没有传入。
+
 **处理步骤**
 
 1.参数值应处于允许的范围内。
@@ -295,6 +297,10 @@ Wrong parameters for operating the floating ball.
 2.参数的长度应处于允许的长度范围内。
 
 3.参数应使用正确的格式。
+
+4.检查是否有未传入的必传参数。
+
+闪控球相关参数具体可见[FloatingBallParams](js-apis-floatingBall.md#floatingballparams)。
 
 ## 1300020 创建闪控球窗口失败
 

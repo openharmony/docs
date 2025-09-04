@@ -301,7 +301,7 @@ struct Index {
 7
 ```
 
-单击replace entire arr后，屏幕将显示以下信息。
+点击replace entire arr后，屏幕将显示以下信息。
 
 ```
 3
@@ -753,7 +753,7 @@ struct Child {
 
   build() {
     Column() {
-      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+      ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })

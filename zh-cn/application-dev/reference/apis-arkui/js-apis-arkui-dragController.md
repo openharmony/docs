@@ -46,7 +46,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -62,6 +62,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 ```ts
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
+
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
 
 @Entry
 @Component
@@ -95,10 +100,6 @@ struct DragControllerPage {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
-              }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
               }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -162,7 +163,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 | Promise&lt;[DragEventParam](#drageventparam12)&gt; | Promise对象，拖拽结束返回结果的回调。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
@@ -178,6 +179,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
+
+class Tmp{
+  event:DragResult|undefined = undefined
+  extraParams:string = ''
+}
 
 @Entry
 @Component
@@ -237,11 +243,6 @@ struct DragControllerPage {
                 builder: ()=>{this.DraggingBuilder()},
                 extraInfo: "DragItemInfoTest"
               }
-
-              class tmp{
-                event:DragResult|undefined = undefined
-                extraParams:string = ''
-              }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo) // 建议使用 this.getUIContext().getDragController().executeDrag()接口
                 .then((eve) => {
@@ -284,11 +285,11 @@ struct DragControllerPage {
 | 名称        | 类型                                                   | 只读 | 可选 | 说明                                     |
 | ----------- | ----------------------------------------------------- | ---- | ---- | --------------------------------------- |
 | pointerId   | number                                                 |  否  |  否   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为[0, 9]的整数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否  |  是  | 设置拖拽过程中携带的数据。 <br/>默认值：<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
-| extraParams | string                                                 | 否  |  是  | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否  |  是  | 设置拖拽过程中携带的数据。 <br/>默认值：空<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
+| extraParams | string                                                 | 否  |  是  | 设置拖拽事件额外信息，具体功能暂未实现。<br/>默认值：空<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否  |  是  | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   |  是  | 设置拖拽过程中背板图处理模式及数量角标的显示。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   |  是  | 设置拖起方延迟提供数据。调用此方法向系统提供数据加载参数，而非直接传入完整的数据对象。当用户将数据拖拽至目标应用程序并释放时，系统将使用此参数从起拖方请求实际数据。与data同时设置时，dataLoadParams生效。默认值为空。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   |  是  | 设置拖起方延迟提供数据。调用此方法向系统提供数据加载参数，而非直接传入完整的数据对象。当用户将数据拖拽至目标应用程序并释放时，系统将使用此参数从起拖方请求实际数据。与data同时设置时，dataLoadParams生效。<br/>默认值：空<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## dragController.createDragAction<sup>(deprecated)</sup>
 
@@ -323,7 +324,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
@@ -414,10 +415,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error("create dragAction Error:" + err.message);
             }
           }
         }
@@ -505,10 +506,10 @@ struct DragControllerPage {
                 return;
               }
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -593,7 +594,7 @@ struct ImageExample {
                   }
 
                   let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-                    console.info("ndq Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+                    console.info(`ndq Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
                   }
                   try {
                     this.dragAction = this.getUIContext()
@@ -607,10 +608,10 @@ struct ImageExample {
                     this.dragAction.on('statusChange', func);
                     this.dragAction.startDrag().then(() => {
                     }).catch((err: Error) => {
-                      console.error("start drag Error:" + err.message);
+                      console.error(`start drag Error: ${err.message}`);
                     })
                   } catch (err) {
-                    console.error("create dragAction Error:" + err.message);
+                    console.error(`create dragAction Error: ${err.message}`);
                   }
                 }
               }
@@ -751,7 +752,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
             try{
               this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
@@ -762,10 +763,10 @@ struct DragControllerPage {
               // 监听状态改变，触发后打印func中的日志
               this.dragAction.on('statusChange', func);
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -833,7 +834,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
             this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
             if(!this.dragAction){
@@ -844,7 +845,7 @@ struct DragControllerPage {
             // 取消监听，发起拖拽后不会打印func中的日志
             this.dragAction.off('statusChange', func);
             this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.info("start drag Error:" + err.message);
+              console.error(`start drag Error: ${err.message}`);
             })
           }
         }
@@ -1034,6 +1035,11 @@ import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry()
 @Component
 struct DragControllerPage {
@@ -1094,10 +1100,6 @@ struct DragControllerPage {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
-            }
-            class tmp{
-              event:DragEvent|undefined = undefined
-              extraParams:string = ''
             }
             let eve:tmp = new tmp()
             this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -1160,8 +1162,8 @@ struct DragControllerPage {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型   |只读| 可选 | 说明                                   |	
-| --------------------- | ------ | ---- | --- | ---------------------------------------------------- |	
+| 名称                 | 类型   |只读| 可选 | 说明                                   |
+| --------------------- | ------ | ---- | --- | ---------------------------------------------------- |
 | stillTimeLimit         | number | 否   |    是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
 | updateInterval         | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
 | updateNotifyCount      | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|

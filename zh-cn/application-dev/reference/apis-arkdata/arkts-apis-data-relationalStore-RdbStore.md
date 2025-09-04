@@ -482,8 +482,6 @@ insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -850,8 +848,6 @@ batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -1043,8 +1039,6 @@ batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBuck
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -1488,8 +1482,6 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -1698,8 +1690,6 @@ deleteSync(predicates: RdbPredicates):number
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
@@ -1925,8 +1915,6 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
@@ -2366,8 +2354,6 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 if (store != undefined) {
   let resultSet: relationalStore.ResultSet | undefined;
   try {
@@ -2832,8 +2818,6 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 // 校验数据库完整性
 if (store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';

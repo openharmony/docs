@@ -6,6 +6,8 @@
 <!--Tester: @Filger-->
 <!--Adviser: @zengyawen-->
 
+从API20开始支持音频低时延耳返。
+
 AudioLoopback是音频返听器，可将音频以更低时延的方式实时传输到耳机中，让用户可以实时听到自己或者其他的相关声音。
 
 常用于K歌类应用，将录制的人声和背景音乐实时传送到耳机中，使用户通过反馈即时进行调整，获得更好的使用体验。
@@ -45,7 +47,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     import { audio } from '@kit.AudioKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     
-    let mode: audio.AudioLoopbackMode.HARDWARE;
+    let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
     let audioLoopback: audio.AudioLoopback;
     let isSupported = audio.getAudioManager().getStreamManager().isAudioLoopbackSupported(mode);
     if (isSupported) {
@@ -127,7 +129,7 @@ import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioLoopbackDemo';
 
-let mode: audio.AudioLoopbackMode.HARDWARE;
+let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
 let audioLoopback: audio.AudioLoopback | undefined = undefined;
 
 let statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
@@ -225,3 +227,6 @@ async function disable() {
   }
 }
 ```
+
+### 音频低时延返听示例
+可参考[使用AudioLoopback启用音频低时延返听的示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)。

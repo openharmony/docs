@@ -1,4 +1,10 @@
 # @ohos.multimedia.avsession (媒体会话管理)(系统接口)
+<!--Kit: AVSession Kit-->
+<!--Subsystem:Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester:@chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 媒体会话管理提供媒体播控相关功能的接口，目的是让应用接入播控中心。
 
@@ -184,11 +190,13 @@ getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体会话管理错误码](errorcode-avsession.md)。
 
-| 错误码ID | 错误信息 |
+| 错误码ID | 错误信息 
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 |  permission denied. |
+| 202 |  Not System App.  |
+| 401 |  parameter check failed. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  |Session service exception. |
 
 **示例：**
@@ -657,11 +665,11 @@ on(type: 'sessionCreate', callback: (session: AVSessionDescriptor) => void): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 201 | permission denied. |
+| 202 | Not System App. |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
@@ -775,11 +783,11 @@ off(type: 'sessionCreate', callback?: (session: AVSessionDescriptor) => void): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 201 | permission denied. |
+| 202 | Not System App. |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
@@ -2467,4 +2475,4 @@ aVCastController.off('videoSizeChange');
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | DEVICE_LOG_FULL       | 1    | 日志已满。    |
-| DEVICE_LOG_EXCEPTION       | 2    | 日写入异常。 |
+| DEVICE_LOG_EXCEPTION       | 2    | 日志写入异常。 |

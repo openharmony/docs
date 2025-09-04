@@ -107,7 +107,7 @@ function testPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.
   preconfigRatio: camera.PreconfigRatio): void {
   try {
     photoSession.preconfig(preconfigType, preconfigRatio);
-    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+    console.info(`preconfig success preconfigType: ${preconfigType}, preconfigRatio: ${preconfigRatio}`);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`The preconfig call failed. error code: ${err.code}`);

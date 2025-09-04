@@ -29,6 +29,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <string.h>
+
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
@@ -50,12 +51,14 @@ OH_Huks_Result InitParamSet(
     }
     return ret;
 }
+
 struct OH_Huks_Param g_testQueryParam[] = {
     {
         .tag = OH_HUKS_TAG_AUTH_STORAGE_LEVEL,
         .uint32Param = OH_HUKS_AUTH_STORAGE_LEVEL_DE
     }, 
 };
+
 static napi_value ListAliases(napi_env env, napi_callback_info info)
 {
     struct OH_Huks_ParamSet *testQueryParamSet = nullptr;
@@ -63,8 +66,7 @@ static napi_value ListAliases(napi_env env, napi_callback_info info)
     struct OH_Huks_Result ohResult;
     do {
         /* 1.初始化密钥属性集 */
-        ohResult = InitParamSet(&testQueryParamSet, g_testQueryParam,
-            sizeof(g_testQueryParam) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&testQueryParamSet, g_testQueryParam, sizeof(g_testQueryParam) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

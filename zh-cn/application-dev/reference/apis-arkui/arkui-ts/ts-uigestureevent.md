@@ -12,7 +12,7 @@
 >
 >本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 
 ## UIGestureEvent
 
@@ -173,7 +173,7 @@ onAction(event: Callback\<GestureEvent>): TapGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 点击手势处理器识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 点击手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -230,7 +230,7 @@ onAction(event: Callback\<GestureEvent>): LongPressGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 长按手势处理器识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 长按手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -252,7 +252,7 @@ onActionEnd(event: Callback\<GestureEvent>): LongPressGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 长按手势处理器结束回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 长按手势处理器结束回调。 |
 
 **返回值：**
 
@@ -296,7 +296,7 @@ onActionCancel(event: Callback\<GestureEvent>): LongPressGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 长按手势处理器取消回调。该回调会返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 长按手势处理器取消回调。该回调会返回手势事件信息。 |
 
 **返回值：**
 
@@ -354,7 +354,7 @@ onActionStart(event: Callback\<GestureEvent>): PanGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -376,7 +376,7 @@ onActionUpdate(event: Callback\<GestureEvent>): PanGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器更新回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器更新回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
 
 **返回值：**
 
@@ -398,7 +398,7 @@ onActionEnd(event: Callback\<GestureEvent>): PanGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器结束回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器结束回调。 |
 
 **返回值：**
 
@@ -442,7 +442,7 @@ onActionCancel(event: Callback\<GestureEvent>): PanGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器取消回调。返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器取消回调。返回手势事件信息。 |
 
 **返回值：**
 
@@ -499,7 +499,7 @@ onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 滑动手势处理器识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 滑动手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -557,7 +557,7 @@ onActionStart(event: Callback\<GestureEvent>): PinchGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 捏合手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -579,7 +579,7 @@ onActionUpdate(event: Callback\<GestureEvent>): PinchGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器更新回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 捏合手势处理器更新回调。 |
 
 **返回值：**
 
@@ -601,7 +601,7 @@ onActionEnd(event: Callback\<GestureEvent>): PinchGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器结束回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 捏合手势处理器结束回调。 |
 
 **返回值：**
 
@@ -645,7 +645,7 @@ onActionCancel(event: Callback\<GestureEvent>): PinchGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器取消回调。返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 捏合手势处理器取消回调。返回手势事件信息。 |
 
 **返回值：**
 
@@ -702,7 +702,7 @@ onActionStart(event: Callback\<GestureEvent>): RotationGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 旋转手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -724,7 +724,7 @@ onActionUpdate(event: Callback\<GestureEvent>): RotationGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器更新回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 旋转手势处理器更新回调。 |
 
 **返回值：**
 
@@ -746,7 +746,7 @@ onActionEnd(event: Callback\<GestureEvent>): RotationGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器结束回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 旋转手势处理器结束回调。 |
 
 **返回值：**
 
@@ -790,7 +790,7 @@ onActionCancel(event: Callback\<GestureEvent>): RotationGestureHandler
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器取消回调。返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 旋转手势处理器取消回调。返回手势事件信息。 |
 
 **返回值：**
 

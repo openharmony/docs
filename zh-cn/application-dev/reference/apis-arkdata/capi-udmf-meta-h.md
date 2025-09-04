@@ -73,8 +73,8 @@
 | UDMF_META_ENCAPSULATED_POSTSCRIPT "com.adobe.encapsulated-postscript" | Encapsulated PostScript类型，归属类型为POSTSCRIPT。<br>**起始版本：** 12 |
 | UDMF_META_VIDEO "general.video"                              | 所有视频的基类型，归属类型为MEDIA。<br>**起始版本：** 12     |
 | UDMF_META_AVI "general.avi"                                  | AVI视频类型，归属类型为VIDEO。<br>**起始版本：** 12          |
-| UDMF_META_MPEG "general.mpeg"                                | MPGE-1或MPGE-2视频类型，归属类型为VIDEO。<br>**起始版本：** 12 |
-| UDMF_META_MPEG4 "general.mpeg-4"                             | MPGE-4视频类型，归属类型为VIDEO。<br>**起始版本：** 12       |
+| UDMF_META_MPEG "general.mpeg"                                | MPEG-1或MPEG-2视频类型，归属类型为VIDEO。<br>**起始版本：** 12 |
+| UDMF_META_MPEG4 "general.mpeg-4"                             | MPEG-4视频类型，归属类型为VIDEO。<br>**起始版本：** 12       |
 | UDMF_META_VIDEO_3GPP "general.3gpp"                          | 3GPP视频类型，归属类型为VIDEO。<br>**起始版本：** 12         |
 | UDMF_META_VIDEO_3GPP2 "general.3gpp2"                        | 3GPP2视频类型，归属类型为VIDEO。<br>**起始版本：** 12        |
 | UDMF_META_WINDOWS_MEDIA_WM "com.microsoft.windows-media-wm"  | WINDOWS WM视频类型，归属类型为VIDEO。<br>**起始版本：** 12   |

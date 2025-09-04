@@ -212,7 +212,6 @@ export default {
   justify-content: center;
   margin-left: 30px;
   margin-right: 30px;
-  justify-content: space-around;
 }
 .input-text {
   height: 80px;
