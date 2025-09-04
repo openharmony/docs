@@ -11,8 +11,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
-> 本模块接口仅可在Stage模型下使用。<br>
+> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口仅可在Stage模型下使用。
 > 本模块接口均为系统接口。
 
 ## 导入模块
@@ -26,11 +26,7 @@ import { verticalPanelManager } from '@kit.AbilityKit';
 startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string, Object&gt;, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback
 ): Promise\<void>
 
-启动带有面板配置的垂域选择器。仅支持处于前台的应用调用。
-
-> **说明：**
->
-> 如果目标能力是可见的，可以启动目标能力；如果目标能力是不可见的，需要申请权限：ohos.permission.START_INVISIBLE_ABILITY 来启动目标不可见能力。
+启动带有面板配置的垂域UIAbility。仅支持在主线程调用，仅支持处于前台的应用调用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -40,7 +36,7 @@ startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- |  -------- |
-| context | [common.UIAbilityContext](./js-apis-inner-application-uiAbilityContext.md) | 是 | 指示媒体应用程序的UI功能上下文。 |
+| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 指示媒体应用程序的UI功能上下文。 |
 | wantParam | Record<string, Object> | 是 | 表示启动UIExtensionAbility组件时传递的参数。 |
 | panelConfig | [PanelConfig](#panelconfig) | 是 | 面板配置参数。 |
 | panelStartCallback | [PanelStartCallback](#panelstartcallback) | 是 | 拉起面板执行结果的回调。 |
@@ -66,6 +62,7 @@ startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string
 ```ts
 import { common, verticalPanelManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -101,14 +98,13 @@ struct Index {
     };
 
     // Param[2] PanelConfig
-    let sourceAppInfo: Record<string, string> = {
-    }
+    let sourceAppInfo: Record<string, string> = {}
     sourceAppInfo[verticalPanelManager.SOURCE_APP_BUNDLE_NAME] = 'unknown.bundle.name'
     sourceAppInfo[verticalPanelManager.SOURCE_APP_MODULE_NAME] = 'unknown.module.name'
     sourceAppInfo[verticalPanelManager.SOURCE_APP_ABILITY_NAME] = 'unknown.ability.name'
     sourceAppInfo[verticalPanelManager.SOURCE_APP_WINDOW_ID] = '30'
     sourceAppInfo[verticalPanelManager.SOURCE_APP_SCREEN_MODE] = '1'
-    
+
     let panelConfig: verticalPanelManager.PanelConfig = {
       type: verticalPanelManager.VerticalType.NAVIGATION,
       sourceAppInfo: sourceAppInfo
@@ -119,7 +115,7 @@ struct Index {
       onError: (code: number, name: string, message: string): void => {
         console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
       },
-      onResult: (result: common.AbilityResult):void => {
+      onResult: (result: common.AbilityResult): void => {
         console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
       },
     }
@@ -173,7 +169,7 @@ struct Index {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| onError | [OnErrorFn](#onerrorfn) | 否 | 是 | 在发生除与UIAbility或UIExtensionAbility断开连接之外的错误时调用。|
+| onError | [OnErrorFn](#onerrorfn) | 否 | 否 | 在发生除与UIAbility或UIExtensionAbility断开连接之外的错误时调用。|
 | onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 在UIExtensionAbility终止并返回结果时调用。 |
 
 ## OnErrorFn

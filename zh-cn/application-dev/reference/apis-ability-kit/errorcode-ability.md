@@ -1242,7 +1242,7 @@ Want中传入了DLP文件。
 
 **错误信息**
 
-Window does not exits.
+The main window of this ability of this context does not exits.
 
 **错误描述**
 
@@ -1250,11 +1250,11 @@ Window does not exits.
 
 **可能原因**
 
-1. 获取到的UIContent为空。
+获取到的UIContent为空。
 
 **处理步骤**
 
-1. 检查传入接口的context对象是否存在。
+检查传入接口的context对象是否存在。
 
 ## 16000151 无效wantAgent对象
 
