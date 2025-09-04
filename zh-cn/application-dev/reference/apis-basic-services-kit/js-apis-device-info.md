@@ -1,6 +1,6 @@
 # @ohos.deviceInfo (设备信息)
-<!--Kit: NDK deviceInfo-->
-<!--Subsystem: startup-->
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Startup-->
 <!--Owner: @chenjinxiang3-->
 <!--Designer: @liveery-->
 <!--Tester: @liuhaonan2-->
