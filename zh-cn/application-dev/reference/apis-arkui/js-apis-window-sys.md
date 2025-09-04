@@ -1550,7 +1550,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info(`server died`);
   }
 }
 
@@ -1643,7 +1643,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info(`server died`);
   }
 }
 
@@ -3086,7 +3086,7 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置是否隐藏非系统级悬浮窗口，使用callback异步回调。
+设置是否隐藏非系统级悬浮窗口（通过[createWindow()](arkts-apis-window-f.md#windowcreatewindow9)创建），使用callback异步回调。
 
 非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
 
@@ -3417,7 +3417,7 @@ try {
 }
 ```
 
-## setWindowContainerModalColor<sup>20+</sup>
+### setWindowContainerModalColor<sup>20+</sup>
 
 setWindowContainerModalColor(activeColor: string, inactiveColor: string): void
 
@@ -3850,7 +3850,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('disableWindowDecor');
+    console.info(`disableWindowDecor`);
     windowStage.disableWindowDecor();
   }
 };
@@ -3895,7 +3895,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info(`onWindowStageCreate`);
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
