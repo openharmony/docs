@@ -1,4 +1,10 @@
 # @ohos.request.cacheDownload (缓存下载)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @fang-jinxu-->
 
 request部件主要给应用提供上传下载文件、后台传输代理的基础能力。
 
@@ -24,9 +30,9 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
-| 名称      | 类型                       | 必填 | 说明                    |
-|---------|--------------------------|----|-----------------------|
-| headers | Record\<string, string\> | 否  | 缓存下载任务在HTTP传输时使用的请求头。 |
+| 名称   | 类型     | 只读 | 可选 | 说明                            |
+|------|--------|----|----|-------------------------------|
+| headers | Record\<string, string\> | 否  | 是 | 缓存下载任务在HTTP传输时使用的请求头。 |
 
 ## cacheDownload.download
 
