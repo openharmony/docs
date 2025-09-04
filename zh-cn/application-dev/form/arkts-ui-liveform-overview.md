@@ -18,10 +18,6 @@
 
 场景动效类型互动卡片支持实现动态效果。以天气卡片为例，当天气变为雷雨天气时，卡片激活并触发互动卡片动效。动效结束后，卡片恢复原有显示效果。详细信息请参考[场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)。
 
-**图2** 场景动效类型互动卡片样例
-
-![live-form-weather-demo.gif](figures/live-form-weather-demo.gif)
-
 ## 约束和限制
 - 互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
 <!--RP1--><!--RP1End-->
