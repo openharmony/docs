@@ -46,9 +46,9 @@
 
    ```ts
    osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((isAccountExisted: boolean)=>{
-     console.log('execute hasAccount successfully, isAccountExisted:' + JSON.stringify(isAccountExisted));
+     console.info('execute hasAccount successfully, isAccountExisted:' + JSON.stringify(isAccountExisted));
    }).catch((err: BusinessError)=>{
-     console.error('execute hasAccount err:' + JSON.stringify(err));
+     console.error(`execute hasAccount code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -74,13 +74,13 @@
      osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
        if (err) {
-        console.error('createOsAccountForDomain exception:' + JSON.stringify(err));
+        console.error(`createOsAccountForDomain exception:code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+        console.info('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
       }
    });
    } catch (e) {
-   console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
+   console.error(`createOsAccountForDomain exception: code is ${e.code}, message is ${e.message}`);
    }
    ```
 
@@ -102,7 +102,7 @@
    try {
      localId = await osAccountMgr.getOsAccountLocalIdForDomain(domainInfo);
    } catch (err) {
-     console.error('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
+     console.error(`getOsAccountLocalIdForDomain exception: code is ${err.code}, message is ${err.message}`);
    }
    ```
 
@@ -112,13 +112,13 @@
    try {
      osAccountMgr.removeOsAccount(localId, (err: BusinessError)=>{
        if (err) {
-           console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
+           console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);
        } else {
-           console.log('removeOsAccount successfully');
+           console.info('removeOsAccount successfully');
        }
      });
    } catch (err) {
-     console.error('removeOsAccount exception: ' + JSON.stringify(err));
+     console.error(`removeOsAccount exception: code is ${err.code}, message is ${err.message}`);
    }
    ```
 
@@ -144,12 +144,12 @@
      osAccount.DomainAccountManager.getAccountInfo(options,
        (err: BusinessError, result: osAccount.DomainAccountInfo) => {
        if (err) {
-           console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
+           console.error(`call getAccountInfo failed, code is ${err.code}, message is ${err.message}`);
        } else {
-           console.log('getAccountInfo result: ' + result);
+           console.info('getAccountInfo result: ' + result);
        }
      });
    } catch (err) {
-       console.error('getAccountInfo exception = ' + JSON.stringify(err));
+       console.error(`getAccountInfo exception = code is ${err.code}, message is ${err.message}`);
    }
    ```

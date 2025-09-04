@@ -1,5 +1,12 @@
 # FAQs
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## What should I do if the device list obtained by using usbManager.getDevices is empty when the device is connected to a PC using a USB cable?
 
 ### Symptom

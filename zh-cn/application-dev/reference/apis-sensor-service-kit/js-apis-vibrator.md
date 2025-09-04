@@ -930,7 +930,7 @@ isSupportEffectSync(effectId: string): boolean
 
 ## vibrator.getEffectInfoSync<sup>19+</sup>
 
-getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
+getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo
 
 通过设备ID和可控马达ID获取预置振动效果信息，用于判断该预置振动效果是否受支持。
 

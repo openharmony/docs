@@ -15,7 +15,7 @@
 
 >**注意：**
 >
->下表中名称包含“DATA_LABEL”的关键资产属性用于存储业务自定义信息，内容不会被加密，请勿存放个人数据。
+>下表中“ASSET_TAG_ALIAS”和名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放敏感个人数据。
 
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
@@ -72,7 +72,8 @@
 
    #include "asset/asset_api.h"
 
-   void AddAsset() {
+   static napi_value AddAsset(napi_env env, napi_callback_info info)
+   {
        static const char *SECRET = "demo_pwd";
        static const char *ALIAS = "demo_alias";
        static const char *LABEL = "demo_label";
@@ -87,11 +88,9 @@
            {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label},
        };
 
-       int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
-       if (ret == ASSET_SUCCESS) {
-           // 添加关键资产成功。
-       } else {
-           // 添加关键资产失败。
-       }
+       int32_t addResult = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
+       napi_value ret;
+       napi_create_int32(env, addResult, &ret);
+       return ret;
    }
    ```

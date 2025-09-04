@@ -587,7 +587,7 @@ struct Index {
 
 ### 在状态管理V2中使用animateTo动画效果异常
 
-在下面的场景中，[animateTo](../../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)暂不支持直接在状态管理V2中使用。
+在下面的场景中，[animateTo](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)暂不支持直接在状态管理V2中使用。
 
 ```ts
 @Entry

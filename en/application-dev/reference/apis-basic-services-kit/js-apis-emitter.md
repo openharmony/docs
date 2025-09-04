@@ -393,6 +393,8 @@ emit(event: InnerEvent, data?: EventData): void
 
 Emits the specified event.
 
+This API can be used to emit data objects across threads. The data objects must meet the specifications specified in [Overview of Inter-thread Communication Objects](../../arkts-utils/serializable-overview.md). Currently, complex data decorated by decorators such as [@State](../../ui/state-management/arkts-state.md) and [@Observed](../../ui/state-management/arkts-observed-and-objectlink.md) is not supported.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Notification.Emitter
@@ -428,6 +430,8 @@ emit(eventId: string, data?: EventData): void
 
 Emits the specified event.
 
+This API can be used to emit data objects across threads. The data objects must meet the specifications specified in [Overview of Inter-thread Communication Objects](../../arkts-utils/serializable-overview.md). Currently, complex data decorated by decorators such as [@State](../../ui/state-management/arkts-state.md) and [@Observed](../../ui/state-management/arkts-observed-and-objectlink.md) is not supported.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Notification.Emitter
@@ -457,6 +461,8 @@ emitter.emit("eventId", eventData);
 emit<T\>(eventId: string, data?: GenericEventData<T\>): void
 
 Emits the specified event.
+
+This API can be used to emit data objects across threads. The data objects must meet the specifications specified in [Overview of Inter-thread Communication Objects](../../arkts-utils/serializable-overview.md). Currently, complex data decorated by decorators such as [@State](../../ui/state-management/arkts-state.md) and [@Observed](../../ui/state-management/arkts-observed-and-objectlink.md) is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -495,6 +501,8 @@ emit(eventId: string, options: Options, data?: EventData): void
 
 Emits an event of a specified priority.
 
+This API can be used to emit data objects across threads. The data objects must meet the specifications specified in [Overview of Inter-thread Communication Objects](../../arkts-utils/serializable-overview.md). Currently, complex data decorated by decorators such as [@State](../../ui/state-management/arkts-state.md) and [@Observed](../../ui/state-management/arkts-observed-and-objectlink.md) is not supported.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Notification.Emitter
@@ -529,6 +537,8 @@ emitter.emit("eventId", options, eventData);
 emit<T\>(eventId: string, options: Options, data?: GenericEventData<T\>): void
 
 Emits an event of a specified priority.
+
+This API can be used to emit data objects across threads. The data objects must meet the specifications specified in [Overview of Inter-thread Communication Objects](../../arkts-utils/serializable-overview.md). Currently, complex data decorated by decorators such as [@State](../../ui/state-management/arkts-state.md) and [@Observed](../../ui/state-management/arkts-observed-and-objectlink.md) is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

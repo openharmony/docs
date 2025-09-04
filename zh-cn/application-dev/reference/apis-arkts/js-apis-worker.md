@@ -698,7 +698,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后执行的回调函数。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后执行。 |
 
 **错误码：**
 
@@ -871,7 +871,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调函数。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后执行。 |
 
 **错误码：**
 
@@ -1682,7 +1682,7 @@ removeEventListener(type: string, callback?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 需要移除的事件类型。 |
-| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调函数。 |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 回调函数，删除监听事件后执行。 |
 
 **示例：**
 

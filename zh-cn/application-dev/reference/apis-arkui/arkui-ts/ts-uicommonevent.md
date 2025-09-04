@@ -1,4 +1,10 @@
 # 设置事件回调
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 >**说明：**
 >
@@ -43,7 +49,7 @@ setOnTouch(callback: Callback\<TouchEvent> | undefined): void
 
 setOnAppear(callback: Callback\<void> | undefined): void
 
-设置[onAppear](./ts-universal-events-show-hide.md#onappear)事件的回调。
+设置[onAppear](./ts-universal-events-show-hide.md#onappear)挂载显示事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -53,14 +59,14 @@ setOnAppear(callback: Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onAppear事件的回调函数。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | 挂载显示事件的回调函数。 |
 
 
 ### setOnDisappear
 
 setOnDisappear(callback: Callback\<void> | undefined): void
 
-设置[onDisappear](./ts-universal-events-show-hide.md#ondisappear)事件的回调。
+设置[onDisAppear](./ts-universal-events-show-hide.md#ondisappear)卸载消失事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -70,7 +76,7 @@ setOnDisappear(callback: Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onDisappear事件的回调。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | 卸载消失事件的回调。 |
 
 ### setOnKeyEvent
 
@@ -92,7 +98,7 @@ setOnKeyEvent(callback: Callback\<KeyEvent> | undefined): void
 
 setOnFocus(callback:  Callback\<void> | undefined): void
 
-设置[onFocus](./ts-universal-focus-event.md#onfocus)事件的回调。
+设置[onFocus](./ts-universal-focus-event.md#onfocus)获焦事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -102,13 +108,13 @@ setOnFocus(callback:  Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onFocus事件的回调。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | 获焦事件的回调。 |
 
 ### setOnBlur
 
 setOnBlur(callback: Callback\<void> | undefined): void
 
-设置[onBlur](./ts-universal-focus-event.md#onblur)事件的回调。
+设置[onBlur](./ts-universal-focus-event.md#onblur)失焦事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -118,13 +124,13 @@ setOnBlur(callback: Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onBlur事件的回调。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | 失焦事件的回调。 |
 
 ### setOnHover
 
 setOnHover(callback: HoverCallback | undefined): void
 
-设置[onHover](./ts-universal-events-hover.md#onhover)事件的回调。
+设置[onHover](./ts-universal-events-hover.md#onhover)悬浮事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -134,13 +140,13 @@ setOnHover(callback: HoverCallback | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [HoverCallback](./ts-types.md#hovercallback12)  \| undefined | 是   | onHover事件的回调函数。 |
+| callback  | [HoverCallback](./ts-types.md#hovercallback12)  \| undefined | 是   | 悬浮事件的回调函数。 |
 
 ### setOnMouse
 
 setOnMouse(callback: Callback\<MouseEvent> | undefined): void
 
-设置[onMouse](./ts-universal-mouse-key.md#onmouse)事件的回调。
+设置[onMouse](./ts-universal-mouse-key.md#onmouse)鼠标事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -150,13 +156,13 @@ setOnMouse(callback: Callback\<MouseEvent> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  |  [Callback](./ts-types.md#callback12)<[MouseEvent](./ts-universal-mouse-key.md#mouseevent对象说明)>   \| undefined | 是   | onMouse事件的回调函数。 |
+| callback  |  [Callback](./ts-types.md#callback12)<[MouseEvent](./ts-universal-mouse-key.md#mouseevent对象说明)>   \| undefined | 是   | 鼠标事件的回调函数。 |
 
 ### setOnSizeChange
 
 setOnSizeChange(callback: SizeChangeCallback | undefined): void
 
-设置[onSizeChange](./ts-universal-component-size-change-event.md#onsizechange)事件的回调。
+设置[onSizeChange](./ts-universal-component-size-change-event.md#onsizechange)组件区域变化事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -166,13 +172,13 @@ setOnSizeChange(callback: SizeChangeCallback | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [SizeChangeCallback](./ts-universal-component-size-change-event.md#sizechangecallback)   \| undefined | 是   | onSizeChange事件的回调函数。 |
+| callback  | [SizeChangeCallback](./ts-universal-component-size-change-event.md#sizechangecallback)   \| undefined | 是   | 组件区域变化事件的回调函数。 |
 
 ### setOnVisibleAreaApproximateChange
 
 setOnVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: VisibleAreaChangeCallback | undefined): void
 
-设置限制回调间隔的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件的回调。
+设置限制回调间隔的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)可见区域变化事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -183,7 +189,7 @@ setOnVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: Visib
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | options  | [VisibleAreaEventOptions](./ts-types.md#visibleareaeventoptions12) | 是   | 可见区域变化相关的参数。 |
-| event  | [VisibleAreaChangeCallback](./ts-types.md#visibleareachangecallback12)   \| undefined | 是   | onVisibleAreaChange事件的回调函数。当组件可见面积与自身面积的比值接近options中设置的阈值时触发该回调。 |
+| event  | [VisibleAreaChangeCallback](./ts-types.md#visibleareachangecallback12)   \| undefined | 是   | 可见区域变化事件的回调函数。当组件可见面积与自身面积的比值接近options中设置的阈值时触发该回调。 |
 
 >**说明：**
 >

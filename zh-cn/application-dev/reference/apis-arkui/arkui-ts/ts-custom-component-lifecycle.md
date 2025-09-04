@@ -607,3 +607,13 @@ struct IndexComponent {
 ```
 
 ![onWillApplyTheme_V2](figures/onWillApplyTheme_V2.png)
+
+## pageTransition<sup>9+</sup>
+
+pageTransition?(): void
+
+进入此页面或移动到其他页面时实现动画。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full

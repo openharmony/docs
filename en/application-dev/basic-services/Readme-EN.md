@@ -8,3 +8,6 @@
 - [Pasteboard Service](pasteboard/Readme-EN.md)
 - [Upload/Download](request/Readme-EN.md)
 - [Compression/Decompression](compress/Readme-EN.md)
+<!--Del-->
+- [Word Selection Service](selectionInput/Readme-EN.md)
+<!--DelEnd-->

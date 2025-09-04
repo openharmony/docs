@@ -50,13 +50,15 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => {
-  if (error) {
-    console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
-  } else {
-    console.info('Succeeded in obtaining the image information.');
-  }
-})
+async function GetImageInfo(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => {
+    if (error) {
+      console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
+    } else {
+      console.info('Succeeded in obtaining the image information.');
+    }
+  })
+}
 ```
 
 ## getImageInfo
@@ -82,13 +84,15 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-  if (err) {
-    console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Succeeded in obtaining the image information.');
-  }
-})
+async function GetImageInfo(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
+    if (err) {
+      console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
+    } else {
+      console.info('Succeeded in obtaining the image information.');
+    }
+  })
+}
 ```
 
 ## getImageInfo
@@ -120,12 +124,14 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo(0)
-  .then((imageInfo: image.ImageInfo) => {
-    console.info('Succeeded in obtaining the image information.');
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
-  })
+async function GetImageInfo(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageInfo(0)
+    .then((imageInfo: image.ImageInfo) => {
+      console.info('Succeeded in obtaining the image information.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
+    })
+}
 ```
 
 ## getImageInfoSync<sup>12+</sup>
@@ -150,23 +156,19 @@ getImageInfoSync(index?: number): ImageInfo
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { image } from '@kit.ImageKit';
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let imageInfo = imageSource.getImageInfoSync(0);
-if (imageInfo == undefined) {
-  console.error('Failed to obtain the image information.');
-} else {
-  console.info('Succeeded in obtaining the image information.');
-  console.info('imageInfo.size.height:' + imageInfo.size.height);
-  console.info('imageInfo.size.width:' + imageInfo.size.width);
+function GetImageInfoSync(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let imageInfo = imageSource.getImageInfoSync(0);
+  if (imageInfo == undefined) {
+    console.error('Failed to obtain the image information.');
+  } else {
+    console.info('Succeeded in obtaining the image information.');
+    console.info('imageInfo.size.height:' + imageInfo.size.height);
+    console.info('imageInfo.size.width:' + imageInfo.size.width);
+  }
 }
 ```
 
@@ -215,13 +217,15 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let options: image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
-imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
-.then((data: string) => {
-  console.info('Succeeded in getting the value of the specified attribute key of the image.');
-}).catch((error: BusinessError) => {
-  console.error('Failed to get the value of the specified attribute key of the image.');
-})
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  let options: image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+  imageSourceObj.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
+    .then((data: string) => {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }).catch((error: BusinessError) => {
+    console.error(`Failed to get the value of the specified attribute key of the image, error.code ${error.code}, error.message ${error.message}`);
+  })
+}
 ```
 
 ## getImageProperties<sup>12+</sup>
@@ -259,15 +263,16 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
-imageSourceApi.getImageProperties(key).then((data) => {
-  console.info(JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(JSON.stringify(err));
-});
+async function GetImageProperties(imageSourceObj : image.ImageSource) {
+  let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
+  imageSourceObj.getImageProperties(key).then((data) => {
+    console.info(JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(JSON.stringify(err));
+  });
+}
 ```
 
 ## getImagePropertySync<sup>20+</sup>
@@ -308,23 +313,19 @@ getImagePropertySync(key:PropertyKey): string
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { image } from '@kit.ImageKit';
-import { common } from '@kit.AbilityKit';
+function GetImagePropertySync(context : Context) {
+  let resourceMgr = context.resourceManager;
+  if (resourceMgr == null) {
+    return;
+  }
+  let fd = resourceMgr.getRawFdSync("example.jpg");
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let resourceMgr = context.resourceManager;
-if (resourceMgr == null) {
-  return;
+  const imageSourceObj = image.createImageSource(fd);
+  console.info("getImagePropertySync");
+  let bits_per_sample = imageSourceObj.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
+  console.info("bits_per_sample : " + bits_per_sample);
 }
-let fd = resourceMgr.getRawFdSync("example.jpg");
-
-const imageSourceApi = image.createImageSource(fd);
-console.info("getImagePropertySync");
-let bits_per_sample = imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
-console.info("bits_per_sample : " + bits_per_sample);
 ```
 
 ## modifyImageProperty<sup>11+</sup>
@@ -369,15 +370,17 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
-  imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width: string) => {
-    console.info(`ImageWidth is :${width}`);
+async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+    imageSourceObj.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width: string) => {
+      console.info(`ImageWidth is :${width}`);
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to get the Image Width, error.code ${error.code}, error.message ${error.message}`);
+    })
   }).catch((error: BusinessError) => {
-    console.error('Failed to get the Image Width.');
+    console.error(`Failed to modify the Image Width, error.code ${error.code}, error.message ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error('Failed to modify the Image Width');
-})
+}
 ```
 
 ## modifyImageProperties<sup>12+</sup>
@@ -418,23 +421,24 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyValues: Record<PropertyKey, string|null> = {
+async function ModifyImageProperties(imageSourceObj : image.ImageSource) {
+  let keyValues: Record<PropertyKey, string|null> = {
     [image.PropertyKey.IMAGE_WIDTH] : "1024",
     [image.PropertyKey.IMAGE_LENGTH] : "1024"
-};
-let checkKey = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
-imageSourceApi.modifyImageProperties(keyValues).then(() => {
-  imageSourceApi.getImageProperties(checkKey).then((data) => {
-    console.info(JSON.stringify(data));
+  };
+  let checkKey = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
+  imageSourceObj.modifyImageProperties(keyValues).then(() => {
+    imageSourceObj.getImageProperties(checkKey).then((data) => {
+      console.info(`Image Width and Image Height:${data}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to modify the Image Width and Image Height, error.code ${err.code}, error.message ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(JSON.stringify(err));
+    console.error(`Failed to modify the Image Width and Image Height, error.code ${err.code}, error.message ${err.message}`);
   });
-}).catch((err: BusinessError) => {
-  console.error(JSON.stringify(err));
-});
+}
 ```
 
 ## updateData<sup>9+</sup>
@@ -465,12 +469,14 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const array: ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10).then(() => {
-  console.info('Succeeded in updating data.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
-})
+async function UpdateDatay(imageSourceObj : image.ImageSource) {
+  const array: ArrayBuffer = new ArrayBuffer(100);
+  imageSourceObj.updateData(array, false, 0, 10).then(() => {
+    console.info('Succeeded in updating data.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 
@@ -497,14 +503,16 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const array: ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in updating data.');
-  }
-})
+async function UpdateDatay(imageSourceObj : image.ImageSource) {
+  const array: ArrayBuffer = new ArrayBuffer(100);
+  imageSourceObj.updateData(array, false, 0, 10, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in updating data.');
+    }
+  })
+}
 ```
 
 ## createPicture<sup>13+</sup>
@@ -539,13 +547,11 @@ createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function CreatePicture() {
+async function CreatePicture(imageSourceObj : image.ImageSource) {
   let options: image.DecodingOptionsForPicture = {
-    desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] //GAINMAP为需要解码的辅助图类型。 
+    desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。 
   };
-  let pictureObj: image.Picture = await imageSourceApi.createPicture(options);
+  let pictureObj: image.Picture = await imageSourceObj.createPicture(options);
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
@@ -589,13 +595,11 @@ createPictureAtIndex(index: number): Promise\<Picture>
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function CreatePictures() {
-  let frameCount: number = await imageSourceApi.getFrameCount();
+async function CreatePictures(imageSourceObj : image.ImageSource) {
+  let frameCount: number = await imageSourceObj.getFrameCount();
   for (let index = 0; index < frameCount; index++) {
     try {
-      let pictureObj: image.Picture = await imageSourceApi.createPictureAtIndex(index);
+      let pictureObj: image.Picture = await imageSourceObj.createPictureAtIndex(index);
       console.info('Create picture succeeded for frame: ' + index);
     } catch (e) {
       console.error('Create picture failed for frame: ' + index);
@@ -635,11 +639,13 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.createPixelMap().then((pixelMap: image.PixelMap) => {
-  console.info('Succeeded in creating pixelMap object through image decoding parameters.');
-}).catch((error: BusinessError) => {
-  console.error('Failed to create pixelMap object through image decoding parameters.');
-})
+async function CreatePixelMap(imageSourceObj : image.ImageSource) {
+  imageSourceObj.createPixelMap().then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in creating pixelMap object through image decoding parameters.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelMap object through image decoding parameters, error.code ${error.code}, error.message ${error.message}`);
+  })
+}
 ```
 
 ## createPixelMap<sup>7+</sup>
@@ -667,13 +673,15 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
-  if (err) {
-    console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in creating pixelMap object.');
-  }
-})
+async function CreatePixelMap(imageSourceObj : image.ImageSource) {
+  imageSourceObj.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
+    if (err) {
+      console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in creating pixelMap object.');
+    }
+  })
+}
 ```
 
 ## createPixelMap<sup>7+</sup>
@@ -702,24 +710,26 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let decodingOptions: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 1, height: 2 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
-  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
-  if (err) {
-    console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in creating pixelMap object.');
-  }
-})
+async function CreatePixelMap(imageSourceObj : image.ImageSource) {
+  let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+    // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  imageSourceObj.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
+    if (err) {
+      console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in creating pixelMap object.');
+    }
+  })
+}
 ```
 
 ## createPixelMapSync<sup>12+</sup>
@@ -746,32 +756,28 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { image } from '@kit.ImageKit';
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 1, height: 2 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
-  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapSync(decodingOptions);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.error('Failed to create pixelMap.');
+function CreatePixelMapSync(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+    // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+  } else {
+    console.error('Failed to create pixelMap.');
+  }
 }
 ```
 
@@ -796,7 +802,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise<Array<[PixelMap](arkts-apis-image-PixelMap.md)>> | 异步返回PixeMap数组。 |
+| Promise<Array<[PixelMap](arkts-apis-image-PixelMap.md)>> | 异步返回PixelMap数组。 |
 
 **错误码：**
 
@@ -823,19 +829,21 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let decodeOpts: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 198, height: 202 },
-  rotate: 0,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  index: 0,
-};
-imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
-  console.info('Succeeded in creating pixelMapList object.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to create pixelMapList object, error code is ${err}`);
-})
+async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
+  let decodeOpts: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    index: 0,
+  };
+  imageSourceObj.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
+    console.info('Succeeded in creating pixelMapList object.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create pixelMapList object, error code is ${err}`);
+  })
+}
 ```
 
 ## createPixelMapList<sup>10+</sup>
@@ -880,13 +888,15 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-  if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${err}`);
-  } else {
-    console.info('Succeeded in creating pixelMapList object.');
-  }
-})
+async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
+    if (err) {
+      console.error(`Failed to create pixelMapList object, error code is ${err}`);
+    } else {
+      console.info('Succeeded in creating pixelMapList object.');
+    }
+  })
+}
 ```
 
 ## createPixelMapList<sup>10+</sup>
@@ -932,21 +942,23 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let decodeOpts: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 198, height: 202 },
-  rotate: 0,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  index: 0,
-};
-imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-  if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${err}`);
-  } else {
-    console.info('Succeeded in creating pixelMapList object.');
-  }
-})
+async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
+  let decodeOpts: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    index: 0,
+  };
+  imageSourceObj.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
+    if (err) {
+      console.error(`Failed to create pixelMapList object, error code is ${err}`);
+    } else {
+      console.info('Succeeded in creating pixelMapList object.');
+    }
+  })
+}
 ```
 
 ## createPixelMapUsingAllocator<sup>15+</sup>
@@ -987,31 +999,27 @@ createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: Allocato
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import image from '@ohos.multimedia.image';
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
-  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.error('Failed to create pixelMap.');
+async function CreatePixelMapUsingAllocator(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let decodingOptions: image.DecodingOptions = {
+    editable: true,
+    desiredSize: { width: 3072, height: 4096 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+    // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+  } else {
+    console.error('Failed to create pixelMap.');
+  }
 }
 ```
 
@@ -1053,31 +1061,27 @@ createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: Allo
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import image from '@ohos.multimedia.image';
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
-  // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.error('Failed to create pixelMap.');
+async function CreatePixelMapUsingAllocator(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let decodingOptions: image.DecodingOptions = {
+    editable: true,
+    desiredSize: { width: 3072, height: 4096 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+    // 若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+  } else {
+    console.error('Failed to create pixelMap.');
+  }
 }
 ```
 
@@ -1115,13 +1119,15 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
-  if (err) {
-    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in getting delayTimes object.');
-  }
-})
+async function GetDelayTimeList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
+    if (err) {
+      console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in getting delayTimes object.');
+    }
+  })
+}
 ```
 
 ## getDelayTimeList<sup>10+</sup>
@@ -1158,11 +1164,13 @@ getDelayTimeList(): Promise<Array\<number>>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getDelayTimeList().then((delayTimes: Array<number>) => {
-  console.info('Succeeded in getting delayTimes object.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
-})
+async function GetDelayTimeList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getDelayTimeList().then((delayTimes: Array<number>) => {
+    console.info('Succeeded in getting delayTimes object.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ## getFrameCount<sup>10+</sup>
@@ -1200,13 +1208,15 @@ getFrameCount(callback: AsyncCallback\<number>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
-  if (err) {
-    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in getting frame count.');
-  }
-})
+async function GetFrameCount(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getFrameCount((err: BusinessError, frameCount: number) => {
+    if (err) {
+      console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in getting frame count.');
+    }
+  })
+}
 ```
 
 ## getFrameCount<sup>10+</sup>
@@ -1244,11 +1254,13 @@ getFrameCount(): Promise\<number>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getFrameCount().then((frameCount: number) => {
-  console.info('Succeeded in getting frame count.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
-})
+async function GetFrameCount(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getFrameCount().then((frameCount: number) => {
+    console.info('Succeeded in getting frame count.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ## getDisposalTypeList<sup>12+</sup>
@@ -1280,11 +1292,14 @@ getDisposalTypeList(): Promise\<Array\<number>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
-  console.info('Succeeded in getting disposalTypes object.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
-})
+
+async function GetDisposalTypeList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getDisposalTypeList().then((disposalTypes: Array<number>) => {
+    console.info('Succeeded in getting disposalTypes object.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ## release
@@ -1308,13 +1323,15 @@ ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.release((err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in releasing the image source instance.');
-  }
-})
+async function Release(imageSourceObj : image.ImageSource) {
+  imageSourceObj.release((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in releasing the image source instance.');
+    }
+  })
+}
 ```
 
 ## release
@@ -1338,11 +1355,13 @@ ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.release().then(() => {
-  console.info('Succeeded in releasing the image source instance.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release the image source instance.code ${error.code},message is ${error.message}`);
-})
+async function Release(imageSourceObj : image.ImageSource) {
+  imageSourceObj.release().then(() => {
+    console.info('Succeeded in releasing the image source instance.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release the image source instance.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## getImageProperty<sup>(deprecated)</sup>
@@ -1353,7 +1372,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 > **说明：**
 >
-> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> 从API version 7开始支持，从API version 11废弃，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1375,12 +1394,14 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageProperty("BitsPerSample")
-  .then((data: string) => {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
-  }).catch((error: BusinessError) => {
-    console.error('Failed to get the value of the specified attribute key of the image.');
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageProperty("BitsPerSample")
+    .then((data: string) => {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }).catch((error: BusinessError) => {
+    console.error(`Failed to get the value of the specified attribute key of the image, error.code ${error.code}, error.message ${error.message}`);
   })
+}
 ```
 
 ## getImageProperty<sup>(deprecated)</sup>
@@ -1391,7 +1412,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 > **说明：**
 >
-> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> 从API version 7开始支持，从API version 11废弃，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1407,13 +1428,15 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: string) => {
-  if (error) {
-    console.error('Failed to get the value of the specified attribute key of the image.');
-  } else {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
-  }
-})
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageProperty("BitsPerSample", (error: BusinessError, data: string) => {
+    if (error) {
+      console.error('Failed to get the value of the specified attribute key of the image.');
+    } else {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }
+  })
+}
 ```
 
 ## getImageProperty<sup>(deprecated)</sup>
@@ -1424,7 +1447,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 > **说明：**
 >
-> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> 从API version 7开始支持，从API version 11废弃，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1441,14 +1464,16 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let property: image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
-imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError, data: string) => {
-  if (error) {
-    console.error('Failed to get the value of the specified attribute key of the image.');
-  } else {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
-  }
-})
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  let property: image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
+  imageSourceObj.getImageProperty("BitsPerSample", property, (error: BusinessError, data: string) => {
+    if (error) {
+      console.error('Failed to get the value of the specified attribute key of the image.');
+    } else {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }
+  })
+}
 ```
 
 ## modifyImageProperty<sup>(deprecated)</sup>
@@ -1461,7 +1486,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 >
 > 调用modifyImageProperty修改属性会改变属性字节长度，使用buffer创建的ImageSource调用modifyImageProperty会导致buffer内容覆盖，目前buffer创建的ImageSource不支持调用此接口，请改用fd或path创建的ImageSource。
 >
-> 从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
+> 从API version 9开始支持，从API version 11废弃，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1483,15 +1508,17 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-  imageSourceApi.getImageProperty("ImageWidth").then((width: string) => {
-    console.info(`ImageWidth is :${width}`);
+async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.modifyImageProperty("ImageWidth", "120").then(() => {
+    imageSourceObj.getImageProperty("ImageWidth").then((width: string) => {
+      console.info(`ImageWidth is :${width}`);
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to get the Image Width, error.code ${error.code}, error.message ${error.message}`);
+    })
   }).catch((error: BusinessError) => {
-    console.error('Failed to get the Image Width.');
+    console.error(`Failed to modify the Image Width, error.code ${error.code}, error.message ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error('Failed to modify the Image Width');
-})
+}
 ```
 
 ## modifyImageProperty<sup>(deprecated)</sup>
@@ -1503,8 +1530,8 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 > **说明：**
 >
 > 调用modifyImageProperty修改属性会改变属性字节长度，使用buffer创建的ImageSource调用modifyImageProperty会导致buffer内容覆盖，目前buffer创建的ImageSource不支持调用此接口，请改用fd或path创建的ImageSource。
-> 
->从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
+>
+> 从API version 9开始支持，从API version 11废弃，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1521,11 +1548,13 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Succeeded in modifying the Image Width.');
-  }
-})
+async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
+    } else {
+      console.info('Succeeded in modifying the Image Width.');
+    }
+  })
+}
 ```
