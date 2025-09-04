@@ -50,7 +50,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start((err: BusinessError) => {
-    if (err) {
+    if (err.code) {
       console.error(`Failed to start the video output, error code: ${err.code}.`);
       return;
     }
@@ -120,11 +120,7 @@ stop(callback: AsyncCallback\<void\>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
-  videoOutput.stop((err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to stop the video output, error code: ${err.code}.`);
-      return;
-    }
+  videoOutput.stop(() => {
     console.info('Callback invoked to indicate the video output stop success.');
   });
 }
@@ -187,7 +183,7 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
-  if (err !== undefined && err.code !== 0) {
+  if (err.code) {
     console.error(`Callback Error, errorCode: ${err.code}`);
     return;
   }
@@ -252,7 +248,7 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
-  if (err !== undefined && err.code !== 0) {
+  if (err.code) {
     console.error(`Callback Error, errorCode: ${err.code}`);
     return;
   }
@@ -383,7 +379,10 @@ setFrameRate(minFps: number, maxFps: number): void
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12)查询支持的帧率范围。
 
 > **说明：**
+>
 > 仅在[PhotoSession](arkts-apis-camera-PhotoSession.md)或[VideoSession](arkts-apis-camera-VideoSession.md)模式下支持。
+>
+> 接口调用前，先调用[getActiveFrameRate](arkts-apis-camera-VideoOutput.md#getactiveframerate12)接口查询当前VideoSession的帧率，若下发的帧率与当前帧率相等，则下发的帧率不会生效。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -393,8 +392,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率。当传入的最大值小于最小值时，传参异常，接口不生效。 |
-| maxFps   | number        | 是   | 最大帧率。当传入的最小值大于最大值时，传参异常，接口不生效。 |
+| minFps   | number        | 是   | 最小帧率，单位：fps。当传入的最大值小于最小值时，传参异常，接口不生效。 |
+| maxFps   | number        | 是   | 最大帧率，单位：fps。当传入的最小值大于最大值时，传参异常，接口不生效。 |
 
 **错误码：**
 
@@ -515,7 +514,7 @@ enableMirror(enabled: boolean): void
 
 - 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported15)查询是否支录像镜像功能。
 
-- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/arkts-apis-media-AVRecorder.md#updaterotation12)更新旋转角度。
+- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)获取录像旋转角度以及[updateRotation](../apis-media-kit/arkts-apis-media-AVRecorder.md#updaterotation12)更新旋转角度。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

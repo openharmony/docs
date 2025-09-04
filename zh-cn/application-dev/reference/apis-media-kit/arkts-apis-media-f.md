@@ -66,7 +66,7 @@ media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
 
 createAVPlayer(): Promise\<AVPlayer>
 
-异步方式创建音视频播放实例，通过Promise获取返回值。
+异步方式创建音视频播放实例。使用Promise异步回调。
 
 > **说明：**
 >
@@ -587,26 +587,23 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 <!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { resourceManager } from '@kit.LocalizationKit';
+import { media } from "@kit.MediaKit";
 
-private context: Context | undefined;
-constructor(context: Context) {
-  this.context = context; // this.getUIContext().getHostContext();
+async function test(context: Context){
+    // this.getUIContext().getHostContext();
+    let mgr = context?.resourceManager;
+    if (!mgr) {
+        return;
+    }
+    let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
+
+    let fd: string = fileDescriptor.fd.toString();
+    let offset: string = fileDescriptor.offset.toString();
+    let length: string = fileDescriptor.length.toString();
+    let fdUrl: string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
+
+    let mediaSource: media.MediaSource = media.createMediaSourceWithUrl(fdUrl);
 }
-let mgr = this.context?.resourceManager;
-let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
-
-let fd:string = fileDescriptor.fd.toString();
-let offset:string = fileDescriptor.offset.toString();
-let length:string = fileDescriptor.length.toString();
-let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
-
-let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  headers);
-
-let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
-mediaSource.setMimeType(mimeType);
 
 ```
 

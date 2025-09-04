@@ -46,7 +46,7 @@
 
    ```ts
    osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((isAccountExisted: boolean)=>{
-     console.log('execute hasAccount successfully, isAccountExisted:' + JSON.stringify(isAccountExisted));
+     console.info('execute hasAccount successfully, isAccountExisted:' + JSON.stringify(isAccountExisted));
    }).catch((err: BusinessError)=>{
      console.error('execute hasAccount err:' + JSON.stringify(err));
    });
@@ -76,7 +76,7 @@
        if (err) {
         console.error('createOsAccountForDomain exception:' + JSON.stringify(err));
       } else {
-        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+        console.info('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
       }
    });
    } catch (e) {
@@ -114,7 +114,7 @@
        if (err) {
            console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
        } else {
-           console.log('removeOsAccount successfully');
+           console.info('removeOsAccount successfully');
        }
      });
    } catch (err) {
@@ -146,7 +146,7 @@
        if (err) {
            console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
        } else {
-           console.log('getAccountInfo result: ' + result);
+           console.info('getAccountInfo result: ' + result);
        }
      });
    } catch (err) {

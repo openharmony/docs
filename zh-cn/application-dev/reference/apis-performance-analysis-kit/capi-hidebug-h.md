@@ -47,6 +47,7 @@
 | [HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void)](#oh_hidebug_getdefaultmallocdispatchtable) | - | 获取基础库C库当前默认MallocDispatch表，调用[OH_HiDebug_RestoreMallocDispatchTable](capi-hidebug-h.md#oh_hidebug_restoremallocdispatchtable)可恢复。 |
 | [void OH_HiDebug_RestoreMallocDispatchTable(void)](#oh_hidebug_restoremallocdispatchtable) | - | 恢复基础库C库MallocDispatch表。 |
 
+
 ## 函数说明
 
 ### OH_HiDebug_GetSystemCpuUsage()
@@ -426,7 +427,7 @@ HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| HiDebug_MallocDispatch* | 当前C库默认的[HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)结构体指针。 |
+| [HiDebug_MallocDispatch*](capi-hidebug-hidebug-mallocdispatch.md) | 当前C库默认的[HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)结构体指针。 |
 
 ### OH_HiDebug_RestoreMallocDispatchTable()
 
@@ -439,5 +440,3 @@ void OH_HiDebug_RestoreMallocDispatchTable(void)
 恢复基础库C库MallocDispatch表。
 
 **起始版本：** 20
-
-

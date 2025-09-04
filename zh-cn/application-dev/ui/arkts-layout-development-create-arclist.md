@@ -43,99 +43,101 @@ import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMet
 @Component
 struct ArcListExample {
   build() {
-    ArcList({ initialIndex: 2 }) {
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.wlan")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("WLAN").fontSize("38px").fontColor("#FFFFFFFF")
-            Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
-          }.width("190px")
+    Stack() {
+      ArcList({ initialIndex: 2 }) {
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.wlan")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("WLAN").fontSize("38px").fontColor("#FFFFFFFF")
+              Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.blueTooth")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("蓝牙").fontSize("38px").fontColor("#FFFFFFFF")
-            Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
-          }.width("190px")
-          
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.blueTooth")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("蓝牙").fontSize("38px").fontColor("#FFFFFFFF")
+              Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
+            }.width("190px")
+
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.mobileData")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("移动网络").fontSize("38px").fontColor("#FFFFFFFF")
-          }.width("190px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.mobileData")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("移动网络").fontSize("38px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.ic_settings_more_connections")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("更多连接").fontSize("38px").fontColor("#FFFFFFFF")
-          }.width("190px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.ic_settings_more_connections")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("更多连接").fontSize("38px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.displayAndBrightness")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("显示和亮度").fontSize("38px").fontColor("#FFFFFFFF")
-          }.width("190px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.displayAndBrightness")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("显示和亮度").fontSize("38px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
       }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+      .width("466px")
+      .height("466px")
+      .space(LengthMetrics.px(10))
+      .borderRadius("233px")
+      .backgroundColor(Color.Black)
     }
-    .width("466px")
-    .height("466px")
-    .space(LengthMetrics.px(10))
-    .borderRadius("233px")
-    .backgroundColor(Color.Black)
   }
 }
 ```
@@ -178,32 +180,34 @@ struct SimpleContacts {
   ];
 
   build() {
-    ArcList({ initialIndex: 2 }) {
-      ForEach(this.contacts, (item: Contact) => {
-        ArcListItem() {
-          Row() {
-            Image(item.icon)
-              .width(40)
-              .height(40)
-              .margin(10)
-              .backgroundColor("#FF9CC998")
-              .borderRadius(20)
-            Text(item.name).fontSize("38px").fontColor("#FFFFFFFF")
+    Stack() {
+      ArcList({ initialIndex: 2 }) {
+        ForEach(this.contacts, (item: Contact) => {
+          ArcListItem() {
+            Row() {
+              Image(item.icon)
+                .width(40)
+                .height(40)
+                .margin(10)
+                .backgroundColor("#FF9CC998")
+                .borderRadius(20)
+              Text(item.name).fontSize("38px").fontColor("#FFFFFFFF")
+            }
+            .width('100%')
+            .justifyContent(FlexAlign.Start)
           }
-          .width('100%')
-          .justifyContent(FlexAlign.Start)
-        }
-        .borderRadius("65px")
-        .width("410px")
-        .height('130px')
-        .backgroundColor("#26FFFFFF")
-      }, (item: Contact) => JSON.stringify(item))
+          .borderRadius("65px")
+          .width("410px")
+          .height('130px')
+          .backgroundColor("#26FFFFFF")
+        }, (item: Contact) => JSON.stringify(item))
+      }
+      .space(LengthMetrics.px(10))
+      .width('466px')
+      .height('466px')
+      .borderRadius('233px')
+      .backgroundColor(Color.Black)
     }
-    .space(LengthMetrics.px(10))
-    .width('466px')
-    .height('466px')
-    .borderRadius('233px')
-    .backgroundColor(Color.Black)
   }
 }
 ```

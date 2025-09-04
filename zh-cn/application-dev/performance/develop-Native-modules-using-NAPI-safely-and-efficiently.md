@@ -1,5 +1,12 @@
 # 安全和高效的使用N-API开发Native模块
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介
 
 N-API 是 Node.js Addon Programming Interface 的缩写，是 Node.js 提供的一组 C++ API，封装了[V8 引擎](https://dev.nodejs.cn/learn/the-v8-javascript-engine/)的能力，用于编写 Node.js 的 Native 扩展模块。通过 N-API，开发者可以使用 C++ 编写高性能的 Node.js 模块，同时保持与 Node.js 的兼容性。 
@@ -62,7 +69,7 @@ for (int i = 0; i < 1000000; i++) {
 
 开发者可以通过创建 napi_ref 来延长 napi_value 对象的生命周期，通过 napi_create_reference 创建的对象需要用户手动调用 napi_delete_reference 释放，否则可能造成内存泄漏。
 
-#### 使用案例1：保存 napi_value
+**使用案例1：保存 napi_value**
 
 通过 napi_define_class 创建一个 constructor 并保存下来，后续可以通过保存的 constructor 调用 napi_new_instance 来创建实例。但是，如果 constructor 是以 napi_value 的形式保存下来，一旦超过了 native 方法的 scope，这个 constructor 就会被析构，后续再使用就会造成野指针。推荐写法如下：
 * 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来；
@@ -102,7 +109,7 @@ napi_status GetConstructor(napi_env env) {
 };
 ```
 
-#### 使用案例2：napi_wrap
+**使用案例2：napi_wrap**
 
 开发者使用 napi_wrap 接口，可以将 native 对象和 js 对象绑定，当 js 对象被 GC 回收时，需要通过回调函数对 native 对象的资源进行清理。napi_wrap 接口本质上也是创建了一个 napi_ref，开发者可以根据业务需要，选择由系统来管理创建的 napi_ref，或是自行释放创建的 napi_ref。
 ```cpp
@@ -220,7 +227,7 @@ static napi_value addPromise(napi_env env, napi_callback_info info) {
 在异步操作完成后，回调函数将被调用，并将结果传递给 Promise 对象。在 JavaScript 中，可以使用 Promise 对象的 then() 方法来处理异步操作的结果。then() 方法中不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。   
 
 ```js
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 @Entry
@@ -294,7 +301,8 @@ static napi_value Test(napi_env env, napi_callback_info info) {
 
 ### 使用方法
 
-#### ArkTS 侧传入回调函数
+**ArkTS 侧传入回调函数**
+
 ```JS
 struct Index {
   @State message: string = 'Hello World';
@@ -318,7 +326,8 @@ struct Index {
 }
 ```
 
-#### native 侧主线程中创建线程安全函数
+**native 侧主线程中创建线程安全函数**
+
 ```cpp
 static void CallJs(napi_env env, napi_value js_cb, void *context, void *data) {
 
@@ -376,7 +385,8 @@ static napi_value ThreadSafeTest(napi_env env, napi_callback_info info) {
 }
 ```
 
-#### 其他线程中调用线程安全函数
+**其他线程中调用线程安全函数**
+
 ```cpp
 std::thread t([]() {
     std::thread::id this_id = std::this_thread::get_id();
