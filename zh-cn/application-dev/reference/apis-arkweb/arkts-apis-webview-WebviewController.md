@@ -10212,11 +10212,9 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 |Init Error 17100001 . Possible causes: 1. Site Isolation mode already set by developer. 2. cannot change (AdvancedSecurityMode active). 3.Site Isolation mode cannot be strict when single render. |
+| 17100001 |Init Error .  |
 
 **示例：**
 
