@@ -10198,7 +10198,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 > **说明：**
 >
 > 不能在单子进程模式下设置严格站点隔离。
-
+>
 > 接口只能在初始化时调用一次，不支持反复修改。
 
 
@@ -10212,7 +10212,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
