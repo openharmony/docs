@@ -337,7 +337,7 @@ enableHapticFeedback(enable: boolean)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -364,7 +364,7 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
