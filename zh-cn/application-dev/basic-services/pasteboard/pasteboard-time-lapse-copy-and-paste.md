@@ -32,7 +32,7 @@
 
 1. 当应用使用延迟复制功能复制时，仅将应用支持的数据类型写入剪贴板。应用应在退出时，重新调用[OH_Pasteboard_SetData](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_setdata)接口主动提交所有复制数据或调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口通知剪贴板获取全量数据，等待数据同步完成再继续退出，否则可能导致其他应用粘贴获取不到数据。
 
-2. 调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口会延长退出过程，建议应用直接设置数据到剪贴板，而不是调用延迟复制接口[OH_UdmfRecordProvider_SetData](../../reference/apis-arkdata/capi-udmf-h.md#oh_udmfrecordprovider_setdata)和同步延迟数据接口[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)。
+2. 调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口会延长退出过程，建议应用在复制数据时直接设置数据到剪贴板，而不是调用延迟复制接口[OH_UdmfRecordProvider_SetData](../../reference/apis-arkdata/capi-udmf-h.md#oh_udmfrecordprovider_setdata)和同步延迟数据接口[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)。
 
 3. 延迟复制场景应用异常退出时，无法触发应用退出延迟数据同步流程，会导致其他应用粘贴时获取不到数据。
 
