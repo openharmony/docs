@@ -1,5 +1,12 @@
 # AudioEncoder
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 
 ## Overview
 
@@ -11,7 +18,7 @@ The AudioEncoder module provides the functions for audio encoding.
 
 **Deprecated from**: 11
 
-**Development suggestions**: All APIs of the current module have been deprecated. You can use [AudioCodec](_audio_codec.md) instead. For details about the API mappings before and after the deprecation, see the API reference.
+**Development suggestions**: All APIs of the current module have been deprecated. You can use [AudioCodec](capi-audiocodec.md) instead. For details about the API mappings before and after the deprecation, see the API reference.
 
 
 ## Summary
@@ -64,18 +71,18 @@ Configures an audio encoder. Typically, you need to configure the description in
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_Configure](_audio_codec.md#oh_audiocodec_configure)
+**Substitute**: [OH_AudioCodec_Configure](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_configure)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
-| format | Pointer to an **OH_AVFormat** instance, which provides the description information about the audio track to be encoded.| 
+| codec | Pointer to an OH_AVCodec instance.| 
+| format | Pointer to an OH_AVFormat instance, which provides the description information about the audio track to be encoded.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_CreateByMime()
@@ -94,7 +101,7 @@ Creates an audio encoder instance based on a MIME type. This function is recomme
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_CreateByMime](_audio_codec.md#oh_audiocodec_createbymime)
+**Substitute**: [OH_AudioCodec_CreateByMime](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_createbymime)
 
 **Parameters**
 
@@ -104,7 +111,7 @@ Creates an audio encoder instance based on a MIME type. This function is recomme
 
 **Returns**
 
-Returns the pointer to an **OH_AVCodec** instance.
+Pointer to an OH_AVCodec instance.
 
 
 ### OH_AudioEncoder_CreateByName()
@@ -123,7 +130,7 @@ Creates an audio encoder instance based on an encoder name. To use this function
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_CreateByName](_audio_codec.md#oh_audiocodec_createbyname)
+**Substitute**: [OH_AudioCodec_CreateByName](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_createbyname)
 
 **Parameters**
 
@@ -133,7 +140,7 @@ Creates an audio encoder instance based on an encoder name. To use this function
 
 **Returns**
 
-Returns the pointer to an **OH_AVCodec** instance.
+Pointer to an OH_AVCodec instance.
 
 
 ### OH_AudioEncoder_Destroy()
@@ -152,17 +159,17 @@ Clears the internal resources of an audio encoder and destroys the encoder insta
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_Destroy](_audio_codec.md#oh_audiocodec_destroy)
+**Substitute**: [OH_AudioCodec_Destroy](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_destroy)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_Flush()
@@ -183,17 +190,17 @@ This function invalidates the indexes of all buffers previously reported through
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_Flush](_audio_codec.md#oh_audiocodec_flush)
+**Substitute**: [OH_AudioCodec_Flush](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_flush)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_FreeOutputData()
@@ -212,18 +219,18 @@ Frees an output buffer of an audio encoder.
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_FreeOutputBuffer](_audio_codec.md#oh_audiocodec_freeoutputbuffer)
+**Substitute**: [OH_AudioCodec_FreeOutputBuffer](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_freeoutputbuffer)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 | index | Index of the output buffer.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_GetOutputDescription()
@@ -234,7 +241,7 @@ OH_AVFormat* OH_AudioEncoder_GetOutputDescription (OH_AVCodec *codec)
 
 **Description**
 
-Obtains the description information about the output data of an audio encoder. The caller must manually release the **OH_AVFormat** instance in the return value.
+Obtains the description information about the output data of an audio encoder. The caller must manually release the OH_AVFormat instance in the return value.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioEncoder
 
@@ -242,17 +249,17 @@ Obtains the description information about the output data of an audio encoder. T
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_GetOutputDescription](_audio_codec.md#oh_audiocodec_getoutputdescription)
+**Substitute**: [OH_AudioCodec_GetOutputDescription](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_getoutputdescription)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns the handle to an **OH_AVFormat** instance. The lifecycle of this instance is refreshed when **GetOutputDescription** is called again and destroyed when the **OH_AVCodec** instance is destroyed.
+Handle to an OH_AVFormat instance. The lifecycle of this instance is refreshed when **GetOutputDescription** is called again and destroyed when the OH_AVCodec instance is destroyed.
 
 
 ### OH_AudioEncoder_IsValid()
@@ -271,18 +278,18 @@ Checks whether an audio encoder instance is valid. This function is used to chec
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_IsValid](_audio_codec.md#oh_audiocodec_isvalid)
+**Substitute**: [OH_AudioCodec_IsValid](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_isvalid)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 | isValid | Pointer of the Boolean type. The value **true** means that the encoder instance is valid and **false** means the opposite.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_Prepare()
@@ -301,17 +308,17 @@ Prepares internal resources for an audio encoder. This function must be called a
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_Prepare](_audio_codec.md#oh_audiocodec_prepare)
+**Substitute**: [OH_AudioCodec_Prepare](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_prepare)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_PushInputData()
@@ -334,19 +341,19 @@ In addition, some encoders require the input of specific data to initialize the 
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_PushInputBuffer](_audio_codec.md#oh_audiocodec_pushinputbuffer)
+**Substitute**: [OH_AudioCodec_PushInputBuffer](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_pushinputbuffer)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 | index | Index of the input buffer.| 
 | attr | Description information about the data in the buffer.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_Reset()
@@ -365,17 +372,17 @@ Resets an audio encoder. To continue encoding, you must call **Configure** to co
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_Reset](_audio_codec.md#oh_audiocodec_reset)
+**Substitute**: [OH_AudioCodec_Reset](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_reset)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_SetCallback()
@@ -394,19 +401,19 @@ Sets an asynchronous callback so that your application can respond to events gen
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_RegisterCallback](_audio_codec.md#oh_audiocodec_registercallback)
+**Substitute**: [OH_AudioCodec_RegisterCallback](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_registercallback)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 | callback | Callback function to set. For details, see [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md).| 
 | userData | User-specific data.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_SetParameter()
@@ -427,18 +434,18 @@ This function can be called only after the encoder is started. Incorrect paramet
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_SetParameter](_audio_codec.md#oh_audiocodec_setparameter)
+**Substitute**: [OH_AudioCodec_SetParameter](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_setparameter)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
-| format | Handle to an **OH_AVFormat** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
+| format | Handle to an OH_AVFormat instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_Start()
@@ -457,17 +464,17 @@ Starts an audio encoder after it is prepared successfully. After being started, 
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_Start](_audio_codec.md#oh_audiocodec_start)
+**Substitute**: [OH_AudioCodec_Start](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_start)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioEncoder_Stop()
@@ -486,14 +493,14 @@ Stops an audio encoder. After the encoder is stopped, you can call **Start** to 
 
 **Deprecated from**: 11
 
-**Substitute API**: [OH_AudioCodec_Stop](_audio_codec.md#oh_audiocodec_stop)
+**Substitute**: [OH_AudioCodec_Stop](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_stop)
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.

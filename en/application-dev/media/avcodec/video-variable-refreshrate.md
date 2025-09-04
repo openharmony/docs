@@ -1,5 +1,12 @@
 # Video Variable Frame Rate
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @tianjian97861-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 With the C APIs related to the video variable refresh rate feature, you can dynamically adjust the screen refresh rate based on the video content during playback. This helps save display power while maintaining smooth video playback.
 
 ## When to Use
@@ -25,7 +32,7 @@ This section describes only the steps that are different from the basic decoding
    
    In the code snippet below, the following variables are used:
    
-   **videoDec**: pointer to the video decoder instance. For details, see [Creating a Decoder Instance in Surface Mode](video-decoding.md#surface-output).
+   **videoDec**: pointer to the video decoder instance. For details, see [Creating a Decoder Instance in Surface Mode](video-decoding.md#surface-mode).
 
     ```cpp
     OH_AVFormat *format = OH_AVFormat_Create();
