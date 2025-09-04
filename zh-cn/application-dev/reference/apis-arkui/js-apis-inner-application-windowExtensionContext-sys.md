@@ -1,4 +1,10 @@
 # WindowExtensionContext (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @chbchb12-->
+<!--Designer: @stupidb-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 WindowExtensionContext模块是WindowExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
@@ -6,6 +12,8 @@ WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-w
 
 > **说明：**
 >
+>  - 从API version 21开始废弃，推荐使用[UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)。
+> 
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 >  - 本模块接口为系统接口。
@@ -28,11 +36,15 @@ class WindowExtAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionContext.startAbility
+## WindowExtensionContext.startAbility<sup>(deprecated)</sup>
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability，使用callback异步回调。
+
+> **说明：**
+>
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionContext.startability](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-1)。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -93,11 +105,15 @@ class WindowExtAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionContext.startAbility
+## WindowExtensionContext.startAbility<sup>(deprecated)</sup>
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 启动Ability，使用Promise异步回调。
+
+> **说明：**
+>
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionContext.startability](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-2)。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
