@@ -14,7 +14,7 @@
 
 ### 开启混淆步骤
 
-字节码混淆能力已在系统中集成，可通过以下方式在DevEco Studio开启使用。
+从API version 20开始，字节码混淆能力已在系统中集成，可通过以下方式在DevEco Studio开启使用。
 
 * 开启混淆开关
     在本模块`build-profile.json5`配置文件中的`arkOptions.obfuscation.ruleOptions`字段中，通过`enable`字段配置是否开启混淆。
