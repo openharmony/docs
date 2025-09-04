@@ -1,8 +1,8 @@
 # ArkTS语言模块化加载异常常见问题
 
-<!--Kit: ArkTs-->
-<!--Subsystem: Module-->
-<!--Owner: @shilei123-->
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @shilei1123-->
 <!--Designer: @shilei123;@yao_dashuai-->
 <!--Tester: @kir175; @zsw_zhushiwei-->
 <!--Adviser: @huipeizi-->
