@@ -190,13 +190,13 @@ let rect: Rect;
 
 type AccessibilityExtensionContext = _AccessibilityExtensionContext.default
 
-表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityextensioncontext-辅助功能扩展上下文)。
+表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 | 类型                      | 说明                     |
 | ----------------------- |------------------------|
-| _AccessibilityExtensionContext.default | 表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityextensioncontext-辅助功能扩展上下文)。 |
+| _AccessibilityExtensionContext.default | 表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)。 |
 
 **示例：**
 
