@@ -4535,7 +4535,7 @@ const callback = (rectChangeOptions: window.RectChangeOptions) => {
 try {
   windowClass.on('rectChangeInGlobalDisplay', callback);
 } catch (exception) {
-  console.error(`Failed to disable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
