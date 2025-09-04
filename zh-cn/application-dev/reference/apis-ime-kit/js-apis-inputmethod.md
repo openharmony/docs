@@ -142,6 +142,8 @@ getSystemInputMethodConfigAbility(): ElementName
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.AbilityKit';
+
 let inputMethodConfig: bundleManager.ElementName = inputMethod.getSystemInputMethodConfigAbility();
 ```
 
@@ -422,7 +424,7 @@ inputMethod.switchCurrentInputMethodSubtype({
     console.error('Failed to switchCurrentInputMethodSubtype.');
   }
 }).catch((err: BusinessError) => {
-  console.error(`Failed to switchCurrentInputMethodSubtype, code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to switchCurrentInputMethodSubtype, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -447,6 +449,8 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 **示例：**
 
 ```ts
+import { InputMethodSubtype } from '@kit.IMEKit';
+
 let currentImeSubType: InputMethodSubtype = inputMethod.getCurrentInputMethodSubtype();
 ```
 
@@ -748,7 +752,7 @@ Enter键的功能类型。
 | inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 否 | 否 | 编辑框属性。|
 | cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 是 | 光标信息。|
 | selection<sup>10+</sup>  | [Range](#range10) | 否 | 是 | 文本选中的范围。|
-| windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id。|
+| windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id，该参数应为整数。<br>推荐使用[getWindowProperties()](../apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
 | newEditBox<sup>20+</sup> | boolean | 否 | 是 | 表示是否为新编辑框。true表示新编辑框，false表示非新编辑框。 |
 | capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
@@ -760,10 +764,10 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| left  | number | 否 | 否 | 光标的left坐标。|
-| top  | number | 否 | 否 | 光标的top坐标。|
-| width  | number | 否 | 否 | 光标的宽度。|
-| height  | number | 否 | 否 | 光标的高度。|
+| left  | number | 否 | 否 | 光标的横坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| top  | number | 否 | 否 | 光标的纵坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度。|
+| width  | number | 否 | 否 | 光标的宽度，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| height  | number | 否 | 否 | 光标的高度,单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度|
 
 ## Range<sup>10+</sup>
 
@@ -773,8 +777,8 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。|
-| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。|
+| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。该参数应为大于或等于0的整数，不超过文本实际长度。|
+| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。该参数应为大于或等于0的整数，不超过文本实际长度，end值要大于start值。|
 
 ## Movement<sup>10+</sup>
 
@@ -795,10 +799,10 @@ Enter键的功能类型。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name  | string | 否 | 否 | 输入法窗口的名称。|
-| left  | number | 否 | 否 | 输入法窗口左上顶点的横坐标，单位为px。|
-| top  | number | 否 | 否 | 输入法窗口左上顶点的纵坐标，单位为px。|
-| width  | number | 否 | 否 | 输入法窗口的宽度，单位为px。|
-| height  | number | 否 | 否 | 输入法窗口的高度，单位为px。|
+| left  | number | 否 | 否 | 输入法窗口左上顶点的横坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| top  | number | 否 | 否 | 输入法窗口左上顶点的纵坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度。|
+| width  | number | 否 | 否 | 输入法窗口的宽度，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| height  | number | 否 | 否 | 输入法窗口的高度，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度。|
 
 ## EnabledState<sup>15+</sup>
 
@@ -1423,7 +1427,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
+| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。该参数应为整数。|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -1468,7 +1472,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
+| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。该参数应为整数。 |
 
 **返回值：**
 
@@ -1609,8 +1613,8 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 整个输入文本。 |
-| start | number | 是 | 所选文本的起始位置。 |
-| end | number | 是 | 所选文本的结束位置。 |
+| start | number | 是 | 所选文本的起始位置。该参数应为大于或等于0的整数。 |
+| end | number | 是 | 所选文本的结束位置。该参数应为大于或等于0的整数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当文本信息更新成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -1651,8 +1655,8 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 整个输入文本。 |
-| start | number | 是 | 所选文本的起始位置。 |
-| end | number | 是 | 所选文本的结束位置。 |
+| start | number | 是 | 所选文本的起始位置。该参数应为大于或等于0的整数。 |
+| end | number | 是 | 所选文本的结束位置。该参数应为大于或等于0的整数。 |
 
 **返回值：**
 
@@ -3159,8 +3163,8 @@ import { InputMethodSubtype } from '@kit.IMEKit';
 
 inputMethod.getSetting()
   .on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
-    console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) +
-      " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+    console.info(`Succeeded in subscribing imeChange: inputMethodProperty.name: ${inputMethodProperty.name} ` +
+      `, inputMethodSubtype.id: ${inputMethodSubtype.id}`);
   });
 ```
 
