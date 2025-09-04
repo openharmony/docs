@@ -1674,7 +1674,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
     let config: window.Configuration = {
       name: "test",
       windowType: window.WindowType.TYPE_DIALOG,
-      ctx: getContext()
+      ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
