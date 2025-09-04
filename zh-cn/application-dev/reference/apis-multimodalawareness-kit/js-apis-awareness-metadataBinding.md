@@ -27,7 +27,7 @@ submitMetadata(metadata: string): void
 
 **错误码**：  
 
-以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -63,7 +63,7 @@ on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback&lt;nu
 
 **错误码**：
 
-以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -104,7 +104,7 @@ off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback&lt;
 
 **错误码**：  
 
-以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
