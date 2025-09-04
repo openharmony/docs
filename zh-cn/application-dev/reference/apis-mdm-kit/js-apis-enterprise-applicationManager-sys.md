@@ -30,6 +30,8 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -86,6 +88,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -143,6 +146,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -204,6 +208,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -260,6 +265,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -316,6 +322,8 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 
 **参数：**
@@ -376,7 +384,7 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -430,6 +438,7 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -484,6 +493,7 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
