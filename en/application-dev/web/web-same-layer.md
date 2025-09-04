@@ -40,7 +40,7 @@ The following specifications take effect in both web pages and third-party frame
 
 - Self-drawing components: [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md), [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [Web](../reference/apis-arkweb/ts-basic-components-web.md)
 
-- Command-based custom drawing nodes: [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md), [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md), [ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md), [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [Graphics](../reference/apis-arkui/js-apis-arkui-graphics.md), [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), [XComponentNode](../reference/apis-arkui/js-apis-arkui-xcomponentNode.md), [AttributeUpdater](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md) and [CAPI](../reference/apis-arkui/_ark_u_i___native_module.md) (The components that support same-layer rendering are the same as that of ArkTS.)
+- Command-based custom drawing nodes: [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md), [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md), [ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md), [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [Graphics](../reference/apis-arkui/js-apis-arkui-graphics.md), [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), [XComponentNode](../reference/apis-arkui/js-apis-arkui-xcomponentNode.md), [AttributeUpdater](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md) and [CAPI](../reference/apis-arkui/_ark_u_i___native_module.md). (The components that support same-layer rendering are the same as that of ArkTS.)
 
 **Supported Common Component Attributes and Events**:
 
@@ -126,7 +126,7 @@ On web pages, you can render the system ArkUI **TextInput** components at the sa
 
    The **\<embed>** and **\<object>** tags support same-layer rendering, and the **type** can be specified randomly. They are case insensitive and will be converted to lowercase letters by the ArkWeb kernel. The **tag** string is matched using the entire string, and the **type** string is matched using the prefix.
 
-   If this API is not used or receives an invalid string (empty string), the ArkWeb kernel uses the default setting, that is, "embed" + "native/" prefix. If the specified **type** is the same as the W3C standard **object** or **embed** type, for example, **registerNativeEmbedRule** ("**object**," "**application**/**pdf**"), ArkWeb will comply with the W3C standard behavior and will not identify it as a same-layer tag.
+   If this API is not used or receives an invalid string (empty string), the ArkWeb kernel uses the default setting, that is, "embed" + "native/" prefix. If the specified **type** is the same as the W3C standard **\<object>** or **\<embed>** type, for example, **registerNativeEmbedRule** ("**object**," "**application**/**pdf**"), ArkWeb will comply with the W3C standard behavior and will not identify it as a same-layer tag.
 
    - Use the \<embed> tags.
 
@@ -274,7 +274,7 @@ On web pages, you can render the system ArkUI **TextInput** components at the sa
        if (this.isDestroy_) { // rootNode is null.
          return null;
        }
-       if (!this.rootNode) { // When rootNode is set to undefined
+       if (!this.rootNode) {// rootNode is set to undefined.
          this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
          if(this.rootNode) {
            this.rootNode.build(wrapBuilder(TextInputBuilder), {  textOne: "myTextInput", width: this.width_, height: this.height_  })
@@ -329,9 +329,9 @@ On web pages, you can render the system ArkUI **TextInput** components at the sa
             Web({src: $rawfile("text.html"), controller: this.browserTabController})
               // Enable same-layer rendering.
               .enableNativeEmbedMode(true)
-                // Register the same-layer tag of "object" and type of "test."
+                // Register the same-layer tag of <object> and type of "test."
               .registerNativeEmbedRule("object", "test")
-                // Obtain the lifecycle change data of the embed tag.
+                // Obtain the lifecycle change data of the <embed> tag.
               .onNativeEmbedLifecycleChange((embed) => {
                 console.log("NativeEmbed surfaceId" + embed.surfaceId);
                 // If embed.info.id is used as the key for mapping nodeController, explicitly specify the ID on the HTML5 page.
@@ -367,12 +367,12 @@ On web pages, you can render the system ArkUI **TextInput** components at the sa
                 } else if (embed.status == NativeEmbedStatus.DESTROY) {
                   console.log("NativeEmbed destroy" + JSON.stringify(embed));
                   let nodeController = this.nodeControllerMap.get(componentId);
-                  nodeController?.setDestroy(true)
-                  this.nodeControllerMap.clear();
+                  nodeController?.setDestroy(true);
+                  this.nodeControllerMap.delete(componentId);
                   this.positionMap.delete(componentId);
                   this.widthMap.delete(componentId);
                   this.heightMap.delete(componentId);
-                  this.componentIdArr.filter((value: string) => value != componentId)
+                  this.componentIdArr = this.componentIdArr.filter((value: string) => value !== componentId);
                 } else {
                   console.log("NativeEmbed status" + embed.status);
                 }
@@ -404,7 +404,7 @@ On web pages, you can render the system ArkUI **TextInput** components at the sa
             Web({src: $rawfile("text.html"), controller: this.browserTabController})
               // Enable same-layer rendering.
               .enableNativeEmbedMode(true)
-                // Obtain the lifecycle change data of the embed tag.
+                // Obtain the lifecycle change data of the <embed> tag.
               .onNativeEmbedLifecycleChange((embed) => {
                 // Implement lifecycle changes.
               })
@@ -435,7 +435,7 @@ On web pages, you can render the system ArkUI **TextInput** components at the sa
 
 **Sample Code**
 
-To start with, add the Internet permission to the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+To start with, add network permissions to module.json5. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
 
   ```
   "requestPermissions":[
@@ -497,7 +497,7 @@ Code on the application side:
       if (this.isDestroy_) { // rootNode is null.
         return null;
       }
-      if (!this.rootNode) { // When rootNode is set to undefined
+      if (!this.rootNode) {// rootNode is set to undefined.
         this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
         if(this.rootNode) {
           this.rootNode.build(wrapBuilder(TextInputBuilder), {  textOne: "myTextInput", width: this.width_, height: this.height_  })
@@ -586,7 +586,7 @@ Code on the application side:
             Web({src: $rawfile("text.html"), controller: this.browserTabController})
               // Enable same-layer rendering.
               .enableNativeEmbedMode(true)
-              // Obtain the lifecycle change data of the embed tag.
+              // Obtain the lifecycle change data of the <embed> tag.
               .onNativeEmbedLifecycleChange((embed) => {
                  console.log("NativeEmbed surfaceId" + embed.surfaceId);
                  // If embed.info.id is used as the key for mapping nodeController, explicitly specify the ID on the HTML5 page.
@@ -622,12 +622,12 @@ Code on the application side:
                  } else if (embed.status == NativeEmbedStatus.DESTROY) {
                    console.log("NativeEmbed destroy" + JSON.stringify(embed));
                    let nodeController = this.nodeControllerMap.get(componentId);
-                   nodeController?.setDestroy(true)
-                   this.nodeControllerMap.clear();
+                   nodeController?.setDestroy(true);
+                   this.nodeControllerMap.delete(componentId);
                    this.positionMap.delete(componentId);
                    this.widthMap.delete(componentId);
                    this.heightMap.delete(componentId);
-                   this.componentIdArr.filter((value: string) => value != componentId)
+                   this.componentIdArr = this.componentIdArr.filter((value: string) => value !== componentId);
                  } else {
                    console.log("NativeEmbed status" + embed.status);
                  }
@@ -711,7 +711,7 @@ Code on the application side:
       if (this.isDestroy_) { // rootNode is null.
         return null;
       }
-      if (!this.rootNode) { // When rootNode is set to undefined
+      if (!this.rootNode) { // rootNode is set to undefined.
         this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
         if (this.type_ === 'native/video') {
           this.rootNode.build(wrapBuilder(VideoBuilder), {textOne: "myButton", width : this.width_, height : this.height_});
@@ -808,7 +808,7 @@ Code on the application side:
             Web({ src: $rawfile("test.html"), controller: this.browserTabController })
               // Enable same-layer rendering.
               .enableNativeEmbedMode(true)
-                // Obtain the lifecycle change data of the embed tag.
+                // Obtain the lifecycle change data of the <embed> tag.
               .onNativeEmbedLifecycleChange((embed) => {
                 console.log("NativeEmbed surfaceId" + embed.surfaceId);
                 // 1. If embed.info.id is used as the key for mapping nodeController, explicitly specify the ID on the HTML5 page.
@@ -839,12 +839,12 @@ Code on the application side:
                   nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
                 } else if (embed.status == NativeEmbedStatus.DESTROY) {
                   let nodeController = this.nodeControllerMap.get(componentId);
-                  nodeController?.setDestroy(true)
-                  this.nodeControllerMap.clear();
+                  nodeController?.setDestroy(true);
+                  this.nodeControllerMap.delete(componentId);
                   this.positionMap.delete(componentId);
                   this.widthMap.delete(componentId);
                   this.heightMap.delete(componentId);
-                  this.componentIdArr.filter((value: string) => value != componentId)
+                  this.componentIdArr = this.componentIdArr.filter((value: string) => value !== componentId);
                 } else {
                   console.log("NativeEmbed status" + embed.status);
                 }
@@ -919,7 +919,7 @@ Code on the application side:
             avPlayer.play(); // Call play() to start playback.
             break;
           case 'playing': // This state is reported upon a successful callback of play().
-            console.info('AVPlayer state prepared called.');
+            console.info('AVPlayer state playing called.');
             if(this.count !== 0) {
               if (this.isSeek) {
                 console.info('AVPlayer start to seek.');
@@ -938,7 +938,7 @@ Code on the application side:
             avPlayer.play(); // Call play() again to start playback.
             break;
           case 'completed': // This state is reported upon the completion of the playback.
-            console.info('AVPlayer state paused called.');
+            console.info('AVPlayer state completed called.');
             avPlayer.stop(); // Call the playback API.
             break;
           case 'stopped': // This state is reported upon a successful callback of stop().

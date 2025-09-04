@@ -8,7 +8,7 @@ Set **ArkWeb_SchemeHandler** for a specified **Web** component or ServiceWorker.
 
 **ArkWeb_OnRequestStart** is called when the request starts, and **ArkWeb_OnRequestStop** is called when the request ends.
 
-To intercept the first request sent by a **Web** component, you can use the [initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine) method to initialize the **Web** component in advance and then set an interceptor.
+To intercept the first request sent by a **Web** component, you can use the [initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine) method to initialize the **Web** component in advance and then set an interceptor. For details, see [Sample Code](#sample-code).
 
   ```c++
     // Create an ArkWeb_SchemeHandler object.
@@ -136,7 +136,7 @@ The network interception provides custom response bodies for intercepted request
 
 ## Sample Code
 
-In DevEco Studio, create a default **Native C++** project. You need to prepare an MP4 file named **test.mp4** and place the file in **main/resources/rawfile**.
+In DevEco Studio, create a default native C++ project. You need to prepare an MP4 file named **test.mp4** and place the file in **main/resources/rawfile**.
 
 main/ets/pages/index.ets
 ```ts

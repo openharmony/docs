@@ -34,7 +34,7 @@ If the web debugging function is not enabled, DevTools cannot detect the web pag
      }
    }
    ```
-2. Declare the required permission in the **module.json5** file of the HAP module in the application project in DevEco Studio. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
+2. To enable the debugging feature, you need to add the following permission to the **module.json5** file of the application's HAP in DevEco Studio. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
 
    ```
    "requestPermissions":[
@@ -71,7 +71,7 @@ Connect the device to a PC and enable Developer mode for subsequent port forward
    ```
 
 ### Port Forwarding
-After the application code calls the **setWebDebuggingAccess** API to enable web debugging, the ArkWeb kernel starts a domain socket listener to enable DevTools to debug web pages. For details, see [Automatically Mapping the WebView Debugging Link](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118). 
+After the application code calls the **setWebDebuggingAccess** API to enable web debugging, the ArkWeb kernel starts a domain socket listener to enable DevTools to debug web pages. For details, see [Automatically Mapping the WebView Debugging Link](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-debug-configurations#section48387420516). 
 However, Chrome cannot directly access the domain socket on the device. Therefore, the domain socket on the device needs to be forwarded to the PC.
 
 1. Run the following command in hdc shell to obtain the domain socket created by ArkWeb on the device. 
@@ -187,7 +187,7 @@ Copy the following information to create a .bat file, enable application debuggi
 
    :: If no process ID was found, prompt the user to open debugging in their application code and provide the documentation link
    if "!SOCKET_NAME!"=="" (
-       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/en/application-dev/web/web-debugging-with-devtools.md]
+       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
        pause
        exit /b
    )
@@ -275,6 +275,11 @@ This script will delete all port forwarding. If other tools (such as DevEco Stud
 
 ## FAQs
 
+### Can I debug web pages opened in the system browser?
+
+It depends on whether the web debugging feature is enabled for the system browser.
+* If yes, follow the steps in [Procedure](#procedure).
+
 ### What should I do if hdc cannot discover devices?
 **Symptom**
 
@@ -314,7 +319,7 @@ This script will delete all port forwarding. If other tools (such as DevEco Stud
   * Ensure that the step of [Enabling Web Debugging for Application Code](#enabling-web-debugging-for-application-code) is performed.
   * Ensure that the application uses the **Web** component to load the web page.
 
-### What should I do if port forwarding fails
+### What should I do if port forwarding fails?
 **Symptom**
 
    The configured forwarding task is not displayed after the following command is executed.
@@ -360,3 +365,15 @@ The port forwarding may be invalid due to the following reasons:
     - Ensure that the port number in **Configure** on the Chrome debugging page is the same as the TCP port number specified for port forwarding.
     - In this topic, the default TCP port number is **9222**.  
       If you use another TCP port number (for example, **9223**), change the TCP port number in [Port Forwarding](#port-forwarding) and [Opening the Debugging Tool Page in Chrome](#opening-the-debugging-tool-page-in-chrome).
+
+### What should I do if the Web component cannot be debugged using DevTools?
+**Symptom**
+
+  The web page to be debugged cannot be found in Chrome on the PC.
+
+**Possible Causes**
+
+* When both hdc and ADB are used, ADB interferes with the WebSocket connection between DevTools and the device.
+
+**Solution**
+* In this case, stop the ADB process and ensure that DevTools establishes a WebSocket connection with the device.

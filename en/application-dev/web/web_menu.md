@@ -7,7 +7,7 @@ Menus are key components for user interaction. They help build a clear navigatio
 |[Custom Menu](./web_menu.md#custom-menu)|Image|Long press|Customization can be implemented using menu components.|
 ## Text Selection Menu
 The text selection menu of the **Web** component is a context interaction component implemented by custom elements. It is dynamically displayed when a user selects text and provides operations such as copy, share, and mark. It has standard features and scalability and is the core feature of text operations on mobile devices. The text selection menu is displayed when a user long-presses the selected text or long-presses the single handle in the editing state. The menu items are horizontally arranged. The system provides the default menu implementation. You can use the [editMenuOptions](../reference/apis-arkweb/ts-basic-components-web-attributes.md#editmenuoptions12) API to customize the text selection menu.
-1. Use the **onCreateMenu** method to customize menu items. Operate **Array<[TextMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)>** to add or delete menu items. Define the menu item name, icon, and ID in [TextMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md).
+1. Use the **onCreateMenu** method to customize menu items. Operate Array<[TextMenuItem](../reference/apis-arkui/arkui-ts/ts-text-common.md#textmenuitem12)> to add or delete menu items. Define the menu item name, icon, and ID in [TextMenuItem](../reference/apis-arkui/arkui-ts/ts-text-common.md#textmenuitem12).
 2. Use the **onMenuItemClick** method to process the menu item click event. When false is returned, the default system logic is executed.
 3. Create an [EditMenuOptions](../reference/apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions) object, which contains the **onCreateMenu** and **onMenuItemClick** methods, and bind the object to the **Web** component using the [editMenuOptions](../reference/apis-arkweb/ts-basic-components-web-attributes.md#editmenuoptions12) method of the **Web** component.
 
@@ -25,8 +25,8 @@ The text selection menu of the **Web** component is a context interaction compon
         return (
           menuItem.id.equals(TextMenuItemId.CUT) ||
           menuItem.id.equals(TextMenuItemId.COPY) ||
-          menuItem.id.equals((TextMenuItemId.PASTE))
-        )
+          menuItem.id.equals(TextMenuItemId.PASTE)
+        );
       });
       let customItem1: TextMenuItem = {
         content: 'customItem1',
@@ -61,7 +61,7 @@ The text selection menu of the **Web** component is a context interaction compon
         // Custom behavior
         console.log("Intercept ID: customItem1")
         return true;// Custom menu item. If true is returned, the menu is not closed after being clicked. If false is returned, the menu is closed.
-      } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.EntryAbility_label'))))){
+      } else if (menuItem.id.equals(TextMenuItemId.of($r('app.string.EntryAbility_label')))){
         // Custom behavior
         console.log("Intercept ID: app.string.customItem2")
         return true;
@@ -79,7 +79,7 @@ The text selection menu of the **Web** component is a context interaction compon
     }
   }
   ```
-
+  
   ```html
   <!--index.html-->
   <!DOCTYPE html>
@@ -93,9 +93,9 @@ The text selection menu of the **Web** component is a context interaction compon
     </body>
   </html>
   ```
-
+  ![editMenuOption](./figures/editMenuOption.gif)
 ## Context Menu
-A context menu is a shortcut menu triggered by a specific operation (such as right-clicking or holding down the rich text) to provide feature items related to the current operation object or UI element. Items in a context menu are arranged vertically. This menu is not provided by default. If it is not implemented in the application, the context menu is not displayed. To implement a context menu, the application needs to use the [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) component to create a menu child window and bind it to the **Web** component. When the menu is displayed, use the [onContextMenuShow](../reference/apis-arkweb/ts-basic-components-web-events.md#oncontextmenushow9) API to obtain the context menu details, including the click location and HTML element information.
+A context menu is a shortcut menu triggered by a specific operation (such as right-clicking or holding down the rich text) to provide feature items related to the current operation object or UI element. Items in a context menu are arranged vertically. This menu is not provided by default. If it is not implemented in the application, the context menu is not displayed. To implement a context menu, the application needs to create a [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) component and bind it to the **Web** component. When the menu is displayed, use the [onContextMenuShow](../reference/apis-arkweb/ts-basic-components-web-events.md#oncontextmenushow9) API to obtain the context menu details, including the click location and HTML element information.
 
 1. The [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) component contains the behaviors and styles of all menu items.
 2. Use the **bindPopup** method to bind the **Menu** component to the **Web** component. When the context menu is displayed, the created **Menu** component is displayed.
@@ -236,7 +236,7 @@ struct WebComponent {
 </body>
 </html>
 ```
-
+![onContextMenuShow](./figures/onContextMenuShow.gif)
 ## Custom Menu
 Custom menus enable you to adjust menu triggering timing and visual display, so that your application can dynamically match feature entries based on user operation scenarios. This simplifies UI adaptation in the development process and makes application interaction more intuitive. Custom menus allow an application to display a custom menu by calling [bindSelectionMenu](../reference/apis-arkweb/ts-basic-components-web-attributes.md#bindselectionmenu13) based on the event type and element type. Currently, the long-press event of an image is supported.
 1. Create a [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) component as the menu pop-up window.
@@ -335,8 +335,8 @@ struct WebComponent {
   </body>
 </html>
 ```
-
-## Saving Images by Using the Web Menu
+![bindSelectionMenu](./figures/bindSelectionMenu.gif)
+## Saving Images
 1. Create the **MenuBuilder** component as the menu pop-up window, use the [SaveButton](../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md) component to save images, and bind **MenuBuilder** to the **Web** component using **bindContextMenu**.
 2. Obtain the image URL in **onContextMenuShow** and save the image to the application sandbox by calling **copyLocalPicToDir** or **copyUrlPicToDir**.
 3. Save images in the application sandbox to the gallery by using **photoAccessHelper**.
@@ -422,7 +422,7 @@ struct WebComponent {
               console.error(`SaveButtonOnClickResult create asset failed`);
             }
             this.showMenu = false;
-        })
+          })
       }
       .margin({ top: 20, bottom: 20 })
       .justifyContent(FlexAlign.Center)
@@ -469,6 +469,238 @@ struct WebComponent {
 </body>
 </html>
   ```
+![emptyEditMenuOption](./figures/web-menu-savePic.gif)
+
+## Obtaining Selected Text
+The [editMenuOptions](../reference/apis-arkweb/ts-basic-components-web-attributes.md#editmenuoptions12) API of the **Web** component cannot obtain the selected text. You can obtain the selected text in JavaScript through [javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy) to implement the logic of custom menus.
+1. Create a **SelectClass** class and use [javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy) to register the **SelectClass** object with the **Web** component.
+2. Register a selection change listener on the HTML side. When the selection changes, use the **SelectClass** object to set the selection to the ArkTS side.
+  ```ts
+import { webview } from '@kit.ArkWeb';
+let selectText = '';
+
+class SelectClass {
+  constructor() {
+  }
+
+  setSelectText(param: String) {
+    selectText = param.toString();
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  webController: webview.WebviewController = new webview.WebviewController();
+  @State selectObj: SelectClass = new SelectClass();
+  @State textStr: string = '';
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.webController})
+        .javaScriptProxy({
+          object: this.selectObj,
+          name: 'selectObjName',
+          methodList: ['setSelectText'],
+          controller: this.webController
+        })
+        .height('40%')
+      Text('Click here to get the selected text.')
+        .fontSize(20)
+        .onClick(() => {
+          this.textStr = selectText;
+        })
+        .height('10%')
+      Text('Selected text is ' + this.textStr)
+        .fontSize(20)
+        .height('10%')
+    }
+  }
+}
+  ```
+  ```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Get Select</title>
+    <style>
+        body {
+          margin: 40px;
+          background-color: #f4f4f4;
+        }
+        .edit-container {
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          margin: auto;
+        }
+        textarea {
+          width: 100%;
+          height: 400px;
+          font-size: 16px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="edit-container">
+    <textarea placeholder="Enter the text here and select it by long pressing."></textarea>
+</div>
+<script>
+    document.addEventListener('selectionchange', () => {
+      var selection = window.getSelection();
+      if(selection.rangeCount > 0) {
+        var selectedText = selection.toString();
+        selectObjName.setSelectText(selectedText);
+      }
+    })
+</script>
+</body>
+</html>
+  ```
+![web-menu-get-select](./figures/web-menu-get-select.gif)
+
+## Identifying QR Codes
+In QR code redirection or payment scenarios, you can implement the context menu to obtain QR code image information from the [onContextMenuShow](../reference/apis-arkweb/ts-basic-components-web-events.md#oncontextmenushow9) API for processing and provide a QR code scanning entry for users.
+1. Create a **MenuBuilder** component as the menu pop-up window and bind it to the **Web** component through **bindContextMenu**.
+2. Obtain the image URL in **onContextMenuShow** and save the image to the application sandbox by calling **copyLocalPicToDir** or **copyUrlPicToDir**.
+3. Use **detectBarcode.decode** to parse the image stored in the sandbox and obtain the result.
+  ```ts
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { systemDateTime } from '@kit.BasicServicesKit';
+import { http } from '@kit.NetworkKit';
+import { scanCore, scanBarcode, detectBarcode } from '@kit.ScanKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  saveButtonOptions: SaveButtonOptions = {
+    icon: SaveIconStyle.FULL_FILLED,
+    text: SaveDescription.SAVE_IMAGE,
+    buttonType: ButtonType.Capsule
+  }
+  controller: webview.WebviewController = new webview.WebviewController();
+  private result: WebContextMenuResult | undefined = undefined;
+  @State showMenu: boolean = false;
+  @State imgUrl: string = '';
+  @State decodeResult: string = '';
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+  copyLocalPicToDir(rawfilePath: string, newFileName: string): string {
+    let srcFileDes = this.context.resourceManager.getRawFdSync(rawfilePath);
+    let dstPath = this.context.filesDir + "/" +newFileName;
+    let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let bufsize = 4096;
+    let buf = new ArrayBuffer(bufsize);
+    let off = 0, len = 0, readedLen = 0;
+    while (len = fs.readSync(srcFileDes.fd, buf, { offset: srcFileDes.offset + off, length: bufsize })) {
+      readedLen += len;
+      fs.writeSync(dest.fd, buf, { offset: off, length: len });
+      off = off + len;
+      if ((srcFileDes.length - readedLen) < bufsize) {
+        bufsize = srcFileDes.length - readedLen;
+      }
+    }
+    fs.close(dest.fd);
+    return dest.path;
+  }
+
+  async copyUrlPicToDir(picUrl: string, newFileName: string): Promise<string> {
+    let uri = '';
+    let httpRequest = http.createHttp();
+    let data: http.HttpResponse = await(httpRequest.request(picUrl) as Promise<http.HttpResponse>);
+    if (data?.responseCode == http.ResponseCode.OK) {
+      let dstPath = this.context.filesDir + "/" + newFileName;
+      let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+      let writeLen: number = fs.writeSync(dest.fd, data.result as ArrayBuffer);
+      uri = dest.path;
+    }
+    return uri;
+  }
+
+  @Builder
+  MenuBuilder() {
+    Menu() {
+      MenuItem({
+        content: "Scan QR Code",
+      })
+        .width(200)
+        .height(50)
+        .onClick(async () => {
+          try {
+            let uri = '';
+            if (this.imgUrl?.includes('rawfile')) {
+              let rawFileName: string = this.imgUrl.substring(this.imgUrl.lastIndexOf('/') + 1);
+              uri = this.copyLocalPicToDir(rawFileName, 'copyFile.png');
+            } else if (this.imgUrl?.includes('http') || this.imgUrl?.includes('https')) {
+              uri = await this.copyUrlPicToDir(this.imgUrl, `onlinePic${systemDateTime.getTime()}.png`);
+            }
+            let options: scanBarcode.ScanOptions = { scanTypes: [scanCore.ScanType.ALL], enableMultiMode: true, enableAlbum: true }
+            let inputImage: detectBarcode.InputImage = { uri: uri };
+            try {
+              // Call the image recognition API.
+              detectBarcode.decode(inputImage, options, (error: BusinessError, result: Array<scanBarcode.ScanResult>) => {
+                if (error && error.code) {
+                  console.error(`create asset failed with error: ${error.code}, ${error.message}`);
+                  return;
+                }
+              this.decodeResult = JSON.stringify(result);
+              });
+            } catch (err) {
+              console.error(`Failed to detect Barcode. Code: ${err.code}, ${err.message}`);
+            }
+          }
+          catch (err) {
+            console.error(`create asset failed with error: ${err.code}, ${err.message}`);
+          }
+        })
+    }
+  }
+
+  build() {
+    Column() {
+      Web({src: $rawfile("index.html"), controller: this.controller})
+        .onContextMenuShow((event) => {
+          if (event) {
+            let hitValue = this.controller.getLastHitTest();
+            this.imgUrl = hitValue.extra;
+          }
+          this.showMenu = true;
+          return true;
+        })
+        .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+        .fileAccess(true)
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .height('40%')
+      Text('Decode result is ' + this.decodeResult)
+        .fontSize(20)
+        .height('10%')
+    }
+  }
+}
+  ```
+  ```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test QR code</title>
+</head>
+<body>
+<h1>Long press and click to scan the QR code</h1>
+<!--img.png is a QR code image-->
+<img src="img.png" >
+</body>
+</html>
+  ```
+![web-menu-scan-qr-code](./figures/web-menu-scan-qrcode.gif)
 
 ## FAQs
 ### How do I disable the menu triggered by a long press?
@@ -520,3 +752,5 @@ struct WebComponent {
 
 ### What should I do if the menu with a selection handle is not displayed when the selection area is displayed?
 Check whether the selection area is operated using the [selection API](https://www.w3.org/TR/selection-api/) of the JavaScript. If yes, the menu with a selection handle is not displayed.
+### How do I modify the style of the text selection menu?
+Currently, the style of the text selection menu cannot be modified.
