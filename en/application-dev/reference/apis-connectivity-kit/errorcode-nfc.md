@@ -1,10 +1,16 @@
 # NFC Error Codes
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-## 3100101
+## 3100101 NFC Switch Error
 
 **Error Message**
 
@@ -21,9 +27,9 @@ The NFC service fails to enable or disable NFC.
 
 **Solution**
 
-1. Enable or disable NFC again or restart the device, and try again.
+Enable or disable NFC again or restart the device, and try again.
 
-## 3100201
+## 3100201 Tag Read/Write Error
 
 **Error Message**
 
@@ -47,7 +53,7 @@ An error occurs when the NFC service executes the tag service logic.
 4. Touch and read the card again.
 5. Exit the app and read the card again.
 
-## 3100202
+## 3100202 Application Status Error
 
 **Error Message**
 
@@ -58,12 +64,12 @@ The element state is invalid.
 When the API is called, the application of the card read page is not running in the foreground.
 
 **Possible Causes**
-1. The card read page is not in the foreground.
+The card read page is not in the foreground.
 
 **Solution**
-1. The API can be called only by the page in the foreground.
+The API can be called only by the page in the foreground.
 
-## 3100203
+## 3100203 Incorrect API Call Sequence
 
 **Error Message**
 
@@ -74,28 +80,28 @@ The off() API can be called only when the on() has been called.
 The off() API can be called only after on() is called.
 
 **Possible Causes**
-1. The foreground page of the application calls **off()** without invoking **on()**.
+The foreground page of the application calls **off()** without invoking **on()**.
 
 **Solution**
-1. Call **on()** first, and call **off()** before the page exits.
+Call **on()** first, and call **off()** before the page exits.
 
-## 3100204
+## 3100204 NFC Chip I/O Exception
 
 **Error Message**
 
-The The tag I/O operation failed.
+The tag I/O operation failed.
 
 **Description**
 
 The NFC tag I/O operation fails.
 
 **Possible Causes**
-1. The NFC tag does not support the read/write operation.
+The NFC tag does not support the read/write operation.
 
 **Solution**
-1. Implement error handling and display error messages based on service scenarios.
+Implement error handling and display error messages based on service scenarios.
 
-## 3100205
+## 3100205 Abnormal NFC Tag Status
 
 **Error Message**
 
@@ -106,12 +112,12 @@ The tag leaves the field.
 The NFC tag has been removed.
 
 **Possible Causes**
-1. The NFC tag is out of the NFC device's sensing range.
+The NFC tag is out of the NFC device's sensing range.
 
 **Solution**
-1. Place the NFC tag close to the NFC card reader.
-   
-## 3100301
+Place the NFC tag close to the NFC card reader.
+
+## 3100301 Abnormal NFC Card Emulation Status
 
 **Error Message**
 
@@ -129,7 +135,7 @@ An error occurs when the NFC service executes the card emulation service logic.
 1. Instruct the user to enable NFC if it is disabled.
 2. Instruct the user to disable and enable NFC to initialize the hardware again.
 
-## 3200101
+## 3200101 Abnormal Active NFC Tag Status
 
 **Error Message**
 

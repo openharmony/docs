@@ -1,5 +1,10 @@
 # Multilingual Resource Provisioning
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
 
 ## Use Cases
 

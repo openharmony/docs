@@ -89,7 +89,7 @@ In the following example, when a user clicks the **Upload** button on the fronte
       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       // Set the maximum number of media files that can be selected.
       photoSelectOptions.maxSelectNumber = 5;
-      let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+      let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
       // Obtain the list of selected files.
       result.handleFileList(chooseFile.photoUris);
     }

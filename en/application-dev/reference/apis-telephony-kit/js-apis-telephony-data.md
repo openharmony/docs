@@ -301,7 +301,7 @@ Checks whether cellular data is enabled. This API returns the result synchronous
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether cellular data is enabled.<br>**true**: Cellular data is enabled.<br>**false**: Cellular data is disabled.|
+| boolean | Whether cellular data is enabled.<br>**true**: Cellular data is enabled.<br>**false**: The cellular data service is disabled.|
 
 **Error codes**
 
@@ -522,6 +522,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.queryAllApns().then((data: Array<data.ApnInfo>) => {
     console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
@@ -565,6 +566,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let apnInfo: data.ApnInfo;
 apnInfo = {
@@ -619,6 +621,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let apnId: number = 0; // apnId is a valid value returned by queryApnIds. If an invalid APN ID is passed to setPreferredApn, the default preferred APN configured by the carrier is used.
 data.setPreferredApn(apnId).then((data: boolean) => {

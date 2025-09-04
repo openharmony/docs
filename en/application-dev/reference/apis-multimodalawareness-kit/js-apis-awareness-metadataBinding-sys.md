@@ -15,9 +15,12 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## metadataBinding.encodeImage
-encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>;  
-Encodes metadata into an image. 
+encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;;
+
+Encodes metadata into an image.
+
 **System capability**: SystemCapability.MultimodalAwareness.metadataBinding
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -25,8 +28,13 @@ Encodes metadata into an image.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | srcImage     | PixelMap                           | Yes  | Source image.|
-| metadata     | string                             | Yes  | Metadata to encoded.|
-| Promise | Promise<image.PixelMap>                 | Yes  |  Callback used to return the image with encoded metadata.|
+| metadata     | string                             | Yes  | Metadata to be encoded.|
+
+**Return value**
+
+  | Type                          | Description        |
+  | ---------------------------- | ---------- |
+  | Promise&lt;image.PixelMap&gt; | Promise used to return the image with encoded metadata.|
 
 **Error codes** 
 
@@ -36,7 +44,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error.|
+|32100002  | Encoding failed. Possible causes: 1. Image processing error; 2. Channel coding error.|
 
 **Example**
 
@@ -56,10 +64,12 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 ```
 
 ## metadataBinding.decodeImage
-function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
+function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;;
+
 Decodes the information carried in the image.
 
 **System capability**: SystemCapability.MultimodalAwareness.metadataBinding
+
 **System API**: This is a system API.
 
 **Parameters** 
@@ -67,7 +77,12 @@ Decodes the information carried in the image.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | encodedImage     | PixelMap                           | Yes  | Image with metadata encoded.|
-|Promise|Promise\<string\>|Yes|Callback used to return the encoded metadata of the image.|
+
+**Return value**
+
+  | Type                          | Description        |
+  | ---------------------------- | ---------- |
+  | Promise&lt;string&gt; | Promise used to return the encoded metadata of the image.|
 
 **Error codes** 
 
@@ -76,8 +91,8 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
-|32100001  | Internal handling failed. File read failed.|
-|32100003  | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed.|
+|32100001  | Internal handling failed. File creation failed.|
+|32100003  | Decoding failed. Possible causes: 1. Image not encoded; 2. Image destroyed.|
 
 **Example** 
 ```ts
@@ -96,8 +111,11 @@ metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 
 ## metadataBinding.notifyMetadataBindingEvent
 notifyMetadataBindingEvent(metadata: string): void;
+
 Transfers metadata to the application or service that calls the encoding API.
+
 **System capability**: SystemCapability.MultimodalAwareness.metadataBinding
+
 **System API**: This is a system API.
 
 **Parameters** 
@@ -112,7 +130,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Obtain metadata failed.|
+|32100001|Internal handling failed. File creation failed.|
 
 **Example**
 

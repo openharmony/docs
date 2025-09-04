@@ -9,6 +9,7 @@ Defines network capability sets.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md)
 
 ## Summary
 
@@ -19,9 +20,9 @@ Defines network capability sets.
 | -------- | -------- |
 | [linkUpBandwidthKbps](#linkupbandwidthkbps) | Uplink bandwidth.| 
 | [linkDownBandwidthKbps](#linkdownbandwidthkbps) | Downlink bandwidth.| 
-| [netCaps](#netcaps) [NETCONN_MAX_CAP_SIZE] | Network capability list.| 
+| [netCaps](#netcaps) [[NETCONN_MAX_CAP_SIZE]](_net_connection.md#macros)| Network capability list.| 
 | [netCapsSize](#netcapssize) | Actual size of the network capability list.| 
-| [bearerTypes](#bearertypes) [NETCONN_MAX_BEARER_TYPE_SIZE] | Bearer type list.| 
+| [bearerTypes](#bearertypes) [[NETCONN_MAX_BEARER_TYPE_SIZE]](_net_connection.md#macros)| Bearer type list.| 
 | [bearerTypesSize](#bearertypessize) | Actual size of the bearer type list.| 
 
 

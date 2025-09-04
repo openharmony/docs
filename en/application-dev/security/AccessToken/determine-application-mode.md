@@ -7,7 +7,7 @@ The procedure for requesting a permission varies depending on the permission lev
 1. Determine the permission type in the related permission list.
 2. Request the permission by following the corresponding operation path.
 
- 
+The operation for requesting a permission varies, depending on the permission APL and authorization mode.
 
 ## Requesting Permissions for <!--Del-->normal <!--DelEnd-->Applications
 

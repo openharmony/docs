@@ -1,6 +1,6 @@
 # @ohos.thermal (Thermal Management)
 
-The **thermal** module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
+The **thermal** module provides APIs for obtaining thermal level of the device and listening for thermal level changes.
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ Subscribes to thermal level changes.
 
 | Name  | Type                        | Mandatory| Description                          |
 | -------- | ---------------------------- | ---- | ------------------------------ |
-| callback | Callback&lt;ThermalLevel&gt; | Yes  | Callback used to return thermal level. This parameter is of the function type.|
+| callback | Callback&lt;[ThermalLevel](#thermallevel)&gt; | Yes  | Callback used to return thermal level. This parameter is of the function type.|
 
 **Error codes**
 
@@ -96,7 +96,7 @@ Obtains the current thermal level.
 
 | Type        | Description        |
 | ------------ | ------------ |
-| ThermalLevel | Thermal level.|
+| [ThermalLevel](#thermallevel) | Thermal level.|
 
 **Error codes**
 
@@ -131,7 +131,7 @@ Subscribes to thermal level changes.
 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result. The return value contains only one parameter, that is, thermal level.|
+| callback | AsyncCallback&lt;[ThermalLevel](#thermallevel)&gt; | Yes  | Callback used to return the result. The return value contains only one parameter, that is, thermal level.|
 
 **Example**
 
@@ -179,7 +179,7 @@ Obtains the current thermal level.
 
 | Type          | Description    |
 | ------------ | ------ |
-| ThermalLevel | Thermal level.|
+| [ThermalLevel](#thermallevel) | Thermal level.|
 
 **Example**
 

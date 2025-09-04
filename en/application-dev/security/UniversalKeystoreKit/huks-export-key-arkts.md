@@ -1,17 +1,14 @@
 # Exporting a Key (ArkTS)
 
-
 This topic walks you through on how to export the public key of a persistently stored asymmetric key. Currently, HUKS supports export of the ECC, RSA, Ed25519, X25519, and SM2 public keys.
 >**NOTE**<br>
 > The mini-system devices support export of only the RSA public keys.
 
-
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
-2. Use [exportKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksexportkeyitem9) to export the key based on the specified **keyAlias** and **options**.
-   **options** is a reserved parameter and is left empty currently.
+2. Use [exportKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksexportkeyitem9) to export the key based on the specified **keyAlias** and **options**. **options** is a reserved parameter and is left empty currently.
 
 3. In the [HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9) object returned, the public key is in the **outData** field in the DER format defined in X.509. For details about the format, see [Public Key Material Format](huks-concepts.md#public-key-material-format).
 

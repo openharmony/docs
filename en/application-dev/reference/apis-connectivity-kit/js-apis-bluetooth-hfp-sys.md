@@ -1,4 +1,10 @@
-# @ohos.bluetooth.hfp (Bluetooth HFP Module) (System API)
+# @ohos.bluetooth.hfp (Bluetooth HFP) (System API)
+
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 The **hfp** module provides APIs for using the Bluetooth Hands-Free Profile (HFP).
 
@@ -31,7 +37,7 @@ Connects to the HFP service of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Error codes**
 
@@ -77,7 +83,7 @@ Disconnects the HFP service of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Error codes**
 

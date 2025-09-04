@@ -36,7 +36,7 @@ No action is required.
 
 **Error Message**
 
-The installation of the user certificate failed in the certificate manager dialog, for example, the certificate is in an invalid format.
+The user install certificate failed in the certificate manager dialog, such as the certificate is in an invalid format.
 
 **Possible Causes**
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-If coding specification issues or errors exist in the code of an application, the application may encounter unexpected errors, for example, uncaught exceptions, while it is running. In such a case, the application may exit unexpectedly. Error logs, however, are usually stored on users' local storage devices, making it inconvenient to locate faults. With the APIs provided by the **errorManager** module, the related errors and logs will be reported to your service platform for fault locating before application exits.
+If coding specification issues or errors exist in the code of an application, the application may encounter unexpected errors, for example, uncaught exceptions, while it is running. In such a case, the application may exit unexpectedly. Error logs, however, are usually stored on users' local storage devices, making it inconvenient to locate faults. With the APIs provided by the errorManager module, the related errors and logs will be reported to your service platform for fault locating before application exits.
 
 After the errorManager API is used to listen for exceptions and errors, the application does not exit. You are advised to add the synchronous exit operation after the callback is executed. If you only want to obtain error logs, you are advised to use [Subscribing to Crash Events (ArkTS)](hiappevent-watcher-crash-events-arkts.md).
 
@@ -26,7 +26,8 @@ Application error management APIs are provided by the [errorManager](../referenc
 | on(type: 'freeze', observer: FreezeObserver): void<sup>18+</sup> | Registers an observer for the main thread freeze event of the application. This API can be called only in the main thread. A new observer will overwrite the previous one. |
 | off(type: 'freeze', observer?: FreezeObserver): void<sup>18+</sup> | Unregisters an observer for the message processing duration of the main thread in FreezeObserver mode. |
 
-When an asynchronous callback is used, the return value can be processed directly in the callback. If a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Result Codes for Unregistering an Observer](#result-codes-for-unregistering-an-observer).
+When an asynchronous callback is used, the return value can be processed directly in the callback.
+When a promise is used, the return value can also be processed in the promise. For details about the result codes, see [Result Codes for Unregistering an Observer](#result-codes-for-unregistering-an-observer).
 
 **ErrorObserver APIs**
 
@@ -46,7 +47,7 @@ When an asynchronous callback is used, the return value can be processed directl
 | Result Code| Description                       |
 | ------ | ---------------------------  |
 | 0      |  Normal.                         |
-| -1     | Input number not exist.             |
+| -1     | Input **number** not exist.             |
 | -2     | Invalid parameter.      |
 
 ## Development Example
@@ -55,7 +56,7 @@ When an asynchronous callback is used, the return value can be processed directl
 >
 > You are advised to add a synchronous exit function at the end of the exception callback. Otherwise, multiple exception callbacks may be invoked.
 
-### Listening for A Single Thread
+### Listening for a Single Thread
 
 ```ts
 import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
@@ -73,7 +74,7 @@ let callback: errorManager.ErrorObserver = {
         if (typeof(errorObj.stack) === 'string') {
             console.info('onException, stack: ', errorObj.stack);
         }
-        //After the callback is executed, exit the process synchronously to avoid triggering exceptions for multiple times.
+        // After the callback is executed, exit the process synchronously to avoid multiple exceptions.
         let pro = new process.ProcessManager();
         pro.exit(0);
     }
@@ -137,8 +138,8 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
-    //After the callback is executed, exit the process synchronously to avoid triggering exceptions for multiple times.
+    console.info("[Demo] result instanceType :" + observer.instanceType);
+    // After the callback is executed, exit the process synchronously to avoid multiple exceptions.
     let pro = new process.ProcessManager();
     pro.exit(0);
 }
@@ -199,8 +200,8 @@ function promiseFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
-    //After the callback is executed, exit the process synchronously to avoid triggering exceptions for multiple times.
+    console.info("[Demo] result instanceType :" + observer.instanceType);
+    // After the callback is executed, exit the process synchronously to avoid multiple exceptions.
     let pro = new process.ProcessManager();
     pro.exit(0);
 }

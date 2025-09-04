@@ -12,6 +12,7 @@ Invalid Parameter. Error message: ${messageInfo}.
 
 **Possible Causes**
 
+This error code is reported when the parameter verification fails. The possible causes are as follows:
 1. The value of **tokenId** is **0**.
 2. The permission name is empty or exceeds 256 characters.
 3. The **flag** value in the permission authorization or revocation request is invalid.
@@ -25,7 +26,7 @@ Invalid Parameter. Error message: ${messageInfo}.
 
 Check and set input parameters correctly.
 
-
+<!--Del-->
 ## 12100002 TokenId Not Exist
 
 **Error Message**
@@ -39,9 +40,10 @@ TokenId does not exist.
 
 **Solution**
 
-Check and set input parameters correctly.
+Check and correct input parameters. For details about the valid values, see [Permission List](../../security/AccessToken/app-permissions.md).
+<!--DelEnd-->
 
-
+<!--Del-->
 ## 12100003 Permission Not Exist
 
 **Error Message**
@@ -56,8 +58,8 @@ Permission does not exist.
 
 **Solution**
 
-Check and set input parameters correctly. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).
-
+Check and correct input parameters. For details about the valid values, see [Permission List](../../security/AccessToken/app-permissions.md).
+<!--DelEnd-->
 
 ## 12100004 Listener APIs Not Used in Pairs
 
@@ -67,6 +69,7 @@ The API is not used in pair with others.
 
 **Possible Causes**
 
+This error code is reported if listener APIs are not used in pairs. The possible causes are as follows:
 1. One of the listener APIs that must be used in pairs is repeatedly called.
 2. One of the listener APIs that must be used in pairs is independently called.
 
@@ -90,7 +93,7 @@ The number of listeners exceeds 200.
 
 Release unused listeners in a timely manner.
 
-
+<!--Del-->
 ## 12100006 Permission Granting or Revocation Not Supported
 
 **Error Message**
@@ -99,14 +102,14 @@ The specified application does not support the permissions granted or ungranted 
 
 **Possible Causes**
 
-1. The specified **tokenId** is the identity of a remote device. Distributed permission granting and revocation are not yet supported.
+1. The specified **tokenId** is the identity of a remote device. Distributed granting and revocation are not yet supported.
 2. The specified **tokenId** belongs to a sandbox application, which is not allowed to request the specified permission.
 
 **Solution**
 
 1. Check whether the method of obtaining **tokenId** is correct.
 2. Check whether the sandbox application works in restrictive mode. Most permissions cannot be granted to a sandbox application in restrictive mode.
-
+<!--DelEnd-->
 
 ## 12100007 System Service Not Working Properly
 
@@ -116,14 +119,15 @@ The service is abnormal.
 
 **Possible Causes**
 
-1. The permission management service fails to start properly.
-2. The data read or write via IPC fails.
+System services are not working properly. The possible causes are as follows:
+1. The permission management service cannot start properly.
+2. The read or write of IPC data fails.
 
 **Solution**
 
 Try again later or restart the device.
 
-
+<!--Del-->
 ## 12100008 Out of Memory
 
 **Error Message**
@@ -137,7 +141,7 @@ The system memory is insufficient.
 **Solution**
 
 Try again later or restart the device.
-
+<!--DelEnd-->
 
 ## 12100009 Internal Service Error
 

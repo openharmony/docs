@@ -9,6 +9,7 @@ Defines the parameters of the service thread jank event detection. Note that the
 
 **Related module**: [HiCollie](_hi_collie.md)
 
+**Header file**: [hicollie.h](hicollie_8h.md)
 
 ## Summary
 

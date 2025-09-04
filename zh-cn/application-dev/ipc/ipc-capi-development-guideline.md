@@ -1,5 +1,10 @@
 # IPC与RPC通信开发指导(C/C++)
-
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 场景介绍
 
@@ -52,7 +57,8 @@ libchild_process.so
 ```
 
 ### 异步调用场景
-#### 公共数据及函数定义
+
+**公共数据及函数定义**
 
 ```c++
 #include <string>
@@ -91,7 +97,8 @@ static void* LocalMemoryAllocator(int32_t len) {
     return buffer;
 }
 ```
-#### 服务端对象: IpcCApiStubTest
+
+**服务端对象: IpcCApiStubTest**
 
 ```c++
 class IpcCApiStubTest {
@@ -225,7 +232,7 @@ int IpcCApiStubTest::RequestExitChildProcess() {
 }
 ```
 
-#### 客户端代理对象: IpcCApiProxyTest
+**客户端代理对象: IpcCApiProxyTest**
 
 ```cpp
 // 用户自定义错误码
@@ -397,7 +404,8 @@ void IpcCApiProxyTest::OnDeathRecipientCB(void *userData) {
     OH_LOG_INFO(LOG_APP, "the stub is dead!");
 }
 ```
-#### 服务端调用入口，服务端文件"libipcCapiDemo.so"
+
+**服务端调用入口，服务端文件"libipcCapiDemo.so"**
 
 ```C++
 IpcCApiStubTest g_ipcStubObj;
@@ -421,7 +429,7 @@ void NativeChildProcess_MainProc() {
 #endif
 ```
 
-#### 客户端调用入口
+**客户端调用入口**
 
 ```c++
 IpcCApiProxyTest *g_ipcProxy = nullptr;
@@ -465,4 +473,3 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
-

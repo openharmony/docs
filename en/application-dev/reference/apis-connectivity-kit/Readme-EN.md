@@ -1,6 +1,6 @@
-# Connectivity Kit (Short-Range Communication Service)
+# Connectivity Kit<!--connectivity-api-->
 
-- ArkTS APIs
+- ArkTS API<!--connectivity-arkts-->
   - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended)](js-apis-bluetooth-a2dp.md)
   - [@ohos.bluetooth.access (Bluetooth Access Module) (Recommended)](js-apis-bluetooth-access.md)
   - [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module) (Recommended)](js-apis-bluetooth-baseProfile.md)
@@ -28,6 +28,7 @@
   - [@ohos.bluetooth.constant (Bluetooth Constant Module) (Recommended) (System API)](js-apis-bluetooth-constant-sys.md)
   - [@ohos.bluetooth.hfp (Bluetooth HFP Module) (Recommended) (System API)](js-apis-bluetooth-hfp-sys.md)
   - [@ohos.bluetooth.hid (Bluetooth HID Module) (Recommended) (System API)](js-apis-bluetooth-hid-sys.md)
+  - [@ohos.bluetooth.opp (Bluetooth OPP Module) (System API)](js-apis-bluetooth-opp-sys.md)
   - [@ohos.bluetooth.pan (Bluetooth PAN Module) (Recommended) (System API)](js-apis-bluetooth-pan-sys.md)
   - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended) (System API)](js-apis-bluetooth-pbap-sys.md)
   - [@ohos.bluetooth.map (Bluetooth MAP module) (Recommended) (System API)](js-apis-bluetooth-map-sys.md)
@@ -37,22 +38,22 @@
   - [@ohos.nfc.tag (Standard NFC Tags) (System API)](js-apis-nfcTag-sys.md)
   - [@ohos.wifiManager (WLAN) (Recommended) (System API)](js-apis-wifiManager-sys.md)
   <!--DelEnd-->
-  - tag
+  - tag<!--connectivity-nfc-tag-arkts-->
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
-- C APIs<!--connectivity-c-->
+- C API<!--connectivity-c-->
   - Modules<!--connectivity-module-->
     - [Bluetooth](_bluetooth.md)
     - [Wifi](_wifi.md)
   - Header Files<!--connectivity-headerfile-->
     - [oh_bluetooth.h](oh__bluetooth_8h.md)
     - [oh_wifi.h](oh__wifi_8h.md)
-- Error Codes
+- Error Codes<!--connectivity-arkts-errcode-->
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)
   - [NFC Error Codes](errorcode-nfc.md)
   - [SE Error Codes](errorcode-se.md)
-- APIs No Longer Maintained
+- APIs No Longer Maintained<!--connectivity-arkts-dep-->
   - [@ohos.bluetooth (Bluetooth) (To Be Deprecated)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated)](js-apis-bluetoothManager.md)
   - [@ohos.wifi (WLAN) (To Be Deprecated)](js-apis-wifi.md)

@@ -86,8 +86,8 @@ Example:
 
 | Name| Description| 
 | -------- | -------- |
-| [HiAppEvent_ErrorCode](_hi_app_event.md#hiappevent_errorcode) {<br>HIAPPEVENT_SUCCESS = 0, <br>HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, <br>HIAPPEVENT_PROCESSOR_IS_NULL = -7, <br>HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br>HIAPPEVENT_INVALID_PARAM_VALUE = -9, <br>HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, <br>HIAPPEVENT_OPERATE_FAILED = -100, <br>HIAPPEVENT_INVALID_UID = -200<br>} | Enumerates the error codes used in the HiAppEvent module. | 
-| [EventType](_hi_app_event.md#eventtype)  {<br>FAULT = 1, <br>STATISTIC = 2, <br>SECURITY = 3, <br>BEHAVIOR = 4<br>} | Enumerates the event types. | 
+| [HiAppEvent_ErrorCode](_hi_app_event.md#hiappevent_errorcode) {<br/>HIAPPEVENT_SUCCESS = 0, <br/>HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, <br/>HIAPPEVENT_PROCESSOR_IS_NULL = -7, <br/>HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br/>HIAPPEVENT_INVALID_PARAM_VALUE = -9, <br/>HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, <br/>HIAPPEVENT_OPERATE_FAILED = -100, <br/>HIAPPEVENT_INVALID_UID = -200<br/>} | Enumerates the error codes used in the HiAppEvent module. | 
+| [EventType](_hi_app_event.md#eventtype)  {<br/>FAULT = 1, <br/>STATISTIC = 2, <br/>SECURITY = 3, <br/>BEHAVIOR = 4<br/>} | Enumerates the event types. | 
 
 
 ### Callback

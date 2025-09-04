@@ -18,6 +18,7 @@ accessibilityGroup属性，用于设置是否启用无障碍分组。若启用�
 
 ```ts
 Column() {
+  Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
 }
 .accessibilityGroup(true)
 ```
@@ -38,6 +39,7 @@ accessibilityLevel属性表示组件的无障碍重要性，用于控制组件�
 
 ```ts
 Column() {
+  Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
 }
 .accessibilityGroup(true)
 .accessibilityLevel("yes")
@@ -53,6 +55,7 @@ accessibilityText属性用于为无文本内容的组件提供朗读文本。若
 
 ```ts
 Column() {
+  Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
 }
 .accessibilityGroup(true)
 .accessibilityLevel("yes")
@@ -67,6 +70,7 @@ accessibilityDescription属性用于提供更详细的组件说明，播报时�
 
 ```ts
 Column() {
+  Text("HelloWorld")
 }
 .accessibilityGroup(true)
 .accessibilityLevel("yes")
@@ -119,6 +123,7 @@ accessibilityChecked属性，用于表示组件在支持多选的情况下是否
 
 ```ts
 Column() {
+  Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
 }
 .accessibilityGroup(true)
 .accessibilityLevel("yes")
@@ -141,6 +146,7 @@ accessibilitySelected属性，用于表示组件在支持单选的情况下是�
 
 ```ts
 Column() {
+  Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
 }
 .accessibilityGroup(true)
 .accessibilityLevel("yes")

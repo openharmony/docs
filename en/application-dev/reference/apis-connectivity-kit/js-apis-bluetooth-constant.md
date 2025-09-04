@@ -1,5 +1,11 @@
 # @ohos.bluetooth.constant (Bluetooth constant Module)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **constant** module provides definitions of the constants used in Bluetooth.
 
 > **NOTE**
@@ -87,14 +93,14 @@ Enumerates the major and minor classes of Bluetooth devices.
 | PHONE_SMART                              | 0x020C | Smartphone.      |
 | PHONE_MODEM_OR_GATEWAY                   | 0x0210 | Modem or gateway phone.|
 | PHONE_ISDN                               | 0x0214 | ISDN phone.    |
-| NETWORK_FULLY_AVAILABLE                  | 0x0300 | Device with network fully available.    |
-| NETWORK_1_TO_17_UTILIZED                 | 0x0320 | Device used on network 1 to 17.  |
-| NETWORK_17_TO_33_UTILIZED                | 0x0340 | Device used on network 17 to 33. |
-| NETWORK_33_TO_50_UTILIZED                | 0x0360 | Device used on network 33 to 50. |
-| NETWORK_60_TO_67_UTILIZED                | 0x0380 | Device used on network 60 to 67. |
-| NETWORK_67_TO_83_UTILIZED                | 0x03A0 | Device used on network 67 to 83. |
-| NETWORK_83_TO_99_UTILIZED                | 0x03C0 | Device used on network 83 to 99. |
-| NETWORK_NO_SERVICE                       | 0x03E0 | Device without network service     |
+| NETWORK_FULLY_AVAILABLE                  | 0x0300 | Network device with a network load of 0%.    |
+| NETWORK_1_TO_17_UTILIZED                 | 0x0320 | Network device with a network load of 1% to 17%.  |
+| NETWORK_17_TO_33_UTILIZED                | 0x0340 | Network device with a network load of 17% to 33%. |
+| NETWORK_33_TO_50_UTILIZED                | 0x0360 | Network device with a network load of 33% to 50%. |
+| NETWORK_60_TO_67_UTILIZED                | 0x0380 | Network device with a network load of 60% to 67%. |
+| NETWORK_67_TO_83_UTILIZED                | 0x03A0 | Network device with a network load of 67% to 83%. |
+| NETWORK_83_TO_99_UTILIZED                | 0x03C0 | Network device with a network load of 83% to 99%. |
+| NETWORK_NO_SERVICE                       | 0x03E0 | Network device with a network load of 100%.    |
 | AUDIO_VIDEO_UNCATEGORIZED                | 0x0400 | Unclassified audio or video device.   |
 | AUDIO_VIDEO_WEARABLE_HEADSET             | 0x0404 | Wearable audio or video headset.  |
 | AUDIO_VIDEO_HANDSFREE                    | 0x0408 | Hands-free audio or video device.    |

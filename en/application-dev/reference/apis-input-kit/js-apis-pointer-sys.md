@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.pointer (Mouse Pointer) (System API)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+
 The **pointer** module provides APIs related to pointer attribute management.
 
 > **NOTE**
@@ -87,7 +93,7 @@ Sets the moving speed of the mouse pointer. This API uses a promise to return th
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
@@ -240,7 +246,7 @@ Obtains the moving speed of the mouse pointer. This API uses a promise to return
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
@@ -281,7 +287,7 @@ Obtains the moving speed of the mouse pointer. This API returns the result synch
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | number | Moving speed of the mouse pointer.|
 
@@ -391,7 +397,7 @@ Sets the status of the mouse hover scroll switch. This API uses a promise to ret
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
@@ -491,7 +497,7 @@ Obtains the status of the mouse hover scroll switch. This API uses a promise to 
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 
@@ -602,7 +608,7 @@ Sets the primary button of the mouse. This API uses a promise to return the resu
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
@@ -702,7 +708,7 @@ Obtains the primary button of the mouse. This API uses a promise to return the r
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Promise used to return the result.|
 
@@ -813,7 +819,7 @@ Sets the number of mouse scroll rows. This API uses a promise to return the resu
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
@@ -913,7 +919,7 @@ Obtains the moving speed of the mouse pointer. This API uses a promise to return
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
@@ -1024,7 +1030,7 @@ Sets the scroll switch of the touchpad. This API uses a promise to return the re
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -1124,7 +1130,7 @@ Obtains the scroll switch status of the touchpad. This API uses a promise to ret
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
@@ -1235,7 +1241,7 @@ Sets the scroll direction of the touchpad. This API uses a promise to return the
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -1335,7 +1341,7 @@ Obtains the scroll direction of the touchpad. This API uses a promise to return 
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
 
@@ -1446,7 +1452,7 @@ Sets the tap switch of the touchpad. This API uses a promise to return the resul
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -1546,7 +1552,7 @@ Obtains the tap switch status of the touchpad. This API uses a promise to return
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
@@ -1657,7 +1663,7 @@ Sets the mouse pointer moving speed of the touchpad. This API uses a promise to 
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -1757,7 +1763,7 @@ Obtains the mouse pointer moving speed of the touchpad. This API uses a promise 
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<number> | Promise used to return the result.|
 
@@ -1868,7 +1874,7 @@ Sets the pinch switch of the touchpad. This API uses a promise to return the res
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -1968,7 +1974,7 @@ Obtains the pinch switch status of the touchpad. This API uses a promise to retu
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
@@ -2079,7 +2085,7 @@ Sets the swipe switch of the touchpad. This API uses a promise to return the res
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -2179,7 +2185,7 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses a pr
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
@@ -2231,7 +2237,7 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -2284,13 +2290,13 @@ Sets the shortcut menu type of the touchpad. This API uses a promise to return t
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Description                                   |
-| -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -2390,7 +2396,7 @@ Obtains the shortcut menu type of the touchpad. This API uses a promise to retur
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<[RightClickType](js-apis-pointer.md#rightclicktype10) > | Promise used to return the result.|
 
@@ -2501,7 +2507,7 @@ Sets the pointer size. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
@@ -2650,7 +2656,7 @@ Obtains the pointer size. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
@@ -2700,7 +2706,7 @@ Obtains the pointer size. This API returns the result synchronously.
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | number | Pointer size. |
 
@@ -2818,7 +2824,7 @@ Sets the pointer color. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
@@ -2971,7 +2977,7 @@ Obtains the pointer color. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
@@ -3021,7 +3027,7 @@ Obtains the pointer color. This API returns the result synchronously.
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | number | Pointer color.|
 
@@ -3131,7 +3137,7 @@ Sets the double-tap and drag switch for the touchpad. This API uses a promise to
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise that returns no value.|
 
@@ -3231,7 +3237,7 @@ Obtains the status of the double-tap and drag switch for the touchpad. This API 
 
 **Return value**
 
-| Name                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the status of the touchpad double-tap drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 

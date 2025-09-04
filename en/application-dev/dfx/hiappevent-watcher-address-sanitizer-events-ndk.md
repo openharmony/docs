@@ -2,20 +2,22 @@
 
 ## **Available APIs**
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
+For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md).
 
-**Subscription APIs**:
+**Subscription APIs**
 
 | **API**                                                      | **Description**                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher \*watcher)   | Adds a watcher to listen for application events.|
-| int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher \*watcher) | Removes a watcher for the specified application events.|
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher)   | Adds a watcher to listen for application events.|
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher \*watcher) | Removes a watcher for the specified application events.|
 
 ## **How to Develop**
 
 The following describes how to subscribe an address sanitizer event for an array bounds write.
 
-1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+1. Obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Using JsonCpp in your project** in [JsonCpp](https://github.com/open-source-parsers/jsoncpp).
+
+2. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
 
    ```yml
    entry:
@@ -38,7 +40,7 @@ The following describes how to subscribe an address sanitizer event for an array
                - Index.ets
    ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
    # Add the **jsoncpp.cpp** file, which is used to parse the JSON strings in the subscription events.
@@ -47,7 +49,7 @@ The following describes how to subscribe an address sanitizer event for an array
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
    #include "napi/native_api.h"
@@ -59,7 +61,7 @@ The following describes how to subscribe an address sanitizer event for an array
    #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to system events.
+5. Subscribe to system events.
 
    - Watcher of the onReceive type:
 
@@ -87,7 +89,6 @@ The following describes how to subscribe an address sanitizer event for an array
                          auto pid = params["pid"].asInt();
                          auto uid = params["uid"].asInt();
                          auto type = params["type"].asString();
-                         auto boolFlag = params["log_over_limit"].asBool();
                          std::string logOverLimit = params["log_over_limit"].asBool() ? "true" : "false";
                          auto externalLog = writer.write(params["external_log"]);
                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
@@ -117,7 +118,7 @@ The following describes how to subscribe an address sanitizer event for an array
          OH_HiAppEvent_AddWatcher(systemEventWatcher);
          return {};
      }
-     ``` 
+     ```
 
    - Watcher of the onTrigger type:
 
@@ -185,7 +186,7 @@ The following describes how to subscribe an address sanitizer event for an array
      }
      ```
 
-5. Construct an address out-of-bounds error.
+6. Construct an address out-of-bounds error.
    
    In the **napi_init.cpp** file, define a **Test** method to perform out-of-bounds access on an integer array.
 
@@ -198,7 +199,7 @@ The following describes how to subscribe an address sanitizer event for an array
    }
    ```
 
-6. Register **RegisterWatcher** and **Test** as ArkTS APIs.
+7. Register **RegisterWatcher** and **Test** as ArkTS APIs.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** and **Test** as ArkTS APIs.
 
@@ -221,21 +222,21 @@ The following describes how to subscribe an address sanitizer event for an array
    export const test: () => void;
    ```
 
-7. In the **EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
+8. In the **EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
    // Import the dependent module.
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
 
    // Add the interface invocation to onCreate().
    // Register the system event watcher at startup.
    testNapi.registerWatcher();
    ```
 
-8. In the **entry/src/main/ets/pages/Index.ets** file, add a button to trigger the address sanitizer event.
+9.  In the **entry/src/main/ets/pages/Index.ets** file, add a button to trigger the address sanitizer event.
 
    ```ts
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
 
    @Entry
    @Component
@@ -254,7 +255,7 @@ The following describes how to subscribe an address sanitizer event for an array
    }
    ```
 
-9. In DevEco Studio, choose **entry**, click **Edit Configurations**, click **Diagnostics**, select **Address Sanitizer**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+10. In DevEco Studio, choose **entry**, click **Edit Configurations**, click **Diagnostics**, select **Address Sanitizer**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent eventInfo.domain=OS
@@ -270,7 +271,7 @@ The following describes how to subscribe an address sanitizer event for an array
    HiAppEvent eventInfo.params.log_over_limit=false
    ```
 
-10. Remove the event watcher.
+11. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -280,7 +281,7 @@ The following describes how to subscribe an address sanitizer event for an array
     }
     ```
 
-11. Destroy the event watcher.
+12. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

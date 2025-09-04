@@ -176,6 +176,8 @@ Sets the upper limit of the file cache size for the **cacheDownload** component.
 
 - When this API is used to adjust the cache size, the LRU mode is used by default to clear redundant cached data in the file.
 
+- If **bytes** is set to **0**, all cache files are deleted.
+
 - This API uses a synchronous method and does not block the calling thread.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
@@ -207,3 +209,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   }
   ```
 
+> **NOTE**
+>
+> * Network cache files downloaded by the **cacheDownload** module are stored in the cache directory of the application sandbox.
+> * An application can use this API to clear cache files.
+> * Do not modify the cache directory and files directly to avoid function exceptions.

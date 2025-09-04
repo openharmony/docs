@@ -1,5 +1,11 @@
 # @ohos.bluetooth.baseProfile (Bluetooth baseProfile Module)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **baseProfile** module provides APIs for using basic Bluetooth profiles.
 
 > **NOTE**
@@ -34,16 +40,16 @@ Represents the profile state change parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name    | Type                          | Readable| Writable| Description                           |
+| Name    | Type                          | Read-Only| Optional| Description                           |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
-| deviceId | string                        | Yes  | No  | Address of the Bluetooth device.  |
-| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | Yes  | No  | Profile connection state of the device.|
-| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | Yes| No| Cause of the disconnection.|
+| deviceId | string                        | No  | No  | Address of the Bluetooth device, for example, XX:XX:XX:XX:XX:XX.  |
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | No  | No  | Defines the profile connection status of the Bluetooth device.|
+| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | No| No| Reason for disconnection.|
 
 
 ## DisconnectCause<sup>12+</sup>
 
-Enumerates the possible causes of a Bluetooth disconnection.
+Enumerates the reasons for disconnection.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -114,7 +120,7 @@ Obtains the profile connection state of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -164,8 +170,8 @@ Subscribes to profile connection state changes. This API uses an asynchronous ca
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | Yes   | Callback used to return the profile connection state change.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a connection state change event.<br>This event is triggered when the connection state changes.|
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | Yes   | Callback used to return the Bluetooth profile connection state.                       |
 
 **Error codes**
 
@@ -208,8 +214,8 @@ Unsubscribes from profile connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback to unregister.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback to unregister.<br>If this parameter is specified, it must be the same as the callback in [BaseProfile.on('connectionStateChange')](#baseprofileonconnectionstatechange). If this parameter is not specified, all callbacks corresponding to the event type are unregistered.                              |
 
 **Error codes**
 

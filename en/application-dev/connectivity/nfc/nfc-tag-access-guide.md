@@ -1,5 +1,11 @@
 # NFC Tag Read/Write Development
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 ## Introduction
 Near Field Communication (NFC) is a high-frequency radio technology that enables communication between devices over a distance less than 10 cm. NFC operates at 13.56 MHz. With NFC technologies, electronic devices can read and write NFC tags.<br>
 NFC tags support one or more communications technologies listed as follows:
@@ -96,15 +102,15 @@ let foregroundRegister: boolean;
 async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
   if (!error) {
     // Obtain an NFC tag object of the specific technology type.
-    if (tagInfo == null || tagInfo == undefined) {
+    if (tagInfo == null) {
       hilog.error(0x0000, 'testTag', 'readerModeCb tagInfo is invalid');
       return;
     }
-    if (tagInfo.uid == null || tagInfo.uid == undefined) {
+    if (tagInfo.uid == null) {
       hilog.error(0x0000, 'testTag', 'readerModeCb uid is invalid');
       return;
     }
-    if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
+    if (tagInfo.technology == null || tagInfo.technology.length == 0) {
       hilog.error(0x0000, 'testTag', 'readerModeCb technology is invalid');
       return;
     }
@@ -168,6 +174,7 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
+    // Initialize element names of the NFC tag based on the application information.
     nfcTagElementName = {
       bundleName: want.bundleName ?? '',
       abilityName: want.abilityName ?? '',
@@ -276,15 +283,15 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    if (tagInfo == null || tagInfo == undefined) {
+    if (tagInfo == null) {
       hilog.error(0x0000, 'testTag', 'tagInfo is invalid');
       return;
     }
-    if (tagInfo.uid == null || tagInfo.uid == undefined) {
+    if (tagInfo.uid == null) {
       hilog.error(0x0000, 'testTag', 'uid is invalid');
       return;
     }
-    if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
+    if (tagInfo.technology == null || tagInfo.technology.length == 0) {
       hilog.error(0x0000, 'testTag', 'technology is invalid');
       return;
     }
@@ -303,7 +310,7 @@ export default class EntryAbility extends UIAbility {
       }
       // Access the NFC tag using other technologies.
     }
-    if (isoDep == undefined) {
+    if (isoDep == null) {
       hilog.error(0x0000, 'testTag', 'getIsoDep is invalid');
       return;
     }

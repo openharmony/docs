@@ -21,7 +21,7 @@ Defines APIs for obtaining Wi-Fi switch state.
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [Wifi_ResultCode](_wifi.md#wifi_resultcode) [Wifi_ResultCode](_wifi.md#wifi_resultcode) | Defines an enum for the error codes returned by Wi-Fi APIs.| 
+| typedef enum [Wifi_ResultCode](_wifi.md#wifi_resultcode) [Wifi_ResultCode](_wifi.md#wifi_resultcode) | Enumerates the error codes returned by Wi-Fi APIs.| 
 
 
 ### Enums

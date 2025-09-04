@@ -7,7 +7,7 @@ Crash is an unexpected exit of an application process. Specifically, crash event
 1. The native code does not process [C++ crash signals](cppcrash-guidelines.md#c-crash-signals).
 2. The JS/ArkTS code does process exceptions.
 
-The following describes the meanings and specifications of fields in crash events. For details about how to use the ArkTs and C/C++ APIs provided by HiAppEvent to subscribe to system crash events, see the following documents:  
+The following describes the meanings and specifications of fields in crash events. For details about how to use the ArkTs and C/C++ APIs provided by HiAppEvent to subscribe to system crash events, see the following documents: Currently, ArkTS and C/C++ APIs are provided. You can select the APIs as required.
 
 - [Subscribing to Crash Events (ArkTS)](hiappevent-watcher-crash-events-arkts.md)
 - [Subscribing to Crash Events (C/C++)](hiappevent-watcher-crash-events-ndk.md)
@@ -21,7 +21,7 @@ The **params** parameter in the event information is described as follows.
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
 | time     | number | Event triggering time, in ms.|
-| crash_type | string | Crash type, which can be NativeCrash (native exception) or JsError (JS exception). For details about problem analysis, see [Analyzing C++ Crash](cppcrash-guidelines.md) and [Analyzing JS Crash](jscrash-guidelines.md).|
+| crash_type | string | Crash type, which can be NativeCrash (native exception) or JsError (JS exception). For details about how to analyze the crash, see [Analyzing C++ Crash](cppcrash-guidelines.md) and [Analyzing JS Crash](jscrash-guidelines.md).|
 | foreground | boolean | Whether the application is running in the foreground. The value **true** indicates that the application is in the foreground, and the value **false** indicates the opposite.|
 | bundle_version | string | Application version.|
 | bundle_name | string | Application name.|
@@ -78,18 +78,18 @@ For details about the signals, see [C++ Crash Signals](cppcrash-guidelines.md#c-
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
-| file | string | File name. It may also be anonymous memory mapping, such as [heap] and [stack].|
-| symbol | string | Function name. If the name length exceeds 256 bytes, the name is deleted to prevent unknown issues.|
+| file | string | File name.|
+| symbol | string | Function name. The symbol may be empty due to the following reasons:<br>**1. The function name is not saved in the binary file.<br>2. The function name is deleted because it contains more than 256 bytes.** |
 | buildId | string | Unique file ID. A file may not contain **buildId**. For details, see [C++ Crash Logs](cppcrash-guidelines.md#c-crash-signals).|
-| pc | string | Number of offset bytes in a file.|
-| offset | number | Number of offset bytes in a function.|
+| pc | string | Hexadecimal byte offset of the executed instruction within the file.|
+| offset | number | Byte offset of the executed instruction within the function.|
 
 #### JS frame
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
 | file | string | File name.|
-| packageName | string | Module package name.|
+| packageName | string | Package name of the module.|
 | symbol | string | Function name.|
 | line | number | Line number of the exception code.|
 | column | number | Column number of the exception code.|

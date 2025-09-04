@@ -71,31 +71,31 @@ To implement contact management for an application, use the **permissions** API 
 
   ```ts
   // Sample code
-  import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+  import { common, abilityAccessCtrl, Permissions, PermissionRequestResult } from '@kit.AbilityKit';
   import { contact } from '@kit.ContactsKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct Contact {
     addContactByPermissions() {
+      // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
       let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
       const contactInfo: contact.Contact = {
         name: { fullName: 'Wang Xiaoming' },
         phoneNumbers: [{ phoneNumber: '13912345678' }]
       }
-      abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissions).then(() => {
-        try {
-          contact.addContact(context, contactInfo, (err, data) => {
-            if (err) {
-              console.error('addContact callback, errCode:' + err.code + ', errMessage:' + err.message);
-              return;
-            }
-            console.info('addContact callback: data->' + JSON.stringify(data));
-          })
-        } catch (err) {
-          console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+      abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissions).then((result: PermissionRequestResult) => {
+        if (result.authResults[0] !== 0) { // 0 if the permission request is successful; a non-0 value otherwise.
+          console.error('request contact permissions failed');
+          return;
         }
+        contact.addContact(context, contactInfo).then((data) => {
+          console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
+        });
       })
     }
 

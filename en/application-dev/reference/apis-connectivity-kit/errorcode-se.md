@@ -1,5 +1,11 @@
 # SecureElement Error Codes
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -23,7 +29,7 @@ The SecureElement (SE) service is abnormal.
 1. Close the SE service.
 2. Set up a connection with the SE service again.
 
-## 3300102 No Such SE
+## 3300102 Failed to Find the Desired SE
 
 **Error Message**
 
@@ -31,17 +37,18 @@ NoSuchElementError, the AID on the SE is not available or cannot be selected.
 
 **Description**
 
-The SE is unavailable.
+The desired SE is not found.
 
 **Possible Causes**
 
-1. Communication with the SE service is abnormal.
-2. Communication of the SE chip is abnormal.
+1. The **aid** value of the parameter is incorrect.
+2. The SE channel is occupied.
 
 **Solution**
 
-1. Close the SE service and set up a connection with the SE service again.
-2. Restart the device.
+1. Enter a correct **aid** value.
+2. Close the SE channel and then re-establish a connection.
+3. Restart the device and try again.
 
 ## 3300103 Failed to Obtain the Access Rule
 

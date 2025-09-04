@@ -1042,8 +1042,11 @@
           - [Certificate Chain Validator Development](security/DeviceCertificateKit/create-verify-cerchainvalidator-object.md)
           - [Certificate and CRL Collection Development](security/DeviceCertificateKit/create-get-cert-crl-object.md)
           - [Certificate Chain Development](security/DeviceCertificateKit/create-verify-certchain-object.md)
+          - [Certificate Signing with PKCS #7](security/DeviceCertificateKit/create-pkcs7-sign-object.md)
         - Certificate Management<!--certmanager-->
           - [Certificate Management Overview](security/DeviceCertificateKit/certManager-overview.md)
+          - [Application Certificate Development](security/DeviceCertificateKit/certManager-private-credential-guidelines.md)
+          - [CA Certificate Development](security/DeviceCertificateKit/certManager-ca-certs-guidelines.md)
           - [Certificate Management Dialog Box Development](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
       - Universal Keystore Kit<!--huks-kit-->
         - [Introduction to Universal Keystore Kit](security/UniversalKeystoreKit/huks-overview.md)

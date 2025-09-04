@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.inputConsumer (Global Hotkeys)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **inputConsumer** module implements listening for combination key events as well as listening and interception for volume key events.
 
 > **NOTE**
@@ -34,9 +41,11 @@ Sets the key event consumption configuration.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
+**Device behavior differences**: This API takes effect only on phones and tablets. If this API is called on other devices, error code 801 is returned.
+
 | Name       | Type  | Read-Only  | Optional  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | No     | No     | Key value. This attribute is available only for mobile phones and tablets.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
+| key       | number  | No     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
 | action    | number  | No     | No     | Key event type. Currently, this parameter can only be set to **1**, indicating key press.|
 | isRepeat  | boolean  | No     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
@@ -234,11 +243,13 @@ struct Index {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-Subscribes to key press events. This API uses an asynchronous callback to return the result. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed. This API is available only for mobile phones and tablets.
+Subscribes to key press events. This API uses an asynchronous callback to return the result. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed.
 
 If the API call is successful, the system's default response to the key event will be intercepted; that is, system-level actions, such as volume adjustment, will no longer be triggered. To restore the system response, call [off](#inputconsumeroffkeypressed16) to disable listening for the key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Device behavior differences**: This API takes effect only on phones and tablets. If this API is called on other devices, error code 801 is returned.
 
 **Parameters**
 
@@ -291,9 +302,11 @@ struct Index {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-Disables listening for the **keyPressed** event. This API uses an asynchronous callback to return the result. If the API call is successful, the system's default response to the key event will be resumed; that is, system-level actions, such as volume adjustment, will be triggered normally. This API is available only for mobile phones and tablets.
+Disables listening for the **keyPressed** event. This API uses an asynchronous callback to return the result. If the API call is successful, the system's default response to the key event will be resumed; that is, system-level actions, such as volume adjustment, will be triggered normally.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Device behavior differences**: This API takes effect only on phones and tablets. If this API is called on other devices, error code 801 is returned.
 
 **Parameters**
 

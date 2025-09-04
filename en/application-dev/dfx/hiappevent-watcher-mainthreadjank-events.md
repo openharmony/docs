@@ -13,7 +13,7 @@ You can use the **hiAppEvent** APIs to subscribe to the main thread jank event t
 
 When the main thread experiences a timeout between 150 ms and 450 ms, it triggers a call stack sampling. If the timeout exceeds 450 ms, it triggers a trace sampling. 
 
-1. Begin time.
+1. Start time.
 
     Stack sampling triggered by main thread Jank (150 ms < Main thread processing time < 450 ms): For the processes with the same PID, the call stack sampling for a main thread jank event can be triggered only once. If **Developer Options** is enabled, call stack sampling can be triggered once an hour. No timeout check is performed within 10s after the application starts.
 
@@ -54,74 +54,6 @@ When the main thread experiences a timeout between 150 ms and 450 ms, it trigger
    (2) At least one main thread jank event is detected.
 
    ![Trace capture example](figures/dump-trace2.PNG)
-
-## Customizing Stack Sampling Parameters
-
-The system provides the basic check function for the main thread jank event. However, if your application has special requirements for the check interval and collection times, you can customize parameters for stack sampling.
-
-For details about how to use the APIs, see [hiAppEvent.setEventConfig in Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig15).
-
-### Available APIs
-
-| API                                                                               | Description                                        |
-| -------------------------------------------------------------------------------------| -------------------------------------------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | Sets the parameters of the main thread jank event that triggers the stack sampling. Currently, only the MAIN_THREAD_JANK event is supported. The value of name is **MAIN_THREAD_JANK**.|
-
-### Setting Parameters
-
-You can use the API provided by HiAppEvent to customize the parameters for collecting the **MAIN_THREAD_JANK** event in **Record<string, ParamType>**.
-
-You can customize the specifications of the **MAIN_THREAD_JANK** event by setting the value of **log_type** (log collecting type of the **MAIN_THREAD_JANK** event). The specifications are as follows:
-
-1. If **log_type** is set to the default value **0**, the stack sampling is triggered when the main thread processing time is greater than 150 ms but less than 450 ms, and the trace sampling is triggered when the main thread processing time exceeds 450 ms. If **log_type** has been set to **1** for capturing stack sampling data, the custom parameter is invalid. The setting example is as follows:
-
-    ```text
-        let params: Record<string, hiAppEvent.ParamType> = {
-        "log_type": "0"
-        };
-    ```
-
-2. If **log_type** is set to **1**, you can customize the threshold parameters of the main thread jank event for triggering the stack sampling. You must set the following parameters:
-
-    (1) **sample_interval**: sampling interval of the main thread jank event. The system performs the check based on the custom interval and uses the interval for the periodic check. The value range is [50, 500], in ms. The default value is 150 ms.
-
-    (2) **ignore_startup_time**: time window after thread startup during which no checks are performed. For the process that takes time to start, it is not necessary to capture the full stack. You can set this parameter to prevent the check from being performed within the custom startup time. The minimum value is 3s. The default value is 10s.
-
-    (3) **sample_count**: number of sampling times for the main thread jank event. After detecting that the main thread processing time exceeds the threshold, the system starts periodic stack sampling for **sample_count** times. The minimum value is 1. The maximum value can be calculated based on the custom value of **sample_interval** as follows: <br>**sample_count** ≤ (2500/**sample_interval** - 4) You need to set the parameters as required.
-
-    > **NOTE**
-    >
-    > The value **2500** (ms) indicates the maximum time allowed for a main thread jank event to be reported after being detected. Therefore, the value of **sample_count** cannot be greater than the maximum value calculated based on the formula.
-    >
-    > The value **4** indicates the number of check intervals, that is, the first check interval, the twice second check intervals, and the interval for collecting and reporting stack information.
-
-    (4) **report_times_per_app**: number of sampling reporting times for the main thread jank event of the processes with the same PID of an application. This parameter can be set only once for the processes with the same PID.
-
-    > **NOTE**
-    >
-    > When **Developer Options** is enabled, the value range is [1, 3] times per hour. The default value is 1.
-    >
-    > When **Developer Options** is disabled, the value range is [1, 3] times per day. The default value is 1.
-
-    The setting example is as follows:
-
-    ```text
-        let params: Record<string, hiAppEvent.ParamType> = {
-        "log_type": "1",
-        "sample_interval": "100",
-        "ignore_startup_time": "11",
-        "sample_count": "21",
-        "report_times_per_app": "3"
-        };
-    ```
-
-3. If **log_type** is set to **2**, a trace sampling is triggered when the main thread processing time exceeds 450 ms. The setting example is as follows:
-
-    ```text
-        let params: Record<string, hiAppEvent.ParamType> = {
-        "log_type": "2"
-        };
-    ```
 
 ## Log Specifications of the Main Thread Jank Event
 
@@ -192,6 +124,95 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
     The size of the trace file is 1 MB to 5 MB. You can visually analyze the trace file using [SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host). You can download the tool from [developtools_smartperf_host Release](https://gitee.com/openharmony/developtools_smartperf_host/releases).
 
     For details about the trace file, see [Loading Trace Files on the Web Client](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md).
+
+## Custom Main Thread Jank Event Parameters
+
+Since API version 15, the system provides the basic check function for the main thread jank event. However, if your application has special requirements for the check interval and collection times, you can customize parameters for stack sampling.
+
+#### Available APIs
+
+| API                                                                               | Description                                        |
+| -------------------------------------------------------------------------------------| -------------------------------------------- |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | Sets the parameters of the main thread jank event that triggers the stack sampling. The value of name is **MAIN_THREAD_JANK**.<br>Note: This API is supported since API version 15.|
+
+#### Setting Parameters
+
+You can set the crash log printing specifications in **Record <string, ParamType>** by using the API provided by HiAppEvent. The specific parameter descriptions are as follows.
+
+> **Notice**
+>
+> When **log_type** is set to **0** or **2**, you do not need to set other parameters.
+>
+> When **log_type** is set to **1**, configure the following parameters: **sample_interval**, **ignore_startup_time**, **sample_count**, and **report_times_per_app**.
+
+| Name| Type| Mandatory| Description|
+| -----| ----- | ----- |----- |
+| log_type | string | Yes|Type of MAIN_THREAD_JANK event logs to collect.<br>**log_type=0**: When the main thread experiences two consecutive timeouts between 150 ms and 450 ms, a call stack capture is triggered. When the timeout exceeds 450 ms, a trace capture is triggered. This is the default value.<br>**log_type=1**: Only the call stack is captured, and the threshold for triggering the detection is customized.<br>**log_type=2**: Only the trace data is captured.<br>|
+| sample_interval | string | No| Interval for the main thread jank event detection and sampling, in milliseconds.<br>The value range is [50, 500].<br>The system performs the check based on the custom interval and uses the interval for the periodic check.<br>|
+| ignore_startup_time | string | No| Time window after thread startup during which no checks are performed, in seconds. The minimum value is **3** and the default value is **10**.<br>Do not perform timeout detection within a specified period of time after the thread is started. For the process that takes time to start, it is not necessary to capture the full stack. You can set this parameter to prevent the check from being performed within the custom startup time.<br>|
+| sample_count | string | No|Number of sampling times for the main thread jank event. After detecting that the main thread processing time exceeds the threshold, the system starts periodic stack sampling for **sample_count** times.<br>The minimum value is 1. The maximum value can be calculated based on the custom value of **sample_interval** as follows: <br>**sample_count** ≤ (2500/**sample_interval** - 4)|
+| report_times_per_app | string | No| Number of sampling reporting times for the main thread jank event of the processes with the same PID of an application. This parameter can be set only once for the processes with the same PID.<br>Default value: **1**<br>When the **Developer options** is enabled, the value range is [1, 3] per hour.<br> When the **Developer options** is disabled, the value range is [1, 3] per day.<br>|
+
+**sample_count**:
+
+(1) The value **2500** (ms) indicates the maximum time allowed for a main thread jank event to be reported after being detected. Therefore, the value of **sample_count** cannot be greater than the maximum value calculated based on the formula.
+
+(2) The value **4** indicates the number of check intervals, that is, the first check interval, the twice second check intervals, and the interval for collecting and reporting stack information.
+
+(3) You need to set the parameters as required.
+
+####  
+
+The following examples describe how to configure the triggering conditions for the **MAIN_THREAD_JANK** event using three types of **log_type**.
+
+Set **log_type** to **0** to sample the stack or trace.
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+"log_type": "0"
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+hilog.info(0x0000, 'hiAppEvent', `Setting default value successfully.`);
+}).catch((err: BusinessError) => {
+hilog.error(0x0000, 'hiAppEvent', `Failed to set default value. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+Set **log_type** to **1** to collect only the call stack.
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "1",
+  "sample_interval": "100",
+  "ignore_startup_time": "11",
+  "sample_count": "21",
+  "report_times_per_app": "3"
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `Successfully set sampling stack parameters.`);
+}).catch((err: BusinessError) => {
+hilog.error(0x0000, 'hiAppEvent', `Failed to set sample stack value. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+Set **log_type** to **2** to collect only the trace.
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "2"
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `Set to only collect trace successfully.`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `Failed to set only collect trace. code: ${err.code}, message: ${err.message}`);
+});
+```
 
 ## params
 

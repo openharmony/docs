@@ -13,9 +13,11 @@
 - [Low Level Debugger](lldb-tool.md)<!--DelEnd-->
 - [param](param-tool.md)
 - [power-shell](power-shell.md)
-- [Access Token Manager](atm-tool.md)<!--Del-->
-- [Account Manager](acm-tool.md)<!--DelEnd-->
-- Command Line Tools
+- [Access Token Manager](atm-tool.md)
+<!--Del-->
+- [Account Manager](acm-tool.md)
+<!--DelEnd-->
+- Command Line Tools<!--command-line-utilities-->
   - [Toybox](toybox.md)
   - [mediatool](mediatool.md)
   - [devicedebug](devicedebug-tool.md)

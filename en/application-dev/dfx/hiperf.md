@@ -26,16 +26,42 @@ hiperf is a command-line tool provided to capture performance data of a specific
 
 Run the **--help** command to view help information.
 
-```
+```shell
 hiperf --help
 ```
+**Example**
 
-![](figures/hipref-help.png)
+```shell
+$ hiperf --help
+Usage: hiperf [options] command [args for command]
+options:
+        --debug                 show debug log, usage format: --debug [command] [args]
+        --help                  show help
+        --hilog                 use hilog not file to record log
+        --logpath               log file name full path, usage format: --logpath [filepath] [command] [args]
+        --logtag                enable log level for HILOG_TAG, usage format: --logtag <tag>[:level][,<tag>[:level]] [command] [args]
+                                tag: Dump, Report, Record, Stat... level: D, V, M...
+                                example: hiperf --verbose --logtag Record:D [command] [args]
+        --mixlog                mix the log in output, usage format: --much [command] [args]
+        --much                  show extremely much debug log, usage format: --much [command] [args]
+        --nodebug               disable debug log, usage format: --nodebug [command] [args]
+        --verbose               show debug log, usage format: --verbose [command] [args]
+        -h                      show help
+command:
+        dump:   Dump content of a perf data file, like perf.data
+        help:   Show more help information for hiperf
+        list:   List the supported event types.
+        record: Collect performance sample information
+        report: report sampling information from perf.data format file
+        stat:   Collect performance counter information
+
+See 'hiperf help [command]' for more information on a specific command.
+```
 
 Run the following command to view the help information about a command:
 
 ```
-hiperf [command] --help
+Usage: hiperf [command] --help
 ```
 
 ## list
@@ -49,7 +75,7 @@ Lists all the supported events on the device. The event names are used for the *
 | -h/--help  | Displays the help information.|
 | hw | Lists the hardware events.|
 | sw | Lists the software events.|
-| tp | Tracepoint event.|
+| tp | Lists the tracepoint event.|
 | cache | Lists the hardware cache events.|
 | raw | Lists the original PMU events.|
 
@@ -59,19 +85,46 @@ Usage: hiperf list [event type name]
 
 Run the **help** command to query the supported event types.
 
-```
+```shell
 hiperf list --help
 ```
+**Example**
 
-![](figures/hipref-list-help.png)
+```shell
+$ hiperf list --help
+Usage: hiperf list [event type name]
+       List all supported event types on this devices.
+   To list the events of a specific type, specify the type name
+       hw          hardware events
+       sw          software events
+       tp          tracepoint events
+       cache       hardware cache events
+       raw         raw pmu events
+```
 
 Run the following command to list the hardware events supported and not supported by the device. 
 
-```
+```shell
 hiperf list hw
 ```
+**Example**
 
-![](figures/hipref-list-hw.png)
+```shell
+$ hiperf list hw
+event not support hw-ref-cpu-cycles
+
+Supported events for hardware:
+        hw-cpu-cycles
+        hw-instructions
+        hw-cache-references
+        hw-cache-misses
+        hw-branch-instructions
+        hw-branch-misses
+        hw-bus-cycles
+        hw-stalled-cycles-frontend
+        hw-stalled-cycles-backend
+```
+
 
 ## record
 
@@ -128,14 +181,24 @@ Specifies the target program for sampling and saves the sampled data to a file (
 Usage: hiperf record [options] [command [command-args]]
 ```
 
-Sample the process 267 for 10 seconds and use **dwarf** to collect and unwind stack memory of the process.
+Sample the process 1273 for 10 seconds and use **dwarf** to collect and unwind stack memory of the process.
 
+```shell
+hiperf record -p 1273 -d 10 -s dwarf
 ```
-hiperf record -p 267 -d 10 -s dwarf
+**Example**
+
+```shell
+$ hiperf record -p 1273 -d 10 -s dwarf
+Profiling duration is 10.000 seconds.
+Start Profiling...
+Timeout exit (total 10000 ms)
+Process and Saving data...
+/proc/sys/kernel/kptr_restrict is NOT 0, will try set it to 0.
+[ hiperf record: Captured 0.297 MB perf data. ]
+[ Sample records: 97, Non sample records: 2426 ]
+[ Sample lost: 0, Non sample lost: 0 ]
 ```
-
-![](figures/hipref-record-pid.png)
-
 
 
 ## stat
@@ -168,11 +231,28 @@ Monitors the specified application and periodically prints the values of perform
 Usage: hiperf stat [options] [command [command-args]]
 ```
 
-Monitor the performance counter of process 2349 on CPU0 for 3 seconds.
+The following shows a stats command for monitoring the performance counter of the 1273 process on CPU0 for 3 seconds.
 
+```shell
+hiperf stat -p 1273 -d 3 -c 0
 ```
-hiperf stat -p 2349 -d 3 -c 0
+**Example**
+
+```shell
+$ hiperf stat -p 1273 -d 3 -c 0
+Profiling duration is 3.000 seconds.
+Start Profiling...
+Timeout exit (total 3000 ms)
+                    count  name                           | comment                          | coverage
+                      521  hw-branch-instructions         |                                  | (9%)
+                      217  hw-branch-misses               |                                  | (9%)
+                   32,491  hw-cpu-cycles                  |                                  | (9%)
+                    4,472  hw-instructions                |                                  | (9%)
+                        1  sw-context-switches            |                                  | (9%)
+                        0  sw-page-faults                 |                                  | (9%)
+                   39,083  sw-task-clock                  | 0.000143 cpus used               | (9%)
 ```
+
 
 ## dump
 
@@ -199,12 +279,15 @@ Usage: hiperf dump [option] \<filename\>
 
 Run the **dump** command to read the **/data/local/tmp/perf.data** file and export it to the **/data/local/tmp/perf.dump** file.
 
-```
+```shell
 hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 ```
+**Example**
 
-![](figures/hipref-dump.png)
-
+```shell
+$ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
+dump result will save at '/data/local/tmp/perf.dump'
+```
 
 
 ## report
@@ -237,13 +320,12 @@ Usage: hiperf report [option] \<filename\>
 
 Display a common report, with the sampling limit of 1%.
 
-```
+```shell
 hiperf report --limit-percent 1
 ```
 
 
-
-## script
+## Scripts
 
 You can use a script to sample data and generate flame graphs. You can obtain the script from [developtools_hiperf](https://gitee.com/openharmony/developtools_hiperf/tree/master/script).
 

@@ -32,7 +32,7 @@ The acceleration sensor is used as an example.
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Obtain information about all sensors on the device.
+2. Obtain the list of all sensors on the device. If a sensor cannot be found, the sensor does not exist or is unavailable on the device. If you subscribe to events specific to this sensor, an exception will be thrown, and you need to implement the service logic to handle this exception.
 
     ```ts    
     sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
@@ -137,6 +137,6 @@ The acceleration sensor is used as an example.
 
     Disable listening for sensor status changes.
     ```ts
-    // Before performing this operation, ensure that listening for sensor status changes has been enabled.
+    // Before disabling event listening, make that listening has been enabled by using on('sensorStatusChange',...). This API does not work if listening has not been enabled.
     sensor.off('sensorStatusChange');
     ```

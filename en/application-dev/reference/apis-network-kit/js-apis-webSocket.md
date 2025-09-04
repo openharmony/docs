@@ -49,6 +49,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 Initiates a WebSocket request to establish a WebSocket connection to a given URL. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > You can listen to **error** events to obtain the operation result. If an error occurs, the error code 200 will be returned.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -79,6 +80,7 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 | 2302999               | Internal error.             |
 
 > **NOTE**
+>
 > For details about the error codes, see [webSocket Error Codes](errorcode-net-webSocket.md).
 
 **Example**
@@ -105,6 +107,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 Initiates a WebSocket request to establish a WebSocket connection to a given URL. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > You can listen to **error** events to obtain the operation result. If an error occurs, the error code 200 will be returned.
 
 **Required permission**: ohos.permission.INTERNET
@@ -136,6 +139,7 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 | 2302999               | Internal error.             |
 
 > **NOTE**
+>
 > For details about the error codes, see [webSocket Error Codes](errorcode-net-webSocket.md).
 
 **Example**
@@ -171,6 +175,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 Establishes a WebSocket connection to a given URL. This API uses a promise to return the result.
 
 > **NOTE**
+>
 > You can listen to **error** events to obtain the operation result. If an error occurs, the error code 200 will be returned.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -207,6 +212,7 @@ Establishes a WebSocket connection to a given URL. This API uses a promise to re
 | 2302999               | Internal error.             |
 
 > **NOTE**
+>
 > For details about the error codes, see [webSocket Error Codes](errorcode-net-webSocket.md).
 
 **Example**
@@ -530,6 +536,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 Disables listening for the **open** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -569,6 +576,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -601,6 +609,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -660,6 +669,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 Disables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -718,6 +728,7 @@ off(type: 'error', callback?: ErrorCallback): void
 Disables listening for the **error** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -773,6 +784,7 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 Disables listening for the **dataEnd** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -826,6 +838,7 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 Unregisters the observer for HTTP Response Header events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1388,9 +1401,9 @@ Enables listening for the **error** events of a WebSocketServer connection. This
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let localServer = webSocket.createWebSocketServer();
-localServer.on('error', (err: BusinessError) => {
-  console.error(`error. Code: ${error.code}, message: ${error.message}`);
+let wsServer: webSocket.WebSocketServer = webSocket.createWebSocketServer();
+wsServer.on('error', (err: BusinessError) => {
+  console.error(`error. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1583,7 +1596,8 @@ Callback invoked when the WebSocketServer connection is closed.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name| Type  | Read Only| Optional| Description                           |
-| ---------------- | ------------------- | ---- | ------ | --------------------------------------------- |
-| clientConnection | [WebSocketConnection](#websocketconnection19) | No| No| Client information, including the IP address and port number.            |
-| closeReason | [CloseResult](#closeresult10) | No| No| Represents the result obtained from the **close** event reported when the WebSocket connection is closed.|
+**Parameters**:
+| Name| Type   | Mandatory| Description                           |
+| ---------------- | -------------------  | ------ | --------------------------------------------- |
+| clientConnection | [WebSocketConnection](#websocketconnection19) | Yes| Client information, including the IP address and port number.            |
+| closeReason | [CloseResult](#closeresult10)  | Yes| Represents the result obtained from the **close** event reported when the WebSocket connection is closed.|

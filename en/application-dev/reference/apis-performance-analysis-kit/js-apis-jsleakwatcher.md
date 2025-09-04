@@ -95,7 +95,7 @@ Exports the list of leaked objects and VM memory snapshot.
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| Array&lt;string&gt; | Array of exported results. Index **0** indicates the name of the leak list file, whose name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, whose name extension is **.heapsnapshort**.|
+| Array&lt;string&gt; | Array of exported results. Index **0** indicates the name of the leak list file, whose name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, whose name extension is **.heapsnapshot**.|
 
 **Error codes**
 

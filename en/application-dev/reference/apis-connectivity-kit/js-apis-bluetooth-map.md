@@ -1,5 +1,11 @@
 # @ohos.bluetooth.map (Bluetooth MAP Module)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **bluetooth.map** module provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP).
 
 > **NOTE**
@@ -25,7 +31,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| baseProfile.BaseProfile | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## map.createMapMseProfile

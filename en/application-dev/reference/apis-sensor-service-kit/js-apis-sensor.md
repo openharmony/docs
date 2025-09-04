@@ -4,7 +4,7 @@ The **Sensor** module provides APIs for obtaining the sensor list and subscribin
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version. Before subscribing to sensor data, call [getSingleSensor](#sensorgetsinglesensor9) to obtain the target sensor. If any error occurs, see the error code description of the API. When you subscribe to the sensor data, ensure that the **on** and **off** APIs are used in pairs.
 
 
 ## Modules to Import
@@ -1021,7 +1021,7 @@ Enables listening for sensor status changes. This API asynchronously returns the
 
 | Name  | Type                                                        | Mandatory| Description                                                       |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| type     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
+| type     |  'sensorStatusChange'         | Yes  | Event type. The value **sensorStatusChange** indicates the sensor status change event.            |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | Yes  | Callback used to return the sensor status change event.|
 
 **Error codes**
@@ -2048,7 +2048,7 @@ const sensorCallback = (response: sensor.AccelerometerResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.ACCELEROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2186,7 +2186,7 @@ const sensorCallback = (response: sensor.AccelerometerUncalibratedResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.ACCELEROMETER_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2318,7 +2318,7 @@ const sensorCallback = (response: sensor.LightResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.AMBIENT_LIGHT;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2450,7 +2450,7 @@ const sensorCallback = (response: sensor.AmbientTemperatureResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.AMBIENT_TEMPERATURE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2583,7 +2583,7 @@ const sensorCallback = (response: sensor.BarometerResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.BAROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2716,7 +2716,7 @@ const sensorCallback = (response: sensor.GravityResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.GRAVITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2858,7 +2858,7 @@ const sensorCallback = (response: sensor.GyroscopeResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.GYROSCOPE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2996,7 +2996,7 @@ const sensorCallback = (response: sensor.GyroscopeUncalibratedResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.GYROSCOPE_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3128,7 +3128,7 @@ const sensorCallback = (response: sensor.HallResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.HALL;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3266,7 +3266,7 @@ const sensorCallback = (response: sensor.HeartRateResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.HEART_RATE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3398,7 +3398,7 @@ const sensorCallback = (response: sensor.HumidityResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.HUMIDITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3536,7 +3536,7 @@ const sensorCallback = (response: sensor.LinearAccelerometerResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.LINEAR_ACCELEROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3668,7 +3668,7 @@ const sensorCallback = (response: sensor.MagneticFieldResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.MAGNETIC_FIELD;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3800,7 +3800,7 @@ const sensorCallback = (response: sensor.MagneticFieldUncalibratedResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3936,7 +3936,7 @@ const sensorCallback = (response: sensor.OrientationResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.ORIENTATION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4074,7 +4074,7 @@ const sensorCallback = (response: sensor.PedometerResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.PEDOMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4212,7 +4212,7 @@ const sensorCallback = (response: sensor.PedometerDetectionResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.PEDOMETER_DETECTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4344,7 +4344,7 @@ const sensorCallback = (response: sensor.ProximityResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.PROXIMITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4476,7 +4476,7 @@ const sensorCallback = (response: sensor.RotationVectorResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.ROTATION_VECTOR;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4608,7 +4608,7 @@ const sensorCallback = (response: sensor.SignificantMotionResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.SIGNIFICANT_MOTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4740,7 +4740,7 @@ const sensorCallback = (response: sensor.WearDetectionResponse) => {
 }
 // Sensor type
 const sensorType = sensor.SensorId.WEAR_DETECTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4796,7 +4796,7 @@ Disables listening for sensor status changes.
 
 | Name  | Type                                                        | Mandatory| Description                                                       |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| type     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
+| type     |  'sensorStatusChange'         | Yes  | Event type. The value **sensorStatusChange** indicates the sensor status change event.            |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | No  | Callback passed to **sensor.on**. If this parameter is left unspecified, listening will be disabled for all callbacks.|
 
 **Error codes**
@@ -5284,7 +5284,7 @@ try {
     }
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
-    console.info("Y  : " + data[2]);
+    console.info("Y: " + data[2]);
   })
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -5347,7 +5347,7 @@ try {
     }
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
-    console.info("Y  : " + data[2]);
+    console.info("Y: " + data[2]);
   }, (err: BusinessError) => {
     console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
   });
@@ -5763,11 +5763,11 @@ try {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
   }, (err: BusinessError) => {
-    console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to getOrientation. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
+  console.error(`Failed to getOrientation Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -5924,9 +5924,9 @@ Obtains information about all sensors on the device. This API uses a promise to 
 
 **Return value**
 
-| Name | Type                                    | Mandatory| Description            |
-| ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Promise used to return the sensor list.|
+| Type                                    | Description            |
+| ---------------------------------------- | ---------------- |
+| Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Promise used to return the sensor list.|
 
 **Error codes**
 
@@ -5967,9 +5967,9 @@ Obtains information about all sensors on the device. This API returns the result
 
 **Return value**
 
-| Type                                   | Mandatory| Description                            |
-| --------------------------------------- | ---- | -------------------------------- |
-| &lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | List of sensor attributes.|
+| Type                                   | Description                            |
+| --------------------------------------- | -------------------------------- |
+| Array&lt;[Sensor](#sensor9)&gt; | List of sensor attributes.|
 
 **Error codes**
 
@@ -6034,6 +6034,14 @@ try {
       return;
     }
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
+    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+      console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+      console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+      console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+    }, { interval: 100000000 });
+    setTimeout(() => {
+      sensor.off(sensor.SensorId.ACCELEROMETER);
+    }, 500);
   });
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -6057,9 +6065,9 @@ Obtains information about the sensor of a specific type. This API uses a promise
 
 **Return value**
 
-| Name | Type                             | Mandatory| Description                        |
-| ------- | --------------------------------- | ---- | ---------------------------- |
-| promise | Promise&lt;[Sensor](#sensor9)&gt; | Yes  | Promise used to return the sensor information.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| Promise&lt;[Sensor](#sensor9)&gt; | Promise used to return the sensor information.|
 
 **Error codes**
 
@@ -6105,9 +6113,9 @@ Obtains information about the sensor of a specific type. This API returns the re
 
 **Return value**
 
-| Type  | Mandatory| Description                        |
-| ------ | ---- | ---------------------------- |
-| Sensor | Yes  | Sensor information.|
+| Type  | Description                        |
+| ------ | ---------------------------- |
+| Sensor | Sensor information.|
 
 **Error codes**
 
@@ -7891,9 +7899,9 @@ Subscribes to only one data change of the orientation sensor.
 import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
-  console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Y axis: ' + data.gamma);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Z axis: ' + data.alpha);
+  console.info('Succeeded in invoking the device rotating at an angle around the X axis: ' + data.beta);
+  console.info('Succeeded in invoking the device rotating at an angle around the Y axis: ' + data.gamma);
+  console.info('Succeeded in invoking the device rotating at an angle around the Z axis: ' + data.alpha);
 });
 ```
 
@@ -8320,7 +8328,7 @@ Unsubscribes from sensor data changes.
 import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HeartRateResponse) {
-  console.info('Succeeded in invoking off. Humidity: ' + data.heartRate);
+  console.info('Succeeded in invoking off. Heart rate: ' + data.heartRate);
 }
 
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
@@ -8703,7 +8711,7 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 
 | Name          | Type                                     | Mandatory| Description                      |
 | ---------------- | ----------------------------------------- | ---- | -------------------------- |
-| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector to rotate.            |
+| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation matrix.            |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Direction of the coordinate system.          |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes  | Callback used to return the rotation vector after being rotated.|
 
@@ -8741,7 +8749,7 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 
 | Name             | Type                                      | Mandatory  | Description      |
 | ---------------- | ---------------------------------------- | ---- | -------- |
-| inRotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to rotate. |
+| inRotationVector | Array&lt;number&gt;                      | Yes   | Rotation matrix. |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes   | Direction of the coordinate system.|
 
 **Return value**
@@ -9047,7 +9055,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | Name                  | Type                 | Mandatory  | Description       |
 | --------------------- | ------------------- | ---- | --------- |
 | currentRotationMatrix | Array&lt;number&gt; | Yes   | Current rotation matrix.|
-| preRotationMatrix     | Array&lt;number&gt; | Yes   | Rotation vector to rotate.  |
+| preRotationMatrix     | Array&lt;number&gt; | Yes   | Peer rotation matrix.  |
 
 **Return value**
 
@@ -9225,7 +9233,7 @@ promise.then((data: Array<number>) => {
     console.info("data[" + i + "]: " + data[i]);
   }
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
 
@@ -9245,7 +9253,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 | Name        | Type                                    | Mandatory| Description                                 |
 | -------------- | ---------------------------------------- | ---- | ------------------------------------- |
-| rotationMatrix | Array&lt;number&gt;                      | Yes  | Peer rotation matrix.                       |
+| rotationMatrix | Array&lt;number&gt;                      | Yes  | Rotation matrix.                       |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
@@ -9282,7 +9290,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation vector to rotate.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation matrix.|
 
 **Return value**
 
@@ -9303,7 +9311,7 @@ promise.then((data: Array<number>) => {
     console.info("Succeeded in getting sensor_getDirection_promise" + data[i]);
   }
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
 
@@ -9378,6 +9386,6 @@ const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], 
 promise.then((data: sensor.RotationMatrixResponse) => {
   console.info(JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
