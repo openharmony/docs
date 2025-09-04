@@ -75,7 +75,7 @@
     - [@ohos.app.ability.continueManager (跨端迁移)](js-apis-app-ability-continueManager.md)
     - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](js-apis-app-ability-dataUriUtils.md)
     - [@ohos.app.ability.dialogRequest (dialogRequest模块)](js-apis-app-ability-dialogRequest.md)
-    - [@ohos.app.ability.errorManager (错误观测管理)](js-apis-app-ability-errorManager.md)
+    - [@ohos.app.ability.errorManager (错误管理模块)](js-apis-app-ability-errorManager.md)
     - [@ohos.app.ability.Want (Want)](js-apis-app-ability-want.md)
     - [@ohos.app.ability.wantAgent (WantAgent模块)](js-apis-app-ability-wantAgent.md)
     - [@ohos.app.ability.wantConstant (Want常量)](js-apis-app-ability-wantConstant.md)
