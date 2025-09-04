@@ -190,7 +190,7 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo18) | 是   | 当前设备的折叠状态。 |
+| event | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo18) | 是   | 当前设备的折叠状态。 |
 
 
 ## OnFoldStatusChangeInfo<sup>18+</sup>
