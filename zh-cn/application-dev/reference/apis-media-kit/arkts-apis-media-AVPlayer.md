@@ -2327,7 +2327,7 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
-| callback | function | 是   | 外挂字幕事件回调方法。 |
+| callback | Callback\<[SubtitleInfo](arkts-apis-media-i.md#subtitleinfo12)> | 是   | 外挂字幕事件回调方法。 |
 
 **示例：**
 
@@ -2360,7 +2360,7 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
-| callback | Callback\<[SubtitleInfo](arkts-apis-media-i.md#subtitleinfo12)> | 否   | 取消外挂字幕事件的回调方法。 |
+| callback | function | 否   | 取消外挂字幕事件的回调方法。 |
 
 **示例：**
 
