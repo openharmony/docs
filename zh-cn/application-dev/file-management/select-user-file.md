@@ -120,13 +120,13 @@
 3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5)接口拉起AudioPicker应用界面进行文件选择。
 
    ```ts
-   let uris: string = '';
+   let uris: string[] = [];
    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
    let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      //文件选择成功后，返回被选中音频的URI结果集。
-     uris = audioSelectResult[0];
+     uris = audioSelectResult;
      console.info('audioViewPicker.select to file succeed and uri is:' + uris);
    }).catch((err: BusinessError) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
@@ -142,7 +142,7 @@
 4. 待界面从AudioPicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
-   let uri: string = '';
+   let uri: string = uris[0];
    //这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
