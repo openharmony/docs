@@ -138,6 +138,13 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 - CPP_CRASH事件支持通过SetEventConfig接口设置参数控制日志内容。（[指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events.md#%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97%E8%A7%84%E6%A0%BC%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE)）
 
+- 针对包含页面切换的应用，故障日志文件将包含页面切换历史轨迹。（[指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/cppcrash-guidelines.md#%E6%9C%89%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E8%BD%A8%E8%BF%B9%E7%9A%84%E6%95%85%E9%9A%9C%E5%9C%BA%E6%99%AF%E6%97%A5%E5%BF%97%E8%A7%84%E6%A0%BC)）
+
+- 新增addProcessorFromConfig接口，支持异步添加数据处理者和及其配置信息。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventaddprocessorfromconfig20)）
+
+- HiAppEvent的C API新增EVENT_APP_KILLED接口，订阅应用查杀事件。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md#event_app_killed)）
+
+
 
 ### 安全
 
