@@ -220,7 +220,7 @@
    private onStateChange(state: AVCastPickerState) {
      if (state === AVCastPickerState.STATE_APPEARING) {
        console.info('The picker starts showing.');
-     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+     } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
        console.info('The picker finishes presenting.');
      }
    }
@@ -254,9 +254,9 @@
 
    // 设备列表显示状态变化回调（可选）。
    private onStateChange(state: AVCastPickerState) {
-     if (state == AVCastPickerState.STATE_APPEARING) {
+     if (state === AVCastPickerState.STATE_APPEARING) {
        console.info('The picker starts showing.');
-     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+     } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
        console.info('The picker finishes presenting.');
      }
    }
