@@ -436,6 +436,8 @@
       - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
       - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
       - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
+  - 组件预览<!--component-preview-->
+    - [组件预览](arkui-ts/ts-universal-component-previewer.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -478,8 +480,6 @@
     <!--Del-->
     - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
     <!--DelEnd-->
-  - 组件预览<!--component-preview-->
-    - [组件预览](arkui-ts/ts-universal-component-previewer.md)
   - 公共定义<!--common-definitions-->
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
