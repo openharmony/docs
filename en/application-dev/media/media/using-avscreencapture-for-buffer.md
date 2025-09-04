@@ -367,9 +367,9 @@ This section describes how to set screen capture parameters, set callback functi
 
 Refer to the sample code below to implement screen capture using AVScreenCapture.
 
-For details about how to create an OH_AVBuffer instance, see [Buffer Output](../avcodec/video-decoding.md#buffer-output).
+For details about how to create an OH_AVBuffer instance, see [Buffer Mode](../avcodec/video-decoding.md#buffer-mode).
 
-For details about screen capture in surface mode, see [Surface Input](../avcodec/video-encoding.md#surface-input).
+For details about screen capture in surface mode, see [Surface Mode](../avcodec/video-encoding.md#surface-mode).
 
 Currently, the buffer holds original streams, which can be encoded and saved in MP4 format for playback.
 
