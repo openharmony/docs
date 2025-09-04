@@ -121,7 +121,7 @@ let id = 0;
 audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
   console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
   id = value;
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to register source ${err}`);
 });
 ```
@@ -175,7 +175,7 @@ let id = 0;
 audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
   console.info('Succeeded in doing registerSourceFromFd.');
   id = value;
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to registerSourceFromFd. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -217,7 +217,7 @@ let id = 0; // 需要通过registerSource方法获取。
 
 audioHapticManagerInstance.unregisterSource(id).then(() => {
   console.info('Succeeded in doing unregisterSource.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to unregisterSource. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -345,7 +345,7 @@ let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undef
 audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
   audioHapticPlayerInstance = value;
   console.info('Succeeded in doing createPlayer.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to createPlayer. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -432,7 +432,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.start().then(() => {
   console.info(`Promise returned to indicate that start playing successfully.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to start playing. ${err}`);
 });
 ```
@@ -467,7 +467,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.stop().then(() => {
   console.info(`Promise returned to indicate that stop playing successfully.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to stop playing. ${err}`);
 });
 ```
@@ -501,7 +501,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to release the audio haptic player. ${err}`);
 });
 ```
@@ -547,7 +547,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.setVolume(0.5).then(() => {
   console.info('Promise returned to indicate that set volume successfully.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set volume. ${err}`);
 });
 ```
@@ -591,7 +591,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.setLoop(true).then(() => {
   console.info('Promise returned to indicate that set player loop successfully.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set player loop. ${err}`);
 });
 ```
