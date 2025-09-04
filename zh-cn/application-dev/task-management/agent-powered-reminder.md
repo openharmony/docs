@@ -28,6 +28,7 @@
 ## 接口说明
 
 以下是代理提醒的相关接口，下表均以Promise形式为例，更多接口及使用方式请见[后台代理提醒](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)文档。
+
 **表1** 主要接口
 | 接口名 | 描述 |
 | -------- | -------- |
