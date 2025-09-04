@@ -1,6 +1,6 @@
 # @ohos.deviceStatus.dragInteraction（拖拽)(系统接口)
 
-<!--Kit: ArkUI Kit-->
+<!--Kit: ArkUI-->
 <!--Subsystem: Msdp-->
 <!--Owner: @wuliangdong-->
 <!--Designer: @butterls-->
