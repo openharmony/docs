@@ -1314,7 +1314,7 @@ request方法回调函数的返回值类型。
 | ---- | ---- | ---- | ---- |
 | name        | string | 是  | 数据名称。                                                                      |
 | contentType | string | 是 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等。 |
-| remoteFileName | string | 否 | 上传到服务器保存为文件的名称。                                                 |
+| remoteFileName | string | 否 | 上传到服务器保存为文件的名称。<br>**说明**：若上传数据为文件时，需填写该字段设置文件名称，否则服务端会收不到数据。                                                  |
 | data | string \| Object \| ArrayBuffer | 否 | 表单数据内容。                                                 |
 | filePath | string | 否 | 此参数根据文件的内容设置mime部件的正文内容。用于代替data将文件数据设置为数据内容，如果data为空，则必须设置filePath。如果data有值，则filePath不会生效。|
 
