@@ -438,5 +438,5 @@ function sensorUnsubscribe(): Ret {
 
 | 参数名 | 类型                   | 必填 | 说明                      |
 | ------ | ---------------------- | ---- |-------------------------|
-| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备。     |
+| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备，设备Id需通过[getSensorList](js-apis-sensor.md#sensorgetsensorlist9)或者监听设备上下线接口获取。     |
 | sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器。 |
