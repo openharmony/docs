@@ -325,6 +325,8 @@ hilog_param=40960
     | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | 获取设备udid。 |
     | const char *AclGetSerial(void) | 返回当前设备序列号（SN号）（带访问权限检查）。 |
     | int AclGetDevUdid(char *udid, int size) | 获取设备udid（带访问权限检查）。 |
+    | const&nbsp;char\*&nbsp;GetChipType(void) | 返回当前设备CPU型号。 |
+    | int GetBootCount(void) | 获取当前设备开机次数，获取失败时返回-1 |
 
 ### 开发步骤
 
