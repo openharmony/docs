@@ -1547,6 +1547,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
@@ -1644,6 +1645,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
