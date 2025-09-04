@@ -1,5 +1,12 @@
 # 复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介
 
 [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) 画布组件是用来显示自绘内容的组件，它具有保留历史绘制内容、增量绘制的特点。Canvas 有 [CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)/[OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md) 和 [DrawingRenderingContext](../reference/apis-arkui/arkui-ts/ts-drawingrenderingcontext.md) 两套API，应用使用两套API绘制的内容都可以在绑定的 Canvas 组件上显示。其中 CanvasRenderingContext2D 按照W3C标准封装了 [Native Drawing](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md) 接口，可以方便快速复用web应用的绘制逻辑，因此非常适用于web应用和游戏、快速原型设计、数据可视化、在线绘图板、教学工具或创意应用等场景。然而，由于它的性能依赖于浏览器的实现，不如原生API那样接近硬件，因此对于性能要求比较高绘制比较复杂或者硬件依赖性比较强的场景如高性能游戏开发、专业图形处理软件、桌面或移动应用等，使用 Canvas CanvasRenderingContext2D 绘制会存在一定的卡顿、掉帧等性能问题，此时可以直接使用 Native Drawing 接口自绘制替代 Canvas 绘制来提升绘制性能。  
@@ -152,8 +159,9 @@ export default struct GlassCoverView {
 - **正例(使用Native侧Drawing绘制)**  
 
 [Native Drawing](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md) 主要使用分层接口 [OH_Drawing_CanvasSaveLayer](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md#oh_drawing_canvassavelayer) 和融合接口 [OH_Drawing_BrushSetBlendMode](../reference/apis-arkgraphics2d/capi-drawing-brush-h.md#oh_drawing_brushsetblendmode) 来实现多图融合效果。通过在前端创建一个自绘制节点 [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), 并将图形绘制上下文及背景图参数通过 Native 侧暴露的接口传入，由 Native 侧使用相应的 Drawing 接口进行绘制，具体实现步骤如下：
-#### 前端实现
+### 前端实现
 1、前端定义一个 [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) 自绘制渲染节点，将背景图 this.pMap 和图形绘制上下文 context 传入 Native，调用 Native 侧的 nativeOnDraw 接口进行绘制。
+
 ```ts
 // entry\src\main\ets\pages\Index.ets
 enum DrawType { NONE, PATH, TEXT, IMAGE };
@@ -271,7 +279,7 @@ struct Index {
 
 ```
 
-#### Native侧实现
+### Native侧实现
 1、Native 侧暴露绘制接口 nativeOnDraw 供前端调用，该接口绑定 Native侧的 OnDraw 函数，ArkTs传入的参数在该函数中处理。
 ```C++
 EXTERN_C_START
