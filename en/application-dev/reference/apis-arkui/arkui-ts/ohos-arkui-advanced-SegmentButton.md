@@ -1,4 +1,10 @@
 # SegmentButton
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--Designer: @youzhi92-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 **SegmentButton** is a versatile component that organizes related options into visually grouped buttons. It supports three variants: tab-style, capsule-style single-select, and capsule-style multi-select.
 
@@ -6,7 +12,6 @@
 >
 >This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 >
->This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -25,6 +30,8 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 **Decorator**: @Component
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name           | Type                                     | Mandatory| Decorator | Description                                                        |
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
@@ -48,6 +55,8 @@ Provides initial data and custom properties for the **SegmentButton** component.
 **Decorator Type**: @Observed
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 ### Properties
 
@@ -85,6 +94,9 @@ A constructor used to create a **SegmentButton** instance with specified configu
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
+**Parameters**
 
 | Name   | Type                                                    | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
@@ -100,6 +112,9 @@ Creates a **SegmentButtonOptions** object specifically for tab-style segmented b
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
+**Parameters**
 
 | Name   | Type                                                        | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
@@ -121,6 +136,9 @@ Creates a **SegmentButtonOptions** object specifically for capsule-style segment
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
+**Parameters**
 
 | Name   | Type                                                        | Mandatory| Description                       |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------- |
@@ -142,6 +160,8 @@ Represents the length union type that does not support values in percentage.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Type                            | Description                                         |
 | -------------------------------- | --------------------------------------------- |
 | [PX](ts-types.md#px10)           | Length in px. |
@@ -155,6 +175,8 @@ Represents the length union type that does not support values in percentage.
 Defines the customizable properties for the **SegmentButton** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 ### Properties
 
@@ -187,6 +209,8 @@ Enumerates the border radius modes for the **SegmentButton** component, which ar
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name   |Value| Description                            |
 | ------- | - |-------------------------------- |
 | DEFAULT | 0 |Default mode, where the framework automatically calculates the border radius.|
@@ -201,6 +225,8 @@ Inherits from [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 ### Properties
 
@@ -218,6 +244,8 @@ Inherits from [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 ### Properties
 
 | Name     | Type                                             | Mandatory| Description                       |
@@ -234,6 +262,8 @@ Represents a tuple used to store button information.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
@@ -253,6 +283,8 @@ Represents the tuple union type used to store button information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Type                                                        | Description                     |
 | ------------------------------------------------------------ | ------------------------- |
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonTextItem](#segmentbuttontextitem)\> | A tuple of text-only button information.   |
@@ -268,6 +300,8 @@ Represents the array union type used to store button information.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Type                                                        | Description                     |
 | ------------------------------------------------------------ | ------------------------- |
@@ -295,6 +329,8 @@ A constructor used to create a **SegmentButtonItemOptionsArray** instance.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 
@@ -311,6 +347,8 @@ Adds the specified elements to the end of this array and returns the new length 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -339,6 +377,8 @@ Removes the last element from this array and returns that element.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Return value**
 
 | Type                                                        | Description          |
@@ -359,6 +399,8 @@ Removes the first element from this array and returns that element.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Return value**
 
 | Type                                                        | Description          |
@@ -378,6 +420,8 @@ Adds the specified elements to the beginning of this array and returns the new l
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -405,6 +449,8 @@ Changes the contents of this array by removing the specified number of elements 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -435,6 +481,8 @@ Creates a **SegmentButtonItemOptionsArray** object.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 
@@ -456,6 +504,8 @@ Provides configuration options for tab-style segmented buttons. Inherits from [T
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name| Type | Mandatory| Description                  |
 | ---- | ----- | ---- | ---------------------- |
 | type | 'tab' | Yes  | Type of the segmented buttons, which is **'tab'** in this case.|
@@ -468,6 +518,8 @@ Provides configuration options for capsule-style segmented buttons. Inherits fro
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name| Type     | Mandatory| Description                       |
 | ---- | --------- | ---- | ----------------------------- |
 | type | 'capsule' | Yes  | Type of the segmented buttons, which is **'capsule'** in this case.|
@@ -477,6 +529,8 @@ Provides configuration options for capsule-style segmented buttons. Inherits fro
 Provides text button information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name| Type                                  | Mandatory| Description     |
 | ---- | -------------------------------------- | ---- | ---------- |
@@ -489,6 +543,8 @@ Provides text button information.
 Provides icon button information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 |Name     | Type                                  | Mandatory| Description              |
 | ------------ | -------------------------------------- | ---- | -------------------- |
@@ -508,6 +564,8 @@ Provides icon button information.
 Provides icon+text button information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 ### Properties
 
@@ -533,6 +591,8 @@ Describes options of the items in the **SegmentButton** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 ### Properties
 
 | Name        | Type                                  | Mandatory| Description                |
@@ -555,6 +615,8 @@ A constructor used to create a **SegmentButtonItemOptions** instance.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 
@@ -567,6 +629,8 @@ A constructor used to create a **SegmentButtonItemOptions** instance.
 Describes the constructor parameters of **SegmentButtonItemOptions**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 ### Properties
 

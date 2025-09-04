@@ -118,7 +118,7 @@ export default {
 
 创建grid-container组件并添加grid-row，在grid-row组件内添加grid-col组件形成布局。
 
-
+<!--code_no_check-->
 ```html
 <!-- index.hml -->
 <div class="container">

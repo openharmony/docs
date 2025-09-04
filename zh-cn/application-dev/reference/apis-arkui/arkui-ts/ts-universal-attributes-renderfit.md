@@ -28,7 +28,7 @@ renderFit(fitMode: RenderFit): T
 
 | 参数名  | 类型                            | 必填 | 说明                                                         |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| fitMode | [RenderFit](#renderfit枚举说明) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
+| fitMode | [RenderFit](ts-appendix-enums.md#renderfit10) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
 
 **返回值：**
 
@@ -52,7 +52,7 @@ renderFit(fitMode: Optional\<RenderFit>): T
 
 | 参数名  | 类型                                       | 必填 | 说明                                                         |
 | ------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| fitMode | Optional\<[RenderFit](#renderfit枚举说明)> | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当fitMode的值为undefined时，取默认值。恢复为内容填充方式为RenderFit.TOP_LEFT的效果。 |
+| fitMode | Optional\<[RenderFit](ts-appendix-enums.md#renderfit10)> | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当fitMode的值为undefined时，取默认值。恢复为内容填充方式为RenderFit.TOP_LEFT的效果。 |
 
 **返回值：**
 
@@ -67,34 +67,6 @@ renderFit(fitMode: Optional\<RenderFit>): T
 > 对于SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，背景色设置为不透明的纯黑色，在API version 18之前，其renderFit通用属性仅支持设置为RenderFit.RESIZE_FILL；在API version 18及之后，支持所有的RenderFit枚举值。
 >
 >  对于使用[ArkUI NDK接口](../../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件，不支持使用属性获取函数[getAttribute](../capi-arkui-nativemodule-arkui-nativenodeapi-1.md#getattribute)获取其renderFit属性值。
-
-## RenderFit枚举说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称                          | 描述                                       | 示意图                                      |
-| --------------------------- | ---------------------------------------- | ---------------------------------------- |
-| CENTER                      | 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。             | ![renderfit_center](figures/renderfit_center.png) |
-| TOP                         | 保持动画终态的内容大小，并且内容始终与组件保持顶部中心对齐。           | ![renderfit_top](figures/renderfit_top.png) |
-| BOTTOM                      | 保持动画终态的内容大小，并且内容始终与组件保持底部中心对齐。           | ![renderfit_bottom](figures/renderfit_bottom.png) |
-| LEFT                        | 保持动画终态的内容大小，并且内容始终与组件保持左侧对齐。             | ![renderfit_left](figures/renderfit_left.png) |
-| RIGHT                       | 保持动画终态的内容大小，并且内容始终与组件保持右侧对齐。             | ![renderfit_right](figures/renderfit_right.png) |
-| TOP_LEFT                    | 保持动画终态的内容大小，并且内容始终与组件保持左上角对齐。            | ![renderfit_top_left](figures/renderfit_top_left.png) |
-| TOP_RIGHT                   | 保持动画终态的内容大小，并且内容始终与组件保持右上角对齐。            | ![renderfit_top_right](figures/renderfit_top_right.png) |
-| BOTTOM_LEFT                 | 保持动画终态的内容大小，并且内容始终与组件保持左下角对齐。            | ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
-| BOTTOM_RIGHT                | 保持动画终态的内容大小，并且内容始终与组件保持右下角对齐。            | ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
-| RESIZE_FILL                 | 不考虑动画终态内容的宽高比，并且内容始终缩放到组件的大小。            | ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
-| RESIZE_CONTAIN              | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内，且与组件保持中心对齐。 | ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
-| RESIZE_CONTAIN_TOP_LEFT     | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持左侧对齐，当组件高方向有剩余时，内容与组件保持顶部对齐。 | ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
-| RESIZE_CONTAIN_BOTTOM_RIGHT | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持右侧对齐，当组件高方向有剩余时，内容与组件保持底部对齐。 | ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
-| RESIZE_COVER                | 保持动画终态内容的宽高比进行缩小或放大，使内容两边都大于或等于组件两边，且与组件保持中心对齐，显示内容的中间部分。 | ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
-| RESIZE_COVER_TOP_LEFT       | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。 | ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
-| RESIZE_COVER_BOTTOM_RIGHT   | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。 | ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
-
-> **说明：**
->
-> - 示意图中，蓝色区域表示内容，橙黄色区域表示节点大小。
-> - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
 
 ## 示例
 

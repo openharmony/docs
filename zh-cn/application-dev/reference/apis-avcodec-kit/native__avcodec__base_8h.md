@@ -79,7 +79,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_MediaType](_codec_base.md#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1,<br/>MEDIA_TYPE_SUBTITILE = 2,<br/>MEDIA_TYPE_TIMED_METADATA = 5,<br/>MEDIA_TYPE_AUXILIARY = 6<br/>} | 媒体类型。 |
+| [OH_MediaType](_codec_base.md#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1,<br/>MEDIA_TYPE_SUBTITLE = 2,<br/>MEDIA_TYPE_TIMED_METADATA = 5,<br/>MEDIA_TYPE_AUXILIARY = 6<br/>} | 媒体类型。 |
 | [OH_AACProfile](_codec_base.md#oh_aacprofile-1) {<br/>AAC_PROFILE_LC = 0,<br/>AAC_PROFILE_HE = 3,<br/>AAC_PROFILE_HE_V2 = 4<br/>} | AAC档次。<!--Del--><br/>（AAC_PROFILE_HE, AAC_PROFILE_HE_V2暂未开放）<!--DelEnd--> | 
 | [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>（HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃）。 | 
@@ -205,7 +205,7 @@
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](_codec_base.md#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](_codec_base.md#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](_codec_base.md#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](_codec_base.md#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](_codec_base.md#oh_md_key_video_enable_low_latency) | 使能低时延视频解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。  | 
 | const char \* [OH_MD_KEY_ENABLE_SYNC_MODE](_codec_base.md#oh_md_key_enable_sync_mode) | 使能音视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](_codec_base.md#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](_codec_base.md#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 

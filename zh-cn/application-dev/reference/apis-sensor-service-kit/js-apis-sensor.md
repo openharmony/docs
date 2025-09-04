@@ -715,6 +715,14 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
+**参数**：
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。   |
+| options  | [Options](#options)                                         | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
@@ -723,14 +731,6 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 | 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
-
-**参数**：
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                        |
-| -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。   |
-| options  | [Options](#options)                                         | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
 **示例**：
 
@@ -764,6 +764,14 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
+**参数**：
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                  |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。     |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
@@ -773,14 +781,6 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 | 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
-
-**参数**：
-
-| 参数名   | 类型                                                    | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                  |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。     |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
 **示例**：
 
@@ -1054,7 +1054,7 @@ on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2078,7 +2078,7 @@ off(type: SensorId.ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2095,7 +2095,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.AccelerometerResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类别
 const sensorType = sensor.SensorId.ACCELEROMETER;
@@ -2219,7 +2219,7 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, sensorInfoParam?: SensorInfoParam
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2236,7 +2236,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.AccelerometerUncalibratedResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ACCELEROMETER_UNCALIBRATED;
@@ -2355,7 +2355,7 @@ off(type: SensorId.AMBIENT_LIGHT, sensorInfoParam?: SensorInfoParam, callback?: 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2371,7 +2371,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.LightResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.AMBIENT_LIGHT;
@@ -2490,7 +2490,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, sensorInfoParam?: SensorInfoParam, callb
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2506,7 +2506,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.AmbientTemperatureResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.AMBIENT_TEMPERATURE;
@@ -2626,7 +2626,7 @@ off(type: SensorId.BAROMETER, sensorInfoParam?: SensorInfoParam, callback?: Call
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2642,7 +2642,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.BarometerResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.BAROMETER;
@@ -2762,7 +2762,7 @@ off(type: SensorId.GRAVITY, sensorInfoParam?: SensorInfoParam, callback?: Callba
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2778,7 +2778,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.GravityResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GRAVITY;
@@ -2906,7 +2906,7 @@ off(type: SensorId.GYROSCOPE, sensorInfoParam?: SensorInfoParam, callback?: Call
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2923,7 +2923,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.GyroscopeResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GYROSCOPE;
@@ -3047,7 +3047,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3064,7 +3064,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.GyroscopeUncalibratedResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GYROSCOPE_UNCALIBRATED;
@@ -3183,7 +3183,7 @@ off(type: SensorId.HALL, sensorInfoParam?: SensorInfoParam, callback?: Callback&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3199,7 +3199,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.HallResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HALL;
@@ -3323,7 +3323,7 @@ off(type: SensorId.HEART_RATE, sensorInfoParam?: SensorInfoParam, callback?: Cal
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3340,7 +3340,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.HeartRateResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HEART_RATE;
@@ -3459,7 +3459,7 @@ off(type: SensorId.HUMIDITY, sensorInfoParam?: SensorInfoParam, callback?: Callb
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3475,7 +3475,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.HumidityResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HUMIDITY;
@@ -3599,7 +3599,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, sensorInfoParam?: SensorInfoParam, call
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3616,7 +3616,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.LinearAccelerometerResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.LINEAR_ACCELEROMETER;
@@ -3735,7 +3735,7 @@ off(type: SensorId.MAGNETIC_FIELD, sensorInfoParam?: SensorInfoParam, callback?:
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3751,7 +3751,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.MagneticFieldResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.MAGNETIC_FIELD;
@@ -3886,7 +3886,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.MagneticFieldUncalibratedResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED;
@@ -4009,7 +4009,7 @@ off(type: SensorId.ORIENTATION, sensorInfoParam?: SensorInfoParam, callback?: Ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4025,7 +4025,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.OrientationResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ORIENTATION;
@@ -4149,7 +4149,7 @@ off(type: SensorId.PEDOMETER, sensorInfoParam?: SensorInfoParam, callback?: Call
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4166,7 +4166,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.PedometerResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PEDOMETER;
@@ -4290,7 +4290,7 @@ off(type: SensorId.PEDOMETER_DETECTION, sensorInfoParam?: SensorInfoParam, callb
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4307,7 +4307,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.PedometerDetectionResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PEDOMETER_DETECTION;
@@ -4426,7 +4426,7 @@ off(type: SensorId.PROXIMITY, sensorInfoParam?: SensorInfoParam, callback?: Call
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4442,7 +4442,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.ProximityResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PROXIMITY;
@@ -4561,7 +4561,7 @@ off(type: SensorId.ROTATION_VECTOR, sensorInfoParam?: SensorInfoParam, callback?
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4577,7 +4577,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.RotationVectorResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ROTATION_VECTOR;
@@ -4696,7 +4696,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, sensorInfoParam?: SensorInfoParam, callba
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4712,7 +4712,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.SignificantMotionResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.SIGNIFICANT_MOTION;
@@ -4831,7 +4831,7 @@ off(type: SensorId.WEAR_DETECTION, sensorInfoParam?: SensorInfoParam, callback?:
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4847,7 +4847,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.WearDetectionResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.WEAR_DETECTION;
@@ -4965,7 +4965,7 @@ getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt;
 
 | 参数名          | 类型                                                         | 必填 | 说明     |
 | --------------- | ------------------------------------------------------------ | ---- |--------|
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。 |
 
 
 **返回值**：
@@ -4985,8 +4985,8 @@ try {
   const deviceId = 1;
   // 第一个参数deviceId 非必填
   const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
-  console.log(`sensorList length: ${sensorList.length}`);
-  console.log(`sensorList: ${JSON.stringify(sensorList)}`);
+  console.info(`sensorList length: ${sensorList.length}`);
+  console.info(`sensorList: ${JSON.stringify(sensorList)}`);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
@@ -5007,7 +5007,7 @@ getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&
 | 参数名          | 类型                                                         | 必填 | 说明       |
 | --------------- | ------------------------------------------------------------ | ---- |----------|
 | type     | [SensorId](#sensorid9) | 是   | 指定传感器类型。 |
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。 |
 
 
 **返回值**：
@@ -5026,8 +5026,8 @@ try {
   const deviceId = 1;
   // 第二个参数deviceId 非必填
   const sensorList: sensor.Sensor[] = sensor.getSingleSensorByDeviceSync(sensor.SensorId.ACCELEROMETER, deviceId);
-  console.log(`sensorList length: ${sensorList.length}`);
-  console.log(`sensorList Json: ${JSON.stringify(sensorList)}`);
+  console.info(`sensorList length: ${sensorList.length}`);
+  console.info(`sensorList Json: ${JSON.stringify(sensorList)}`);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
@@ -6316,7 +6316,7 @@ try {
 
 | 名称          | 类型     | 必填 | 说明                                                                                                                                                     |
 |-------------|--------|----|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| deviceId    | number | 否  | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。      |
+| deviceId    | number | 否  | 设备ID：默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。      |
 | sensorIndex | number | 否  | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |
 
 
@@ -6334,37 +6334,6 @@ try {
 | isSensorOnline | boolean | 是  | 否  | 传感器上线或者下线，true为上线，false为下线。 |
 | deviceId       | number  | 是  | 否  | 设备ID。                       |
 | deviceName     | string  | 是  | 否  | 设备名称。                       |
-
-## SensorType<sup>(deprecated)</sup>
-
-表示要订阅或取消订阅的传感器类型。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-
-| 名称                                       | 值   | 说明                   |
-| ------------------------------------------ | ---- | ---------------------- |
-| SENSOR_TYPE_ID_ACCELEROMETER               | 1    | 加速度传感器。         |
-| SENSOR_TYPE_ID_GYROSCOPE                   | 2    | 陀螺仪传感器。         |
-| SENSOR_TYPE_ID_AMBIENT_LIGHT               | 5    | 环境光传感器。         |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD              | 6    | 磁场传感器。           |
-| SENSOR_TYPE_ID_BAROMETER                   | 8    | 气压计传感器。         |
-| SENSOR_TYPE_ID_HALL                        | 10   | 霍尔传感器。           |
-| SENSOR_TYPE_ID_PROXIMITY                   | 12   | 接近光传感器。         |
-| SENSOR_TYPE_ID_HUMIDITY                    | 13   | 湿度传感器。           |
-| SENSOR_TYPE_ID_ORIENTATION                 | 256  | 方向传感器。           |
-| SENSOR_TYPE_ID_GRAVITY                     | 257  | 重力传感器。           |
-| SENSOR_TYPE_ID_LINEAR_ACCELERATION         | 258  | 线性加速度传感器。     |
-| SENSOR_TYPE_ID_ROTATION_VECTOR             | 259  | 旋转矢量传感器。       |
-| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE         | 260  | 环境温度传感器。       |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 261  | 未校准磁场传感器。     |
-| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED      | 263  | 未校准陀螺仪传感器。   |
-| SENSOR_TYPE_ID_SIGNIFICANT_MOTION          | 264  | 有效运动传感器。       |
-| SENSOR_TYPE_ID_PEDOMETER_DETECTION         | 265  | 计步检测传感器。       |
-| SENSOR_TYPE_ID_PEDOMETER                   | 266  | 计步传感器。           |
-| SENSOR_TYPE_ID_HEART_RATE                  | 278  | 心率传感器。           |
-| SENSOR_TYPE_ID_WEAR_DETECTION              | 280  | 佩戴检测传感器。       |
-| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。 |
 
 ## SensorAccuracy<sup>11+</sup>
 
@@ -9366,7 +9335,7 @@ promise.then((data: Array<number>) => {
     console.info("data[" + i + "]: " + data[i]);
   }
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
 
@@ -9444,7 +9413,7 @@ promise.then((data: Array<number>) => {
     console.info("Succeeded in getting sensor_getDirection_promise" + data[i]);
   }
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
 
@@ -9519,6 +9488,37 @@ const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], 
 promise.then((data: sensor.RotationMatrixResponse) => {
   console.info(JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
+
+## SensorType<sup>(deprecated)</sup>
+
+表示要订阅或取消订阅的传感器类型。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+| 名称                                       | 值   | 说明                   |
+| ------------------------------------------ | ---- | ---------------------- |
+| SENSOR_TYPE_ID_ACCELEROMETER               | 1    | 加速度传感器。         |
+| SENSOR_TYPE_ID_GYROSCOPE                   | 2    | 陀螺仪传感器。         |
+| SENSOR_TYPE_ID_AMBIENT_LIGHT               | 5    | 环境光传感器。         |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD              | 6    | 磁场传感器。           |
+| SENSOR_TYPE_ID_BAROMETER                   | 8    | 气压计传感器。         |
+| SENSOR_TYPE_ID_HALL                        | 10   | 霍尔传感器。           |
+| SENSOR_TYPE_ID_PROXIMITY                   | 12   | 接近光传感器。         |
+| SENSOR_TYPE_ID_HUMIDITY                    | 13   | 湿度传感器。           |
+| SENSOR_TYPE_ID_ORIENTATION                 | 256  | 方向传感器。           |
+| SENSOR_TYPE_ID_GRAVITY                     | 257  | 重力传感器。           |
+| SENSOR_TYPE_ID_LINEAR_ACCELERATION         | 258  | 线性加速度传感器。     |
+| SENSOR_TYPE_ID_ROTATION_VECTOR             | 259  | 旋转矢量传感器。       |
+| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE         | 260  | 环境温度传感器。       |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 261  | 未校准磁场传感器。     |
+| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED      | 263  | 未校准陀螺仪传感器。   |
+| SENSOR_TYPE_ID_SIGNIFICANT_MOTION          | 264  | 有效运动传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER_DETECTION         | 265  | 计步检测传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER                   | 266  | 计步传感器。           |
+| SENSOR_TYPE_ID_HEART_RATE                  | 278  | 心率传感器。           |
+| SENSOR_TYPE_ID_WEAR_DETECTION              | 280  | 佩戴检测传感器。       |
+| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。 |
+

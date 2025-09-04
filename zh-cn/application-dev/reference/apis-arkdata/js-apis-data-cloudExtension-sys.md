@@ -1959,8 +1959,7 @@ class MyCloudService implements cloudExtension.CloudService {
   }
 
   async subscribe(subInfo: Record<string, Array<cloudExtension.Database>>, expirationTime: number): Promise<cloudExtension.Result<cloudExtension.SubscribeInfo>> {
-    console.info
-    (`subscribe expirationTime: ${expirationTime}`);
+    console.info(`subscribe expirationTime: ${expirationTime}`);
     // ...
     return {
       code: cloudExtension.ErrorCode.SUCCESS,

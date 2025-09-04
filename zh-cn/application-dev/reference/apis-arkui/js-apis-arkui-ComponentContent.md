@@ -23,6 +23,12 @@ import { ComponentContent } from '@kit.ArkUI';
 
 ## ComponentContent
 
+继承自[Content](js-apis-arkui-Content.md#content-1)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### constructor
 
 constructor(uiContext: UIContext, builder: WrappedBuilder\<[]>)
@@ -142,7 +148,7 @@ struct Index {
 
 update(args: T): void
 
-用于更新WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。
+用于更新[WrappedBuilder](../../ui/state-management/arkts-wrapBuilder.md)对象封装的builder函数参数，与constructor传入的参数类型保持一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -152,7 +158,7 @@ update(args: T): void
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | ---- | ---- | ------------------------------------------------------------ |
-| args   | T    | 是   | 用于更新WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。 |
+| args   | T    | 是   | 用于更新[WrappedBuilder](../../ui/state-management/arkts-wrapBuilder.md)对象封装的builder函数参数，与constructor传入的参数类型保持一致。 |
 
 **示例：**
 
@@ -302,7 +308,7 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
 
     // 当开关为open，通过ComponentContent的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -311,7 +317,7 @@ struct ReusableChildComponent {
   }
 
   aboutToReuse(params: object): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
 
     // 当开关为open，通过ComponentContent的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -333,11 +339,11 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -355,11 +361,11 @@ struct ReusableChildComponent3 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -554,10 +560,10 @@ struct FrameNodeTypeTest {
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        console.log('onMemoryLevel');
+        console.info('onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        console.info(`onConfigurationUpdated ${config}`);
         this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     }

@@ -14,11 +14,11 @@
 
 **错误信息**
 
-Internal error.
+The builder is not a valid build function.
 
 **错误描述**
 
-该错误码在内部运行时状态出现异常时被触发。
+该错误码在内部状态出现异常时被触发。
 
 **可能原因**
 
@@ -32,7 +32,7 @@ NA
 
 **错误信息**
 
-ComponentSnapshot error.
+An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled.
 
 **错误描述**
 
@@ -50,7 +50,7 @@ NA
 
 **错误信息**
 
-ComponentSnapshot timeout.
+Timeout.
 
 **错误描述**
 

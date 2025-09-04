@@ -1,4 +1,10 @@
 # ApplicationStateObserver
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The module defines an observer to listen for application state changes. It can be used as an input parameter in [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14) to listen for lifecycle changes of the current application.
 

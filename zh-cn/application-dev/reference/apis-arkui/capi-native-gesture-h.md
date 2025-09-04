@@ -20,6 +20,8 @@
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
+**相关示例：** <!--RP1-->[NdkGestureSetting](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkGestureSetting)<!--RP1End-->、<!--RP2-->[NdkGestureNestScroll](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkGestureNestScroll)<!--RP2End-->
+
 ## 汇总
 
 ### 结构体
@@ -437,7 +439,7 @@ int32_t OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers(const ArkUI_GestureInt
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | Returns [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         Returns [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 参数错误。 |
+| int32_t | 返回 [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 表示成功。<br>         返回 [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 表示参数错误。 |
 
 ### OH_ArkUI_TouchRecognizer_GetNodeHandle()
 
@@ -553,7 +555,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event)
 **描述：**
 
 
-返回长按手势定时触发次数。
+返回是否为重复触发事件。
 
 **起始版本：** 12
 
@@ -568,7 +570,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 长按手势定时触发次数。 |
+| int32_t | 是否为重复触发事件。1表示为重复触发事件，0表示为非重复触发事件。 |
 
 ### OH_ArkUI_PanGesture_GetVelocity()
 
@@ -1090,7 +1092,7 @@ int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollEnd(ArkUI_GestureEventTargetInfo
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_GestureEventTargetInfo](capi-arkui-nativemodule-arkui-gestureeventtargetinfo.md)* info | 手势事件目标信息。 |
-| bool* ret | 当前滚动类容器组件是否在底部。 |
+| bool* ret | 当前滚动类容器组件是否在底部。true表示在底部，false表示不在底部。 |
 
 **返回：**
 
@@ -1326,6 +1328,7 @@ int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify(ArkUI_GestureRecognizer*
 
 设置手势识别器对象析构通知回调函数。
 
+**起始版本：** 12
 
 **参数：**
 

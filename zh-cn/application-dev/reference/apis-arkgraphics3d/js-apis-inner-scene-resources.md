@@ -59,11 +59,13 @@ destroy(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function destroy() : void {
+function destroy(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      // 创建shader资源，路径和文件名可根据项目实际资源自定义
       let sceneResourceParameter: SceneResourceParameters = { name: "shaderResource",
         uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") };
       let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
@@ -297,7 +299,8 @@ onFinished(callback: Callback\<void>): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function onFinished() : void {
+function onFinished(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
@@ -330,7 +333,8 @@ onStarted(callback: Callback\<void>): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function onStarted() : void {
+function onStarted(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
@@ -356,7 +360,8 @@ pause(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function pause() : void {
+function pause(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
@@ -380,7 +385,8 @@ restart(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function restart() : void {
+function restart(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
@@ -409,7 +415,8 @@ seek(position: number): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function seek() : void {
+function seek(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
@@ -433,7 +440,8 @@ start(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function start() : void {
+function start(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
@@ -457,7 +465,8 @@ stop(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function stop() : void {
+function stop(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
@@ -480,7 +489,8 @@ finish(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function finish() : void {
+function finish(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {

@@ -619,7 +619,7 @@ struct Page {
 ```
 #### Mixed Use of LazyForEach, Component Reuse, and Component Freezing
 In the scrolling scenario of a long list with a large amount of data, you can use **LazyForEach** to create components as required. In addition, you can reuse components to reduce the overhead caused by component creation and destruction during scrolling.
-However, if you set <!--RP2-->[reuseId](../../performance/component-recycle.md#available-apis)<!--RP2End--> based on the reuse type or assign a large value to **cacheCount** to ensure the scrolling performance, more nodes will be cached in the reuse pool or **LazyForEach**.
+However, if you set [reuseId](../../performance/component-recycle.md#available-apis) based on the reuse type or assign a large value to **cacheCount** to ensure the scrolling performance, more nodes will be cached in the reuse pool or **LazyForEach**.
 In this case, if you trigger the re-render of all subnodes in **List**, the number of re-renders is too large. In this case, you can freeze the component.
 
 Example:

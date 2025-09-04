@@ -1,5 +1,11 @@
 # AudioCodec
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -45,10 +51,12 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Frees an output buffer of an audio codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | Checks whether an audio codec instance is valid.<br>This function is used to detect the codec status when a background fault is rectified or an application is switched from the background. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | Sets the decryption information. | 
-
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | Obtains the available input buffer of an audio codec. This function returns the result synchronously.|
+| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetInputBuffer](#oh_audiocodec_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Obtains the input buffer identified by **index** of an audio codec.|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | Obtains the available output buffer of an audio codec. This function returns the result synchronously.|
+| [OH_AVBuffer](_core.md#oh_avbuffer) *[OH_AudioCodec_GetOutputBuffer](#oh_audiocodec_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Obtains the output buffer identified by **index** of an audio codec.|
 
 ## Function Description
-
 
 ### OH_AudioCodec_Configure()
 
@@ -68,12 +76,12 @@ Configures the audio description. The audio codec is usually configured based on
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
-| format | Pointer to an **OH_AVFormat** instance, which provides the description information about the audio track to be encoded or decoded.| 
+| codec | Pointer to an OH_AVCodec instance.| 
+| format | Pointer to an OH_AVFormat instance, which provides the description information about the audio track to be encoded or decoded.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_CreateByMime()
@@ -99,7 +107,7 @@ Creates an audio codec instance based on a MIME type. This function is recommend
 
 **Returns**
 
-Returns the pointer to an **OH_AVCodec** instance.
+Pointer to an OH_AVCodec instance.
 
 
 ### OH_AudioCodec_CreateByName()
@@ -126,7 +134,7 @@ To use this function, you must know the exact name of the codec, which can be ob
 
 **Returns**
 
-Returns the pointer to an **OH_AVCodec** instance.
+Pointer to an OH_AVCodec instance.
 
 
 ### OH_AudioCodec_Destroy()
@@ -149,11 +157,11 @@ Do not repeatedly destroy the instance. Otherwise, the program may crash.
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance. | 
+| codec | Pointer to an OH_AVCodec instance. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_Flush()
@@ -176,11 +184,11 @@ This function invalidates the indexes of all buffers previously reported through
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_FreeOutputBuffer()
@@ -203,12 +211,70 @@ You need to call this function to release the output buffer in a timely manner. 
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 | index | Index of the [OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer).| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+
+### OH_AudioCodec_GetInputBuffer()
+
+```
+OH_AVBuffer *OH_AudioCodec_GetInputBuffer(OH_AVCodec *codec, uint32_t index)
+```
+
+**Description**
+
+Obtains the input buffer identified by **index** for an audio codec, and fills it with new data.
+
+After the buffer is filled, call [OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer) with the same index to push the buffer to the codec.
+
+After the buffer is pushed to the codec, you can no longer access the input buffer for that index.
+
+**System capability**: SystemCapability.Multimedia.Media.AudioCodec
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| codec | Pointer to an OH_AVCodec instance.| 
+| index | Index of the input buffer. It is obtained by calling [OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer).|
+
+**Returns**
+
+Pointer to the OH_AVBuffer instance created. If the operation fails, NULL is returned.
+
+
+### OH_AudioCodec_GetOutputBuffer()
+
+```
+OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(OH_AVCodec *codec, uint32_t index)
+```
+
+**Description**
+
+Obtains the output buffer identified by **index** for an audio codec.
+
+After using the buffer, call [OH_AudioCodec_FreeOutputBuffer](#oh_audiocodec_freeoutputbuffer) to release the buffer. Once released, the buffer cannot be reused. Prolonged failure to release buffers will block the codec process.
+
+**System capability**: SystemCapability.Multimedia.Media.AudioCodec
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| codec | Pointer to an OH_AVCodec instance.| 
+| index | Index of the output buffer. It is obtained by calling [OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer).|
+
+**Returns**
+
+Pointer to the OH_AVBuffer instance created. If the operation fails, NULL is returned.
 
 
 ### OH_AudioCodec_GetOutputDescription()
@@ -222,7 +288,7 @@ OH_AVFormat* OH_AudioCodec_GetOutputDescription (OH_AVCodec *codec)
 Obtains the **OH_AVFormat** information about the output data of an audio codec.
 
 
-You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to manually release the **OH_AVFormat** instance in the return value.
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to manually release the OH_AVFormat instance in the return value.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioCodec
 
@@ -232,11 +298,11 @@ You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to manually re
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns the handle to an **OH_AVFormat** instance. The lifecycle of this instance is refreshed when **GetOutputDescription** is called again and destroyed when the **OH_AVCodec** instance is destroyed.
+Handle to an OH_AVFormat instance. The lifecycle of this instance is refreshed when **GetOutputDescription** is called again and destroyed when the OH_AVCodec instance is destroyed.
 
 
 ### OH_AudioCodec_IsValid()
@@ -257,12 +323,12 @@ Checks whether an audio codec instance is valid.<br>This function is used to det
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
-| isValid | Output parameter. Pointer to an instance of the Boolean type. The value **true** means that the codec instance is valid, and **false** means the opposite.| 
+| codec | Pointer to an OH_AVCodec instance.| 
+| isValid | Pointer to an instance of the Boolean type. The value **true** means that the codec instance is valid, and **false** means the opposite.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_Prepare()
@@ -283,11 +349,11 @@ Prepares internal resources for an audio codec. This function must be called aft
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_PushInputBuffer()
@@ -304,6 +370,10 @@ The [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer) ca
 
 In addition, some codecs require the input of codec-specific data to initialize the encoding or decoding process.
 
+> **NOTE**
+> 
+> If the return value is **AV_ERR_UNKNOWN**, the call does not take effect, and the input buffer is still in the unprocessed state. You need to handle the error according to the specific error code and then call [OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer) again with the same index.
+
 **System capability**: SystemCapability.Multimedia.Media.AudioCodec
 
 **Since**: 11
@@ -312,13 +382,95 @@ In addition, some codecs require the input of codec-specific data to initialize 
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 | index | Index of the [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer).| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
+- **AV_ERR_OK**: The operation is successful.
+
+- **AV_ERR_INVALID_VAL**: The input index is used or invalid. Use the index returned by the [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer) callback.
+
+- **AV_ERR_INVALID_STATE**: The codec state is incorrect. Before calling [OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer), ensure that [OH_AudioCodec_Configure](#oh_audiocodec_configure), [OH_AudioCodec_Prepare](#oh_audiocodec_prepare), and [OH_AudioCodec_Start](#oh_audiocodec_start) are successfully called in sequence.
+
+- **AV_ERR_UNKNOWN**: The input buffer size is invalid. Ensure that the buffer size and flags are correctly set.
+
+
+### OH_AudioCodec_QueryInputBuffer()
+
+```
+OH_AVErrCode OH_AudioCodec_QueryInputBuffer(OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+```
+
+**Description**
+
+Obtains the index of an available input buffer for an audio codec within the specified timeout period.
+
+**System capability**: SystemCapability.Multimedia.Media.AudioCodec
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| codec | Pointer to an OH_AVCodec instance.| 
+| index | Pointer to the index of the input buffer obtained.|
+| timeoutUs | Timeout period, in microseconds. A negative value means to wait infinitely.|
+
+**Returns**
+
+One of the following result codes:
+
+- **AV_ERR_OK**: The operation is successful.
+
+- **AV_ERR_INVALID_VAL**: The operation fails due to incorrect input parameters.
+
+- **AV_ERR_INVALID_STATE**: The operation fails due to an invalid state, for example, the codec not being started.
+
+- **AV_ERR_OPERATE_NOT_PERMIT**: The operation fails because the call is not allowed in asynchronous mode.
+
+- **AV_ERR_TRY_AGAIN_LATER**: The operation fails because no available buffer is obtained within the timeout period.
+
+### OH_AudioCodec_QueryOutputBuffer()
+
+```
+OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs)
+```
+
+**Description**
+
+Obtains the index of an available output buffer for an audio codec within the specified timeout period.
+
+**System capability**: SystemCapability.Multimedia.Media.AudioCodec
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| codec | Pointer to an OH_AVCodec instance.| 
+| index | Pointer to the index of the output buffer obtained.|
+| timeoutUs | Timeout period, in microseconds. A negative value means to wait infinitely.|
+
+**Returns**
+
+One of the following result codes:
+
+- **AV_ERR_OK**: The operation is successful.
+
+- **AV_ERR_INVALID_VAL**: The operation fails due to incorrect input parameters.
+
+- **AV_ERR_INVALID_STATE**: The operation fails due to an invalid state, for example, the codec not being started.
+
+- **AV_ERR_OPERATE_NOT_PERMIT**: The operation fails because the call is not allowed in asynchronous mode.
+
+- **AV_ERR_STREAM_CHANGED**: The format of the decoded output stream changes. You can call [OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription) to obtain the new stream information.
+
+- **AV_ERR_TRY_AGAIN_LATER**: The operation fails because no available buffer is obtained within the timeout period.
 
 ### OH_AudioCodec_RegisterCallback()
 
@@ -338,13 +490,13 @@ Sets an asynchronous callback so that your application can respond to events gen
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 | callback | Callback function to set. For details, see [OH_AVCodecCallback](_o_h___a_v_codec_callback.md).| 
 | userData | User-specific data.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_Reset()
@@ -367,11 +519,11 @@ To continue encoding or decoding, you must call **Configure** to configure the c
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance. | 
+| codec | Pointer to an OH_AVCodec instance. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_SetDecryptionConfig()
@@ -392,19 +544,19 @@ Sets the decryption information.
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance. | 
+| codec | Pointer to an OH_AVCodec instance. | 
 | mediaKeySession | Pointer to the media key session with the decryption feature. | 
 | secureAudio | Whether a secure decoder is used. The value **true** means that a secure decoder is used, and **false** means the opposite.<br>Currently, the secure decoder is not supported for audio decryption. | 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode).
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
-**AV_ERR_OK** is returned if the operation is successful.
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_INVALID_VAL** is returned if the **OH_AVCodec** instance is a null pointer or invalid, or the **mediaKeySystemInfo** instance is a null pointer or invalid.
+**AV_ERR_INVALID_VAL**: The OH_AVCodec instance is nullptr or invalid, or the mediaKeySystemInfo instance is nullptr or invalid.
 
-**AV_ERR_INVALID_STATE** if the decoder service is unavailable.
+**AV_ERR_INVALID_STATE**: The decoder service is unavailable.
 
 
 ### OH_AudioCodec_SetParameter()
@@ -427,12 +579,12 @@ This function can be called only after the codec is started. Incorrect parameter
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
-| format | Handle to an **OH_AVFormat** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
+| format | Handle to an OH_AVFormat instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_Start()
@@ -453,11 +605,11 @@ Starts an audio codec after it is prepared successfully. After being started, th
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
 
 ### OH_AudioCodec_Stop()
@@ -480,8 +632,8 @@ After the codec is stopped, you can call **Start** to start it again. If you hav
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to an **OH_AVCodec** instance.| 
+| codec | Pointer to an OH_AVCodec instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.

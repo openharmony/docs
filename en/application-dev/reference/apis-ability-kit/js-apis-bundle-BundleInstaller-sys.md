@@ -1,4 +1,10 @@
 # BundleInstaller (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs for you to install, uninstall, and recover bundles on devices.
 
@@ -182,7 +188,7 @@ Describes the parameters required for bundle installation, recovery, or uninstal
 | ----------- | ------- | ---- | ---- | ------------------ |
 | userId      | number  | No | No | User ID. The default value is the user ID of the caller.|
 | installFlag | number  | No | No | Installation flag.<br>The value can be:<br>**1** (default): overwrite installation.<br>**16**: installation-free.|
-| isKeepData  | boolean | No | No | Whether to retain the bundle data when the application is uninstalled. The default value is **false**. The value **true** means to retain the bundle data when the application is uninstalled, and **false** means the opposite.|
+| isKeepData  | boolean | No | No | Whether to retain the bundle data when the application is uninstalled. The default value is **false**. **true** to retain, **false** otherwise.|
 
 ## InstallStatus<sup>(deprecated)<sup>
 

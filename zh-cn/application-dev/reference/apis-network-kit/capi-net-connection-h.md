@@ -709,7 +709,7 @@ int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *
 
 查询网络跟踪路由。
 
-**需要权限：** ohos.permission.INTERNET、ohos.permission.LOCATION 和 ohos.permission.ACCESS_TRACE_ROUTE_INFO
+**需要权限：** ohos.permission.INTERNET、ohos.permission.LOCATION 和 ohos.permission.ACCESS_NET_TRACE_INFO
 
 **起始版本：** 20
 

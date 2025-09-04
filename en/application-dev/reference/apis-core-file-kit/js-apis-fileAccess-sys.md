@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wang_zhangjun; @zhuangzhuang-->
-<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 The **fileAccess** module provides a framework for accessing and operating user files based on [extension](../../application-models/extensionability-overview.md). This module interacts with a variety of file management services, such as the storage management service, and provides a set of unified file access and management APIs for system applications. The storage management service manages both the directories of the built-in storage and resources on external devices, such as shared disks, USB flash drives, and SD cards.
 

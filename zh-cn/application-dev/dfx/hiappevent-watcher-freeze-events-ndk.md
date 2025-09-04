@@ -1,8 +1,15 @@
 # 订阅应用冻屏事件（C/C++）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
-本文介绍如何使用HiAppEvent提供的C/C++接口订阅应用无响应事件。接口的详细使用说明（参数限制、取值范围等）请参考[HiAppEvent C API文档](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md)。
+本文介绍如何使用HiAppEvent提供的C/C++接口订阅应用冻屏事件。接口的详细使用说明（参数限制、取值范围等）请参考[HiAppEvent C API文档](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md)。
 
 ## 接口说明
 
@@ -15,7 +22,7 @@
 
 ### 添加事件观察者
 
-以实现对用户点击按钮触发应用无响应场景生成的应用无响应事件订阅为例，说明开发步骤。
+以实现对用户点击按钮触发应用无响应场景生成的应用冻屏事件订阅为例，说明开发步骤。
 
 1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下。
 

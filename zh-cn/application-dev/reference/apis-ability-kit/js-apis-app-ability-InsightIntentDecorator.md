@@ -66,7 +66,7 @@ import { InsightIntentLink, LinkParamCategory } from '@kit.AbilityKit';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r('sys.float.window_shadow_config'),
+  icon: $r('app.media.app_icon'),
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   uri: 'https://www.example.com/music/',
@@ -327,7 +327,7 @@ export class ClassForFuncDemo {
   intentVersion: '1.0.1',
   displayName: '查询天气',
   displayDescription: '显示天气信息',
-  icon: $r('sys.plural.selecttitlebar_accessibility_message_desc_new'),
+  icon: $r('app.media.app_icon'),
   llmDescription: 'Get weather of an location',
   parameters: {
     'schema': 'http://json-schema.org/draft-07/schema#',
@@ -478,7 +478,7 @@ import { insightIntent, Want, InsightIntentForm } from '@kit.AbilityKit';
 
 // 使用@InsightIntentForm装饰器将该FormExtensionAbility名为widget的卡片定义为意图
 @InsightIntentForm({
-  intentName: 'PlayMusic78',
+  intentName: 'PlayMusic',
   domain: 'MusicDomain',
   intentVersion: '1.0.1',
   displayName: '播放歌曲',

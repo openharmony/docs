@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wang_zhangjun; @zhuangzhuang-->
-<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 Because external storage devices are pluggable, OpenHarmony provides functions for listening for the device insertion/removal events and mounting/unmounting an external storage device.
 

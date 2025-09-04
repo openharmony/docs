@@ -1,11 +1,16 @@
 # Popup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 The **Popup** component is used to display popups in a specific style.
 
 >  **NOTE**
 >
 >  - This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
->- This component is not supported on wearables.
 >  - Use this component with the custom popup features in [popup control](ts-universal-attributes-popup.md) for best results.
 
 ## Modules to Import
@@ -28,6 +33,8 @@ Popup(options: PopupOptions): void
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 | Name | Type                         | Mandatory| Description                 |
@@ -39,6 +46,8 @@ Popup(options: PopupOptions): void
 Defines the style parameters of the popup.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name       | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
@@ -59,6 +68,8 @@ Provides text style settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name      | Type                                                        | Mandatory| Description        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Text content.    |
@@ -74,11 +85,13 @@ Defines the button attributes and events.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name     | Type                                                | Mandatory| Description                |
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | Yes  | Text of the button.        |
 | action    | () => void                                           | No  | Click callback of the button.|
-| fontSize  | number \| string \| [Resource](ts-types.md#resource) | No  | Font size of the button text.<br>Default value: **$r('sys.float.ohos_id_text_size_button2')**|
+| fontSize  | number \| string \| [Resource](ts-types.md#resource) | No  | Font size of the button text.<br>Default value: **$r('sys.float.ohos_id_text_size_button2')**<br>The string value must be convertible to a number (for example, **'10'**) or include a length unit (for example, **'10px'**); percentage-based strings are not supported.<br>If an invalid value is provided, the default value is used.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor)           | No  | Font color of the button text.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**|
 
 ##  PopupIconOptions
@@ -88,6 +101,8 @@ Defines the attributes of the icon (in the upper left corner).
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name        | Type                                                        | Mandatory| Description                            |
 | ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
@@ -116,6 +131,7 @@ struct PopupExample {
       Popup({
         // Set the icon through PopupIconOptions.
         icon: {
+          // Replace $r('app.media.icon') with the image resource file you use.
           image: $r('app.media.icon'),
           width: 32,
           height: 32,
@@ -187,6 +203,7 @@ struct PopupPage {
         // Set the icon through PopupIconOptions.
         direction: this.currentDirection,
         icon: {
+          // Replace $r('app.media.icon') with the image resource file you use.
           image: $r('app.media.icon'),
           width: 32,
           height: 32,
@@ -261,6 +278,7 @@ struct PopupPage {
         maxWidth: '50%',
         // Set the icon through PopupIconOptions.
         icon: {
+          // Replace $r('app.media.startIcon') with the image resource file you use.
           image: $r('app.media.startIcon'),
           width: 32,
           height: 32,

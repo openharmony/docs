@@ -21,7 +21,7 @@
 
 ![image](figures/ffrt_figure4.png)
 
-串行队列并发范式开发样例可以参考 [串行队列(C)](ffrt-concurrency-serial-queue-c.md) / [串行队列(C++)](ffrt-concurrency-serial-queue-cpp.md)
+串行队列并发范式开发样例可以参考[串行队列(C)](ffrt-concurrency-serial-queue-c.md)/[串行队列(C++)](ffrt-concurrency-serial-queue-cpp.md)
 
 ## 并发队列（Concurrent Queue）
 
@@ -34,7 +34,7 @@
 
 ![image](figures/ffrt_figure5.png)
 
-并发队列并发范式开发样例可以参考 [并发队列(C)](ffrt-concurrency-concurrent-queue-c.md) / [并发队列(C++)](ffrt-concurrency-concurrent-queue-cpp.md)
+并发队列并发范式开发样例可以参考[并发队列(C)](ffrt-concurrency-concurrent-queue-c.md)/[并发队列(C++)](ffrt-concurrency-concurrent-queue-cpp.md)
 
 ## 图依赖并发（Task Graph）
 
@@ -47,4 +47,25 @@
 
 ![image](figures/ffrt_figure6.png)
 
-图依赖并发范式开发样例可以参考 [图依赖并发(C)](ffrt-concurrency-graph-c.md) / [图依赖并发(C++)](ffrt-concurrency-graph-cpp.md)
+图依赖并发范式开发样例可以参考[图依赖并发(C)](ffrt-concurrency-graph-c.md)/[图依赖并发(C++)](ffrt-concurrency-graph-cpp.md)
+
+## 任务伙伴（Job Partner）
+
+从API version 20开始，FFRT支持Job_Partner(任务伙伴)功能。任务伙伴任务并发范式常用于解决以下场景中的问题：
+
+1. **多线程协作**: 在许多实际应用中，某些功能需要在特定环境进行运行，而其他功能可以在任何环境运行，这个时候需要多线程协作，部分功能在A线程运行，然后回到B线程，最后再回到A线程。
+
+    ![image](figures/ffrt_figure8.png)
+
+2. **动态并发调度**: 有些场景并发任务数量动态变化，时多时少，所以可以通过动态调整worker数量来最大提升性能，降低调度开销。
+
+    ![image](figures/ffrt_figure9.png)
+
+    图中的参数如下所示：
+    - `job_num` 提交的任务数。
+    - `partner_num` worker数量。
+    - `threshold` 表示任务堆积到指定数量后才会启动worker。
+    - `ratio` 表示任务数和worker数的比例。
+    - `max` 表示最大worker数。
+
+协作并发范式开发样例可以参考[任务伙伴(C++)](ffrt-concurrency-job-partner-cpp.md)

@@ -88,7 +88,7 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
 @Builder
 function buildCheckbox(config: CheckBoxConfiguration) {
   Column({ space: 10 }) {
-    Text(config.name + (config.selected ? "(Selected)" : ""(Not selected)"))
+    Text(config.name + (config.selected ? " (selected)" : " (not selected)"))
     Shape() {
       // Pentagon check box style
       Path()

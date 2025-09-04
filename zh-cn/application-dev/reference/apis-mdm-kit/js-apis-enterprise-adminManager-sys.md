@@ -12,7 +12,7 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md)。
 
@@ -26,7 +26,7 @@ import { adminManager } from '@kit.MDMKit';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-激活指定的设备管理应用。超级设备管理应用仅在管理员用户下可激活。激活后，应用不可卸载，其企业设备管理扩展能力将开机自启并在用户切换后自启。使用callback异步回调。
+激活指定的设备管理应用。超级设备管理应用仅在管理员用户下可激活。激活后，应用不可卸载，其[企业设备管理扩展能力](../../mdm/mdm-kit-term.md#企业设备管理扩展能力)组件将开机自启并在用户切换后自启。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -619,7 +619,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 **返回值：**
 
-| 错误码ID           | 错误信息               |
+| 类型           | 说明               |
 | ----------------- | ------------------- |
 | Promise\<boolean> | Promise对象, 返回true表示指定的超级设备管理应用被激活，返回false表示指定的超级设备管理应用未激活。 |
 
@@ -1341,11 +1341,11 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 
 设置设备管理应用的运行模式。
 
-该接口仅在PC设备上生效。
-
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

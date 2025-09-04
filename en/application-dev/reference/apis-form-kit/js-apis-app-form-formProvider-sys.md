@@ -209,7 +209,7 @@ Checks whether a widget can be published to the widget host. This API uses an as
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the widget can be published to the widget host.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback function that returns the query result.<br>**true**: The widget can be added to the widget host.<br>**false**: The widget cannot be added to the widget host.|
 
 **Error codes**
 
@@ -276,7 +276,7 @@ Checks whether a widget can be published to the widget host. This API uses a pro
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return whether the widget can be published to the widget host.|
+| Promise&lt;boolean&gt; | Promise that returns whether a widget can be added to the widget host.<br>**true**: The widget can be added to the widget host.<br>**false**: The widget cannot be added to the widget host.|
 
 **Error codes**
 
@@ -360,7 +360,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-| 16501011 | The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not. |
+| 16501011 | The form can not support this operation. |
 
 **Example**
 
@@ -417,7 +417,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-| 16501011 | The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not. |
+| 16501011 | The form can not support this operation. |
 
 **Example**
 

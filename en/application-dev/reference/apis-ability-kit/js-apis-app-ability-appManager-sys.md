@@ -1,4 +1,10 @@
 # @ohos.app.ability.appManager (appManager) (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The appManager module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
@@ -69,7 +75,7 @@ Describes the keep-alive application information, which can be obtained by calli
 | type       | [KeepAliveAppType](#keepaliveapptype14) | No| No| Type of the application to be kept alive.  |
 | setter       | [KeepAliveSetter](#keepalivesetter14) | No| No| Type of the party that sets to keep the application alive.  |
 | setterUserId<sup>20+</sup>   | number | No| Yes | ID of the user who keeps the application alive.|
-| allowUserToCancel<sup>20+</sup>   | boolean | No| Yes | Whether the user can cancel the keep-alive status. The value **true** means that the user can cancel the keep-alive status, and **false** means the opposite.|
+| allowUserToCancel<sup>20+</sup>   | boolean | No| Yes | Whether the user can cancel the keep-alive status. **true** if yes, **false** otherwise.|
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
@@ -94,7 +100,7 @@ Checks whether the shared library is in use. This API uses a promise to return t
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if the shared library is in use, **false** otherwise.|
 
 **Error codes**
 
@@ -141,7 +147,7 @@ Checks whether the shared library is in use. This API uses an asynchronous callb
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | Yes   | Bundle name of the shared library.|
 | versionCode   | number   | Yes   | Version number of the shared library.     |
-| callback    | AsyncCallback\<boolean>> | Yes   | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+| callback    | AsyncCallback\<boolean>> | Yes   | Callback used to return the result. **true** if the shared library is in use, **false** otherwise.|
 
 **Error codes**
 
@@ -574,7 +580,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
 | accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
-| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+| clearPageStack | boolean | Yes| Whether to clear the page stack. **true** to clear, **false** otherwise.|
 | appIndex | number | No| Index of an application clone.|
 
 **Return value**
@@ -1233,7 +1239,7 @@ Checks whether an application is running. This API uses a promise to return the 
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if the application is running, **false** otherwise.|
 
 **Error codes**
 
@@ -1278,7 +1284,7 @@ Checks whether an application is running. This API uses an asynchronous callback
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | Yes   | Bundle name of the shared library.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. **true** if the application is running, **false** otherwise.|
 
 **Error codes**
 
@@ -1698,11 +1704,19 @@ try {
 
 setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Promise\<void>
 
-Keeps an application of a specified user alive, or cancels its keep-alive status. This API uses a promise to return the result. Currently, this API takes effect only on 2-in-1 devices.
+Sets or cancels the keep-alive status for an application that belongs to a specified user. This API uses a promise to return the result.
+
+> **NOTE**
+>
+>- To support keep-alive, **mainElement** in the [module.json5](../../quick-start/module-configuration-file.md) file of the application must be a UIAbility. The system initiates the keep-alive operation only when this mainElement has been launched.
+>- On 2-in-1 devices, the application must appear in the status bar within 5 seconds of launch. Otherwise, the system revokes the application's keep-alive status and terminate the restarted process.
+>- When the kept-alive application process exits, the system attempts to restart it. If three consecutive restart attempts fail, the application's keep-alive status is canceled.
 
 **Permission required**: ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**: Starting from API version 18, this API can be properly called only on 2-in-1 devices and wearables. For versions earlier than API version 18, this API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 801 is returned.
 
 **System API**: This is a system API.
 
@@ -1712,7 +1726,7 @@ Keeps an application of a specified user alive, or cancels its keep-alive status
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | Yes   | Bundle name.|
 | userId    | number   | Yes   | User ID.|
-| enable    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status. The value **true** means to keep the application alive, and **false** means to cancel its keep-alive status.|
+| enable    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status. **true** to keep the application alive,**false** otherwise.|
 
 **Return value**
 
@@ -1894,7 +1908,7 @@ Sets or cancels the keep-alive status for an AppServiceExtensionAbility. This AP
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | Yes   | Bundle name.|
-| enabled    | boolean   | Yes   | Whether to set or cancel the keep-alive status. The value **true** means to set the keep-alive status, and **false** means to cancel the keep-alive status.|
+| enabled    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status. **true** to keep, **false** otherwise.|
 
 **Return value**
 
@@ -1941,7 +1955,7 @@ try {
 
 getKeepAliveAppServiceExtensions(): Promise\<Array\<KeepAliveBundleInfo>>
 
-Obtains information about all AppServiceExtensionAbilities that are kept alive. The information is defined by [KeepAliveBundleInfo](#keepalivebundleinfo14). This API uses a promise to return the result.
+Obtains information about all AppServiceExtensionAbility components that are kept alive. The information is defined by [KeepAliveBundleInfo](#keepalivebundleinfo14). This API uses a promise to return the result.
 
 Currently, this API takes effect only on 2-in-1 devices.
 

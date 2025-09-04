@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 ```
 
 ## DecodingOptions<sup>12+</sup>
@@ -58,14 +58,14 @@ createPictureByHdrAndSdrPixelMap(hdrPixelMap: PixelMap, sdrPixelMap: PixelMap): 
 
 | 参数名       | 类型                | 必填 | 说明             |
 | ------------ | ------------------- | ---- | ---------------- |
-| hdrPixelmap | [PixelMap](arkts-apis-image-PixelMap.md#interface-pixelmap) | 是   | HDR PixelMap，位深16bit或10bit，像素格式为FP16/RGBA1010102/YCBCR_P010，色彩空间是BT2020_HLG。 |
-| sdrPixelmap | [PixelMap](arkts-apis-image-PixelMap.md#interface-pixelmap) | 是   | SDR PIxelMap，位深8bit，像素格式为RGBA8888/NV21，色彩空间是P3。 |
+| hdrPixelMap | [PixelMap](arkts-apis-image-PixelMap.md) | 是   | HDR PixelMap，位深16bit或10bit，像素格式为FP16/RGBA1010102/YCBCR_P010，色彩空间是BT2020_HLG。 |
+| sdrPixelMap | [PixelMap](arkts-apis-image-PixelMap.md) | 是   | SDR PIxelMap，位深8bit，像素格式为RGBA8888/NV21，色彩空间是P3。 |
 
 **返回值：**
 
 | 类型               | 说明              |
 | ------------------ | ----------------- |
-|Promise\<[Picture](arkts-apis-image-Picture.md#interface-picture)> | 返回Picture包含sdr和gainmap，像素格式为RGBA8888。 |
+|Promise\<[Picture](arkts-apis-image-Picture.md)> | 返回Picture包含sdr和gainmap，像素格式为RGBA8888。 |
 
 **错误码：**
 
@@ -78,9 +78,8 @@ createPictureByHdrAndSdrPixelMap(hdrPixelMap: PixelMap, sdrPixelMap: PixelMap): 
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreatePictureTest(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -102,12 +101,12 @@ async function CreatePictureTest(context: Context) {
   } else {
     console.error('Create picture failed');
   }
-  const imagePackerApi = image.createImagePacker();
+  const imagePackerObj = image.createImagePacker();
   let packOpts : image.PackingOption = { format : "image/jpeg", quality: 98};
   packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
   const path: string = context.filesDir + "/hdr-test.jpg";
   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  imagePackerApi.packToFile(picture, file.fd, packOpts).then(() => {
+  imagePackerObj.packToFile(picture, file.fd, packOpts).then(() => {
   }).catch((error : BusinessError) => {
     console.error('Failed to pack the image. And the error is: ' + error);
   })

@@ -1,4 +1,10 @@
 # 组件内状态变量迁移指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 本文档主要介绍数据组件内的状态变量的迁移场景，包含以下场景。
 | V1装饰器名                | V2装饰器名                  |
@@ -14,7 +20,7 @@
 
 ## 各装饰器迁移示例
 
-### @State->@Local
+### \@State->\@Local
 
 **迁移规则**
 
@@ -28,7 +34,7 @@
 
 **简单类型**
 
-对于简单类型变量，V1的@State可以直接替换为V2的@Local。
+对于简单类型变量，V1的\@State可以直接替换为V2的\@Local。
 
 V1：
 
@@ -58,7 +64,7 @@ struct Child {
 
 **复杂类型**
 
-V1的@State能够观察复杂对象的第一层属性变化，但V2的@Local无法观察对象内部变化。为了解决这个问题，需要在类上添加@ObservedV2，并在需要观察的属性上添加@Trace。这样，框架就能追踪对象内部的属性变化。
+V1的\@State能够观察复杂对象的第一层属性变化，但V2的\@Local无法观察对象内部变化。为了解决这个问题，需要在类上添加\@ObservedV2，并在需要观察的属性上添加\@Trace。这样，框架就能追踪对象内部的属性变化。
 
 V1：
 
@@ -84,7 +90,7 @@ struct example {
 }
 ```
 
-V2迁移策略：使用@ObservedV2和@Trace。
+V2迁移策略：使用\@ObservedV2和\@Trace。
 
 ```ts
 @ObservedV2
@@ -111,7 +117,7 @@ struct example {
 
 **外部初始化状态变量**
 
-V1的@State变量可以从外部初始化，V2的@Local禁止外部初始化。为实现类似功能，需要用@Param和@Once代替@State，允许外部传入初始值，并确保该值只初始化时同步一次。
+V1的\@State变量可以从外部初始化，V2的\@Local禁止外部初始化。为实现类似功能，需要用\@Param和\@Once代替\@State，允许外部传入初始值，并确保该值只初始化时同步一次。
 
 V1实现：
 
@@ -136,7 +142,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Once。
+V2迁移策略：使用\@Param和\@Once。
 
 ```ts
 @ComponentV2
@@ -159,11 +165,11 @@ struct Parent {
 }
 ```
 
-### @Link -> @Param/@Event
+### \@Link -> \@Param/\@Event
 
 **迁移规则**
 
-在V1中，@Link允许父组件和子组件之间进行双向数据绑定。迁移到V2时，可以用@Param和@Event模拟双向同步。@Param实现父到子的单向传递，子组件再通过@Event回调函数触发父组件的状态更新。
+在V1中，\@Link允许父组件和子组件之间进行双向数据绑定。迁移到V2时，可以用\@Param和\@Event模拟双向同步。\@Param实现父到子的单向传递，子组件再通过\@Event回调函数触发父组件的状态更新。
 
 **示例**
 
@@ -198,7 +204,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Event。
+V2迁移策略：使用\@Param和\@Event。
 
 ```ts
 @ComponentV2
@@ -230,21 +236,21 @@ struct Parent {
 }
 ```
 
-### @Prop -> @Param
+### \@Prop -> \@Param
 
 **迁移规则**
 
-在V1中，@Prop装饰器用于从父组件传递参数给子组件，这些参数在子组件中可以被直接修改。在V2中，@Param取代了@Prop的作用，但@Param是只读的，子组件不能直接修改参数的值。因此，根据场景的不同，有几种迁移策略：
+在V1中，\@Prop装饰器用于从父组件传递参数给子组件，这些参数在子组件中可以被直接修改。在V2中，\@Param取代了\@Prop的作用，但\@Param是只读的，子组件不能直接修改参数的值。因此，根据场景的不同，有几种迁移策略：
 
-- 简单类型：对于简单类型的参数，可以直接将@Prop替换为@Param。
-- 复杂类型：如果传递的是复杂对象且需要严格的单向数据绑定，可以对对象进行深拷贝，防止子组件修改父组件的数据。
-- 子组件修改变量：如果子组件需要修改传入的参数，可以使用@Once来允许子组件对在本地修改该变量。但需要注意，如果使用了\@Once，则代表当前子组件只会被初始化一次，后续并没有父组件到子组件的同步能力。
+- 简单类型：对于简单类型的参数，将\@Prop替换为\@Param。
+- 复杂类型：如果传递的是复杂对象且需要严格的单向数据绑定，需要深拷贝对象，防止子组件修改父组件的数据。
+- 子组件修改变量：如果子组件需要修改传入的参数，使用\@Once允许子组件在本地修改该变量。但需要注意，使用\@Once修饰符后，当前子组件只会被初始化一次，后续无父组件到子组件的同步能力。
 
 **示例**
 
 **简单类型**
 
-对于简单类型变量，V1的@Prop可以直接替换为V2的@Param。
+对于简单类型变量，V1的\@Prop可以直接替换为V2的\@Param。
 
 V1实现：
 
@@ -291,7 +297,7 @@ struct Parent {
 ```
 **复杂类型的单向数据传递**
 
-在V2中，传递复杂类型时，如果希望实现严格的单向数据绑定，防止子组件修改父组件的数据，需要在使用@Param传递复杂对象时进行深拷贝以避免传递对象的引用。
+在V2中，传递复杂类型时，如果希望实现严格的单向数据绑定，防止子组件修改父组件的数据，需要在使用\@Param传递复杂对象时进行深拷贝以避免传递对象的引用。
 
 V1实现：
 
@@ -388,7 +394,7 @@ struct Parent {
 
 **子组件修改变量**
 
-在V1中，子组件可以修改@Prop的变量，然而在V2中，@Param是只读的。如果子组件需要修改传入的值，可以使用@Param和@Once允许子组件在本地修改。
+在V1中，子组件可以修改\@Prop的变量，然而在V2中，\@Param是只读的。如果子组件需要修改传入的值，可以使用\@Param和\@Once允许子组件在本地修改。
 
 V1实现：
 
@@ -419,7 +425,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Once。
+V2迁移策略：使用\@Param和\@Once。
 
 ```ts
 @ComponentV2
@@ -487,7 +493,7 @@ struct Parent {
   }
 }
 ```
-V2中，\@Param本地不可写，和\@Once搭配使用只会同步一次。如果要实现子组件本地可写，且父组件后续更新还是能通知子组件，可以借助\@Monitor来实现这一效果。
+V2中，\@Param本地不可写，与\@Once搭配使用时只同步一次。若要实现子组件本地可写，且父组件后续更新仍能通知子组件，可借助\@Monitor实现。
 
 V2实现：
 - 父组件`Parent`更新通知子组件`value`的刷新，并回调\@Monitor修饰的`onValueChange`回调方法，`onValueChange`将更新后的值赋值给`localValue`。
@@ -535,24 +541,25 @@ struct Parent {
 }
 ```
 
-### @Provide/@Consume -> @Provider/@Consumer
+### \@Provide/\@Consume -> \@Provider/\@Consumer
 **迁移规则**
 
-V1的@Provide/@Consume和V2@Provider/@Consumer定位和作用大体类似，基本可以实现丝滑替换，但是有以下细微差距，开发者可根据自己代码实现来参考是否需要调整：
-在V1中，@Provide和@Consume用于父子组件之间的数据共享，可以通过alias（别名）或属性名匹配，同时@Consume必须依赖父组件的@Provide，不允许本地初始化。而V2中，@Provider和@Consumer增强了这些特性，使数据共享更加灵活。根据不同的场景，有以下迁移策略：
+V1的\@Provide和\@Consume与V2的\@Provider和\@Consumer定位和作用类似，基本可以实现丝滑替换，但存在以下细微差异，开发者可根据自己代码实现情况参考是否需要调整：
+在V1中，\@Provide和\@Consume用于父子组件之间的数据共享，可以通过alias（别名）或属性名匹配，同时\@Consume依赖父组件的\@Provide，API version 20以前不允许本地初始化。V2中，\@Provider和\@Consumer增强了这些特性，使数据共享更加灵活。根据不同的场景，有以下迁移策略：
 
-- V1中\@Provide/\@Consume在没有指定alias的情况下，可以直接使用。V2中\@Provider/\@Consumer是标准装饰器，且参数可选，所以不管有无指定alias后面需要必须跟随“()”。
-- alias和属性名匹配规则：V1中，@Provide和@Consume可以通过alias或属性名匹配；V2中，alias是唯一的匹配key，指定alias后只能通过alias匹配。
-- 本地初始化支持：API version 20以前，@Consume不允许本地初始化，必须依赖父组件；从API version 20开始，@Consume支持本地初始化，当找不到对应的@Provide时使用本地默认值；V2中，@Consumer支持本地初始化，当找不到对应的@Provider时使用本地默认值。
-- 从父组件初始化：V1中，@Provide可以直接从父组件初始化；V2中，@Provider不支持外部初始化，需用@Param和@Once接受初始值并赋给 @Provider。
-- 重载支持：V1中，@Provide默认不支持重载，需设置 allowOverride；V2中，@Provider默认支持重载，@Consumer会向上查找最近的@Provider。
+- V1中\@Provide和\@Consume在没有指定alias的情况下，可以直接使用。V2中\@Provider和\@Consumer是标准装饰器，且参数可选，所以不管有无指定alias后面需要必须跟随“()”。
+- alias和属性名匹配规则：V1中，\@Provide和\@Consume可以通过alias或属性名匹配；V2中，alias是唯一的匹配key，指定alias后只能通过alias匹配。
+- 本地初始化支持：API version 20以前，\@Consume不允许本地初始化，必须依赖父组件；从API version 20开始，\@Consume支持本地初始化，当找不到对应的\@Provide时使用本地默认值，详见[\@Consume装饰的变量支持设置默认值](./arkts-provide-and-consume.md#consume装饰的变量支持设置默认值)；V2中，\@Consumer支持本地初始化，当找不到对应的\@Provider时使用本地默认值。
+- 从父组件初始化：V1中，\@Provide可以直接从父组件初始化；V2中，\@Provider不支持外部初始化，需用\@Param和@Once接受初始值并赋给 \@Provider。
+- 重载支持：V1中，\@Provide默认不支持重载，需设置 allowOverride；V2中，\@Provider默认支持重载，\@Consumer会向上查找最近的\@Provider。
+
 **示例**
 
 **alias和属性名匹配规则**
 
-在V1中，@Provide和@Consume的匹配既可以通过alias，也可以通过属性名。在V2中，alias成为唯一的key，如果在@Consumer中制定了alias，只能通过alias而非属性名进行匹配。
+在V1中，\@Provide和\@Consume的匹配既可以通过alias，也可以通过属性名。在V2中，alias成为唯一的key，如果在\@Consumer中制定了alias，只能通过alias而非属性名进行匹配。
 
-V1实现:
+V1实现：
 
 ```ts
 @Component
@@ -608,9 +615,9 @@ struct Parent {
 }
 ```
 
-**V1的@Consume不支持本地初始化，V2支持**
+**V1的\@Consume不支持本地初始化，V2支持**
 
-V1中，@Consume不允许本地初始化变量，必须依赖父组件的@Provide，否则会抛出异常。迁移到V2后，@Consumer允许本地初始化，当找不到对应的@Provider，会使用本地默认值。
+V1中，API version 20之前，\@Consume不允许本地初始化变量，必须依赖父组件的\@Provide，否则会抛出异常。迁移到V2后，\@Consumer允许本地初始化，当找不到对应的\@Provider，会使用本地默认值。
 
 V1实现：
 
@@ -636,7 +643,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：@Consumer可以本地初始化。
+V2迁移策略：\@Consumer可以本地初始化。
 
 ```ts
 @ComponentV2
@@ -659,9 +666,9 @@ struct Parent {
 }
 ```
 
-**V1的@Provide可以从父组件初始化，V2不支持**
+**V1的\@Provide可以从父组件初始化，V2不支持**
 
-在V1中，@Provide允许从父组件初始化，可以直接通过组件参数传递初始值。在V2中，@Provider禁止从外部初始化。为实现相同功能，可以在子组件中使用@Param @Once接受初始值，然后将其赋值给@Provider变量。
+在V1中，\@Provide允许从父组件初始化，可以直接通过组件参数传递初始值。在V2中，\@Provider禁止从外部初始化。为实现相同功能，可以在子组件中使用\@Param \@Once接受初始值，然后将其赋值给\@Provider变量。
 
 V1实现：
 
@@ -689,7 +696,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：使用@Param接受初始值，再赋值给@Provider。
+V2迁移策略：使用\@Param接受初始值，再赋值给\@Provider。
 
 ```ts
 @Entry
@@ -716,11 +723,11 @@ struct Child {
 }
 ```
 
-**V1的@Provide默认不支持重载，V2默认支持**
+**V1的\@Provide默认不支持重载，V2默认支持**
 
-在V1中，@Provide默认不支持重载，无法覆盖上层组件的同名@Provide。若需支持重载，必须设置allowOverride。在V2中，@Provider默认支持重载，@Consumer会向上查找最近的@Provider，无需额外设置。
+在V1中，\@Provide默认不支持重载，无法覆盖上层组件的同名\@Provide。若需支持重载，必须设置allowOverride。在V2中，\@Provider默认支持重载，\@Consumer会向上查找最近的\@Provider，无需额外设置。
 
-V1实现:
+V1实现：
 
 ```ts
 @Entry
@@ -784,18 +791,18 @@ struct Child {
 }
 ```
 
-### @Watch -> @Monitor
+### \@Watch -> \@Monitor
 **迁移规则**
 
 在V1中，\@Watch用于监听状态变量的变化，并在变量变化时触发指定回调函数。在V2中，\@Monitor替代了\@Watch，可以更灵活地监听变量的变化，并获取变量变化前后的值。具体的迁移策略如下：
 
-- 单变量监听：对于简单的场景，可以直接用@Monitor替换@Watch，效果一致。
-- 多变量监听：V1的@Watch无法获取变化前的值。在V2中，\@Monitor支持同时监听多个变量，并可以访问变量变化前后的状态。
+- 单变量监听：对于简单的场景，可以直接用\@Monitor替换\@Watch，效果一致。
+- 多变量监听：V1的\@Watch无法获取变化前的值。在V2中，\@Monitor支持同时监听多个变量，并可以访问变量变化前后的状态。
 **示例**
 
 **单变量监听**
 
-对于简单案例，V1的@Watch可以直接替换为替换为V2的@Monitor。
+对于简单案例，V1的\@Watch可以直接替换为V2的\@Monitor。
 
 V1实现：
 
@@ -846,7 +853,7 @@ struct monitorExample {
 
 **多变量监听**
 
-在V1中，每个@Watch回调函数只能监听一个变量，且无法获取变化前的值。迁移到V2后，可以使用一个@Monitor同时监听多个变量以及获取监听变量的变化前后的值。
+在V1中，每个\@Watch回调函数只能监听一个变量，且无法获取变化前的值。迁移到V2后，可以使用一个\@Monitor同时监听多个变量，并获取监听变量变化前后的值。
 
 V1实现：
 
@@ -914,14 +921,14 @@ struct monitorExample {
   }
 }
 ```
-### @Computed
+### \@Computed
 **迁移规则**
 
-V1中并没有提供计算属性的概念，所以对于UI中的冗余计算，并没有办法可以减少重复计算。V2针对该场景，提供了@Computed装饰器，可以帮助开发者减少重复计算。
+V1中并没有提供计算属性的概念，所以对于UI中的冗余计算，并没有办法可以减少重复计算。V2针对该场景，提供了\@Computed装饰器，可以帮助开发者减少重复计算。
 
 V1：
 
-在下面的例子中，每次改变`lastName`都会触发Text组件的刷新，每次Text组件的刷新，都需要重复计算`this.lastName + ' ' + this.firstName`。
+在下面的示例中，每次改变`lastName`都会触发Text组件的刷新，每次Text组件的刷新，都需要重复计算`this.lastName + ' ' + this.firstName`。
 
 ```ts
 @Entry

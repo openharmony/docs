@@ -1,4 +1,10 @@
 # usb_ddk_api.h
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## Overview
 
@@ -254,7 +260,7 @@ Activates the alternate setting of a USB interface.
 
 | Type| Description|
 | -- | -- |
-| int32_t | [USB_DDK_SUCCESS](capi-usb-ddk-types-h.md#usbddkerrcode): The operation is successful.<br>         USB_DDK_NO_PERM: The permission check fails.<br>         [USB_DDK_INVALID_OPERATION](capi-usb-ddk-types-h.md#usbddkerrcode): The USB DDK service connection fails, or an internal error occurs.<br>         [USB_DDK_INVALID_PARAMETER](capi-usb-ddk-types-h.md#usbddkerrcode) Incorrect parameter.|
+| int32_t | [USB_DDK_SUCCESS](capi-usb-ddk-types-h.md#usbddkerrcode): The operation is successful.<br>         USB_DDK_NO_PERM: The permission check fails.<br>         [USB_DDK_INVALID_OPERATION](capi-usb-ddk-types-h.md#usbddkerrcode): The USB DDK service connection fails, or an internal error occurs.<br>         [USB_DDK_INVALID_PARAMETER](capi-usb-ddk-types-h.md#usbddkerrcode): One or more parameters are invalid.|
 
 ### OH_Usb_GetCurrentInterfaceSetting()
 

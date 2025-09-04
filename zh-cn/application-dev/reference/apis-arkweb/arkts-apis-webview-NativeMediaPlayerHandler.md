@@ -83,7 +83,7 @@ handlePlaybackRateChanged(playbackRate: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| playbackRate | number | 是 | 播放速率，取值范围：[0, 10.0] |
+| playbackRate | number | 是 | 播放速率，取值范围：[0, +∞) |
 
 **示例：**
 

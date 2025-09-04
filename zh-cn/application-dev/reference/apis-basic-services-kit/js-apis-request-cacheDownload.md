@@ -30,9 +30,9 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
-| 名称      | 类型                       | 必填 | 说明                    |
-|---------|--------------------------|----|-----------------------|
-| headers | Record\<string, string\> | 否  | 缓存下载任务在HTTP传输时使用的请求头。 |
+| 名称   | 类型     | 只读 | 可选 | 说明                            |
+|------|--------|----|----|-------------------------------|
+| headers | Record\<string, string\> | 否  | 是 | 缓存下载任务在HTTP传输时使用的请求头。 |
 
 ## ResourceInfo<sup>20+</sup>
 
@@ -84,7 +84,7 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 
 ## cacheDownload.download
 
-download(url: string, options: CacheDownloadOptions)
+download(url: string, options: CacheDownloadOptions): void
 
 启动一个缓存下载任务，若传输成功，则将数据下载到内存缓存和文件缓存中。
 
@@ -134,7 +134,7 @@ download(url: string, options: CacheDownloadOptions)
 
 ## cacheDownload.cancel
 
-cancel(url: string)
+cancel(url: string): void
 
 根据url移除一个正在执行的缓存下载任务，已保存的内存缓存和文件缓存不会受到影响。
 
@@ -185,7 +185,7 @@ cancel(url: string)
 
 ## cacheDownload.setMemoryCacheSize
 
-setMemoryCacheSize(bytes: number)
+setMemoryCacheSize(bytes: number): void
 
 设置缓存下载组件能够保存的内存缓存上限。
 
@@ -224,7 +224,7 @@ setMemoryCacheSize(bytes: number)
 
 ## cacheDownload.setFileCacheSize
 
-setFileCacheSize(bytes: number)
+setFileCacheSize(bytes: number): void
 
 设置缓存下载组件能够保存的文件缓存的上限。
 

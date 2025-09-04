@@ -406,8 +406,12 @@ static void NormalInit(bool &vmInit) {
         // JSVM only need init once
         JSVM_InitOptions initOptions;
         memset(&initOptions, 0, sizeof(initOptions));
-        OH_JSVM_Init(&initOptions);
-        vmInit = true;
+        JSVM_Status cond = OH_JSVM_Init(&initOptions);
+        if(cond == JSVM_OK) {
+            vmInit = true;
+        } else {
+            vmInit = false;
+        }
     }
 }
 ```
@@ -419,7 +423,8 @@ static void LowMemoryInit(bool &vmInit) {
     if (!vmInit) {
         // JSVM only need init once
         JSVM_InitOptions initOptions;
-        initOptions.argc = 4;
+        int argc = 4;
+        initOptions.argc = &argc;
         const char* argv[4];
         argv[1] = "--incremental-marking-hard-trigger=40";
         argv[2] = "--min-semi-space-size=1";
@@ -438,7 +443,8 @@ static void LowGCFrequencyInit(bool &vmInit) {
     if (!vmInit) {
         // JSVM only need init once
         JSVM_InitOptions initOptions;
-        initOptions.argc = 4;
+        int argc = 4;
+        initOptions.argc = &argc;
         const char* argv[4];
         argv[1] = "--incremental-marking-hard-trigger=80";
         argv[2] = "--min-semi-space-size=16";
@@ -481,7 +487,7 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
     double num1 = 0;
 	double num2 = 0;
-    env, OH_JSVM_GetValueDouble(env, args[0], &num1);
+    OH_JSVM_GetValueDouble(env, args[0], &num1);
     OH_JSVM_GetValueDouble(env, args[1], &num2);
     JSVM_Value sum = nullptr;
     OH_JSVM_CreateDouble(env, num1 + num2, &sum);
@@ -569,7 +575,7 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
 | OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
 | OH_JSVM_CompileScriptWithOptions | 通用的编译接口，通过传入 option 数组完成前面的 compile 接口全部功能，同时支持后续选项扩展 |
 | OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache                                                                  |
-| OH_JSVM_RunScript               | 执行编译脚本, 如果没有 JIT 权限支持，则打印一行日志提示开发者                                                                             |
+| OH_JSVM_RunScript               | 执行编译脚本，如果没有 JIT 权限支持，执行含wasm的脚本会失败，在特定场景下存在性能差异，并打印一行日志提示开发者                                                                             |
 
 场景示例：
 编译及执行 JS 代码（创建 VM 实例，注册函数，执行 JS，销毁 VM 实例）
@@ -929,12 +935,12 @@ OH_JSVM_CloseHandleScope(env, scope);
 
 ```c++
 JSVM_EscapableHandleScope scope;
-JSVM_CALL(env, OH_JSVM_OpenEscapableHandleScope(env, &scope));
+JSVM_CALL(OH_JSVM_OpenEscapableHandleScope(env, &scope));
 JSVM_Value output = NULL;
 JSVM_Value escapee = NULL;
-JSVM_CALL(env, OH_JSVM_CreateObject(env, &output));
-JSVM_CALL(env, OH_JSVM_EscapeHandle(env, scope, output, &escapee));
-JSVM_CALL(env, OH_JSVM_CloseEscapableHandleScope(env, scope));
+JSVM_CALL(OH_JSVM_CreateObject(env, &output));
+JSVM_CALL(OH_JSVM_EscapeHandle(env, scope, output, &escapee));
+JSVM_CALL(OH_JSVM_CloseEscapableHandleScope(env, scope));
 return escapee;
 ```
 
@@ -959,27 +965,27 @@ OH_JSVM_DeleteReference(env, reference);
 
 ```c++
 JSVM_HandleScope scope;
-JSVM_CALL(env, OH_JSVM_OpenHandleScope(env, &scope));
+JSVM_CALL(OH_JSVM_OpenHandleScope(env, &scope));
 JSVM_Script script;
 JSVM_Value jsSrc;
 std::string src(R"JS(
 let a = 37;
 a = a * 9;
 )JS");
-JSVM_CALL(env, OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc));
-JSVM_CALL(env, OH_JSVM_CompileScriptWithOptions(env, jsSrc, 0, nullptr, &script));
-JSVM_CALL(env, OH_JSVM_RetainScript(env, script));
-JSVM_CALL(env, OH_JSVM_CloseHandleScope(env, scope));
+JSVM_CALL(OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc));
+JSVM_CALL(OH_JSVM_CompileScriptWithOptions(env, jsSrc, 0, nullptr, &script));
+JSVM_CALL(OH_JSVM_RetainScript(env, script));
+JSVM_CALL(OH_JSVM_CloseHandleScope(env, scope));
 
 // 使用JSVM_Script
-JSVM_CALL(env, OH_JSVM_OpenHandleScope(env, &scope));
+JSVM_CALL(OH_JSVM_OpenHandleScope(env, &scope));
 JSVM_Value result;
-JSVM_CALL(env, OH_JSVM_RunScript(env, script, &result));
+JSVM_CALL(OH_JSVM_RunScript(env, script, &result));
 
 // 释放JSVM_Script，并置空
-JSVM_CALL(env, OH_JSVM_ReleaseScript(env, script));
+JSVM_CALL(OH_JSVM_ReleaseScript(env, script));
 script = nullptr;
-JSVM_CALL(env, OH_JSVM_CloseHandleScope(env, scope));
+JSVM_CALL(OH_JSVM_CloseHandleScope(env, scope));
 ```
 
 ### 创建JS对象类型和基本类型
@@ -1082,7 +1088,7 @@ OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
 创建Set：
 
 ```c++
-JSVM_Value value;
+JSVM_Value value = nullptr;
 OH_JSVM_CreateSet(env, &value);
 ```
 
@@ -1169,13 +1175,13 @@ OH_JSVM_GetArraybufferInfo(env, retArrayBuffer, &tmpArrayBufferPtr, &arrayBuffer
 ```c++
 const char *testStringStr = "testString";
 JSVM_Value testString = nullptr;
-JSVM_CALL(env, OH_JSVM_CreateStringUtf8(env, testStringStr, strlen(testStringStr), &testString));
+JSVM_CALL(OH_JSVM_CreateStringUtf8(env, testStringStr, strlen(testStringStr), &testString));
 
 char buffer[128];
 size_t bufferSize = 128;
 size_t copied = 0; 
 
-JSVM_CALL(env, OH_JSVM_GetValueStringUtf8(env, testString, buffer, bufferSize, &copied));
+JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, testString, buffer, bufferSize, &copied));
 ```
 
 ### JS值操作和抽象操作
@@ -1367,7 +1373,7 @@ OH_JSVM_CreateObject(env, &myObject);
 // 设置属性
 const char *testNameStr = "John Doe";
 JSVM_Value propValue = nullptr;
-JSVM_Value key;
+JSVM_Value key = nullptr;
 OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &key);
 OH_JSVM_CreateStringUtf8(env, testNameStr, strlen(testNameStr), &propValue);
 OH_JSVM_SetProperty(env, myObject, key, propValue);
@@ -1468,19 +1474,24 @@ static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
     JSVM_Value args[1];
-    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
-
-    JSVM_ASSERT(env, argc >= 1, "Wrong number of arguments");
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
+    if (argc < 1) {
+        OH_LOG_ERROR(LOG_APP, "Wrong number of arguments");
+        return nullptr;
+    }
 
     JSVM_ValueType valuetype;
-    JSVM_CALL(env, OH_JSVM_Typeof(env, args[0], &valuetype));
-    JSVM_ASSERT(env, valuetype == JSVM_ValueType::JSVM_FUNCTION, "Wrong type of argment. Expects a function.");
+    JSVM_CALL(OH_JSVM_Typeof(env, args[0], &valuetype));
+    if (valuetype != JSVM_ValueType::JSVM_FUNCTION) {
+        OH_LOG_ERROR(LOG_APP, "Wrong type of argment. Expects a function.");
+        return nullptr;
+    }
 
     JSVM_Value global;
-    JSVM_CALL(env, OH_JSVM_GetGlobal(env, &global));
+    JSVM_CALL(OH_JSVM_GetGlobal(env, &global));
 
     JSVM_Value ret;
-    JSVM_CALL(env, OH_JSVM_CallFunction(env, global, args[0], 0, nullptr, &ret));
+    JSVM_CALL(OH_JSVM_CallFunction(env, global, args[0], 0, nullptr, &ret));
     return ret;
 }
 ```
@@ -1528,7 +1539,7 @@ static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 2;
     JSVM_Value args[2];
-    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     bool isStrictEquals = false;
     OH_JSVM_StrictEquals(env, args[0], args[1], &isStrictEquals);
@@ -1540,7 +1551,6 @@ static napi_value TestWrap(napi_env env1, napi_callback_info info)
     OH_LOG_ERROR(LOG_APP, "testWrap start");
     JSVM_InitOptions init_options;
     memset(&init_options, 0, sizeof(init_options));
-    init_options.externalReferences = externals;
     if (aa == 0) {
         OH_JSVM_Init(&init_options);
         aa++;
@@ -1624,7 +1634,7 @@ struct Test {
 static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
-    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     bool isStrictEquals = false;
     OH_JSVM_StrictEquals(env, args[0], args[1], &isStrictEquals);
@@ -1886,7 +1896,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         OH_JSVM_GetValueUint32(env, args[0], &ret);
         const char testStr[] = "hello world 111111";
         JSVM_Value setvalueName = nullptr;
-        JSVM_CALL(env, OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &setvalueName));
+        JSVM_CALL(OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &setvalueName));
         return setvalueName;
     };
     char data[100] = "1111 hello world";
@@ -2092,8 +2102,8 @@ OH_JSVM_CreateArrayBufferFromBackingStoreData(env, backingStore, 100, 30, 20, &a
 // 在 JS 中使用创建的 ArrayBuffer
 JSVM_Value js_global;
 JSVM_Value name;
-OH_JSVM_GetGlobal(jsvm_env, &js_global);
-OH_JSVM_CreateStringUtf8(jsvm_env, "buffer", JSVM_AUTO_LENGTH, &name);
+OH_JSVM_GetGlobal(env, &js_global);
+OH_JSVM_CreateStringUtf8(env, "buffer", JSVM_AUTO_LENGTH, &name);
 OH_JSVM_SetProperty(env, js_global, name, arrayBuffer);
 
 JSVM_Script script;
@@ -2191,7 +2201,7 @@ JSON操作。
 ```c++
 std::string sourcecodestr = "{\"name\": \"John\", \"age\": 30, \"city\": \"New York\"}" ;
 JSVM_Value jsonString;
-OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &jsonString)
+OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &jsonString);
 JSVM_Value result;
 OH_JSVM_JsonParse(env, jsonString, &result);
 ```
@@ -2230,8 +2240,8 @@ static JSVM_Value NapiIsCallable(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Value value, rst;
     size_t argc = 1;
     bool isCallable = false;
-    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, &value, NULL, NULL));
-    JSVM_CALL(env, OH_JSVM_IsCallable(env, value, &isCallable));
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, &value, NULL, NULL));
+    JSVM_CALL(OH_JSVM_IsCallable(env, value, &isCallable));
     OH_JSVM_GetBoolean(env, isCallable, &rst);
     return rst;
 }

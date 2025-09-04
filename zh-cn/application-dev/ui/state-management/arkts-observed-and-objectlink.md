@@ -6,9 +6,9 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-上文所述的装饰器（包括[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)、[\@Provide和\@Consume](./arkts-provide-and-consume.md)装饰器）仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
+上文所述的装饰器（包括[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)、[\@Provide和\@Consume](./arkts-provide-and-consume.md)装饰器）仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组、对象数组、嵌套类场景，无法观察到第二层的属性变化。因此，为了实现对嵌套数据结构中深层属性变化的观察，引入了\@Observed和\@ObjectLink装饰器。
 
-\@Observed/\@ObjectLink配套使用是用于嵌套场景的观察，为了观察嵌套对象属性的变化，需要开发者最好对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
+\@Observed/\@ObjectLink适用于观察嵌套对象属性的变化，需要开发者对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 > **说明：**
 >
@@ -37,10 +37,10 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无。                                       |
-| 允许装饰的变量类型         | API version 19之前，必须为被\@Observed装饰的class实例。<br/>API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性可以被改变的，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。 |
-| 被装饰变量的初始值         | 不允许。                                     |
+| 允许装饰的变量类型         | 支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>API version 19之前，必须为被\@Observed装饰的class实例。<br/>API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>**说明：**<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。 |
+| 被装饰变量的初始值         | 禁止本地初始化。                                     |
 
-\@ObjectLink装饰的数据为可读示例。
+\@ObjectLink的属性可以被改变，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。
 
 
 ```ts
@@ -102,7 +102,7 @@ class Parent {
 }
 ```
 
-以上示例中，Parent被\@Observed装饰，其成员变量的赋值的变化是可以被观察到的，但对于Child，没有被\@Observed装饰，其属性的修改不能被观察到。
+以上示例中，Parent被\@Observed装饰，其成员变量的赋值的变化是可以被观察到的，但对于Child，没有被\@Observed装饰，其属性的修改不能被观察到。若想观察Child的属性修改变化，示例请参考[嵌套对象](#嵌套对象)。
 
 
 ```ts
@@ -505,7 +505,7 @@ struct Index {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Book被\@Observed装饰，Book的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
+上述示例中，点击Index组件中Button，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。然而，Book被\@Observed装饰，Book的属性name可以被\@ObjectLink观察到，所以BookCard组件中Text可以刷新。当然直接点击BookCard组件中Button，Bookcard组件中的Text组件也刷新，因为该变化在BooKCard中属于第一层的变化，亦可被\@ObjectLink观察到。
 
 ### 对象数组
 
@@ -537,7 +537,7 @@ struct Child {
 
   build() {
     Row() {
-      Button(`ViewChild [${this.label}] this.info.info = ${this.info ? this.info.info : "undefined"}`)
+      Button(`ViewChild [${this.label}] this.info.info = ${this.info ? this.info.info : 'undefined'}`)
         .width(320)
         .margin(10)
         .onClick(() => {
@@ -584,7 +584,7 @@ struct Parent {
           if (this.arrA.length > 0) {
             this.arrA.shift();
           } else {
-            console.log("length <= 0");
+            console.info('length <= 0');
           }
         })
       Button(`ViewParent: item property in middle`)
@@ -784,7 +784,7 @@ export class MyMap<K, V> extends Map<K, V> {
 
   constructor(name?: string, args?: [K, V][]) {
     super(args);
-    this.name = name ? name : "My Map";
+    this.name = name ? name : 'My Map';
   }
 
   getName() {
@@ -795,7 +795,7 @@ export class MyMap<K, V> extends Map<K, V> {
 @Entry
 @Component
 struct MapSampleNested {
-  @State message: Info = new Info(new MyMap("myMap", [[0, "a"], [1, "b"], [3, "c"]]));
+  @State message: Info = new Info(new MyMap('myMap', [[0, 'a'], [1, 'b'], [3, 'c']]));
 
   build() {
     Row() {
@@ -825,7 +825,7 @@ struct MapSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(4, "d");
+            this.myMap.set(4, 'd');
           })
         Button('clear')
           .width(200)
@@ -837,7 +837,7 @@ struct MapSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(0, "aa");
+            this.myMap.set(0, 'aa');
           })
         Button('delete the first one')
           .width(200)
@@ -880,7 +880,7 @@ export class MySet<T> extends Set<T> {
 
   constructor(name?: string, args?: T[]) {
     super(args);
-    this.name = name ? name : "My Set";
+    this.name = name ? name : 'My Set';
   }
 
   getName() {
@@ -891,7 +891,7 @@ export class MySet<T> extends Set<T> {
 @Entry
 @Component
 struct SetSampleNested {
-  @State message: Info = new Info(new MySet("Set", [0, 1, 2, 3, 4]));
+  @State message: Info = new Info(new MySet('Set', [0, 1, 2, 3, 4]));
 
   build() {
     Row() {
@@ -943,7 +943,7 @@ struct SetSampleNestedChild {
 
 ![Observed_ObjectLink_inherit_set](figures/Observed_ObjectLink_inherit_set.gif)
 
-## ObjectLink支持联合类型
+### ObjectLink支持联合类型
 
 \@ObjectLink支持\@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
@@ -1211,19 +1211,19 @@ struct MyView {
   build() {
     Column({ space: 10 }) {
       Text(`parentId: ${this.cousin.parentId}`)
-      Button("Change Parent.parent")
+      Button('Change Parent.parent')
         .onClick(() => {
           this.cousin.parentId += 1;
         })
 
       Text(`cousinId: ${this.cousin.cousinId}`)
-      Button("Change Cousin.cousinId")
+      Button('Change Cousin.cousinId')
         .onClick(() => {
           this.cousin.cousinId += 1;
         })
 
       Text(`childId: ${this.cousin.child.childId}`)
-      Button("Change Cousin.Child.childId")
+      Button('Change Cousin.Child.childId')
         .onClick(() => {
           // 点击时上面的Text组件不会刷新
           this.cousin.child.childId += 1;
@@ -1312,7 +1312,7 @@ struct ViewChild {
   build() {
     Column({ space: 10 }) {
       Text(`childId: ${this.child.getChildId()}`)
-      Button("Change childId")
+      Button('Change childId')
         .onClick(() => {
           this.child.setChildId(this.child.getChildId() + 1);
         })
@@ -1328,19 +1328,19 @@ struct MyView {
   build() {
     Column({ space: 10 }) {
       Text(`parentId: ${this.cousin.parentId}`)
-      Button("Change Parent.parentId")
+      Button('Change Parent.parentId')
         .onClick(() => {
           this.cousin.parentId += 1;
         })
 
       Text(`cousinId: ${this.cousin.cousinId}`)
-      Button("Change Cousin.cousinId")
+      Button('Change Cousin.cousinId')
         .onClick(() => {
           this.cousin.cousinId += 1;
         })
 
       ViewChild({ child: this.cousin.child }) // Text(`childId: ${this.cousin.child.childId}`)的替代写法
-      Button("Change Cousin.Child.childId")
+      Button('Change Cousin.Child.childId')
         .onClick(() => {
           this.cousin.child.childId += 1;
         })
@@ -1462,11 +1462,11 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 ```ts
 CounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
-@ObjectLink value：ParentCounter; // @ObjectLink 接收 ParentCounter
+@ObjectLink value: ParentCounter; // @ObjectLink 接收 ParentCounter
 
 // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
 CounterChild({ subValue: this.value.subCounter });
-@ObjectLink subValue：SubCounter; // @ObjectLink 接收 SubCounter
+@ObjectLink subValue: SubCounter; // @ObjectLink 接收 SubCounter
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
@@ -1658,7 +1658,7 @@ class RenderClass {
   constructor() {
     setTimeout(() => {
       this.waitToRender = true;
-      console.log("更改waitToRender的值为：" + this.waitToRender);
+      console.info('更改waitToRender的值为：' + this.waitToRender);
     }, 1000)
   }
 }
@@ -1670,16 +1670,16 @@ struct Index {
   @State textColor: Color = Color.Black;
 
   renderClassChange() {
-    console.log("renderClass的值被更改为：" + this.renderClass.waitToRender);
+    console.info('renderClass的值被更改为：' + this.renderClass.waitToRender);
   }
 
   build() {
     Row() {
       Column() {
-        Text("renderClass的值为：" + this.renderClass.waitToRender)
+        Text('renderClass的值为：' + this.renderClass.waitToRender)
           .fontSize(20)
           .fontColor(this.textColor)
-        Button("Show")
+        Button('Show')
           .onClick(() => {
             // 使用其他状态变量强行刷新UI的做法并不推荐，此处仅用来检测waitToRender的值是否更新
             this.textColor = Color.Red;
@@ -1711,20 +1711,20 @@ struct Index {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
 
   renderClassChange() {
-    console.log("renderClass的值被更改为：" + this.renderClass.waitToRender);
+    console.info('renderClass的值被更改为：' + this.renderClass.waitToRender);
   }
 
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
-      console.log("更改renderClass的值为：" + this.renderClass.waitToRender);
+      console.info('更改renderClass的值为：' + this.renderClass.waitToRender);
     }, 1000)
   }
 
   build() {
     Row() {
       Column() {
-        Text("renderClass的值为：" + this.renderClass.waitToRender)
+        Text('renderClass的值为：' + this.renderClass.waitToRender)
           .fontSize(20)
       }
       .width('100%')
@@ -1767,7 +1767,7 @@ struct Parent {
   @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10));
 
   onChange01() {
-    console.log(':::onChange01:' + this.info.person.name); // 2
+    console.info(':::onChange01:' + this.info.person.name); // 2
   }
 
   build() {
@@ -1775,9 +1775,9 @@ struct Parent {
       Text(this.info.person.name).height(40)
       Child({
         per: this.info.person, clickEvent: () => {
-          console.log(':::clickEvent before', this.info.person.name); // 1
+          console.info(':::clickEvent before', this.info.person.name); // 1
           this.info.person = new Person('Jack', 12);
-          console.log(':::clickEvent after', this.info.person.name); // 3
+          console.info(':::clickEvent after', this.info.person.name); // 3
         }
       })
     }
@@ -1790,7 +1790,7 @@ struct Child {
   clickEvent?: () => void;
 
   onChange02() {
-    console.log(':::onChange02:' + this.per.name); // 5
+    console.info(':::onChange02:' + this.per.name); // 5
   }
 
   build() {
@@ -1807,7 +1807,7 @@ struct Child {
     if (this.clickEvent) {
       this.clickEvent();
     }
-    console.log(':::--------此时Child中的this.per.name值仍然是：' + this.per.name); // 4
+    console.info(':::--------此时Child中的this.per.name值仍然是：' + this.per.name); // 4
   }
 }
 ```
@@ -1834,9 +1834,9 @@ struct Child {
 ```ts
 Child({
   per: this.info.person, clickEvent: () => {
-    console.log(':::clickEvent before', this.info.person.name); // 1
+    console.info(':::clickEvent before', this.info.person.name); // 1
     this.info.person.name = 'Jack';
-    console.log(':::clickEvent after', this.info.person.name); // 3
+    console.info(':::clickEvent after', this.info.person.name); // 3
   }
 })
 ```

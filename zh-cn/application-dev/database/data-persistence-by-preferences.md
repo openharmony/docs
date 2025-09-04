@@ -146,7 +146,7 @@ GSKV是从API version 18起提供的一种存储模式，数据以二进制的�
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       let options: preferences.Options = { name: 'myStore' , storageType: preferences.StorageType.GSKV};
+       let options: preferences.Options = { name: 'myStore', storageType: preferences.StorageType.GSKV };
        dataPreferences = preferences.getPreferencesSync(this.context, options);
      }
    }
@@ -160,7 +160,7 @@ GSKV是从API version 18起提供的一种存储模式，数据以二进制的�
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let context = featureAbility.getContext();
-   let options: preferences.Options =  { name: 'myStore' , storageType: preferences.StorageType.GSKV};
+   let options: preferences.Options =  { name: 'myStore', storageType: preferences.StorageType.GSKV };
    let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
    <!--DelEnd-->

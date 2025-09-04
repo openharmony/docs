@@ -22,7 +22,7 @@
 
 | 名称                                            | 描述 |
 |-----------------------------------------------| -- |
-| [ArkUI_Accessibility_ActionType](capi-native-interface-accessibility-h.md) actionType | 操作类型。 |
+| [ArkUI_Accessibility_ActionType](capi-native-interface-accessibility-h.md#arkui_accessibility_actiontype) actionType | 操作类型。 |
 | const char* description                       | 操作描述信息。 |
 
 

@@ -58,20 +58,21 @@
 | [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) | OH_AVScreenCaptureBufferType | 枚举，表示buffer类型。 |
 | [OH_AVScreenCaptureFilterableAudioContent](#oh_avscreencapturefilterableaudiocontent) | OH_AVScreenCaptureFilterableAudioContent | 枚举，表示可过滤的音频类型。 |
 | [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) | OH_AVScreenCaptureContentChangedEvent | 枚举，表示录屏内容变更事件。 |
+| [OH_AVScreenCapture_FillMode](#oh_avscreencapture_fillmode) | OH_AVScreenCapture_FillMode | 图像填充模式。 |
 
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [typedef void (\*OH_AVScreenCaptureOnError)(OH_AVScreenCapture *capture, int32_t errorCode)](#oh_avscreencaptureonerror) | OH_AVScreenCaptureOnError | 当OH_AVScreenCapture实例运行出错时，将调用函数指针。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror)替代。 |
-| [typedef void (\*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *capture, bool isReady,OH_AudioCaptureSourceType type)](#oh_avscreencaptureonaudiobufferavailable) | OH_AVScreenCaptureOnAudioBufferAvailable | 当OH_AVScreenCapture实例操作期间音频缓存区可用时，将调用函数指针。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。 |
+| [typedef void (\*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type)](#oh_avscreencaptureonaudiobufferavailable) | OH_AVScreenCaptureOnAudioBufferAvailable | 当OH_AVScreenCapture实例操作期间音频缓存区可用时，将调用函数指针。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。 |
 | [typedef void (\*OH_AVScreenCaptureOnVideoBufferAvailable)(OH_AVScreenCapture *capture, bool isReady)](#oh_avscreencaptureonvideobufferavailable) | OH_AVScreenCaptureOnVideoBufferAvailable | 当OH_AVScreenCapture实例操作期间视频缓存区可用时，将调用函数指针。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。 |
-| [typedef void (\*OH_AVScreenCapture_OnStateChange)(struct OH_AVScreenCapture *capture,OH_AVScreenCaptureStateCode stateCode, void *userData)](#oh_avscreencapture_onstatechange) | OH_AVScreenCapture_OnStateChange | 当OH_AVScreenCapture实例操作期间发生状态变更时，将调用函数指针。 |
+| [typedef void (\*OH_AVScreenCapture_OnStateChange)(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData)](#oh_avscreencapture_onstatechange) | OH_AVScreenCapture_OnStateChange | 当OH_AVScreenCapture实例操作期间发生状态变更时，将调用函数指针。 |
 | [typedef void (\*OH_AVScreenCapture_OnError)(OH_AVScreenCapture *capture, int32_t errorCode, void *userData)](#oh_avscreencapture_onerror) | OH_AVScreenCapture_OnError | 当OH_AVScreenCapture实例操作期间发生错误时，将调用函数指针。 |
-| [typedef void (\*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData)](#oh_avscreencapture_onbufferavailable) | OH_AVScreenCapture_OnBufferAvailable | 当OH_AVScreenCapture实例操作期间音频或视频缓存区可用时，将调用该函数指针。 |
+| [typedef void (\*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData)](#oh_avscreencapture_onbufferavailable) | OH_AVScreenCapture_OnBufferAvailable | 当OH_AVScreenCapture实例操作期间音频或视频缓存区可用时，将调用该函数指针。 |
 | [typedef void (\*OH_AVScreenCapture_OnDisplaySelected)(OH_AVScreenCapture *capture, uint64_t displayId, void *userData)](#oh_avscreencapture_ondisplayselected) | OH_AVScreenCapture_OnDisplaySelected | 当录屏事件开始时，将调用函数指针。 |
-| [typedef void (\*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* capture,OH_AVScreenCaptureContentChangedEvent event, OH_Rect* area, void *userData)](#oh_avscreencapture_oncapturecontentchanged) | OH_AVScreenCapture_OnCaptureContentChanged | 当OH_AVScreenCapture实例操作期间录屏内容变化时，将调用函数指针。 |
-| [typedef void (\*OH_AVScreenCapture_OnUserSelected)(OH_AVScreenCapture* capture,OH_AVScreenCapture_UserSelectionInfo* selections, void *userData)](#oh_avscreencapture_onuserselected) | OH_AVScreenCapture_OnUserSelected | 当用户在授权界面（选择界面）选择参数时，功能接口将参数返回给应用程序。 |
+| [typedef void (\*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* capture, OH_AVScreenCaptureContentChangedEvent event, OH_Rect* area, void *userData)](#oh_avscreencapture_oncapturecontentchanged) | OH_AVScreenCapture_OnCaptureContentChanged | 当OH_AVScreenCapture实例操作期间录屏内容变化时，将调用函数指针。 |
+| [typedef void (\*OH_AVScreenCapture_OnUserSelected)(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData)](#oh_avscreencapture_onuserselected) | OH_AVScreenCapture_OnUserSelected | 当用户在授权界面（选择界面）选择参数时，功能接口将参数返回给应用程序。 |
 
 ## 枚举类型说明
 
@@ -310,6 +311,23 @@ enum OH_AVScreenCaptureContentChangedEvent
 | OH_SCREEN_CAPTURE_CONTENT_VISIBLE = 1 | 录屏内容变为可见。 |
 | OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2 | 录屏内容状态变化为不可用，如录屏窗口关闭。 |
 
+### OH_AVScreenCapture_FillMode
+
+```
+enum OH_AVScreenCapture_FillMode
+```
+
+**描述**
+
+图像填充模式。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT = 0 | 保持图像原始宽高比匹配目标图像大小，若比例不一致可能存在黑边。 |
+| OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL = 1 | 图像拉伸匹配目标图像大小，若比例不一致图像变形。 |
+
 
 ## 函数说明
 
@@ -495,7 +513,7 @@ typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* c
 | -- | -- |
 | [OH_AVScreenCapture](capi-avscreencapture-oh-avscreencapture.md)* capture | 指向OH_AVScreenCapture实例的指针。 |
 | [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) event | 录屏内容变更事件。 |
-|  [OH_Rect](capi-avscreencapture-oh-rect.md)* area | 录屏内容可见时，对应位置信息。 |
+| [OH_Rect](capi-avscreencapture-oh-rect.md)* area | 录屏内容可见时，对应位置信息。 |
 |  void *userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 |
 
 ### OH_AVScreenCapture_OnUserSelected()

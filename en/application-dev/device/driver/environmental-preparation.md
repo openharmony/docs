@@ -1,8 +1,14 @@
 # Setting Up the Environment
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## Development Tool and Configuration
 
-DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers. [Download and install](https://developer.huawei.com/consumer/en/download/) DevEco Studio and verify basic operations to ensure that it can function properly.
+DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers.  
 
 [Download and install](https://developer.huawei.com/consumer/en/download/) DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-tools-overview).
 

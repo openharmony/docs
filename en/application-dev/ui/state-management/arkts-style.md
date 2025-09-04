@@ -12,7 +12,7 @@ If the style of each component needs to be set separately, this will result in a
 >
 > This decorator can be used in atomic services since API version 11.
 
-## Rules of Use
+## Usage Rules
 
 - Currently, \@Styles supports only [general attributes](../../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md) and [general events](../../reference/apis-arkui/arkui-ts/ts-component-general-events.md).
 

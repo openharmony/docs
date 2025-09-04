@@ -329,7 +329,7 @@ int32_t (*setWidth)(ArkUI_NativeDialogHandle handle, float width, ArkUI_LengthMe
 | -- | -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
 |  float width | 背板宽度。 |
-|  [ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit) unit | 指定高度的单位，默认为vp。 |
+|  [ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit) unit | 指定宽度的单位，默认为vp。 |
 
 **返回：**
 
@@ -420,7 +420,7 @@ int32_t (*setCustomShadow)(ArkUI_NativeDialogHandle handle, const ArkUI_Attribut
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
-| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与NODE_SHADOW属性一致。 |
+| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与[ArkUI_NodeAttributeType](./capi-native-node-h.md#arkui_nodeattributetype)中的NODE_SHADOW属性一致。 |
 
 **返回：**
 
@@ -441,7 +441,7 @@ int32_t (*setBackgroundBlurStyle)(ArkUI_NativeDialogHandle handle, ArkUI_BlurSty
 
 > **说明：** 
 >
-> setBackgroundBlurStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调
+> setBackgroundBlurStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 

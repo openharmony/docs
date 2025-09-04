@@ -1,6 +1,12 @@
 # @ohos.screen (Screen) (System API)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
-The Screen module implements basic screen management. You can use the APIs of this module to obtain a Screen object, listen for screen changes, and create and destroy virtual screens.
+The module implements basic screen management. You can use the APIs of this module to obtain a Screen object, listen for screen changes, and create and destroy virtual screens.
 
 > **NOTE**
 >
@@ -26,7 +32,7 @@ Obtains all screens. This API uses an asynchronous callback to return the result
 
 | Name  | Type                                               | Mandatory| Description                                  |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Screen](#screen)&gt;&gt; | Yes  | Callback used to return all the **Screen** objects obtained.|
+| callback | AsyncCallback&lt;Array&lt;[Screen](#screen)&gt;&gt; | Yes  | Callback used to return all the Screen objects obtained.|
 
 **Error codes**
 
@@ -66,7 +72,7 @@ Obtains all screens. This API uses a promise to return the result.
 
 | Type                                         | Description                                     |
 | --------------------------------------------- | ----------------------------------------- |
-| Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise used to return all the **Screen** objects obtained.|
+| Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise used to return all the Screen objects obtained.|
 
 **Error codes**
 
@@ -875,7 +881,7 @@ Sets a privacy mask image for the screen. This API uses a promise to return the 
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
 | screenId  | number | Yes  | Screen ID. The value must be a positive integer.   |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | Privacy mask image. If no value is passed, the default privacy mask image is used.|
+| image | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | No  | Privacy mask image. If no value is passed, the default privacy mask image is used.|
 
 **Return value**
 
@@ -999,7 +1005,7 @@ Sets whether to lock auto rotate. This API uses a promise to return the result. 
 
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
-| isLocked  | boolean | Yes  | Whether to lock auto rotate. The value **true** means to lock auto rotate, and **false** means the opposite.|
+| isLocked  | boolean | Yes  | Whether to lock auto rotate. **true** to lock, **false** otherwise.|
 
 **Return value**
 
@@ -1041,7 +1047,7 @@ Sets whether to lock auto rotate. This API uses an asynchronous callback to retu
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLocked  | boolean                   | Yes  | Whether to lock auto rotate. The value **true** means to lock auto rotate, and **false** means the opposite.                |
+| isLocked  | boolean                   | Yes  | Whether to lock auto rotate. **true** to lock, **false** otherwise.                |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1177,11 +1183,11 @@ Defines the parameters for expanding a screen.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name    | Type| Readable| Writable| Description               |
+| Name    | Type| Read-Only| Optional| Description               |
 | -------- | -------- | ---- | ---- | ------------------- |
-| screenId | number   | Yes  | Yes  | Screen ID. The value must be an integer.         |
-| startX   | number   | Yes  | Yes  | Start X coordinate of the screen. The value must be an integer.|
-| startY   | number   | Yes  | Yes  | Start Y coordinate of the screen. The value must be an integer.|
+| screenId | number   | No  | No  | Screen ID. The value must be an integer.         |
+| startX   | number   | No  | No  | Start X coordinate of the screen. The value must be an integer.|
+| startY   | number   | No  | No  | Start Y coordinate of the screen. The value must be an integer.|
 
 ## MultiScreenMode<sup>13+</sup>
 
@@ -1200,11 +1206,11 @@ Describes the screen position information.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name   | Type    | Readable| Writable | Description               |
+| Name   | Type    | Read-Only| Optional | Description               |
 | -------- | -------- | ---- | ---- | ------------------- |
-| id       | number   | Yes  | Yes  | Screen ID. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
-| startX   | number   | Yes  | Yes  | Start X coordinate of the screen. The upper left vertex of the bounding rectangle formed by the two screens is used as the origin, with the positive direction being rightwards. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
-| startY   | number   | Yes  | Yes  | Start Y coordinate of the screen. The upper left vertex of the bounding rectangle formed by the two screens is used as the origin, with the positive direction being downwards. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
+| id       | number   | No  | No  | Screen ID. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
+| startX   | number   | No  | No  | Start X coordinate of the screen. The upper-left vertex of the bounding rectangle formed by the two screens is used as the origin, with the positive direction being rightwards. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
+| startY   | number   | No  | No  | Start Y coordinate of the screen. The upper-left vertex of the bounding rectangle formed by the two screens is used as the origin, with the positive direction being downwards. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
 
 ## VirtualScreenOption
 
@@ -1212,13 +1218,13 @@ Defines virtual screen parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type| Readable| Writable| Description                      |
+| Name     | Type| Read-Only| Optional| Description                      |
 | --------- | -------- | ---- | ---- |--------------------------|
-| name      | string   | Yes  | Yes  | Name of a virtual screen.              |
-| width     | number   | Yes  | Yes  | Width of the virtual screen, in px. The value must be an integer.|
-| height    | number   | Yes  | Yes  | Height of the virtual screen, in px. The value must be an integer.|
-| density   | number   | Yes  | Yes  | Density of the virtual screen, in px. The value must be a floating point number.|
-| surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.       |
+| name      | string   | No  | No  | Name of a virtual screen.              |
+| width     | number   | No  | No  | Width of the virtual screen, in px. The value must be an integer.|
+| height    | number   | No  | No  | Height of the virtual screen, in px. The value must be an integer.|
+| density   | number   | No  | No  | Density of the virtual screen, in px. The value must be a floating-point number.|
+| surfaceId | string   | No  | No  | Surface ID of the virtual screen.       |
 
 ## screen.makeMirrorWithRegion<sup>19+</sup>
 
@@ -1273,9 +1279,9 @@ screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).the
 
 ## Screen
 
-Implements a **Screen** instance.
+Implements a Screen instance.
 
-Before calling any API in **Screen**, you must use **[getAllScreens()](#screengetallscreens)** or **[createVirtualScreen()](#screencreatevirtualscreen)** to obtain a **Screen** instance.
+Before calling any API in Screen, you must use [getAllScreens()](#screengetallscreens) or [createVirtualScreen()](#screencreatevirtualscreen) to obtain a Screen instance.
 
 ### Attributes
 
@@ -1695,12 +1701,12 @@ Defines the screen mode information.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Type| Readable| Writable| Description                                              |
+| Name       | Type| Read-Only| Optional| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value is an integer.| 
-| width       | number   | Yes  | Yes  | Width of the screen, in px. The value is an integer.                               |
-| height      | number   | Yes  | Yes  | Height of the screen, in px. The value is an integer.                               |
-| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value is an integer.                                    |
+| id          | number   | No  | No  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value is an integer.| 
+| width       | number   | No  | No  | Width of the screen, in px. The value is an integer.                               |
+| height      | number   | No  | No  | Height of the screen, in px. The value is an integer.                               |
+| refreshRate | number   | No  | No  | Refresh rate of the screen, in hz. The value is an integer.                                    |
 
 ## Rect<sup>19+</sup>
 
@@ -1708,9 +1714,9 @@ Describes the rectangle information.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Type| Readable| Writable| Description                                              |
+| Name       | Type| Read-Only| Optional| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| left    | number   | Yes  | Yes  | X coordinate of the vertex in the upper left corner of the rectangle, in px. The value must be an integer.|
-| top     | number   | Yes  | Yes  | Y coordinate of the vertex in the upper left corner of the rectangle, in px. The value must be an integer.|
-| width   | number   | Yes  | Yes  | Width of the rectangle, in px. The value must be an integer.            |
-| height  | number   | Yes  | Yes  | Height of the rectangle, in px. The value must be an integer.            |
+| left    | number   | No  | No  | X coordinate of the vertex in the upper-left corner of the rectangle, in px. The value must be an integer.|
+| top     | number   | No  | No  | Y coordinate of the vertex in the upper-left corner of the rectangle, in px. The value must be an integer.|
+| width   | number   | No  | No  | Width of the rectangle, in px. The value must be an integer.            |
+| height  | number   | No  | No  | Height of the rectangle, in px. The value must be an integer.            |

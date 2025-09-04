@@ -1,4 +1,10 @@
 # ApplicationInfo (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module defines the application information. An application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 

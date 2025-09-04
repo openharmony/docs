@@ -1,5 +1,12 @@
 # @ohos.graphics.colorSpaceManager (色彩管理)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @xubo85-->
+<!--Designer: @comicchang; @wang-luyu4-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
+
 本模块提供管理抽象化色域对象的一些基础能力，包括色域对象的创建与色域基础属性的获取等。
 
 > **说明：**
@@ -16,44 +23,43 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 色域类型枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
 | 名称                         | 值     | 说明                    |
 | --------------------------- | ------ | ----------------------- |
 | UNKNOWN                           | 0      | 未知的色域类型。|
-| ADOBE_RGB_1998                    | 1      | RGB色域为Adobe RGB(1998)类型。<br>转换函数为Adobe RGB(1998)类型。<br>编码范围为Full类型。 |
-| DCI_P3                            | 2      | RGB色域为DCI-P3类型。<br>转换函数为Gamma 2.6类型。<br>编码范围为Full类型。|
-| DISPLAY_P3                        | 3      | RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
-| SRGB                              | 4      | RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。<br>系统默认色域类型。 |
-| CUSTOM                            | 5      | 用户自定义色域类型。|
-| BT709<sup>11+</sup>                | 6      | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
-| BT601_EBU<sup>11+</sup>            | 7      | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
-| BT601_SMPTE_C<sup>11+</sup>        | 8      | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
-| BT2020_HLG<sup>11+</sup>           | 9      | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
-| BT2020_PQ<sup>11+</sup>            | 10     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
-| P3_HLG<sup>11+</sup>               | 11     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
-| P3_PQ<sup>11+</sup>                | 12     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
-| ADOBE_RGB_1998_LIMIT<sup>11+</sup> | 13     | RGB色域为Adobe RGB(1998)类型。<br>转换函数为Adobe RGB(1998)类型。<br>编码范围为Limit类型。 |
-| DISPLAY_P3_LIMIT<sup>11+</sup>     | 14     | RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。 |
-| SRGB_LIMIT<sup>11+</sup>           | 15     | RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。 |
-| BT709_LIMIT<sup>11+</sup>          | 16     | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
-| BT601_EBU_LIMIT<sup>11+</sup>      | 17     | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
-| BT601_SMPTE_C_LIMIT<sup>11+</sup>  | 18     | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
-| BT2020_HLG_LIMIT<sup>11+</sup>     | 19     | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。 |
-| BT2020_PQ_LIMIT<sup>11+</sup>      | 20     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。 |
-| P3_HLG_LIMIT<sup>11+</sup>         | 21     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。 |
-| P3_PQ_LIMIT<sup>11+</sup>          | 22     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。 |
-| LINEAR_P3<sup>11+</sup>            | 23     | RGB色域为Display P3类型。<br>转换函数为Linear类型。 |
-| LINEAR_SRGB<sup>11+</sup>          | 24     | RGB色域为SRGB类型。<br>转换函数为Linear类型。 |
-| LINEAR_BT709<sup>11+</sup>         | 24     | 与LINEAR_SRGB相同。<br>RGB色域为BT709类型。<br>转换函数为Linear类型。 |
-| LINEAR_BT2020<sup>11+</sup>        | 25     | RGB色域为BT2020类型。<br>转换函数为Linear类型。 |
+| ADOBE_RGB_1998                    | 1      | RGB色域为Adobe RGB(1998)类型。<br>转换函数为Adobe RGB(1998)类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DCI_P3                            | 2      | RGB色域为DCI-P3类型。<br>转换函数为Gamma 2.6类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DISPLAY_P3                        | 3      | RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SRGB                              | 4      | RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。<br>系统默认色域类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CUSTOM                            | 5      | 用户自定义色域类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| BT709<sup>11+</sup>                | 6      | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT601_EBU<sup>11+</sup>            | 7      | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT601_SMPTE_C<sup>11+</sup>        | 8      | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT2020_HLG<sup>11+</sup>           | 9      | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT2020_PQ<sup>11+</sup>            | 10     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| P3_HLG<sup>11+</sup>               | 11     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| P3_PQ<sup>11+</sup>                | 12     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ADOBE_RGB_1998_LIMIT<sup>11+</sup> | 13     | RGB色域为Adobe RGB(1998)类型。<br>转换函数为Adobe RGB(1998)类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISPLAY_P3_LIMIT<sup>11+</sup>     | 14     | RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SRGB_LIMIT<sup>11+</sup>           | 15     | RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT709_LIMIT<sup>11+</sup>          | 16     | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT601_EBU_LIMIT<sup>11+</sup>      | 17     | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT601_SMPTE_C_LIMIT<sup>11+</sup>  | 18     | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT2020_HLG_LIMIT<sup>11+</sup>     | 19     | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BT2020_PQ_LIMIT<sup>11+</sup>      | 20     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| P3_HLG_LIMIT<sup>11+</sup>         | 21     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| P3_PQ_LIMIT<sup>11+</sup>          | 22     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| LINEAR_P3<sup>11+</sup>            | 23     | RGB色域为Display P3类型。<br>转换函数为Linear类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| LINEAR_SRGB<sup>11+</sup>          | 24     | RGB色域为SRGB类型。<br>转换函数为Linear类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| LINEAR_BT709<sup>11+</sup>         | 24     | 与LINEAR_SRGB相同。<br>RGB色域为BT709类型。<br>转换函数为Linear类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| LINEAR_BT2020<sup>11+</sup>        | 25     | RGB色域为BT2020类型。<br>转换函数为Linear类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | H_LOG<sup>18+</sup>                | 26     | RGB色域为BT2020类型。<br>转换函数为LOG类型。 |
-| DISPLAY_SRGB<sup>11+</sup>         | 4      | 与SRGB相同。<br>RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
-| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | 与DISPLAY_P3相同。<br>RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
-| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | 与P3_HLG相同。<br>RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
-| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | 与P3_PQ相同。<br>RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
+| DISPLAY_BT2020_SRGB<sup>20+</sup>  | 27     | RGB色域为DISPLAY BT2020类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。|
+| DISPLAY_SRGB<sup>11+</sup>         | 4      | 与SRGB相同。<br>RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | 与DISPLAY_P3相同。<br>RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | 与P3_HLG相同。<br>RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | 与P3_PQ相同。<br>RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ColorSpacePrimaries
 
@@ -125,7 +131,7 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | primaries       | [ColorSpacePrimaries](#colorspaceprimaries)| 是   | 色域标准三原色。               |
-| gamma           | number                                     | 是   | 色域gamma值。                 |
+| gamma           | number                                     | 是   | 色域gamma值，取值为大于0的浮点数。|
 
 **返回值：**
 
@@ -140,7 +146,7 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
-| 18600001 | The parameter value is abnormal. |
+| 18600001 | Invalid parameter value. Possible cause: Used UNKNOWN or CUSTOM color space type enum values to directly create a colorSpaceManager object. |
 
 **示例：**
 
@@ -222,7 +228,7 @@ getWhitePoint(): Array\<number\>
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | The parameter value is abnormal. |
+| 18600001 | Invalid parameter value. Possible cause: Used UNKNOWN or CUSTOM color space type enum values to directly create a colorSpaceManager object. |
 
 **示例：**
 
@@ -254,7 +260,7 @@ getGamma(): number
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | The parameter value is abnormal. |
+| 18600001 | Invalid parameter value. Possible cause: Used UNKNOWN or CUSTOM color space type enum values to directly create a colorSpaceManager object. |
 
 **示例：**
 

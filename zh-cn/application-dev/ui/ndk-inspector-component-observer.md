@@ -24,10 +24,12 @@
 
 #include <arkui/native_type.h>
 #include <arkui/native_node.h>
+#include <hilog/log.h>
 #include "ArkUINode.h"
 #include <string>
 
 namespace NativeModule {
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 // 布局完成的回调方法
 void OnLayoutCompleted(void* userData) {
     ArkUI_NodeHandle node = (ArkUI_NodeHandle)userData;
@@ -74,7 +76,6 @@ public:
     }
     void SetLayoutCallBack(int32_t nodeId) {
         assert(handle_);
-        nodeId_ = nodeId;
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set layout callback");
         // 注册布局完成的回调方法
         OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(handle_, this, OnLayoutCompleted);
@@ -87,7 +88,6 @@ public:
     }
     void SetDrawCallBack(int32_t nodeId) {
         assert(handle_);
-        nodeId_ = nodeId;
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set draw callback");
         // 注册绘制送显完成的回调方法
         OH_ArkUI_RegisterDrawCallbackOnNodeHandle(handle_, this, OnDrawCompleted);
@@ -106,4 +106,49 @@ public:
 } // namespace NativeModule
 
 #endif // MYAPPLICATION_ARKUITEXTNODE_H
+```
+
+```c
+// NormalTextListExample.h
+// 自定义NDK接口入口函数。
+
+#ifndef MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
+#define MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
+
+#include "ArkUIBaseNode.h"
+#include "ArkUIListItemNode.h"
+#include "ArkUIListNode.h"
+#include "ArkUITextNode.h"
+#include <hilog/log.h>
+
+namespace NativeModule {
+
+std::shared_ptr<ArkUIBaseNode> CreateTextListExample() {
+    // 创建组件并挂载
+    // 1：使用智能指针创建List组件。
+    auto list = std::make_shared<ArkUIListNode>();
+    list->SetPercentWidth(1);
+    list->SetPercentHeight(1);
+    // 2：创建ListItem子组件并挂载到List上。
+    for (int32_t i = 0; i < 1; ++i) {
+        auto listItem = std::make_shared<ArkUIListItemNode>();
+        auto textNode = std::make_shared<ArkUITextNode>();
+        textNode->SetTextContent(std::to_string(i));
+        textNode->SetFontSize(16);
+        textNode->SetPercentWidth(1);
+        textNode->SetHeight(100);
+        textNode->SetBackgroundColor(0xFFfffacd);
+        textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+        // 在当前节点注册布局回调
+        textNode->SetLayoutCallBack(i);
+        // 在当前节点注册绘制送显回调
+        textNode->SetDrawCallBack(i);
+        listItem->AddChild(textNode);
+        list->AddChild(listItem);
+    }
+    return list;
+}
+} // namespace NativeModule
+
+#endif // MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
 ```

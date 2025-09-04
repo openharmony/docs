@@ -1,4 +1,11 @@
 # (Optional) Using canOpenLink to Check Application Accessibility
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## When to Use
 Before starting application B, application A can call **canOpenLink** to check whether application B is accessible.
 
@@ -80,4 +87,4 @@ Configure the [uris](../quick-start/module-configuration-file.md#skills) field i
 
    The **canOpenLink()** API is used to check whether an application is accessible. It indirectly reveals whether a specific application is installed.
 
-   To protect system security and user privacy and to prevent malicious applications from scanning the list of installed applications, you must configure the **querySchemes** property when using the **canOpenLink()** API. The maximum number of URL schemes that can be configured is 50.
+   To protect system security and user privacy and to prevent malicious applications from scanning the list of installed applications, you must configure the **querySchemes** property when using the **canOpenLink()** API. The maximum number of URL schemes that can be configured is 50 URL schemes.

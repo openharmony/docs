@@ -749,7 +749,9 @@ import { Want } from '@kit.AbilityKit';
 struct Index {
   @State message: string = 'Message: ';
   private want: Want = {
+    // EmbeddedComponent提供方的bunldename，根据实际情况配置。
     bundleName: 'com.example.embeddeddemo',
+    // EmbeddedComponent提供方的abilityName，根据实际情况配置。
     abilityName: 'ExampleEmbeddedAbility',
   }
 

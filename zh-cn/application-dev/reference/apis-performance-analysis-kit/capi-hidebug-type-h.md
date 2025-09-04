@@ -47,8 +47,8 @@ HiDebug模块代码结构体定义。
 
 ### 宏定义
 
-| 名称                                                                                                                           | 描述                 |
-|------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| 名称 | 描述 |
+| -- | -- |
 | [HIDEBUG_TRACE_TAG_FFRT](#hidebug_trace_tag_ffrt) (1ULL << 13)                                                               | FFRT任务标签。<br>**起始版本：** 12      |
 | [HIDEBUG_TRACE_TAG_COMMON_LIBRARY](#hidebug_trace_tag_common_library) (1ULL << 16)                                           | 公共库子系统标签。<br>**起始版本：** 12          |
 | [HIDEBUG_TRACE_TAG_HDF](#hidebug_trace_tag_hdf) (1ULL << 18)                                                                 | HDF子系统标签。<br>**起始版本：** 12          |
@@ -104,7 +104,7 @@ enum HiDebug_ErrorCode
 | HIDEBUG_NO_PERMISSION = 11400103 | 没有写文件的权限。 |
 | HIDEBUG_TRACE_ABNORMAL = 11400104 | 系统内部错误。 |
 | HIDEBUG_NO_TRACE_RUNNING = 11400105 | 当前没有trace正在运行。 |
-| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200 |  |
+| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200 | 传入符号解析函数的pc地址是无效的。<br/>**起始版本：** 20。 |
 
 ### HiDebug_TraceFlag
 

@@ -79,7 +79,7 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 | Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | 创造指定数量的资产类型实例。使用完毕后需要调用OH_Data_Asset_DestroyMultiple释放内存。 |
 | int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count) | 销毁指定数量的资产类型实例并回收内存。 |
 | int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *options, OH_Rdb_Transaction **trans) | 创建一个相关的OH_Rdb_Transaction实例，开启事务。 |
-| int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType type) | 设置事务对象类型。 |
+| int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type) | 设置事务对象类型。 |
 | int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId) | 向目标表中插入一行数据。 |
 | int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, Rdb_ConflictResolution resolution, int64_t *rowId) | 将一行数据插入到目标表中，支持冲突解决。 |
 | int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates, Rdb_ConflictResolution resolution, int64_t *changes) | 根据指定条件更新数据库中的数据，并支持冲突解决。 |
@@ -124,7 +124,7 @@ libnative_rdb_ndk.z.so
    // 创建OH_Rdb_ConfigV2对象
    OH_Rdb_ConfigV2* config = OH_Rdb_CreateConfig();
    // 该路径为应用沙箱路径
-   // 数据库文件创建位置将位于沙箱路径 /data/storeage/el2/database/rdb/RdbTest.db
+   // 数据库文件创建位置将位于沙箱路径 /data/storage/el2/database/rdb/RdbTest.db
    OH_Rdb_SetDatabaseDir(config, "/data/storage/el2/database");
    // 数据库文件名
    OH_Rdb_SetStoreName(config, "RdbTest.db");
@@ -146,7 +146,7 @@ libnative_rdb_ndk.z.so
 
    ```c
     // 可设置自定义数据库路径
-    // 数据库文件创建位置将位于沙箱路径 /data/storeage/el2/database/a/b/RdbTest.db
+    // 数据库文件创建位置将位于沙箱路径 /data/storage/el2/database/a/b/RdbTest.db
     OH_Rdb_SetCustomDir(config, "../a/b");
     // 可设置为只读模式打开数据库
     OH_Rdb_SetReadOnly(config, true);

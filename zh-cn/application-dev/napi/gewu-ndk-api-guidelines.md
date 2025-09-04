@@ -1,5 +1,10 @@
 # 格物开发指导
-
+<!--Kit: Kernel Enhance Kit-->
+<!--Subsystem: Kernel-->
+<!--Owner: @gatieme-->
+<!--Designer: @tanyihua-->
+<!--Tester: @panny060-->
+<!--Adviser: @fang-jinxu-->
 ## 场景介绍
 
 从API version 20开始支持。端侧推理场景具有保障用户数据隐私、部署成本低、时延低、不受网络影响的高可用性等优点。但是，相比于云侧推理而言，端侧推理也面临着更大的挑战，因为端侧设备的内存资源受限、算力受限、对功耗敏感，并且还需要在运行端侧推理业务时保障用户体验、不卡顿。为了应对端侧推理的这些挑战，格物服务提供QoS感知的推理加速和资源管理优化能力。本文将指导开发者使用格物接口。
@@ -74,7 +79,7 @@ OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
 如果创建会话成功，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为`OH_QOS_GEWU_OK`，而`session`为创建出来的会话句柄。
 如果创建会话失败，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为错误原因，其中`OH_QOS_GEWU_NOMEM`表示没有足够的内存创建会话。
 
-**`OH_QoS_GewuDestroySession` **
+**`OH_QoS_GewuDestroySession`**
 
 描述
 

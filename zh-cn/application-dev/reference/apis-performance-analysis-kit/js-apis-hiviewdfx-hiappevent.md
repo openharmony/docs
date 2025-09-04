@@ -49,7 +49,7 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -59,6 +59,16 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 | 11102003 | Invalid row value. Possible caused by the row value is less than zero. |
 | 11102004 | Invalid size value. Possible caused by the size value is less than zero. |
 | 11102005 | Invalid timeout value. Possible caused by the timeout value is less than zero. |
+
+> **注意：**
+>
+> addWatcher接口涉及I/O操作。在对性能敏感的业务场景中，开发者应根据实际需要确定该接口是在主线程还是在子线程中调用。
+>
+> 如果选择在子线程中调用addWatcher，需要确保该子线程在整个接口使用周期内不会被销毁，以免影响接口的正常工作。
+>
+> 可参考[多线程并发概述](../../arkts-utils/multi-thread-concurrency-overview.md)，以实现在子线程中调用接口。
+>
+> 订阅接口addWatcher传入的名称name是唯一的，相同的name，后一次调用会覆盖前一次的订阅。
 
 **示例：**
 
@@ -180,7 +190,7 @@ removeWatcher(watcher: Watcher): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -207,11 +217,7 @@ hiAppEvent.removeWatcher(watcher);
 
 setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt;
 
-事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持[崩溃事件](../../dfx/hiappevent-watcher-crash-events.md)、[应用冻屏事件](../../dfx/hiappevent-watcher-freeze-events.md)和[资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)下的js内存泄漏。
-
->**注意：**
->
-> 从API version 20开始，支持[资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)下的js内存泄漏。
+事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -223,7 +229,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 | ------ | ------------------------------ | ---- | -------------- |
 | params | Record&lt;string, [ParamType](#paramtype12)&gt; | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符。中间字符必须为数字字符、字母字符或下划线字符。结尾字符必须为数字字符或字母字符。长度非空且不超过32个字符。<br>- 参数值为[ParamType](#paramtype12)类型，参数值长度需在1024个字符以内。<br>- 参数个数需在64个以内。 |
 | domain | string                        | 是 | 事件领域。事件领域可支持关联应用事件和系统事件（hiAppEvent.domain.OS）。 |
-| name   | string                        | 否 | 事件名称。默认为空字符串，空字符串表示关联事件领域下的所有事件名称。事件名称可支持关联应用事件和系统事件，其中系统事件仅支持关联崩溃事件（hiAppEvent.event.APP_CRASH）和应用冻屏事件（hiAppEvent.event.APP_FREEZE）。 |
+| name   | string                        | 否 | 事件名称。默认为空字符串，空字符串表示关联事件领域下的所有事件名称。事件名称可支持关联应用事件和系统事件，其中系统事件仅支持关联：<br>- [崩溃事件](../../dfx/hiappevent-watcher-crash-events.md)（hiAppEvent.event.APP_CRASH）<br>- [应用冻屏事件](../../dfx/hiappevent-watcher-freeze-events.md)（hiAppEvent.event.APP_FREEZE）<br>- [资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)（hiAppEvent.event.RESOURCE_OVERLIMIT）。<br>**注意**：从API version 20开始，支持[资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)。 |
 
 **返回值：**
 
@@ -233,7 +239,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -269,7 +275,10 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 
 setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&lt;void&gt;
 
-事件相关的配置参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，设置事件相关的配置参数。<br/>不同的事件有不同的配置项，目前仅支持MAIN_THREAD_JANK（参数配置详见[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义参数)）和APP_CRASH（参数配置详见[崩溃日志配置参数设置介绍](../../dfx/hiappevent-watcher-crash-events.md#崩溃日志规格自定义参数设置)）事件。
+事件相关的配置参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，设置事件相关的配置参数。<br />不同的事件有不同的配置项，目前仅支持以下事件：
+- MAIN_THREAD_JANK（参数配置详见[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义参数)）
+- APP_CRASH（参数配置详见[崩溃日志配置参数设置介绍](../../dfx/hiappevent-watcher-crash-events.md#崩溃日志规格自定义参数设置)）
+- RESOURCE_OVERLIMIT（参数配置详见[资源泄漏事件检测](../../dfx/hiappevent-watcher-resourceleak-events.md#自定义规格设置)）
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -280,7 +289,7 @@ setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&l
 | 参数名 | 类型                           | 必填 | 说明           |
 | ------ | ------------------------------ | ---- | -------------- |
 | name   | string                        | 是 | 事件名称。 |
-| config | Record<string, ParamType> | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，要求非空，且参数名长度需在1024个字符以内。<br>- 参数值为ParamType类型，参数值长度需在1024个字符以内。 |
+| config | Record<string, [ParamType](#paramtype12)> | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，要求非空，且参数名长度需在1024个字符以内。<br>- 参数值为ParamType类型，参数值长度需在1024个字符以内。 |
 
 **返回值：**
 
@@ -290,7 +299,7 @@ setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -423,7 +432,7 @@ setSize(size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
@@ -457,7 +466,7 @@ setRow(size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
@@ -527,11 +536,11 @@ let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 
 | 名称      | 类型     | 只读 | 可选 | 说明                           |
 | --------- | -------- | ---- | ---- | ------------------------------ |
-| packageId | number   | 否 | 否   | 事件包ID，从0开始自动递增。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
-| row       | number   | 否 | 否   | 事件包的事件数量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
-| size      | number   | 否 | 否   | 事件包的事件大小，单位为byte。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| data      | string[] | 否 | 否   | 事件包的事件信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
-| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 否 | 否   | 事件对象集合。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| packageId | number   | 否 | 否   | 事件包ID，从0开始自动递增。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。    |
+| row       | number   | 否 | 否   | 事件包的事件数量。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。             |
+| size      | number   | 否 | 否   | 事件包的事件大小，单位为byte。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 |
+| data      | string[] | 否 | 否   | 事件包的事件信息。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。             |
+| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 否 | 否   | 事件对象集合。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
 
 
 ## AppEventGroup<sup>11+</sup>
@@ -567,7 +576,7 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -579,6 +588,12 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 | 11101004 | Invalid string length of the event parameter. |
 | 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 | 11101006 | Invalid array length of the event parameter. |
+
+> **说明：**
+>
+> write接口涉及I/O操作，执行时间通常在毫秒级别。因此，开发者应根据实际业务需求，确定该接口是在主线程还是在子线程中调用。
+>
+> 可参考[多线程并发概述](../../arkts-utils/multi-thread-concurrency-overview.md)，以实现在子线程中调用接口。
 
 **示例：**
 
@@ -631,7 +646,7 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -643,6 +658,12 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 | 11101004 | Invalid string length of the event parameter. |
 | 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 | 11101006 | Invalid array length of the event parameter. |
+
+> **说明：**
+>
+> write接口涉及I/O操作，执行时间通常在毫秒级别。因此，开发者应根据实际业务需求，确定该接口是在主线程还是在子线程中调用。
+>
+> 可参考[多线程并发概述](../../arkts-utils/multi-thread-concurrency-overview.md)，以实现在子线程中调用接口。
 
 **示例：**
 
@@ -695,6 +716,8 @@ addProcessor(processor: Processor): number
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -744,6 +767,8 @@ addProcessorFromConfig(processorName: string, configName?: string): Promise&lt;n
 
 **错误码：**
 
+以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
 | 11105001     | Invalid parameter value. Possible causes: 1. Incorrect parameter length; 2. Incorrect parameter format. |
@@ -776,9 +801,11 @@ removeProcessor(id: number): void
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------| ------- | ---- | --------------------------- |
-| id    | number  | 是   | 上报事件数据处理者ID。值大于0。由调用[addProcessor](#hiappeventaddprocessor11)接口返回值所得。|
+| id    | number  | 是   | 上报事件数据处理者ID。值大于0。由调用[addProcessor](#hiappeventaddprocessor11)或[addProcessorFromConfig](#hiappeventaddprocessorfromconfig20)接口返回值所得。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
@@ -821,6 +848,8 @@ setUserId(name: string, value: string): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -862,6 +891,8 @@ getUserId(name: string): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -899,6 +930,8 @@ setUserProperty(name: string, value: string): void
 | value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null或空字符串时，则清除用户属性。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
@@ -940,6 +973,8 @@ getUserProperty(name: string): string
 | string | 用户属性的值。没有查到返回空字符串。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
@@ -995,7 +1030,7 @@ configure(config: ConfigOption): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[应用事件打点错误码](errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1127,19 +1162,19 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 
 | 名称                      | 类型   | 只读   | 说明                 |
 | ------------------------- | ------ | ------ | -------------------- |
-| USER_LOGIN                | string | 是 | 用户登录事件。预留的应用事件名称常量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| USER_LOGOUT               | string | 是 | 用户登出事件。预留的应用事件名称常量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| DISTRIBUTED_SERVICE_START | string | 是 | 分布式服务启动事件。预留的应用事件名称常量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| APP_CRASH<sup>11+</sup>   | string | 是 | 应用崩溃事件。系统事件名称常量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| APP_FREEZE<sup>11+</sup>  | string | 是 | 应用冻屏事件。系统事件名称常量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| APP_LAUNCH<sup>12+</sup>  | string | 是 | 应用启动耗时事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| SCROLL_JANK<sup>12+</sup> | string | 是 | 应用滑动丢帧事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| CPU_USAGE_HIGH<sup>12+</sup> | string | 是 | 应用CPU高负载事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| BATTERY_USAGE<sup>12+</sup> | string | 是 | 应用24h功耗器件分解统计事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 是 | 应用资源泄露事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| ADDRESS_SANITIZER<sup>12+</sup> | string | 是 | 应用地址越界事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| MAIN_THREAD_JANK<sup>12+</sup> | string | 是 | 应用主线程超时事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| APP_KILLED<sup>20+</sup> | string | 是 | 应用查杀事件。系统事件名称常量。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| USER_LOGIN                | string | 是 | 用户登录事件。预留的应用事件名称常量。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。       |
+| USER_LOGOUT               | string | 是 | 用户登出事件。预留的应用事件名称常量。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。       |
+| DISTRIBUTED_SERVICE_START | string | 是 | 分布式服务启动事件。预留的应用事件名称常量。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 |
+| APP_CRASH<sup>11+</sup>   | string | 是 | 应用崩溃事件。系统事件名称常量。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。       |
+| APP_FREEZE<sup>11+</sup>  | string | 是 | 应用冻屏事件。系统事件名称常量。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。       |
+| APP_LAUNCH<sup>12+</sup>  | string | 是 | 应用启动耗时事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。   |
+| SCROLL_JANK<sup>12+</sup> | string | 是 | 应用滑动丢帧事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。   |
+| CPU_USAGE_HIGH<sup>12+</sup> | string | 是 | 应用CPU高负载事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
+| BATTERY_USAGE<sup>12+</sup> | string | 是 | 应用24h功耗器件分解统计事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 是 | 应用资源泄漏事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
+| ADDRESS_SANITIZER<sup>12+</sup> | string | 是 | 应用地址越界事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
+| MAIN_THREAD_JANK<sup>12+</sup> | string | 是 | 应用主线程超时事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
+| APP_KILLED<sup>20+</sup> | string | 是 | 应用查杀事件。系统事件名称常量。<br>**原子化服务API：** 从API version 20开始，该参数支持在原子化服务中使用。 |
 
 
 ## hiAppEvent.param

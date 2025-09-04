@@ -11415,6 +11415,7 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function createCsrTest() {
   let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';

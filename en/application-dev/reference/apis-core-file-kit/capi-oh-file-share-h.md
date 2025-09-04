@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie; @hongjin-li_admin-->
-<!--SE: @chenxi0605; @JerryH1011-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @chenxi0605; @JerryH1011-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -21,10 +22,10 @@ Provides APIs for persisting permissions, activating or deactivating persistent 
 
 ### Structs
 
-| Name                                                                          | typedef Keyword| Description|
-|------------------------------------------------------------------------------| -- | -- |
+| Name| typedef Keyword| Description|
+| -- | -- | -- |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) | FileShare_PolicyErrorResult | Represents the permission policy error result.|
-| [FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md)               | FileShare_PolicyInfo | Represents the permission policy information.|
+| [FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) | FileShare_PolicyInfo | Represents the permission policy information.|
 
 ### Enums
 
@@ -102,12 +103,12 @@ Persists the permissions on files or directories.
 
 **Parameters**
 
-| Name                                                                                  | Description|
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | Pointer to a **FileShare_PolicyInfo** instance.|
-| unsigned int policyNum                                                                | Number of policies in the **FileShare_PolicyInfo** array.|
+| Name| Description|
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | Pointer to a **FileShare_PolicyInfo** instance.|
+| unsigned int policyNum | Number of policies in the **FileShare_PolicyInfo** array.|
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | Double pointer to the **FileShare_PolicyErrorResult** array. Use **OH_FileShare_ReleasePolicyErrorResult()** to release the memory allocated.|
-| unsigned int *resultNum                                                               | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
+| unsigned int *resultNum | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
 
 **Returns**
 
@@ -132,12 +133,12 @@ Revokes the permissions from files or directories.
 
 **Parameters**
 
-| Name                                                                                  | Description|
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | Pointer to a **FileShare_PolicyInfo** instance.|
-| unsigned int policyNum                                                                | Number of policies in the **FileShare_PolicyInfo** array.|
+| Name| Description|
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | Pointer to a **FileShare_PolicyInfo** instance.|
+| unsigned int policyNum | Number of policies in the **FileShare_PolicyInfo** array.|
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | Double pointer to the **FileShare_PolicyErrorResult** array. Use **OH_FileShare_ReleasePolicyErrorResult()** to release the memory allocated.|
-| unsigned int *resultNum                                                               | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
+| unsigned int *resultNum | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
 
 **Returns**
 
@@ -162,12 +163,12 @@ Activates the persistent permissions on files or directories.
 
 **Parameters**
 
-| Name                                                                                  | Description|
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | Pointer to a **FileShare_PolicyInfo** instance.|
-| unsigned int policyNum                                                                | Number of policies in the **FileShare_PolicyInfo** array.|
+| Name| Description|
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | Pointer to a **FileShare_PolicyInfo** instance.|
+| unsigned int policyNum | Number of policies in the **FileShare_PolicyInfo** array.|
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | Double pointer to the **FileShare_PolicyErrorResult** array. Use **OH_FileShare_ReleasePolicyErrorResult()** to release the memory allocated.|
-| unsigned int *resultNum                                                               | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
+| unsigned int *resultNum | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
 
 **Returns**
 
@@ -192,12 +193,12 @@ Deactivates the persistent permissions on files or directories.
 
 **Parameters**
 
-| Name                                                                                  | Description|
-|---------------------------------------------------------------------------------------| -- |
-| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies        | Pointer to a **FileShare_PolicyInfo** instance.|
-| unsigned int policyNum                                                                | Number of policies in the **FileShare_PolicyInfo** array.|
+| Name| Description|
+| -- | -- |
+| [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | Pointer to a **FileShare_PolicyInfo** instance.|
+| unsigned int policyNum | Number of policies in the **FileShare_PolicyInfo** array.|
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) **result | Double pointer to the **FileShare_PolicyErrorResult** array. Use **OH_FileShare_ReleasePolicyErrorResult()** to release the memory allocated.|
-| unsigned int *resultNum                                                               | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
+| unsigned int *resultNum | Pointer to the size of the **FileShare_PolicyErrorResult** array.|
 
 **Returns**
 
@@ -222,12 +223,12 @@ Checks the persistent permissions on files or directories.
 
 **Parameters**
 
-| Name                                                                           | Description|
-|--------------------------------------------------------------------------------| -- |
+| Name| Description|
+| -- | -- |
 | [const FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md) *policies | Pointer to a **FileShare_PolicyInfo** instance.|
-| unsigned int policyNum                                                         | Number of policies in the **FileShare_PolicyInfo** array.|
-| bool **result                                                                  | Double pointer to the check result obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated.|
-| unsigned int *resultNum                                                        | Pointer to the size of the check result array.|
+| unsigned int policyNum | Number of policies in the **FileShare_PolicyInfo** array.|
+| bool **result | Double pointer to the check result obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated.|
+| unsigned int *resultNum | Pointer to the size of the check result array.|
 
 **Returns**
 
@@ -250,7 +251,7 @@ Releases the memory, to which **FileShare_PolicyErrorResult** points.
 
 **Parameters**
 
-| Name                                                                                      | Description|
-|-------------------------------------------------------------------------------------------| -- |
+| Name| Description|
+| -- | -- |
 | [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md) *errorResult | Pointer to a **FileShare_PolicyErrorResult** instance.|
-| unsigned int resultNum                                                                    | Size of the **FileShare_PolicyErrorResult** array.|
+| unsigned int resultNum | Size of the **FileShare_PolicyErrorResult** array.|

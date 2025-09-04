@@ -1,5 +1,12 @@
 # @ohos.usbManager.serial (Serial Port Management) (system API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 This module provides the serial port management features, including enabling and disabling the serial port of the device, writing and reading data, setting and obtaining the configuration parameters of the serial port, and managing permissions.
 
 > **NOTE**
@@ -67,7 +74,7 @@ let portId: number = portList[0].portId;
 // Add permissions to the serial port.
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 bundleManager.getBundleInfoForSelf(bundleFlags).then((bundleInfo) => {
-  console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSONstringify(bundleInfo));
+  console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(bundleInfo));
   let tokenId = bundleInfo.appInfo.accessTokenId;
   try {
     serialManager.addSerialRight(tokenId, portId);

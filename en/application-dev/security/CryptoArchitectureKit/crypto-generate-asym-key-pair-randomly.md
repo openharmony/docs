@@ -1,5 +1,12 @@
 # Randomly Generating an Asymmetric Key Pair (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 This topic uses RSA and SM2 as an example to describe how to generate an asymmetric key pair (**KeyPair**) and obtain the binary data.
 
 The **KeyPair** object created can be used for subsequent encryption and decryption operations, and the binary data can be used for key storage and transfer.
@@ -97,7 +104,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
   }
   ```
 
-- Example: Randomly generate an SM2 key pair (using the synchronous API [generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)).
+- Example: Randomly generate an RSA key pair (using the synchronous API [generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)).
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 

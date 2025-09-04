@@ -25,13 +25,13 @@ import { i18n } from '@kit.LocalizationKit';
 
 ## System<sup>9+</sup>
 
+提供系统属性获取或设置的能力。
+
 ### setSystemLanguage<sup>9+</sup>
 
 static setSystemLanguage(language: string): void
 
 设置系统语言。
-
-若要监听系统语言变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
 
 **系统接口**：此接口为系统接口。
 
@@ -57,7 +57,7 @@ static setSystemLanguage(language: string): void
 
 **示例：**
   ```ts
-  import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 设置系统语言
   try {
@@ -66,25 +66,6 @@ static setSystemLanguage(language: string): void
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
-
-  // 订阅公共事件
-  let subscriber: commonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
-    events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
-  };
-  commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => { // 创建订阅者
-      console.info("createSubscriber");
-      subscriber = commonEventSubscriber;
-      commonEventManager.subscribe(subscriber, (err, data) => {
-        if (err) {
-          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
-          return;
-        }
-        console.info("the subscribed event has occurred."); // 订阅的事件发生时执行
-      })
-  }).catch((err: BusinessError) => {
-      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-  });
   ```
 
 ### setSystemRegion<sup>9+</sup>
@@ -972,6 +953,8 @@ try {
 
 ## SystemLocaleManager<sup>10+</sup>
 
+提供语言、地区和时区信息排序的能力。
+
 ### constructor<sup>10+</sup>
 
 constructor()
@@ -1120,7 +1103,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
   try {
     let timeZoneCityItemArray: Array<i18n.TimeZoneCityItem> = i18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
-        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
+        console.info(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
             ", " + timeZoneCityItemArray[i].offset + "\r\n");
     }
   } catch(error) {

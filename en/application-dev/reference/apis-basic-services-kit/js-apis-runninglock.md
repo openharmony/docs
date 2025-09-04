@@ -1,4 +1,11 @@
-# @ohos.runningLock (Running Lock)
+# @ohos.runningLock (RunningLock)
+
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
 
 The **runningLock** module provides APIs for creating, querying, holding, and releasing running locks.
 
@@ -16,7 +23,7 @@ import {runningLock} from '@kit.BasicServicesKit';
 
 isSupported(type: RunningLockType): boolean
 
-Checks whether the specified type of running locks is supported.
+Checks whether a specified type of **RunningLock** is supported.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -26,7 +33,7 @@ Checks whether the specified type of running locks is supported.
 | ------ | ----------------------------------- | ---- | -------------------- |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the running lock. The value must be an enum.|
 
-**Return value**
+**Returns**
 
 | Type   | Description                                   |
 | ------- | --------------------------------------- |
@@ -65,8 +72,8 @@ Creates a **RunningLock** object.
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| name     | string                                     | Yes  | Name of the **RunningLock** object. The value must be a string.                        |
-| type     | [RunningLockType](#runninglocktype)        | Yes  | Type of the **RunningLock** object. The value must be an enum.                |
+| name     | string                                     | Yes  | Name of the **RunningLock** object. The value must be a string.                                                  |
+| type     | [RunningLockType](#runninglocktype)        | Yes  | Type of the **RunningLock** object. The value must be an enum.                                          |
 | callback | AsyncCallback<[RunningLock](#runninglock)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the created **RunningLock** object. Otherwise, **err** is an error object. **AsyncCallback** has encapsulated an API of the **RunningLock** class.|
 
 **Error codes**
@@ -105,10 +112,10 @@ Creates a **RunningLock** object.
 
 | Name| Type                               | Mandatory| Description              |
 | ------ | ----------------------------------- | ---- | ------------------ |
-| name   | string                              | Yes  | Name of the **RunningLock** object. The value must be a string. |
-| type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object. The value must be an enum. |
+| name   | string                              | Yes  | Name of the **RunningLock** object. The value must be a string.|
+| type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object. The value must be an enum.|
 
-**Return value**
+**Returns**
 
 | Type                                      | Description                                |
 | ------------------------------------------ | ------------------------------------ |
@@ -142,7 +149,7 @@ isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boo
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether the specified type of running locks is supported. This API uses an asynchronous callback to return the result.
+Checks whether a specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -150,8 +157,8 @@ Checks whether the specified type of running locks is supported. This API uses a
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [RunningLockType](#runninglocktype) | Yes  | Type of the running lock. |
-| callback | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the query result obtained, where the value **true** indicates that the specified type of the running lock is supported and **false** indicates the opposite. Otherwise, **err** is an error object. |
+| type     | [RunningLockType](#runninglocktype) | Yes  | Type of the running lock.                                        |
+| callback | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the query result obtained, where the value **true** indicates that the specified type of the running lock is supported and **false** indicates the opposite. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -171,7 +178,7 @@ isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean>
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether the specified type of the running lock is supported. This API uses a promise to return the result.
+Checks whether a specified type of **RunningLock** is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
@@ -181,7 +188,7 @@ Checks whether the specified type of the running lock is supported. This API use
 | ------ | ----------------------------------- | ---- | -------------------- |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the running lock.|
 
-**Return value**
+**Returns**
 
 | Type                  | Description                                                |
 | ---------------------- | ---------------------------------------------------- |
@@ -250,7 +257,7 @@ Creates a **RunningLock** object.
 | name   | string                              | Yes  | Name of the **RunningLock** object.        |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object to be created.|
 
-**Return value**
+**Returns**
 
 | Type                                      | Description                                |
 | ------------------------------------------ | ------------------------------------ |
@@ -386,7 +393,7 @@ Checks the hold status of the **RunningLock** object.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Return value**
+**Returns**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
@@ -485,7 +492,7 @@ Checks the hold status of the **RunningLock** object.
 
 **System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Return value**
+**Returns**
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | boolean | The value **true** indicates that the **RunningLock** object is held; and the value **false** indicates that the **RunningLock** object is released.|

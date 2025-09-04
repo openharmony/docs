@@ -131,7 +131,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        ```ts
        let shaderMaterialPromise = await rf.createMaterial({ name: "shaderMat" }, MaterialType.SHADER);
        let shaderMat = shaderMaterialPromise as ShaderMaterial;
-       // 绑定自定义Shader代码示例（自定义Shader）
+       // 绑定自定义Shader代码示例（创建shader资源，路径和文件名可根据项目实际资源自定义）
        let shader = await rf.createShader({ name: "MyShader", uri: $rawfile("shaders/my_shader.shader") });
        shaderMat.colorShader = shader;
        ```
@@ -142,6 +142,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        let pbrMaterialPromise = await rf.createMaterial({ name: "pbrMat" }, MaterialType.METALLIC_ROUGHNESS);
        let pbrMat = pbrMaterialPromise as MetallicRoughnessMaterial;
        // 设置基础颜色贴图和因子
+       // 加载图片资源，路径和文件名可根据项目实际资源自定义，但PBR材质贴图类型必须与材质属性匹配
        let baseColorImage = await rf.createImage({ name: "baseColorTex", uri: $rawfile("textures/baseColor.png") });
        pbrMat.baseColor.image = baseColorImage;
        pbrMat.baseColor.factor = { x: 1, y: 1, z: 1, w: 1 };
@@ -164,6 +165,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        不同属性的贴图内容通常不同，需分别创建；如多个材质共用相同贴图，可复用同一个Image实例以节省内存。所有材质属性中的factor各分量取值范围均为[0, 1]。
 
        ```ts
+       // 图片路径和文件名可根据项目实际资源自定义，但PBR材质贴图类型必须与材质属性匹配
        // 设置基础颜色贴图和颜色因子（支持透明通道）
        let baseColorImage = await rf.createImage({ name: "baseColorTex", uri: $rawfile("textures/baseColor.png") });
        pbrMat.baseColor.image = baseColorImage;
@@ -254,7 +256,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        let materialParams: SceneResourceParameters = { name: "material" };
        let material = await rf.createMaterial(materialParams, MaterialType.SHADER);
        let shaderMat = material as ShaderMaterial;
-       // 加载并绑定自定义Shader代码
+       // 加载并绑定自定义Shader代码（创建shader资源，路径和文件名可根据项目实际资源自定义）
        let shader = await rf.createShader({
          name: "shaderResource",
          uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
@@ -302,7 +304,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        let material = await rf.createMaterial(materialParams, MaterialType.METALLIC_ROUGHNESS);
        let pbrMat = material as MetallicRoughnessMaterial;
 
-       // 共享metallic-roughness贴图，可供多个材质复用，节省资源
+       // 加载共享的metallic-roughness贴图（可复用，节省资源），图片路径和文件名可根据项目实际资源自定义，但贴图类型必须与材质属性匹配
        let metallicImage = await rf.createImage({
          name: "materialTex",
          uri: $rawfile("gltf/DamagedHelmet/glTF/Default_metalRoughness.jpg")

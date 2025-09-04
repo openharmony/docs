@@ -10,6 +10,8 @@
 
 定义AVImageGenerator的枚举。
 
+**引用文件：** <multimedia/player_framework/avimage_generator_base.h>
+
 **库：** libavimage_generator.so
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator

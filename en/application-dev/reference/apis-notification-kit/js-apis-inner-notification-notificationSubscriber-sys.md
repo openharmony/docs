@@ -270,7 +270,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-## onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
+## onDoNotDisturbDateChange<sup>8+</sup> (deprecated)
 
 onDoNotDisturbDateChange?: (mode: notification.DoNotDisturbDate) => void
 
@@ -525,13 +525,13 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API.
 
-| Name           | Type                                                                | Readable| Writable| Description    |
+| Name           | Type                                                                | Read Only| Optional| Description    |
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
 | request         | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes | No | Notification content.|
-| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md) | Yes | No | Notification sorting information.|
-| reason          | number                                                             | Yes | No | Reason for deletion. The options are as follows:<br>**1**: The notification is deleted after being clicked.<br>**2**: The notification is deleted by the user.|
-| sound           | string                                                             | Yes | No | Sound used for notification.|
-| vibrationValues | Array\<number\>                                                    | Yes | No | Vibration used for notification.|
+| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md) | Yes | Yes | Notification sorting information.|
+| reason          | number                                                             | Yes | Yes | Reason for deletion. The options are as follows:<br>**1**: The notification is deleted after being clicked.<br>**2**: The notification is deleted by the user.|
+| sound           | string                                                             | Yes | Yes | Sound used for notification.|
+| vibrationValues | Array\<number\>                                                    | Yes | Yes | Vibration used for notification.|
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>
@@ -540,7 +540,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API.
 
-| Name  | Type   | Readable| Writable| Description            |
+| Name  | Type   | Read Only| Optional| Description            |
 | ------ | ------- | ---- | --- | ---------------- |
 | bundle | string  | Yes | No | Bundle name of the application.      |
 | uid    | number  | Yes | No | UID of the application.       |
@@ -553,13 +553,13 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API.
 
-| Name       | Type  | Readable| Writable| Description        |
+| Name       | Type  | Read Only| Optional| Description        |
 | ----------- | ------ | ---- | ---- | ------------ |
 | bundle      | string | Yes  | No  | Bundle name of the application.|
 | uid         | number | Yes  | No  | UID of the application. |
 | badgeNumber | number | Yes  | No  | Number of notifications displayed on the application icon.  |
-| instanceKey<sup>(deprecated)</sup>  | number | Yes  | No  | Key value of an application instance.  |
-| appInstanceKey<sup>15+</sup>  | string | Yes  | No  | Key value of an application instance.  |
+| instanceKey<sup>(deprecated)</sup>  | number | Yes  | Yes  | Key value of an application instance.  |
+| appInstanceKey<sup>15+</sup>  | string | Yes  | Yes  | Key value of an application instance.  |
 
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>

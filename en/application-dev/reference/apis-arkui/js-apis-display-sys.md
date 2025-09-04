@@ -1,4 +1,10 @@
 # @ohos.display (Display) (System API)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 The Display module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
@@ -34,7 +40,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.|
+|boolean | Whether there is a visible privacy window on the display. **true** if yes, **false** otherwise.|
 
 **Error codes**
 
@@ -89,7 +95,7 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating that the privacy mode of the display is changed.|
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. **true** if changed, **false** otherwise.|
 
 **Error codes**
 
@@ -130,7 +136,7 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating that the privacy mode of the display is changed.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite. If this parameter is not specified, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. **true** if changed, **false** otherwise. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -203,7 +209,7 @@ Sets the display mode of the foldable device, with the reason for the change spe
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | Yes  | Display mode.|
-| reason     | string    | No  | Reason for changing the display mode. If this parameter is not set, an empty string is used by default.|
+| reason     | string    | Yes  | Reason for changing the display mode. If this parameter is not set, an empty string is used by default.|
 
 **Error codes**
 
@@ -240,7 +246,7 @@ Sets whether to lock the current fold status of the foldable device.
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| locked     | boolean    | Yes  | Whether to lock the current fold status of the foldable device. The value **true** means to lock the current fold status, and **false** means the opposite.|
+| locked     | boolean    | Yes  | Whether to lock the current fold status of the foldable device. **true** to lock, **false** otherwise.|
 
 **Error codes**
 
@@ -383,9 +389,9 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ## Display
-Implements a **Display** instance, with properties and APIs defined.
+Implements a Display instance, with properties and APIs defined.
 
-Before calling any API in **Display**, you must use [getAllDisplays()](js-apis-display.md#displaygetalldisplays9) or [getDefaultDisplaySync()](js-apis-display.md#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
+Before calling any API in Display, you must use [getAllDisplays()](js-apis-display.md#displaygetalldisplays9) or [getDefaultDisplaySync()](js-apis-display.md#displaygetdefaultdisplaysync9) to obtain a Display instance.
 
 ### hasImmersiveWindow<sup>11+</sup>
 hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
@@ -400,7 +406,7 @@ Checks whether this display contains an immersive window. This API uses an async
 
 | Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the display contains an immersive window, and **false** means the opposite.|
+| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. **true** if the display contains an immersive window, **false** otherwise.|
 
 **Error codes**
 
@@ -409,7 +415,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -443,7 +449,7 @@ Checks whether this display contains an immersive window. This API uses a promis
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the display contains an immersive window, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. **true** if the display contains an immersive window, **false** otherwise.|
 
 **Error codes**
 
@@ -452,7 +458,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 

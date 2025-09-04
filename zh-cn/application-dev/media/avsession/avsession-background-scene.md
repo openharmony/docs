@@ -79,10 +79,4 @@ AVSession的接入开发请参考指南[应用接入AVSession场景介绍](avses
 
 如果应用本身没有后台播放业务，可以通过监听生命周期函数[onBackground](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)来判断应用是否已进入后台并主动停止播放。否则会受到AVSession与长时任务模块管控，对应用正常的播放业务造成影响。如需在应用回到前台时重启播放，可以通过监听生命周期函数[onForeground](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)来判断应用是否回到前台。
 
-## 完整示例
-
-[使用AVPlayer后台播放](https://gitcode.com/harmonyos_samples/video-player)
-- 本示例主要展示通过系统播放器AVPlayer实现视频类应用的开发，功能包括后台播放和系统播控中心的交互。
-
-[使用AudioRenderer后台播放](https://gitcode.com/harmonyos_samples/audio-interaction)
-- 本场景解决方案主要面向前台音频开发人员。指导开发者基于AudioRenderer开发音频播控功能。功能包括后台播放、系统播控中心的交互、适配不同类型的焦点打断策略、切换路由发声设备、切换输出设备等。
+<!--RP1--><!--RP1End-->

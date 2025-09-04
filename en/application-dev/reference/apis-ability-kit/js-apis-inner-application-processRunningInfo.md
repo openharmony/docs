@@ -1,4 +1,10 @@
 # ProcessRunningInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 <!--deprecated_code_no_check-->
 
 The module defines the running information of a process.

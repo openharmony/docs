@@ -10,7 +10,7 @@
 
 ## 配置深色模式启动页
 <!--RP1-->
-启动页深浅色模式跟随系统深浅色模式。
+启动页深浅色模式仅跟随系统深浅色模式。
 <!--RP1End-->
 
 以[配置增强启动页](launch-page-config.md#配置增强启动页)的背景色为例：startWindowBackgroundColor字段值为"$color:start_window_background"，按如下方式在resources目录下分别配置字段值对应的颜色值，即可对深色模式生效。其他字段配置方式与背景色相同，在resources目录中配置其字段值对应的资源即可。

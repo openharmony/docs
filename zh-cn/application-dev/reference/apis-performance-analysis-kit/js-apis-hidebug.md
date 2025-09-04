@@ -212,7 +212,7 @@ let cpuUsage: number = hidebug.getCpuUsage();
 
 ## hidebug.getServiceDump<sup>9+</sup>
 
-getServiceDump(serviceid: number, fd: number, args: Array\<string>) : void
+getServiceDump(serviceid: number, fd: number, args: Array\<string>): void
 
 获取系统服务信息。
 
@@ -226,7 +226,7 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>) : void
 | -------- | ------ | ---- |----------------------------|
 | serviceid | number | 是   | 基于用户输入的service id获取系统服务信息。 |
 | fd | number | 是   | 文件描述符，接口会向该fd写入数据。         |
-| args | Array&lt;string&gt; | 是   | 系统服务的dump接口参数列表。           |
+| args | Array&lt;string&gt; | 是   | 系统服务的dump接口参数列表。string长度的最大值为254。 |
 
 **错误码：**
 
@@ -265,7 +265,7 @@ if (fileFd >= 0) {
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
 
-startJsCpuProfiling(filename: string) : void
+startJsCpuProfiling(filename: string): void
 
 启动虚拟机Profiling方法跟踪，`startJsCpuProfiling(filename: string)`方法的调用需要与`stopJsCpuProfiling()`方法的调用一一对应，先开启后关闭，请避免重复开启或重复关闭的调用方式，否则会接口调用异常。
 
@@ -275,7 +275,7 @@ startJsCpuProfiling(filename: string) : void
 
 | 参数名   | 类型   | 必填 | 说明                                               |
 | -------- | ------ | ---- |--------------------------------------------------|
-| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。 |
+| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。string长度的最大值为128。 |
 
 **错误码：**
 
@@ -302,7 +302,7 @@ try {
 
 ## hidebug.stopJsCpuProfiling<sup>9+</sup>
 
-stopJsCpuProfiling() : void
+stopJsCpuProfiling(): void
 
 停止虚拟机Profiling方法跟踪，`stopJsCpuProfiling()`方法的调用需要与`startJsCpuProfiling(filename: string)`方法的调用一一对应，先开启后关闭，请避免重复开启或重复关闭的调用方式，否则会接口调用异常。
 
@@ -325,7 +325,7 @@ try {
 
 ## hidebug.dumpJsHeapData<sup>9+</sup>
 
-dumpJsHeapData(filename: string) : void
+dumpJsHeapData(filename: string): void
 
 虚拟机堆导出。
 
@@ -339,7 +339,7 @@ dumpJsHeapData(filename: string) : void
 
 | 参数名   | 类型   | 必填 | 说明                                            |
 | -------- | ------ | ---- | ----------------------------------------------- |
-| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。 |
+| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。string长度的最大值为128。 |
 
 **错误码：**
 
@@ -364,7 +364,7 @@ try {
 
 ## hidebug.startProfiling<sup>(deprecated)</sup>
 
-startProfiling(filename: string) : void
+startProfiling(filename: string): void
 
 > **说明：**
 > 
@@ -378,7 +378,7 @@ startProfiling(filename: string) : void
 
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
-| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。 |
+| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。string长度的最大值为128。|
 
 **示例：**
 
@@ -394,7 +394,7 @@ hidebug.stopProfiling();
 
 ## hidebug.stopProfiling<sup>(deprecated)</sup>
 
-stopProfiling() : void
+stopProfiling(): void
 
 > **说明：**
 > 
@@ -418,7 +418,7 @@ hidebug.stopProfiling();
 
 ## hidebug.dumpHeapData<sup>(deprecated)</sup>
 
-dumpHeapData(filename: string) : void
+dumpHeapData(filename: string): void
 
 > **说明：**
 > 
@@ -432,7 +432,7 @@ dumpHeapData(filename: string) : void
 
 | 参数名   | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- |---------------------------------------------------------|
-| filename | string | 是   | 用户自定义的虚拟机堆转储文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。 |
+| filename | string | 是   | 用户自定义的虚拟机堆转储文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。string长度的最大值为128。 |
 
 **示例：**
 
@@ -499,7 +499,7 @@ for (let i = 0; i < appThreadCpuUsage.length; i++) {
 
 ## hidebug.startAppTraceCapture<sup>12+</sup>
 
-startAppTraceCapture(tags: number[], flag: TraceFlag, limitSize: number) : string
+startAppTraceCapture(tags: number[], flag: TraceFlag, limitSize: number): string
 
 该接口补充了[hitrace](../../dfx/hitrace.md)功能，开发者可通过该接口完成指定范围的trace自动化采集。由于该接口中trace采集过程中消耗的性能与需要采集的范围成正相关，建议开发者在使用该接口前，通过hitrace命令抓取应用的trace日志，从中筛选出所需trace采集的关键范围，以提高该接口性能。
 
@@ -511,7 +511,7 @@ startAppTraceCapture(tags: number[], flag: TraceFlag, limitSize: number) : strin
 
 预期trace采集时长：开发者根据分析的故障场景自行决定，单位秒。
 
-trace单位流量：应用每秒产生的trace大小，系统推荐值为300Kb/s，建议开发者采用自身应用的实测值，单位Kb/s。
+trace单位流量：应用每秒产生的trace大小，系统推荐值为300KB/s，建议开发者采用自身应用的实测值，单位KB/s。
 
 trace单位流量实测方法：limitSize设置为最大值500M，调用startAppTraceCapture接口，在应用上操作N秒后，调用stopAppTraceCapture停止采集，然后查看trace大小S（Kb）。那么trace单位流量 = S/N（Kb/s）。
 
@@ -565,7 +565,7 @@ try {
 
 ## hidebug.stopAppTraceCapture<sup>12+</sup>
 
-stopAppTraceCapture() : void
+stopAppTraceCapture(): void
 
 停止应用trace采集。调用前，需先调用'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集。关闭前未开启或重复关闭会导致接口异常。
 
@@ -604,7 +604,7 @@ try {
 
 ## hidebug.getAppMemoryLimit<sup>12+</sup>
 
-getAppMemoryLimit() : MemoryLimit
+getAppMemoryLimit(): MemoryLimit
 
 获取应用程序进程的内存限制。
 
@@ -626,7 +626,7 @@ let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 
 ## hidebug.getSystemCpuUsage<sup>12+</sup>
 
-getSystemCpuUsage() : number
+getSystemCpuUsage(): number
 
 获取系统的CPU资源占用情况。
 
@@ -666,7 +666,7 @@ try {
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
 
-setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
+setAppResourceLimit(type: string, value: number, enableDebugLog: boolean): void
 
 设置应用的文件描述符数量、线程数量、JS内存或Native内存资源限制。
 
@@ -746,15 +746,15 @@ console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativ
 
 getAppNativeMemInfoAsync(): Promise&lt;NativeMemInfo&gt;
 
-使用异步方式获取应用进程内存信息。读取/proc/{pid}/smaps_rollup和/proc/{pid}/statm节点的数据。
+读取/proc/{pid}/smaps_rollup和/proc/{pid}/statm节点的数据以获取应用进程内存信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
-| 类型                                               | 说明                      |
-|--------------------------------------------------| -------------------------- |
-| Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | promise对象，调用结束后返回应用进程内存信息。 |
+| 类型                                               | 说明                    |
+|--------------------------------------------------| --------------------- |
+| Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | promise对象，返回应用进程内存信息。 |
 
 **示例**
 
@@ -863,7 +863,7 @@ getVMRuntimeStat(item: string): number
 
 | 参数名   | 类型   | 必填 | 说明          |
 | -------- | ------ | ---- |-------------|
-| item | string | 是   | 需要获取GC信息的类型。 |
+| item | string | 是   | 需要获取GC信息的类型，详见输入参数与返回值说明。 |
 
 **返回值：**
 
@@ -1085,7 +1085,7 @@ console.info(`isDebugState = ${hidebug.isDebugState()}`)
 
 getGraphicsMemory(): Promise&lt;number&gt;
 
-使用异步方式获取应用显存大小。
+获取应用显存大小，使用Promise异步回调。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1093,9 +1093,9 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型                    | 说明                           |
-|-----------------------|------------------------------|
-| Promise&lt;number&gt; | promise对象，调用结束后返回应用显存大小，单位为KB。 |
+| 类型                    | 说明                        |
+|-----------------------|---------------------------|
+| Promise&lt;number&gt; | promise对象，返回应用显存大小，单位为KB。 |
 
 **错误码：**
 
@@ -1159,7 +1159,7 @@ try {
 
 dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 
-为当前线程转储虚拟机的原始堆快照，生成的rawheap文件路径将使用Promise进行异步回调。所生成的文件可通过[rawheap-translator工具](../../tools/rawheap-translator.md)将所生成文件转化为heapsnapshot文件进行解析。
+为当前线程转储虚拟机的原始堆快照，并生成的rawheap文件，该文件可通过[rawheap-translator工具](../../tools/rawheap-translator.md)将所生成文件转化为heapsnapshot文件进行解析。生成的文件路径使用Promise进行异步回调。
 
 > **注意：**
 >
@@ -1213,16 +1213,16 @@ hidebug.dumpJsRawHeapData().then((filePath: string) => {
 
 enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 
-使能GWP-Asan，用于检测堆内存使用中的非法行为。
+使能GWP-ASan，用于检测堆内存使用中的非法行为。
 
-该接口主要用于动态配置并启用GWP-Asan，以适配应用自定义的GWP-Asan检测策略。配置在应用重新启动后生效。
+该接口主要用于动态配置并启用GWP-ASan，以适配应用自定义的GWP-ASan检测策略。配置在应用重新启动后生效。
 
-更多关于GWP-Asan的说明，请参见[使用GWP-Asan检测内存错误](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)。
+更多关于GWP-ASan的说明，请参见[使用GWP-ASan检测内存错误](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)。
 
 > **说明**：
 > 
-> 1. 若设备运行期间已使能超过20个应用，调用该接口将会失败，并抛出错误码。
-> 2. 为避免应用异常退出，请务必使用try-catch捕获异常。
+> 1. 若设备运行期间通过本接口设置的GWP-ASan应用数量超过配额限制，调用该接口将会失败并抛出错误码。请使用try-catch捕获异常，以避免应用异常退出。
+> 2. 设备重启后，本接口设置的GWP-ASan参数将会失效。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -1230,8 +1230,8 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 
 | 参数名   | 类型   | 必填 | 说明   |
 |---------|---------|--------|-----|
-|options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-Asan配置项。如果未进行设置，则会使用默认参数。|
-|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数，单位：天。|
+| options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-ASan配置项。未设置时，使用默认参数。|
+| duration | number | 否 | GWP-ASan持续时间，单位为天，默认值为7。需传入大于0的正整数。 |
 
 **错误码**：
 
@@ -1256,27 +1256,27 @@ let duration: number = 4;
 
 try {
   hidebug.enableGwpAsanGrayscale(options, duration);
-  console.info(`Succeeded in enabling GWP-Asan.`);
+  console.info(`Succeeded in enabling GWP-ASan.`);
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.error(`Failed to enable GWP-Asan. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to enable GWP-ASan. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 ## GwpAsanOptions<sup>20+</sup>
-GWP-Asan配置项。可用于配置是否使能、采样频率，以及最大分配的插槽数。
+GWP-ASan配置项。可用于配置是否使能、采样频率，以及最大分配的插槽数。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称         | 类型  | 只读  | 可选 | 说明 |
 |--------------|------|-------|-------|-----|
-|alwaysEnabled | boolean | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
-|sampleRate    |number| 否  |是|GWP-Asan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。|
-|maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。|
+|alwaysEnabled | boolean | 否  | 是 | true：100%使能GWP-ASan。<br/>false：1/128概率使能GWP-ASan。<br/> 默认值：false。|
+|sampleRate    |number| 否  |是|GWP-ASan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。<br/> 建议值：>=1000，过小会显著影响性能。|
+|maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。<br/> 建议值：<=20000，过大会可能导致VMA超限崩溃。|
 
 ## hidebug.disableGwpAsanGrayscale<sup>20+</sup>
 disableGwpAsanGrayscale(): void
 
-停止使能GWP-Asan。调用该接口将取消自定义配置，恢复默认参数[GwpAsanOptions](#gwpasanoptions20)。
+停止使能GWP-ASan。调用该接口将取消自定义配置，恢复默认参数[GwpAsanOptions](#gwpasanoptions20)。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -1291,7 +1291,7 @@ hidebug.disableGwpAsanGrayscale();
 ## hidebug.getGwpAsanGrayscaleState<sup>20+</sup>
 getGwpAsanGrayscaleState(): number
 
-获取当前GWP-Asan剩余使能天数。
+获取当前GWP-ASan剩余使能天数。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -1299,7 +1299,7 @@ getGwpAsanGrayscaleState(): number
 
 | 类型 | 说明 |
 |-----------|-------------|
-| number    |获取当前GWP-Asan剩余使能天数。若当前未使能，返回值0。|
+| number    |获取当前GWP-ASan剩余使能天数。若当前未使能，返回值0。|
 
 **示例**：
 
@@ -1324,6 +1324,8 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
+**参数：**
+
 | 参数名 | 类型                                        | 必填 | 说明                   |
 | ------ | ------------------------------------------- | ---- | ---------------------- |
 | level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | 是   | 转储堆快照的裁剪级别，默认为TRIM_LEVEL_1。 |
@@ -1334,6 +1336,5 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-hidebug.setJsRawHeapTrimLevel(TRIM_LEVEL_2);
-}
+hidebug.setJsRawHeapTrimLevel(hidebug.JsRawHeapTrimLevel.TRIM_LEVEL_2);
 ```
