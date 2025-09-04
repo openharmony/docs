@@ -7900,7 +7900,7 @@ async function example(context: Context) {
 }
 ```
 
-### setRelationship<sup>20+</sup> 
+### setRelationship<sup>21+</sup> 
 
 setRelationship(relationship: string): Promise&lt;void&gt;
 
@@ -8089,7 +8089,7 @@ async function example(context: Context) {
 }
 ```
 
-### getRelationship<sup>20+</sup> 
+### getRelationship<sup>21+</sup> 
 
 getRelationship(): Promise&lt;string&gt;
 
