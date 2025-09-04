@@ -3,12 +3,13 @@
 
 ## Overview
 
-Defines the basic Native API types.
+Defines the basic native API types.
 
 **Since**: 12
 
 **Related module**: [Web](_web.md)
 
+**Header file**: [arkweb_interface.h](arkweb__interface_8h.md)
 
 ## Summary
 
@@ -17,7 +18,7 @@ Defines the basic Native API types.
 
 | Name| Description| 
 | -------- | -------- |
-| size_t [size](#size) | The size of a struct. | 
+| size_t [size](#size) | Size of the struct. | 
 
 
 ## Member Variable Description
@@ -30,4 +31,4 @@ size_t ArkWeb_AnyNativeAPI::size
 ```
 **Description**
 
-The size of a struct.
+Size of the struct.

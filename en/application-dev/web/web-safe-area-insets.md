@@ -1,10 +1,10 @@
 # Calculating and Adjusting Safe Area Insets
 
-In earlier versions, the screen of most devices is rectangular, and the application UI can be completely displayed. With the popularization of irregular screens such as bezel-less screen and notch screen, rounded corners, cameras, or system navigation bars may appear on the edge of the screen. As a result, some parts of the screen are obscured.
+In earlier versions, the screen of most devices is rectangular, and the application UI can be completely displayed. With the popularization of irregular screens such as bezel-less screen and notch screens, rounded corners, cameras, or system navigation bars may appear on the edge of the screen. As a result, some parts of the screen are obscured.
 
 A safe area is a region on the screen that is not obscured by device hardware or system UI elements. It is demarcated from non-safe areas, such as the status bar, notch area, and navigation bar. By default, the application layout is restricted to the safe area. However, the system provides the immersive layout capability, allowing the application to extend the UI to the non-safe area through configuration.
 
-In an immersive experience, web page elements in a **Web** component may be obscured by the status bar, notch area, and navigation bar. In this case, you need to perform avoidance adaptation to ensure that key content, such as text, forms, and interactive components, on the web page avoids non-safe areas. This ensures that users can read and operate without obstruction.
+In an immersive experience, web page elements in a **Web** component may be obscured by the status bar, the notch area, and the navigation bar. In this case, you need to perform avoidance adaptation to ensure that key content, such as text, forms, and interactive components, on the web page avoids non-safe areas. This ensures that users can read and operate without obstruction.
 
 The **Web** component provides the W3C CSS capability for calculating and adjusting safe area insets. By utilizing this capability to avoid obstructions, you can display web pages properly on devices with irregular screens in immersive mode.
 
@@ -70,9 +70,9 @@ The **Web** component provides the W3C CSS capability for calculating and adjust
   }
   ```
 
-## Setting the Web Page Layout in a Viewport
+## Setting the Web Page Layout in the Viewport
 
-Use **viewport-fit**, which is an attribute of the **\<meta name="viewport">** tag, to set the layout of a web page in a viewport as follows:
+Use **viewport-fit**, which is an attribute of the **\<meta name="viewport">** tag, to set the layout of a web page in the viewport. The setting method is as follows:
 
 ```html
 <meta name='viewport' content='viewport-fit=cover'>
@@ -90,7 +90,7 @@ As shown in Table 1, the default value of **viewport-fit** is **auto**, which ha
 
 > **NOTE**
 > 
-> Currently, the **Web** component does not support the feature of restricting the web page content to the safe area when the immersive mode is enabled. Therefore, the value **contain** of **viewport-fit** has the same effect as **cover**, that is, the web page content completely fills the **Web** component area.
+> Currently, the **Web** component does not support the feature of restricting the web page content to the safe area when the immersive mode is enabled. Therefore, the value **contain** of **viewport-fit** has the same effect as **cover**, that is, the web page content fills the **Web** component area.
 
 ## Avoidance Adaptation of Web Page Elements
 

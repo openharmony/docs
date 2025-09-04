@@ -4,7 +4,8 @@ The **Web** component can be used to display web pages. It can be used with the 
 
 > **NOTE**
 >
-> - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this component are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## Required Permissions
@@ -101,12 +102,13 @@ Example of using the **Web** component to specify the shared rendering process.
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
+    controller1: webview.WebviewController = new webview.WebviewController();
+    controller2: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
-        Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: "111" })
       }
     }
   }
@@ -114,7 +116,7 @@ Example of using the **Web** component to specify the shared rendering process.
 
 Example of loading local web pages using **$rawfile()**:
 
-
+ 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -289,7 +291,7 @@ Provides methods for the web controller.
 
 | Type    | Description      |
 | ------ | ---------- |
-| [WebviewController](./js-apis-webview-WebviewController.md#class-webviewcontroller)  | Implements a **WebviewController** to control the behavior of the **Web** component. A **WebviewController** object can control only one **Web** component. Methods (except static methods) on the **WebviewController** can be called only after the **Web** component is bound to the **WebviewController**.|
+| [WebviewController](./js-apis-webview-WebviewController.md)  | Implements a **WebviewController** to control the behavior of the **Web** component. A **WebviewController** object can control only one **Web** component. Methods (except static methods) on the **WebviewController** can be called only after the **Web** component is bound to the **WebviewController**.|
 
 ## WebKeyboardController<sup>12+</sup>
 
@@ -331,7 +333,7 @@ Deletes a specified number of characters forward in a **Web** component text box
 | ------ | -------- | ---- | ------------------------ |
 | length | number   | Yes  | Length of characters to delete forward in a **Web** component text box.<br>The parameter has no value range. If the parameter value is greater than the character length, all characters before the cursor are deleted by default. If the parameter value is a negative number, the deletion is not performed.|
 
-### deleteBackward12+</sup>
+### deleteBackward<sup>12+</sup>
 
 deleteBackward(length: number): void
 
@@ -382,6 +384,15 @@ Constructs a [ConsoleMessage](#consolemessage) object.
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor](#constructor9) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type                                     | Mandatory| Description                              |
+| --------- | ----------------------------------------- | ---- | ---------------------------------- |
+| message | string | Yes  | Log output information of **ConsoleMessage**.|
+| sourceId | string | Yes  | Path and name of the web page source file.|
+| lineNumber | number | Yes  | Line number of **ConsoleMessage**.|
+| messageLevel | [MessageLevel](./ts-basic-components-web-e.md#messagelevel) | Yes  | Log level of **ConsoleMessage**.|
 
 ### constructor<sup>9+</sup>
 
@@ -491,7 +502,7 @@ Notifies the **Web** component of the user's confirm operation in the dialog box
 
 ## FullScreenExitHandler<sup>9+</sup>
 
-Implements a **FullScreenExitHandler** object for listening for exiting full screen mode. For details about the sample code, see [onFullScreenEnter](./ts-basic-components-web-events.md#onfullscreenenter9).
+Implements the **FullScreenExitHandler** object to notify you that the **Web** component exits full screen mode. For details about the sample code, see [onFullScreenEnter](./ts-basic-components-web-events.md#onfullscreenenter9).
 
 ### constructor<sup>9+</sup>
 
@@ -535,7 +546,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 | Name       | Type                                    | Mandatory| Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| controller | [WebviewController](./js-apis-webview-WebviewController.md#class-webviewcontroller) | Yes | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**.|
+| controller | [WebviewController](./js-apis-webview-WebviewController.md) | Yes | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
 
@@ -792,11 +803,7 @@ Obtains the data in the resource response. Multiple data types are supported.
 
 |Type|Description|
 |---|---|
-|string|String in HTML format.|
-|number|Handle to the file.|
-|ArrayBuffer|Binary data.|
-|[Resource](../apis-arkui/arkui-ts/ts-types.md)|Resource referenced by **$rawfile()**.|
-|undefined|No available data.|
+|string \| number \| ArrayBuffer \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) \| undefined | An HTML string when the type is string; a file descriptor when the type is number; binary data when the type is ArrayBuffer; a **$rawfile** resource when the type is resource; or **undefined** if no data is available.|
 
 ### getResponseIsReady<sup>13+</sup>
 
@@ -1146,6 +1153,19 @@ Instructs the **Web** component to use the specified credentials (obtained from 
 | ------- | ------ | ---- | ------- |
 | authUri | string | Yes   | Key value of the credentials.|
 
+The following table lists the supported certificate signature algorithms and key lengths.
+| Signature Algorithm    | Key Length  | 
+| ------- | ------ |
+| SSL_SIGN_RSA_PKCS1_SHA256 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PKCS1_SHA384 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PKCS1_SHA512 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PSS_SHA256 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PSS_SHA384 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PSS_SHA512 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_ECDSA_SECP256R1_SHA256 | 256 | 
+| SSL_SIGN_ECDSA_SECP384R1_SHA384 | 384 | 
+| SSL_SIGN_ECDSA_SECP521R1_SHA512 | 521 | 
+
 ### cancel<sup>9+</sup>
 
 cancel(): void
@@ -1272,9 +1292,9 @@ Grants the screen capture permission.
 
 **Parameters**
 
-| Name   | Type                                    | Mandatory  | Description   |
-| ------ | ---------------------------------------- | ---- | ------- |
-| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes  | Screen capture configuration.|
+| Name   | Type                                    | Read-Only| Optional| Description   |
+| ------ | ---------------------------------------- | ---- | ---- |------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | No| No| Screen capture configuration.|
 
 ## EventResult<sup>12+</sup>
 
@@ -1318,7 +1338,7 @@ Sets the gesture event consumption result.
 
 | Name         | Type| Mandatory | Description            |
 | --------------- | -------- | ----  |------- |
-| result          | boolean  | Yes   | Whether the gesture event is consumed.<br>The value **true** means that the gesture event is consumed, and **false** means the opposite.<br>Default value: **true**|
+| result          | boolean  | Yes   | Whether to consume the gesture event.<br>The value **true** means to consume the gesture event, and **false** means the opposite.<br>Default value: **true**|
 | stopPropagation | boolean  | Yes  | Whether to stop propagation. This parameter is valid only when **result** is set to **true**.<br>The value **true** means to stop propagation, and **false** means the opposite.<br>Default value: **true**|
 
 **Example**
@@ -1623,7 +1643,7 @@ Sets the geolocation permission status of a web page.
 | ------ | ------- | ---- | ---------------------------------------- |
 | origin | string  | Yes  | Index of the origin.                              |
 | allow  | boolean | Yes  | Geolocation permission status.<br>The value **true** means to enable the geolocation permission, and **false** means the opposite.                            |
-| retain | boolean | Yes  | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through the [GeolocationPermissions<sup>9+</sup>](./js-apis-webview-GeolocationPermissions.md#class-geolocationpermissions) API.<br>The value **true** indicates that the geolocation permission status can be saved to the system, and **false** indicates the opposite.|
+| retain | boolean | Yes  | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through the [GeolocationPermissions<sup>9+</sup>](./js-apis-webview-GeolocationPermissions.md) API.<br>The value **true** indicates that the geolocation permission status can be saved to the system, and **false** indicates the opposite.|
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
@@ -1713,7 +1733,7 @@ Cancels the resending of web form data.
 
 Implements a **WebController** to control the behavior of the **Web** component. A **WebController** can control only one **Web** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **Web** component.
 
-This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](./js-apis-webview-WebviewController.md#class-webviewcontroller) instead.
+This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](./js-apis-webview-WebviewController.md) instead.
 
 ### Creating an Object
 

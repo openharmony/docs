@@ -5,7 +5,7 @@ For details about how to optimize the performance of JSBridge, see [JSBridge Opt
 
 ## Applicable Application Architecture
 
-If an application is developed using ArkTS and C++ language, or if its architecture is close to that of an applet and has a built-in C++ environment, you are advised to use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) provided by ArkWeb on the native side to implement the JSBridge capabilities.
+If an application is developed using ArkTS and C++ language, or if its architecture is close to that of an applet and has a built-in C++ environment, you are advised to use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md) provided by ArkWeb on the native side to implement the JSBridge capabilities.
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
@@ -41,7 +41,7 @@ In addition, the [permission](#invoking-application-functions-on-the-frontend-pa
   ```js
   // Define a webTag and transfer it as an input parameter when WebviewController is created to establish the mapping between controller and webTag.
   webTag: string = 'ArkWeb1';
-  controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
+  controller: webview.WebviewController = new webview.WebviewController(this.webTag);
 
   // In the aboutToAppear method, pass webTag to the C++ side through the Node-API. The C++ side uses webTag to uniquely identify the Web component.
   aboutToAppear() {
@@ -71,11 +71,12 @@ In addition, the [permission](#invoking-application-functions-on-the-frontend-pa
       // Save the webTag in the instance object.
       jsbridge_object_ptr = std::make_shared<JSBridgeObject>(webTagValue);
       // ...
+  }
   ```
 
 ### Obtaining API Struct Using the Native API
 
-On the ArkWeb native side, you need to obtain the API struct before invoking the native API in the struct. Through [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi), you can obtain the structs of [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) based on the input parameter **type**. [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview-WebviewController.md#class-webviewcontroller) on the ArkTS side, and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to [ArkWeb Component API](../reference/apis-arkweb/ts-basic-components-web.md) on the ArkTS side.
+On the ArkWeb native side, you need to obtain the API struct before invoking the native API in the struct. Through [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi), you can obtain the structs of [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md) based on the input parameter **type**. [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md) corresponds to [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview-WebviewController.md) on the ArkTS side, and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md) corresponds to [ArkWeb Component API](../reference/apis-arkweb/ts-basic-components-web.md) on the ArkTS side.
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -87,7 +88,7 @@ On the ArkWeb native side, you need to obtain the API struct before invoking the
 
 ### Registering Component Lifecycle Callback on the Native Side
 
-Register the component lifecycle callback using [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi). Before calling the API, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Register the component lifecycle callback using [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md). Before calling the API, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
   ```c++
   if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
@@ -790,7 +791,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
 
 ### Obtaining API Struct Using the Native API
 
-To invoke the native APIs, obtain the API structs on the ArkWeb native side first. Through [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi), you can obtain the pointer structs of [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) based on the input parameter **type**. [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview-WebviewController.md#class-webviewcontroller) on the ArkTS side, and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to [ArkWeb Component API](../reference/apis-arkweb/ts-basic-components-web.md) on the ArkTS side.
+To invoke the native APIs, obtain the API structs on the ArkWeb native side first. Through [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi), you can obtain the pointer structs of [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md) based on the input parameter **type**. [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md) corresponds to [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview-WebviewController.md) on the ArkTS side, and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md) corresponds to [ArkWeb Component API](../reference/apis-arkweb/ts-basic-components-web.md) on the ArkTS side.
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -802,7 +803,7 @@ To invoke the native APIs, obtain the API structs on the ArkWeb native side firs
 
 ### Registering Component Lifecycle Callback on the Native Side
 
-Register the component lifecycle callback using [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi). Before calling the API, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Register the component lifecycle callback using [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md). Before calling the API, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
   ```c++
   if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
@@ -1222,6 +1223,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
       SetComponentCallback(component, webTagValue);
 
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit end");
+      delete[] webTagValue;
       return nullptr;
   }
 

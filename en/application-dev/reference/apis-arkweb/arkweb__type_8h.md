@@ -24,25 +24,25 @@ Defines the native common types of ArkWeb.
 | Name| Description| 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) | Defines the JavaScript Bridge data. | 
-| struct&nbsp;&nbsp;[ArkWeb_JavaScriptObject](_ark_web___java_script_object.md) | Defines a JavaScript object. | 
-| struct&nbsp;&nbsp;[ArkWeb_ProxyMethod](_ark_web___proxy_method.md) | Defines a proxy method. | 
-| struct&nbsp;&nbsp;[ArkWeb_ProxyMethodWithResult](_ark_web___proxy_method_with_result.md) | Defines a proxy method. | 
-| struct&nbsp;&nbsp;[ArkWeb_ProxyObject](_ark_web___proxy_object.md) | Defines a proxy object. | 
-| struct&nbsp;&nbsp;[ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md) | Defines a proxy object. | 
+| struct&nbsp;&nbsp;[ArkWeb_JavaScriptObject](_ark_web___java_script_object.md) | Defines a JavaScript object to be injected. | 
+| struct&nbsp;&nbsp;[ArkWeb_ProxyMethod](_ark_web___proxy_method.md) | Defines a proxy method to be injected. | 
+| struct&nbsp;&nbsp;[ArkWeb_ProxyMethodWithResult](_ark_web___proxy_method_with_result.md) | Defines a proxy method with the result to be injected. | 
+| struct&nbsp;&nbsp;[ArkWeb_ProxyObject](_ark_web___proxy_object.md) | Defines a proxy object to be injected. | 
+| struct&nbsp;&nbsp;[ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md) | Defines a proxy object with the result to be injected. | 
 | struct&nbsp;&nbsp;[ArkWeb_ControllerAPI](_ark_web___controller_a_p_i.md) | Defines a controller API. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM. | 
 | struct&nbsp;&nbsp;[ArkWeb_ComponentAPI](_ark_web___component_a_p_i.md) | Defines a component API. | 
 | struct&nbsp;&nbsp;[ArkWeb_WebMessagePortAPI](_ark_web___web_message_port_a_p_i.md) | Defines a native API struct of the post message. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM. | 
 | struct&nbsp;&nbsp;[ArkWeb_WebMessageAPI](_ark_web___web_message_a_p_i.md) | Defines a native API struct of the post message data. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM. | 
-| struct&nbsp;&nbsp;[ArkWeb_CookieManagerAPI](_ark_web___cookie_manager_a_p_i.md) | Defines a native **CookieManager** API of ArkWeb. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM. | 
-| struct&nbsp;&nbsp;[ArkWeb_JavaScriptValueAPI](_ark_web___java_script_value_a_p_i.md) | Defines the native ArkWeb **JavaScriptValue** API. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM. | 
+| struct&nbsp;&nbsp;[ArkWeb_CookieManagerAPI](_ark_web___cookie_manager_a_p_i.md) | Defines the CookieManager API of ArkWeb. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM. | 
+| struct&nbsp;&nbsp;[ArkWeb_JavaScriptValueAPI](_ark_web___java_script_value_a_p_i.md) | Defines the JavaScriptValue API of ArkWeb. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM. | 
 
 
 ### Macros
 
 | Name| Description| 
 | -------- | -------- |
-| [ARKWEB_MEMBER_EXISTS](_web.md#arkweb_member_exists)(s, f)&nbsp;&nbsp;&nbsp;&nbsp;((intptr_t) &amp; ((s)-&gt;f) - (intptr_t)(s) + sizeof((s)-&gt;f) &lt;= \*reinterpret_cast&lt;size_t\*&gt;(s)) | Checks whether the member variable exists in the struct. | 
-| [ARKWEB_MEMBER_MISSING](_web.md#arkweb_member_missing)(s, f)&nbsp;&nbsp;&nbsp;(\![ARKWEB_MEMBER_EXISTS](_web.md#arkweb_member_exists)(s, f) \|\| !((s)-&gt;f)) | Returns **false** if the member variable exists in the struct; returns **true** otherwise. | 
+| [ARKWEB_MEMBER_EXISTS](_web.md#arkweb_member_exists)(s, f)&nbsp;&nbsp;&nbsp;&nbsp;((intptr_t) &amp; ((s)-&gt;f) - (intptr_t)(s) + sizeof((s)-&gt;f) &lt;= \*reinterpret_cast&lt;size_t\*&gt;(s)) | Whether a member variable exists in the struct. | 
+| [ARKWEB_MEMBER_MISSING](_web.md#arkweb_member_missing)(s, f)&nbsp;&nbsp;&nbsp;(\![ARKWEB_MEMBER_EXISTS](_web.md#arkweb_member_exists)(s, f) \|\| !((s)-&gt;f)) | If the member variable exists in the struct, **false** is returned. Otherwise, **true** is returned. | 
 
 
 ### Types

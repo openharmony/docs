@@ -6,7 +6,17 @@ Implements a **WebCookieManager** instance to manage behavior of cookies in **We
 >
 > - The initial APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> - The initial APIs of this class are supported since API version 9.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+>
+> - Static methods must be used on the user interface (UI) thread.
+
+## Modules to Import
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
 
 ## fetchCookieSync<sup>11+</sup>
 
@@ -29,7 +39,7 @@ Obtains the cookie value of the specified URL.
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
-| incognito    | boolean | No  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite.|
+| incognito    | boolean | No  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite.<br>The default value is **false**.|
 
 **Return value**
 
@@ -286,7 +296,7 @@ Sets a cookie for the specified URL.
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
-| incognito    | boolean | No  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.|
+| incognito    | boolean | No  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.<br>The default value is **false**.|
 
 **Error codes**
 
@@ -395,7 +405,7 @@ Sets the value of a single cookie for a specified URL. This API uses an asynchro
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
@@ -453,7 +463,7 @@ Sets the value of a single cookie for a specified URL. This API uses a promise t
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 
 **Return value**
@@ -518,7 +528,7 @@ Sets the value of a single cookie for a specified URL. This API uses a promise t
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 | incognito    | boolean | Yes  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.|
 | includeHttpOnly    | boolean | Yes  | Whether to overwrite cookies containing **HttpOnly**. The value **true** means to overwrite cookies containing **HttpOnly**, and **false** means the opposite.|
@@ -915,7 +925,7 @@ Checks whether cookies exist.
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | :----------------------------------------- |
-| incognito<sup>11+</sup>    | boolean | No  | Whether to check for cookies in incognito mode. The value **true** means to check for cookies in incognito mode, and **false** means the opposite.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to check for cookies in incognito mode. The value **true** means to check for cookies in incognito mode, and **false** means the opposite.<br>The default value is **false**.|
 
 **Return value**
 
@@ -959,7 +969,7 @@ Clears all cookies.
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | :----------------------------------------- |
-| incognito    | boolean | No  | Whether to clear all cookies in incognito mode. The value **true** means to clear all cookies in incognito mode, and **false** means the opposite.|
+| incognito    | boolean | No  | Whether to clear all cookies in incognito mode. The value **true** means to clear all cookies in incognito mode, and **false** means the opposite.<br>The default value is **false**.|
 
 **Example**
 
