@@ -747,7 +747,7 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
 >**说明：**
 >
-> 此接口不包含sim卡是否激活，sim卡状态是否激活详见[sim.isSimActive](js-apis-sim.md#simissimactive7)接口。
+> 此接口不包含sim卡的激活状态，具体请参见[sim.isSimActive](js-apis-sim.md#simissimactive7)接口。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
