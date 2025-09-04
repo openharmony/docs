@@ -467,6 +467,12 @@ hilog_param=40960
     char value26[65] = {0};
     GetDevUdid(value26, 65);
     printf("device udid =%s\n", value26);
+    
+    char* value27 = GetChipType();
+    printf("device chiptype =%s\n", value27);
+    
+    int value28 = GetBootCount();
+    printf("device boot count =%d\n", value28);
     ```
 ### 系统参数错误码说明
 
