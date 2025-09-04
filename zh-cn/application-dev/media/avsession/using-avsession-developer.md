@@ -355,7 +355,7 @@
               });
               session.on('setSpeed', (speed) => {
                 console.info(`on setSpeed , the speed is ${speed}`);
-                // 实现具体功能
+                // 实现具体功能。
               });
               session.on('setLoopMode', (mode) => {
                 console.info(`on setLoopMode , the loop mode is ${mode}`);
@@ -405,19 +405,19 @@
                 // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
                 session.on('skipToQueueItem', (itemId) => {
                   console.info(`on skipToQueueItem , do skip task`);
-                  // 实现具体功能
+                  // 实现具体功能。
                 });
                 session.on('handleKeyEvent', (event) => {
                   console.info(`on handleKeyEvent , the event is ${JSON.stringify(event)}`);
-                  // 实现具体功能
+                  // 实现具体功能。
                 });
                 session.on('outputDeviceChange', (device) => {
                   console.info(`on outputDeviceChange , the device info is ${JSON.stringify(device)}`);
-                  // 实现具体功能
+                  // 实现具体功能。
                 });
                 session.on('commonCommand', (commandString, args) => {
                   console.info(`on commonCommand , command is ${commandString}, args are ${JSON.stringify(args)}`);
-                  // 实现具体功能
+                  // 实现具体功能。
                 });
               } catch (err) {
                 if (err) {

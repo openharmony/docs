@@ -253,7 +253,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    async function getInfoFromSessionByController() {
-     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
+     // 假设已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
      let controller = await AVSessionManager.createController("");
      // 获取sessionId。
      let sessionId = controller.sessionId;
