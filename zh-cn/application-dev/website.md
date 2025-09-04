@@ -2046,7 +2046,6 @@
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
       - [调试和性能分析概述](napi/debug-performance-profiling-overview.md)
-      - [通过DevEco Studio调试](napi/debug-ide.md)
       - [C/C++内存错误检测](napi/debug-asan.md)
     - 硬件兼容性<!--hardware-compatibility-->
       - [硬件兼容性简介](napi/hw-guide.md)
