@@ -1,5 +1,12 @@
 # ArkTS语言模块化加载异常常见问题
 
+<!--Kit: ArkTs-->
+<!--Subsystem: Module-->
+<!--Owner: @shilei1123-->
+<!--Designer: @shilei1123;@yao_dashuai-->
+<!--Tester: @kir175; @zsw_zhushiwei-->
+<!--Adviser: @huipeizi-->
+
 
 ##  ArkTS 应用运行时出现模块化加载相关的异常报错提示，可能导致报错原因以及解决方法
 ### "Cannot find dynamic-import module 'xxxx'"
