@@ -1,15 +1,25 @@
 # native_avcapability.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yang-xiaoyu5-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The **native_avcapability.h** file declares the native APIs used to query the codec capability.
+The file declares the native APIs used to query the codec capability.
 
 **Library**: libnative_media_codecbase.so
+
+**File to include**: <multimedia/player_framework/native_avcapability.h>
 
 **Since**: 10
 
 **Related module**: [AVCapability](_a_v_capability.md)
+
+**Sample**: [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## Summary
@@ -36,7 +46,7 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 | Name| Description| 
 | -------- | -------- |
 | [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | Enumerates the codec categories. | 
-| [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) {<br> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br>VIDEO_LOW_LATENCY = 2 <br>} | Enumerates the optional features that can be used in specific codec scenarios. | 
+| [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) {<br> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br>VIDEO_LOW_LATENCY = 2, <br>VIDEO_ENCODER_B_FRAME = 7 <br>} | Enumerates the optional features that can be used in specific codec scenarios. | 
 
 
 ### Functions
@@ -53,6 +63,7 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](_a_v_capability.md#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | Obtains the quality range supported by an encoder. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](_a_v_capability.md#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | Obtains the complexity range supported by an encoder. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | Obtains the sample rates supported by an audio codec. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRateRanges](_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerateranges) (OH_AVCapability \*capability, OH_AVRange \*\*sampleRateRanges, uint32_t \*rangesNum) | Obtains the sample rate ranges supported by an audio codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioChannelCountRange](_a_v_capability.md#oh_avcapability_getaudiochannelcountrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*channelCountRange) | Obtains the count range of audio channels supported by an audio codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthAlignment](_a_v_capability.md#oh_avcapability_getvideowidthalignment) (OH_AVCapability \*capability, int32_t \*widthAlignment) | Obtains the video width alignment supported by a video codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightAlignment](_a_v_capability.md#oh_avcapability_getvideoheightalignment) (OH_AVCapability \*capability, int32_t \*heightAlignment) | Obtains the video height alignment supported by a video codec. | 
@@ -69,4 +80,4 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](_a_v_capability.md#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | Obtains the codec levels supported by a profile. | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](_a_v_capability.md#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | Checks whether a codec supports the combination of a profile and level. | 
 | bool [OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | Checks whether a codec supports a feature. | 
-| [OH_AVFormat](_core.md#oh_avformat) \*[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value. | 
+| [OH_AVFormat](_core.md#oh_avformat) \*[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the OH_AVFormat instance in the return value. | 

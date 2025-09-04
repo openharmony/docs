@@ -3,14 +3,17 @@
 
 ## Overview
 
-The **native_avcodec_videodecoder.h** file declares the native APIs used for video decoding.
+The file declares the native APIs used for video decoding.
 
 **Library**: libnative_media_vdec.so
+
+**File to include**: <multimedia/player_framework/native_avcodec_videodecoder.h>
 
 **Since**: 9
 
 **Related module**: [VideoDecoder](_video_decoder.md)
 
+**Sample**: [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 ## Summary
 
@@ -41,4 +44,8 @@ The **native_avcodec_videodecoder.h** file declares the native APIs used for vid
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBufferAtTime](_video_decoder.md#oh_videodecoder_renderoutputbufferattime) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, int64_t renderTimestampNs) | Frees an output buffer with a rendering timestamp of a video decoder and instructs the decoder to render the decoded data in the buffer on the output surface. |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](_video_decoder.md#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Frees an output buffer of a video decoder.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](_video_decoder.md#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | Checks whether a video decoder instance is valid.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](_video_decoder.md#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | Sets the decryption configuration.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](_video_decoder.md#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | Sets the decryption configuration.|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_QueryInputBuffer](_video_decoder.md#oh_videodecoder_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | Obtains the index of the next available input buffer.| 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoDecoder_GetInputBuffer](_video_decoder.md#oh_videodecoder_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Obtains the instance of the available input buffer.|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_QueryOutputBuffer](_video_decoder.md#oh_videodecoder_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | Obtains the index of the next available output buffer.| 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoDecoder_GetOutputBuffer](_video_decoder.md#oh_videodecoder_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Obtains the instance of the available output buffer.|
