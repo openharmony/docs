@@ -1550,7 +1550,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.info(`server died`);
+    console.info('server died');
   }
 }
 
@@ -1643,7 +1643,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.info(`server died`);
+    console.info('server died');
   }
 }
 
@@ -3850,7 +3850,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info(`disableWindowDecor`);
+    console.info('disableWindowDecor');
     windowStage.disableWindowDecor();
   }
 };
@@ -3895,7 +3895,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info(`onWindowStageCreate`);
+    console.info('onWindowStageCreate');
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
