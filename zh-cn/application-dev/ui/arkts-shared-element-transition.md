@@ -185,7 +185,7 @@ import { componentUtils, curves, UIContext } from '@kit.ArkUI';
 struct Index {
   // 新建一镜到底动画类
   private uiContext: UIContext = this.getUIContext();
-  @State AnimationProperties: AnimationProperties = new AnimationProperties(this.uiContext);
+  @State animationProperties: AnimationProperties = new AnimationProperties(this.uiContext);
   private listArray: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -195,27 +195,27 @@ struct Index {
         ForEach(this.listArray, (item: number) => {
           ListItem() {
             // 卡片折叠态
-            PostItem({ index: item, AnimationProperties: this.AnimationProperties })
+            PostItem({ index: item, animationProperties: this.animationProperties })
           }
         })
       }
       .clip(false)
       .alignListItem(ListItemAlign.Center)
 
-      if (this.AnimationProperties.isExpandPageShow) {
+      if (this.animationProperties.isExpandPageShow) {
         // 卡片展开态
-        ExpandPage({ AnimationProperties: this.AnimationProperties })
+        ExpandPage({ animationProperties: this.animationProperties })
       }
     }
     .key('rootStack')
-    .enabled(this.AnimationProperties.isEnabled)
+    .enabled(this.animationProperties.isEnabled)
   }
 }
 
 @Component
 struct PostItem {
   @Prop index: number
-  @Link AnimationProperties: AnimationProperties;
+  @Link animationProperties: AnimationProperties;
   @State nodeController: PostNode | undefined = undefined;
   // 折叠时详细内容隐藏
   private showDetailContent: boolean = false;
@@ -245,23 +245,23 @@ struct PostItem {
         this.nodeController.onRemove();
       }
       // 触发卡片从折叠到展开态的动画
-      this.AnimationProperties.expandAnimation(this.index);
+      this.animationProperties.expandAnimation(this.index);
     })
   }
 }
 
 @Component
 struct ExpandPage {
-  @Link AnimationProperties: AnimationProperties;
+  @Link animationProperties: AnimationProperties;
   @State nodeController: PostNode | undefined = undefined;
   // 展开时详细内容出现
   private showDetailContent: boolean = true;
 
   aboutToAppear(): void {
     // 获取对应序号的卡片组件
-    this.nodeController = getPostNode(this.AnimationProperties.curIndex.toString())
+    this.nodeController = getPostNode(this.animationProperties.curIndex.toString())
     // 更新为详细内容出现
-    this.nodeController?.update(this.AnimationProperties.curIndex.toString(), this.showDetailContent)
+    this.nodeController?.update(this.animationProperties.curIndex.toString(), this.showDetailContent)
   }
 
   build() {
@@ -269,9 +269,9 @@ struct ExpandPage {
       NodeContainer(this.nodeController)
     }
     .width('100%')
-    .height(this.AnimationProperties.changedHeight ? '100%' : 100)
-    .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
-    .position({ x: this.AnimationProperties.positionX, y: this.AnimationProperties.positionY })
+    .height(this.animationProperties.changedHeight ? '100%' : 100)
+    .translate({ x: this.animationProperties.translateX, y: this.animationProperties.translateY })
+    .position({ x: this.animationProperties.positionX, y: this.animationProperties.positionY })
     .onClick(() => {
       this.getUIContext()?.animateTo({ curve: curves.springMotion(0.6, 0.9),
         onFinish: () => {
@@ -282,17 +282,17 @@ struct ExpandPage {
             this.nodeController.onRemove();
           }
           // 卡片展开态节点下树
-          this.AnimationProperties.isExpandPageShow = false;
-          this.AnimationProperties.isEnabled = true;
+          this.animationProperties.isExpandPageShow = false;
+          this.animationProperties.isEnabled = true;
         }
       }, () => {
         // 卡片从展开态回到折叠态
-        this.AnimationProperties.isEnabled = false;
-        this.AnimationProperties.translateX = 0;
-        this.AnimationProperties.translateY = 0;
-        this.AnimationProperties.changedHeight = false;
+        this.animationProperties.isEnabled = false;
+        this.animationProperties.translateX = 0;
+        this.animationProperties.translateY = 0;
+        this.animationProperties.changedHeight = false;
         // 更新为详细内容消失
-        this.nodeController?.update(this.AnimationProperties.curIndex.toString(), false);
+        this.nodeController?.update(this.animationProperties.curIndex.toString(), false);
       })
     })
   }
@@ -751,7 +751,7 @@ export function PageTwoBuilder() {
 @Component
 export struct PageTwo {
   @State pageInfos: NavPathStack = new NavPathStack();
-  @State AnimationProperties: AnimationProperties = new AnimationProperties(this.getUIContext());
+  @State animationProperties: AnimationProperties = new AnimationProperties(this.getUIContext());
   @State myNodeController: MyNodeController | undefined = new MyNodeController(false);
 
   private pageId: number = -1;
@@ -791,7 +791,7 @@ export struct PageTwo {
         Stack({ alignContent: Alignment.TopStart }) {
           Column({space: 20}) {
             NodeContainer(this.myNodeController)
-            if (this.AnimationProperties.showDetailContent)
+            if (this.animationProperties.showDetailContent)
               Text('展开态内容')
                 .fontSize(20)
                 .transition(TransitionEffect.OPACITY)
@@ -799,19 +799,19 @@ export struct PageTwo {
           }
           .alignItems(HorizontalAlign.Start)
         }
-        .position({ y: this.AnimationProperties.positionValue })
+        .position({ y: this.animationProperties.positionValue })
       }
-      .scale({ x: this.AnimationProperties.scaleValue, y: this.AnimationProperties.scaleValue })
-      .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
-      .width(this.AnimationProperties.clipWidth)
-      .height(this.AnimationProperties.clipHeight)
-      .borderRadius(this.AnimationProperties.radius)
+      .scale({ x: this.animationProperties.scaleValue, y: this.animationProperties.scaleValue })
+      .translate({ x: this.animationProperties.translateX, y: this.animationProperties.translateY })
+      .width(this.animationProperties.clipWidth)
+      .height(this.animationProperties.clipHeight)
+      .borderRadius(this.animationProperties.radius)
       // expandSafeArea使得Stack做沉浸式效果，向上扩到状态栏，向下扩到导航条
       .expandSafeArea([SafeAreaType.SYSTEM])
       // 对高度进行裁切
       .clip(true)
     }
-    .backgroundColor(this.AnimationProperties.navDestinationBgColor)
+    .backgroundColor(this.animationProperties.navDestinationBgColor)
     .hideTitleBar(true)
     .onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;
@@ -821,7 +821,7 @@ export struct PageTwo {
       this.cardItemInfo = param['cardItemInfo'] as RectInfoInPx;
       CustomTransition.getInstance().registerNavParam(this.pageId,
         (isPush: boolean, isExit: boolean, transitionProxy: NavigationTransitionProxy) => {
-          this.AnimationProperties.doAnimation(
+          this.animationProperties.doAnimation(
             this.cardItemInfo, isPush, isExit, transitionProxy, 0,
             this.prePageDoFinishTransition, this.myNodeController);
         }, 500);
