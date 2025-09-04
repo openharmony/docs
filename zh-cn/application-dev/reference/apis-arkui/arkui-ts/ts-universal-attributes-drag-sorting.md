@@ -151,27 +151,27 @@ struct ListOnMoveExample {
           .onMove((from: number, to: number) => {
             let tmp = this.arr.splice(from, 1);
             this.arr.splice(to, 0, tmp[0]);
-            console.log('List onMove From: ' + from);
-            console.log('List onMove To: ' + to);
+            console.info('List onMove From: ' + from);
+            console.info('List onMove To: ' + to);
           },
             {
               onLongPress: (index: number) => {
-                console.log('List onLongPress: ' + index);
+                console.info('List onLongPress: ' + index);
               },
               onDrop: (index: number) => {
-                console.log('List onDrop: ' + index);
+                console.info('List onDrop: ' + index);
               },
               onDragStart: (index: number) => {
-                console.log('List onDragStart: ' + index);
+                console.info('List onDragStart: ' + index);
               },
               onMoveThrough: (from: number, to: number) => {
-                console.log('List onMoveThrough From: ' + from);
-                console.log('List onMoveThrough To: ' + to);
+                console.info('List onMoveThrough From: ' + from);
+                console.info('List onMoveThrough To: ' + to);
               }
             }
           )
       }.width('90%')
-        .scrollBar(BarState.Off)
+      .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }

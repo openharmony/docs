@@ -1958,3 +1958,48 @@ struct ListExample {
 ```
 
 ![edgeEffect_list](figures/list_maintainvisiblecontentposition.gif)
+
+### 示例11（设置滚动条的边距）
+
+该示例展示了在设置了[contentStartOffset](#contentstartoffset11)、[contentEndOffset](#contentendoffset11)属性的情况下，设置滚动条边距的效果。
+
+<!--code_no_check-->
+```ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ListScrollBarMarginExample {
+  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  build() {
+    Column() {
+      List({ space: 40, initialIndex: 0 }) {
+        ForEach(this.arr, (item: number, index?: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .contentStartOffset(20)
+      .contentEndOffset(20)
+      .scrollBar(BarState.On)
+      .scrollBarMargin({ start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) })
+      .width('90%')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![list_contentStartOffset](figures/list_contentStartOffset.gif)
