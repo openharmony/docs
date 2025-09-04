@@ -3438,7 +3438,7 @@ static setResourceManagerCacheMaxCountForHSP(count: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[UI上下文](errorcode-uicontext.md)错误码。
+以下错误码的详细介绍请参见[UI上下文错误码](errorcode-uicontext.md)。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
