@@ -1,6 +1,6 @@
 # @ohos.wallpaper (Wallpaper) (System API)
 
-The **wallpaper** module provides APIs for switching between wallpapers. Since API version 9, the APIs of this module function as system APIs, and only system applications are allowed to switch between wallpapers. Applications that use the wallpaper, for example, the home screen, need to subscribe to wallpaper changes and update the wallpaper accordingly.
+The **wallpaper** module provides APIs for switching between wallpapers. Since API version 9, the APIs of this module function as system APIs, and only system applications are allowed to switch between wallpapers. Applications that use the wallpaper, for example, the home screen, should subscribe to wallpaper changes and update the wallpaper accordingly.
 
 > **NOTE**
 > 
@@ -64,11 +64,11 @@ Defines the wallpaper information structure.
 
 **System API**: This is a system API.
 
-| Name| Type| Description|
-| -------- | -------- |  -------- |
-| [FoldState](#foldstate14) | enum | Folding state of a device.|
-| [RotateState](#rotatestate14) | enum | Landscape/portrait mode of a device.|
-| source | string | Wallpaper resource URI. Only the application sandbox directory is supported.|
+| Name| Type| Read-Only| Optional|Description|
+| -------- | -------- |  -------- |  -------- |  -------- |
+| foldState | [FoldState](#foldstate14) | No| No|Folding state of a device.|
+| rotateState | [RotateState](#rotatestate14)| No| No|Landscape/portrait mode of a device.|
+| source | string | No| No|Wallpaper resource URI. Only the application sandbox directory is supported.|
 
 ## wallpaper.setVideo<sup>10+</sup>
 
@@ -98,7 +98,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -147,7 +147,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Return value**
 
@@ -200,7 +200,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -255,7 +255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -298,7 +298,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -337,7 +337,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -395,7 +395,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -495,7 +495,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -543,7 +543,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -585,7 +585,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -657,7 +657,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -719,7 +719,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -768,7 +768,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **Example**
 
@@ -816,7 +816,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.The type must be WallpaperType, parameter range must be WALLPAPER_LOCKSCREEN or WALLPAPER_SYSTEM; 3.The type must be FoldState, parameter range must be NORMAL or UNFOLD_ONCE_STATE or UNFOLD_TWICE_STATE;4.The type must be RotateState, parameter range must be PORTRAIT or LANDSCAPE.  |
 
 **Example**
 
@@ -848,7 +848,7 @@ Sets all wallpaper to a specific folding state, landscape/portrait mode, and res
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperInfos | Array<[WallpaperInfo](#wallpaperinfo14)> | Yes| Information structure of all wallpapers.|
+| wallpaperInfos | Array\<[WallpaperInfo](#wallpaperinfo14)> | Yes| Information structure of all wallpapers.|
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
@@ -865,7 +865,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
+| 401          | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.The first parameter type must be Array\<WallpaperInfo>. The second type must be WallpaperType; 3.The first parameter type must be Array\<WallpaperInfo>, must include wallpaper with FoldState NORMAL and RotateState PORTRAIT.|
 
 **Example**
 
@@ -976,5 +976,3 @@ wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: imag
     console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
 });
 ```
-
- <!--no_check--> 

@@ -1462,11 +1462,11 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 ```ts
 CounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
-@ObjectLink value：ParentCounter; // @ObjectLink 接收 ParentCounter
+@ObjectLink value: ParentCounter; // @ObjectLink 接收 ParentCounter
 
 // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
 CounterChild({ subValue: this.value.subCounter });
-@ObjectLink subValue：SubCounter; // @ObjectLink 接收 SubCounter
+@ObjectLink subValue: SubCounter; // @ObjectLink 接收 SubCounter
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。

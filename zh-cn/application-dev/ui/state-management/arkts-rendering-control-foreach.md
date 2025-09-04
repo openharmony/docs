@@ -490,10 +490,10 @@ struct ForEachSort {
             Text(item.toString())
               .fontSize(16)
               .textAlign(TextAlign.Center)
-              .size({ height: 100, width: "100%" })
+              .size({ height: 100, width: '100%' })
           }.margin(10)
           .borderRadius(10)
-          .backgroundColor("#FFFFFFFF")
+          .backgroundColor('#FFFFFFFF')
         }, (item: string) => item)
           .onMove((from: number, to: number) => {
             // 以下两行代码是为了确保拖拽后屏幕上组件的顺序与数组arr中每一项的顺序保持一致。
@@ -504,7 +504,7 @@ struct ForEachSort {
       }
       .width('100%')
       .height('100%')
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
     }
   }
 

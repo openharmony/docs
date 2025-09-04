@@ -85,6 +85,10 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 给组件绑定菜单，控制菜单显隐的触发方式为长按或右键点击，弹出的菜单项需自定义。若需通过代码逻辑控制菜单显隐，请使用[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用bindContextMenu(默认子窗实现)，详情见输入法框架的约束与限制说明[createPanel](../../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -113,6 +117,9 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 菜单弹出位置仅有placement设置决定，与点击位置无关。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用bindContextMenu(默认子窗实现)，详情见输入法框架的约束与限制说明[createPanel](../../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -587,6 +587,25 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>默认返回字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)  | 是   | 是   | 获取属性字符串的文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 
+`fontWeight`参数与返回值的关系如下：
+| 参数        | 返回值 |
+| ----------- | ----------- |  
+| 100 |  0  | 
+| 200  |  1  |  
+| 300 |  2  |  
+| 400  |  3  |  
+| 500    |  4  | 
+| 600  |  5  | 
+| 700  |  6  |  
+| 800    |  7  | 
+| 900  |  8  | 
+| FontWeight.Bold (or 'bold')|  9  | 
+| FontWeight.Normal (or 'normal') |  10  |  
+| FontWeight.Bolder (or 'bolder') |  11  |  
+| FontWeight.Lighter (or 'lighter')|  12  |  
+| FontWeight.Medium (or 'medium') |  13  | 
+| FontWeight.Regular (or 'regular') |  14  |  
+
 ### constructor
 
 constructor(value?: TextStyleInterface)
@@ -724,7 +743,7 @@ constructor(value: DecorationStyleInterface, options?: DecorationOptions)
 | type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 否   | 否 | 装饰线类型。<br/>默认值：TextDecorationType.None <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是 | 装饰线颜色。<br/>默认值：Color.Black <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 是 | 装饰线样式。<br/>默认值：TextDecorationStyle.SOLID <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| thicknessScale<sup>20+</sup> | number | 否   | 是 | 装饰线粗细缩放。<br/>默认值：1.0 <br/>取值范围：[0, +∞) <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| thicknessScale<sup>20+</sup> | number | 否   | 是 | 装饰线粗细缩放。<br/>默认值：1.0 <br/>取值范围：[0, +∞) <br/>**说明：** 负值按默认值处理。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## BaselineOffsetStyle
 
@@ -1467,7 +1486,6 @@ struct styled_string_bind_events_demo {
       styledKey: StyledStringKey.FONT,
       styledValue: new TextStyle({ fontColor: Color.Pink })
     }]);
-  @State fontColor1: ResourceColor = Color.Red;
   @State backgroundColor1: ResourceColor | undefined = undefined;
   controller3: TextController = new TextController();
 
@@ -1631,7 +1649,7 @@ struct styled_string_set_text_style_demo {
                   console.info('mutableStyledString1 fontSize:' + fontAttr.fontSize);
                   console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight);
                   console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle);
-                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily);
+                  console.info('mutableStyledString1 fontFamily:' + fontAttr.fontFamily);
                   console.info('mutableStyledString1 superscript:' + fontAttr.superscript);
                 }
               }

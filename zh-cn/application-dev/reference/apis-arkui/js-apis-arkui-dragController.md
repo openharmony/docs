@@ -46,7 +46,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -62,6 +62,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 ```ts
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
+
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
 
 @Entry
 @Component
@@ -95,10 +100,6 @@ struct DragControllerPage {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
-              }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
               }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -162,7 +163,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 | Promise&lt;[DragEventParam](#drageventparam12)&gt; | Promise对象，拖拽结束返回结果的回调。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
@@ -178,6 +179,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
+
+class Tmp{
+  event:DragResult|undefined = undefined
+  extraParams:string = ''
+}
 
 @Entry
 @Component
@@ -236,11 +242,6 @@ struct DragControllerPage {
                 pixelMap: this.pixmap,
                 builder: ()=>{this.DraggingBuilder()},
                 extraInfo: "DragItemInfoTest"
-              }
-
-              class tmp{
-                event:DragResult|undefined = undefined
-                extraParams:string = ''
               }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo) // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -323,7 +324,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
@@ -414,10 +415,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error("create dragAction Error:" + err.message);
             }
           }
         }
@@ -505,10 +506,10 @@ struct DragControllerPage {
                 return;
               }
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -593,7 +594,7 @@ struct ImageExample {
                   }
 
                   let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-                    console.info("ndq Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+                    console.info(`ndq Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
                   }
                   try {
                     this.dragAction = this.getUIContext()
@@ -607,10 +608,10 @@ struct ImageExample {
                     this.dragAction.on('statusChange', func);
                     this.dragAction.startDrag().then(() => {
                     }).catch((err: Error) => {
-                      console.error("start drag Error:" + err.message);
+                      console.error(`start drag Error: ${err.message}`);
                     })
                   } catch (err) {
-                    console.error("create dragAction Error:" + err.message);
+                    console.error(`create dragAction Error: ${err.message}`);
                   }
                 }
               }
@@ -751,7 +752,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
             try{
               this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
@@ -762,10 +763,10 @@ struct DragControllerPage {
               // 监听状态改变，触发后打印func中的日志
               this.dragAction.on('statusChange', func);
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -833,7 +834,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
             this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
             if(!this.dragAction){
@@ -844,7 +845,7 @@ struct DragControllerPage {
             // 取消监听，发起拖拽后不会打印func中的日志
             this.dragAction.off('statusChange', func);
             this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.info("start drag Error:" + err.message);
+              console.error(`start drag Error: ${err.message}`);
             })
           }
         }
@@ -1034,6 +1035,11 @@ import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry()
 @Component
 struct DragControllerPage {
@@ -1094,10 +1100,6 @@ struct DragControllerPage {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
-            }
-            class tmp{
-              event:DragEvent|undefined = undefined
-              extraParams:string = ''
             }
             let eve:tmp = new tmp()
             this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -1160,8 +1162,8 @@ struct DragControllerPage {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型   |只读| 可选 | 说明                                   |	
-| --------------------- | ------ | ---- | --- | ---------------------------------------------------- |	
+| 名称                 | 类型   |只读| 可选 | 说明                                   |
+| --------------------- | ------ | ---- | --- | ---------------------------------------------------- |
 | stillTimeLimit         | number | 否   |    是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
 | updateInterval         | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
 | updateNotifyCount      | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|

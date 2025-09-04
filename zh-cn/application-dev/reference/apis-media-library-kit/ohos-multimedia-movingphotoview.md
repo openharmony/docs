@@ -296,7 +296,7 @@ declare type MovingPhotoViewEventCallback = () => void
 
 ### constructor
 
-constructor(): void
+constructor()
 
 MovingPhotoViewController的构造函数。
 
@@ -306,7 +306,7 @@ MovingPhotoViewController的构造函数。
 
 ### startPlayback
 
-startPlayback(): void
+startPlayback()
 
 开始播放，动态照片加载完成后，在播放准备，暂停，完成时调用。
 
@@ -316,7 +316,7 @@ startPlayback(): void
 
 ### stopPlayback
 
-stopPlayback(): void
+stopPlayback()
 
 停止播放，再次播放时从头开始播放。
 
@@ -326,7 +326,7 @@ stopPlayback(): void
 
 ### refreshMovingPhoto<sup>18+</sup> 
 
-refreshMovingPhoto(): void
+refreshMovingPhoto()
 
 强制刷新动态照片组件加载的视频和图片资源，会打断组件当前的行为，使用时要谨慎。
 

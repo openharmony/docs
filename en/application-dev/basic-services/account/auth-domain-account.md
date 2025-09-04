@@ -1,5 +1,12 @@
 # Authenticating a Domain Account (for System Applications Only)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 Authenticate a domain account before unlocking the screen or when the login session fails.
 
 ## Before You Start

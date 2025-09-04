@@ -1,5 +1,12 @@
 # System Common Events (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 This topic provides a list of common events defined by the system.
 
 Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
@@ -7,6 +14,8 @@ Common event types are defined in [Support enumeration of the ohos.commonEventMa
 > **NOTE**
 >
 > The current page contains only the system APIs of this module. For details about other public APIs, see [System Common Events](../common_event/commonEventManager-definitions.md).
+
+
 
 
 ## Ability Kit
@@ -24,7 +33,10 @@ When the specified user finishes the boot process on the device, the common even
 
 **Required permissions**: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
 
+
 **Value**: "usual.event.BOOT_COMPLETED"
+
+
 
 ### COMMON_EVENT_PACKAGE_INSTALLATION_STARTED<sup>12+</sup>
 
@@ -88,7 +100,7 @@ This common event is sent when the shortcut is changed (for example, when [setSh
 
 ### COMMON_EVENT_KIOSK_MODE_ON<sup>20+</sup>
 
-Indicates that the kiosk mode is enabled. When this mode is on, the common event service is triggered to publish this system common event.
+Indicates that the kiosk mode is enabled. When this mode is on, the common event service is triggered to publish this system common event.  
 
 **System API**: This is a system API.
 
@@ -112,8 +124,6 @@ Indicates that the kiosk mode is disabled. When this mode is off, the common eve
 **Value:** usual.event.KIOSK_MODE_OFF
 
 
-
-
 ## Background Tasks Kit 
 
 ### COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+</sup>
@@ -132,8 +142,6 @@ System applications can call JavaScript APIs to apply for removing resource usag
 **Required permissions**: none
 
 **Value**: "usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED"
-
-
 
 ## Basic Services Kit - Customization
 
@@ -164,8 +172,6 @@ When the attributes such as network injection, persistent Connection, and GPS lo
 **Required permissions**: none
 
 **Value:** "usual.event.CUSTOM_ROAMING_REGION_UPDATED"
-
-
 
 ## Basic Services Kit - Power Supply
 
@@ -252,6 +258,30 @@ APIs related to this event: **activateOsAccount**. This API is a system API. For
 **Value**: "usual.event.USER_SWITCHED"
 
 
+### COMMON_EVENT_USER_LOCKING
+
+Indicates that a user is about to be locked.
+
+Before a user is locked, the common event service is triggered to publish this event carrying the system account ID.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Value**: "usual.event.USER_LOCKING"
+
+
+### COMMON_EVENT_USER_LOCKED
+
+Indicates that a user is locked.
+
+After a user is locked, the common event service is triggered to publish this event carrying the system account ID.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Value**: "usual.event.USER_LOCKED"
 
 
 ## Core File Kit
@@ -272,6 +302,8 @@ This common event is triggered when an external storage device is removed.
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **Value**: "usual.event.data.VOLUME_REMOVED"
+
+
 
 ### COMMON_EVENT_VOLUME_UNMOUNTED
 
@@ -348,6 +380,21 @@ When a data migration application starts the backup and restore framework to per
 **Value**: "usual.event.RESTORE_START"
 
 
+## Media Kit
+
+### COMMON_EVENT_SCREEN_SHARE
+
+Indicates that a screen sharing event has occurred in the system.
+
+This is a protected common event and can be sent only by the system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
+
+**Value**: usual.event.SCREEN_SHARE
 
 
 ## Telephony Kit
@@ -395,6 +442,10 @@ When the device receives a cell broadcast message, the common event service is t
 **Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
 
 **Value**: usual.event.SMS_CB_RECEIVE_COMPLETED
+
+
+
+
 
 ### COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+</sup>
 
@@ -503,9 +554,9 @@ When the default primary SIM card for the voice service is updated, the common e
 
 ### COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED<sup>10+</sup>
 
-Indicates that the cellular data status has been updated.
+Indicates that the cellular data state has been updated.
 
-When the cellular data status of the device is updated, the common event service is triggered to publish this event.
+When the cellular data state of the device is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
@@ -533,9 +584,9 @@ When an incoming call is missed on the device, the common event service is trigg
 
 ### COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+</sup>
 
-Indicates that the radio status of the device has changed.
+Indicates that the radio state of the device has changed.
 
-When there is a change in the radio status of the device, the common event service is triggered to publish this event.
+When there is a change in the radio state of the device, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
@@ -576,8 +627,6 @@ When there is a change in the audio quality of the device, the common event serv
 **Value**: usual.event.AUDIO_QUALITY_CHANGE
 
 
-
-
 ## Reserved Common Event
 
 Below are reserved common events that are not supported yet.
@@ -614,9 +663,9 @@ When an STK session ends, the common event service is triggered to publish this 
 
 ### COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+</sup>
 
-(Reserved, not supported yet) Indicates that the STK card status has been updated.
+(Reserved, not supported yet) Indicates that the STK card state has been updated.
 
-When the STK card status is updated, the common event service is triggered to publish this event.
+When the STK card state is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
@@ -655,5 +704,3 @@ When the device receives a WAP push message, the common event service is trigger
 **Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
 
 **Value**: usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED
-
- <!--no_check--> 

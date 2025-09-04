@@ -167,7 +167,7 @@
   this.title[0].value = 6;
   ```
 
-- 当装饰的对象是Date时，可以观察到Date的赋值，以及通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性，详[装饰Date类型变量](#装饰date类型变量)。
+- 当装饰的对象是Date时，可以观察到Date的赋值，以及通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性，详见[装饰Date类型变量](#装饰date类型变量)。
 
 - 当装饰的变量是Map时，可以观察到Map整体的赋值，以及通过调用Map的接口`set`, `clear`, `delete`更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
@@ -186,7 +186,7 @@
     ```ts	
     // 错误写法，编译报错
     @State count: number;
-  
+    
     // 正确写法
     @State count: number = 10;
     ```
@@ -361,7 +361,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
@@ -425,7 +425,7 @@ struct SetSample {
       }.width('100%')
     }
   }
-  ```
+```
 
 
 ### State支持联合类型实例
@@ -771,8 +771,12 @@ struct Test {
 }
 ```
 
-上述示例中，点击`Button('change')`，只会触发第二个`Text`组件的刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`。该变化属于第一层的赋值，可以被观察，会对当前自定义组件标脏，并请求下一帧刷新。
-再执行`this.user.info.address = '北京'`，该变化属于第二层的赋值，不能被观察到。但是需要注意，当前变化虽然无法被观察到，但赋值是可以生效的，即`this.user.info.address`会被修改为`北京`。如果上述示例注释掉`this.user.info = new Info('广州')`，则`Text`组件将无法更新。
+在上述示例中，点击按钮后有以下变化：
+
+- 第一个`Text`组件不会刷新。这是因为在点击事件中执行`this.user.info = new Info('广州')`，该变化使得`this.user.info`不再引用`this.info`，而是重新赋值了一个`Info`实例，因此再改变`this.user.info`的属性不会被`this.info`观察，第一个`Text`组件不会刷新。
+- 第二个`Text`组件会刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`，该变化属于第一层的赋值，可以被观察，会对当前自定义组件标脏，并请求下一帧刷新。再执行`this.user.info.address = '北京'`，该变化属于第二层的赋值，不能被观察到。但是需要注意，当前变化虽然无法被观察到，但赋值是可以生效的。在下一帧刷新到来时，`this.user.info.address`已被修改为`北京`，因此第二个`Text`组件显示`北京`。
+
+如果上述示例注释掉`this.user.info = new Info('广州')`，则与示例2场景一致，只会触发第一个`Text`组件更新，第二个`Text`组件将无法更新。
 
 ### 复杂类型常量重复赋值给状态变量触发刷新
 
@@ -822,9 +826,9 @@ struct ConsumerChild {
 }
 ```
 
-以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新并输出`this.dataObj.name change: a`日志。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
+以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新并输出`this.dataObj.name change: a`日志。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理，用于观测一层属性或API调用产生的变化。  
 当再次赋值`list[0]`时，`dataObjFromList`已经是`Proxy`类型，而`list[0]`是`Object`类型，因此判断两者不相等，会触发赋值和刷新。 
-为了避免这种不必要的赋值和刷新，可以通过用\@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
+为了避免这种不必要的赋值和刷新，可以通过用\@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象，提前进行新旧值的判断，如果相同则不执行赋值。  
 方法一：增加\@Observed
 
 ```ts
@@ -985,7 +989,7 @@ struct Index {
   }
 }
 ```
-上面示例渲染过程：
+上面示例的渲染过程为：
 
 1. 创建第一个Text组件，触发this.message改变。
 
@@ -993,7 +997,7 @@ struct Index {
 
 3. 第二个Text组件的刷新又触发this.message的改变，触发第一个Text组件刷新。
 
-4. 循环重新渲染……
+4. 循环重新渲染。
 
 5. 系统长时间无响应，appfreeze。
 

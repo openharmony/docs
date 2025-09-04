@@ -3,7 +3,7 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
-<!--Designer: @li-weifeng2-->
+<!--Designer: @li-weifeng2024-->
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
@@ -236,7 +236,7 @@ emit(event: string, ...args: Object[]): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
-| ...args | Object[] | 是 | 可变参数，事件触发时，传递给回调函数的参数。 |
+| ...args | Object[] | 否 | 可变参数，事件触发时，传递给回调函数的参数。 |
 
 **错误码**：
 

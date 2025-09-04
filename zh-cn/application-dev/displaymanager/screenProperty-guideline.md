@@ -65,7 +65,7 @@ try {
    import { display } from '@kit.ArkUI';
    
    let displayClass: display.Display | null = null;
-  try {
+   try {
     displayClass = display.getDefaultDisplaySync();
     // 获取屏幕Id
     console.info(`The screen Id is ${displayClass.id}.`);
@@ -76,9 +76,9 @@ try {
     // 获取屏幕高度
     console.info(`The screen height is ${displayClass.height}.`);
    // ...
-  } catch (exception) {
+   } catch (exception) {
     console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
-  }
+   }
    ```
 
 2. 还可以通过getCutoutInfo()获取挖孔屏、刘海屏、瀑布屏等不可用的屏幕区域信息，以在UI布局时更好地规避该区域。也可以通过getAvailableArea()获取当前设备屏幕的可用区域。
@@ -163,7 +163,7 @@ try {
 
 1. 可以通过display.isFoldable()接口查询当前设备是不是折叠设备。
 
-   ```
+   ```ts
    import { display } from '@kit.ArkUI';
    
    let ret: boolean = false;

@@ -11,20 +11,10 @@
 >  **说明：**
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 绑定手势识别
-
-通过如下方法给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
-可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
->  **说明：**
 >
->  gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
+> 可以通过gesture、priorityGesture和parallelGesture给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
 
-### gesture
+## gesture
 
 gesture(gesture: GestureType, mask?: GestureMask): T
 
@@ -47,7 +37,7 @@ gesture(gesture: GestureType, mask?: GestureMask): T
 | ------ | --------- |
 | T | 返回当前组件。 |
 
-### priorityGesture
+## priorityGesture
 
 priorityGesture(gesture: GestureType, mask?: GestureMask): T
 
@@ -74,7 +64,7 @@ priorityGesture(gesture: GestureType, mask?: GestureMask): T
 | ------ | --------- |
 | T | 返回当前组件。 |
 
-### parallelGesture
+## parallelGesture
 
 parallelGesture(gesture: GestureType, mask?: GestureMask): T
 
@@ -118,59 +108,6 @@ declare type GestureType = TapGesture | LongPressGesture | PanGesture | PinchGes
 | [SwipeGesture](ts-basic-gestures-swipegesture.md) | 滑动手势，滑动速度大于等于速度阈值时可识别成功，默认最小速度为100vp/s。 |
 | [GestureGroup](ts-combined-gestures.md) | 手势识别组，多种手势组合为复合手势，支持连续识别、并行识别和互斥识别。 |
 
-## GestureInterface\<T><sup>11+</sup>
-
-定义Gesture接口。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### tag<sup>11+</sup>
-
-tag(tag: string): T
-
-设置手势的标志。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                        |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| tag  |  string | 是   | 手势的标志。 |
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| T | 返回当前组件。 |
-
-### allowedTypes<sup>14+</sup>
-
-allowedTypes(types: Array\<SourceTool>): T
-
-设置手势响应的输入类型。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                        |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| types  |  Array\<[SourceTool](#sourcetool枚举说明9)> | 是   | 手势响应的输入类型。 |
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| T | 返回当前组件。 |
-
-
 ## GestureMask枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -181,10 +118,6 @@ allowedTypes(types: Array\<SourceTool>): T
 | -------- | ---- |-------- |
 | Normal | - |不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 |
 | IgnoreInternal | - | 屏蔽子组件的手势，包括子组件上系统内置的手势，如子组件为List组件时，内置的滑动手势同样会被屏蔽。 若父子组件区域存在部分重叠，则只会屏蔽父子组件重叠的部分。|
-
-## 响应手势事件
-
-组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过[TapGesture](./ts-basic-gestures-tapgesture.md#tapgesture)手势对象的[onAction](./ts-basic-gestures-tapgesture.md#onaction)事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势，请使用[组合手势](ts-combined-gestures.md)。
 
 ## SourceType枚举说明<sup>8+</sup>
 
@@ -236,11 +169,11 @@ allowedTypes(types: Array\<SourceTool>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| -------- | -------- |
-| NONE | 未知。 |
-| LEFT | 左手。 |
-| RIGHT | 右手。 |
+| 名称 | 值 | 描述 |
+| -------- | -------- | -------- |
+| NONE | 0 | 未知。 |
+| LEFT | 1 | 左手。 |
+| RIGHT | 2 | 右手。 |
 
 
 ## 示例

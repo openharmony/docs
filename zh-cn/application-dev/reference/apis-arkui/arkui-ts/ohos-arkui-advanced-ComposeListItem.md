@@ -7,7 +7,7 @@
 <!--Adviser: @HelloCrease-->
 
 
-该组件用于呈现一系列宽度相同的列表项，适用于展示连续、多行的同类数据组合（如图片与文本）。
+该组件用于展示一系列宽度相同的列表项，适用于展示连续、多行的同类数据组合（如图片与文本）。
 
 
 > **说明：**
@@ -69,7 +69,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## IconType
 
-列表左侧图标大小。
+列表左侧图标类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -90,7 +90,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateItem
 
-列表右侧显示的元素类型以及文字内容。
+列表右侧显示的元素类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -104,14 +104,14 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。<br/>默认不设置或设置为undefined，右侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                       |
 | switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关。<br/>默认不设置或设置为undefined，右侧开关不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                       |
 | checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24vp。<br/>默认不设置或设置为undefined，右侧多选框不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24vp。<br/>默认不设置或设置为undefined，右侧单选框不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
+| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选框，大小为24\*24vp。<br/>默认不设置或设置为undefined，右侧单选框不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 | image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48vp。<br/>默认不设置或设置为undefined，右侧图片不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
-| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 右侧元素为Symbol，大小为48\*48vp。<br/>默认不设置或设置为undefined，右侧Symbol图标不显示。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 右侧元素为Symbol图标资源，大小为48\*48vp。<br/>默认不设置或设置为undefined，右侧Symbol图标不显示。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。 <br/>默认不设置或设置为undefined，右侧文字不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 
 ## OperateIcon
 
-列表右侧显示的元素为图标的参数。
+列表右侧图标元素的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,7 +128,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateButton
 
-列表右侧显示的元素为按钮的参数。
+列表右侧按钮元素的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -143,7 +143,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateCheck
 
-列表右侧显示元素类型为Switch、CheckBox、Radio的参数。
+列表右侧元素为Switch、CheckBox、Radio的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

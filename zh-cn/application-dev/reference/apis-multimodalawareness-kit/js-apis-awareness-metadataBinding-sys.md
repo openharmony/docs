@@ -21,7 +21,7 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## metadataBinding.encodeImage
-encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;;
+encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;
 
 在图片中加入信息。
 
@@ -48,9 +48,9 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelM
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   202    | Permission check failed. A non-system application uses the system API.|
-|32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encoding failed. Possible causes: 1. Image processing error; 2. Channel coding error.|
+|   202    | Permission check failed. A non-system application uses the system API. |
+| 32100001 | Internal handling failed. File creation failed. |
+| 32100002 | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error. |
 
 **示例**：
 
@@ -70,7 +70,7 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 ```
 
 ## metadataBinding.decodeImage
-function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;;
+function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
 
 解析图片中携带的信息。
 
@@ -96,9 +96,9 @@ function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   202    | Permission check failed. A non-system application uses the system API.|
-|32100001  | Internal handling failed. File creation failed.|
-|32100003  | Decoding failed. Possible causes: 1. Image not encoded; 2. Image destroyed.|
+|   202    | Permission check failed. A non-system application uses the system API. |
+| 32100001 | Internal handling failed. File read failed. |
+| 32100003 | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed. |
 
 **示例：**  
 ```ts
@@ -116,7 +116,7 @@ metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 ```
 
 ## metadataBinding.notifyMetadataBindingEvent
-notifyMetadataBindingEvent(metadata: string): void;
+notifyMetadataBindingEvent(metadata: string): void
 
 推送待嵌入的信息给调用编码接口的应用或服务。
 
@@ -136,7 +136,8 @@ notifyMetadataBindingEvent(metadata: string): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. File creation failed.|
+|   202    | Permission check failed. A non-system application uses the system API. |
+| 32100001 | Internal handling failed. Obtain metadata failed. |
 
 **示例**：
 

@@ -386,9 +386,9 @@
       num: number = 0;
       str: string = '';
 
-      constructor(num: number, string: string) {
+      constructor(num: number, str: string) {
         this.num = num;
-        this.str = string;
+        this.str = str;
       }
 
       marshalling(messageSequence: rpc.MessageSequence) {

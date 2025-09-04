@@ -20,8 +20,8 @@
 
    ```
    // 获取PreviewOutput(预览输出类)实例
-   const surfaceId = globalThis.mxXComponentController.getXComponentSurfaceld();
-   this.mPreviewOutput = await Camera.createPreviewOutput(surfaceld) ;
+   const surfaceId = globalThis.mxXComponentController.getXComponentSurfaceId();
+   this.mPreviewOutput = await Camera.createPreviewOutput(surfaceId) ;
    ```
 
 2. 使用imageReceiver来监听图像信息。
@@ -30,10 +30,10 @@
    // 添加双路预览
    const fullWidth = this.mFullScreenSize.width;
    const fullHeight = this.mFullScreenSize.height;
-   const imageReceiver = await image.createImageReceiver(fullwidth, fullHeight, 
-     formatImage, capacityImage) ;
+   const imageReceiver = await image.createImageReceiver(fullWidth, fullHeight, 
+     formatImage, capacityImage);
    const photoSurfaceId = await imageReceiver.getReceivingSurfaceld();
-   this.mPreviewOutputDouble = await Camera.createPreviewOutput ( photoSurfaceld)
+   this.mPreviewOutputDouble = await Camera.createPreviewOutput (photoSurfaceId)
    ```
 
 
@@ -46,7 +46,7 @@
    ```
    let cameraManager = await camera.getCameraManager(context);
    let camerasInfo = await cameraManager.getSupportedCameras();
-   let cameraDevice = this.camerasInfo[0];
+   let cameraDevice = camerasInfo[0];
    ```
 
 2. 创建并启动物理摄像头输入流通道。
@@ -60,7 +60,7 @@
 
    ```
    let outputCapability = await this.cameraManager.getSupportedOutputCapability(cameraDevice);
-   let previewProfile = this.outputCapability.previewProfiles[0];
+   let previewProfile = outputCapability.previewProfiles[0];
    let previewOutput = await cameraManager.createPreviewOutput(previewProfile, previewId);
    ```
 

@@ -40,7 +40,7 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 | 名称   | 类型                              | 必填 | 装饰器类型 | 说明                    |
 | ------- | --------------------------------- | ---- | ---------- | ----------------------- |
-| options | [CounterOptions](#counteroptions) | 否   | @Prop      | 定义Counter组件的类型。 |
+| options | [CounterOptions](#counteroptions) | 是   | @Prop      | 定义Counter组件的类型。 |
 
 ## CounterOptions
 
@@ -286,7 +286,7 @@ struct NumberStyleExample {
             max: 1000,
             textWidth: 100,
             onChange: (value: number) => {
-              console.info('onDateChange Date: ' + value.toString());
+              console.info('onCounterChange Counter: ' + value.toString());
             }
           }
         }
@@ -334,7 +334,6 @@ struct DataStyleExample {
 设置direction属性，实现列表型、紧凑型、数字内联型、日期内联型Counter的镜像布局。
 
 ```ts
-// xxx.ets
 import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 
 @Entry
@@ -387,7 +386,7 @@ struct CounterPage {
             max: 1000,
             textWidth: 100,
             onChange: (value: number) => {
-              console.info('onDateChange Date: ' + value.toString());
+              console.info('onCounterChange Counter: ' + value.toString());
             }
           }
         }

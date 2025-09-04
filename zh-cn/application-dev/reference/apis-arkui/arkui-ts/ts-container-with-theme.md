@@ -49,7 +49,7 @@ WithTheme(options: WithThemeOptions)
 | 名称        | 类型                               | 必填 | 说明                |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
 | theme     | [CustomTheme](#customtheme)    | 否   | 用于自定义WithTheme作用域内组件缺省配色。 <br/> 默认值：undefined，缺省样式跟随系统token默认样式。 |
-| colorMode | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.System       |
+| colorMode | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM       |
 
 ## CustomTheme
 
@@ -77,7 +77,7 @@ dark.json数据示例：
       "color": [
         {
           "name": "start_window_background",
-          "value": "#FFFFFF"
+          "value": "#000000"
         }
       ]
     }
@@ -99,7 +99,7 @@ struct Index {
       .justifyContent(FlexAlign.Center)
       .width('100%')
       .height('33%')
-      .backgroundColor($r('sys.color.background_primary'))
+      .backgroundColor($r('app.color.start_window_background'))
       // 设置组件为深色模式
       WithTheme({ colorMode: ThemeColorMode.DARK }) {
         Column() {

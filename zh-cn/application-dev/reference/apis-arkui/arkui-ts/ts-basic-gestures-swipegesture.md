@@ -19,7 +19,7 @@
 
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
-继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置滑动手势事件。
+继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)，设置滑动手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -75,7 +75,7 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 onAction(event: (event: GestureEvent) => void)
 
-Swipe手势识别成功回调。
+Swipe手势识别成功时触发回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

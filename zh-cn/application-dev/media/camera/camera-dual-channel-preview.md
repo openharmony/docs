@@ -110,6 +110,7 @@
               let pixelMapFormat = formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
               let mSize = pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
               console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
+              // 如需使用pixelMap，参考以下逻辑。
               // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致。
               // stride与width一致。
               if (stride == width) {
@@ -219,20 +220,26 @@ struct example {
 ```ts
 function createDualPreviewOutput(cameraManager: camera.CameraManager, previewProfile: camera.Profile,
   session: camera.Session, imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
-  // 使用imageReceiverSurfaceId创建第一路预览。
-  let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
-  if (!previewOutput1) {
-  console.error('createPreviewOutput1 error');
+  try {
+    // 使用imageReceiverSurfaceId创建第一路预览。
+    let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
+    if (!previewOutput1) {
+      console.error('createPreviewOutput1 error');
+      return;
+    }
+    // 使用xComponentSurfaceId创建第二路预览。
+    let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
+    if (!previewOutput2) {
+      console.error('createPreviewOutput2 error');
+      return;
+    }
+    // 添加第一路预览流输出。
+    session.addOutput(previewOutput1);
+    // 添加第二路预览流输出。
+    session.addOutput(previewOutput2);
+  } catch (error) {
+    console.error('createDualPreviewOutput  call failed');
   }
-  // 使用xComponentSurfaceId创建第二路预览。
-  let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
-  if (!previewOutput2) {
-  console.error('createPreviewOutput2 error');
-  }
-  // 添加第一路预览流输出。
-  session.addOutput(previewOutput1);
-  // 添加第二路预览流输出。
-  session.addOutput(previewOutput2);
 }
 ```
 
@@ -246,6 +253,14 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
+interface CameraResources {
+  videoOutput?: camera.VideoOutput;
+  cameraInput?: camera.CameraInput;
+  previewOutput1?: camera.PreviewOutput;
+  previewOutput2?: camera.PreviewOutput;
+  session?: camera.VideoSession;
+}
+
 @Entry
 @Component
 struct Index {
@@ -256,25 +271,30 @@ struct Index {
   @State imageWidth: number = 1920;
   @State imageHeight: number = 1080;
   private cameraManager: camera.CameraManager | undefined = undefined;
-  private cameras: Array<camera.CameraDevice> | Array<camera.CameraDevice> = [];
-  private cameraInput: camera.CameraInput | undefined = undefined;
-  private previewOutput1: camera.PreviewOutput | undefined = undefined;
-  private previewOutput2: camera.PreviewOutput | undefined = undefined;
-  private session: camera.VideoSession | undefined = undefined;
+  private cameras: Array<camera.CameraDevice> | undefined = [];
   private uiContext: UIContext = this.getUIContext();
   private context: Context | undefined = this.uiContext.getHostContext();
-  private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // 申请权限相关问题可参考本篇开头的申请相关权限文档
+  private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // 申请权限相关问题可参考本篇开头的申请相关权限文档。
   @State isShow: boolean = false;
+  private cameraResources: CameraResources = {};
 
   async requestPermissionsFn(): Promise<void> {
     let atManager = abilityAccessCtrl.createAtManager();
     if (this.context) {
       let res = await atManager.requestPermissionsFromUser(this.context, [this.cameraPermission]);
-      for (let i =0; i < res.permissions.length; i++) {
-        if (this.cameraPermission.toString() === res.permissions[i] && res.authResults[i] === 0) {
+      if (!res || !res.permissions || res.permissions.length === 0) {
+        console.error('requestPermissionsFromUser interface call fails');
+        return;
+      }
+      if (res.permissions.length !== res.authResults.length) {
+        console.error('Authentication result mismatch');
+        return;
+      }
+      res.permissions.forEach((value: string, index: number, permissions: string[]) => {
+        if (this.cameraPermission.toString() === value && res.authResults[index] === 0) {
           this.isShow = true;
         }
-      }
+      })
     }
   }
 
@@ -418,27 +438,30 @@ struct Index {
       // 获取相机管理器实例。
       this.cameraManager = camera.getCameraManager(this.context);
       if (!this.cameraManager) {
-        console.error('initCamera getCameraManager');
+        console.error('getCameraManager call failed');
+        return;
       }
       // 获取当前设备支持的相机device列表。
       this.cameras = this.cameraManager.getSupportedCameras();
-      if (!this.cameras) {
-        console.error('initCamera getSupportedCameras');
+      if (!this.cameras || this.cameras.length === 0) {
+        console.error('getSupportedCameras call failed');
+        return;
       }
       // 选择一个相机device，创建cameraInput输出对象。
-      this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
-      if (!this.cameraInput) {
-        console.error('initCamera createCameraInput');
+      this.cameraResources.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
+      if (!this.cameraResources.cameraInput) {
+        console.error('createCameraInput call failed');
+        return;
       }
       // 打开相机。
-      await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${err}`);
-      })
+      await this.cameraResources.cameraInput.open();
       // 获取相机device支持的profile。
       let capability: camera.CameraOutputCapability =
         this.cameraManager.getSupportedOutputCapability(this.cameras[0], camera.SceneMode.NORMAL_VIDEO);
       if (!capability) {
-        console.error('initCamera getSupportedOutputCapability');
+        console.error('getSupportedOutputCapability call failed');
+        this.releaseCamera();
+        return;
       }
       let minRatioDiff : number = 0.1;
       let surfaceRatio : number = this.imageWidth / this.imageHeight; // 最接近16:9宽高比。
@@ -459,34 +482,42 @@ struct Index {
       this.imageHeight = previewProfile.size.height; // 更新xComponent组件的高。
       console.info(`initCamera imageWidth:${this.imageWidth} imageHeight:${this.imageHeight}`);
       // 使用imageReceiverSurfaceId创建第一路预览。
-      this.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
-      if (!this.previewOutput1) {
+      this.cameraResources.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
+      if (!this.cameraResources.previewOutput1) {
         console.error('initCamera createPreviewOutput1');
+        this.releaseCamera();
+        return;
       }
       // 使用xComponentSurfaceId创建第二路预览。
-      this.previewOutput2 = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
-      if (!this.previewOutput2) {
+      this.cameraResources.previewOutput2 = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
+      if (!this.cameraResources.previewOutput2) {
         console.error('initCamera createPreviewOutput2');
+        this.releaseCamera();
+        return;
       }
       // 创建录像模式相机会话。
-      this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
-      if (!this.session) {
-        console.error('initCamera createSession');
+      let session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO)
+      if (!session) {
+        console.error('session is null');
+        this.releaseCamera();
+        return;
       }
+      this.cameraResources.session = session as camera.VideoSession;
       // 开始配置会话。
-      this.session.beginConfig();
+      this.cameraResources.session.beginConfig();
       // 添加相机设备输入。
-      this.session.addInput(this.cameraInput);
+      this.cameraResources.session.addInput(this.cameraResources.cameraInput);
       // 添加第一路预览流输出。
-      this.session.addOutput(this.previewOutput1);
+      this.cameraResources.session.addOutput(this.cameraResources.previewOutput1);
       // 添加第二路预览流输出。
-      this.session.addOutput(this.previewOutput2);
+      this.cameraResources.session.addOutput(this.cameraResources.previewOutput2);
       // 提交会话配置。
-      await this.session.commitConfig();
+      await this.cameraResources.session.commitConfig();
       // 开始启动已配置的输入输出流。
-      await this.session.start();
+      await this.cameraResources.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      this.releaseCamera();
     }
   }
 
@@ -495,17 +526,33 @@ struct Index {
     console.info('releaseCamera E');
     try {
       // 停止当前会话。
-      await this.session?.stop();
-      // 释放相机输入流。
-      await this.cameraInput?.close();
-      // 释放预览输出流。
-      await this.previewOutput1?.release();
-      // 释放拍照输出流。
-      await this.previewOutput2?.release();
-      // 释放会话。
-      await this.session?.release();
+      await this.cameraResources.session?.stop();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`session.stop call failed, error: ${JSON.stringify(error)}`);
+    }
+    try {
+      // 释放相机输入流。
+      await this.cameraResources.cameraInput?.close();
+    } catch (error) {
+      console.error(`camera close fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // 释放预览输出流。
+      await this.cameraResources.previewOutput1?.release();
+    } catch (error) {
+      console.error(`previewOutput1 release fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // 释放拍照输出流。
+      await this.cameraResources.previewOutput2?.release();
+    } catch (error) {
+      console.error(`previewOutput2 release fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // 释放会话。
+      await this.cameraResources.session?.release();
+    } catch (error) {
+      console.error(`session release fail: ${JSON.stringify(error)}`);
     }
   }
 }

@@ -10,9 +10,9 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  部分设备会优先响应系统的双指长按手势，导致应用的双指长按手势不生效。
+>  从API version 18开始，部分设备会优先响应系统的双指长按手势，导致应用的双指长按手势不生效。
 
 
 ## 接口
@@ -21,7 +21,7 @@
 
 LongPressGesture(value?: { fingers?: number; repeat?: boolean; duration?: number })
 
-创建长按手势对象。继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)。
+创建长按手势对象。继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)。
 
 当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。长按手势与拖拽会出现冲突，事件优先级如下： 
 
