@@ -2844,8 +2844,6 @@ setAppShareOptions(shareOptions: ShareOption): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
@@ -2876,8 +2874,6 @@ removeAppShareOptions(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.removeAppShareOptions();
