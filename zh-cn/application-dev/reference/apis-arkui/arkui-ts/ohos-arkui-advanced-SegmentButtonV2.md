@@ -240,8 +240,8 @@ MultiCapsuleSegmentButtonV2({
 | 名称                           | 类型                                                         | 必填 | 装饰器类型         | 说明                                                         |
 | ------------------------------ | ------------------------------------------------------------ | ---- | ------------------ | ------------------------------------------------------------ |
 | items                          | [SegmentButtonV2Items](#segmentbuttonv2items)                | 是   | @Require<br>@Param | 配置分段按钮的选项集合信息。                                 |
-| selectedIndexes                | number[]                                                     | 是   | @Require<br>@Param | 配置分段按钮被选中的选项下标集合，第一项的编号为0，之后顺序增加。<br>**说明：**<br>仅支持有效的按钮编号（第一个按钮编号为0，之后按顺序累加），如没有选中项可传入空数组`[]`。 |
-| $selectedIndexes               | [OnSelectedIndexesChange](#onselectedindexeschange)          | 否   | @Event             | 配置分段按钮选中项变更时的回调函数。                         |
+| selectedIndexes                | number[]                                                     | 是   | @Require<br>@Param | 配置分段按钮被选中的选项下标集合，第一项的编号为0，之后顺序增加。<br/>**说明：**<br/>仅支持有效的按钮编号（第一个按钮编号为0，之后按顺序累加），如没有选中项可传入空数组`[]`。 |
+| $selectedIndexes               | [OnSelectedIndexesChange](#onselectedindexeschange)          | 是   | @Event             | 配置分段按钮选中项变更时的回调函数。                         |
 | onItemClicked                  | Callback\<number>                                            | 否   | @Event             | 配置分段按钮选项被单击时触发的回调函数。                     |
 | itemBackgroundColor            | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否   | @Param             | 配置分段按钮非选中的选项背板颜色。<br>默认值：`$r('sys.color.segment_button_v2_multi_capsule_button_background')` |
 | itemBackgroundEffect           | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否   | @Param             | 配置分段按钮非选中的选项背板效果。                           |
@@ -836,7 +836,7 @@ export struct VCard {
 
 ![MultiCapsuleSegmentButtonV2.gif](figures/MultiCapsuleSegmentButtonV2.gif)
 
-### 示例 4（页签型分段按钮，单选的胶囊型分段按钮，多选的胶囊型分段按钮Modifier）
+### 示例4（分段按钮Modifier的基本用法）
 
 该示例介绍页签型分段按钮，单选的胶囊型分段按钮，多选的胶囊型分段按钮Modifier的基本用法。
 
@@ -855,12 +855,12 @@ import {
 @ComponentV2
 struct SegmentButtonV2Example {
   @Local textItems: SegmentButtonV2Items = new SegmentButtonV2Items([
-    { text: '手机', textModifier: new TextModifier().fontSize(10) },
+    { text: '手机', textModifier: new TextModifier().fontSize(20) },
     { text: '平板' },
     { icon: $r('sys.media.ohos_ic_public_device_phone'), iconModifier: new ImageModifier().height(17).width(17) },
     { icon: $r('sys.media.ohos_ic_public_device_pad') },
-    { symbol: $r('sys.symbol.phone'), symbolModifier: new SymbolGlyphModifier().height(5).width(5) },
-    { symbolModifier: new SymbolGlyphModifier($r('sys.symbol.pad')).height(5).width(5) },
+    { symbol: $r('sys.symbol.phone'), symbolModifier: new SymbolGlyphModifier().fontColor([Color.Pink]) },
+    { symbolModifier: new SymbolGlyphModifier($r('sys.symbol.pad')).fontColor([Color.Orange]) },
     { symbol: $r('sys.symbol.matebook') },
   ]);
   @Local textSelectedIndex: number = 0;
