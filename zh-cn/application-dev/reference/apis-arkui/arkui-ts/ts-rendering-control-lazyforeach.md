@@ -35,6 +35,10 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 >
 > 应避免在`keyGenerator`和`itemGenerator`函数中执行耗时操作，以此来减少应用滑动时卡顿丢帧问题，最佳实践请参考[主线程耗时操作优化-循环渲染](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section4551193714439)。例如，不推荐使用JSON.stringify函数。在复杂的业务场景中，使用JSON.stringify会对item对象进行序列化，该过程会消耗大量时间与计算资源，从而降低页面性能，最佳实践请参考[懒加载优化性能-键值生成规则](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization#section68711519072)。
 
+## 属性
+
+支持[拖拽排序](./ts-universal-attributes-drag-sorting.md)属性。
+
 ## IDataSource
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
