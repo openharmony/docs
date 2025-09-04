@@ -1622,7 +1622,7 @@ class Derived1 extends Base implements Interface { }
 // Derived1在语义上等价于Derived2
 class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 
-function foo<T = number>(): T {
+function foo<T = number>(): void {
   // ...
 }
 foo();
@@ -1923,6 +1923,7 @@ class MyClass {
 }
 ```
 
+- 使用@interface声明注解。
 - 注解`ClassAuthor`需要将元信息添加到类声明中。
 - 注解必须放置在声明之前。
 - 注解可以包含上述示例中所示的参数。
@@ -2243,7 +2244,7 @@ export declare @interface MethodAnno {
 }
 
 @ClassAuthor
-export declare class C {
+export declare class MyClass {
   @MethodAnno({data: 123})
   foo(): void;
 
