@@ -1,5 +1,12 @@
 # @ohos.account.osAccount (System Account) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The **osAccount** module provides basic capabilities for managing system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling a system account.
 
 > **NOTE**
@@ -539,7 +546,7 @@ Sets or removes constraints for a system account. This API uses a promise to ret
   let localId: number = 100;
   try {
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
-      console.log('setOsAccountConstraints succsuccessfully');
+      console.info('setOsAccountConstraints successfully');
     }).catch((err: BusinessError) => {
       console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
@@ -984,7 +991,7 @@ Creates a system account. This API uses a promise to return the result.
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | Yes  | Name of the system account to create.|
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create.|
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
+| options      | [CreateOsAccountOptions](#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -2137,6 +2144,68 @@ Obtains the type of a system account. This API uses a promise to return the resu
   }
   ```
 
+### bindDomainAccount<sup>20+</sup>
+
+bindDomainAccount(localId: number, domainAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+Binds a domain account to a system account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | Yes  |  ID of the target system account.|
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
+
+**Return value**
+
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Account Management Error Codes](./errorcode-account.md).
+
+| ID| Error Message      |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid domain account information. |
+| 12300003 | The OS account not found. |
+| 12300008 | Restricted OS account. Possible causes: The OS account cannot be bound. |
+| 12300010 | Service busy. Possible causes: The target OS account or domain account is being operated. |
+| 12300021 | The OS account is already bound. |
+| 12300022 | The domain account is already bound. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    let localId: number = 100;
+    let domainInfo: osAccount.DomainAccountInfo =
+      {domain: 'testDomain', accountName: 'testAccountName'};
+    accountManager.bindDomainAccount(localId, domainInfo).then(() => {
+      console.info('bindDomainAccount success.');
+    }).catch((error: BusinessError) => {
+      console.error(`bindDomainAccount failed, errCode=${error.code}, errMsg=${error.message}`);
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`bindDomainAccount error, errCode=${error.code}, errMsg=${error.message}`);
+  }
+  ```
+
 ## UserAuth<sup>8+</sup>
 
 Provides APIs for user authentication.
@@ -2144,6 +2213,8 @@ Provides APIs for user authentication.
 **System API**: This is a system API.
 
 ### constructor<sup>8+</sup>
+
+ 
 
 A constructor used to create an instance for user authentication.
 
@@ -2317,7 +2388,7 @@ Obtains the executor property based on the request. This API uses a promise to r
 
 | Type                                                             | Description                                                |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor property information obtained.|
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor property.|
 
 **Error codes**
 
@@ -2563,6 +2634,9 @@ Prepares for remote authentication. This API uses a promise to return the result
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid remoteNetworkId. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
+| 12300111 | Operation timeout. |
 
 **Example**
   ```ts
@@ -2624,6 +2698,9 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2635,6 +2712,7 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **Example**
@@ -2694,6 +2772,9 @@ Starts user authentication based on the specified challenge value, authenticatio
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2705,6 +2786,7 @@ Starts user authentication based on the specified challenge value, authenticatio
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **Example**
@@ -2767,6 +2849,9 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2778,6 +2863,7 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **Example**
@@ -2828,7 +2914,6 @@ Cancels an authentication.
 | 12300002 | Invalid contextId. |
 
 **Example**
-
   ```ts
   let userAuth = new osAccount.UserAuth();
   let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
@@ -2853,6 +2938,8 @@ Provides APIs for PIN authentication.
 **System API**: This is a system API.
 
 ### constructor<sup>8+</sup>
+
+ 
 
 Creates a PIN authentication instance.
 
@@ -3628,7 +3715,7 @@ Authenticates a domain account.
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo or credential. |
@@ -3998,7 +4085,7 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-Obtains information about the specified domain account. This API uses an asynchronous callback to return the result.
+Obtains information about a specified domain account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4054,7 +4141,7 @@ Obtains information about the specified domain account. This API uses an asynchr
 
 getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
 
-Obtains information about the specified domain account. This API uses a promise to return the result.
+Obtains information about a specified domain account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -4278,6 +4365,8 @@ Provides APIs for user IDM.
 **System API**: This is a system API.
 
 ### constructor<sup>8+</sup>
+
+ 
 
 A **constructor()** used to create an instance for user IDM.
 
@@ -5214,8 +5303,8 @@ Defines the executor property.
 | ------------ | ---------------------------- | ----- | -----|----------------- |
 | result       | number                       | No   | No  | Result.        |
 | authSubType  | [AuthSubType](#authsubtype8) | No   | No  | Authentication credential subtype.|
-| remainTimes  | number                       | No   | Yes  | Number of remaining authentication times.    |
-| freezingTime | number                       | No   | Yes  | Freezing time.    |
+| remainTimes  | number                       | No   | Yes  | Number of remaining authentication times, which is **-1** by default.    |
+| freezingTime | number                       | No   | Yes  | Freezing time, which is **-1** by default.    |
 | enrollmentProgress<sup>10+</sup> | string   | No   | Yes  | Enrollment progress, which is left blank by default.|
 | sensorInfo<sup>10+</sup> | string           | No   | Yes  | Sensor information, which is left blank by default.|
 | nextPhaseFreezingTime<sup>12+</sup> | number | No   | Yes  | Next freezing time, which is **undefined** by default.|
@@ -5281,7 +5370,7 @@ Defines enrolled credential information.
 | authSubType  | [AuthSubType](#authsubtype8) | Yes   | Credential subtype.|
 | templateId   | Uint8Array                               | Yes   | Authentication credential template ID.    |
 | isAbandoned<sup>20+</sup>   | boolean                      | No   | Whether the credential is abandoned, which is **undefined** by default. The abandoned credential may be stored as a backup credential for a period of time.    |
-| validityPeriod<sup>20+</sup>   | number                    | No   | Validity period of the credential, which is **undefined** by default.    |
+| validityPeriod<sup>20+</sup>   | number                    | No   | Validity period of the credential. The default value is **undefined**.    |
 
 ## GetPropertyType<sup>8+</sup>
 
@@ -5581,8 +5670,8 @@ Represents the optional parameter used to create a system account.
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
-| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | No  | Forbidden list of the preinstalled applications, which cannot be installed on the device.|
-| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | No  | Trustlist of the preinstalled applications, which can be installed on the device.|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | No  | Forbidden list of the preinstalled applications, which cannot be installed on the device. The value is empty by default.|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | No  | Trustlist of the preinstalled applications, which can be installed on the device. The default value is **std::nullopt**.|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 

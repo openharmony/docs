@@ -56,7 +56,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -97,7 +97,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
 
 avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   if (err) {
-    console.error('Failed to prepare and error is ' + err.message);
+    console.error('Failed to prepare and error is: ' + err.message);
   } else {
     console.info('Succeeded in preparing');
   }
@@ -134,7 +134,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -175,8 +175,9 @@ let avRecorderConfig: media.AVRecorderConfig = {
 
 avRecorder.prepare(avRecorderConfig).then(() => {
   console.info('Succeeded in preparing');
-}).catch((err: BusinessError) => {
-  console.error('Failed to prepare and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to prepare and error is: ' + error.message);
 });
 ```
 
@@ -216,7 +217,7 @@ let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutp
 
 avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err) {
-    console.error('Failed to do getInputSurface and error is ' + err.message);
+    console.error('Failed to do getInputSurface and error is: ' + err.message);
   } else {
     console.info('Succeeded in doing getInputSurface');
     surfaceID = surfaceId;
@@ -262,8 +263,9 @@ let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutp
 avRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('Succeeded in getting InputSurface');
   surfaceID = surfaceId;
-}).catch((err: BusinessError) => {
-  console.error('Failed to get InputSurface and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to get InputSurface and error is: ' + error.message);
 });
 ```
 
@@ -291,7 +293,7 @@ updateRotation(rotation: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -308,9 +310,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let rotation = 90;
 
 avRecorder.updateRotation(rotation).then(() => {
-  console.info('Succeeded in updateRotation');
-}).catch((err: BusinessError) => {
-  console.error('Failed to updateRotation and catch error is ' + err.message);
+  console.info('Succeeded in doing updateRotation');
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to do updateRotation and error is: ' + error.message);
 });
 ```
 
@@ -349,9 +352,10 @@ setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.setWillMuteWhenInterrupted(true).then(() => {
-  console.info('setWillMuteWhenInterrupted Success!');
-}).catch((err: BusinessError) => {
-  console.error(`setWillMuteWhenInterrupted Fail: ${err}`);
+  console.info('Succeeded in doing setWillMuteWhenInterrupted');
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to do setWillMuteWhenInterrupted and error is: ' + error.message);
 });
 ```
 
@@ -388,7 +392,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.start((err: BusinessError) => {
   if (err) {
-    console.error('Failed to start AVRecorder and error is ' + err.message);
+    console.error('Failed to start AVRecorder and error is: ' + err.message);
   } else {
     console.info('Succeeded in starting AVRecorder');
   }
@@ -430,8 +434,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.start().then(() => {
   console.info('Succeeded in starting AVRecorder');
-}).catch((err: BusinessError) => {
-  console.error('Failed to start AVRecorder and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to start AVRecorder and error is: ' + error.message);
 });
 ```
 
@@ -468,7 +473,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.pause((err: BusinessError) => {
   if (err) {
-    console.error('Failed to pause AVRecorder and error is ' + err.message);
+    console.error('Failed to pause AVRecorder and error is: ' + err.message);
   } else {
     console.info('Succeeded in pausing');
   }
@@ -510,8 +515,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.pause().then(() => {
   console.info('Succeeded in pausing');
-}).catch((err: BusinessError) => {
-  console.error('Failed to pause AVRecorder and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to pause AVRecorder and error is: ' + error.message);
 });
 ```
 
@@ -548,7 +554,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.resume((err: BusinessError) => {
   if (err) {
-    console.error('Failed to resume AVRecorder and error is ' + err.message);
+    console.error('Failed to resume AVRecorder and error is: ' + err.message);
   } else {
     console.info('Succeeded in resuming AVRecorder');
   }
@@ -590,8 +596,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.resume().then(() => {
   console.info('Succeeded in resuming AVRecorder');
-}).catch((err: BusinessError) => {
-  console.error('Failed to resume  AVRecorder failed and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to resume AVRecorder failed and error is: ' + error.message);
 });
 ```
 
@@ -630,7 +637,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.stop((err: BusinessError) => {
   if (err) {
-    console.error('Failed to stop AVRecorder and error is ' + err.message);
+    console.error('Failed to stop AVRecorder and error is: ' + err.message);
   } else {
     console.info('Succeeded in stopping AVRecorder');
   }
@@ -674,8 +681,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.stop().then(() => {
   console.info('Succeeded in stopping AVRecorder');
-}).catch((err: BusinessError) => {
-  console.error('Failed to stop AVRecorder and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to stop AVRecorder and error is: ' + error.message);
 });
 ```
 
@@ -711,7 +719,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.reset((err: BusinessError) => {
   if (err) {
-    console.error('Failed to reset AVRecorder and error is ' + err.message);
+    console.error('Failed to reset AVRecorder and error is: ' + err.message);
   } else {
     console.info('Succeeded in resetting AVRecorder');
   }
@@ -750,8 +758,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.reset().then(() => {
   console.info('Succeeded in resetting AVRecorder');
-}).catch((err: BusinessError) => {
-  console.error('Failed to reset and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to reset AVRecorder and error is: ' + error.message);
 });
 ```
 
@@ -786,7 +795,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.release((err: BusinessError) => {
   if (err) {
-    console.error('Failed to release AVRecorder and error is ' + err.message);
+    console.error('Failed to release AVRecorder and error is: ' + err.message);
   } else {
     console.info('Succeeded in releasing AVRecorder');
   }
@@ -826,8 +835,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.release().then(() => {
   console.info('Succeeded in releasing AVRecorder');
-}).catch((err: BusinessError) => {
-  console.error('Failed to release AVRecorder and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to release AVRecorder and error is: ' + error.message);
 });
 ```
 
@@ -860,13 +870,14 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeIn
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit';
 
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerChangeInfo) => {
   if (err) {
-    console.error('Failed to get CurrentAudioCapturerInfo and error is ' + err.message);
+    console.error('Failed to get CurrentAudioCapturerInfo and error is: ' + err.message);
   } else {
     console.info('Succeeded in getting CurrentAudioCapturerInfo');
     currentCapturerInfo = capturerInfo;
@@ -903,6 +914,7 @@ getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit';
 
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
@@ -910,8 +922,9 @@ let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturerChangeInfo) => {
   console.info('Succeeded in getting CurrentAudioCapturerInfo');
   currentCapturerInfo = capturerInfo;
-}).catch((err: BusinessError) => {
-  console.error('Failed to get CurrentAudioCapturerInfo and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to get CurrentAudioCapturerInfo and error is: ' + error.message);
 });
 ```
 
@@ -945,11 +958,13 @@ getAudioCapturerMaxAmplitude(callback: AsyncCallback\<number>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) => {
   if (err) {
-    console.error('Failed to get AudioCapturerMaxAmplitude and error is ' + err.message);
+    console.error('Failed to get AudioCapturerMaxAmplitude and error is: ' + err.message);
   } else {
     console.info('Succeeded in getting AudioCapturerMaxAmplitude');
     maxAmplitude = amplitude;
@@ -987,13 +1002,16 @@ getAudioCapturerMaxAmplitude(): Promise\<number>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
   console.info('Succeeded in getting AudioCapturerMaxAmplitude');
   maxAmplitude = amplitude;
-}).catch((err: BusinessError) => {
-  console.error('Failed to get AudioCapturerMaxAmplitude and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to get AudioCapturerMaxAmplitude and error is: ' + error.message);
 });
 ```
 
@@ -1023,14 +1041,20 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let encoderInfo: media.EncoderInfo;
 
 avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
   if (err) {
-    console.error('Failed to get AvailableEncoder and error is ' + err.message);
+    console.error('Failed to get AvailableEncoder and error is: ' + err.message);
   } else {
     console.info('Succeeded in getting AvailableEncoder');
-    encoderInfo = info[0];
+    if (info.length > 0) {
+      encoderInfo = info[0];
+    } else {
+      console.error('No available encoder');
+    }
   }
 });
 ```
@@ -1039,7 +1063,7 @@ avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) =
 
 getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
-异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+异步方式获取可用的编码器参数。通过Promise获取返回值。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1061,13 +1085,20 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let encoderInfo: media.EncoderInfo;
 
 avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
   console.info('Succeeded in getting AvailableEncoder');
-  encoderInfo = info[0];
-}).catch((err: BusinessError) => {
-  console.error('Failed to get AvailableEncoder and catch error is ' + err.message);
+    if (info.length > 0) {
+      encoderInfo = info[0];
+    } else {
+      console.error('No available encoder');
+    }
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to get AvailableEncoder and error is: ' + error.message);
 });
 ```
 
@@ -1106,7 +1137,7 @@ let avConfig: media.AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConfig) => {
   if (err) {
-    console.error('Failed to get avConfig and error is ' + err.message);
+    console.error('Failed to get avConfig and error is: ' + err.message);
   } else {
     console.info('Succeeded in getting AVRecorderConfig');
     avConfig = config;
@@ -1150,8 +1181,9 @@ let avConfig: media.AVRecorderConfig;
 avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
   console.info('Succeeded in getting AVRecorderConfig');
   avConfig = config;
-}).catch((err: BusinessError) => {
-  console.error('Failed to get AVRecorderConfig and catch error is ' + err.message);
+}).catch((err: Error) => {
+  let error: BusinessError = err as BusinessError;
+  console.error('Failed to get AVRecorderConfig and error is: ' + error.message);
 });
 ```
 
@@ -1185,7 +1217,7 @@ on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 
 ```ts
 avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-  console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
+  console.info('case state has changed, new state is: ' + state + ', and reason is: ' + reason);
 });
 ```
 
@@ -1233,7 +1265,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1300,6 +1332,8 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
@@ -1357,6 +1391,8 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 **错误码：**
 
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400103  | IO error. Return by callback.             |
@@ -1377,6 +1413,10 @@ constructor(context: Context) {
 // 例：处理photoAsset回调，保存video。
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
+  if (!this.context) {
+    console.error('context is undefined');
+    return;
+  }
   try {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);

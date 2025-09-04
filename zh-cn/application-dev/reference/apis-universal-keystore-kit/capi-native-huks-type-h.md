@@ -50,7 +50,7 @@
 | [OH_Huks_KeyPurpose](#oh_huks_keypurpose) | 密钥用途类型。 |
 | [OH_Huks_KeyDigest](#oh_huks_keydigest) | 摘要算法类型。 |
 | [OH_Huks_KeyPadding](#oh_huks_keypadding) | 补齐算法类型。 |
-| [OH_Huks_CipherMode](#oh_huks_ciphermode) | 加解密算法工作模式。 |
+| [OH_Huks_CipherMode](#oh_huks_ciphermode) | 加密模式。 |
 | [OH_Huks_KeySize](#oh_huks_keysize) | 算法密钥长度。 |
 | [OH_Huks_KeyAlg](#oh_huks_keyalg) | 密钥使用的算法。 |
 | [OH_Huks_AlgSuite](#oh_huks_algsuite) | 密文导入所需的算法套件类型。 |
@@ -151,7 +151,7 @@ enum OH_Huks_CipherMode
 
 **描述**
 
-加解密算法工作模式。
+加密模式。
 
 **起始版本：** 9
 

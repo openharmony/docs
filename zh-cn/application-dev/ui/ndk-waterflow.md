@@ -210,7 +210,7 @@ struct SectionOption {
     int32_t crossCount;
     float columnsGap;
     float rowsGap;
-    // top right bottom left
+    // {上外边距，右外边距，下外边距，左外边距}
     ArkUI_Margin margin{0, 0, 0, 0};
     float (*onGetItemMainSizeByIndex)(int32_t itemIndex);
     void *userData;
@@ -262,7 +262,7 @@ private:
 使用ArkUIWaterflowNode类管理Waterflow。支持通过SetLazyAdapter为其设置一个FlowItemAdapter，通过SetSection为其设置分段。
 
 ```c++
-//Waterflow.h
+//waterflow.h
 
 #ifndef MYAPPLICATION_WATERFLOW_H
 #define MYAPPLICATION_WATERFLOW_H
@@ -359,8 +359,8 @@ std::shared_ptr<ArkUIWaterflowNode> CreateWaterflowExample() {
     
     // 设置分段
     auto sections = std::make_shared<WaterflowSection>();
-    SectionOption MARGIN_GAP_SECTION_1 = {10, 2, 10, 10, margin : {20, 30, 40, 50}, nullptr, nullptr};
-    SectionOption MARGIN_GAP_SECTION_2 = {10, 4, 10, 10, margin : {20, 30, 40, 50}, nullptr, nullptr};
+    SectionOption MARGIN_GAP_SECTION_1 = {10, 2, 10, 10, {20, 30, 40, 50}, nullptr, nullptr};
+    SectionOption MARGIN_GAP_SECTION_2 = {10, 4, 10, 10, {20, 30, 40, 50}, nullptr, nullptr};
     for (int i = 0; i < 10; i++) {
         sections->SetSection(sections->GetSectionOptions(), i, i % 2 ? MARGIN_GAP_SECTION_1 : MARGIN_GAP_SECTION_2);
     }

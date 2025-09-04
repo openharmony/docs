@@ -41,7 +41,7 @@
 2. 在应用入口文件（默认工程中为EntryAbility.ets）中复写onConfigurationUpdate函数，以响应fontId变更，适配主题字体的切换和页面刷新。
 
    ```c++
-   // entryability/EntryAbility.ets
+   // entry/src/main/ets/entryability/EntryAbility.ets
    export default class EntryAbility extends UIAbility {
        // ...  
        preFontId ="";
@@ -59,6 +59,11 @@
    系统配置信息（即示例中的newConfig）变化时，会自动触发onConfigurationUpdate函数。应用可从系统发送的配置信息获取fontId，通过判断是否与应用本地保存的fontId一致来识别主题字的切换。若不一致则刷新本地fontId，并调用C++代码刷新排版结果。
 
 3. 本步骤及之后均为主题字体在C++侧的使用，从ArkTS到C++的调用通路需应用根据实际情况选取调用方式，本示例不作推荐。跨语言调用可参考[Node-API简介](../napi/napi-introduction.md)。
+
+   在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
+   ```c++
+   libnative_drawing.so
+   ```
 
    导入头文件。
 
@@ -91,8 +96,8 @@
 
    ```c++
    // 设置其他文本样式
-   OH_Drawing_SetTextStyleColor(textStyle , OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
-   OH_Drawing_SetTextStyleFontSize(textStyle , 50.0);
+   OH_Drawing_SetTextStyleColor(textStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+   OH_Drawing_SetTextStyleFontSize(textStyle, 50.0);
    // 创建一个段落样式对象，以设置排版风格
    OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
    OH_Drawing_SetTypographyTextAlign(typographyStyle, TEXT_ALIGN_LEFT); // 设置段落样式为左对齐

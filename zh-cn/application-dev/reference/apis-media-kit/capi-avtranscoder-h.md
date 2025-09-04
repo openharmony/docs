@@ -38,7 +38,7 @@
 | [OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *config, int32_t bitrate)](#oh_avtranscoderconfig_setdstaudiobitrate) | 设置用于转码的输出音频的码率。<br> 此函数必须在[OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare)之前调用。 |
 | [OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *config, int32_t bitrate)](#oh_avtranscoderconfig_setdstvideobitrate) | 设置用于转码的输出视频的码率。<br> 此函数必须在[OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare)之前调用。 |
 | [OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoResolution(OH_AVTranscoder_Config *config, int32_t width, int32_t height)](#oh_avtranscoderconfig_setdstvideoresolution) | 设置用于转码的输出视频的分辨率，单位为像素（px），其中width为输出视频帧的宽，height为输出视频帧的高。<br> 此函数必须在[OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare)之前调用。 |
-| [OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, bool enabled)](#oh_avtranscoderconfig_enablebframe) | 转码设置输出视频B帧编码。实际支持情况取决于视频编码格式和设备芯片能力。对于不支持B帧编码的视频编码格式或设备，将忽略B帧，按不使能B帧进行编码。 |
+| [OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, bool enabled)](#oh_avtranscoderconfig_enablebframe) | 转码设置输出视频B帧编码。<br>B帧视频编码相关的约束和限制可以参考文档[B帧视频编码约束和限制](../../media/avcodec/video-encoding-b-frame.md#约束和限制)。<br>如果当前不符合B帧视频编码的约束和限制，将忽略B帧，按不使能B帧进行编码。 |
 | [OH_AVTranscoder *OH_AVTranscoder_Create(void)](#oh_avtranscoder_create) | 创建转码实例。 |
 | [OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscoder_Config *config)](#oh_avtranscoder_prepare) | 进行视频转码的参数设置，准备转码。<br> 此函数必须在[OH_AVTranscoder_Start](#oh_avtranscoder_start)之前调用，调用成功之后进入AVTRANSCODER_PREPARED状态。 |
 | [OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder)](#oh_avtranscoder_start) | 开始转码。<br> 此函数必须在[OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare)成功调用之后调用，调用成功之后进入AVTRANSCODER_STARTED状态。 |
@@ -334,7 +334,7 @@ OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, 
 
 **描述**
 
-转码设置输出视频B帧编码。实际支持情况取决于视频编码格式和设备芯片能力。对于不支持B帧编码的视频编码格式或设备，将忽略B帧，按不使能B帧进行编码。
+转码设置输出视频B帧编码。<br>B帧视频编码相关的约束和限制可以参考文档[B帧视频编码约束和限制](../../media/avcodec/video-encoding-b-frame.md#约束和限制)。<br>如果当前不符合B帧视频编码的约束和限制，将忽略B帧，按不使能B帧进行编码。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 

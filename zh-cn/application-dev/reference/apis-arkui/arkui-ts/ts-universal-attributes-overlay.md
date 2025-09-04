@@ -93,7 +93,7 @@ type ComponentContent\<T \= Object\> = ComponentContent\<T\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名|说明 |
+| 类型|说明 |
 | ----- | ----------------- |
 | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 组件内容的实体封装。|
 

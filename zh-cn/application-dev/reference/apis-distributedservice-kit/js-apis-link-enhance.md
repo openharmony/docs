@@ -41,7 +41,7 @@ createServer(name:&nbsp;string):&nbsp;Server
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -93,7 +93,7 @@ createConnection(deviceId:&nbsp;string,&nbsp;name:&nbsp;string):&nbsp;Connection
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -137,7 +137,7 @@ start():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -175,7 +175,7 @@ stop():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -213,7 +213,7 @@ close():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -248,6 +248,7 @@ on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'connectionAccepted'，收到对端连接，触发该事件。   |
@@ -255,7 +256,7 @@ on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -297,6 +298,8 @@ off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
+
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'connectionAccepted'，收到对端连接，触发该事件。   |
@@ -304,7 +307,7 @@ off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -347,6 +350,8 @@ on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
+
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'serverStopped'，底层服务异常时，触发该事件。   |
@@ -354,7 +359,7 @@ on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -397,6 +402,8 @@ off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
+
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'serverStopped'，底层服务异常时触发。   |
@@ -404,7 +411,7 @@ off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -446,7 +453,7 @@ try {
 | ----------------- | ------ | ----  | ---- | ------------------ |
 | deviceId          | string | 否    |否    | 对端设备ID，成功返回对端设备的deviceId，失败返回空字符串。     |
 | success           | boolean | 否    |否   | 连接结果，true表示连接成功，false表示连接失败。 |
-| reason            | number | 否    |否    | 连接成功返回0，连接失败返回错误码：<br>- 32390200：表示客户端连接超时。<br>- 32390201：表示服务端服务未启动。<br>- 32390300：表示内部错误。<br>更多关于错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。 |
+| reason            | number | 否    |否    | 连接成功返回0，连接失败返回错误码：<br>- 32390200：表示客户端连接超时。<br>- 32390201：表示服务端服务未启动。<br>- 32390300：表示内部错误。<br>更多关于错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。 |
 
 ## Connection
 
@@ -465,7 +472,7 @@ connect():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -512,7 +519,7 @@ disconnect():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -555,7 +562,7 @@ close():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -606,7 +613,7 @@ getPeerDeviceId():&nbsp;string
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -650,7 +657,7 @@ sendData(data:&nbsp;ArrayBuffer):&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -707,7 +714,7 @@ on(type: 'connectResult', callback: Callback&lt;ConnectResult&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -758,7 +765,7 @@ off(type: 'connectResult', callback?: Callback&lt;ConnectResult&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -809,7 +816,7 @@ on(type: 'disconnected', callback: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -857,7 +864,7 @@ off(type: 'disconnected', callback?: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -908,7 +915,7 @@ on(type: 'dataReceived', callback: Callback&lt;ArrayBuffer&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -955,7 +962,7 @@ off(type: 'dataReceived', callback?: Callback&lt;ArrayBuffer&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |

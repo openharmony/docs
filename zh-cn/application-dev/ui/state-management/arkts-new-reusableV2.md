@@ -51,25 +51,7 @@ struct ReusableV2Component {
 
 ## 接口说明
 
-### ReuseIdCallback
-
-ReuseIdCallback用于计算reuseId，类型为() => string。
-
-### ReuseOptions
-
-ReuseOptions保存了reuseId信息，用于.reuse属性中。
-
-| 属性    | 类型            | 说明                  |
-| ------- | --------------- | --------------------- |
-| reuseId | ReuseIdCallback | 获取reuseId的回调函数 |
-
-### reuse属性
-
-reuse属性用于\@ReusableV2装饰的自定义组件，给组件指定reuseId。相同reuseId的自定义组件会被互相复用。如果未指定reuseId，则使用自定义组件名作为reuseId。
-
-| 参数    | 类型         | 说明                                                   |
-| ------- | ------------ | ------------------------------------------------------ |
-| options | ReuseOptions | reuse的配置选项，例如{reuseId: () => 'reuseComponent'} |
+reuse、ReuseOptions、ReuseIdCallback的接口说明参考API文档：[复用选项](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)。
 
 ```ts
 @Entry

@@ -1,6 +1,6 @@
 # Using Component Snapshot (ComponentSnapshot)
 ## Overview
-Component snapshot is the capability to generate a pixel map ([PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)) from the rendering result of a component node tree within an application. It supports two approaches:
+Component snapshot is the capability to generate a pixel map ([PixelMap](../reference/apis-image-kit/arkts-apis-image-PixelMap.md)) from the rendering result of a component node tree within an application. It supports two approaches:
 
 - Taking a snapshot of a component that is already attached to the UI tree
 - Taking a snapshot of an offline component implemented using **Builder** or **ComponentContent**.
@@ -308,4 +308,4 @@ To release resources promptly, assign the **PixelMap** object returned by the sn
 Avoid capturing images that are excessively large, ideally not larger than the screen size. If the size of the image to capture exceeds device-specific underlying limits, the capture will fail. You can reduce sampling precision by controlling the **scale** parameter in **SnapshotOptions**, which significantly saves memory and improves snapshot efficiency.
 
 ### Using Other Capabilities for Self-Rendering Scenarios
-Although snapshots can be taken by simply passing a component root node, this is not the recommended way when the child components include [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), or [Web](../reference/apis-arkweb/ts-basic-components-web.md) components. It is recommended that you use the [image.createPixelMapFromSurface](../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11) API.
+Although snapshots can be taken by simply passing a component root node, this is not the recommended way when the child components include [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), or [Web](../reference/apis-arkweb/arkts-basic-components-web.md) components. It is recommended that you use the [image.createPixelMapFromSurface](../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmapfromsurface11) API.

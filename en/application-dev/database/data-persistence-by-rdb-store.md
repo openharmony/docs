@@ -6,8 +6,8 @@
 A relational database (RDB) store is used to store data in complex relational models, such as the student information including names, student IDs, and scores of each subject, or employee information including names, employee IDs, and positions, based on SQLite. The data is more complex than key-value (KV) pairs due to strict mappings. You can use **RelationalStore** to implement persistence of this type of data.
 
 Querying data from a large amount of data may take time or even cause application suspension. In this case, you can perform batch operations. For details, see [Batch Database Operations](../arkts-utils/batch-database-operations-guide.md). Moreover, observe the following:
-- The number of data records to be queried at a time should not exceed 5000.
-- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if there is a large amount of data needs to be queried.
+- The maximum number of data records to query at a time is 5000.
+- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if a large amount of data needs to be queried.
 - Keep concatenated SQL statements as concise as possible.
 - Query data in batches.
 

@@ -79,6 +79,7 @@
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
+      - [Resource](js-apis-arkui-resource.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window.floatingBall (闪控球窗口)](js-apis-floatingBall.md)
@@ -183,6 +184,7 @@
       - [禁用控制](arkui-ts/ts-universal-attributes-enable.md)
       - [焦点控制](arkui-ts/ts-universal-attributes-focus.md)
       - [拖拽控制](arkui-ts/ts-universal-attributes-drag-drop.md)
+      - [拖拽排序](arkui-ts/ts-universal-attributes-drag-sorting.md)
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
       - 触摸交互控制<!--touch-interactions-->
         - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
@@ -195,7 +197,6 @@
       - [Tips控制](arkui-ts/ts-universal-attributes-tips.md)
       - [菜单控制](arkui-ts/ts-universal-attributes-menu.md)
     - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
-    - [文本通用](arkui-ts/ts-universal-attributes-text-style.md)
     - 模态转场设置<!--transition-->
       - [全屏模态转场](arkui-ts/ts-universal-attributes-modal-transition.md)
       - [半模态转场](arkui-ts/ts-universal-attributes-sheet-transition.md)
@@ -228,6 +229,7 @@
     - 手势控制<!--gesture-control-->
       - [自定义手势判定](arkui-ts/ts-gesture-customize-judge.md)
       - [手势拦截增强](arkui-ts/ts-gesture-blocking-enhancement.md)
+    - [手势公共接口](arkui-ts/ts-gesture-common.md)
   - 行列与堆叠<!--rows-columns-and-stacking-->
     - [Flex](arkui-ts/ts-container-flex.md)
     - [Column](arkui-ts/ts-container-column.md)
@@ -290,7 +292,6 @@
     - [Rating](arkui-ts/ts-basic-components-rating.md)
     - [Select](arkui-ts/ts-basic-components-select.md)
     - [Slider](arkui-ts/ts-basic-components-slider.md)
-    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
     - [ArcSlider](arkui-ts/ohos-arkui-advanced-ArcSlider.md)
     - [选择器（Picker）公共接口](arkui-ts/ts-picker-common.md)
@@ -308,6 +309,7 @@
     - [Hyperlink](arkui-ts/ts-container-hyperlink.md)
     - [RichText](arkui-ts/ts-basic-components-richtext.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
+    - [输入框类组件通用接口](arkui-ts/ts-universal-attributes-text-style.md)
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
     - [文本组件公共接口 (系统接口)](arkui-ts/ts-text-common-sys.md)
@@ -330,7 +332,6 @@
     - [ArcAlphabetIndexer](arkui-ts/ts-container-arc-alphabet-indexer.md)
     - [Badge](arkui-ts/ts-container-badge.md)
     - [Counter](arkui-ts/ts-container-counter.md)
-    - [advanced.Counter](arkui-ts/ohos-arkui-advanced-Counter.md)
     - [DataPanel](arkui-ts/ts-basic-components-datapanel.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
@@ -340,6 +341,7 @@
     - [QRCode](arkui-ts/ts-basic-components-qrcode.md)
     - [TextClock](arkui-ts/ts-basic-components-textclock.md)
     - [TextTimer](arkui-ts/ts-basic-components-texttimer.md)
+    - [信息展示公共接口](arkui-ts/ts-information-display-common.md)
   - 空白与分隔<!--blank-and-divider-->
     - [Blank](arkui-ts/ts-basic-components-blank.md)
     - [Divider](arkui-ts/ts-basic-components-divider.md)
@@ -432,8 +434,8 @@
     - [自定义组件参数](arkui-ts/ts-custom-component-parameter.md)
     - 组件扩展装饰器<!--arkts-extend-component-decorator-->
       - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
-    - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
-    - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
+      - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
+      - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -453,6 +455,7 @@
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [ProgressButtonV2](arkui-ts/ohos-arkui-advanced-ProgressButtonV2.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
+    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [SelectTitleBar](arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
     - [SelectionMenu](arkui-ts/ohos-arkui-advanced-SelectionMenu.md)
     - [SplitLayout](arkui-ts/ohos-arkui-advanced-SplitLayout.md)
@@ -463,10 +466,12 @@
     - [ToolBar](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [ToolBarV2](arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
     - [TreeView](arkui-ts/ohos-arkui-advanced-TreeView.md)
+    - [advanced.Counter](arkui-ts/ohos-arkui-advanced-Counter.md)
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [状态管理V1装饰器参数](arkui-ts/ts-state-management-v1-parameter.md)
     - [状态变量变化监听](arkui-ts/ts-state-management-watch-monitor.md)
+    - [内置环境变量说明](arkui-ts/ts-state-management-environment-variables.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
@@ -600,7 +605,7 @@
     - [OH_NativeXComponent_ExtraMouseEventInfo](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-extramouseeventinfo.md)
     - [OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)
     - [OH_ArkUI_SurfaceCallback](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md)
-    - [NativeWindow](capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
+    - [OHNativeWindow](capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
     - [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)
     - [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)
     - [ArkUI_StringAsyncEvent](capi-arkui-nativemodule-arkui-stringasyncevent.md)

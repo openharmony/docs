@@ -31,10 +31,10 @@
 | [ArkUI_NativeAnimateAPI_1](capi-arkui-nativemodule-arkui-nativeanimateapi-1.md) | ArkUI_NativeAnimateAPI_1 | ArkUI提供的Native侧动画接口集合。 |
 | [ArkUI_AnimateOption](capi-arkui-nativemodule-arkui-animateoption.md) | ArkUI_AnimateOption | 设置动画效果相关参数。 |
 | [ArkUI_Curve](capi-arkui-nativemodule-arkui-curve.md) | ArkUI_Curve | 提供曲线的插值对象定义。 |
-| [ArkUI_Curve*](capi-arkui-nativemodule-arkui-curve8h.md) | ArkUI_CurveHandle | 定义曲线的插值对象指针定义。 |
+| [ArkUI_CurveHandle](capi-arkui-nativemodule-arkui-curve8h.md) | ArkUI_Curve* | 定义曲线的插值对象指针定义。 |
 | [ArkUI_KeyframeAnimateOption](capi-arkui-nativemodule-arkui-keyframeanimateoption.md) | ArkUI_KeyframeAnimateOption | 定义关键帧动画参数对象。 |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md) | ArkUI_AnimatorOption | 定义animator动画参数对象。 |
-| [ArkUI_Animator*](capi-arkui-nativemodule-arkui-animator8h.md) | ArkUI_AnimatorHandle | 定义animator动画对象指针。 |
+| [ArkUI_AnimatorHandle](capi-arkui-nativemodule-arkui-animator8h.md) | ArkUI_Animator* | 定义animator动画对象指针。 |
 | [ArkUI_AnimatorEvent](capi-arkui-nativemodule-arkui-animatorevent.md) | ArkUI_AnimatorEvent | 定义animator回调事件对象。 |
 | [ArkUI_AnimatorOnFrameEvent](capi-arkui-nativemodule-arkui-animatoronframeevent.md) | ArkUI_AnimatorOnFrameEvent | 定义animator接收到帧时回调对象。 |
 | [ArkUI_TransitionEffect](capi-arkui-nativemodule-arkui-transitioneffect.md) | ArkUI_TransitionEffect | 定义transition属性配置转场参数对象。 |
@@ -514,7 +514,7 @@ void OH_ArkUI_AnimateOption_SetICurve(ArkUI_AnimateOption* option, ArkUI_CurveHa
 
 > **说明：**
 >
-> 此方法优于OH_ArkUI_AnimateOption_SetCurve设置的值。
+> 此方法优先于[OH_ArkUI_AnimateOption_SetCurve](#oh_arkui_animateoption_setcurve)生效。
 
 **起始版本：** 12
 
@@ -672,7 +672,7 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(ArkUI_KeyframeAn
 |-----------------------------------------| -- |
 | [ArkUI_KeyframeAnimateOption](capi-arkui-nativemodule-arkui-keyframeanimateoption.md)* option | 关键帧动画参数。 |
 | void* userData                          | 用户自定义对象指针。 |
-| onFinish                                | 回调方法。<br/>- userData：回调函数的入参，用户自定义对象指针。 |
+| void (\*onFinish)(void\* userData)                                | 回调方法。<br/>- userData：回调函数的入参，用户自定义对象指针。 |
 
 **返回：**
 
@@ -786,8 +786,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(ArkUI_KeyframeAni
 | 参数项                                     | 描述 |
 |-----------------------------------------| -- |
 | [ArkUI_KeyframeAnimateOption](capi-arkui-nativemodule-arkui-keyframeanimateoption.md)* option | 关键帧动画参数。 |
-| event                                   | 闭包函数。 |
 | void* userData                          | 用户定义对象指针。 |
+| void (\*event)(void\* userData)                                   | 闭包函数。 |
 | int32_t index                           | 状态索引值。 |
 
 **返回：**
@@ -1704,7 +1704,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(ArkUI_AnimatorOption* op
 |----------------------------------| -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData                         | 用户自定义参数。 |
-| callback                         | 回调函数。<br/>- event：回调函数的入参，动画事件对象。|
+| void (\*callback)(ArkUI_AnimatorOnFrameEvent\* event)                         | 回调函数。<br/>- event：回调函数的入参，动画事件对象。|
 
 **返回：**
 
@@ -1732,7 +1732,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(ArkUI_AnimatorOption* o
 | -- | -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData | 用户自定义参数。 |
-| callback | 回调函数。 <br/>- event：回调函数的入参，动画事件对象。|
+| void (\*callback)(ArkUI_AnimatorEvent\* event) | 回调函数。 <br/>- event：回调函数的入参，动画事件对象。|
 
 **返回：**
 
@@ -1760,7 +1760,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(ArkUI_AnimatorOption* o
 | -- | -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData | 用户自定义参数。 |
-| callback | 回调函数。 <br/>- event：回调函数的入参，动画事件对象。|
+| void (\*callback)(ArkUI_AnimatorEvent\* event) | 回调函数。 <br/>- event：回调函数的入参，动画事件对象。|
 
 **返回：**
 
@@ -1788,7 +1788,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(ArkUI_AnimatorOption* o
 | -- | -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData | 用户自定义参数。 |
-| callback | 回调函数。<br/>- event：回调函数的入参，动画事件对象。 |
+| void (\*callback)(ArkUI_AnimatorEvent\* event) | 回调函数。<br/>- event：回调函数的入参，动画事件对象。 |
 
 **返回：**
 
@@ -2180,7 +2180,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(void* userData, float (*inter
 | 参数项 | 描述 |
 | -- | -- |
 | void* userData | 用户自定义数据。 |
-| interpolate | 用户自定义的插值回调函数。fraction为动画开始时的插值输入x值。取值范围：[0,1]返回值为曲线的y值。取值范围：[0,1]。fraction等于0时，返回值为0对应动画起点，返回不为0，动画在起点处有跳变效果。fraction等于1时，返回值为1对应动画终点，返回值不为1将导致动画的终值不是状态变量的值，出现大于或者小于状态变量值，再跳变到状态变量值的效果。 |
+| float (\*interpolate)(float fraction, void\* userdata) | 用户自定义的插值回调函数。fraction为动画开始时的插值输入x值。取值范围：[0,1]返回值为曲线的y值。取值范围：[0,1]。fraction等于0时，返回值为0对应动画起点，返回不为0，动画在起点处有跳变效果。fraction等于1时，返回值为1对应动画终点，返回值不为1将导致动画的终值不是状态变量的值，出现大于或者小于状态变量值，再跳变到状态变量值的效果。 |
 
 **返回：**
 

@@ -52,7 +52,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                 | 必填 | 说明                      |
 | --------- | -------------------- | ---- | ------------------------- |
-| surfaceId | string               | 是   | SurfaceId.                 |
+| surfaceId | string               | 是   | 指定SurfaceId，应从XComponent组件获取，获取方式请参考[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。                 |
 | callback  | AsyncCallback\<void> | 是   | 回调函数。当设置SurfaceId成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -87,7 +87,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 | 参数名    | 类型   | 必填 | 说明      |
 | --------- | ------ | ---- | --------- |
-| surfaceId | string | 是   | SurfaceId. |
+| surfaceId | string | 是   | 指定SurfaceId，应从XComponent组件获取，获取方式请参考[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。 |
 
 **返回值：**
 

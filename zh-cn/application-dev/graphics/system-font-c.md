@@ -37,7 +37,12 @@
 
 ## 获取系统字体信息
 
-1. 导入依赖的相关头文件。
+1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
+   ```c++
+   libnative_drawing.so
+   ```
+
+2. 导入依赖的相关头文件。
 
    ```c++
    #include <native_drawing/drawing_font_collection.h>
@@ -46,7 +51,7 @@
    #include <hilog/log.h>
    ```
 
-2. 获取系统字体的配置信息，可以通过返回的状态码确定获取信息是否成功，状态码的包含的具体情况和对应含义可见[OH_Drawing_FontConfigInfoErrorCode](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_fontconfiginfoerrorcode)。
+3. 获取系统字体的配置信息，可以通过返回的状态码确定获取信息是否成功，状态码的包含的具体情况和对应含义可见[OH_Drawing_FontConfigInfoErrorCode](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_fontconfiginfoerrorcode)。
 
    ```c++
    OH_Drawing_FontConfigInfoErrorCode fontConfigInfoErrorCode;  // 用于接收错误代码
@@ -56,7 +61,7 @@
    }
    ```
 
-3. 系统字体的配置信息[OH_Drawing_FontConfigInfo](../reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontconfiginfo.md)包含以下几类信息：
+4. 系统字体的配置信息[OH_Drawing_FontConfigInfo](../reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontconfiginfo.md)包含以下几类信息：
 
    - 系统字体文件路径数量。
 
@@ -97,7 +102,7 @@
 
    ![zh-cn_image_0000002211603636](figures/zh-cn_image_0000002211603636.png)
 
-4. 如若后续不再需要系统字体的系统配置信息时，则释放其占用的内存。
+5. 如若后续不再需要系统字体的系统配置信息时，则释放其占用的内存。
 
    ```c++
    OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo);
@@ -110,7 +115,12 @@
 
 如果不指定使用任何字体时，会使用系统默认字体“HarmonyOS Sans”显示文本。
 
-1. 导入依赖的相关头文件。
+1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
+   ```c++
+   libnative_drawing.so
+   ```
+
+2. 导入依赖的相关头文件。
 
    ```c++
    #include <native_drawing/drawing_font_collection.h>
@@ -119,7 +129,7 @@
    #include <hilog/log.h>
    ```
 
-2. 创建字体管理器，建议优先使用OH_Drawing_CreateSharedFontCollection创建可共享的字体集对象。
+3. 创建字体管理器，建议优先使用OH_Drawing_CreateSharedFontCollection创建可共享的字体集对象。
 
    > **说明：**
    >
@@ -129,13 +139,13 @@
    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();  
    ```
 
-3. 创建一个文本样式对象，即OH_Drawing_TextStyle对象，用于设置文本样式。
+4. 创建一个文本样式对象，即OH_Drawing_TextStyle对象，用于设置文本样式。
 
    ```c++
    OH_Drawing_TextStyle* textStyle = OH_Drawing_CreateTextStyle();
    ```
 
-4. [获取系统字体信息](#获取系统字体信息)，取用系统字体的字体家族名，并在文本样式中切换设置为该系统字体。
+5. [获取系统字体信息](#获取系统字体信息)，获取系统字体的字体家族名，并在文本样式中设置为该系统字体。
 
    ```c++
    // 情况一：设置系统字体为"HarmonyOS Sans Condensed"
@@ -147,7 +157,7 @@
    // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
    ```
 
-5. 生成最终段落文本，以便实现最终的文本绘制和显示。
+6. 生成最终段落文本，以便实现最终的文本绘制和显示。
 
    ```c++
    // 设置其他文本样式
@@ -180,7 +190,12 @@
 
 1. 确保已成功注册自定义字体，用于保证禁用系统字体后文本的正常显示，具体可见[自定义字体的注册和使用](custom-font-c.md)。
 
-2. 导入依赖的相关头文件。
+2. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
+   ```c++
+   libnative_drawing.so
+   ```
+
+3. 导入依赖的相关头文件。
 
    ```c++
    #include <native_drawing/drawing_font_collection.h>
@@ -189,19 +204,19 @@
    #include <hilog/log.h>
    ```
 
-3. 创建字体管理器，建议优先使用OH_Drawing_CreateSharedFontCollection创建可共享的字体集对象。
+4. 创建字体管理器，建议优先使用OH_Drawing_CreateSharedFontCollection创建可共享的字体集对象。
 
    ```c++
    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();  
    ```
 
-4. 禁用系统字体。
+5. 禁用系统字体。
 
    ```c++
    OH_Drawing_DisableFontCollectionSystemFont(fontCollection);
    ```
 
-5. 创建文本样式对象，使用注册成功的自定义字体。
+6. 创建文本样式对象，使用注册成功的自定义字体。
 
    > **注意：**
    >
@@ -223,7 +238,7 @@
    // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
    ```
 
-6. 生成最终的段落文本，以便实现最终的文本绘制和显示。
+7. 生成最终的段落文本，以便实现最终的文本绘制和显示。
 
    ```c++
    // 设置其他文本样式

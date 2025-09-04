@@ -52,22 +52,24 @@ HiDebug可用于获取整机内存、应用进程内存占用、应用线程内�
 
 HiDebug可获取应用占用的显存资源数据。在图形密集型应用中，显存管理至关重要，滥用显存资源将导致应用严重卡顿，影响用户体验。显存资源包括两部分：
 
-1. MemoryTracker统计的内存是由GPU驱动程序使用物理页面分配器直接分配的，这部分内存的大小取决于GPU硬件驱动程序的实现。
+1. graph：进程统计的DMA内存占用，包括直接通过接口申请的DMA buffer和通过allocator_host申请的DMA buffer。
 
-2. RenderService渲染进程加载所需资源占用的内存，例如图片、纹理等。
+2. gl：RenderService渲染进程加载所需资源占用的内存，例如图片、纹理等。
 
 ### 接口说明（ArkTS）
 
-| 接口名 | 描述   |
-| -------- | -------- |
-| hidebug.getGraphicsMemory | 使用异步方式获取应用程序的显存大小。 |
-| hidebug.getGraphicsMemorySync | 使用同步方式获取应用程序的显存大小。 |
+| 接口名 | 描述                                                 |
+| -------- |----------------------------------------------------|
+| hidebug.getGraphicsMemory | 使用异步方式获取应用的显存总大小（graph + gl）。                      |
+| hidebug.getGraphicsMemorySync | 使用同步方式获取应用的显存总大小（graph + gl）。                    
+| hidebug.getGraphicsMemorySummary | 使用异步方式获取应用程序的显存数据。<br/>说明：从API version 21开始，支持该接口。 |
 
 ### 接口说明（C/C++）
 
-| 接口名 | 描述   |
-| -------- | -------- |
-| OH_HiDebug_GetGraphicsMemory | 用于获取应用程序的显存大小。 |
+| 接口名 | 描述                                             |
+| -------- |------------------------------------------------|
+| OH_HiDebug_GetGraphicsMemory | 用于获取应用程序的显存总大小（graph + gl）。                    |
+| OH_HiDebug_GetGraphicsMemorySummary | 用于获取应用程序的显存数据。<br/>说明：从API version 21开始，支持该接口。 |
 
 ## 获取CPU使用率
 
@@ -179,6 +181,7 @@ HiDebug可用于获取VM内存数据、GC统计数据及VM堆转储。
 | hidebug.dumpJsRawHeapData | 使用异步方式为当前线程转储虚拟机的原始堆快照，辅助[JS内存泄漏分析](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-js-memleak-detection)。 |
 | hidebug.dumpJsHeapData | 使用同步方式导出虚拟机堆，辅助[JS内存泄漏分析](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-js-memleak-detection)。 |
 | hidebug.getAppMemoryLimit | 获取应用程序进程内存限制，其中vmHeapLimit为当前线程对应的虚拟机堆大小限制，vmTotalHeapSize为当前进程所有虚拟机堆总和大小的限制。 |
+| hidebug.getAppVMObjectUsed | 获取当前虚拟机中ArkTS对象所占用的内存大小。<br/>**说明**：从API version 21开始，支持该接口。 |
 
 ## 获取应用Trace记录信息
 
@@ -232,10 +235,10 @@ LR：保存函数返回的地址。
 
 | 接口名 | 描述   |
 | -------- | -------- |
-| OH_HiDebug_CreateBacktraceObject | 创建一个用于栈回溯及栈解析的对象。<br/>说明：从API version 20开始，支持该接口。 |
-| OH_HiDebug_DestroyBacktraceObject | 销毁OH_HiDebug_CreateBacktraceObject接口创建的用于栈回溯及栈解析对象。<br/>说明：从API version 20开始，支持该接口。 |
-| OH_HiDebug_BacktraceFromFp | 获取从给定的栈帧指针开始的回溯帧。<br/>说明：从API version 20开始，支持该接口。 |
-| OH_HiDebug_SymbolicAddress | 通过给定的程序计数器（PC）获取详细的符号信息。<br/>说明：从API version 20开始，支持该接口。 |
+| OH_HiDebug_CreateBacktraceObject | 创建一个用于栈回溯及栈解析的对象。<br/>**说明**：从API version 20开始，支持该接口。 |
+| OH_HiDebug_DestroyBacktraceObject | 销毁OH_HiDebug_CreateBacktraceObject接口创建的用于栈回溯及栈解析对象。<br/>**说明**：从API version 20开始，支持该接口。 |
+| OH_HiDebug_BacktraceFromFp | 获取从给定的栈帧指针开始的回溯帧。<br/>**说明**：从API version 20开始，支持该接口。 |
+| OH_HiDebug_SymbolicAddress | 通过给定的程序计数器（PC）获取详细的符号信息。<br/>**说明**：从API version 20开始，支持该接口。 |
 
 ## 设置资源泄露检测阈值
 
@@ -247,17 +250,17 @@ HiDebug提供设置系统资源泄露检测阈值的接口，开发者可根据�
 | -------- | -------- |
 | hidebug.setAppResourceLimit | 设置应用的fd数量、线程数量、js内存或者native内存等资源触发资源泄露检测事件的阈值。 |
 
-## 管理GWP-Asan
+## 管理GWP-ASan
 
-HiDebug提供了启停[GWP-Asan](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)使能和查询使能天数的能力。
+HiDebug提供了启停[GWP-ASan](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)使能和查询使能天数的能力。
 
 ### 接口说明（ArkTS）
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| hidebug.enableGwpAsanGrayscale | 使能GWP-Asan，用于检测堆内存使用中的非法行为。 |
-| hidebug.disableGwpAsanGrayscale | 停止使能GWP-Asan。 |
-| hidebug.getGwpAsanGrayscaleState | 获取当前GWP-Asan剩余使能天数。 |
+| hidebug.enableGwpAsanGrayscale | 使能GWP-ASan，用于检测堆内存使用中的非法行为。 |
+| hidebug.disableGwpAsanGrayscale | 停止使能GWP-ASan。 |
+| hidebug.getGwpAsanGrayscaleState | 获取当前GWP-ASan剩余使能天数。 |
 
 ## 其他
 

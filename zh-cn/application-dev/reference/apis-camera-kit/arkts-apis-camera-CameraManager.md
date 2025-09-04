@@ -577,7 +577,7 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [T extends Session](arkts-apis-camera-Session.md)   | Session实例。接口调用失败会返回相应的错误码，错误码类型为[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| [T](arkts-apis-camera-Session.md)   | Session实例。接口调用失败会返回相应的错误码，错误码类型为[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 

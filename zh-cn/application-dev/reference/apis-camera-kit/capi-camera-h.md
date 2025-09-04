@@ -338,10 +338,10 @@ enum Camera_ImageRotation
 
 | 枚举项 | 描述 |
 | -- | -- |
-| IAMGE_ROTATION_0 = 0 | 捕获图像旋转0度。 |
-| IAMGE_ROTATION_90 = 90 | 捕获图像旋转90度。 |
-| IAMGE_ROTATION_180 = 180 | 捕获图像旋转180度。 |
-| IAMGE_ROTATION_270 = 270 | 捕获图像旋转270度。 |
+| IMAGE_ROTATION_0 = 0 | 捕获图像旋转0度。 |
+| IMAGE_ROTATION_90 = 90 | 捕获图像旋转90度。 |
+| IMAGE_ROTATION_180 = 180 | 捕获图像旋转180度。 |
+| IMAGE_ROTATION_270 = 270 | 捕获图像旋转270度。 |
 
 ### Camera_QualityLevel
 
@@ -375,7 +375,7 @@ enum Camera_MetadataObjectType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| FACE_DETECTION = 0 | metadata对象类型，用于人脸检测。<br> 检测点应在0-1坐标系内，该坐标系左上角为(0，0)，右下角为(1，1)。<br> 此坐标系以设备充电口在右侧时的横向设备方向为基准。<br> 例如应用的预览界面布局以设备充电口在下侧时的竖向方向为基准，布局宽高为(w，h)， 返回点为(x，y)，则转换后的坐标点为(1-y，x)。 |
+| FACE_DETECTION = 0 | metadata对象类型，用于人脸检测。 |
 
 ### Camera_TorchMode
 

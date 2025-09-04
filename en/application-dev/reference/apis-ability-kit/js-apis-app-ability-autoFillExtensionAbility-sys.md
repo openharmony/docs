@@ -1,5 +1,12 @@
 # @ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 The AutoFillExtensionAbility module provides APIs for automatically filling in and saving accounts and passwords. It inherits from [ExtensionAbility](js-apis-app-ability-extensionAbility.md).
 
 > **NOTE**
@@ -78,7 +85,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
                 callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     hilog.info(0x0000, 'testTag', 'fill requestCallback: %{public}s', JSON.stringify(callback));
-    hilog.info(0x0000, 'testTag', 'get request viewData: ', JSON.stringify(request.viewData));
+    hilog.info(0x0000, 'testTag', 'get request viewData: %{public}s', JSON.stringify(request.viewData));
     try {
       let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
       autoFillManager.ViewData | common.AutoFillExtensionContext> = {

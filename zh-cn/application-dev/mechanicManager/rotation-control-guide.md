@@ -6,14 +6,14 @@
 <!--Tester: @zhaodengqi-->
 <!--Adviser: @foryourself-->
 
-从API version 20开始，支持使用机械设备管理。在视频录制和直播等应用场景中，开发者希望为拥有机械体配件设备的用户提供更丰富的拍摄体验，如控制机械体配件设备转动功能。
+从API version 20开始，支持使用机械体设备控制器，提供更丰富的拍摄体验，如控制设备转动（仅限系统应用）。
 
-拍摄控制，可以将手机作为控制终端，操控云台或机械臂等机械体配件设备进行精准的角度调整和运动轨迹控制，帮助开发者快速构建控制机械配件设备的应用。
+使用手机作为控制终端，可以通过精确的参数设置调整云台或机械臂等设备的角度和运动轨迹，帮助快速构建控制机械体设备的应用。
 
 ## 接口介绍
 
-机械设备管理公开API接口使用指导请参见[MechanicManager  API参考](../reference/apis-mechanic-kit/js-apis-mechanicManager.md)。
-机械设备管理系统API接口使用指导请参见[MechanicManager  API参考](../reference/apis-mechanic-kit/js-apis-mechanicManager-sys.md)。
+机械体设备管理公开API接口使用指导请参见[MechanicManager API参考](../reference/apis-mechanic-kit/js-apis-mechanicManager.md)。
+机械体设备管理系统API接口使用指导请参见[MechanicManager API参考](../reference/apis-mechanic-kit/js-apis-mechanicManager-sys.md)。
 
 | 接口名                                                               | 描述                       |
 | -------------------------------------------------------------------- | -------------------------- |
@@ -23,11 +23,11 @@
 |setUserOperation(operation: Operation, mac: string, params: string): void | 设置用户操作。<br>**说明**：从API version 20开始支持。|
 |setCameraTrackingEnabled(isEnabled: boolean): void | 启用或禁用摄像头跟踪。<br>**说明**：从API version 20开始支持。|
 |getCameraTrackingEnabled(): boolean | 检查是否启用了摄像头跟踪。<br>**说明**：从API version 20开始支持。|
-|getCameraTrackingLayout(): CameraTrackingLayout | 获取此机械设备摄像头跟踪布局。<br>**说明**：从API version 20开始支持。|
+|getCameraTrackingLayout(): CameraTrackingLayout | 获取此机械体设备摄像头跟踪布局。<br>**说明**：从API version 20开始支持。|
 |rotate(mechId: number, angles: RotationAngles, duration: number): Promise\<Result> | 将机械体设备旋转到相对角度。<br>**说明**：从API version 20开始支持。|
 |rotateToEulerAngles(mechId: number, angles: EulerAngles, duration: number): Promise\<Result> | 将机械体设备旋转到绝对角度。<br>**说明**：从API version 20开始支持。|
 |getMaxRotationTime(mechId: number): number | 获取机械体设备的最大连续旋转持续时间。<br>**说明**：从API version 20开始支持。|
-|getMaxRotationSpeed(mechId: number): RotationSpeed | 获取机械设备的最大旋转速度。<br>**说明**：从API version 20开始支持。|
+|getMaxRotationSpeed(mechId: number): RotationSpeed | 获取机械体设备的最大旋转速度。<br>**说明**：从API version 20开始支持。|
 |stopMoving(mechId: number): Promise\<void> | 停止机械体设备的移动。<br>**说明**：从API version 20开始支持。|
 |getCurrentAngles(mechId: number): EulerAngles | 获取机械体设备的当前角度。<br>**说明**：从API version 20开始支持。|
 |getRotationLimits(mechId: number): RotationLimits | 获取指定机械体设备相对于参考点的最大旋转角度。<br>**说明**：从API version 20开始支持。|
@@ -39,21 +39,22 @@
 
 ### 开发准备
 
-1. 一台支持MechanicKit协议的机械体配件设备。
-
-2. 机械体配件设备与开发设备完成蓝牙连接。
+1. 一台支持Mechanic Kit协议的机械体设备。
+2. 若要验证智能跟踪功能，主设备的摄像头驱动需要支持人脸检测功能。
+3. 更新SDK到API 20或以上，具体操作参见[更新指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-software-install)。
+4. 机械体设备与主设备完成蓝牙连接状态。
 
 ### 管理设备连接状态
 
-动态管理设备连接状态，确保设备连接或断开时应用能及时响应。
+管理设备连接状态，确保设备连接或断开时应用及时响应。
 
-1. 导入机械设备管理模块文件。
+1. 导入机械体设备管理模块。
 
     ```ts
     import mechanicManager from '@kit.MechanicKit';
     ```
 
-2. 获取已连接的机械设备列表。
+2. 获取已连接的机械体设备列表。
 
     ```ts
     let savedMechanicIds: number[] = [];
@@ -67,7 +68,7 @@
         console.log(`Device Name: ${device.mechName}`);
         console.log(`Device Type: ${device.mechDeviceType}`);
 
-    //保存设备类型为GIMBAL_DEVICE的设备的MechId
+    //保存设备类型为 GIMBAL_DEVICE 的设备的 MechId。
         if (device.mechDeviceType === mechanicManager.MechDeviceType.GIMBAL_DEVICE) {
         savedMechanicIds.push(device.mechId);
         console.log(`GIMBAL_TYPE device saved ID: ${device.mechId}`);
@@ -82,7 +83,7 @@
     }
     ```
 
-3. 监听设备连接状态变化。
+3. 监听设备的连接状态。
 
     ```ts
     const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
@@ -101,7 +102,7 @@
     mechanicManager.on('attachStateChange', attachStateChangeCallback);
     ```
 
-4. 处理设备连接和断开事件。
+4. 处理设备连接与断开的事件。
 
     ```ts
     mechanicManager.on('attachStateChange', attachStateChangeCallback);
@@ -119,7 +120,7 @@
     }
     ```
 
-5. 取消监听。
+5. 取消监听操作。
 
     ```ts
     // 取消特定回调的监听
@@ -128,9 +129,9 @@
 
 ### 控制设备转动
 
-精准控制机械体配件设备转动，如角度调整和运动轨迹控制等，帮助开发者实现灵活的机械体配件设备操作功能。
+精准控制机械体设备转动，如角度调整和运动轨迹控制等，帮助开发者实现灵活的机械体设备操作功能。
 
-1. 查询设备当前状态和限制。
+1. 查询设备当前状态及其限制条件。
 
     ```ts
     try {
@@ -173,10 +174,10 @@
     }
     ```
 
-2. 执行相对角度旋转。
+2. 执行相对角度的旋转控制，以调整设备的位置。
 
     ```ts
-    //执行转动控制前需要先关闭跟踪拍摄功能
+    //在执行转动控制之前，需要先关闭跟踪拍摄功能。
     mechanicManager.setCameraTrackingEnabled(false);
 
     async function rotateByRelativeAngles() {
@@ -191,7 +192,7 @@
         return;
         }
 
-        // 获取旋转限位
+        // 获取旋转限制
         const rotationLimits = mechanicManager.getRotationLimits(mechId);
         if (!rotationLimits || rotationLimits.negativeYawMax === undefined || rotationLimits.positiveYawMax === undefined ||
         rotationLimits.negativePitchMax === undefined || rotationLimits.positivePitchMax === undefined ||
@@ -232,7 +233,7 @@
     }
     ```
 
-3. 以指定速度持续转动。
+3. 以指定速度持续转动，直至任务完成。
 
     ```ts
     async function rotateBySpeed() {
@@ -256,7 +257,7 @@
         pitchSpeed: maxSpeed.pitchSpeed / 2, // 俯仰速度：最大速度的一半
         rollSpeed: maxSpeed.rollSpeed / 2    // 横滚速度：最大速度的一半
         };
-        const duration = Math.min(maxTime, 5000); // 持续时间：不超过最大持续时间，最多5秒
+        const duration = Math.min(maxTime, 5000); // 持续时间：最多5秒
 
         // 执行旋转
         const result = await mechanicManager.rotateBySpeed(mechId, speed, duration);
@@ -271,7 +272,7 @@
 
     ```ts
     const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo) => {
-    console.log('Rotating Axes state change:', info);
+    console.log('Rotation Axes state change:', info);
     const mechId = info.mechId;
     const status = info.status;
 
@@ -296,7 +297,7 @@
     try {
         const mechId = savedMechanicIds[0];
         await mechanicManager.stopMoving(mechId);
-        console.log('The device has stopped moving');
+        console.log('The device has ceased moving.');
     } catch (err) {
         console.error('Failed to stop device movement:', err);
     }
@@ -305,19 +306,19 @@
 
 ### 调试验证
 
-为了确保机械设备管理功能正常工作，请按照以下步骤进行调试验证：
+为了确保机械体设备管理功能正常，按以下步骤进行调试验证：
 
 **建立连接**
 
-1. 确保机械体配件设备与开发设备通过蓝牙成功配对并建立连接。
-2. 将开发设备正确放置在机械体配件设备上。
+1. 确保机械体设备与开发设备通过蓝牙配对并连接。
+2. 将开发设备放置在机械体设备上，确保两者正确连接。
 
 **功能验证步骤**
 
-1. **设备列表查询**：调用 `getAttachedMechDevices` 接口查询当前已连接的机械体配件设备列表，验证设备是否正确识别。
-2. **设备转动控制**：调用 `setCameraTrackingEnabled` 关闭跟踪功能，通过 `getCameraTrackingEnabled` 验证状态，调用 `rotate` 或 `rotateBySpeed` 控制设备转动。
+1. **设备列表查询**：调用 `getAttachedMechDevices` 接口查询当前已连接的机械体设备列表，并验证机械体设备是否正确识别。
+2. **设备转动控制**：调用 `setCameraTrackingEnabled` 关闭跟踪功能，并通过 `getCameraTrackingEnabled` 验证状态；调用 `rotate` 或 `rotateBySpeed` 控制机械体设备转动。
 
 **验证结果说明**
 
-- 如果 `getAttachedMechDevices` 返回包含机械体配件设备信息的设备列表，表示设备识别正常。
-- 如果调用 `rotate` 或 `rotateBySpeed` 按预期开始转动，表示转动控制正常。
+- 如果 `getAttachedMechDevices` 返回包含机械体设备信息的列表，表示设备识别正常。
+- 如果调用 `rotate` 或 `rotateBySpeed` 后设备按预期开始转动，表示设备转动正常。

@@ -1,6 +1,13 @@
-#  @ohos.app.ability.application (Application Basic Capability)
+#  @ohos.app.ability.application (Application Utility Class)
 
-You can use this module to create a [Context](../../application-models/application-context-stage.md).
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+You can use this module to manage and obtain the application [context](../../application-models/application-context-stage.md) and control the application process state.
 
 > **NOTE**
 >
@@ -17,7 +24,7 @@ import { application } from '@kit.AbilityKit';
 
 createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
-Creates the context for a module.
+Creates the context for a module. The [resourceManager.Configuration](../apis-localization-kit/js-apis-resource-manager.md#configuration) in the created module context inherits from the input context, making it convenient for you to access [application resources across HAP/HSP packages](../../quick-start/resource-categories-and-access.md#cross-haphsp-resources).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -38,7 +45,7 @@ Creates the context for a module.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message       |
 | -------- | --------------- |
@@ -56,7 +63,7 @@ export default class EntryAbility extends UIAbility {
     try {
       application.createModuleContext(this.context, 'entry').then((data: Context) => {
         moduleContext = data;
-        console.info('createBundleContext success!');
+        console.info('createModuleContext success!');
       }).catch((error: BusinessError) => {
         let code: number = (error as BusinessError).code;
         let message: string = (error as BusinessError).message;
@@ -75,10 +82,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContext(): ApplicationContext
 
-Obtains the application context.
-> **NOTE**
->
->The application context obtained through this API can only be used to obtain the corresponding [application information](js-apis-bundleManager-applicationInfo.md) and all [sandbox paths](js-apis-inner-application-context.md#properties).
+Obtains the application context. This API provides context access independent of the base class **Context**.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -88,7 +92,7 @@ Obtains the application context.
 
 | Type                                                        | Description               |
 | ------------------------------------------------------------ | ------------------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained.|
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context.|
 
 **Error codes**
 
@@ -172,15 +176,21 @@ export default class EntryAbility extends UIAbility {
 
 promoteCurrentToCandidateMasterProcess(insertToHead: boolean): Promise\<void>
 
-Adds the current process to the candidate master process list. This API uses a promise to return the result.
+Adds the current process into the [candidate master process](../../application-models/ability-terminology.md#candidate-master-process) list. This API uses a promise to return the result.
 
-When the master process is terminated, the system promotes the candidate master process at the head of the list to the master process role and triggers the [onNewProcessRequest](js-apis-app-ability-abilityStage.md#onnewprocessrequest11) callback. If no candidate master process is configured, the system creates an empty process as the master process for a UIAbility. For a UIExtensionAbility, the system preferentially reuses the existing UIExtensionAbility process as the new master process. If no process is available, the system creates an empty process as the master process.
+When the [master process](../../application-models/ability-terminology.md#master-process) is destroyed and a UIAbility or UIExtensionAbility with **isolationProcess** set to **true** is restarted, the system takes corresponding actions based on whether there is a candidate master process.
+
+- If a candidate master process exists, the system sets the process at the head of the candidate master process list as the new master process and triggers the [onNewProcessRequest](js-apis-app-ability-abilityStage.md#onnewprocessrequest11) callback.
+- If no candidate master process exists, the system performs the following operations based on the component type:
+	- For a UIAbility, the system creates an empty process as the master process.
+	- For a UIExtensionAbility, the system first tries to reuse an existing UIExtensionAbility process as the new master process. If no available process exists, it creates an empty process as the master process.
 
 > **NOTE**
+> - Currently, only 2-in-1 devices and tablets are supported.
+<!--Del-->
 >
-> - This API takes effect only on 2-in-1 devices and tablets.
->
-> - This API is valid only when a UIAbility or UIExtensionAbility can run in an independent process, that is, their **isolationProcess** field in the [module.json5](../../quick-start/module-configuration-file.md) file is set to **true**.
+> - The **isolationProcess** field can be set to **true** in the [module.json5](../../quick-start/module-configuration-file.md) file, but only for the UIExtensionAbility of the sys/commonUI type.
+<!--DelEnd-->
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -188,7 +198,7 @@ When the master process is terminated, the system promotes the candidate master 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| insertToHead | boolean | Yes| Whether to add the current process to the head of the candidate master process list. The value **true** means to add the current process to the head of the list, and **false** means to add the current process to the tail of the list.|
+| insertToHead | boolean | Yes| Whether to add the current process to the head of the candidate master process list. **true** to add the current process to the head of the list, **false** to add the current process to the tail of the list.|
 
 **Return value**
 
@@ -239,7 +249,7 @@ Removes the current process from the candidate master process list. This API use
 
 > **NOTE**
 >
-> This API takes effect only on 2-in-1 devices and tablets.
+> Currently, only 2-in-1 devices and tablets are supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

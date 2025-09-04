@@ -2,7 +2,7 @@
 
 ## Overview
 
-The NativeDisplayManager_DisplaysInfo struct describes the information about displays of a device with multiple screens.
+The struct describes the information about displays of a device with multiple screens.
 
 **Since**: 14
 

@@ -44,7 +44,7 @@ constructor(byteLength: number)
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------|
-| byteLength  | number | 是   | buffer所占的字节数。     |
+| byteLength  | number | 是   | buffer所占的字节数， 最大值不能超过2147483647。     |
 
 **错误码：**
 
@@ -75,8 +75,8 @@ slice(begin: number, end?: number): ArrayBuffer
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ------ | ------ | ---- | ------------------------------------------------ |
-| begin  | number | 是   | 开始索引，如果`begin < 0`，则会从`begin + arraybuffer.byteLength`位置开始。 |
-| end    | number | 否   | 结束索引（不包括该元素），如果`end < 0`，则会到`end + arraybuffer.byteLength`位置结束。默认为原ArkTS ArrayBuffer的长度。|
+| begin  | number | 是   | 开始索引，如果`begin < 0`，则会从`begin + arrayBuffer.byteLength`位置开始。 |
+| end    | number | 否   | 结束索引（不包括该元素），如果`end < 0`，则会到`end + arrayBuffer.byteLength`位置结束。默认为原ArkTS ArrayBuffer的长度。|
 
 **返回值：**
 

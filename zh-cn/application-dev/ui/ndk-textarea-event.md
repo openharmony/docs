@@ -75,6 +75,9 @@
     });
     ```
 - 完整示例
+
+   本篇示例仅提供核心接口的调用方法，完整的示例工程请参考<!--RP1-->[TextAreaEventNDK](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/TextAreaEventNDK)<!--RP1End-->。
+    
     ```c++
     #include <arkui/native_interface.h>
     

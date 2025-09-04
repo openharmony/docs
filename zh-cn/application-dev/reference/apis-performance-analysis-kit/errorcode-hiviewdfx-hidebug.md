@@ -130,7 +130,7 @@ dump子进程fork失败。
 
 **处理步骤**
 
-建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400108 等待dump子进程结束失败
 
@@ -147,7 +147,7 @@ Failed to wait for the child process to finish.
 
 **处理步骤**
 
-建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400109 等待dump子进程超时
 
@@ -164,7 +164,7 @@ dump过程耗时长，建议检查系统负载。
 
 **处理步骤**
 
-建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400110 磁盘空间不足
 
@@ -198,7 +198,7 @@ Napi接口调用时出现异常。
 
 **处理步骤**
 
-建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400112 重复dump采集
 
@@ -235,9 +235,9 @@ Failed to create dump file.
 
 **处理步骤**
 
-建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-setup-hilog)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
-## 11400114 使能GWP-Asan失败
+## 11400114 使能GWP-ASan失败
 
 **错误信息**
 
@@ -245,11 +245,11 @@ The number of GWP-ASAN applications of this device overflowed after last boot.
 
 **错误描述**
 
-设备在本次启动后，使能GWP-Asan的应用数量超出系统限制。
+设备在本次启动后，使能GWP-ASan的应用数量超出系统限制。
 
 **可能原因**
 
-单设备运行期间最多支持20个应用使能GWP-Asan，已超出配额限制。
+单设备运行期间，应用动态使能GWP-ASan的配额已耗尽。
 
 **处理步骤**
 

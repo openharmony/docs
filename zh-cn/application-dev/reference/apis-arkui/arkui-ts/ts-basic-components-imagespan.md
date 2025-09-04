@@ -99,7 +99,7 @@ colorFilter(filter: ColorFilter | DrawingColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| filter  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](ts-basic-components-image.md#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image_matrix_1.png)<br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
+| filter  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](ts-basic-components-image.md#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image_matrix_1.png)<br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>该接口中的DrawingColorFilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
 
 ## 事件
 
@@ -147,6 +147,8 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
 | result  | [ImageLoadResult](#imageloadresult12对象说明) | 是   | 图片数据加载成功和解码成功触发回调时返回的对象。 |
@@ -192,6 +194,7 @@ struct SpanExample {
       }.width('100%').textAlign(TextAlign.Center)
 
       Text() {
+        // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
         ImageSpan($r('app.media.app_icon'))
           .width('200px')
           .height('200px')
@@ -239,7 +242,8 @@ struct Index {
     Row() {
       Column() {
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
@@ -262,6 +266,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
   @State src: ResourceStr = $r('app.media.app_icon');
 
   build() {
@@ -270,10 +275,10 @@ struct Index {
         ImageSpan(this.src)
           .width(100).height(100)
           .onError((err) => {
-            console.log("onError: " + err.message);
+            console.info("onError: " + err.message);
           })
           .onComplete((event) => {
-            console.log("onComplete: " + event.loadingStatus);
+            console.info("onComplete: " + event.loadingStatus);
           })
       }
     }.width('100%').height('100%')
@@ -299,7 +304,8 @@ struct SpanExample {
       Column({ space: 10 }) {
         //创建ColorFilter对象的方式为图片设置颜色滤镜
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .colorFilter(this.DrawingColorFilterFirst)
@@ -307,7 +313,8 @@ struct SpanExample {
 
         //通过drawing.ColorFilter的方式为图片设置颜色滤镜
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .colorFilter(drawing.ColorFilter.createBlendModeColorFilter({
@@ -345,7 +352,7 @@ struct SpanExample {
       if (error) {
         console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
       } else {
-        console.log(`http request success.`);
+        console.info(`http request success.`);
         let imageData: ArrayBuffer = data.result as ArrayBuffer;
         let imageSource: image.ImageSource = image.createImageSource(imageData);
 

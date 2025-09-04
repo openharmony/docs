@@ -10,6 +10,7 @@
 
 > **说明：** 
 > - 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
+> - 关于`.shader`资源文件，具体请见[.shader资源文件格式要求](../../graphics3d/arkgraphics3D-shader-resource.md)。
 
 ## 导入模块
 ```ts
@@ -106,7 +107,7 @@ function createNodePromise() : Promise<Node> {
 ## RenderResourceFactory<sup>20+</sup>
 用于创建可在共享RenderContext的多个场景（Scene）中共享的渲染资源。
 
-### createShader
+### createShader<sup>20+</sup>
 createShader(params: SceneResourceParameters): Promise\<Shader>
 
 根据指定场景资源参数创建一个着色器，使用Promise异步回调。
@@ -116,7 +117,7 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 创建着色器的参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 创建着色器的参数。详细`.shader`文件格式请参考[.shader资源文件格式要求](../../graphics3d/arkgraphics3D-shader-resource.md)。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -141,7 +142,8 @@ function createShaderResource(): Promise<Shader> {
   return renderResourceFactory.createShader(shaderParams);
 }
 ```
-### createImage
+
+### createImage<sup>20+</sup>
 createImage(params: SceneResourceParameters): Promise\<Image>
 
 根据指定场景资源参数创建一个图像资源，使用Promise异步回调。
@@ -177,7 +179,7 @@ function createImageResource(): Promise<Image> {
 }
 ```
 
-### createMesh
+### createMesh<sup>20+</sup>
 createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
 
 根据指定场景资源参数和几何体定义（GeometryDefinition）创建一个网格资源（MeshResource），使用Promise异步回调。
@@ -266,7 +268,7 @@ function createMeshResource(): Promise<MeshResource> {
 }
 ```
 
-### createSampler
+### createSampler<sup>20+</sup>
 createSampler(params:SceneResourceParameters): Promise\<Sampler>
 
 根据指定场景资源参数创建一个采样器资源，使用Promise异步回调。
@@ -303,7 +305,7 @@ function createSamplerResource(): Promise<Sampler> {
 }
 ```
 
-### createScene
+### createScene<sup>20+</sup>
 createScene(uri?: ResourceStr): Promise\<Scene>
 
 从指定的资源URI创建一个新的场景。如果不指定URI，则创建一个空场景，使用Promise异步回调。
@@ -602,12 +604,12 @@ function createGeometryPromise() : Promise<Geometry> {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | 否 | 否 | 要创建场景组件的名称，可由开发者自定填写，用于标识场景组件。|
-| property | Record<string, string \| number \| Vec2 \| Vec3 \| Vec4 \| Image \| boolean \| number[] \| string[] \| Image[]> | 是 | 否 | 组件的属性集合，以键值对形式存储。支持多种基础类型和复杂类型，用于描述场景组件的各种属性。|
+| property | Record<string, string \| number \| [Vec2](js-apis-inner-scene-types.md#vec2) \| [Vec3](js-apis-inner-scene-types.md#vec3) \| [Vec4](js-apis-inner-scene-types.md#vec4) \| [SceneResource](js-apis-inner-scene-resources.md#sceneresource-1) \| boolean \| number[] \| string[] \| [SceneResource](js-apis-inner-scene-resources.md#sceneresource-1)[] \| [Vec2](js-apis-inner-scene-types.md#vec2)[] \| [Vec3](js-apis-inner-scene-types.md#vec3)[] \| [Vec4](js-apis-inner-scene-types.md#vec4)[] \| null \| undefined> | 是 | 否 | 组件的属性集合，以键值对形式存储。支持多种基础类型和复杂类型，用于描述场景组件的各种属性。|
 
 ## RenderContext<sup>20+</sup>
 定义了所有渲染资源的上下文。在同一渲染上下文中创建的多个场景之间，可以共享渲染资源。
 
-### getRenderResourceFactory
+### getRenderResourceFactory<sup>20+</sup>
 getRenderResourceFactory() : RenderResourceFactory
 
 获取渲染资源工厂，提供创建不同渲染资源的功能。
@@ -636,7 +638,7 @@ function getRenderResourceFactory(): void {
 }
 ```
 
-### loadPlugin
+### loadPlugin<sup>20+</sup>
 loadPlugin(name: string): Promise\<boolean>
 
 用于加载指定名称的插件，通过插件名称查找并加载对应的插件资源，使用Promise异步回调。
@@ -757,7 +759,7 @@ static load(uri?: ResourceStr): Promise\<Scene>
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function loadModel() : void {
+function loadModel(): void {
   // 加载模型
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {});
@@ -787,7 +789,7 @@ getNodeByPath(path: string, type?: NodeType): Node | null
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function getNode() : void {
+function getNode(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -815,7 +817,7 @@ getResourceFactory(): SceneResourceFactory
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function getFactory() : void {
+function getFactory(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -838,7 +840,7 @@ destroy(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function destroy() : void {
+function destroy(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -1049,6 +1051,8 @@ function getComponentTest() {
 static getDefaultRenderContext(): RenderContext | null
 
 获取当前图形对象所关联的渲染环境信息。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **返回值：**
 | 类型 | 说明 |

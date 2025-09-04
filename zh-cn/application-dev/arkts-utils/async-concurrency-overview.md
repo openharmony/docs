@@ -45,8 +45,6 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
 Promise对象创建后，可以使用then方法和catch方法指定fulfilled状态和rejected状态的回调函数。then方法可接受两个参数，一个处理fulfilled状态的函数，另一个处理rejected状态的函数。只传一个参数则表示当Promise对象状态变为fulfilled时，then方法会自动调用这个回调函数，并将Promise对象的结果作为参数传递给它。使用catch方法注册一个回调函数，用于处理“失败”的结果，即捕获Promise的状态改变为rejected状态或操作失败抛出的异常。Promise还可以使用finally注册回调函数，无论Promise最终状态如何（fulfilled或rejected），都会执行该回调函数。例如：
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
     const randomNumber: number = Math.random();
@@ -61,7 +59,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
 // 使用 then 方法定义成功和失败的回调
 promise.then((result: number) => {
   console.info(`The number for success is ${result}`); // 成功时执行
-}, (error: BusinessError) => {
+}, (error: Error) => {
   console.error(error.message); // 失败时执行
 }
 );
@@ -69,7 +67,7 @@ promise.then((result: number) => {
 // 使用 then 方法定义成功的回调，catch 方法定义失败的回调
 promise.then((result: number) => {
   console.info(`Random number is ${result}`); // 成功时执行
-}).catch((error: BusinessError) => {
+}).catch((error: Error) => {
   console.error(error.message); // 失败时执行
 });
 
@@ -130,7 +128,7 @@ struct Index {
 
 在上述示例代码中，使用await等待Promise解析，并存储在result变量中。
 
-需要注意的是，等待异步操作时，需将操作包在async函数中，并搭配await使用。同时也可使用try/catch块来捕获异常。
+需要注意的是，等待异步操作时，需将操作包在async函数中，并搭配await使用，且await关键字只在async函数内有效。同时也可使用try/catch块来捕获异常。
 
 ```ts
 async function myAsyncFunction(): Promise<void> {

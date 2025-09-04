@@ -740,3 +740,38 @@ try {
 | Pacific/Wake                   | 12                    |
 | America/New_York               | -4                    |
 | Asia/Tashkent                  | 5                     |
+
+## systemDateTime.getAutoTimeStatus<sup>21+</sup>
+
+getAutoTimeStatus(): boolean
+
+获取自动设置时间开关状态，使用同步方式。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值：**
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| boolean | 返回自动设置时间开关状态。<br/>- true：表示自动设置时间开关状态为打开。 <br/>- false：表示自动设置时间开关状态为关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000001    | Network connection error or OS error. Possible causes: AutoTime status is empty or get status failed.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let status = systemDateTime.getAutoTimeStatus();
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to get autotime status. message: ${error.message}, code: ${error.code}`);
+}
+```

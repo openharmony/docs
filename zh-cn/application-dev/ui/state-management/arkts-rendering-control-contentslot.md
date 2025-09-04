@@ -186,3 +186,40 @@ napi_value CreateNativeNode(napi_env env, napi_callback_info info) {
   ```
   void *userData = OH_ArkUI_NodeContent_GetUserData(nodeContentHandle_);
   ```
+
+## 绑定规则说明
+
+如果将同一个Content对象绑定到多个ContentSlot组件，最终该Content的内容仅在最后一个绑定的ContentSlot中显示，其他ContentSlot将不显示任何内容。
+
+**原因说明：**
+
+Content与ContentSlot节点具有一对一的绑定关系。同一Content不能同时关联多个ContentSlot节点。如果尝试将同一Content挂载到多个ContentSlot节点，仅最后一次挂载生效，之前的ContentSlot节点将失去Content的关联，导致组件内容无法显示。
+
+若需在多个ContentSlot节点下显示相同内容，每个节点需创建单独的Content。示例如下：
+
+```typescript
+import nativeNode from 'libNativeNode.so'; // 开发者自己实现的so
+import { NodeContent } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Parent {
+  private nodeContent_1: Content = new NodeContent();
+  private nodeContent_2: Content = new NodeContent();
+
+  aboutToAppear() {
+    // 通过C-API创建节点，并添加到管理器nodeContent_1和nodeContent_2上
+    nativeNode.createNativeNode(this.nodeContent_1);
+    nativeNode.createNativeNode(this.nodeContent_2);
+  }
+
+  build() {
+    Column() {
+      ContentSlot(this.nodeContent_1) // nodeContent_1将被挂载到下一个Contentslot节点，此处无法显示
+      ContentSlot(this.nodeContent_1) // 正常显示
+      ContentSlot(this.nodeContent_2) // 正常显示
+    }
+  }
+}
+```
+

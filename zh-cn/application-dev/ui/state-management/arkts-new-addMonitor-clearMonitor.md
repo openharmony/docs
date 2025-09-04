@@ -239,7 +239,7 @@ struct Page {
       })
       Button('clear name monitors').onClick(() => {
         // step5：删除name添加的监听方法。因为name无任何监听回调，删除失败
-        // 打印告警日志：FIX THIS APPLICATION ERROR: cannot clear path age for onChange1 because it was never registered with addMonitor
+        // 打印错误日志：FIX THIS APPLICATION ERROR: cannot clear path name for current target User because no Monitor function for this path was registered
         UIUtils.clearMonitor(this.user, 'name');
       })
     }
@@ -710,6 +710,7 @@ struct Page {
 ```
 message change from not initialized to initialized
 message change from initialized to Index aboutToAppear
+message change from Index aboutToAppear to Index click to change message
 ```
 
 ```ts

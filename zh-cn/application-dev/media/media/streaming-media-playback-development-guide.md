@@ -28,8 +28,8 @@
 
    | 事件类型 | 说明 |
    | -------- | -------- |
-   | stateChange | 必要事件，监听播放器的state属性改变。 |
-   | error | 必要事件，监听播放器的错误信息。 |
+   | stateChange | 必要事件，监听播放器的state属性改变。<br>需要播放器在idle状态下、未调用设置资源接口前完成设置监听，若在调用设置资源接口后再设置监听，可能导致无法收到资源设置过程中上报的stateChange事件。 |
+   | error | 必要事件，监听播放器的错误信息。<br>需要播放器在idle状态下、未调用设置资源接口前完成设置监听，若在调用设置资源接口后再设置监听，可能导致无法收到资源设置过程中上报的error事件。 |
    | durationUpdate | 监听进度条长度，刷新资源时长。 |
    | timeUpdate | 监听进度条当前位置，刷新当前时间。 |
    | seekDone | 监听seek()请求完成情况。<br/>当使用seek()跳转到指定播放位置后，如果seek操作成功，将上报该事件。 |
@@ -72,9 +72,11 @@
 
 ```ts
 import { media } from '@kit.MediaKit';
+// 类成员定义avPlayer
+private avPlayer: media.AVPlayer | null = null;
 
 // 创建avPlayer实例对象。
-this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+this.avPlayer = await media.createAVPlayer();
 // 监听当前bufferingUpdate缓冲状态。
 this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
   console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
@@ -89,9 +91,11 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 
     ```ts
     import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
 
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     // 监听当前HLS协议流可用的码率。
     this.avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
       console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
@@ -102,9 +106,11 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 
     ```ts
     import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
 
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     // 监听码率设置是否生效。
     this.avPlayer.on('bitrateDone', (bitrate: number) => {
       console.info('bitrateDone called, and bitrate value is: ' + bitrate);
@@ -136,9 +142,11 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 
     ```ts
     import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
 
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     this.avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
       console.info(`trackChange info, index: ${index}, isSelect: ${isSelect}`);
     })
@@ -149,9 +157,13 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
     ```ts
     // 以获取1080p视频轨道索引为例。
     import { media } from '@kit.MediaKit';
-
+    import { BusinessError } from '@kit.BasicServicesKit';
+    public videoTrackIndex: number = 0;
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
+    
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     this.avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
@@ -160,7 +172,7 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
           let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
           let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
           if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
-            this.videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引。
+            this.videoTrackIndex = parseInt(propertyIndex?.toString()); // 获取1080p视频轨道索引。
           }
         }
       } else {
@@ -172,10 +184,17 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 3. 在音视频播放过程中调用[selectTrack](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#selecttrack12)选择对应的音视频轨道，或者调用[deselectTrack](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#deselecttrack12)取消选择的音视频轨道。
 
     ```ts
+    import { media } from '@kit.MediaKit';
+    public videoTrackIndex: number = 0;
+        // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
+    
+    // 创建avPlayer实例对象。
+    this.avPlayer = await media.createAVPlayer();
     // 切换至目标视频轨道。
-    avPlayer.selectTrack(videoTrackIndex);
+    this.avPlayer.selectTrack(this.videoTrackIndex);
     // 取消选择目标视频轨道。
-    // avPlayer.deselectTrack(videoTrackIndex);
+    // this.avPlayer.deselectTrack(this.videoTrackIndex);
     ```
 
 ## 异常场景说明
@@ -257,7 +276,7 @@ struct Index {
   @State currentTime: number = 0;
   @State percent: number = 0;
   @State isSwiping: boolean = false;
-  @State tag: string = 'StreamingMedia'
+  @State tag: string = 'StreamingMedia';
   private surfaceId: string = '';
   @State speedSelect: number = -1;
   public intervalID: number = -1;
@@ -636,9 +655,13 @@ struct Index {
   }
 
   @Builder
-  CoverXComponent() {...}
+  CoverXComponent() {
+    // ...
+  }
 
-  build() {...}
+  build() {
+    // ...
+  }
 }
 ```
 

@@ -6,7 +6,7 @@
 <!--Tester: @zhaodengqi-->
 <!--Adviser: @foryourself-->
 
-本模块提供与机械设备交互的能力，包括设备连接状态监听、跟踪控制和跟踪状态监听功能。
+本模块提供与机械体设备交互的能力，包括设备连接状态监听、跟踪控制和跟踪状态监听功能。
 
 > **说明：**
 >
@@ -255,7 +255,7 @@ console.info('Unregister: success');
 
 getCameraTrackingLayout(): CameraTrackingLayout
 
-获取当前机械设备摄像头跟踪布局。
+获取当前机械体设备摄像头跟踪布局。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
@@ -291,7 +291,7 @@ console.info(`'Query layout successful, current layout:' ${layout}`);
 | 名称   | 类型 | 只读 | 可选 | 说明|
 | ----- | ---- | ---- | --- | --- |
 | mechId | number | 否 | 否 | 机械体设备ID。 |
-| mechDeviceType | [MechDeviceType](#mechdevicetype) | 否 | 否 | 机械设备的类型。 |
+| mechDeviceType | [MechDeviceType](#mechdevicetype) | 否 | 否 | 机械体设备的类型。 |
 | mechName | string | 否 | 否 | 机械体设备名称。 |
 
 ## TrackingEventInfo

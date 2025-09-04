@@ -1,5 +1,12 @@
 # Input_KeyState
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。

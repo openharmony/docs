@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @zsyztt; @Hermits; @reminder2352-->
-<!--SE: @yunlanying-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @yunlanying-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 The **cloudSync** module provides the device-cloud synchronization capabilities for applications. You can use the APIs to start or stop device-cloud synchronization and start or stop the download of images.
 
@@ -65,10 +66,10 @@ Represents information about the device-cloud sync progress.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| Name    | Type  | Mandatory| Description|
-| ---------- | ------ | ---- | ---- |
-| state | [SyncState](#syncstate12) | Yes  | Device-cloud sync state.|
-| error | [ErrorType](#errortype12) | Yes  | Sync error.|
+| Name    | Type  | Read-Only| Optional| Description|
+| ---------- | ------ | ---- | ---- | ---- |
+| state | [SyncState](#syncstate12) | No  | No  | Device-cloud sync state.|
+| error | [ErrorType](#errortype12) | No  | No  | Sync error.|
 
 ## State<sup>11+</sup>
 
@@ -91,13 +92,13 @@ Represents information about the download progress of a cloud file.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| Name    | Type  | Mandatory| Description|
-| ---------- | ------ | ---- | ---- |
-| state | [State](#state11) | Yes  | File download state.|
-| processed | number | Yes  | Size of the downloaded data, in bytes. The value range is [0, 9223372036854775807].|
-| size | number | Yes  | Size of the cloud file, in bytes. The value range is [0, 9223372036854775807].|
-| uri | string | Yes  | URI of the cloud file.|
-| error | [DownloadErrorType](#downloaderrortype11) | Yes  | Download error type.|
+| Name    | Type  | Read-Only| Optional| Description|
+| ---------- | ------ | ---- | ---- | ---- |
+| state | [State](#state11) | No  | No  | File download state.|
+| processed | number | No  | No  | Size of the downloaded data, in bytes. The value range is [0, 9223372036854775807].|
+| size | number | No  | No  | Size of the cloud file, in bytes. The value range is [0, 9223372036854775807].|
+| uri | string | No  | No  | URI of the cloud file.|
+| error | [DownloadErrorType](#downloaderrortype11) | No  | No  | Download error type.|
 
 ## FileSync<sup>12+</sup>
 
@@ -1244,14 +1245,14 @@ Represents the historical version information of the device-cloud file when the 
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| Name    | Type  | Description|
-| ---------- | ------ | ---- |
-| editedTime | number | Time when the file content is modified.|
-| fileSize | number | File size in bytes.|
-| versionId | string | File version.|
-| originalFileName | string | File name of the current version.|
-| sha256 | string | Hash value of the file content of the current version.|
-| autoResolved | boolean | Whether the current version is the one where conflicts were automatically resolved.<br>When the application is set to manually resolve conflicts, **false** is returned by default, which is meaningless.<br>When the application is set to automatically resolve conflicts, the device side automatically resolves conflicts. The value **true** means conflicts exist in the current version and have been automatically resolved by the device-cloud service; the value **false** means no conflict exists and conflicts are not automatically resolved.|
+| Name    | Type  | Read-Only| Optional| Description|
+| ---------- | ------ | ---- | ---- | ---- |
+| editedTime | number | No  | No  | Time when the file content is modified.|
+| fileSize | number | No  | No  | File size in bytes.|
+| versionId | string | No  | No  | File version.|
+| originalFileName | string | No  | No  | File name of the current version.|
+| sha256 | string | No  | No  | Hash value of the file content of the current version.|
+| autoResolved | boolean | No  | No  | Whether the current version is the one where conflicts were automatically resolved.<br>When the application is set to manually resolve conflicts, **false** is returned by default, which is meaningless.<br>When the application is set to automatically resolve conflicts, the device side automatically resolves conflicts. The value **true** means conflicts exist in the current version and have been automatically resolved by the device-cloud service; the value **false** means no conflict exists and conflicts are not automatically resolved.|
 
 **NOTE**<br>The current device-cloud sync provides an automatic conflict resolution mechanism for cases where a file is modified simultaneously on both the local device and another device. To enable users to manually resolve the conflict, add the **cloudkit_config.json** file to the **/entry/src/main/resources/base/profile** directory of the project and set **manualConflictResolutionEnable** to **true**. Otherwise, skip this step or set **manualConflictResolutionEnable** to **false**.
 
@@ -1275,11 +1276,11 @@ Represents the download state and progress information of historical version fil
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| Name| Type| Mandatory| Description|
-| ---------- | ------ | ------ | ---- |
-| state | [State](#state11) | Yes| Download state of the cloud file of the selected version.|
-| progress | number | Yes| Download progress.|
-| errType | [DownloadErrorType](#downloaderrortype11) | Yes| Type of the error that occurs when the download fails.|
+| Name| Type| Read-Only| Optional| Description|
+| ---------- | ------ | ---- | ---- | ---- |
+| state | [State](#state11) | No  | No  | Download state of the cloud file of the selected version.|
+| progress | number | No  | No  | Download progress.|
+| errType | [DownloadErrorType](#downloaderrortype11) | No  | No  | Type of the error that occurs when the download fails.|
 
 ## FileVersion<sup>20+</sup>
 

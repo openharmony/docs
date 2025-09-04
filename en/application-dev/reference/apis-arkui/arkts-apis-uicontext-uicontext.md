@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **UIContext** instance.
 
@@ -274,11 +275,6 @@ Obtains a **MediaQuery** object.
 **Example**
 
 See the [mediaquery Example](js-apis-mediaquery.md#example).
-
-<!--code_no_check-->
-```ts
-uiContext.getMediaQuery();
-```
 
 ## getRouter
 
@@ -956,7 +952,7 @@ Shows a date picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -1025,7 +1021,7 @@ Shows a time picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -1088,7 +1084,7 @@ Shows a text picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -1159,7 +1155,7 @@ Shows a text picker dialog box in the given settings. This API extends **showTex
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -1796,13 +1792,6 @@ Obtains a [ContextMenuController](arkts-apis-uicontext-contextmenucontroller.md)
 |----|----|
 |[ContextMenuController](arkts-apis-uicontext-contextmenucontroller.md)| **ContextMenuController** object.|
 
-**Example**
-
-<!--code_no_check-->
-```ts
-uiContext.getContextMenuController();
-```
-
 ## getMeasureUtils<sup>12+</sup>
 
 getMeasureUtils(): MeasureUtils
@@ -1822,11 +1811,6 @@ Obtains a **MeasureUtils** object for text calculation.
 **Example**
 
 See the example for [MeasureUtils](arkts-apis-uicontext-measureutils.md).
-
-<!--code_no_check-->
-```ts
-uiContext.getMeasureUtils();
-```
 
 ## getComponentSnapshot<sup>12+</sup>
 

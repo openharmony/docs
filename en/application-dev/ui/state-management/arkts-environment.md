@@ -1,13 +1,16 @@
-# Environment: Device Environment Query
+# Environment: Querying the Device Environment
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
+You may want your application to behave differently based on the device environment where the application is running, for example, switching to dark mode or a specific language. In this case, you need the **Environment** API for device environment query.
 
-If you need the environment parameters of the device where the application runs to set different scenarios, such as multi-language support and dark/light color mode, use Environment to query the parameters.
+**Environment** is a singleton object created by the ArkUI framework during application launch, providing AppStorage with immutable primitive-type properties reflecting the application's runtime state.
 
-
-Environment is a singleton object created by the ArkUI framework at application startup. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple types only.
-
-
-Environment provides the capability of reading some environment variables of the system (for details, see [Environment Built-in Parameters](#environment-built-in-parameters)) and writing the values of the variables to AppStorage. Therefore, you can use AppStorage to obtain the values of environment variables.
+The **Environment** API enables reading system environment variables and writing their values to AppStorage. You must access these values through AppStorage. For details, see [Environment Built-in Parameters](#environment-built-in-parameters).
 
 Before reading this topic, you are advised to read [AppStorage](./arkts-appstorage.md).
 
@@ -15,23 +18,21 @@ Before reading this topic, you are advised to read [AppStorage](./arkts-appstora
 
 | Key| Data Type| Description                                     |
 | ------------------ | ------------------ | ------------------ |
-| accessibilityEnabled              | boolean                  | Whether to enable accessibility.                |
-| colorMode              | ColorMode                  | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.                |
-| fontScale              | number                  | Font scale. To enable the font scale to change with the system, set the [configuration](../../quick-start/app-configuration-file.md#configuration) tag.               |
-| fontWeightScale              | number                  | Font weight.               |
-| layoutDirection              | LayoutDirection                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
-| languageCode              | string                  | System language value. The value must be in lowercase, for example, **zh**.                |
-
+| accessibilityEnabled              | boolean                  | Whether to enable screen reader accessibility. The value **true** means to enable screen reader accessibility, and **false** means the opposite.|
+| colorMode              | ColorMode                  | Color mode.<br>- **ColorMode.LIGHT**: light color mode.<br>- **ColorMode.DARK**: dark color mode.                |
+| fontScale              | number                  | Font scale. To enable the font scale to change with the system, set the [configuration](../../quick-start/app-configuration-file.md#configuration) tag.<br>The default value follows the default system settings.               |
+| fontWeightScale              | number                  | Font weight. The value range varies by system or device model.<br>The default value follows the default system settings.               |
+| layoutDirection              | LayoutDirection                  | Layout direction.<br>**LayoutDirection.LTR**: from left to right.<br>**LayoutDirection.RTL**: from right to left.                |
+| languageCode              | string                  | System language code. The value must be in lowercase, for example, **zh**.<br>The default value follows the default system settings.                |
 
 ## Use Scenarios
 
+### Accessing Environment Parameters from the UI
 
-### Accessing Environment Parameters from UI
-
-- Use **Environment.envProp** to save the environment variables of the device to AppStorage.
+- Use Environment.[envProp](../../reference/apis-arkui/arkui-ts/ts-state-management.md#envprop10) to store device environment variables in AppStorage.
 
   ```ts
-  // Save languageCode to AppStorage. The default value is en.
+  // Store languageCode (default value: en) to AppStorage.
   Environment.envProp('languageCode', 'en');
   ```
 
@@ -45,11 +46,10 @@ The chain of updates is as follows: Environment > AppStorage > Component.
 
 > **NOTE**
 >
-> An \@StorageProp decorated variable can be locally modified, but the change will not be updated to AppStorage. This is because the environment variable parameters are read-only to the application.
-
+> An \@StorageProp decorated variable can be locally modified, but the change will not be updated to AppStorage. This is because environment variables are read-only.
 
 ```ts
-// Save the device language code to AppStorage.
+// Store languageCode to AppStorage.
 Environment.envProp('languageCode', 'en');
 
 @Entry
@@ -60,7 +60,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        // Output the current device language code.
+        // Obtain the current device language code.
         Text(this.languageCode)
       }
     }
@@ -68,12 +68,10 @@ struct Index {
 }
 ```
 
-
 ### Using Environment in Application Logic
 
-
 ```ts
-// Use Environment.envProp to save the device language code to AppStorage.
+// Store languageCode to AppStorage.
 Environment.envProp('languageCode', 'en');
 // Obtain the one-way bound languageCode variable from AppStorage.
 const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
@@ -85,12 +83,9 @@ if (lang.get() === 'en') {
 }
 ```
 
-
 ## Constraints
 
-
-Environment can be called only when the [UIContext](../../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.
-
+**Environment** can be called only when the [UIContext](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) is specified. You can specify the context in [runScopedTask](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#runscopedtask). If **Environment** is called without explicit **UIContext**, no device environment data can be obtained.
 
 ```ts
 // EntryAbility.ets
@@ -100,13 +95,13 @@ import { window } from '@kit.ArkUI';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index');
-    let window = windowStage.getMainWindow()
+    let window = windowStage.getMainWindow();
     window.then(window => {
-      let uicontext = window.getUIContext()
-      uicontext.runScopedTask(() => {
+      let uiContext = window.getUIContext();
+      uiContext.runScopedTask(() => {
         Environment.envProp('languageCode', 'en');
-      })
-    })
+      });
+    });
   }
 }
 ```

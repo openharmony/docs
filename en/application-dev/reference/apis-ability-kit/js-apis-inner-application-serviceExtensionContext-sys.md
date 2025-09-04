@@ -1,4 +1,10 @@
 # ServiceExtensionContext (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The ServiceExtensionContext module provides the context environment for the ServiceExtensionAbility. It inherits from ExtensionContext.
 
@@ -1621,7 +1627,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 Connects this ability to a ServiceExtensionAbility of a given account. This API can be called only by the main thread.
 
-Currently, this API takes effect only on mobile phones and tablets.
+Currently, this API takes effect only on phones and tablets.
 
 > **NOTE**
 >
@@ -2559,7 +2565,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.preStartMission<sup>12+<sup>
 
-preStartMission(bundleName:string, moduleName: string, abilitName: string, startTime: string): Promise&lt;void&gt;
+preStartMission(bundleName:string, moduleName: string, abilityName: string, startTime: string): Promise&lt;void&gt;
 
 Starts an atomic service and pre-opens the window, with the loading box skipped. This API uses a promise to return the result.
 
@@ -2701,7 +2707,7 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
     this.context.startUIServiceExtensionAbility(startWant).then(() => {
       console.info('succeeded');
     }).catch((error: BusinessError) => {
-      console.error(`error code: ${error.code}, error essage : ${error.message}`);
+      console.error(`error code: ${error.code}, error message : ${error.message}`);
     })
   }
 }
@@ -2799,7 +2805,7 @@ You can pass the Want information of multiple UIAbility instances, which can poi
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
-| wantList | Array\<[Want](js-apis-app-ability-want.md)> | Yes| List of launch parameters for multiple UIAbilities to be started simultaneously. A maximum of four Want objects can be passed. The **Want** parameter does not support implicit launch, cross-user launch, distributed launch, instant installation, or on-demand loading. By default, the main application is launched unless specified otherwise.|
+| wantList | Array\<[Want](js-apis-app-ability-want.md)> | Yes| List of launch parameters for multiple UIAbility components to be started simultaneously. A maximum of four Want objects can be passed. The **Want** parameter does not support implicit launch, cross-user launch, distributed launch, instant installation, or on-demand loading. By default, the main application is launched unless specified otherwise.|
 
 **Return value**
 

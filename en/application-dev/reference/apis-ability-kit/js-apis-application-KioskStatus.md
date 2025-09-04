@@ -14,6 +14,6 @@ The module provides the kiosk status information, including whether the system i
 
 | Name                 | Type                   | Read-Only| Optional| Description                                                 |
 | --------------------- | ---------------------- | ---- | ---- | ---------------------------------------------------- |
-| isKioskMode           | boolean                | No  | No  | Whether the system is in kiosk mode. The value **true** means that the system is in kiosk mode, and **false** means the opposite.|
+| isKioskMode           | boolean                | No  | No  | Whether the system is in kiosk mode. **true** if in kiosk mode, **false** otherwise.|
 | kioskBundleName       | string                 | No  | No  | Bundle name of the application in kiosk mode.                         |
 | kioskBundleUid        | number                 | No  | No  | UID of the application in kiosk mode.                          |

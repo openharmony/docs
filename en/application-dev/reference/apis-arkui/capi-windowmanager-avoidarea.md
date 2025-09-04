@@ -2,7 +2,7 @@
 
 ## Overview
 
-The WindowManager_AvoidArea struct describes the avoid area.
+The struct describes the avoid area.
 
 **Since**: 15
 

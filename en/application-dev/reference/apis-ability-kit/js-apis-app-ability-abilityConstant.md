@@ -1,5 +1,12 @@
 # @ohos.app.ability.AbilityConstant (Ability-related Constants)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 AbilityConstant provides enums related to abilities, including application launch reasons ([LaunchReason](#launchreason)), last exit reasons ([LastExitReason](#lastexitreason)), and migration results ([OnContinueResult](#oncontinueresult)).
 
 > **NOTE**
@@ -18,8 +25,6 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-**Model restriction**: This API can be used only in the stage model.
-
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
 | Name| Type| Value| Description|
@@ -28,21 +33,21 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 ## LaunchParam
 
-Defines the launch parameters. The parameter values are automatically passed in by the system when the ability is launched. You do not need to change the values.
+Describes the launch parameters, which mainly include the ability launch reasons and reasons for the last exit. The parameter values are automatically passed in by the system when the ability is launched. You do not need to change the values.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#launchreason)| No| No| An enumerated value indicating the reason for application launch (for example, recovery from a fault, intent invocation, or atomic service sharing). For details, see [LaunchReason](#launchreason).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| launchReasonMessage<sup>18+</sup> | string | No| Yes| Detailed message that describes the reason for the application launch.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| lastExitReason | [LastExitReason](#lastexitreason) | No| No| An enumerated value indicating the reason for the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastExitMessage<sup>12+</sup> | string | No| No| Detailed message that describes the reason for the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | No| Yes| Key runtime states for the last exit (including process ID, exit timestamp, and RSS memory value).<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| launchReason | [LaunchReason](#launchreason)| No| No| An enumerated value indicating the reason for ability launch (for example, recovery from a fault, intent invocation, or atomic service sharing). For details, see [LaunchReason](#launchreason).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| launchReasonMessage<sup>18+</sup> | string | No| Yes| Detailed message that describes the reason for the ability launch.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| lastExitReason | [LastExitReason](#lastexitreason) | No| No| An enumerated value indicating the reason for the last exit of the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastExitMessage<sup>12+</sup> | string | No| No| Detailed message that describes the reason for the last exit of the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | No| Yes| Key runtime information for the last exit of the ability (including process ID, exit timestamp, and RSS memory value).<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## LaunchReason
 
-Enumerates the launch reasons. You can use it together with the value of **launchParam.launchReason** in [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate) of the UIAbility to complete different operations.
+Enumerates the ability launch reasons. You can use it together with the value of **launchParam.launchReason** in [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -57,6 +62,7 @@ Enumerates the launch reasons. You can use it together with the value of **launc
 | AUTO_STARTUP<sup>11+</sup>           | 8    | The ability is automatically started upon system boot.|
 | INSIGHT_INTENT<sup>11+</sup>           | 9    | The ability is started by the InsightIntent framework.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PREPARE_CONTINUATION<sup>12+</sup>           | 10    | The ability is started in advance during cross-device migration.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PRELOAD<sup>20+</sup>           | 11    | The ability is started through preloading.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 **Example**
 
@@ -74,22 +80,22 @@ export default class MyAbility extends UIAbility {
 
 ## LastExitReason
 
-Enumerates the reasons for the last exit. You can use it together with the value of **launchParam.lastExitReason** in [onCreate()](js-apis-app-ability-uiAbility.md#oncreate) of the UIAbility to complete different operations.
+Enumerates the reasons for the last exit of the ability. You can use it together with the value of **launchParam.lastExitReason** in [onCreate()](js-apis-app-ability-uiAbility.md#oncreate) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | The ability does not respond.<br>**NOTE**<br>This enum is supported since API version 9 and deprecated since API version 10. You are advised to use **APP_FREEZE**.|
-| NORMAL | 2    | The ability exits normally because the user closes the application.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**: If the application process is terminated using methods not provided by Ability Kit, such as calling [process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated) or using the **kill** command, the reason for the last exit is also reported as **NORMAL**.|
-| CPP_CRASH<sup>10+</sup>  | 3    | The ability exits due to abnormal signals on the local host.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | The ability does not respond.<br>Note: This enum is supported since API version 9 and deprecated since API version 10. You are advised to use **APP_FREEZE**.|
+| NORMAL | 2    | The ability exits normally because the user closes the application.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>Note: If the application process is forcibly terminated using methods not provided by Ability Kit, such as calling [process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated) or using the kernel **kill** command, the reason for the last exit is also reported as **NORMAL**.|
+| CPP_CRASH<sup>10+</sup>  | 3    | The ability exits due to [process crash](../../dfx/cppcrash-guidelines.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| APP_FREEZE<sup>10+</sup>  | 5    | The ability exits because watchdog detects that the application is frozen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**: This API will be deprecated. You are advised to use **RESOURCE_CONTROL** instead.|
+| APP_FREEZE<sup>10+</sup>  | 5    | The ability exits due to [application freeze](../../dfx/appfreeze-guidelines.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>Note: This API will be deprecated. You are advised to use **RESOURCE_CONTROL** instead.|
 | RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits due to improper use of system resources. The specific error cause can be obtained through [LaunchParam.lastExitMessage](#launchparam). The possible causes are as follows:<br> - **CPU Highload**: The CPU load is high.<br> - **CPU_EXT Highload**: A fast CPU load detection is carried out.<br> - **IO Manage Control**: An I/O management and control operation is carried out.<br> - **App Memory Deterioration**: The application memory usage exceeds the threshold.<br> - **Temperature Control**: The temperature is too high or too low.<br> - **Memory Pressure**: The system is low on memory, triggering ability exiting in ascending order of priority.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| UPGRADE<sup>10+</sup>  | 8    | The ability exits due to an update.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| USER_REQUEST<sup>18+</sup>  | 9    | The ability exits because of an action in the multitasking center, for example, when users swipe up or hit the one-click clean button in the multitasking view.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| UPGRADE<sup>10+</sup>  | 8    | The application exits due to an upgrade.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| USER_REQUEST<sup>18+</sup>  | 9    | The ability exits because it receives a request from the multitasking center.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | SIGNAL<sup>18+</sup>  | 10    | The ability exits because it receives a kill signal from the system.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 **Example**
@@ -103,7 +109,7 @@ export default class MyAbility extends UIAbility {
       console.log('The ability has exit last because the ability was not responding.');
     }
     if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
-      console.log('The ability has exit last because the rss control, the lastExitReason is '+ launchParam.lastExitReason + ', the lastExitMessage is ' + launchParam.lastExitMessage);
+      console.log('The ability has exited last because the rss control, the lastExitReason is '+ launchParam.lastExitReason + ', the lastExitMessage is ' + launchParam.lastExitMessage);
     }
   }
 }
@@ -111,22 +117,20 @@ export default class MyAbility extends UIAbility {
 
 ## LastExitDetailInfo<sup>18+</sup>
 
-Describes the detailed information about the last exit.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
+Describes the key runtime information of the process where the ability last exited.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | No| No| ID of the process where the ability last exited.|
-| processName | string | No| No| Name of the process.|
-| uid | number | No| No| UID of the application.|
-| exitSubReason | number | No| No| Specific reason for the last exit of the ability.|
-| exitMsg | string | No| No| Reason why the process was killed.|
-| rss | number | No| No| RSS value of the process.|
-| pss | number | No| No| PSS value of the process.|
-| timestamp | number | No| No| Exact time when the ability last exited.|
+| pid | number | No| No| ID of the process where the ability last exited.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| processName | string | No| No| Name of the process.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| uid | number | No| No| UID of the application.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| exitSubReason | number | No| No| Specific reason for the last exit of the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| exitMsg | string | No| No| Reason why the process was killed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| rss | number | No| No| Actual memory usage of the process, in KB.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| pss | number | No| No| Actual physical memory usage of the process, in KB.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| timestamp | number | No| No| Exact time when the ability last exited.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | No| Yes| Process status of the ability when it last exited.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 **Example**
@@ -154,7 +158,7 @@ export default class MyAbility extends UIAbility {
 
 ## OnContinueResult 
 
-Enumerates the ability continuation results. You can use it together with [onContinue()](js-apis-app-ability-uiAbility.md#oncontinue) of the UIAbility to complete different operations.
+Enumerates the ability continuation results. You can use it in [onContinue()](js-apis-app-ability-uiAbility.md#oncontinue) of the UIAbility to complete different operations.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -180,7 +184,7 @@ export default class MyAbility extends UIAbility {
 
 ## MemoryLevel
 
-Enumerates the memory levels. You can use it in [onMemoryLevel()](js-apis-app-ability-ability.md#abilityonmemorylevel) of the UIAbility to complete different operations.
+Enumerates the memory levels of the entire device. You can use it in [onMemoryLevel()](js-apis-app-ability-ability.md#abilityonmemorylevel) of the UIAbility to complete different operations.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -188,16 +192,16 @@ Enumerates the memory levels. You can use it in [onMemoryLevel()](js-apis-app-ab
 
 | Name                        | Value| Description               |
 | ---                         | --- | ---           |
-| MEMORY_LEVEL_MODERATE       | 0   | Moderate memory usage.|
-| MEMORY_LEVEL_LOW            | 1   | Low memory usage.  |
-| MEMORY_LEVEL_CRITICAL       | 2   | High memory usage.  |
+| MEMORY_LEVEL_MODERATE       | 0   | The available memory of the entire device is moderate.|
+| MEMORY_LEVEL_LOW            | 1   | The available memory of the entire device is low.  |
+| MEMORY_LEVEL_CRITICAL       | 2   | The available memory of the entire device is critically low.  |
 
 > **NOTE**
 > 
 > The trigger conditions may differ across various devices. For example, on a standard device with 12 GB of memory:
-> - A callback with value 0 is triggered when available memory drops between 1700 MB and 1800 MB.
-> - A callback with value 1 is triggered when available memory drops between 1600 MB and 1700 MB.
-> - A callback with value 2 is triggered when available memory falls below 1600 MB.
+> - When the available memory of the entire device drops to 1700 MB to 1800 MB, the **onMemoryLevel** callback with a value of **0** is triggered, indicating that the available memory is moderate.
+> - When the available memory of the entire device drops to 1600 MB to 1700 MB, the **onMemoryLevel** callback with a value of **1** is triggered, indicating that the available memory is low.
+> - When the available memory of the entire device drops below 1600 MB, the **onMemoryLevel** callback with a value of **2** is triggered, indicating that the available memory is critically low.
 
 **Example**
 
@@ -215,7 +219,7 @@ export default class MyAbility extends UIAbility {
 
 ## WindowMode<sup>12+</sup>
 
-Enumerates the window mode when the ability is started. It can be used together with [startAbility](js-apis-inner-application-uiAbilityContext.md#startability) to specify the window mode for starting the ability.
+Enumerates the window modes in which a UIAbility can be displayed at startup. You can use it in [startAbility](js-apis-inner-application-uiAbilityContext.md#startability).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -253,7 +257,7 @@ export default class MyAbility extends UIAbility {
 
 ## OnSaveResult
 
-Enumerates the result types for the operation of saving application data. You can use it in [onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate) of the UIAbility to complete different operations.
+Enumerates the result types for the operation of saving application data. You can use it in [onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate) of the UIAbility to complete [UIAbility backup and restore](../../application-models/ability-recover-guideline.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -282,7 +286,7 @@ export default class MyAbility extends UIAbility {
 
 ## StateType
 
-Enumerates the scenarios for saving application data. You can use it in [onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate) of the UIAbility to complete different operations.
+Enumerates the scenarios for saving application data. You can use it in [onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate) of the UIAbility to complete [UIAbility backup and restore](../../application-models/ability-recover-guideline.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -338,7 +342,7 @@ export default class MyAbility extends UIAbility {
 
 ## CollaborateResult<sup>18+</sup>
 
-Enumerates the collaboration request results. This enum is used in multi-device collaboration scenarios to specify whether the target application accepts the collaboration request from the caller application. It is used in [onCollaborate()](js-apis-app-ability-uiAbility.md#oncollaborate18) of the UIAbility.
+Enumerates the collaboration request results. You can use it in multi-device collaboration scenarios to specify whether the target application accepts the collaboration request from the caller application. You can use it in [onCollaborate()](js-apis-app-ability-uiAbility.md#oncollaborate18) of the UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -361,7 +365,7 @@ export default class MyAbility extends UIAbility {
 
 ## PrepareTermination<sup>15+</sup>
 
-Enumerates the actions triggered when an application is closed by the user. It must be used together with [onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15) or [onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15) of [AbilityStage](js-apis-app-ability-abilityStage.md).
+Enumerates the actions triggered when an application is closed by the user. You can use it in [onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15) or [onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15) of [AbilityStage](js-apis-app-ability-abilityStage.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 

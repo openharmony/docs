@@ -402,7 +402,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 ### 内容对齐
 
-可以通过[alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#接口)参数设置子元素各行在交叉轴剩余空间内的对齐方式，只在多行的Flex布局中生效，可选值有：
+可以通过[alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#flexoptions对象说明)参数设置子元素各行在交叉轴剩余空间内的对齐方式，只在多行的Flex布局中生效，可选值有：
 
 - FlexAlign.Start：子元素各行与交叉轴起点对齐。
 

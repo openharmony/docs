@@ -628,11 +628,11 @@ struct Index {
         // 一切判断完成后，构造customAnimation给系统侧调用，执行自定义转场动画
         let customAnimation: NavigationAnimatedTransition = {
           onTransitionEnd: (isSuccess: boolean) => {
-            console.log(TAG, `current transition result is ${isSuccess}`);
+            console.info(TAG, `current transition result is ${isSuccess}`);
           },
           timeout: 2000,
           transition: (transitionProxy: NavigationTransitionProxy) => {
-            console.log(TAG, 'trigger transition callback');
+            console.info(TAG, 'trigger transition callback');
             if (fromParam.animation) {
               fromParam.animation(operation == NavigationOperation.PUSH, true, transitionProxy);
             }
@@ -971,7 +971,7 @@ export class AnimationProperties {
     }
 
     // 转场动画开始前通过计算scale、translate、position和clip height & width，确定节点迁移前后位置一致
-    console.log(TAG, 'initScale: ' + initScale + ' initTranslateX ' + initTranslateX +
+    console.info(TAG, 'initScale: ' + initScale + ' initTranslateX ' + initTranslateX +
     ' initTranslateY ' + initTranslateY + ' initClipWidth ' + initClipWidth +
     ' initClipHeight ' + initClipHeight + ' initPositionValue ' + initPositionValue);
     // 转场至新页面
@@ -1156,13 +1156,13 @@ export default class EntryAbility extends UIAbility {
     let navigationArea = WindowUtils.window.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
     WindowUtils.navigationIndicatorHeight_px = navigationArea.bottomRect.height;
 
-    console.log(TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
+    hilog.info(0x0000, TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
     WindowUtils.topAvoidAreaHeight_px + '  ' + WindowUtils.navigationIndicatorHeight_px);
 
     // 监听窗口尺寸、状态栏高度及导航条高度的变化并更新
     try {
       WindowUtils.window.on('windowSizeChange', (data) => {
-        console.log(TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
+        hilog.info(0x0000, TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
         WindowUtils.windowWidth_px = data.width;
         WindowUtils.windowHeight_px = data.height;
         this.updateBreakpoint(data.width);
@@ -1172,16 +1172,16 @@ export default class EntryAbility extends UIAbility {
       WindowUtils.window.on('avoidAreaChange', (data) => {
         if (data.type == window.AvoidAreaType.TYPE_SYSTEM) {
           let topRectHeight = data.area.topRect.height;
-          console.log(TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
           WindowUtils.topAvoidAreaHeight_px = topRectHeight;
         } else if (data.type == window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR) {
           let bottomRectHeight = data.area.bottomRect.height;
-          console.log(TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
           WindowUtils.navigationIndicatorHeight_px = bottomRectHeight;
         }
       })
     } catch (exception) {
-      console.log('register failed ' + JSON.stringify(exception));
+      hilog.error(0x0000, TAG, `register failed. code: ${exception.code}, message: ${exception.message}`);
     }
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -1770,13 +1770,13 @@ export default class EntryAbility extends UIAbility {
     let navigationArea = WindowUtils.window.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
     WindowUtils.navigationIndicatorHeight_px = navigationArea.bottomRect.height;
 
-    console.log(TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
+    hilog.info(0x0000, TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
     WindowUtils.topAvoidAreaHeight_px + '  ' + WindowUtils.navigationIndicatorHeight_px);
 
     // 监听窗口尺寸、状态栏高度及导航条高度的变化并更新
     try {
       WindowUtils.window.on('windowSizeChange', (data) => {
-        console.log(TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
+        hilog.info(0x0000, TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
         WindowUtils.windowWidth_px = data.width;
         WindowUtils.windowHeight_px = data.height;
         this.updateBreakpoint(data.width);
@@ -1786,16 +1786,16 @@ export default class EntryAbility extends UIAbility {
       WindowUtils.window.on('avoidAreaChange', (data) => {
         if (data.type == window.AvoidAreaType.TYPE_SYSTEM) {
           let topRectHeight = data.area.topRect.height;
-          console.log(TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
           WindowUtils.topAvoidAreaHeight_px = topRectHeight;
         } else if (data.type == window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR) {
           let bottomRectHeight = data.area.bottomRect.height;
-          console.log(TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
           WindowUtils.navigationIndicatorHeight_px = bottomRectHeight;
         }
       })
     } catch (exception) {
-      console.log('register failed ' + JSON.stringify(exception));
+      hilog.error(0x0000, TAG, `register failed. code: ${exception.code}, message: ${exception.message}`);
     }
 
     windowStage.loadContent('pages/Index', (err) => {

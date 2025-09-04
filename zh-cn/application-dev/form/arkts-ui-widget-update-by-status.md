@@ -1,5 +1,10 @@
 # 根据卡片状态刷新不同内容
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 相同的卡片可以添加到桌面上实现不同的功能，比如添加两张桌面的卡片，一张显示杭州的天气，一张显示北京的天气，设置每天早上7点触发定时刷新，卡片需要感知当前的配置是杭州还是北京，然后将对应城市的天气信息刷新到卡片上，以下示例介绍了如何根据卡片的状态动态选择需要刷新的内容。
 
@@ -149,23 +154,18 @@
   export default class UpdateByStatusFormAbility extends FormExtensionAbility {
     onAddForm(want: Want): formBindingData.FormBindingData {
       let formId: string = '';
-      let isTempCard: boolean;
       if (want.parameters) {
         formId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
-        isTempCard = want.parameters[formInfo.FormParam.TEMPORARY_KEY] as boolean;
-        if (isTempCard === false) { // 如果为常态卡片，直接进行信息持久化
-          hilog.info(DOMAIN_NUMBER, TAG, 'Not temp card, init db for:' + formId);
-          let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
-          promise.then(async (storeDB: preferences.Preferences) => {
-            hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
-            await storeDB.put('A' + formId, 'false');
-            await storeDB.put('B' + formId, 'false');
-            await storeDB.flush();
-          }).catch((err: BusinessError) => {
-            hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
-          });
-        }
-    }
+        let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+        promise.then(async (storeDB: preferences.Preferences) => {
+          hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
+          await storeDB.put('A' + formId, 'false');
+          await storeDB.put('B' + formId, 'false');
+          await storeDB.flush();
+        }).catch((err: BusinessError) => {
+          hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+        });
+      }
       let formData: Record<string, Object | string> = {};
       return formBindingData.createFormBindingData(formData);
     }
@@ -182,19 +182,8 @@
       });
     }
   
-    // 如果在添加时为临时卡片，则建议转为常态卡片时进行信息持久化
-    onCastToNormalForm(formId: string): void {
-      hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm, formId:' + formId);
-      let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
-      promise.then(async (storeDB: preferences.Preferences) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
-        await storeDB.put('A' + formId, 'false');
-        await storeDB.put('B' + formId, 'false');
-        await storeDB.flush();
-      }).catch((err: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
-      });
-    }
+    // 当前卡片使用方不会涉及该场景，无需实现该回调函数
+    onCastToNormalForm(formId: string): void { }
   
     onUpdateForm(formId: string): void {
       let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');

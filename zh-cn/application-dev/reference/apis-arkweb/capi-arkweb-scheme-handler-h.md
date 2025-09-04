@@ -131,6 +131,7 @@ custom scheme的配置信息。
 
 | 枚举项 | 描述 |
 | -- | -- |
+| OH_ARKWEB_SCHEME_OPTION_NONE = 0 | 表示注册自定义scheme时不赋予它任何特殊行为或能力。 |
 | ARKWEB_SCHEME_OPTION_STANDARD = 1 << 0 | 如果设置了ARKWEB_SCHEME_OPTION_STANDARD，那么该scheme将被视为标准scheme来处理。 |
 | ARKWEB_SCHEME_OPTION_LOCAL = 1 << 1 | 如果设置了ARKWEB_SCHEME_OPTION_LOCAL，则将使用与“file” URL相同的安全规则来处理该scheme。 |
 | ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED = 1 << 2 | 如果设置了ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED，则该scheme的请求只能由使用相同scheme加载的页面中发起。 |

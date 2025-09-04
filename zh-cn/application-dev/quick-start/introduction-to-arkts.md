@@ -267,8 +267,8 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
-| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
+| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
 | `==`     | 如果两个操作数相等，则返回true。 |
 | `!=`     | 如果两个操作数不相等，则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
@@ -278,12 +278,10 @@ type NullableObject = Object | null;
 
 `===`与`==`的区别：
 ```typescript
-    let a:Object=1;
-    let b:Object='1';
-    // == 只比较值相等
-    console.info(a == b); // true
-    // === 比较值和类型都相等
-    console.info(a === b); // false
+// ==只比较目标的值相等
+console.info(String(null == undefined)); // true
+// ===比较目标的值和类型都相等
+console.info(String(null === undefined)); // false
 ```
 
 
@@ -1947,7 +1945,17 @@ class MyClass {
 ```
 注解不是Typescript中的特性，只能在`.ets/.d.ets`文件中使用。
 
+> **注意**
+> 
+> HarmonyOS应用开发中，在[release模式下构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)源码HAR，并同时开启混淆时，由于编译产物为JS文件，而在JS中没有注解的实现机制，因此会在编译过程中被移除，导致无法通过注解实现AOP插桩。
+>
+> 为避免因此引起的功能异常，禁止在JS HAR(编译产物中存在JS的HAR包)中使用注解。
+>
+> 如果需要在release模式并且开启混淆的情况下构建含有注解的HAR包，可以构建[TS HAR](har-package.md#编译生成ts文件)或者[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)。
+
 ### 用户自定义注解
+
+**从API version 20及之后版本，支持用户自定义注解。**
 
 **用户自定义注解的声明**
 `用户自定义注解`的定义与`interface`的定义类似，其中的`interface`关键字以符号`@`为前缀。<br>

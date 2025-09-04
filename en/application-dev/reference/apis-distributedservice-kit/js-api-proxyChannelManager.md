@@ -1,6 +1,6 @@
 # @ohos.distributedsched.proxyChannelManager (Proxy Channel Management)
 
-DSoftBus provides stable and reliable underlying channels for cross-device communication. This module is developed based on DSoftBus. It supports efficient data exchange between phones and wearables, providing users with a seamless device interconnection experience. The core functions of this module include proxy channel management, data route management, application state awareness and wakeup, and link state monitoring.
+DSoftBus provides stable and reliable underlying channels for cross-device communication. This module is developed based on DSoftBus. It supports efficient data exchange between phones and wearables, providing users with a seamless device interconnection experience. During collaboration between the phone application and watch application, if the phone application is not running in the foreground, its downlink messages are forwarded to the notification server and then sent to the watch through the proxy module. The core functions of this module include proxy channel management, data route management, application state awareness and wakeup, and link state monitoring.
 
 - Proxy channel management: Manages bidirectional data channels established between phones and wearables via the Bluetooth Basic Rate (BR) protocol.
 
@@ -13,8 +13,6 @@ DSoftBus provides stable and reliable underlying channels for cross-device commu
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 20. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs are currently in the beta phase and not available for application.
 
 ## Modules to Import
 
@@ -304,7 +302,7 @@ Unsubscribes from data receiving events.
 | --------- | ---------------------------------------- | ---- | -------- |
 | type      | string | Yes| Event type. The value **receiveData** indicates the data receiving event.|
 | channelId | number | Yes   | Channel ID obtained when the proxy channel is opened.|
-| callback  | Callback&lt;[DataInfo](#datainfo)&gt; | No| Registered callback.|
+| callback  | Callback&lt;[DataInfo](#datainfo)&gt; | No| Registered callback. If the value is empty, **undefined**, or **null**, all callbacks of data receiving events are unregistered. If the value is not empty, the last registered callback is used.|
 
 **Error codes**
 
@@ -418,7 +416,7 @@ Unsubscribes from channel state change events.
 | --------- | ---------------------------------------- | ---- | -------- |
 | type      | string | Yes| Event type. The value **channelStateChange** indicates the channel state change event.|
 | channelId | number | Yes   | Channel ID obtained when the proxy channel is opened.|
-| callback  | Callback&lt;[ChannelStateInfo](#channelstateinfo)&gt; | No| Registered callback.|
+| callback  | Callback&lt;[ChannelStateInfo](#channelstateinfo)&gt; | No| Registered callback. If the value is empty, **undefined**, or **null**, all callbacks of data receiving events are unregistered. If the value is not empty, the last registered callback is used.|
 
 **Error codes**
 

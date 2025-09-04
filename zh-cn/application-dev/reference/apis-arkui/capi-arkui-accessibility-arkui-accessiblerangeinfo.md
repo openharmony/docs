@@ -1,8 +1,14 @@
 # ArkUI_AccessibleRangeInfo
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
-用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。
+用于为特定组件（如Slider、Rating、Progress组件）设置和获取其当前值、最大值和最小值。
 
 **起始版本：** 13
 
@@ -16,8 +22,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| double min | 最小值。 |
-| double max | 最大值。 |
-| double current | 当前值。 |
+| double min | 组件的最小值。 |
+| double max | 组件的最大值。 |
+| double current | 组件的当前值。 |
 
 

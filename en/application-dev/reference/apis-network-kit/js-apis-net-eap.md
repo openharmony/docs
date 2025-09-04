@@ -1,6 +1,13 @@
 # @ohos.net.eap (Extensible Authentication)
 
-The **eap** module provides a mechanism for third-party clients to participate in the 802.1X (a port-based network access control protocol) authentication process, supporting functions such as EAP authentication for clients.
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @foredward-->
+<!--Designer: @h00918518-->
+<!--Tester: @WIFIroam-test-->
+<!--Adviser: @zhang_yixin13-->
+
+The **eap** module provides the extensible authentication mechanism to enable third-party clients to participate in custom 802.1X (a port-based network access control protocol) authentication, such as Extensible Authentication Protocol (EAP) authentication.
 
 > **NOTE**
 >
@@ -28,9 +35,9 @@ The system will encapsulate the eligible EAP packets into the callback function 
 
 | Name                             | Type|Mandatory|Description|
 | ----------------------------- | ---------- |---------- |---------- |
-| netType| number|Yes|Network type.|
+| netType| number|Yes|Network type. The value can be **1** or **2**.<br>The value **1** indicates WLAN, and the value **2** indicates Ethernet.|
 | eapCode|number |Yes|EAP code. The value can be any of the following:<br>code=1 Request, code=2 Response, code=3 Success, code=4 Failure.|
-| eapType| number |Yes|EAP method type.|
+| eapType| number |Yes|EAP method. The value range is [0, 255].<br>Common values include the following: eapType=1 Identity, eapType=2 Notification, eapType=3 NAK, eapType=4 MD5-Challenge, eapType=5 OTP (One-Time Password), eapType=6 GTC (Generic Token Card), eapType=13 EAP-TLS, eapType=21 EAP-TTLS, eapType=25 EAP-PEAP, eapType=254 Expanded Types, and eapType=255 Experimental use.|
 | callback| Callback\<[EapData](#eapdata)\> |Yes|Callback used to process EAP packets with the specified code and type.|
 
 **Error codes**
@@ -79,9 +86,9 @@ Unregisters the custom handler of EAP packets for extensible authentication. Thi
 
 | Name                           | Type|Mandatory|Description|
 | ----------------------------- | ---------- |---------- |---------- |
-| netType| number|Yes|Network type.|
+| netType| number|Yes|Network type. The value can be **1** or **2**.<br>The value **1** indicates WLAN, and the value **2** indicates Ethernet.|
 | eapCode|number |Yes|EAP code. The value can be any of the following:<br>code=1 Request, code=2 Response, code=3 Success, code=4 Failure.|
-| eapType| number |Yes|EAP method type.|
+| eapType| number |Yes|EAP method. The value range is [0, 255].<br>Common values include the following: eapType=1 Identity, eapType=2 Notification, eapType=3 NAK, eapType=4 MD5-Challenge, eapType=5 OTP (One-Time Password), eapType=6 GTC (Generic Token Card), eapType=13 EAP-TLS, eapType=21 EAP-TTLS, eapType=25 EAP-PEAP, eapType=254 Expanded Types, and eapType=255 Experimental use.|
 | callback| Callback\<[EapData](#eapdata)\> |Yes|Callback used to process EAP packets with the specified code and type.|
 
 **Error codes**
@@ -193,9 +200,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |201 | Permission denied.          |
 |33200001 | Invalid netId.          |
 |33200003 | Invalid profile.          |
-|33200009 | Netmanager stop.          |
-|33200010 | Invalid eth state.          |
-|33200099 | Internal error.          |
+|33200009 | netmanager stop.          |
+|33200010 | invalid eth state.          |
+|33200099 | internal error.          |
 
 **Example**
 
@@ -243,7 +250,6 @@ Revokes the EAP-authenticated state of an Ethernet NIC.
 | Name                           | Type|Mandatory|Description|
 | ----------------------------- | ---------- |---------- |---------- |
 | netId | number|Yes|ID of the Ethernet NIC.|
-| profile | [EthEapProfile](#etheapprofile)|Yes|EAP profile.|
 
 **Error codes**
 
@@ -285,7 +291,7 @@ Defines the EAP data.
 
 ## CustomResult
 
-Enumerates EAP authentication results.
+Enumerates the EAP authentication results.
 
 ​**System capability**: SystemCapability.Communication.NetManager.Eap
 

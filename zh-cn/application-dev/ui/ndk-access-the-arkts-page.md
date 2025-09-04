@@ -10,7 +10,7 @@
 
 使用NDK接口构建UI界面时，需要在ArkTS页面创建用于挂载NDK接口创建组件的占位组件。占位组件类型为[ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)，ContentSlot能够绑定一个[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)对象，该对象可通过Node-API传递到Native侧挂载显示Native组件。
 
-- NDK配置文件oh-package.json5如下。
+- NDK配置文件entry/src/main/cpp/types/libentry/oh-package.json5如下。
   ```ts
   {
     "name": "libentry.so",
@@ -109,8 +109,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
   ArkUI_NumberValue value[] = {{.f32 = 100}};
   ArkUI_AttributeItem item = {value, 1};
   arkUINativeNodeApi->setAttribute(stack, NODE_WIDTH, &item);
-  ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
-  ArkUI_AttributeItem item = {value, 1};
+  ArkUI_NumberValue value_color[] = {{.u32 = 0xff112233}};
+  ArkUI_AttributeItem item_color = {value_color, 1};
   arkUINativeNodeApi->setAttribute(stack, NODE_BACKGROUND_COLOR, &item);
   ```
 
@@ -131,6 +131,31 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 ## 示例
 
 下面的示例展示了如何使用ContentSlot挂载Native侧的文本列表。
+
+示例代码的目录结构及其文件说明如下：
+
+```
+.
+|——cpp
+|    |——types
+|    |	  |——libentry
+|    |	  |	   |——index.d.ts 提供Native和ArkTS侧的桥接方法。
+|    |——napi_init.cpp 与index.d.ts对应的桥接方法对接Native侧的定义处。
+|    |——NativeEntry.cpp 桥接方法的Native侧实现。
+|    |——NativeEntry.h 桥接方法的Native侧定义。
+|    |——CMakeList.txt C语言库引用文件。
+|    |——ArkuiBaseNode.h 节点封装扩展类。
+|    |——ArkuiNode.h 节点封装扩展类。
+|    |——ArkuiListNode.h 节点封装扩展类。
+|    |——ArkuiListItemNode.h 节点封装扩展类。
+|    |——ArkuiTextNode.h 节点封装扩展类。
+|    |——NormalTextListExample.h 示例代码文件。
+| 
+|——ets
+|    |——pages
+|         |——entry.ets 应用启动页，加载承载Native的容器。
+|
+```
 
 **图1** Native文本列表
 
@@ -223,7 +248,6 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #include <ArkUIBaseNode.h>
    #include <arkui/native_type.h>
    #include <js_native_api_types.h>
-   #include <memory.h>
    
    namespace NativeModule {
    
@@ -322,8 +346,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #ifndef MYAPPLICATION_NATIVEMODULE_H
    #define MYAPPLICATION_NATIVEMODULE_H
    
+   #include "napi/native_api.h"
    #include <arkui/native_node.h>
-   #include <functional>
    #include <cassert>
    
    #include <arkui/native_interface.h>

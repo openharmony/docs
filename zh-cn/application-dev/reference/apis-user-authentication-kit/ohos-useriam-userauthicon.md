@@ -53,12 +53,12 @@ UserAuthIcon({
 
 | 名称           | 类型                                                         | 必填 | 说明                                                         |
 | -------------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| authParam      | [AuthParam](js-apis-useriam-userauth.md#authparam10)        | 是   | 用户认证相关参数。                                             |
-| widgetParam    | [WidgetParam](js-apis-useriam-userauth.md#widgetparam10)    | 是   | 用户认证界面配置相关参数。                                      |
+| authParam      | [userAuth.AuthParam](js-apis-useriam-userauth.md#authparam10)        | 是   | 用户认证相关参数。                                             |
+| widgetParam    | [userAuth.WidgetParam](js-apis-useriam-userauth.md#widgetparam10)    | 是   | 用户认证界面配置相关参数。                                      |
 | iconHeight     | [Dimension](../apis-arkui/arkui-ts/ts-types.md#dimension10) | 否   | 设置icon的高度，宽高比1:1，默认64。                             |
 | iconColor      | [ResourceColor](../apis-arkui/arkui-ts/ts-types.md#resourcecolor) | 否   | 设置icon的颜色，默认值：$r('sys.color.ohos_id_color_activated')。|
 | onIconClick    | ()=>void                                                      | 否   | 用户点击icon回调接口。                                         |
-| onAuthResult   | (result: [UserAuthResult](js-apis-useriam-userauth.md#userauthresult10))=>void| 是   | 用户认证结果信息回调接口。<br>应用需要申请`ohos.permission.ACCESS_BIOMETRIC`权限，否则应用将仅展示图标，无法正常拉起身份认证控件。  |
+| onAuthResult   | (result: [userAuth.UserAuthResult](js-apis-useriam-userauth.md#userauthresult10))=>void| 是   | 用户认证结果信息回调接口。<br>应用需要申请`ohos.permission.ACCESS_BIOMETRIC`权限，否则应用将仅展示图标，无法正常拉起身份认证控件。  |
 
 ## 事件
 

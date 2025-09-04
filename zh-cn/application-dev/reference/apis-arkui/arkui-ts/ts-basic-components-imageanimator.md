@@ -199,7 +199,7 @@ monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 | 名称   | 类型   | 只读 | 可选 | 说明 |
 | -------- | -------------- | -------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 否  | 否   | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](ts-image-common.md#pixelmap)<sup>12+</sup> | 否  | 否   | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](ts-image-common.md#pixelmap)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
 | width    | number&nbsp;\|&nbsp;string | 否 | 是 | 图片宽度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
 | height   | number&nbsp;\|&nbsp;string | 否 | 是 | 图片高度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
 | top      | number&nbsp;\|&nbsp;string | 否 | 是 | 图片相对于组件左上角的纵向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
@@ -319,15 +319,19 @@ struct ImageAnimatorExample {
       ImageAnimator()
         .images([
           {
+            // $r('app.media.img1')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img1')
           },
           {
+            // $r('app.media.img2')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img2')
           },
           {
+            // $r('app.media.img3')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img3')
           },
           {
+            // $r('app.media.img4')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img4')
           }
         ])
@@ -403,9 +407,13 @@ struct ImageAnimatorExample {
   @State images: Array<ImageFrameInfo> = [];
 
   async aboutToAppear() {
+    // $r('app.media.1')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.1')));
+    // $r('app.media.2')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.2')));
+    // $r('app.media.3')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.3')));
+    // $r('app.media.4')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.4')));
     this.images.push({ src: this.imagePixelMap[0] });
     this.images.push({ src: this.imagePixelMap[1] });
@@ -503,15 +511,19 @@ struct ImageAnimatorAutoPauseTest {
           ImageAnimator()
             .images([
               {
+                // $r('app.media.Clouds')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.Clouds')
               },
               {
+                // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.landscape')
               },
               {
+                // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.sky')
               },
               {
+                // $r('app.media.mountain')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.mountain')
               }
             ])

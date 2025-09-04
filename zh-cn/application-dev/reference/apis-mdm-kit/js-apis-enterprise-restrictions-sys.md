@@ -254,7 +254,7 @@ restrictions.isPrinterDisabled(wantTemp).then((result) => {
 
 setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
-使设备禁用或启用[HDC](../../../device-dev/subsystems/subsys-toolchain-hdc-guide.md#hdc使用指导)。使用callback异步回调。 
+使设备禁用或启用[HDC](../../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)。使用callback异步回调。 
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 

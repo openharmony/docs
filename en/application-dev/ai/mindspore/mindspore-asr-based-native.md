@@ -1,5 +1,12 @@
 # Using MindSpore Lite for Speech Recognition (C/C++)
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
+
 ## When to Use
 
 You can use [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to quickly deploy AI algorithms into your application to perform AI model inference for speech recognition.
@@ -27,12 +34,9 @@ This section uses the inference of a speech recognition model as an example to d
 
 The speech recognition model files **tiny-encoder.ms**, **tiny-decoder-main.ms**, and **tiny-decoder-loop.ms** used in this sample application are stored in the **entry/src/main/resources/rawfile** directory.
 
+### Writing the Code for Audio Playback
 
-### Writing Code
-
-#### Playing Audio
-
-1. Call **@ohos.multimedia.media** and [@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md) to play audio.
+1. Call [@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md) and [@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md) to play audio.
 
    ```ts
    // player.ets
@@ -78,7 +82,7 @@ The speech recognition model files **tiny-encoder.ms**, **tiny-decoder-main.ms**
              console.info('MS_LITE_LOG: AVPlayer state playing called.');
              if (this.isSeek) {
                console.info('MS_LITE_LOG: AVPlayer start to seek.');
-               avPlayer.seek(0); // Seek to the end of the audio.
+               avPlayer.seek(0); // Move the playback position to the beginning of the audio.
              } else {
                // When the seek operation is not supported, the playback continues until it reaches the end.
                console.info('MS_LITE_LOG: AVPlayer wait to play end.');
@@ -129,7 +133,7 @@ The speech recognition model files **tiny-encoder.ms**, **tiny-decoder-main.ms**
    ```
 
 
-#### Recognizing Audio
+### Writing the Code for Speech Recognition
 
 Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to perform inference on the three models in sequence. The inference process is as follows:
 
@@ -186,7 +190,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
-           LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return BinBuffer(nullptr, 0);
        }
@@ -212,7 +216,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
-           LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return BinBuffer(nullptr, 0);
        }
@@ -371,7 +375,8 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        BinBuffer logits{nullptr, 51865 * sizeof(float)};
        logits.first = malloc(logits.second);
        if (!logits.first) {
-           LOGE("MS_LITE_LOG: Fail to malloc!\n");
+           LOGE("MS_LITE_ERR: Fail to malloc!\n");
+           return {};
        }
        void *logits_init_src = static_cast<char *>(logits_init.first) + 51865 * 3 * sizeof(float);
        memcpy(logits.first, logits_init_src, logits.second);
@@ -393,7 +398,8 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        slice.second = WHISPER_N_TEXT_STATE * sizeof(float);
        slice.first = malloc(slice.second);
        if (!slice.first) {
-           LOGE("MS_LITE_LOG: Fail to malloc!\n");
+           LOGE("MS_LITE_ERR: Fail to malloc!\n");
+           return {};
        }
    
        auto out_n_layer_self_k_cache_new = out_n_layer_self_k_cache;
@@ -467,13 +473,15 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        std::string filePath = "zh.wav";
        auto audioBin = ReadBinFile(resourcesManager, filePath);
        if (audioBin.first == nullptr) {
-           LOGI("MS_LITE_LOG: Fail to read  %{public}s!", filePath.c_str());
+           LOGE("MS_LITE_ERR: Fail to read  %{public}s!", filePath.c_str());
+           return error_ret;
        }
        size_t dataSize = audioBin.second;
        uint8_t *dataBuffer = (uint8_t *)audioBin.first;
        bool ok = audioFile.loadFromMemory(std::vector<uint8_t>(dataBuffer, dataBuffer + dataSize));
        if (!ok) {
-           LOGI("MS_LITE_LOG: Fail to read  %{public}s!", filePath.c_str());
+           LOGE("MS_LITE_ERR: Fail to read  %{public}s!", filePath.c_str());
+           return error_ret;
        }
        std::vector<float> data(audioFile.samples[0]);
        ResampleAudio(data, audioFile.getSampleRate(), WHISPER_SAMPLE_RATE, 1, SRC_SINC_BEST_QUALITY);
@@ -506,6 +514,8 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        // Run inference on tiny-encoder.ms.
        auto encoderBin = ReadBinFile(resourcesManager, "tiny-encoder.ms");
        if (encoderBin.first == nullptr) {
+           free(dataBuffer);
+           dataBuffer = nullptr;
            return error_ret;
        }
    
@@ -516,7 +526,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
            OH_AI_ModelDestroy(&encoder);
            return error_ret;
        }
-       LOGI("run encoder ok!\n");
+       LOGI("MS_LITE_LOG: run encoder ok!\n");
    
        auto outputs = OH_AI_ModelGetOutputs(encoder);
        auto n_layer_cross_k = GetMSOutput(outputs.handle_list[0]);
@@ -531,6 +541,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        const std::string decoder_main_path = "tiny-decoder-main.ms";
        auto decoderMainBin = ReadBinFile(resourcesManager, decoder_main_path);
        if (decoderMainBin.first == nullptr) {
+           OH_AI_ModelDestroy(&encoder);
            return error_ret;
        }
        auto decoder_main = CreateMSLiteModel(decoderMainBin);
@@ -540,7 +551,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
            OH_AI_ModelDestroy(&decoder_main);
            return error_ret;
        }
-       LOGI("run decoder_main ok!\n");
+       LOGI("MS_LITE_LOG: run decoder_main ok!\n");
    
        auto decoderMainOut = OH_AI_ModelGetOutputs(decoder_main);
        auto logitsBin = GetMSOutput(decoderMainOut.handle_list[0]);
@@ -555,6 +566,9 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        const std::string dataName_embedding = "tiny-positional_embedding.bin"; // Obtain the input data.
        auto data_embedding = ReadBinFile(resourcesManager, dataName_embedding);
        if (data_embedding.first == nullptr) {
+           OH_AI_ModelDestroy(&encoder);
+           OH_AI_ModelDestroy(&decoder_main);
+           OH_AI_ModelDestroy(&decoder_loop);
            return error_ret;
        }
    
@@ -589,26 +603,27 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.5.0)
    project(test)
-   set(CMAKE_CXX_STANDARD 17) # AudioFile.h
+   # AudioFile.h
+   set(CMAKE_CXX_STANDARD 17)
    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   set(NATIVERENDER_PATH ${CMAKE_CURRENT_SOURCE_DIR})
    
    if(DEFINED PACKAGE_FIND_FILE)
        include(${PACKAGE_FIND_FILE})
    endif()
    
-   include_directories(${NATIVERENDER_ROOT_PATH}
-                       ${NATIVERENDER_ROOT_PATH}/include)
+   include_directories(${NATIVERENDER_PATH}
+                       ${NATIVERENDER_PATH}/include)
    
    # libsamplerate
-   set(LIBSAMPLERATE_DIR ${NATIVERENDER_ROOT_PATH}/third_party/libsamplerate)
+   set(LIBSAMPLERATE_DIR ${NATIVERENDER_PATH}/third_party/libsamplerate)
    include_directories(${LIBSAMPLERATE_DIR}/include)
    add_subdirectory(${LIBSAMPLERATE_DIR})
    
-   include_directories(${NATIVERENDER_ROOT_PATH}/third_party/opencc/include/opencc)
+   include_directories(${NATIVERENDER_PATH}/third_party/opencc/include/opencc)
    # src
    aux_source_directory(src SRC_DIR)
-   include_directories(${NATIVERENDER_ROOT_PATH}/src)
+   include_directories(${NATIVERENDER_PATH}/src)
    
    include_directories(${CMAKE_SOURCE_DIR}/third_party)
    
@@ -622,7 +637,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
    target_link_libraries(entry PUBLIC ace_napi.z)
    ```
 
-#### Use N-APIs to encapsulate the C++ dynamic library into an ArkTS module.
+### Use N-APIs to encapsulate the C++ dynamic library into an ArkTS module.
 
 1. In **entry/src/main/cpp/types/libentry/Index.d.ts**, define the ArkTS API `runDemo()` by adding the following content:
 
@@ -646,7 +661,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
    }
    ```
 
-#### Invoke the encapsulated ArkTS module to perform inference and output the result.
+### Invoke the encapsulated ArkTS module to perform inference and output the result.
 
 In **entry/src/main/ets/pages/Index.ets**, call the encapsulated ArkTS module to process the inference result.
 
@@ -702,10 +717,17 @@ struct Index {
         .height('5%')
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
-
+          if (resMgr === undefined || resMgr === null) {
+            console.error('MS_LITE_ERR: get resourceManager failed.');
+            return
+          }
           // Call the encapsulated runDemo function.
           console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
           let output = msliteNapi.runDemo(resMgr);
+          if (output === null || output.length === 0) {
+            console.error('MS_LITE_ERR: runDemo failed.')
+            return
+          }
           console.info('MS_LITE_LOG: output length = ', output.length, ';value = ', output.slice(0, 20));
           this.content = output;
           console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');

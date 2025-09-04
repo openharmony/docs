@@ -432,7 +432,7 @@ enableHapticFeedback(value: boolean)
 
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| value | boolean | 是  | 是否支持触控反馈。<br/>默认值：true，支持触控反馈。 |
+| value | boolean | 是  | 是否支持触控反馈。<br/>默认值：true，支持触控反馈。<br/>开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：<br/>"requestPermissions": [{"name": "ohos.permission.VIBRATE"}] |
 
 ## IndexerAlign枚举说明
 
@@ -944,6 +944,7 @@ struct AlphabetIndexerSample {
       }
       .width('100%')
       .height('100%')
+      // $r('app.media.image')需要替换为开发者所需的图像资源文件。
       .backgroundImage($r("app.media.image"))
     }
   }

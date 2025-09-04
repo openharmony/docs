@@ -666,6 +666,7 @@ getActiveApnName(): Promise\<string\>
 
 ```ts
 import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getActiveApnName().then((data: string) => {
     console.info(`getActiveApnName success, promise: data->${JSON.stringify(data)}`);

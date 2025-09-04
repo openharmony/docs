@@ -497,7 +497,7 @@ getExtensionAbilityResourceInfo(bundleName: string, extensionAbilityType: bundle
 
 | 类型                                                        | 说明                                  |
 | ----------------------------------------------------------- | ------------------------------------- |
-| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的配置入口图标和名称信息。|
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的扩展组件资源，包含图标和名称等信息。|
 
 **错误码：**
 

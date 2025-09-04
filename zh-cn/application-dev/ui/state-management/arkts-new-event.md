@@ -46,7 +46,7 @@
   @ComponentV2
   struct Index {
     @Event changeFactory: ()=>void = ()=>{}; //正确用法
-    @Event message: string = "abcd"; // 错误用法，装饰非函数类型变量，@Event无作用
+    @Event message: string = 'abcd'; // 错误用法，装饰非函数类型变量，@Event无作用
   }
   @Component
   struct Index {
@@ -65,7 +65,7 @@
 @Entry
 @ComponentV2
 struct Index {
-  @Local title: string = "Title One";
+  @Local title: string = 'Title One';
   @Local fontColor: Color = Color.Red;
 
   build() {
@@ -75,10 +75,10 @@ struct Index {
         fontColor: this.fontColor,
         changeFactory: (type: number) => {
           if (type == 1) {
-            this.title = "Title One";
+            this.title = 'Title One';
             this.fontColor = Color.Red;
           } else if (type == 2) {
-            this.title = "Title Two";
+            this.title = 'Title Two';
             this.fontColor = Color.Green;
           }
         }
@@ -89,7 +89,7 @@ struct Index {
 
 @ComponentV2
 struct Child {
-  @Param title: string = "";
+  @Param title: string = '';
   @Param fontColor: Color = Color.Black;
   @Event changeFactory: (x: number) => void = (x: number) => {};
 
@@ -97,11 +97,11 @@ struct Child {
     Column() {
       Text(`${this.title}`)
         .fontColor(this.fontColor)
-      Button("change to Title Two")
+      Button('change to Title Two')
         .onClick(() => {
           this.changeFactory(2);
         })
-      Button("change to Title One")
+      Button('change to Title One')
         .onClick(() => {
           this.changeFactory(1);
         })

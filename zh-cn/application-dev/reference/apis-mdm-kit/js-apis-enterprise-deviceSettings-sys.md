@@ -540,7 +540,7 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 | 类型   | 说明        |
 | ----- | --------------------------------- |
-| PowerPolicy | [PowerPolicy](#powerpolicy11)电源策略。       |
+| [PowerPolicy](#powerpolicy11) | 电源策略。       |
 
 **错误码**：
 

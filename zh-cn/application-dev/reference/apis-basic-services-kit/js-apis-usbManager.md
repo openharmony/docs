@@ -231,7 +231,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象，返回临时权限的申请结果。返回true表示临时权限申请成功；返回false则表示临时权限申请失败。调用失败返回其他错误码如下：<br>- 88080385：接口未初始化。<br>- 88080392：写入接口数据包过程发生错误。<br>- 88080393：读取接口数据包过程发送错误。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。|
+| Promise&lt;boolean&gt; | Promise对象，返回临时权限的申请结果。返回true表示临时权限申请成功；返回false则表示临时权限申请失败。|
 
 **错误码：**
 
@@ -891,12 +891,6 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | transfer | [UsbDataTransferParams](#usbdatatransferparams18) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| &lt;void&gt; | 无。 |
 
 **错误码：**
 

@@ -1,5 +1,12 @@
 # @ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
+
 该模块为打印扩展能力的操作API，提供调用打印扩展能力的接口。
 
 > **说明：**  
@@ -24,7 +31,7 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | print.PrintJob | 是 | 表示打印任务的信息 |
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务的信息 |
 
 **错误码：**
 
@@ -59,7 +66,7 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | print.PrintJob | 是 | 表示打印任务的信息 |
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务的信息 |
 
 **错误码：**
 
@@ -140,7 +147,7 @@ onRequestPreview(jobInfo: print.PrintJob): string
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | print.PrintJob | 是 | 表示打印任务信息 |
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务信息 |
 
 **返回值：**
 | **类型** | **说明** |

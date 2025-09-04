@@ -116,7 +116,7 @@ slider组件通过color、selected-color、block-color样式分别为滑动条�
   <text>slider start value is {{startValue}}</text>
   <text>slider current value is {{currentValue}}</text>
   <text>slider end value is {{endValue}}</text>
-  <slider min="0" max="100" value="{{value}}" onchange="setvalue"></slider>
+  <slider min="0" max="100" value="{{value}}" onchange="setValue"></slider>
 </div>
 ```
 
@@ -143,14 +143,14 @@ export default {
     currentValue: 0,
     endValue: 0,
   },
-  setvalue(e) {
-    if (e.mode == "start") {
+  setValue(e) {
+    if (e.mode === "start") {
       this.value = e.value;
       this.startValue = e.value;
-    } else if (e.mode == "move") {
+    } else if (e.mode === "move") {
       this.value = e.value;
       this.currentValue = e.value;
-    } else if (e.mode == "end") {
+    } else if (e.mode === "end") {
       this.value = e.value;
       this.endValue = e.value;
     }
@@ -171,7 +171,7 @@ export default {
 <div class="container">
   <image src="common/landscape3.jpg" style=" width: {{WidthVal}}px;height:{{HeightVal}}px;margin-top: -150px;"></image>
   <div class="txt">
-    <slider min="0" max="100" value="{{value}}" onchange="setvalue"></slider>
+    <slider min="0" max="100" value="{{value}}" onchange="setValue"></slider>
     <text>The width of this picture is    {{WidthVal}}</text>
     <text>The height of this picture is  {{HeightVal}}</text>
   </div>
@@ -189,14 +189,14 @@ export default {
   align-items: center;
   background-color: #F1F3F5;
 }
-.txt{
+.text{
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 65%;
 }
-text{
+.text{
   margin-top: 30px;
 }
 ```
@@ -210,7 +210,7 @@ export default{
     WidthVal: 200,
     HeightVal: 200
   },
-  setvalue(e) {
+  setValue(e) {
     this.WidthVal = 200 + e.value;
     this.HeightVal = 200 + e.value
   }

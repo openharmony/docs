@@ -1,5 +1,10 @@
 # OpenHarmony ABI
-
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @huang_huijin-->
+<!--Designer: @huang_huijin-->
+<!--Tester: @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 <!--RP1-->
 OpenHarmony系统支持丰富的设备形态，支持多种架构指令集，支持多种操作系统内核；为了应用在各种OpenHarmony设备上的兼容性，本文定义了"OHOS" ABI（Application Binary Interface）的基础标准，包含如下方面。
 <!--RP1End-->
@@ -67,7 +72,7 @@ OpenHarmony系统采用ELF文件格式作为全系统的二进制文件格式，
 
 ```json
 {
-    "abiType": "stageMode",
+    "apiType": "stageMode",
     "buildOption": {
         "externalNativeOptions": {
             "path": "./src/main/cpp/CMakeLists.txt",

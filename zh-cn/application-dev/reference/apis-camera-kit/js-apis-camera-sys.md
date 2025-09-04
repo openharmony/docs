@@ -986,7 +986,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
   try {
     let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
-    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+    console.info('Indicate that isDepthFusionSupported method execution success.');
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
@@ -1210,7 +1210,13 @@ async function preview(context: common.BaseContext, cameraDevice: camera.CameraD
   session.addOutput(previewOutput);
   session.addOutput(photoOutput);
   await session.commitConfig();
-  await session.start();
+  try {
+    await session.start();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`start session failed. error code: ${err.code}`);
+  }
   previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
@@ -1960,6 +1966,7 @@ isQuickThumbnailSupported(): boolean
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function isQuickThumbnailSupported(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -1969,12 +1976,22 @@ async function isQuickThumbnailSupported(context: common.BaseContext, mode: came
   // 开始配置会话。
   session.beginConfig();
   // 把CameraInput加入到会话。
+  if (cameras.length <= 0) {
+    console.info('Get supported cameras is null or [].');
+    return false;
+  }
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
   // 把photoOutput加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  session.addOutput(photoOutput);
+  try {
+    session.addOutput(photoOutput);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`AddOutput called failed. error code: ${err.code}`);
+    return false;
+  }
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   return isSupported;
 }
@@ -2149,7 +2166,7 @@ addMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
 
 | 参数名                  | 类型                                               | 必填 | 说明                          |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+| types  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
 
 **错误码：**
 
@@ -2190,7 +2207,7 @@ removeMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
 
 | 参数名                  | 类型                                               | 必填 | 说明                          |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+| types  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
 
 **错误码：**
 
@@ -3627,82 +3644,6 @@ PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 普通拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
-### on('macroStatusChanged')<sup>11+</sup>
-
-on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
-
-监听相机微距状态变化，通过注册回调函数获取结果。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                       |
-| -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
-| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态，返回true为开启状态，返回false为禁用状态。  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function callback(err: BusinessError, macroStatus: boolean): void {
-  if (err !== undefined && err.code !== 0) {
-    console.error(`Callback Error, errorCode: ${err.code}`);
-    return;
-  }
-  console.info(`Macro state: ${macroStatus}`);
-}
-
-function registerMacroStatusChanged(photoSession: camera.PhotoSession): void {
-  photoSession.on('macroStatusChanged', callback);
-}
-```
-
-### off('macroStatusChanged')<sup>11+</sup>
-
-off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
-
-注销监听相机微距状态变化。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                    | 必填 | 说明                       |
-| -------- | ------------------------ | ---- | ------------------------ |
-| type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数），返回true为开启状态，返回false为禁用状态。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**示例：**
-
-```ts
-function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
-  photoSession.off('macroStatusChanged');
-}
-```
-
 ### on('featureDetection')<sup>12+</sup>
 
 on(type: 'featureDetection', featureType: SceneFeatureType, callback: AsyncCallback\<SceneFeatureDetectionResult\>): void
@@ -3908,82 +3849,6 @@ VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, A
 VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
 普通录像模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
-
-### on('macroStatusChanged')<sup>11+</sup>
-
-on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
-
-监听相机微距状态变化，通过注册回调函数获取结果。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                       |
-| -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
-| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态，返回true是开启状态，返回false是禁用状态。  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function callback(err: BusinessError, macroStatus: boolean): void {
-  if (err !== undefined && err.code !== 0) {
-    console.error(`Callback Error, errorCode: ${err.code}`);
-    return;
-  }
-  console.info(`Macro state: ${macroStatus}`);
-}
-
-function registerMacroStatusChanged(videoSession: camera.VideoSession): void {
-  videoSession.on('macroStatusChanged', callback);
-}
-```
-
-### off('macroStatusChanged')<sup>11+</sup>
-
-off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
-
-注销监听相机微距状态变化。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                       |
-| -------- | ------------------------ | ---- | ------------------------ |
-| type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数），返回true是开启状态，返回false是禁用状态。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**示例：**
-
-```ts
-function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
-  videoSession.off('macroStatusChanged');
-}
-```
 
 ### on('lcdFlashStatus')<sup>13+</sup>
 
@@ -4497,7 +4362,9 @@ function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
+夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)、[PhotoOutput](arkts-apis-camera-PhotoOutput.md)。
+
+夜景拍照需要监听拍照结束事件[onCaptureEnd](arkts-apis-camera-PhotoOutput.md#oncaptureend)作为一次拍照的结束。
 
 ### on('error')<sup>11+</sup>
 

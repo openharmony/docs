@@ -1,4 +1,10 @@
 # Form Error Codes
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 > **NOTE**
 >
@@ -205,15 +211,15 @@ The background image resource is invalid.
 
 Check whether the background image resource is valid.
 
-## 16501011 Interactive Capabilities Not Supported
+## 16501011 API Not Supported
 
 **Error Message**
 
-The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not.
+The form can not support this operation.
 
 **Description**
 
-This error code is reported when the current widget does not support interactive capabilities.
+This error code is reported when the widget does not support the current API.
 
 **Possible Causes**
 
@@ -222,6 +228,24 @@ The interactive widget animation is requested by a common widget, or the current
 **Solution**
 
 Check whether the configured [sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams-field) of the current widget is correct.
+
+## 16501012 Incorrect Widget Dimension
+
+**Error Message**
+
+The form host uses an incorrect dimension.
+
+**Description**
+
+This error code is reported when the widget dimension is incorrect.
+
+**Possible Causes**
+
+The specified widget dimension is not configured, or the transferred widget dimension is invalid.
+
+**Solution**
+
+Check whether the input widget dimension is in the [FormDimension](js-apis-app-form-formInfo.md#formdimension) and [supportDimensions](../../form/arkts-ui-widget-configuration.md#fields-in-configuration-file) configuration list.
 
 ## 2293761 Internal Service Error
 
@@ -278,7 +302,7 @@ Invalid input parameters are passed when the API is called.
 3. The number of parameters is incorrect.
 4. The input parameter is empty, for example, an empty string ('').
 5. Incorrect parameter format.
-6. Invalid parameter value. The input parameter must be the same as the corresponding configuration in [app.json5](../../quick-start/app-configuration-file.md) and [Configuring Widget Configuration Files](../../form/arkts-ui-widget-configuration.md).
+6. Invalid parameter value. The input parameters must be the same as those in [app.json5](../../quick-start/app-configuration-file.md) and [Configuring ArkTS Widget Configuration Files](../../form/arkts-ui-widget-configuration.md).
 
 **Solution**
 

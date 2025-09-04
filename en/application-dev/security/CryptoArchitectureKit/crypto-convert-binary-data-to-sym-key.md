@@ -1,5 +1,12 @@
 # Converting Binary Data into a Symmetric Key (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 This topic uses 3DES and HMAC as an example to describe how to convert binary data into a symmetric key (**SymKey**). That is, convert a piece of external or internal binary data into a key object for subsequent operations, such as encryption and decryption.
 
 ## Converting Binary Data into a 3DES Key
@@ -79,7 +86,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
 
 ## Converting Binary Data into an HMAC Key
 
-For details about the algorithm specifications, see [HMAC](crypto-sym-key-generation-conversion-spec.md#hmac).
+For details, see [HMAC](crypto-sym-key-generation-conversion-spec.md#hmac).
 
 1. Obtain the HMAC binary key and encapsulate it into a **DataBlob** object.
 
@@ -89,7 +96,7 @@ For details about the algorithm specifications, see [HMAC](crypto-sym-key-genera
 
 4. Call [SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the key.
 
-- Example: Convert binary data into an HMAC key in await mode.
+- Example using **await** to generate a HMAC key:
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';

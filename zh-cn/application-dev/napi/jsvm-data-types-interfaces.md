@@ -66,7 +66,7 @@ typedef struct {
 
 - 表示JSVM-API执行时的上下文，作为Native函数的参数传递给JSVM-API接口。
 
-- 退出Native侧插件时，JSVM_Env将失效，该事件通过回调传递给OH_JSVM_SetInstanceData。
+- 退出Native侧插件时，JSVM_Env将失效，该事件通过回调传递给OH_JSVM_SetInstanceData接口。
 
 - 禁止缓存JSVM_Env，并禁止在不同Worker中传递JSVM_Env。
 
@@ -451,8 +451,9 @@ static void LowGCFrequencyInit(bool &vmInit) {
 ```
 
 执行结果：
-使用以上三个接口可以分别初始化具备不同特性的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。其中，
-调用 LowGCFrequencyInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所触发的 GC 频次更低。调用 LowMemoryInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所占用内存更少。
+使用以上三个接口可以分别初始化具备不同特性的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。
+相比 NormalInit 接口，LowGCFrequencyInit 接口初始化的VM平台 GC 触发频次更低。
+相比 NormalInit 接口，LowMemoryInit 接口初始化的VM平台内存占用更少。
 
 **创建 VM 实例**
 
@@ -568,7 +569,7 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
 | OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
 | OH_JSVM_CompileScriptWithOptions | 通用的编译接口，通过传入 option 数组完成前面的 compile 接口全部功能，同时支持后续选项扩展 |
 | OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache                                                                  |
-| OH_JSVM_RunScript               | 执行编译脚本, 如果没有 JIT 权限支持，则打印一行日志提示开发者                                                                             |
+| OH_JSVM_RunScript               | 执行编译脚本，如果没有 JIT 权限支持，执行含wasm的脚本会失败，在特定场景下存在性能差异，并打印一行日志提示开发者                                                                             |
 
 场景示例：
 编译及执行 JS 代码（创建 VM 实例，注册函数，执行 JS，销毁 VM 实例）
@@ -2398,7 +2399,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
 
 **场景介绍**
 
-使用OH_JSVM_SetInstanceData()函数，设置与当前运行的JSVM环境相关联的数据。
+调用OH_JSVM_SetInstanceData接口，设置与当前运行的JSVM环境相关联的数据。
 
 **接口说明**
 | 接口 | 功能说明 |

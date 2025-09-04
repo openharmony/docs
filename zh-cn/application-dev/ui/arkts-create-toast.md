@@ -133,7 +133,7 @@ struct toastExample {
 
 ## 显示关闭即时反馈
 
-适用于提示框提留时间较长，用户操作可以提前关闭提示框的场景。
+适用于提示框停留时间较长，用户操作可以提前关闭提示框的场景。
 
 ```ts
 import { LengthMetrics, PromptAction } from '@kit.ArkUI';
@@ -154,7 +154,7 @@ struct toastExample {
         .onClick(() => {
           try {
             this.promptAction.openToast({
-              message: 'Toast Massage',
+              message: 'Toast Message',
               duration: 10000,
             }).then((toastId: number) => {
               this.toastId = toastId;

@@ -24,7 +24,7 @@
 | -- | -- |
 | struct UsbConfigDescriptor configDescriptor | 标准配置描述符。 |
 | struct UsbDdkInterface* interface | 该配置所包含的接口。 |
-| uint8_t* extra | 未做解析的描述符，包含特定于类或供应商的描述符。 |
+| const uint8_t* extra | 未做解析的描述符，包含特定于类或供应商的描述符。 |
 | uint32_t extraLength | 未做解析的描述符长度。 |
 
 

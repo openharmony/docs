@@ -30,7 +30,7 @@ SE服务状态异常。
 1. 关闭SE服务。
 2. 重新和SE服务建立连接。
 
-## 3300102 没有这样的SE异常
+## 3300102 找不到对应SE安全单元异常
 
 **错误信息**
 
@@ -38,7 +38,7 @@ NoSuchElementError, the AID on the SE is not available or cannot be selected.
 
 **错误描述**
 
-没有这样的SE异常。
+找不到对应SE安全单元异常。
 
 **可能原因**
 

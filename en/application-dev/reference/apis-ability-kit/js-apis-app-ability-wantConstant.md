@@ -1,5 +1,13 @@
 # @ohos.app.ability.wantConstant (Want Constants)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+
 The wantConstant provides predefined enums and constants related to [Want](js-apis-app-ability-want.md) operations, such as the **flags** and **params** fields used during ability startup.
 
 > **NOTE**

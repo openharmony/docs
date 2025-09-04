@@ -1,5 +1,12 @@
 # 应用开发性能优化入门引导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 在开发应用时，优化应用性能是至关重要的。本文将介绍应用开发过程中常见的一些性能问题，并提供相应的解决方案，配合相关参考示例，帮助开发者解决大部分性能问题。
@@ -22,7 +29,7 @@
 
 自定义组件创建完成之后，在build函数执行之前，将先执行[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期回调函数。此时若在该函数中执行耗时操作，将阻塞UI渲染，增加UI主线程负担。因此，应尽量避免在自定义组件的生命周期内执行高耗时操作。在aboutToAppear生命周期函数内建议只做当前组件的初始化逻辑，对于不需要等待结果的高耗时任务，可以使用多线程处理该任务，通过并发的方式避免主线程阻塞；也可以把耗时操作改为异步并发或延后处理，保证主线程优先处理组件绘制逻辑。
 
-#### 使用多线程执行耗时操作
+**使用多线程执行耗时操作**
 
 在日常开发过程中经常会碰到这样的问题：主页的开发场景中有多个Tab页展示不同内容，在首次加载完主页后，切换到第二个Tab页时需要加载和处理网络数据，导致第二个Tab页的页面显示较慢，有较大的完成时延。
 
@@ -104,8 +111,7 @@ export struct PageOnePositive {
 
 * [利用native的方式实现跨线程调用](native-threads-call-js.md)
 
-
-#### 使用异步执行耗时操作
+**使用异步执行耗时操作**
 
 问题：在aboutToAppear生命周期函数中，运行了业务数据解析和处理等耗时操作，影响了上一页面点击跳转该页面的响应时延。
 
@@ -161,7 +167,7 @@ export struct PageTwoPositive {
 
 应该合理使用系统的预加载能力，例如Web组件的预连接、预加载、预渲染，使用List、Swiper、Grid、WaterFlow等组件的cachedCount属性实现预加载，使用条件渲染实现预加载）等，提升页面的启动和响应速度。
 
-#### 使用Web组件的预连接、预加载、预渲染能力
+**使用Web组件的预连接、预加载、预渲染能力**
 
 当遇到Web页面加载慢的场景，可以使用Web组件的预连接、预加载、预渲染能力，使用[Web组件开发性能提升指导](performance-web-import.md)，在应用空闲时间提前进行Web引擎初始化和页面加载，提升下一页面的启动和响应速度。
 
@@ -178,7 +184,7 @@ preload() {
 }
 ```
 
-#### 使用cachedCount属性实现预加载
+**使用cachedCount属性实现预加载**
 
 推荐在使用List、Swiper、Grid、WaterFlow等组件时，配合使用cachedCount属性实现预加载，详情指导在[WaterFlow高性能开发指导](waterflow_optimization.md)、[Swiper高性能开发指导](swiper_optimization.md)、[Grid高性能开发指导](grid_optimization.md)、[列表场景性能提升实践](list-perf-improvment.md)，示例代码如下所示：
 
@@ -200,7 +206,7 @@ preload() {
   }
 ```
 
-#### 使用条件渲染实现预加载
+**使用条件渲染实现预加载**
 
 问题：页面布局复杂度较高，导致跳转该页面的响应时延较高。
 
@@ -230,7 +236,7 @@ build() {
 
 在列表场景中，推荐使用LazyForEach+组件复用+缓存列表项的能力，替代Scroll/ForEach实现滚动列表场景的实现，加快页面启动速度，提升滑动帧率；在一些属性动画的场景下，可以使用renderGroup缓存提升属性动画性能；也可以使用显隐控制对页面进行缓存，加快页面的显示响应速度。
 
-#### 组件复用
+**组件复用**
 
 应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
@@ -247,6 +253,9 @@ build() {
 class MyDataSource implements IDataSource {
   private dataArray: string[] = [];
   private listener: DataChangeListener | undefined;
+  public pushData(item:string){
+    this.dataArray.push(item);
+  }
   // ...
 }
 
@@ -293,7 +302,7 @@ struct ReusableChildComponent {
 }
 ```
 
-#### 使用renderGroup缓存提升属性动画性能
+**使用renderGroup缓存提升属性动画性能**
 
 页面响应时，可能大量使用属性动画和转场动画，当复杂度达到一定程度之后，就有可能出现卡顿的情况。[renderGroup](reasonable-using-renderGroup.md)是组件通用方法，它代表了渲染绘制的一个组合。
 
@@ -372,7 +381,7 @@ export struct IconItem {
 }
 ```
 
-#### 使用显隐控制进行页面缓存
+**使用显隐控制进行页面缓存**
 
 控制元素显示与隐藏是一种常见的场景，使用Visibility.None、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，Visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
 如果会频繁响应显示与隐藏的交互效果，建议使用切换Visibility.None和Visibility.Visible来[合理控制元素显示与隐藏](proper-choice-between-if-and-visibility.md)，在组件无需展示的时候进行缓存，提高性能。
@@ -406,7 +415,7 @@ build() {
 
 应该删除冗余的布局嵌套，例如build最外层的无用容器嵌套、无用的Stack或Column嵌套等，减少布局层数。
 
-#### 删除无用的Stack/Column/Row嵌套
+**删除无用的Stack/Column/Row嵌套**
 
 例如可能会在Row容器包含一个同样也是Row容器的子级。这种嵌套实际是多余的，并且会给布局层次结构造成不必要的开销。示例代码如下：
 
@@ -428,7 +437,7 @@ Row() {
 }
 ```
 
-#### 删除build函数中最外层无用容器嵌套
+**删除build函数中最外层无用容器嵌套**
 
 在开发过程中，布局的实现往往嵌套使用大量的自定义组件，build中冗余的最外层无用容器会大大增强嵌套层级，应该删除。
 
@@ -478,7 +487,7 @@ struct ComponentB {
 
 ### 使用扁平化布局减少节点数
 
-#### 使用Column/Row替代Flex构建线性布局
+**使用Column/Row替代Flex构建线性布局**
 
 由于Flex本身带来的二次布局的影响，Flex的性能明显低于Column和Row容器，因此推荐使用Column/Row替代Flex构建线性布局，具体指导在[Flex布局性能提升使用指导](flex-development-performance-boost.md)。
 
@@ -514,7 +523,7 @@ struct MyComponent {
 }
 ```
 
-#### 使用Flex、List、Grid、RelativeContainer、绝对布局和自定义布局等构建复杂布局
+**使用Flex、List、Grid、RelativeContainer、绝对布局和自定义布局等构建复杂布局**
 
 复杂布局提供了场景化的能力，[优化布局性能](reduce-view-nesting-levels.md)可解决一种或者多种布局场景：
 
@@ -529,27 +538,27 @@ struct MyComponent {
 @Entry
 @Component
 struct AspectRatioExample12 {
-    @State children: number[] = Array.from(Array<number>(900), (v, k) => k);
+  @State children: number[] = Array.from(Array<number>(900), (v, k) => k);
 
-    build() {
-      Scroll() {
-        Grid() {
-          ForEach(this.children, (item: number) => {
-            GridItem() {
+  build() {
+    Scroll() {
+      Grid() {
+        ForEach(this.children, (item: number) => {
+          GridItem() {
+            Stack() {
               Stack() {  
                 Stack() {  
-                  Stack() {  
-                    Text(item.toString())  
-                  }.size({ width: "100%"})  
-                }.backgroundColor(Color.Yellow)  
-              }.backgroundColor(Color.Pink)  
-            }  
-          }, (item: number) => item.toString())  
-        }  
-        .columnsTemplate('1fr 1fr 1fr 1fr')  
-        .columnsGap(0)  
-        .rowsGap(0)  
-        .size({ width: "100%", height: "100%" })  
+                  Text(item.toString())  
+                }.size({ width: "100%"})  
+              }.backgroundColor(Color.Yellow)  
+            }.backgroundColor(Color.Pink)  
+          }  
+        }, (item: number) => item.toString())  
+      }  
+      .columnsTemplate('1fr 1fr 1fr 1fr')  
+      .columnsGap(0)  
+      .rowsGap(0)  
+      .size({ width: "100%", height: "100%" })  
     }  
   }  
 }
@@ -589,7 +598,7 @@ struct AspectRatioExample11 {
 
 在复杂页面开发的场景下，精准控制组件更新的范围对提高应用运行性能尤为重要。应该避免状态变量的滥用引起的容器组件的刷新，进而影响帧率。
 
-#### 使用指定宽高的容器限制刷新范围
+**使用指定宽高的容器限制刷新范围**
 
 当在一个同时指定宽高的容器里改变容器内部的布局，那么只会在该容器内部做布局和测量更新，不会扩散影响到容器外面的组件。
 
@@ -663,17 +672,29 @@ struct StackExample2 {
     }
   }
 ```
-#### 减少不必要的参数层次传递
+**减少不必要的参数层次传递**
 
 @State+@Prop、@State+@Link、@State+@Observed+@ObjectLink三种方案的实现方式是逐级向下传递状态，当共享状态的组件间层级相差较大时，会出现状态层层传递的现象。对于没有使用该状态的中间组件而言，这是“额外的消耗”。因此，对于跨越多层的状态变量传递，使用@Provide+@Consume方案更为合理。
 
 反例代码如下：
 
 ```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
 // 父组件
 @Component
 struct componentParent{
-  @State data: Data = {};
+  @State data: Data = {
+    text: ''
+  };
 
   aboutToAppear() {
     // 获取子组件数据
@@ -695,7 +716,7 @@ struct componentSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
       componentGrandSon({ data: this.data })
     }
   }
@@ -708,7 +729,7 @@ struct componentGrandSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
     }
   }
 }
@@ -717,61 +738,22 @@ struct componentGrandSon{
 正例代码如下：
 
 ```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
 // 父组件
 @Component
 struct componentParent{
-  @Provide('data') data: Data = {};
-
-  aboutToAppear() {
-    // 获取子组件数据
-    this.data = getData()
-  }
-
-  build() {
-    Column() {
-      componentSon({ data: this.data })
-    }
-  }
-}
-
-// 子组件
-@Component
-struct componentSon{
-  // 获取传递参数
-  @Consume("data") data: Data;
-
-  build() {
-    Column() {
-      Text(data.text)
-      componentGrandSon({ data: this.data })
-    }
-  }
-}
-
-@Component
-struct componentGrandSon{
-  // 获取传递参数
-  @Consume("data") data: Data;
-
-  build() {
-    Column() {
-      Text(data.text)
-    }
-  }
-}
-```
-
-#### 避免滥用@Provide+@Consume
-
-在父子组件关联的场景下，@Provide+@Consume开销要大于@State+@Prop/@Link，因此在该场景下推荐使用@State+@Prop/@Link的组合。
-
-反例代码如下：
-
-```typescript
-// 父组件
-@Component
-struct componentParent{
-  @Provide("data") data: Data = {};
+  @Provide('data') data: Data = {
+    text: ''
+  };
 
   aboutToAppear() {
     // 获取子组件数据
@@ -793,7 +775,70 @@ struct componentSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
+      componentGrandSon()
+    }
+  }
+}
+
+@Component
+struct componentGrandSon{
+  // 获取传递参数
+  @Consume("data") data: Data;
+
+  build() {
+    Column() {
+      Text(this.data.text)
+    }
+  }
+}
+```
+
+**避免滥用@Provide+@Consume**
+
+在父子组件关联的场景下，@Provide+@Consume开销要大于@State+@Prop/@Link，因此在该场景下推荐使用@State+@Prop/@Link的组合。
+
+反例代码如下：
+
+```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
+// 父组件
+@Component
+struct componentParent{
+  @Provide("data") data: Data = {
+    text: ''
+  };
+
+  aboutToAppear() {
+    // 获取子组件数据
+    this.data = getData();
+  }
+
+  build() {
+    Column() {
+      componentSon()
+    }
+  }
+}
+
+// 子组件
+@Component
+struct componentSon{
+  // 获取传递参数
+  @Consume("data") data: Data;
+
+  build() {
+    Column() {
+      Text(this.data.text)
     }
   }
 }
@@ -802,10 +847,22 @@ struct componentSon{
 正例代码如下：
 
 ```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
 // 父组件
 @Component
 struct componentParent{
-  @State data:Data = {};
+  @State data:Data = {
+    text: ''
+  };
 
   aboutToAppear() {
     // 获取子组件数据
@@ -827,7 +884,7 @@ struct componentSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
     }
   }
 }
@@ -837,7 +894,7 @@ struct componentSon{
 
 应该控制状态变量关联的组件数量，如果一个状态关联过多的组件，当这个变量更新时会引起过多的组件重新绘制渲染，建议关联数量限制在20个以内，达到[精准控制组件的更新范围](precisely-control-render-scope.md)。
 
-#### 控制状态变量关联组件数量
+**控制状态变量关联组件数量**
 
 反例代码如下：
 
@@ -933,7 +990,7 @@ struct Page1 {
 }
 ```
 
-#### 控制对象级状态变量成员数量
+**控制对象级状态变量成员数量**
 
 应该控制对象级状态变量的成员变量关联的组件数量。开发者封装一个数据结构类用于进行状态变量关联时，应该避免过多的成员变量关联大量ArkUI组件，这种情况下，当这个大对象的一个成员变量更新时，会导致所有关联这个大对象的组件都同时进行刷新，造成不必要的性能损耗，从而影响帧率。
 
@@ -969,7 +1026,7 @@ struct Page {
           })
           .rotate({
             x: this.animationParam.rotationX,
-            y: this.animationParam.translateY,
+            y: this.animationParam.rotationY,
             centerX: this.animationParam.centerX,
             centerY: this.animationParam.centerY,
             angle: this.animationParam.angle
@@ -1097,7 +1154,7 @@ struct Page {
 
 避免不必要的创建和读取状态变量，减少性能损耗。
 
-#### 删除冗余的状态变量标记
+**删除冗余的状态变量标记**
 
 状态变量的管理有一定的开销，应在合理场景使用，普通的变量用状态变量标记可能会导致性能劣化。
 
@@ -1174,7 +1231,7 @@ struct NecessaryState {
 ```
 没有关联任何UI组件的状态变量和没有修改过的状态变量不应该定义为状态变量，直接使用一般变量即可，否则会影响性能。
 
-#### 避免在For/while等循环函数中重复读取状态变量
+**避免在For/while等循环函数中重复读取状态变量**
 
 状态变量的读取耗时远大于普通变量的读取耗时，因此要避免重复读取状态变量，而是应该放在循环外面读取，例如在打印For/while循环中打印状态变量的日志信息。
 
@@ -1242,7 +1299,7 @@ struct Page {
 
 应该避免在onDidScroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
 
-#### 避免在系统高频回调用打印Trace
+**避免在系统高频回调用打印Trace**
 
 Trace的打印是会额外消耗系统性能的，因此应该避免在这些系统高频回调接口中打印Trace，示例代码如下：
 
@@ -1301,7 +1358,7 @@ struct PositiveOfOnDidScroll {
 }
 ```
 
-#### 避免在系统高频回调用打印日志
+**避免在系统高频回调用打印日志**
 
 日志的打印是会额外消耗系统性能的，特别是有些日志还读取了状态变量的信息，会加剧资源开销，因此应该避免在这些系统高频回调接口中打印日志，示例代码如下：
 
@@ -1368,7 +1425,7 @@ struct PositiveOfOnDidScroll {
 
 Trace和日志打印会比较消耗系统性能，因此应该避免冗余的Trace和日志打印。推荐在Release版本中，尽量删除所有Trace信息，删除Debug日志，减少额外的系统开销。
 
-#### 在Release版本中删除Trace
+**在Release版本中删除Trace**
 
 Trace会比较消耗系统性能，建议在Release版本删除Trace打印。
 
@@ -1406,7 +1463,7 @@ struct PositiveOfTrace {
 }
 ```
 
-#### 在Release版本中删除Debug日志
+**在Release版本中删除Debug日志**
 
 虽然在Release版本中不会打印debug级别日志，但是如果在日志的入参中进行了参数拼接，字符串拼接的逻辑还会执行，会有冗余开销，因此为了[避免开发过程中的冗余操作](avoiding-redundant-operations.md)，建议在Release版本删除Debug日志打印。
 

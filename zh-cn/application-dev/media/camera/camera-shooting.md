@@ -24,13 +24,13 @@
 
 2. 创建拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
+     if (!photoProfilesArray || photoProfilesArray.length === 0) {
+       console.error("photoProfilesArray is null or []");
      }
      let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
@@ -51,13 +51,12 @@
 
     需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
    ```ts
-   function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context) {
-   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
+   function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
+   // 设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
      photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
         console.info('getPhoto start');
-        console.error(`err: ${errCode}`);
         if (errCode || photo === undefined) {
-          console.error('getPhoto failed');
+          console.error('getPhoto failed, err: ${errCode}');
           return;
         }
         let imageObj: image.Image = photo.main;
@@ -76,10 +75,10 @@
           }
           // 如需要在图库中看到所保存的图片、视频资源，请使用用户无感的安全控件创建媒体资源。
 
-          // buffer处理结束后需要释放该资源，如果未正确释放资源会导致后续拍照获取不到buffer。
-          imageObj.release(); 
-        });
-      });
+         // buffer处理结束后需要释放该资源，如果未正确释放资源会导致后续拍照获取不到buffer。
+         imageObj.release();
+       });
+     });
    }
    ```
 
@@ -102,8 +101,7 @@
        // 判断是否支持自动闪光灯模式。
        let flashModeStatus: boolean = false;
        try {
-         let status: boolean = photoSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
-         flashModeStatus = status;
+         flashModeStatus = photoSession?.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
        } catch (error) {
          let err = error as BusinessError;
          console.error(`Failed to check whether the flash mode is supported. error: ${err}`);
@@ -111,7 +109,7 @@
        if (flashModeStatus) {
          // 设置自动闪光灯模式。
          try {
-           photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
+           photoSession?.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
          } catch (error) {
            let err = error as BusinessError;
            console.error(`Failed to set the flash mode. error: ${err}`);
@@ -121,8 +119,7 @@
      // 判断是否支持连续自动变焦模式。
      let focusModeStatus: boolean = false;
      try {
-       let status: boolean = photoSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
-       focusModeStatus = status;
+       focusModeStatus = photoSession?.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to check whether the focus mode is supported. error: ${err}`);
@@ -130,7 +127,7 @@
      if (focusModeStatus) {
        // 设置连续自动变焦模式。
        try {
-         photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+         photoSession?.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        } catch (error) {
          let err = error as BusinessError;
          console.error(`Failed to set the focus mode. error: ${err}`);
@@ -139,7 +136,7 @@
      // 获取相机支持的可变焦距比范围。
      let zoomRatioRange: Array<number> = [];
      try {
-       zoomRatioRange = photoSession.getZoomRatioRange();
+       zoomRatioRange = photoSession?.getZoomRatioRange();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to get the zoom ratio range. error: ${err}`);
@@ -149,7 +146,7 @@
      }
      // 设置可变焦距比。
      try {
-       photoSession.setZoomRatio(zoomRatioRange[0]);
+       photoSession?.setZoomRatio(zoomRatioRange[0]);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to set the zoom ratio value. error: ${err}`);
@@ -159,9 +156,13 @@
 
 5. 触发拍照。
 
-   通过photoOutput类的[capture](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
+   通过photoOutput的[capture](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
-   获取拍照旋转角度的方法为，通过[PhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md)类中的[getPhotoRotation](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#getphotorotation12)方法获取rotation实际的值。
+   获取拍照旋转角度的方法为，通过[PhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md)中的[getPhotoRotation](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#getphotorotation12)方法获取rotation实际的值。
+
+   > **说明：**
+   >
+   > 图片地理位置信息[Location](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)，使用方法可参考[capture](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#capture-3)示例。
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
@@ -171,13 +172,17 @@
        location: captureLocation,  // 设置图片地理位置。
        mirror: false  // 设置镜像使能开关(默认关)。
      };
-     photoOutput.capture(settings, (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to capture the photo. error: ${err}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the photo capture request success.');
-     });
+     try {
+       photoOutput.capture(settings, (err: BusinessError) => {
+         if (err) {
+           console.error(`Failed to capture the photo. error: ${err}`);
+           return;
+         }
+         console.info('Callback invoked to indicate the photo capture request success.');
+       });
+     } catch (error) {
+       console.error(`capture call failed. error: ${error}`);
+     }
    }
    ```
 

@@ -23,7 +23,7 @@
 
 ## 场景和功能介绍
 
-以下Node-API接口主要用于与ArkTS交互时处理错误和异常情况。他们的使用场景如下：
+以下Node-API接口主要用于与ArkTS交互时处理错误和异常情况。其使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_create_error、napi_create_type_error、napi_create_range_error | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS。 |

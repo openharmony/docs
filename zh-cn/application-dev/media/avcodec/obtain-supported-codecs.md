@@ -53,7 +53,7 @@
    ```
    若获取能力实例成功，继续向下执行。实例无显性释放接口，使用完毕后系统会自动回收。
    
-4. 按需调用相应的查询接口。详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
+4. 按需调用相应的查询接口。详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md)。
 
 ## 场景化开发
 基于开发过程中可能遇到的具体场景，此处将举例说明能力查询接口的使用方法。
@@ -101,7 +101,7 @@ OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO
 if (capability == nullptr) {
    // 异常处理。
 }
-bool isHardward = OH_AVCapability_IsHardware(capability);
+bool isHardware = OH_AVCapability_IsHardware(capability);
 // 2. 基于软硬件类别差异化配置。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 if (videoEnc == nullptr) {
@@ -111,7 +111,7 @@ OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AV
 if (format == nullptr) {
    // 异常处理。
 }
-double frameRate = isHardward ? 60.0 : 30.0;
+double frameRate = isHardware ? 60.0 : 30.0;
 if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
    // 异常处理。
 }
@@ -737,7 +737,7 @@ if (!isMatched) {
 
 ### 查询编解码特性支持情况并获取特性属性信息
 
-编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。具体请参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1)。
+编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。具体请参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapabilityfeature-1)。
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性。 |

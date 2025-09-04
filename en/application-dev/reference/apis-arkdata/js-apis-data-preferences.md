@@ -1477,7 +1477,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 
   > **NOTE**
   >
-  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  > If the value contains a string that is not in UTF-8 format, store it in a Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1525,7 +1525,7 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 
   > **NOTE**
   >
-  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  > If the value contains a string that is not in UTF-8 format, store it in a Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1577,7 +1577,7 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 
   > **NOTE**
   >
-  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  > If the value contains a string that is not in UTF-8 format, store it in a Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **putSync()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 

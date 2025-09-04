@@ -567,6 +567,20 @@
 
 **起始版本**：20
 
+## ohos.permission.START_WINDOW_BELOW_LOCK_SCREEN
+
+允许应用在锁屏状态下被启动。
+
+获取该权限后，应用可以在锁屏状态下被启动。设备解锁后，可直接看到应用启动界面。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
+
+**起始版本**：21
+
 ## ohos.permission.kernel.IGNORE_LIBRARY_VALIDATION
 
 允许独立二进制程序加载具有不同ownerid的独立二进制SO。

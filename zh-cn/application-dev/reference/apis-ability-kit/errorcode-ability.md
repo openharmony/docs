@@ -54,7 +54,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接，并且[module.json5配置文件](../../quick-start/module-configuration-file.md)中`extensionAbilities`的`type`需要是与接口匹配的`service`。
 
 ## 16000003 指定的ID不存在
 
@@ -1906,3 +1906,57 @@ The current process is not a candidate master process and does not support cance
 **处理步骤**
 
 不支持处理，当前进程不是备选主控进程，不支持取消。
+
+## 16000118 当前进程非主控进程
+
+**错误信息**
+
+Not a master process.
+
+**错误描述**
+
+当前进程不是主控进程。
+
+**可能原因**
+
+当前进程不是主控进程，无法放弃当前进程的主控进程身份。
+
+**处理步骤**
+
+不支持处理，当前进程不是主控进程，无法放弃其主控进程身份。
+
+## 16000119 存在未完成的onNewProcessRequest请求
+
+**错误信息**
+
+Cannot exit because there is an unfinished onNewProcessRequest.
+
+**错误描述**
+
+放弃当前进程的主控进程身份失败，因为有未完成的onNewProcessRequest请求。
+
+**可能原因**
+
+当前进程存在未完成的onNewProcessRequest请求。
+
+**处理步骤**
+
+等待当前进程中的onNewProcessRequest请求完成，然后再放弃当前进程的主控进程身份。
+
+## 16000205 当前接口未在主线程中调用
+
+**错误信息**
+
+The API is not called in the main thread.
+
+**错误描述**
+
+当前接口未在主线程调用。
+
+**可能原因**
+
+当前接口在worker或taskpool中调用，不支持该操作。
+
+**处理步骤**
+
+请将接口调用逻辑迁移到主线程中执行。

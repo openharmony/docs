@@ -120,6 +120,8 @@ List组件卡片样式枚举。
 
 该示例通过stick实现了Header吸顶和Footer吸底的效果。
 
+ListDataSource实现了LazyForEach数据源接口[IDataSource](ts-rendering-control-lazyforeach.md#idatasource)，用于通过LazyForEach给List和ListItemGroup提供子组件。
+
 <!--code_no_check-->
 ```ts
 // ListDataSource.ets

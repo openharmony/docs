@@ -16,11 +16,11 @@
 
 ## 文本输入
 
-当需要在单行输入框（TextInput）或多行输入框（TextArea）中输入纯文本时，应优先考虑使用此文本组件。参考[文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)章节。
+当需要在单行输入框（TextInput）或多行输入框（TextArea）中输入纯文本时，应优先考虑使用此文本组件。参考[文本输入 (TextInput/TextArea/Search)](arkts-common-components-text-input.md)章节。
 
 ## 富文本
 
-当需要在编辑框内插入图片或者自定义图标等需求时，应优先考虑使用此文本组件。参考[富文本 (RichEditor)](arkts-common-components-richeditor.md)章节。
+当需要在编辑框内插入图片或者自定义图标等需求时，应优先考虑使用此文本组件。参考[富文本编辑 (RichEditor)](arkts-common-components-richeditor.md)章节。
 
 ## 图标小符号
 

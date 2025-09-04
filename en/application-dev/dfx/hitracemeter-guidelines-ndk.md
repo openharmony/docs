@@ -1,61 +1,83 @@
 # Using HiTraceMeter (C/C++)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--Designer: @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## Overview
 
-HiTraceMeter provides APIs for system performance tracing. You can call the HiTraceMeter APIs in key codes to track service processes and check the system performance.
+HiTraceMeter provides APIs for system performance tracing. You can call the APIs at key code to track processes and check system and application performance.
 
-## Basic Concepts
-
-**HiTraceMeter Tag**: Tag used for tracing data categorization. It is also known as **HiTraceMeter Category**. Generally, one subsystem maps to a tag. When you use the [HiTrace](hitrace.md) CLI tool to collect tracing data, only the data specified by the **Tag** parameter is collected. The HiTraceMeter tag for applications is **HITRACE_TAG_APP**, which corresponds to **app** in the tag list displayed by running the **[hitrace](hitrace.md) -l** command.
-
-## Implementation Principles
-
-1. The application calls HiTraceMeter APIs to trace and input the trace data to the kernel's ftrace buffer through the kernel's sysfs file interface.
-2. The [HiTrace](hitrace.md) CLI tool reads the trace data in the kernel ftrace buffer and outputs the trace data as a text file on the device.
 
 ## Available APIs
 
-The performance tracing APIs are provided by the **HiTraceMeter** module. For details, see [HiTrace](../reference/apis-performance-analysis-kit/_hitrace.md).
+For details about the APIs, see [trace.h](../reference/apis-performance-analysis-kit/capi-trace-h.md).
 
-| API                                                        | Description                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs) | Starts a synchronous time slice trace with the trace output level specified.<br>**Note**: This API is supported since API version 19.|
-| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level)    | Stops a synchronous time slice trace with the trace output level specified. The value of **level** must be the same as that of **OH_HiTrace_StartTraceEx**.<br>**Note**: This API is supported since API version 19.|
-| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId, const char* customCategory, const char* customArgs) | Starts an asynchronous time slice trace with the trace output level specified. If multiple tracing tasks with the same name need to be performed at the same time, different task IDs must be specified through **taskId**. If the tracing tasks with the same name are not performed at the same time, the same task ID can be used.<br>**Note**: This API is supported since API version 19.|
-| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId) | Stops an asynchronous time slice trace with the trace output level specified. Stops a tracing task. The values of **name** and **taskId** must be the same as those in **OH_HiTrace_StartAsyncTraceEx**.<br>**Note**: This API is supported since API version 19.|
-| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count) | Traces an integer with the trace output level specified. Traces the value changes of an integer variable.<br>**Note**: This API is supported since API version 19.|
-| bool OH_HiTrace_IsTraceEnabled(void)                         | Checks whether application trace capture is enabled. If not, HiTraceMeter performance tracing is invalid.<br>**Note**: This API is supported since API version 19.|
-
-> **NOTE**
->
-> The vertical bar (|) is used as the separator in [user-mode trace format](./hitracemeter-view.md#user-mode-trace-format). Therefore, the string parameters passed by the HiTraceMeter APIs must exclude this character to avoid trace parsing exceptions.
-
-HiTraceMeter logging APIs are classified into three types by functionality/behavior: API for synchronous time slice tracing, API for asynchronous time slice tracing, and API for integer tracing. Both synchronous and asynchronous time slice tracing APIs are synchronous APIs. You can use HiTraceMeter APIs with [HiTraceChain](./hitracechain-guidelines-ndk.md) to perform tracing and analysis across devices, processes, and threads.
-
-- The synchronous time slice tracing APIs are used in the scenario where tasks are executed in sequence.
-- The asynchronous time slice tracing APIs are used in the scenario where tasks are executed asynchronously. The start and end of an asynchronous trace task are not in sequence. Therefore, the **name** and **taskId** parameters are used to identify the start and end of an asynchronous trace task.
-- The integer tracing API is used to trace integer variables.
-
-**Parameter Description**
-
-| Name        | Type       | Description                                                        |
-| -------------- | ----------- | ------------------------------------------------------------ |
-| level          | enum        | Trace output level. Trace data whose levels are lower than the system threshold will not be output.<br>The log version threshold is **HITRACE_LEVEL_INFO**, and the nolog version threshold is **HITRACE_LEVEL_COMMERCIAL**.|
-| name           | const char* | Name of the task or integer variable to trace.                            |
-| taskId         | int32_t     | Task ID. If multiple tasks with the same **name** are executed at the same time, you must set different **taskId** when calling **OH_HiTrace_StartAsyncTraceEx**.|
-| count          | int64_t     | Value of an integer variable.                                              |
-| customCategory | const char* | Custom category name, which is used to collect asynchronous trace data of the same type.<br>If the category is not required, pass in an empty string.|
-| customArgs     | const char* | Custom key-value pair. If there are multiple key-value pairs, separate them with commas (,), for example, **key1=value1,key2=value2**.<br>If this parameter is not required, pass in an empty string.|
+| API| Description| 
+| -------- | -------- |
+| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char\* name, const char\* customArgs) | Starts a synchronous time slice trace with the trace output level specified.<br>**Note**: This API is supported since API version 19.| 
+| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level) | Stops a synchronous time slice trace with the trace output level specified.<br>The value of **level** must be the same as that of **OH_HiTrace_StartTraceEx**.<br>**Note**: This API is supported since API version 19.| 
+| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId, const char\* customCategory, const char\* customArgs) | Starts an asynchronous time slice trace with the trace output level specified.<br>If multiple tracing tasks with the same name need to be performed at the same time, different task IDs must be specified through **taskId**. If the tracing tasks with the same name are not performed at the same time, the same task ID can be used.<br>**Note**: This API is supported since API version 19.| 
+| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId) | Stops an asynchronous time slice trace with the trace output level specified.<br>Stops a tracing task. The values of **name** and **taskId** must be the same as those in **OH_HiTrace_StartAsyncTraceEx**.<br>**Note**: This API is supported since API version 19.| 
+| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char\* name, int64_t count) | Traces an integer with the trace output level specified.<br>**name** indicates the name of an integer variable to trace, and **count** indicates the integer value.<br>**Note**: This API is supported since API version 19.| 
+| bool OH_HiTrace_IsTraceEnabled(void) | Checks whether application trace capture is enabled.<br>When it is enabled, **true** is returned; when it is disabled or stopped, **false** is returned. In this case, calling the HiTraceMeter API does not take effect.<br>**Note**: This API is supported since API version 19.| 
 
 > **NOTE**
 >
-> The maximum length of a [user-mode trace](./hitracemeter-view.md#user-mode-trace-format) is 512 characters. Excess characters will be truncated. Therefore, it is recommended that the total length of the **name**, **customCategory**, and **customArgs** fields be less than or equal to 420 characters.
+> The vertical bar (|) is used as the separator in [user-mode trace format](hitracemeter-view.md#user-mode-trace-format). Therefore, the string parameters passed by the HiTraceMeter APIs must exclude this character to avoid trace parsing exceptions.
+
+
+### API Category
+
+HiTraceMeter APIs are classified into three types: synchronous timeslice tracing APIs, asynchronous timeslice tracing APIs, and integer tracing APIs. HiTraceMeter APIs are synchronous. The synchronous and asynchronous modes describe the traced services. The synchronous timeslice tracing APIs are used for synchronous services, and the asynchronous timeslice tracing APIs are used for asynchronous services. HiTraceMeter APIs can be used with [HiTraceChain](hitracechain-guidelines-ndk.md) to associate and analyze logging across devices, processes, or threads.
+
+
+### Use Scenarios
+
+
+- Synchronous timeslice tracing APIs:
+  The **OH_HiTrace_StartTraceEx** and **OH_HiTrace_FinishTraceEx** APIs must be used sequentially for logging during sequential execution. If they are not called in the correct order, the trace file will appear abnormal in visualization tools such as SmartPerf.
+
+- Asynchronous timeslice tracing APIs:
+  The **OH_HiTrace_StartAsyncTraceEx** API is called to start logging before an asynchronous operation is performed, and the **OH_HiTrace_FinishAsyncTraceEx** API is called to end logging after the asynchronous operation is performed. 
+  During trace parsing, different asynchronous traces are identified by the **name** and **taskId** parameters. These two APIs must be used in sequence as a pair, with the same **name** and **taskId** passed. 
+  Different **name** and **taskId** values must be used for different asynchronous processes. However, the same **name** and **taskId** values can be used if asynchronous processes do not occur at the same time. 
+  If the API is called incorrectly, the trace file will appear abnormal in visualization tools such as SmartPerf.
+
+- Integer tracing APIs:
+  The APIs are used to trace integer variables. The **OH_HiTrace_CountTraceEx** API is called when integer values change. You can view the change in the lane diagram of SmartPerf. The values during the interval between the start of data collection and the first logging cannot be viewed.
+
+
+### Parameter Description
+
+
+| Name| Type| Description| 
+| -------- | -------- | -------- |
+| level | enum | Trace output level. Trace data whose levels are lower than the system threshold will not be output.<br>The log version threshold is **HITRACE_LEVEL_INFO**, and the nolog version threshold is **HITRACE_LEVEL_COMMERCIAL**.| 
+| name | const char\* | Name of the task or integer variable to trace.| 
+| taskId | int32_t | Task ID. If multiple tasks with the same **name** are executed at the same time, you must set different **taskId** when calling **OH_HiTrace_StartAsyncTraceEx**.| 
+| count | int64_t | Value of an integer variable.| 
+| customCategory | const char\* | Custom category name, which is used to collect asynchronous trace data of the same type.<br>If the category is not required, pass in an empty string.| 
+| customArgs | const char\* | Custom key-value pair. If there are multiple key-value pairs, separate them with commas (,), for example, **key1=value1,key2=value2**.<br>If this parameter is not required, pass in an empty string.| 
+
+
+> **NOTE**
+>
+> The maximum length of a [user-mode trace](hitracemeter-view.md#user-mode-trace-format) is 512 characters. Excess characters will be truncated. Therefore, it is recommended that the total length of the **name**, **customCategory**, and **customArgs** fields be less than or equal to 420 characters.
+
 
 ## How to Develop
 
-In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C logging API. The following is an example of a native C++ project.
+The following is an example of a native C++ application that uses the HiTraceMeter APIs.
 
-1. Create a native C++ project. The project directory structure is as follows:
+
+### Step 1: Creating a Project
+
+
+1. Create a project in DevEco Studio and select **Native C++**. The project directory structure is as follows:
 
    ```text
    ├── entry
@@ -77,13 +99,27 @@ In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C log
    │       │   │       └── Index.ets
    ```
 
-2. In the end of the **CMakeLists.txt** file, add **libhitrace_ndk.z.so** and **libhilog_ndk.z.so**.
+2. In the **entry/src/main/cpp/CMakeLists.tx** file, add **libhitrace_ndk.z.so** and **libhilog_ndk.z.so**. The complete file content is as follows:
 
    ```cmake
-   target_link_libraries(entry PUBLIC libhitrace_ndk.z.so libhilog_ndk.z.so)
+   # the minimum version of CMake.
+   cmake_minimum_required(VERSION 3.5.0)
+   project(HiTraceChainTest03)
+   
+   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   
+   if(DEFINED PACKAGE_FIND_FILE)
+       include(${PACKAGE_FIND_FILE})
+   endif()
+   
+   include_directories(${NATIVERENDER_ROOT_PATH}
+                       ${NATIVERENDER_ROOT_PATH}/include)
+   
+   add_library(entry SHARED napi_init.cpp)
+   target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so libhilog_ndk.z.so)
    ```
 
-3. In the **napi_init.cpp** file, call the HiTraceMeter NDK_C API in the **Add** function to trace the performance. The sample code is as follows:
+3. In the **entry/src/main/cpp/napi_init.cpp** file, call the HiTraceMeter NDK_C APIs in the **Add** function to trace performance. The sample code is as follows:
 
    ```c++
    #include <cstdio>
@@ -194,15 +230,17 @@ In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C log
    }
    ```
 
-4. Run the following command in DevEco Studio Terminal to enable trace capture:
+
+### Step 2: Collecting and Viewing Trace Information
+
+1. Run the following command in DevEco Studio Terminal to enable trace capture:
 
    ```shell
    PS D:\xxx\xxx> hdc shell
    $ hitrace --trace_begin app
    ```
 
-
-5. In DevEco Studio, click the **Run** button to run the project. Click the string in the middle of the screen to execute the service logic that contains the HiTraceMeter logging. Then run the following command to capture trace data:
+2. Click the **Run** button in DevEco Studio to run the project. Then, click "Hello world" to execute the service logic that contains HiTraceMeter logging. Run the following command to capture trace data and filter the trace data using the keyword **myTest** (the name field prefix passed by the logging API is **myTest** in this example).
 
    ```shell
    $ hitrace --trace_dump | grep myTest
@@ -222,16 +260,21 @@ In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C log
    <...>-49837   (-------) [002] .... 349137.708323: tracing_mark_write: F|49837|H:myTestAsyncTrace|1003|M62
    ```
 
-7. Run the following command to stop the application trace capture:
+
+### Step 3: Stoping Trace Capture
+
+1. Run the following command to stop the application trace capture:
 
    ```shell
    $ hitrace --trace_finish
    ```
 
-8. Click the string in the middle of the screen again. The application trace capture function is disabled, and **OH_HiTrace_IsTraceEnabled** returns **false**. In the **Log** panel in DevEco Studio, select **enable** to filter logs. The following information is displayed:
+2. Click "Hello World" on the application screen again. The trace capture of the application is disabled, and the **OH_HiTrace_IsTraceEnabled** API returns **false**. In the **Log** window of the DevEco Studio, input the keyword **not enabled** for filtering and the following log is displayed.
 
    ```text
    myTraceTest running, trace is not enabled
    ```
 
-   
+   > **NOTE**
+   >
+   > In the log version, after the **hitrace --trace_finish** command is used to stop capture, the snapshot mode is automatically started and trace capture is enabled. In this case, the **isTraceEnabled** API returns **true**, and the preceding log is not printed.

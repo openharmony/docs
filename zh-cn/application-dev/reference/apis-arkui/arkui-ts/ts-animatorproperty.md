@@ -40,37 +40,46 @@ animation(value:AnimateParam): T
 | T | 返回当前组件。 |
 
 属性动画只对写在animation前面的属性生效，且对组件构造器的属性不生效。
- ```
-@State widthSize: number = 250;
-@State heightSize: number = 100;
-@State rotateAngle: number = 0;
-@State flag: boolean = true;
-@State space: number = 10;
-// ...
-Column({ space: this.space }) // 改变Column构造器中的space动画不生效
-  .onClick(() => {
-    if (this.flag) {
-      this.widthSize = 150;
-      this.heightSize = 60;
-      this.space = 20; // 改变this.space动画不生效
-    } else {
-      this.widthSize = 250;
-      this.heightSize = 100;
-      this.space = 10; // 改变this.space动画不生效
+```
+@Entry
+@Component
+struct AnimationExample {
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State rotateAngle: number = 0;
+  @State flag: boolean = true;
+  @State space: number = 10;
+  
+  build() {
+    Column() {
+      Column({ space: this.space }) // 改变Column构造器中的space动画不生效
+        .onClick(() => {
+          if (this.flag) {
+            this.widthSize = 150;
+            this.heightSize = 60;
+            this.space = 20; // 改变this.space动画不生效
+          } else {
+            this.widthSize = 250;
+            this.heightSize = 100;
+            this.space = 10; // 改变this.space动画不生效
+          }
+          this.flag = !this.flag;
+        })
+        .backgroundColor(Color.Black)
+        .margin(30)
+        .width(this.widthSize) // 只有写在animation前面才生效
+        .height(this.heightSize) // 只有写在animation前面才生效
+        .animation({
+          duration: 2000,
+          curve: Curve.EaseOut,
+          iterations: 3,
+          playMode: PlayMode.Normal
+        })
+        // .width(this.widthSize) // 动画不生效
+        // .height(this.heightSize) // 动画不生效
     }
-    this.flag = !this.flag;
-  })
-  .margin(30)
-  .width(this.widthSize) // 只有写在animation前面才生效
-  .height(this.heightSize) // 只有写在animation前面才生效
-  .animation({
-    duration: 2000,
-    curve: Curve.EaseOut,
-    iterations: 3,
-    playMode: PlayMode.Normal
-  })
-  // .width(this.widthSize) // 动画不生效
-  // .height(this.heightSize) // 动画不生效
+  }
+}
 ```
 
 ## 示例

@@ -24,13 +24,13 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 - When decorating variables, \@Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost. For example, for complex types provided by N-API, such as [PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7), because they are partially implemented in the native code, complete data cannot be obtained through a deep copy in ArkTS.
 
 
-## Rules of Use
+## Usage Rules
 
 | \@Prop Decorator| Description                                      |
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | One-way: from the data source provided by the parent component to the \@Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Property in Parent Component](#class-object-type-prop-synced-from-state-class-object-property-in-parent-component).<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Prop a: string \| undefined = undefined** is supported, but **@Prop a: string = undefined** is not.|
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#fundamental-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Synchronizing from \@State to \@Prop Simple Data Types](#synchronizing-from-state-to-prop-simple-data-types).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Synchronizing from \@State Array Items to \@Prop Simple Data Types](#synchronizing-from-state-array-items-to-prop-simple-data-types).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Synchronizing from \@State Class Object Properties to \@Prop Simple Data Types](#synchronizing-from-state-class-object-properties-to-prop-simple-data-types).<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Using Union Types](#using-union-types).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Prop a: string \| undefined = undefined** is supported, but **@Prop a: string = undefined** is not.|
 | Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will arise, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead.|
 | Initial value for the decorated variable  | Local initialization is allowed. If this decorator is used together with [\@Require](arkts-require.md) in API version 11, the parent component must construct input parameters.|
 
@@ -39,7 +39,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 | Transfer/Access         | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Initialization from the parent component    | If initialization is performed locally, this operation is optional. The initialization behavior is the same as that in [\@State](./arkts-state.md#). If local initialization cannot be performed, this operation is mandatory. An @Prop decorated variable can be initialized from a regular variable (whose change does not trigger UI re-render). or an [\@State](arkts-state.md), [\@Link](arkts-link.md), @Prop, [\@Provide](arkts-provide-and-consume.md), [\@Consume](arkts-provide-and-consume.md), [\@ObjectLink](arkts-observed-and-objectlink.md), [\@StorageLink](arkts-appstorage.md#storagelink), [\@StorageProp](arkts-appstorage.md#storageprop), [\@LocalStorageLink](arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](arkts-localstorage.md#localstorageprop) decorated variable in its parent component.|
+| Initialization from the parent component    | If initialization is performed locally, this operation is optional. The initialization behavior is the same as that in [\@State](./arkts-state.md#variable-transferaccess-rules). If local initialization cannot be performed, this operation is mandatory. An @Prop decorated variable can be initialized from a regular variable (whose change does not trigger UI re-render). or an [\@State](arkts-state.md), [\@Link](arkts-link.md), @Prop, [\@Provide](arkts-provide-and-consume.md), [\@Consume](arkts-provide-and-consume.md), [\@ObjectLink](arkts-observed-and-objectlink.md), [\@StorageLink](arkts-appstorage.md#storagelink), [\@StorageProp](arkts-appstorage.md#storageprop), [\@LocalStorageLink](arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](arkts-localstorage.md#localstorageprop) decorated variable in its parent component.|
 | Child component initialization  | \@Prop can be used for initialization of a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                |
 
@@ -94,7 +94,7 @@ this.title.value = 'Hi';
 this.title.info.value = 'ArkUI';
 ```
 
-In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class property can be observed. For details, see [@Prop Nesting Scenario](#prop-nesting-scenario).
+In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class property can be observed. For details, see [Nesting \@Prop](#nesting-prop).
 
 - When the decorated variable is of the array type, the value change of the array as well as the addition, deletion, and update of array items can be observed.
 
@@ -195,10 +195,10 @@ To understand the value initialization and update mechanism of the \@Prop decora
 > The update of an \@Prop decorated variable relies on the re-rendering of the owning custom component. As such, when the application is in the background, the \@Prop decorated variable cannot be updated. In this case, use \@Link instead.
 
 
-## Usage Scenarios
+## Use Scenarios
 
 
-### Simple Type Sync from @State of the Parent Component to @Prop of the Child Component
+### Synchronizing from \@State to \@Prop Simple Data Types
 
 
 In this example, the \@Prop decorated **count** variable in the **CountDownComponent** child component is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**. When **Try again** is touched, the value of the **count** variable is modified, but the change remains within the **CountDownComponent** and does not affect the **ParentComponent**.
@@ -265,7 +265,7 @@ In the preceding example:
 5. Updating **countDownStartValue** will overwrite the local value changes of the @Prop decorated **count** in the **CountDownComponent** child component.
 
 
-### Simple Type @Prop Synced from @State Array Item in Parent Component
+### Synchronizing from \@State Array Items to \@Prop Simple Data Types
 
 
 The \@State decorated array an array item in the parent component can be used as data source to initialize and update a @Prop decorated variable. In the following example, the \@State decorated array **arr** in the parent component **Index** initializes the \@Prop decorated **value** variable in the child component **Child**.
@@ -356,11 +356,11 @@ After **replace entire arr** is clicked, the following information is displayed:
 - The change of **this.arr** causes **ForEach** to update: According to the diff algorithm, the array item with the ID **3** is retained in this update, array items with IDs **1** and **2** are deleted, and array items with IDs **4** and **5** are added. The array before and after the update is **[1, 2, 3]** and **[3, 4, 5]**, respectively. This implies that the **Child** instance generated for item **3** is moved to the first place, but not updated. In this case, the component value corresponding to **3** is **7**, and the final render result of **ForEach** is **7**, **4**, and **5**.
 
 
-### Class Object Type @Prop Synced from @State Class Object Property in Parent Component
+### Synchronizing from \@State Class Object Properties to \@Prop Simple Data Types
 
 In a library with one book and two readers, each reader can mark the book as read, and the marking does not affect the other reader. Technically speaking, local changes to the \@Prop decorated **book** object do not sync back to the @State decorated **book** in the **Library** component.
 
-In this example, the \@Observed decorator can be applied to the **book** class, but it is not mandatory. It is only needed for nested structures. This will be further explained in [Class Type @Prop Synced from @State Array Item in Parent Component](#class-type-prop-synced-from-state-array-item-in-parent-component).
+In this example, the \@Observed decorator can be applied to the **book** class, but it is not mandatory. It is only needed for nested structures. This will be further explained in [Synchronizing from \@State Array Items to \@Prop Class Types](#synchronizing-from-state-array-items-to-prop-class-types).
 
 
 ```ts
@@ -403,7 +403,7 @@ struct Library {
 }
 ```
 
-### Class Type @Prop Synced from @State Array Item in Parent Component
+### Synchronizing from \@State Array Items to \@Prop Class Types
 
 In the following example, a property of the **Book** object in the \@State decorated **allBooks** array is changed, but the system does not respond when **Mark read for everyone** is clicked. This is because the property is nested at the second layer, and the \@State decorator can observe only properties at the first layer. Therefore, the framework does not update **ReaderComp**.
 
@@ -534,7 +534,7 @@ All instances of the \@Observed decorated class are wrapped with an opaque proxy
 
 ![Video-prop-UsageScenario-one](figures/Video-prop-UsageScenario-one.gif)
 
-### Simple Type @Prop with Local Initialization and No Sync from Parent Component
+### Initializing \@Prop Locally Without Synchronizing with Parent Components
 
 To enable an \@Component decorated component to be reusable, \@Prop allows for optional local initialization. This makes the synchronization with a variable in the parent component a choice, rather than mandatory. Providing a data source in the parent component is optional only when local initialization is provided for the \@Prop decorated variable.
 
@@ -610,7 +610,7 @@ struct MainProgram {
 
 ![Video-prop-UsageScenario-two](figures/Video-prop-UsageScenario-two.gif)
 
-### \@Prop Nesting Scenario
+### Nesting \@Prop
 
 In nesting scenario, each layer must be decorated with @Observed, and each layer must be received by @Prop. In this way, changes can be observed.
 
@@ -831,7 +831,7 @@ struct SetSample {
 }
 ```
 
-## Union Type @Prop 
+## Using Union Types
 
 @Prop supports **undefined**, **null**, and union types. In the following example, the type of **animal** is **Animals | undefined**. If the property or type of **animal** is changed when the button in the parent component **Zoo** is clicked, the change will be synced to the child component.
 

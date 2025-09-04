@@ -18,6 +18,8 @@ ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 容器类使用静态语言实现，限制了存储位置和属性，不支持自定义属性和方法。
 
 
 ## 导入模块
@@ -102,13 +104,15 @@ class C1 {
   age: string = ""
 }
 let arrayList = new ArrayList<string | number | boolean | Array<number> | C1>();
-let result1 = arrayList.add("a");
-let result2 = arrayList.add(1);
+arrayList.add("a");
+arrayList.add(1);
 let b = [1, 2, 3];
-let result3 = arrayList.add(b);
+arrayList.add(b);
 let c : C1 = {name: "Dylan", age: "13"}
-let result4 = arrayList.add(c);
-let result5 = arrayList.add(false);
+let result1 = arrayList.add(c);
+let result2 = arrayList.add(false);
+console.info("result1:", result1);  // result1: true
+console.info("result2:", result2);  // result2: true
 console.info("length:", arrayList.length);  // length: 5
 ```
 
