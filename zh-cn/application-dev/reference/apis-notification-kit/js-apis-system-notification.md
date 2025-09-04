@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 > **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.notification`](js-apis-notification.md)。
