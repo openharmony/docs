@@ -38,7 +38,7 @@ import notification from '@system.notification';
 | ------------- | ---------------------------------------------- | ---- | ------------------------- |
 | contentTitle  | string                                          | 否   | 通知标题。                  |
 | contentText   | string                                          | 否   | 通知内容。                  |
-| clickAction<sup>(deprecated)</sup>   | ActionResult                                    | 否   | 通知被点击后触发的行为。<br>从API version 7开始不再维护。     |
+| clickAction<sup>(deprecated)</sup>   | [ActionResult](#actionresult)                                    | 否   | 通知被点击后触发的行为。<br>从API version 7开始不再维护。     |
 
 
 ## notification.show
