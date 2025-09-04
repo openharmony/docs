@@ -553,7 +553,7 @@ beacon围栏信息类型。当前仅支持设备制造商数据过滤。
 
 ## BeaconManufactureData<sup>20+</sup>
 
-beacon设备制造商数据。当前仅支持iBeacon数据类型。
+beacon设备制造商数据。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -561,8 +561,8 @@ beacon设备制造商数据。当前仅支持iBeacon数据类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| manufactureId | number | 否 | 否 | 制造商标识。例如：iBeacon为：X004C |
-| manufactureData | ArrayBuffer | 否 | 否 | 厂商自定义数据。例如：iBeacon格式为：0x02 + 0x15 + uuid + major + minor + txPower。例如：[0x02,0x15,0x00...0xFF,0x11,0x22,0x33,0x44,0x55] |
+| manufactureId | number | 否 | 否 | 制造商标识。 |
+| manufactureData | ArrayBuffer | 否 | 否 | 厂商自定义数据。例如：[0x02,0x15,0x00...0xFF,0x11,0x22,0x33,0x44,0x55] |
 | manufactureDataMask | ArrayBuffer | 否 | 否 | 搭配manufactureData使用，可设置过滤部分制造商数据，0xFF为全匹配，0x00为模糊匹配。例如：[0xFF,0xFF,0xFF...0xFF,0xFF,0xFF,0xFF,0xFF,0xFF] |
 
 
@@ -2782,7 +2782,13 @@ beacon围栏是指通过蓝牙beacon设备和手机应用配合，实现“虚�
   import { geoLocationManager } from '@kit.LocationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   try {
-    // uuid为00 11 22 33 44...EE FF
+    // 以iBeacon协议为例，格式如下
+    // 01 byte    type = 0x02
+    // 01 byte    len = 0x15 = 21
+    // 16 byte    UUID
+    // 02 byte    major
+    // 02 byte    minor
+    // 01 byte    tx power
     let manufactureDataBuffer: Uint8Array = new Uint8Array([0X02, 0X15, 0X00, 0X11, 0X22, 0X33, 0X44, 0X55,
       0X66, 0X77, 0X88, 0X99, 0XAA, 0XBB, 0XCC, 0XDD, 0XEE, 0XFF, 0X11, 0X22, 0X33, 0X44, 0X55]);
     let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
