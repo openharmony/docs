@@ -929,7 +929,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 isIntelligentNoiseReductionEnabledForCurrentDevice(sourceType: SourceType): boolean
 
-查询指定的source type智能降噪开关是否打开。
+查询指定source type的智能降噪开关是否已开启。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -937,13 +937,13 @@ isIntelligentNoiseReductionEnabledForCurrentDevice(sourceType: SourceType): bool
 
 | 参数名    | 类型                                | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| sourceType    | [SourceType](arkts-apis-audio-e.md#sourcetype8)         | 是     |  音源类型。               |
+| sourceType    | [SourceType](arkts-apis-audio-e.md#sourcetype8)         | 是     |  表示音源类型。               |
 
 **返回值：**
 
 | 类型                                                                      | 说明                                    |
 | --------------------------------------------------------------------------| --------------------------------------- |
-|  boolean     | 智能降噪开关是否打开。true表示智能降噪开关打开，false表示智能降噪开关关闭。        |
+|  boolean     | 智能降噪开关的状态。true表示打开，false表示关闭。        |
 
 **错误码：**
 
@@ -960,7 +960,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let isSupport = audioStreamManager.isIntelligentNoiseReductionEnabledForCurrentDevice(audio.SourceType.SOURCE_TYPE_LIVE);
-  console.info(`SourceType: ${audio.SourceType.SOURCE_TYPE_LIVE} intelligent noise reduction enabled is: ${isSupportAEC}`);
+  console.info(`SourceType: ${audio.SourceType.SOURCE_TYPE_LIVE} intelligent noise reduction enabled is: ${isSupport}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isIntelligentNoiseReductionEnabledForCurrentDevice ERROR: ${error}`);
