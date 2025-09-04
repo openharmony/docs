@@ -43,7 +43,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   AVSessionController = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
   console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1098,9 +1098,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 let commandName = "my_command";
 if (controller !== undefined) {
@@ -1158,9 +1158,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 let commandName = "my_command";
 if (controller !== undefined) {
@@ -1213,13 +1213,13 @@ import { avSession } from '@kit.AVSessionKit';
 let tag: string = "createNewSession";
 let sessionId: string = "";
 let controller:avSession.AVSessionController | undefined = undefined;
-avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession) => {
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 
 if (controller !== undefined) {
@@ -1269,9 +1269,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).getExtras().then((extras) => {
@@ -1322,9 +1322,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).getExtras((err, extras) => {
@@ -2244,9 +2244,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
