@@ -36,6 +36,8 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -88,6 +90,8 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -146,6 +150,8 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -197,6 +203,8 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -254,6 +262,8 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -306,6 +316,8 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -364,12 +376,14 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
-| callback | AsyncCallback\<boolean> | 是 | 回调函数，callbac方式返回HDC是否被禁用，true表示HDC被禁用，false表示HDC未被禁用。 |
+| callback | AsyncCallback\<boolean> | 是 | 回调函数，callback方式返回HDC是否被禁用，true表示HDC被禁用，false表示HDC未被禁用。 |
 
 **错误码**：
 
@@ -415,6 +429,8 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -472,6 +488,8 @@ isMicrophoneDisabled(admin: Want): boolean
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明                                   |
@@ -528,6 +546,8 @@ disableMicrophone(admin: Want, disable: boolean): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -580,6 +600,8 @@ setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -631,6 +653,8 @@ isFingerprintAuthDisabled(admin: Want): boolean
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

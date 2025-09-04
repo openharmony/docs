@@ -730,6 +730,7 @@ try {
 addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 为设备添加域名过滤规则，仅支持IPv4。<br/>
+过滤规则中[DomainFilterRule](#domainfilterrule)的[Direction](#direction)项需设为输出链。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
