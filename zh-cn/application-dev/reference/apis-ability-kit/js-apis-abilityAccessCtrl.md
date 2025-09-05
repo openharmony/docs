@@ -86,7 +86,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
+  console.info(`checkAccessToken success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`checkAccessToken fail, err->${JSON.stringify(err)}`);
 });
@@ -133,7 +133,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
-console.log(`data->${JSON.stringify(data)}`);
+console.info(`data->${JSON.stringify(data)}`);
 ```
 
 ### on<sup>18+</sup>
@@ -179,7 +179,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let permissionList: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
 try {
     atManager.on('selfPermissionStateChange', permissionList, (data: abilityAccessCtrl.PermissionStateChangeInfo) => {
-        console.log('receive permission state change, data:' + JSON.stringify(data));
+        console.info('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
     console.error(`catch err->${JSON.stringify(err)}`);
@@ -547,7 +547,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 try {
   let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-  console.log(`data->${JSON.stringify(data)}`);
+  console.info(`data->${JSON.stringify(data)}`);
 } catch(err) {
   console.error(`catch err->${JSON.stringify(err)}`);
 }
@@ -588,7 +588,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
+  console.info(`promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
 });
@@ -628,7 +628,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
+  console.info(`promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
 });
