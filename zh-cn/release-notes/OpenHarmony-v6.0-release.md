@@ -150,6 +150,11 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 - HiAppEvent的C API新增EVENT_APP_KILLED接口，订阅应用查杀事件。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md#event_app_killed)）
 
+### 升级
+
+支持流式物理AB升级，支持边下载边升级安装，减少用户设备存储空间的占用。（[说明文档](https://gitee.com/openharmony/update_updater/blob/master/README_zh.md)）
+
+
 ### 媒体
 
 - 针对直播场景新增支持高画质ROI编码。（[指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/avcodec/video-encoding-ROI.md)）
