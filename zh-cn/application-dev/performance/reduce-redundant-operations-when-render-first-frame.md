@@ -1,5 +1,12 @@
 # 减少首帧绘制时的冗余操作
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 应用冷启动与加载绘制首页
 
 应用冷启动即当启动应用时，后台没有该应用的进程，这时系统会重新创建一个新的进程分配给该应用。
@@ -16,7 +23,7 @@
 
 减少加载页面时间可以通过按需加载、减少自定义组件生命周期耗时两种方法来实现。
 
-#### 按需加载
+### 按需加载
 
 按需加载可以避免一次性初始化和加载所有元素，从而使首帧绘制时加载页面阶段的创建列表元素时间大大减少，从而提升性能表现。具体可参考文档[列表场景性能提升实践](list-perf-improvment.md#懒加载)。
 
@@ -162,7 +169,7 @@ struct SmartLoad {
 
 从trace图可以看出，使用ForEach时在Build阶段会创建所有元素，Build耗时65ms290μs，改为使用LazyForEach后Build耗时减少到745μs，性能收益明显。
 
-#### 减少自定义组件生命周期时间
+### 减少自定义组件生命周期时间
 
 LoadPage阶段需要等待自定义组件生命周期aboutToAppear的高耗时任务完成， 导致LoadPage时间大量增加，阻塞主线程后续的布局渲染，所以自定义组件生命周期的耗时任务应当转为Worker线程任务，优先绘制页面，避免启动时阻塞在startWindowIcon页面。
 
@@ -203,7 +210,7 @@ struct TaskSync {
 
 ```ts
 // TaskAsync.ets
-import worker from '@ohos.worker';
+import { worker } from "@kit.ArkTS";
 
 @Entry
 @Component
@@ -240,7 +247,7 @@ struct TaskAsync {
 
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from "@kit.ArkTS";
 
 let parentPort = worker.workerPort;
 
@@ -274,7 +281,7 @@ parentPort.onmessage = (message) => {
 
 减少布局时间可以通过异步加载和减少视图嵌套层次两种方法来实现。
 
-#### 异步加载
+### 异步加载
 
 同步加载的操作，使创建图像任务需要在主线程完成，页面布局Layout需要等待创建图像makePixelMap任务的执行，导致布局时间延长。相反，异步加载的操作，在其他线程完成，和页面布局Layout同时开始，且没有阻碍页面布局，所以页面布局更快，性能更好。但是，并不是所有的加载都必须使用异步加载，建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。
 
@@ -345,7 +352,7 @@ struct AsyncLoadImage {
 
 在优化前的trace图中可以看到，同步加载的每一张图片在参与布局时都会执行CreateImagePixelMap去创建图像，导致页面布局时间过长，FlushLayoutTask阶段耗时346ms458μs。图像使用异步加载进行优化后，页面布局时不再执行创建图像的任务，FlushLayoutTask阶段耗时减少到了2ms205μs，页面布局更快。
 
-#### 减少视图嵌套层次
+### 减少视图嵌套层次
 
 视图的嵌套层次会影响应用的性能。通过减少不合理的容器组件，可以使布局深度降低，布局时间减少，优化布局性能，提升用户体验。
 
@@ -437,7 +444,7 @@ struct Depth2 {
 
 减少渲染时间可以通过条件渲染替代显隐控制的方法来实现。
 
-#### 条件渲染
+### 条件渲染
 
 使用visibility属性、if条件判断都可以控制元素显示与隐藏，但是初次加载时使用visibility属性隐藏元素也会创建对应组件内容，因此加载绘制首页时，如果组件初始不需要显示，建议使用条件渲染替代显隐控制，以减少渲染时间。关于条件渲染和显隐控制更多内容可以参考[合理选择条件渲染和显隐控制](./proper-choice-between-if-and-visibility.md)。
 

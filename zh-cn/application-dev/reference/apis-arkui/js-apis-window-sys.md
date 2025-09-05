@@ -1547,10 +1547,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -1571,33 +1572,36 @@ class TestRemoteObject extends rpc.RemoteObject {
     return false;
   }
 }
-
-let token: TestRemoteObject = new TestRemoteObject('testObject');
-let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: getContext() };
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    let errCode: number = err?.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
-      return;
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let token: TestRemoteObject = new TestRemoteObject('testObject');
+    let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        let errCode: number = err?.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
+          return;
+        }
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        data.bindDialogTarget(token, () => {
+          console.info('Dialog Window Need Destroy.');
+          }, (err: BusinessError) => {
+          let errCode: number = err?.code;
+          if (errCode) {
+            console.error(`Failed to bind dialog target. Error code: ${err?.code}, message: ${err?.message}`);
+            return;
+          }
+          console.info('Succeeded in binding dialog target.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    if (!data) {
-      console.error('data is null');
-      return;
-    }
-    data.bindDialogTarget(token, () => {
-      console.info('Dialog Window Need Destroy.');
-      }, (err: BusinessError) => {
-      let errCode: number = err?.code;
-      if (errCode) {
-        console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
-        return;
-      }
-      console.info('Succeeded in binding dialog target.');
-    });
-  });
-} catch (exception) {
-  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -1640,10 +1644,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -1665,34 +1670,38 @@ class TestRemoteObject extends rpc.RemoteObject {
   }
 }
 
-let token: TestRemoteObject = new TestRemoteObject('testObject');
-let config: window.Configuration = {
-  name: "test",
-  windowType: window.WindowType.TYPE_DIALOG,
-  ctx: getContext()
-};
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err?.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
-      return;
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let token: TestRemoteObject = new TestRemoteObject('testObject');
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err?.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
+          return;
+        }
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        let promise = data.bindDialogTarget(token, () => {
+          console.info('Dialog Window Need Destroy.');
+        });
+        promise.then(() => {
+          console.info('Succeeded in binding dialog target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to bind dialog target. Error code: ${err?.code}, message: ${err?.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    if (!data) {
-      console.error('data is null');
-      return;
-    }
-    let promise = data.bindDialogTarget(token, () => {
-      console.info('Dialog Window Need Destroy.');
-    });
-    promise.then(() => {
-      console.info('Succeeded in binding dialog target.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
-    });
-  });
-} catch (exception) {
-  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -3417,7 +3426,7 @@ try {
 }
 ```
 
-## setWindowContainerModalColor<sup>20+</sup>
+### setWindowContainerModalColor<sup>20+</sup>
 
 setWindowContainerModalColor(activeColor: string, inactiveColor: string): void
 
@@ -3850,7 +3859,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('disableWindowDecor');
+    console.info('disableWindowDecor');
     windowStage.disableWindowDecor();
   }
 };
@@ -3895,7 +3904,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
@@ -4027,7 +4036,7 @@ completeTransition(isCompleted: boolean): void
       y: 0.0,
       z: 0.0
     };
-    toWindow.translate(obj);
+    toWindow?.translate(obj);
     console.info('toWindow translate end');
   }
   );
@@ -4096,8 +4105,8 @@ animationForShown(context: TransitionContext): void
 ```ts
 // xxx.ts
 export class AnimationConfig {
-  private animationForShownCallFunc_: Function = undefined;
-  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  private animationForShownCallFunc_: ((context : window.TransitionContext) => void) | undefined = undefined;
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback: (context : window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('windowClass is undefined');
       return false;
@@ -4139,7 +4148,7 @@ try {
         y : 0.0,
         z : 0.0
       };
-      toWindow.translate(obj); // 设置动画过程中的属性转换
+      toWindow?.translate(obj); // 设置动画过程中的属性转换
       console.info('toWindow translate end in animation');
     });
     console.info('complete transition end');
@@ -4179,8 +4188,8 @@ animationForHidden(context: TransitionContext): void
 ```ts
 // xxx.ts
 export class AnimationConfig {
-  private animationForHiddenCallFunc_: Function = undefined;
-  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  private animationForHiddenCallFunc_: ((context : window.TransitionContext) => void) | undefined = undefined;
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback: (context : window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('windowClass is undefined');
       return false;
@@ -4222,7 +4231,7 @@ try {
         y : 0.0,
         z : 0.0
       };
-      toWindow.translate(obj); // 设置动画过程中的属性转换
+      toWindow?.translate(obj); // 设置动画过程中的属性转换
       console.info('toWindow translate end in animation');
     });
     console.info('complete transition end');

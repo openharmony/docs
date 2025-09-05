@@ -23,6 +23,14 @@ import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } fr
 
 无
 
+## 属性
+
+不支持[通用属性](ts-component-general-attributes.md)。
+
+## 事件
+
+不支持[通用事件](ts-component-general-events.md)。
+
 ## SegmentButton
 
 SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItemClicked: Callback\<number\>, maxFontScale: number \| Resource })
@@ -355,7 +363,7 @@ push(...items: SegmentButtonItemArray): number
 
 | 参数名 | 类型                                              | 必填 | 说明                   |
 | ------ | ------------------------------------------------- | ---- | ---------------------- |
-| items  | [SegmentButtonItemArray](#segmentbuttonitemarray) | 是   | 被添加的按钮信息数组。 |
+| items  | [SegmentButtonItemArray](#segmentbuttonitemarray) | 否   | 被添加的按钮信息数组。 |
 
 **返回值：**
 
@@ -428,7 +436,7 @@ unshift(...items: SegmentButtonItemArray): number
 
 | 参数名  | 类型                                              | 必填 | 说明                 |
 | ----- | ------------------------------------------------- | ---- | -------------------- |
-| items | [SegmentButtonItemArray](#segmentbuttonitemarray) | 是   | 添加的按钮信息数组。 |
+| items | [SegmentButtonItemArray](#segmentbuttonitemarray) | 否 | 添加的按钮信息数组。 |
 
 **返回值：**
 
@@ -651,7 +659,6 @@ constructor(options: SegmentButtonItemOptionsConstructorOptions)
 通过配置SegmentButtonOptions的tab和capsule，创建两种不同类型的分段按钮。
 
 ```ts
-// xxx.ets
 import {
   ItemRestriction,
   SegmentButton,
@@ -708,17 +715,26 @@ struct Index {
     Row() {
       Column() {
         Column({ space: 25 }) {
-          SegmentButton({ options: this.tabOptions,
-            selectedIndexes: $tabSelectedIndexes })
-          SegmentButton({ options: this.singleSelectCapsuleOptions,
-            selectedIndexes: $singleSelectCapsuleSelectedIndexes })
+          SegmentButton({
+            options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes
+          })
+          SegmentButton({
+            options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $singleSelectCapsuleSelectedIndexes
+          })
           SegmentButton({
             options: this.multiplySelectCapsuleOptions,
-            selectedIndexes: $multiplySelectCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconCapsuleOptions,
-            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconTextCapsuleOptions,
-            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+            selectedIndexes: $multiplySelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
         }.width('90%')
       }.width('100%')
     }.height('100%')
@@ -733,7 +749,6 @@ struct Index {
 通过配置CommonSegmentButtonOptions，实现自定义分段按钮的文本以及背板样式。
 
 ```ts
-// xxx.ets
 import {
   ItemRestriction,
   SegmentButton,
@@ -910,9 +925,7 @@ struct Index {
 该示例通过配置direction属性设置分段按钮的布局方向，实现镜像效果。
 
 ```ts
-// xxx.ets
 import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI';
-
 
 @Entry
 @Component
@@ -1015,7 +1028,6 @@ struct Index {
 通过配置accessibilityLevel和selectedIconAccessibilityText等属性，实现了分段按钮的无障碍朗读功能。
 
 ```ts
-// xxx.ets
 import {
   ItemRestriction,
   SegmentButton,
@@ -1161,7 +1173,6 @@ struct Index {
 该示例演示了如何为分段按钮组件设置自定义的边框圆角半径。
 
 ```ts
-// xxx.ets
 import {
   BorderRadiusMode,
   ItemRestriction,

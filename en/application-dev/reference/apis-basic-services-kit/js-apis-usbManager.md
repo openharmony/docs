@@ -1,8 +1,15 @@
 # @ohos.usbManager (USB Manager)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 The **usbManager** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as USB interface management, and function switch and query on the device side.
 
->  **NOTE**
+> **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -12,15 +19,37 @@ The **usbManager** module provides USB device management functions, including US
 import { usbManager } from '@kit.BasicServicesKit';
 ```
 
+## How to Use
+
+Perform the following steps when using the APIs with the [USBDevicePipe](#usbdevicepipe) parameter:
+
+**Before use:**
+
+1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the list of USB devices.
+
+2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the temporary device access permission.
+
+3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **USBDevicePipe** as an input parameter.
+
+**After use:**
+
+Call [usbManager.closePipe](#usbmanagerclosepipe) to close a USB device pipe.
+
 ## usbManager.getDevices
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
-Obtains the list of USB devices connected to the host. If no device is connected, an empty list is returned. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
+Obtains the list of USB devices connected to the host.
+
+> **NOTE**
+>
+> If the USB service is running properly but no device is connected, an empty list is returned, which indicates that the call is successful but no USB device is connected.
+>
+> This API returns **undefined** in the following scenarios: the USB host mode is not enabled, the USB service is not correctly initialized, the USB service fails to be connected (for example, the developer mode is disabled), the permission is insufficient, or other system errors occur. Note that you should perform an empty check for the return value.
 
 **System capability**: SystemCapability.USB.USBManager
 
-**Returns**
+**Return value**
 
 | Type                                                  | Description     |
 | ---------------------------------------------------- | ------- |
@@ -109,7 +138,7 @@ Connects to the USB device based on the device information returned by **getDevi
 | -------- | -------- | -------- | ---------------- |
 | device | [USBDevice](#usbdevice) | Yes| USB device. The **busNum** and **devAddress** parameters obtained by **getDevices** are used to determine a USB device. Other parameters are passed transparently.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -155,7 +184,7 @@ Checks whether the user, for example, the application or system, has the device 
 | -------- | -------- | -------- | -------- |
 | deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -198,7 +227,7 @@ Requests the temporary device access permission for the application. This API us
 | -------- | -------- | -------- | -------- |
 | deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -241,7 +270,7 @@ Removes the device access permission for the application. System applications ar
 | -------- | -------- | -------- | -------- |
 | deviceName | string | Yes| Device name, which can be obtained from the device list returned by **getDevices**.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -274,11 +303,12 @@ if (usbManager.removeRight(device.name)) {
 
 claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
-Claims a USB interface.
+Claims a USB device interface.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and interfaces.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+> **NOTE**
+>
+> In USB programming, **claimInterface** is a common operation, which indicates that an application requests the operating system to release a USB interface from the kernel driver and hand over the USB interface to a user space program for control.<br>
+> All the **claim** communication interfaces used below refer to the claim interface operations.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -290,11 +320,11 @@ Claims a USB interface.
 | iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
 | force | boolean | No| Whether to forcibly claim a USB interface. The default value is **false**, which means not to forcibly claim a USB interface. You can set the value as required.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+| number | Returns **0** if the **claim** interface is called successfully; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Error codes**
 
@@ -325,9 +355,11 @@ console.log(`claimInterface = ${ret}`);
 
 releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
-Releases a USB interface.
+Releases the claimed communication interface.
 
-Before you do this, ensure that you have claimed the interface by calling [usbManager.claimInterface](#usbmanagerclaiminterface).
+> **NOTE**
+>
+> Before calling this API, call the [usbManager.claimInterface](#usbmanagerclaiminterface) API to claim a communication interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -338,7 +370,7 @@ Before you do this, ensure that you have claimed the interface by calling [usbMa
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 | iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -376,10 +408,6 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 Sets the device configuration.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device configuration.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
-
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
@@ -389,7 +417,7 @@ Sets the device configuration.
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 | config | [USBConfiguration](#usbconfiguration) | Yes| USB configuration. You can use **getDevices** to obtain device information and identify the USB configuration based on the ID.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -426,10 +454,11 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Sets a USB interface.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the device list and interfaces.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
-4. Call [usbManager.claimInterface](#usbmanagerclaiminterface) to register a communication interface.
+> **NOTE**
+>
+> A USB interface may have multiple selection modes and supports dynamic switching. It is used to reset the endpoint to match the transmission type during data transmission.
+>
+> Before calling this API, call the [usbManager.claimInterface](#usbmanagerclaiminterface) API to claim a communication interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -440,7 +469,7 @@ Sets a USB interface.
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 | iface | [USBInterface](#usbinterface)   | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its **id** and **alternateSetting**.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -478,10 +507,6 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 Obtains the raw USB descriptor. If the USB service is abnormal, **undefined** may be returned. Check whether the return value of the API is empty.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
-
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
@@ -490,7 +515,7 @@ Obtains the raw USB descriptor. If the USB service is abnormal, **undefined** ma
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -524,10 +549,6 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 Obtains the file descriptor.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
-
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
@@ -536,11 +557,11 @@ Obtains the file descriptor.
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 
-**Returns**
+**Return value**
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | Returns the file descriptor corresponding to the device if this API is successful called; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
+| number | Returns the file descriptor corresponding to the device if this API is successfully called; returns an error code otherwise. The error codes are as follows:<br>- 63: The data exceeds the expected maximum volume.<br>- 88080385: This API is not initialized.<br>- 88080482: An invalid value or parameter occurs during the service.<br>- 88080484: No permission.<br>- 88080492: An error occurs when the service data packet is written.<br>- 88080493: An error occurs when the service data packet is read.<br>- 88080497: An error occurs when the internal logic of the service is executed.<br>- -1: The underlying interface fails to be called.|
 
 **Error codes**
 
@@ -562,6 +583,9 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 let ret: number = usbManager.getFileDescriptor(devicepipe);
+console.log(`getFileDescriptor = ${ret}`);
+let closeRet: number = usbManager.closePipe(devicepipe);
+console.log(`closePipe = ${closeRet}`);
 ```
 
 ## usbManager.controlTransfer<sup>(deprecated)</sup>
@@ -570,12 +594,8 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 Performs control transfer.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
-
-**NOTE**
-
+> **NOTE**
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [usbControlTransfer](#usbmanagerusbcontroltransfer12).
 
 **System capability**: SystemCapability.USB.USBManager
@@ -588,7 +608,7 @@ Performs control transfer.
 | controlparam | [USBControlParams](#usbcontrolparamsdeprecated) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
 | timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**. You can set this parameter as required.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -641,10 +661,6 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 
 Performs control transfer.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
-
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
@@ -655,7 +671,7 @@ Performs control transfer.
 | requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
 | timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**, indicating no timeout.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -710,15 +726,11 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 Performs bulk transfer.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain the returned **devicepipe**.
-4. Obtain the [usbManager.claimInterface](#usbmanagerclaiminterface) API.
-5. Call the **usbManager.bulkTransfer** API.
-
 > **NOTE**
 >
 > The total amount of data (including **pipe**, **endpoint**, **buffer**, and **timeout**) transferred in bulk must be less than 200 KB.
+>
+> Before calling this API, the call the [usbManager.claimInterface](#usbmanagerclaiminterface) API to claim a communication interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -731,7 +743,7 @@ Performs bulk transfer.
 | buffer | Uint8Array | Yes| Buffer used to write or read data.|
 | timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**. You can set this parameter as required.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -784,13 +796,11 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 
 Requests a USB data transfer.
 
-This API uses an asynchronous callback to return the result.
-
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain the returned **devicepipe**.
-4. Obtain the [usbManager.claimInterface](#usbmanagerclaiminterface) API.
-5. Call the **usbManager.usbSubmitTransfer** API.
+> **NOTE**
+>
+> This API uses an asynchronous callback to return the result.
+>
+> Before calling this API, call the [usbManager.claimInterface](#usbmanagerclaiminterface) API to claim a communication interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -869,11 +879,10 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 
 Cancels an asynchronous USB data transfer request.
 
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain the returned **devicepipe**.
-4. Obtain the [usbManager.claimInterface](#usbmanagerclaiminterface) API.
-5. Call the **usbManager.usbCancelTransfer** API.
+> **NOTE**
+>
+> This API is used to proactively cancel an unfinished USB data transfer request (for example, the one submitted by **usbSubmitTransfer**).<br>
+> Before calling this API, call the [usbManager.claimInterface](#usbmanagerclaiminterface) API to claim a communication interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -883,7 +892,7 @@ Cancels an asynchronous USB data transfer request.
 | -------- | -------- | -------- | -------- |
 | transfer | [UsbDataTransferParams](#usbdatatransferparams18) | Yes| Only **USBDevicePipe** and **endpoint** are required for canceling the transfer.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -969,7 +978,7 @@ Closes a USB device pipe.
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the message control channel. You need to call **connectDevice** to obtain its value.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -1014,7 +1023,7 @@ You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to
 | --------- | ------------ | ---- | ------------------------------------- |
 | accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
 
-**Returns**
+**Return value**
 
 | Type   | Description                         |
 | ------- | ----------------------------- |
@@ -1061,7 +1070,7 @@ You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to
 | --------- | ------------ | ---- | ------------------------------------- |
 | accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
 
-**Returns**
+**Return value**
 
 | Type            | Description                         |
 | ---------------- | ----------------------------- |
@@ -1142,7 +1151,7 @@ Obtains the list of USB accessories connected to the host.
 
 **System capability**: SystemCapability.USB.USBManager
 
-**Returns**
+**Return value**
 
 | Type                         | Description                                              |
 | ----------------------------- | -------------------------------------------------- |
@@ -1185,7 +1194,7 @@ You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to
 | --------- | ------------ | ---- | ------------------------------------- |
 | accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
 
-**Returns**
+**Return value**
 
 | Type              | Description       |
 | ------------------ | ----------- |
@@ -1270,11 +1279,9 @@ resetUsbDevice(pipe: USBDevicePipe): boolean
 
 Resets a USB peripheral.
 
-Previous configurations and APIs will be reset. Ensure that the related services have been completed before calling this API. Before calling this API, perform the following operations:
-
-1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the device list.
-2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
-3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as the input parameter of this API.
+> **NOTE**
+>
+> Previous configurations and APIs will be reset. Ensure that the related services have been completed before calling this API.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -1284,7 +1291,7 @@ Previous configurations and APIs will be reset. Ensure that the related services
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 
-**Returns**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -1325,6 +1332,12 @@ try {
 
 Represents the USB endpoint from which data is sent or received. You can obtain the USB endpoint through [USBInterface](#usbinterface).
 
+>**NOTE**
+>
+> The host controller schedules the endpoint based on the endpoint type.
+>
+> The transmission characteristics are determined by the type during protocol layer packaging.
+
 **System capability**: SystemCapability.USB.USBManager
 
 | Name           | Type                                       | Mandatory           |Description           |
@@ -1335,7 +1348,7 @@ Represents the USB endpoint from which data is sent or received. You can obtain 
 | maxPacketSize | number                                      | Yes|Maximum size of data packets on the endpoint.   |
 | direction     | [USBRequestDirection](#usbrequestdirection) | Yes|Endpoint direction.       |
 | number        | number                                      | Yes|Endpoint number.         |
-| type          | number                                      | Yes|Endpoint type.        |
+| type          | number                                      | Yes|Endpoint type. For details, see [UsbEndpointTransferType](#usbendpointtransfertype18).        |
 | interfaceId   | number                                      | Yes|Unique ID of the interface to which the endpoint belongs.|
 
 ## USBInterface
@@ -1350,7 +1363,7 @@ Represents a USB interface. One [USBConfiguration](#usbconfiguration) object can
 | protocol         | number                                   | Yes|Interface protocol.               |
 | clazz            | number                                   | Yes|Device type.                |
 | subClass         | number                                   | Yes|Device subclass.                |
-| alternateSetting | number                                   | Yes|Settings for alternating between descriptors of the same USB interface.|
+| alternateSetting | number                                   | Yes|Settings for alternating between descriptors of the same USB interface. The value size indicates the number of optional modes. The value 0 indicates that no optional mode is supported.|
 | name             | string                                   | Yes|Interface name.                |
 | endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Yes|Endpoints that belong to the USB interface.          |
 
@@ -1407,8 +1420,8 @@ Represents a USB device pipe, which is used to determine a USB device.
 
 Represents control transfer parameters.
 
-**NOTE**
-
+>**NOTE**
+>
 > This API is supported since API version 9 and deprecated since API version 18. You are advised to use [USBDeviceRequestParams](#usbdevicerequestparams12) instead.
 
 **System capability**: SystemCapability.USB.USBManager

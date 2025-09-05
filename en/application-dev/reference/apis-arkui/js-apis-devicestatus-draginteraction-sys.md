@@ -72,10 +72,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   dragInteraction.on('drag', (data: dragInteraction.DragState) => {
-    console.log(`Drag interaction event: ${JSON.stringify(data)}`);
+    console.info(`Drag interaction event: ${data}`);
   });
 } catch (error) {
-  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -110,28 +110,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 // Unregister a single callback.
 function single_callback(event: dragInteraction.DragState) {
-  console.log(`Drag interaction event: ${JSON.stringify(event)}`);
+  console.info(`Drag interaction event: ${event}`);
   return false;
 }
 try {
   dragInteraction.on('drag', single_callback);
   dragInteraction.off("drag", single_callback);
 } catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ```ts
 // Unregister all callbacks.
 function all_callback(event: dragInteraction.DragState) {
-  console.log(`Drag interaction event: ${JSON.stringify(event)}`);
+  console.info(`Drag interaction event: ${event}`);
   return false;
 }
 try {
   dragInteraction.on('drag', all_callback);
   dragInteraction.off("drag");
 } catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -163,7 +163,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let summarys: Array<dragInteraction.Summary> = dragInteraction.getDataSummary();
-console.log(`Drag interaction summarys: ${JSON.stringify(summarys)}`);
+console.info(`Drag interaction summarys: ${summarys}`);
 ```
 
 ## dragInteraction.setDragSwitchState<sup>18+</sup>

@@ -1,11 +1,19 @@
 # Introduction to AVCodec Kit
+
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran; @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee; @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 Audio and Video Codec (AVCodec) Kit provides capabilities such as audio/video encoding and decoding, media file multiplexing and demultiplexing, and media data input.
 For performance reasons, AVCodec Kit provides only C APIs.
 
 ## Capability Scope
 - Media data input: Media applications can pass in the FD of a file or the URL of a stream for subsequent processing such as media information parsing.
 - Media foundation: provides common basic types for media data processing, including [AVBuffer](../../reference/apis-avcodec-kit/native__avbuffer_8h.md) and [AVFormat](../../reference/apis-avcodec-kit/native__avformat_8h.md).
-- Audio encoding: Audio applications (such as audio calling and audio recording applications) can send uncompressed audio data to the audio encoder for encoding. The applications can set parameters such as the encoding format, bit rate, and sampling rate to obtain compressed audio files in desired formats.
+- Audio encoding: Audio applications (such as audio calling and audio recording applications) can send uncompressed audio data to the audio encoder for encoding. The applications can set parameters such as the encoding format, bit rate, and sample rate to obtain compressed audio files in desired formats.
 - Video encoding: Video applications (such as video calling and video recording applications) can send uncompressed video data to the video encoder for encoding. The applications can set parameters such as the encoding format, bit rate, and frame rate to obtain compressed video files in desired formats.
 - Audio decoding: Audio applications (such as audio calling application and audio player) can send audio streams to the audio decoder for decoding. The decoded data can be sent to audio devices for playback.
 - Video decoding: Video applications (such as video calling application and video player) can send video streams to the video decoder for decoding. The decoded image data can be sent to display devices for display.
@@ -43,7 +51,7 @@ For performance reasons, AVCodec Kit provides only C APIs.
   
   ![](figures/avcodec-vcodec-logic.png)
 
-  For details about the development guide, see [Video Decoding in Surface Output](video-decoding.md#surface-output) and [Video Encoding in Surface Input](video-encoding.md#surface-input).
+  For details about the development guide, see [Video Decoding in Surface Mode](video-decoding.md#surface-mode) and [Video Encoding in Surface Mode](video-encoding.md#surface-mode).
 
 - Audio codec
 

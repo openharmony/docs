@@ -80,8 +80,8 @@ CSP与Actor之间的主要区别：
    
    ```typescript
    // 引入worker模块
-   import worker, { MessageEvents } from '@ohos.worker';
-   import type common from '@ohos.app.ability.common';
+   import { MessageEvents, worker } from '@kit.ArkTS';
+   import { common } from '@kit.AbilityKit';
    
    let workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts', { 
      name: 'FriendsMoments Worker'
@@ -101,7 +101,7 @@ CSP与Actor之间的主要区别：
    
    ```typescript
    // 引入worker模块
-   import worker, { MessageEvents } from '@ohos.worker';
+   import { MessageEvents, worker } from '@kit.ArkTS';
    
    let workerPort = worker.workerPort;
    // 接收宿主线程的postMessage请求
@@ -213,7 +213,7 @@ TaskPool的适用场景主要分为如下三类：
 1. 首先import引入TaskPool模块，TaskPool的API介绍可参见[@ohos.taskpool（启动TaskPool）](../reference/apis-arkts/js-apis-taskpool.md)。
    
    ```typescript
-   import taskpool from '@ohos.taskpool';
+   import { taskpool } from '@kit.ArkTS';
    ```
 
 2. new一个task对象，其中传入被调用的方法和参数。
@@ -396,11 +396,11 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 ### 在TaskPool线程操作关系型数据库
 
-#### 场景问题
+**场景问题**
 
 使用移动设备时，核心应用界面（如信息流、历史记录、项目列表）滑动操作频繁出现滞后与卡顿，影响功能访问与操作效率，降低用户体验。滑动性能下降源于潜在的后台耗时任务、资源管理问题等，导致界面帧率下降与反馈失真。需要对系统或应用进行排查优化。
 
-#### 原因分析
+**原因分析**
 
 在应用程序运行过程中，由于主线程执行数据库查询操作耗时过长，且进行多次此类查询，导致主线程负担加重，无法及时完成界面渲染任务。由此引发的后果是，界面的更新与展示严重受阻，出现明显的卡顿现象，严重影响了用户交互体验与应用程序的整体性能表现。
 
@@ -408,7 +408,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 ![数据库查询耗时图](figures/multi_thread_capability_search_rdb.PNG)
 
-#### 解决方案
+**解决方案**
 
 为解决主线程因执行全量联系人查询操作而导致的界面滑动卡顿和渲染阻塞问题，采取以下优化措施：
 
@@ -418,7 +418,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 这两项举措旨在协同改善应用程序性能，确保界面的流畅渲染，提升用户使用体验。
 
-#### 代码实现
+**代码实现**
 
 **1.TaskPool线程池实现**
 
@@ -428,8 +428,8 @@ workerPort.onmessage = (e: MessageEvents): void => {
   
   ```ts
   
-  import taskPool from '@ohos.taskpool';
-  import common from '@ohos.app.ability.common';
+  import { taskpool } from '@kit.ArkTS';
+  import { common } from '@kit.AbilityKit';
   import { Contact } from '../constant/Contact';
   
   /**
@@ -450,9 +450,8 @@ workerPort.onmessage = (e: MessageEvents): void => {
   函数`taskPoolExecuteBatchInsert`为异步操作，利用`taskPool`执行批量添加联系人至数据库的任务。它接受`common.Context`类型的`context`参数和`Array<Contact>`类型的`array`参数。内部，通过创建`taskPool.Task`实例包括`batchInsert`执行函数、`context`及待插入的联系人数据`array`，并利用`await taskPool.execute(task)`异步执行此任务。如果执行过程中出现异常，则在`catch`块中捕获并使用`Logger.error`记录日志。
   
   ```ts
-  
-  import taskPool from '@ohos.taskpool';
-  import common from '@ohos.app.ability.common';
+  import { taskpool } from '@kit.ArkTS';
+  import { common } from '@kit.AbilityKit';
   import { Contact } from '../constant/Contact';
   
   /**
@@ -467,15 +466,14 @@ workerPort.onmessage = (e: MessageEvents): void => {
     }
   }
   ```
-
+  
 - TaskPool子线程执行数据库查询操作
   
   异步函数`taskPoolExecuteQuery`接收`common.Context`参数`context`，利用线程池 (`taskPool`)执行联系人数据库的查询操作。其过程包括：创建`taskPool.Task`实例（封装查询操作与传递上下文参数`context`），通过`taskPool.execute`执行该任务，将结果断言为`Array<Contact>`并返回。若执行时出现异常，记录错误日志并返回空的`Contact`数组。
   
   ```ts
-  
-  import taskPool from '@ohos.taskpool';
-  import common from '@ohos.app.ability.common';
+  import { taskpool } from '@kit.ArkTS';
+  import { common } from '@kit.AbilityKit';
   import { Contact } from '../constant/Contact';
   
   /**
@@ -515,11 +513,9 @@ workerPort.onmessage = (e: MessageEvents): void => {
   综上，该函数主要负责根据提供的`Contact`信息，确保数据库连接后向指定表中插入新数据，并在关键环节记录日志。
   
   ```ts
-  
-  import rdb from '@ohos.data.relationalStore';
-  import type common from '@ohos.app.ability.common';
+  import { relationalStore, ValuesBucket } from '@kit.ArkData';
+  import { common } from '@kit.AbilityKit';
   import { Contact } from '../constant/Contact';
-  import { ValuesBucket } from '@ohos.data.ValuesBucket';
   
   /**
    * 数据库新增操作
@@ -548,12 +544,12 @@ workerPort.onmessage = (e: MessageEvents): void => {
       'age': value5,
     };
     if (this.rdbStore != undefined) {
-      let ret = await this.rdbStore.insert(TABLE_NAME, valueBucket, rdb.ConflictResolution.ON_CONFLICT_REPLACE);
+      let ret = await this.rdbStore.insert(TABLE_NAME, valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
       Logger.info(TAG, `insert done:${ret}`);
     }
   }
   ```
-
+  
 - relationalStore数据库批量新增方法
   
   异步函数`batchInsertData`用于执行数据库批量新增操作，接收`common.Context`参数`context`与`Array<Contact>`类型的`array`参数。执行流程如下：
@@ -574,11 +570,9 @@ workerPort.onmessage = (e: MessageEvents): void => {
   综上，该函数主要负责根据提供的`Array<Contact>`信息，确保数据库连接后向指定表中批量插入新数据，并在关键环节记录日志。
   
   ```ts
-  
-  import rdb from '@ohos.data.relationalStore';
-  import type common from '@ohos.app.ability.common';
+  import { relationalStore, ValuesBucket } from '@kit.ArkData';
+  import { common } from '@kit.AbilityKit';
   import { Contact } from '../constant/Contact';
-  import { ValuesBucket } from '@ohos.data.ValuesBucket';
   
   /**
      * 批量插入数据库
@@ -622,7 +616,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
       }
     }
   ```
-
+  
 - relationalStore数据库查询方法
   
   函数`query`负责执行数据库查询操作，接收`common.Context`参数`context`，返回Promise封装的`Contact`数组。执行流程如下：
@@ -630,20 +624,19 @@ workerPort.onmessage = (e: MessageEvents): void => {
   
   2. 检查`predicates`（返回带有和表名`TABLE_NAME`匹配的Rdb谓词）是否为空或未定义，若满足条件则记录相应日志并直接返回空数组。
   
-  3. 通过`rdb.getRdbStore(context, STORE_CONFIG)`获取或创建数据库连接（`rdbStore`）。若未成功获取到连接，则异步调用`initRdbStore(context)`进行初始化。
+  3. 通过`relationalStore.getRdbStore(context, STORE_CONFIG)`获取或创建数据库连接（`rdbStore`）。若未成功获取到连接，则异步调用`initRdbStore(context)`进行初始化。
   
   4. 若成功获取到`rdbStore`，执行以下操作：
      
-     a. 使用`this.rdbStore.query(predicates, this.columns)`方法根据给定的查询条件`predicates`与列名列表`this.columns`执行查询，获取`rdb.ResultSet`实例。
+     a. 使用`this.rdbStore.query(predicates, this.columns)`方法根据给定的查询条件`predicates`与列名列表`this.columns`执行查询，获取`relationalStore.ResultSet`实例。
      
      b. 调用`this.getListFromResultSet(resultSet)`方法处理查询结果集，将其转化为`Contact`数组并返回。
   
   综上，该函数主要负责根据提供的`context`与查询条件`predicates`（若已定义），确保数据库连接后执行查询操作，处理结果并返回`Contact`数组。在关键环节记录日志，若出现输入参数问题或无法成功建立数据库连接，则返回空数组。
   
   ```ts
-  
-  import rdb from '@ohos.data.relationalStore';
-  import type common from '@ohos.app.ability.common';
+  import { relationalStore } from '@kit.ArkData';
+  import { common } from '@kit.AbilityKit';
   
   /**
    * 数据库查询操作
@@ -658,12 +651,12 @@ workerPort.onmessage = (e: MessageEvents): void => {
       Logger.info(TAG, 'predicates is null or undefined');
       return [];
     }
-    this.rdbStore = await rdb.getRdbStore(context, STORE_CONFIG);
+    this.rdbStore = await relationalStore.getRdbStore(context, STORE_CONFIG);
     if (!this.rdbStore) {
       await this.initRdbStore(context);
     } else {
       // 默认查询所有列
-      let resultSet: rdb.ResultSet = await this.rdbStore.query(predicates, this.columns);
+      let resultSet: relationalStore.ResultSet = await this.rdbStore.query(predicates, this.columns);
       Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount));
       // 处理查询到的结果数组
       return this.getListFromResultSet(resultSet);
@@ -671,16 +664,16 @@ workerPort.onmessage = (e: MessageEvents): void => {
     return [];
   }
   ```
-
+  
 - relationalStore数据库查询结果处理方法
   
-  函数`getListFromResultSet`用于将给定的`rdb.ResultSet`对象解析为`Contact`数组。首先初始化空数组`contacts`，然后逐行遍历结果集。对于每一行，提取各列数据并构建一个`Contact`对象，通过检查数组中是否存在具有相同ID的联系人来防止重复添加。遍历结束后，关闭结果集以释放资源，最后返回包含所有联系人信息的数组。
+  函数`getListFromResultSet`用于将给定的`relationalStore.ResultSet`对象解析为`Contact`数组。首先初始化空数组`contacts`，然后逐行遍历结果集。对于每一行，提取各列数据并构建一个`Contact`对象，通过检查数组中是否存在具有相同ID的联系人来防止重复添加。遍历结束后，关闭结果集以释放资源，最后返回包含所有联系人信息的数组。
   
   ```ts
   /**
    * 处理数据格式
    */
-  getListFromResultSet(resultSet: rdb.ResultSet): Array<Contact> {
+  getListFromResultSet(resultSet: relationalStore.ResultSet): Array<Contact> {
     // 声明结果变量
     let contacts: Array<Contact> = [];
     // 进入结果集的第一行
@@ -766,7 +759,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
      })
   ```
 
-#### 分析比对
+**分析比对**
 
 **数据库查询操作**
 
@@ -788,7 +781,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 ![批量插入数据任务](figures/multi_thread_capability_batch_Insert.PNG)
 
-#### 结论
+**结论**
 
 运用TaskPool线程池技术创建子线程执行数据库查询任务，可有效避免主线程阻塞，确保其专注于关键操作如界面渲染和用户交互，提升应用流畅度与用户体验。查询结果通过`.then()`异步返回，实现非阻塞处理与列表数据刷新，既充分利用系统资源、加快响应速度，又保持代码结构清晰、易于维护，是一种兼顾效率与可读性的数据库查询优化策略。
 

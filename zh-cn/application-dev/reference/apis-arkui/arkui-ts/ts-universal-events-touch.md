@@ -77,7 +77,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt; | 由历史点组成的数组。 |
 
 
-## TouchObject对象说明
+## TouchObject
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,7 +97,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | pressure<sup>15+</sup> | number | 否 | 是 | 当前手指按压的压力值。<br/>取值范围：[0,65535)，压力越大，值越大。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | width<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的宽度。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | height<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的高度。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| hand<sup>15+</sup> | [InteractionHand](./ts-appendix-enums.md#interactionhand15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | globalDisplayX<sup>20+</sup> | number | 否 | 是 | 触摸点位置相对于全局屏幕左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | globalDisplayY<sup>20+</sup> | number | 否 | 是 | 触摸点位置相对于全局屏幕左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
@@ -111,7 +111,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 | 名称         | 类型                        | 只读 | 可选       | 说明                                                                         |
 | ----------- | -----------------------------|------ | ----------|------------------------------------------------------------------- |
-| touchObject | [TouchObject](#touchobject对象说明)  | 否 | 否 | 历史点对应触摸事件的基础信息。                                                   |
+| touchObject | [TouchObject](#touchobject)  | 否 | 否 | 历史点对应触摸事件的基础信息。                                                   |
 | size        | number                              | 否 | 否 | 历史点对应触摸事件中手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
 | force       | number                              | 否 | 否 | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大，值越大。|
 | timestamp   | number                              | 否 | 否 | 历史点对应触摸事件的时间戳，表示触发事件时距离系统启动的时间间隔。<br>单位：ns           |

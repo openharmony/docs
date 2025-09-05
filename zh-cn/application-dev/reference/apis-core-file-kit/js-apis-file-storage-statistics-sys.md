@@ -61,7 +61,12 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
       console.info("getTotalSizeOfVolume successfully:" + number);
@@ -110,7 +115,12 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {
@@ -167,7 +177,12 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
       console.info("getFreeSizeOfVolume successfully:" + number);
@@ -216,7 +231,12 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {

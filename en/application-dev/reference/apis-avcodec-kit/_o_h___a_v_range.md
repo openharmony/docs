@@ -3,7 +3,7 @@
 
 ## Overview
 
-The OH_AVRange struct describes the value range, which contains the minimum value and maximum value.
+The struct describes the value range, which contains the minimum value and maximum value.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
