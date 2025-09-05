@@ -1318,3 +1318,279 @@ DLP文件授权类型的枚举。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | policyString | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
+
+
+## dlpPermission.generateDlpFileForEnterprise<sup>21+</sup>
+
+generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPProperty, customProperty: CustomProperty): Promise&lt;void&gt;
+
+获取DLPFile管理对象。使用Promise异步回调。
+>**说明：**
+>
+> 使用该接口可以将明文文件加密生成权限受控文件，仅拥有完全控制权限的用户可以打开。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| plaintextFd | number | 是 | 明文文件的fd。 |
+| dlpFd | number | 是 | 加密文件的fd。 |
+| property | [DLPProperty](#dlpproperty) | 是 | DLP文件通用策略。 |
+| customProperty | [CustomProperty](#customproperty20) | 是 | 企业定制策略。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function ExampleFunction(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd: number | undefined = undefined;
+  let dlpFd: number | undefined = undefined;
+  try {
+    plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_ONLY).fd;
+    dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+    let dlpProperty: dlpPermission.DLPProperty = {
+      ownerAccount: 'zhangsan',
+      ownerAccountType: dlpPermission.AccountType.DOMAIN_ACCOUNT,
+      authUserList: [],
+      contactAccount: 'zhangsan',
+      offlineAccess: true,
+      ownerAccountID: 'xxxxxxx',
+      everyoneAccessList: []
+    };
+    let customProperty: dlpPermission.CustomProperty = {
+      enterprise: 'customProperty'
+    };
+    await dlpPermission.generateDlpFileForEnterprise(plaintextFd, dlpFd, dlpProperty, customProperty);
+    console.info('Successfully generate DLP file for enterprise.');
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+  } finally {
+    if (dlpFd) {
+      fileIo.closeSync(dlpFd);
+    }
+    if (plaintextFd) {
+      fileIo.closeSync(plaintextFd);
+    }
+  }
+}
+```
+
+## dlpPermission.decryptDlpFile<sup>21+</sup>
+
+decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
+
+将DLP文件解密生成明文文件。使用Promise异步回调。
+>**说明：**
+>
+> 仅拥有完全控制权限的用户可以解密DLP文件。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | 是 | 待解密文件的fd。 |
+| plaintextFd | number | 是 | 目标解密文件的fd。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function ExampleFunction(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd: number | undefined = undefined;
+  let dlpFd: number | undefined = undefined;
+  try {
+    plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+    dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+    await dlpPermission.decryptDlpFile(dlpFd, plaintextFd);
+    console.info('Successfully decrypt DLP file.');
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+  } finally {
+    if (dlpFd) {
+      fileIo.closeSync(dlpFd);
+    }
+    if (plaintextFd) {
+      fileIo.closeSync(plaintextFd);
+    }
+  }
+}
+```
+
+## dlpPermission.queryDlpPolicy<sup>21+</sup>
+
+queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
+
+在DLP文件中解析文件头，获取DLP明文策略。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | 是 | 待解密文件的fd。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise对象，返回当前DLP策略的json字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function ExampleFunction(dlpFilePath: string) {
+  let dlpFd : number | undefined = undefined;
+  try {
+    dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+    let policy: string = await dlpPermission.queryDlpPolicy(dlpFd);
+    console.info('DLP policy:' + policy);
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+  } finally {
+    if (dlpFd) {
+      fileIo.closeSync(dlpFd);
+    }
+  }
+}
+```
+
+## AccountType
+
+授权账号类型的枚举。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| CLOUD_ACCOUNT | 1 | 表示云账号。 |
+| DOMAIN_ACCOUNT | 2 | 表示域账号。 |
+| ENTERPRISE_ACCOUNT | 2 | 表示企业账号。 |
+
+## CustomProperty<sup>21+</sup>
+
+表示自定义策略。
+
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
+
+## DLPProperty
+
+表示授权相关信息。
+
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| ownerAccount | string | 否 | 否 | 表示权限设置者账号。不超过255字节。 |
+| ownerAccountID | string | 否 | 否 | 表示权限设置者账号的ID。不超过255字节。 |
+| ownerAccountType | [AccountType](#accounttype) | 否 | 否 | 表示权限设置者账号类型。 |
+| authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 是 | 表示授权用户列表，默认为空。 |
+| contactAccount | string | 否 | 否 | 表示联系人账号。不超过255字节。 |
+| offlineAccess | boolean | 否 | 否 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
+| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 是 | 表示授予所有人的权限，默认为空。 |
+| expireTime<sup>11+</sup> | number | 否 | 是 | 表示文件权限到期时间戳，默认为空。 |
+| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
+| appId | string | 否 | 是 | 表示文件的标识。不超过255字节。 |
+
+## AuthUser
+
+表示授权用户数据。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| authAccount | string | 否 | 否 | 表示被授权用户账号。不超过255字节。 |
+| authAccountType | [AccountType](#accounttype) | 否 | 否 | 表示被授权用户账号类型。 |
+| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 否 | 表示被授予的权限。 |
+| permExpiryTime | number | 否 | 否 | 表示授权到期时间。 |
