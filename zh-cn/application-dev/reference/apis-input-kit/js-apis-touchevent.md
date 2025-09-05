@@ -69,7 +69,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 | 名称          | 类型   | 只读   | 可选   | 说明                                  |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
-| id          | number | 否    | 否    | 触屏事件标识。                                |
+| id          | number | 否    | 否    | 触屏事件id。                                |
 | pressedTime | number | 否    | 否    | 按下时间戳，单位：μs。                           |
 | screenX     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。    |
 | screenY     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。    |

@@ -266,7 +266,7 @@ struct Index {
 
 isPointerVisibleSync(): boolean
 
-使用同步方式获取鼠标指针显示或者隐藏。
+获取鼠标指针的显示或隐藏，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -689,8 +689,8 @@ struct Index {
 | TOUCHPAD_RIGHT_BUTTON            | 1    |按压触控板右键区域。 |
 | TOUCHPAD_LEFT_BUTTON            | 2    |按压触控板左键区域。 |
 | TOUCHPAD_TWO_FINGER_TAP         | 3    |双指轻击或双指按压触控板。|
-| TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>       | 4    |双指轻击或双指按压触控板、或按压触控板右键区域。|
-| TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>         | 5    |双指轻击或双指按压触控板、或按压触控板左键区域。|
+| TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>       | 4    |双指轻击或双指按压触控板、按压触控板右键区域。|
+| TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>         | 5    |双指轻击或双指按压触控板、按压触控板左键区域。|
 
 ## PointerStyle
 
