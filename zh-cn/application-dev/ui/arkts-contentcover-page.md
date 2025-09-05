@@ -224,3 +224,5 @@ struct BindContentCoverDemo {
   }
 }
 ```
+
+![modalTransition](figures/modalTransition.PNG)

@@ -1058,7 +1058,7 @@ Describes the picture-attached notification.
 | additionalText | string         | Yes | Yes | Additional information of the notification.|
 | briefText      | string         | Yes | Yes | Brief text of the notification.|
 | expandedTitle  | string         | Yes | Yes | Title of the notification in the expanded state.                |
-| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes | Yes | Picture attached to the notification.                  |
+| picture        | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes | Yes | Picture attached to the notification.                  |
 
 
 ## NotificationContent
@@ -1103,8 +1103,8 @@ Describes the notification request.
 | badgeIconStyle        | number                                        | Yes | Yes | Notification badge type.              |
 | showDeliveryTime      | boolean                                       | Yes | Yes | Whether to display the time when the notification is delivered.          |
 | actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Yes | Yes | Buttons in the notification. Up to two buttons are allowed.    |
-| smallIcon             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes | Yes | Small notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
-| largeIcon             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes | Yes | Large notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
+| smallIcon             | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes | Yes | Small notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
+| largeIcon             | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes | Yes | Large notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
 | creatorBundleName     | string                                        | Yes | No | Name of the bundle that creates the notification.            |
 | creatorUid            | number                                        | Yes | No | UID used for creating the notification.             |
 | creatorPid            | number                                        | Yes | No | PID used for creating the notification.             |

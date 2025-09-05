@@ -37,6 +37,11 @@ border(value: BorderOptions): T
 | --- | --- |
 |  T | 返回当前组件。 |
 
+
+>  **说明：**
+>
+>  color、radius缺省时，为了保证[borderColor](#bordercolor)、[borderRadius](#borderradius)生效，需要将[borderColor](#bordercolor)、[borderRadius](#borderradius)设置在[border](#border)后。
+
 ## borderStyle
 
 borderStyle(value: BorderStyle | EdgeStyles): T

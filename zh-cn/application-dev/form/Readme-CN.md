@@ -1,4 +1,10 @@
 # Form Kit（卡片开发服务）<!--form-kit-->
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 - [Form Kit简介](formkit-overview.md)
 - ArkTS卡片开发（推荐）<!--arkts-ui-->
   - [ArkTS卡片概述](arkts-form-overview.md)
@@ -11,6 +17,7 @@
       - [ArkTS卡片界面开发概述](arkts-ui-widget-page-overview.md)
       - [ArkTS卡片为组件添加动效](arkts-ui-widget-page-animation.md)
       - [ArkTS卡片使用画布组件绘制自定义图形](arkts-ui-widget-page-custom-drawing.md)
+      - [ArkTS卡片界面适配深浅色模式](arkts-ui-widget-dark-light-color-adapt.md)
     - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
       - [ArkTS卡片页面刷新概述](arkts-ui-widget-interaction-overview.md)
       - [ArkTS卡片主动刷新](arkts-ui-widget-active-refresh.md)

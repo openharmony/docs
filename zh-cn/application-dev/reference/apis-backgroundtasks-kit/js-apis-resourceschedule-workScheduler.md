@@ -51,6 +51,7 @@ startWork(work: WorkInfo): void
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
   
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -105,6 +106,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -159,6 +161,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
     if (error) {
@@ -205,6 +208,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
     console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
@@ -274,6 +278,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
     if (error) {
@@ -313,6 +318,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
     console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
@@ -344,6 +350,7 @@ stopAndClearWorks(): void
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   try{
     workScheduler.stopAndClearWorks();
@@ -419,6 +426,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
     if (error) {
@@ -465,6 +473,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   workScheduler.isLastWorkTimeOut(500)
     .then((res: boolean) => {

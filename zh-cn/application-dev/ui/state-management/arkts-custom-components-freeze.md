@@ -53,10 +53,10 @@
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page1 {
-  @StorageLink('PropA') @Watch("first") storageLink: number = 47;
+  @StorageLink('PropA') @Watch('first') storageLink: number = 47;
 
   first() {
-    console.info("first page " + `${this.storageLink}`);
+    console.info('first page ' + `${this.storageLink}`);
   }
 
   build() {
@@ -81,10 +81,10 @@ struct Page1 {
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page2 {
-  @StorageLink('PropA') @Watch("second") storageLink2: number = 1;
+  @StorageLink('PropA') @Watch('second') storageLink2: number = 1;
 
   second() {
-    console.info("second page: " + `${this.storageLink2}`);
+    console.info('second page: ' + `${this.storageLink2}`);
   }
 
   build() {
@@ -130,7 +130,7 @@ struct Page2 {
 @Entry
 @Component
 struct TabContentTest {
-  @State @Watch("onMessageUpdated") message: number = 0;
+  @State @Watch('onMessageUpdated') message: number = 0;
   private data: number[] = [0, 1];
 
   onMessageUpdated() {
@@ -160,7 +160,7 @@ struct TabContentTest {
 
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
-  @Link @Watch("onMessageUpdated") message: number;
+  @Link @Watch('onMessageUpdated') message: number;
   index: number = 0;
 
   onMessageUpdated() {
@@ -168,7 +168,7 @@ struct FreezeChild {
   }
 
   build() {
-    Text("message" + `${this.message}, index: ${this.index}`)
+    Text('message' + `${this.message}, index: ${this.index}`)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
   }
@@ -276,7 +276,7 @@ class MyDataSource extends BasicDataSource {
 @Component
 struct LforEachTest {
   private data: MyDataSource = new MyDataSource();
-  @State @Watch("onMessageUpdated") message: number = 0;
+  @State @Watch('onMessageUpdated') message: number = 0;
 
   onMessageUpdated() {
     console.info(`LazyforEach message callback func ${this.message}`);
@@ -307,8 +307,8 @@ struct LforEachTest {
 
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
-  @Link @Watch("onMessageUpdated") message: number;
-  index: string = "";
+  @Link @Watch('onMessageUpdated') message: number;
+  index: string = '';
 
   aboutToAppear() {
     console.info(`FreezeChild aboutToAppear index: ${this.index}`);
@@ -319,7 +319,7 @@ struct FreezeChild {
   }
 
   build() {
-    Text("message" + `${this.message}, index: ${this.index}`)
+    Text('message' + `${this.message}, index: ${this.index}`)
       .width('90%')
       .height(160)
       .backgroundColor(0xAFEEEE)
@@ -351,7 +351,7 @@ struct FreezeChild {
 @Component
 struct MyNavigationTestStack {
   @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @State @Watch("info") message: number = 0;
+  @State @Watch('info') message: number = 0;
   @State logNumber: number = 0;
 
   info() {
@@ -403,7 +403,7 @@ struct PageOneStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
-        Text("cur stack size:" + `${this.pageInfo.size()}`)
+        Text('cur stack size:' + `${this.pageInfo.size()}`)
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
@@ -440,7 +440,7 @@ struct PageTwoStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
-        Text("cur stack size:" + `${this.pageInfo.size()}`)
+        Text('cur stack size:' + `${this.pageInfo.size()}`)
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
@@ -477,7 +477,7 @@ struct PageThreeStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
-        Text("cur stack size:" + `${this.pageInfo.size()}`)
+        Text('cur stack size:' + `${this.pageInfo.size()}`)
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
@@ -505,7 +505,7 @@ struct PageThreeStack {
 
 @Component({ freezeWhenInactive: true })
 struct NavigationContentMsgStack {
-  @Link @Watch("info") message: number;
+  @Link @Watch('info') message: number;
   @Link index: number;
   @Link logNumber: number;
 
@@ -517,10 +517,10 @@ struct NavigationContentMsgStack {
 
   build() {
     Column() {
-      Text("msg:" + `${this.message}`)
+      Text('msg:' + `${this.message}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      Text("log number:" + `${this.logNumber}`)
+      Text('log number:' + `${this.logNumber}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
     }
@@ -786,7 +786,7 @@ struct Page {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string, index: number) => {
           ListItem() {
-            ChildComponent({index: index, item: item, desc: this.desc}).reuseId(index % 10 < 5 ? "1": "0")
+            ChildComponent({index: index, item: item, desc: this.desc}).reuseId(index % 10 < 5 ? '1': '0')
           }
         }, (item: string) => item)
       }.cachedCount(5)
@@ -966,7 +966,7 @@ struct Page {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string, index: number) => {
           ListItem() {
-            ChildComponent({index: index, item: item, desc: this.desc}).reuseId(index % 10 < 5 ? "1": "0")
+            ChildComponent({index: index, item: item, desc: this.desc}).reuseId(index % 10 < 5 ? '1': '0')
           }
         }, (item: string) => item)
       }
@@ -974,7 +974,7 @@ struct Page {
       .height('60%')
 
       if (this.flag) {
-        ChildComponent({index: -1, item: 'Hello', desc: this.desc}).reuseId( "1")
+        ChildComponent({index: -1, item: 'Hello', desc: this.desc}).reuseId( '1')
       }
     }
     .height('100%')
@@ -1389,7 +1389,7 @@ class Params {
 // 定义一个BuildNodeChild组件，它包含一个message属性和一个index属性
 @Component
 struct BuildNodeChild {
-  @StorageProp("buildNodeTest") @Watch("onMessageUpdated") message: string = "hello world";
+  @StorageProp('buildNodeTest') @Watch('onMessageUpdated') message: string = 'hello world';
   @State index: number = 0;
 
   // 当message更新时，调用此方法
@@ -1433,13 +1433,13 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @StorageLink("buildNodeTest") message: string = "hello";
+  @StorageLink('buildNodeTest') message: string = 'hello';
   private data: number[] = [0, 1];
 
   build() {
     Row() {
       Column() {
-        Button("change").fontSize(30)
+        Button('change').fontSize(30)
           .onClick(() => {
             this.message += 'a';
           })
@@ -1461,7 +1461,7 @@ struct Index {
 // 定义一个FreezeBuildNode组件，它包含一个message属性和一个index属性
 @Component({ freezeWhenInactive: true })
 struct FreezeBuildNode {
-  @StorageProp("buildNodeTest") @Watch("onMessageUpdated") message: string = "1111";
+  @StorageProp('buildNodeTest') @Watch('onMessageUpdated') message: string = '1111';
   @State index: number = 0;
 
   // 当message更新时，调用此方法
@@ -1480,7 +1480,7 @@ struct FreezeBuildNode {
 
 在上面的示例中：
 
-点击Button("change")。改变message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。未显示的TabContent中的BuilderNode节点下组件的@Watch方法onMessageUpdated也被触发，并没有被冻结。
+点击Button('change')。改变message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。未显示的TabContent中的BuilderNode节点下组件的@Watch方法onMessageUpdated也被触发，并没有被冻结。
 
 ![builderNode.gif](figures/builderNode.gif)
 

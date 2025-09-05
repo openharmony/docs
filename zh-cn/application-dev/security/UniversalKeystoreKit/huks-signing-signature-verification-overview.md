@@ -17,7 +17,9 @@
 
 **建议开发者使用必选规格开发应用，可保证全平台兼容。**
 <!--DelEnd-->
-**标准设备规格**
+
+**<!--RP3-->标准设备<!--RP3End-->规格**
+
 | 算法/摘要算法/填充模式 | 备注 | API级别 | <!--DelCol4-->是否必选规格 |
 | -------- | -------- | -------- | -------- |
 | <!--DelRow-->RSA/MD5/PKCS1_V1_5<br/>RSA/SHA1/PKCS1_V1_5<br/>RSA/SHA224/PKCS1_V1_5<br/>RSA/SHA224/PSS | 对于PSS模式，salt长度支持设置为摘要长度和最大长度（最大长度=密钥长度-摘要长度-2），对应枚举值详见[HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10)。| 8+ | 否 |
@@ -32,7 +34,7 @@
 | ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 8+ | 是 |
 | SM2/SM3 | 签名是ASN1格式。 | 9+ | 是 |
 
-**轻设备规格**
+**<!--RP4-->轻量级设备<!--RP4End-->规格**
 
 <!--Del-->
 轻量级设备所列规格，OEM厂商将基于实际情况决定是否实现，如需使用，请查阅具体厂商提供的说明，确保规格支持再使用。

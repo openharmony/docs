@@ -229,7 +229,7 @@ Web同层渲染的配置。
 
 ## OnRefreshAccessedHistoryEvent<sup>12+</sup>
 
-定义网页刷新访问历史记录时触发。
+定义导航完成时触发。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

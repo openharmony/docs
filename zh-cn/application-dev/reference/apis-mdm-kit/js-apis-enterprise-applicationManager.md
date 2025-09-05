@@ -192,11 +192,13 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户在设备上手动取消应用自启动<!--RP4--><!--RP4End-->，但可通过[removeAutoStartApps](#applicationmanagerremoveautostartapps)接口将应用从自启动名单中移除。该接口仅在PC/2in1设备上生效。
+为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户在设备上手动取消应用自启动<!--RP4--><!--RP4End-->，但可通过[removeAutoStartApps](#applicationmanagerremoveautostartapps)接口将应用从自启动名单中移除。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -249,11 +251,13 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-为当前用户删除开机自启动应用名单。该接口仅在PC/2in1设备上生效。
+为当前用户删除开机自启动应用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -305,11 +309,13 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number): void
 
-删除指定用户的开机自启动应用名单中的指定应用。该接口仅在PC/2in1设备上生效。
+删除指定用户的开机自启动应用名单中的指定应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -363,11 +369,13 @@ try {
 
 getAutoStartApps(admin: Want): Array\<Want>
 
-查询当前用户开机自启动应用名单。该接口仅在PC/2in1设备上生效。
+查询当前用户开机自启动应用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -418,11 +426,13 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
-为指定用户添加开机自启动应用名单，并设置是否禁止该用户手动取消应用自启动<!--RP4--><!--RP4End-->。<br>通过本接口、[addAutoStartApps](#applicationmanageraddautostartapps)接口均可添加开机自启动应用名单，两个接口的设置可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加7个应用。<br>该接口仅在PC/2in1设备上生效。
+为指定用户添加开机自启动应用名单，并设置是否禁止该用户手动取消应用自启动<!--RP4--><!--RP4End-->。<br>通过本接口、[addAutoStartApps](#applicationmanageraddautostartapps)接口均可添加开机自启动应用名单，两个接口的设置可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加7个应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -477,11 +487,13 @@ try {
 
 getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
-查询指定用户下的开机自启动应用名单。该接口仅在PC/2in1设备上生效。
+查询指定用户下的开机自启动应用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -532,11 +544,13 @@ try {
 
 isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: number): boolean
 
-查询指定用户是否禁止取消应用自启动。该接口仅在PC/2in1设备上生效。
+查询指定用户是否禁止取消应用自启动。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -594,11 +608,12 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用名单。<!--RP7--><!--RP7End-->通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活<!--RP6--><!--RP6End-->，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。<br>该接口仅在PC/2in1设备上生效。
-
+添加保活应用名单。<!--RP7--><!--RP7End-->通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活<!--RP6--><!--RP6End-->，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -623,6 +638,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): v
 | 9201005  | Add keep alive applications failed. |
 | 201  | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -650,11 +666,13 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。<br>该接口仅在PC/2in1设备上生效。
+添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -678,6 +696,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | 9200010  | A conflict policy has been configured. |
 | 9201005  | Add keep alive applications failed. |
 | 201  | Permission verification failed.The application does not have the permission required to call the API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -706,11 +725,13 @@ try {
 
 removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-移除保活应用名单中的指定应用，该接口仅在PC/2in1设备上生效。
+移除保活应用名单中的指定应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -760,11 +781,13 @@ try {
 
 getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 
-获取保活应用包名，该接口仅在PC/2in1设备上生效。
+获取保活应用包名。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -817,11 +840,12 @@ try {
 
 isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: string): boolean
 
-查询应用是否禁止取消保活。该接口仅在PC/2in1设备上生效。
-
+查询应用是否禁止取消保活。
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

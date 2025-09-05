@@ -227,7 +227,7 @@ Enables or disables the WantAgent multithreading feature.
 
 | Name    | Type                 | Mandatory| Description                           |
 | ---------- | --------------------- | ---- | ------------------------------- |
-| isMultithreadingSupported    | boolean    | Yes  |Whether to enable the multithreading feature. The value **true** means to enable multithreading, and **false** means the opposite.  |
+| isMultithreadingSupported    | boolean    | Yes  |Whether to enable the multithreading feature. **true** to enable, **false** otherwise.  |
 
 **Error codes**
 
@@ -511,7 +511,7 @@ Checks whether a WantAgent object is a local object.
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| boolean | Check result. The value **true** is returned if the WantAgent object is stored on the local client, and **false** is returned if it is stored on the server.|
+| boolean | Check result for whether the WantAgent object is stored on the local client. **true** if stored on the local client, **false** if stored on the server.|
 
 **Error codes**
 

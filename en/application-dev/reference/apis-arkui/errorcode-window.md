@@ -79,15 +79,15 @@ This window stage is abnormal.
 
 **Description**
 
-This error code is reported when you operate a window stage in the abnormal state, for example, a window stage that has been destroyed.
+This error code is reported when you operate a WindowStage in the abnormal state, for example, a WindowStage that has been destroyed.
 
 **Possible Causes**
 
-The window stage is not created or has been destroyed.
+The WindowStage is not created or has been destroyed.
 
 **Solution**
 
-Before operating a window stage, check whether it exists.
+Before operating a WindowStage, check whether it exists.
 
 ## 1300006 Abnormal Window Context
 **Error Message**
@@ -233,7 +233,7 @@ This error code is reported when creating a PiP window fails.
 **Possible Causes**
 
 1. Incorrect parameters are passed in to create the PiP window.
-2. You attempt to start PiP in a non-full-screen window.
+2. Attempt to start PiP in a non-full-screen window.
 
 **Solution**
 
@@ -251,7 +251,7 @@ PiP internal error.
 This error code is reported when an internal error occurs in PiP.
 
 **Possible Causes**
-1. The window on which the PiP feature depends is abnormal. The window may be empty.
+1. The window on which the PiP feature depends is abnormal or empty.
 2. The PiP controller is abnormal.
 
 **Solution**
@@ -290,7 +290,7 @@ This error code is reported when parameters are incorrect. For example, the para
 
 1. The parameter value is out of range.
 
-2. The parameter length exceeds the allowed length.
+2. The parameter length exceeds the allowed limits.
 
 3. The parameter format is incorrect.
 
@@ -306,7 +306,7 @@ Incorrect filter calling.
 
 **Description**
 
-The filter controller is invalidly invoked, for example, the invoking sequence is incorrect.
+This error code is reported when the filter controller is invalidly invoked. For example, the invoking sequence is incorrect.
 
 **Possible Causes**
 
@@ -339,6 +339,234 @@ The solution will vary based on the specific context. Typical approaches are:
 2. Implement fallback measures, such as using cached data or alternative logic.
 
 3. Abort the current processing logic.
+
+## 1300019 Floating Ball Parameter Verification Error
+
+**Error Message**
+
+Wrong parameters for operating the floating ball.
+
+**Description**
+
+This error code is reported when parameters are incorrect. For example, the parameter value exceeds the allowed range, the length of the string or array does not meet the requirements, or the parameter format is incorrect.
+
+**Possible Causes**
+
+1. The parameter value is out of range.
+
+2. The parameter length exceeds the allowed limits.
+
+3. The parameter format is incorrect.
+
+**Solution**
+
+1. Ensure that the parameter value is within the allowed range.
+
+2. Ensure that the parameter length is within the allowed limits.
+
+3. Use the correct format for parameters.
+
+## 1300020 Failure in Creating a Floating Ball Window
+
+**Error Message**
+
+Failed to create the floating ball window.
+
+**Description**
+
+This error code is reported when creating a floating ball window fails.
+
+**Possible Causes**
+
+1. Incorrect parameters are passed in to start the floating ball.
+
+2. Attempt to start the floating ball on an unsupported device.
+
+3. Attempt to start the floating ball when the application is in the background.
+
+**Solution**
+
+1. Check the parameters before starting the floating ball.
+
+2. Verify that the device supports the floating ball before starting it.
+
+3. Ensure that the application is in the foreground before starting the floating ball.
+
+## 1300021 Failure in Starting Multiple Floating Balls
+
+**Error Message**
+
+Failed to start multiple floating ball windows.
+
+**Description**
+
+This error code is reported when starting multiple floating balls fails.
+
+**Possible Causes**
+
+Multiple floating ball controllers are created for the same application.
+
+**Solution**
+
+An application should create only one floating ball controller to start the floating ball. You are advised to use a singleton pattern to hold the floating ball controller.
+
+## 1300022 Repeated Floating Ball Operation
+
+**Error Message**
+
+Repeated floating ball operation.
+
+**Description**
+
+This error code is reported when a repeated operation is performed on the floating ball.
+
+**Possible Causes**
+
+1. Attempt to start the floating ball while it is already running.
+
+2. Attempt to stop the floating ball after it has already stopped.
+
+3. Attempt to register the floating ball callback multiple times.
+
+**Solution**
+
+1. Check whether the floating ball is already running before starting it.
+
+2. Check whether the floating ball has already stopped before stopping it.
+
+3. Ensure that the callback is not already registered before registering the floating ball callback.
+
+## 1300023 Internal Error of the Floating Ball
+
+**Error Message**
+
+Floating ball internal error.
+
+**Description**
+
+This error code is reported when an internal error occurs in the floating ball.
+
+**Possible Causes**
+
+1. The window on which the floating ball depends is abnormal or empty.
+
+2. The floating ball controller is abnormal or empty.
+
+**Solution**
+
+1. Check the window of the floating ball to ensure it is not empty.
+
+2. Check the status of the floating ball controller to ensure it is not empty.
+
+## 1300024 Abnormal Floating Ball Window State
+
+**Error Message**
+
+The floating ball window state is abnormal.
+
+**Description**
+
+This error code is reported when the floating ball window state is abnormal.
+
+**Possible Causes**
+
+The floating ball window may not have been created or may have been destroyed.
+
+**Solution**
+
+Check that the floating ball window has been created and is not destroyed.
+
+## 1300025 Unsupported Operation in the Current Floating Ball State
+
+**Error Message**
+
+The floating ball state does not support this operation.
+
+**Description**
+
+This error code is reported when the operation is not supported in the current floating ball state.
+
+**Possible Causes**
+
+1. Attempt to update the floating ball when it is not active.
+
+2. Attempt to query window information when the floating ball is not active.
+
+3. Attempt to launch an application window when the floating ball is not active.
+
+4. Attempt to start the floating ball before the stop process is complete.
+
+**Solution**
+
+1. Check whether the floating ball is active before updating it.
+
+2. Check whether the floating ball is active before querying window information.
+
+3. Check whether the floating ball is active before launching an application window.
+
+4. Wait for the floating ball to stop completely before restarting it.
+
+## 1300026 Failure in Launch an Application Window via a Floating Ball
+
+**Error Message**
+
+Failed to restore the main window.
+
+**Description**
+
+This error code is reported when launching an application window via the floating ball fails.
+
+**Possible Causes**
+
+1. Incorrect parameters are passed.
+
+2. The application window is not launched within 5 seconds after clicking.
+
+3. Attempt to launch a window that belongs to another application.
+
+**Solution**
+
+1. Check the parameters used to launch the application window.
+
+2. Ensure to launch the application window within 5 seconds after clicking.
+
+3. Launch the window that belongs to the current application.
+
+## 1300027 Cannot Change Template Type When Updating the Floating Ball
+
+**Error Message**
+
+When updating the floating ball, the template type cannot be changed.
+
+**Description**
+
+This error code is reported when changing the template type fails.
+
+**Possible Causes**
+
+The template type used during the update is inconsistent with the one used during creation.
+
+**Solution**
+
+Ensure that the template type used when updating the floating ball matches the one used when it was created.
+
+## 1300028 Floating Ball Based on a Static Template Cannot Be Updated
+
+**Error Message**
+
+Updating static template-based floating balls is not supported.
+
+**Description**
+
+This error code is reported when users attempt to update a floating ball based on a static template.
+
+**Possible Causes**
+
+Updating floating balls based on static templates is not supported.
+
+**Solution**
+
+Delete any existing floating balls based on static templates and create new ones.
 
 ## 1001 Window Null Pointer Exception<sup>(deprecated)</sup>
 **Error Message**

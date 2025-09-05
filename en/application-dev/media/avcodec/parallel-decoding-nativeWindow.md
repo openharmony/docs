@@ -1,5 +1,12 @@
 # Concurrently Creating a Video Decoder and Initializing NativeWindow
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## When to Use
 
 To ensure that a video decoder can be created and run properly in surface mode, you can create an empty surface before the **XComponent** is created or the OpenGL post-processing (NativeImage) is initialized.
@@ -76,7 +83,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
       // Obtain an OHNativeWindowBuffer instance through the OH_NativeImage instance on the consumer side.
       OH_NativeImage_AcquireNativeWindowBuffer(image, &buffer, &fenceFd);
       // Release the OHNativeWindowBuffer instance through the OH_NativeImage instance.
-      OH_NativeImage_ReleaseNativeWindowBuffer(image, &buffer, &fenceFd);
+      OH_NativeImage_ReleaseNativeWindowBuffer(image, buffer, fenceFd);
     }
     
     static void context()
@@ -100,14 +107,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 5. Configure the decoder.
 
-    For details, see step 5 in [Video Decoding in Surface Mode](video-decoding.md#surface-output).
+    For details, see step 5 in [Video Decoding in Surface Mode](video-decoding.md#surface-mode).
 
 6. Set the surface.
 
     Before the actual surface consumer is created, you can use the temporarily created consumer to connect to the decoder.
 
     In the code snippet below, the following variables are used:
-    - **videoDec**: pointer to the video decoder instance. For details, see step 2 in [Video Decoding Surface Mode](video-decoding.md#surface-output).
+    - **videoDec**: pointer to the video decoder instance. For details, see step 2 in [Video Decoding in Surface Mode](video-decoding.md#surface-mode).
 
     ```c++
 
@@ -119,7 +126,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 7. Start the decoder.
 
-    For details, see step 8 in [Video Decoding Surface Mode](video-decoding.md#surface-output).
+    For details, see step 8 in [Video Decoding in Surface Mode](video-decoding.md#surface-mode).
 
 
 8. Set the surface.
@@ -127,8 +134,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     After the actual surface consumer is created, call **OH_VideoDecoder_SetSurface** to redirect the decoded output to the new surface.
 
     You can obtain NativeWindow in either of the following ways:
-    1. If the image is directly displayed after being decoded, obtain NativeWindow from the **XComponent**. For details about the operation, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
-    2. If OpenGL post-processing is performed after decoding, obtain NativeWindow from NativeImage. For details about the operation, see [NativeImage](../../graphics/native-image-guidelines.md).
+    - If the image is directly displayed after being decoded, obtain NativeWindow from the **XComponent**. For details about the operation, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+    - If OpenGL post-processing is performed after decoding, obtain NativeWindow from NativeImage. For details about the operation, see [NativeImage](../../graphics/native-image-guidelines.md).
 
     ```c++
 

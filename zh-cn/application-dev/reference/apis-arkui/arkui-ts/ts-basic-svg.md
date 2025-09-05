@@ -110,6 +110,7 @@ SVG基础形状标签与支持的通用属性的示例如下。
 struct Index {
   build() {
     Column() {
+      // $r('app.media.svg01')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svg01'))
         .objectFit(ImageFit.None)
         .width('100%')

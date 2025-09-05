@@ -36,7 +36,7 @@ addColorStop(offset: number, color: string): void
 
 **示例：**
 
-通过addColorStop设置渐变断点值，包括偏移和颜色。
+通过addColorStop设置渐变断点值，包括偏移和颜色。支持设置rgb或者argb格式颜色。
 
   ```ts
   // xxx.ets
@@ -71,9 +71,9 @@ addColorStop(offset: number, color: string): void
  
  ## addColorStop<sup>20+</sup>
 
-addColorStop(offset: number, color: ColorMetrics): void
+addColorStop(offset: number, color: string | ColorMetrics): void
 
-设置渐变断点值，包括偏移和颜色。
+设置渐变断点值，包括偏移和颜色。支持设置rgb或者argb格式颜色。支持通过传入[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型设置P3色域颜色值，可在支持高色域的设备上获得更丰富的色彩表现。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
@@ -86,7 +86,7 @@ addColorStop(offset: number, color: ColorMetrics): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------------------------------- |
 | offset | number | 是  | 设置渐变点距离起点的位置占总体长度的比例，范围为[0, 1]。</br>设置offset<0或offset>1无渐变效果。             |
-| color  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 是  | 设置渐变填充的颜色。</br>可以使用[colorWithSpace](../js-apis-arkui-graphics.md#colorwithspace20)方法构造指定色域属性[ColorSpace](ts-appendix-enums.md#colorspace20)为SRGB或DISPLAY_P3的颜色。每个渐变ColorMetrics的色域属性应当统一，设置不同色域的属性时将抛出异常，错误码：103701。</br>设置null和undefined无效。   |
+| color  | string \| [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 是  | 设置渐变填充的颜色。</br>可以使用[colorWithSpace](../js-apis-arkui-graphics.md#colorwithspace20)方法构造指定色域属性[ColorSpace](ts-appendix-enums.md#colorspace20)为SRGB或DISPLAY_P3的颜色。每个渐变ColorMetrics的色域属性应当统一，设置不同色域的属性时将抛出异常，错误码：103701。</br>设置null和undefined无效。   |
 
 **错误码：**
 
@@ -106,6 +106,7 @@ addColorStop(offset: number, color: ColorMetrics): void
 通过addColorStop设置指定色域的渐变断点值，包括偏移和颜色。设置窗口色域模式为广色域参照方法[setWindowColorSpace](../arkts-apis-window-Window.md#setwindowcolorspace9)。
   ```ts
 // xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
 import { ColorMetrics } from '@kit.ArkUI'
 
 @Entry
@@ -120,19 +121,31 @@ struct AddColorStop {
         .width('100%')
         .height('100%')
         .onReady(() => {
-          // 设置fillStyle为SRGB色域效果的gradient。
+          // 设置fillStyle为SRGB色域效果的gradient
           let gradSRGB = this.context.createLinearGradient(85, 10, 160, 110)
-          gradSRGB.addColorStop(0.0, ColorMetrics.colorWithSpace(ColorSpace.SRGB, 1.0, 0.0, 0.0, 1.0))
-          gradSRGB.addColorStop(0.5, ColorMetrics.colorWithSpace(ColorSpace.SRGB, 1.0, 1.0, 1.0, 1.0))
-          gradSRGB.addColorStop(1.0, ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0.0, 1.0, 0.0, 1.0))
+          // 使用try catch对可能出现的异常进行捕获
+          try {
+            gradSRGB.addColorStop(0.0, ColorMetrics.colorWithSpace(ColorSpace.SRGB, 1.0, 0.0, 0.0, 1.0))
+            gradSRGB.addColorStop(0.5, ColorMetrics.colorWithSpace(ColorSpace.SRGB, 1.0, 1.0, 1.0, 1.0))
+            gradSRGB.addColorStop(1.0, ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0.0, 1.0, 0.0, 1.0))
+          } catch (error) {
+            let e: BusinessError = error as BusinessError;
+            console.error(`Failed to addColorStop. Code: ${e.code}, message: ${e.message}`);
+          }
           this.context.fillStyle = gradSRGB
           this.context.fillRect(10, 10, 150, 150)
 
-          // 设置fillStyle为DISPLAY_P3色域效果的gradient。
+          // 设置fillStyle为DISPLAY_P3色域效果的gradient
           let gradP3 = this.context.createLinearGradient(245, 10, 320, 110)
-          gradP3.addColorStop(0.0, ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1.0, 0.0, 0.0, 1.0))
-          gradP3.addColorStop(0.5, ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1.0, 1.0, 1.0, 1.0))
-          gradP3.addColorStop(1.0, ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0.0, 1.0, 0.0, 1.0))
+          // 使用try catch对可能出现的异常进行捕获
+          try {
+            gradP3.addColorStop(0.0, ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1.0, 0.0, 0.0, 1.0))
+            gradP3.addColorStop(0.5, ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1.0, 1.0, 1.0, 1.0))
+            gradP3.addColorStop(1.0, ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0.0, 1.0, 0.0, 1.0))
+          } catch (error) {
+            let e: BusinessError = error as BusinessError;
+            console.error(`Failed to addColorStop. Code: ${e.code}, message: ${e.message}`);
+          }
           this.context.fillStyle = gradP3
           this.context.fillRect(170, 10, 150, 150)
         })

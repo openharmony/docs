@@ -25,38 +25,38 @@ import { appManager } from '@kit.AbilityKit';
 | state                   | number   | No  | No  | Ability state.<br>- In the stage model, the states of a UIAbility are described in [Ability States](#ability-states), and the states of an ExtensionAbility are described in [ExtensionAbility States](#extensionability-states).<br>- In the FA model, the states of an ability are described in [Ability States](#ability-states).               |
 | moduleName | string   | No  | No  | Name of the HAP file to which the ability belongs.   |
 | abilityType | number | No  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
-| isAtomicService | boolean   | No | No | Whether the ability belongs to an atomic service.<br>**true**: The ability belongs to an atomic service.<br>**false**: The ability does not belong to an atomic service.    |
+| isAtomicService | boolean   | No | No | Whether the ability belongs to an atomic service.<br>- **true**: The ability belongs to an atomic service.<br>- **false**: The ability does not belong to an atomic service.    |
 | appCloneIndex          | number   | No  | Yes  | Index of an application clone.                 |
 
 ### Ability States
 
-| Value  | State                      | Description                  |
-| ---- | -------------------------- | ---------------------- |
-| 0    | ABILITY_STATE_CREATE       | The ability is being created.     |
-| 1    | ABILITY_STATE_READY        | The ability has been created.     |
-| 2    | ABILITY_STATE_FOREGROUND   | The ability is running in the foreground.       |
-| 3    | ABILITY_STATE_FOCUS        | The ability has focus.       |
-| 4    | ABILITY_STATE_BACKGROUND   | The ability is running in the background.       |
-| 5    | ABILITY_STATE_TERMINATED   | The ability is terminated.       |
-| 7    | ABILITY_STATE_CONNECTED    | The background service is connected to the client.|
-| 8    | ABILITY_STATE_DISCONNECTED | The background service is disconnected from the client.|
+| State                       | Value | Description                   |
+| --------------------------  | --- | ---------------------- |
+| ABILITY_STATE_CREATE        | 0   |  The ability is being created.   |
+| ABILITY_STATE_READY         | 1   |  The ability has been created.   |
+| ABILITY_STATE_FOREGROUND    | 2   |  The ability is running in the foreground.     |
+| ABILITY_STATE_FOCUS         | 3   |   The ability has focus.    |
+| ABILITY_STATE_BACKGROUND    | 4   |  The ability is running in the background.     |
+| ABILITY_STATE_TERMINATED    | 5   |  The ability is terminated.     |
+| ABILITY_STATE_CONNECTED     | 7   |  The background service is connected to the client.|
+| ABILITY_STATE_DISCONNECTED  | 8   |  The background service is disconnected from the client.|
 
 ### ExtensionAbility States
-| Value  | State   | Description                 |
-| ---- | -------------------------- | ---------------------- |
-| 0    | EXTENSION_STATE_CREATE     | The ExtensionAbility is being created. |
-| 1    | EXTENSION_STATE_READY      | The ExtensionAbility has been created. |
-| 2    | EXTENSION_STATE_CONNECTED  | The ExtensionAbility is connected to the client. |
-| 3    | EXTENSION_STATE_DISCONNECTED | The ExtensionAbility is disconnected from the client.|
-| 4    | EXTENSION_STATE_TERMINATED  | The ExtensionAbility is terminated. |
+| State                  | Value| Description                  |
+| ---------------------- | ---- | ---------------------- |
+| EXTENSION_STATE_CREATE | 0   | The ExtensionAbility is being created. |
+| EXTENSION_STATE_READY  | 1   | The ExtensionAbility has been created. |
+| EXTENSION_STATE_CONNECTED | 2  | The ExtensionAbility is connected to the client. |
+| EXTENSION_STATE_DISCONNECTED | 3 | The ExtensionAbility is disconnected from the client.|
+| EXTENSION_STATE_TERMINATED | 4  | The ExtensionAbility is terminated. |
 
 ### Ability Types
 
-| Value  | State   | Description                 |
-| ---- | ------- | --------------------- |
-| 0    | UNKNOWN | Unknown type.             |
-| 1    | PAGE    | Ability that has the UI.  |
-| 2    | SERVICE | Ability that provides the background service.|
-| 3    | DATA | Ability that provides the data service.             |
-| 4    | FORM    | Ability that provides the widget service.  |
-| 5    | EXTENSION | Ability that provides extension capabilities.|
+| State   | Value     | Description                 |
+| ------  | ------- | --------------------- |
+| UNKNOWN | 0 | Unknown type.             |
+| PAGE    | 1 | Ability that has the UI.  |
+| SERVICE | 2 | Ability that provides the background service.|
+| DATA    | 3 | Ability that provides the data service.             |
+| FORM    | 4 | Ability that provides the widget service.  |
+| EXTENSION | 5 | Ability that provides extension capabilities.|

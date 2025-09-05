@@ -1,28 +1,27 @@
 # Obtaining/Setting Environment Variables
 
-## Basic Concepts
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy; @xuzhihao666-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-Environment variables fall into two categories:
-- System environment variables: device-level settings (for example, system language or screen orientation) that can change while the application is running.
-- Application environment variable: attributes that belong to the application itself (for example, application language).
+Environment variables encompass all configuration information that may affect the runtime environment of an application, including internal environment variables that the application can specify (such as font size, appearance, and language) and external environment variables that the application can detect (such as screen orientation).
 
-By default, application environment variables mirror system environment variables. You can, however, [override them](#setting-application-environment-variables) to give your application independent behavior.
+Under normal circumstances, environment variables change with system settings.
 
 ## When to Use
+|  Scenario  |  Description      |  Constraints | Example  |
+|------------|-------------------|-------------|-----------------|
+| [Obtaining Environment Variables](#obtaining-environment-variables)| You can use [getConfigurationSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10) to proactively obtain the current environment variables, including dark/light color mode, screen orientation, locale, screen density, and device type.       | Currently, only synchronous retrieval is supported. For details about how to obtain them, see [ResourceManager.getConfigurationSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10). |During the application running, you can obtain the dark/light color mode of the application to update UI display. |
+| [Setting Environment Variables](#setting-environment-variables)| Currently, only the font size, dark/light color mode, and language can be customized.<br>- [Setting Font Size](#setting-font-size)<br>- [Setting Dark/Light Color Mode](#setting-darklight-color-mode)<br>- [Setting Application Language](#setting-application-language)|  Once the application sets environment variables, it will not be able to detect changes to these variables in the system through subscriptions.  |  Customize the font size of an application to enhance user experience.|
+| [Subscribing to Environment Variables](#subscribing-to-environment-variables)| By subscribing to environment variables, you can promptly detect changes in the system environment. Supported variables include language, dark/light color mode, and screen orientation. For details, see [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).                  |    If you configure environment variables to not follow system changes (by setting the corresponding field in the [configuration](../quick-start/app-configuration-file.md#configuration) tag to **nonFollowSystem**), the application will not be able to detect changes to these variables in the system through subscriptions.<br>- Background applications do not receive real-time notifications. The event is queued until the application returns to the foreground.| When a user rotates the device screen, the application can detect environmental changes through subscriptions and re-layout the UI to adapt to the screen orientation and size.|
 
-- Obtaining application environment variables: You can call [getConfigurationSync](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10) to obtain the environment variables of the current application for related processing. For example, during the application running, you can obtain the dark/light color mode of the application to update UI display.
-- Setting application environment variables: You can set application environment variables such as the font size, dark/light color mode, and application language by calling related APIs.
-- Subscribing to system environment variables: You can proactively subscribe to system environment variables to detect system status changes in a timely manner and take corresponding measures. For example, when the user rotates the device to the landscape or portrait mode, the application may re-arrange the UI to adapt to the screen orientation and size. For details about the system environment variables that support subscription, see [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).
 
-## Constraints
+## Obtaining Environment Variables
 
-- After you override an application environment variable, you stop receiving system updates for that variable.
-- If a variable is marked **nonFollowSystem** in [configuration](../quick-start/app-configuration-file.md#configuration), no system updates are delivered.
-- Background applications do not receive real-time notifications. The event is queued until the application returns to the foreground.
-
-## Obtaining Application Environment Variables
-
-You can use [getConfigurationSync](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10) to obtain the [current application environment variables](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#configuration), including the dark/light color mode, screen orientation, locale, screen density, and device type. The information helps your application react instantly and deliver a better user experience.
+You can use [getConfigurationSync](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10) to obtain the [current environment variables](../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#configuration), including the dark/light color mode, screen orientation, locale, screen density, and device type. The information helps your application react instantly and deliver a better user experience.
 
   ```ts
   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -42,9 +41,9 @@ You can use [getConfigurationSync](../../application-dev/reference/apis-localiza
   }
   ```
   
-## Setting Application Environment Variables
+## Setting Environment Variables
 
-You can set the following application environment variables: [font size](#setting-font-size), [dark/light color mode](#setting-darklight-color-mode), and [application language](#setting-application-language). Other environment variables (such as the screen orientation) are read-only.
+The following environment variables can be customized: [font size](#setting-font-size), [dark/light color mode](#setting-darklight-color-mode), and [application language](#setting-application-language). Other environment variables (such as the screen orientation) are read-only.
 
 ### Setting Font Size
 
@@ -73,7 +72,7 @@ export default class MyAbility extends UIAbility {
 
 By default, your application's dark/light color mode follows the system. You can customize the dark/light color modes of your application or components.
 
-The configuration takes effect in the following priority: UIAbility's dark/light color mode > Application's dark/light color mode > System's dark/light color mode.
+The configuration takes effect in the following priority: UIAbility's or UIExtensionAbility's dark/light color mode > Application's dark/light color mode > System's dark/light color mode.
 
 - **Application's dark/light color mode**: Use [setColorMode](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetcolormode11) of ApplicationContext to set the dark/light color mode of the application.
 
@@ -117,6 +116,20 @@ The configuration takes effect in the following priority: UIAbility's dark/light
     }
     ```
 
+- **UIExtensionAbility's dark/light color mode**: Use [setColorMode](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#setcolormode18) of UIExtensionContext to set the dark/light color mode of the UIExtensionAbility.
+
+    ```ts
+    // The UIExtensionAbility class does not allow direct inheritance by third-party applications. The child class ShareExtensionAbility is used here as an example.
+    import { ShareExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
+
+    export default class MyAbility extends ShareExtensionAbility {
+      onForeground() {
+        let uiExtensionContext = this.context;
+        uiExtensionContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+      }
+    }
+    ```
+
 ### Setting Application Language
 
 By default, the application language changes with the system language. You can use [setLanguage](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetlanguage11) to set the application language. After the setting, you will no longer be able to subscribe to system language changes.
@@ -140,11 +153,11 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## Subscribing to System Environment Variables
+## Subscribing to Environment Variables
 
-System environment variable changes are usually triggered by options in Settings or icons in Control Panel. Subscribing to system environment variable changes enables applications to respond to system environment changes more intelligently, providing better user experience. For details about the system environment variables that support subscription, see [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).
+System configuration changes are usually triggered by options in Settings or icons in Control Panel. Subscribing to environment variable changes enables applications to respond to system environment changes more intelligently, providing better user experience. For details about the environment variables that support subscription, see [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).
 
-You can subscribe to system environment variable changes in the following ways:
+You can subscribe to environment variable changes in the following ways:
 
 - [Using ApplicationContext for Subscription](#using-applicationcontext-for-subscription)
 - [Using AbilityStage for Subscription](#using-abilitystage-for-subscription)
@@ -153,9 +166,9 @@ You can subscribe to system environment variable changes in the following ways:
 
 ### Using ApplicationContext for Subscription
 
-[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) provides an API for registering a callback function to subscribe to the system environment variable changes. It also provides an API for deregistration so you can release related resources when they are no longer needed.
+[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) provides an API for registering a callback function to subscribe to the environment variable changes. It also provides an API for deregistration so you can release related resources when they are no longer needed.
 
-1. Non-application components can call [on](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextonenvironment) to subscribe to changes in system environment variables. The code snippet below is used to subscribe to system language changes on a page.
+1. Non-application components can call [on](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextonenvironment) to subscribe to changes in environment variables. The code snippet below is used to subscribe to system language changes on a page.
 
     ```ts
     import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
@@ -177,7 +190,7 @@ You can subscribe to system environment variable changes in the following ways:
         // 1. Obtain an ApplicationContext object.
         let applicationContext = this.context.getApplicationContext();
 
-        // 2. Subscribe to system environment variable changes through ApplicationContext.
+        // 2. Subscribe to environment variable changes through ApplicationContext.
         let environmentCallback: EnvironmentCallback = {
           onConfigurationUpdated(newConfig: Configuration) {
             hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
@@ -242,11 +255,11 @@ You can subscribe to system environment variable changes in the following ways:
 
 ### Using AbilityStage for Subscription
 
-The AbilityStage component provides the [AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate) callback for subscribing to system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through a [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object. You can perform operations such as UI adaptation to improve system flexibility and maintainability.
+The AbilityStage component provides the [AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate) callback for subscribing to environment variable changes. This callback is invoked when an environment variable changes. In this callback, the latest environment variable information is obtained through a [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object. You can perform operations such as UI adaptation to improve system flexibility and maintainability.
 
 > **NOTE**
 >
-> - [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is not automatically generated in the default project of DevEco Studio. For details about how to create an AbilityStage file, see [AbilityStage Component Container](abilitystage.md).
+> - [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is not automatically generated in the default project of DevEco Studio. For details about how to create an AbilityStage file, see [AbilityStage Component Container](abilitystage.md#how-to-develop).
 > - The callback used to subscribe to system environment variable changes has the same lifecycle as the AbilityStage instance and will be destroyed when the module is destroyed.
 
 The code snippet below uses the [AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate) callback to subscribe to the system language changes.
@@ -281,11 +294,11 @@ export default class MyAbilityStage extends AbilityStage {
 
 ### Using UIAbility for Subscription
 
-The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) provides the [UIAbility.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) callback for subscribing to system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through the [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object, without restarting the UIAbility.
+The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) provides the [UIAbility.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) callback for subscribing to environment variable changes. This callback is invoked when an environment variable changes. In this callback, the latest environment variable information is obtained through the [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object, without restarting the UIAbility.
 
 > **NOTE**
 >
-> - The callback used to subscribe to system environment variable changes has the same lifecycle as the UIAbility instance and will be destroyed when the instance is destroyed.
+> - When an application subscribes to environment variable changes through a callback, the subscription remains valid throughout the lifecycle of the hosting UIAbility. Once the UIAbility is destroyed, all previously registered callback subscriptions become invalid, and the application will no longer receive any callback notifications.
 > - If this API is used to listen for screen orientation changes, you need to set **orientation** to **auto_rotation** in [abilities](../quick-start/module-configuration-file.md#abilities) of the **module.json5** file.
 
 The code snippet below uses the [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) callback to subscribe to the system language changes.
@@ -319,13 +332,13 @@ export default class EntryAbility extends UIAbility {
 
 ### Using ExtensionAbility for Subscription
 
-The [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) provides the [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) callback for subscribing to system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through a [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object.
+The [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) provides the [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) callback for subscribing to environment variable changes. This callback is invoked when an environment variable changes. In this callback, the latest environment variable information is obtained through a [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object.
 
 > **NOTE**
 >
-> The callback used to subscribe to system environment variable changes has the same lifecycle as the ExtensionAbility instance and will be destroyed when the instance is destroyed.
+> When an application subscribes to environment variable changes through a callback, the subscription remains valid throughout the lifecycle of the hosting ExtensionAbility. Once the ExtensionAbility is destroyed, all previously registered callback subscriptions become invalid, and the application will no longer receive any callback notifications.
 
-The code snippet below uses [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) as an example to describe how to use the [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) callback to subscribe to system environment variable changes.
+The code snippet below uses [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) as an example to describe how to use the [onConfigurationUpdate()](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonconfigurationupdate) callback to subscribe to environment variable changes.
 
 ```ts
 import { FormExtensionAbility } from '@kit.FormKit';
@@ -336,8 +349,8 @@ const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(config: Configuration) {
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
+  onConfigurationUpdate(newConfig: Configuration) {
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(newConfig));
   }
   // ...
 }

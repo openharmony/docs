@@ -1,13 +1,17 @@
 # Overview of Other State Management Features
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
+In addition to component-level and application-level state management, ArkTS also provides the following specialized state management features:
 
-In addition to the component state and application state management mentioned in previous topics, ArkTS also provides \@Watch, $$ and \@Track for state management.
+- [\@Watch decorator](arkts-watch.md): listens for the changes of state variables.
 
+- [$$ operator](arkts-two-way-sync.md): creates two-way binding between TypeScript variables and built-in component states.
 
-- [\@Watch](arkts-watch.md) listens for the changes of state variables.
+- [\@Track decorator](arkts-track.md): enables property-level updates for class objects. When a property decorated with \@Track changes, only the UI associated with that property is updated.
 
-- [$$operator](arkts-two-way-sync.md) provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
-
-- [\@Track](arkts-track.md) applies to attribute-level updates of class objects. When a property decorated by \@Track changes, only the UI associated with the property is updated.
-
-- [Freezing a Custom Component](arkts-custom-components-freeze.md) represents that the component is inactive and its state variable does not respond to updates.
+- [Component freezing](arkts-custom-components-freeze.md): suspends inactive components' state responsiveness.

@@ -4,7 +4,7 @@
 
 ### Introduction
 
-After an application switches to the background or an application process is terminated, it may have scheduled tasks for reminding users, for example, flash sale reminders for shopping applications. To meet this requirement, the system provides agent-powered reminders (implemented by **reminderAgentManager**). When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.<!--RP1--><!--RP1End-->
+After an application switches to the background or an application process is terminated, the system can still send scheduled notifications on behalf of the application through reminderAgentManager. When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.<!--RP1--><!--RP1End-->
 
 - Timer: reminders based on countdown timers
 
@@ -28,6 +28,8 @@ After an application switches to the background or an application process is ter
 
 <!--RP3--><!--RP3End-->
 
+## Relationship with Other Kits
+- Notifications are published using Notification Kit. For notification styles, see [Notification Style](../notification/notification-overview.md#notification-style).
 
 ## Available APIs
 

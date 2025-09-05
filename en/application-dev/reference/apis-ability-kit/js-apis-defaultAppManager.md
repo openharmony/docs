@@ -1,4 +1,10 @@
 # @ohos.bundle.defaultAppManager (Default Application Management)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs to query whether the current application is the default application of a specific type.
 

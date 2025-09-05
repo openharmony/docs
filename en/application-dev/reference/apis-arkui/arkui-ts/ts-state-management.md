@@ -64,7 +64,7 @@ This API is similar to [setAndLink](#setandlink10) but does not require manually
 
 > **NOTE**
 >
-> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#union-type) types.
+> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#using-union-types-in-appstorage) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -133,7 +133,7 @@ Similar to the [link](#link10) API, establishes a two-way data binding with the 
 
 > **NOTE**
 >
-> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#union-type) types.
+> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#using-union-types-in-appstorage) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -198,7 +198,7 @@ Similar to the [prop](#prop10) API, establishes a one-way data binding with the 
 
 > **NOTE**
 >
-> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#union-type) types.
+> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#using-union-types-in-appstorage) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -286,7 +286,7 @@ Sets the value of the property corresponding to **propName** in [AppStorage](../
 
 > **NOTE**
 >
-> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#union-type) types.
+> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#using-union-types-in-appstorage) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -321,7 +321,7 @@ If the property does not exist, this API creates it with the value of **newValue
 
 > **NOTE**
 >
-> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#union-type) types.
+> Since API version 12, AppStorage supports [Map](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-appstorage.md#using-union-types-in-appstorage) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1006,7 +1006,7 @@ Sets the value of the property corresponding to **propName** in [LocalStorage](.
 
 > **NOTE**
 > 
-> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#union-type) types.
+> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#using-union-types-in-localstorage) types.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -1046,7 +1046,7 @@ If the property does not exist, this API creates it with the value of **newValue
 
 > **NOTE**
 > 
-> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#union-type) types.
+> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#using-union-types-in-localstorage) types.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -1121,7 +1121,7 @@ This API is similar to [setAndLink](#setandlink9) but does not require manually 
 
 > **NOTE**
 >
-> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#union-type) types.
+> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#using-union-types-in-localstorage) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1195,7 +1195,7 @@ Similar to the [link](#link9) API, establishes a two-way data binding with the p
 
 > **NOTE**
 > 
-> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#union-type) types.
+> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#using-union-types-in-localstorage) types.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -1267,7 +1267,7 @@ Similar to the [prop](#prop9) API, establishes a one-way data binding with the p
 
 > **NOTE**
 > 
-> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#union-type) types.
+> Since API version 12, LocalStorage supports [Map](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../ui/state-management/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../ui/state-management/arkts-localstorage.md#using-union-types-in-localstorage) types.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -1718,7 +1718,7 @@ According to the preceding initialization process, if the property exists in App
 **Example**
 
 
-For details about how to use persistProp, see [Accessing PersistentStorage Initialized Attribute from AppStorage](../../../ui/state-management/arkts-persiststorage.md#accessing-persistentstorage-initialized-attribute-from-appstorage).
+For details about how to use persistProp, see [Accessing a PersistentStorage-Initialized Property from AppStorage](../../../ui/state-management/arkts-persiststorage.md#accessing-a-persistentstorage-initialized-property-from-appstorage).
 
 
 ### deleteProp<sup>10+</sup>
@@ -1912,7 +1912,7 @@ Defines a key-value pair object used to specify environment variable names and t
 
 ## Environment
 
-For details about how to use environment parameters, see [Environment: Device Environment Query](../../../ui/state-management/arkts-environment.md).
+For details about how to use environment parameters, see [Environment: Querying the Device Environment](../../../ui/state-management/arkts-environment.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1947,7 +1947,7 @@ It is incorrect to use AppStorage to read environment variables without calling 
 
 **Example**
 
-For details about how to use **envProp**, see [Accessing Environment Parameters from UI](../../../ui/state-management/arkts-environment.md#accessing-environment-parameters-from-ui).
+For details about how to use **envProp**, see [Accessing Environment Parameters from the UI](../../../ui/state-management/arkts-environment.md#accessing-environment-parameters-from-the-ui).
 
 
 ### envProps<sup>10+</sup>

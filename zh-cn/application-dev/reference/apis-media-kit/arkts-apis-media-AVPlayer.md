@@ -13,6 +13,8 @@
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](arkts-apis-media-f.md#mediacreateavplayer9)构建一个AVPlayer实例。
 
+应用需要按照实际业务需求合理使用AVPlayer对象，按需创建并及时释放，避免持有过多AVPlayer实例导致内存消耗过大，否则在一定情况下可能导致系统查杀应用。
+
 Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/media/video-playback.md)。
 
 > **说明：**
@@ -160,10 +162,10 @@ on(type: 'error', callback: ErrorCallback): void
 | 801      | Capability not supported. |
 | 5400101  | No memory. |
 | 5400102  | Operation not allowed.|
-| 5400103  | I/O error.             |
 | 5400104  | Time out.              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
+| 5410002  | Seek continuous unsupported.     |
 | 5411001  | IO can not find host.    |
 | 5411002  | IO connection timeout.  |
 | 5411003  | IO network abnormal.     |
@@ -337,6 +339,12 @@ setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Prom
 | startTimeMs | number | 是   | 区间开始位置，单位ms，取值[0, duration)。可以设置-1值，系统将会从0位置开始播放。|
 | endTimeMs | number | 是   | 区间结束位置，单位ms，取值(startTimeMs, duration]。可以设置-1值，系统将会播放到资源末尾。|
 | mode | [SeekMode](arkts-apis-media-e.md#seekmode8) | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1473,7 +1481,7 @@ setPlaybackRate(rate: number): void
 
 | 参数名 | 类型                             | 必填 | 说明               |
 | ------ | -------------------------------- | ---- | ------------------ |
-| rate  | number | 是   | 指定播放倍速速率。 |
+| rate  | number | 是   | 指定播放倍速速率，取值范围为[0.125, 4.0]。 |
 
 **错误码：**
 
@@ -2319,7 +2327,7 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
-| callback | function | 是   | 外挂字幕事件回调方法。 |
+| callback | Callback\<[SubtitleInfo](arkts-apis-media-i.md#subtitleinfo12)> | 是   | 外挂字幕事件回调方法。 |
 
 **示例：**
 

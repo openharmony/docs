@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -29,6 +30,7 @@ The **condition_variable.h** file declares the condition variable APIs in C.
 | [FFRT_C_API int ffrt_cond_broadcast(ffrt_cond_t* cond)](#ffrt_cond_broadcast) | Unblocks all threads currently blocked on a condition variable.|
 | [FFRT_C_API int ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)](#ffrt_cond_wait) | Blocks the calling thread on a condition variable.|
 | [FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point)](#ffrt_cond_timedwait) | Blocks the calling thread on a condition variable for a given duration. If **ffrt_cond_signal** or **ffrt_cond_broadcast** is not called to unblock the thread when the maximum wait time is reached, the thread is automatically unblocked.|
+| [FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond)](#ffrt_cond_destroy) | Destroys a condition variable.|
 
 ## Function Description
 
@@ -106,7 +108,7 @@ Unblocks all threads currently blocked on a condition variable.
 
 | Type| Description|
 | -- | -- |
-| FFRT_C_API int | Returns **ffrt_success** if all the threads are unblocked;<br>          returns **ffrt_error_inval** otherwise.|
+| FFRT_C_API int | Returns **ffrt_success** if all threads are unblocked;<br>          returns **ffrt_error_inval** otherwise.|
 
 ### ffrt_cond_wait()
 
@@ -160,3 +162,28 @@ Blocks the calling thread on a condition variable for a given duration. If **ffr
 | Type| Description|
 | -- | -- |
 | FFRT_C_API int | Returns **ffrt_success** if the thread is unblocked after being blocked;<br>          returns **ffrt_error_timedout** if the wait times out;<br>          returns **ffrt_error_inval** if the wait fails.|
+
+### ffrt_cond_destroy()
+
+```
+FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond)
+```
+
+**Description**
+
+Destroys a condition variable.
+
+**Since**: 10
+
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [ffrt_cond_t](capi-ffrt-ffrt-cond-t.md)* cond | Pointer to the condition variable.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| FFRT_C_API int | Returns **ffrt_success** if the condition variable is destroyed successfully;<br>returns **ffrt_error_inval** otherwise.|

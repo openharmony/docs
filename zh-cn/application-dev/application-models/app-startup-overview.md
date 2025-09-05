@@ -1,5 +1,12 @@
 # 拉起指定应用概述
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 本章节主要介绍如何通过应用链接跳转的方式拉起指定应用。
 
 > **说明：**
@@ -54,6 +61,14 @@ Deep Linking与App Linking均可以使用[openLink](../reference/apis-ability-ki
 | appLinkingOnly为false且目标应用未安装 | 跳转默认浏览器打开网页。 |返回失败，系统不跳转，由应用自行处理；当前会展示“链接无法打开”弹框。 |
 | appLinkingOnly为true且目标应用已安装 | 直接跳转打开目标应用。 |返回失败，系统不跳转，由应用自行处理。 |
 | appLinkingOnly为true且目标应用未安装 | 返回失败，系统不跳转由应用自行处理。 | 返回失败，系统不跳转，由应用自行处理。 |
+
+通过App Linking方式拉起指定应用的示意图如下：
+
+![App Linking拉起指定应用示意图](figures/AppLinking-launch.png)
+
+通过Deep Linking方式拉起应用时，如果存在多个符合条件的应用，需要用户选择后方可跳转到指定应用。示意图如下：
+
+![Deep Linking拉起指定应用示意图](figures/DeepLinking-launch.png)
 
 <!--RP1-->
 <!--RP1End-->

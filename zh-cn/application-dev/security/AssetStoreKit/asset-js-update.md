@@ -15,7 +15,7 @@
 
 >**注意：**
 >
->下表中名称包含“DATA_LABEL”的关键资产属性用于存储业务自定义信息，内容不会被加密，请勿存放个人数据。
+>下表中“ALIAS”和名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放敏感个人数据。
 
 - **query的参数列表：**
 
@@ -87,8 +87,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to update Asset. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

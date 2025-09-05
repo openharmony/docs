@@ -1,11 +1,17 @@
 # Starting a System Application
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @huipeizi-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 This topic describes how to start a system application. It also lists the supported redirection capabilities of system applications.
 
 ## Methods of Starting a System Application
 
-In addition to the methods described in the preceding topics (for example, using **openLink** to start a specified application or using **startAbilitybyType** to specify an application of the specified type), you can use the following methods to start a system application:
+In addition to the methods described in the preceding topics (for example, using **openLink** to start a specified application or using **startAbilityByType** to specify an application of the specified type), you can use the following methods to start a system application:
 
 - **Using Picker Components**
 
@@ -18,7 +24,7 @@ In addition to the methods described in the preceding topics (for example, using
     > The system-level **Picker** components have been pre-authorized. When using such a component, you can temporarily access the corresponding resources without requesting the permissions. For example, before accessing a user's image, an application normally needs to request user authorization. However, by using **PhotoViewPicker**, the application can directly access the image selected by the user.
     >
     > A system-level **Picker** component is implemented by an independent system process.
-
+   
 
 - **Using Specific APIs**
 
@@ -39,7 +45,7 @@ Currently, the following screens in Settings can be directly opened:
     - Displaying the music and audio permission setting dialog box
     - Displaying the contacts permission setting dialog box
     - Displaying the calendar permission setting dialog box
-
+ 
 
 - **Notification management**: When an application uses [requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) to display a dialog box for notification authorization and the user rejects the authorization, the application cannot use this API to open the dialog box again. However, it can call [openNotificationSettings()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageropennotificationsettings13) to open the notification management dialog box.
 
@@ -58,10 +64,9 @@ Currently, the following screens in Settings can be directly opened:
 
 
 ### Contacts
-[Contacts Kit](../contacts/contacts-intro.md) provides the Contacts Picker, which is used to start the Contacts application and read contact data. For details, see [Contact Selection with Picker](../contacts/contacts-intro.md#contact-selection).
+[Contacts Kit](../contacts/contacts-intro.md) provides the Contacts Picker, which is used to start the Contacts application and read contact data. For details, see [Contact Selection](../contacts/contacts-intro.md#contact-selection).
 
 <!--RP2-->
-
 ### Camera
 
 [Camera Kit](../media/camera/camera-overview.md) provides the Camera Picker for photo capture and video recording. For details, see [Using the Camera Picker (ArkTS)](media/camera/camera-picker.md).

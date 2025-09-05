@@ -1,7 +1,11 @@
 # AbilityRunningInfo
-
-AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义。
-
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+AbilityRunningInfo是记录Ability运行信息和状态的数据结构，通过[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#abilitymanagergetabilityrunninginfos14)方法获取。
 > **说明：**
 > 
 > 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -12,22 +16,18 @@ AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义�
 import { abilityManager } from '@kit.AbilityKit';
 ```
 
-## 使用说明
-
-通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#abilitymanagergetabilityrunninginfos14)方法获取。
-
-## 属性
+## AbilityRunningInfo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | 否 | 否 | Ability匹配信息  |
+| ability | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md) | 否 | 否 | Ability的ElementName信息。 |
 | pid | number | 否 | 否 | 进程ID。 |
-| uid | number | 否 | 否 | 用户ID。  |
-| processName | string | 否 | 否 | 进程名称。  |
-| startTime | number | 否 | 否 | Ability启动时间。  |
-| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate14) | 否 | 否 | Ability状态。  |
+| uid | number | 否 | 否 | 所属应用程序的UID。  |
+| processName | string | 否 | 否 | 进程的名称。  |
+| startTime | number | 否 | 否 |Ability的启动时间。 |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate14) | 否 | 否 | Ability的状态。  |
 
 **示例：**
 

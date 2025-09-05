@@ -38,7 +38,7 @@ Marquee(options: MarqueeOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [MarqueeOptions](#marqueeoptions18对象说明) | 是 | 配置跑马灯组件的参数。|
+| options | [MarqueeOptions](#marqueeoptions18对象说明)<sup>18+</sup> | 是 | 配置跑马灯组件的参数。|
 
 ## MarqueeOptions<sup>18+</sup>对象说明
 

@@ -22,6 +22,10 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 创建子窗口或者系统窗口，使用callback异步回调。
 
+非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
+
+自由窗口状态下，子窗口参数[decorEnabled](arkts-apis-window-i.md#configuration9)为false时，子窗口创建后为沉浸式布局；子窗口参数decorEnabled为true，子窗口创建后为非沉浸式布局。
+
 **需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW（仅当创建窗口类型为window.WindowType.TYPE_FLOAT时需要申请）
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -89,6 +93,10 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 创建子窗口或者系统窗口，使用Promise异步回调。
 
+非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
+
+自由窗口状态下，子窗口参数[decorEnabled](arkts-apis-window-i.md#configuration9)为false时，子窗口创建后为沉浸式布局；子窗口参数decorEnabled为true，子窗口创建后为非沉浸式布局。
+
 **需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW（仅当创建窗口类型为window.WindowType.TYPE_FLOAT时需要申请）
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -134,8 +142,7 @@ export default class EntryAbility extends UIAbility {
     let config: window.Configuration = {
       name: "test",
       windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context,
-      defaultDensityEnabled: true
+      ctx: this.context
     };
     try {
       window.createWindow(config).then((value:window.Window) => {
@@ -845,6 +852,8 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 创建子窗口，使用callback异步回调。
 
+子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
+
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
@@ -884,6 +893,8 @@ window.create('test', window.WindowType.TYPE_APP, (err: BusinessError, data) => 
 create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 创建子窗口，使用Promise异步回调。
+
+子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
 
 > **说明：**
 >

@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
-<!--SE: @gsl_1234; @wangke25-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 The **FileIO** module provides APIs for file storage and management, including basic file management, directory management, file information statistics, and stream read and write.
 

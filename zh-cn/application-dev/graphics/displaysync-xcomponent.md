@@ -1,4 +1,10 @@
 # 请求自绘制内容绘制帧率
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hudi33-->
+<!--Designer: @hudi33-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 
 对于基于[XComponent](../ui/napi-xcomponent-guidelines.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
 
@@ -10,13 +16,45 @@
 | OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | 设置每帧回调函数，同时启动每帧回调。 |
 | OH_NativeXComponent_UnRegisterOnFrameCallback (OH_NativeXComponent *component) | 取消注册的每帧回调函数，同时停止调用回调函数。 |
 
+详细的接口说明请参考[OH_NativeXComponent Native XComponent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent.md)。
+
 ## 开发步骤
 
    > **说明：**
    >
    > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
 
-1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
+1. 添加开发依赖。
+
+   CMakeLists.txt中添加以下lib。
+
+   ```txt
+   libace_napi.z.so
+   libace_ndk.z.so
+   libnative_window.so
+   libnative_drawing.so
+   ```
+
+   导入依赖的相关头文件。
+
+   ```c++
+   #include <ace/xcomponent/native_interface_xcomponent.h>
+   #include "napi/native_api.h"
+   #include <native_drawing/drawing_bitmap.h>
+   #include <native_drawing/drawing_color.h>
+   #include <native_drawing/drawing_canvas.h>
+   #include <native_drawing/drawing_pen.h>
+   #include <native_drawing/drawing_brush.h>
+   #include <native_drawing/drawing_path.h>
+   #include <native_drawing/drawing_text_typography.h>
+   #include <native_window/external_window.h>
+   #include <cmath>
+   #include <algorithm>
+   #include <stdint.h>
+   #include <sys/mman.h>
+   ```
+
+2. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
    export default interface XComponentContext {
    register(): void;
@@ -24,7 +62,7 @@
    };
    ```
 
-2. 定义演示页面，包含两个XComponent组件。
+3. 定义演示页面，包含两个XComponent组件。
 
    ```ts
    import XComponentContext from "../interface/XComponentContext";
@@ -55,7 +93,7 @@
    }
    ```
 
-3. Native层配置帧率和注册回调函数。
+4. Native层配置帧率和注册回调函数。
 
    ```ts
    static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp) // 定义每帧的回调函数
@@ -107,7 +145,7 @@
    }
    ```
 
-4. TS层注册和取消注册每帧回调。
+5. TS层注册和取消注册每帧回调。
 
    ```ts
    Row() {
@@ -147,8 +185,8 @@
    }
    ```
 
+<!--RP1-->
 ## 相关实例
 
-针对可变帧率的开发，有以下相关实例可供参考：
-
-- [DisplaySync分级管控(ArkTS)(API11)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySync)
+- [DisplaySync (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/graphic/DisplaySync)
+<!--RP1End-->

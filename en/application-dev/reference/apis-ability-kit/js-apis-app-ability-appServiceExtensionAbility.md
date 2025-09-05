@@ -1,4 +1,10 @@
 # @ohos.app.ability.AppServiceExtensionAbility (ExtensionAbility for Application Background Services)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The AppServiceExtensionAbility module provides extended capabilities for background services, including lifecycle callbacks for creating, destroying, connecting, and disconnecting background services.
 

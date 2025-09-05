@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @maorh-->
-<!--Designer: @lixingchi1-->
+<!--Designer: @keerecles-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @HelloCrease-->
 
@@ -29,7 +29,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 | ------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | dataSource    | [IDataSource](#idatasource)                       | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
 | itemGenerator | (item:&nbsp;any, index: number)&nbsp;=&gt;&nbsp;void   | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>- item是当前数据项（可选），index是数据项索引值（可选）。<br/>- itemGenerator的函数体必须使用大括号{...}。<br />- itemGenerator每次迭代只能并且必须生成一个子组件。<br />- itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。 |
-| keyGenerator  | (item:&nbsp;any, index: number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。修改数据源中的一个数据项若不影响其生成的键值，则对应组件不会被更新，否则此处组件就会被重建更新。`keyGenerator`参数是可选的，但是，为了使开发框架能够更好地识别数组更改并正确更新组件，建议提供。<br/>**说明：**<br/>- item是当前数据项（可选），index是数据项索引值（可选）。<br/>- 数据源中的每一个数据项生成的键值不能重复。<br/>- `keyGenerator`缺省时，使用默认的键值生成函数，即`(item: Object, index: number) => { return viewId + '-' + index.toString(); }`，生成键值仅受索引值index影响。 |
+| keyGenerator  | (item:&nbsp;any, index: number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。修改数据源中的一个数据项若不影响其生成的键值，则对应组件不会被更新，否则此处组件就会被重建更新。`keyGenerator`参数是可选的，但是，为了使开发框架能够更好地识别数组更改并正确更新组件，建议提供。<br/>**说明：**<br/>- item是当前数据项（可选），index是数据项索引值（可选）。<br/>- 数据源中的每一个数据项生成的键值不能重复。<br/>- `keyGenerator`缺省时，使用默认的键值生成函数，即`(item: Object, index: number) => { return viewId + '-' + index.toString(); }`，生成键值仅受索引值index影响（viewId在编译器转换过程中生成，同一个LazyForEach组件内的viewId一致）。 |
 
 > **说明：** 
 >
@@ -97,7 +97,7 @@ registerDataChangeListener(listener: DataChangeListener): void
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
-| listener | [DataChangeListener](#datachangelistener7) | 是   | 数据变化监听器。 |
+| listener | [DataChangeListener](#datachangelistener) | 是   | 数据变化监听器。 |
 
 ### unregisterDataChangeListener
 
@@ -113,9 +113,9 @@ unregisterDataChangeListener(listener: DataChangeListener): void
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
-| listener | [DataChangeListener](#datachangelistener7) | 是   | 数据变化监听器。 |
+| listener | [DataChangeListener](#datachangelistener) | 是   | 数据变化监听器。 |
 
-## DataChangeListener<sup>7+</sup>
+## DataChangeListener
 
 数据变化监听器。
 
@@ -325,7 +325,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | type   | [DataOperationType](#dataoperationtype枚举说明).ADD     | 是   | 数据添加类型。         |
 | index  | number                    | 是   | 插入数据索引值。取值范围是[0, 数据源长度-1]。 |
 | count  | number                    | 否   | 插入数量，默认为1。   |
-| key    | string \| Array\<string\> | 否   | 为插入的数据分配键值。 |
+| key    | string \| Array\<string\> | 否   | 为插入的数据分配键值，默认使用原键值。 |
 
 ### DataDeleteOperation
 
@@ -372,7 +372,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
 | type   | [DataOperationType](#dataoperationtype枚举说明).MOVE     | 是   | 数据移动类型。 |
-| index  | [MoveIndex](#moveindex)        | 是   | 移动位置。取值范围是[0, 数据源长度-1]。|
+| index  | [MoveIndex](#moveindex12)        | 是   | 移动位置。取值范围是[0, 数据源长度-1]。|
 | key | string              | 否   | 为被移动的数据分配新的键值，默认使用原键值。 |
 
 ### DataExchangeOperation
@@ -388,8 +388,8 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | 参数名 | 类型                       | 必填 | 说明                         |
 | ------ | -------------------------- | ---- | ---------------------------- |
 | type   | [DataOperationType](#dataoperationtype枚举说明).EXCHANGE | 是   | 数据交换类型。                 |
-| index  | [ExchangeIndex](#exchangeindex)            | 是   | 交换位置。取值范围是[0, 数据源长度-1]。|
-| key    | [ExchangeKey](#exchangekey)              | 否   | 分配新的键值，默认使用原键值。 |
+| index  | [ExchangeIndex](#exchangeindex12)            | 是   | 交换位置。取值范围是[0, 数据源长度-1]。|
+| key    | [ExchangeKey](#exchangekey12)              | 否   | 分配新的键值，默认使用原键值。 |
 
 ### DataReloadOperation
 
@@ -422,7 +422,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | EXCHANGE | exchange | 数据交换。 |
 | RELOAD | reload | 全部数据重载。 |
 
-## MoveIndex
+## MoveIndex<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -435,7 +435,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | from   | number | 是   | 起始移动位置。取值范围是[0, 数据源长度-1]。|
 | to  | number           | 是   | 目的移动位置。取值范围是[0, 数据源长度-1]。|
 
-## ExchangeIndex
+## ExchangeIndex<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -448,7 +448,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | start   | number | 是   | 第一个交换位置。取值范围是[0, 数据源长度-1]。|
 | end  | number           | 是   | 第二个交换位置。取值范围是[0, 数据源长度-1]。|
 
-## ExchangeKey
+## ExchangeKey<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

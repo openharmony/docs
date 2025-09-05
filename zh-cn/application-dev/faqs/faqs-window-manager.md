@@ -1,5 +1,10 @@
 # 窗口管理开发常见问题
-
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 如何获取状态栏和导航栏高度(API 9)
 
@@ -278,11 +283,9 @@ display.on('change', async (data) => {
 
 ```ts
 display.on('change', (data) => {
-  console.info('Succeeded in enabling the listener for display changes. Data: ' +
-  JSON.stringify(data));
+  console.info(`Succeeded in enabling the listener for display changes. Data: ${data}`);
   let newDisplay: display.Display = display.getDefaultDisplaySync();
-  console.info('Orientation: ' + newDisplay.orientation + 'width: ' +
-  newDisplay.width + ', height: ' + newDisplay.height);
+  console.info(`Orientation: ${newDisplay.orientation} , width: ${newDisplay.width} , height: ${newDisplay.height}`);
 });
 ```
 

@@ -37,7 +37,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 查询设备支持的所有传感器的参数。
+2. 查询设备支持的所有传感器的参数，如果获取不到某个传感器则代表该传感器在此设备上不存在或不可用，如果订阅没查到的传感器时需要处理异常。
 
     ```ts    
     sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {

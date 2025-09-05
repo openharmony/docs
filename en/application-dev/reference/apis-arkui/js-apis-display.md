@@ -1,4 +1,10 @@
 # @ohos.display (Display)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 The Display module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
@@ -69,10 +75,10 @@ Enumerates the fold statuses of a foldable device. For dual-fold axis devices, w
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN<sup>10+</sup> | 0 | The fold status of the device is unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| FOLD_STATUS_EXPANDED<sup>10+</sup> | 1 | The device is fully open. For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| FOLD_STATUS_FOLDED<sup>10+</sup> | 2 | The device is folded (completely closed). For dual-fold axis devices, the first fold axis is folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| FOLD_STATUS_HALF_FOLDED<sup>10+</sup> | 3 | The device is half-folded, somehow between fully open and completely closed. For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_UNKNOWN | 0 | The fold status of the device is unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_EXPANDED | 1 | The device is fully open. For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_FOLDED | 2 | The device is folded (completely closed). For dual-fold axis devices, the first fold axis is folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_HALF_FOLDED | 3 | The device is half-folded, somehow between fully open and completely closed. For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | FOLD_STATUS_EXPANDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 11 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | FOLD_STATUS_EXPANDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 21 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is half-folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | FOLD_STATUS_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 12 | For dual-fold axis devices, the first fold axis is folded, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
@@ -103,19 +109,19 @@ Enumerates the display modes of a foldable device.
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | Both screens of the device are displayed in collaborative mode.|
 
 >**NOTE**
->For foldable devices where both the inner and outer screens can serve as the primary screen, the inner screen's display mode is **FOLD_DISPLAY_MODE_FULL**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_MAIN**.<br>
+>For foldable devices where both the inner and outer screens can serve as the primary screen — like large or wide-folding models — the inner screen's display mode is **FOLD_DISPLAY_MODE_FULL**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_MAIN**.<br>
 >
->For foldable devices where the outer screen serves only as an auxiliary display, the inner screen's display mode is **FOLD_DISPLAY_MODE_MAIN**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_SUB**.
+>For foldable devices where the outer screen serves only as an auxiliary display — like small-folding models — the inner screen's display mode is **FOLD_DISPLAY_MODE_MAIN**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_SUB**.
 
 ## FoldCreaseRegion<sup>10+</sup>
 
-Defines the crease region of a foldable device.
+Describes the crease region of a foldable device.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name  | Type| Readable| Writable| Description              |
+| Name  | Type| Read-Only| Optional| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
 | displayId   | number   | Yes  | No  | ID of the display where the crease is located.|
 | creaseRects    | Array\<[Rect](#rect9)>   | Yes  | No  | Crease region.|
@@ -128,12 +134,12 @@ Describes a rectangle on the display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description              |
+| Name  | Type|  Read-Only| Optional| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value is an integer.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value is an integer.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value is an integer.  |
-| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value is an integer.  |
+| left   | number   | No  | No  | Left boundary of the rectangle, in px. The value is an integer.|
+| top    | number   | No  | No  | Top boundary of the rectangle, in px. The value is an integer.|
+| width  | number   | No  | No  | Width of the rectangle, in px. The value is an integer.  |
+| height | number   | No  | No  | Height of the rectangle, in px. The value is an integer.  |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -143,7 +149,7 @@ Describes the curved area on a waterfall display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type     | Readable| Writable| Description              |
+| Name  | Type     | Read-Only| Optional| Description              |
 | ------ | ------------- | ---- | ---- | ------------------ |
 | left   | [Rect](#rect9) | Yes  | No  | Rectangle of the curved area on the left of the waterfall display.|
 | top    | [Rect](#rect9) | Yes  | No  | Rectangle of the curved area on the top of the waterfall display.|
@@ -158,13 +164,13 @@ Describes the unusable area of a display, including punch hole, notch, and curve
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                       | Type     | Readable| Writable| Description              |
+| Name                       | Type     | Read-Only| Optional| Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches. If there are no punch holes or notches, an empty array is returned.|
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | Yes| No| Curved area on a waterfall display.|
 
 ## DisplayPhysicalResolution<sup>12+</sup>
-Describes the display mode of a foldable device and the corresponding physical screen resolution information.
+Describes the display mode of a device and the corresponding physical screen resolution information.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -172,15 +178,13 @@ Describes the display mode of a foldable device and the corresponding physical s
 
 | Name                       | Type     | Read-Only| Optional| Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | Yes  | No  | Display mode of the foldable device.|
-| physicalWidth   | number | Yes| No| Width of the foldable device, in px. The value is an integer greater than 0.|
-| physicalHeight  | number | Yes| No| Height of the foldable device, in px. The value is an integer greater than 0.|
+| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | Yes  | No  | Display mode of the device. The value is **0** for non-foldable devices.|
+| physicalWidth   | number | Yes| No| Width of the device, in px. The value is an integer greater than 0.|
+| physicalHeight  | number | Yes| No| Height of the device, in px. The value is an integer greater than 0.|
 
 ## ScreenShape<sup>18+</sup>
 
 Enumerates the screen shapes of a display.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -200,14 +204,36 @@ Describes the virtual screen parameters.
 | name      | string   | No  | No  | Name of the virtual screen, which can be customized.              |
 | width     | number   | No  | No  | Width of the virtual screen, in px. The value must be a positive integer.|
 | height    | number   | No  | No  | Height of the virtual screen, in px. The value must be a positive integer.|
-| density   | number   | No  | No  | Density of the virtual screen, in px. The value is a floating point number.|
-| surfaceId | string   | No  | No  | Surface ID of the virtual screen, which can be customized.       |
+| density   | number   | No  | No  | Density of the virtual screen, in px. The value is a floating-point number.|
+| surfaceId | string   | No  | No  | Surface ID of the virtual screen, which can be customized. The maximum length for this parameter is 4096 bytes. If it goes beyond that, only the first 4096 bytes are used.       |
+
+## Position<sup>20+</sup>
+
+Describes a coordinate position. In the global coordinate system, the origin is the upper-left corner of the primary screen. In the relative coordinate system, the origin is the upper-left corner of the specified screen.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name     | Type| Read-Only| Optional| Description                      |
+| --------- | -------- | ---- | ---- |--------------------------|
+| x     | number   | No  | No  | X coordinate relative to the origin, measured in px. The value must be a 32-bit signed integer, and floating-point numbers are rounded down.|
+| y     | number   | No  | No  | Y coordinate relative to the origin, measured in px. The value must be a 32-bit signed integer, and floating-point numbers are rounded down.|
+
+## RelativePosition<sup>20+</sup>
+
+Describes a coordinate position in the relative coordinate system, with the origin in the upper-left corner of the screen specified by **displayId**.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name     | Type| Read-Only| Optional| Description                      |
+| --------- | -------- | ---- | ---- |--------------------------|
+| displayId | number   | No  | No  | Display ID for the relative coordinates. Only integers are supported, and the value must be greater than or equal to 0.|
+| position  | [Position](#position20) | No  | No  | Coordinates with the upper-left corner of the screen specified by **displayId** as the origin.|
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
 getDisplayByIdSync(displayId: number): Display
 
-Obtains a **Display** object based on the display ID.
+Obtains a Display object based on the display ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -223,7 +249,7 @@ Obtains a **Display** object based on the display ID.
 
 | Type                          | Description                                          |
 | ------------------------------| ----------------------------------------------|
-| [Display](#display) | **Display** object.|
+| [Display](#display) | Display object.|
 
 **Error codes**
 
@@ -254,7 +280,7 @@ try {
 
 getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
 
-Obtains the display mode of the current foldable device and the corresponding physical screen resolution information.
+Obtains all the display modes supported by the current device, along with the physical screen resolutions for each mode. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -264,7 +290,7 @@ Obtains the display mode of the current foldable device and the corresponding ph
 
 | Type| Description|
 | ----------------------------------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution12)&gt;&gt; | Promise used to return all the **DisplayPhysicalResolution** objects.|
+| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution12)&gt;&gt; | Promise used to return all the DisplayPhysicalResolution objects.|
 
 **Error codes**
 
@@ -299,9 +325,9 @@ getDefaultDisplaySync(): Display
 
 Obtains the default display object. This API returns the result synchronously.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Return value**
 
@@ -323,25 +349,28 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
-
-displayClass = display.getDefaultDisplaySync();
+try {
+  displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+  console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## display.getPrimaryDisplaySync<sup>14+</sup>
 
 getPrimaryDisplaySync(): Display
 
-Obtains the information about the primary display. For devices other than 2-in-1 devices, the **Display** object obtained is the built-in screen. For 2-in-1 devices with an external screen, the **Display** object obtained is the primary screen. For 2-in-1 devices without an external screen, the Display object obtained is the built-in screen.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
+Obtains the information about the primary display. For devices other than 2-in-1 devices, the Display object obtained is the built-in screen. For 2-in-1 devices with an external screen, the Display object obtained is the primary screen. For 2-in-1 devices without an external screen, the Display object obtained is the built-in screen.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Return value**
 
 | Type                          | Description                                          |
 | ------------------------------| ----------------------------------------------|
-| [Display](#display) | **Display** object of the primary screen.|
+| [Display](#display) | Display object of the primary screen.|
 
 **Error codes**
 
@@ -532,7 +561,7 @@ Checks whether the current device is foldable.
 
 | Type| Description|
 | ----------------------------------------------- | ------------------------------------------------------- |
-| boolean | Returns **true** if the device is foldable, and returns **false** otherwise.|
+| boolean | Check result for whether the device is foldable. **true** if foldable, **false** otherwise. For small-screen foldable devices where the outer screen serves only as an auxiliary display (and cannot be customized by applications), the return value is always **false**. For other foldable devices, the return value is always **true**.|
 
 **Error codes**
 
@@ -586,11 +615,13 @@ console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data)
 ## display.getFoldDisplayMode<sup>10+</sup>
 getFoldDisplayMode(): FoldDisplayMode
 
-Obtains the display mode of the foldable device. This API is unavailable for 2-in-1 devices.
+Obtains the display mode of the foldable device.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API returns **0** for 2-in-1 devices and non-foldable devices. For other devices, this API can be called properly.
 
 **Return value**
 
@@ -655,7 +686,7 @@ Subscribes to fold status change events of the foldable device.
 
 To subscribe to display mode change events of foldable devices, use [display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10).
 
-The two are different. In terms of time sequence, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
+The two are different. In terms of timing, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
 
 To check whether the content is displayed on the inner or outer screen of the foldable device, use [display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10).
 
@@ -924,15 +955,17 @@ ret = display.isCaptured();
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
-Subscribes to display mode change events of the foldable device. This API is unavailable for 2-in-1 devices.
+Subscribes to display mode change events of the foldable device.
 
 To subscribe to fold status change events of foldable devices, use [display.on('foldStatusChange')](#displayonfoldstatuschange10).
 
-The two are different. In terms of time sequence, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
+The two are different. In terms of timing, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API has no effect and does not report errors for 2-in-1 devices and non-foldable devices. For other devices, this API can be called properly.
 
 **Parameters**
 
@@ -969,11 +1002,13 @@ display.on('foldDisplayModeChange', callback);
 
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
-Unsubscribes from display mode change events of the foldable device. This API is unavailable for 2-in-1 devices.
+Unsubscribes from display mode change events of the foldable device.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API has no effect and does not report errors for 2-in-1 devices and non-foldable devices. For other devices, this API can be called properly.
 
 **Parameters**
 
@@ -1158,7 +1193,7 @@ Creates a virtual screen. This API uses a promise to return the result.
 
 | Type                            | Description                                 |
 | -------------------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the created virtual screen.|
+| Promise&lt;number&gt; | Promise used to return the screen ID of the created virtual screen.|
 
 **Error codes**
 
@@ -1261,7 +1296,7 @@ Sets a surface ID for a virtual screen. This API uses a promise to return the re
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
 | screenId  | number | Yes  | Screen ID, which must match the ID of the virtual screen created by calling the **createVirtualScreen()** API. This parameter only accepts integer values.   |
-| surfaceId | string | Yes  | Surface ID of the virtual screen. The value can be customized.|
+| surfaceId | string | Yes  | Surface ID of the virtual screen. The value can be customized. The maximum length for this parameter is 4096 bytes. If it goes beyond that, only the first 4096 bytes are used.|
 
 **Return value**
 
@@ -1342,39 +1377,142 @@ display.makeUnique(screenId).then(() => {
 });
 ```
 
-## Display
-Implements a **Display** instance, with properties and APIs defined.
+## display.convertRelativeToGlobalCoordinate<sup>20+</sup>
 
-Before calling any API in **Display**, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
+convertRelativeToGlobalCoordinate(relativePosition: RelativePosition): Position
+
+Converts relative coordinates (based on the upper-left corner of the screen) into global coordinates (based on the upper-left corner of the primary screen). This API supports only coordinate conversion between the primary screen and extended screen.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description         |
+| --------- | ------ | ---- | ------------- |
+| relativePosition  | [RelativePosition](#relativeposition20) | Yes| Relative coordinates to convert.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| [Position](#position20) | Global coordinates based on the upper-left corner of the primary screen.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 801     | Capability not supported. |
+| 1400003 | This display manager service works abnormally. |
+| 1400004 | Parameter error. Possible cause: 1.Invalid parameter range. |
+
+**Example**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let relativePosition: display.RelativePosition = {
+  displayId: 0,
+  position: {
+    x: 100,
+    y: 200
+  }
+};
+
+try {
+  let position: display.Position = display.convertRelativeToGlobalCoordinate(relativePosition);
+  console.info(`The global coordinate is ${position.x}, ${position.y}`)
+} catch (exception) {
+  console.error(`Failed to convert the relative coordinate to the global coordinate. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## display.convertGlobalToRelativeCoordinate<sup>20+</sup>
+
+convertGlobalToRelativeCoordinate(position: Position, displayId?: number): RelativePosition
+
+Converts global coordinates (based on the upper-left corner of the primary screen) into relative coordinates (based on the upper-left corner of the screen specified by **displayId**). If **displayId** is not passed, the coordinates are converted relative to the screen where the global coordinates are located. If the global coordinates are not on any screen, the coordinates are converted relative to the primary screen by default.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description         |
+| --------- | ------ | ---- | ------------- |
+| position  | [Position](#position20) | Yes| Global coordinates to convert.|
+| displayId | number | No| Display ID for the relative coordinates. If this parameter is passed, the coordinates are converted relative to this screen. If it is not provided, the coordinates are converted to the screen where the global coordinates are located, or the primary screen if they are not on any screen.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| [RelativePosition](#relativeposition20) | Relative coordinates for the specified screen.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 801     | Capability not supported. |
+| 1400003 | This display manager service works abnormally. |
+| 1400004 | Parameter error. Possible cause: 1.Invalid parameter range. |
+
+**Example**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let position: display.Position = {
+    x: 100,
+    y: 200
+};
+
+try {
+  let relPos: display.RelativePosition = display.convertGlobalToRelativeCoordinate(position, 0);
+  console.info(`The relative coordinate is ${relPos.displayId}, ${relPos.position.x}, ${relPos.position.y}`)
+} catch (exception) {
+  console.error(`Failed to convert the global coordinate to the relative coordinate. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## Display
+Implements a Display instance, with properties and APIs defined.
+
+Before calling any API in Display, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a Display instance.
 
 ### Properties
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 | Name| Type| Read-Only| Optional| Description                                                                                                           |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | Yes| No| ID of the display. The value is an integer greater than or equal to 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
+| id | number | Yes| No| Display ID. The value is an integer greater than or equal to 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
 | name | string | Yes| No| Name of the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
-| alive | boolean | Yes| No| Whether the display is alive. The value **true** means that the display is alive, and **false** means the opposite.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
+| alive | boolean | Yes| No| Whether the display is alive. **true** if alive, **false** otherwise.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
-| refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
+| refreshRate | number | Yes| No| Refresh rate of the display, in Hz. The value is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
 | rotation | number | Yes| No| Clockwise rotation angle of the display.<br>The value **0** indicates that the display rotates clockwise by 0°.<br>The value **1** indicates that the display rotates clockwise by 90°.<br>The value **2** indicates that the display rotates clockwise by 180°.<br>The value **3** indicates that the display rotates clockwise by 270°.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | width | number | Yes| No| Width of the display, in px. The value is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
 | height | number | Yes| No| Height of the display, in px. The value is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
-| densityDPI | number | Yes| No| Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
+| densityDPI | number | Yes| No| Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating-point number, in px. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
-| densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
-| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                   |
-| xDPI | number | Yes| No| Exact physical pixels per inch of the display in the X dimension. The value must be a floating point number.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| yDPI | number | Yes| No| Exact physical pixels per inch of the display in the Y dimension. The value must be a floating point number.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating-point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
+| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating-point number. Generally, the value is the same as that of **densityPixels**.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                   |
+| xDPI | number | Yes| No| Exact physical pixels per inch of the display in the X dimension. The value must be a floating-point number.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| yDPI | number | Yes| No| Exact physical pixels per inch of the display in the Y dimension. The value must be a floating-point number.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
 | colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | Yes| No| All color spaces supported by the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                               |
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes| No| All HDR formats supported by the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                              |
 | availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
 | availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | Yes| Yes| Screen shape of the display. The default value is **RECTANGLE**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.
-| sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | Yes| Yes| Display mode for screen content.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
-| x<sup>19+</sup> | number | Yes| Yes| X coordinate of the upper left corner of the screen relative to the origin, which is the upper left corner of the primary screen, measured in px. The value is an integer. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
-| y<sup>19+</sup> | number | Yes| Yes| Y coordinate of the upper left corner of the screen relative to the origin, which is the upper left corner of the primary screen, measured in px. The value is an integer. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
+| screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | Yes| Yes| Screen shape of the display. The default value is **RECTANGLE**.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | Yes| Yes| Display mode for screen content. The default value is **DisplaySourceMode.NONE**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
+| x<sup>19+</sup> | number | Yes| Yes| X coordinate of the upper-left corner of the screen relative to the origin, which is the upper-left corner of the primary screen, measured in px. The value is an integer. The default value is **0**. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
+| y<sup>19+</sup> | number | Yes| Yes| Y coordinate of the upper-left corner of the screen relative to the origin, which is the upper-left corner of the primary screen, measured in px. The value is an integer. The default value is **0**. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
+| supportedRefreshRates<sup>20+</sup> | Array&lt;number&gt; | Yes| Yes| All refresh rates supported by the display, sorted in ascending order. The refresh rate is a positive integer, in Hz. The default value is empty.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 20.                                                 |
 
 
 ### getCutoutInfo<sup>9+</sup>
@@ -1390,7 +1528,7 @@ Obtains the cutout information of the display. This API uses an asynchronous cal
 
 | Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to return the **CutoutInfo** object.|
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to return the CutoutInfo object.|
 
 **Error codes**
 
@@ -1430,7 +1568,7 @@ Obtains the cutout information of the display. This API uses a promise to return
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise used to return the **CutoutInfo** object.|
+| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise used to return the CutoutInfo object.|
 
 **Error codes**
 
@@ -1460,11 +1598,11 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 Obtains the available area of the display of the current device. This API uses a promise to return the result.
 
-Only 2-in-1 devices are supported.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. It does not work for other device types. To obtain the available screen area on the current device, you can use the width and height in [display properties](#properties).
 
 **Return value**
 
@@ -1506,11 +1644,11 @@ on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 Subscribes to changes of the available area on the display of the current device. This API uses an asynchronous callback to return the result.
 
-Only 2-in-1 devices are supported.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, it has no effect and does not report errors.
 
 **Parameters**
 
@@ -1553,11 +1691,11 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
 Unsubscribes from changes of the available area on the display of the current device.
 
-Only 2-in-1 devices are supported.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, it has no effect and does not report errors.
 
 **Parameters**
 
@@ -1591,5 +1729,42 @@ try {
   displayClass.off("availableAreaChange", callback);
 } catch (exception) {
   console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### getLiveCreaseRegion<sup>20+</sup>
+getLiveCreaseRegion(): FoldCreaseRegion
+
+Obtains the live crease region of the foldable device in the current display mode.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| [FoldCreaseRegion](#foldcreaseregion10) | Live crease region of the device.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  let data: display.FoldCreaseRegion = displayClass.getLiveCreaseRegion();
+  console.info('Succeeded in getting the live crease region. Data: ' + JSON.stringify(data));
+} catch (exception) {
+  console.error(`Failed to get the live crease region. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```

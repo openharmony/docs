@@ -1,5 +1,12 @@
 # 长时任务(ArkTS)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 ### 功能介绍
@@ -107,6 +114,7 @@
    
    长时任务相关的模块为@ohos.resourceschedule.backgroundTaskManager和@ohos.app.ability.wantAgent，其余模块按实际需要导入。
 
+   <!--RP1-->
    ```ts
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -114,7 +122,9 @@
     import { rpc } from '@kit.IPCKit'
     import { BusinessError } from '@kit.BasicServicesKit';
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
+    // 在原子化服务中，请删除WantAgent导入
    ```
+   <!--RP1End-->
 
 4. 申请和取消长时任务。
 
@@ -154,6 +164,7 @@
         }
       }
 
+      // 申请长时任务.then()写法
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // 点击通知后，将要执行的动作列表
@@ -177,10 +188,12 @@
 
         try {
           // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+          // 在原子化服务中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
           wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
             try {
               let list: Array<string> = ["audioRecording"];
               // let list: Array<string> = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
+              // 在原子化服务中，let list: Array<string> = ["audioPlayback"];
               backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
                 console.info("Operation startBackgroundRunning succeeded");
                 // 此处执行具体的长时任务逻辑，如录音，录制等。
@@ -196,7 +209,48 @@
         }
       }
 
+      // 申请长时任务async/await写法
+      // async startContinuousTask() {
+      //   let wantAgentInfo: wantAgent.WantAgentInfo = {
+      //     // 点击通知后，将要执行的动作列表
+      //     // 添加需要被拉起应用的bundleName和abilityName
+      //     wants: [
+      //       {
+      //         bundleName: "com.example.myapplication",
+      //         abilityName: "MainAbility"
+      //       }
+      //     ],
+      //     // 指定点击通知栏消息后的动作是拉起ability
+      //     actionType: wantAgent.OperationType.START_ABILITY,
+      //     // 使用者自定义的一个私有值
+      //     requestCode: 0,
+      //     // 点击通知后，动作执行属性
+      //     actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+      //     // 车钥匙长时任务子类型。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
+      //     // 确保extraInfo参数中的Key值为backgroundTaskManager.BackgroundModeType.SUB_MODE，否则子类型不生效。
+      //     // extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
+      //   };
+      // 
+      //   try {
+      //     // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+      //     // 在原子化服务中，使用const wantAgentObj: object = await wantAgent.getWantAgent(wantAgentInfo);替换下面一行代码
+      //     const wantAgentObj: WantAgent = await wantAgent.getWantAgent(wantAgentInfo);
+      //     try {
+      //       let list: Array<string> = ["audioRecording"];
+      //       // let list: Array<string> = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
+      //       // 在原子化服务中，let list: Array<string> = ["audioPlayback"];
+      //       const res: backgroundTaskManager.ContinuousTaskNotification = await backgroundTaskManager.startBackgroundRunning(this.context as Context, list, wantAgentObj);
+      //       console.info(`Operation startBackgroundRunning succeeded, notificationId: ${res.notificationId}`);
+      //       // 此处执行具体的长时任务逻辑，如录音，录制等。
+      //     } catch (error) {
+      //       console.error(`Failed to Operation startBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //     }
+      //   } catch (error) {
+      //     console.error(`Failed to Operation getWantAgent. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //   }
+      // }
    
+      // 取消长时任务.then()写法
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
            console.info(`Succeeded in operationing stopBackgroundRunning.`);
@@ -204,6 +258,16 @@
            console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
          });
       }
+
+      // 取消长时任务async/await写法
+      // async stopContinuousTask() {
+      //   try {
+      //     await backgroundTaskManager.stopBackgroundRunning(this.context);
+      //     console.info(`Succeeded in operationing stopBackgroundRunning.`);
+      //   } catch (error) {
+      //     console.error(`Failed to operation stopBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`)
+      //   }
+      // }
    
       build() {
         Row() {
@@ -299,9 +363,10 @@
       };
 
       // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
+      // 在原子化服务中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
         backgroundTaskManager.startBackgroundRunning(mContext,
-          backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+          backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
           console.info(`Succeeded in operationing startBackgroundRunning.`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
@@ -321,9 +386,9 @@
       num: number = 0;
       str: string = '';
 
-      constructor(num: number, string: string) {
+      constructor(num: number, str: string) {
         this.num = num;
-        this.str = string;
+        this.str = str;
       }
 
       marshalling(messageSequence: rpc.MessageSequence) {
@@ -436,8 +501,6 @@
    
    ```js
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-    import { window } from '@kit.ArkUI';
     import { rpc } from '@kit.IPCKit'
     import { BusinessError } from '@kit.BasicServicesKit';
     import { wantAgent, WantAgent } from '@kit.AbilityKit';

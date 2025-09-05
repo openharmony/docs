@@ -32,9 +32,9 @@
 
 - 布局子元素：布局容器内部的元素。
 
-- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为水平方向，Column容器主轴为垂直方向（图示可参考[弹性容器](./arkts-layout-development-flex-layout.md#基本概念)基本概念中的主轴）。
+- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为水平方向，Column容器主轴为垂直方向（图示可参考弹性布局[基本概念](./arkts-layout-development-flex-layout.md#基本概念)中的主轴）。
 
-- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为垂直方向，Column容器交叉轴为水平方向（图示可参考[弹性容器](./arkts-layout-development-flex-layout.md#基本概念)基本概念中的交叉轴）。
+- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为垂直方向，Column容器交叉轴为水平方向（图示可参考弹性布局[基本概念](./arkts-layout-development-flex-layout.md#基本概念)中的交叉轴）。
 
 - 间距：布局子元素的间距。
 

@@ -1,5 +1,12 @@
 # Key Agreement Overview and Algorithm Specifications
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 Key agreement allows two or more parties to jointly establish a shared key in a non-secure environment.
 
 This topic describes the key agreement algorithms and specifications supported by the system.
@@ -8,7 +15,7 @@ This topic describes the key agreement algorithms and specifications supported b
 
 The Crypto framework provides a variety of Elliptic Curve Diffie–Hellman key exchange (ECDH) capabilities.
 
-When creating an ECDH key agreement instance, you need to specify the algorithm specifications in a string parameter, as listed in the table below.
+When creating a key agreement instance, you need to specify the algorithm specifications in a string parameter, as listed in the table below.
 
 | Asymmetric Key Algorithm| String Parameter| API Version| 
 | -------- | -------- | -------- |
@@ -37,9 +44,9 @@ As indicated by the last row in the preceding table, you can specify the ECDH ke
 
 ## X25519
 
-The Crypto framework provides X25519 key agreement capabilities.
+The crypto framework provides X25519 key agreement capabilities.
 
-When creating an X25519 key agreement instance, you need to specify the algorithm specifications in a string parameter, as listed in the table below.
+When creating a key agreement instance, you need to specify the algorithm specifications in a string parameter, as listed in the table below.
 
 | Asymmetric Key Algorithm| String Parameter| API Version| 
 | -------- | -------- | -------- |
@@ -49,7 +56,7 @@ When creating an X25519 key agreement instance, you need to specify the algorith
 
 The Crypto framework provides Diffie–Hellman key exchange (DH) key agreement capabilities.
 
-When creating a DH key agreement instance, you need to specify the algorithm specifications in a string parameter, as listed in the table below.
+When creating a key agreement instance, you need to specify the algorithm specifications in a string parameter, as listed in the table below.
 
 | Asymmetric Key Algorithm| String Parameter| API Version| 
 | -------- | -------- | -------- |

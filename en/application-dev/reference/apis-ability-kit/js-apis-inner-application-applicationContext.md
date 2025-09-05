@@ -1,4 +1,10 @@
 # ApplicationContext (Application-level Context)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The ApplicationContext module inherits from [Context](js-apis-inner-application-context.md). It provides application-level context capabilities, including APIs for registering and unregistering the lifecycle of application components.
 
@@ -93,7 +99,7 @@ export default class EntryAbility extends UIAbility {
     // 1. Obtain applicationContext through the context property.
     let applicationContext = this.context.getApplicationContext();
     try {
-      // 2. Use applicationContext.on() to subscribe to the 'abilityLifecycle' event.
+      // 2. Register a listener for application lifecycle changes through applicationContext.
       lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
@@ -265,7 +271,7 @@ export default class EntryAbility extends UIAbility {
     // 1. Obtain an applicationContext object.
     let applicationContext = this.context.getApplicationContext();
     try {
-      // 2. Use applicationContext.on() to subscribe to the 'environment' event.
+      // 2. Register a listener for system environment changes through applicationContext.
       callbackId = applicationContext.on('environment', environmentCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
@@ -382,7 +388,7 @@ export default class MyAbility extends UIAbility {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-Registers a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Registers a listener for application process state changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -392,8 +398,8 @@ Registers a listener for application foreground/background state changes. This A
 
 | Name  | Type                                                        | Mandatory| Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| type     | 'applicationStateChange'                                     | Yes  | Event type. The value **'applicationStateChange'** indicates the application foreground/background state change.|
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback triggered when the application is switched between the foreground and background.|
+| type     | 'applicationStateChange'                                     | Yes  | Event type. The value **'applicationStateChange'** indicates the application process state change.|
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback triggered when the application process state is changed.|
 
 **Error codes**
 
@@ -424,7 +430,7 @@ export default class MyAbility extends UIAbility {
     // 1. Obtain an applicationContext object.
     let applicationContext = this.context.getApplicationContext();
     try {
-      // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
+      // 2. Register a listener for application process state changes through applicationContext.
       applicationContext.on('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
@@ -438,7 +444,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-Unregisters a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Unregisters the listener for application process state changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
@@ -452,7 +458,7 @@ Unregisters a listener for application foreground/background state changes. This
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| type   | 'applicationStateChange' | Yes  | Event type. The value **'applicationStateChange'** indicates the application foreground/background state change.|
+| type   | 'applicationStateChange' | Yes  | Event type. The value **'applicationStateChange'** indicates the application process state change.|
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result. The value can be a callback defined by [ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10) or empty.<br>- If a defined callback is passed in, the listener for that callback is unregistered.<br>- If no value is passed in, all the listeners for the corresponding event are unregistered. |
 
 **Error codes**
@@ -485,7 +491,7 @@ export default class MyAbility extends UIAbility {
     let applicationContext = this.context.getApplicationContext();
     try {
       // In this example, the callback field is set to applicationStateChangeCallback.
-      // If no value is passed in for the callback field, all the listeners registered for the application foreground/background state change event are canceled.
+      // If no value is passed in, all the listeners for the corresponding event are unregistered.
       applicationContext.off('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
@@ -643,7 +649,7 @@ Kills all processes of this application. The application will not execute the no
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+| clearPageStack | boolean | Yes| Whether to clear the page stack. **true** to clear, **false** otherwise.|
 
 **Return value**
 
@@ -1013,7 +1019,7 @@ Sets the font for this application. This API can be called only by the main thre
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| font | string | Yes  | Font, which can be registered by calling [UIContext.registerFont](../apis-arkui/js-apis-arkui-UIContext.md#registerfont). |
+| font | string | Yes  | Font, which can be registered by calling [UIContext.registerFont](../apis-arkui/arkts-apis-uicontext-font.md#registerfont). |
 
 **Error codes**
 
@@ -1070,7 +1076,7 @@ Sets whether the current application's process can quickly start up after being 
 This setting applies only to the current process instance and does not affect others. If the application process instance is terminated, the previously set state will not be preserved and must be reset.
 
 > **NOTE**
-> - This API takes effect only for 2-in-1 devices and phones.
+> - Currently, this API takes effect only for phones and 2-in-1 devices.
 > - This API only sets the application to be ready for quick startup after caching. It does not mean that quick startup will be triggered. Other conditions must be considered to determine whether to trigger quick startup.
 > - To ensure that this API is effective before the process exits, it should be called as soon as possible. You are advised to call this API within the **onCreate()** callback of the [AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md).
 > - If this API is called multiple times within the same process, the outcome of the final call is used. In cases where there are multiple AbilityStage instances, to achieve the desired result, this API must be called and configured with the same value in each AbilityStage.
@@ -1082,7 +1088,7 @@ This setting applies only to the current process instance and does not affect ot
 **Parameters**
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| isSupported | boolean | Yes| Whether process cache is supported. The value **true** means that process cache is supported, and **false** means the opposite.|
+| isSupported | boolean | Yes| Whether process cache is supported. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -1256,3 +1262,5 @@ class MyAbilityStage extends AbilityStage {
   }
 }
 ```
+
+<!--no_check-->

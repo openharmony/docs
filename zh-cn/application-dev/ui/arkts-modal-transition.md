@@ -410,6 +410,7 @@ struct BindMenuDemo {
 @Component
 struct BindContextMenuDemo {
   private menu: string[] = ['保存图片', '收藏', '搜一搜'];
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
   private pics: Resource[] = [$r('app.media.icon_1'), $r('app.media.icon_2')];
 
   // 通过@Builder构建自定义菜单项
@@ -465,9 +466,9 @@ struct BindContextMenuDemo {
 ![zh-cn_image_0000001600137920](figures/zh-cn_image_0000001600137920.gif)
 
 
-## 使用bindPopUp实现气泡弹窗效果
+## 使用bindPopup实现气泡弹窗效果
 
-[bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup)属性可为组件绑定弹窗，并设置弹窗内容，交互逻辑和显示状态。
+[bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup)属性可为组件绑定弹窗，并设置弹窗内容，交互逻辑和显示状态。
 
 完整示例和代码如下。
 

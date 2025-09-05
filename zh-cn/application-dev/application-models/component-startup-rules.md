@@ -1,5 +1,11 @@
 # 组件启动规则（Stage模型）
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 启动组件是指一切启动或连接应用组件的行为：
 
@@ -26,7 +32,7 @@
 
   若目标组件exported字段配置为true，表示可以被其他应用调用；若目标组件exported字段配置为false，表示不可以被其他应用调用，还需进一步校验`ohos.permission.START_INVISIBLE_ABILITY`权限（该权限仅系统应用可申请）。组件exported字段说明可参考[abilities标签](../quick-start/module-configuration-file.md#abilities标签)。
 
-- **位于后台的UIAbility应用，启动组件需校验BACKGROUND权限`ohos.permission.START_ABILITIES_FROM_BACKGROUND`（该权限仅系统应用可申请）。对于2in1和tablet设备，如果应用已创建在前台显示的悬浮窗，当该应用退至后台时，无需校验BACKGROUND权限也可以拉起其他Ability。**
+- **位于后台的UIAbility应用，启动组件需校验BACKGROUND权限`ohos.permission.START_ABILITIES_FROM_BACKGROUND`（该权限仅系统应用可申请）。对于2in1和Tablet设备，如果应用已创建在前台显示的悬浮窗，当该应用退至后台时，无需校验BACKGROUND权限也可以拉起其他Ability。**
 
   > 说明：
   > 

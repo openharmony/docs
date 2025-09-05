@@ -1,5 +1,10 @@
 # GPU/CPU内存访问同步操作开发指南 (C/C++)
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @Felix-fangyang; @li_hui180; @dingpy-->
+<!--Designer: @conan13234-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 ## 场景介绍
 
 NativeFence是提供**同步管理fenceFd**的模块。开发者可以通过`NativeFence`接口实现对fenceFd阻塞指定时间、永久阻塞、关闭和检查fenceFd是否有效等操作。

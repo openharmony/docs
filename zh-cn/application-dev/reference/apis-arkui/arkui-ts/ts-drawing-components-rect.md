@@ -37,7 +37,8 @@ Rect(options?: RectOptions | RoundedRectOptions)
 | options | [RectOptions](ts-drawing-components-rect.md#rectoptions18对象说明) \| [RoundedRectOptions](ts-drawing-components-rect.md#roundedrectoptions18对象说明)  | 否 | Rect绘制属性。 |
 
 ## RectOptions<sup>18+</sup>对象说明
-用于描述Rect绘制属性。
+
+用于描述Rect组件绘制属性。
 
 > **说明：**
 >
@@ -49,11 +50,11 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| radius<sup>7+</sup> | [Length](ts-types.md#length) \| Array&lt;any&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数，取值范围≥0。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| radius<sup>7+</sup> | [Length](ts-types.md#length) \| Array&lt;any&gt; | 否 | 是 | 圆角半径，支持分别设置四个角的圆角度数，取值范围≥0。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## RoundedRectOptions<sup>18+</sup>对象说明
 用于描述Rect绘制属性。
@@ -68,12 +69,12 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| radiusWidth<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 圆角宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| radiusHeight<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 圆角高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| radiusWidth<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 圆角宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| radiusHeight<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 圆角高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -81,7 +82,7 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 ### radiusWidth
 
-radiusWidth(value: [Length](ts-types.md#length) )
+radiusWidth(value: Length)
 
 设置圆角的宽度，仅设置宽时宽高一致，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。 异常值按照默认值处理。
 
@@ -99,7 +100,7 @@ radiusWidth(value: [Length](ts-types.md#length) )
 
 ### radiusHeight
 
-radiusHeight(value: [Length](ts-types.md#length))
+radiusHeight(value: Length)
 
 设置圆角的高度，仅设置高时宽高一致，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。  异常值按照默认值处理。
 
@@ -117,7 +118,7 @@ radiusHeight(value: [Length](ts-types.md#length))
 
 ### radius
 
-radius(value: [Length](ts-types.md#length) | Array&lt;any&gt;)
+radius(value: Length | Array&lt;any&gt;)
 
 设置圆角半径大小，取值范围≥0，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。异常值按照默认值处理。
 

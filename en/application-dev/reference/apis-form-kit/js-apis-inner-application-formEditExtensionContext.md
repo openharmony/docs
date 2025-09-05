@@ -2,8 +2,6 @@
 
 **FormEditExtensionContext**, inherited from [UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md), is the context of [FormEditExtensionAbility](./js-apis-app-form-formEditExtensionAbility.md).
 
-You can use **FormEditExtensionContext** to access specific **FormEditExtensionAbility** resources.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -14,7 +12,10 @@ You can use **FormEditExtensionContext** to access specific **FormEditExtensionA
 ```ts
 import { FormEditExtensionAbility } from '@kit.FormKit';
 ```
-## FormEditExtensionContext.startSecondPage
+## FormEditExtensionContext
+You can use **FormEditExtensionContext** to access specific **FormEditExtensionAbility** resources.
+
+### startSecondPage
 
 startSecondPage(want: Want): Promise<[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)>
 

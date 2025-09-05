@@ -8,22 +8,22 @@ The RunningMultiAppInfo module defines the information of an application in mult
 >
 > The APIs provided by this module are system APIs.
 
-## Properties
+## How to Use
+
+The RunningMultiAppInfo struct is obtained from [getRunningMultiAppInfo](js-apis-app-ability-appManager-sys.md#appmanagergetrunningmultiappinfo12) of **appManager**.
+
+## RunningMultiAppInfo
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                     | Type  | Mandatory | Description      |
-| ------------------------- | ------ | ---- | --------- |
-| bundleName | string | Yes | Bundle name of the application.|
-| mode | [MultiAppMode](js-apis-inner-application-multiAppMode-sys.md) | Yes  | Multi-app mode.|
-| runningAppClones | Array<[RunningAppClone](js-apis-inner-application-runningAppClone-sys.md)> | No | Information about application clones with the specific bundle name in the running state.|
-| runningMultiInstances<sup>14+</sup> | Array<[RunningMultiInstanceInfo](js-apis-inner-application-runningMultiInstanceInfo-sys.md)> | No | Information about a multi-instance application with the specific bundle name in the running state.|
-
-## How to Use
-
-The **RunningMultiAppInfo** struct is obtained from [getRunningMultiAppInfo](js-apis-app-ability-appManager-sys.md#appmanagergetrunningmultiappinfo12) of **appManager**.
+| Name                     | Type  | Read-Only | Optional | Description      |
+| ------------------------- | ------ | ---- | ---- | --------- |
+| bundleName | string | No | No | Bundle name of the application.|
+| mode | [MultiAppMode](js-apis-inner-application-multiAppMode-sys.md) | No | No | Multi-app mode.|
+| runningAppClones | Array<[RunningAppClone](js-apis-inner-application-runningAppClone-sys.md)> | No | Yes | Information about application clones with the specific bundle name in the running state.|
+| runningMultiInstances<sup>14+</sup> | Array<[RunningMultiInstanceInfo](js-apis-inner-application-runningMultiInstanceInfo-sys.md)> | No | Yes | Information about a multi-instance application with the specific bundle name in the running state.|
 
 **Example**
 

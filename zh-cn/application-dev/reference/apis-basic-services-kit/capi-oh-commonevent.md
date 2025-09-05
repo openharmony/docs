@@ -1,5 +1,12 @@
 # OH_CommonEvent
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 提供订阅与退订公共事件的能力。

@@ -229,7 +229,9 @@ If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log 
 
 setMinLogLevel(level: LogLevel): void
 
-Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](../../dfx/hilog.md#displaying-and-setting-log-levels) is **Info**.
+Sets the minimum log level.
+
+If the set log level is lower than the [global log level](../../dfx/hilog.md#displaying-and-setting-log-levels), the setting does not take effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -243,7 +245,7 @@ Sets the minimum log level. When a process prints logs, both the minimum log lev
 
 **Example**
 
-Print five HiLog logs of different levels and call the **setMinLogLevel** API twice during the printing.
+The following example prints five HiLog logs of different levels and calls the **setMinLogLevel** API twice when the global log level is **INFO**:
 
 ```js
 hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 1);
@@ -255,13 +257,20 @@ hilog.debug(0x0001, "testTag", 'this is a debug level log, id: %{public}d', 4);
 hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 ```
 
-The default value of the global log level is **Info**. Therefore, the first log is printed normally. When the minimum log level of the process is set to **Warn**, the second log fails to be printed because its level is lower than the minimum-log-level log level, and the third log is printed normally. When the minimum log level of the process is set to **Debug**, the fourth log fails to be printed because its level is lower than the global log level, and the fifth log is printed. The result is as follows:
+The first log is printed properly because the global log level is **INFO**.
 
+After the minimum log level of the process is set to **WARN**, the second log does not meet the log level and fails to be printed. The third log is printed properly.
+
+After the minimum log level of the process is set to **DEBUG**, the fourth log does not meet the global log level and fails to be printed. The fifth log is printed.
+
+<!--RP1-->
+The log result is as follows:
 ```
-08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 1
-08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  E     this is an error level log, id: 3
-08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 5
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogDemo  I     this is an info level log, id: 1
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogDemo  E     this is an error level log, id: 3
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogDemo  I     this is an info level log, id: 5
 ```
+<!--RP1End-->
 
 ## Parameter Format
 
@@ -269,7 +278,7 @@ Parameters in the log are printed in the following format:
 
 %{[private flag]}specifier
 
-|  Privacy Flag| Description|
+|  Private Flag| Description|
 | ------------ | ---- |
 |      Unspecified     | The default value is **private**, indicating that parameters in plaintext are not printed.|
 |  private     | Prints private parameters.|
@@ -279,6 +288,7 @@ Parameters in the log are printed in the following format:
 | ------------ | ---- | ---- |
 |      d/i      | Prints logs of the **number** and **bigint** types.| 123 |
 |   s     | Prints logs of the **string undefined bool** and **null** types.| "123" |
+| o/O | Prints logs of the **object**, **undefined**, and **null** types.<br>This specifier is supported since API version 20.| { 'name': "Jack", 'age': 22 } |
 
 **Example**
 ```js
@@ -289,6 +299,7 @@ let testObj: Record<string, string | number> = {
 let isBol = true;
 let bigNum = BigInt(1234567890123456789);
 hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(testObj));
+hilog.info(0x0001, "jsHilogTest", "print object: %{public}o", testObj);
 hilog.info(0x0001, "jsHilogTest", "private flag: %{private}s %s, print null: %{public}s", "hello", "world", null);
 hilog.info(0x0001, "jsHilogTest", "print undefined: %{public}s", undefined);
 hilog.info(0x0001, "jsHilogTest", "print number: %{public}d %{public}i", 123, 456);
@@ -298,6 +309,7 @@ hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
 
 **Log printing result**:
 ```
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print undefined: undefined

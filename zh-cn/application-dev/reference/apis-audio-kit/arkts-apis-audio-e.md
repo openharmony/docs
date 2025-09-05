@@ -432,16 +432,14 @@
 
 表示流设备变更原因的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                                        |  值     | 说明              |
 |:------------------------------------------| :----- |:----------------|
-| REASON_UNKNOWN | 0 | 未知原因。           |
-| REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。         |
-| REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。报告此原因时，应考虑暂停音频播放。 |
-| REASON_OVERRODE | 3 | 强选。 |
+| REASON_UNKNOWN | 0 | 未知原因。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。报告此原因时，应考虑暂停音频播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REASON_OVERRODE | 3 | 强选。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | REASON_SESSION_ACTIVATED<sup>20+</sup> | 4 | 音频会话已激活。 |
 | REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | 更高优先级的音频流出现导致的系统设备切换。 |
 

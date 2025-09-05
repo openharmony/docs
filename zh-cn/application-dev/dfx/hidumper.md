@@ -25,7 +25,6 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 
 ## 命令行说明
 
-<!--RP1-->
 | 选项 | 说明 |
 | -------- | -------- |
 | -h | 帮助命令。 |
@@ -36,20 +35,19 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | [-s](#获取系统服务详细信息) | 获取所有系统能力详细信息。 |
 | [-s [SA0 SA1]](#获取系统服务详细信息) | 获取一个或多个系统能力的详细信息。多个系统能力名称之间使用空格分隔。可通过 -ls 查询系统能力名称。 |
 | [-s [SA] -a ["option"]](#获取指定系统服务提供的能力) | 执行单个系统能力的特定选项。<br />SA：系统能力名称。<br />option：该系统能力支持的选项。可通过 -s [SA] -a ["-h"] 获取单个系统能力支持的所有选项。 |
-| [-e](#获取系统故障日志) | 获取记录的故障日志。 |
+| [-e](#获取系统故障日志) | 获取记录的故障日志。输出日志的规格可参考：[CppCrash](cppcrash-guidelines.md#日志规格)、[JSCrash](jscrash-guidelines.md#日志规格)、[AppFreeze](appfreeze-guidelines.md#日志规格)。 |
 | [--net [pid]](#查询网络信息) | 获取网络信息，包含网络流量、网络接口统计、IP信息等。如果指定了进程的pid，则只输出该进程的网络流量使用信息。 |
 | [--storage [pid]](#查询存储信息) | 获取存储信息，包含磁盘统计、磁盘使用量、文件句柄等信息。如果指定了进程的pid，则只显示该进程的io信息。 |
 | [-p [pid]](#查询进程信息) | 获取进程信息，包括进程和线程的列表和信息。 |
 | [--cpuusage [pid]](#查询进程cpu使用率) | 获取CPU使用率，取值范围(0, CPU核数]，按进程和类别分类；如果指定pid，则获取指定pid的CPU使用率。 |
 | [--cpufreq](#查询cpu频率) | 获取CPU每个核的真实频率，单位：kHz。 |
-| [--mem [--prune]](#查询整机内存) | 获取总内存使用情况。如果指定--prune，只导出精简的内存使用情况。 |
-| [--mem [pid] [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况。如果指定 --show-ashmem，则补充打印ashmem使用详细信息。 |
+| [--mem [--prune]](#查询整机内存) | 获取总内存使用情况。如果指定--prune，只导出精简的内存使用情况。<br />**说明**：从API version 20开始，支持--prune参数。 |
+| [--mem pid [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况。<br />指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。<br />**说明**：从API version 20开始，支持--show-ashmem参数。 |
 | [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
-| [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)） |
-| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | 必选参数pid。触发ArkTS应用JS线程的gc和堆内存快照导出。指定线程tid时，仅触发该线程的gc和堆内存快照导出；指定--gc时，仅触发gc，不导出快照；指定--leakobj时，应用开启泄露检测可获取泄露对象列表。<br>文件命名格式为：jsheap-进程号-JS线程号-时间戳，文件内容为JSON结构的JS堆快照。<br>指定--raw时，堆快照以rawheap格式导出。 |
-| [--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始。支持该参数。 |
-<!--RP1End-->
+| [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)）<br />**说明**：从API version 20开始，支持该参数。 |
+| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | 必选参数pid。触发ArkTS应用JS线程的gc和堆内存快照导出。指定线程tid时，仅触发该线程的gc和堆内存快照导出；指定--gc时，仅触发gc，不导出快照；指定--leakobj时，应用开启泄露检测可获取泄露对象列表。<br>文件命名格式为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->，文件内容为JSON结构的JS堆快照。<br>指定--raw时，堆快照以rawheap格式导出。 |
+| <!--DelRow-->[--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始，支持该参数。 |
 
 ## 查询内存信息
 
@@ -127,7 +125,9 @@ PurgSum（Purgeable Summary）表示当前进程可回收内存的总量。
 
 PurgPin（Purgeable Pinned）表示可回收但暂时无法立即回收的内存。
 
-GL（Graphics Library）代表图形内存，包含应用纹理内存和图形渲染内存。Graph和Dma的值相等。
+GL代表GPU内存，包含应用使用的GPU内存和统一渲染在服务进程内产生的GPU内存。
+
+Graph代表图形内存，即DMA内存。
 
 可使用hidumper --mem --prune命令获取整机内存精简的使用情况。
 
@@ -307,6 +307,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
 <!--RP2-->
 使用hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]命令可以查看ArkTS应用虚拟机堆内存，使用hidumper --mem-cjheap pid [--gc]命令可以查看仓颉应用虚拟机堆内存。生成的堆内存文件存放于/data/log/faultlog/temp目录。
+<!--RP2End-->
 
 > **注意：**
 >
@@ -314,31 +315,36 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 >
 > 确认命令指定的应用是否为可调试应用：参考上述hidumper --mem-smaps [pid] [-v]命令中的注意事项。
 
-- 可使用hidumper --mem-jsheap pid命令获取指定进程所有JS线程的虚拟机堆内存，文件命名为：jsheap-进程号-JS线程号-时间戳，如果有多个JS线程会生成多个文件。
+- 可使用hidumper --mem-jsheap pid命令获取指定进程所有JS线程的虚拟机堆内存，文件命名为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->，如果有多个JS线程会生成多个文件。
 
   使用样例：
 
+  <!--RP3-->
   ```shell
   $ hidumper --mem-jsheap 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap   -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075546050
   jsheap-64949-64989-1751075546050
   ```
+  <!--RP3End-->
 
-- 可使用hidumper --mem-jsheap pid -T tid命令获取指定进程指定JS线程的虚拟机堆内存，文件命名为：jsheap-进程号-JS线程号-时间戳。
+- 可使用hidumper --mem-jsheap pid -T tid命令获取指定进程指定JS线程的虚拟机堆内存，文件命名为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->。
 
   使用样例：
 
+  <!--RP4-->
   ```shell
   $ hidumper --mem-jsheap 64949 -T 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075567710
   ```
+  <!--RP4End-->
 
-- 可使用hidumper --mem-jsheap pid [-T tid] --raw获取指定进程或指定JS线程的虚拟机堆内存，生成的堆内存文件为rawheap格式，文件命名为jsheap-进程号-JS线程号-时间戳.rawheap。rawheap的解析转换可参考使用：[rawheap-translator工具](../tools/rawheap-translator.md)。
+- 可使用hidumper --mem-jsheap pid [-T tid] --raw获取指定进程或指定JS线程的虚拟机堆内存，生成的堆内存文件为rawheap格式，文件命名为<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->.rawheap。rawheap的解析转换可参考使用：[rawheap-translator工具](../tools/rawheap-translator.md)。
 
   使用样例：
 
+  <!--RP5-->
   ```shell
   $ hidumper --mem-jsheap 64949 --raw  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
@@ -348,6 +354,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   $ ls | grep jsheap
   jsheap-64949-64949-1751075546055.rawheap
   ```
+  <!--RP5End-->
 
 - 可使用hidumper --mem-jsheap pid --gc命令触发指定应用进程GC。该命令不会生成任何文件，执行成功不会有命令回显。
 
@@ -357,25 +364,27 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   $ hidumper --mem-jsheap 64949 --gc  -> 64949 为目标应用进程号
   ```
 
-- 可使用hidumper --mem-jsheap pid --leakobj获取指定进程的虚拟机堆内存和泄漏对象信息，文件命名为：leaklist-进程号-时间戳。
+- 可使用hidumper --mem-jsheap pid --leakobj获取指定进程的虚拟机堆内存和泄漏对象信息，文件命名为：<!--RP6-->leaklist-进程号-时间戳<!--RP6End-->。
 
-  > **注意：**
-  >
-  > 获取指定进程的虚拟机堆内存和泄露对象信息的前提是应用已通过[@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)接口开启了泄漏检测功能。
-  >
-  > 具体使用步骤为：
-  >
-  > 1. 应用调用[jsLeakWatcher.enable](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherenable)接口。
-  > 2. 应用调用[jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherwatch)接口。
-  > 3. 执行hidumper --mem-jsheap [pid] --leakobj命令，导出虚拟机堆内存和泄漏对象信息。
+    获取指定进程的虚拟机堆内存和泄露对象信息的前提是应用已通过[@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)接口开启了泄漏检测功能。
+
+    具体使用步骤为：
+
+    1. 应用调用[jsLeakWatcher.enable](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherenable)接口。
+    2. 应用调用[jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherwatch)接口。
+    3. 执行hidumper --mem-jsheap [pid] --leakobj命令，导出虚拟机堆内存和泄漏对象信息。
 
   使用样例：
 
+  <!--RP7-->
   ```shell
   $ hidumper --mem-jsheap 64949 --leakobj
   $ ls | grep leaklist
   leaklist-64949-1730873210483
   ```
+  <!--RP7End-->
+
+<!--Del-->
 - 可使用hidumper --mem-cjheap pid命令获取指定仓颉进程的虚拟机堆内存，文件命名为：cjheap-进程号-时间戳。
 
   使用样例：
@@ -393,8 +402,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   ```shell
   $ hidumper --mem-cjheap 65012 --gc  -> 65012 为目标应用进程号
   ```
-<!--RP2End-->
-
+<!--DelEnd-->
 上述生成的文件，可以通过hdc[文件传输](hdc.md#文件传输)命令从设备中获取。
 
 

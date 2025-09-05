@@ -648,7 +648,7 @@ setPlaceholderPage(info: NavPathInfo): void
 
 |  参数名   |        类型        | 必填 | 说明         |
 |:-------------:|:--------:|:-----:|----------|
-| info  | NavPathInfo  |   是   | 占位页页面信息。 |
+| info  | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10)  |   是   | 占位页页面信息。 |
 
 ## SplitPolicy枚举说明
 
@@ -774,7 +774,7 @@ export struct PageHome1 {
   @State message: string = 'PageHome1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
   controller: TextInputController = new TextInputController();
-  text: String = '';
+  text: string = '';
   index: number = 0;
   param: Object = new Object();
   lastBackTime: number = 0;
@@ -997,7 +997,7 @@ export struct PageDetail1 {
   @State message: string = 'PageDetail1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
   controller: TextInputController = new TextInputController();
-  text: String = '';
+  text: string = '';
   param: Object = new Object();
 
   build() {
@@ -1231,7 +1231,7 @@ export struct PageDetail2 {
   @State message: string = 'PageDetail2';
   @Consume('pageStack') pageStack: MultiNavPathStack;
   controller: TextInputController = new TextInputController();
-  text: String = '';
+  text: string = '';
   param: Object = new Object();
 
   build() {
@@ -1402,7 +1402,7 @@ export struct PageFull1 {
   @State message: string = 'PageFull1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
   controller: TextInputController = new TextInputController();
-  text: String = '';
+  text: string = '';
 
   build() {
     if (this.log()) {
@@ -1534,7 +1534,7 @@ export struct PageFull1 {
 <!--code_no_check-->
 ```typescript
 // pages/PagePlaceholder.ets: 占位页
-import { MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
+import { MultiNavPathStack } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Component
@@ -1542,7 +1542,7 @@ export struct PagePlaceholder {
   @State message: string = 'PagePlaceholder';
   @Consume('pageStack') pageStack: MultiNavPathStack;
   controller: TextInputController = new TextInputController();
-  text: String = '';
+  text: string = '';
   lastBackTime: number = 0;
 
   build() {

@@ -80,6 +80,7 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -151,7 +152,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>- AMR_NB编码支持采样率范围[8000]。<br>- AMR_WB编码支持采样率范围[16000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR、AAC封装格式，当前AAC音频封装默认为ADTS帧头格式。不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
-| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
+| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC和VIDEO_HEVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，推荐范围[1 - 60]。             |

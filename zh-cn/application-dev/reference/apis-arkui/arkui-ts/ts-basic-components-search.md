@@ -182,7 +182,7 @@ Wearable设备上默认图标大小为16vp。
 
 | 参数名 | 类型                                  | 必填 | 说明               |
 | ------ | ------------------------------------- | ---- | ------------------ |
-| value  | [IconOptions](#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 是   | 左侧搜索图标样式。<!--RP1--><br />浅色模式默认值：<br />{<br />size: '16vp',<br />color: '#99182431',<br />src: ' '<br />}<br />深色模式默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} <!--RP1End-->|
+| value  | [IconOptions](#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-text-style.md#symbolglyphmodifier12) | 是   | 左侧搜索图标样式。<!--RP1--><br />浅色模式默认值：<br />{<br />size: '16vp',<br />color: '#99182431',<br />src: ' '<br />}<br />深色模式默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} <!--RP1End-->|
 
 ### cancelButton<sup>10+</sup>
 
@@ -206,7 +206,7 @@ Wearable设备上默认图标大小为18fp。
 
 fontColor(value: ResourceColor)
 
-设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
+设置输入文本的字体颜色。fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -384,7 +384,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value  | [TextDecorationOptions](ts-universal-attributes-text-style.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -810,7 +810,7 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 | 名称    | 类型                                   | 只读 | 可选 | 说明         |
 | --------- | ------------------------------------------ | ---- | ---- | ---------------- |
 | style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 是 | 右侧清除按钮显示状态。 |
-| icon | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否   | 是 | 右侧清除按钮Symbol图标。 |
+| icon | [SymbolGlyphModifier](ts-universal-attributes-text-style.md#symbolglyphmodifier12) | 否   | 是 | 右侧清除按钮Symbol图标。 |
 
 ## 事件
 
@@ -1068,14 +1068,14 @@ onWillAttachIME(callback: Callback\<IMEClient>)
 
 ## SearchController
 
-Search组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)，涉及的接口有[getTextContentRect](ts-types.md#gettextcontentrect10)、[getTextContentLineCount](ts-types.md#gettextcontentlinecount10)、[getCaretOffset](ts-types.md#getcaretoffset11)、[addText](ts-types.md#addtext15)、[deleteText](ts-types.md#deletetext15)、[getSelection](ts-types.md#getselection15)、[clearPreviewText](ts-types.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
+Search组件的控制器继承自[TextContentControllerBase](ts-universal-attributes-text-style.md#textcontentcontrollerbase)，涉及的接口有[getTextContentRect](ts-universal-attributes-text-style.md#gettextcontentrect)、[getTextContentLineCount](ts-universal-attributes-text-style.md#gettextcontentlinecount)、[getCaretOffset](ts-universal-attributes-text-style.md#getcaretoffset11)、[addText](ts-universal-attributes-text-style.md#addtext15)、[deleteText](ts-universal-attributes-text-style.md#deletetext15)、[getSelection](ts-universal-attributes-text-style.md#getselection15)、[clearPreviewText](ts-universal-attributes-text-style.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
 
 ### 导入对象
 ```ts
 controller: SearchController = new SearchController();
 ```
 
-### constructor<sup>8+</sup>
+### constructor
 
 constructor()
 
@@ -1085,7 +1085,7 @@ SearchController的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### caretPosition<sup>8+</sup>
+### caretPosition
 
 caretPosition(value: number): void
 
@@ -1127,7 +1127,7 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 | -------------- | -------- | ---- | -------- |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
-| options | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+| options | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
 
 >  **说明：**
 >
@@ -1318,7 +1318,7 @@ struct SearchExample {
           this.text = value;
         })
         .onSubmit((value: string) => {
-          console.log("trigger search onsubmit" + value);
+          console.info("trigger search onsubmit" + value);
         })
 
       Button('改变EnterKeyType').onClick(() => {
@@ -1595,19 +1595,19 @@ struct SearchExample {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
-      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
-      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
       return false;
     }
     return false;

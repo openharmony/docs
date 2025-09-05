@@ -632,8 +632,6 @@ isTokenizerSupported(tokenizer: Tokenizer): boolean
 **示例：**
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // 导入模块
-
 let customType = relationalStore.Tokenizer.CUSTOM_TOKENIZER;
 let customTypeSupported = relationalStore.isTokenizerSupported(customType);
 console.info("custom tokenizer supported on current platform: " + customTypeSupported);
@@ -673,7 +671,6 @@ getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolut
 **示例：**
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // 导入模块
 const bucket: relationalStore.ValuesBucket = {
   name: "Logitech",
   age: 18,
@@ -721,8 +718,6 @@ getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: Con
 **示例：**
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // 导入模块
-
 const bucket: relationalStore.ValuesBucket = {
   name: "Logitech",
   age: 18,
@@ -769,8 +764,6 @@ getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
 **示例：**
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // 导入模块
-
 const predicates = new relationalStore.RdbPredicates("users");
 predicates.equalTo("tableName", "a");
 predicates.notEqualTo("age", 18);
@@ -810,8 +803,6 @@ getQuerySqlInfo(predicates: RdbPredicates, columns?: Array\<string>): SqlInfo
 **示例：**
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // 导入模块
-
 const predicates = new relationalStore.RdbPredicates("users");
 predicates.notEqualTo("age", 18);
 predicates.equalTo("name", "zhangsan");

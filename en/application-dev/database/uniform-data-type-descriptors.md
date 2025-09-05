@@ -3,7 +3,7 @@
 
 ## When to Use
 
-Uniform Type Descriptors (UTDs) are designed to resolve the ambiguity of data type descriptions. For example, JPEG images may be described as forms such as image/jpeg, .jpg, .jepg, or image/picture. As a result, complex compatibility logic (such as extension matching and MIME type detection) is required to identify the data type during cross-system transmission, and the identification may fail due to inconsistent descriptions. With UTD, data can be parsed and processed accurately and efficiently.
+Uniform Type Descriptors (UTDs) are designed to resolve the ambiguity of data type descriptions. For example, JPEG images may be described as forms such as image/jpeg, .jpg, .jpeg, or image/picture. As a result, complex compatibility logic (such as extension matching and MIME type detection) is required to identify the data type during cross-system transmission, and the identification may fail due to inconsistent descriptions. With UTD, data can be parsed and processed accurately and efficiently.
 
 The UTDs can be classified into [prebuilt UTDs](#prebuilt-utds) and [custom UTDs](#custom-utds). In addition, you can convert other data types, for example, file name extensions or MIME types, into UTDs.
 
@@ -89,7 +89,7 @@ The fields of a custom UTD must comply with the following requirements:
 
 ### How to Develop
 
-The following walks you through on who to define a custom UTD for media files.
+The following walks you through on how to define a custom UTD for media files.
 
 1. Create the **utd.json5** file in the **entry\src\main\resources\rawfile\arkdata\utd** directory of the application, for example, application A.
 

@@ -10,6 +10,8 @@
 
 声明用于运行屏幕录制过程中接口调用的错误码说明。
 
+**引用文件：** <multimedia/player_framework/native_avscreen_capture_errors.h>
+
 **库：** libnative_avscreen_capture.so
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
