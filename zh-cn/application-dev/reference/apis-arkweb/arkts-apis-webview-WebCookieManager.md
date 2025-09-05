@@ -80,7 +80,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let value = webview.WebCookieManager.fetchCookieSync('https://www.example.com');
-            console.log("fetchCookieSync cookie = " + value);
+            console.info("fetchCookieSync cookie = " + value);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -138,7 +138,7 @@ struct WebComponent {
                 return;
               }
               if (cookie) {
-                console.log('fetchCookie cookie = ' + cookie);
+                console.info('fetchCookie cookie = ' + cookie);
               }
             })
           } catch (error) {
@@ -199,7 +199,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.fetchCookie('https://www.example.com')
               .then(cookie => {
-                console.log("fetchCookie cookie = " + cookie);
+                console.info("fetchCookie cookie = " + cookie);
               })
               .catch((error: BusinessError) => {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -263,7 +263,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.fetchCookie('https://www.example.com', false)
               .then(cookie => {
-                console.log("fetchCookie cookie = " + cookie);
+                console.info("fetchCookie cookie = " + cookie);
               })
               .catch((error: BusinessError) => {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -507,10 +507,10 @@ struct WebComponent {
           try {
             webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
               .then(() => {
-                console.log('configCookie success!');
+                console.info('configCookie success!');
               })
               .catch((error: BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.info('error: ' + JSON.stringify(error));
               })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -574,10 +574,10 @@ struct WebComponent {
           try {
             webview.WebCookieManager.configCookie('https://www.example.com', 'a=b', false, false)
               .then(() => {
-                console.log('configCookie success!');
+                console.info('configCookie success!');
               })
               .catch((error: BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.info('error: ' + JSON.stringify(error));
               })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -728,7 +728,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.saveCookieAsync()
               .then(() => {
-                console.log("saveCookieAsyncCallback success!");
+                console.info("saveCookieAsyncCallback success!");
               })
               .catch((error: BusinessError) => {
                 console.error("error: " + error);
@@ -823,7 +823,7 @@ struct WebComponent {
       Button('isCookieAllowed')
         .onClick(() => {
           let result = webview.WebCookieManager.isCookieAllowed();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -911,7 +911,7 @@ struct WebComponent {
       Button('isThirdPartyCookieAllowed')
         .onClick(() => {
           let result = webview.WebCookieManager.isThirdPartyCookieAllowed();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -955,7 +955,7 @@ struct WebComponent {
       Button('existCookie')
         .onClick(() => {
           let result = webview.WebCookieManager.existCookie();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -1092,17 +1092,13 @@ struct WebComponent {
     Column() {
       Button('clearAllCookies')
         .onClick(() => {
-          try {
-            webview.WebCookieManager.clearAllCookies()
-              .then(() => {
-                console.log("clearAllCookies success!");
-              })
-              .catch((error: BusinessError) => {
-                console.error("error: " + error);
-              });
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
+          webview.WebCookieManager.clearAllCookies()
+            .then(() => {
+              console.log("clearAllCookies success!");
+            })
+            .catch((error: BusinessError) => {
+              console.error("error: " + error);
+            });
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -1236,7 +1232,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.clearSessionCookie()
               .then(() => {
-                console.log("clearSessionCookie success!");
+                console.info("clearSessionCookie success!");
               })
               .catch((error: BusinessError) => {
                 console.error("error: " + error);
@@ -1302,7 +1298,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let value = webview.WebCookieManager.getCookie('https://www.example.com');
-            console.log("value: " + value);
+            console.info("value: " + value);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

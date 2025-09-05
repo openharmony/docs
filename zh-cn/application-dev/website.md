@@ -490,7 +490,7 @@
         - 使用文本<!--arkts-use-text-->
           - [文本概述](ui/arkts-text-introduction.md)
           - [文本显示 (Text/Span)](ui/arkts-common-components-text-display.md)
-          - [文本输入 (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
+          - [文本输入 (TextInput/TextArea/Search)](ui/arkts-common-components-text-input.md)
           - [富文本编辑 (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
@@ -2171,7 +2171,7 @@
           - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentDecorator.md)
           - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentEntryExecutor.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
-          - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
+          - [@ohos.app.ability.PhotoEditorExtensionAbility (支持图片编辑能力的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
           - [@ohos.app.ability.OpenLinkOptions (openLink的可选参数)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
           - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
           - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
@@ -2222,7 +2222,7 @@
           - [@ohos.app.ability.continueManager (跨端迁移)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
           - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-app-ability-dataUriUtils.md)
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
-          - [@ohos.app.ability.errorManager (错误观测管理)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
+          - [@ohos.app.ability.errorManager (错误管理模块)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
           - [@ohos.app.ability.kioskManager (Kiosk管理模块)](reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)
           - [@ohos.app.ability.Want (Want)](reference/apis-ability-kit/js-apis-app-ability-want.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
@@ -3088,6 +3088,8 @@
             - [定义可动画属性 (@AnimatableExtend)](reference/apis-arkui/arkui-ts/ts-animatable-extend.md)
             - [@Entry：页面入口](reference/apis-arkui/arkui-ts/ts-universal-entry.md)
             - [wrapBuilder: 封装全局@Builder](reference/apis-arkui/arkui-ts/ts-universal-wrapBuilder.md)
+        - 组件预览<!--component-preview-->
+          - [组件预览](reference/apis-arkui/arkui-ts/ts-universal-component-previewer.md)
         - 系统预置UI组件库<!--system-preset-ui-component-library-->
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)

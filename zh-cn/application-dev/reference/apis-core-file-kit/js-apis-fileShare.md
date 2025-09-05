@@ -49,6 +49,8 @@ import fileShare from '@ohos.fileshare';
 
 授予或使能权限失败的URI策略结果。支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
 
+type PolicyErrorResult = { uri: string; code: PolicyErrorCode; message: string; }
+
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称| 类型| 必填 | 说明|
@@ -63,10 +65,10 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
-| 名称  | 类型  | 必填  | 说明                                                   |
-|------|-------|------|------------------------------------------------------|
-| uri| string | 是   | 需要授予或使能权限的URI。                                       |
-| operationMode | number | 是   | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode11)。 |
+| 名称  | 类型  | 只读 | 可选 | 说明                                                   |
+|------|-------|------|-----|------------------------------------------------------|
+| uri| string | 否   | 否 | 需要授予或使能权限的URI。                                       |
+| operationMode | number | 否   | 否 | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode11)。 |
 
 ## PathPolicyInfo<sup>15+</sup>
 
@@ -74,10 +76,10 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
-| 名称 | 类型  | 必填  | 说明  |
-|------|-------|-----|--------|
-| path          | string        | 是   | 需要查询的path。|
-| operationMode | OperationMode | 是   | 需要查询的path的访问模式，参考[OperationMode](#operationmode11)。 |
+| 名称 | 类型  | 只读 | 可选 | 说明  |
+|------|-------|-----|-----|--------|
+| path          | string        | 否 | 否   | 需要查询的path。|
+| operationMode | OperationMode | 否 | 否   | 需要查询的path的访问模式，参考[OperationMode](#operationmode11)。 |
 
 ## PolicyType<sup>15+</sup>
 

@@ -518,9 +518,9 @@ some(predicate: TypedArrayPredicateFn\<number, Uint8ClampedArray>): boolean
 **示例：**
 
 ```ts
-let arrayLike = [-10, 20, -30, 40, -50];
+let arrayLike = [10, 20, 30, 40, 50];
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(arrayLike);
-uint8ClampedArray.some((element: number) => element < 0); // false
+uint8ClampedArray.some((element: number) => element < 1); // false
 ```
 
 ## every
@@ -557,9 +557,9 @@ every(predicate: TypedArrayPredicateFn\<number, Uint8ClampedArray>): boolean
 **示例：**
 
 ```ts
-let arrayLike = [-10, 20, -30, 40, -50];
+let arrayLike = [10, 20, 30, 40, 50];
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(arrayLike);
-uint8ClampedArray.every((element: number) => element > 0);  // false
+uint8ClampedArray.every((element: number) => element > 10);  // false
 ```
 
 ## fill
@@ -1457,7 +1457,7 @@ for (const value of iterator) {
 
 | 类型                      | 说明             |
 | ------------------------- | ---------------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
 
 **错误码：**
 

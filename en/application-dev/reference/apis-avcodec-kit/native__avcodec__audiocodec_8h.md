@@ -3,14 +3,17 @@
 
 ## Overview
 
-The **native_avcodec_audiocodec.h** file declares the native APIs used for audio encoding and decoding.
+The file declares the native APIs used for audio encoding and decoding.
 
 **Library**: libnative_media_acodec.so
+
+**File to include**: <multimedia/player_framework/native_avcodec_audiocodec.h>
 
 **Since**: 11
 
 **Related module**: [AudioCodec](_audio_codec.md)
 
+**Sample**: [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 ## Summary
 
@@ -35,3 +38,7 @@ The **native_avcodec_audiocodec.h** file declares the native APIs used for audio
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](_audio_codec.md#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Frees an output buffer of an audio codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](_audio_codec.md#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | Checks whether an audio codec instance is valid.<br>This function is used to detect the codec status when a background fault is rectified or an application is switched from the background. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](_audio_codec.md#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | Sets the decryption information. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryInputBuffer](_audio_codec.md#oh_audiocodec_queryinputbuffer) (struct [OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | Obtains the index of an available input buffer for an audio codec within the specified timeout period. | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) \*[OH_AudioCodec_GetInputBuffer](_audio_codec.md#oh_audiocodec_getinputbuffer)(struct [OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Obtains the input buffer identified by **index** for an audio codec. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryOutputBuffer](_audio_codec.md#oh_audiocodec_queryoutputbuffer)(struct [OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t \*index, int64_t timeoutUs) | Obtains the index of an available output buffer for an audio codec within the specified timeout period. | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) \*[OH_AudioCodec_GetOutputBuffer](_audio_codec.md#oh_audiocodec_getoutputbuffer)(struct [OH_AVCodec](_codec_base.md#oh_avcodec) *codec, uint32_t index) | Obtains the output buffer identified by **index** for an audio codec. | 

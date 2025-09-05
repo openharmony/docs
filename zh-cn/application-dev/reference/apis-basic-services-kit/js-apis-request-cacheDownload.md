@@ -30,9 +30,9 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
-| 名称      | 类型                       | 必填 | 说明                    |
-|---------|--------------------------|----|-----------------------|
-| headers | Record\<string, string\> | 否  | 缓存下载任务在HTTP传输时使用的请求头。 |
+| 名称   | 类型     | 只读 | 可选 | 说明                            |
+|------|--------|----|----|-------------------------------|
+| headers | Record\<string, string\> | 否  | 是 | 缓存下载任务在HTTP传输时使用的请求头。 |
 
 ## ResourceInfo<sup>20+</sup>
 

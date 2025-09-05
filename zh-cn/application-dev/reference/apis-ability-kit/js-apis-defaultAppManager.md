@@ -26,15 +26,15 @@ import { defaultAppManager } from '@kit.AbilityKit';
 
 | 名称   | 值 | 说明                                   |
 | -------- | -------------------------------------- | -------------------------------------- |
-| BROWSER  | 'Web Browser' | 默认浏览器。                            |
-| IMAGE    | 'Image Gallery' | 默认图片查看器。                         |
-| AUDIO    | 'Audio Player' | 默认音频播放器。                         |
-| VIDEO    | 'Video Player' | 默认视频播放器。                         |
-| PDF      | 'PDF Viewer' | 默认PDF文档查看器。                      |
-| WORD     | 'Word Viewer' | 默认WORD文档查看器。                     |
-| EXCEL    | 'Excel Viewer' | 默认EXCEL文档查看器。                    |
-| PPT      | 'PPT Viewer' | 默认PPT文档查看器。                      |
-| EMAIL<sup>12+</sup>    | 'Email' | 默认邮件。                      |
+| BROWSER  | Web Browser | 默认浏览器。                            |
+| IMAGE    | Image Gallery | 默认图片查看器。                         |
+| AUDIO    | Audio Player | 默认音频播放器。                         |
+| VIDEO    | Video Player | 默认视频播放器。                         |
+| PDF      | PDF Viewer | 默认PDF文档查看器。                      |
+| WORD     | Word Viewer | 默认WORD文档查看器。                     |
+| EXCEL    | Excel Viewer | 默认EXCEL文档查看器。                    |
+| PPT      | PPT Viewer | 默认PPT文档查看器。                      |
+| EMAIL<sup>12+</sup>    | Email | 默认邮件。                      |
 
 ## defaultAppManager.isDefaultApplication
 

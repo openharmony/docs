@@ -47,14 +47,16 @@ Component3D组件配置选项。
 
 ## ModelType枚举说明
 
+渲染合成模式类型枚举，用于指定3D场景的渲染输出方式。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称    | 值   | 说明                     |
 | ------- | ---- | ------------------------ |
-| TEXTURE | 0    | 使用GPU合成显示3D场景。  |
-| SURFACE | 1    | 使用专有硬件显示3D场景。 |
+| TEXTURE | 0 | 使用GPU合成显示3D场景。 |
+| SURFACE | 1 | 使用专有硬件显示3D场景。 |
 
 ## Scene<sup>12+</sup>
 

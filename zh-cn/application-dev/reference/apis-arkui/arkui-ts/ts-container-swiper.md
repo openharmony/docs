@@ -568,7 +568,7 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 
 maintainVisibleContentPosition(enabled: boolean)
 
-设置显示区域上方或前方插入或删除数据时是否保持可见内容位置不变。适用于使用单一[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)作为Swiper子节点的情况，通过LazyForEach的[onDateAdd](ts-rendering-control-lazyforeach.md#ondataadd8)、[onDataDelete](ts-rendering-control-lazyforeach.md#ondatadelete8)等接口修改数据源。
+设置显示区域上方或前方插入或删除数据时是否保持可见内容位置不变。适用于使用单一[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)作为Swiper子节点的情况，通过LazyForEach的[onDateAdd](ts-rendering-control-lazyforeach.md#ondataadd8)、[onDataDelete](ts-rendering-control-lazyforeach.md#ondatadelete8)等接口修改数据源。其他场景下，显示区域上方或前方插入或删除数据，可见内容位置会变化。
 
 在[displayCount](#displaycount8)属性的swipeByGroup参数设置为true，生效按组翻页时，一次在显示区域上方或前方插入或删除和一组节点数量倍数的数据量时才能保持可见内容位置不变，否则可见内容位置可能会随每组数据重新分组改变。
 

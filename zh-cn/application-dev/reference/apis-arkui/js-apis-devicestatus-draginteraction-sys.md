@@ -72,10 +72,10 @@ on(type: 'drag', callback: Callback\<DragState>): void
 ```ts
 try {
   dragInteraction.on('drag', (data: dragInteraction.DragState) => {
-    console.log(`Drag interaction event: ${JSON.stringify(data)}`);
+    console.info(`Drag interaction event: ${data}`);
   });
 } catch (error) {
-  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -110,28 +110,28 @@ off(type: 'drag', callback?: Callback\<DragState>): void
 ```ts
 // 取消注册单个回调函数
 function single_callback(event: dragInteraction.DragState) {
-  console.log(`Drag interaction event: ${JSON.stringify(event)}`);
+  console.info(`Drag interaction event: ${event}`);
   return false;
 }
 try {
   dragInteraction.on('drag', single_callback);
   dragInteraction.off("drag", single_callback);
 } catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ```ts
 // 取消注册所有回调函数
 function all_callback(event: dragInteraction.DragState) {
-  console.log(`Drag interaction event: ${JSON.stringify(event)}`);
+  console.info(`Drag interaction event: ${event}`);
   return false;
 }
 try {
   dragInteraction.on('drag', all_callback);
   dragInteraction.off("drag");
 } catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -163,7 +163,7 @@ getDataSummary(): Array\<Summary>
 
 ```ts
 let summarys: Array<dragInteraction.Summary> = dragInteraction.getDataSummary();
-console.log(`Drag interaction summarys: ${JSON.stringify(summarys)}`);
+console.info(`Drag interaction summarys: ${summarys}`);
 ```
 
 ## dragInteraction.setDragSwitchState<sup>18+</sup>

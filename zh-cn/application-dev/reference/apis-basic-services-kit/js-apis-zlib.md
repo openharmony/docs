@@ -74,7 +74,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 >
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[zlib.decompressFile](#zlibdecompressfile9)。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回-1错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“../”，否则会返回-1错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -250,7 +250,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 >
 > 为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含“../”，否则会返回900001、900002错误码。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回900003错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“../”，否则会返回900003错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -314,7 +314,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 >
 > 为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含“../”，否则会返回900001、900002错误码。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回900003错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“../”，否则会返回900003错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +380,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 >
 > 为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含“../”，否则会返回900001、900002错误码。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”，否则会返回900003错误码。
+> 传入的压缩包内部文件或者文件夹名称不能包含“../”，否则会返回900003错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -1547,10 +1547,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -1571,33 +1572,36 @@ class TestRemoteObject extends rpc.RemoteObject {
     return false;
   }
 }
-
-let token: TestRemoteObject = new TestRemoteObject('testObject');
-let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: getContext() };
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    let errCode: number = err?.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
-      return;
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let token: TestRemoteObject = new TestRemoteObject('testObject');
+    let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        let errCode: number = err?.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
+          return;
+        }
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        data.bindDialogTarget(token, () => {
+          console.info('Dialog Window Need Destroy.');
+          }, (err: BusinessError) => {
+          let errCode: number = err?.code;
+          if (errCode) {
+            console.error(`Failed to bind dialog target. Error code: ${err?.code}, message: ${err?.message}`);
+            return;
+          }
+          console.info('Succeeded in binding dialog target.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    if (!data) {
-      console.error('data is null');
-      return;
-    }
-    data.bindDialogTarget(token, () => {
-      console.info('Dialog Window Need Destroy.');
-      }, (err: BusinessError) => {
-      let errCode: number = err?.code;
-      if (errCode) {
-        console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
-        return;
-      }
-      console.info('Succeeded in binding dialog target.');
-    });
-  });
-} catch (exception) {
-  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -1640,10 +1644,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -1665,34 +1670,38 @@ class TestRemoteObject extends rpc.RemoteObject {
   }
 }
 
-let token: TestRemoteObject = new TestRemoteObject('testObject');
-let config: window.Configuration = {
-  name: "test",
-  windowType: window.WindowType.TYPE_DIALOG,
-  ctx: getContext()
-};
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err?.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
-      return;
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let token: TestRemoteObject = new TestRemoteObject('testObject');
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err?.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
+          return;
+        }
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        let promise = data.bindDialogTarget(token, () => {
+          console.info('Dialog Window Need Destroy.');
+        });
+        promise.then(() => {
+          console.info('Succeeded in binding dialog target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to bind dialog target. Error code: ${err?.code}, message: ${err?.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    if (!data) {
-      console.error('data is null');
-      return;
-    }
-    let promise = data.bindDialogTarget(token, () => {
-      console.info('Dialog Window Need Destroy.');
-    });
-    promise.then(() => {
-      console.info('Succeeded in binding dialog target.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
-    });
-  });
-} catch (exception) {
-  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -3417,7 +3426,7 @@ try {
 }
 ```
 
-## setWindowContainerModalColor<sup>20+</sup>
+### setWindowContainerModalColor<sup>20+</sup>
 
 setWindowContainerModalColor(activeColor: string, inactiveColor: string): void
 
@@ -3850,7 +3859,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('disableWindowDecor');
+    console.info('disableWindowDecor');
     windowStage.disableWindowDecor();
   }
 };
@@ -3895,7 +3904,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {

@@ -132,6 +132,31 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 
 下面的示例展示了如何使用ContentSlot挂载Native侧的文本列表。
 
+示例代码的目录结构及其文件说明如下：
+
+```
+.
+|——cpp
+|    |——types
+|    |	  |——libentry
+|    |	  |	   |——index.d.ts 提供Native和ArkTS侧的桥接方法。
+|    |——napi_init.cpp 与index.d.ts对应的桥接方法对接Native侧的定义处。
+|    |——NativeEntry.cpp 桥接方法的Native侧实现。
+|    |——NativeEntry.h 桥接方法的Native侧定义。
+|    |——CMakeList.txt C语言库引用文件。
+|    |——ArkuiBaseNode.h 节点封装扩展类。
+|    |——ArkuiNode.h 节点封装扩展类。
+|    |——ArkuiListNode.h 节点封装扩展类。
+|    |——ArkuiListItemNode.h 节点封装扩展类。
+|    |——ArkuiTextNode.h 节点封装扩展类。
+|    |——NormalTextListExample.h 示例代码文件。
+| 
+|——ets
+|    |——pages
+|         |——entry.ets 应用启动页，加载承载Native的容器。
+|
+```
+
 **图1** Native文本列表
 
 ![text_list](figures/text_list.gif)
