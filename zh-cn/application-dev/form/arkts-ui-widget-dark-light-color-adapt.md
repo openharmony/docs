@@ -1,4 +1,4 @@
-# ArkTS卡片界面适配深浅色模式	
+# ArkTS卡片界面适配深浅色模式
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
