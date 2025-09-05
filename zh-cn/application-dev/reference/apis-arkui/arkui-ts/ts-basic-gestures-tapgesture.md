@@ -77,7 +77,7 @@ onAction(event: (event: GestureEvent) => void)
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
 
-## EventLocationInfo<sup>20+</sup>对象说明
+## EventLocationInfo<sup>20+</sup>
 
 用于点击手势获取点击位置坐标。
 

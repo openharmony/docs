@@ -25,7 +25,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 | 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode    | [GestureMode](#gesturemode枚举说明)                          | 是   | 设置组合手势识别模式。<br/>默认值：GestureMode.Sequence      |
-| gesture | [GestureType](ts-gesture-settings.md#gesturetype)[] | 是   | 设置一个或多个基础手势类型，这些手势将被识别为组合手势。若此参数不填，则组合手势识别功能不生效。<br/>**说明：**  <br/>当需要为一个组件同时添加单击和双击手势时，可在组合手势中添加两个[TapGesture](ts-basic-gestures-tapgesture.md#tapgesture)，且需要双击手势在前，单击手势在后，否则不生效。 |
+| gesture | [GestureType](./ts-gesture-common.md#gesturetype11-1)[] | 是   | 设置一个或多个基础手势类型，这些手势将被识别为组合手势。若此参数不填，则组合手势识别功能不生效。<br/>**说明：**  <br/>当需要为一个组件同时添加单击和双击手势时，可在组合手势中添加两个[TapGesture](ts-basic-gestures-tapgesture.md)，且需要双击手势在前，单击手势在后，否则不生效。 |
 
 ## GestureMode枚举说明
 
