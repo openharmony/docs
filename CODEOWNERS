@@ -778,10 +778,10 @@ zh-cn/application-dev/napi/usb-ddk-guidelines.md @w_Machine_cc @Kevin-Lau @liuho
 
 
 [开发-Notification Kit]
-zh-cn/application-dev/notification/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/notification/notification-distributed*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/notification/notification-quickreply.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/notification/progress-bar-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/notification/notification-distributed*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/notification-quickreply.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/progress-bar-notification.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 
 [开发-Performance]
@@ -2052,10 +2052,10 @@ zh-cn/application-dev/reference/apis-neural-network-runtime-kit/_neural_network_
 
 
 [API参考-Notification Kit]
-zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-notification-kit/js-apis-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notification*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-notification*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 
 [API参考-Security]
@@ -2128,4 +2128,4 @@ zh-cn/application-dev/tools/Readme-CN.md @foryourself @lingminghw @RayShih @fory
 [FAQ]
 zh-cn/application-dev/faqs/faqs-ability.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/faqs/faqs-bundle-management.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
-zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/faqs/faqs-event-notification.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
