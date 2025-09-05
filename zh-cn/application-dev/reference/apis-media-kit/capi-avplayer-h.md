@@ -414,7 +414,7 @@ OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain
 
 调用此API后，响度增益立即生效。响度范围为[-90.0, 24.0]。默认值为0.0dB。
 
-audioRendererInfo的usage参数必须是[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_MUSIC、[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_MOVIE、[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_AUDIOBOOK其中之一。
+调用此接口时，需确保已设置音频渲染信息[OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage)(../apis-audio-kit/arkts-apis-audio-e.md#streamusage)参数必须是AUDIOSTREAM_USAGE_MUSIC、AUDIOSTREAM_USAGE_MOVIE、AUDIOSTREAM_USAGE_AUDIOBOOK其中之一。
 
 
 
