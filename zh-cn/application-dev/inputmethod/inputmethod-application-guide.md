@@ -23,7 +23,6 @@
 
 ## 开发步骤 
 
-<!--RP1-->
 开发者在实现一个输入法应用时，需要在DevEco Studio工程中新建一个InputMethodExtensionAbility，具体步骤如下：
 
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，并命名为InputMethodExtensionAbility。
@@ -40,7 +39,6 @@
 │         └── KeyboardKeyData.ts			    # 键盘属性定义
 ├── resources/base/profile/main_pages.json  
 ```
-<!--RP1End-->
 
 ## 文件介绍
 
