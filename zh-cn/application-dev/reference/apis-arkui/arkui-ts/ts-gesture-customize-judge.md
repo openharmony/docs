@@ -54,6 +54,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | sourceTool<sup>9+</sup> | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 否 | 否 | 事件输入源的类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | axisHorizontal<sup>12+</sup> | number | 否 | 是 | 水平轴值。<br/>默认值：0<br/>**说明：**<br/>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | axisVertical<sup>12+</sup> | number | 否 | 是 | 垂直轴值。<br/>默认值：0<br/>**说明：**<br/>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| axisPinch<sup>21+</sup> | number | 否 | 是 |  双指缩放比例。<br/>默认值：0<br/>**说明：**<br/>仅在触控板双指缩放操作触发的Pinch手势，或轴事件中获取。<br/>**卡片能力：** 从API version 21开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。 |
 | deviceId<sup>12+</sup> | number | 否 | 是 | 触发当前事件的输入设备ID。<br/>默认值：0<br />取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | targetDisplayId<sup>15+</sup> | number | 否 | 是 | 事件发生的屏幕ID。  <br/>默认值：0<br />取值范围：[0, +∞)<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -194,10 +195,10 @@ struct Index {
       }
       // 自定义判定标准
       if (gestureInfo.type == GestureControl.GestureType.DRAG) {
-        // 返回 REJECT 会使拖动手势失败
+        // 返回 GestureJudgeResult.REJECT 会使拖动手势失败。
         return GestureJudgeResult.REJECT;
       } else if (gestureInfo.tag == 'longPress1' && event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
-        // 返回 CONTINUE 将保持系统判定。
+        // 返回 GestureJudgeResult.CONTINUE 将保持系统判定。
         return GestureJudgeResult.CONTINUE;
       }
       return GestureJudgeResult.CONTINUE;
@@ -246,7 +247,7 @@ struct Index {
           .height('200vp')
           .hitTestBehavior(HitTestMode.Transparent)
           .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
-            // 确定tag标志是否有值
+            // 确定 gestureInfo 的 tag 标志是否有值
             if (gestureInfo.tag) {
               console.log("gestureInfo tag" + gestureInfo.tag.toString())
             }
