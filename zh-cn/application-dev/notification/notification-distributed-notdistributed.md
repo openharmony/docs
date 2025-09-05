@@ -5,7 +5,7 @@
 <!--Owner: @peixu-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 默认情况下，通知消息会进行跨设备协同。如果应用已通过分布式通信能力实现跨设备协同（例如短信通知消息由短信应用本身协同到手表、平板、2in1等设备），为了避免通知消息在不同设备上重复发送，需要针对分布式通知的协同设备进行管理。
 
