@@ -576,7 +576,7 @@ beacon围栏的参数配置。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| identifier | string | 否 | 否 | beacon围栏标识。 |
+| identifier | string | 否 | 否 | beacon围栏标识。可自行定义，如："123", "beaconName"。 |
 | beaconFenceInfoType | [BeaconFenceInfoType](#beaconfenceinfotype20) | 否 | 否 | beacon围栏信息类型。 |
 | manufactureData | [BeaconManufactureData](#beaconmanufacturedata20) | 否 | 是 | beacon设备制造商数据。 |
 
