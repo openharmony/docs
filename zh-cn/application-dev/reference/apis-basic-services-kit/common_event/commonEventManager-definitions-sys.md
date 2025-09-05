@@ -253,7 +253,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（该权限仅系统应用可申请）
+**订阅者所需权限：** 在API version 21之前，需要申请ohos.permission.MANAGE_LOCAL_ACCOUNTS权限；从API version 21开始，需要申请ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限
 
 **取值：** "usual.event.USER_SWITCHED"
 
