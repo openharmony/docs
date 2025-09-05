@@ -1,8 +1,15 @@
 # ArkUI_GuidelineOption
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
+
 ## 概述
 
-guideLine参数，用于定义guideline的id、方向和位置。
+guideLine参数，用于定义guideLine的id、方向和位置。
 
 **起始版本：** 12
 
