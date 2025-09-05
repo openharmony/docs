@@ -29,7 +29,7 @@ setCursor(value: PointerStyle): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
-| value | [PointerStyle](#pointerstyle12) | 是   | 设置的鼠标样式。 |
+| value | [PointerStyle](#pointerstyle11) | 是   | 设置的鼠标样式。 |
 
 
 ### restoreDefault
@@ -42,7 +42,7 @@ restoreDefault(): void
 
 方法语句中可使用的全局接口，调用此接口可将鼠标光标恢复成默认箭头样式。
 
-## PointerStyle<sup>12+</sup>
+## PointerStyle<sup>11+</sup>
 
 type PointerStyle = pointer.PointerStyle
 
