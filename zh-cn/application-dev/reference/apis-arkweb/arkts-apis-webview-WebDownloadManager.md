@@ -70,7 +70,7 @@ struct WebComponent {
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.info("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
@@ -185,7 +185,7 @@ struct WebComponent {
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.info("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })

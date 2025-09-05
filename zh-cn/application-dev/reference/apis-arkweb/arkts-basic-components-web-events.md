@@ -1376,7 +1376,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   
   function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
     if (!(certChainData instanceof Array)) {
-      console.info('failed, cert chain data type is not array');
+      console.error('failed, cert chain data type is not array');
       return;
     }
 
@@ -1479,7 +1479,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
   function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
     if (!(certChainData instanceof Array)) {
-      console.info('failed, cert chain data type is not array');
+      console.error('failed, cert chain data type is not array');
       return;
     }
 
