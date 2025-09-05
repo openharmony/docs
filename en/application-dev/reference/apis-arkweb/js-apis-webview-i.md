@@ -75,10 +75,10 @@ Provides information used to obtain a full drawing result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type|  Mandatory| Description|
-|------|------|------|------|
-| id | string | No| Snapshot ID.|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | No| Size for web rendering. The maximum size is 16000 px x 16000 px. The length unit can be px, vp, or %. The length unit must be the consistent across parameters. The default unit is vp. If the size exceeds the specifications , the maximum size is returned. Example: **width: '100px', height: '200px'** or **width: '20%', height'30%'**. If only digits are written, the unit is vp.|
+| Name| Type|  Read-Only|  Optional| Description|
+|------|------|------|------|------|
+| id | string | No| Yes| Snapshot ID.|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | No| Yes| Size for web rendering. The maximum size is 16000 px x 16000 px. The length unit can be px, vp, or %. The length unit must be the consistent across parameters. The default unit is vp. If the size exceeds the specifications , the maximum size is returned. Example: **width: '100px', height: '200px'** or **width: '20%', height'30%'**. If only digits are written, the unit is vp.|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -86,12 +86,12 @@ Represents a full drawing result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory|  Description|
-|------|------|--|---------|
-| id | string | No| Snapshot ID.|
-| status | boolean | No|  Snapshot status. The value can be **true** (normal) or **false** (failure). If the full drawing result fails to be obtained, the width and height of the returned size are both 0, and the map is empty.|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | No| Actual size drawn on the web page. The value is of the number type, and the unit is vp.|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No| Full drawing result in image.pixelMap format.|
+| Name| Type| Read-Only| Optional|  Description|
+|------|------|-- |--|---------|
+| id | string | No| Yes| Snapshot ID.|
+| status | boolean | No| Yes|  Snapshot status. The value can be **true** (normal) or **false** (failure). If the full drawing result fails to be obtained, the width and height of the returned size are both 0, and the map is empty.|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | No| Yes|  Actual size drawn on the web page. The value is of the number type, and the unit is vp.|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No| Yes| Full drawing result in image.pixelMap format.|
 
 ## OfflineResourceMap<sup>12+</sup>
 
@@ -116,16 +116,16 @@ Specifies the input parameters of **createPdf()**.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                 | Type   | Mandatory| Description                                                        |
-| --------------------- | ------- | ---- | ------------------------------------------------------------ |
-| width                 | number  | Yes  | Page width,<br>in inches.<br>Recommended value: 8.27 inches of A4 paper width.  |
-| height                | number  | Yes  | Page height,<br>in inches.<br>Recommended value: 11.69 inches of A4 paper height. |
-| scale                 | number  | No  | Scale multiple.<br>The value range is [0.0, 2.0]. If the value is less than 0.0, set it to **0.0**. If the value is greater than 2.0, set it to **2.0**.<br>Default value: **1.0**|
-| marginTop             | number  | Yes  | Top margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| marginBottom          | number  | Yes  | Bottom margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| marginRight           | number  | Yes  | Right margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| marginLeft            | number  | Yes  | Left margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| shouldPrintBackground | boolean | No  | Whether to print the background color. The value **true** means to print the background color, and **false** means the opposite.<br>The default value is **false**.                           |
+| Name       | Type  | Read-Only| Optional|Description                |
+| ----------- | ------ | -----|------|------------------- |
+| width                 | number  | No  | No  | Page width.<br>Unit: inch.<br>Recommended value: 8.27 inches of A4 paper width.  |
+| height                | number  | No  | No  | Page height.<br>Unit: inch.<br>Recommended value: 11.69 inches of A4 paper height. |
+| scale                 | number  | No  | Yes  | Scale multiple.<br>The value range is [0.0, 2.0]. If the value is less than 0.0, set it to **0.0**. If the value is greater than 2.0, set it to **2.0**.<br>Default value: **1.0**|
+| marginTop             | number  | No  | No  | Top margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| marginBottom          | number  | No  | No  | Bottom margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| marginRight           | number  | No  | No  | Right margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| marginLeft            | number  | No  | No  | Left margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| shouldPrintBackground | boolean | No  | Yes  | Whether to print the background color. The value **true** means to print the background color, and **false** means the opposite.<br>The default value is **false**.                           |
 
 ## ScrollOffset<sup>13+</sup>
 

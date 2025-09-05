@@ -25,7 +25,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 - The lifecycle of the \@State decorated variable is the same as that of its owning custom component.
 
 
-## Rules of Use
+## Usage Rules
 
 | \@State Decorator | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
@@ -559,7 +559,7 @@ When an arrow function for changing **success** is initialized in the **construc
 
 When the arrow function for changing **success** in **query**, the **TestModel** object has been initialized and encapsulated by the proxy. Call **this.viewModel.query()** and **this** in the function points to the **viewModel** object. In this case, the change of **isSuccess** is observable, so that the change of the query event can be observed by the state management.
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 ```ts
 @Entry
@@ -612,7 +612,7 @@ export class Model {
 
 In the preceding example, the state variable is changed in the constructor. After the button is clicked, the change takes effect, indicated by "this.isSuccess: true" in the log. However, the page is not refreshed, and still displays "failed".
 
-[Example]
+**Example**
 
 ```ts
 @Entry
@@ -1006,7 +1006,7 @@ Therefore, you are not advised to change the state variables in **build**. When 
 
 In the **build** method, when the variable decorated by \@State is of the object type and is called in the **a.b(this.object)** format, the original object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Balloon.increaseVolume** or **this.reduceVolume** is used to change the **volume** of **Balloon**, the UI is not re-rendered.
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 ```ts
 class Balloon {
@@ -1052,7 +1052,7 @@ struct Index {
 
 You can add a proxy for **this.balloon** to re-render the UI by assigning a value to the variable and then calling the variable.
 
-[Example]
+**Example**
 
 ```ts
 class Balloon {

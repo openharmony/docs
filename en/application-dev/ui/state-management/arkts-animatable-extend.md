@@ -1,10 +1,10 @@
-# \@AnimatableExtend Decorator: Definition of Animatable Attributes
+# \@AnimatableExtend Decorator: Defining Animatable Properties
 
-The @AnimatableExtend decorator is used to define an attribute method for the non-animatable attribute of a component. During animation execution, a frame-by-frame callback is used to change the value of the non-animatable attribute so that an animation effect can be applied to the attribute. Additionally, you can implement frame-by-frame layout effects by changing the values of animatable properties in the per-frame callback function.
+The @AnimatableExtend decorator enables animation capabilities for normally non-animatable component properties. During animation execution, frame-by-frame callbacks are executed to change the values of non-animatable properties to allow them to achieve animation effects. Additionally, you can implement frame-by-frame layout effects by changing the values of animatable properties in the per-frame callback function.
 
-- Animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute can make the animation effect specified by the **animation** attribute take effect, then this attribute is called animatable attribute. For example, **height**, **width**, **backgroundColor**, **translate**, and **fontSize** (of the **Text** component) are all animatable attributes.
+- Animatable property: A property is considered animatable if, when its method is called before the **animation** attribute, changing its value triggers the animation effect specified by **animation**. Examples include **height**, **width**, **backgroundColor**, **translate**, and **fontSize** (of the **Text** component).
 
-- Non-animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute cannot make the animation effect specified by the **animation** attribute take effect, then this attribute is called non-animatable attribute. For example, the **points** attribute of the **Polyline** component is a non-animatable attribute.
+- Non-animatable property: A property is non-animatable if, when its method is called before the **animation** attribute, changing its value does not trigger the animation effect specified by **animation**. For example, the **points** property of the **Polyline** component is a non-animatable.
 
 >  **NOTE**
 >
@@ -12,7 +12,7 @@ The @AnimatableExtend decorator is used to define an attribute method for the no
 >
 > This decorator can be used in atomic services since API version 11.
 
-## Rules of Use
+## Usage Rules
 
 
 ### Syntax
@@ -26,12 +26,12 @@ The @AnimatableExtend decorator is used to define an attribute method for the no
 
 - \@AnimatableExtend can be defined only globally.
 - The parameter of the \@AnimatableExtend decorated function must be of the number type or a custom type that implements the **AnimatableArithmetic\<T\>** API.
-- In the \@AnimatableExtend decorated function body, only the attribute methods of the component specified in brackets immediately following \@AnimatableExtend can be called.
+- The function body of an @AnimatableExtend decorated function can only access property methods of the component type specified within the parentheses of @AnimatableExtend.
 
 ### Available APIs
-The **AnimatableArithmetic** API defines the animation operation rules for non-number data types. To animate non-number data (such as arrays, structs, and colors), implement the addition, subtraction, multiplication, and equality judgment functions in the **AnimatableArithmetic\<T\>** API.
+The **AnimatableArithmetic\<T\>** API defines the animation operation rules for non-number data types. To animate non-number data (such as arrays, structs, and colors), implement the addition, subtraction, multiplication, and equality judgment functions in the **AnimatableArithmetic\<T\>** API.
 In this way, the data can be involved in an interpolation operation of the animation and identify whether the data changes, that is, the non-number data is defined as the types that implement the **AnimatableArithmetic\<T\>** API.
-| Name| Input Parameter Type| Return Value Type| Description |
+| Name| Input Parameter Type| Return Value Type| Description
 | -------- | -------- |-------- |-------- |
 | plus | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Defines the addition rule of the data type.|
 | subtract | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Defines the subtraction rule of the data type.|

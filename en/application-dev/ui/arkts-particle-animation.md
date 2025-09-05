@@ -1,10 +1,8 @@
 # Particle Animation
 
-[Particle animation](../reference/apis-arkui/arkui-ts/ts-particle-animation.md) is an animation composed of a multitude of particles randomly generated within a certain range. The particles can be points or images. By animating different aspects of the particles, such as color, opacity, scale, velocity, acceleration, and spin angle, you can create engaging and dynamic aesthetics. For example, you can create an impressive snowfall animation by animating the particles – snowflakes.
+[Particle animation](../reference/apis-arkui/arkui-ts/ts-particle-animation.md) is created using the **Particle** component and consists of a multitude of particles that are randomly generated within a specified area. These particles can take the form of points, images, or other shapes. By animating different aspects of the particles, such as color, opacity, scale, velocity, acceleration, and spin angle, you can create engaging and dynamic visual effects. For example, you can simulate an impressive snowfall animation by animating the particles to represent snowflakes.
 
-The component used for producing particle animations is **Particle**.
-
-Below is the sample code and effect:
+Below is a simple implementation of the particle animation:
 ```ts
 @Entry
 @Component
@@ -12,17 +10,20 @@ struct ParticleExample {
   build() {
     Stack() {
       Text()
-        .width(300).height(300).backgroundColor(Color.Black)
+        .width(300).height(300).backgroundColor('rgb(240, 250, 255)')
       Particle({ particles: [
         {
           emitter: {
             particle: {
               type: ParticleType.POINT, // Particle type.
               config: {
-                radius: 5 // Point radius.
+                radius: 5// Point radius.
               },
               count: 100, // Total number of particles.
             },
+          },
+          color:{
+            range:['rgb(39, 135, 217)','rgb(0, 74, 175)'],// Initial color range.
           },
         },
       ]
@@ -35,11 +36,9 @@ struct ParticleExample {
 ![particle-base](figures/particle-base.gif)
 
 
-## Particle Emitter
+## Implementing a Particle Emitter
 
-A particle emitter in particle animation is a component used to generate and control particles. It is primarily used to define the initial properties of particles (such as type, position, and color), control the rate of particle emission, and manage the lifecycle of the particles.
-
-The position of the emitter can be dynamically updated. You can adjust the position, emission rate, and size of the emission window for the emitter using the [emitter](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#emitter12) API.
+A particle emitter in particle animation is primarily used to define the initial properties (such as type, position, and color), of particles, control the rate of particle emission, and manage the lifecycle of the particles. You can update the position of the emitter by adjusting the emitter position, emission rate, and emission window size using the [emitter](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#emitter12) API.
 
 ```ts
 // ...
@@ -59,14 +58,14 @@ Particle(...).width(300).height(300).emitter(this.emitterProperties) // Dynamica
 ![particle-emitter](figures/particle-emitter.gif)
 
 
-## Color
+## Setting the Particle Color
 
-Set the type of random value distribution for the initial color of particles. using [DistributionType](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#distributiontype12). You can choose between uniform distribution or Gaussian (normal) distribution.
+Use the [range](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#particlecolorpropertyoptions) property to define the initial color range for particles, and the [distributionType](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#particlecolorpropertyoptions) property to specify how the initial color's random values are distributed. You can choose between uniform distribution or normal (Gaussian) distribution.
 
 ```ts
 // ...
 color: {
-  range: [Color.White, Color.Yellow], // Initial color range.
+  range: ['rgb(39, 135, 217)','rgb(0, 74, 175)'], // Initial color range.
   distributionType: DistributionType.GAUSSIAN // Random value distribution type of the initial color.
 },
 // ...
@@ -75,11 +74,9 @@ color: {
 ![particle-color](figures/particle-color.gif)
 
 
-## Lifecycle
+## Particle Lifetime
 
-The lifecycle of a particle, from creation to expiration, is used to specify how long a particle exists.
-
-Set the particle lifecycle using **lifetime** and **lifetimeRange**.
+The lifetime of a particle, from creation to expiration, is used to specify how long a particle exists. Use the [lifetime](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#emitteroptions) and [lifetimeRange](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#emitteroptions) properties to define the particle lifetime.
 
 ```ts
 // ...
@@ -94,7 +91,7 @@ emitter: {
   shape: ParticleEmitterShape.RECTANGLE // Emitter shape.
 },
 color: {
-  range: [Color.White, Color.Yellow], // Initial color range.
+  range: ['rgb(39, 135, 217)','rgb(0, 74, 175)'], // Initial color range.
 },
 // ...
 ```
@@ -102,11 +99,9 @@ color: {
 ![particle-lifetime](figures/particle-lifetime.gif)
 
 
-## Disturbance Field
+## Setting the Particle Disturbance Field
 
-A disturbance field is a mechanism used to influence the motion of particles. By applying specific forces within the spatial area where particles exist, it alters their trajectories and behaviors, creating more complex and natural animation effects.
-
-Configure disturbance fields using the [disturbanceFields](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#disturbancefields12) API.
+A disturbance field is a mechanism used to influence the motion of particles in a particle animation. It works by applying specific forces to particles within a defined spatial area, thereby altering their trajectories and behaviors. This results in more complex and natural-looking animation effects, adding a touch of realism to the particle movement. Use [disturbanceFields](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#disturbancefields12) to set the disturbance field.
 
 ```ts
 // ...

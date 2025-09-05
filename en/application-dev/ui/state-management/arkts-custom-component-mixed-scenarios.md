@@ -482,7 +482,7 @@ class Info {
 struct Child {  
   // V2 strictly manages data input. When receiving data from the parent component, the @Param decorator must be used to receive data.
   @Param @Once message: string = "hello";	              // Changes are observable and can be synchronized to the parent component through @Event. @Once can be used to change @Param decorated variables.
-  @Param @Once undefineVal: string | undefined = undefined;  // @Once can be used to change @Param decorated variables.
+  @Param @Once undefinedVal: string | undefined = undefined;  // @Once can be used to change @Param decorated variables.
   @Param info: Info = new Info();		                 // The class property changes are not observable.
   @Require @Param set: Set<number>;
   
@@ -497,11 +497,11 @@ struct Child {
 
       Divider()
         .color(Color.Blue)
-      Text(`undefineVal:${this.undefineVal}`) // Display undefineVal.
+      Text(`undefinedVal:${this.undefinedVal}`) // Display undefinedVal.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
@@ -526,7 +526,7 @@ struct Child {
 @Component
 struct Index {
   message: string = 'Hello World';       // Simple type.
-  undefineVal: undefined = undefined;    // Simple type: undefined.
+  undefinedVal: undefined = undefined;    // Simple type: undefined.
   info: Info = new Info();               // Class type.
   set: Set<number> = new Set([10, 20]);  // Built-in type.
 
@@ -542,7 +542,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         set: this.set
       })
@@ -575,7 +575,7 @@ class Info {
 struct Child {  
   // V2 strictly manages data input. When receiving data from the parent component, the @Param decorator must be used to receive data.
   @Param @Once message: string = "hello";
-  @Param @Once undefineVal: string | undefined = undefined;  // @Once can be used to change @Param decorated variables.
+  @Param @Once undefinedVal: string | undefined = undefined;  // @Once can be used to change @Param decorated variables.
   @Param info: Info = new Info();
   @Require @Param set: Set<number>;
   build() {
@@ -633,7 +633,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         set: this.set
       })
@@ -951,7 +951,7 @@ The sample code uses a three-layer nesting to show:
 * The observation capability of the decorator of V1 is to function as a proxy for data. Therefore, when data is nested, the decorator of V1 can only disassemble the child component to observe lower-level data through \@Observed and \@ObjectLink.
 * \@Track is used to prevent the **info** in the **MessageInfo** class from being updated when the **messageId** is changed. You can remove \@Track to observe the change. When the **messageId** is changed, the **info** is also changed. However, this change cannot be observed by \@ObjectLink.
 
-### Using @ObsevedV2 and @Trace to Observe Nested Classes
+### Using @ObservedV2 and @Trace to Observe Nested Classes
 
 ```typescript
 @ObservedV2
@@ -1042,5 +1042,5 @@ struct Index {
 The sample code shows:
 
 * \@ObservedV2 and \@Trace nest the observation capability to the class properties. Therefore, when a class property is marked by @Trace, the change can be observed regardless of the number of nested levels.
-* When \@ObservdV2 and \@Observed are used together, the decorator used by the outermost class determines whether the class object can be decorated by the decorator of V1. For example, the class decorated by \@ObservedV2 in the lower level does not affect the outermost class decorated by the decorator of V1.
+* When \@ObservedV2 and \@Observed are used together, the decorator used by the outermost class determines whether the class object can be decorated by the decorator of V1. For example, the class decorated by \@ObservedV2 in the lower level does not affect the outermost class decorated by the decorator of V1.
 

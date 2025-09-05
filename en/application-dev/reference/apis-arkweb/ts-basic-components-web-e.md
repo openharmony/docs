@@ -180,12 +180,12 @@ Enumerates the reasons why the rendering process does not respond.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                         | Value| Description           |
-| --------------------------- | --------------- | ------------- |
-| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.<br>Currently, only permission events can be reported. MIDI devices are not yet supported.|
-| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.|
-| SENSOR<sup>12+</sup>        | TYPE_SENSOR | Sensor resource, such as an acceleration sensor.|
+| Name                         | Value| Description           |    Available Permission         |
+| --------------------------- | --------------- | ------------- |  ---------------------|
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.<br>Currently, only permission events can be reported. MIDI devices are not yet supported.| Currently, the permission related to the Musical Instrument Digital Interface (MIDI) device cannot be requested.|
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. | Camera permission: **ohos.permission.CAMERA**.|
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.| Microphone permission: **ohos.permission.MICROPHONE**.|
+| SENSOR<sup>12+</sup>        | TYPE_SENSOR | Sensor resource, such as an acceleration sensor.| Acceleration sensor permission: **ohos.permission.ACCELEROMETER**,<br>Gyroscope sensor permission: **ohos.permission.GYROSCOPE**.|
 
 ## ContextMenuSourceType<sup>9+</sup>
 

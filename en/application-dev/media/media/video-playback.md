@@ -72,7 +72,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 8. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-## Sample Code
+## Complete Sample Code
 
 
 ```ts

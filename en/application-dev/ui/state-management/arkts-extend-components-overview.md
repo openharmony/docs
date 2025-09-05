@@ -10,13 +10,13 @@ ArkUI provides a streamlined code solution through the @Builder decorator. This 
 
 The [@Builder decorator](./arkts-builder.md) is specifically designed for creating modular, reusable UI structures. It prohibits the definition of state variables and invocation of component lifecycle methods within its scope, supporting only data interaction with callers through parameters.
 
-## @BuilderParam Decorator
-
-When multiple scenarios share the same @Builder function but require scenario-specific extensions (similar to slot placeholder mechanisms), the [@BuilderParam decorator](./arkts-builderparam.md) can be used to receive and encapsulate @Builder functions.
-
 ## @LocalBuilder Decorator
 
 When using @Builder for inter-component data transfer, note that component hierarchy relationships may conflict with state management parent-child relationships. To address this specific issue, the framework provides the [@LocalBuilder decorator](./arkts-localBuilder.md).
+
+## @BuilderParam Decorator
+
+When multiple scenarios share the same @Builder function but require scenario-specific extensions (similar to slot placeholder mechanisms), the [@BuilderParam decorator](./arkts-builderparam.md) can be used to receive and encapsulate @Builder functions.
 
 ## wrapBuilder
 

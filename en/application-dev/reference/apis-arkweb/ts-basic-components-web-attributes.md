@@ -1,10 +1,11 @@
 # Attributes
 
-Supported common attributes: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip12), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#attributes), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#attributes), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#attributes), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md#attributes), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
+Supported common attributes: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip12), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#attributes), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#attributes), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#attributes), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md), and [position](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#position).
 
 > **NOTE**
 >
-> - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this component are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## domStorageAccess
@@ -19,7 +20,7 @@ Sets whether to enable the DOM Storage API. By default, this feature is disabled
 
 | Name             | Type   | Mandatory  | Description                                |
 | ---------------- | ------- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | Yes   | Whether to enable the DOM Storage API.<br>The value **true** means to the DOM Storage API, and **false** means the opposite.<br>The default value is **false**.|
+| domStorageAccess | boolean | Yes   | Whether to enable the DOM Storage API.<br>The value **true** means to the DOM Storage API, and **false** means the opposite.<br>Default value: **false**.|
 
 > **NOTE**
 >
@@ -91,7 +92,7 @@ Sets whether to enable automatic image loading.
 
 | Name        | Type   | Mandatory  | Description           |
 | ----------- | ------- | ---- | --------------- |
-| imageAccess | boolean | Yes   | Whether to enable automatic image loading.<br>The value **true** means to enable automatic image loading, and **false** means the opposite.<br>The default value is **true**.|
+| imageAccess | boolean | Yes   | Whether to enable automatic image loading.<br>The value **true** means to enable automatic image loading, and **false** means the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
   ```ts
@@ -138,6 +139,7 @@ Registers an ArkTS object in **javaScriptProxy** with the **Web** component. The
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestObj {
     constructor() {
@@ -200,7 +202,7 @@ Sets whether JavaScript scripts can be executed.
 
 | Name             | Type   | Mandatory  | Description               |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | Yes   | Whether JavaScript scripts can be executed.<br>The value **true** indicates that JavaScript scripts can be executed, and **false** indicates the opposite.<br>The default value is **true**.|
+| javaScriptAccess | boolean | Yes   | Whether JavaScript scripts can be executed.<br>The value **true** indicates that JavaScript scripts can be executed, and **false** indicates the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -301,7 +303,7 @@ Sets whether to enable access to online images through HTTP and HTTPS.
 
 | Name              | Type   | Mandatory  | Description            |
 | ----------------- | ------- | ---- | ---------------- |
-| onlineImageAccess | boolean | Yes   | Whether to enable access to online images through HTTP and HTTPS.<br>The value **true** means to enable access to online images through HTTP and HTTPS, and **false** means the opposite.<br>The default value is **true**.|
+| onlineImageAccess | boolean | Yes   | Whether to enable access to online images through HTTP and HTTPS.<br>The value **true** means to enable access to online images through HTTP and HTTPS, and **false** means the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -335,7 +337,7 @@ Sets whether to enable zoom gestures.
 
 | Name       | Type   | Mandatory  | Description         |
 | ---------- | ------- | ---- | ------------- |
-| zoomAccess | boolean | Yes   | Whether to enable zoom gestures.<br>The value **true** means to enable zoom gestures, and **false** means the opposite.<br>The default value is **true**.|
+| zoomAccess | boolean | Yes   | Whether to enable zoom gestures.<br>The value **true** means to enable zoom gestures, and **false** means the opposite.<br>The default value is **true**.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -369,7 +371,7 @@ Sets whether to load web pages by using the overview mode. That is, zoom out the
 
 | Name               | Type   | Mandatory  | Description           |
 | ------------------ | ------- | ---- | --------------- |
-| overviewModeAccess | boolean | Yes   | Whether to load web pages by using the overview mode.<br>The value **true** means to load web pages by using the overview mode, and **false** means the opposite.<br>The default value is **true**.|
+| overviewModeAccess | boolean | Yes   | Whether to load web pages by using the overview mode.<br>The value **true** means to load web pages by using the overview mode, and **false** means the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -403,7 +405,7 @@ Sets whether to enable database access.
 
 | Name           | Type   | Mandatory  | Description             |
 | -------------- | ------- | ---- | ----------------- |
-| databaseAccess | boolean | Yes   | Whether to enable database access.<br>The value **true** means to enable database access, and the value **false** means the opposite.<br>The default value is **false**.|
+| databaseAccess | boolean | Yes   | Whether to enable database access.<br>The value **true** means to enable database access, and the value **false** means the opposite.<br>Default value: **false**.|
 
 **Example**
 
@@ -437,7 +439,7 @@ Sets whether to enable geolocation access. For details, see [Managing Location P
 
 | Name              | Type   | Mandatory  | Description           |
 | ----------------- | ------- | ---- | --------------- |
-| geolocationAccess | boolean | Yes   | Whether to enable geolocation access.<br>The value **true** means to enable geolocation access, and **false** means the opposite.<br>The default value is **true**.|
+| geolocationAccess | boolean | Yes   | Whether to enable geolocation access.<br>The value **true** means to enable geolocation access, and **false** means the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -471,7 +473,7 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
 | Name   | Type   | Mandatory  | Description               |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | Yes   | Whether video playback must be started by user gestures.<br>The value **true** indicates that video playback must be started by user gestures, and **false** indicates the opposite.<br>The default value is **true**.|
+| access | boolean | Yes   | Whether video playback must be started by user gestures.<br>The value **true** indicates that video playback must be started by user gestures, and **false** indicates the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -487,11 +489,30 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .mediaPlayGestureAccess(this.access)
       }
     }
   }
+  ```
+
+HTML file to be loaded:
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Video Playback Page</title>
+  </head>
+  <body>
+  <h1>Video Playback</h1>
+  <video id="testVideo" controls autoplay>
+      // Configure the autoplay attribute in the video tag to allow automatic video playback.
+      // Save an MP4 media file in the rawfile directory of resources and name it example.mp4.
+      <source src="example.mp4" type="video/mp4">
+  </video>
+  </body>
+  </html>
   ```
 
 ## multiWindowAccess<sup>9+</sup>
@@ -507,7 +528,7 @@ Enabling the multi-window permission requires implementation of the **onWindowNe
 
 | Name        | Type   | Mandatory  | Description        |
 | ----------- | ------- | ---- | ------------ |
-| multiWindow | boolean | Yes   | Whether to enable the multi-window permission.<br>The value **true** means to enable the multi-window permission, and **false** means the opposite.<br>The default value is **false**.|
+| multiWindow | boolean | Yes   | Whether to enable the multi-window permission.<br>The value **true** means to enable the multi-window permission, and **false** means the opposite.<br>Default value: **false**.|
 
 ## horizontalScrollBarAccess<sup>9+</sup>
 
@@ -526,7 +547,7 @@ Sets whether to display the horizontal scrollbar, including the default system s
 
 | Name                | Type   | Mandatory  | Description        |
 | ------------------- | ------- | ---- | ------------ |
-| horizontalScrollBar | boolean | Yes   | Whether to display the horizontal scrollbar.<br>The value **true** means to display the horizontal scrollbar, and **false** means the opposite.<br>The default value is **true**.|
+| horizontalScrollBar | boolean | Yes   | Whether to display the horizontal scrollbar.<br>The value **true** means to display the horizontal scrollbar, and **false** means the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -608,7 +629,7 @@ Sets whether to display the vertical scrollbar, including the default system scr
 
 | Name              | Type   | Mandatory  | Description        |
 | ----------------- | ------- | ---- | ------------ |
-| verticalScrollBar | boolean | Yes   | Whether to display the vertical scrollbar.<br>The value **true** means to display the vertical scrollbar, and **false** means the opposite.<br>The default value is **true**.|
+| verticalScrollBar | boolean | Yes   | Whether to display the vertical scrollbar.<br>The value **true** means to display the vertical scrollbar, and **false** means the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -626,7 +647,7 @@ Sets whether to display the vertical scrollbar, including the default system scr
   
     build() {
       Column() {
-        // If an @State decorated variable is used to control the horizontal scrollbar visibility, controller.refresh() must be called for the settings to take effect.
+        // If an @State decorated variable is used to control the vertical scrollbar visibility, controller.refresh() must be called for the settings to take effect.
         Button(this.btnMsg)
           .onClick(() => {
             if(this.isShow){
@@ -725,6 +746,7 @@ Sets the pasteboard copy options.
 **Example**
 
   ```ts
+  // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
   @Entry
@@ -823,7 +845,7 @@ Sets whether to block online downloads.
 
 | Name  | Type   | Mandatory  | Description               |
 | ----- | ------- | ---- | ------------------- |
-| block | boolean | Yes   | Sets whether to block online downloads.<br>The value **true** means to block online downloads, and **false** means the opposite.<br>The default value is **false**.|
+| block | boolean | Yes   | Sets whether to block online downloads.<br>The value **true** means to block online downloads, and **false** means the opposite.<br>Default value: **false**.|
 
 **Example**
 
@@ -1242,7 +1264,7 @@ Sets whether to enable forcible dark mode for the web page. This API is applicab
 
 | Name   | Type   | Mandatory  | Description           |
 | ------ | ------- | ---- | --------------- |
-| access | boolean | Yes   | Whether to enable forcible dark mode for the web page.<br>The value **true** means to enable forcible dark mode for the web page, and **false** means the opposite.<br>The default value is **false**.|
+| access | boolean | Yes   | Whether to enable forcible dark mode for the web page.<br>The value **true** means to enable forcible dark mode for the web page, and **false** means the opposite.<br>Default value: **false**.|
 
 **Example**
 
@@ -1279,7 +1301,7 @@ Sets whether to enable smooth pinch mode for the web page.
 
 | Name      | Type   | Mandatory  | Description         |
 | --------- | ------- | ---- | ------------- |
-| isEnabled | boolean | Yes   | Whether to enable smooth pinch mode for the web page.<br>The value **true** means to enable smooth pinch mode, and **false** means the opposite.<br>The default value is **false**.|
+| isEnabled | boolean | Yes   | Whether to enable smooth pinch mode for the web page.<br>The value **true** means to enable smooth pinch mode, and **false** means the opposite.<br>Default value: **false**.|
 
 **Example**
 
@@ -1431,7 +1453,7 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 
 > **NOTE**
 >
-> - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
+> - Inject the script after the root element (HTML Element) of the web page file is created, but before any other content is loaded.
 >
 > - This script is executed in lexicographical order in this API. To execute the script in array order, you are advised to use the [runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15) API.
 >
@@ -1578,7 +1600,7 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 
 > **NOTE**
 >
-> - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
+> - Inject the script after the root element (HTML Element) of the web page file is created, but before any other content is loaded.
 >
 > - This script is executed in the array order.
 >
@@ -1784,7 +1806,7 @@ Hello world!
 
 layoutMode(mode: WebLayoutMode)
 
-Sets the web layout mode.
+Sets the web layout mode. For details, see [Fitting In the Page Content Layout](../../web/web-fit-content.md).
 
 > **NOTE**
 >
@@ -1794,9 +1816,9 @@ Sets the web layout mode.
 > - If the **Web** component is wider or longer than 7680 px, specify the **RenderMode.SYNC_RENDER** mode when creating the **Web** component; otherwise, the screen may be blank.
 > - After the **Web** component is created, dynamic switching of the **layoutMode** is not supported.
 > - The width and height of a **Web** component cannot exceed 500,000 px when the **RenderMode.SYNC_RENDER** mode is specified, and cannot exceed 7680 px when the **RenderMode.ASYNC_RENDER** mode is specified.
-> - Frequent changes to the page width and height will trigger a re-layout of the **Web** component, which can affect the user experience.
+> - Frequent changes to the page width and height will trigger a re-layout of the **Web** component, which can affect user experience.
 > - Waterfall web pages are not supported (drop down to the bottom to load more).
-> - Only height adaptation is supported. Width adaptation and the unit vh are not supported.
+> - Width adaptation is not supported. Only height adaptation is supported.
 > - Because the height is adaptive to the web page height, the component height cannot be changed by modifying the component height attribute.
 
 **System capability**: SystemCapability.Web.Webview.Core
@@ -1870,7 +1892,7 @@ Sets nested scrolling options.
 
 | Name  | Type                                    | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](./ts-basic-components-web-i.md#nestedscrolloptionsext14)<sup>14+</sup> | Yes   | Nested scrolling options.<br> When the **value** is of the **NestedScrollOptions** type (forward and backward), the default nested scrolling mode of the **scrollForward** and **scrollBackward** options is **NestedScrollMode.SELF_FIRST**.<br> When the **value** is of the **NestedScrollOptionsExt** type (up, down, left, and right), the default nested scrolling mode of the **scrollUp**, **scrollDown**, **scrollLeft**, and **scrollRight **options is [NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10).|
+| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](./ts-basic-components-web-i.md#nestedscrolloptionsext14)<sup>14+</sup> | Yes   | Nested scrolling options.<br> When the value is of the **NestedScrollOptions** type (forward and backward), the default nested scrolling mode of the **scrollForward** and **scrollBackward** options is [NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10).<br> When the value is of the **NestedScrollOptionsExt** type (up, down, left, and right), the default nested scrolling mode of the **scrollUp**, **scrollDown**, **scrollLeft**, and **scrollRight** options is **NestedScrollMode.SELF_FIRST**.
 
 **Example**
 
@@ -1967,7 +1989,7 @@ Sets whether to enable the same-layer rendering feature.
 
 | Name  | Type                     | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| mode |  boolean | Yes   | Whether to enable the same-layer rendering feature.<br>The value **true** means to enable the same-layer rendering feature, and **false** means the opposite.<br>The default value is **false**.|
+| mode |  boolean | Yes   | Whether to enable the same-layer rendering feature.<br>The value **true** means to enable the same-layer rendering feature, and **false** means the opposite.<br>Default value: **false**.|
 
 **Example**
 
@@ -2002,7 +2024,7 @@ When **layoutMode** is set to **WebLayoutMode.FIT_CONTENT**, the **enabled** par
 
 | Name | Type| Mandatory| Description          |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | Yes  | Whether the scroll bar is always visible.<br>The value **true** indicates that the scroll bar is always visible, and **false** indicates the opposite.<br>The default value is **false**.|
+| enabled | boolean  | Yes  | Whether the scroll bar is always visible.<br>The value **true** indicates that the scroll bar is always visible, and **false** indicates the opposite.<br>Default value: **false**.|
 
 
 **Example**
@@ -2052,11 +2074,11 @@ When **layoutMode** is set to **WebLayoutMode.FIT_CONTENT**, the **enabled** par
 
 registerNativeEmbedRule(tag: string, type: string)
 
-Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type only supports visible ASCII characters.
+Registers the HTML tag name and type for same-layer rendering. The tag name only supports <object\> and <embed\>. The tag type only supports visible ASCII characters.
 
-If the specified type is the same as the W3C standard **object** or **embed** type, the ArkWeb kernel identifies the type as a non-same-layer tag.
+If the specified type is the same as the W3C standard <object\> or <embed\> type, the ArkWeb kernel identifies the type as a non-same-layer tag.
 
-This API is also controlled by **enableNativeEmbedMode** and does not take effect when same-layer rendering is disabled. When this API is not used, the ArkWeb kernel recognizes the **embed** tags with the "native/" prefix as same-layer tags.
+This API is also controlled by **enableNativeEmbedMode** and does not take effect when same-layer rendering is disabled. When this API is not used, the ArkWeb kernel recognizes the <embed\> tags with the "native/" prefix as same-layer tags.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2125,15 +2147,14 @@ Sets the default character encoding for web pages.
   ```
 
 ```html
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>My test html5 page</title>
 </head>
 <body>
-    Hello World!
+    <p>Hello world!</p>
 </body>
 </html>
 ```
@@ -2178,7 +2199,7 @@ struct WebComponent {
   ```
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2193,7 +2214,17 @@ struct WebComponent {
 
 textAutosizing(textAutosizing: boolean)
 
-Sets whether to enable automatic text resizing.
+Sets whether to enable automatic font sizing for the **Web** component.
+
+After automatic font sizing takes effect, any text smaller than 16 px is enlarged to fall between 16 px and 32 px. This eliminates readability issues on narrow screens (viewport < 980 px) where mobile-specific layouts are absent.
+
+> **NOTE**
+>
+> - The preconditions for automatic font sizing to take effect are as follows:
+> - 1. The device type should be phone, tablet, wearable, or TV.
+> - 2. The viewport width of the **Web** component is less than 980 px.
+> - 3. The page is text-heavy: font size (px) × character count ≥ 3920.
+> - 4. **metaViewport** is not set on the frontend, or the **metaViewport** does not contain the **width** and **initial-scale** attributes.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2466,7 +2497,7 @@ Sets whether to enable haptic feedback for long-pressing text in the **Web** com
 
 | Name    | Type       | Mandatory  | Description|
 | --------- | ---------   | ------ | ------------- |
-| enabled   | boolean | Yes | Whether to enable haptic feedback for long-pressing text in the **Web** component.<br>The value **true** means to enable haptic feedback for long-pressing text in the **Web** component, and **false** means the opposite.<br>The default value is **true**.|
+| enabled   | boolean | Yes | Whether to enable haptic feedback for long-pressing text in the **Web** component.<br>The value **true** means to enable haptic feedback for long-pressing text in the **Web** component, and **false** means the opposite.<br>The default value is **true**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -2690,7 +2721,7 @@ Sets whether the **Web** component can change the font weight according to the s
 
 | Name      | Type                            | Mandatory| Description                               |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| follow | boolean | Yes   | Whether the **Web** component can change the font weight according to the system settings.<br>The value **true** means that the **Web** component can change the font weight according to the system settings, and **false** means the opposite.<br>The default value is **false**.|
+| follow | boolean | Yes   | Whether the **Web** component can change the font weight according to the system settings.<br>The value **true** means that the **Web** component can change the font weight according to the system settings, and **false** means the opposite.<br>Default value: **false**.|
 
 **Example**
 
@@ -2729,7 +2760,7 @@ When the FCP of a page is triggered, the default segment parsing logic is restor
 
 | Name       | Type   | Mandatory  | Description                  |
 | ---------- | ------- | ---- | ---------------------- |
-| optimizeParserBudget | boolean | Yes   | Whether to enable segment-based HTML parsing optimization.<br>The value **true** means to use the number of parsed records instead of the parsing time as the segment point for HTML segment parsing, and reduce the upper limit of the number of parsed records in each segment. The value **false** means to use the parsing time as the segment point for HTML segment parsing.<br>The default value is **false**.|
+| optimizeParserBudget | boolean | Yes   | Whether to enable segment-based HTML parsing optimization.<br>The value **true** means to use the number of parsed records instead of the parsing time as the segment point for HTML segment parsing, and reduce the upper limit of the number of parsed records in each segment. The value **false** means to use the parsing time as the segment point for HTML segment parsing.<br>Default value: **false**.|
 
 
 **Example**
@@ -2795,7 +2826,7 @@ Sets whether to support an application to connect to media controller.
   <body>
       <h1>Video Playback</h1>
       <video id="testVideo" controls>
-          // Save an MP4 media file in the rawfile directory of resources and name it example.mp4.
+           <!--Save an MP4 media file in the rawfile directory of resources and name it example.mp4.-->
           <source src="example.mp4" type="video/mp4">
       </video>
   </body>
@@ -2857,13 +2888,19 @@ HTML file to be loaded:
 
 password(password: boolean)
 
-Sets whether the password should be saved. This API is an empty API.
+Sets whether the password can be saved. This API is an empty API.
 
 > **NOTE**
 >
 > This API is deprecated since API version 10, and no new API is provided as a substitute.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type  | Mandatory | Description                            |
+| ------------ | ------ | ---- | -------------------------------- |
+| password | boolean | Yes  | Whether the password can be saved on the web page. The value **true** indicates that the password can be saved on the web page.<br>The value **false** indicates the opposite.<br>Default value: **false**.|
 
 ## textZoomAtio<sup>(deprecated)</sup>
 
@@ -2942,7 +2979,7 @@ Sets the user agent.
 
 tableData(tableData: boolean)
 
-Sets whether form data should be saved. This API is an empty API.
+Sets whether to save form data. This API is an empty API.
 
 > **NOTE**
 >
@@ -2950,11 +2987,17 @@ Sets whether form data should be saved. This API is an empty API.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
+**Parameters**
+
+| Name         | Type  | Mandatory | Description                            |
+| ------------ | ------ | ---- | -------------------------------- |
+| tableData | boolean | Yes  | Whether to save form data. The value **true** means to save form data on the web page.<br>The value **false** means the opposite.<br>Default value: **false**.|
+
 ## wideViewModeAccess<sup>(deprecated)</sup>
 
 wideViewModeAccess(wideViewModeAccess: boolean)
 
-Sets whether to support the viewport attribute of the HTML **\<meta>** tag. This API is an empty API.
+Sets whether to support the **viewport** attribute of the HTML \<meta> tag. This API is an empty API.
 
 > **NOTE**
 >

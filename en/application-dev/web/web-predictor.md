@@ -108,7 +108,7 @@ struct WebComponent {
     Column() {
       Web({ src: "https://www.example.com/", controller: this.webviewController })
         .onAppear(() => {
-          // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
+          // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit.
           webview.WebviewController.prefetchResource(
             {
               url: "https://www.example1.com/post?e=f&g=h",
@@ -147,7 +147,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onPageEnd(() => {
-          // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
+          // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit.
           webview.WebviewController.prefetchResource(
             {
               url: "https://www.example1.com/post?e=f&g=h",
@@ -178,7 +178,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
-    // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
+    // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit.
     webview.WebviewController.prefetchResource(
       {
         url: "https://www.example1.com/post?e=f&g=h",
@@ -315,7 +315,7 @@ You are advised to use this function together with dynamic components, use offli
 
    async function readRawFile(path: string, context: UIContext) {
      try {
-       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);
      } catch (err) {
        return new Uint8Array(0);
      }

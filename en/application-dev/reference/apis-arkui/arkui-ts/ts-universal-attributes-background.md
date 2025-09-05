@@ -813,7 +813,7 @@ struct BlurEffectsExample {
 ### Example 6: Setting Text Blur Effects
 
 This example applies anamorphic blur effects on text using **blendMode** and **backgroundEffect**.<br>
-If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-pixelRound.md#pixelround) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
+If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-pixelRoundForComponent.md#pixelround) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
 
 ```ts
 // xxx.ets

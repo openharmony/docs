@@ -367,12 +367,12 @@
             - [Component Extension Overview](ui/state-management/arkts-extend-components-overview.md)
             - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
             - [\@LocalBuilder Decorator: Maintaining Component Relationships](ui/state-management/arkts-localBuilder.md)
-            - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
+            - [\@BuilderParam Decorator: Referencing the \@Builder Function](ui/state-management/arkts-builderparam.md)
             - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
-          - [\@Styles Decorator: Definition of Reusable Styles](ui/state-management/arkts-style.md)
-          - [\@Extend Decorator: Extension of Built-in Components](ui/state-management/arkts-extend.md)
+          - [\@Styles Decorator: Defining Reusable Component Styles](ui/state-management/arkts-style.md)
+          - [\@Extend Decorator: Defining Extended Component Styles](ui/state-management/arkts-extend.md)
           - [stateStyles: Applying Polymorphic Styles](ui/state-management/arkts-statestyles.md)
-          - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](ui/state-management/arkts-animatable-extend.md)
+          - [\@AnimatableExtend Decorator: Defining Animatable Properties](ui/state-management/arkts-animatable-extend.md)
           - [\@Require Decorator: Validating Constructor Input Parameters](ui/state-management/arkts-require.md)
           - [@Reusable Decorator: Reusing Components](ui/state-management/arkts-reusable.md)
         - UI Paradigm State Management<!--arkts-state-management-->
@@ -389,7 +389,7 @@
               - [LocalStorage: Storing Page-Level UI State](ui/state-management/arkts-localstorage.md)
               - [AppStorage: Storing Application-wide UI State](ui/state-management/arkts-appstorage.md)
               - [PersistentStorage: Persisting Application State](ui/state-management/arkts-persiststorage.md)
-              - [Environment: Device Environment Query](ui/state-management/arkts-environment.md)
+              - [Environment: Querying the Device Environment](ui/state-management/arkts-environment.md)
             - Other State Management Features<!--arkts-other-state-mgmt-functions-->
               - [Overview of Other State Management Features](ui/state-management/arkts-other-state-mgmt-functions-overview.md)
               - [\@Watch Decorator: Getting Notified of State Variable Changes](ui/state-management/arkts-watch.md)
@@ -2386,7 +2386,8 @@
             - [Size](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [Location](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [Layout Constraints](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
-            - [Component-Level Pixel Rounding](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRound.md)
+            - [Component-Level Pixel Rounding](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRoundForComponent.md)
+            - [Page-Level Pixel Rounding](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRoundForPage.md)
             - [Flex Layout](reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)
             - [Border](reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md)
             - [Border Image](reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md)
@@ -2423,6 +2424,7 @@
             - [Drawing Modifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [Content Modifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [Custom Property](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
+            - [SymbolGlyphModifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-symbolglyphmodifier.md)
             - Touch Interactions<!--touch-interactions-->
               - [Touch Target](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
               - [Hit Test Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -2659,6 +2661,8 @@
           - [Custom Component Lifecycle](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
           - [Custom Component Layout](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
           - [Custom Component Built-in APIs](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
+          - Component Extension Decorators<!--arkts-extend-component-decorator-->
+            - [Definition of Animatable Properties (@AnimatableExtend)](reference/apis-arkui/arkui-ts/ts-animatable-extend.md)
         - System Preset UI Component Library<!--system-preset-ui-component-library-->
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)

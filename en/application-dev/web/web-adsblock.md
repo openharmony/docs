@@ -2,7 +2,7 @@
 
 ArkWeb provides the ad blocking feature for applications, supporting default EasyList rules pushed by the cloud and custom rule files set by applications through APIs. It can intercept the advertisement resource download at the network layer or inject CSS rules into the web page to hide specific advertisement elements.
 
-The current configuration file uses EasyList.
+The current configuration file format uses [EasyList](https://easylist-downloads.adblockplus.org/easylist.txt).
 
 ## Common EasyList Rules
 

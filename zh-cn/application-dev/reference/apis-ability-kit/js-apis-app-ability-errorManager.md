@@ -1,8 +1,15 @@
-# @ohos.app.ability.errorManager (错误观测管理)
+# @ohos.app.ability.errorManager (错误管理模块)
 
-ErrorManager模块提供对错误观察器的注册和注销的能力。
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
-> **说明：**
+ErrorManager模块提供对错误观测器的注册和注销的能力，主要是观测应用发生js crash和appfreeze等错误。
+
+> **说明**：
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -13,32 +20,28 @@ import { errorManager } from '@kit.AbilityKit';
 
 ## errorManager.on('error')
 
-> **注意：**
-> 
-> 在主线程注册errormanager.on接口，当前版本不支持捕获子线程（如：taskpool）中的异常。
->
-> 使用errormanager.on接口应用不会退出，建议在回调函数执行完后，增加同步退出操作。
-
 on(type: 'error', observer: ErrorObserver): number
 
-注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
+注册错误观测器。注册后可以捕获到应用产生的js crash，属于应用崩溃的一种。观测器捕获到该异常时应用不退出，建议在回调函数执行完后，增加同步退出操作。
+
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'error'，表示错误观察器。 |
-| observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
+| type | string | 是 | 填写'error'，表示错误观测器。 |
+| observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 是 | 错误观测器。 |
 
-**返回值：**
+**返回值**：
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 观察器的index值，和观察器一一对应。 |
+  | number | 观测器的索引值，与观测器一一对应。可用于`errorManager.off`函数中的`observerId`参数。 |
 
 **错误码**：
 
@@ -49,7 +52,7 @@ on(type: 'error', observer: ErrorObserver): number
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | The specified ID does not exist. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -82,17 +85,17 @@ try {
 
 on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 
-在进程中的任一线程注册errormanager.on接口，支持捕获其他子线程（如：taskpool）中的异常,应用崩溃时进程不会退出，建议在回调函数执行完后，增加同步退出操作。
+在进程中的任意线程中注册 `errormanager.on` 接口，监听整个进程中任意线程的异常。观测器捕获到该异常时应用不退出，建议在回调函数执行完后，增加同步退出操作。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
+| type | string | 是 | 填写'globalErrorOccurred'，表示错误观测器。 |
 | observer | [GlobalObserver](#globalobserver18) | 是 | 自定义异常处理回调函数。 |
 
 **错误码**：
@@ -104,7 +107,7 @@ on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16200001 | If the caller is invalid. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -131,7 +134,7 @@ try {
 
 off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 
-注销错误观测器，即取消以前注册的callback监听，取消之后无法实现全局监听。
+注销错误观测器，注销之前注册在同一线程的callback全局监听。
 
 如果传入的回调不在通过on方法注册的回调队列中，将抛出16300004错误码，因此建议使用try-catch逻辑进行处理。
 
@@ -139,11 +142,11 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
+| type | string | 是 | 填写'globalErrorOccurred'，表示错误观测器。 |
 | observer | [GlobalObserver](#globalobserver18) | 否 | 由on方法注册的callback。建议使用该参数，缺省时默认清除所有通过on注册的相同env的callback，否则删除指定callback。  |
 
 **错误码**：
@@ -156,7 +159,7 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 16200001 | If the caller is invalid. |
 | 16300004 | If the observer does not exist |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -185,16 +188,18 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
 注销错误观测器。使用callback异步返回。
 
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'error'，表示错误观察器。 |
-| observerId | number | 是 | 由on方法返回的观察器的index值。 |
+| type | string | 是 | 填写'error'，表示错误观测器。 |
+| observerId | number | 是 | 由on方法返回的观测器的index值。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **错误码**：
@@ -206,7 +211,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | The specified ID does not exist. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -235,18 +240,20 @@ off(type: 'error', observerId: number): Promise\<void>
 
 注销错误观测器。使用Promise异步返回。
 
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'error'，表示错误观察器。 |
-| observerId | number | 是 | 由on方法返回的观察器的index值。 |
+| type | string | 是 | 填写'error'，表示错误观测器。 |
+| observerId | number | 是 | 由on方法返回的观测器的index值。 |
 
-**返回值：**
+**返回值**：
 
 | 类型 | 说明 |
 | -------- | -------- |
@@ -261,7 +268,7 @@ off(type: 'error', observerId: number): Promise\<void>
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | The specified ID does not exist. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -290,11 +297,13 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
 注册主线程消息处理耗时监听器。注册后可以捕获到应用主线程处理消息的具体执行时间。
 
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -310,7 +319,7 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -328,13 +337,13 @@ errorManager.on("loopObserver", 1, observer);
 
 on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void
 
-在进程中任一线程注册被拒绝promise监听器，注册后可以捕获到当前进程中未被捕获到的promise rejection。
+在进程中任意线程注册被拒绝promise监听器，注册后可以捕获到当前进程中未被捕获到的promise rejection。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名                   | 类型                                                          | 必填 | 说明                                       |
 |-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
@@ -350,7 +359,7 @@ on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16200001 | If the caller is invalid. |
 
-**示例：**
+**示例**：
 
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -380,11 +389,13 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 注册被拒绝promise监听器。注册后可以捕获到当前线程中未被捕获到的promise rejection。
 
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名                   | 类型                                                          | 必填 | 说明                                       |
 |-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
@@ -400,7 +411,7 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16200001 | If the caller is invalid. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -426,17 +437,19 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 
 on(type: 'freeze', observer: FreezeObserver): void
 
-注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。
+注册应用主线程freeze监听。多次注册情况下，取最后一次注册的结果。
+
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'freeze'，表示应用主线程freeze观察器。 |
+| type | string | 是 | 填写'freeze'，表示应用主线程freeze观测器。 |
 | observer | [FreezeObserver](#freezeobserver18) | 是 | 由on接口注册的freeze监听的callback。 |
 
 **错误码**：
@@ -447,7 +460,7 @@ on(type: 'freeze', observer: FreezeObserver): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.   |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -464,16 +477,18 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 
 注销主线程消息处理监听器。
 
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'loopObserver'，表示应用主线程观察器。 |
-| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 否 | 应用主线程观察器标志。 |
+| type | string | 是 | 填写'loopObserver'，表示应用主线程观测器。 |
+| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 否 | 应用主线程观测器标志。 |
 
 **错误码**：
 
@@ -483,7 +498,7 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -503,7 +518,7 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
 
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
@@ -520,7 +535,7 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 | 16200001 | If the caller is invalid. |
 | 16300004 | If the observer does not exist. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -552,11 +567,13 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 注销被拒绝promise监听器。
 
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
 
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
@@ -573,7 +590,7 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 | 16200001 | If the caller is invalid. |
 | 16300004 | If the observer does not exist. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -625,19 +642,19 @@ errorManager.off("unhandledRejection", observer);
 
 off(type: 'freeze', observer?: FreezeObserver): void
 
-取消以前注册的应用主线程freeze监听。只能在主线程调用。
+取消之前注册的应用主线程freeze监听。
 
-如果传入的回调与通过on方法注册回调不一致，将抛出16300004错误码，因此建议使用try-catch逻辑进行处理。
+仅在主线程中使用。使用线程出错时，将抛出错误码，因此建议使用try-catch逻辑进行处理。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写'freeze'，表示应用主线程freeze观察器。 |
+| type | string | 是 | 填写'freeze'，表示应用主线程freeze观测器。 |
 | observer | [FreezeObserver](#freezeobserver18) | 否 | 由on接口注册的freeze监听的callback。建议使用该参数，如果参数不填会直接清空callback，否则删除指定的callback。 |
 
 **错误码**：
@@ -649,7 +666,7 @@ off(type: 'freeze', observer?: FreezeObserver): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 16300004 | If the observer does not exist. |
 
-**示例：**
+**示例**：
     
 ```ts
 import { errorManager } from '@kit.AbilityKit';
@@ -679,7 +696,7 @@ ErrorObserver模块。
 
 type LoopObserver = _LoopObserver
 
-LoopObserver模块。
+LoopObserver模块。定义异常监听，可作为 `errormanager.on` 函数的参数，监听并处理当前应用主线程超时的事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -699,7 +716,7 @@ type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
 
 | 参数名    | 类型            | 必填 | 说明 |
 |--------|---------------|---| -------- |
@@ -726,7 +743,7 @@ type GlobalObserver = (reason: GlobalError) => void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型          | 必填 | 说明 |
 |--------| ------------- | ---- | --- |
