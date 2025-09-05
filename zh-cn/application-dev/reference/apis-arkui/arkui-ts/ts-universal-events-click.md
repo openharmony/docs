@@ -107,7 +107,7 @@ onClick(event: (event: ClickEvent) => void): T
 | screenX<sup>(deprecated)</sup> | number                    | 否 | 否 | 点击位置相对于应用窗口左上角的X坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowX代替。 |
 | screenY<sup>(deprecated)</sup> | number                    | 否 | 否 | 点击位置相对于应用窗口左上角的Y坐标。<br>单位：vp<br/>从API version 10开始不再维护，建议使用windowY代替。 |
 | preventDefault<sup>12+</sup>      | () => void | 否 | 否 | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| hand<sup>15+</sup> | [InteractionHand](./ts-appendix-enums.md#interactionhand15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | globalDisplayX<sup>20+</sup> | number | 否 | 是 | 点击位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | globalDisplayY<sup>20+</sup> | number | 否 | 是 | 点击位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
