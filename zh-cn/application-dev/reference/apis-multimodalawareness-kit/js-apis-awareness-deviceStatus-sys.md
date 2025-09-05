@@ -25,7 +25,7 @@ getDeviceRotationRadian(): Promise&lt;DeviceRotationRadian&gt;
 
 获取设备的姿态数据。
 
-姿态数据包含x、y、z三轴的姿态旋转角，三轴定义与设备sensor定义相同，为右手系。姿态旋转角在ZXY旋转顺序、内旋下计算。
+姿态数据包含x、y、z三轴的姿态旋转角，即三轴的欧拉角，三轴定义与设备sensor定义相同，为右手系。姿态旋转角在ZXY旋转顺序、内旋下计算，通过传感器融合获取的四元数计算得到结果。
 
 **系统能力**：SystemCapability.MultimodalAwareness.DeviceStatus
 
