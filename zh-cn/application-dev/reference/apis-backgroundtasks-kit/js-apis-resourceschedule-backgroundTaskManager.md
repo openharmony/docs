@@ -94,7 +94,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | 是    | 短时任务的请求ID。                               |
+| requestId | number                      | 是    | 短时任务的请求ID。通过申请短时任务[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)接口获取。  |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回本次短时任务的剩余时间，单位：ms。 |
 
 **错误码**：
@@ -141,7 +141,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 短时任务的请求ID。 |
+| requestId | number | 是    | 短时任务的请求ID。通过申请短时任务[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)接口获取。 |
 
 **返回值**：
 
@@ -190,7 +190,7 @@ cancelSuspendDelay(requestId: number): void
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 短时任务的请求ID。 |
+| requestId | number | 是    | 短时任务的请求ID。通过申请短时任务[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)接口获取。 |
 
 **错误码**：
 

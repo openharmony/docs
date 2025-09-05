@@ -110,7 +110,7 @@ Dialog关闭的信息。
 
 ### 属性
 
-| 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
 | reason  | [DismissReason](ts-universal-attributes-popup.md#dismissreason12枚举说明) | 否   | 否   | Dialog无法关闭原因。根据开发者需求选择不同操作下，Dialog是否关闭。 |
@@ -466,7 +466,7 @@ struct ActionSheetExample {
 
 ### 示例5（悬停态弹窗）
 
-该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+<!--RP1-->该示例展示了在悬停态下设置dialog布局区域的效果。<!--RP1End-->
 
 ```ts
 // xxx.ets
@@ -534,7 +534,7 @@ struct ActionSheetExample {
 }
 ```
 
-![zh-cn_image_action_style](figures/zh-cn_image_action_hovermode.gif)
+<!--RP2--><!--RP2End-->
 
 ### 示例6（弹窗生命周期）
 

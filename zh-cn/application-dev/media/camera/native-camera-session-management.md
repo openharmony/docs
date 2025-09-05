@@ -156,16 +156,16 @@
        // 释放photoOutput。
        ret = OH_PhotoOutput_Release(photoOutput);
        if (ret == CAMERA_OK) {
-           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_RemovePhotoOutput success ");
+           OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Release success ");
        } else {
-           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RemovePhotoOutput failed. %d ", ret);
+           OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Release failed. %d ", ret);
        }
        // 向会话中添加视频输出流。
        ret = OH_CaptureSession_AddVideoOutput(captureSession, videoOutput);
        if (ret == CAMERA_OK) {
-           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_RemovePhotoOutput success ");
+           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_AddVideoOutput success ");
        } else {
-           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RemovePhotoOutput failed. %d ", ret);
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddVideoOutput failed. %d ", ret);
            return ret;
        }
        // 提交会话配置。

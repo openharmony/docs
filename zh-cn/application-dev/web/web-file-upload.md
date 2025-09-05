@@ -218,7 +218,11 @@ html页面代码
                 },
                 false
             );
-            fileReader.readAsDataURL(event.target.files[0]);
+            if (event.target.files && event.target.files[0]) {
+              fileReader.readAsDataURL(event.target.files[0]);
+            } else {
+              console.error("File not exist.");
+            }            
         }
     </script>
 </body>
@@ -285,7 +289,11 @@ html页面代码
                 },
                 false
             );
-            fileReader.readAsDataURL(event.target.files[0]);
+            if (event.target.files && event.target.files[0]) {
+              fileReader.readAsDataURL(event.target.files[0]);
+            } else {
+              console.error("File not exist.");
+            }    
         }
     </script>
 </body>

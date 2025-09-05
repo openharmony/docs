@@ -79,7 +79,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
         if (err) {
           console.error('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
         } else {
-          console.log('distributed information: ' + JSON.stringify(data));
+          console.info('distributed information: ' + JSON.stringify(data));
         }
       });
   } catch (err) {
@@ -119,7 +119,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
-        console.log('distributed information: ' + JSON.stringify(data));
+        console.info('distributed information: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
         console.error('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
@@ -157,7 +157,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
       if (err) {
         console.error('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
-        console.log('distributed information: ' + JSON.stringify(data));
+        console.info('distributed information: ' + JSON.stringify(data));
       }
     });
   ```
@@ -188,7 +188,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
-      console.log('distributed information: ' + JSON.stringify(data));
+      console.info('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
       console.error('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
@@ -235,7 +235,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
       if (err) {
         console.error('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
-        console.log('setOsAccountDistributedInfo successfully');
+        console.info('setOsAccountDistributedInfo successfully');
       }
     });
   } catch (err) {
@@ -286,7 +286,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
-        console.log('setOsAccountDistributedInfo successfully');
+        console.info('setOsAccountDistributedInfo successfully');
     }).catch((err: BusinessError) => {
         console.error('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
@@ -365,7 +365,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
-      console.log('updateOsAccountDistributedInfo successfully');
+      console.info('updateOsAccountDistributedInfo successfully');
    }).catch((err: BusinessError) => {
       console.error('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
@@ -377,15 +377,15 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string |是 | 分布式账号名称，非空字符串。 |
-| id | string |是 | 分布式账号UID，非空字符串。 |
-| event | string |是 | 分布式账号登录状态，包括登录、登出、Token失效和注销，分别对应以下字符串：<br/>-&nbsp;Ohos.account.event.LOGIN<br/>-&nbsp;Ohos.account.event.LOGOUT<br/>-&nbsp;Ohos.account.event.TOKEN_INVALID<br/>-&nbsp;Ohos.account.event.LOGOFF |
-| nickname<sup>9+</sup> | string |否 | 分布式账号的昵称，默认为空。 |
-| avatar<sup>9+</sup> | string |否 | 分布式账号的头像，默认为空。 |
-| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |否 | 分布式账号的状态，枚举类型，默认为未登录状态。 |
-| scalableData<sup>8+</sup> | object |否 | 分布式账号扩展信息，根据业务所需，以k-v形式传递定制化信息，默认为空。|
+| 名称 | 类型 | 只读  | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| name | string | 否 | 否  | 分布式账号名称，非空字符串。 |
+| id | string | 否 | 否  | 分布式账号UID，非空字符串。 |
+| event | string | 否 | 否  | 分布式账号登录状态，包括登录、登出、Token失效和注销，分别对应以下字符串：<br/>-&nbsp;Ohos.account.event.LOGIN<br/>-&nbsp;Ohos.account.event.LOGOUT<br/>-&nbsp;Ohos.account.event.TOKEN_INVALID<br/>-&nbsp;Ohos.account.event.LOGOFF |
+| nickname<sup>9+</sup> | string | 否 | 是  | 分布式账号的昵称，默认为空。 |
+| avatar<sup>9+</sup> | string | 否 | 是  | 分布式账号的头像，默认为空。 |
+| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) | 是 | 是  | 分布式账号的状态，枚举类型，默认为未登录状态。 |
+| scalableData<sup>8+</sup> | object | 否 | 是  | 分布式账号扩展信息，根据业务所需，以k-v形式传递定制化信息，默认为空。|
 
 ## DistributedAccountStatus<sup>10+</sup>
 

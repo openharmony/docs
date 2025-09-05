@@ -1191,10 +1191,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
-| flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 否 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
+| flags | number | 否 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
 
 ## AccessedDLPFileInfo
 
@@ -1202,10 +1202,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| uri | string | 是 | 否 | 表示DLP文件的uri。不超过4095字节。 |
-| lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
+| uri | string | 否 | 否 | 表示DLP文件的uri。不超过4095字节。 |
+| lastOpenTime | number | 否 | 否 | 表示DLP文件最近打开时间。 |
 
 ## DLPManagerResult<sup>11+</sup>
 
@@ -1215,10 +1215,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| resultCode | number | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
+| resultCode | number | 否 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
 
 ## RetentionSandboxInfo
 
@@ -1226,9 +1226,9 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
+| appIndex | number | 否 | 否 | 表示DLP沙箱应用索引。 |
+| bundleName | string | 否 | 否 | 表示应用包名。最小7字节，最大128字节。 |
+| docUris | Array&lt;string&gt; | 否 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
 

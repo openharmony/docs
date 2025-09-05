@@ -119,7 +119,7 @@ copyOptions(value: CopyOptions)
 
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择菜单。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
-设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、分享、搜索、帮写功能。
+设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、分享、搜索、帮写功能，且不支持拖拽操作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1184,7 +1184,7 @@ getCaretRect(): RectResult | undefined
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [RectResult](ts-types.md#rectresult10) \| undefined | 当前光标与RichEditor的相对位置。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) \| undefined | 当前光标与RichEditor的相对位置。 |
 
 ## RichEditorController
 
@@ -1248,7 +1248,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-添加用户自定义布局Span。
+在RichEditor中添加用户自定义布局（BuilderSpan）。
 
 > **说明：**
 >
@@ -1286,7 +1286,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
-在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
+在RichEditor中添加图标小符号（SymbolSpan），如果组件光标闪烁，插入后光标位置更新为新插入SymbolSpan的后面。
 
 暂不支持手势、复制、拖拽处理。
 
@@ -1298,8 +1298,8 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 | 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | [Resource](ts-types.md#resource)         | 是    | 组件内容。 |
-| options | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11) | 否    | 组件选项。 |
+| value   | [Resource](ts-types.md#resource)         | 是    | symbol资源信息。 |
+| options | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11) | 否    | symbol选项。 |
 
 **返回值：**
 
@@ -1455,7 +1455,7 @@ fromStyledString(value: StyledString): Array\<RichEditorSpan>
 
 toStyledString(value: RichEditorRange): StyledString
 
-将给定范围的组件内容转换成属性字符串。
+将给定范围的组件内容转换成属性字符串，SymbolSpan和BuilderSpan不支持转换。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

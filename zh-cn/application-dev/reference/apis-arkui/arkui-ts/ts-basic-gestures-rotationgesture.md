@@ -19,7 +19,7 @@
 
 RotationGesture(value?: { fingers?: number; angle?: number })
 
-继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置旋转手势事件。
+继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)，设置旋转手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

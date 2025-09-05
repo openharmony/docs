@@ -1735,7 +1735,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: ReadOptions): number
 
 rmdir(path: string): Promise&lt;void&gt;
 
-删除整个目录，使用promise异步回调。
+删除目录及其所有子目录和文件，使用promise异步回调。
 
 > **说明：**
 >
@@ -1777,7 +1777,7 @@ rmdir(path: string): Promise&lt;void&gt;
 
 rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除整个目录，使用callback异步回调。
+删除目录及其所有子目录和文件，使用callback异步回调。
 
 > **说明：**
 >
@@ -1816,7 +1816,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 rmdirSync(path: string): void
 
-以同步方法删除目录。
+以同步方法删除目录及其所有子目录和文件。
 
 > **说明：**
 >

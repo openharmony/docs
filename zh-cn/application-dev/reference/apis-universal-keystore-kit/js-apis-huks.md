@@ -1612,7 +1612,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，<br>可传空，当API version ≥ 12时，传空默认为CE，当API version ＜ 12时，传空默认为DE。     |
-| callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则err中会存储对应的错误码信息。 |
+| callback | AsyncCallback\<boolean>     | 是   | 回调函数。密钥存在时，data为true；密钥不存在时，err中的错误码为12000011，并附带对应错误描述。 |
 
 **错误码：**
 

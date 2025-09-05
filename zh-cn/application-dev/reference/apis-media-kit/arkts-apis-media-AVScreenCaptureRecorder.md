@@ -141,7 +141,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to stop avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -225,7 +225,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
     console.info('Succeeded in setMicEnabled avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to setMicEnabled avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to setMicEnabled avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -260,7 +260,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.release().then(() => {
     console.info('Succeeded in releasing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to release avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -277,7 +277,7 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态。 |
+| callback | Callback\<[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)> | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态。 |
 
 **示例：**
 
@@ -333,7 +333,7 @@ avScreenCaptureRecorder.on('error', (err: BusinessError) => {
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+| callback | Callback\<[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)> | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
 
 **示例：**
 
