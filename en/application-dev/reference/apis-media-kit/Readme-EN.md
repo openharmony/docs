@@ -1,4 +1,10 @@
 # Media Kit
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6; @zzs_911-->
+<!--Designer: @HmQQQ; @stupig001-->
+<!--Tester: @xchaosioda; @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 - ArkTS APIs<!--media-arkts-->
   - @ohos.multimedia.media (Media)<!--js-apis-media-->
@@ -61,7 +67,7 @@
     - [video_processing_types.h](capi-video-processing-types-h.md)
   - Structs<!--media-struct-->
     - [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)
-    - [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)
+    - [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)
     - [MediaKeySession](capi-avplayer-mediakeysession.md)
     - [DRM_MediaKeySystemInfo](capi-avplayer-drm-mediakeysysteminfo.md)
     - [AVPlayerCallback](capi-avplayer-avplayercallback.md)
@@ -99,6 +105,8 @@
     - [OH_LowPowerVideoSinkCallback](capi-lowpowervideosink-oh-lowpowervideosinkcallback.md)
     - [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)
     - [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)
+    - [NativeWindow](capi-videoprocessing-nativewindow.md)
+    - [OH_AVFormat](capi-videoprocessing-oh-avformat.md)
     - [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)
 - Error Codes<!--media-arkts-errcode-->
   - [Media Error Codes](errorcode-media.md)
