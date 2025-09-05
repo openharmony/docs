@@ -280,7 +280,7 @@ aa dump -a
 通过bundleName强制停止一个进程。
 
 ```bash
-aa force-stop <bundleName>
+aa force-stop <bundle-name> [-p pid] [-r kill-reason]
 ```
 
   **强制停止进程命令参数列表**
