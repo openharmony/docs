@@ -360,9 +360,9 @@ enum InputEvent_SourceType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标光标移动、按钮按下和释放以及滚轮滚动的事件。 |
+| SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标指针移动、按键按下和释放以及滚轮滚动的事件。 |
 | SOURCE_TYPE_TOUCHSCREEN = 2 | 表示输入源产生触摸屏多点触屏事件。 |
-| SOURCE_TYPE_TOUCHPAD = 3 | 表示输入源产生触摸板多点触屏事件。 |
+| SOURCE_TYPE_TOUCHPAD = 3 | 表示输入源产生触控板多点触屏事件。 |
 
 ### Input_KeyboardType
 
@@ -524,7 +524,7 @@ typedef void (*Input_DeviceAddedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备的ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 ### Input_DeviceRemovedCallback()
 
@@ -543,7 +543,7 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备的ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 ### Input_InjectAuthorizeCallback()
 
@@ -1353,7 +1353,7 @@ void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t
 | 参数项 | 描述 |
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象。<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
-| int32_t axisType | 轴类型，比如垂直轴、水平轴。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
+| int32_t axisType | 鼠标轴类型，比如垂直轴、水平轴。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
 
 ### OH_Input_GetMouseEventAxisType()
 
@@ -1380,7 +1380,7 @@ int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 轴类型。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
+| int32_t | 鼠标轴类型。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
 
 ### OH_Input_SetMouseEventAxisValue()
 
@@ -3427,7 +3427,7 @@ Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 | [Input_DeviceInfo](capi-input-input-deviceinfo.md) **deviceInfo | deviceInfo 指向输入设备信息[Input_DeviceInfo](capi-input-input-deviceinfo.md)的指针。 |
 
 **返回：**
@@ -3496,7 +3496,7 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 | int32_t *keyboardType | keyboardType 指向输入设备的键盘指针。 |
 
 **返回：**

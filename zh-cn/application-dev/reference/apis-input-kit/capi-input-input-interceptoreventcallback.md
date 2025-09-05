@@ -129,7 +129,7 @@ typedef void (*Input_DeviceAddedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备的ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 ### Input_DeviceRemovedCallback()
 
@@ -147,6 +147,6 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备的ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 

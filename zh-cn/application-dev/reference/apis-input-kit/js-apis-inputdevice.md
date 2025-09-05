@@ -85,7 +85,7 @@ getDeviceList(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 类型                               | 说明                                        |
 | ---------------------------------- | ------------------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回所有输入设备的id列表。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回所有输入设备的id列表。id是输入设备的唯一标识。 |
 
 **示例**：
 
@@ -124,7 +124,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 
 | 参数名     | 类型                                                     | 必填 | 说明                                    |
 | -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
-| deviceId | number                                                   | 是   | 输入设备id。                  |
+| deviceId | number                                                   | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。                  |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数。返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。 |
 
 **错误码**：
@@ -177,13 +177,13 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 | 参数名     | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| deviceId | number | 是   | 输入设备id。 |
+| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 **返回值**：
 
 | 类型                                               | 说明                            |
 | -------------------------------------------------- | ------------------------------- |
-| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，返回输入设备信息。 |
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。 |
 
 **错误码**：
 
@@ -231,13 +231,13 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 
 | 参数名     | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| deviceId | number | 是   | 输入设备id。 |
+| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 **返回值**：
 
 | 类型                                               | 说明                            |
 | -------------------------------------------------- | ------------------------------- |
-| [InputDeviceData](#inputdevicedata) | 返回输入设备信息，包括输入设备id、名称、支持的源类型、物理地址、版本信息及产品信息。 |
+| [InputDeviceData](#inputdevicedata) | 返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。 |
 
 **错误码**：
 
@@ -410,7 +410,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 | 参数名     | 类型                                     | 必填 | 说明                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回输入设备的id列表。 |
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回所有输入设备的id列表。id是输入设备的唯一标识。 |
 
 **示例**：
 
@@ -451,7 +451,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 类型                               | 说明                                        |
 | ---------------------------------- | ------------------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回所有输入设备的id列表。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回所有输入设备的id列表。id是输入设备的唯一标识。 |
 
 **示例**：
 
@@ -488,8 +488,8 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 | 参数名     | 类型                                                     | 必填 | 说明                             |
 | -------- | -------------------------------------------------------- | ---- | -------------------------------- |
-| deviceId | number                                                   | 是   | 输入设备id。                     |
-| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，返回输入设备信息。 |
+| deviceId | number                                                   | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。                     |
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。 |
 
 **示例**：
 
@@ -531,13 +531,13 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 | 参数名     | 类型   | 必填 | 说明         |
 | -------- | ------ | ---- | ------------ |
-| deviceId | number | 是   | 输入设备id。 |
+| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 **返回值**：
 
 | 类型                                               | 说明                                |
 | -------------------------------------------------- | ----------------------------------- |
-| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，返回输入设备信息。 |
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。 |
 
 **示例**：
 
@@ -573,7 +573,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 
 | 参数名     | 类型                                      | 必填 | 说明                                                   |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| deviceId | number                                    | 是   | 输入设备的id。对于同一个物理设备，反复插拔会导致设备id发生变化。 |
+| deviceId | number                                    | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 | keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，返回查询结果。                           |
 
@@ -623,8 +623,8 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 
 | 参数名     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
-| deviceId | number               | 是   | 输入设备的id。对于同一个物理设备，反复插拔会导致设备id发生变化。 |
-| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | 是   | 需要查询的键码值，最多支持查询5个按键。                |
+| deviceId | number               | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | 是   | 需要查询的键值，最多支持查询5个按键。                |
 
 **返回值**：
 
@@ -670,7 +670,7 @@ struct Index {
 
 supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&gt;
 
-查询指定id的输入设备对指定键码值的支持情况。
+查询指定id的输入设备对指定键值的支持情况。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -678,7 +678,7 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 
 | 参数名     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
-| deviceId | number               | 是   | 输入设备的id。对于同一个物理设备，反复插拔会导致设备id发生变化。 |
+| deviceId | number               | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 | keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | 是   | 需要查询的键码值，最多支持查询5个按键。                |
 
 **返回值**：
@@ -732,7 +732,7 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 
 | 参数名     | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deviceId | number                                              | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+| deviceId | number                                              | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 | callback | AsyncCallback&lt;[KeyboardType](#keyboardtype9)&gt; | 是   | 回调函数，返回查询结果。                                 |
 
 **错误码**：
@@ -785,7 +785,7 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
 | 参数名    | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 **返回值**：
 
@@ -839,7 +839,7 @@ getKeyboardTypeSync(deviceId: number): KeyboardType
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 **返回值**：
 
@@ -1053,7 +1053,7 @@ struct Index {
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | 否 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | name                 | string                                 | 否 | 否 | 输入设备的名称。                                             |
-| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 否 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触摸板，则此设备有键盘和触摸板两种输入能力。 |
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 否 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触控板，则此设备有键盘和触控板两种输入能力。 |
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 否 | 否 | 输入设备的轴信息。                                           |
 | bus<sup>9+</sup>     | number                                 | 否 | 否 | 输入设备的总线类型，该值以输入设备上报为准。             |
 | product<sup>9+</sup> | number                                 | 否 | 否 | 输入设备的产品信息。                                         |
@@ -1112,7 +1112,7 @@ type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick'
 | 'touchscreen' | 表示输入设备是触摸屏。 |
 | 'mouse'       | 表示输入设备是鼠标。  |
 | 'trackball'   | 表示输入设备是轨迹球。 |
-| 'touchpad'    | 表示输入设备是触摸板。 |
+| 'touchpad'    | 表示输入设备是触控板。 |
 | 'joystick'   | 表示输入设备是操纵杆。 |
 
 ## ChangedType<sup>9+</sup>
