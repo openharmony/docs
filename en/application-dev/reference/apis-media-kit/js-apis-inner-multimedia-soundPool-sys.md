@@ -1,4 +1,10 @@
 # SoundPool (Sound Pool) (System API)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The module provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.
 
@@ -17,4 +23,4 @@ Describes the playback parameters of the sound pool.
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams. The value **true** means that the sound can be played in parallel with other active audio streams, without preempting the audio focus, and **false** means the opposite. The default value is **false**.<br>This is a system API.|
+| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams, without preempting the audio focus. **true** if yes, **false** otherwise. The default value is **false**.<br>This is a system API.|
