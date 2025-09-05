@@ -35,7 +35,7 @@ getTextContentRect(): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) | 获取已编辑文本内容区域相对组件的位置和大小。 |
 
 > **说明：**
 >
