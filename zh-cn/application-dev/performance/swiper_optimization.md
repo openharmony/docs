@@ -1,5 +1,12 @@
 # Swiper高性能开发指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 背景
 
 在应用开发中，[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
@@ -169,7 +176,7 @@ Swiper 子组件页面代码如下：
 在子组件首次构建（生命周期执行到[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)）时，先判断 dataSource 中该 index 的数据是否有数据，若无数据则先进行资源加载，再构建节点。若有数据，则直接构建节点即可。
 
 ```TypeScript
-import image from '@ohos.multimedia.image';
+import { image } from "@kit.ImageKit";
 import { MyDataSource } from './Index';
 
 @Component
@@ -215,9 +222,9 @@ export struct PhotoItem { //Swiper的子组件
 
 Swiper 主页面的代码如下：
 ```TypeScript
-import Curves from '@ohos.curves';
+import { curves } from "@kit.ArkUI";
 import { PhotoItem } from './PhotoItem';
-import image from '@ohos.multimedia.image';
+import { image } from "@kit.ImageKit";
 
 interface MyObject {
   description: string,
@@ -277,7 +284,7 @@ struct Index {
       })
     }
     .cachedCount(this.cacheCount)
-    .curve(Curves.interpolatingSpring(0, 1, 228, 30))
+    .curve(curves.interpolatingSpring(0, 1, 228, 30))
     .index(this.currentIndex)
     .indicator(true)
     .loop(false)
@@ -309,7 +316,6 @@ struct Index {
     .height('100%')
   }
 }
-
 ```
 
 ## 总结
