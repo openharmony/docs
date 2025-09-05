@@ -35,7 +35,7 @@ startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- |  -------- |
-| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 指示媒体应用程序的UI功能上下文。 |
+| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 调用方应用的上下文。 |
 | wantParam | Record<string, Object> | 是 | 表示启动UIExtensionAbility组件时传递的参数。 |
 | panelConfig | [PanelConfig](#panelconfig) | 是 | 面板配置参数。 |
 | panelStartCallback | [PanelStartCallback](#panelstartcallback) | 是 | 拉起面板执行结果的回调。 |
