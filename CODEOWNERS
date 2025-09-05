@@ -501,10 +501,10 @@ zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.
 zh-cn/application-dev/account/ @zengyawen
 
 [开发-Basic Services Kit-公共事件]
-zh-cn/application-dev/basic-services/common-event/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/basic-services/common-event/common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/basic-services/common-event/itc-with-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/basic-services/common-event/native-common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/basic-services/common-event/common-event-*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/itc-with-emitter.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/native-common-event-*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 [开发-Basic Services Kit-设备管理]
 zh-cn/application-dev/device/usb-overview.md @w_Machine_cc @Kevin-Lau @liuhonggang123
@@ -1665,13 +1665,13 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
-zh-cn/application-dev/reference/apis-basic-services-kit/common_event/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-commonevent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-CommonEventService.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtension*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/common_event/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEvent*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-emitter.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-commonevent*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-CommonEventService.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtension*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 [API参考-Basic Services Kit-设备管理]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @w_Machine_cc  @alien0208
@@ -2116,8 +2116,8 @@ zh-cn/application-dev/tools/bm-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2
 zh-cn/application-dev/tools/packing-tool.md @Brilliantry_Rui @jsjzju @lixueqing513
 zh-cn/application-dev/tools/unpacking-tool.md @Brilliantry_Rui @jsjzju @lixueqing513 
 zh-cn/application-dev/tools/app-check-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2  
-zh-cn/application-dev/tools/cem-tool.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/tools/anm-tool.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/tools/cem-tool.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/tools/anm-tool.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 zh-cn/application-dev/tools/restool.md  @Brilliantry_Rui @lliule21 @lpw_work @budda-wang
 zh-cn/application-dev/tools/rawheap-translator.md @wanghuan2025 @wanghuan2025 @kir175 @zsw_zhushiwei @foryourself
 zh-cn/application-dev/tools/toybox.md @yan-mingzhen @liveery @liuhaonan2 @foryourself
