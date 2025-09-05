@@ -1,7 +1,13 @@
 # DataAbility切换
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-FA模型中的DataAbility对应Stage模型中的DataShareExtensionAbility。
+[FA模型](ability-terminology.md#fa模型)中的DataAbility对应[Stage模型](ability-terminology.md#stage模型)中的DataShareExtensionAbility。
 
 
 与ServiceExtensionAbility类似，Stage模型下的DataShareExtensionAbility为系统API，只有系统应用才可以创建。因此，FA模型的DataAbility的切换，对于系统应用和三方应用策略有所不同。下面分别介绍这两种场景。
