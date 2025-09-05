@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 相机应用可通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
 
@@ -135,12 +135,12 @@
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
     try {
-      videoOutput.start();
+      await videoOutput.start();
     } catch (error) {
       let err = error as BusinessError;
       console.error(`start videoOutput failed, error: ${err.code}`);
     }
-    await avRecorder.start(async (err: BusinessError) => {
+    avRecorder.start(async (err: BusinessError) => {
     if (err) {
       console.error(`Failed to start the video output ${err.message}`);
       return;
@@ -156,14 +156,14 @@
 
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     await avRecorder.stop((err: BusinessError) => {
+     avRecorder.stop((err: BusinessError) => {
      if (err) {
        console.error(`Failed to stop the video output ${err.message}`);
        return;
      }
      console.info('Callback invoked to indicate the video output stop success.');
      });
-     videoOutput.stop();
+     await videoOutput.stop();
    }
    ```
 
