@@ -1,7 +1,13 @@
 # FA模型开发概述
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @ccllee1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-基于FA模型开发应用时，在应用模型部分，涉及如下开发过程。
+基于[FA模型](ability-terminology.md#fa模型)开发应用时，在应用模型部分，涉及如下开发过程。
 
 
   **表1** FA模型开发流程
