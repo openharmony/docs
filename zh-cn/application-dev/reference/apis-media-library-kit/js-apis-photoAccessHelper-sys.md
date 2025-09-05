@@ -6135,7 +6135,7 @@ setHasAppLink(hasAppLink: int): void
 **示例：**
 
 ```ts
-import photoAccessHelper from '@kit.MediaLibraryKit';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 enum linkType {
   NOT_DECODED = 0,
@@ -6187,7 +6187,7 @@ setAppLinkInfo(appLink: string): void
 **示例：**
 
 ```ts
-import photoAccessHelper from '@kit.MediaLibraryKit';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 
 async function example(asset: photoAccessHelper.PhotoAsset, appLinkInfo: string) {
