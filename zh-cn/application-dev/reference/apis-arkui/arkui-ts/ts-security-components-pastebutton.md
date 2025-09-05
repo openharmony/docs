@@ -165,7 +165,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct Index {
   handlePasteButtonClick: PasteButtonCallback =
     (event: ClickEvent, result: PasteButtonOnClickResult, error?: BusinessError<void>) => {
-      if (result == PasteButtonOnClickResult.SUCCESS) {
+      if (result === PasteButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
         console.error("errCode: " + error?.code);

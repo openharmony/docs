@@ -271,7 +271,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
     async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError) => {
-      if (result == SaveButtonOnClickResult.SUCCESS) {
+      if (result === SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();
           let helper = photoAccessHelper.getPhotoAccessHelper(context);

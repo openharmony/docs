@@ -1,5 +1,12 @@
 # 划词服务概述（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: SelectionInput-->
+<!--Owner: @no86-->
+<!--Designer: @mmwwbb-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @fang-jinxu-->
+
 从API version 20开始，新增支持划词服务，提供跨应用文本处理及系统管理划词应用的能力。
 
 主要用于文本翻译、内容摘要、术语解释等场景，例如用户长按外文新闻中的单词时，自动触发翻译服务并悬浮显示结果；在阅读应用中划选长段落，通过划词服务快速生成内容摘要；教育类应用识别用户选中的专业术语，提供即时解释卡片等。

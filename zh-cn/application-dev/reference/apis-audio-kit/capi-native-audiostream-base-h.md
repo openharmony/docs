@@ -160,7 +160,7 @@ enum OH_AudioStream_Usage
 | -- | -- |
 | AUDIOSTREAM_USAGE_UNKNOWN = 0 | 未知类型。 |
 | AUDIOSTREAM_USAGE_MUSIC = 1 | 音乐。 |
-| AUDIOSTREAM_USAGE_COMMUNICATION = 2 | VoIP语音通话。 |
+| AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2 | VoIP语音通话。 |
 | AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3 | 语音播报。 |
 | AUDIOSTREAM_USAGE_ALARM = 4 | 闹钟。 |
 | AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5 | 语音消息。 |
@@ -218,7 +218,7 @@ enum OH_AudioStream_VolumeMode
 
 定义音频流音量模式。
 
-**起始版本：** 18
+**起始版本：** 19
 
 | 枚举项 | 描述 |
 | -- | -- |
@@ -304,7 +304,7 @@ enum OH_AudioInterrupt_ForceType
 | 枚举项 | 描述 |
 | -- | -- |
 | AUDIOSTREAM_INTERRUPT_FORCE = 0 | 强制打断类型，即具体操作已由系统强制执行。 |
-| AUDIOSTREAM_INTERRUPT_SHAR = 1 | 共享打断类型，即系统不执行具体操作，通过[OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint)提示并建议应用操作，应用可自行决策下一步处理方式。 |
+| AUDIOSTREAM_INTERRUPT_SHARE = 1 | 共享打断类型，即系统不执行具体操作，通过[OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint)提示并建议应用操作，应用可自行决策下一步处理方式。 |
 
 ### OH_AudioInterrupt_Hint
 
@@ -326,6 +326,8 @@ enum OH_AudioInterrupt_Hint
 | AUDIOSTREAM_INTERRUPT_HINT_STOP = 3 | 提示音频停止，彻底失去音频焦点。 |
 | AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4 | 提示音频躲避开始，音频降低音量播放，而不会停止。 |
 | AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5 | 提示音量躲避结束，音频恢复正常音量。 |
+| AUDIOSTREAM_INTERRUPT_HINT_MUTE = 6 | 提示音频静音。<br>**起始版本：** 20 |
+| AUDIOSTREAM_INTERRUPT_HINT_UNMUTE = 7 | 提示音频解除静音。<br>**起始版本：** 20 |
 
 ### OH_AudioInterrupt_Mode
 
@@ -439,7 +441,7 @@ enum OH_AudioData_Callback_Result
 ### OH_AudioRenderer_OutputDeviceChangeCallback()
 
 ```
-typedef void (*OH_AudioRenderer_OutputDeviceChangeCallback)(OH_AudioRenderer* renderer, void* userData,OH_AudioStream_DeviceChangeReason reason)
+typedef void (*OH_AudioRenderer_OutputDeviceChangeCallback)(OH_AudioRenderer* renderer, void* userData, OH_AudioStream_DeviceChangeReason reason)
 ```
 
 **描述**
@@ -481,7 +483,7 @@ typedef void (*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer* rendere
 ### OH_AudioRenderer_WriteDataWithMetadataCallback()
 
 ```
-typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRenderer* renderer,void* userData, void* audioData, int32_t audioDataSize, void* metadata, int32_t metadataSize)
+typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRenderer* renderer, void* userData, void* audioData, int32_t audioDataSize, void* metadata, int32_t metadataSize)
 ```
 
 **描述**
@@ -496,7 +498,7 @@ typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRender
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
-| void* userData | 指向通过回调函数传递的应用数据指针。 |
+|  void* userData | 指向通过回调函数传递的应用数据指针。 |
 |  void* audioData | 指向用户写入的音频数据的指针。 |
 |  int32_t audioDataSize | 用户写入的音频数据的数据长度，以字节为单位。 |
 |  void* metadata | 指向用户写入的元数据的指针。 |
@@ -511,7 +513,7 @@ typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRender
 ### OH_AudioRenderer_OnWriteDataCallback()
 
 ```
-typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_AudioRenderer* renderer, void* userData,void* audioData, int32_t audioDataSize)
+typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_AudioRenderer* renderer, void* userData, void* audioData, int32_t audioDataSize)
 ```
 
 **描述**
@@ -527,19 +529,19 @@ typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_
 | -- | -- |
 | [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 |  void* userData | 指向通过回调函数传递的应用数据指针。 |
-| void* audioData | 指向用户写入的音频数据的指针。 |
+|  void* audioData | 指向用户写入的音频数据的指针。 |
 |  int32_t audioDataSize | 用户写入的音频数据的数据长度，以字节为单位。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) | AUDIO_DATA_CALLBACK_RESULT_INVALID：音频数据回调结果无效，且音频数据不播放。<br>        AUDIO_DATA_CALLBACK_RESULT_VALID：音频数据回调结果有效，将播放音频数据。 |
+| [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) | AUDIO_DATA_CALLBACK_RESULT_INVALID：音频数据回调结果无效，且音频数据不播放。<br>         AUDIO_DATA_CALLBACK_RESULT_VALID：音频数据回调结果有效，将播放音频数据。 |
 
 ### OH_AudioRenderer_OnWriteDataCallbackAdvanced()
 
 ```
-typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData,void* audioData, int32_t audioDataSize)
+typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData, void* audioData, int32_t audioDataSize)
 ```
 
 **描述**
@@ -555,7 +557,7 @@ typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer
 | -- | -- |
 | [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向发生回调的实例。 |
 |  void* userData | 指向通过回调函数传递的应用数据指针。 |
-| void* audioData | 指向让应用填充音频数据的指针。 |
+|  void* audioData | 指向让应用填充音频数据的指针。 |
 |  int32_t audioDataSize | 应用应写入音频数据的数据长度，以字节为单位。 |
 
 **返回：**

@@ -56,7 +56,9 @@ screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
     return;
   }
   console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
-  screenClass = data[0];
+  if(data.length > 0 ）{
+    screenClass = data[0];
+  }
 });
 ```
 
@@ -91,7 +93,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let screenClass: screen.Screen | null = null;
 let promise: Promise<Array<screen.Screen>> = screen.getAllScreens();
 promise.then((data: Array<screen.Screen>) => {
-  screenClass = data[0];
+  if(data.length > 0){
+  	screenClass = data[0];
+  }
   console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
