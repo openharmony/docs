@@ -252,7 +252,7 @@ static getSystemLanguage(): string
 
 | 类型     | 说明      |
 | ------ | ------- |
-| string | 表示系统语言的字符串。<br/>**说明：**<br/>从API version 20开始，开发者可以在开发者模式下通过[param工具](../../tools/param-tool.md#获取系统参数的值)的“hdc shell param get persist.global.language”命令获取系统语言。 |
+| string | 表示系统语言的字符串。<br/>**说明：**<br/>从API version 21开始，开发者可以在开发者模式下通过[param工具](../../tools/param-tool.md#获取系统参数的值)的“hdc shell param get persist.global.language”命令获取系统语言。 |
 
 **示例：**
   ```ts
