@@ -9289,6 +9289,14 @@ getProgress(): number
 | :------------------------------ | ---------------------- |
 | number | 当前页面加载进度，取值范围[0, 100] |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801 | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -9449,6 +9457,7 @@ avoidVisibleViewportBottom(avoidHeight: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 801 | Capability not supported. |
 
 **示例：**
 
