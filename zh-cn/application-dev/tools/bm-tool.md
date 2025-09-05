@@ -2192,22 +2192,23 @@ error: installd set selinux label failed.
 
     ![示例图](figures/zh-cn_image_9568359_2.png)
 
-### 9568398 非企业设备禁止安装企业应用
+### 9568398 企业MDM应用/普通企业应用不允许安装
 **错误信息**
 
 error: Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **错误描述**
 
-非企业设备禁止安装<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型为enterprise_mdm或enterprise_normal的应用。
+当前设备禁止安装企业MDM应用或普通企业应用。
 
 **可能原因**
 
-设备类型不是企业设备。
+当前设备不允许安装<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中如下两种类型的应用：enterprise_mdm（企业MDM应用）、enterprise_normal（普通企业应用）。
+Profile签名文件类型的取值及含义请参考[ApplicationInfo.appDistributionType](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)。
 
 **处理步骤**
 
-1. 使用企业设备安装企业应用。
+更换Profile签名文件中的类型。
 
 ### 9568402 禁止安装签名证书profile文件中的类型为app_gallery的release应用
 **错误信息**
