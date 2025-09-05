@@ -133,6 +133,10 @@
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Map err:%{public}d", ret);
        // 调用NAPI层buffer回调。
        auto cb = (void (*)(void *, size_t))(bufferCb);
+       if (!virAddr || nativeBufferSize <= 0) {
+         OH_LOG_INFO(LOG_APP, "On buffer callback failed");
+         return;
+       }
        cb(virAddr, nativeBufferSize);
        // 释放资源。
 	   delete[] components;
