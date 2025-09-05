@@ -112,24 +112,24 @@ struct Index {
     // Param[3] PanelStartCallback
     let callback: verticalPanelManager.PanelStartCallback = {
       onError: (code: number, name: string, message: string): void => {
-        console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
+        console.info(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
       },
       onResult: (result: common.AbilityResult): void => {
-        console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
+        console.info(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
       },
     }
 
     try {
-      console.log(`call startVerticalPanel`);
+      console.info(`call startVerticalPanel`);
       verticalPanelManager.startVerticalPanel(context, wantParam, panelConfig, callback)
         .then(() => {
-          console.log(`call startVerticalPanel end`);
+          console.info(`call startVerticalPanel end`);
         })
         .catch((error: BusinessError) => {
-          console.log(`call startVerticalPanel promise catch error : ${error}`);
+          console.error(`call startVerticalPanel promise catch error : ${error}`);
         })
     } catch (error) {
-      console.log(`call startVerticalPanel catch error : ${error}`);
+      console.error(`call startVerticalPanel catch error : ${error}`);
     }
   }
 }
@@ -192,10 +192,10 @@ type OnErrorFn = (code: number, name: string, message: string) => void
 ```ts
 let callback: verticalPanelManager.PanelStartCallback = {
   onError: (code: number, name: string, message: string): void => {
-    console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
+    console.info(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
   },
   onResult: (result: common.AbilityResult):void => {
-    console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
+    console.info(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
   },
 }
 ```
@@ -219,10 +219,10 @@ type OnResultFn = (parameter: AbilityResult) => void
 ```ts
 let callback: verticalPanelManager.PanelStartCallback = {
   onError: (code: number, name: string, message: string): void => {
-    console.log(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
+    console.info(`startVerticalPanel onError code ${code} name: ${name} message: ${message}`);
   },
   onResult: (result: common.AbilityResult):void => {
-    console.log(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
+    console.info(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
   },
 }
 ```
