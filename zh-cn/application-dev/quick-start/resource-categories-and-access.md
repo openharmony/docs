@@ -286,7 +286,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 
 ### 单HAP包应用资源
 
- - 通过`$r`或`$rawfile`访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过`$r('app.type.name')`形式访问。其中，app为resources目录中定义的资源，type为资源类型，name为资源名，由开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，例如资源值value中存在`%s`和`%d`两个占位符，需要通过`$r('app.string.label', 'aaa', 444)`形式访问。其中label为资源名称name，'aaa'和444用来替代占位符。<br/>对于rawfile目录资源，通过`$rawfile('filename')`形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
+ - 通过`$r`或`$rawfile`访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过`$r('app.type.name')`形式访问。其中，app为resources目录中定义的资源，type为资源类型，name为资源名，由开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，例如资源值value中存在`%1$s`和`%2$d`两个占位符，需要通过`$r('app.string.label', 'aaa', 444)`形式访问。其中label为资源名称name，'aaa'和444用来替代占位符。<br/>对于rawfile目录资源，通过`$rawfile('filename')`形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
    > **说明：**
    >
@@ -315,7 +315,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
     .width(300)
 
     // 对于string.json中name为"message_notification"，value为"Hello, %1$s!,You have %2$d new messages."
-    // 该资源存在%s、%d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
+    // 该资源存在%1$s、%2$d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
     Text($r('app.string.message_notification', 'LiHua', 2))
     // 对于plural.json中name为"eat_apple"，单数的value为"%d apple"，复数的value为"%d apples"
     // 调用plural.json资源，第一个参数需要传递一个量词，传递1表示单数，大于1表示复数，且在中文环境下始终为复数
