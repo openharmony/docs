@@ -87,6 +87,8 @@ type EmptyAreaClickCallback = () => void
 
 应用可通过AlbumPickerController向组件发送数据。
 
+**装饰器类型**：@Observed
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ### setFontSize<sup>20+</sup>
