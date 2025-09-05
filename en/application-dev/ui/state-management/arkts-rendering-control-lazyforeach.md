@@ -15,7 +15,7 @@ For details about API parameters, see [LazyForEach](https://gitee.com/openharmon
 - The ID generation function must generate a unique value for each piece of data. Rendering issues will arise with components assigned duplicate IDs.
 - **LazyForEach** must use the **DataChangeListener** object to re-render UI. If the first parameter **dataSource** is re-assigned a value, an exception occurs. When **dataSource** uses a state variable, the change of the state variable does not trigger the UI re-renders performed by **LazyForEach**.
 - For better rendering performance, when the **onDataChange** API of the **DataChangeListener** object is used to update the UI, an ID different from the original one needs to be generated to trigger component re-rendering.
-- Using [\@Reusable](./arkts-reusable.md) to decorate components on the LazyForEach list can trigger node reuse. For details, see [List Scrolling Used with LazyForEach](./arkts-reusable.md#using-list-scrolling-with-lazyforeach).
+- Using [\@Reusable](./arkts-reusable.md) to decorate components on the LazyForEach list can trigger node reuse. For details, see [List Scrolling with LazyForEach](./arkts-reusable.md#list-scrolling-with-lazyforeach).
 - Use LazyForEach and [\@ReusableV2](https://developer.huawei.com/consumer/en/doc/best-practices-V5/bpta-component-reuse-V5#section5601835174020) together to trigger node reuse. For details, see [Best Practices for Component Reuse](https://developer.huawei.com/consumer/en/doc/best-practices-V5/bpta-component-reuse-V5#section5923195311402).
 
 ## Key Generation Rules
