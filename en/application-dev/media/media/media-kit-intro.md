@@ -1,4 +1,10 @@
 # Introduction to Media Kit
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Media Kit is used to develop audio and video playback or recording features. The Media Kit development guide provides comprehensive instructions on how to develop various audio and video modules, assisting you in utilizing the system's audio and video APIs to achieve desired functionalities. For example, you can use the SoundPool to implement simple prompt tones so that a drip sound is played upon the receipt of a new message; you can use the AVPlayer to develop a music player, which can loop a piece of music.
 
@@ -319,7 +325,7 @@ The encoding parameters (format and bit rate) and container format of the source
    | Container Format | Video Encoding Type  | Audio Encoding Type  |
    | -------- | :----------------------------| :----------------------------|
    | mp4      | AVC (H.264)<!--RP2--><!--RP2End-->, MPEG4| AAC, MPEG (MP3)|
-   | mkv      | AVC(H.264)<!--RP3--><!--RP3End--> | AAC, MPEG (MP3), OPUS|
+   | mkv      | AVC (H.264)<!--RP3--><!--RP3End--> | AAC, MPEG (MP3), OPUS|
    | mpeg-ts  | AVC (H.264)<!--RP4--><!--RP4End-->, MPEG2, MPEG4| AAC, MPEG (MP3)<!--RP5--><!--RP5End-->|
    | flv      | AVC (H.264)<!--RP6--><!--RP6End--> |  AAC  |
    | mpeg-ps  | AVC (H.264), MPEG2|    MPEG (MP2, MP3)|

@@ -1,4 +1,10 @@
 # Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 Screen capture is mainly used to record the main screen.
 
@@ -21,7 +27,7 @@ If microphone data collection is configured, configure the permission ohos.permi
 After an AVScreenCapture instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
-**Linking the Dynamic Link Library in the CMake Script**
+**Linking the Dynamic Libraries in the CMake Script**
 
 ```c++
 target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
@@ -35,8 +41,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
     #include <fcntl.h>
-    #include "string"
-    #include "unistd.h"
+    #include <string>
     ```
 
 2. Create an AVScreenCapture instance, named **capture** in this example.
@@ -122,7 +127,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Development Example
+## Complete Sample Code
 
 Refer to the sample code below to implement captured file storage using AVScreenCapture.
 
@@ -132,8 +137,7 @@ Refer to the sample code below to implement captured file storage using AVScreen
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <fcntl.h>
-#include "string"
-#include "unistd.h"
+#include <string>
 
 void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
