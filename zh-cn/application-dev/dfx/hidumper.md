@@ -42,11 +42,11 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | [--cpuusage [pid]](#查询进程cpu使用率) | 获取CPU使用率，取值范围(0, CPU核数]，按进程和类别分类；如果指定pid，则获取指定pid的CPU使用率。 |
 | [--cpufreq](#查询cpu频率) | 获取CPU每个核的真实频率，单位：kHz。 |
 | [--mem [--prune]](#查询整机内存) | 获取总内存使用情况。如果指定--prune，只导出精简的内存使用情况。<br />**说明**：从API version 20开始，支持--prune参数。 |
-| [--mem pid [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况。<br />指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。<br />**说明**：从API version 20开始，支持--show-ashmem参数。 |
+| [--mem pid [--show-ashmem] [--show-dmabuf]](#查询进程内存) | 获取指定pid的进程内存使用情况。<br />指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。<br />如果是应用进程，指定--show-dmabuf，则补充打印DMA内存详情信息。<br />**说明**：从API version 20开始，支持--show-ashmem、--show-dmabuf参数。 |
 | [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
 | [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)）<br />**说明**：从API version 20开始，支持该参数。 |
-| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | 必选参数pid。触发ArkTS应用JS线程的gc和堆内存快照导出。指定线程tid时，仅触发该线程的gc和堆内存快照导出；指定--gc时，仅触发gc，不导出快照；指定--leakobj时，应用开启泄露检测可获取泄露对象列表。<br>文件命名格式为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->，文件内容为JSON结构的JS堆快照。<br>指定--raw时，堆快照以rawheap格式导出。 |
+| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | 必选参数pid。触发ArkTS应用JS线程的gc和堆内存快照导出。指定线程tid时，仅触发该线程的gc和堆内存快照导出；指定--gc时，仅触发gc，不导出快照；指定--leakobj时，应用开启泄露检测可获取泄露对象列表。<br>文件命名格式为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->，文件内容为JSON结构的JS堆快照。<br>指定--raw时，堆快照以rawheap格式导出。<br />**说明**：从API version 19开始，支持--raw参数。 |
 | <!--DelRow-->[--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始，支持该参数。 |
 
 ## 查询内存信息
@@ -240,6 +240,68 @@ Total Ashmem:144 kB
 Process_name    Process_ID      Fd      Cnode_idx       Applicant_Pid   Ashmem_name     Virtual_size    Physical_size   magic    -> 详细ashmem信息
 wei.xxx.xxx  27336   72      328415  27336   dev/ashmem/Paf.Permission.appImg        147456  147456  14105
 ```
+
+使用hidumper --mem pid --show-dmabuf命令可获取指定PID的内存使用情况，并打印DMA内存详细信息。
+
+使用样例：
+
+```shell
+$ hidumper --mem 27336 --show-dmabuf
+-------------------------------[memory]-------------------------------
+
+                          Pss         Shared         Shared        Private        Private           Swap        SwapPss           Heap           Heap           Heap
+                        Total          Clean          Dirty          Clean          Dirty          Total          Total           Size          Alloc           Free
+                       ( kB )         ( kB )         ( kB )         ( kB )         ( kB )         ( kB )         ( kB )         ( kB )         ( kB )         ( kB )
+              ------------------------------------------------------------------------------------------------------------------------------------------------------
+            GL              0              0              0              0              0              0              0              0              0              0
+         Graph              0              0              0              0              0              0              0              0              0              0
+   ark ts heap          12657           5516              0          12468              0           3068           3068              0              0              0
+         guard              0              0              0              0              0              0              0              0              0              0
+   native heap          15191          27132              0          14252              0          18780          18780          55792          53527           2629
+          .hap              4              0              0              4              0              0              0              0              0              0
+AnonPage other           1094           4932              0            964              0           4280           4280              0              0              0
+         stack           1388              0              0           1388              0             28             28              0              0              0
+           .db             32              0              0             32              0              0              0              0              0              0
+           .so          12557          59184          18868           5372           2028           1036           1036              0              0              0
+           dev             52              0            284             52              0              0              0              0              0              0
+          .ttf            296           1264              0              0              0              0              0              0              0              0
+FilePage other          21916           1432           4300          21524            148              0              0              0              0              0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         Total          92379          99460          23452          56056           2176          27192          27192          55792          53527           2629
+
+native heap:
+  jemalloc meta:          1008            276              0           1000              0            156            156              0              0              0
+  jemalloc heap:         12892          22412              0          12088              0          17880          17880              0              0              0
+       brk heap:          1259           4444              0           1132              0            744            744              0              0              0
+      musl heap:            32              0              0             32              0              0              0              0              0              0
+
+Purgeable:
+        PurgSum:0 kB
+        PurgPin:0 kB
+
+DMA:
+            Dma:0 kB
+Process               pid         fd        size_bytes        ino       exp_pid       exp_task_comm     buf_name      exp_name      buf_type      leak_type
+m.xxx.xxx             7612        87        40960             2750      1424          allocatxxxx       RSxxxxxx      xxxxx          xx            xxxx
+
+Ashmem:
+Total Ashmem:144 kB
+```
+字段说明：
+
+| 字段 | 说明 |
+| -------- | -------- |
+| Process | 持有ION内存块的应用进程包名（16个字符截断）。 |
+| pid | 发生故障进程pid。 |
+| fd | 进程持有的句柄。 |
+| size_bytes | 进程持有的ION内存buffer大小，单位：B。 |
+| ino | 文件inode号（索引节点号）。 |
+| exp_pid | 从内核申请ION内存的进程pid。 |
+| exp_task_comm | 从内核申请ION内存的进程名。 |
+| buf_name | ION内存的buffer名字。 |
+| exp_name | ION内存的buffer扩展名。 |
+| buf_type | ION内存的buffer类型。 |
+| leak_type | ION内存泄漏维测的buffer类型。 |
 
 可使用hidumper --mem-smaps pid命令获取指定进程的详细内存使用情况，该命令会累加相同内存段的内存值。
 
