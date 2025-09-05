@@ -6,6 +6,8 @@
 <!--Tester: @xdlinc-->
 <!--Adviser: @zengyawen-->
 
+从API20开始，支持使用AVScreenCapture录屏取码流(C/C++)。
+
 屏幕录制支持开发者获取屏幕数据，可用于屏幕录制、会议共享、直播等场景。通过录屏取码流方式获取的流数据可根据场景，进行不同的处理。例如：
 - 对接NativeImage作为消费者端，提供Surface关联OpenGL外部纹理，具体使用请参考[NativeImage开发指导](../../graphics/native-image-guidelines.md)。
 - 对接编码器、封装器进行数据的编码、封装，具体使用请参考[视频编码](../avcodec/video-encoding.md)、[媒体数据封装](../avcodec/audio-video-muxer.md)。
