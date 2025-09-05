@@ -28,7 +28,7 @@ After an AVScreenCapture instance is created, different APIs can be called to sw
 
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
-**Linking the Dynamic Library in the CMake Script**
+**Linking the Dynamic Libraries in the CMake Script**
 
 ```c++
 target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffer.so libnative_media_core.so)
@@ -363,7 +363,7 @@ This section describes how to set screen capture parameters, set callback functi
     }
     ```
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to implement screen capture using AVScreenCapture.
 

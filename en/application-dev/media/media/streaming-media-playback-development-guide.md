@@ -159,7 +159,7 @@ DASH streaming media includes multiple audio, video, and subtitle tracks, each w
 
 If the network is disconnected when the AVPlayer is playing streaming media, the AVPlayer module handles the fault based on the returned error code, server response time, and number of requests. If the error code type does not require a retry, the module reports the corresponding error code to the application. If the error code type requires a retry, the module initiates a maximum of 10 retries within 30 seconds. If the number of retries exceeds 10 or the total retry duration exceeds 30 seconds, the module reports the corresponding error code to the application. If the retry is successful, the module continues the playback.
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the following example to play a complete streaming video.
 

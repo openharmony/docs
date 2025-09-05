@@ -166,7 +166,7 @@ After an AVScreenCaptureRecorder instance is created, different APIs can be call
     await this.screenCapture.release();
     ```
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to implement captured file storage using **AVScreenCaptureRecorder**.
 
