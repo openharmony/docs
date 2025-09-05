@@ -171,128 +171,128 @@ IMonitor类型和IMonitorValue\<T\>类型的接口说明参考API文档：[状�
 
 - \@Monitor监听的对象属性需要被\@Trace装饰，未被\@Trace装饰的属性的变化无法被监听。\@Monitor可以同时监听多个属性，这些属性之间用","隔开。
 
-```ts
-@ObservedV2
-class Info {
-  @Trace name: string = 'Tom';
-  @Trace region: string = 'North';
-  @Trace job: string = 'Teacher';
-  age: number = 25;
-  // name被@Trace装饰，能够监听变化
-  @Monitor('name')
-  onNameChange(monitor: IMonitor) {
-    console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-  // age未被@Trace装饰，不能监听变化
-  @Monitor('age')
-  onAgeChange(monitor: IMonitor) {
-    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-  // region与job均被@Trace装饰，能够监听变化
-  @Monitor('region', 'job')
-  onChange(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.info(`${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
-    })
-  }
-}
-@Entry
-@ComponentV2
-struct Index {
-  info: Info = new Info();
-  build() {
-    Column() {
-      Button('change name')
-        .onClick(() => {
-          this.info.name = 'Jack'; // 能够触发onNameChange方法
-        })
-      Button('change age')
-        .onClick(() => {
-          this.info.age = 26; // 不能够触发onAgeChange方法
-        })
-      Button('change region')
-        .onClick(() => {
-          this.info.region = 'South'; // 能够触发onChange方法
-        })
-      Button('change job')
-        .onClick(() => {
-          this.info.job = 'Driver'; // 能够触发onChange方法
-        })
+  ```ts
+  @ObservedV2
+  class Info {
+    @Trace name: string = 'Tom';
+    @Trace region: string = 'North';
+    @Trace job: string = 'Teacher';
+    age: number = 25;
+    // name被@Trace装饰，能够监听变化
+    @Monitor('name')
+    onNameChange(monitor: IMonitor) {
+      console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    }
+    // age未被@Trace装饰，不能监听变化
+    @Monitor('age')
+    onAgeChange(monitor: IMonitor) {
+      console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    }
+    // region与job均被@Trace装饰，能够监听变化
+    @Monitor('region', 'job')
+    onChange(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.info(`${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      })
     }
   }
-}
-```
+  @Entry
+  @ComponentV2
+  struct Index {
+    info: Info = new Info();
+    build() {
+      Column() {
+        Button('change name')
+          .onClick(() => {
+            this.info.name = 'Jack'; // 能够触发onNameChange方法
+          })
+        Button('change age')
+          .onClick(() => {
+            this.info.age = 26; // 不能够触发onAgeChange方法
+          })
+        Button('change region')
+          .onClick(() => {
+            this.info.region = 'South'; // 能够触发onChange方法
+          })
+        Button('change job')
+          .onClick(() => {
+            this.info.job = 'Driver'; // 能够触发onChange方法
+          })
+      }
+    }
+  }
+  ```
 
 - \@Monitor可以监听深层属性的变化，该深层属性需要被@Trace装饰。
 
-```ts
-@ObservedV2
-class Inner {
-  @Trace num: number = 0;
-}
-@ObservedV2
-class Outer {
-  inner: Inner = new Inner();
-  @Monitor('inner.num')
-  onChange(monitor: IMonitor) {
-    console.info(`inner.num change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  ```ts
+  @ObservedV2
+  class Inner {
+    @Trace num: number = 0;
   }
-}
-@Entry
-@ComponentV2
-struct Index {
-  outer: Outer = new Outer();
-  build() {
-    Column() {
-      Button('change num')
-        .onClick(() => {
-          this.outer.inner.num = 100; // 能够触发onChange方法
-        })
+  @ObservedV2
+  class Outer {
+    inner: Inner = new Inner();
+    @Monitor('inner.num')
+    onChange(monitor: IMonitor) {
+      console.info(`inner.num change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
     }
   }
-}
-```
+  @Entry
+  @ComponentV2
+  struct Index {
+    outer: Outer = new Outer();
+    build() {
+      Column() {
+        Button('change num')
+          .onClick(() => {
+            this.outer.inner.num = 100; // 能够触发onChange方法
+          })
+      }
+    }
+  }
+  ```
 
 - 在继承类场景下，可以在继承链中对同一个属性进行多次监听。
 
-```ts
-@ObservedV2
-class Base {
-  @Trace name: string;
-  // 基类监听name属性
-  @Monitor('name')
-  onBaseNameChange(monitor: IMonitor) {
-    console.info(`Base Class name change`);
-  }
-  constructor(name: string) {
-    this.name = name;
-  }
-}
-@ObservedV2
-class Derived extends Base {
-  // 继承类监听name属性
-  @Monitor('name')
-  onDerivedNameChange(monitor: IMonitor) {
-    console.info(`Derived Class name change`);
-  }
-  constructor(name: string) {
-    super(name);
-  }
-}
-@Entry
-@ComponentV2
-struct Index {
-  derived: Derived = new Derived('AAA');
-  build() {
-    Column() {
-      Button('change name')
-        .onClick(() => {
-          this.derived.name = 'BBB'; // 能够先后触发onBaseNameChange、onDerivedNameChange方法
-        })
+  ```ts
+  @ObservedV2
+  class Base {
+    @Trace name: string;
+    // 基类监听name属性
+    @Monitor('name')
+    onBaseNameChange(monitor: IMonitor) {
+      console.info(`Base Class name change`);
+    }
+    constructor(name: string) {
+      this.name = name;
     }
   }
-}
-```
+  @ObservedV2
+  class Derived extends Base {
+    // 继承类监听name属性
+    @Monitor('name')
+    onDerivedNameChange(monitor: IMonitor) {
+      console.info(`Derived Class name change`);
+    }
+    constructor(name: string) {
+      super(name);
+    }
+  }
+  @Entry
+  @ComponentV2
+  struct Index {
+    derived: Derived = new Derived('AAA');
+    build() {
+      Column() {
+        Button('change name')
+          .onClick(() => {
+            this.derived.name = 'BBB'; // 能够先后触发onBaseNameChange、onDerivedNameChange方法
+          })
+      }
+    }
+  }
+  ```
 
 ### 通用监听能力
 
@@ -300,184 +300,184 @@ struct Index {
 
 - \@Monitor支持对数组中的项进行监听，包括多维数组，对象数组。\@Monitor无法监听内置类型（Array、Map、Date、Set）的API调用引起的变化。当\@Monitor监听数组整体时，只能观测到数组整体的赋值。可以通过监听数组的长度变化来判断数组是否有插入、删除等变化。当前仅支持使用"."的方式表达深层属性、数组项的监听。
 
-```ts
-@ObservedV2
-class Info {
-  @Trace name: string;
-  @Trace age: number;
-  
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
-}
-@ObservedV2
-class ArrMonitor {
-  @Trace dimensionTwo: number[][] = [[1,1,1],[2,2,2],[3,3,3]];
-  @Trace dimensionThree: number[][][] = [[[1],[2],[3]],[[4],[5],[6]],[[7],[8],[9]]];
-  @Trace infoArr: Info[] = [new Info('Jack', 24), new Info('Lucy', 18)];
-  // dimensionTwo为二维简单类型数组，且被@Trace装饰，能够观测里面的元素变化
-  @Monitor('dimensionTwo.0.0', 'dimensionTwo.1.1')
-  onDimensionTwoChange(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.info(`dimensionTwo path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
-    })
-  }
-  // dimensionThree为三维简单类型数组，且被@Trace装饰，能够观测里面的元素变化
-  @Monitor('dimensionThree.0.0.0', 'dimensionThree.1.1.0')
-  onDimensionThreeChange(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.info(`dimensionThree path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
-    })
-  }
-  // Info类中属性name、age均被@Trace装饰，能够监听到变化
-  @Monitor('infoArr.0.name', 'infoArr.1.age')
-  onInfoArrPropertyChange(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.info(`infoArr path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
-    })
-  }
-  // infoArr被@Trace装饰，能够监听到infoArr整体赋值的变化
-  @Monitor('infoArr')
-  onInfoArrChange(monitor: IMonitor) {
-    console.info(`infoArr whole change`);
-  }
-  // 能够监听到infoArr的长度变化
-  @Monitor('infoArr.length')
-  onInfoArrLengthChange(monitor: IMonitor) {
-    console.info(`infoArr length change`);
-  }
-}
-@Entry
-@ComponentV2
-struct Index {
-  arrMonitor: ArrMonitor = new ArrMonitor();
-  build() {
-    Column() {
-      Button('Change dimensionTwo')
-        .onClick(() => {
-          // 能够触发onDimensionTwoChange方法  
-          this.arrMonitor.dimensionTwo[0][0]++; 
-          this.arrMonitor.dimensionTwo[1][1]++; 
-        })
-      Button('Change dimensionThree')
-        .onClick(() => {
-          // 能够触发onDimensionThreeChange方法
-          this.arrMonitor.dimensionThree[0][0][0]++;
-          this.arrMonitor.dimensionThree[1][1][0]++; 
-        })
-      Button('Change info property')
-        .onClick(() => {
-          // 能够触发onInfoArrPropertyChange方法
-          this.arrMonitor.infoArr[0].name = 'Tom'; 
-          this.arrMonitor.infoArr[1].age = 19; 
-        })
-      Button('Change whole infoArr')
-        .onClick(() => {
-          // 能够触发onInfoArrChange、onInfoArrPropertyChange、onInfoArrLengthChange方法
-          this.arrMonitor.infoArr = [new Info('Cindy', 8)]; 
-        })
-      Button('Push new info to infoArr')
-        .onClick(() => {
-          // 能够触发onInfoArrPropertyChange、onInfoArrLengthChange方法
-          this.arrMonitor.infoArr.push(new Info('David', 50)); 
-        })
+  ```ts
+  @ObservedV2
+  class Info {
+    @Trace name: string;
+    @Trace age: number;
+    
+    constructor(name: string, age: number) {
+      this.name = name;
+      this.age = age;
     }
   }
-}
-```
+  @ObservedV2
+  class ArrMonitor {
+    @Trace dimensionTwo: number[][] = [[1,1,1],[2,2,2],[3,3,3]];
+    @Trace dimensionThree: number[][][] = [[[1],[2],[3]],[[4],[5],[6]],[[7],[8],[9]]];
+    @Trace infoArr: Info[] = [new Info('Jack', 24), new Info('Lucy', 18)];
+    // dimensionTwo为二维简单类型数组，且被@Trace装饰，能够观测里面的元素变化
+    @Monitor('dimensionTwo.0.0', 'dimensionTwo.1.1')
+    onDimensionTwoChange(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.info(`dimensionTwo path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      })
+    }
+    // dimensionThree为三维简单类型数组，且被@Trace装饰，能够观测里面的元素变化
+    @Monitor('dimensionThree.0.0.0', 'dimensionThree.1.1.0')
+    onDimensionThreeChange(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.info(`dimensionThree path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      })
+    }
+    // Info类中属性name、age均被@Trace装饰，能够监听到变化
+    @Monitor('infoArr.0.name', 'infoArr.1.age')
+    onInfoArrPropertyChange(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.info(`infoArr path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      })
+    }
+    // infoArr被@Trace装饰，能够监听到infoArr整体赋值的变化
+    @Monitor('infoArr')
+    onInfoArrChange(monitor: IMonitor) {
+      console.info(`infoArr whole change`);
+    }
+    // 能够监听到infoArr的长度变化
+    @Monitor('infoArr.length')
+    onInfoArrLengthChange(monitor: IMonitor) {
+      console.info(`infoArr length change`);
+    }
+  }
+  @Entry
+  @ComponentV2
+  struct Index {
+    arrMonitor: ArrMonitor = new ArrMonitor();
+    build() {
+      Column() {
+        Button('Change dimensionTwo')
+          .onClick(() => {
+            // 能够触发onDimensionTwoChange方法  
+            this.arrMonitor.dimensionTwo[0][0]++; 
+            this.arrMonitor.dimensionTwo[1][1]++; 
+          })
+        Button('Change dimensionThree')
+          .onClick(() => {
+            // 能够触发onDimensionThreeChange方法
+            this.arrMonitor.dimensionThree[0][0][0]++;
+            this.arrMonitor.dimensionThree[1][1][0]++; 
+          })
+        Button('Change info property')
+          .onClick(() => {
+            // 能够触发onInfoArrPropertyChange方法
+            this.arrMonitor.infoArr[0].name = 'Tom'; 
+            this.arrMonitor.infoArr[1].age = 19; 
+          })
+        Button('Change whole infoArr')
+          .onClick(() => {
+            // 能够触发onInfoArrChange、onInfoArrPropertyChange、onInfoArrLengthChange方法
+            this.arrMonitor.infoArr = [new Info('Cindy', 8)]; 
+          })
+        Button('Push new info to infoArr')
+          .onClick(() => {
+            // 能够触发onInfoArrPropertyChange、onInfoArrLengthChange方法
+            this.arrMonitor.infoArr.push(new Info('David', 50)); 
+          })
+      }
+    }
+  }
+  ```
 
 - 对象整体改变，但监听的属性不变时，不触发\@Monitor回调。
 
-下面的示例按照Step1-Step2-Step3的顺序点击，表现为代码注释中的行为。
+  下面的示例按照Step1-Step2-Step3的顺序点击，表现为代码注释中的行为。
 
-如果只点击Step2或Step3，改变name、age的值，此时会触发onNameChange和onAgeChange方法。
+  如果只点击Step2或Step3，改变name、age的值，此时会触发onNameChange和onAgeChange方法。
 
-```ts
-@ObservedV2
-class Info {
-  @Trace person: Person;
-  @Monitor('person.name')
-  onNameChange(monitor: IMonitor) {
-    console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-  @Monitor('person.age')
-  onAgeChange(monitor: IMonitor) {
-    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-  constructor(name: string, age: number) {
-    this.person = new Person(name, age);
-  }
-}
-@ObservedV2
-class Person {
-  @Trace name: string;
-  @Trace age: number;
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
-}
-@Entry
-@ComponentV2
-struct Index {
-  info: Info = new Info('Tom', 25);
-  build() {
-    Column() {
-      Button('Step1、Only change name')
-        .onClick(() => {
-          this.info.person = new Person('Jack', 25);  // 能够触发onNameChange方法，不触发onAgeChange方法
-        })
-      Button('Step2、Only change age')
-        .onClick(() => {
-          this.info.person = new Person('Jack', 18);  // 能够触发onAgeChange方法，不触发onNameChange方法
-        })
-      Button('Step3、Change name and age')
-        .onClick(() => {
-          this.info.person = new Person('Lucy', 19);  // 能够触发onNameChange、onAgeChange方法
-        })
+  ```ts
+  @ObservedV2
+  class Info {
+    @Trace person: Person;
+    @Monitor('person.name')
+    onNameChange(monitor: IMonitor) {
+      console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    }
+    @Monitor('person.age')
+    onAgeChange(monitor: IMonitor) {
+      console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    }
+    constructor(name: string, age: number) {
+      this.person = new Person(name, age);
     }
   }
-}
-```
+  @ObservedV2
+  class Person {
+    @Trace name: string;
+    @Trace age: number;
+    constructor(name: string, age: number) {
+      this.name = name;
+      this.age = age;
+    }
+  }
+  @Entry
+  @ComponentV2
+  struct Index {
+    info: Info = new Info('Tom', 25);
+    build() {
+      Column() {
+        Button('Step1: Only change name')
+          .onClick(() => {
+            this.info.person = new Person('Jack', 25);  // 能够触发onNameChange方法，不触发onAgeChange方法
+          })
+        Button('Step2: Only change age')
+          .onClick(() => {
+            this.info.person = new Person('Jack', 18);  // 能够触发onAgeChange方法，不触发onNameChange方法
+          })
+        Button('Step3: Change name and age')
+          .onClick(() => {
+            this.info.person = new Person('Lucy', 19);  // 能够触发onNameChange、onAgeChange方法
+          })
+      }
+    }
+  }
+  ```
 
 - 在一次事件中多次改变被\@Monitor监听的属性，以最后一次修改为准。
 
-```ts
-@ObservedV2
-class Frequency {
-  @Trace count: number = 0;
-
-  @Monitor('count')
-  onCountChange(monitor: IMonitor) {
-    console.info(`count change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-}
-
-@Entry
-@ComponentV2
-struct Index {
-  frequency: Frequency = new Frequency();
-
-  build() {
-    Column() {
-      Button('change count to 1000')
-        .onClick(() => {
-          for (let i = 1; i <= 1000; i++) {
-            this.frequency.count = i;
-          }
-        })
-      Button('change count to 0 then to 1000')
-        .onClick(() => {
-          for (let i = 999; i >= 0; i--) {
-            this.frequency.count = i;
-          }
-          this.frequency.count = 1000; // 最终不触发onCountChange方法
-        })
+  ```ts
+  @ObservedV2
+  class Frequency {
+    @Trace count: number = 0;
+  
+    @Monitor('count')
+    onCountChange(monitor: IMonitor) {
+      console.info(`count change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
     }
   }
-}
-```
+  
+  @Entry
+  @ComponentV2
+  struct Index {
+    frequency: Frequency = new Frequency();
+  
+    build() {
+      Column() {
+        Button('change count to 1000')
+          .onClick(() => {
+            for (let i = 1; i <= 1000; i++) {
+              this.frequency.count = i;
+            }
+          })
+        Button('change count to 0 then to 1000')
+          .onClick(() => {
+            for (let i = 999; i >= 0; i--) {
+              this.frequency.count = i;
+            }
+            this.frequency.count = 1000; // 最终不触发onCountChange方法
+          })
+      }
+    }
+  }
+  ```
 
 在点击按钮"change count to 1000"后，会触发一次onCountChange方法，并输出日志"count change from 0 to 1000"。在点击按钮"change count to 0 then to 1000"后，由于事件前后属性count的值并没有改变，都为1000，所以不触发onCountChange方法。
 
@@ -487,160 +487,160 @@ struct Index {
 
 - 不建议在一个类中对同一个属性进行多次\@Monitor的监听。当一个类中存在对一个属性的多次监听时，只有最后一个定义的监听方法会生效。
 
-```ts
-@ObservedV2
-class Info {
-  @Trace name: string = 'Tom';
-  @Monitor('name')
-  onNameChange(monitor: IMonitor) {
-    console.info(`onNameChange`);
-  }
-  @Monitor('name')
-  onNameChangeDuplicate(monitor: IMonitor) {
-    console.info(`onNameChangeDuplicate`);
-  }
-}
-@Entry
-@ComponentV2
-struct Index {
-  info: Info = new Info();
-  build() {
-    Column() {
-      Button('change name')
-        .onClick(() => {
-          this.info.name = 'Jack'; // 仅会触发onNameChangeDuplicate方法
-        })
+  ```ts
+  @ObservedV2
+  class Info {
+    @Trace name: string = 'Tom';
+    @Monitor('name')
+    onNameChange(monitor: IMonitor) {
+      console.info(`onNameChange`);
+    }
+    @Monitor('name')
+    onNameChangeDuplicate(monitor: IMonitor) {
+      console.info(`onNameChangeDuplicate`);
     }
   }
-}
-```
+  @Entry
+  @ComponentV2
+  struct Index {
+    info: Info = new Info();
+    build() {
+      Column() {
+        Button('change name')
+          .onClick(() => {
+            this.info.name = 'Jack'; // 仅会触发onNameChangeDuplicate方法
+          })
+      }
+    }
+  }
+  ```
 
 - 当@Monitor传入多个路径参数时，以参数的全拼接结果判断是否重复监听。全拼接时会在参数间加空格，以区分不同参数。例如，`'ab', 'c'`的全拼接结果为`'ab c'`，`'a', 'bc'`的全拼接结果为`'a bc'`，二者全拼接不相等。以下示例中，`Monitor 1`、`Monitor 2`与`Monitor 3`都监听了name属性的变化。由于`Monitor 2`与`Monitor 3`的入参全拼接相等（都为`'name position'`），因此`Monitor 2`不生效，仅`Monitor 3`生效。当name属性变化时，将同时触发onNameAgeChange与onNamePositionChangeDuplicate方法。但请注意，`Monitor 2`与`Monitor 3`的写法仍然被视作在一个类中对同一个属性进行多次@Monitor的监听，这是不建议的。
 
-```ts
-@ObservedV2
-class Info {
-  @Trace name: string = 'Tom';
-  @Trace age: number = 25;
-  @Trace position: string = 'North';
-  @Monitor('name', 'age') // Monitor 1
-  onNameAgeChange(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.info(`onNameAgeChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
-    });
-  }
-  @Monitor('name', 'position') // Monitor 2
-  onNamePositionChange(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.info(`onNamePositionChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
-    });
-  }
-  // 重复监听name、position，仅最后定义的生效
-  @Monitor('name', 'position') // Monitor3
-  onNamePositionChangeDuplicate(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.info(`onNamePositionChangeDuplicate path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
-    });
-  }
-}
-@Entry
-@ComponentV2
-struct Index {
-  info: Info = new Info();
-  build() {
-    Column() {
-      Button('change name')
-        .onClick(() => {
-          this.info.name = 'Jack'; // 同时触发onNameAgeChange与onNamePositionChangeDuplicate方法
-        })
+  ```ts
+  @ObservedV2
+  class Info {
+    @Trace name: string = 'Tom';
+    @Trace age: number = 25;
+    @Trace position: string = 'North';
+    @Monitor('name', 'age') // Monitor 1
+    onNameAgeChange(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.info(`onNameAgeChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      });
+    }
+    @Monitor('name', 'position') // Monitor 2
+    onNamePositionChange(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.info(`onNamePositionChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      });
+    }
+    // 重复监听name、position，仅最后定义的生效
+    @Monitor('name', 'position') // Monitor3
+    onNamePositionChangeDuplicate(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.info(`onNamePositionChangeDuplicate path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      });
     }
   }
-}
-```
+  @Entry
+  @ComponentV2
+  struct Index {
+    info: Info = new Info();
+    build() {
+      Column() {
+        Button('change name')
+          .onClick(() => {
+            this.info.name = 'Jack'; // 同时触发onNameAgeChange与onNamePositionChangeDuplicate方法
+          })
+      }
+    }
+  }
+  ```
 
 - \@Monitor的参数需要为监听属性名的字符串，仅可以使用字符串字面量、const常量、enum枚举值作为参数。如果使用变量作为参数，仅会监听\@Monitor初始化时，变量值所对应的属性。当更改变量时，\@Monitor无法实时改变监听的属性，即\@Monitor监听的目标属性从初始化时便已经确定，无法动态更改。不建议开发者使用变量作为\@Monitor的参数进行初始化。
 
-```ts
-const t2: string = 't2'; // const常量
-enum ENUM {
-  T3 = 't3' // enum枚举值
-};
-let t4: string = 't4'; // 变量
-@ObservedV2
-class Info {
-  @Trace t1: number = 0;
-  @Trace t2: number = 0;
-  @Trace t3: number = 0;
-  @Trace t4: number = 0;
-  @Trace t5: number = 0;
-  @Monitor('t1') // 字符串字面量
-  onT1Change(monitor: IMonitor) {
-    console.info(`t1 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-  @Monitor(t2)
-  onT2Change(monitor: IMonitor) {
-    console.info(`t2 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-  @Monitor(ENUM.T3)
-  onT3Change(monitor: IMonitor) {
-    console.info(`t3 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-  @Monitor(t4)
-  onT4Change(monitor: IMonitor) {
-    console.info(`t4 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
-  }
-}
-@Entry
-@ComponentV2
-struct Index {
-  info: Info = new Info();
-  build() {
-    Column() {
-      Button('Change t1')
-        .onClick(() => {
-          this.info.t1++; // 能够触发onT1Change方法
-        })
-      Button('Change t2')
-        .onClick(() => {
-          this.info.t2++; // 能够触发onT2Change方法
-        })
-      Button('Change t3')
-        .onClick(() => {
-          this.info.t3++; // 能够触发onT3Change方法
-        })
-      Button('Change t4')
-        .onClick(() => {
-          this.info.t4++; // 能够触发onT4Change方法
-        })
-      Button('Change var t4 to t5')
-        .onClick(() => {
-          t4 = 't5'; // 更改变量值为't5'
-        })
-      Button('Change t5')
-        .onClick(() => {
-          this.info.t5++; // onT4Change仍监听t4，不会触发
-        })
-      Button('Change t4 again')
-        .onClick(() => {
-          this.info.t4++; // 能够触发onT4Change方法
-        })
+  ```ts
+  const t2: string = 't2'; // const常量
+  enum ENUM {
+    T3 = 't3' // enum枚举值
+  };
+  let t4: string = 't4'; // 变量
+  @ObservedV2
+  class Info {
+    @Trace t1: number = 0;
+    @Trace t2: number = 0;
+    @Trace t3: number = 0;
+    @Trace t4: number = 0;
+    @Trace t5: number = 0;
+    @Monitor('t1') // 字符串字面量
+    onT1Change(monitor: IMonitor) {
+      console.info(`t1 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    }
+    @Monitor(t2)
+    onT2Change(monitor: IMonitor) {
+      console.info(`t2 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    }
+    @Monitor(ENUM.T3)
+    onT3Change(monitor: IMonitor) {
+      console.info(`t3 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    }
+    @Monitor(t4)
+    onT4Change(monitor: IMonitor) {
+      console.info(`t4 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
     }
   }
-}
-```
+  @Entry
+  @ComponentV2
+  struct Index {
+    info: Info = new Info();
+    build() {
+      Column() {
+        Button('Change t1')
+          .onClick(() => {
+            this.info.t1++; // 能够触发onT1Change方法
+          })
+        Button('Change t2')
+          .onClick(() => {
+            this.info.t2++; // 能够触发onT2Change方法
+          })
+        Button('Change t3')
+          .onClick(() => {
+            this.info.t3++; // 能够触发onT3Change方法
+          })
+        Button('Change t4')
+          .onClick(() => {
+            this.info.t4++; // 能够触发onT4Change方法
+          })
+        Button('Change var t4 to t5')
+          .onClick(() => {
+            t4 = 't5'; // 更改变量值为't5'
+          })
+        Button('Change t5')
+          .onClick(() => {
+            this.info.t5++; // onT4Change仍监听t4，不会触发
+          })
+        Button('Change t4 again')
+          .onClick(() => {
+            this.info.t4++; // 能够触发onT4Change方法
+          })
+      }
+    }
+  }
+  ```
 
 - 建议开发者避免在\@Monitor中再次更改被监听的属性，这会导致无限循环。
 
-```ts
-@ObservedV2
-class Info {
-  @Trace count: number = 0;
-  @Monitor('count')
-  onCountChange(monitor: IMonitor) {
-    this.count++; // 应避免这种写法，会导致无限循环
+  ```ts
+  @ObservedV2
+  class Info {
+    @Trace count: number = 0;
+    @Monitor('count')
+    onCountChange(monitor: IMonitor) {
+      this.count++; // 应避免这种写法，会导致无限循环
+    }
   }
-}
-```
+  ```
 
 ## \@Monitor与\@Watch对比
 

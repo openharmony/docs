@@ -85,7 +85,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
     export default class MyAbilityStage extends AbilityStage {
       onCreate(): void {
-        console.log('AbilityStage onCreate');
+        console.info('AbilityStage onCreate');
         let envCallback: EnvironmentCallback = {
           onConfigurationUpdated(config) {
             console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
@@ -96,13 +96,13 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
             let fontWeightScale = config.fontWeightScale; //字体粗细缩放比例
           },
           onMemoryLevel(level) {
-            console.log(`onMemoryLevel level: ${level}`);
+            console.info(`onMemoryLevel level: ${level}`);
           }
         };
         try {
           let applicationContext = this.context.getApplicationContext();
           let callbackId = applicationContext.on('environment', envCallback);
-          console.log(`callbackId: ${callbackId}`);
+          console.info(`callbackId: ${callbackId}`);
         } catch (paramError) {
           console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
         }
@@ -110,7 +110,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
       onDestroy(): void {
         // 通过onDestroy()方法，可以监听到Ability的销毁事件。
-        console.log('AbilityStage onDestroy');
+        console.info('AbilityStage onDestroy');
       }
     }
     ```

@@ -52,7 +52,14 @@
     async function initImageReceiver():Promise<void>{
       // 创建ImageReceiver对象。
       let size: image.Size = { width: imageWidth, height: imageHeight };
-      let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      let imageReceiver: image.ImageReceiver | undefined;
+      try {
+        imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      }  catch (error) {
+        let err = error as BusinessError;
+        console.error(`Init image receiver failed. error code: ${err.code}`);
+        return;
+      }
       // 获取第一路流SurfaceId。
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${imageReceiverSurfaceId}`);
@@ -112,8 +119,9 @@
               console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
               // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致。
               // stride与width一致。
+              let pixelMap : image.PixelMap;
               if (stride == width) {
-                let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
+                pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                   size: { height: height, width: width },
                   srcPixelFormat: pixelMapFormat,
                 })
@@ -125,9 +133,17 @@
                   const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                   dstArr.set(srcBuf, j * width)
                 }
-                let pixelMap = await image.createPixelMap(dstArr.buffer, {
+                pixelMap = await image.createPixelMap(dstArr.buffer, {
                   size: { height: height, width: width },
                   srcPixelFormat: pixelMapFormat,
+                })
+              }
+              // 确保当前pixelMap没有在使用的情况下，可进行资源释放。
+              if (pixelMap != undefined) {
+                await pixelMap.release().then(() => {
+                  console.info('Succeeded in releasing pixelMap object.');
+                }).catch((error: BusinessError) => {
+                  console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
                 })
               }
             } else {
@@ -304,7 +320,13 @@ struct Index {
     if (!this.imageReceiver) {
       // 创建ImageReceiver。
       let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
-      this.imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      try {
+        this.imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error(`Init image receiver failed. error code: ${err.code}`);
+        return;
+      }
       // 获取第一路流SurfaceId。
       this.imageReceiverSurfaceId = await this.imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${this.imageReceiverSurfaceId}`);
@@ -358,8 +380,9 @@ struct Index {
             console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
             // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致。此处format以NV21格式为例。
             // stride与width一致。
+            let pixelMap: image.PixelMap;
             if (stride == width) {
-              let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
+              pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                 size: { height: height, width: width },
                 srcPixelFormat: pixelMapFormat,
               })
@@ -371,9 +394,17 @@ struct Index {
                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                 dstArr.set(srcBuf, j * width)
               }
-              let pixelMap = await image.createPixelMap(dstArr.buffer, {
+              pixelMap = await image.createPixelMap(dstArr.buffer, {
                 size: { height: height, width: width },
                 srcPixelFormat: pixelMapFormat,
+              })
+            }
+            // 确保当前pixelMap没有在使用的情况下，注意要进行资源释放。
+            if (pixelMap != undefined) {
+              await pixelMap.release().then(() => {
+                console.info('Succeeded in releasing pixelMap object.');
+              }).catch((error: BusinessError) => {
+                console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
               })
             }
           } else {

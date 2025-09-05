@@ -36,6 +36,8 @@ setScreenOffTime(admin: Want, time: number): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -86,6 +88,8 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -138,6 +142,8 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -194,6 +200,8 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -260,6 +268,8 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -342,6 +352,8 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -396,6 +408,8 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -456,6 +470,8 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -511,6 +527,8 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -520,9 +538,9 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 **返回值：**
 
-| 类型   | 说明                                  | 说明                       |
-| ----- | ----------------------------------- |------------------------------- |
-| PowerPolicy | [PowerPolicy](#powerpolicy11) |   电源策略。       |
+| 类型   | 说明        |
+| ----- | --------------------------------- |
+| [PowerPolicy](#powerpolicy11) | 电源策略。       |
 
 **错误码**：
 
@@ -562,6 +580,8 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统接口：** 此接口为系统接口。
+
 | 名称         | 类型     | 只读 | 可选 | 说明                            |
 | ----------- | --------| ----- | ---- | ------------------------------- |
 | powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 否 | 否 | 执行电源策略的动作。 |
@@ -573,6 +593,8 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统接口：** 此接口为系统接口。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | TIME_OUT | 0 | 超时场景。 |
@@ -582,6 +604,8 @@ try {
 执行电源策略的动作。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统接口：** 此接口为系统接口。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |

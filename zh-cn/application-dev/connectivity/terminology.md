@@ -62,6 +62,7 @@ Message Client Equipment，即[MAP](#map)协议中的消息客户端，可查看
 Message Server Equipment，即[MAP](#map)协议中的消息服务端，存储原始消息数据（如短信或邮件）。典型设备如‌：手机。
 ### MTU
 Maximum Transmission Unit，即最大传输单元。表示网络中单次传输的最大数据包大小，单位是字节。
+## N
 ### NAP
 Network Access Point，即[PAN](#pan)协议中的网络接入点，充当网关设备，提供互联网接入或本地网络共享功能。典型设备如：手机、平板等。
 ## O
