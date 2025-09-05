@@ -6125,7 +6125,7 @@ setHasAppLink(hasAppLink: int): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -6135,7 +6135,7 @@ setHasAppLink(hasAppLink: int): void
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import photoAccessHelper from '@kit.MediaLibraryKit';
 
 enum linkType {
   NOT_DECODED = 0,
@@ -6177,7 +6177,7 @@ setAppLinkInfo(appLink: string): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -6187,7 +6187,7 @@ setAppLinkInfo(appLink: string): void
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import photoAccessHelper from '@kit.MediaLibraryKit';
 
 
 async function example(asset: photoAccessHelper.PhotoAsset, appLinkInfo: string) {
