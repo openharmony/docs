@@ -152,7 +152,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 11. Call **release()** to release the resources. The AVRecorder enters the **released** state. In addition, release the video data input source resources (camera resources in this example).
 
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
@@ -242,7 +242,8 @@ export class VideoRecorderDemo extends CustomComponent {
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
     }
-    // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
+    // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the url property in avConfig.
+    await this.createAndSetFd();
     // 3. Set recording parameters to complete the preparations.
     await this.avRecorder.prepare(this.avConfig);
     this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
@@ -283,7 +284,7 @@ export class VideoRecorderDemo extends CustomComponent {
       await this.avRecorder.reset();
       // 3. Release the AVRecorder instance.
       await this.avRecorder.release();
-      // 4. After the file is recorded, close the file descriptor. The implementation is omitted here.
+      // 4. After the file is recorded, close the file descriptor.
       await fs.close(this.fileFd);
       // 5. Release the camera instance.
       await this.releaseCamera();

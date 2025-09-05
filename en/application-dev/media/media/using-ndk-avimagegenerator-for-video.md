@@ -5,7 +5,7 @@ You can use the AVImageGenerator to obtain the video frame at the specified time
 The full process of obtaining the video frame includes creating an AVImageGenerator instance, setting resources, obtaining the video frame, and releasing the instance.
 
 ## How to Develop
-Link the dynamic library in the CMake script.
+Link the dynamic libraries in the CMake script.
 ```
 target_link_libraries(entry PUBLIC libavimage_generator.so libace_napi.z.so)
 ```
@@ -15,7 +15,7 @@ To use [OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-im
 #include <multimedia/image_framework/image/pixelmap_native.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libpixelmap.so libpixelmap_ndk.z.so)
 ```
@@ -25,7 +25,7 @@ To use system logging, include the following header file:
 #include <hilog/log.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
@@ -44,7 +44,7 @@ Read [AVImageGenerator](../../reference/apis-media-kit/capi-avimagegenerator.md)
 
 4. Call [OH_AVImageGenerator_Release()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_release) to destroy the instance and release resources.
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to set the file descriptor and obtain the video frame of a video at the specified time.
 
