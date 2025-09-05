@@ -47,7 +47,7 @@ PinchGesture(options?: PinchGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [PinchGestureHandlerOptions](./ts-uigestureevent.md#pinchgesturehandleroptions) | 否 | 捏合手势处理器配置参数。 |
+| options | [PinchGestureHandlerOptions](./ts-gesturehandler.md#pinchgesturehandleroptions) | 否 | 捏合手势处理器配置参数。 |
 
 
 ## 事件

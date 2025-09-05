@@ -45,7 +45,7 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SwipeGestureHandlerOptions](./ts-uigestureevent.md#swipegesturehandleroptions) | 否 | 滑动事件处理器配置参数。 |
+| options | [SwipeGestureHandlerOptions](./ts-gesturehandler.md#swipegesturehandleroptions) | 否 | 滑动事件处理器配置参数。 |
 
 ## SwipeDirection枚举说明
 
