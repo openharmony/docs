@@ -355,7 +355,7 @@ push(...items: SegmentButtonItemArray): number
 
 | 参数名 | 类型                                              | 必填 | 说明                   |
 | ------ | ------------------------------------------------- | ---- | ---------------------- |
-| items  | [SegmentButtonItemArray](#segmentbuttonitemarray) | 是   | 被添加的按钮信息数组。 |
+| items  | [SegmentButtonItemArray](#segmentbuttonitemarray) | 否   | 被添加的按钮信息数组。 |
 
 **返回值：**
 
@@ -428,7 +428,7 @@ unshift(...items: SegmentButtonItemArray): number
 
 | 参数名  | 类型                                              | 必填 | 说明                 |
 | ----- | ------------------------------------------------- | ---- | -------------------- |
-| items | [SegmentButtonItemArray](#segmentbuttonitemarray) | 是   | 添加的按钮信息数组。 |
+| items | [SegmentButtonItemArray](#segmentbuttonitemarray) | 否 | 添加的按钮信息数组。 |
 
 **返回值：**
 

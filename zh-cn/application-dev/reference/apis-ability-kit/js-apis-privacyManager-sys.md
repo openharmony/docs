@@ -69,7 +69,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
   console.log('addPermissionUsedRecord success');
 }).catch((err: BusinessError) => {
@@ -128,7 +128,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
   if (err) {
     console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
@@ -397,7 +397,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
   console.log('startUsingPermission success');
 }).catch((err: BusinessError) => {
@@ -459,7 +459,7 @@ import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { rpc } from '@kit.IPCKit'
 
-let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 也可以通过bundleManager.getBundleInfoForSelfSync获取accessTokenId
+let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 可以通过getApplicationInfo获取accessTokenId。
 let pid: number = rpc.IPCSkeleton.getCallingPid();
 let usedType: privacyManager.PermissionUsedType = privacyManager.PermissionUsedType.PICKER_TYPE;
 
@@ -531,7 +531,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
   if (err) {
     console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -586,7 +586,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
   console.log('stopUsingPermission success');
 }).catch((err: BusinessError) => {
@@ -643,7 +643,7 @@ import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { rpc } from '@kit.IPCKit'
 
-let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 也可以通过bundleManager.getBundleInfoForSelfSync获取accessTokenId
+let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 也可以通过bundleManager.getBundleInfoForSelfSync获取accessTokenId。
 let pid: number = rpc.IPCSkeleton.getCallingPid();
 
 // without pid
@@ -701,7 +701,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
   if (err) {
     console.error(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -852,7 +852,7 @@ getPermissionUsedTypeInfos(tokenId?: number | null, permissionName?: Permissions
 import { privacyManager, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId
+let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId。
 let permissionName: Permissions = 'ohos.permission.CAMERA';
 // without any param
 privacyManager.getPermissionUsedTypeInfos().then(() => {

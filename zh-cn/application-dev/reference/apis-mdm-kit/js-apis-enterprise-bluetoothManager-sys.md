@@ -36,6 +36,7 @@ isBluetoothDisabled(admin: Want): boolean
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -93,6 +94,7 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

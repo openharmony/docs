@@ -971,12 +971,8 @@ let style: string = options.style; // style = 'short'
 | 名称            | 类型     | 只读   | 可选   |说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | localeMatcher | string | 否    | 是    | 区域匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。<br>默认值：best fit。 |
-| numeric       | string | 否    | 是    | 输出消息的格式，表示格式化结果中是否使用数字表示相对日期或时间。取值包括："always",&nbsp;"auto"。<br>默认值：always。      |
-| style         | string | 否    | 是    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值：long。 |
-
-> **说明**
->
-> numeric、style不同取值的显示效果，请参考[相对时间格式化选项](../../internationalization/i18n-time-date.md#相对时间格式化)。
+| numeric       | string | 否    | 是    | 输出消息的格式，表示格式化结果中是否使用数字表示相对日期或时间。取值包括："always",&nbsp;"auto"。<br>默认值：always。<br>不同取值的显示效果请参考[附录表23](#附录)。      |
+| style         | string | 否    | 是    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值：long。<br>不同取值的显示效果请参考[附录表24](#附录)。 |
 
 ## RelativeTimeFormatResolvedOptions<sup>(deprecated)</sup>
 
