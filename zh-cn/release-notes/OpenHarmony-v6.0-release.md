@@ -51,7 +51,7 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 - 新增支持窗口显示时默认不获取焦点，点击后可获取焦点。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#showwindow20)）
 
-- 新增支持输入法动画开始前和结束后的回调，方便应用进行输入法弹出与收回动画的响应。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#onkeyboardwillshow20)
+- 新增支持输入法动画开始前和结束后的回调，方便应用进行输入法弹出与收回动画的响应。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#onkeyboardwillshow20)）
 
 - 新增支持通过C API卸载自定义字体以释放内存空间。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-arkgraphics2d/capi-drawing-register-font-h.md#oh_drawing_unregisterfont)）
 
