@@ -117,7 +117,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
         OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
         ```
 
-    7.2 （可选）（API 20起支持）设置屏幕录屏自动跟随旋转配置。（可选）
+    7.2 （可选）（API 20起支持）设置屏幕录屏自动跟随旋转配置。
 
         设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，确保输出画面及时跟随旋转。设置后在旋转通知后，无需再手动调用OH_AVScreenCapture_ResizeCanvas接口。
 
