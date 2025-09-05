@@ -42,7 +42,7 @@
 
 - 当应用需要在后台播放媒体类型（流类型为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE和STREAM_USAGE_AUDIOBOOK）和游戏类型（流类型为STREAM_USAGE_GAME）时，必须接入媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）并申请AUDIO_PLAYBACK类型长时任务。
 
-- 除了上述播放类型，针对用户可感知的其他播放任务，如果应用需要在后台长时间运行改任务，必须申请AUDIO_PLAYBACK类型长时任务，无需接入AVSession。
+- 除了上述播放类型，针对用户可感知的其他播放任务，如果应用需要在后台长时间运行该任务，必须申请AUDIO_PLAYBACK类型长时任务，无需接入AVSession。
 
 - 如果应用不满足上述接入规范，退至后台播放时会被系统静音并冻结，无法在后台正常播放，直到应用重新切回前台时，才会解除静音并恢复播放。
 
