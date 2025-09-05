@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -798,7 +798,7 @@ struct ParticleExample {
                     },
                     {
                       from: 1.0,
-                      to: .0,
+                      to: 0,
                       startMillis: 6000,
                       endMillis: 10000
                     }
@@ -920,7 +920,7 @@ struct ParticleExample {
                   },
                   {
                     from: 1.0,
-                    to: .0,
+                    to: 0,
                     startMillis: 6000,
                     endMillis: 10000
                   }
@@ -1041,7 +1041,7 @@ struct ParticleExample {
                   },
                   {
                     from: 1.0,
-                    to: .0,
+                    to: 0,
                     startMillis: 6000,
                     endMillis: 10000
                   }

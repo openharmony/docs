@@ -28,28 +28,23 @@
 
 2. 创建Surface。
 
-   系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
+   系统提供的media接口可以创建一个录像[AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
 
    ```ts
-   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节。
+   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考步骤3.创建录像输出流。
      let avRecorder: media.AVRecorder | undefined = undefined;
+     let videoSurfaceId: string | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return videoSurfaceId;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
+       videoSurfaceId = await avRecorder.getInputSurface();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
      }
-     if (avRecorder === undefined) {
-       return undefined;
-     }
-     avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
-       if (err == null) {
-         console.info('prepare success');
-       } else {
-         console.error('prepare failed and error is ' + err.message);
-       }
-     });
-     let videoSurfaceId = await avRecorder.getInputSurface();
      return videoSurfaceId;
    }
    ```
@@ -70,9 +65,12 @@
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
+     if (!cameraManager || !videoSurfaceId || !cameraOutputCapability || !cameraOutputCapability.videoProfiles) {
+       return;
+     }
      let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCapability.videoProfiles;
-     if (!videoProfilesArray) {
-       console.error("createOutput videoProfilesArray == null || undefined");
+     if (!videoProfilesArray || videoProfilesArray.length === 0) {
+       console.error("videoProfilesArray is null or []");
        return undefined;
      }
      // AVRecorderProfile。
@@ -85,25 +83,31 @@
        videoFrameRate : 30 // 视频帧率。
      };
      // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致。
+     let avMetadata: media.AVMetadata = {
+      videoOrientation: '90' // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法。
+     }
+     
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
-       url: 'fd://35',
-       rotation: 90 // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法。
+       url: 'fd://35', // 此处为样例示范，需要根据开发需求填写实际的路径。
+       metadata: avMetadata
      };
-     // 创建avRecorder。
+     // 创建avRecorder，设置视频录制的参数。
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return undefined;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
+       await avRecorder?.release();
+       return;
      }
-     if (avRecorder === undefined) {
-       return undefined;
-     }
-     // 设置视频录制的参数。
-     avRecorder.prepare(aVRecorderConfig);
+
      // 创建VideoOutput对象。
      let videoOutput: camera.VideoOutput | undefined = undefined;
      // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。
@@ -112,13 +116,15 @@
      });
      if (!videoProfile) {
        console.error('videoProfile is not found');
-       return;
+       await avRecorder.release();
+       return undefined;
      }
      try {
        videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
+       await avRecorder.release();
      }
      return videoOutput;
    }
@@ -130,19 +136,19 @@
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     videoOutput.start(async (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to start the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output start success.');
-     });
-     try {
-       await avRecorder.start();
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder start error: ${err}`);
-     }
+    try {
+      videoOutput.start();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`start videoOutput failed, error: ${err.code}`);
+    }
+    await avRecorder.start(async (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to start the video output ${err.message}`);
+      return;
+    }
+    console.info('Callback invoked to indicate the video output start success.');
+    });
    }
    ```
 
@@ -152,19 +158,14 @@
 
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     try {
-       await avRecorder.stop();
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder stop error: ${err}`);
+     await avRecorder.stop((err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to stop the video output ${err.message}`);
+       return;
      }
-     videoOutput.stop((err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to stop the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output stop success.');
+     console.info('Callback invoked to indicate the video output stop success.');
      });
+     videoOutput.stop();
    }
    ```
 

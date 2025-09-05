@@ -1,5 +1,12 @@
 # Temporally Scalable Video Coding
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## Basic Concepts
 
 ### Introduction to Temporally Scalable Video Coding
@@ -25,7 +32,7 @@ A GOP can be further divided into one or more Temporal Group of Pictures (TGOPs)
 
 - BL: bottom layer (L0) in the GOP. In temporal scalability, this layer is encoded at the lowest frame rate.
 
-- EL: layers above the BL. There are L1, L2, and L3 in ascending order. In temporal scalability, the lowest EL encodes, based on encoding information obtained from the BL, the frames at a higher frame rate; a higher EL encodes, based on the BL or a lower EL, the frames at a higher frame rate.
+- EL: layers above the BL. There are L1, L2, and L3 in ascending order. In temporal scalability, the lowest EL encodes, based on the BL, the frames at a higher frame rate; a higher EL encodes, based on the BL or a lower EL, the frames at a higher frame rate.
 
 ### How to Implement the Structure of a Temporally Scalable Bitstream
 
@@ -44,7 +51,7 @@ You are advised to use temporal scalability in the following scenarios:
 
 - Video encoding and recording scenario that requires video preview or multi-speed playback.
 
-If your development scenario does not involve dynamic adjustment of the temporal reference structure and the hierarchical structure is simple, you are advised to use [global temporal scalability](#global-temporal-scalability). Otherwise, enable [LTR](#ltr).
+If your application does not involve dynamic adjustment of the temporal reference structure and the hierarchical structure is simple, you are advised to use [global temporal scalability](#global-temporal-scalability). Otherwise, enable [LTR](#ltr).
 
 ## Constraints
 
@@ -56,7 +63,7 @@ If your development scenario does not involve dynamic adjustment of the temporal
 
   The reference frame is valid only in the GOP. After an I-frame is refreshed, the DPB is cleared, so does the reference frame. In other words, the I-frame refresh location has a great impact on the reference relationship.
 
-  When temporal scalability is enabled, to temporarily request the I-frame through **OH_MD_KEY_REQUEST_I_FRAME**, you must configure the frame channel with a determined effective time to notify the system of the I-frame refresh location, so as to avoid disorder of the reference relationship. For details, see the configuration guide of the frame channel. Do not use **OH_VideoEncoder_SetParameter**, which uses an uncertain effective time. For details, see "Step 4: Call **OH_VideoEncoder_RegisterParameterCallback()** to register the frame-specific parameter callback function" in [Video Encoding in Surface Input](video-encoding.md#surface-input).  
+  When temporal scalability is enabled, to temporarily request the I-frame through **OH_MD_KEY_REQUEST_I_FRAME**, you must configure the frame channel with a determined effective time to notify the system of the I-frame refresh location, so as to avoid disorder of the reference relationship. For details, see the configuration guide of the frame channel. Do not use **OH_VideoEncoder_SetParameter**, which uses an uncertain effective time. For details, see "Step 4: Call **OH_VideoEncoder_RegisterParameterCallback()** to register the frame-specific parameter callback function" in [Video Encoding in Surface Mode](video-encoding.md#surface-mode).
 
 - The callback using **OH_AVBuffer** is supported, but the callback using **OH_AVMemory** is not.
 
@@ -76,9 +83,9 @@ Global temporal scalability is suitable for encoding frames into a stable and si
 
 | Parameter| Description                        |
 | -------- | ---------------------------- |
-| OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY  |  Enabled status of the global temporal scalability feature.|
+| OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY  | Enabled status of the global temporal scalability feature.|
 | OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE  | TGOP size of the global temporal scalability feature.|
-| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE  | TGOP reference mode of the global temporal scalability feature. |
+| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE  | TGOP reference mode of the global temporal scalability feature.|
 
 - **OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY**: This parameter is set in the configuration phase. The feature can be successfully enabled only when it is supported.
 
@@ -90,21 +97,21 @@ Global temporal scalability is suitable for encoding frames into a stable and si
     >
     > In the case of **UNIFORMLY_SCALED_REFERENCE**, TGOP can only be 2 or 4.
 
-Example 1: TGOP=4, ADJACENT_REFERENCE
+Example 1: ADJACENT_REFERENCE in TGOP=4
 
 ![Temporal gop 4 adjacent reference](figures/temporal-scalability-tgop4-adjacent.png)
 
-Example 2: TGOP=4, JUMP_REFERENCE
+Example 2: JUMP_REFERENCE in TGOP=4
 
 ![TGOP4 jump reference](figures/temporal-scalability-tgop4-jump.png)
 
-Example 3: TGOP = 4, UNIFORMLY_SCALED_REFERENCE
+Example 3: UNIFORMLY_SCALED_REFERENCE in TGOP = 4
 
 ![TGOP4 uniformly scaled reference](figures/temporal-scalability-tgop4-uniformly.png)
 
 ### How to Develop
 
-This section describes only the steps that are different from the basic encoding process. You can learn the basic encoding process in [Video Encoding](video-encoding.md).
+You can learn the basic encoding process in [Video Encoding](video-encoding.md). This section describes the differences from the basic video encoding process.
 
 1. When creating an encoder instance, check whether the video encoder supports the global temporal scalability feature.
 
@@ -117,46 +124,55 @@ This section describes only the steps that are different from the basic encoding
 
     If the feature is supported, it can be enabled.
 
+    ```c++
+    // Create a hardware encoder instance.
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+    ```
+
 2. In the configuration phase, configure the parameters related to the global temporal scalability feature.
 
     ```c++
     constexpr int32_t TGOP_SIZE = 3; 
-    // 2.1 Create a temporary AV format used for configuration.
-    OH_AVFormat *format = OH_AVFormat_Create();
+    // 2.1 Create a temporary AVFormat used for configuration.
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // Handle exceptions.
+    }
     // 2.2 Fill in the key-value pair of the parameter used to enable the feature.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
     // 2.3 (Optional) Fill in the key-value pairs of the parameters that specify the TGOP size and reference mode.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
     // 2.4 Configure the parameters.
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format.get());
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
-    // 2.5 Destroy the temporary AV format after the configuration is complete.
-    OH_AVFormat_Destroy(format);
     ```
 
-3. (Optional) During output rotation in the running phase, obtain the temporal layer information corresponding to the bitstream.
+3. (Optional) During output rotation, obtain the temporal layer information corresponding to the bitstream.
 
-    You can periodically obtain the number of encoded frames based on the configured TGOP parameters.
+    You can obtain the temporal layer information based on the configured TGOP parameters and the number of encoded frames.
 
     The sample code is as follows:
 
     ```c++
+    constexpr int32_t TGOP_SIZE = 3;
     uint32_t outPoc = 0;
     // Obtain the relative position in the TGOP based on the number of valid frames in the output callback and determine the layer based on the configuration.
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // Note: If complex processing is involved, you are advised to create an association.
         struct OH_AVCodecBufferAttr attr;
-        (void)buffer->GetBufferAttr(attr);
+        OH_AVErrCode ret = OH_AVBuffer_GetBufferAttr(buffer, &attr);
+        if (ret != AV_ERR_OK) {
+            // Handle exceptions.
+        }
         // Set POC to 0 after the I-frame is refreshed.
-        if (attr.flags & AVCODEC_BUFFER_FLAG_KEY_FRAME) {
+        if (attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME) {
             outPoc = 0;
         }
         // Skip this step only for the XPS output.
-        if (attr.flags != AVCODEC_BUFFER_FLAG_CODEC_DATA) {
+        if (attr.flags != AVCODEC_BUFFER_FLAGS_CODEC_DATA) {
             int32_t tGopInner = outPoc % TGOP_SIZE;
             if (tGopInner == 0) {
                 // I-frames cannot be dropped in subsequent transmission and decoding processes.
@@ -168,7 +184,7 @@ This section describes only the steps that are different from the basic encoding
     }
     ```
 
-4. (Optional) During output rotation in the running phase, use the temporal layer information obtained for adaptive transmission or decoding.
+4. (Optional) During output rotation, use the temporal layer information obtained for adaptive transmission or decoding.
 
     Based on the temporally scalable bitstream and layer information, select a required layer for transmission, or carry the information to the peer for adaptive decoding.
 
@@ -176,7 +192,7 @@ This section describes only the steps that are different from the basic encoding
 
 ### Available APIs
 
-The LTR feature provides a flexible configuration of the frame-level reference relationship. It is suitable for flexible and complex temporally hierarchical structures.
+The LTR feature provides a configuration of the frame-level reference relationship. It is suitable for flexible and complex temporally hierarchical structures.
 
 | Parameter| Description                |
 | -------- | ---------------------------- |
@@ -184,8 +200,8 @@ The LTR feature provides a flexible configuration of the frame-level reference r
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | Marked as an LTR frame.|
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | POC number of the LTR frame referenced by the current frame. |
 
-- **OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT**: This parameter is set in the configuration phase and must be less than or equal to the maximum number of LTR frames supported. For details, see Step 3 below.
-- **OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR **: The BL layer is marked as an LTR frame, and the EL layer to skip is also marked as an LTR frame.
+- **OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT**: This parameter is set in the configuration phase. The value of this parameter must not be greater than the maximum number of supported LTR frames. For details, see Step 3 below.
+- **OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR **: The BL layer and the EL layer to skip are marked as an LTR frame.
 - **OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR**: POC number of the frame marked as the LTR frame.
 
 For example, to implement the four-layer temporally hierarchical structure described in [Introduction to Temporally Scalable Video Coding](#introduction-to-temporally-scalable-video-coding), perform the following steps:
@@ -216,14 +232,16 @@ This section describes only the steps that are different from the basic encoding
     // 1.3 Determine the number of supported LTR frames.
     if (isSupported) {
         OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
-        OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &supportedLTRCount);
+        if (!OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &supportedLTRCount)) {
+            // Handle exceptions.
+        }
         OH_AVFormat_Destroy(properties);
         // 1.4 Check whether the number of supported LTR frames meets the structure requirements.
         isSupported = supportedLTRCount >= NEEDED_LTR_COUNT;
     }
     ```
 
-    If the LTR feature is supported and the number of supported LTR frames meets the requirements, the feature can be enabled.
+    If the LTR feature is supported and the number of LTR frames meets the requirements, the feature can be enabled.
 
 2. Register the frame channel callback functions.
 
@@ -239,11 +257,13 @@ This section describes only the steps that are different from the basic encoding
         // - Write the stream to encode.
         // - Notify the encoder of EOS.
         // - Write the frame parameter.
-        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
-        OH_AVBuffer_SetParameter(buffer, format);
-        OH_AVFormat_Destroy(format);
+        auto format = std::shared_ptr<OH_AVFormat>(OH_AVBuffer_GetParameter(buffer), OH_AVFormat_Destroy);
+        if (format == nullptr) {
+            // Handle exceptions.
+        }
+        OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
+        OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
+        OH_AVBuffer_SetParameter(buffer, format.get());
         // Notify the encoder that the buffer input is complete.
         OH_VideoEncoder_PushInputBuffer(codec, index);
     }
@@ -262,7 +282,7 @@ This section describes only the steps that are different from the basic encoding
     OH_AVCodecCallback cb;
     cb.onNeedInputBuffer = OnNeedInputBuffer;
     cb.onNewOutputBuffer = OnNewOutputBuffer;
-    OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
+    OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr);
     ```
 
     The following is an example of the configuration in surface input mode:
@@ -296,35 +316,36 @@ This section describes only the steps that are different from the basic encoding
     // 2.3 Register the callback functions.
     OH_AVCodecCallback cb;
     cb.onNewOutputBuffer = OnNewOutputBuffer;
-    OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
+    OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr);
     // 2.4 Register the frame channel callback functions.
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr);
     ```
 
 3. In the configuration phase, configure the maximum number of LTR frames.
 
     ```c++
-    constexpr int32_t TGOP_SIZE = 3;
-    // 3.1 Create a temporary AV format used for configuration.
-    OH_AVFormat *format = OH_AVFormat_Create();
+    constexpr int32_t NEEDED_LTR_COUNT = 5;
+    // 3.1 Create a temporary AVFormat used for configuration.
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // Handle exceptions.
+    }
     // 3.2 Fill in the key-value pair of the parameter that specifies the number of LTR frames.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_COUNT);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_COUNT);
     // 3.3 Configure the parameters.
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format.get());
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
-    // 3.4 Destroy the temporary AV format after the configuration is complete.
-    OH_AVFormat_Destroy(format);
     ```
 
-4. (Optional) During output rotation in the running phase, obtain the temporal layer information corresponding to the bitstream.
+4. (Optional) During output rotation, obtain the temporal layer information corresponding to the bitstream.
 
     This procedure is the same as that described in the global temporal scalability feature.
 
     The LTR parameters are configured in the input rotation. You can also record the LTR parameters in the input rotation and find the corresponding input parameters in the output rotation.
 
-5. (Optional) During output rotation in the running phase, use the temporal layer information obtained for adaptive transmission or decoding.
+5. (Optional) During output rotation, use the temporal layer information obtained for adaptive transmission or decoding.
 
     This procedure is the same as that described in the global temporal scalability feature.

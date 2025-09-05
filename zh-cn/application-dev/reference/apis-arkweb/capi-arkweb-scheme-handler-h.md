@@ -109,7 +109,8 @@
 | [int32_t OH_ArkWebResourceHandler_DidReceiveResponse(const ArkWeb_ResourceHandler* resourceHandler,const ArkWeb_Response* response)](#oh_arkwebresourcehandler_didreceiveresponse) | - | 将构造的响应头传递给被拦截的请求。 |
 | [int32_t OH_ArkWebResourceHandler_DidReceiveData(const ArkWeb_ResourceHandler* resourceHandler,const uint8_t* buffer,int64_t bufLen)](#oh_arkwebresourcehandler_didreceivedata) | - | 将构造的响应体传递给被拦截的请求。 |
 | [int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourceHandler)](#oh_arkwebresourcehandler_didfinish) | - | 通知ArkWeb内核被拦截的请求已经完成，并且没有更多的数据可用。 |
-| [int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* resourceHandler,ArkWeb_NetError errorCode)](#oh_arkwebresourcehandler_didfailwitherror) | - | 通知ArkWeb内核被拦截请求应该失败。 |
+| [int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* resourceHandler,ArkWeb_NetError errorCode)](#oh_arkwebresourcehandler_didfailwitherror) | - | 通知ArkWeb内核，被拦截的请求应该失败。 |
+| [int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,ArkWeb_NetError errorCode,bool completeIfNoResponse)](#oh_arkwebresourcehandler_didfailwitherrorv2) | - | 通知ArkWeb内核，被拦截的请求应该失败。对比OH_ArkWebResourceHandler_DidFailWithError接口，新增参数completeIfNoResponse，当值为true时，若之前未调用过OH_ArkWebResourceHandler_DidReceiveResponse，则会自动生成一个response以完成此次网络请求，网络错误码为-104；值为false时，将等待应用调用OH_ArkWebResourceHandler_DidReceiveResponse并传入response，不会直接完成此次网络请求。 |
 | [void OH_ArkWeb_ReleaseString(char* string)](#oh_arkweb_releasestring) | - | 释放由NDK接口创建的字符串。 |
 | [void OH_ArkWeb_ReleaseByteArray(uint8_t* byteArray)](#oh_arkweb_releasebytearray) | - | 释放由NDK接口创建的字节数组。 |
 
@@ -1844,7 +1845,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
 
 **描述：**
 
-通知ArkWeb内核被拦截请求应该失败。
+通知ArkWeb内核，被拦截的请求应该失败。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1855,8 +1856,37 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 该请求的ArkWeb_ResourceHandler。 |
+| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。 |
 | [ArkWeb_NetError](capi-arkweb-net-error-list-h.md#arkweb_neterror) errorCode | 该请求的错误码。请参考[arkweb_net_error_list.h](capi-arkweb-net-error-list-h.md)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 如果返回0，表示成功；返回17100101，表示参数无效。 |
+
+### OH_ArkWebResourceHandler_DidFailWithErrorV2()
+
+```
+int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,ArkWeb_NetError errorCode,bool completeIfNoResponse)
+```
+
+**描述：**
+
+通知ArkWeb内核，被拦截的请求应该失败。对比[OH_ArkWebResourceHandler_DidFailWithError](#oh_arkwebresourcehandler_didfailwitherror)接口，新增参数completeIfNoResponse，值为true时，若之前未调用过[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)，则会自动生成一个response以完成此次网络请求，网络错误码为-104；值为false时，将等待应用调用[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)并传入response，不会直接完成此次网络请求。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。 |
+| [ArkWeb_NetError](capi-arkweb-net-error-list-h.md#arkweb_neterror) errorCode | 该请求的错误码。请参考[arkweb_net_error_list.h](capi-arkweb-net-error-list-h.md)。 |
+| bool completeIfNoResponse | 若之前未调用过[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)，调用[OH_ArkWebResourceHandler_DidFailWithErrorV2](#oh_arkwebresourcehandler_didfailwitherrorv2)时，此次网络请求是否完成；值为true时，若之前未调用过[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)，则会自动生成一个response以完成此次网络请求，网络错误码为-104；值为false时，将等待应用调用[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)并传入response，不会直接完成此次网络请求。 |
 
 **返回：**
 

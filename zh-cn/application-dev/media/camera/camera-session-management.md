@@ -30,15 +30,16 @@
 2. 调用cameraManager中的[createSession](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createsession11)方法创建一个会话。
      
    ```ts
-   function getSession(cameraManager: camera.CameraManager): camera.Session | undefined {
-     let session: camera.Session | undefined = undefined;
+   // 此处以videoSession为例。
+   function getSession(cameraManager: camera.CameraManager): camera.VideoSession | undefined {
+     let videoSession: camera.VideoSession | undefined = undefined;
      try {
-       session = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
+       videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to create the session instance. error: ${err}`);
+       console.error(`Failed to create the session instance. error: ${err.code}`);
      }
-     return session;
+     return videoSession;
    }
    ```
 
@@ -50,7 +51,7 @@
        videoSession.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to beginConfig. error: ${err}`);
+       console.error(`Failed to beginConfig. error: ${err.code}`);
      }
    }
    ```
@@ -69,37 +70,47 @@
        videoSession.addInput(cameraInput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to addInput. error: ${err}`);
+       console.error(`Failed to addInput. error: ${err.code}`);
      }
+     let canAddPreviewOutput : boolean = false;
      try {
-       videoSession.canAddOutput(previewOutput);
+       canAddPreviewOutput = videoSession.canAddOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add previewOutput. error: ${err}`);
+       console.error(`Failed to add previewOutput. error: ${err.code}`);
+     } 
+     if (!canAddPreviewOutput) {
+       console.error(`Failed to add preview output.`);
+       return;
      }
      try {
        videoSession.addOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add previewOutput. error: ${err}`);
+       console.error(`Failed to add previewOutput. error: ${err.code}`);
      }
+     let canAddPhotoOutput : boolean = false
      try {
-       videoSession.canAddOutput(photoOutput);
+       canAddPhotoOutput = videoSession.canAddOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add photoOutput error: ${err}`);
+       console.error(`Failed to add photoOutput error: ${err.code}`);
+     }
+     if (!canAddPhotoOutput) {
+       console.error(`Failed to add photo output.`);
+       return;
      }
      try {
        videoSession.addOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add photoOutput. error: ${err}`);
+       console.error(`Failed to add photoOutput. error: ${err.code}`);
      }
      try {
        await videoSession.commitConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to commitConfig. error: ${err}`);
+       console.error(`Failed to commitConfig. error: ${err.code}`);
       return;
      }
    
@@ -107,7 +118,7 @@
        await videoSession.start();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to start. error: ${err}`);
+       console.error(`Failed to start. error: ${err.code}`);
      }
    }
    ```
@@ -120,47 +131,47 @@
        await videoSession.stop();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to stop. error: ${err}`);
+       console.error(`Failed to stop. error: ${err.code}`);
      }
    
      try {
        videoSession.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to beginConfig. error: ${err}`);
+       console.error(`Failed to beginConfig. error: ${err.code}`);
      }
      // 从会话中移除拍照输出流。
      try {
        videoSession.removeOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to remove photoOutput. error: ${err}`);
+       console.error(`Failed to remove photoOutput. error: ${err.code}`);
      }
      try {
        videoSession.canAddOutput(videoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add videoOutput error: ${err}`);
+       console.error(`Failed to add videoOutput error: ${err.code}`);
      }
      // 向会话中添加视频输出流。
      try {
        videoSession.addOutput(videoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add videoOutput. error: ${err}`);
+       console.error(`Failed to add videoOutput. error: ${err.code}`);
      }
      try {
        await videoSession.commitConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to commitConfig. error: ${err}`);
+       console.error(`Failed to commitConfig. error: ${err.code}`);
      }
    
      try {
        await videoSession.start();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to start. error: ${err}`);
+       console.error(`Failed to start. error: ${err.code}`);
      }
    }
    ```

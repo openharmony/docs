@@ -5,7 +5,7 @@
 <!--Owner: @peixu-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 默认情况下，通知消息会进行跨设备协同。如果应用已通过分布式通信能力实现跨设备协同（例如短信通知消息由短信应用本身协同到手表、平板、2in1等设备），为了避免通知消息在不同设备上重复发送，需要针对分布式通知的协同设备进行管理。
 
@@ -18,7 +18,6 @@
 
 | **接口名**  | **描述** | **说明** |
 | -------- | -------- |-------- |
-| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | 发布通知。  | 具体使用方法见入参对象[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)中**notDistributed**与**forceDistributed**字段说明。|
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request: NotificationRequest, callback: AsyncCallback\<void\>): void | 发布通知。 | 具体使用方法见入参对象[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)中**notDistributed**与**forceDistributed**字段说明。 |
 
 ## 前提条件

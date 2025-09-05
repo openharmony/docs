@@ -175,7 +175,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-6. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+6. 获取可用buffer并写入码流至解码器。
+
+    - 调用[OH_VideoDecoder_QueryInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryinputbuffer)接口获取下一个可用的输入缓冲区（buffer）的索引（index）。
+    - 根据获取的索引（index），调用[OH_VideoDecoder_GetInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getinputbuffer)接口获取对应的缓冲区（buffer）实例。
+    - 将待解码数据写入该缓冲区（buffer）后，调用[OH_VideoDecoder_PushInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_pushinputbuffer)接口提交至解码器进行解码。当所有待处理数据全部传递给解码器后，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS，通知解码器输入结束。
+
 
     送入输入队列进行解码，示例中的变量说明如下：
     - size、offset、pts、frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[媒体数据解析](./audio-video-demuxer.md#开发步骤)“步骤-9：开始解封装，循环获取sample”。
@@ -246,8 +251,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-7. 调用OH_VideoDecoder_RenderOutputBuffer()/OH_VideoDecoder_RenderOutputBufferAtTime()显示并释放解码帧，
-   或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+7. 获取可用buffer显示并释放解码帧。
+
+   - 调用[OH_VideoDecoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
+   - 根据获取的索引（index），调用[OH_VideoDecoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
+   - 根据开发者设置的isRender标志决定后续操作：若无需送显，则调用[OH_VideoDecoder_FreeOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_freeoutputbuffer)接口释放解码帧。若需送显，则可调用[OH_VideoDecoder_RenderOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_renderoutputbuffer)接口显示并自动释放解码帧，或调用[OH_VideoDecoder_RenderOutputBufferAtTime](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_renderoutputbufferattime)接口在指定时间点显示并释放解码帧。
+
 
     ```c++
     bool DecoderOutput(OH_AVCodec *videoDec, int64_t timeoutUs)
@@ -325,7 +334,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-8. 解码输入输出。
+8. 解码器送帧/出帧处理循环。
 
     ```c++
     bool result = true;
@@ -506,9 +515,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-5. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+5. 获取可用buffer并写入码流至解码器。
 
-    与Surface模式相同，此处不再赘述。
+    - 调用[OH_VideoDecoder_QueryInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryinputbuffer)接口获取下一个可用的输入缓冲区（buffer）的索引（index）。
+    - 根据获取的索引（index），调用[OH_VideoDecoder_GetInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getinputbuffer)接口获取对应的缓冲区（buffer）实例。
+    - 将待解码数据写入该缓冲区（buffer）后，调用[OH_VideoDecoder_PushInputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_pushinputbuffer)接口提交至解码器进行解码。当所有待处理数据全部传递给解码器后，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS，通知解码器输入结束。
+
+    示例中的变量size、offset、pts、frameData、flags说明与Surface模式相同，此处不再赘述。
 
     ```c++
     bool DecoderInput(OH_AVCodec *videoDec, int64_t timeoutUs)
@@ -575,7 +588,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-6. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+6. 获取可用buffer并释放解码帧。
+
+   - 调用[OH_VideoDecoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
+   - 根据获取的索引（index），调用[OH_VideoDecoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
+   - 调用[OH_VideoDecoder_FreeOutputBuffer](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_freeoutputbuffer)接口释放解码帧。
 
     ```c++
     bool DecoderOutput(OH_AVCodec *videoDec, int64_t timeoutUs)
@@ -649,7 +666,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-7. 解码输入输出。
+7. 解码器送帧/出帧处理循环。
   
     ```c++
     bool result = true;

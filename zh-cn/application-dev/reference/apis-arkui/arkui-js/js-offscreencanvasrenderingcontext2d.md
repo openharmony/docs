@@ -135,7 +135,7 @@ canvas {
 // xxx.js
 export default {
   data: {
-    textValue: 0
+    textValue: false
   },
   onShow(){
     var canvas = this.$refs.canvas.getContext('2d');
@@ -209,7 +209,7 @@ canvas {
 // xxx.js
 export default {
   data: {
-    textValue: 0
+    textValue: false
   },
   onShow(){
     var canvas = this.$refs.canvas.getContext('2d');

@@ -58,6 +58,7 @@
     - [HiDebug_StackFrame](capi-hidebug-hidebug-stackframe.md)
     - [HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)
     - [HiDebug_Backtrace_Object__*](capi-hidebug-hidebug-backtrace-object--8h.md)
+    - [HiDebug_GraphicsMemorySummary](capi-hidebug-hidebug-graphicsmemorysummary.md)
     - [HiTraceId](capi-hitrace-hitraceid.md)
 - 错误码<!--performance-analysis-errcode-->
   - [Faultlogger错误码](errorcode-faultlogger.md)

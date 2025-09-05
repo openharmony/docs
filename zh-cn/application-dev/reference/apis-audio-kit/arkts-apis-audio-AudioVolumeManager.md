@@ -25,7 +25,7 @@ import { audio } from '@kit.AudioKit';
 
 getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupManager\>\): void
 
-获取音频组管理器。使用callback异步回调。
+获取音频组音量管理器实例。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -34,7 +34,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
 | groupId    | number                                    | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。                         |
-| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
+| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md)&gt; | 是   | 回调函数。当获取音频组音量管理器实例成功，err为undefined，data为获取到的音频组音量管理器实例；否则为错误对象。 |
 
 **示例：**
 
@@ -57,7 +57,7 @@ audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: au
 
 getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
-获取音频组管理器。使用Promise异步回调。
+获取音频组音量管理器实例。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -71,7 +71,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt; [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) &gt; | Promise对象，返回音量组实例。 |
+| Promise&lt; [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) &gt; | Promise对象，返回音频组音量管理器实例。 |
 
 **示例：**
 
@@ -92,7 +92,7 @@ audioVolumeManager.getVolumeGroupManager(groupId).then((audioVolumeGroupManager:
 
 getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
-获取音频组管理器。同步返回结果。
+获取音频组音量管理器实例。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -106,7 +106,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) | 音量组实例。 |
+| [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) | 音频组音量管理器实例。 |
 
 **错误码：**
 

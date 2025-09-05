@@ -38,10 +38,10 @@ import { fileUri } from '@kit.CoreFileKit';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
-| 名称 | 类型 | 必填 | 说明|
-| -------- | --------| -------- |----------------|
-| path<sup>10+</sup> | string | 是 | 将uri转换成对应的沙箱路径path。 1、uri转path过程中会将uri中存在的ASCII码进行解码后拼接在原处，非系统接口生成的uri中可能存在ASCII码解析范围之外的字符，导致字符串无法正常拼接；2、转换处理为系统约定的字符串替换规则（规则随系统演进可能会发生变化），转换过程中不进行路径校验操作，无法保证转换结果的一定可以访问。 |
-| name<sup>10+</sup> | string | 是 | 通过传入的uri获取到对应的文件名称。（如果文件名中存在ASCII码将会被解码处理后拼接在原处）<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+| 名称 | 类型 | 只读 | 可选 | 说明|
+| -------- | --------| --- |-------- |----------------|
+| path<sup>10+</sup> | string | 否 | 否 | 将uri转换成对应的沙箱路径path。 1、uri转path过程中会将uri中存在的ASCII码进行解码后拼接在原处，非系统接口生成的uri中可能存在ASCII码解析范围之外的字符，导致字符串无法正常拼接；2、转换处理为系统约定的字符串替换规则（规则随系统演进可能会发生变化），转换过程中不进行路径校验操作，无法保证转换结果的一定可以访问。 |
+| name<sup>10+</sup> | string | 是 | 否 | 通过传入的uri获取到对应的文件名称。（如果文件名中存在ASCII码将会被解码处理后拼接在原处）<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
 
 ### constructor<sup>10+</sup>
 
@@ -173,7 +173,7 @@ isRemoteUri(): boolean
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   function isRemoteUriExample() {
-    let uri = "file://com.example.demo/data/stroage/el2/base/test.txt?networkid=xxxx";//?networkid设备id，远端URI的标识
+    let uri = "file://com.example.demo/data/storage/el2/base/test.txt?networkid=xxxx";//?networkid设备id，远端URI的标识
     let fileUriObject = new fileUri.FileUri(uri);
     let ret = fileUriObject.isRemoteUri();
     if (ret) {

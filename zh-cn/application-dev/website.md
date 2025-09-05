@@ -490,7 +490,7 @@
         - 使用文本<!--arkts-use-text-->
           - [文本概述](ui/arkts-text-introduction.md)
           - [文本显示 (Text/Span)](ui/arkts-common-components-text-display.md)
-          - [文本输入 (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
+          - [文本输入 (TextInput/TextArea/Search)](ui/arkts-common-components-text-input.md)
           - [富文本编辑 (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
@@ -1657,11 +1657,12 @@
     - Camera Kit（相机服务）<!--camera-kit-->
       - [Camera Kit简介](media/camera/camera-overview.md)
       - [申请相机开发的权限](media/camera/camera-preparation.md)
-      - 开发相机应用(ArkTS)<!--camera-dev-arkts-->
-        - [通过系统相机拍照和录像(CameraPicker)](media/camera/camera-picker.md)
+      - 开发相机应用必选能力(ArkTS)<!--camera-dev-arkts-mandatory-->
         - [相机管理(ArkTS)](media/camera/camera-device-management.md)
         - [设备输入(ArkTS)](media/camera/camera-device-input.md)
         - [会话管理(ArkTS)](media/camera/camera-session-management.md)
+      - 开发相机应用基础能力(ArkTS)<!--camera-dev-arkts-->
+        - [通过系统相机拍照和录像(CameraPicker)](media/camera/camera-picker.md)
         - [预览(ArkTS)](media/camera/camera-preview.md)
         - [双路预览(ArkTS)](media/camera/camera-dual-channel-preview.md)
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
@@ -1684,10 +1685,11 @@
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
         - [性能提升实践(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
         <!--DelEnd-->
-      - 开发相机应用(C/C++)<!--camera-dev-native-->
+      - 开发相机应用必选能力(C/C++)<!--camera-dev-native-mandatory-->
         - [相机管理(C/C++)](media/camera/native-camera-device-management.md)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
         - [会话管理(C/C++)](media/camera/native-camera-session-management.md)
+      - 开发相机应用基础能力(C/C++)<!--camera-dev-native-->
         - [预览(C/C++)](media/camera/native-camera-preview.md)
         - [预览流二次处理(C/C++)](media/camera/native-camera-preview-imageReceiver.md)
         - [拍照(C/C++)](media/camera/native-camera-shooting.md)
@@ -2173,7 +2175,7 @@
           - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentDecorator.md)
           - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentEntryExecutor.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
-          - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
+          - [@ohos.app.ability.PhotoEditorExtensionAbility (支持图片编辑能力的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
           - [@ohos.app.ability.OpenLinkOptions (openLink的可选参数)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
           - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
           - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
@@ -2186,12 +2188,13 @@
           - [@ohos.app.appstartup.StartupListener (启动框架任务监听器)](reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)
           - [@ohos.app.appstartup.startupManager (启动框架管理能力)](reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)
           - [@ohos.app.appstartup.StartupTask (启动框架任务)](reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)
+          - [@ohos.app.ability.autoStartupManager (开机自启管理能力)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager.md)
           <!--Del-->
           - [@ohos.app.ability.AbilityConstant (Ability相关常量)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
           - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
-          - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
+          - [@ohos.app.ability.autoStartupManager (开机自启管理能力)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (Ability公共模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
           - [@ohos.app.ability.insightIntent (意图框架基础定义)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntent-sys.md)
@@ -2224,7 +2227,7 @@
           - [@ohos.app.ability.continueManager (跨端迁移)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
           - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-app-ability-dataUriUtils.md)
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
-          - [@ohos.app.ability.errorManager (错误观测管理)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
+          - [@ohos.app.ability.errorManager (错误管理模块)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
           - [@ohos.app.ability.kioskManager (Kiosk管理模块)](reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)
           - [@ohos.app.ability.Want (Want)](reference/apis-ability-kit/js-apis-app-ability-want.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
@@ -2733,6 +2736,7 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
+            - [Resource](reference/apis-arkui/js-apis-arkui-resource.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window.floatingBall (闪控球窗口)](reference/apis-arkui/js-apis-floatingBall.md)
@@ -3090,6 +3094,8 @@
             - [定义可动画属性 (@AnimatableExtend)](reference/apis-arkui/arkui-ts/ts-animatable-extend.md)
             - [@Entry：页面入口](reference/apis-arkui/arkui-ts/ts-universal-entry.md)
             - [wrapBuilder: 封装全局@Builder](reference/apis-arkui/arkui-ts/ts-universal-wrapBuilder.md)
+        - 组件预览<!--component-preview-->
+          - [组件预览](reference/apis-arkui/arkui-ts/ts-universal-component-previewer.md)
         - 系统预置UI组件库<!--system-preset-ui-component-library-->
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -4708,6 +4714,7 @@
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-systemmeminfo.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-threadcpuusage.md)
             - [HiDebug_MallocDispatch](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-mallocdispatch.md)
+            - [HiDebug_GraphicsMemorySummary](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-graphicsmemorysummary.md)
             - [HiDebug_Backtrace_Object__*](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-backtrace-object--8h.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/capi-hitrace-hitraceid.md)
         - 错误码<!--performance-analysis-errcode-->

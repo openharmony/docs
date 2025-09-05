@@ -235,6 +235,22 @@ checkboxShape(shape: Optional\<CheckBoxShape>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | shape  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状，包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值为CheckBoxShape.CIRCLE。<br />**说明：**<br/>CheckboxGroup组件将按照设置的形状显示。<br/>CheckboxGroup内所有未单独设置shape类型的Checkbox，其形状将与CheckboxGroup保持一致。<br/>CheckboxGroup内已单独设置shape类型的Checkbox，其形状将优先于CheckboxGroup的设置，按照自身设置显示。 |
 
+### contentModifier<sup>21+</sup>
+
+contentModifier(modifier: Optional<ContentModifier\<CheckBoxGroupConfiguration>>)
+
+定制CheckboxGroup内容区的方法。设置该属性时，其他属性设置会失效。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ContentModifier\<CheckBoxGroupConfiguration>](#checkboxgroupconfiguration21对象说明)> | 是   | 在CheckboxGroup组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义类以实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
@@ -323,6 +339,20 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 | All   | 群组多选择框全部选择。 |
 | Part  | 群组多选择框部分选择。 |
 | None  | 群组多选择框全部没有选择。 |
+
+## CheckBoxGroupConfiguration<sup>21+</sup>对象说明
+
+开发者必须自定义此类以实现ContentModifier接口，使用方法见[contentModifier](#contentmodifier21)。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型    |    只读    |    可选      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| name | string | 否 | 否 |当前多选框群组名称。 |
+| status | [SelectStatus](#selectstatus枚举说明)| 否 | 否 | 表示多选框群组的选中状态。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框群组选中状态变化。true表示从部分选中或未选中变为全部选中，false表示从全部选中或部分选中变为全部未选中。 |
 
 ## 示例
 
@@ -467,3 +497,122 @@ struct Index {
 
 ![checkboxGroup](figures/checkboxGroup2.gif)
 
+### 示例3（自定义多选框样式）
+
+从API version 21开始，该示例通过[contentModifier](#contentmodifier21)属性实现了自定义复选框群组样式的功能。自定义样式实现了一个五边形复选框群组，如果全部选中，内部会出现红色三角图案，标题会显示全选字样；如果部分选中，三角图案显示蓝色，标题会显示部分选中字样；如果未选中，三角图案消失，标题会显示未选中。
+
+```ts
+// xxx.ets
+class MyCheckboxGroupStyle implements ContentModifier<CheckBoxGroupConfiguration> {
+  selectedColor: Color = Color.Black;
+
+  constructor(selectedColor: Color) {
+    this.selectedColor = selectedColor;
+  }
+
+  applyContent(): WrappedBuilder<[CheckBoxGroupConfiguration]> {
+    return wrapBuilder(buildCheckboxgroup);
+  }
+}
+let statusString: string[] = ["全选", "部分选中", "全不选"];
+@Builder
+function buildCheckboxgroup(config: CheckBoxGroupConfiguration) {
+  Column({ space: 10 }) {
+    Text(config.name + " " + statusString[config.status ]).margin({ right: 70, top: 50 })
+    Text(config.enabled ? "enabled true" : "enabled false").margin({ right: 110 })
+    Shape() {
+      Path()
+        .width(100)
+        .height(100)
+        .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
+        .fillOpacity(0)
+        .strokeWidth(3)
+        .onClick(() => {
+          console.log("checkboxgroup status ", statusString[config.status])
+          if (config.status === SelectStatus.All ||  config.status === SelectStatus.Part) {
+            config.triggerChange(false);
+            console.log("checkboxgroup not selected")
+          } else {
+            config.triggerChange(true);
+            console.log("checkboxgroup selected")
+          }
+        })
+        .opacity(config.enabled ? 1 : 0.1)
+      Path()
+        .width(10)
+        .height(10)
+        .commands('M50 0 L100 100 L0 100 Z')
+        .visibility(config.status === SelectStatus.All ? Visibility.Visible : Visibility.Hidden)
+        .fill(config.status === SelectStatus.All ? (config.contentModifier as MyCheckboxGroupStyle).selectedColor : Color.Black)
+        .stroke((config.contentModifier as MyCheckboxGroupStyle).selectedColor)
+        .margin({ left: 10, top: 10 })
+        .opacity(config.enabled ? 1 : 0.1)
+      Path()
+        .width(10)
+        .height(10)
+        .commands('M50 0 L100 100 L0 100 Z')
+        .visibility(config.status === SelectStatus.Part ? Visibility.Visible : Visibility.Hidden)
+        .fill(config.status === SelectStatus.Part ? Color.Blue : Color.Black)
+        .stroke((config.contentModifier as MyCheckboxGroupStyle).selectedColor)
+        .margin({ left: 10, top: 10 })
+        .opacity(config.enabled ? 1 : 0.1)
+    }
+    .width(300)
+    .height(200)
+    .viewPort({
+      x: 0,
+      y: 0,
+      width: 310,
+      height: 310
+    })
+    .strokeLineJoin(LineJoinStyle.Miter)
+    .strokeMiterLimit(5)
+    .margin({ left: 50 })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State checkboxEnabled: boolean = true;
+
+  build() {
+    Column({ space: 100 }) {
+      CheckboxGroup({  group: 'checkboxGroup' })
+         .contentModifier(new MyCheckboxGroupStyle(Color.Red))
+        .onChange((itemName: CheckboxGroupResult) => {
+          console.info(" CheckboxGroup onChange: " + JSON.stringify(itemName));
+        })
+        .enabled(this.checkboxEnabled)
+
+      Row() {
+        Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
+          if (value) {
+            this.checkboxEnabled = true;
+          } else {
+            this.checkboxEnabled = false;
+          }
+        })
+      }.position({ x: 50, y: 130 })
+      Row() {
+        Checkbox({ name: '复选框1', group: 'checkboxGroup' })
+          .onChange((value: boolean) => {
+            console.info('复选框1 change to ' + value);
+          })
+        Text('复选框1').fontSize(20)
+      }
+        .position({ x: 50, y: 230 })
+      Row() {
+        Checkbox({ name: '复选框2', group: 'checkboxGroup' })
+          .onChange((value: boolean) => {
+            console.info('复选框2 change to ' + value);
+          })
+        Text('复选框2').fontSize(20)
+      }
+      .position({ x: 50, y: 260 })
+    }.margin({ top: 30 })
+  }
+}
+```
+
+![checkboxGroup](figures/checkboxGroup3.gif)

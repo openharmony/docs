@@ -20,6 +20,8 @@
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
+**相关示例：** <!--RP1-->[NativeNodeSample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NativeNodeSample)<!--RP1End-->
+
 ## 汇总
 
 ### 结构体
@@ -393,13 +395,13 @@ enum ArkUI_NodeAttributeType
 | NODE_IMAGE_FILL_COLOR | 设置填充颜色，设置后填充颜色会覆盖在图片上，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：填充色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：填充色数值，0xargb格式。|
 | NODE_IMAGE_RESIZABLE | 设置图像拉伸时，可调整大小的图像选项。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32 图片左部拉伸时，保持不变距离。单位vp。<br> .value[1].f32 图片上部拉伸时，保持不变距离。单位vp。<br> .value[2].f32 图片右部拉伸时，保持不变距离。单位vp。<br> .value[3].f32 图片下部拉伸时，保持不变距离。单位vp。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32 图片左部拉伸时，保持不变距离。单位vp。<br> .value[1].f32 图片上部拉伸时，保持不变距离。单位vp。<br> .value[2].f32 图片右部拉伸时，保持不变距离。单位vp。<br> .value[3].f32 图片下部拉伸时，保持不变距离。单位vp。 |
 | NODE_IMAGE_SYNC_LOAD = 4012 | 图源同步加载属性，支持属性设置，属性重置，属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32 表示是否同步，默认值：false。false表示异步加载图片，true表示同步加载图片。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32 表示是否同步。<br>**起始版本：** 20  |
-| NODE_IMAGE_SOURCE_SIZE = 4013 | 设置图片解码尺寸，仅在目标尺寸小于图源尺寸时生效。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：表示图片解码的宽，单位px。<br> .value[1].i32：表示图片解码的高，单位px。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：表示图片解码的宽，单位px。<br> .value[1].i32：表示图片解码的高，单位px。<br>**起始版本：** 21 |
-| NODE_IMAGE_IMAGE_MATRIX = 4014 | 设置图片的变换矩阵属性。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0...15].f32：4x4矩阵通过长度为16的浮点数数组来表示。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0...15].f32：4x4矩阵通过长度为16的浮点数数组来表示。<br>**起始版本：** 21 |
-| NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015 | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：图片是否跟随系统语言方向。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：图片是否跟随系统语言方向。<br>**起始版本：** 21 |
+| NODE_IMAGE_SOURCE_SIZE = 4013 | 设置图片解码尺寸，仅在目标尺寸小于图源尺寸时生效。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：表示图片解码的宽，单位px。<br> .value[1].i32：表示图片解码的高，单位px。当任意参数小于等于0时，属性设置失败并返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)函数参数异常。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：表示图片解码的宽，单位px。<br> .value[1].i32：表示图片解码的高，单位px。<br>**起始版本：** 21 |
+| NODE_IMAGE_IMAGE_MATRIX = 4014 | 设置图片的变换矩阵属性。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0...15].f32：4x4矩阵通过长度为16的浮点数数组来表示。当参数个数小于16，属性设置失败并返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)函数参数异常；当参数个数大于16，只取前16个数据。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0...15].f32：4x4矩阵通过长度为16的浮点数数组来表示。<br>**起始版本：** 21 |
+| NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015 | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：图片是否跟随系统语言方向，默认值为false。false表示图片不跟随系统语言方向，true表示图片跟随系统语言方向。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：图片是否跟随系统语言方向。false表示图片不跟随系统语言方向，true表示图片跟随系统语言方向。<br>**起始版本：** 21 |
 | NODE_IMAGE_COPY_OPTION = 4016 | 设置图片的拷贝方式。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：支持图片拷贝的方式[ArkUI_CopyOptions](capi-native-type-h.md#arkui_copyoptions)，默认值为ARKUI_COPY_OPTIONS_NONE。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：支持图片拷贝的方式[ArkUI_CopyOptions](capi-native-type-h.md#arkui_copyoptions)。<br>**起始版本：** 21 |
-| NODE_IMAGE_ENABLE_ANALYZER = 4017 | 设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：是否为图片开启AI分析。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：是否为图片开启AI分析。<br>**起始版本：** 21 |
+| NODE_IMAGE_ENABLE_ANALYZER = 4017 | 设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：是否为图片开启AI分析，默认值为false。false表示组件不支持AI分析，true表示组件支持AI分析。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：是否为图片开启AI分析。false表示组件不支持AI分析，true表示组件支持AI分析。<br>**起始版本：** 21 |
 | NODE_IMAGE_DYNAMIC_RANGE_MODE = 4018 | 定义图片显示动态范围属性，指定图像渲染的动态范围模式（例如：SDR/HDR）。支持设置、重置和获取接口，用于匹配显示设备能力，确保图像明暗与色彩的准确呈现。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：动态范围类型[ArkUI_DynamicRangeMode](capi-native-type-h.md#arkui_dynamicrangemode)，默认值为ARKUI_DYNAMIC_RANGE_MODE_STANDARD。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：动态范围类型[ArkUI_DynamicRangeMode](capi-native-type-h.md#arkui_dynamicrangemode)。<br>**起始版本：** 21 |
-| NODE_IMAGE_HDR_BRIGHTNESS = 4019 | 定义图片HDR模式下的亮度属性，用于控制高动态范围显示的亮度参数。支持设置、重置和获取接口，确保HDR图像亮部与暗部细节的精准呈现。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：可设置的亮度值，取值范围[0, 1]。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：可设置的亮度值，取值范围[0, 1]。<br>**起始版本：** 21 |
+| NODE_IMAGE_HDR_BRIGHTNESS = 4019 | 定义图片HDR模式下的亮度属性，用于控制高动态范围显示的亮度参数。支持设置、重置和获取接口，确保HDR图像亮部与暗部细节的精准呈现。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：可设置的亮度值，取值范围[0, 1]。小于0和大于1.0时取1。0表示图片按照SDR亮度显示，1表示图片按照当前允许的最高HDR亮度显示。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：可设置的亮度值，取值范围[0, 1]。<br>**起始版本：** 21 |
 | NODE_IMAGE_ORIENTATION = 4020 | 设置图像内容的显示方向。支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：期望的图像内容显示方向[ArkUI_Orientation](capi-native-type-h.md#arkui_imagerotateorientation)，默认值为ARKUI_ORIENTATION_UP。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：期望的图像内容显示方向[ArkUI_Orientation](capi-native-type-h.md#arkui_imagerotateorientation)。<br>**起始版本：** 21 |
 | NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE | 组件打开状态的背景颜色属性，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：背景色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：背景色数值，0xargb格式。 |
 | NODE_TOGGLE_SWITCH_POINT_COLOR | Switch类型的圆形滑块颜色属性，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：圆形滑块颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：圆形滑块颜色数值，0xargb格式。 |
@@ -516,7 +518,7 @@ enum ArkUI_NodeAttributeType
 | NODE_TIME_PICKER_START = 14005 | 设置时间选择器组件的起始时间，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .string: 时间。默认值："0:0:0"。格式：仅支持时、分输入（例：12:59/12-59）。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .string: 时间。默认值："0:0:0"。格式：时、分、秒（例：12:59:0）。<br>**起始版本：** 18  |
 | NODE_TIME_PICKER_END = 14006 | 设置时间选择器组件的结束日期，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .string: 时间。默认值："23:59:59"。格式：仅支持时、分输入（例：23:59/23-59）。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)参数格式：<br> .string: 时间。默认值："23:59:59"。格式：时、分、秒（例：23:59:0）。<br>**起始版本：** 18  |
 | NODE_TIME_PICKER_ENABLE_CASCADE = 14007 | 在设置12小时制时，上午和下午的标识会根据小时数自动切换，支持属性设置、重置和获取。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32： 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换，默认值：false。false表示不自动切换，true表示自动切换。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32： 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br>**起始版本：** 18  |
-| NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER | 设置滑动选择文本选择器的选择列表，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：使用的选择器类型[ArkUI_TextPickerRangeType](capi-native-type-h.md#arkui_textpickerrangetype)，默认值为ARKUI_TEXTPICKER_RANGETYPE_SINGLE；<br> ?.string：针对不同选择器类型有如下输入范式：<br> 1：单列选择器，入参格式为用分号分隔的一组字符串；<br> 2：多列选择器，支持多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔；<br> ?.object：针对不同选择器类型有如下输入范式：<br> 1：单列支持图片的选择器，输入结构体为[ARKUI_TextPickerRangeContent](capi-arkui-nativemodule-arkui-textpickerrangecontent.md)；<br> 2：多列联动选择器，输入结构体为[ARKUI_TextPickerCascadeRangeContent](capi-arkui-nativemodule-arkui-textpickercascaderangecontent.md)；<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：使用的选择器类型[ArkUI_TextPickerRangeType](capi-native-type-h.md#arkui_textpickerrangetype)；<br> ?.string：针对不同选择器类型有如下输出范式：<br> 1：单列选择器，输出格式为用分号分隔的一组字符串；<br> 2：多列选择器，输出多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔；<br> ?.object：针对不同选择器类型有如下输出范式：<br> 1：单列支持图片的选择器，输出结构体为[ARKUI_TextPickerRangeContent](capi-arkui-nativemodule-arkui-textpickerrangecontent.md)；<br> 2：多列联动选择器，输出结构体为[ARKUI_TextPickerCascadeRangeContent](capi-arkui-nativemodule-arkui-textpickercascaderangecontent.md)； |
+| NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER | 设置滑动选择文本选择器的选择列表，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：使用的选择器类型[ArkUI_TextPickerRangeType](capi-native-type-h.md#arkui_textpickerrangetype)，默认值为ARKUI_TEXTPICKER_RANGETYPE_SINGLE；<br> ?.string：针对不同选择器类型有如下输入范式：<br> 1：单列选择器，入参格式为用分号分隔的一组字符串；<br> 2：多列选择器，支持多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔；<br> ?.object：针对不同选择器类型有如下输入范式：<br> 1：单列支持图片的选择器，输入结构体为[ARKUI_TextPickerRangeContentArray](capi-arkui-nativemodule-arkui-textpickerrangecontentarray.md)；<br> 2：多列联动选择器，输入结构体为[ARKUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)；<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].i32：使用的选择器类型[ArkUI_TextPickerRangeType](capi-native-type-h.md#arkui_textpickerrangetype)；<br> ?.string：针对不同选择器类型有如下输出范式：<br> 1：单列选择器，输出格式为用分号分隔的一组字符串；<br> 2：多列选择器，输出多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔； |
 | NODE_TEXT_PICKER_OPTION_SELECTED | 设置滑动选择文本内容的组件默认选中项在数组中的索引值，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：索引值，如存在多个索引值则逐个添加。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].u32：索引值，如存在多个索引值则逐个添加； |
 | NODE_TEXT_PICKER_OPTION_VALUE | 设置滑动选择文本内容的组件默认选中项的值，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string：选中项的值，如存在多个值则逐个添加，用分号分隔。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string：选中项的值，如存在多个值则逐个添加，用分号分隔； |
 | NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE | 设置滑动选择文本内容的组件所有选项中最上和最下两个选项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string： 入参5个，格式为字符串，以 ';' 分割：<br>       入参1： 文本颜色，#argb类型<br>       入参2： 文本大小，数字类型，单位fp<br>       入参3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")<br>       入参4： 文本字体列表，使用 ',' 进行分割<br>       入参5： 文本样式，字符串枚举("normal", "italic")<br>       如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。<br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .string： 参数5个，格式为字符串，以 ';' 分割：<br>       参数1： 文本颜色，#argb类型<br>       参数2： 文本大小，数字类型，单位fp<br>       参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")<br>       参数4： 文本字体列表，使用 ',' 进行分割<br>       参数5： 文本样式，字符串枚举("normal", "italic")<br>       如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
@@ -2744,7 +2746,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定的节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定的节点。 |
 | void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
 | onColorModeChange | 事件触发后的回调。[ArkUI_SystemColorMode](capi-native-type-h.md#arkui_systemcolormode)用于定义系统深浅色模式。 |
 
@@ -2792,7 +2794,7 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定的节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定的节点。 |
 |  void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
 | onFontStyleChange | 事件触发后的回调。 |
 
@@ -2892,7 +2894,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,void* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定需要注册回调函数的目标节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
 | onLayoutCompleted | 布局完成时的回调函数。 |
 
@@ -2920,7 +2922,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,void* us
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定需要注册回调函数的目标节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
 | onDrawCompleted | 绘制完成时的回调函数。 |
 

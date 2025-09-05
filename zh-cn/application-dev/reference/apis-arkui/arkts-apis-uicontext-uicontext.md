@@ -104,7 +104,7 @@ struct UIContextCompare {
             const ctx: UIContext = this.getUIContext();
             const available: boolean = ctx.isAvailable();
             this.result1 = `可用状态: ${available} UI实例有效 `;
-            console.log("getUIContext测试:", available);
+            console.info("getUIContext测试:", available);
           } catch (e) {
             this.result1 = "错误: " + (e instanceof Error ? e.message : String(e));
           }
@@ -119,7 +119,7 @@ struct UIContextCompare {
             const ctx: UIContext = new UIContext();
             const available: boolean = ctx.isAvailable();
             this.result2 = `可用状态: ${available} UI实例无效`;
-            console.log("new UIContext测试:", available);
+            console.info("new UIContext测试:", available);
           } catch (e) {
             this.result2 = "错误: " + (e instanceof Error ? e.message : String(e));
           }
@@ -391,6 +391,14 @@ animateTo(value: AnimateParam, event: () => void): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+> - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
+> - 如果在[aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
+> - 执行[aboutToDisappear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
+> - 在组件出现和消失时，可以通过[组件内转场](../apis-arkui/arkui-ts/ts-transition-animation-component.md)添加动画效果。
+> - 组件内转场不支持的属性，可以参考[显式动画](./arkui-ts/ts-explicit-animation.md)中的[示例2](./arkui-ts/ts-explicit-animation.md#示例2动画执行结束后组件消失)，使用animateTo实现动画执行结束后组件消失的效果。
+> - 某些场景下，在[状态管理V2](../../ui/state-management/arkts-state-management-overview.md#状态管理v2)中使用animateTo动画，会产生异常效果，具体可参考：[在状态管理V2中使用animateTo动画效果异常](../../ui/state-management/arkts-new-local.md#在状态管理v2中使用animateto动画效果异常)。
 
 **参数：**
 
@@ -1218,7 +1226,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1283,7 +1291,7 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1464,7 +1472,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
@@ -1643,7 +1651,7 @@ import { UIContext } from '@kit.ArkUI';
 @Component
 struct ComponentPage {
   loopConsole(inspectorStr: string, i: string) {
-    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`);
+    console.info(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`);
     if (JSON.parse(inspectorStr).$children) {
       i += '-';
       for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
@@ -1657,14 +1665,14 @@ struct ComponentPage {
       Button('content').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
-        console.log(`InsTree : ${inspectorStr}`);
+        console.info(`InsTree : ${inspectorStr}`);
         inspectorStr = JSON.stringify(JSON.parse(inspectorStr));
         this.loopConsole(inspectorStr, '-');
       })
       Button('isLayoutInspector').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
-        console.log(`InsTree : ${inspectorStr}`);
+        console.info(`InsTree : ${inspectorStr}`);
         inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content);
         this.loopConsole(inspectorStr, '-');
       })
@@ -3321,11 +3329,11 @@ struct Index {
     Row() {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
-          console.log("Button1");
+          console.info("Button1");
           return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
-          console.log("Button2");
+          console.info("Button2");
           return true;
         })
       }
