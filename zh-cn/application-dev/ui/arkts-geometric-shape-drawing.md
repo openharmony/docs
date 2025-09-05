@@ -514,3 +514,27 @@ struct Index {
   ```
 
   ![场景2](figures/场景2.jpg)
+
+### UI视觉属性作用效果
+
+>  **说明：**
+>
+> [backgroundColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md)、[linearGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md)等通用属性作用于组件的背景区域，而不会在组件具体的内容区域生效。
+
+
+  ```ts
+  @Entry
+  @Component
+  struct CircleExample {
+    build() {
+      Column({ space: 10 }) {
+        //绘制一个直径为150的圆
+        Circle()
+          .width(150)
+          .height(200)
+          .backgroundColor(Color.Pink) // 会生效在一个150*200大小的矩形区域，而非仅在绘制的一个直径为150的圆形区域
+      }.width('100%')
+    }
+  }
+  ```
+  ![场景3](figures/VirtualEffect.jpg)
