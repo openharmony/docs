@@ -162,15 +162,17 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-// 创建AVMetadataExtractor对象。
-let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
-  if (error) {
-    console.error(`Failed to fetch Metadata, err = ${JSON.stringify(error)}`);
-    return;
-  }
-  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
-});
+async function test() {
+  // 创建AVMetadataExtractor对象。
+  let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
+  avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
+    if (error) {
+      console.error(`Failed to fetch Metadata, err = ${JSON.stringify(error)}`);
+      return;
+    }
+    console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
+  });
+}
 ```
 
 ## fetchMetadata<sup>11+</sup>
@@ -202,13 +204,15 @@ fetchMetadata(): Promise\<AVMetadata>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-// 创建AVMetadataExtractor对象。
-let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
-}).catch((error: BusinessError) => {
-  console.error(`Failed to fetch Metadata, error message:${error.message}`);
-});
+async function test() {
+  // 创建AVMetadataExtractor对象。
+  let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
+  avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
+    console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to fetch Metadata, error message:${error.message}`);
+  });
+}
 ```
 
 ## fetchAlbumCover<sup>11+</sup>
@@ -241,17 +245,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
 
-// 创建AVMetadataExtractor对象。
-let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-let pixel_map : image.PixelMap | undefined = undefined;
+async function test() {
+  // 创建AVMetadataExtractor对象。
+  let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
+  let pixel_map : image.PixelMap | undefined = undefined;
 
-avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
-  if (error) {
-    console.error(`Failed to fetch AlbumCover, error = ${JSON.stringify(error)}`);
-    return;
-  }
-  pixel_map = pixelMap;
-});
+  avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
+    if (error) {
+      console.error(`Failed to fetch AlbumCover, error = ${JSON.stringify(error)}`);
+      return;
+    }
+    pixel_map = pixelMap;
+  });
+}
 ```
 
 ## fetchAlbumCover<sup>11+</sup>
@@ -284,15 +290,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
 
-// 创建AVMetadataExtractor对象。
-let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-let pixel_map : image.PixelMap | undefined = undefined;
+async function test() {
+  // 创建AVMetadataExtractor对象。
+  let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
+  let pixel_map : image.PixelMap | undefined = undefined;
 
-avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
-  pixel_map = pixelMap;
-}).catch((error: BusinessError) => {
-  console.error(`Failed to fetch AlbumCover, error message:${error.message}`);
-});
+  avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
+    pixel_map = pixelMap;
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to fetch AlbumCover, error message:${error.message}`);
+  });
+}
 ```
 
 ## release<sup>11+</sup>
@@ -323,15 +331,17 @@ release(callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-// 创建AVMetadataExtractor对象。
-let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-avMetadataExtractor.release((error: BusinessError) => {
-  if (error) {
-    console.error(`Failed to release, err = ${JSON.stringify(error)}`);
-    return;
-  }
-  console.info(`Succeeded in releasing.`);
-});
+async function test() {
+  // 创建AVMetadataExtractor对象。
+  let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
+  avMetadataExtractor.release((error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to release, err = ${JSON.stringify(error)}`);
+      return;
+    }
+    console.info(`Succeeded in releasing.`);
+  });
+}
 ```
 
 ## release<sup>11+</sup>
@@ -362,11 +372,13 @@ release(): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-// 创建AVMetadataExtractor对象。
-let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-avMetadataExtractor.release().then(() => {
-  console.info(`Succeeded in releasing.`);
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release, error message:${error.message}`);
-});
+async function test() {
+  // 创建AVMetadataExtractor对象。
+  let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
+  avMetadataExtractor.release().then(() => {
+    console.info(`Succeeded in releasing.`);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release, error message:${error.message}`);
+  });
+}
 ```

@@ -617,7 +617,7 @@ export default class EntryAbility extends UIAbility {
       let windowClass = windowStage.getMainWindowSync();
       let properties = windowClass.getWindowProperties();
       window.getWindowsByCoordinate(properties.displayId).then((data) => {
-        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
         for (let window of data) {
           // do something with window
         }
@@ -625,7 +625,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
       });
       window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
-        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
         for (let window of data) {
           // do something with window
         }
