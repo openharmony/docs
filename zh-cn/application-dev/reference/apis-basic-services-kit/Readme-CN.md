@@ -145,6 +145,7 @@
   - [屏幕亮度错误码](errorcode-brightness.md)
   <!--DelEnd-->
   - [热管理错误码](errorcode-thermal.md)
+  - [打印服务错误码](errorcode-print.md)
   - [上传下载错误码](errorcode-request.md)
   - [时间时区错误码](errorcode-time.md)
   - [事件错误码](errorcode-CommonEventService.md)
