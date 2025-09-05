@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -76,7 +76,7 @@ struct LinearGradientDemo {
           repeating: true, // 在当前组件内0.3到1.0区域内重复0到0.3区域的颜色渐变效果
           colors: [
             [0xf56c6c, 0.0],
-            [0xE6A23C, .3],
+            [0xE6A23C, 0.3],
           ]
         })
       }
@@ -93,7 +93,7 @@ struct LinearGradientDemo {
         .linearGradient({
           colors: [
             [0xf56c6c, 0.0], // repeating默认为false，此时组件内只有0到0.3区域内存在颜色渐变效果
-            [0xE6A23C, .3],
+            [0xE6A23C, 0.3],
           ]
         })
       }

@@ -1322,6 +1322,8 @@ onSubmit(callback: OnSubmitCallback)
 
 按下输入法回车键触发该回调。
 
+非TV设备按下回车键时输入框默认会失焦且收起键盘，可在OnSubmitCallback回调中配置是否收起键盘，参考[示例2（设置下划线）](#示例2设置下划线)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1711,7 +1713,7 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
-| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
+| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。可以控制是否收起键盘。                                                   |
 
 ## OnTextSelectionChangeCallback<sup>18+</sup>
 

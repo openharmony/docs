@@ -1152,6 +1152,83 @@ dlpPermission.isDLPFeatureProvided().then((res) => {
 });
 ```
 
+## dlpPermission.setEnterprisePolicy<sup>21+</sup>
+
+setEnterprisePolicy(policy: EnterprisePolicy): void
+
+设置企业应用防护策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| policy | [EnterprisePolicy](#enterprisepolicy21) | 是 | 待设置的企业应用防护策略。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | The system ability works abnormally. |
+| 19100021 | Failed to set the enterprise policy. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+
+interface Attribute {
+  attributeId: string;
+  attributeValues: Array<string>;
+  valueType: number;
+  opt: number;
+}
+
+interface Rule {
+  ruleId: string;
+  attributes: Array<Attribute>;
+}
+
+interface Policy {
+  rules: Array<Rule>;
+  policyId: string;
+  ruleConflictAlg: number;
+}
+
+try {
+  let attributeValues: Array<string> = [ '1' ];
+  let attribute: Attribute = {
+    attributeId: 'DeviceHealthyStatus';
+    attributeValues: attributeValues;
+    valueType: 0;
+    opt: 2;
+  }; // 属性信息。
+  let rule: Rule = {
+    ruleId: 'ruleId';
+    attributes: [ attribute ];
+  }; // 规则。
+  let policy: Policy = {
+    rules: [ rule ];
+    policyId: 'policyId';
+    ruleConflictAlg: 0;
+  }; // 策略。
+  let enterprisePolicy: dlpPermission.EnterprisePolicy = {
+    policyString: JSON.stringify(policy);
+  };
+  dlpPermission.setEnterprisePolicy(enterprisePolicy);
+  console.info('set enterprise policy success');
+} catch (err) {
+  console.error('error:' + err.code + err.message); // 失败报错。
+}
+```
+
 ## ActionFlagType
 
 可以对DLP文件进行的操作类型枚举。例如：DLP沙箱应用可以根据是否具有操作权限，对其按钮进行置灰。
@@ -1191,10 +1268,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
-| flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 否 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
+| flags | number | 否 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
 
 ## AccessedDLPFileInfo
 
@@ -1202,10 +1279,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| uri | string | 是 | 否 | 表示DLP文件的uri。不超过4095字节。 |
-| lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
+| uri | string | 否 | 否 | 表示DLP文件的uri。不超过4095字节。 |
+| lastOpenTime | number | 否 | 否 | 表示DLP文件最近打开时间。 |
 
 ## DLPManagerResult<sup>11+</sup>
 
@@ -1215,10 +1292,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| resultCode | number | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
+| resultCode | number | 否 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
 
 ## RetentionSandboxInfo
 
@@ -1226,9 +1303,18 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
+| appIndex | number | 否 | 否 | 表示DLP沙箱应用索引。 |
+| bundleName | string | 否 | 否 | 表示应用包名。最小7字节，最大128字节。 |
+| docUris | Array&lt;string&gt; | 否 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
 
+## EnterprisePolicy<sup>21+</sup>
+
+表示企业定制策略。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| policyString | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |

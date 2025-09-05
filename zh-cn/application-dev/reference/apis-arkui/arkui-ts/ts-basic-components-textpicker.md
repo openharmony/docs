@@ -6,7 +6,7 @@
 <!--Tester: @xiong0104-->
 <!--Adviser: @HelloCrease-->
 
-滑动选择文本内容的组件。
+滑动选择文本、图片或图文混排内容的组件，用户可以按需创建单列数据选择器、多列非联动数据选择器和多列联动数据选择器。
 
 >  **说明：**
 >
@@ -15,6 +15,8 @@
 > - 该组件不建议开发者在动效过程中修改属性数据。
 >
 > - 该组件最大显示行数在横竖屏模式下存在差异，竖屏为5行，横屏为3行。
+>
+> - 多列非联动数据选择器和多列联动数据选择器在下文中统称为多列数据选择器。
 
 
 ## 子组件
@@ -26,7 +28,7 @@
 
 TextPicker(options?: TextPickerOptions)
 
-根据range指定的选择范围创建文本选择器。
+根据指定的数据列表创建文本选择器。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -46,10 +48,10 @@ TextPicker(options?: TextPickerOptions)
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 否 | 否 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，[Resource](ts-types.md#resource)，[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 是 | 设置默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| value | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)[] | 否 | 是 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>从API version 20开始，支持[Resource](ts-types.md#resource)类型。<br/> **说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用[ResourceStr](ts-types.md#resourcestr)类型。<br/>多列、多列联动数据选择器使用[ResourceStr](ts-types.md#resourcestr)[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| columnWidths<sup>18+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)[] | 否 | 是 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等。<br/>**说明**：如果文本长度大于列宽时，文本被截断。<br/>当设置为异常值时，列宽按照默认值处理，此时TextPicker组件多列等宽，每一列宽度为组件宽度除以列数。默认值支持Undefined和Null，不支持Undefined[]和Null[]。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| range | string[]&nbsp;\|&nbsp;string[][]<sup>10+</sup> \| [Resource](ts-types.md#resource)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 否 | 否 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：<br/>1. 单列数据选择器使用string[]，[Resource](ts-types.md#resource)，[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]类型。<br/>2. 多列非联动数据选择器使用string[][]类型。 <br/>3. 多列联动数据选择器使用[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]类型。<br/>4. Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>5. range的类型及列数不可以动态修改。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 是 | 设置选中项在数据选择列表中的索引值，索引从0开始。<br/>默认值：0 <br/>**说明**：<br/>1. 单列数据选择器使用number类型。<br/>2. 多列数据选择器使用number[]类型。<br />3. 从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| value | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)[] | 否 | 是 | 设置选中项的值，优先级低于selected。<br/>默认值：数据选择列表中第一个元素的值。<br/> **说明**：<br/>1. 从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>2. 从API version 20开始，支持[Resource](ts-types.md#resource)类型。<br/>3. 只有显示文本列表时该值有效。显示图片或图文混排的列表时，该值无效。<br/>4. 单列数据选择器使用[ResourceStr](ts-types.md#resourcestr)类型。<br/>5. 多列数据选择器使用[ResourceStr](ts-types.md#resourcestr)[]类型。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| columnWidths<sup>18+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)[] | 否 | 是 | 设置每一列的列宽。<br/>默认值：每一列的列宽相等，为组件宽度除以列数。<br/>**说明**：<br/>1. 当文本长度大于列宽时，文本被截断。<br/>2. 当设置为异常值时，使用默认值。<br/>3. 支持设置为Undefined和Null，不支持Undefined[]和Null[]。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## TextPickerRangeContent<sup>10+</sup>对象说明
 
@@ -62,7 +64,7 @@ TextPicker(options?: TextPickerOptions)
 | 名称 | 类型                                                 | 只读 | 可选 | 说明                                                         |
 | ---- | ---------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | icon | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 否   | 图片资源。 icon是string类型时，表示图片存放的路径，例如"/common/hello.png"。 |
-| text | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 是   | 文本信息。<br/>默认值：空字符串<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
+| text | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 是   | 文本信息。<br/>默认值：空字符串<br/>**说明**：当文本长度大于列宽时，文本被截断。 |
 
 ## TextCascadePickerRangeContent<sup>10+</sup>对象说明
 
@@ -74,7 +76,7 @@ TextPicker(options?: TextPickerOptions)
 
 | 名称 | 类型                                                 | 只读 | 可选 | 说明   |
 | ------ | -------------------------------------------------------- | ---- | ---------- | ---------- |
-| text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否  | 否  | 文本信息。<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
+| text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否  | 否  | 文本信息。<br/>**说明**：当文本长度大于列宽时，文本被截断。 |
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[] | 否  | 是  | 联动数据。 |
 ## DividerOptions<sup>12+</sup>对象说明
 
@@ -86,9 +88,9 @@ TextPicker(options?: TextPickerOptions)
 
 | 名称        | 类型                                       | 只读 | 可选 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| strokeWidth | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。<br/>默认值：2.0px |
-| startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
-| endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
+| strokeWidth | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线的线宽。<br/>默认值：2.0px<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。不支持"百分比"类型。 |
+| startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边起始端的距离。<br/>默认值：0<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。不支持“百分比”类型。 |
+| endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边结束端的距离。<br/>默认值：0<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。不支持“百分比”类型。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 分割线的颜色。<br/>默认值：'#33000000'                       |
 
 ## 属性
@@ -99,7 +101,7 @@ TextPicker(options?: TextPickerOptions)
 
 defaultPickerItemHeight(value: number | string)
 
-设置Picker各选择项的高度。
+设置选择项的高度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -109,13 +111,13 @@ defaultPickerItemHeight(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞)，string类型仅支持number类型取值的字符串形式，例如"56"。<br />默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 选择项的高度。<br />取值范围：<br />number类型：[0, +∞)，单位为vp。<br />string类型：仅支持number类型取值的字符串形式，例如"56"。<br />默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。 |
 
 ### defaultPickerItemHeight<sup>18+</sup>
 
 defaultPickerItemHeight(height: Optional\<number | string>)
 
-设置Picker各选择项的高度。与[defaultPickerItemHeight](#defaultpickeritemheight)相比，height参数新增了对undefined类型的支持。
+设置选择项的高度。与[defaultPickerItemHeight](#defaultpickeritemheight)相比，height参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -125,13 +127,13 @@ defaultPickerItemHeight(height: Optional\<number | string>)
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞)，string类型仅支持number类型取值的字符串形式，例如"56"。<br/>默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。<br/>当height的值为undefined时，维持上次取值。 |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;string> | 是   | 选择项的高度。<br />取值范围：<br />number类型：[0, +∞)，单位为vp。<br />string类型：仅支持number类型取值的字符串形式，例如"56"。<br />默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />1. 设置该参数后，选中项与非选中项的高度均为所设置的值。<br/>2. 当height的值为undefined时，维持上次取值。 |
 
 ### disappearTextStyle<sup>10+</sup>
 
 disappearTextStyle(value: PickerTextStyle)
 
-设置过渡项（以选中项为基准向上或向下的第二项）的文本样式。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -141,13 +143,17 @@ disappearTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 过渡项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+>  **说明：**
+>
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### disappearTextStyle<sup>18+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-设置过渡项的文本颜色、字号、字体粗细。与[disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -157,13 +163,17 @@ disappearTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+
+>  **说明：**
+>
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### disappearTextStyle<sup>20+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
-设置过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。与[disappearTextStyle](#disappeartextstyle18)<sup>18+</sup>相比，style参数新增了对[TextPickerTextStyle](#textpickertextstyle15类型说明)类型的支持。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -173,17 +183,17 @@ disappearTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 边缘项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 >  **说明：**
 >
-> 若选中项向上或向下的可视项数低于两项则无对应过渡项。
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### textStyle<sup>10+</sup>
 
 textStyle(value: PickerTextStyle)
 
-设置一般项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -193,13 +203,17 @@ textStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 一般项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+>  **说明：**
+>
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### textStyle<sup>18+</sup>
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-设置一般项的文本颜色、字号、字体粗细。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -209,13 +223,17 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 一般项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+
+>  **说明：**
+>
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### textStyle<sup>20+</sup>
 
 textStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
-设置一般项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。与[textStyle](#textstyle18)<sup>18+</sup>相比，style参数新增了对[TextPickerTextStyle](#textpickertextstyle15类型说明)类型的支持。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -225,65 +243,71 @@ textStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 待选项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 >  **说明：**
 >
-> 若选中项向上或向下可视项数低于一项则无对应一般项。
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### selectedTextStyle<sup>10+</sup>
 
 selectedTextStyle(value: PickerTextStyle)
 
-设置选中项的文本颜色、字号、字体粗细。Wearable设备不支持设置该属性。
+设置选中项的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该属性在Wearable设备上使用无效果，在其他设备中可正常生效。
+
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedTextStyle<sup>18+</sup>
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle<sup>10+</sup>](#selectedtextstyle10)相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该属性在Wearable设备上使用无效果，在其他设备中可正常生效。
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 ### selectedTextStyle<sup>20+</sup>
 
 selectedTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
-设置选中项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。
+设置选中项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。与[selectedTextStyle](#selectedtextstyle18)<sup>18+</sup>相比，style参数新增了对[TextPickerTextStyle](#textpickertextstyle15类型说明)类型的支持。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该属性在Wearable设备上使用无效果，在其他设备中可正常生效。
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 ### selectedIndex<sup>10+</sup>
 
 selectedIndex(value: number | number[])
 
-设置默认选中项在数组中的索引值，优先级高于[TextPickerOptions](#textpickeroptions对象说明)中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。
+设置选中项在数据选择列表中的索引值，优先级高于[TextPickerOptions](#textpickeroptions对象说明)中的"value"属性。单列数据选择器使用number类型。多列数据选择器使用number[]类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -293,13 +317,13 @@ selectedIndex(value: number | number[])
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为undefined时，默认值与[TextPickerOptions](#textpickeroptions对象说明)中的selected值保持一致。如果[TextPickerOptions](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
+| value  | number&nbsp;\|&nbsp;number[] | 是   | 选中项在数据选择列表中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为负数或者超过数据选择列表的最大索引值时，使用默认值。<br/> |
 
 ### selectedIndex<sup>18+</sup>
 
 selectedIndex(index: Optional\<number | number[]>)
 
-设置默认选中项在数组中的索引值，优先级高于[TextPickerOptions](#textpickeroptions对象说明)中的选中值。单列数据选择器使用number类型，多列、多列联动数据选择器使用number[]类型。与[selectedIndex<sup>10+</sup>](#selectedindex10)相比，index参数新增了对undefined类型的支持。
+设置选中项在数据选择列表中的索引值，优先级高于[TextPickerOptions](#textpickeroptions对象说明)中的"value"属性。单列数据选择器使用number类型，多列数据选择器使用number[]类型。与[selectedIndex<sup>10+</sup>](#selectedindex10)相比，index参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -309,7 +333,7 @@ selectedIndex(index: Optional\<number | number[]>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当index的值为undefined时，默认值与[TextPickerOptions](#textpickeroptions对象说明)中的selected值保持一致，如果[TextPickerOptions](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
+| index  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number&nbsp;\|&nbsp;number[]> | 是   | 选中项在数据选择列表中的索引值，索引从0开始。<br/>默认值：0 <br/>当index的值为undefined时，使用[TextPickerOptions](#textpickeroptions对象说明)中的selected值。<br/>当index的值为负数或者超过数据选择列表的最大索引值时，使用默认值。<br/> |
 
 ### canLoop<sup>10+</sup>
 
@@ -325,13 +349,13 @@ canLoop(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>默认值：true |
+| value  | boolean | 是   | 是否可循环滚动。<br/>- true：可循环。<br/>- false：不可循环。<br/>默认值：true |
 
 ### canLoop<sup>18+</sup>
 
 canLoop(isLoop: Optional\<boolean>)
 
-设置是否可循环滚动。与[canLoop](#canloop10)<sup>10+</sup>相比，isLoop参数新增了对undefined类型的支持。
+设置是否可循环滚动。与[canLoop<sup>10+</sup>](#canloop10)相比，isLoop参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -341,7 +365,7 @@ canLoop(isLoop: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>当isLoop的值为undefined时，默认值：true |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否可循环滚动。<br/>- true：可循环。<br/>- false：不可循环。<br/>默认值：true<br/>当isLoop的值为undefined时，使用默认值。 |
 
 ### divider<sup>12+</sup>
 
@@ -358,13 +382,13 @@ divider(value: DividerOptions | null)
 **参数：**
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| value | [DividerOptions](#divideroptions12对象说明) \| null | 是   | 1.设置[DividerOptions](#divideroptions12对象说明)，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
+| value | [DividerOptions](#divideroptions12对象说明) \| null | 是   | 默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>1. 当textDivider设置为有效的[DividerOptions](#divideroptions12对象说明)时，按设置的样式显示分割线。<br/>2. 当textDivider设置为null时，不显示分割线。 |
 
 ### divider<sup>18+</sup>
 
 divider(textDivider: Optional\<DividerOptions | null>)
 
-设置分割线样式，不设置该属性则按“默认值”展示分割线。与[divider](#divider12)<sup>12+</sup>相比，textDivider参数新增了对undefined类型的支持。
+设置分割线样式，不设置该属性则按“默认值”展示分割线。与[divider<sup>12+</sup>](#divider12)相比，textDivider参数新增了对undefined类型的支持。
 
 [DividerOptions](#divideroptions12对象说明)中startMargin + endMargin 超过组件宽度后，startMargin和endMargin会被置0。
 
@@ -376,7 +400,7 @@ divider(textDivider: Optional\<DividerOptions | null>)
 
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| textDivider | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[DividerOptions](#divideroptions12对象说明) \| null> | 是   | 1.设置[DividerOptions](#divideroptions12对象说明)，则按设置的样式显示分割线。<br/>当textDivider的值为undefined时，默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
+| textDivider | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[DividerOptions](#divideroptions12对象说明) \| null> | 是   | 默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>1. 当textDivider的值为undefined时，使用默认值。<br/>2. 当textDivider设置为有效的[DividerOptions](#divideroptions12对象说明)时，按设置的样式显示分割线。<br/>3. 当textDivider设置为null时，不显示分割线。 |
 
 ### gradientHeight<sup>12+</sup>
 
@@ -392,13 +416,13 @@ gradientHeight(value: Dimension)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度。<br/>默认值：36vp<br/>取值范围：[0, +∞)，支持百分比。<br/>**说明：**<br/>1. value设置为百分比时，100%为TextPicker高度的一半。<br/>2. value设置为0时不显示渐隐效果。<br/>3. value设置为数字且超过TextPicker高度的一半时，使用默认值。<br/>4. 当value的值为负数时，使用默认值。 |
 
 ### gradientHeight<sup>18+</sup>
 
 gradientHeight(height: Optional\<Dimension>)
 
-设置渐隐效果高度，不设置该属性则显示默认渐隐效果。与[gradientHeight](#gradientheight12)<sup>12+</sup>相比，height参数新增了对undefined类型的支持。
+设置渐隐效果的高度。若未设置该属性，则显示默认渐隐效果。与[gradientHeight<sup>12+</sup>](#gradientheight12)相比，height参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -408,13 +432,13 @@ gradientHeight(height: Optional\<Dimension>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。<br/>当height的值为undefined时，默认值为36vp。 |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度。<br/>默认值：36vp<br/>取值范围：[0, +∞)，支持百分比。<br/>**说明：**<br/>1. height设置为百分比时，100%为TextPicker高度的一半。<br/>2. height设置为0时不显示渐隐效果。<br/>3. height设置为数字且超过TextPicker高度的一半时，使用默认值。<br/>4. 当height的值为undefined或负数时，使用默认值。 |
 
 ### disableTextStyleAnimation<sup>15+</sup>
 
 disableTextStyleAnimation(disabled: boolean)
 
-设置滑动过程中是否有文本样式变化动效。设置为true时，滑动过程中无字号、字重、字体颜色等变化动效，且文本均显示为[defaultTextStyle](#defaulttextstyle15)属性设置样式。如未设置[defaultTextStyle](#defaulttextstyle15)，则显示为[Text](ts-basic-components-text.md)组件默认样式。
+设置是否关闭滑动过程中文本样式变化的动效。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -424,13 +448,13 @@ disableTextStyleAnimation(disabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| disabled  | boolean | 是   | 设置滑动过程中是否有文本样式变化动效。<br/>true：无文本样式变化动效，false：有文本样式变化动效。<br/>默认值：false |
+| disabled  | boolean | 是   | 是否关闭滑动过程中文本样式变化的动效。<br/>- true：关闭文本样式变化动效。<br/>- false：不关闭文本样式变化动效。<br/>默认值：false<br />**说明：**<br/>设置为true时，滑动过程中无字号、字重、字体颜色等变化动效，且文本均显示为[defaultTextStyle](#defaulttextstyle15)属性设置的样式。如未设置[defaultTextStyle](#defaulttextstyle15)，则显示为[Text](ts-basic-components-text.md)组件默认样式。|
 
 ### defaultTextStyle<sup>15+</sup>
 
 defaultTextStyle(style: TextPickerTextStyle)
 
-设置关闭滑动过程中文本样式变化动效时，各个选项文本的样式。仅当[disableTextStyleAnimation](#disabletextstyleanimation15)为true时生效。
+设置关闭滑动过程中文本样式变化的动效时，各个选项的文本样式。仅当[disableTextStyleAnimation](#disabletextstyleanimation15)为true时生效。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -440,7 +464,18 @@ defaultTextStyle(style: TextPickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
+| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化的动效时，各个选项的文本样式。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
+
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
+>  ```json
+>  "requestPermissions": [
+>  {
+>   "name": "ohos.permission.VIBRATE",
+>  }
+>  ]
+>  ```
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -456,11 +491,11 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 设置是否开启触控反馈。<br/>- true：开启触控反馈。<br/>- false：不开启触控反馈。<br/>默认值：true<br/>设置为true后，其生效情况取决于系统的硬件是否支持。 |
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -523,14 +558,14 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
+| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列数据选择器的value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值，索引从0开始。多列数据选择器的index为数组类型。 |
 
 ### onChange<sup>18+</sup>
 
 onChange(callback: Optional\<OnTextPickerChangeCallback>)
 
-滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
@@ -566,7 +601,7 @@ onScrollStop(callback: TextPickerScrollStopCallback)
 
 onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
 
-文本选择器的选项列滑动停止时触发该事件。与[onScrollStop](#onscrollstop14)<sup>14+</sup>相比，callback参数新增了对undefined类型的支持。
+文本选择器的选项列滑动停止时触发该事件。与[onScrollStop<sup>14+</sup>](#onscrollstop14)相比，callback参数新增了对undefined类型的支持。
 
 手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
 
@@ -584,11 +619,13 @@ onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
 
 onEnterSelectedArea(callback: TextPickerEnterSelectedAreaCallback)
 
-滑动TextPicker过程中，选项进入分割线区域内，触发该回调。
+滑动TextPicker过程中，选项进入分割线区域内（当前列的滑动距离超过选中项高度的一半）时，触发该回调。
 
-与[onChange](#onchange)事件的差别在于，该事件的触发时机早于[onChange](#onchange)事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。
-
-当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+>  **说明：**
+>
+> - 与[onChange](#onchange)事件的差别在于，该事件的触发时机早于[onChange](#onchange)事件。
+>
+> - 在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -634,7 +671,7 @@ onCancel(callback: () => void)
 
 ## TextPickerTextStyle<sup>15+</sup>类型说明
 
-文本样式选项，继承自[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)。
+文本样式选项，继承自[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -650,7 +687,7 @@ onCancel(callback: () => void)
 
 type OnTextPickerChangeCallback = (selectItem: string | string[], index: number | number[]) => void
 
-滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，selectItem值为选中项中的文本值，当显示图片列表时，selectItem值为空。
+定义触发onChange事件的回调类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -660,16 +697,14 @@ type OnTextPickerChangeCallback = (selectItem: string | string[], index: number 
 
 | 参数名     | 类型                                       | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectItem | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，selectItem为数组类型。         |
-| index      | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
+| selectItem | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列数据选择器的selectItem为数组类型。<br/>**说明：**<br/>当选择器内容为文本或图文混排时，selectItem值为选中项中的文本值；当选择器内容为图片时，selectItem值为空。 |
+| index      | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值，索引从0开始。多列数据选择器的index为数组类型。 |
 
 ## TextPickerScrollStopCallback<sup>14+</sup>
 
 type TextPickerScrollStopCallback = (value: string | string[], index: number | number[]) => void
 
-文本选择器的选项列滑动停止时触发该事件。
-
-当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+定义触发onScrollStop事件的回调类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -679,16 +714,14 @@ type TextPickerScrollStopCallback = (value: string | string[], index: number | n
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列数据选择器的value为数组类型。<br/>**说明：**<br/>当选择器内容为文本或图文混排时，value值为选中项中的文本值；当选择器内容为图片时，value值为空。 |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值，索引从0开始。多列数据选择器的index为数组类型。 |
 
 ## TextPickerEnterSelectedAreaCallback<sup>18+</sup>
 
 type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: number | number[]) => void
 
-滑动TextPicker过程中，选项进入分割线区域内，触发该回调。
-
-在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
+定义触发onEnterSelectedArea事件的回调类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -698,12 +731,12 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列数据选择器的value为数组类型。<br/>**说明：**<br/>当选择器内容为文本或图文混排时，value值为选中项中的文本值；当选择器内容为图片时，value值为空。 |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值，索引从0开始。多列数据选择器的index为数组类型。 |
 
 ## PickerBackgroundStyle<sup>20+</sup>
 
-选择器选项背景样式，包括选项背景颜色和选项边框圆角半径。
+选择器选中项的背景样式，包括选中项的背景颜色和边框圆角半径。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -711,13 +744,13 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 | 名称 | 类型                                       | 只读 | 可选 | 说明                                              |
 | ------ | ------------------------------------- | ---- | ------------------------------------------------- | ------------------------------------------------- |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 选项背景颜色，默认值为'sys.color.comp_background_tertiary'。   |
-| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否  | 是  | 选项边框圆角半径。[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位；[BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。默认值为{ value:24, unit:LengthUnit.VP }，即四个圆角半径均为24VP。 |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 选中项的背景颜色。<br/>默认值：'sys.color.comp_background_tertiary'。   |
+| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否  | 是  | 选中项的边框圆角半径。<br/>默认值：{ value:24, unit:LengthUnit.VP }，即四个圆角半径均为24VP。<br/>**说明：**<br/>1. [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位。<br/>2. [BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。<br/>3. [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。 |
 ## 示例
 
 ### 示例1（设置选择器列数）
 
-该示例通过配置range实现单列或多列文本选择器，通过配置columnWidths设置每一列宽度。
+该示例通过配置range实现单列数据选择器和多列数据选择器，并使用columnWidths调整每一列的宽度。
 
 ```ts
 // xxx.ets
@@ -812,7 +845,7 @@ struct TextPickerExample {
 
 ### 示例2（设置文本样式）
 
-该示例通过配置[disappearTextStyle](#disappeartextstyle10)、[textStyle](#textstyle10)、[selectedTextStyle](#selectedtextstyle10)实现文本选择器中的文本样式。
+该示例使用[disappearTextStyle](#disappeartextstyle10)、[textStyle](#textstyle10)、[selectedTextStyle](#selectedtextstyle10)设置文本选择器中的文本样式。
 
 ```ts
 // xxx.ets
@@ -881,7 +914,7 @@ struct TextPickerExample {
 
 ### 示例4（设置分割线样式）
 
-该示例通过配置divider的DividerOptions类型实现分割线样式的文本选择器。
+该示例通过配置divider的DividerOptions设置文本选择器的分割线样式。
 
 ```ts
 // xxx.ets
@@ -917,7 +950,7 @@ struct TextPickerExample {
 
 ### 示例5（设置渐隐效果）
 
-该示例通过gradientHeight自定义TextPicker的渐隐效果高度。
+该示例通过配置gradientHeight设置文本选择器的渐隐效果高度。
 
 ```ts
 // xxx.ets
@@ -979,7 +1012,7 @@ struct TextPickerExample {
 
 ### 示例7（设置循环滚动）
 
-该示例通过配置[canLoop](#canloop10)设置TextPicker是否循环滚动。
+该示例通过配置[canLoop](#canloop10)设置文本选择器是否循环滚动。
 
 ```ts
 // xxx.ets
@@ -1045,9 +1078,9 @@ struct TextPickerExample {
 
 ![textpicker](figures/TextPickerDemo8.png)
 
-### 示例9（设置禁用文本样式变化动效与对应文本样式）
+### 示例9（设置关闭文本样式变化动效与对应文本样式）
 
-该示例通过配置[disableTextStyleAnimation](#disabletextstyleanimation15)、[defaultTextStyle](#defaulttextstyle15)实现文本选择器禁用文本样式变化动效与此时的文本样式设置。
+该示例通过配置[disableTextStyleAnimation](#disabletextstyleanimation15)、[defaultTextStyle](#defaulttextstyle15)实现关闭文本选择器文本样式变化的动效，并设置文本样式。
 
 ```ts
 // xxx.ets

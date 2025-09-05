@@ -92,3 +92,4 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [custom_authentication](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->

@@ -7,7 +7,7 @@
 <!--Tester: @fenglili18-->
 <!--Adviser: @Brilliantry_Rui-->
 
-本模块提供后台代理提醒的能力，即当应用被冻结或应用退出时，计时和提醒的功能将被系统服务代理。开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
+本模块提供后台代理提醒的能力，即当应用被冻结或应用退出时，定时提醒功能将被系统服务代理。开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。开发指导请参考[代理提醒开发指南](../../task-management/agent-powered-reminder.md)。
 
 > **说明：**
 >
@@ -26,7 +26,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 发布后台代理提醒。使用callback异步回调。
 
-如果[ReminderRequest.ringDuration](#reminderrequest)参数值大于0，则自定义铃声默认在闹钟通道上播放，如果值不大于0，则无响铃。
+代理提醒发布成功后，当到达设置的提醒时间点时，通知中心会弹出相应的提醒，此时如果[ReminderRequest.ringDuration](#reminderrequest)参数值大于0，则设置的自定义铃声默认在闹钟通道上播放，如果值不大于0，则不播放自定义铃声。
 
 > **说明：**
 >
@@ -78,7 +78,7 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-发布后台代理提醒。使用promise异步回调。
+发布后台代理提醒。使用Promise异步回调。
 
 如果[ReminderRequest.ringDuration](#reminderrequest)参数值大于0，则自定义铃声默认在闹钟通道上播放，如果值不大于0，则无响铃。
 
@@ -144,8 +144,8 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 需要取消的代理提醒的id。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则返回err信息。 |
+| reminderId | number | 是 | 需要取消的代理提醒的id，代理提醒id会在[发布代理提醒](#reminderagentmanagerpublishreminder)时作为返回值返回。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -185,7 +185,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 需要取消的代理提醒的id。 |
+| reminderId | number | 是 | 需要取消的代理提醒的id，代理提醒id会在[发布代理提醒](#reminderagentmanagerpublishreminder)时作为返回值返回。 |
 
 **返回值**：
 
@@ -279,7 +279,7 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
 
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
-获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用promise异步回调。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -410,7 +410,7 @@ reminderAgentManager.cancelAllReminders().then(() => {
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void
 
-添加通知槽。使用callback异步回调。
+添加通知渠道。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -418,8 +418,8 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot-1) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot-1) | 是 | 通知渠道实例，仅支持设置其notificationType属性。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -454,7 +454,7 @@ reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError) => {
 
 addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
-添加通知槽。使用promise异步回调。
+添加通知渠道。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -462,7 +462,7 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot-1) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot-1) | 是 | 通知渠道实例，仅支持设置其notificationType属性。 |
 
 **返回值**：
 
@@ -500,7 +500,7 @@ reminderAgentManager.addNotificationSlot(mySlot).then(() => {
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
-删除目标通知槽，使用callback异步回调。
+删除指定的通知渠道类型，使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -541,7 +541,7 @@ reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-删除目标通知槽，使用Promise异步回调。
+删除指定的通知渠道类型，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -583,7 +583,7 @@ reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT
 
 getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
-获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用promise异步回调。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用Promise异步回调。该接口调用需要申请ohos.permission.PUBLISH_AGENT_REMINDER权限。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -646,7 +646,7 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | ---------------------------------- |
-| reminderId | number | 是   | 需要添加不提醒日期的周期性日历id。 |
+| reminderId | number | 是   | 需要添加不提醒日期的代理提醒id，代理提醒id会在[发布代理提醒](#reminderagentmanagerpublishreminder)时作为返回值返回。 |
 | date       | Date   | 是   | 不提醒的日期。                     |
 
 **返回值**：
@@ -692,7 +692,7 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | ---------------------------------- |
-| reminderId | number | 是   | 需要删除不提醒日期的周期性日历id。 |
+| reminderId | number | 是   | 需要删除不提醒日期的代理提醒id，代理提醒id会在[发布代理提醒](#reminderagentmanagerpublishreminder)时作为返回值返回。 |
 
 **返回值**：
 
@@ -735,7 +735,7 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | ---------------------------------- |
-| reminderId | number | 是   | 需要查询不提醒日期的周期性日历id。 |
+| reminderId | number | 是   | 需要查询不提醒日期的代理提醒id，代理提醒id会在[发布代理提醒](#reminderagentmanagerpublishreminder)时作为返回值返回。 |
 
 **返回值**：
 
@@ -783,7 +783,7 @@ updateReminder(reminderId: number, reminderReq: ReminderRequest): Promise\<void>
 
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | ---------------------------------- |
-| reminderId | number | 是   | 需要更新的代理提醒的id，id为[publishReminder](#reminderagentmanagerpublishreminder)返回值。 |
+| reminderId | number | 是   | 需要更新的代理提醒的id，代理提醒id会在[发布代理提醒](#reminderagentmanagerpublishreminder)时作为返回值返回。 |
 | reminderReq | [ReminderRequest](#reminderrequest) | 是   | 代理提醒对象实例，用于设置提醒类型、响铃时长等具体信息。 |
 
 **返回值**：
@@ -830,7 +830,7 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
-| ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延时提醒的按钮，提醒次数和间隔通过 [ReminderRequest](#reminderrequest) 中snoozeTimes和timeInterval设置。 |
+| ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延时提醒的按钮，提醒次数和间隔通过[ReminderRequest](#reminderrequest)中snoozeTimes和timeInterval设置。 |
 
 ## ReminderType
 
@@ -905,26 +905,26 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 否 | 否 | 指明代理提醒类型。 |
-| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 是 | 弹出的提醒通知中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 是 | 弹出的提醒通知中显示的按钮。<br>针对三方应用：最多支持两个按钮。<br>针对系统应用：从API version 10开始最多支持三个按钮，API version 10之前的版本最多支持两个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 是 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 是 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
-| ringDuration | number | 否 | 是 | 指明响铃时长（单位：秒），默认1秒。 |
-| snoozeTimes | number | 否 | 是 | 指明延时提醒次数，默认0次(不适用于倒计时提醒类型)。 |
-| timeInterval | number | 否 | 是 | 执行延时提醒间隔（单位：秒），最少30秒(不适用于倒计时提醒类型)。 |
+| ringDuration | number | 否 | 是 | 指明响铃时长（单位：秒），默认1秒，最长30分钟。 |
+| snoozeTimes | number | 否 | 是 | 指明延时提醒次数，默认0次（不适用于倒计时提醒类型）。 |
+| timeInterval | number | 否 | 是 | 执行延时提醒间隔（单位：秒），最少30秒（不适用于倒计时提醒类型）。 |
 | title | string | 否 | 是 | 指明提醒标题。 |
 | titleResourceId<sup>18+</sup> | number | 否 | 是 | 指明提醒标题的资源ID。 |
 | content | string | 否 | 是 | 指明提醒内容。 |
 | contentResourceId<sup>18+</sup> | number | 否 | 是 | 指明提醒内容的资源ID。 |
 | expiredContent | string | 否 | 是 | 指明提醒过期后需要显示的内容。 |
 | expiredContentResourceId<sup>18+</sup> | number | 否 | 是 | 指明提醒过期后内容的资源ID。 |
-| snoozeContent | string | 否 | 是 | 指明延时提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
+| snoozeContent | string | 否 | 是 | 指明延时提醒时需要显示的内容（不适用于倒计时提醒类型）。 |
 | snoozeContentResourceId<sup>18+</sup> | number | 否 | 是 | 指明延时提醒内容的资源ID。 |
 | notificationId | number | 否 | 是 | 指明提醒使用的通知的id号，需开发者传入，相同id号的提醒会覆盖。 |
 | groupId<sup>11+</sup> | string | 否 | 是 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 是 | 指明提醒的通道渠道类型。 |
 | tapDismissed<sup>10+</sup> | boolean | 否 | 是 | 通知是否自动清除，默认值为true，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。<br> - true：点击通知消息或通知按钮后，自动删除当前通知。<br> - false：点击通知消息或通知按钮后，保留当前通知。 |
 | autoDeletedTime<sup>10+</sup> | number | 否 | 是 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
-| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 是 | 指明延时提醒的通道渠道类型(不适用于倒计时提醒类型)。 |
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 是 | 指明延时提醒的通道渠道类型（不适用于倒计时提醒类型）。 |
 | customRingUri<sup>11+</sup> | string | 否 | 是 | 指明自定义提示音的uri，提示音文件必须放在resources/rawfile目录下，支持m4a、aac、mp3、ogg、wav、flac、amr等格式。 |
 | ringChannel<sup>20+</sup> | [RingChannel](#ringchannel20) | 否 | 是 | 指明自定义提示音的音频播放通道，默认为闹钟通道。|
 
@@ -939,8 +939,8 @@ ReminderRequestCalendar extends ReminderRequest
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | dateTime | [LocalDateTime](#localdatetime) | 否 | 否 | 指明提醒的目标时间。 |
-| repeatMonths | Array\<number> | 否 | 是 | 指明重复提醒的月份。 |
-| repeatDays | Array\<number> | 否 | 是 | 指明重复提醒的日期。 |
+| repeatMonths | Array\<number> | 否 | 是 | 指明重复提醒的月份，范围：[1, 12]。 |
+| repeatDays | Array\<number> | 否 | 是 | 指明重复提醒的日期，范围：[1, 31]。 |
 | daysOfWeek<sup>11+</sup> | Array\<number> | 否 | 是 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
 | endDateTime<sup>12+</sup> | [LocalDateTime](#localdatetime) | 否 | 是 | 指明提醒的结束时间。 |
 
@@ -955,8 +955,8 @@ ReminderRequestAlarm extends ReminderRequest
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| hour | number | 否 | 否 | 指明提醒的目标时刻。 |
-| minute | number | 否 | 否 | 指明提醒的目标分钟。 |
+| hour | number | 否 | 否 | 指明提醒的目标时刻，范围：[0, 23]。 |
+| minute | number | 否 | 否 | 指明提醒的目标分钟，范围：[0, 59]。 |
 | daysOfWeek | Array\<number> | 否 | 是 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
 
 

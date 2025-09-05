@@ -58,12 +58,12 @@ class WebObj {
   }
 
   webTest(): string {
-    console.log('Web test');
+    console.info('Web test');
     return "Web test";
   }
 
   webString(): void {
-    console.log('Web test toString');
+    console.info('Web test toString');
   }
 }
 
@@ -119,7 +119,7 @@ struct WebComponent {
           // This function call expects to return "Web test"
           let webStr = objTestName.webTest();
           document.getElementById("webDemo").innerHTML=webStr;
-          console.log('objTestName.webTest result:'+ webStr)
+          console.info('objTestName.webTest result:'+ webStr)
         }
       </script>
     </body>
@@ -150,9 +150,9 @@ import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate")
+    console.info("EntryAbility onCreate")
     webview.WebviewController.initializeWebEngine()
-    console.log("EntryAbility onCreate done")
+    console.info("EntryAbility onCreate done")
   }
 }
 ```
@@ -190,7 +190,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate")
+    console.info("EntryAbility onCreate")
     try {
       webview.WebviewController.setHttpDns(webview.SecureDnsMode.AUTO, "https://example1.test")
     } catch (error) {
@@ -198,7 +198,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     AppStorage.setOrCreate("abilityWant", want);
-    console.log("EntryAbility onCreate done")
+    console.info("EntryAbility onCreate done")
   }
 }
 ```
@@ -578,6 +578,41 @@ struct WebComponent {
 }
 ```
 
+加载沙箱图片。
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              "<img src=bb.jpg>", // 尝试从"file:///xxx/" + "bb.jpg"加载该图片。
+              "text/html",
+              "UTF-8",
+              // 加载本地应用沙箱内的图片路径，请将路径改为实际使用的沙箱路径。
+              "file:///data/storage/el2/base/haps/entry/files/data/.cache_dir/",
+              ""
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .fileAccess(true) // 为了加载应用沙箱内的图片，需要启用文件访问功能。 
+    }
+  }
+}
+```
+
 ## accessForward
 
 accessForward(): boolean
@@ -620,7 +655,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.accessForward();
-            console.log('result:' + result);
+            console.info('result:' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -723,7 +758,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.accessBackward();
-            console.log('result:' + result);
+            console.info('result:' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -961,7 +996,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.accessStep(this.steps);
-            console.log('result:' + result);
+            console.info('result:' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -1066,21 +1101,21 @@ class TestObj {
   }
 
   test(testStr: string): string {
-    console.log('Web Component str' + testStr);
+    console.info('Web Component str' + testStr);
     return testStr;
   }
 
   toString(): void {
-    console.log('Web Component toString');
+    console.info('Web Component toString');
   }
 
   testNumber(testNum: number): number {
-    console.log('Web Component number' + testNum);
+    console.info('Web Component number' + testNum);
     return testNum;
   }
 
   asyncTestBool(testBol: boolean): void {
-    console.log('Web Component boolean' + testBol);
+    console.info('Web Component boolean' + testBol);
   }
 }
 
@@ -1089,12 +1124,12 @@ class WebObj {
   }
 
   webTest(): string {
-    console.log('Web test');
+    console.info('Web test');
     return "Web test";
   }
 
   webString(): void {
-    console.log('Web test toString');
+    console.info('Web test toString');
   }
 }
 
@@ -1103,11 +1138,11 @@ class AsyncObj {
   }
 
   asyncTest(): void {
-    console.log('Async test');
+    console.info('Async test');
   }
 
   asyncString(testStr: string): void {
-    console.log('Web async string' + testStr);
+    console.info('Web async string' + testStr);
   }
 }
 
@@ -1179,12 +1214,12 @@ struct Index {
           objName.testNumber(1);
           objName.asyncTestBool(true);
           document.getElementById("demo").innerHTML=str;
-          console.log('objName.test result:'+ str)
+          console.info('objName.test result:'+ str)
 
           // This function call expects to return "Web test"
           let webStr = objTestName.webTest();
           document.getElementById("webDemo").innerHTML=webStr;
-          console.log('objTestName.webTest result:'+ webStr)
+          console.info('objTestName.webTest result:'+ webStr)
 
           objAsyncName.asyncTest();
           objAsyncName.asyncString("async test data");
@@ -1282,7 +1317,7 @@ struct WebComponent {
     Hello world!
     <script type="text/javascript">
       function test() {
-        console.log('Ark WebComponent')
+        console.info('Ark WebComponent')
         return "This value is from index.html"
       }
     </script>
@@ -1347,7 +1382,7 @@ struct WebComponent {
           try {
             this.controller.runJavaScript('test()')
               .then((result) => {
-                console.log('result: ' + result);
+                console.info('result: ' + result);
               })
               .catch((error: BusinessError) => {
                 console.error("error: " + error);
@@ -1376,7 +1411,7 @@ struct WebComponent {
     Hello world!
     <script type="text/javascript">
       function test() {
-        console.log('Ark WebComponent')
+        console.info('Ark WebComponent')
         return "This value is from index.html"
       }
     </script>
@@ -1846,7 +1881,7 @@ class TestObj {
   }
 
   toString(): void {
-    console.log('Web Component toString');
+    console.info('Web Component toString');
   }
 }
 
@@ -1904,7 +1939,7 @@ struct WebComponent {
         function htmlTest() {
           let str=objName.test();
           document.getElementById("demo").innerHTML=str;
-          console.log('objName.test result:'+ str)
+          console.info('objName.test result:'+ str)
         }
       </script>
     </body>
@@ -2014,7 +2049,7 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onSearchResultReceive(ret => {
           if (ret) {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+            console.info("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
               "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
           }
         })
@@ -2313,17 +2348,17 @@ struct WebComponent {
             this.ports[1].onMessageEvent((result: webview.WebMessage) => {
               let msg = 'Got msg from HTML:';
               if (typeof (result) == "string") {
-                console.log("received string message from html5, string is:" + result);
+                console.info("received string message from html5, string is:" + result);
                 msg = msg + result;
               } else if (typeof (result) == "object") {
                 if (result instanceof ArrayBuffer) {
-                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  console.info("received arraybuffer from html5, length is:" + result.byteLength);
                   msg = msg + "length is " + result.byteLength;
                 } else {
-                  console.log("not support");
+                  console.info("not support");
                 }
               } else {
-                console.log("not support");
+                console.info("not support");
               }
               this.receivedFromHtml = msg;
             })
@@ -2389,17 +2424,17 @@ window.addEventListener('message', function (event) {
               var msg = 'Got message from ets:';
               var result = event.data;
               if (typeof(result) == "string") {
-                console.log("received string message from html5, string is:" + result);
+                console.info("received string message from html5, string is:" + result);
                 msg = msg + result;
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
-                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  console.info("received arraybuffer from html5, length is:" + result.byteLength);
                   msg = msg + "length is " + result.byteLength;
                 } else {
-                  console.log("not support");
+                  console.info("not support");
                 }
               } else {
-                console.log("not support");
+                console.info("not support");
               }
               output.innerHTML = msg;
             }
@@ -2644,7 +2679,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let userAgent = this.controller.getUserAgent();
-            console.log("userAgent: " + userAgent);
+            console.info("userAgent: " + userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -2727,7 +2762,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let title = this.controller.getTitle();
-            console.log("title: " + title);
+            console.info("title: " + title);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -2958,7 +2993,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let url = this.controller.getUrl();
-            console.log("url: " + url);
+            console.info("url: " + url);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3141,7 +3176,7 @@ struct WebComponent {
             height:2000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3229,7 +3264,7 @@ struct WebComponent {
             height:2000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3293,7 +3328,7 @@ struct WebComponent {
         .onClick(() => {
           try {
           let result = this.controller.scrollByWithResult(50, 50);
-          console.log("original result: " + result);
+          console.info("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3317,7 +3352,7 @@ struct WebComponent {
             height:2000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3391,7 +3426,7 @@ struct WebComponent {
             height:3000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3442,7 +3477,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let url = this.controller.getOriginalUrl();
-            console.log("original url: " + url);
+            console.info("original url: " + url);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -4235,7 +4270,7 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
         .onInterceptRequest((event) => {
           if (event) {
-            console.log('url:' + event.request.getRequestUrl());
+            console.info('url:' + event.request.getRequestUrl());
           }
           return this.responseWeb;
         })
@@ -4617,19 +4652,83 @@ struct WebComponent {
 }
 ```
 
+## prefetchPage<sup>21+</sup>
+
+prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>, prefetchOptions?: PrefetchOptions): void
+
+在预测到将要加载的页面之前调用，可提前下载页面所需的资源（包括：主资源和子资源），但不会执行网页JavaScript代码或呈现网页，以加快页面加载速度。
+
+> **说明：**
+>
+> - 下载的页面资源会缓存五分钟左右，超过这段时间Web组件会自动释放。
+>
+> - prefetchPage对302重定向页面同样正常预取。
+>
+> - 先执行prefetchPage再加载页面时，已预取的资源将直接从缓存中加载。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型                             | 必填  | 说明                      |
+| ------------------| --------------------------------| ---- | ------------- |
+| url               | string                          | 是    | 预加载的url。|
+| additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。<br>默认值： [] |
+| prefetchOptions | [PrefetchOptions](./arkts-apis-webview-PrefetchOptions.md) | 否    | 用来自定义预取行为的相关选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Button('prefetchPopularPage')
+        .onClick(() => {
+          try {
+            // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
+            let options = new webview.PrefetchOptions();
+            options.ignoreCacheControlNoStore = true;
+            options.minTimeBetweenPrefetchesMs = 100;
+            this.controller.prefetchPage('https://www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }], options);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      // 需要将'www.example1.com'替换成一个真实的网站地址。
+      Web({ src: 'www.example1.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## prefetchPage<sup>10+</sup>
 
 prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
-在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
+在预测到将要加载的页面之前调用，可提前下载页面所需的资源（包括：主资源和子资源），但不会执行网页JavaScript代码或呈现网页，以加快页面加载速度。
 
 > **说明：**
 >
-> - 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+> - 下载的页面资源会缓存五分钟左右，超过这段时间Web组件会自动释放。
 >
 > - prefetchPage对302重定向页面同样正常预取。
 >
-> - 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+> - 先执行prefetchPage再加载页面时，已预取的资源将直接从缓存中加载。
 >
 > - 连续prefetchPage多个url只有第一个生效。
 >
@@ -4646,7 +4745,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4823,12 +4922,12 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate");
+    console.info("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
     // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
     webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
     AppStorage.setOrCreate("abilityWant", want);
-    console.log("EntryAbility onCreate done");
+    console.info("EntryAbility onCreate done");
   }
 }
 ```
@@ -4883,7 +4982,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
       .onControllerAttached(() => {
-        console.log("onControllerAttached");
+        console.info("onControllerAttached");
         try {
           let userAgent = this.controller.getUserAgent() + this.customUserAgent;
           this.controller.setCustomUserAgent(userAgent);
@@ -5050,7 +5149,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.userAgent = this.controller.getCustomUserAgent();
-            console.log("userAgent: " + this.userAgent);
+            console.info("userAgent: " + this.userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5214,7 +5313,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             webview.WebviewController.setConnectionTimeout(5);
-            console.log("setConnectionTimeout: 5s");
+            console.info("setConnectionTimeout: 5s");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5222,8 +5321,8 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
         .onErrorReceive((event) => {
           if (event) {
-            console.log('getErrorInfo:' + event.error.getErrorInfo());
-            console.log('getErrorCode:' + event.error.getErrorCode());
+            console.info('getErrorInfo:' + event.error.getErrorInfo());
+            console.info('getErrorCode:' + event.error.getErrorCode());
           }
         })
     }
@@ -5264,7 +5363,7 @@ import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate");
+        console.info("EntryAbility onCreate");
         webview.WebviewController.initializeWebEngine();
         webview.WebviewController.warmupServiceWorker("https://www.example.com");
         AppStorage.setOrCreate("abilityWant", want);
@@ -5317,7 +5416,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.enableSafeBrowsing(true);
-            console.log("enableSafeBrowsing: true");
+            console.info("enableSafeBrowsing: true");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5358,7 +5457,7 @@ struct WebComponent {
       Button('isSafeBrowsingEnabled')
         .onClick(() => {
           let result = this.controller.isSafeBrowsingEnabled();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -5410,7 +5509,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.enableIntelligentTrackingPrevention(true);
-            console.log("enableIntelligentTrackingPrevention: true");
+            console.info("enableIntelligentTrackingPrevention: true");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5464,7 +5563,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.isIntelligentTrackingPreventionEnabled();
-            console.log("result: " + result);
+            console.info("result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5651,10 +5750,10 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate");
+    console.info("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
     let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-    console.log("defaultUserAgent: " + defaultUserAgent);
+    console.info("defaultUserAgent: " + defaultUserAgent);
   }
 }
 ```
@@ -5705,7 +5804,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.enableAdsBlock(true);
-            console.log("enableAdsBlock: true")
+            console.info("enableAdsBlock: true")
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5760,7 +5859,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let isAdsBlockEnabled: boolean = this.controller.isAdsBlockEnabled();
-            console.log("isAdsBlockEnabled:", isAdsBlockEnabled);
+            console.info("isAdsBlockEnabled:", isAdsBlockEnabled);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5816,7 +5915,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let isAdsBlockEnabledForCurPage: boolean = this.controller.isAdsBlockEnabledForCurPage();
-            console.log("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage);
+            console.info("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -6131,7 +6230,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.isIncognitoMode();
-            console.log('isIncognitoMode' + result);
+            console.info('isIncognitoMode' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -6280,7 +6379,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let scrollEnabled = this.controller.getScrollable();
-            console.log("scrollEnabled: " + scrollEnabled);
+            console.info("scrollEnabled: " + scrollEnabled);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -6428,21 +6527,21 @@ class TestObj {
   }
 
   test(testStr: string): string {
-    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testStr;
   }
 
   toString(): void {
-    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
   }
 
   testNumber(testNum: number): number {
-    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testNum;
   }
 
   testBool(testBol: boolean): boolean {
-    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testBol;
   }
 }
@@ -6455,12 +6554,12 @@ class WebObj {
   }
 
   webTest(): string {
-    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return "Web test";
   }
 
   webString(): void {
-    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
   }
 }
 
@@ -6525,12 +6624,12 @@ struct Index {
           objName.testNumber(1);
           objName.testBool(true);
           document.getElementById("demo").innerHTML=str;
-          console.log('objName.test result:'+ str)
+          console.info('objName.test result:'+ str)
 
           // This function call expects to return "Web test"
           let webStr = objTestName.webTest();
           document.getElementById("webDemo").innerHTML=webStr;
-          console.log('objTestName.webTest result:'+ webStr)
+          console.info('objTestName.webTest result:'+ webStr)
         }
       </script>
     </body>
@@ -6544,6 +6643,14 @@ static pauseAllTimers(): void
 暂停所有WebView的定时器。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -6604,6 +6711,14 @@ static resumeAllTimers(): void
 恢复从pauseAllTimers()接口中被暂停的所有的定时器。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -8408,8 +8523,8 @@ struct WebComponent {
             var file = "file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js";
             var xmlHttpReq = new XMLHttpRequest();
             xmlHttpReq.onreadystatechange = function(){
-                console.log("readyState:" + xmlHttpReq.readyState);
-                console.log("status:" + xmlHttpReq.status);
+                console.info("readyState:" + xmlHttpReq.readyState);
+                console.info("status:" + xmlHttpReq.status);
                 if(xmlHttpReq.readyState == 4){
                     if (xmlHttpReq.status == 200) {
                 // 如果ets侧正确设置路径列表，则此处能正常获取资源
@@ -8808,13 +8923,13 @@ struct WebComponent {
           let pageHeight = this.controller.getPageHeight();
           if (this.controllerY < 0) {
             // case1：网页向下过滚动时，可直接使用ScrollOffset.y
-            console.log(`get downwards overscroll offsetY = ${this.controllerY}`);
+            console.info(`get downwards overscroll offsetY = ${this.controllerY}`);
           } else if ((this.controllerY != 0) && (this.controllerY > (pageHeight - webHeight))) {
             // case2：网页向上过滚动时，需计算出网页下边界与Web组件下边界的偏移量
-            console.log(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
+            console.info(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
           } else {
             // case3：网页未发生过滚动时，可直接使用ScrollOffset.y
-            console.log(`get scroll offsetY = ${this.controllerY}`);
+            console.info(`get scroll offsetY = ${this.controllerY}`);
           }
         })
         .height(600)
@@ -8838,7 +8953,7 @@ struct WebComponent {
             height:6000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
           }
       </style>
   </head>
@@ -8874,6 +8989,7 @@ getPageOffset(): ScrollOffset
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -8886,7 +9002,7 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onScroll((event) => {
           try {
-            console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+            console.info("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
             this.controller.getPageOffset().y);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -9248,6 +9364,14 @@ getProgress(): number
 | :------------------------------ | ---------------------- |
 | number | 当前页面加载进度，取值范围[0, 100] |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801 | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -9408,6 +9532,7 @@ avoidVisibleViewportBottom(avoidHeight: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 801 | Capability not supported. |
 
 **示例：**
 

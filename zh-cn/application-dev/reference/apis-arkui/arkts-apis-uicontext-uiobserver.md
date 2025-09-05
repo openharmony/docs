@@ -23,7 +23,7 @@
 
 on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
-监听NavDestination组件的状态变化。
+监听[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -33,15 +33,15 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 是   | 回调函数。返回当前的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件状态。                 |
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
 // Index.ets
-// 演示 uiObserver.on('navDestinationUpdate', callback)
+// 演示uiObserver.on('navDestinationUpdate', callback)
 // uiObserver.off('navDestinationUpdate', callback)
 
 @Component
@@ -64,12 +64,14 @@ struct Index {
   }
 
   aboutToAppear() {
+    // 添加监听
     this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
       console.info('NavDestination state update', JSON.stringify(info));
     });
   }
 
   aboutToDisappear() {
+    // 取消监听，不选择回调时，取消所有监听的回调
     this.getUIContext().getUIObserver().off('navDestinationUpdate');
   }
 
@@ -77,6 +79,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
+          // 将PageOne的NavDestination入栈
           this.stack.pushPath({ name: "pageOne" });
         })
       }
@@ -93,7 +96,7 @@ struct Index {
 
 off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
-取消监听NavDestination组件的状态变化。
+取消监听[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -103,18 +106,18 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 需要取消的监听回调，不传参数时，取消所有的Navigation监听回调。                 |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 需要取消的监听回调，不传参数时，取消所有的[Navigation](arkui-ts/ts-basic-components-navigation.md)监听回调。                 |
 
 **示例：** 
 
-参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11)示例。
+参考[on('navDestinationUpdate')](#onnavdestinationupdate11)接口示例。
 
 ## on('navDestinationUpdate')<sup>11+</sup>
 
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
-监听NavDestination组件的状态变化。
+通过[Navigation](arkui-ts/ts-basic-components-navigation.md)的id监听[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -124,17 +127,18 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的[Navigation](arkui-ts/ts-basic-components-navigation.md)的id。                                   |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 是   | 回调函数。返回当前的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件状态。                 |
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
 // Index.ets
-// 演示 uiObserver.on('navDestinationUpdate', navigationId, callback)
-// uiObserver.off('navDestinationUpdate', navigationId, callback)
+// 演示uiObserver.on('navDestinationUpdate', options, callback)
+// uiObserver.off('navDestinationUpdate', options, callback)
+
 @Component
 struct PageOne {
   build() {
@@ -155,12 +159,14 @@ struct Index {
   }
 
   aboutToAppear() {
+    // 添加监听，指定Navigation的id
     this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
       console.info('NavDestination state update', JSON.stringify(info));
     });
   }
 
   aboutToDisappear() {
+    // 取消监听，不选择回调时，取消所有监听的回调
     this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: "testId" });
   }
 
@@ -168,6 +174,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
+          // 将PageOne的NavDestination入栈
           this.stack.pushPath({ name: "pageOne" });
         })
       }
@@ -185,7 +192,7 @@ struct Index {
 
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-取消监听NavDestination组件的状态变化。
+取消通过[Navigation](arkui-ts/ts-basic-components-navigation.md)的id监听[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -195,19 +202,19 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   |需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                 |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的[Navigation](arkui-ts/ts-basic-components-navigation.md)的id。                                   |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   |需要取消的监听回调，不传参数时，取消该[Navigation](arkui-ts/ts-basic-components-navigation.md)上所有的监听回调。                 |
 
 **示例：**
 
-参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
+参考[on('navDestinationUpdate')](#onnavdestinationupdate11-1)接口示例。
 
 ## on('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
 on(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
 
-通过Navigation的uniqueId监听NavDestination组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
+通过[Navigation](arkui-ts/ts-basic-components-navigation.md)的uniqueId监听[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -217,33 +224,37 @@ on(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback:
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
-| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的[Navigation](arkui-ts/ts-basic-components-navigation.md)的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件状态。                             |
 
 **示例：**
 
-通过Navigation的uniqueId，可以触发NavDestination组件的状态变化。
+通过[Navigation](arkui-ts/ts-basic-components-navigation.md)的uniqueId，可以触发[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。
 
 ```ts
 // Index.ets
-// 演示 on('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
+// 演示on('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
 // off('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
+
 @Component
 struct PageOne {
   private text = '';
   private uniqueid = -1;
   aboutToAppear() {
+    // 获取Navigation的uniqueId
     let navigationUniqueId = this.queryNavigationInfo()?.uniqueId;
     if (navigationUniqueId) {
       this.uniqueid = navigationUniqueId.valueOf();
     }
     this.text = JSON.stringify(this.uniqueid);
+    // 添加监听，指定Navigation的uniqueId
     this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
       console.info('NavDestination state update navigationId', JSON.stringify(info));
     });
   }
   aboutToDisappear() {
+    // 取消监听，不选择回调时，取消所有监听的回调
     this.getUIContext().getUIObserver().off('navDestinationUpdateByUniqueId', this.uniqueid);
   }
   build() {
@@ -272,6 +283,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
+          // 将PageOne的NavDestination入栈
           this.stack.pushPath({ name: "pageOne" });
         })
       }
@@ -289,7 +301,7 @@ struct Index {
 
 off(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-取消通过navigationUniqueId监听NavDestination组件的变化。
+取消通过[Navigation](arkui-ts/ts-basic-components-navigation.md)的uniqueId监听[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的变化。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -299,13 +311,13 @@ off(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
-| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                             |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即[NavDestination](arkui-ts/ts-basic-components-navdestination.md)组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的[Navigation](arkui-ts/ts-basic-components-navigation.md)的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该[Navigation](arkui-ts/ts-basic-components-navigation.md)上所有的监听回调。                             |
 
 **示例：**
 
-参考[uiObserver.on('navDestinationUpdateByUniqueId')](#onnavdestinationupdatebyuniqueid20)示例。
+参考[on('navDestinationUpdateByUniqueId')](#onnavdestinationupdatebyuniqueid20)接口示例。
 
 ## on('scrollEvent')<sup>12+</sup>
 
@@ -326,72 +338,13 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
 **示例：**
 
-参考[off('scrollEvent')](#offscrollevent12-1)示例。
-
-## off('scrollEvent')<sup>12+</sup>
-
-off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
-
-取消监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                  | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 否   | 回调函数。返回滚动事件的信息。   |
-
-**示例：**
-
-参考[off('scrollEvent')](#offscrollevent12-1)示例。
-
-## on('scrollEvent')<sup>12+</sup>
-
-on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<observer.ScrollEventInfo\>): void
-
-监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
-| options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | Observer选项，包含指定监听的滚动组件的id。                    |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
-
-**示例：**
-
-参考[off('scrollEvent')](#offscrollevent12-1)示例。
-
-## off('scrollEvent')<sup>12+</sup>
-
-off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
-
-取消监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
-| options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | Observer选项，包含指定监听的滚动组件的id。                    |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 否   | 回调函数。返回滚动事件的信息。                 |
-
-**示例：**
-
 ```ts
+// Index.ets
+// 演示uiObserver.on('scrollEvent', callback)
+// uiObserver.off('scrollEvent', callback)
+// uiObserver.on('scrollEvent', options, callback)
+// uiObserver.off('scrollEvent', options, callback)
+
 import { UIObserver } from '@kit.ArkUI';
 
 @Entry
@@ -426,12 +379,14 @@ struct Index {
       Row() {
         Button('UIObserver on')
           .onClick(() => {
+            // 添加监听
             this.observer.on('scrollEvent', (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserver off')
           .onClick(() => {
+            // 取消监听，不选择回调时，取消所有监听的回调
             this.observer.off('scrollEvent');
           })
       }
@@ -439,12 +394,14 @@ struct Index {
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
+            // 添加监听，指定滚动组件的id
             this.observer.on('scrollEvent', { id: 'testId' }, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
+            // 取消监听，不选择回调时，取消所有监听的回调
             this.observer.off('scrollEvent', { id: 'testId' });
           })
       }
@@ -454,11 +411,32 @@ struct Index {
 }
 ```
 
-## on('routerPageUpdate')<sup>11+</sup>
+## off('scrollEvent')<sup>12+</sup>
 
-on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
+off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
-监听router中page页面的状态变化。
+取消监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 否   | 回调函数。返回滚动事件的信息。不传参数时，取消所有滚动事件的监听回调。   |
+
+**示例：**
+
+参考[on('scrollEvent')](#onscrollevent12)接口示例。
+
+## on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<observer.ScrollEventInfo\>): void
+
+监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -468,28 +446,109 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 是   | 回调函数。携带pageInfo，返回当前的page页面状态。                 |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | Observer选项，包含指定监听的滚动组件的id。                    |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
 
 **示例：**
 
-完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
+参考[on('scrollEvent')](#onscrollevent12)接口示例。
+
+## off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
+
+取消监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | Observer选项，包含指定监听的滚动组件的id。                    |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 否   | 回调函数。返回滚动事件的信息。不传参数时，取消所有滚动事件的监听回调。                 |
+
+**示例：**
+
+参考[on('scrollEvent')](#onscrollevent12)接口示例。
+
+## on('routerPageUpdate')<sup>11+</sup>
+
+on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
+
+监听[Router](arkts-apis-uicontext-router.md)中page页面的状态变化。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即[Router](arkts-apis-uicontext-router.md)中page页面的状态变化。 |
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 是   | 回调函数。携带[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)对象，返回当前的page页面状态。                 |
+
+**示例：**
 
 <!--code_no_check-->
 ```ts
-import { UIContext, UIObserver } from '@kit.ArkUI';
+// PageOne.ets
 
-let observer:UIObserver = this.getUIContext().getUIObserver();
-observer.on('routerPageUpdate', (info) => {
-    console.info('RouterPage state updated, called by ' + `${info.name}`);
-});
+@Entry
+@Component
+struct PageOne {
+  build() {
+    Column() {
+      Text("pageOne")
+    }
+  }
+}
+```
+
+<!--code_no_check-->
+```ts
+// Index.ets
+// 演示uiObserver.on('routerPageUpdate', callback)
+// uiObserver.off('routerPageUpdate', callback)
+
+@Entry
+@Component
+struct Index {
+  aboutToAppear() {
+    // 添加监听
+    this.getUIContext().getUIObserver().on('routerPageUpdate', (info) => {
+      console.info('router page update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    // 取消监听，不选择回调时，取消所有监听的回调
+    this.getUIContext().getUIObserver().off('routerPageUpdate');
+  }
+
+  build() {
+    Column() {
+      Button("pushUrl").onClick(() => {
+        // router跳转到PageOne.ets页面
+        this.getUIContext().getRouter().pushUrl({ url: 'pages/PageOne' })
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## off('routerPageUpdate')<sup>11+</sup>
 
 off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
 
-取消监听router中page页面的状态变化。
+取消监听[Router](arkts-apis-uicontext-router.md)中page页面的状态变化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -499,22 +558,12 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 否   | 需要被注销的回调函数。                 |
+| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即[Router](arkts-apis-uicontext-router.md)中page页面的状态变化。 |
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 否   | 需要被注销的回调函数。不传参数时，取消所有[Router](arkts-apis-uicontext-router.md)中page页面状态变化的监听回调。                 |
 
 **示例：**
 
-完整示例请参考[on('navDestinationUpdate')](#onnavdestinationupdate11)中的示例。
-
-<!--code_no_check-->
-```ts
-import { UIContext, UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = this.getUIContext().getUIObserver();
-function callbackFunc(info:observer.RouterPageInfo) {};
-// callbackFunc is defined and used before
-observer.off('routerPageUpdate', callbackFunc);
-```
+参考[on('routerPageUpdate')](#onrouterpageupdate11)接口示例。
 
 ## on('densityUpdate')<sup>12+</sup>
 
@@ -531,9 +580,15 @@ on(type: 'densityUpdate', callback: Callback\<observer.DensityInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
+| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)，返回变化后的屏幕像素密度。                 |
+
+**示例：**
 
 ```ts
+// Index.ets
+// 演示uiObserver.on('densityUpdate', callback)
+// uiObserver.off('densityUpdate', callback)
+
 import { uiObserver } from '@kit.ArkUI';
 
 @Entry
@@ -542,6 +597,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = '未注册监听';
 
+  // 定义监听回调函数
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = '变化后的DPI：' + this.density.toString();
@@ -553,9 +609,17 @@ struct Index {
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = '已注册监听';
+          // 添加监听
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
+        })
+      Button('解除注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '未注册监听';
+          // 取消监听
+          this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
         })
     }
   }
@@ -577,42 +641,11 @@ off(type: 'densityUpdate', callback?: Callback\<observer.DensityInfo\>): void
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                                         |
 | -------- | -------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------- |
 | type     | string                                                               | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。                                        |
-| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销该UIContext下所有densityUpdate事件监听。 |
+| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销该[UIContext](arkts-apis-uicontext-uicontext.md)下所有屏幕像素密度变化事件监听。 |
 
-```ts
-import { uiObserver } from '@kit.ArkUI';
+**示例：**
 
-@Entry
-@Component
-struct Index {
-  @State density: number = 0;
-  @State message: string = '未注册监听';
-
-  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
-    this.density = info.density;
-    this.message = '变化后的DPI：' + this.density.toString();
-  }
-
-  build() {
-    Column() {
-      Text(this.message)
-        .fontSize(24)
-        .fontWeight(FontWeight.Bold)
-      Button('注册屏幕像素密度变化监听')
-        .margin({ bottom: 10 })
-        .onClick(() => {
-          this.message = '已注册监听';
-          this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
-        })
-      Button('解除注册屏幕像素密度变化监听')
-        .onClick(() => {
-          this.message = '未注册监听';
-          this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
-        })
-    }
-  }
-}
-```
+参考[on('densityUpdate')](#ondensityupdate12)接口示例。
 
 ## on('willDraw')<sup>12+</sup>
 
@@ -631,20 +664,33 @@ on(type: 'willDraw', callback: Callback\<void\>): void
 | type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
+**示例：**
+
 ```ts
-import { uiObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示uiObserver.on('willDraw', callback)
+// uiObserver.off('willDraw', callback)
 
 @Entry
 @Component
 struct Index {
+  // 定义监听回调函数
   willDrawCallback = () => {
     console.info("willDraw指令下发");
   }
+
   build() {
     Column() {
       Button('注册绘制指令下发监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
+          // 添加监听
           this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
+        })
+      Button('解除注册绘制指令下发监听')
+        .onClick(() => {
+          // 取消监听
+          this.getUIContext().getUIObserver().off('willDraw', this.willDrawCallback);
         })
     }
   }
@@ -666,33 +712,11 @@ off(type: 'willDraw', callback?: Callback\<void\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
-| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
+| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。不传参数时，取消所有绘制指令下发事件的监听回调。                  |
 
-```ts
-import { uiObserver } from '@kit.ArkUI';
+**示例：**
 
-@Entry
-@Component
-struct Index {
-  willDrawCallback = () => {
-    console.info("willDraw指令下发")
-  }
-
-  build() {
-    Column() {
-      Button('注册绘制指令下发监听')
-        .margin({ bottom: 10 })
-        .onClick(() => {
-          this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
-        })
-      Button('解除注册绘制指令下发监听')
-        .onClick(() => {
-          this.getUIContext().getUIObserver().off('willDraw', this.willDrawCallback);
-        })
-    }
-  }
-}
-```
+参考[on('willDraw')](#onwilldraw12)接口示例。
 
 ## on('didLayout')<sup>12+</sup>
 
@@ -711,20 +735,33 @@ on(type: 'didLayout', callback: Callback\<void\>): void
 | type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
+**示例：**
+
 ```ts
-import { uiObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示uiObserver.on('didLayout', callback)
+// uiObserver.off('didLayout', callback)
 
 @Entry
 @Component
 struct Index {
+  // 定义监听回调函数
   didLayoutCallback = () => {
     console.info("layout布局完成");
   }
+
   build() {
     Column() {
       Button('注册布局完成监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
+          // 添加监听
           this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
+        })
+      Button('解除注册注册布局完成监听')
+        .onClick(() => {
+          // 取消监听
+          this.getUIContext().getUIObserver().off('didLayout', this.didLayoutCallback);
         })
     }
   }
@@ -746,39 +783,18 @@ off(type: 'didLayout', callback?: Callback\<void\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
-| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
+| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。不传参数时，取消所有布局完成的监听回调。                  |
 
-```ts
-import { uiObserver } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  didLayoutCallback = () => {
-    console.info("layout布局完成");
-  }
+**示例：**
 
-  build() {
-    Column() {
-      Button('注册布局完成监听')
-        .margin({ bottom: 10 })
-        .onClick(() => {
-          this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
-        })
-      Button('解除注册注册布局完成监听')
-        .onClick(() => {
-          this.getUIContext().getUIObserver().off('didLayout', this.didLayoutCallback);
-        })
-    }
-  }
-}
-```
+参考[on('didLayout')](#ondidlayout12)接口示例。
 
 ## on('navDestinationSwitch')<sup>12+</sup>
 
 on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwitchInfo\>): void
 
-监听Navigation的页面切换事件。
+监听[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -788,15 +804,16 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
-| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)，返回页面切换事件的信息。                 |
 
 **示例：**
 
 ```ts
 // Index.ets
-// 演示 UIObserver.on('navDestinationSwitch', callback)
+// 演示UIObserver.on('navDestinationSwitch', callback)
 // UIObserver.off('navDestinationSwitch', callback)
+
 import { uiObserver } from '@kit.ArkUI';
 
 @Component
@@ -808,6 +825,7 @@ struct PageOne {
   }
 }
 
+// 定义监听回调函数
 function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
@@ -824,11 +842,13 @@ struct Index {
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
+    // 添加监听
     obs.on('navDestinationSwitch', callbackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
+    // 取消监听
     obs.off('navDestinationSwitch', callbackFunc);
   }
 
@@ -836,7 +856,8 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          // 将PageOne的NavDestination入栈
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .title("Navigation")
@@ -852,7 +873,7 @@ struct Index {
 
 off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSwitchInfo\>): void
 
-取消监听Navigation的页面切换事件。
+取消监听[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -862,16 +883,18 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
-| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。不传参数时，取消该[Navigation](arkui-ts/ts-basic-components-navigation.md)上所有的监听回调。                 |
 
-**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码。**
+**示例：**
+
+参考[on('navDestinationSwitch')](#onnavdestinationswitch12)接口示例。
 
 ## on('navDestinationSwitch')<sup>12+</sup>
 
 on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchObserverOptions, callback: Callback\<observer.NavDestinationSwitchInfo\>): void
 
-监听Navigation的页面切换事件。
+通过监听选项监听[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -881,16 +904,17 @@ on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchO
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。 |
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
-| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)，返回页面切换事件的信息。                 |
 
 **示例：**
 
 ```ts
 // Index.ets
-// 演示 UIObserver.on('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
-// UIObserver.off('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+// 演示UIObserver.on('navDestinationSwitch', observerOptions, callback)
+// UIObserver.off('navDestinationSwitch', observerOptions, callback)
+
 import { uiObserver } from '@kit.ArkUI';
 
 @Component
@@ -902,6 +926,7 @@ struct PageOne {
   }
 }
 
+// 定义监听回调函数
 function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
@@ -918,11 +943,13 @@ struct Index {
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
+    // 添加监听，指定Navigation的id
     obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callbackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
+    // 取消监听
     obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callbackFunc);
   }
 
@@ -930,7 +957,8 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          // 将PageOne的NavDestination入栈
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .id("myNavId")
@@ -947,7 +975,7 @@ struct Index {
 
 off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchObserverOptions, callback?: Callback\<observer.NavDestinationSwitchInfo\>): void
 
-取消监听Navigation的页面切换事件。
+取消通过监听选项监听[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -957,11 +985,13 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即[Navigation](arkui-ts/ts-basic-components-navigation.md)的页面切换事件。 |
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
-| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。不传参数时，取消该[Navigation](arkui-ts/ts-basic-components-navigation.md)上所有的监听回调。                 |
 
-**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码。**
+**示例：**
+
+参考[on('navDestinationSwitch')](#onnavdestinationswitch12-1)接口示例。
 
 ## on('willClick')<sup>12+</sup>
 
@@ -978,11 +1008,17 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。  |
 
 **示例：**
 
 ```ts
+// Index.ets
+// 演示uiObserver.on('willClick', callback)
+// uiObserver.off('willClick', callback)
+// uiObserver.off('didClick', callback)
+// uiObserver.off('didClick', callback)
+
 // 定义监听回调函数
 function willClickGestureCallback(event: GestureEvent, node?: FrameNode) {
   console.info('Example willClickCallback GestureEvent is called');
@@ -1077,11 +1113,11 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                  |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。                                |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                                |
 
 **示例：**
 
-完整示例请参考[on('willClick')](#onwillclick12)中的示例。
+参考[on('willClick')](#onwillclick12)接口示例。
 
 ## on('didClick')<sup>12+</sup>
 
@@ -1098,11 +1134,11 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。  |
 
 **示例：**
 
-完整示例请参考[on('willClick')](#onwillclick12)中的示例。
+参考[on('willClick')](#onwillclick12)接口示例。
 
 ## off('didClick')<sup>12+</sup>
 
@@ -1119,11 +1155,11 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                 |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。                               |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                               |
 
 **示例：**
 
-完整示例请参考[on('willClick')](#onwillclick12)中的示例。
+参考[on('willClick')](#onwillclick12)接口示例。
 
 ## on('willClick')<sup>12+</sup>
 
@@ -1140,11 +1176,11 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。    |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。    |
 
 **示例：**
 
-完整示例请参考[on('willClick')](#onwillclick12)中的示例。
+参考[on('willClick')](#onwillclick12)接口示例。
 
 ## off('willClick')<sup>12+</sup>
 
@@ -1161,11 +1197,11 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                  |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。                                |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                                |
 
 **示例：**
 
-完整示例请参考[on('willClick')](#onwillclick12)中的示例。
+参考[on('willClick')](#onwillclick12)接口示例。
 
 ## on('didClick')<sup>12+</sup>
 
@@ -1182,11 +1218,11 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。    |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。    |
 
 **示例：**
 
-完整示例请参考[on('willClick')](#onwillclick12)中的示例。
+参考[on('willClick')](#onwillclick12)接口示例。
 
 ## off('didClick')<sup>12+</sup>
 
@@ -1203,17 +1239,17 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。                               |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                               |
 
 **示例：**
 
-完整示例请参考[on('willClick')](#onwillclick12)中的示例。
+参考[on('willClick')](#onwillclick12)接口示例。
 
 ## on('tabContentUpdate')<sup>12+</sup>
 
 on(type: 'tabContentUpdate', callback: Callback\<observer.TabContentInfo\>): void
 
-监听TabContent页面的切换事件。
+监听[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1223,14 +1259,19 @@ on(type: 'tabContentUpdate', callback: Callback\<observer.TabContentInfo\>): voi
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 是   | 回调函数。携带TabContentInfo，返回TabContent页面切换事件的信息。 |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。 |
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 是   | 回调函数。携带[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)，返回[TabContent](arkui-ts/ts-container-tabcontent.md)页面切换事件的信息。 |
 
 **示例：**
 
 ```ts
+// Index.ets
+// 演示uiObserver.on('tabContentUpdate', callback)
+// uiObserver.off('tabContentUpdate', callback)
+
 import { uiObserver } from '@kit.ArkUI';
 
+// 定义监听回调函数
 function callbackFunc(info: uiObserver.TabContentInfo) {
   console.info('tabContentUpdate', JSON.stringify(info));
 }
@@ -1241,11 +1282,13 @@ struct TabsExample {
 
   aboutToAppear(): void {
     let observer = this.getUIContext().getUIObserver();
+    // 添加监听
     observer.on('tabContentUpdate', callbackFunc);
   }
 
   aboutToDisappear(): void {
     let observer = this.getUIContext().getUIObserver();
+    // 取消监听
     observer.off('tabContentUpdate', callbackFunc);
   }
 
@@ -1281,7 +1324,7 @@ struct TabsExample {
 
 off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): void
 
-取消监听TabContent页面的切换事件。
+取消监听[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1291,8 +1334,8 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 否   | 需要被注销的回调函数。 |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。 |
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 否   | 需要被注销的回调函数。不传参数时，取消该[Tabs](arkui-ts/ts-container-tabs.md)上所有的监听回调。 |
 
 **示例：**
 
@@ -1302,7 +1345,7 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 
 on(type: 'tabContentUpdate', options: observer.ObserverOptions, callback: Callback\<observer.TabContentInfo\>): void
 
-监听TabContent页面的切换事件。
+通过[Tabs](arkui-ts/ts-container-tabs.md)组件的id监听[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1312,15 +1355,20 @@ on(type: 'tabContentUpdate', options: observer.ObserverOptions, callback: Callba
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
-| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | 指定监听的Tabs组件的id。 |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 是   | 回调函数。携带TabContentInfo，返回TabContent页面切换事件的信息。 |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。 |
+| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | 指定监听的[Tabs](arkui-ts/ts-container-tabs.md)组件的id。 |
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 是   | 回调函数。携带TabContentInfo，返回[TabContent](arkui-ts/ts-container-tabcontent.md)页面切换事件的信息。 |
 
 **示例：**
 
 ```ts
+// Index.ets
+// 演示uiObserver.on('tabContentUpdate', options, callback)
+// uiObserver.off('tabContentUpdate', options, callback)
+
 import { uiObserver } from '@kit.ArkUI';
 
+// 定义监听回调函数
 function callbackFunc(info: uiObserver.TabContentInfo) {
   console.info('tabContentUpdate', JSON.stringify(info));
 }
@@ -1331,11 +1379,13 @@ struct TabsExample {
 
   aboutToAppear(): void {
     let observer = this.getUIContext().getUIObserver();
+    // 添加监听，指定Tabs的id
     observer.on('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
   }
 
   aboutToDisappear(): void {
     let observer = this.getUIContext().getUIObserver();
+    // 取消监听
     observer.off('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
   }
 
@@ -1371,7 +1421,7 @@ struct TabsExample {
 
 off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Callback\<observer.TabContentInfo\>): void
 
-取消监听TabContent页面的切换事件。
+取消通过[Tabs](arkui-ts/ts-container-tabs.md)组件的id监听[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1381,9 +1431,9 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即TabContent页面的切换事件。 |
-| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | 指定监听的Tabs组件的id。 |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 否   | 需要被注销的回调函数。 |
+| type     | string                                                       | 是   | 监听事件，固定为'tabContentUpdate'，即[TabContent](arkui-ts/ts-container-tabcontent.md)页面的切换事件。 |
+| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | 指定监听的[Tabs](arkui-ts/ts-container-tabs.md)组件的id。 |
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | 否   | 需要被注销的回调函数。不传参数时，取消该[Tabs](arkui-ts/ts-container-tabs.md)上所有的监听回调。 |
 
 **示例：**
 
@@ -1393,7 +1443,7 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 
 on(type: 'beforePanStart', callback: PanListenerCallback): void
 
-监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件，在onActionStart事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件，在[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1403,15 +1453,26 @@ on(type: 'beforePanStart', callback: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，用于监听Pan手势onActionStart事件执行前的指令下发情况，所注册回调将于Pan手势onActionStart事件触发前触发。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，用于监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行前的指令下发情况，所注册回调将于Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件触发前触发。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)，[GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)和组件的[FrameNode](js-apis-arkui-frameNode.md)。   |
 
 **示例：**
 
 ```ts
+// Index.ets
+// 演示uiObserver.on('beforePanStart', callback)
+// uiObserver.off('beforePanStart', callback)
+// uiObserver.on('afterPanStart', callback)
+// uiObserver.off('afterPanStart', callback)
+// uiObserver.on('beforePanEnd', callback)
+// uiObserver.off('beforePanEnd', callback)
+// uiObserver.on('afterPanEnd', callback)
+// uiObserver.off('afterPanEnd', callback)
+
 // 在页面Component中使用
 let TEST_TAG: string = 'node';
 
+// 定义监听回调函数
 function callbackFunc() {
   console.info('on == beforePanStart');
 }
@@ -1454,6 +1515,7 @@ struct PanExample {
 
   aboutToAppear(): void {
     let observer = this.getUIContext().getUIObserver();
+    // 添加监听
     observer.on('beforePanStart', callbackFunc);
     observer.on('beforePanStart', panGestureCallBack);
     observer.on('beforePanStart', beforeStartCallBack);
@@ -1464,12 +1526,14 @@ struct PanExample {
 
   aboutToDisappear(): void {
     let observer = this.getUIContext().getUIObserver();
+    // 取消监听
     observer.off('beforePanStart', callbackFunc);
     observer.off('beforePanStart');
     observer.off('afterPanStart', afterPanCallBack);
     observer.off('beforePanEnd');
     observer.off('afterPanEnd');
   }
+
   build() {
     Column(){
       Column(){
@@ -1507,7 +1571,7 @@ struct PanExample {
 
 off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
-取消[on('beforePanStart')](#onbeforepanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanStart')](#onbeforepanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行前的callback回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1517,8 +1581,8 @@ off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，即Pan手势onActionStart事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，即Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行前的指令下发情况。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。不传参数时，取消所有的Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行前的指令下发监听回调。                               |
 
 **示例：**
 
@@ -1528,7 +1592,7 @@ off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
 on(type: 'afterPanStart', callback: PanListenerCallback): void
 
-监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionStart事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行后的指令下发情况，在[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1538,12 +1602,12 @@ on(type: 'afterPanStart', callback: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，用于监听Pan手势onActionStart事件执行后的指令下发情况，所注册回调将于Pan手势onActionStart事件触发后触发。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，用于监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行后的指令下发情况，所注册回调将于Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件触发后触发。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)，[GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)和组件的[FrameNode](js-apis-arkui-frameNode.md)。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart19)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ## off('afterPanStart')<sup>19+</sup>
 
@@ -1559,18 +1623,18 @@ off(type: 'afterPanStart', callback?: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，即Pan手势onActionStart事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
+| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，即Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行后的指令下发情况。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。不传参数时，取消所有的Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart)事件执行后的指令下发监听回调。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart19)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ## on('beforePanEnd')<sup>19+</sup>
 
 on(type: 'beforePanEnd', callback: PanListenerCallback): void
 
-监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的指令下发情况，在onActionEnd事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行前的指令下发情况，在[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1580,18 +1644,18 @@ on(type: 'beforePanEnd', callback: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行前的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发前触发。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行前的指令下发情况，所注册回调将于Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件触发前触发。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)，[GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)和组件的[FrameNode](js-apis-arkui-frameNode.md)。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart19)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ## off('beforePanEnd')<sup>19+</sup>
 
 off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 
-取消[on('beforePanEnd')](#onbeforepanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanEnd')](#onbeforepanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行前的callback回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1601,18 +1665,18 @@ off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，即Pan手势onActionEnd事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，即Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行前的指令下发情况。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。不传参数时，取消所有的Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行前的指令下发监听回调。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart19)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ## on('afterPanEnd')<sup>19+</sup>
 
 on(type: 'afterPanEnd', callback: PanListenerCallback): void
 
-监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionEnd事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行后的指令下发情况，在[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1622,18 +1686,18 @@ on(type: 'afterPanEnd', callback: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行后的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发后触发。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行后的指令下发情况，所注册回调将于Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件触发后触发。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)，[GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)和组件的[FrameNode](js-apis-arkui-frameNode.md)。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart19)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ## off('afterPanEnd')<sup>19+</sup>
 
 off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 
-取消[on('afterPanEnd')](#onafterpanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+取消[on('afterPanEnd')](#onafterpanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行后的callback回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1643,12 +1707,12 @@ off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'afterPanEnd'，即Pan手势onActionEnd事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
+| type     | string                                                      | 是   | 监听事件，固定为'afterPanEnd'，即Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行后的指令下发情况。 |
+| callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | 否   | 需要被注销的回调函数。不传参数时，取消所有的Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend)事件执行后的指令下发监听回调。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart19)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ## on('nodeRenderState')<sup>20+</sup>
 
@@ -1669,8 +1733,8 @@ on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStat
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，用于监听节点渲染状态发生改变。 |
-| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是   | 组件标识。   |
-| callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | 是   | 回调函数。可以获得组件渲染状态改变事件的NodeRenderState和组件的FrameNode。   |
+| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是   | 节点标识。   |
+| callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | 是   | 回调函数。可以获得节点渲染状态改变事件的[NodeRenderState](arkts-apis-uicontext-e.md#noderenderstate20)和组件的[FrameNode](js-apis-arkui-frameNode.md)。   |
 
 **错误码：**
 
@@ -1685,18 +1749,22 @@ on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStat
 该示例展示了如何对目标组件添加监听和取消监听。当向左滑动，被监听组件从屏幕消失，会收到RENDER_OUT的通知，然后向右滑动，被监听组件重新出现在屏幕上，会收到RENDER_IN通知。
 
 ```ts
+// Index.ets
+// 演示uiObserver.on('nodeRenderState', nodeIdentity, callback)
+// uiObserver.off('nodeRenderState', nodeIdentity, callback)
+
 // 在页面Component中使用
-import { NodeRenderState } from '@ohos.arkui.UIContext';
+import { NodeRenderState } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State notice: string = ""
-  private controller: TabsController = new TabsController()
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State notice: string = "";
+  private controller: TabsController = new TabsController();
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1725,16 +1793,15 @@ struct Index {
                 let node: FrameNode | null = this.getUIContext().getFrameNodeById("button_1");
                 if (node) {
                   let observer = this.getUIContext().getUIObserver();
+                  // 添加监听
                   observer.on("nodeRenderState", node?.getUniqueId(), (state: NodeRenderState, node?: FrameNode) => {
-                    if (state === 0)
-                    {
+                    // 根据节点状态修改通知信息
+                    if (state === 0) {
                       this.notice = "RENDER_IN";
-                    }
-                    else
-                    {
+                    } else {
                       this.notice = "RENDER_OUT";
                     }
-                    console.log("节点状态发生改变，当前状态：", state)
+                    console.info("节点状态发生改变，当前状态：", state);
                   })
                 }
               })
@@ -1742,7 +1809,8 @@ struct Index {
                 let node: FrameNode | null = this.getUIContext().getFrameNodeById("button_1");
                 if (node) {
                   let observer = this.getUIContext().getUIObserver();
-                  observer.off("nodeRenderState", node?.getUniqueId())
+                  // 取消监听，不选择回调时，取消所有监听的回调
+                  observer.off("nodeRenderState", node?.getUniqueId());
                 }
                 this.notice = "";
               })
@@ -1751,7 +1819,7 @@ struct Index {
         }.tabBar(this.tabBuilder(0, 'green'))
 
         TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
         }.tabBar(this.tabBuilder(1, 'blue'))
 
         TabContent() {
@@ -1768,14 +1836,14 @@ struct Index {
       .barHeight(56)
       .animationDuration(400)
       .onChange((index: number) => {
-        this.currentIndex = index
-        this.selectedIndex = index
+        this.currentIndex = index;
+        this.selectedIndex = index;
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
-          return
+          return;
         }
-        this.selectedIndex = targetIndex
+        this.selectedIndex = targetIndex;
       })
       .width(360)
       .height(296)
@@ -1806,8 +1874,8 @@ off(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback?: NodeRenderSt
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，即节点渲染状态变化指令下发情况。 |
-| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是   | 组件标识。   |
-| callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | 否   | 需要被注销的回调函数。   |                               |
+| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是   | 节点标识。   |
+| callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | 否   | 需要被注销的回调函数。不传参数时，取消该节点所有的渲染状态变化指令下发监听回调。   |
 
 **示例：**
 
@@ -1831,30 +1899,14 @@ addGlobalGestureListener(type: GestureListenerType, option: GestureObserverConfi
 | option | [GestureObserverConfigs](arkts-apis-uicontext-i.md#gestureobserverconfigs20) | 是   |  绑定全局监听器时的配置选项。  |
 | callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | 是   |  手势状态更新时的回调函数。  |  
 
-## removeGlobalGestureListener<sup>20+</sup>
-
-removeGlobalGestureListener(type: GestureListenerType, callback?: GestureListenerCallback): void
-
-移除某一手势监听器类型的回调函数。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型     | 必填 | 说明       |
-| -------- | ---------- | ---- | --------- |
-| type     | [GestureListenerType](arkts-apis-uicontext-e.md#gesturelistenertype20)    | 是   | 要移除监听器的事件类型。 |
-| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | 否   | 待移除的回调函数（未提供时将清除该手势类型的所有回调）。   |  
-
 **示例：**
 
 该示例使用全局手势监听器实时追踪Tap、Pan和LongPress三个独立区域的触发状态，记录各手势的触发次数和最后操作信息，并在组件生命周期内自动管理监听器的注册与注销。
 
 ```ts
-
-// xxx.ets
+// Index.ets
+// 演示uiObserver.addGlobalGestureListener(type, option, callback)
+// uiObserver.removeGlobalGestureListener(type, callback)
 
 import { GestureListenerType, GestureActionPhase, GestureTriggerInfo, GestureListenerCallback } from '@kit.ArkUI';
 
@@ -2027,6 +2079,23 @@ struct Index {
 ```
 ![example](figures/pangesture_uiobserver_listener.gif)
 
+## removeGlobalGestureListener<sup>20+</sup>
 
+removeGlobalGestureListener(type: GestureListenerType, callback?: GestureListenerCallback): void
 
+移除某一手势监听器类型的回调函数。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型     | 必填 | 说明       |
+| -------- | ---------- | ---- | --------- |
+| type     | [GestureListenerType](arkts-apis-uicontext-e.md#gesturelistenertype20)    | 是   | 要移除监听器的事件类型。 |
+| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | 否   | 待移除的回调函数（未提供时将清除该手势类型的所有回调）。   |  
+
+**示例：**
+
+参考[addGlobalGestureListener](#addglobalgesturelistener20)接口示例。

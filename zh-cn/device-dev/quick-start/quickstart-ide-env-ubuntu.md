@@ -12,7 +12,7 @@
 
 ## 系统要求
 
-- Ubuntu系统要求：Ubuntu18.04~21.10版本。推荐使用20.04版本，内存16GB及以上，硬盘100GB及以上。
+- Ubuntu系统要求：Ubuntu18.04~22.04版本。推荐使用22.04版本，内存32GB及以上，硬盘250GB及以上。
 
 - Ubuntu系统的用户名不能包含中文字符。
 
@@ -21,6 +21,8 @@
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
   > 下面以3.1 Release版本的IDE进行说明，不同版本的IDE在支持的特性和操作上略有差别，具体情况可参考[该工具的使用指南](https://device.harmonyos.com/cn/docs/documentation/guide/service_introduction-0000001050166905)。
 
+- 镜像下载命令，18.04：docker pull swr.cn-north-4.myhuaweicloud.com/ci-service/harmony-build-env-jnlp:1.0.8
+               22.04：docker pull swr.cn-north-4.myhuaweicloud.com/ci-service/openharmony-standard-build-env-22.04:4.0.0
 
 ## 操作步骤
 

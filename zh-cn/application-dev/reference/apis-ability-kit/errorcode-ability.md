@@ -839,6 +839,24 @@ Failed to obtain the target application information.
 3. 检查目标应用是否创建了该索引对应的分身应用。
 <!--DelEnd-->
 
+## 16000083 不允许该类型ExtensionAbility启动指定Ability
+
+**错误信息**
+
+The ExtensionAbility cannot start the ability due to system control.
+
+**错误描述**
+
+不同类型ExtensionAbility所需要的能力不同。系统不允许该类型ExtensionAbility启动指定Ability。
+
+**可能原因**
+
+当前类型ExtensionAbility受系统管控，不允许该类型ExtensionAbility启动指定Ability。
+
+**处理步骤**
+
+查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
+
 ## 16000084 只允许DelegatorAbility单次调用
 
 **错误信息**
@@ -1906,3 +1924,57 @@ The current process is not a candidate master process and does not support cance
 **处理步骤**
 
 不支持处理，当前进程不是备选主控进程，不支持取消。
+
+## 16000118 当前进程非主控进程
+
+**错误信息**
+
+Not a master process.
+
+**错误描述**
+
+当前进程不是主控进程。
+
+**可能原因**
+
+当前进程不是主控进程，无法放弃当前进程的主控进程身份。
+
+**处理步骤**
+
+不支持处理，当前进程不是主控进程，无法放弃其主控进程身份。
+
+## 16000119 存在未完成的onNewProcessRequest请求
+
+**错误信息**
+
+Cannot exit because there is an unfinished onNewProcessRequest.
+
+**错误描述**
+
+放弃当前进程的主控进程身份失败，因为有未完成的onNewProcessRequest请求。
+
+**可能原因**
+
+当前进程存在未完成的onNewProcessRequest请求。
+
+**处理步骤**
+
+等待当前进程中的onNewProcessRequest请求完成，然后再放弃当前进程的主控进程身份。
+
+## 16000205 当前接口未在主线程中调用
+
+**错误信息**
+
+The API is not called in the main thread.
+
+**错误描述**
+
+当前接口未在主线程调用。
+
+**可能原因**
+
+当前接口在worker或taskpool中调用，不支持该操作。
+
+**处理步骤**
+
+请将接口调用逻辑迁移到主线程中执行。

@@ -1,8 +1,16 @@
 # avmetadata_extractor.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the AVMetadataExtractor APIs. You can use the APIs to obtain metadata from media assets.
+
+**File to include**: <multimedia/player_framework/avmetadata_extractor.h>
 
 **Library**: libavmetadata_extractor.so
 
@@ -18,14 +26,14 @@ The file declares the AVMetadataExtractor APIs. You can use the APIs to obtain m
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md) | OH_AVMetadataExtractor | Describes the OH_AVMetadataExtractor.|
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md) | OH_AVMetadataExtractor | Describes the OH_AVMetadataExtractor.|
 
 ### Functions
 
 | Name| Description|
 | -- | -- |
 | [OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void)](#oh_avmetadataextractor_create) | Creates an OH_AVMetadataExtractor instance.|
-| [OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extractor,int32_t fd, int64_t offset, int64_t size)](#oh_avmetadataextractor_setfdsource) | Sets a data source based on the media file descriptor.|
+| [OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extractor, int32_t fd, int64_t offset, int64_t size)](#oh_avmetadataextractor_setfdsource) | Sets a data source based on the media file descriptor.|
 | [OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata)](#oh_avmetadataextractor_fetchmetadata) | Obtains metadata from a media asset. This function must be called after [OH_AVMetadataExtractor_SetFDSource](#oh_avmetadataextractor_setfdsource).|
 | [OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extractor, OH_PixelmapNative** pixelMap)](#oh_avmetadataextractor_fetchalbumcover) | Obtains the cover of an audio album. This function must be called after [OH_AVMetadataExtractor_SetFDSource](#oh_avmetadataextractor_setfdsource).|
 | [OH_AVErrCode OH_AVMetadataExtractor_Release(OH_AVMetadataExtractor* extractor)](#oh_avmetadataextractor_release) | Releases the resources used by the OH_AVMetadataExtractor instance and destroys the instance.|
@@ -50,7 +58,7 @@ Creates an OH_AVMetadataExtractor instance.
 
 | Type| Description|
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* | Pointer to the OH_AVMetadataExtractor instance created if the operation is successful; nullptr otherwise.<br>         Possible cause of failures: **HstEngineFactory::CreateAVMetadataHelperEngine** fails to run.|
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* | Pointer to the OH_AVMetadataExtractor instance created if the operation is successful; nullptr otherwise.<br>Possible cause of failures: **HstEngineFactory::CreateAVMetadataHelperEngine** fails to run.|
 
 ### OH_AVMetadataExtractor_SetFDSource()
 
@@ -71,7 +79,7 @@ Sets a data source based on the media file descriptor.
 
 | Parameter| Description|
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
 | int32_t fd | File descriptor of the media source.|
 | int64_t offset | Offset of the media source in the file descriptor.|
 | int64_t size | Size of the media source.|
@@ -103,7 +111,7 @@ This function must be called after [OH_AVMetadataExtractor_SetFDSource](#oh_avme
 
 | Parameter| Description|
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
 | [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* avMetadata | Pointer to the OH_AVFormat instance, which contains the obtained metadata.|
 
 **Return value**
@@ -133,8 +141,8 @@ This function must be called after [OH_AVMetadataExtractor_SetFDSource](#oh_avme
 
 | Parameter| Description|
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
-| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md** pixelMap | Double pointer to the album cover obtained.|
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
+| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md)** pixelMap | Double pointer to the album cover obtained.|
 
 **Return value**
 
@@ -161,7 +169,7 @@ Releases the resources used by the OH_AVMetadataExtractor instance and destroys 
 
 | Parameter| Description|
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | Pointer to the OH_AVMetadataExtractor instance.|
 
 **Return value**
 

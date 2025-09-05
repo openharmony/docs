@@ -55,9 +55,9 @@ API 20
 
 此变更涉及应用适配。
 
-- 变更前：（1）drawModifier接口参数从DrawModifier对象变为undefined后，生效的仍旧是原来的DrawModifier对象。（2）任何组件，只要设置了drawModifier属性，即使跳过测量，也会触发重绘。
+- 变更前：（1）drawModifier接口参数从DrawModifier对象变为undefined后，生效的仍旧是原来的DrawModifier对象。（2）任何组件，如果设置了drawModifier属性，无论是否跳过测量（尺寸是否发生变化），都会触发重绘。
   
-- 变更后：（1）drawModifier接口参数从DrawModifier对象变为undefined后，会将原来设置的值重置为undefined。（2）若容器组件设置了drawModifier属性，则当其跳过测量时，不执行重绘。其他组件的重绘触发机制与是否使用drawModifier属性无关。
+- 变更后：（1）drawModifier接口参数从DrawModifier对象变为undefined后，会将原来设置的值重置为undefined。（2）任何组件，如果设置了drawModifier属性，当其未跳过测量（尺寸可能发生变化）时，就会触发重绘。
 
 **起始API Level**
 

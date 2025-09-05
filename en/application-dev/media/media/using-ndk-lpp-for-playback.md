@@ -54,7 +54,7 @@ To use system logging, include the following header file:
 #include <hilog/log.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 
 ```
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)

@@ -1,8 +1,16 @@
 # native_avscreen_capture_errors.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the error codes generated during screen capture.
+
+**File to include**: <multimedia/player_framework/native_avscreen_capture_errors.h>
 
 **Library**: libnative_avscreen_capture.so
 

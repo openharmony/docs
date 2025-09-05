@@ -36,19 +36,19 @@
 | [typedef void (\*OH_PreviewOutput_OnFrameStart)(Camera_PreviewOutput* previewOutput)](#oh_previewoutput_onframestart) | OH_PreviewOutput_OnFrameStart | 在[PreviewOutput_Callbacks](capi-oh-camera-previewoutput-callbacks.md)中被调用的预览输出帧开始回调。 |
 | [typedef void (\*OH_PreviewOutput_OnFrameEnd)(Camera_PreviewOutput* previewOutput, int32_t frameCount)](#oh_previewoutput_onframeend) | OH_PreviewOutput_OnFrameEnd | 在[PreviewOutput_Callbacks](capi-oh-camera-previewoutput-callbacks.md)中被调用的预览输出帧结束回调。 |
 | [typedef void (\*OH_PreviewOutput_OnError)(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)](#oh_previewoutput_onerror) | OH_PreviewOutput_OnError | 在[PreviewOutput_Callbacks](capi-oh-camera-previewoutput-callbacks.md)中被调用的预览输出帧错误回调。 |
-| [Camera_ErrorCode OH_PreviewOutput_RegisterCallback(Camera_PreviewOutput* previewOutput,PreviewOutput_Callbacks* callback)](#oh_previewoutput_registercallback) | - | 注册预览输出更改事件回调。 |
-| [Camera_ErrorCode OH_PreviewOutput_UnregisterCallback(Camera_PreviewOutput* previewOutput,PreviewOutput_Callbacks* callback)](#oh_previewoutput_unregistercallback) | - | 注销预览输出更改事件回调。 |
+| [Camera_ErrorCode OH_PreviewOutput_RegisterCallback(Camera_PreviewOutput* previewOutput, PreviewOutput_Callbacks* callback)](#oh_previewoutput_registercallback) | - | 注册预览输出更改事件回调。 |
+| [Camera_ErrorCode OH_PreviewOutput_UnregisterCallback(Camera_PreviewOutput* previewOutput, PreviewOutput_Callbacks* callback)](#oh_previewoutput_unregistercallback) | - | 注销预览输出更改事件回调。 |
 | [Camera_ErrorCode OH_PreviewOutput_Start(Camera_PreviewOutput* previewOutput)](#oh_previewoutput_start) | - | 开始预览输出。 |
 | [Camera_ErrorCode OH_PreviewOutput_Stop(Camera_PreviewOutput* previewOutput)](#oh_previewoutput_stop) | - | 停止预览输出。 |
 | [Camera_ErrorCode OH_PreviewOutput_Release(Camera_PreviewOutput* previewOutput)](#oh_previewoutput_release) | - | 释放预览输出实例。 |
 | [Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* previewOutput, Camera_Profile** profile)](#oh_previewoutput_getactiveprofile) | - | 获取当前预览输出配置文件。 |
 | [Camera_ErrorCode OH_PreviewOutput_DeleteProfile(Camera_Profile* profile)](#oh_previewoutput_deleteprofile) | - | 删除预览配置文件实例。 |
-| [Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput* previewOutput, int displayRotation,Camera_ImageRotation* imageRotation)](#oh_previewoutput_getpreviewrotation) | - | 获取相机预览旋转角度。 |
-| [Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previewOutput,Camera_ImageRotation previewRotation, bool isDisplayLocked)](#oh_previewoutput_setpreviewrotation) | - | 设置相机预览旋转角度。 |
-| [Camera_ErrorCode OH_PreviewOutput_GetSupportedFrameRates(Camera_PreviewOutput* previewOutput,Camera_FrameRateRange** frameRateRange, uint32_t* size)](#oh_previewoutput_getsupportedframerates) | - | 获取支持的预览输出帧率列表。 |
-| [Camera_ErrorCode OH_PreviewOutput_DeleteFrameRates(Camera_PreviewOutput* previewOutput,Camera_FrameRateRange* frameRateRange)](#oh_previewoutput_deleteframerates) | - | 删除帧率列表。 |
-| [Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutput,int32_t minFps, int32_t maxFps)](#oh_previewoutput_setframerate) | - | 设置预览输出帧率。 |
-| [Camera_ErrorCode OH_PreviewOutput_GetActiveFrameRate(Camera_PreviewOutput* previewOutput,Camera_FrameRateRange* frameRateRange)](#oh_previewoutput_getactiveframerate) | - | 获取当前预览输出帧率。 |
+| [Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput* previewOutput, int displayRotation, Camera_ImageRotation* imageRotation)](#oh_previewoutput_getpreviewrotation) | - | 获取相机预览旋转角度。 |
+| [Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previewOutput, Camera_ImageRotation previewRotation, bool isDisplayLocked)](#oh_previewoutput_setpreviewrotation) | - | 设置相机预览旋转角度。 |
+| [Camera_ErrorCode OH_PreviewOutput_GetSupportedFrameRates(Camera_PreviewOutput* previewOutput, Camera_FrameRateRange** frameRateRange, uint32_t* size)](#oh_previewoutput_getsupportedframerates) | - | 获取支持的预览输出帧率列表。 |
+| [Camera_ErrorCode OH_PreviewOutput_DeleteFrameRates(Camera_PreviewOutput* previewOutput, Camera_FrameRateRange* frameRateRange)](#oh_previewoutput_deleteframerates) | - | 删除帧率列表。 |
+| [Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutput, int32_t minFps, int32_t maxFps)](#oh_previewoutput_setframerate) | - | 设置预览输出帧率。 |
+| [Camera_ErrorCode OH_PreviewOutput_GetActiveFrameRate(Camera_PreviewOutput* previewOutput, Camera_FrameRateRange* frameRateRange)](#oh_previewoutput_getactiveframerate) | - | 获取当前预览输出帧率。 |
 
 ## 函数说明
 
@@ -339,7 +339,7 @@ Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previ
 | -- | -- |
 | [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | 用于设置预览旋转角度的预览输出实例。 |
 | [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation) previewRotation | 预览的显示旋转角度。 |
-| bool isDisplayLocked | 显示器状态，true表示显示器被锁定，false表示显示器未被锁定。 |
+| bool isDisplayLocked | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。true表示锁定方向，false表示不锁定方向。详情请参考[SurfaceRotationOptions](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#surfacerotationoptions12对象说明) |
 
 **返回：**
 

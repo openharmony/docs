@@ -147,7 +147,7 @@ type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedS
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
-| 名称                  | 描述                |
+| 类型                  | 说明                |
 | ------------------- | ----------------- |
 | 'default'             | 表示默认字体。             |
 | 'monospacedSerif'         | 表示等宽 Serif 字体。      |
@@ -207,11 +207,11 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -259,11 +259,11 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -311,11 +311,11 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -368,11 +368,11 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -414,23 +414,23 @@ struct Index {
 
 | 名称             | 类型                                   | 只读 | 可选 | 说明            |
 | ---------------- | ------------------------------------- |----- |------|-----------------------|
-| type             | [EventType](#eventtype)               | 是   | 否   | 无障碍事件类型，不可缺省。         |
+| type             | [EventType](#eventtype)               | 否   | 否   | 无障碍事件类型，不可缺省。         |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | 否   | 是   | 窗口变化类型。               |
-| bundleName       | string                                | 是   | 否   | 目标应用名；不可缺省。           |
-| componentType    | string                                | 否   | 是   | 应与事件源组件类型所对应，如：按钮Button类型->'Button'、图像Image类型->'Image'。       |
-| pageId           | number                                | 否   | 是   | 事件源的页面ID。默认值为0。            |
+| bundleName       | string                                | 否   | 否   | 目标应用名；不可缺省。           |
+| componentType    | string                                | 否   | 是   | 应与事件源组件类型对应，如：按钮Button类型->'Button'、图片Image类型->'Image'。       |
+| pageId           | number                                | 否   | 是   | 事件源的页面ID，默认值为0。            |
 | description      | string                                | 否   | 是   | 事件描述，根据实际场景设置，无特殊限制。        |
-| triggerAction    | [Action](#action)                     | 是   | 否   | 触发事件的Action，不可缺省。    |
+| triggerAction    | [Action](#action)                     | 否   | 否   | 触发事件的Action，不可缺省。    |
 | textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 否   | 是   | 文本移动粒度。      |
 | contents         | Array&lt;string&gt;                   | 否   | 是   | 内容列表，根据实际场景设置，无特殊限制。                 |
 | lastContent      | string                                | 否   | 是   | 最新内容，根据实际场景设置，无特殊限制。                 |
-| beginIndex       | number                                | 否   | 是   | 画面显示条目的开始序号。默认值为0。 |
-| currentIndex     | number                                | 否   | 是   | 当前条目序号。默认值为0。      |
-| endIndex         | number                                | 否   | 是   | 画面显示条目的结束序号。默认值为0。 |
-| itemCount        | number                                | 否   | 是   | 条目总数。默认值为0。        |
-| elementId<sup>12+</sup>        | number                  | 否   | 是   | 组件elementId。默认值为0。        |
-| textAnnouncedForAccessibility<sup>12+</sup>     | string     | 否   | 是   | 主动播报的内容。当应用需要主动播报时根据实际场景设置播报内容，无特殊限制。        |
-| textResourceAnnouncedForAccessibility<sup>18+</sup>      | Resource   | 否   | 是   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
+| beginIndex       | number                                | 否   | 是   | 画面显示条目的开始序号，默认值为0。 |
+| currentIndex     | number                                | 否   | 是   | 当前条目序号，默认值为0。      |
+| endIndex         | number                                | 否   | 是   | 画面显示条目的结束序号，默认值为0。 |
+| itemCount        | number                                | 否   | 是   | 条目总数，默认值为0。        |
+| elementId<sup>12+</sup>        | number                  | 否   | 是   | 组件elementId，默认值为0。        |
+| textAnnouncedForAccessibility<sup>12+</sup>     | string     | 否   | 是   | 主动播报的内容。当应用需要主动播报时，根据实际场景设置播报内容，无特殊限制。 |
+| textResourceAnnouncedForAccessibility<sup>18+</sup>      | Resource   | 否   | 是   | 主动播报的内容支持传入Resource类型，且只能传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 是   | 主动聚焦的组件ID。        |
 
 ### constructor
@@ -650,11 +650,11 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **参数示例：**
 | 辅助应用类型 \ 辅助应用状态      | enable       | disable |install|
@@ -724,11 +724,11 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **参数示例：**
 | 辅助应用类型 \ 辅助应用状态      | enable       | disable |install|
@@ -865,6 +865,9 @@ try {
 }
 ```
 
+<!--RP1-->
+<!--RP1End-->
+
 ## accessibility.getCaptionsManager<sup>(deprecated)</sup>
 
 getCaptionsManager(): CaptionsManager
@@ -908,11 +911,11 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -926,6 +929,9 @@ accessibility.on('accessibilityStateChange', (data: boolean) => {
   console.info(`subscribe accessibility state change, result: ${JSON.stringify(data)}`);
 });
 ```
+
+<!--RP2-->
+<!--RP2End-->
 
 ## accessibility.on('touchGuideStateChange')
 
@@ -944,11 +950,11 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -969,7 +975,7 @@ on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
 
 监听屏幕朗读功能启用状态变化事件，使用callback异步回调。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -980,11 +986,11 @@ on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1060,11 +1066,11 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1093,11 +1099,11 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1126,11 +1132,11 @@ off(type: 'screenReaderStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1275,7 +1281,7 @@ isOpenAccessibilitySync(): boolean
 
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。 |
+| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。<!--RP3--><!--RP3End--> |
 
 **示例：**
 
@@ -1385,8 +1391,6 @@ let status: boolean = accessibility.isOpenTouchGuideSync();
 isScreenReaderOpenSync(): boolean
 
 是否开启了屏幕朗读模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -1511,11 +1515,11 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1553,11 +1557,11 @@ sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

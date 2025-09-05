@@ -957,7 +957,7 @@ getItemRect(index: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
 
 **错误码**：
 

@@ -3,7 +3,7 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
-<!--Designer: @li-weifeng2-->
+<!--Designer: @li-weifeng2024-->
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
@@ -1030,7 +1030,6 @@ setFont(font: string): void
 **示例：**
 
 ```ts
-import { font } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
 @Entry
@@ -1042,10 +1041,10 @@ struct Index {
   aboutToAppear() {
     this.getUIContext().getFont().registerFont({
       familyName: 'fontName',
-      familySrc: $rawfile('font/medium.ttf')
-    })
+      familySrc: $rawfile('font/medium.ttf')  // 'font/medium.ttf'仅作为示例，实际使用时请替换为真实的字体资源文件。
+    });
 
-    this.context.getApplicationContext().setFont("fontName");
+    this.context.getApplicationContext().setFont('fontName');
   }
 
   build() {

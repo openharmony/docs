@@ -1,4 +1,10 @@
 # NotificationContent
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
 
 描述通知类型。
 
@@ -143,6 +149,7 @@
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // 该通知从3秒开始倒计时，并且时间展示在title中。
 time: {

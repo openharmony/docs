@@ -47,7 +47,7 @@
 
 | 名称 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 否 | 组件内容变化的原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common-sys.md#textchangereason20) | 否 | 组件内容变化的原因。 |
 
 ## 示例
 

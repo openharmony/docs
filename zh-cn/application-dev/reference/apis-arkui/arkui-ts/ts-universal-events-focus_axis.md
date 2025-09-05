@@ -16,7 +16,7 @@
 
 onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
-绑定该方法的组件获焦后，游戏手柄上的摇杆、十字键等的操作会触发该回调。
+给组件绑定焦点轴事件回调。绑定该方法的组件获焦后，游戏手柄上的摇杆、十字键等的操作会触发该回调。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | Callback\<[FocusAxisEvent](#focusaxisevent对象说明)> | 是   | 获得FocusAxisEvent对象。 |
+| event  | Callback\<[FocusAxisEvent](#focusaxisevent对象说明)> | 是   | 焦点轴事件回调。 |
 
 **返回值：**
 

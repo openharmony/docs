@@ -73,7 +73,7 @@ objectFit(value: ImageFit)
 
 alt(value:&nbsp;PixelMap)
 
-设置图片加载时显示的占位图。
+设置图片加载过程中显示的占位图。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -83,7 +83,7 @@ alt(value:&nbsp;PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 加载时显示的占位图，支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。<br/>默认值：null |
+| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 设置图片加载过程中显示的占位图，支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。<br/>默认值：null |
 
 ### colorFilter<sup>14+</sup>
 

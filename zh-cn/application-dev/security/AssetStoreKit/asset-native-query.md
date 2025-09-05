@@ -16,7 +16,7 @@
 
 >**注意：**
 >
->下表中名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+>下表中“ASSET_TAG_ALIAS”和名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放敏感个人数据。
 
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
@@ -68,7 +68,8 @@
 
    #include "asset/asset_api.h"
 
-   void QueryAsset() {
+   static napi_value QueryAsset(napi_env env, napi_callback_info info) 
+   {
        static const char *ALIAS = "demo_alias";
        Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
        Asset_Attr attr[] = {
@@ -77,16 +78,20 @@
        };
 
        Asset_ResultSet resultSet = {0};
-       int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-       if (ret == ASSET_SUCCESS) {
+       int32_t queryResult = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+       if (queryResult == ASSET_SUCCESS) {
            // 解析resultSet。
            for (uint32_t i = 0; i < resultSet.count; i++) {
-                // 解析secret属性：其中data数据对应是secret->blob.data，长度对应是secret->blob.size。
-                Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
+               // 解析secret属性：其中data数据对应是secret->blob.data，长度对应是secret->blob.size。
+               Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
            }
        }
        OH_Asset_FreeResultSet(&resultSet);
-   }
+    
+       napi_value ret;
+       napi_create_int32(env, queryResult, &ret);
+       return ret;
+    }
    ```
 
 ### 查询单条关键资产属性
@@ -106,7 +111,8 @@
 
    #include "asset/asset_api.h"
 
-   void QueryAttributes() {
+   static napi_value QueryAttributes(napi_env env, napi_callback_info info) 
+   {
        static const char *ALIAS = "demo_alias";
        Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
        Asset_Attr attr[] = {
@@ -115,8 +121,8 @@
        };
 
        Asset_ResultSet resultSet = {0};
-       int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-       if (ret == ASSET_SUCCESS) {
+       int32_t queryResult = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+       if (queryResult == ASSET_SUCCESS) {
            // 解析结果。
            for (uint32_t i = 0; i < resultSet.count; i++) {
                // 解析数据标签：其中数据是label->blob.data，长度对应是label->blob.size。
@@ -124,6 +130,10 @@
            }
        }
        OH_Asset_FreeResultSet(&resultSet);
+    
+       napi_value ret;
+       napi_create_int32(env, queryResult, &ret);
+       return ret;
    }
    ```
 
@@ -142,21 +152,21 @@
 
    #include "asset/asset_api.h"
 
-   void BatchQuery() {
+   static napi_value BatchQuery(napi_env env, napi_callback_info info) 
+   {
        static const char *LABEL = "demo_label";
        Asset_Blob label = {(uint32_t)(strlen(LABEL)), (uint8_t *)LABEL};
 
        Asset_Attr attr[] = {
            {.tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES},
            {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label},
-           {.tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5},
            {.tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10},
            {.tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1},
        };
 
        Asset_ResultSet resultSet = { 0 };
-       int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-       if (ret == ASSET_SUCCESS) {
+       int32_t queryResult = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+       if (queryResult == ASSET_SUCCESS) {
            // 解析结果。
            for (uint32_t i = 0; i < resultSet.count; i++) {
                // 解析数据别名：其中别名是label->blob.data，长度对应是label->blob.size。
@@ -164,5 +174,9 @@
            }
        }
        OH_Asset_FreeResultSet(&resultSet);
+    
+       napi_value ret;
+       napi_create_int32(env, queryResult, &ret);
+       return ret;
    }
    ```
