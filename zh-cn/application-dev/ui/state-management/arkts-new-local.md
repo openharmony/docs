@@ -85,7 +85,7 @@ struct Index {
 
 ## 观察变化
 
-使用\@Local装饰的变量具有被观测变化的能力。当装饰的变量发生变化时，会触发该变量绑定的UI组件刷新。
+使用\@Local装饰的变量具有观测变化的能力。当装饰的变量发生变化时，会触发该变量绑定的UI组件刷新。
 
 - 当装饰的变量类型为boolean、string、number时，可以观察到对变量赋值的变化。
 
@@ -448,10 +448,10 @@ struct MapSample {
         Button('clear').onClick(() => { // 按钮3：清空Map
           this.message.clear();
         })
-        Button('replace the first one').onClick(() => { // 按钮4：更新/添加键值为0的元素
+        Button('replace key 0').onClick(() => { // 按钮4：更新/添加键值为0的键值对
           this.message.set(0, 'aa');
         })
-        Button('delete the first one').onClick(() => { // 按钮5：删除元素0
+        Button('delete key 0').onClick(() => { // 按钮5：删除键值为0的键值对
           this.message.delete(0);
         })
       }
