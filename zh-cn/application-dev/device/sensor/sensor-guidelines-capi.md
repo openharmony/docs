@@ -120,6 +120,9 @@
        if (ret != SENSOR_SUCCESS) {
            return;
        }
+       if (data == nullptr) {
+           return;
+       }
        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "sensorType:%{public}d, dataLen:%{public}d, accuracy:%{public}d", sensorType, length, accuracy);
        for (uint32_t i = 0; i < length; ++i) {
            OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "data[%{public}d]:%{public}f", i, data[i]);
@@ -179,7 +182,7 @@
                return nullptr;
            }
        }
-       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos sucessful");
+       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos successful");
        ret = OH_Sensor_DestroyInfos(sensors, count); // 销毁实例数组并回收内存。
        if (ret != SENSOR_SUCCESS) {
            return nullptr;

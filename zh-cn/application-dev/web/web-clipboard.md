@@ -173,6 +173,8 @@ struct WebComponent {
 
 module.json5权限配置：
 
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
+
 ```json
 // module.json5
 {

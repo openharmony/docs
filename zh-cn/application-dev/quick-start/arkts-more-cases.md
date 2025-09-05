@@ -1539,28 +1539,6 @@ entries.forEach((value, key) => {
 })
 ```
 
-### 使用`Number`的属性和方法
-
-ArkTS不允许使用全局对象的属性和方法： `Infinity, NaN, isFinite, isNaN, parseFloat, parseInt`。
-
-可以使用`Number`的属性和方法： `Infinity, NaN, isFinite, isNaN, parseFloat, parseInt`。
-
-**应用代码**
-
-```typescript
-NaN;
-isFinite(123);
-parseInt('123');
-```
-
-**建议改法**
-
-```typescript
-Number.NaN;
-Number.isFinite(123);
-Number.parseInt('123');
-```
-
 ## arkts-strict-typing(StrictModeError)
 
 ### strictPropertyInitialization
@@ -1784,30 +1762,6 @@ class Test {
 }
 ```
 
-### '***' is of type 'unknown'
-
-**应用代码**
-
-```typescript
-try {
-  
-} catch (error) {
-  console.log(error.message);
-}
-```
-
-**建议改法**
-
-```typescript
-import { BusinessError } from '@kit.BasicServicesKit'
-
-try {
-  
-} catch (error) {
-  console.log((error as BusinessError).message);
-}
-```
-
 ### Type '*** | null' is not assignable to type '\*\*\*'
 
 **应用代码**
@@ -1880,7 +1834,7 @@ function foo(v: number): A | null {
 let a: A = foo(123)!;
 ```
 
-### Cannot invoke an object which possibly 'undefined'
+### Cannot invoke an object which is possibly 'undefined'
 
 **应用代码**
 
@@ -1999,7 +1953,7 @@ function foo(a: number): number | undefined {
 **应用代码**
 
 ```typescript
-// @ts-nocheck
+// @ts-ignore
 var a: any = 123;
 ```
 
@@ -2060,7 +2014,7 @@ interface ControllerConstructor {
   new (value: string): Controller;
 }
 
-class Menu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -2070,7 +2024,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new TestMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -2079,15 +2033,19 @@ console.log(t.createController()!.value);
 ```typescript
 class Controller {
   value: string = ''
+
   constructor(value: string) {
-    this.value = value
+    this.value = value;
   }
 }
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
-  controller: ControllerConstructor = () => { return new Controller('abc'); }
+class TestMenu {
+  controller: ControllerConstructor = () => {
+    return new Controller('abc');
+  }
+
   createController() {
     if (this.controller) {
       return this.controller();
@@ -2096,7 +2054,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: TestMenu = new TestMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -2205,10 +2163,13 @@ class Foo {
 **应用代码**
 
 ```typescript
-// lib.d.ts
-declare function foo(): any;
+// testa.ts
+export function foo(): any {
+  return null;
+}
 
 // main.ets
+import {foo} from './testa'
 let e0: ESObject = foo();
 
 function f() {
@@ -2222,10 +2183,13 @@ function f() {
 **建议改法**
 
 ```typescript
-// lib.d.ts
-declare function foo(): any;
+// testa.ts
+export function foo(): any {
+  return null;
+}
 
 // main.ets
+import {foo} from './testa'
 interface I {}
 
 function f() {

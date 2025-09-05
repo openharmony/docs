@@ -488,7 +488,7 @@ colorBlend(value: Color | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                           |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色字符串。 |
+| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色字符串。取值可为string类型，如'0x000000'，'rgba(0,0,0,1)'。 |
 
 **返回值：**
 
@@ -500,7 +500,7 @@ colorBlend(value: Color | string | Resource): T
 
 colorBlend(color: Optional\<Color | string | Resource>): T
 
-为组件添加颜色叠加效果。与[colorBlend<sup>7+</sup>](#colorblend7)相比，color参数新增了对undefined类型的支持。
+为组件添加颜色叠加效果。取值可为string类型，如'0x000000'，'rgba(0,0,0,1)'。与[colorBlend<sup>7+</sup>](#colorblend7)相比，color参数新增了对undefined类型的支持。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -867,12 +867,12 @@ pixelStretchEffect(options: Optional\<PixelStretchEffectOptions>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明             |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](ts-types.md#length) | 否    | 组件图像左边沿像素扩展距离。 |
-| right  | [Length](ts-types.md#length) | 否    | 组件图像右边沿像素扩展距离。 |
-| top    | [Length](ts-types.md#length) | 否    | 组件图像上边沿像素扩展距离。 |
-| bottom | [Length](ts-types.md#length) | 否    | 组件图像下边沿像素扩展距离。 |
+| 名称     | 类型                | 只读   | 可选   | 说明             |
+| ------ | ----------------- | ---- | ---- | -------------- |
+| left   | [Length](ts-types.md#length) | 否    | 是    | 组件图像左边沿像素扩展距离。 |
+| right  | [Length](ts-types.md#length) | 否    | 是    | 组件图像右边沿像素扩展距离。 |
+| top    | [Length](ts-types.md#length) | 否    | 是    | 组件图像上边沿像素扩展距离。 |
+| bottom | [Length](ts-types.md#length) | 否    | 是    | 组件图像下边沿像素扩展距离。 |
 
 ## systemBarEffect<sup>12+</sup>
 
@@ -1013,12 +1013,12 @@ type FractionStop = [ number, number ]
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            |  类型  | 必填  | 说明                                       |
-| -------------- | ------ | ----- | ------------------------------------------ |
-| low            | number | 是    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0,1]                 |
-| high           | number | 是    | 背景颜色灰度值小于阈值区间时的取值。  <br/>取值范围：[0,1]            |
-| threshold      | number | 是    | 灰度阈值。    <br/>取值范围：[0,1]                              |
-| thresholdRange | number | 是    | 阈值范围。<br/>取值范围：[0,1]<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
+| 名称            |  类型  | 只读  | 可选  | 说明                                       |
+| -------------- | ------ | ----- | ----- | ------------------------------------------ |
+| low            | number | 否    | 否    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0, 1]                 |
+| high           | number | 否    | 否    | 背景颜色灰度值小于阈值区间时的取值。  <br/>取值范围：[0, 1]            |
+| threshold      | number | 否    | 否    | 灰度阈值。    <br/>取值范围：[0, 1]                            |
+| thresholdRange | number | 否    | 否    | 阈值范围。<br/>取值范围：[0, 1]<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
 ## BackgroundImageOptions<sup>18+</sup>
 
@@ -1034,10 +1034,10 @@ type FractionStop = [ number, number ]
 >
 >  背景图片的同步加载可能会带来潜在性能问题，详情可见[Image](ts-basic-components-image.md#image-1)中说明。
 
-| 名称            |  类型                                           | 必填  | 说明                                                     |
-| -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
-| syncLoad       | boolean                                         | 否    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。      |
-| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
+| 名称            |  类型                                           | 只读  | 可选  | 说明                                                     |
+| -------------- | ------------------------------------------------| ----- | ----- | --------------------------------------------------------|
+| syncLoad       | boolean                                         | 否    | 是    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。      |
+| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 是    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
 
 ## freeze<sup>12+</sup>
 
@@ -1096,6 +1096,7 @@ struct ImageEffectsExample {
     Column({ space: 5 }) {
       // 添加阴影效果，图片效果不变
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
@@ -1108,6 +1109,7 @@ struct ImageEffectsExample {
 
       // 添加内部阴影效果
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
@@ -1121,39 +1123,52 @@ struct ImageEffectsExample {
 
       // 灰度效果0~1，越接近1，灰度越明显
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).grayscale(0.3)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).grayscale(0.8)
 
       // 高光效果，1为正常图片，<1变暗，>1亮度增大
       Text('brightness').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).brightness(1.2)
 
       // 饱和度，原图为1
       Text('saturate').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).saturate(2.0)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).saturate(0.7)
 
       // 对比度，1为原图，>1值越大越清晰，<1值越小越模糊
       Text('contrast').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).contrast(2.0)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).contrast(0.8)
 
       // 图像反转比例
       Text('invert').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).invert(0.2)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).invert(0.8)
 
       // 叠色添加
       Text('colorBlend').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).colorBlend(Color.Green)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).colorBlend(Color.Blue)
 
       // 深褐色
       Text('sepia').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).sepia(0.8)
 
       // 色相旋转
       Text('hueRotate').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).hueRotate(90)
     }.width('100%').margin({ top: 5 })
   }
@@ -1278,6 +1293,7 @@ struct Index {
     }
     .height('100%')
     .width('100%')
+    // $r("app.media.image")需要替换为开发者所需的图像资源文件。
     .backgroundImage($r('app.media.image'))
     .backgroundImageSize(ImageSize.Cover)
   }
@@ -1301,6 +1317,8 @@ struct Index {
     Stack() {
       Column()
       Stack() {
+        // $r("app.media.r")需要替换为开发者所需的图像资源文件。
+        // 该示例中图片为从左到右，颜色由浅到深。
         Image($r('app.media.r')).width('100%')
         Column() {
           Column().width("100%").height(30).invert({
@@ -1545,6 +1563,7 @@ struct Index {
   build() {
     Column() {
       Stack() {
+        // $r("app.media.testImage")需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImage')).width('100%').height('100%')
         Column()
           .width(150)

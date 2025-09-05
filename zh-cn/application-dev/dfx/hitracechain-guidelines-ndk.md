@@ -3,7 +3,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--Designer: @MontSaintMichel-->
+<!--Designer: @kutcherzhou1; @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
@@ -257,4 +257,4 @@ std::thread不支持自动传递HiTraceId，开发示例展示了该场景下分
 
    - hilog日志前附加的[chainId spanId parentSpanId]格式的信息即为HiTraceId信息，例如[a92ab19ae90197d 236699a 2544fdb]表示跟踪链标识chainId值为a92ab19ae90197d，分支标识spanId值为236699a，父分支标识parentSpanId值为2544fdb。
    - 通过手动传递HiTraceId，创建spanId，并将其设置到std::thread创建的子线程中，子线程中运行的Print1和Print2业务的hilog日志也携带上同主线程一致的跟踪标识“a92ab19ae90197d”。
-   - 使用OH_HiTrace_EndChain或OH_HiTrace_ClearId结束分布式跟踪后，hilog打印信息不再携带HiTraceId信息。
+   - 使用OH_HiTrace_EndChain()或OH_HiTrace_ClearId()结束分布式跟踪后，hilog打印信息不再携带HiTraceId信息。

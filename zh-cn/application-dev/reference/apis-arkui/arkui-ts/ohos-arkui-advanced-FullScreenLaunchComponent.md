@@ -74,7 +74,7 @@ struct Index {
     Row() {
       Column() {
         FullScreenLaunchComponent({
-          content: ColumChild,
+          content: ColumnChild,
           appId: this.appId,
           options: {},
           onTerminated: (info) => {
@@ -95,7 +95,7 @@ struct Index {
 }
 
 @Builder
-function ColumChild() {
+function ColumnChild() {
   Column() {
     Image($r('app.media.startIcon'))
     Text('test')

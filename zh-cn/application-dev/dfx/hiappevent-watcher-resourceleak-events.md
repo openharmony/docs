@@ -9,19 +9,17 @@
 
 ## 简介
 
-资源泄漏是指句柄、线程或内存等资源在应用运行过程中未被正确释放，导致资源长期占用且无法被其他应用使用。如果某一类资源耗尽，系统可能出现卡死或重启等异常情况。为应对资源泄漏，系统提供资源泄漏检测、判决、日志抓取及上报功能，帮助开发者获取详细日志以辅助故障定位。
+资源泄漏是指句柄、线程或内存等资源在应用运行过程中未被正确释放，导致资源长期占用且无法被其他应用使用。如果某一类资源耗尽，系统可能出现卡死或重启等异常情况。
 
-## 事件检测原理
-
-详见[资源泄漏检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-leak-guidelines)。
-
-## 接口说明
-
-开发者可以通过HiAppEvent提供接口订阅系统资源泄漏事件“hiAppEvent.event.RESOURCE_OVERLIMIT”，系统检测到应用进程存在泄漏后，会抓取维测信息通过HiAppEvent将泄漏事件回调给应用进程。
+本文面向开发者介绍资源泄漏事件各字段的含义和规格。如需了解如何使用HiAppEvent接口订阅系统资源泄漏事件，请参考以下文档。目前提供ArkTs和C/C++两种接口。
 
 - [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-arkts.md)
 
 - [订阅资源泄漏事件（C/C++）](hiappevent-watcher-resourceleak-events-ndk.md)
+
+## 检测原理
+
+检测原理详见[资源泄漏检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-leak-guidelines)。
 
 ## params字段说明
 
@@ -41,7 +39,7 @@
 | external_log | string[] | 故障日志文件路径。**为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，请在日志文件处理完后及时删除。** |
 | log_over_limit | boolean | 生成的故障日志文件与已存在的日志文件总大小是否超过2GB上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
-### **resource_type字段说明**
+### resource_type字段说明
 
 | 取值 | 说明 |
 | -------- | -------- |
@@ -52,7 +50,7 @@
 | fd | 句柄泄漏。 |
 | thread | 线程泄漏。 |
 
-### **memory字段说明**
+### memory字段说明
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
@@ -67,7 +65,7 @@
 | limit_size | number | （resource_type为js_heap专有）基线大小，单位：KB。 |
 | live_object_size | number | （resource_type为js_heap专有）实际使用内存大小，单位：KB。 |
 
-### **fd字段说明**
+### fd字段说明
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
@@ -75,7 +73,7 @@
 | top_fd_type | string | 使用最多的fd类型。 |
 | top_fd_num | number | 使用最多的fd类型的数量。 |
 
-### **thread字段说明**
+### thread字段说明
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |

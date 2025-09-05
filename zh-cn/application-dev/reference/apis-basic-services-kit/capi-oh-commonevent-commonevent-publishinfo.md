@@ -1,8 +1,15 @@
 # CommonEvent_PublishInfo
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
-发布自定义公共事件时使用的公共事件属性对象。
+发布公共事件时使用的公共事件属性对象。
 
 **起始版本：** 18
 

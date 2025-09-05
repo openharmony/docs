@@ -126,6 +126,8 @@ type PasteButtonCallback = (event: ClickEvent, result: PasteButtonOnClickResult,
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
@@ -163,7 +165,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct Index {
   handlePasteButtonClick: PasteButtonCallback =
     (event: ClickEvent, result: PasteButtonOnClickResult, error?: BusinessError<void>) => {
-      if (result == PasteButtonOnClickResult.SUCCESS) {
+      if (result === PasteButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
         console.error("errCode: " + error?.code);

@@ -105,6 +105,7 @@ type OnBufferingUpdateHandler = (infoType: BufferingInfoType, value: number) => 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | infoType  | [BufferingInfoType](arkts-apis-media-e.md#bufferinginfotype8) | 是 | 缓存时间类型。     |
+| value  | number | 是 | 缓存时间类型的值。     |
 
 ## OnVideoSizeChangeHandler<sup>12+</sup>
 
@@ -241,7 +242,8 @@ type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 **示例：**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
+import { media } from '@kit.MediaKit';
 
 let uuid: number = 1;
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();

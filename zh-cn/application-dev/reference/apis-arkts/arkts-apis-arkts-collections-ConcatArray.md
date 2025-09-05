@@ -37,9 +37,11 @@ import { collections } from '@kit.ArkTS';
 
 readonly &#91;index: number&#93;: T
 
-返回ConcatArray指定索引位置的元素。
+返回ConcatArray指定索引位置的元素，不支持修改指定索引位置的元素。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ----- | ------ | ---- | ---------------------------- |

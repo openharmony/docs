@@ -10,6 +10,8 @@
 
 图片编码API。
 
+**引用文件：** <multimedia/image_framework/image/image_packer_native.h>
+
 **库：** libimage_packer.so
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker

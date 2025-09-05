@@ -218,7 +218,11 @@ html页面代码
                 },
                 false
             );
-            fileReader.readAsDataURL(event.target.files[0]);
+            if (event.target.files && event.target.files[0]) {
+              fileReader.readAsDataURL(event.target.files[0]);
+            } else {
+              console.error("File not exist.");
+            }            
         }
     </script>
 </body>
@@ -267,20 +271,11 @@ html页面代码
     <title>WebCamera</title>
 </head>
 <body>
-    <input type="file" name="photo" id="photo" accept="image/*" capture="environment"><br>
-    <input type="file" name="photo2" id="photo2" capture="environment"><br>
     <input type="file" name="picture" id="picture" accept="image/*"><br>
-    <input type="file" name="none" id="none"><br>
     <img style="display: none;width:200px" id="img">
     <script>
-        let photo = document.getElementById("photo");
-        let photo2 = document.getElementById("photo2");
         let picture = document.getElementById("picture");
-        let none = document.getElementById("none");
-        photo.addEventListener("change", preViewImg)
-        photo2.addEventListener("change", preViewImg)
         picture.addEventListener("change", preViewImg)
-        none.addEventListener("change", preViewImg)
 
         function preViewImg(event) {
             let fileReader = new FileReader();
@@ -294,7 +289,11 @@ html页面代码
                 },
                 false
             );
-            fileReader.readAsDataURL(event.target.files[0]);
+            if (event.target.files && event.target.files[0]) {
+              fileReader.readAsDataURL(event.target.files[0]);
+            } else {
+              console.error("File not exist.");
+            }    
         }
     </script>
 </body>

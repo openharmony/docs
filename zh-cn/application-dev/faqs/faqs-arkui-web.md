@@ -82,6 +82,7 @@
               results.push(callFun(paramsObj.data))
           })
           Promise.all(results.filter(i => !!i)).then(res => {
+              // 依赖于results中包含非undefined或null的元素。
               this.callback(paramsObj.callID, res.length > 1 ? res : res[0])
           })
       }

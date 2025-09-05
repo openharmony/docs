@@ -12,13 +12,29 @@
 > 
 > 从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 接口
+## 构造函数
 
-Matrix2D(unit?: LengthMetricsUnit)
+### constructor<sup>10+</sup>
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+constructor()
+
+构造二维变换矩阵对象，默认值是单位矩阵。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### constructor<sup>12+</sup>
+
+constructor(unit: LengthMetricsUnit)
+
+构造二维变换矩阵对象，默认值是单位矩阵，支持配置Matrix2D对象的单位模式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,7 +42,7 @@ Matrix2D(unit?: LengthMetricsUnit)
 
 | 参数名 | 类型 | 必填 | 说明                              |
 | ------ | -------- | ---- | ------------------------------------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   | 用来配置Matrix2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT|
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是   | 用来配置Matrix2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT|
 
 ## 属性
 

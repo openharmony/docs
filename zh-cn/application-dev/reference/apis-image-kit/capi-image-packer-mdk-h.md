@@ -20,9 +20,11 @@
 
 最后通过OH_ImagePacker_Release释放编码器实例对象。
 
+**引用文件：** <multimedia/image_framework/image_packer_mdk.h>
+
 **库：** libimage_packer_ndk.z.so
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 11
 

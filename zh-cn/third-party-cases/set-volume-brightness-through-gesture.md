@@ -249,4 +249,4 @@ struct ChangeVolume{
 ## 参考
 - [Progress组件指南](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)
 - [PanGesture手势指南](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-gestures-pangesture.md)
-- [GestureEvent手势对象说明](../application-dev/reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
+- [GestureEvent手势对象说明](../application-dev/reference/apis-arkui/arkui-ts/ts-gesture-common.md#gestureevent对象说明)

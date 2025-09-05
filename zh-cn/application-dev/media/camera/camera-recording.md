@@ -24,10 +24,10 @@
 
 2. 创建Surface。
 
-   系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
+   系统提供的media接口可以创建一个录像[AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
 
    ```ts
-   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节。
+   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考步骤3.创建录像输出流。
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
@@ -38,7 +38,7 @@
      if (avRecorder === undefined) {
        return undefined;
      }
-     avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
+     await avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
          console.info('prepare success');
        } else {
@@ -52,7 +52,7 @@
 
 3. 创建录像输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的videoProfiles属性，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[createVideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createvideooutput)方法创建录像输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的videoProfiles属性，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[createVideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createvideooutput)方法创建录像输出流。
 
    > **说明：**
    >
@@ -60,9 +60,9 @@
    >
    > 2.在设置预览输出流的分辨率宽高前，需要先通过[AVRecorderProfile](../../reference/apis-media-kit/arkts-apis-media-i.md#avrecorderprofile9)查询视频帧支持可配置的宽高范围。
    >
-   > 3.获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md)类中的[getVideoRotation](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#getvideorotation12)方法获取rotation实际的值。
+   > 3.获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md)中的[getVideoRotation](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#getvideorotation12)方法获取rotation实际的值。
    >
-   > 4.录像输出流帧率通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的videoProfiles属性，选择[VideoProfile](../../reference/apis-camera-kit/arkts-apis-camera-i.md#videoprofile)中[frameRateRange](../../reference/apis-camera-kit/arkts-apis-camera-i.md#frameraterange)满足实际业务需求的录像输出流videoProfile。
+   > 4.录像输出流帧率通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的videoProfiles属性，选择[VideoProfile](../../reference/apis-camera-kit/arkts-apis-camera-i.md#videoprofile)中[frameRateRange](../../reference/apis-camera-kit/arkts-apis-camera-i.md#frameraterange)满足实际业务需求的录像输出流videoProfile。
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -81,11 +81,15 @@
        videoFrameRate : 30 // 视频帧率。
      };
      // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致。
+     let avMetadata: media.AVMetadata = {
+      videoOrientation: '90' // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法。
+     }
+     
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
-       url: 'fd://35',
-       rotation: 90 // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法。
+       url: 'fd://35', // 此处为样例示范，需要根据开发需求填写实际的路径。
+       metadata: avMetadata
      };
      // 创建avRecorder。
      let avRecorder: media.AVRecorder | undefined = undefined;
@@ -99,7 +103,7 @@
        return undefined;
      }
      // 设置视频录制的参数。
-     avRecorder.prepare(aVRecorderConfig);
+     await avRecorder.prepare(aVRecorderConfig);
      // 创建VideoOutput对象。
      let videoOutput: camera.VideoOutput | undefined = undefined;
      // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。
@@ -126,19 +130,19 @@
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     videoOutput.start(async (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to start the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output start success.');
-     });
-     try {
-       await avRecorder.start();
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder start error: ${err}`);
-     }
+    try {
+      videoOutput.start();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`start videoOutput failed, error: ${err.code}`);
+    }
+    await avRecorder.start(async (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to start the video output ${err.message}`);
+      return;
+    }
+    console.info('Callback invoked to indicate the video output start success.');
+    });
    }
    ```
 
@@ -148,19 +152,14 @@
 
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     try {
-       await avRecorder.stop();
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder stop error: ${err}`);
+     await avRecorder.stop((err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to stop the video output ${err.message}`);
+       return;
      }
-     videoOutput.stop((err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to stop the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output stop success.');
+     console.info('Callback invoked to indicate the video output stop success.');
      });
+     videoOutput.stop();
    }
    ```
 

@@ -438,7 +438,7 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
 
       // revoke uri permission of clone application
       try {
-        let appCloneIndex: number = 0;
+        let appCloneIndex: number = 1;
         uriPermissionManager.revokeUriPermission(uri, targetBundleName, appCloneIndex)
           .then(() => {
             console.info('revokeUriPermission succeeded.');
@@ -462,7 +462,7 @@ grantUriPermissionByKey(key: string, flag: wantConstant.Flags, targetTokenId: nu
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：该接口仅在phone、tablet和2in1设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异**：该接口仅在Phone、2in1和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -538,7 +538,7 @@ grantUriPermissionByKeyAsCaller(key: string, flag: wantConstant.Flags, callerTok
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：该接口仅在phone、tablet和2in1设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异**：该接口仅在Phone、2in1和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
