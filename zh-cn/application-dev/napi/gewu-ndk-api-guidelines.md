@@ -42,7 +42,7 @@ typedef unsigned int OH_QoS_GewuRequest;
 
 **`OH_QoS_GewuCreateSession`**
 
-描述
+**描述**
 
 `OH_QoS_GewuCreateSession`接口用于创建会话。
 
@@ -50,7 +50,7 @@ typedef unsigned int OH_QoS_GewuRequest;
 
 会话对象的生命周期从`OH_QoS_GewuCreateSession`函数返回开始，到调用`OH_QoS_GewuDestroySession`为止。
 
-声明
+**声明**
 
 ```C
 typedef struct {
@@ -61,7 +61,7 @@ typedef struct {
 OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
 ```
 
-参数
+**参数**
 
 * `const char* attributes`参数表示会话属性的json字符串。该json字符串支持以下字段：
     * "model": string 表示会话使用的模型的路径。
@@ -74,41 +74,41 @@ OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
 }
 ```
 
-返回值
+**返回值**
 
 如果创建会话成功，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为`OH_QOS_GEWU_OK`，而`session`为创建出来的会话句柄。
 如果创建会话失败，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为错误原因，其中`OH_QOS_GEWU_NOMEM`表示没有足够的内存创建会话。
 
 **`OH_QoS_GewuDestroySession`**
 
-描述
+**描述**
 
 `OH_QoS_GewuDestroySession`接口用于销毁会话。
 
 建议用户应当等待至所有请求都已完成或中止，然后再调用该接口来销毁会话。如果调用该接口时还有正在进行的请求，那些请求将会被中止，且用户不会再收到回复。注意，在调用完该接口后，会话对象无法再被使用。
 
-声明
+**声明**
 
 ```C
 OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session);
 ```
 
-参数
+**参数**
 
 * `OH_QoS_GewuSession session`参数为要销毁的会话的句柄。
 
-返回值
+**返回值**
 
 如果会话销毁成功，返回值为`OH_QOS_GEWU_OK`。
 如果会话销毁失败，返回值为错误原因，其中`OH_QOS_GEWU_NOENT`表示找不到会话。
 
 **`OH_QoS_GewuSubmitRequest`**
 
-描述
+**描述**
 
 `OH_QoS_GewuSubmitRequest`接口用于提交请求。该接口异步执行请求，即该接口只是发起请求，并不直接返回结果，该接口返回时请求可能尚未开始执行。请求的结果通过调用用户提供的回调返回给用户。
 
-声明
+**声明**
 
 ```C
 typedef struct {
@@ -122,7 +122,7 @@ OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession sessi
     OH_QoS_GewuOnResponse callback, void* context);
 ```
 
-参数
+**参数**
 
 `OH_QoS_GewuSubmitRequest`函数的各参数如下：
 
@@ -148,14 +148,14 @@ OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession sessi
         * "abort": 用户主动提前中止。
         * "length": token数超过限制。
 
-返回值
+**返回值**
 
 如果提交请求成功，返回值`OH_QoS_GewuSubmitRequestResult`里的`error`为`OH_QOS_GEWU_OK`，`request`为请求句柄。
 如果提交请求失败，返回值`OH_QoS_GewuSubmitRequestResult`里的`error`为错误原因，其中`OH_QOS_GEWU_NOMEM`表示没有足够的内存处理该请求。
 
 **`OH_QoS_GewuAbortRequest`**
 
-描述
+**描述**
 
 `OH_QoS_GewuAbortRequest`接口用于提前中止请求。
 
@@ -164,18 +164,18 @@ OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession sessi
 
 成功调用该函数后，用户不会再收到该请求的回复，且该请求句柄无法再被使用。
 
-声明
+**声明**
 
 ```C
 OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_GewuRequest request);
 ```
 
-参数
+**参数**
 
 * `OH_QoS_GewuSession session`参数为请求所述的会话的句柄。
 * `OH_QoS_GewuRequest request`参数为要中止的请求的句柄。
 
-返回值
+**返回值**
 
 如果请求中止成功，返回值为`OH_QOS_GEWU_OK`。
 如果请求中止失败，返回值为错误原因，其中`OH_QOS_GEWU_NOENT`表示找不到请求。
