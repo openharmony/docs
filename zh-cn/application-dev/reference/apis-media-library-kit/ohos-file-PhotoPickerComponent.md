@@ -78,7 +78,7 @@ PhotoPickerComponent({
 
 ## PickerOptions
 
-继承自[BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions10)。
+Picker配置选项，继承自[BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions10)。
 
 Picker配置选项。
 
@@ -161,7 +161,7 @@ type videoPlayStateChangedCallback = (state: VideoPlayerState) => void
 
 | 参数名 | 类型                            | 必填 | 说明                                           |
 | -------- |-------------------------------| -------- |----------------------------------------------|
-| state | [VideoPlayerState](#videoplayerstate14) | 是 | 视频播放状态 |
+| state | [VideoPlayerState](#videoplayerstate14) | 是 | 视频播放状态。 |
 
 ## PickerController
 
