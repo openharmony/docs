@@ -385,7 +385,7 @@ struct Parent {
 
 ![arkts-builder-usage-scenario3](figures/arkts-builder-usage-scenario3.gif)
 
-### 将@Builder装饰的函数当作customBuilder类型使用
+### 将@Builder装饰的函数当作CustomBuilder类型使用
 
 当参数类型为`CustomBuilder`时，可以传入定义的`@Builder`函数。因为`CustomBuilder`实际上是`Function(() => any)`或`void`类型，而`@Builder`也是`Function`类型。所以通过传入`@Builder`可以实现特定效果。
 全局`@Builder`函数当作`CustomBuilder`类型传递时需要绑定this上下文，开发者可以直接调用全局`@Builder`函数，编译工具链会自动生成绑定this上下文的代码。
@@ -587,8 +587,7 @@ struct Parent {
 
 ### \@Builder函数联合V2装饰器
 
-由`@ObservedV2`和`@Trace`装饰的类对象实例具备深度观测属性变化的能力。在`@ComponentV2`装饰的自定义组件中，当调用全局Builder或局部Builder且使用值传递的方式传递参数时，修改`@Trace`装饰的对象属性可以触发UI刷新。
-
+由[@ObservedV2](arkts-new-observedV2-and-trace.md#observedV2)和[@Trace](arkts-new-observedV2-and-trace.md#trace)装饰的类对象实例具备深度观测属性变化的能力。在`@ComponentV2`装饰的自定义组件中，当调用全局Builder或局部Builder且使用值传递的方式传递参数时，修改`@Trace`装饰的对象属性可以触发UI刷新。
 ```ts
 @ObservedV2
 class Info {
@@ -1384,6 +1383,7 @@ struct BackGround {
   @Builder
   myImages() {
     Column() {
+      // 表示从应用media目录加载名为startIcon的图像资源
       Image($r('app.media.startIcon')).width('100%').height('100%')
     }
   };

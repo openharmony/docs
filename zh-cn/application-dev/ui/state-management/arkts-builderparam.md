@@ -470,8 +470,10 @@ struct HelloWorldPage {
 }
 ```
 
+**router_map.json**
+这个文件一般位于项目的resources/base/profile/目录下。
 ```ts
-// router_map.json
+
 {
   "routerMap": [
     {
@@ -482,9 +484,10 @@ struct HelloWorldPage {
   ]
 }
 ```
-
+**module.json5**
+这个文件一般位于应用模块的更目录下（例如 entry/src/main/module.json5）
 ```ts
-// module.json5
+
 {
   "module": {
     "routerMap": "$profile:router_map",
