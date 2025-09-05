@@ -71,8 +71,6 @@ type OnMoveHandler = (from: number, to: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
-
 | 名称 | 类型   | 只读 | 可选 | 说明                 |
 | ------ | ------ | ---- | ---- | -------------------- |
 | onLongPress  |  [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否  | 是 | 长按时触发的回调。<br>- 参数index为长按时当前目标的索引号。 |
