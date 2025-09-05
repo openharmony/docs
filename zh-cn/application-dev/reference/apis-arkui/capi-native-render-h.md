@@ -2632,7 +2632,7 @@ void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionRadius(ArkUI_CircleShapeOption
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_CircleShapeOption](./capi-arkui-nativemodule-arkui-circleshapeoption.md)* option | 指向圆形形状的指针。 |
-| float radius | 半径值。 |
+| float radius | 半径值（以像素为单位）。 |
 
 ### OH_ArkUI_RenderNodeUtils_CreateRoundRectShapeOption()
 
