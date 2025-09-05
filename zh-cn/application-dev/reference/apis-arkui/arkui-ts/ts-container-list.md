@@ -1002,7 +1002,7 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。<br/>单位：vp。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) | ListItemGroup中的ListItem的大小和相对于List的位置。<br/>单位：vp。 |
 
 
 **错误码**：
