@@ -534,9 +534,9 @@ struct TextPickerDialogExample {
 
 ![TextPickerDialog](figures/TextPickerDialogDemo7.gif)
 
-### 示例8（设置选中项背景样式）
+### 示例8（设置选中项的背景样式）
 
-该示例通过配置selectedBackgroundStyle实现文本选择器选中项的背景样式。
+该示例通过selectedBackgroundStyle属性设置文本选择器选中项的背景样式。
 
 ```ts
 // xxx.ets
