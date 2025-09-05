@@ -1014,14 +1014,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13900045 | Connection failed. |
-| 13900046 | Software caused connection abort. |
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1071,13 +1064,7 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600004 | Unmount failed. |
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -4636,11 +4623,6 @@ cancel(): void
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 13900010 | Try again. |
-| 13900012 | Permission denied by the file system. |
-| 13900043 | No task can be canceled. |
 
 **示例：**
 
@@ -4703,11 +4685,6 @@ onCancel(): Promise&lt;string&gt;
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 13900004 | Interrupted system call. |
-| 13900008 | Bad file descriptor. |
-| 13900042 | Unknown error. |
 
 **示例：**
 
