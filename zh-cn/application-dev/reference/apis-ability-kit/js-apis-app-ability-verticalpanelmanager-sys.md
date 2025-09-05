@@ -23,10 +23,9 @@ import { verticalPanelManager } from '@kit.AbilityKit';
 
 ## verticalPanelManager.StartVerticalPanel
 
-startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string, Object&gt;, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback
-): Promise\<void>
+startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string, Object&gt;, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback): Promise\<void>
 
-启动带有面板配置的垂域UIAbility。仅支持在主线程调用，仅支持处于前台的应用调用。使用Promise异步回调。
+启动带有面板配置的目标UIAbility。使用Promise异步回调。仅支持在主线程调用和处于前台的应用调用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 

@@ -1238,7 +1238,7 @@ Want中传入了DLP文件。
 检查Want是否携带了DLP文件。
 <!--DelEnd-->
 
-## 16000135 窗口不存在
+## 16000135 UIAbility的主窗不存在
 
 **错误信息**
 
@@ -1246,15 +1246,15 @@ The main window of this ability of this context does not exits.
 
 **错误描述**
 
-此上下文中的主要窗口不存在。
+该UIAbility的主窗不存在。
 
 **可能原因**
 
-获取到的UIContent为空。
+Window还未创建或已销毁的时候调用该接口。
 
 **处理步骤**
 
-检查传入接口的context对象是否存在。
+在windowStage创建前和销毁后不要调用该接口。
 
 ## 16000151 无效wantAgent对象
 
