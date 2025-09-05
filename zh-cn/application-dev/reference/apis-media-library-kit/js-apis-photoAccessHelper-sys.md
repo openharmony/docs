@@ -6110,7 +6110,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 
 setHasAppLink(hasAppLink: int): void
 
-设置记忆链接的状态信息。
+设置文件记忆链接的状态信息。
 
 
 **系统接口**：此接口为系统接口。
@@ -6121,7 +6121,7 @@ setHasAppLink(hasAppLink: int): void
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| hasAppLink | int | 是    | 设置记忆链接的状态信息。 |
+| hasAppLink | int | 是    | 设置文件记忆链接的状态信息。 |
 
 **错误码：**
 
@@ -6162,7 +6162,7 @@ async function example(asset: photoAccessHelper.PhotoAsset, hasAppLink: linkType
 
 setAppLinkInfo(appLink: string): void
 
-设置记忆链接的信息。
+设置文件记忆链接的信息。
 
 
 **系统接口**：此接口为系统接口。
@@ -6173,7 +6173,7 @@ setAppLinkInfo(appLink: string): void
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| appLink | string | 是    | 设置记忆链接的信息。 |
+| appLink | string | 是    | 设置文件记忆链接的信息。 |
 
 **错误码：**
 
