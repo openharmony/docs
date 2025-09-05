@@ -441,6 +441,8 @@ napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
     if (windowMap_.find(surfaceId) == windowMap_.end()) {
         OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
         windowMap_[surfaceId] = nativeWindow;
+    } else {
+        return nullptr;
     }
     if (pluginRenderMap_.find(surfaceId) == pluginRenderMap_.end()) {
         pluginRender = new PluginRender(surfaceId);
