@@ -63,7 +63,13 @@ OpenHarmony 6.0 Beta1版本进一步增强ArkUI组件能力，提供更安全、
 
 ### 图形
 
-新增支持中西文自动间距，支持排版时去除行位空格；新增支持修改文本颜色无需重新排版；新增支持不跟随系统高对比度文字开关设置。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-text.md#paragraphstyle)
+- 新增支持中西文自动间距，支持排版时去除行位空格；新增支持修改文本颜色无需重新排版；新增支持不跟随系统高对比度文字开关设置。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-text.md#paragraphstyle)
+
+- 图片编码的ASTC编码支持HDR质量的编码。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/arkts-apis-image-i.md#packingoption)）
+
+- 新增支持为组件内容添加HDR提亮效果，该能力为系统能力。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-uiEffect-sys.md#hdrbrightnessratio20)）
+
+- 新增NativeFence接口，实现对fenceFd阻塞指定时间、永久阻塞、关闭和检查fenceFd是否有效等操作。（[指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/graphics/native-fence-guidelines.md)）
 
 ### 包管理
 
@@ -144,6 +150,21 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 - HiAppEvent的C API新增EVENT_APP_KILLED接口，订阅应用查杀事件。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md#event_app_killed)）
 
+### 媒体
+
+- 针对直播场景新增支持高画质ROI编码。（[指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/avcodec/video-encoding-ROI.md)）
+
+- 图片编创支持纹理数据作为输入输出，纹理可以自定义。（[指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/image/image-effect-guidelines.md)）
+
+- 支持查询获取网络流的媒体元信息和缩略图。
+
+- 支持相机白平衡功能查询和设置。
+
+- 新增相机压力管控接口，用于上报系统压力状态。
+
+### 音频
+
+升级音频引擎2.0，提升整体运行效率并降低播放时延。
 
 
 ### 安全
@@ -155,6 +176,10 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 - 证书算法库支持获取utf-8编码的证书或证书吊销列表的颁发者名称。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md#tostring20)）
 
 - 证书链校验新增支持信任系统预置的根证书。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md#certchainvalidationparameters11)）
+
+### 网络管理
+
+新增C API，支持网络探测（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/capi-net-connection-h.md#oh_netconn_queryproberesult)）和网络跟踪路由（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/capi-net-connection-h.md#oh_netconn_querytraceroute)）。
 
 
 ### 输入法框架
@@ -177,7 +202,9 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 ### 电源管理
 
-新增系统接口，支持刷新设备活动状态（如：重设屏幕超时息屏时间等）。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md#powerrefreshactivity20)）
+- 新增系统接口，支持刷新设备活动状态（如：重设屏幕超时息屏时间等）。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md#powerrefreshactivity20)）
+
+- 电源模式的枚举新增自定义省电模式。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power.md#devicepowermode9)）
 
 
 ## 配套关系
