@@ -87,8 +87,8 @@ type BaseContext = _BaseContext.default
 
 type Context = _Context.default
 
-Stage模型的上下文基类。
 
+[Stage模型](../../application-models/ability-terminology.md#stage模型)的上下文基类。
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core

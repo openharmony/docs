@@ -14,12 +14,12 @@
 
 ## 导入模块
 
-Stage模型下：
+[Stage模型](../../application-models/ability-terminology.md#stage模型)下：
 ```ts
 import { common } from '@kit.AbilityKit';
 ```
 
-FA模型下：
+[FA模型](../../application-models/ability-terminology.md#fa模型)下：
 ```ts
 import ability from '@ohos.ability.ability';
 ```

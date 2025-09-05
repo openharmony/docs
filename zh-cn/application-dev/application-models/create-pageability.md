@@ -94,7 +94,7 @@ PageAbility创建成功后，其abilities相关的配置项在config.json中体�
 ```
 
 
-FA模型中，可以通过featureAbility的getContext接口获取应用上下文，进而使用上下文提供的能力。
+[FA模型](ability-terminology.md#fa模型)中，可以通过featureAbility的getContext接口获取应用上下文，进而使用上下文提供的能力。
 
 
   **表1** featureAbility接口说明
