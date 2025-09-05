@@ -898,7 +898,7 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 否 | 否 | 指明代理提醒类型。 |
-| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 是 | 弹出的提醒通知中显示的按钮。<br>针对三方应用：最多支持两个按钮。<br>针对系统应用：从API version 10开始最多支持三个按钮，API version 10之前的版本最多支持两个按钮。。 |
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 是 | 弹出的提醒通知中显示的按钮。<br>针对三方应用：最多支持两个按钮。<br>针对系统应用：从API version 10开始最多支持三个按钮，API version 10之前的版本最多支持两个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 是 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 是 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 是 | 指明响铃时长（单位：秒），默认1秒，最长30分钟。 |
