@@ -164,7 +164,15 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 ### 音频
 
-升级音频引擎2.0，提升整体运行效率并降低播放时延。
+- 升级音频引擎2.0，提升整体运行效率并降低播放时延。
+
+- 新增音频工作组管理的能力，应用可以提升自身音频线程的系统供给，从而获取更好的音频处理性能。（[指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/audio-workgroup.md)）
+
+- 新增支持音频低时延耳返的能力，可将音频以更低时延的方式实时传输到有线耳机中。（[指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/audio-ear-monitor-loopback.md)）
+
+- 新增星闪音频设备播放和录制能力，支持应用获取当前音频的输出类型为星闪设备类型。（[API参考]()）
+
+- 新增为直播场景打造的高清AEC录音能力，支持应用使用新增的直播录音流类型。（[API参考]()）
 
 
 ### 安全
