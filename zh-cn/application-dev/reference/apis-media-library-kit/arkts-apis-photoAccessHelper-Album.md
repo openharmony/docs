@@ -72,7 +72,15 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  if (albumList === undefined) {
+    console.error('albumList is undefined');
+    return;
+  }
   let album: photoAccessHelper.Album = await albumList.getFirstObject();
+  if (album === undefined) {
+    console.error('album is undefined');
+    return;
+  }
   album.albumName = 'hello';
   album.commitModify((err) => {
     if (err !== undefined) {
@@ -128,7 +136,15 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  if (albumList === undefined) {
+    console.error('albumList is undefined');
+    return;
+  }
   let album: photoAccessHelper.Album = await albumList.getFirstObject();
+  if (album === undefined) {
+    console.error('album is undefined');
+    return;
+  }
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
@@ -190,6 +206,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset === undefined) {
+      console.error('addAssetsDemoCallback asset is undefined');
+      return;
+    }
     album.addAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album addAssets successfully');
@@ -261,6 +281,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset === undefined) {
+      console.error('addAssetsDemoPromise asset is undefined');
+      return;
+    }
     album.addAssets([asset]).then(() => {
       console.info('album addAssets successfully');
     }).catch((err: BusinessError) => {
@@ -324,6 +348,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset === undefined) {
+      console.error('removeAssetsDemoCallback asset is undefined');
+      return;
+    }
     album.removeAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album removeAssets successfully');
@@ -393,8 +421,16 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     };
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    if (album === undefined) {
+      console.error('removeAssetsPromise albums is undefined');
+      return;
+    }
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset === undefined) {
+      console.error('removeAssetsPromise asset is undefined');
+      return;
+    }
     album.removeAssets([asset]).then(() => {
       console.info('album removeAssets successfully');
     }).catch((err: BusinessError) => {
