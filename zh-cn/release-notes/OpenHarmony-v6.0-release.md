@@ -356,3 +356,5 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 | ICWA4N<br />ICWA56 | 进程com.ohos.mms小概率出现因anonymous或deleteAction导致的jscrash。 | 短信应用异常闪退，重启应用可恢复。 | 2025年9月30日 |
 | ICUCVF | 进程/system/bin/hilogd下的hilogd.server线程小概率出现cppcrash。 | 使用HiLog记录日志可能出现异常，重启可恢复。 | 2025年9月30日 |
 | ICW9XX | 进程com.ohos.contacts下的m.ohos.contacts线程小概率出现因libace_compatible.z.so导致的cppcrash。 | 联系人应用异常闪退，重启应用可恢复。 | 2025年9月30日 |
+
+<!--no_check-->
