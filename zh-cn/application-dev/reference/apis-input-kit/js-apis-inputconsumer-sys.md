@@ -37,7 +37,7 @@ on(type: 'key', keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
 | type       | string                     | 是    | 事件类型，目前仅支持'key'。                       |
-| keyOptions | [KeyOptions](#keyoptions)  | 是    | 组合键选项。                 |
+| keyOptions | [KeyOptions](#keyoptions)  | 是    | 快捷键选项。                 |
 | callback   | Callback&lt;KeyOptions&gt; | 是    | 回调函数，当满足条件的组合按键输入事件发生时，异步上报组合按键数据。 |
 
 **示例：** 
@@ -88,7 +88,7 @@ off(type: 'key', keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ------------------------------- |
 | type       | string                     | 是    | 事件类型，当前仅支持 'key'。              |
-| keyOptions | [KeyOptions](#keyoptions)  | 是    | 组合键选项。             |
+| keyOptions | [KeyOptions](#keyoptions)  | 是    | 快捷键选项。             |
 | callback   | Callback&lt;KeyOptions&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前应用组合键选项已订阅的所有回调函数。 |
 
 **示例：** 

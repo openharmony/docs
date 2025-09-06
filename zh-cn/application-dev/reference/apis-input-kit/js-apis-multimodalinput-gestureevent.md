@@ -27,7 +27,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 否    | 否    | 捏合事件类型。                                   |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。                                   |
 | scale        | number      | 否    | 否    | 捏合度，取值范围大于等于0。                             |
 
 ## Rotate<sup>11+</sup>
@@ -38,7 +38,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type | [ActionType](#actiontype)   | 否    | 否    | 旋转事件类型。                                   |
+| type | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。                                   |
 | angle | number      | 否    | 否    | 旋转角度。                             |
 
 ## ThreeFingersSwipe
@@ -49,7 +49,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 否    | 否    | 三指滑动事件类型。                                   |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。                                   |
 | x        | number      | 否    | 否    | 坐标x。                             |
 | y        | number      | 否    | 否    | 坐标y。                             |
 
@@ -61,7 +61,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 否    | 否    | 四指滑动事件类型。                                   |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。                                   |
 | x        | number      | 否    | 否    | 坐标x。                             |
 | y        | number      | 否    | 否    | 坐标y。                             |
 
@@ -73,7 +73,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称               | 类型                      | 只读 | 可选 | 说明             |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| type | [ActionType](#actiontype) | 否   | 否   | 三指轻点事件类型。 |
+| type | [ActionType](#actiontype) | 否   | 否   | 手势事件类型。 |
 
 ## ActionType
 

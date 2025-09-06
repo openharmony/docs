@@ -33,7 +33,7 @@
 | [Input_KeyEvent](capi-input-input-keyevent.md) | Input_KeyEvent | 要注入的按键事件。 |
 | [Input_MouseEvent](capi-input-input-mouseevent.md) | Input_MouseEvent | 要注入的鼠标事件。 |
 | [Input_TouchEvent](capi-input-input-touchevent.md) | Input_TouchEvent | 要注入的触屏事件。 |
-| [Input_AxisEvent](capi-input-input-axisevent.md) | Input_AxisEvent | 轴事件。 |
+| [Input_AxisEvent](capi-input-input-axisevent.md) | Input_AxisEvent | 要注入的轴事件。 |
 | [Input_Hotkey](capi-input-input-hotkey.md) | Input_Hotkey | 定义快捷键结构体。 |
 | [Input_DeviceInfo](capi-input-input-deviceinfo.md) | Input_DeviceInfo | 输入设备信息。 |
 | [Input_InterceptorOptions](capi-input-input-interceptoroptions.md) | Input_InterceptorOptions | 事件拦截选项。 |
