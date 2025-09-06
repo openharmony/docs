@@ -6,11 +6,9 @@
 <!--Tester: @kongjing2-->
 <!--Adviser: @Brilliantry_Rui-->
 
-本模块提供overlay特征应用的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
+本模块提供overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息查询以及禁用使能的能力。
 
-overlay特征应用指应用中包含有[overlay特征](../../quick-start/resource-categories-and-access.md#overlay机制)的module。该特征module一般是为设备上存在的非overlay特征的module提供额外的资源文件，以便目标module在运行阶段可以使用这些额外的资源文件来展示不同的颜色、标签、主题等。
-
-在DevEco Studio中创建应用工程时，若module的配置文件module.json5中包含targetModuleName和targetPriority字段，该module将会在安装阶段被识别为overlay特征的module。
+overlay特征应用指应用中包含有overlay资源包，overlay资源包详见[overlay机制](../../quick-start/resource-categories-and-access.md#overlay机制)。
 
 > **说明：**
 >
@@ -29,7 +27,7 @@ import { overlay } from '@kit.AbilityKit';
 
 setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
-设置当前应用中overlay特征module的禁用使能状态。使用Promise异步回调。
+设置当前应用中overlay module的禁用使能状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -233,7 +231,7 @@ try {
 
 getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定的目标module的OverlayModuleInfo。使用promise异步回调。
+获取指定的目标module所关联的OverlayModuleInfo。使用promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -283,7 +281,7 @@ let targetModuleName = "feature";
 
 getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-获取指定的目标module的OverlayModuleInfo。使用callback异步回调。
+获取指定的目标module所关联的OverlayModuleInfo。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
