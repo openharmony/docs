@@ -617,3 +617,45 @@ pageTransition?(): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## onFormRecycle<sup>11+</sup>
+
+onFormRecycle?(): string;
+
+onFormRecycle回调函数在卡片回收时会被执行，卡片提供方可以返回需要卡片管理服务代保存的数据，在卡片恢复时再带给卡片提供方。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | ---------   |
+| string | 返回卡片提供方需要管理服务代保存的数据。 |
+
+## onFormRecover<sup>11+</sup>
+
+onFormRecover?(statusData: string): void;
+
+onFormRecover回调函数在卡片恢复时会被执行，卡片提供方可以拿到卡片回收时卡片管理服务代保存的数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | ---------   |
+| string | 返回卡片提供方需要管理服务代保存的数据 |
+
+**参数：**
+
+| 参数名    | 类型                                       | 必填    | 说明         |
+|--------|------------------------------------------|------------|-------------------------|
+| statusData | string | 是     | 卡片回收时卡片管理服务代保存的数据。|

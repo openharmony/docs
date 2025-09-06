@@ -21,7 +21,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 **2. 新建卡片** <br/>
 在已有的应用工程中，右键新建ArkTS卡片，具体操作如下。
 
-- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget】。在API 10及以上 Stage模型的工程中，开发者可通过Service Widget菜单直接选择创建动态卡片（Dynamic Widget）或静态卡片（Static Widget）。创建卡片后，也可在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[为动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。静态卡片和动态卡片切换之后用户交互实现也需要修改，具体参考ArkTS卡片概述中的[动态卡片](./arkts-form-overview.md#动态卡片)和[静态卡片](./arkts-form-overview.md#静态卡片)。<br>
+- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget】。在API 10及以上 Stage模型的工程中，开发者可通过Service Widget菜单直接选择创建动态卡片（Dynamic Widget）或静态卡片（Static Widget）。创建卡片后，也可在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md#配置文件字段说明)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。静态卡片和动态卡片切换之后用户交互实现也需要修改，具体参考ArkTS卡片概述中的[动态卡片](./arkts-form-overview.md#动态卡片)和[静态卡片](./arkts-form-overview.md#静态卡片)。<br>
    ![WidgetProjectCreate1](figures/创建共hap包卡片_1.png)
 
 - 选择模板后，点击【Next】。<br>
@@ -64,7 +64,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 > 基于不同版本的DevEco Studio，请以实际界面为准。<br>
 
 **2. 新建卡片**<br>
-- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。在Service Widget菜单可直接选择创建独立包的动态卡片（Dynamic Widget(standalone)）或静态卡片（Static Widget(standalone)）。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。静态卡片和动态卡片切换之后用户交互实现也需要修改，具体参考ArkTS卡片概述中的[动态卡片](./arkts-form-overview.md#动态卡片)和[静态卡片](./arkts-form-overview.md#静态卡片)。<br>
+- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。在Service Widget菜单可直接选择创建独立包的动态卡片（Dynamic Widget(standalone)）或静态卡片（Static Widget(standalone)）。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md#配置文件字段说明)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。静态卡片和动态卡片切换之后用户交互实现也需要修改，具体参考ArkTS卡片概述中的[动态卡片](./arkts-form-overview.md#动态卡片)和[静态卡片](./arkts-form-overview.md#静态卡片)。<br>
 ![WidgetProjectCreate2](figures/独立包卡片创建_1.png)
 - 选择模板后，点击【Next】。<br>
 ![WidgetProjectCreate2](figures/创建共hap包卡片_2.png)
