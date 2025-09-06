@@ -57,7 +57,7 @@ typedef void (*Input_KeyEventCallback)(const Input_KeyEvent* keyEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Input_KeyEvent](capi-input-input-keyevent.md)* keyEvent | 按键事件对象。 |
+| const [Input_KeyEvent](capi-input-input-keyevent.md)* keyEvent | 要注入的按键事件。 |
 
 ### Input_MouseEventCallback()
 
@@ -75,7 +75,7 @@ typedef void (*Input_MouseEventCallback)(const Input_MouseEvent* mouseEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+| const [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 要注入的鼠标事件。 |
 
 ### Input_TouchEventCallback()
 
@@ -93,7 +93,7 @@ typedef void (*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象。 |
+| const [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 要注入的触屏事件。 |
 
 ### Input_AxisEventCallback()
 
@@ -111,7 +111,7 @@ typedef void (*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象。 |
+| const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 要注入的轴事件。 |
 
 ### Input_DeviceAddedCallback()
 

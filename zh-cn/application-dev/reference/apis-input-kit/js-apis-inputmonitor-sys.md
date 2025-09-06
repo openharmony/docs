@@ -394,7 +394,7 @@ struct Index {
 
 | 参数名         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 是    | 触屏输入事件。 |
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 是    | 触屏事件。 |
 
 **返回值：**
 
