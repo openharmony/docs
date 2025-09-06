@@ -56,7 +56,7 @@ PanGesture(options?: PanGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options   | [PanGestureHandlerOptions](./ts-uigestureevent.md#pangesturehandleroptions)   | 否   | 滑动手势处理器配置参数。 |
+| options   | [PanGestureHandlerOptions](./ts-gesturehandler.md#pangesturehandleroptions)   | 否   | 滑动手势处理器配置参数。 |
 
 ## PanDirection枚举说明
 
@@ -110,7 +110,7 @@ constructor(value?: PanGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --------- | ---------------------- | ---- | -------------------------------- |
-| value   | [PanGestureHandlerOptions](./ts-uigestureevent.md#pangesturehandleroptions)   | 否   | 滑动手势处理器配置参数。 |
+| value   | [PanGestureHandlerOptions](./ts-gesturehandler.md#pangesturehandleroptions)   | 否   | 滑动手势处理器配置参数。 |
 
 ### setDirection
 
