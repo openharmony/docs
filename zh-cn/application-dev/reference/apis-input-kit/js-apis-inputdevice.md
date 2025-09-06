@@ -7,7 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-本模块提供输入设备管理能力，包括监听输入设备的连接和断开状态，查询设备名称等输入设备信息。
+本模块提供输入设备管理能力，包括监听输入设备的连接和断开状态，查询设备信息，监听设备连接和断开状态，获取设备等。
 
 
 > **说明**：
@@ -1009,7 +1009,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 | 类型                                          | 说明                            |
 | --------------------------------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回距离上次系统输入事件的时间间隔，单位为微秒（μs）。|
+| Promise&lt;number&gt; | Promise对象，返回距离上次系统输入事件的时间间隔，单位：μs。|
 
 **示例**：
 
@@ -1053,7 +1053,7 @@ struct Index {
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | 否 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | name                 | string                                 | 否 | 否 | 输入设备的名称。                                             |
-| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 否 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触控板，则此设备有键盘和触控板两种输入能力。 |
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 否 | 否 | 输入设备的原始类型。如：键盘、鼠标、触摸屏、轨迹球、触控板、操纵杆。 |
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 否 | 否 | 输入设备的轴信息。                                           |
 | bus<sup>9+</sup>     | number                                 | 否 | 否 | 输入设备的总线类型，该值以输入设备上报为准。             |
 | product<sup>9+</sup> | number                                 | 否 | 否 | 输入设备的产品信息。                                         |
@@ -1090,8 +1090,8 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| source                  | [SourceType](#sourcetype9) | 否 | 否 | 轴的输入能力。 |
-| axis                    | [AxisType](#axistype9)    | 否 | 否 | 轴的类型。    |
+| source                  | [SourceType](#sourcetype9) | 否 | 否 | 输入设备的原始类型。如：键盘、鼠标、触摸屏、轨迹球、触控板、操纵杆。。 |
+| axis                    | [AxisType](#axistype9)    | 否 | 否 | 输入设备的轴类型。    |
 | max                     | number                    | 否 | 否 | 轴的最大值。   |
 | min                     | number                    | 否 | 否 | 轴的最小值。   |
 | fuzz<sup>9+</sup>       | number                    | 否 | 否 | 轴的模糊值。   |
@@ -1102,7 +1102,7 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
 
-轴的输入能力。比如鼠标设备可上报x轴事件，则x轴的输入源就是鼠标。
+输入设备的原始类型。如：键盘、鼠标、触摸屏、轨迹球、触控板、操纵杆。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
