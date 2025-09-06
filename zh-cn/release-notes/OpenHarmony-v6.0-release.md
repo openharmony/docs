@@ -19,21 +19,27 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 ### ArkUI
 
-- 组件基础能力增强：
+- 组件布局能力增强：
+
   - 组件背景安全区默认延伸：当组件与非安全区邻接时（包括SafeAreaPadding，AI导航栏，状态栏），组件背景默认延伸到非安全区，提升沉浸式开发体验。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#background20)）
+
   - 忽略组件布局安全区边缘：当组件与非安全区邻接时（包括SafeAreaPadding，AI导航栏，状态栏），组件设置忽略布局安全区边缘后可布局到非安全区。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#ignorelayoutsafearea20)）
+
   - 基础布局能力：宽高支持LayoutPolicy布局能力，包括自适应父组件matchParent，自适应内容wrapContent，自适应内容（忽略父组件的约束）fitAtIdealSize。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#layoutpolicy15)）
 
-- 新增支持对Navigation双栏模式设置默认占位页。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#splitplaceholder20)）
+- 新增支持对Navigation双栏模式设置默认占位页。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#lockcanvas20)）
 
-- UX视觉效果优化：菜单与拖拽过渡，菜单跟随效果优化：拖拽发起时，实时更新菜单位置；菜单整体跟随拖拽跟手图；跟手图存在缩放场景时，菜单与跟手图之间的间隔整体相对合理。
+- UX视觉效果优化：菜单与拖拽过渡，菜单跟随效果优化：拖拽发起时，实时更新菜单位置；菜单整体跟随拖拽跟手图；跟手图存在缩放场景时，菜单与跟手图之间的间隔整体相对合理；控件支持P3色域显示。
 
-- 通过XComponent组件新开的lockCanvas接口，开发者可获取到Drawing Canvas对应的ArkTS对象，使用该对象执行绘制指令会直接绘制到XComponent上，相较于基于NDK接口绘制，更易用。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#lockcanvas20)）
+- 通过XComponent组件新开的lockCanvas接口，开发者可获取到Drawing Canvas对应的ArkTS对象，使用该对象执行绘制指令会直接绘制到XComponent上，相较于基于NDK接口绘制，更易用。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md#cancelanimations20)）
 
 - 新增支持取消隐式动画的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md#cancelanimations20)）
 
 - 保存控件新增支持图标和文字的自定义能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebuttonattribute)）
 
+- 无感监听支持全量手势事件上报，包括基础手势识别，长按、捏合、旋转和快滑。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-uiobserver.md#onwillclick12)）
+
+- NDK侧新增渲染节点的能力，包括创建、挂载、渲染属性设置、自定义绘制、重绘、绘制优先级、脏区裁剪等能力，以及配套的属性动画和FrameNode上事件拦截转发。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-render-h.md)）
 
 
 ### ArkWeb
@@ -194,6 +200,13 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 新增C API，支持网络探测（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/capi-net-connection-h.md#oh_netconn_queryproberesult)）和网络跟踪路由（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/capi-net-connection-h.md#oh_netconn_querytraceroute)）。
 
+### 测试框架
+
+- 新增白盒性能测试框架，支持针对应用指定代码段CPU/内存占用、应用冷启动响应时间、滑动场景帧率的度量能力。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-perftest.md)）
+
+- UI测试框架新增支持多屏场景指定屏幕查找控件和模拟操作能力。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#belongingdisplay20)）
+
+- UI测试框架新增支持文本输入场景可选追加输入能力。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#inputtextmode20)）
 
 ### 输入法框架
 
