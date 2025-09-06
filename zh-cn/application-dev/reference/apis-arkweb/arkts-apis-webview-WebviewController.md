@@ -10163,7 +10163,7 @@ static getSiteIsolationMode(): SiteIsolationMode
 
 | 类型                                      | 说明                                                         |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 站点隔离模式类型。<br>getSiteIsolationMode()获取当前站点隔离模式，枚举值0为部分站点隔离，枚举值1为严格站点隔离。
+| [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 站点隔离模式类型。<br>getSiteIsolationMode()查询当前生效的站点隔离模式。
 
 
 **示例：**
@@ -10193,7 +10193,9 @@ struct WebComponent {
 
 setSiteIsolationMode(mode: SiteIsolationMode): void
 
-设置站点隔离模式。站点隔离机制将不同源的网站，隔离在不同的Render进程中，减少跨域攻击面。如：PC上原有进程模型是每一个Tab对应一个Render进程，站点隔离打开后，可以让不同源的Iframe运行在独立的Render进程中。对于业务上只加载可信网页的三方应用是可以关闭的，提升部分性能减少内存占用，同时减少跨域访问的拦截。默认值取决于不同的设备，PC/Tablet/坚盾模式下严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，Phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。
+设置站点隔离模式。站点隔离机制将不同源的网站隔离在不同的Render进程中，减少跨域攻击面。例如：PC等设备上，在未启用站点隔离模式时，原有进程模型是每一个Tab对应一个Render进程，开启站点隔离后，不同源的Iframe可在独立的Render进程中运行。
+
+对于仅加载可信网页的第三方应用，可以关闭此功能，以提升性能并减少内存占用，同时减少跨域访问的拦截。默认值根据不同的设备而定，PC/Table采用严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，Phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。设备[坚盾守护模式](./zh-cn/application-dev/website.md)下采用严格站点隔离
 
 > **说明：**
 >
@@ -10208,7 +10210,7 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | -------------------------------------- |
-| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 是 | 设置站点隔离模式。<br>默认值取决于不同的设备，PC/Tablet/坚盾模式下严格站点隔离，Phone默认部分站点隔离 |
+| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 是 | 设置站点隔离模式。<br>默认值取决于设备类型和设备模式：PC/Tablet默认严格站点隔离，Phone默认部分站点隔离；坚盾守护模式默认严格站点隔离 |
 
 **错误码：**
 
