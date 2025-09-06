@@ -104,13 +104,13 @@ onError(callback:ErrorCallback)
 
 ## 示例（加载IsolatedComponent）
 
-本示例展示`IsolatedComponent`组件的基础使用方式，示例应用的`bundleName`为"com.example.isolateddemo"，并使用本应用的Abc文件和extension页面作为嵌入展示的内容。构建应用项目后，具体测试步骤如下：
+本示例展示IsolatedComponent组件的基础使用方式，示例应用的bundleName为"com.example.isolateddemo"，并使用本应用的Abc文件和extension页面作为嵌入展示的内容。构建应用项目后，具体测试步骤如下：
 1. 在DevEco Studio上编译构建生成hap包，并安装到设备上；
 2. 将本应用构建生成的modules.abc文件通过DevEco Studio或[hdc工具](../../../dfx/hdc.md)上传至应用沙箱路径`/data/app/el2/100/base/com.example.isolateddemo/haps/entry/files`下；
 3. 打开应用页面，点击"verifyAbc"按钮进行校验，输出"VerifyAbc successfully"日志；
-4. 点击"showIsolatedComponent"按钮，显示`IsolatedComponent`组件，内容为"Hello World"。
+4. 点击"showIsolatedComponent"按钮，显示IsolatedComponent组件，内容为"Hello World"。
 
-- 受限worker脚本`ets/workers/OhCardWorker.ets`的内容如下：
+- 受限worker脚本ets/workers/OhCardWorker.ets的内容如下：
   ```ts
   // OhCardWorker.ets
   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
@@ -125,7 +125,7 @@ onError(callback:ErrorCallback)
   }
   ```
 
-- 示例应用中`EntryAbility(UIAbility)`加载首页文件`ets/pages/Index.ets`的内容如下：
+- 示例应用中EntryAbility(UIAbility)加载首页文件ets/pages/Index.ets的内容如下：
   ```ts
   import { worker } from '@kit.ArkTS';
   import { bundleManager, common } from '@kit.AbilityKit';
@@ -210,7 +210,7 @@ onError(callback:ErrorCallback)
   }
   ```
 
-- 在受限worker线程中运行的入口页面文件`ets/pages/extension.ets`，需要在`resources/base/profile/main_pages.json`文件中配置该页面路径，其中内容如下：
+- 在受限worker线程中运行的入口页面文件ets/pages/extension.ets，需要在`resources/base/profile/main_pages.json`文件中配置该页面路径，其中内容如下：
   ```ts
   @Entry
   @Component
@@ -234,7 +234,7 @@ onError(callback:ErrorCallback)
   }
   ```
 
-- 在`module.json5`配置文件中增加`requestPermissions`标签，允许在受限模式下执行动态下发的方舟字节码：
+- 在module.json5配置文件中增加requestPermissions标签，允许在受限模式下执行动态下发的方舟字节码：
   ```json
   "requestPermissions": [
     {
