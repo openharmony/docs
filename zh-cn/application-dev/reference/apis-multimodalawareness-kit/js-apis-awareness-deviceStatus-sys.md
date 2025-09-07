@@ -44,8 +44,9 @@ getDeviceRotationRadian(): Promise&lt;DeviceRotationRadian&gt;
 **示例**：
 
    ```ts
-   import { deviceStatus } from '@Kit.MultimodalAwarenessKit';
+   import { deviceStatus } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+
    try {
       deviceStatus.getDeviceRotationRadian().then((radian: deviceStatus.DeviceRotationRadian) => {
          console.info('x:' + radian.x + ' y:' + radian.y + ' z:' + radian.z);
