@@ -1753,7 +1753,7 @@ setLoudnessGain(loudnessGain: double): Promise\<void>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | 设置播放器的响度Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
