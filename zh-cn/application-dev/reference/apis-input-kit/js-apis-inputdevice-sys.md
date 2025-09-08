@@ -468,7 +468,7 @@ setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | ------------------------- |
-| deviceId | number  | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。              |
+| deviceId | number  | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。              |
 | enabled  | boolean | 是   | 输入设备的开关状态，取值为true表示开启输入设备，取值为false表示关闭输入设备。 |
 
 **错误码**：

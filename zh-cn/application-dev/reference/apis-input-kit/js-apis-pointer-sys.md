@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.pointer (鼠标指针)(系统接口)
+# @ohos.multimodalInput.pointer (鼠标光标)(系统接口)
 
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
@@ -7,13 +7,13 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-鼠标指针管理模块，用于查询和设置鼠标指针相关属性。
+鼠标光标管理模块，用于查询和设置鼠标光标相关属性。
 
 > **说明**：
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimodalInput.pointer (鼠标指针)](js-apis-pointer.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimodalInput.pointer (鼠标光标)](js-apis-pointer.md)。
 
 ## 导入模块
 
@@ -2439,7 +2439,7 @@ struct Index {
 
 setPointerSize(size: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标指针大小，使用AsyncCallback异步方式返回结果。
+设置鼠标光标大小，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2449,7 +2449,7 @@ setPointerSize(size: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| size     | number                    | 是    | 鼠标指针大小，范围为[1-7]，默认为1。   |
+| size     | number                    | 是    | 鼠标光标大小，范围为[1-7]，默认为1。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，当设置成功时，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -2494,7 +2494,7 @@ struct Index {
 
 setPointerSize(size: number): Promise&lt;void&gt;
 
-设置鼠标指针大小，使用Promise异步方式返回结果。
+设置鼠标光标大小，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2504,7 +2504,7 @@ setPointerSize(size: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| size  | number | 是    | 鼠标指针大小，范围为[1-7]，默认为1。 |
+| size  | number | 是    | 鼠标光标大小，范围为[1-7]，默认为1。 |
 
 **返回值**：
 
@@ -2550,7 +2550,7 @@ struct Index {
 
 setPointerSizeSync(size: number): void
 
-设置鼠标指针大小，使用同步方式进行设置。
+设置鼠标光标大小，使用同步方式进行设置。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2560,7 +2560,7 @@ setPointerSizeSync(size: number): void
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| size  | number | 是    | 鼠标指针大小，范围为[1-7]，默认为1。 |
+| size  | number | 是    | 鼠标光标大小，范围为[1-7]，默认为1。 |
 
 **错误码**：
 
@@ -2599,7 +2599,7 @@ struct Index {
 
 getPointerSize(callback: AsyncCallback&lt;number&gt;): void
 
-获取鼠标指针大小，使用AsyncCallback异步方式返回结果。
+获取鼠标光标大小，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2609,7 +2609,7 @@ getPointerSize(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标指针大小。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标光标大小。 |
 
 **错误码**：
 
@@ -2649,7 +2649,7 @@ struct Index {
 
 getPointerSize(): Promise&lt;number&gt;
 
-获取当前鼠标指针大小，使用Promise异步方式返回结果。
+获取当前鼠标光标大小，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2659,7 +2659,7 @@ getPointerSize(): Promise&lt;number&gt;
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;number&gt; | Promise对象，异步返回鼠标指针大小。 |
+| Promise&lt;number&gt; | Promise对象，异步返回鼠标光标大小。 |
 
 **错误码**：
 
@@ -2699,7 +2699,7 @@ struct Index {
 
 getPointerSizeSync(): number
 
-获取鼠标指针大小，使用同步方式返回结果。
+获取鼠标光标大小，使用同步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2709,7 +2709,7 @@ getPointerSizeSync(): number
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| number | 鼠标指针大小。 |
+| number | 鼠标光标大小。 |
 
 **错误码**：
 
@@ -2748,7 +2748,7 @@ struct Index {
 
 setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标指针颜色，使用AsyncCallback异步方式返回结果。
+设置鼠标光标颜色，使用AsyncCallback异步方式返回结果。
 
 **说明**
 >
@@ -2762,7 +2762,7 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| color     | number                    | 是    | 鼠标指针颜色，默认为黑色：0x000000。   |
+| color     | number                    | 是    | 鼠标光标颜色，默认为黑色：0x000000。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，当设置成功时，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -2807,7 +2807,7 @@ struct Index {
 
 setPointerColor(color: number): Promise&lt;void&gt;
 
-设置鼠标指针颜色，使用Promise异步方式返回结果。
+设置鼠标光标颜色，使用Promise异步方式返回结果。
 
 **说明**
 >
@@ -2821,7 +2821,7 @@ setPointerColor(color: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| color  | number | 是    | 鼠标指针颜色，默认为黑色：0x000000。 |
+| color  | number | 是    | 鼠标光标颜色，默认为黑色：0x000000。 |
 
 **返回值**：
 
@@ -2867,7 +2867,7 @@ struct Index {
 
 setPointerColorSync(color: number): void
 
-设置鼠标指针颜色，使用同步方式进行设置。
+设置鼠标光标颜色，使用同步方式进行设置。
 
 **说明**
 >
@@ -2881,7 +2881,7 @@ setPointerColorSync(color: number): void
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| color  | number | 是    | 鼠标指针颜色，默认为黑色：0x000000。 |
+| color  | number | 是    | 鼠标光标颜色，默认为黑色：0x000000。 |
 
 **错误码**：
 
@@ -2920,7 +2920,7 @@ struct Index {
 
 getPointerColor(callback: AsyncCallback&lt;number&gt;): void
 
-获取鼠标指针颜色，使用AsyncCallback异步方式返回结果。
+获取鼠标光标颜色，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2930,7 +2930,7 @@ getPointerColor(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标指针颜色。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标光标颜色。 |
 
 **错误码**：
 
@@ -2970,7 +2970,7 @@ struct Index {
 
 getPointerColor(): Promise&lt;number&gt;
 
-获取当前鼠标指针颜色，使用Promise异步方式返回结果。
+获取当前鼠标光标颜色，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2980,7 +2980,7 @@ getPointerColor(): Promise&lt;number&gt;
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;number&gt; | Promise对象，异步返回鼠标指针颜色。 |
+| Promise&lt;number&gt; | Promise对象，异步返回鼠标光标颜色。 |
 
 **错误码**：
 
@@ -3020,7 +3020,7 @@ struct Index {
 
 getPointerColorSync(): number
 
-获取鼠标指针颜色，使用同步方式返回结果。
+获取鼠标光标颜色，使用同步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -3030,7 +3030,7 @@ getPointerColorSync(): number
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| number | 鼠标指针颜色。 |
+| number | 鼠标光标颜色。 |
 
 **错误码**：
 
