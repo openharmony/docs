@@ -393,7 +393,6 @@ animateTo(value: AnimateParam, event: () => void): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 > **说明：**
-> - 从API version 10开始，可以通过使用animateTo来明确UI的执行上下文。
 > - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
 > - 如果在[aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
 > - 执行[aboutToDisappear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。

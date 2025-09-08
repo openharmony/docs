@@ -3,13 +3,17 @@
 
 ## Overview
 
-The **native_avcodec_videoencoder.h** file declares the native APIs used for video encoding.
+The file declares the native APIs used for video encoding.
 
 **Library**: libnative_media_venc.so
+
+**File to include**: <multimedia/player_framework/native_avcodec_videoencoder.h>
 
 **Since**: 9
 
 **Related module**: [VideoEncoder](_video_encoder.md)
+
+**Sample**: [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## Summary
@@ -19,15 +23,15 @@ The **native_avcodec_videoencoder.h** file declares the native APIs used for vid
 
 | Name| Description| 
 | -------- | -------- |
-| typedef void(\* [OH_VideoEncoder_OnNeedInputParameter](_video_encoder.md#oh_videoencoder_onneedinputparameter)) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, OH_AVFormat \*parameter, void \*userData) | Defines the pointer to the function that is called when new input parameters are required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in the new input parameters. The parameters take effect immediately with the frame. | 
-| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | Defines an enum for bit rate modes of a video encoder. (This type is deprecated from API version 14.)| 
+| typedef void(\* [OH_VideoEncoder_OnNeedInputParameter](_video_encoder.md#oh_videoencoder_onneedinputparameter)) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, OH_AVFormat \*parameter, void \*userData) | Defines the pointer to the function that is called when new input parameters are required during the running of an OH_AVCodec instance. The function carries a buffer to fill in the new input parameters. The parameters take effect immediately with the frame. | 
+| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | Defines an enum for the bit rate modes of a video encoder. (It is deprecated from API version 14.)| 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) { CBR = 0, VBR = 1, CQ = 2 } | Enumerates the bit rate modes of a video encoder. (This enum is deprecated from API version 14.)| 
+| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) { CBR = 0, VBR = 1, CQ = 2 } | Enumerates the bit rate modes of a video encoder. (It is deprecated from API version 14.)| 
 
 
 ### Functions
@@ -56,4 +60,8 @@ The **native_avcodec_videoencoder.h** file declares the native APIs used for vid
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_PushInputParameter](_video_encoder.md#oh_videoencoder_pushinputparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Pushes the input buffer filled with the input parameters to a video encoder. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_FreeOutputBuffer](_video_encoder.md#oh_videoencoder_freeoutputbuffer) (OH_AVCodec \*codec, uint32_t index) | Frees an output buffer of a video encoder.| 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_VideoEncoder_GetInputDescription](_video_encoder.md#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | Obtains the description received by a video encoder.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](_video_encoder.md#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | Checks whether a video encoder instance is valid.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](_video_encoder.md#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | Checks whether a video encoder instance is valid.|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_QueryInputBuffer](_video_encoder.md#oh_videoencoder_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | Obtains the index of the next available input buffer.| 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoEncoder_GetInputBuffer](_video_encoder.md#oh_videoencoder_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Obtains the instance of the available input buffer.|
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_QueryOutputBuffer](_video_encoder.md#oh_videoencoder_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | Obtains the index of the next available output buffer.| 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoEncoder_GetOutputBuffer](_video_encoder.md#oh_videoencoder_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | Obtains the instance of the available output buffer.|

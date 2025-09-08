@@ -81,6 +81,7 @@ struct Index {
   build() {
     Stack({ alignContent: Alignment.Center }) {
       if (this.isShow) {
+        // 图片使用Resource资源，需用户自定义
         Image($r('app.media.pic'))
           .autoResize(false)
           .clip(true)
@@ -94,6 +95,7 @@ struct Index {
         // 套多层容器为了说明相对布局约束传递
         Column() {
           Column() {
+            // 图片使用Resource资源，需用户自定义
             Image($r('app.media.icon'))
               .width('100%').height('100%')
           }.width('100%').height('100%')

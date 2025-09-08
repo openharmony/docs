@@ -183,67 +183,69 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let g_controller = new Array<AVSessionManager.AVSessionController>();
-   let controller = g_controller[0];
-   let g_validCmd:Set<AVSessionManager.AVControlCommandType>;
-   let g_centerSupportCmd:Set<AVSessionManager.AVControlCommandType> = new Set(['play', 'pause', 'playNext', 'playPrevious', 'fastForward', 'rewind', 'seek','setSpeed', 'setLoopMode', 'toggleFavorite']);
-   // 注册会话激活状态变更监听。
-   controller.on('activeStateChange', (isActive) => {
-     if (isActive) {
-       console.info(`控制器卡片按键高亮`);
-     } else {
-       console.info(`控制器卡片按键变更为无效`);
-     }
-   });
-   // 注册会话销毁监听。
-   controller.on('sessionDestroy', () => {
-     console.info(`on sessionDestroy : SUCCESS `);
-     controller.destroy().then(() => {
-       console.info(`destroy : SUCCESS`);
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
-     });
-   });
+   if (g_controller && g_controller.length > 0 && g_controller[0]) {
+    let controller = g_controller[0];
+    let g_validCmd:Set<AVSessionManager.AVControlCommandType>;
+    let g_centerSupportCmd:Set<AVSessionManager.AVControlCommandType> = new Set(['play', 'pause', 'playNext', 'playPrevious', 'fastForward', 'rewind', 'seek','setSpeed', 'setLoopMode', 'toggleFavorite']);
+    // 注册会话激活状态变更监听。
+    controller.on('activeStateChange', (isActive) => {
+      if (isActive) {
+        console.info(`控制器卡片按键高亮`);
+      } else {
+        console.info(`控制器卡片按键变更为无效`);
+      }
+    });
+    // 注册会话销毁监听。
+    controller.on('sessionDestroy', () => {
+      console.info(`on sessionDestroy : SUCCESS `);
+      controller.destroy().then(() => {
+        console.info(`destroy : SUCCESS`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+      });
+    });
 
-   // 注册元数据更新监听。
-   controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
-     console.info(`on metadataChange assetId : ${metadata.assetId}`);
-   });
-   // 注册播放状态更新监听。
-   controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
-     console.info(`on playbackStateChange state : ${playbackState.state}`);
-   });
-   // 注册会话支持的命令变更监听。
-   controller.on('validCommandChange', (cmds) => {
-     console.info(`validCommandChange : SUCCESS : size : ${cmds.length}`);
-     console.info(`validCommandChange : SUCCESS : cmds : ${cmds.values()}`);
-     g_validCmd.clear();
-     let centerSupportCmd = Array.from(g_centerSupportCmd.values())
-     for (let c of centerSupportCmd) {
-       if (cmds.concat(c)) {
-         g_validCmd.add(c);
-       }
-     }
-   });
-   // 注册输出设备变更监听。
-   controller.on('outputDeviceChange', (state, device) => {
-     console.info(`outputDeviceChange device are : ${JSON.stringify(device)}`);
-   });
-   // 注册会话自定义事件变更监听。
-   controller.on('sessionEvent', (eventName, eventArgs) => {
-     console.info(`Received new session event, event name is ${eventName}, args are ${JSON.stringify(eventArgs)}`);
-   });
-   // 注册会话自定义媒体数据包变更监听。
-   controller.on('extrasChange', (extras) => {
-     console.info(`Received custom media packet, packet data is ${JSON.stringify(extras)}`);
-   });
-   // 注册会话自定义播放列表变更监听。
-   controller.on('queueItemsChange', (items) => {
-     console.info(`Caught queue items change, items length is ${items.length}`);
-   });
-   // 注册会话自定义播放标题变更监听。
-   controller.on('queueTitleChange', (title) => {
-     console.info(`Caught queue title change, title is ${title}`);
-   });
+    // 注册元数据更新监听。
+    controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
+      console.info(`on metadataChange assetId : ${metadata.assetId}`);
+    });
+    // 注册播放状态更新监听。
+    controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
+      console.info(`on playbackStateChange state : ${playbackState.state}`);
+    });
+    // 注册会话支持的命令变更监听。
+    controller.on('validCommandChange', (cmds) => {
+      console.info(`validCommandChange : SUCCESS : size : ${cmds.length}`);
+      console.info(`validCommandChange : SUCCESS : cmds : ${Array.from(cmds)}`);
+      g_validCmd.clear();
+      let centerSupportCmd = Array.from(g_centerSupportCmd.values())
+      for (let c of centerSupportCmd) {
+        if (cmds.indexOf(c) != -1) {
+          g_validCmd.add(c);
+        }
+      }
+    });
+    // 注册输出设备变更监听。
+    controller.on('outputDeviceChange', (state, device) => {
+      console.info(`outputDeviceChange device are : ${JSON.stringify(device)}`);
+    });
+    // 注册会话自定义事件变更监听。
+    controller.on('sessionEvent', (eventName, eventArgs) => {
+      console.info(`Received new session event, event name is ${eventName}, args are ${JSON.stringify(eventArgs)}`);
+    });
+    // 注册会话自定义媒体数据包变更监听。
+    controller.on('extrasChange', (extras) => {
+      console.info(`Received custom media packet, packet data is ${JSON.stringify(extras)}`);
+    });
+    // 注册会话自定义播放列表变更监听。
+    controller.on('queueItemsChange', (items) => {
+      console.info(`Caught queue items change, items length is ${items.length}`);
+    });
+    // 注册会话自定义播放标题变更监听。
+    controller.on('queueTitleChange', (title) => {
+      console.info(`Caught queue title change, title is ${title}`);
+    });
+   }
    ```
 
 4. 获取媒体会话提供方传递的媒体信息，可以用于界面展示，例如在播控中心展示当前播放的曲目及对应的播放状态。
@@ -251,7 +253,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    async function getInfoFromSessionByController() {
-     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
+     // 假设已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
      let controller = await AVSessionManager.createController("");
      // 获取sessionId。
      let sessionId = controller.sessionId;
@@ -275,16 +277,16 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      console.info(`get queueTitle by controller : ${queueTitle}`);
      // 获取session的自定义媒体数据包。
      let extras = await controller.getExtras();
-     console.info(`get custom media packets by controller : ${JSON.stringify(extras)}`);
+     console.info(`get custom media packets by controller : ${extras ? JSON.stringify(extras) : ''}`);
      // 获取session对应应用提供的ability信息。
      let agent = await controller.getLaunchAbility();
-     console.info(`get want agent info by controller : ${JSON.stringify(agent)}`);
+     console.info(`get want agent info by controller : ${agent ? JSON.stringify(agent) : ''}`);
      // 获取session的当前播放位置信息。
      let currentTime = controller.getRealPlaybackPositionSync();
      console.info(`get current playback time by controller : ${currentTime}`);
      // 获取session支持的有效命令。
      let validCommands = await controller.getValidCommands();
-     console.info(`get valid commands by controller : ${JSON.stringify(validCommands)}`);
+     console.info(`get valid commands by controller : ${validCommands ? JSON.stringify(validCommands) : '[]'}`);
    }
    ```
 

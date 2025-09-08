@@ -84,7 +84,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -130,7 +130,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
 console.log(`data->${JSON.stringify(data)}`);
@@ -203,7 +203,7 @@ off(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;,
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string         | 是   | 订阅事件类型，固定为'selfPermissionStateChange'，权限状态变更事件。  |
 | permissionList | Array&lt;[Permissions](../../security/AccessToken/app-permissions.md)&gt;   | 是   | 取消订阅的权限名列表，为空时表示取消订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
-| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
+| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | 否 | 取消订阅指定tokenID与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
@@ -387,6 +387,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | 12100010 | The request already exists. |
 | 12100011 | All permissions in the permission list have been granted. |
 | 12100012 | The permission list contains the permission that has not been revoked by the user. |
+| 12100014 | Unexpected permission. You cannot request this type of permission from users via a pop-up window. |
 
 **示例：**
 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
@@ -544,7 +545,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 try {
   let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
   console.log(`data->${JSON.stringify(data)}`);
@@ -585,7 +586,7 @@ import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
@@ -626,7 +627,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {

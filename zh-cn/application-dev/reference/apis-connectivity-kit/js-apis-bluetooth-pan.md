@@ -35,7 +35,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 createPanProfile(): PanProfile
 
-创建蓝牙[NAP](../../connectivity/terminology.md#nap)实例。通过该实例可使用本端作为NAP的接口，如：获取和其他设备间的蓝牙个人局域网服务连接状态。
+创建蓝牙[NAP](../../connectivity/terminology.md#nap)实例。通过该实例可使用本端作为NAP设备的接口，如：获取和其他设备间的蓝牙个人局域网服务连接状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 

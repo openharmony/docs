@@ -22,7 +22,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 创建多选框群组，用于控制群组内Checkbox的全选或取消全选状态，具有相同group值的Checkbox和CheckboxGroup属于同一群组。
 
-在结合带缓存组件使用时(如List)，未被创建的Checkbox选中状态需要应用手动控制。
+在结合带缓存组件使用时(如List)，未被创建的Checkbox选中状态需要应用手动控制。详细示例请参考[示例4](#示例4设置全选)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -616,3 +616,161 @@ struct Index {
 ```
 
 ![checkboxGroup](figures/checkboxGroup3.gif)
+
+### 示例4（设置全选）
+
+该示例实现了在结合带缓存功能的组件使用时(如List)，未被创建的Checkbox全选的功能。
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: checkboxItemData[] = [];
+
+  public totalCount(): number {
+    return this.originDataArray.length;
+  }
+
+  public getData(index: number): checkboxItemData {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    });
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    });
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    });
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    });
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    });
+  }
+
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    });
+  }
+}
+
+interface checkboxItemData {
+  isCheck: boolean;
+  itemName: string;
+}
+
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: checkboxItemData[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): checkboxItemData {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: checkboxItemData): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public operateData(isSelect: boolean): void {
+    this.dataArray.forEach((item) => {
+      item.isCheck = isSelect
+    })
+
+    this.notifyDataReload()
+  }
+
+  public operateItem(isSelect: boolean, index: number): void {
+    this.dataArray[index].isCheck = isSelect
+    this.notifyDataChange(index)
+  }
+
+  public getDataSource(): checkboxItemData[] {
+    return this.dataArray
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 100; i++) {
+      this.data.pushData({ isCheck: false, itemName: `checkbox ${i}` });
+    }
+  }
+
+  @State isSelectAll: boolean = false
+
+  build() {
+    Column() {
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: "group" })
+          .selectAll(this.isSelectAll)
+          .hitTestBehavior(HitTestMode.None)
+        Text("全选").fontSize(25)
+      }.onClick(() => {
+        this.isSelectAll = !this.isSelectAll
+        this.data.operateData(this.isSelectAll)
+      }).padding({ left: 10 })
+
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: checkboxItemData, index: number) => {
+          ListItem() {
+            Row() {
+              Checkbox({ name: `checkbox-${item}` })
+                .select(item.isCheck)
+                .onChange((value: boolean) => {
+                  this.data.operateItem(value, index)
+                  let dataSource = this.data.getDataSource()
+                  this.isSelectAll = dataSource.every((item) => item.isCheck === true)
+                })
+              Text(item.itemName).fontSize(20)
+            }.margin({ left: 10, right: 10 })
+          }
+
+        }, (item: checkboxItemData) => item.itemName + item.isCheck)
+      }.cachedCount(5)
+    }
+  }
+}
+```
+
+![checkboxgroup04](figures/checkboxgroup04.gif)

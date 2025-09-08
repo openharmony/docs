@@ -5362,7 +5362,7 @@ onGetData: (authSubType: AuthSubType, callback: IInputData, options: GetInputDat
 | ---------- | --------------------------------------- | ---- | --------------- |
 | authSubType | [AuthSubType](#authsubtype8) | 是 | 认证凭据子类型。 |
 | callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
-| options | [GetInputDataOptions](#getinputdataoptions-12) | 是 | 回调函数的可选参数集合。 |
+| options | [GetInputDataOptions](#getinputdataoptions12) | 是 | 回调函数的可选参数集合。 |
 
 **示例：**
   ```ts
@@ -5523,11 +5523,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称    | 类型                                                          | 必填   | 说明                   |
-| -------- | ------------------------------------------------------------- | ----- | ----------------------- |
-| authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
-| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
-| accountId<sup>12+</sup> | number | 否 | 系统账号标识，默认为undefined。 |
+| 名称    | 类型                                                         | 只读  | 可选 | 说明                   |
+| -------- | ------------------------------------------------------------ | ----- | ----- | ----------------------- |
+| authType | [AuthType](#authtype8)                            | 否 | 否  | 身份验证凭据类型。        |
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 否 | 否  | 指示要获取的属性类型数组。 |
+| accountId<sup>12+</sup> | number | 否 | 是  | 系统账号标识，默认为undefined。 |
 
 ## SetPropertyRequest<sup>8+</sup>
 
@@ -5537,11 +5537,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称    | 类型                                             | 必填   | 说明                 |
-| -------- | ------------------------------------------------ | ----- | -------------------- |
-| authType | [AuthType](#authtype8)               | 是    | 身份验证凭据类型。     |
-| key     | [SetPropertyType](#setpropertytype8) | 是    | 指示要设置的属性类型。 |
-| setInfo  | Uint8Array                                       | 是    | 指示要设置的信息。     |
+| 名称    | 类型                                             | 只读  | 可选 | 说明                 |
+| -------- | ------------------------------------------------ | ----- | ----- | -------------------- |
+| authType | [AuthType](#authtype8)               | 否 | 否  | 身份验证凭据类型。     |
+| key     | [SetPropertyType](#setpropertytype8) | 否 | 否  | 指示要设置的属性类型。 |
+| setInfo  | Uint8Array                                       | 否 | 否  | 指示要设置的信息。     |
 
 ## ExecutorProperty<sup>8+</sup>
 
@@ -5570,15 +5570,15 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称        | 类型        | 必填   | 说明              |
-| ------------ | ----------- | ----- | ----------------- |
-| token        | Uint8Array  | 否    | 指示认证令牌，默认为空。      |
-| remainTimes  | number      | 否    | 指示剩余次数，默认为空。      |
-| freezingTime | number      | 否    | 指示冻结时间，默认为空。      |
-| nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 指示下次冻结时间，默认为undefined。 |
-| credentialId<sup>12+</sup> | Uint8Array  | 否    | 指示凭据ID，默认为空。 |
-| accountId<sup>12+</sup>         | number | 否    | 指示系统账号标识，默认为undefined。 |
-| pinValidityPeriod<sup>12+</sup> | number | 否    | 指示认证有效期，默认为undefined。 |
+| 名称        | 类型        |  只读 | 可选 | 说明              |
+| ------------ | ----------- | ----- | ----- | ----------------- |
+| token        | Uint8Array  | 否    | 是   | 指示认证令牌，默认为空。      |
+| remainTimes  | number      | 否    | 是   | 指示剩余次数，默认为空。      |
+| freezingTime | number      | 否    | 是   | 指示冻结时间，默认为空。      |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 是   | 指示下次冻结时间，默认为undefined。 |
+| credentialId<sup>12+</sup> | Uint8Array  | 否    | 是   | 指示凭据ID，默认为空。 |
+| accountId<sup>12+</sup>         | number | 否    | 是   | 指示系统账号标识，默认为undefined。 |
+| pinValidityPeriod<sup>12+</sup> | number | 否    | 是   | 指示认证有效期，默认为undefined。 |
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -5588,12 +5588,12 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称        | 类型                                     | 必填   | 说明              |
-| ------------ | ---------------------------------------- | ----- | ----------------- |
-| credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
-| credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
-| token        | Uint8Array                           | 是    | 指示认证令牌。     |
-| accountId<sup>12+</sup>    | number | 否    | 系统账号标识，默认为undefined。 |
+| 名称        | 类型                                     |  只读 | 可选 | 说明              |
+| ------------ | ---------------------------------------- | ----- | ----- | ----------------- |
+| credType     | [AuthType](#authtype8)       | 否    | 否   | 指示凭据类型。     |
+| credSubType  | [AuthSubType](#authsubtype8) | 否    | 否   | 指示凭据子类型。   |
+| token        | Uint8Array                           | 否    | 否   | 指示认证令牌。     |
+| accountId<sup>12+</sup>    | number | 否    | 是   | 系统账号标识，默认为undefined。 |
 
 ## RequestResult<sup>8+</sup>
 
@@ -5603,9 +5603,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称        | 类型        | 必填   | 说明              |
-| ------------ | ----------- | ----- | ----------------- |
-| credentialId | Uint8Array  | 否    | 指示凭据索引，默认为空。      |
+| 名称        | 类型        |  只读 | 可选 | 说明              |
+| ------------ | ----------- | ----- | ----- | ----------------- |
+| credentialId | Uint8Array  | 否    | 是   | 指示凭据索引，默认为空。      |
 
 ## EnrolledCredInfo<sup>8+</sup>
 
@@ -5615,14 +5615,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称        | 类型                                     | 必填   | 说明              |
-| ------------ | ---------------------------------------- | ----- | ------------------- |
-| credentialId | Uint8Array                               | 是    | 指示凭据索引。       |
-| authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
-| authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。 |
-| templateId   | Uint8Array                               | 是    | 指示凭据模板ID。     |
-| isAbandoned<sup>20+</sup>   | boolean                      | 否    | 指示凭据是否废弃。废弃后的凭据可能作为备份凭据保存一段时间。默认为undefined，表示是否废弃未定义。   |
-| validityPeriod<sup>20+</sup>   | number                    | 否    | 指示凭据有效期。默认为undefined，表示有效期未定义。     |
+| 名称        | 类型                                     |  只读 | 可选 | 说明              |
+| ------------ | ---------------------------------------- | ----- | ----- | ------------------- |
+| credentialId | Uint8Array                               | 否    | 否   | 指示凭据索引。       |
+| authType     | [AuthType](#authtype8)       | 否    | 否   | 指示认证凭据类型。   |
+| authSubType  | [AuthSubType](#authsubtype8) | 否    | 否   | 指示认证凭据子类型。 |
+| templateId   | Uint8Array                               | 否    | 否   | 指示凭据模板ID。     |
+| isAbandoned<sup>20+</sup>   | boolean                      | 否    | 是   | 指示凭据是否废弃。废弃后的凭据可能作为备份凭据保存一段时间。true表示已废弃，false表示未废弃。默认为undefined，表示是否废弃未定义。   |
+| validityPeriod<sup>20+</sup>   | number                    | 否    | 是   | 指示凭据有效期。默认为undefined，表示有效期未定义。     |
 
 ## GetPropertyType<sup>8+</sup>
 
@@ -5790,10 +5790,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | 否   | 系统账号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
-| isLoggedIn<sup>12+</sup> | boolean | 否   | 是否登录。true表示已登录；false表示未登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
+| 名称      | 类型   | 只读  | 可选  | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| shortName<sup>12+</sup> | string | 否 | 是  | 系统账号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| isLoggedIn<sup>12+</sup> | boolean | 否 | 是  | 是否登录。true表示已登录；false表示未登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
 
 ## OsAccountType
 
@@ -5811,10 +5811,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | 否   | 域账号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
-| isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。true表示指定的域账号已认证；false表示指定的域账号未认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
+| 名称      | 类型   | 只读  | 可选  | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| accountId<sup>10+</sup> | string | 否 | 是  | 域账号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
+| isAuthenticated<sup>11+</sup>| boolean | 否 | 是  | 指示域账号是否已认证。true表示指定的域账号已认证；false表示指定的域账号未认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5824,10 +5824,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| localId      | number | 是   | 系统账号ID     |
-| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型。 |
+| 名称      | 类型   | 只读  | 可选  | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| localId      | number | 否 | 否  | 系统账号ID     |
+| type | [ConstraintSourceType](#constraintsourcetype9) | 否 | 否  | 约束来源类型。 |
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -5852,10 +5852,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| remainTimes  | number | 是   | 剩余次数。   |
-| freezingTime | number | 是   | 冻结时间。 |
+| 名称      | 类型   | 只读  | 可选 | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| remainTimes  | number | 否 | 否  | 剩余次数。   |
+| freezingTime | number | 否 | 否  | 冻结时间。 |
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
 
@@ -5865,12 +5865,12 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息。   |
-| domainAccountToken | Uint8Array | 是   | 域账号的令牌。 |
-| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义。 |
-| callerUid | number | 是   | 调用方唯一标识符。 |
+| 名称      | 类型   | 只读  | 可选 | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 否 | 否  | 域账号的信息。   |
+| domainAccountToken | Uint8Array | 否 | 否  | 域账号的令牌。 |
+| businessParams | Record<string, Object> | 否 | 否  | 业务参数，由业务方根据请求协议自定义。 |
+| callerUid | number | 否 | 否  | 调用方唯一标识符。 |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
@@ -5880,11 +5880,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| accountName | string | 是   | 域账号名。 |
-| domain      | string | 否   | 域名。默认为undefined。|
-| serverConfigId<sup>12+</sup>| string | 否 | 域账号所属服务器标识。默认为undefined。|
+| 名称      | 类型   | 只读  | 可选 | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| accountName | string | 否 | 否  | 域账号名。 |
+| domain      | string | 否 | 是  | 域名。默认为undefined。|
+| serverConfigId<sup>12+</sup>| string | 否 | 是  | 域账号所属服务器标识。默认为undefined。|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5894,9 +5894,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| callerUid | number | 是   | 调用方唯一标识符。 |
+| 名称      | 类型   | 只读  | 可选 | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| callerUid | number | 否 | 否  | 调用方唯一标识符。 |
 
 ## OsAccountSwitchEventData<sup>12+</sup>
 
@@ -5920,11 +5920,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
-| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上，默认为空列表。|
-| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上，默认为std::nullopt。|
+| 名称      | 类型   | 只读  | 可选   | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| shortName | string | 否 | 否   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1. 不允许出现的字符：\< \> \| : " * ? / \\<br>2. 不允许独立出现的字符串：.或..<br>3. 长度不超过255个字符。|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否 | 是   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上，默认为空列表。|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否 | 是   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上，默认为std::nullopt。|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5934,9 +5934,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
+| 名称      | 类型   | 只读  | 可选   | 说明       |
+| ----------- | ------ | ---- | ---- | ---------- |
+| shortName | string | 否 | 否   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1. 不允许出现的字符：\< \> \| : " * ? / \\<br>2. 不允许独立出现的字符串：.或..<br>3. 长度不超过255个字符。|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 
@@ -5946,10 +5946,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称      | 类型                    | 必填 | 说明       |
-| --------- | ---------------------- | ---- | ---------- |
-| authType  | [AuthType](#authtype8) | 否   | 认证类型，默认为undefined。 |
-| accountId | number                 | 否   | 系统账号标识，默认为undefined。 |
+| 名称      | 类型                    | 只读  | 可选   | 说明       |
+| --------- | ---------------------- | ---- | ---- | ---------- |
+| authType  | [AuthType](#authtype8) | 否 | 是   | 认证类型，默认为undefined。 |
+| accountId | number                 | 否 | 是   | 系统账号标识，默认为undefined。 |
 
 ## AuthIntent<sup>12+</sup>
 
@@ -5974,11 +5974,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称               | 类型    | 必填 | 说明       |
-| ------------------ | ------ | ---- | ---------- |
-| verifierNetworkId  | string | 否   | 凭据验证者的网络标识，默认为空。 |
-| collectorNetworkId | string | 否   | 凭据收集者的网络标识，默认为空。 |
-| collectorTokenId   | number | 否   | 凭据收集者的令牌标识，默认为undefined。 |
+| 名称               | 类型    | 只读  | 可选 | 说明       |
+| ------------------ | ------ | ---- | ---- | ---------- |
+| verifierNetworkId  | string | 否 | 是  | 凭据验证者的网络标识，默认为空。 |
+| collectorNetworkId | string | 否 | 是  | 凭据收集者的网络标识，默认为空。 |
+| collectorTokenId   | number | 否 | 是  | 凭据收集者的令牌标识，默认为undefined。 |
 
 ## AuthOptions<sup>12+</sup>
 
@@ -5988,13 +5988,13 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称               | 类型    | 必填 | 说明       |
-| ------------------ | ------ | ---- | ---------- |
-| accountId          | number | 否   | 系统账号标识，默认为undefined。 |
-| authIntent         | [AuthIntent](#authintent12) | 否   | 认证意图，默认为undefined。 |
-| remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | 否   | 远程认证选项，默认为undefined。 |
+| 名称               | 类型    | 只读  | 可选 | 说明       |
+| ------------------ | ------ | ---- | ---- | ---------- |
+| accountId          | number | 否 | 是  | 系统账号标识，默认为undefined。 |
+| authIntent         | [AuthIntent](#authintent12) | 否 | 是  | 认证意图，默认为undefined。 |
+| remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | 否 | 是  | 远程认证选项，默认为undefined。 |
 
-## GetInputDataOptions <sup>12+</sup>
+## GetInputDataOptions<sup>12+</sup>
 
 表示[通知调用者获取数据](#ongetdata8)的可选参数集合。
 
@@ -6002,6 +6002,6 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称               | 类型    | 必填 | 说明       |
-| ------------------ | ------ | ---- | ---------- |
-| challenge          | Uint8Array | 否   | 挑战值，默认为undefined。 |
+| 名称               | 类型    | 只读  | 可选 | 说明       |
+| ------------------ | ------ | ---- | ---- | ---------- |
+| challenge          | Uint8Array | 否 | 是  | 挑战值，默认为undefined。 |

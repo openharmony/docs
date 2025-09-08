@@ -1197,7 +1197,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 
 根据输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 **参数：**
@@ -1225,7 +1225,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 
 根据指定的缩放算法和输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 **参数：**
@@ -1637,7 +1637,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：名字长度超出31位或者小于1位。<br>         IMAGE_UNSUPPORTED_MEMORY_FORMAT：既不是DMA内存也不是ASHMEM内存。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：名字长度超过取值范围。DMA内存名字取值范围为[1, 255]，ASHMEM内存名字取值范围为[1, 244]，单位字节。<br>         IMAGE_UNSUPPORTED_MEMORY_FORMAT：既不是DMA内存也不是ASHMEM内存。 |
 
 ### OH_PixelmapNative_GetByteCount()
 
@@ -1649,7 +1649,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 **参数：**
@@ -1675,7 +1675,7 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
 
 获取Pixelmap用于储存像素数据的内存字节数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 **参数：**

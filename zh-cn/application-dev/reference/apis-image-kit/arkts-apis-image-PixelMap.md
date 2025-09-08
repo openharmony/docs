@@ -107,7 +107,7 @@ async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
         console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
         return;
       } else {
-        console.info('Succeeded in reading image pixel data.');  //符合条件则进入。
+        console.info('Succeeded in reading image pixel data.');  // 符合条件则进入。
       }
     })
   }
@@ -197,7 +197,7 @@ async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
-      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
+      console.info('Succeeded in reading the image data in the area.'); // 符合条件则进入。
       console.info('RGBA data is ', new Uint8Array(area.pixels));
     }).catch((error: BusinessError) => {
       console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
@@ -214,7 +214,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
-      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
+      console.info('Succeeded in reading the image data in the area.'); // 符合条件则进入。
       console.info('YUV data is ', new Uint8Array(area.pixels));
     }).catch((error: BusinessError) => {
       console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
@@ -603,7 +603,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function WriteBufferToPixels(pixelMap:image.PixelMap) {
-  const color: ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
+  const color: ArrayBuffer = new ArrayBuffer(96);  // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -650,7 +650,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 ```ts
 function WriteBufferToPixelsSync(pixelMap:image.PixelMap) {
-  const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
+  const color : ArrayBuffer = new ArrayBuffer(96);  // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr : Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -2098,12 +2098,19 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ApplyColorSpace(pixelMap:image.PixelMap) {
+function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
     try {
-      await pixelMap.applyColorSpace(targetColorSpace);
+      pixelMap.applyColorSpace(targetColorSpace, (error: BusinessError) => {
+        if (error) {
+          console.error(`ApplyColorSpace failed. code is ${error.code}, message is ${error.message}`);
+          return;
+        } else {
+          console.info("Succeeded ApplyColorSpace.");
+        }
+      });
     } catch (error) {
       console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
       return;
@@ -2150,17 +2157,16 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ApplyColorSpace(pixelMap:image.PixelMap) {
+function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
-    try {
-      await pixelMap.applyColorSpace(targetColorSpace);
-    } catch (error) {
+      pixelMap.applyColorSpace(targetColorSpace).then(() => {
+      console.info('Succeeded in applying color space for pixelmap object.');
+    }).catch((error: BusinessError) => {
       console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
       return;
-    }
-    console.info('Succeeded in applying color space for pixelmap object.');
+    });
   }
 }
 ```
@@ -2473,7 +2479,7 @@ async function Marshalling() {
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -2559,7 +2565,7 @@ async function Unmarshalling() {
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret : MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -2710,7 +2716,7 @@ setMemoryNameSync(name: string): void
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的PixelMap设置，支持1-31位长度。 |
+| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的pixelmap设置。DMA内存设置名字长度取值范围为[1, 255]，ASHMEM内存设置名字长度取值范围为[1, 244]，单位字节。 |
 
 **错误码：**
 

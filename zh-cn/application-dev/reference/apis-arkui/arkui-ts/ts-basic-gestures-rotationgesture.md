@@ -19,7 +19,7 @@
 
 RotationGesture(value?: { fingers?: number; angle?: number })
 
-继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置旋转手势事件。
+继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)，设置旋转手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -45,7 +45,7 @@ RotationGesture(options?: RotationGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [RotationGestureHandlerOptions](./ts-uigestureevent.md#rotationgesturehandleroptions) | 否 |旋转手势处理器配置参数。 |
+| options | [RotationGestureHandlerOptions](./ts-gesturehandler.md#rotationgesturehandleroptions) | 否 |旋转手势处理器配置参数。 |
 
 
 ## 事件

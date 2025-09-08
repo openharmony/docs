@@ -41,6 +41,7 @@
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want)](#oh_abilityruntime_startselfuiability) | 启动当前应用的UIAbility。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,AbilityRuntime_StartOptions *options)](#oh_abilityruntime_startselfuiabilitywithstartoptions) | 通过StartOptions启动当前应用的UIAbility。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)](#oh_abilityruntime_applicationcontextgetversioncode) | 获取应用版本号。 |
+| [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want, AbilityRuntime_StartOptions *options, int32_t *targetPid)](#oh_abilityruntime_startselfuiabilitywithpidresult) | 通过StartOptions启动当前应用的UIAbility，并获取目标UIAbility的进程号。 |
 
 ## 函数说明
 
@@ -465,10 +466,82 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int6
 
 | 参数项 | 描述 |
 | -- | -- |
-| int64_t* [versionCode](js-apis-bundleManager-bundleInfo.md#bundleinfo) | 指向应用包版本号的指针，对应bundleInfo中的versionCode字段。 |
+| int64_t* [versionCode](js-apis-bundleManager-bundleInfo.md#bundleinfo-1) | 指向应用包版本号的指针，对应bundleInfo中的versionCode字段。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
 | [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime_errorcode) | 返回执行结果。<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参versionCode为空。<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 应用上下文不存在，如在应用创建的[子进程](capi-childprocess.md)中应用级别上下文不存在。<br>ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED  - 获取应用信息失败。 |
+
+### OH_AbilityRuntime_StartSelfUIAbilityWithPidResult()
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want, AbilityRuntime_StartOptions *options, int32_t *targetPid)
+```
+
+**描述**
+
+通过StartOptions启动当前应用的UIAbility，并获取目标UIAbility的进程号。
+
+接口不能在应用主线程调用，但可以在应用创建的[子进程](capi-childprocess.md)的主线程中调用。
+如果在应用的主线程中调用，会返回ABILITY_RUNTIME_ERROR_CODE_MAIN_THREAD_NOT_SUPPORTED错误码。
+
+**需要权限：** ohos.permission.NDK_START_SELF_UI_ABILITY
+
+**起始版本：** 21
+
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常调用，在其他设备中返回ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED错误码。
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [AbilityBase_Want](capi-abilitybase-want.md) *want | 启动当前应用UIAbility时需要的Want信息。 |
+| [AbilityRuntime_StartOptions](capi-abilityruntime-startoptions.md) *options | 启动当前应用UIAbility时需要的StartOptions信息。如果该参数中[startVisibility](capi-context-constant-h.md#abilityruntime_startvisibility)属性的值不为空，必须确保当前应用已添加到状态栏，否则会返回[ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED](capi-ability-runtime-common-h.md#abilityruntime_errorcode)错误码。 |
+| int32_t *targetPid | 目标UIAbility所在的进程号，作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime_errorcode) | ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 接口调用成功。<br>ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED - 调用方权限校验失败。<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 调用方入参校验失败。<br>ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED - 设备类型不支持。<br>ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY - 指定的Ability名称不存在。<br>ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE - 接口调用Ability类型错误。<br>ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED - 众测应用到期。<br>ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE - Wukong模式，不允许启动/停止Ability。<br>ABILITY_RUNTIME_ERROR_CODE_CONTROLLED - 应用被管控。<br>ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED - 应用被EDM管控。<br>ABILITY_RUNTIME_ERROR_CODE_CROSS_APP - 限制API 11以上版本三方应用跳转。<br>ABILITY_RUNTIME_ERROR_CODE_INTERNAL - 内部错误。<br>ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY - 非顶层应用。<br>ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED - 不允许设置窗口启动可见性。<br>ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED - 不支持应用分身和多实例。<br>ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY - 无效多实例。<br> ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED - 应用多实例以达到上限。<br>ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED - 不支持应用多实例。<br>ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED - 不允许设置APP_INSTANCE_KEY。<br>ABILITY_RUNTIME_ERROR_CODE_START_TIMEOUT - 启动UIAbility超时。<br>ABILITY_RUNTIME_ERROR_CODE_MAIN_THREAD_NOT_SUPPORTED - 接口不允许在应用主线程被调用。 |
+
+**示例代码：**
+
+```cpp
+#include <AbilityKit/ability_base/want.h>
+#include <AbilityKit/ability_runtime/application_context.h>
+
+void demo()
+{
+    AbilityBase_Element element;
+    element.abilityName = const_cast<char*>("EntryAbility");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
+    element.moduleName = const_cast<char*>("entry");
+    AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
+    if (want == nullptr) {
+        // 记录错误日志以及其他业务处理
+        return;
+    }
+
+    AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
+    if (options == nullptr) {
+        // 记录错误日志以及其他业务处理
+
+        // 销毁want，防止内存泄漏
+        OH_AbilityBase_DestroyWant(want);
+        return;
+    }
+    int32_t pid = -1;
+    AbilityRuntime_ErrorCode err = OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(want, options, &pid);
+    if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
+        // 记录错误日志以及其他业务处理
+    }
+    // 销毁want，防止内存泄漏
+    OH_AbilityBase_DestroyWant(want);
+
+    // 销毁options，防止内存泄漏
+    OH_AbilityRuntime_DestroyStartOptions(&options);
+}
+```

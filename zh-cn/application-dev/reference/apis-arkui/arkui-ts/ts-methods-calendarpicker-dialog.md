@@ -62,7 +62,7 @@ static show(options?: CalendarDialogOptions): void
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否  | 是  | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下，获焦时阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦时为ShadowStyle.OUTER_FLOATING_SM。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | enableHoverMode<sup>14+</sup>     | boolean | 否  | 是  | 是否响应悬停态。<br />- true：响应悬停态。<br/>- false：不响应悬停态。<br/>默认值：false<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-universal-attributes-sheet-transition.md#hovermodeareatype14) | 否  | 是  | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| markToday<sup>19+</sup>       | boolean | 否  | 是  | 设置日历选择器中系统当前日期是否保持高亮显示。<br/>- true：系统当前日期在日历选择器内保持高亮显示。<br/>- false：系统当前日期在日历选择器内不保持高亮显示。<br/>默认值：false<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| markToday<sup>19+</sup>       | boolean | 否  | 是  | 设置日历选择器弹窗中系统当前日期是否保持高亮显示。<br/>- true：系统当前日期在日历选择器弹窗内保持高亮显示。<br/>- false：系统当前日期在日历选择器弹窗内不保持高亮显示。<br/>默认值：false<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 >
@@ -295,9 +295,9 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/calendar_picker_dialog_start_end.gif)
 
-### 示例6（设置日历选择器弹窗在系统当前日期时，保持高亮显示和禁用日期区间）
+### 示例6（设置系统当前日期在日历选择器弹窗内保持高亮显示，并设置禁用日期区间）
 
-该示例通过[CalendarDialogOptions](#calendardialogoptions对象说明)的markToday设置日历选择器弹窗在系统当前日期时，开启保持高亮显示，同时，通过[CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions对象说明)的disabledDateRange设置日历选择器弹窗的禁用日期区间。
+该示例通过配置[CalendarDialogOptions](#calendardialogoptions对象说明)的markToday，使系统当前日期在日历选择器弹窗内保持高亮显示，并通过配置[CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions对象说明)的disabledDateRange设置禁用的日期区间。
 
 ```ts
 // xxx.ets

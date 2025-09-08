@@ -92,7 +92,7 @@ width(widthValue: Length | LayoutPolicy): T
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
+| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;[LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
 
 **返回值：**
 
@@ -116,7 +116,7 @@ height(heightValue: Length | LayoutPolicy): T
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
+| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;[LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
 
 **返回值：**
 
@@ -168,7 +168,7 @@ padding(value: Padding | Length | LocalizedPadding): T
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp; [LocalizedPadding](ts-types.md#localizedpadding12)<sup>12+</sup>| 是    | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
+| value | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;[LocalizedPadding](ts-types.md#localizedpadding12)<sup>12+</sup>| 是    | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
 
 **返回值：**
 

@@ -9,7 +9,7 @@
 
 ## 概述
 
-声明滤镜相关接口。<br>开发者可以通过滤镜的接口快速实现基本的效果处理，也可以将滤镜添加到效果器中，组合成滤镜链串联执行。系统提供了如“亮度”、“裁剪”等基本的效果处理滤镜。
+声明滤镜相关接口。<br> 开发者可以通过滤镜的接口快速实现基本的效果处理，也可以将滤镜添加到效果器中，组合成滤镜链串联执行。系统提供了如“亮度”、“裁剪”等基本的效果处理滤镜。
 
 **引用文件：** <multimedia/image_effect/image_effect_filter.h>
 
@@ -44,6 +44,16 @@
 | [ImageEffect_DataType](#imageeffect_datatype) | ImageEffect_DataType | 数据类型枚举值。 |
 | [ImageEffect_Format](#imageeffect_format) | ImageEffect_Format | 像素格式枚举值。 |
 | [ImageEffect_BufferType](#imageeffect_buffertype) | ImageEffect_BufferType | 内存类型枚举值。 |
+
+### 宏定义
+
+| 名称 | 描述 |
+| -- | -- |
+| OH_EFFECT_BRIGHTNESS_FILTER "Brightness" | 亮度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为[EFFECT_DATA_TYPE_FLOAT](#imageeffect_datatype)。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
+| OH_EFFECT_CONTRAST_FILTER "Contrast" | 对比度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为[EFFECT_DATA_TYPE_FLOAT](#imageeffect_datatype)。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
+| OH_EFFECT_CROP_FILTER "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为[EFFECT_DATA_TYPE_PTR](#imageeffect_datatype)，参数值为结构体 [ImageEffect_Region](capi-imageeffect-imageeffect-region.md)。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
+| OH_EFFECT_FILTER_INTENSITY_KEY "FilterIntensity" | 强度参数。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
+| OH_EFFECT_FILTER_REGION_KEY "FilterRegion" | 图像区域参数。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
 
 ### 函数
 
@@ -86,16 +96,8 @@
 | [ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap, OH_PixelmapNative *outputPixelmap)](#oh_effectfilter_render) | - | 执行图像渲染。 |
 | [ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId, int32_t outputTextureId, int32_t colorSpace)](#oh_effectfilter_renderwithtextureid) | - | 使用纹理标识渲染滤镜效果。该函数不支持相同的输入和输出图像。 |
 | [ImageEffect_ErrorCode OH_EffectFilter_Release(OH_EffectFilter *filter)](#oh_effectfilter_release) | - | 销毁OH_EffectFilter实例。 |
-
-### 宏定义
-
-| 名称 | 描述 |
-| -- | -- |
-| OH_EFFECT_BRIGHTNESS_FILTER "Brightness" | 亮度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。<br>**起始版本：** 12 |
-| OH_EFFECT_CONTRAST_FILTER "Contrast" | 对比度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。<br>**起始版本：** 12 |
-| OH_EFFECT_CROP_FILTER "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR，参数值为结构体[ImageEffect_Region](capi-imageeffect-imageeffect-region.md)。<br>**起始版本：** 12 |
-| OH_EFFECT_FILTER_INTENSITY_KEY "FilterIntensity" | 强度参数。<br>**起始版本：** 12 |
-| OH_EFFECT_FILTER_REGION_KEY "FilterRegion" | 图像区域参数。<br>**起始版本：** 12 |
+| [ImageEffect_ErrorCode OH_EffectBufferInfo_SetTimestamp(OH_EffectBufferInfo *info, int64_t timestamp)](#oh_effectbufferinfo_settimestamp) | - | 设置滤镜时间戳。 |
+| [ImageEffect_ErrorCode OH_EffectBufferInfo_GetTimestamp(OH_EffectBufferInfo *info, int64_t *timestamp)](#oh_effectbufferinfo_gettimestamp) | - | 获取滤镜时间戳。 |
 
 ## 枚举类型说明
 
@@ -250,7 +252,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetFilterName(OH_EffectFilterInfo *inf
 ### OH_EffectFilterInfo_SetSupportedBufferTypes()
 
 ```
-ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t size,ImageEffect_BufferType *bufferTypeArray)
+ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t size, ImageEffect_BufferType *bufferTypeArray)
 ```
 
 **描述**
@@ -279,7 +281,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilte
 ### OH_EffectFilterInfo_GetSupportedBufferTypes()
 
 ```
-ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t *size,ImageEffect_BufferType **bufferTypeArray)
+ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t *size, ImageEffect_BufferType **bufferTypeArray)
 ```
 
 **描述**
@@ -308,7 +310,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilte
 ### OH_EffectFilterInfo_SetSupportedFormats()
 
 ```
-ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInfo *info, uint32_t size,ImageEffect_Format *formatArray)
+ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInfo *info, uint32_t size, ImageEffect_Format *formatArray)
 ```
 
 **描述**
@@ -337,7 +339,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInf
 ### OH_EffectFilterInfo_GetSupportedFormats()
 
 ```
-ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInfo *info, uint32_t *size,ImageEffect_Format **formatArray)
+ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInfo *info, uint32_t *size, ImageEffect_Format **formatArray)
 ```
 
 **描述**
@@ -776,7 +778,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_Release(OH_EffectBufferInfo *info)
 ### OH_EffectFilterDelegate_SetValue()
 
 ```
-typedef bool (*OH_EffectFilterDelegate_SetValue)(OH_EffectFilter *filter, const char *key,const ImageEffect_Any *value)
+typedef bool (*OH_EffectFilterDelegate_SetValue)(OH_EffectFilter *filter, const char *key, const ImageEffect_Any *value)
 ```
 
 **描述**
@@ -822,12 +824,12 @@ typedef void (*OH_EffectFilterDelegate_PushData)(OH_EffectFilter *filter, OH_Eff
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) *filter | 滤镜指针。 |
-|  [OH_EffectBufferInfo](capi-imageeffect-oh-effectbufferinfo.md) *info | 图像信息OH_EffectBufferInfo指针。 |
+| [OH_EffectBufferInfo](capi-imageeffect-oh-effectbufferinfo.md) *info | 图像信息OH_EffectBufferInfo指针。 |
 
 ### OH_EffectFilterDelegate_Render()
 
 ```
-typedef bool (*OH_EffectFilterDelegate_Render)(OH_EffectFilter *filter, OH_EffectBufferInfo *info,OH_EffectFilterDelegate_PushData pushData)
+typedef bool (*OH_EffectFilterDelegate_Render)(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_EffectFilterDelegate_PushData pushData)
 ```
 
 **描述**
@@ -906,7 +908,7 @@ typedef OH_EffectFilter *(*OH_EffectFilterDelegate_Restore)(const char *info)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) | 执行成功时返回OH_EffectFilter实例，否则返回空指针。 |
+| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) * | 执行成功时返回OH_EffectFilter实例，否则返回空指针。 |
 
 ### OH_EffectFilter_Create()
 
@@ -996,7 +998,7 @@ ImageEffect_ErrorCode OH_EffectFilter_GetValue(OH_EffectFilter *filter, const ch
 ### OH_EffectFilter_Register()
 
 ```
-ImageEffect_ErrorCode OH_EffectFilter_Register(const OH_EffectFilterInfo *info,const ImageEffect_FilterDelegate *delegate)
+ImageEffect_ErrorCode OH_EffectFilter_Register(const OH_EffectFilterInfo *info, const ImageEffect_FilterDelegate *delegate)
 ```
 
 **描述**
@@ -1093,7 +1095,7 @@ ImageEffect_ErrorCode OH_EffectFilter_LookupFilterInfo(const char *name, OH_Effe
 ### OH_EffectFilter_Render()
 
 ```
-ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap,OH_PixelmapNative *outputPixelmap)
+ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap, OH_PixelmapNative *outputPixelmap)
 ```
 
 **描述**
@@ -1122,7 +1124,7 @@ ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_Pixelma
 ### OH_EffectFilter_RenderWithTextureId()
 
 ```
-ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId,int32_t outputTextureId, int32_t colorSpace)
+ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId, int32_t outputTextureId, int32_t colorSpace)
 ```
 
 **描述**
@@ -1169,6 +1171,62 @@ ImageEffect_ErrorCode OH_EffectFilter_Release(OH_EffectFilter *filter)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) *filter | 滤镜指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
+
+### OH_EffectBufferInfo_SetTimestamp()
+
+```
+ImageEffect_ErrorCode OH_EffectBufferInfo_SetTimestamp(OH_EffectBufferInfo *info, int64_t timestamp)
+```
+
+**描述**
+
+设置滤镜时间戳。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_EffectBufferInfo](capi-imageeffect-oh-effectbufferinfo.md) *info | 图像信息指针。 |
+| int64_t timestamp | 图像帧数据的时间戳。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
+
+### OH_EffectBufferInfo_GetTimestamp()
+
+```
+ImageEffect_ErrorCode OH_EffectBufferInfo_GetTimestamp(OH_EffectBufferInfo *info, int64_t *timestamp)
+```
+
+**描述**
+
+获取滤镜时间戳。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_EffectBufferInfo](capi-imageeffect-oh-effectbufferinfo.md) *info | 图像信息指针。 |
+| int64_t *timestamp | 图像帧数据的时间戳。 |
 
 **返回：**
 

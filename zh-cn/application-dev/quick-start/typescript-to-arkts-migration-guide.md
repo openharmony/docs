@@ -60,18 +60,23 @@ function addTen(x: number): number {
 ```typescript
 // 不支持：
 let res: any = some_api_function('hello', 'world');
-// `res`是什么？错误代码的数字？字符串？对象？
-// 该如何处理它？
 // 支持：
 class CallResult {
-  public succeeded(): boolean { ... }
-  public errorMessage(): string { ... }
+  public succeeded(): boolean {
+    return false;
+  }
+  public errorMessage(): string {
+    return '123';
+  }
+}
+function some_api_function(param1: string, param2: string): CallResult {
+  return new CallResult();
 }
 
 let res: CallResult = some_api_function('hello', 'world');
 if (!res.succeeded()) {
-  console.info('Call failed: ' + res.errorMessage());
-}
+  console.info('Call failed: ' + res.errorMessage());   
+}  
 ```
 
 `any`类型在TypeScript中并不常见，仅约1%的TypeScript代码库使用。代码检查工具（例如ESLint）也制定了一系列规则来禁止使用`any`。因此，虽然禁止`any`将导致代码重构，但重构量很小，有助于整体性能提升。
@@ -1291,8 +1296,8 @@ const Rectangle = class {
     this.width = width;
   }
 
-  height
-  width
+  height;
+  width;
 }
 
 const rectangle = new Rectangle(0.0, 0.0);
@@ -1301,17 +1306,17 @@ const rectangle = new Rectangle(0.0, 0.0);
 **ArkTS**
 
 ```typescript
-class Rectangle {
-  constructor(height: number, width: number) {
-    this.height = height;
-    this.width = width;
+class testRectangle {
+  constructor(testHeight: number, testWidth: number) {
+    this.testHeight = testHeight;
+    this.testWidth = testWidth;
   }
 
-  height: number
-  width: number
+  testHeight: number;
+  testWidth: number;
 }
 
-const rectangle = new Rectangle(0.0, 0.0);
+const rectangle = new testRectangle(0.0, 0.0);
 ```
 
 ### 类不允许`implements`
@@ -1459,9 +1464,6 @@ function createShape(): Shape {
 }
 
 let c2 = createShape() as Circle;
-
-// 运行时抛出ClassCastException异常：
-let c3 = createShape() as Square;
 
 // 创建Number对象，获得预期结果：
 let e2 = (new Number(5.0)) instanceof Number; // true
@@ -2121,7 +2123,7 @@ function* counter(start: number, end: number) {
 }
 
 for (let num of counter(1, 5)) {
-  console.info(num);
+  console.info(num.toString());
 }
 ```
 
@@ -2179,8 +2181,8 @@ function doStuff(arg: Foo | Bar) {
   }
 }
 
-doStuff({ foo: 123, common: '123' });
-doStuff({ bar: 123, common: '123' });
+doStuff({ foo: '123', common: '123' });
+doStuff({ bar: '123', common: '123' });
 ```
 
 **ArkTS**
@@ -2394,29 +2396,29 @@ ArkTS不支持类和接口的声明合并。
 
 ```typescript
 interface Document {
-  createElement(tagName: any): Element
+  createElement(tagName: any): number;
 }
 
 interface Document {
-  createElement(tagName: string): HTMLElement
+  createElement(tagName: string): boolean;
 }
 
 interface Document {
-  createElement(tagName: number): HTMLDivElement
-  createElement(tagName: boolean): HTMLSpanElement
-  createElement(tagName: string, value: number): HTMLCanvasElement
+  createElement(tagName: number): number;
+  createElement(tagName: boolean): boolean;
+  createElement(tagName: string, value: number): string;
 }
 ```
 
 **ArkTS**
-
+ 
 ```typescript
 interface Document {
-  createElement(tagName: number): HTMLDivElement
-  createElement(tagName: boolean): HTMLSpanElement
-  createElement(tagName: string, value: number): HTMLCanvasElement
-  createElement(tagName: string): HTMLElement
-  createElement(tagName: Object): Element
+  createElement(tagName: number): number;
+  createElement(tagName: boolean): boolean;
+  createElement(tagName: string, value: number): number;
+  createElement(tagName: string): string;
+  createElement(tagName: Object): object;
 }
 ```
 

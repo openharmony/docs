@@ -111,7 +111,7 @@ Image新增[imageAIOptions](ts-image-common.md#imageaioptions12)参数，为组�
 
 alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
-设置图片加载时显示的占位图。
+设置图片加载过程中显示的占位图。
 
 占位图支持使用[objectFit](#objectfit)设置填充效果，与图片的填充效果一致。
 
@@ -127,7 +127,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型图片，不支持网络图片。<br/>默认值：null<br/>由有效值（可正常解析并加载的图片资源）切换为无效值（无法解析或加载的图片路径）时，组件保持显示此前成功加载的图片内容，不进行清除或重置操作。 |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 是   | 设置图片加载过程中显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型图片，不支持网络图片。<br/>默认值：null<br/>由有效值（可正常解析并加载的图片资源）切换为无效值（无法解析或加载的图片路径）时，组件保持显示此前成功加载的图片内容，不进行清除或重置操作。 |
 
 ### objectFit
 
@@ -371,7 +371,7 @@ autoResize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：false，false表示关闭图源自动缩放，true表示开启图源自动缩放。 |
+| value  | boolean | 是   | 图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为800x1200，而显示区域大小为200x200，则图片会降采样解码到200x300的尺寸（实际计算过程中会依赖缩放和填充类型的配置，从而得到的计算结果会有差异），从而大幅度节省图片占用的内存。<br/>默认值：false，false表示关闭图源自动缩放，true表示开启图源自动缩放。 |
 
 ### syncLoad<sup>8+</sup>
 
