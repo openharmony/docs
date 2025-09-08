@@ -71,7 +71,7 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('Succeeded in initing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
+    console.error('Failed to init avScreenCaptureRecorder, error: ' + err.message);
 });
 ```
 
@@ -106,7 +106,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.startRecording().then(() => {
     console.info('Succeeded in starting avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
+    console.error('Failed to start avScreenCaptureRecorder, error: ' + err.message);
 });
 ```
 
@@ -184,7 +184,7 @@ let windowIDs = [];
 avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
     console.info('Succeeded in skipping privacy mode');
 }).catch((err: BusinessError) => {
-    console.info('Failed to skip privacy mode, error: ' + err.message);
+    console.error('Failed to skip privacy mode, error: ' + err.message);
 });
 ```
 
