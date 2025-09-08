@@ -7924,7 +7924,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemResourceManager = resourceManager.getSysResourceManager();
+    let systemResourceManager = resourceManager.getSystemResourceManager();
     systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
