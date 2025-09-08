@@ -14,7 +14,7 @@ overlay特征应用指应用中包含有overlay资源包，overlay资源包详�
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> overlay特征仅适用于stage模型。
+> 本模块接口仅适用于stage模型，且仅适用于[静态overlay](../../quick-start/resource-categories-and-access.md#静态overlay配置方式)。
 
 
 ## 导入模块
@@ -27,7 +27,7 @@ import { overlay } from '@kit.AbilityKit';
 
 setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
-设置当前应用中overlay module的禁用使能状态。使用Promise异步回调。
+设置当前应用中overlay特征module的禁用使能状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -131,7 +131,7 @@ try {
 
 getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
-获取当前应用中指定的module的overlayModuleInfo信息。使用promise异步回调。
+传入overlay模块的module名称，获取当前应用中指定的module的overlayModuleInfo信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -182,7 +182,7 @@ let moduleName = "feature";
 
 getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleInfo>): void
 
-获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调。
+传入overlay模块的module名称，获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -231,7 +231,7 @@ try {
 
 getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定的目标module所关联的OverlayModuleInfo。使用promise异步回调。
+传入非overlay模块的module名称，获取指定的目标module所关联的OverlayModuleInfo。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -281,7 +281,7 @@ let targetModuleName = "feature";
 
 getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-获取指定的目标module所关联的OverlayModuleInfo。使用callback异步回调。
+传入非overlay模块的module名称，获取指定的目标module所关联的OverlayModuleInfo。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
