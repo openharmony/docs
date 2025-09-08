@@ -620,7 +620,7 @@ pageTransition?(): void
 
 ## onFormRecycle<sup>11+</sup>
 
-onFormRecycle?(): string;
+onFormRecycle?(): string
 
 onFormRecycle回调函数在卡片回收时会被执行，卡片提供方可以返回需要卡片管理服务代保存的数据，在卡片恢复时再带给卡片提供方。
 
@@ -638,7 +638,7 @@ onFormRecycle回调函数在卡片回收时会被执行，卡片提供方可以�
 
 ## onFormRecover<sup>11+</sup>
 
-onFormRecover?(statusData: string): void;
+onFormRecover?(statusData: string): void
 
 onFormRecover回调函数在卡片恢复时会被执行，卡片提供方可以拿到卡片回收时卡片管理服务代保存的数据。
 
