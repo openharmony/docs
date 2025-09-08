@@ -130,7 +130,7 @@ struct Index {
 
 setPointerVisibleSync(visible: boolean): void
 
-设置鼠标光标的显示或隐藏，使用同步方式。
+设置鼠标光标的显示或隐藏状态，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -266,7 +266,7 @@ struct Index {
 
 isPointerVisibleSync(): boolean
 
-获取鼠标光标的显示或隐藏，使用同步方式。
+获取鼠标光标的显示或隐藏状态，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
