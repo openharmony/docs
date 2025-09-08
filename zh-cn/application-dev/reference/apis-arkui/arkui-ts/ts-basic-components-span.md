@@ -439,7 +439,7 @@ struct SpanExample {
         Span('Span default ').fontSize(12)
         Span('Span click')
           .onClick((event) => {
-            console.log("span onClick")
+            console.info("span onClick")
           })
       }
     }.width('100%').padding({ left: 35, right: 35, top: 35 })

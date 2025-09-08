@@ -8,6 +8,8 @@
 
 childProcessManager模块提供子进程管理能力，支持子进程创建和启动操作。
 
+创建的子进程会随着父进程的退出而退出，无法脱离父进程独立运行。
+
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -338,7 +340,7 @@ startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: Ch
 
 **示例：**
 
-子进程部分，详见[Native子进程开发指导（C/C++）- 创建支持参数传递的子进程](../../application-models/capi_nativechildprocess_development_guideline.md#创建支持参数传递的子进程)：
+子进程部分，详见[Native子进程开发指导（C/C++）- 创建支持参数传递的Native子进程](../../application-models/capi_nativechildprocess_development_guideline.md#创建支持参数传递的native子进程)：
 
 ```c++
 #include <AbilityKit/native_child_process.h>

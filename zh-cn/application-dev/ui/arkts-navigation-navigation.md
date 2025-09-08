@@ -66,7 +66,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   @Entry
   @Component
   struct NavigationExample {
-    @State TooTmp: ToolbarItem = {
+    @State toolTmp: ToolbarItem = {
       'value': "func",
       'icon': "./image/ic_public_highlights.svg",  // 当前目录image文件夹下的图标资源
       'action': () => {}
@@ -75,7 +75,7 @@ Navigation组件通过mode属性设置页面的显示模式。
     private arr: number[] = [1, 2, 3];
 
     @Builder
-    PageMap(name: string) {
+    pageMap(name: string) {
       if (name === "NavDestinationTitle1") {
         pageOneTmp();
       } else if (name === "NavDestinationTitle2") {
@@ -115,7 +115,7 @@ Navigation组件通过mode属性设置页面的显示模式。
         }
         .title("主标题")
         .mode(NavigationMode.Split)
-        .navDestination(this.PageMap)
+        .navDestination(this.pageMap)
         .menus([
           {
             value: "", icon: "./image/ic_public_search.svg", action: () => {
@@ -138,7 +138,7 @@ Navigation组件通过mode属性设置页面的显示模式。
             }
           }
         ])
-        .toolbarConfiguration([this.TooTmp, this.TooTmp, this.TooTmp])
+        .toolbarConfiguration([this.toolTmp, this.toolTmp, this.toolTmp])
       }
       .height('100%')
       .width('100%')
@@ -676,13 +676,13 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
    // 在UIAbility中使用
    import { UIContext, uiObserver } from '@kit.ArkUI';
   
-   // callBackFunc 是开发者定义的监听回调函数
-   function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
-   uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
+   // callbackFunc是开发者定义的监听回调函数
+   function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
+   uiObserver.on('navDestinationSwitch', this.context, callbackFunc);
   
    // 可以通过窗口的getUIContext()方法获取对应的UIContent
    uiContext: UIContext | null = null;
-   uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc);
+   uiObserver.on('navDestinationSwitch', this.uiContext, callbackFunc);
   ```
 
 ## 页面转场
@@ -742,6 +742,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     NavDestination() {
       Column() {
         // ...
+        // $r('app.media.startIcon')需要替换为开发者所需的资源文件
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
@@ -754,6 +755,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     NavDestination() {
       Column() {
         // ...
+        // $r('app.media.startIcon')需要替换为开发者所需的资源文件
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
@@ -1004,8 +1006,8 @@ export function PageOneBuilder(name: string, param: string) {
 @Component
 export struct PageOne {
   pathInfos: NavPathStack = new NavPathStack();
-  name: String = '';
-  @State value: String = '';
+  name: string = '';
+  @State value: string = '';
 
   build() {
     NavDestination() {
@@ -1063,7 +1065,7 @@ export function PageTwoBuilder(name: string) {
 @Component
 export struct PageTwo {
   pathInfos: NavPathStack = new NavPathStack();
-  name: String = '';
+  name: string = '';
   private listArray: Array<string> = ['Projection', 'Print', 'VPN', 'Private DNS', 'NFC'];
 
   build() {

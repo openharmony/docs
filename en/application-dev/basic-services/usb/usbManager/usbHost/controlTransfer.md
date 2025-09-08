@@ -1,5 +1,12 @@
 # USB Control Transfer
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## When to Use
 
 The control transfer is used to obtain and set the device status, and control the device attribute status. You can determine whether the control transfer can read or write data based on the endpoint types supported by the device.
@@ -25,8 +32,8 @@ The control transfer is used to obtain and set the device status, and control th
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
-- Update the public SDK to API version 16 or later. For details, see [Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
-- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/hdc).
+- Update the public SDK to API version 16 or later.<!--Del--> For details, see [Switching to Full SDK](../../../../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
+- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS.
 - Use a USB cable to connect a device to the PC.
 
 ## How to Develop
@@ -60,6 +67,11 @@ Connect a host to a device and use the **usbControlTransfer** API to transfer da
    ```ts
    // Obtain the USB device list.
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
+   console.info(`usbDevices: ${deviceList}`);
+   if(deviceList.length === 0) {
+     console.error('deviceList is empty');
+     return;
+   }
    /*
    Example deviceList structure:
    [

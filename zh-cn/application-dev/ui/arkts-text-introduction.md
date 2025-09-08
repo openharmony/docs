@@ -16,7 +16,7 @@
 
 ## 文本输入
 
-当需要在单行输入框（TextInput）或多行输入框（TextArea）中输入纯文本时，应优先考虑使用此文本组件。参考[文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)章节。
+当需要在单行输入框（TextInput）或多行输入框（TextArea）中输入纯文本时，应优先考虑使用此文本组件。参考[文本输入 (TextInput/TextArea/Search)](arkts-common-components-text-input.md)章节。
 
 ## 富文本
 

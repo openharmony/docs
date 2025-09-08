@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.mouseEvent (鼠标输入事件)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 设备上报的鼠标事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 > **说明：**

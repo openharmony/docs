@@ -1,5 +1,12 @@
 # Grid高性能开发指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 在构建大型、复杂应用时，性能优化至关重要。Grid布局作为一种高效布局方式，可以提高页面的均分能力、子组件占比控制能力及自适应布局能力。本文将介绍Grid在高性能开发方面的应用，包括懒加载、cachedCount、组件复用和使用GridLayoutOptions设置GridItem大小等方法，帮助开发者优化Grid布局性能，减少加载和渲染时间，提升用户体验。
@@ -133,7 +140,7 @@ GridLayoutOptions布局选项，配合rowsTemplate、columnsTemplate仅设置其
 
 ```ts
 // 导入性能打点模块
-import hiTraceMeter from '@ohos.hiTraceMeter';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Component
 struct TextItem {
@@ -230,7 +237,7 @@ struct GridExample {
 
 ```ts
 // 导入性能打点模块
-import hiTraceMeter from '@ohos.hiTraceMeter';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Component
 struct TextItem {

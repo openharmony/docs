@@ -263,7 +263,7 @@ const valueBucket3: ValuesBucket = {
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -649,8 +649,6 @@ if (store != undefined) {
 ```
 **示例2：指定资产下载**
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 let asset: relationalStore.Asset = {
   name: "name",

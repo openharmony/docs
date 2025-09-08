@@ -103,7 +103,7 @@
 | [Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSession* session, bool* isSupported)](#oh_capturesession_isautodeviceswitchsupported) | - | 检查是否支持自动设备切换。 |
 | [Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession* session, bool enabled)](#oh_capturesession_enableautodeviceswitch) | - | 是否启用相机设备的自动切换。 |
 | [Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)](#oh_capturesession_registersystempressurelevelchangecallback) | - | 注册系统压力状态变化回调。 |
-| [Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)](#oh_capturesession_unregistersystempressurelevelcallback) | - | 注销系统压力状态变化回调。 |
+| [Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)](#oh_capturesession_unregistersystempressurelevelchangecallback) | - | 注销系统压力状态变化回调。 |
 | [Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization)](#oh_capturesession_setqualityprioritization) | - | 设置录像质量优先级。<br> 默认为高质量，设置为功耗平衡将降低录像质量以减少功耗。实际功耗收益因平台而异。 |
 | [Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported)](#oh_capturesession_ismacrosupported) | - | 检查是否支持微距能力。 |
 | [Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled)](#oh_capturesession_enablemacro) | - | 是否启用相机设备的微距能力。 |
@@ -1551,7 +1551,7 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfigWithRatio(Camera_CaptureSession* 
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 要检查的预配置类型。 |
 | [Camera_PreconfigRatio](capi-camera-h.md#camera_preconfigratio) preconfigRatio | 要检查的预配置比例。 |
-| bool* canPreconfig | 是否支持预配置的结果。返回ture表示支持预配置，返回false表示不支持。 |
+| bool* canPreconfig | 是否支持预配置的结果。返回true表示支持预配置，返回false表示不支持。 |
 
 **返回：**
 
@@ -1926,10 +1926,10 @@ Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Cam
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
 
-### OH_CaptureSession_UnregisterSystemPressureLevelCallback()
+### OH_CaptureSession_UnregisterSystemPressureLevelChangeCallback()
 
 ```
-Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)
+Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)
 ```
 
 **描述**
@@ -1996,7 +1996,7 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool* isSupported | 是否支持微距能力的结果。返回ture表示支持微距能力，返回false表示不支持。 |
+| bool* isSupported | 是否支持微距能力的结果。返回true表示支持微距能力，返回false表示不支持。 |
 
 **返回：**
 
@@ -2022,7 +2022,7 @@ Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, b
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool enabled | 是否启用微距能力的标志。返回ture表示启用微距能力，返回false表示不启用。 |
+| bool enabled | 是否启用微距能力的标志。返回true表示启用微距能力，返回false表示不启用。 |
 
 **返回：**
 

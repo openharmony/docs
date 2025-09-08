@@ -1,4 +1,12 @@
-# @ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)
+# @ohos.app.ability.PhotoEditorExtensionAbility (支持图片编辑能力的ExtensionAbility组件)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @lusq-->
+<!--Adviser: @huipeizi-->
+
 PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过[startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability)拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
 
 > **说明：**
@@ -6,6 +14,12 @@ PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-exten
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > 本模块接口仅可在Stage模型下使用。
+
+## 实现效果
+
+下图为通过PhotoEditorExtensionAbility实现的图片编辑扩展页面示意图，页面的布局与功能可以根据实际需要开发。
+
+![Targetapp_PhotoEditorExtensionAbility](figures/photo-editor-demo.png)
 
 ## 导入模块
 
@@ -21,13 +35,13 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
 |  名称 |类型   |只读   |可选   |说明   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 是  | 上下文  |
+|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 否  | PhotoEditorExtensionAbility的上下文，提供保存图片能力。  |
 
 ### onCreate
 
 onCreate(): void
 
-PhotoEditorExtensionAbility创建时回调，执行初始化业务逻辑操作。
+当PhotoEditorExtensionAbility创建时，系统会触发该回调，开发者可以在该回调内执行初始化业务逻辑操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -52,7 +66,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void
 
-当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载页面等操作。
+当实现PhotoEditorExtensionAbility的图片编辑扩展界面内容对象创建时，系统会触发该回调，开发者可以在该回调内执行读取原始图片、加载页面等操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -85,7 +99,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onForeground(): void
 
-PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从后台转到前台时触发。
+当PhotoEditorExtensionAbility从后台转到前台时，系统会触发该回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -110,7 +124,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onBackground(): void
 
-PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从前台转到后台时触发。
+当PhotoEditorExtensionAbility从前台转到后台时，系统会触发该回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -135,7 +149,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onDestroy(): void | Promise\<void>
 
-PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。 
+当PhotoEditorExtensionAbility被销毁时，系统会触发该回调。开发者可以在该生命周期中执行资源清理等相关操作。使用同步回调或Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -144,19 +158,36 @@ PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资�
 **返回值：**
 |  类型 |说明   |
 | ------------ | ------------ |
-|  Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+|  void \| Promise\<void> |  无返回结果或者无返回结果的Promise对象。 |
 
 **示例：**
 
-```ts
-import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
+- 同步回调示例如下：
+  ```ts
+  import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] ExamplePhotoEditorAbility';
+  const TAG: string = '[testTag] ExamplePhotoEditorAbility';
 
-export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbility {
-  onDestroy() {
-    console.info(TAG, `onDestroy`);
+  export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbility {
+    onDestroy() {
+      console.info(TAG, `onDestroy`);
+      // 调用同步函数...
+    }
   }
-}
 
-```
+  ```
+- Promise异步回调示例如下：
+
+  ```ts
+  import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
+
+  const TAG: string = '[testTag] ExamplePhotoEditorAbility';
+
+  export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbility {
+    async onDestroy() {
+      console.info(TAG, `onDestroy`);
+      // 调用异步函数...
+    }
+  }
+
+  ```

@@ -1,10 +1,18 @@
 # WithTheme
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 WithTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。
 
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> WithTheme支持的系统组件如下：[TextInput](./ts-basic-components-textinput.md)、[Search](./ts-basic-components-search.md)、[Button](./ts-basic-components-button.md)、[Badge](./ts-container-badge.md)、[Swiper](./ts-container-swiper.md)、[Text](./ts-basic-components-text.md)、[Select](./ts-basic-components-select.md)、[Menu](./ts-basic-components-menu.md)、[Counter](./ts-container-counter.md)、[TimePicker](./ts-basic-components-timepicker.md)、[DatePicker](./ts-basic-components-datepicker.md)、[TextPicker](./ts-basic-components-textpicker.md)、[Checkbox](./ts-basic-components-checkbox.md)、[CheckboxGroup](./ts-basic-components-checkboxgroup.md)、[Radio](./ts-basic-components-radio.md)、[Slider](./ts-basic-components-slider.md)、[Progress](./ts-basic-components-progress.md)、[QRCode](./ts-basic-components-qrcode.md)、[Toggle](./ts-basic-components-toggle.md)、[PatternLock](./ts-basic-components-patternlock.md)、[Divider](./ts-basic-components-divider.md)
 
 ## 子组件
 
@@ -43,7 +51,7 @@ WithTheme(options: WithThemeOptions)
 | 名称        | 类型                               | 必填 | 说明                |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
 | theme     | [CustomTheme](#customtheme)    | 否   | 用于自定义WithTheme作用域内组件缺省配色。 <br/> 默认值：undefined，缺省样式跟随系统token默认样式。 |
-| colorMode | [ThemeColorMode](#themecolormode10枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.System       |
+| colorMode | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.System       |
 
 ## CustomTheme
 
@@ -58,18 +66,6 @@ type CustomTheme = CustomTheme
 | 类型     | 说明       |
 | ------ | ---------- |
 | [CustomTheme](../js-apis-arkui-theme.md#customtheme)  | 自定义WithTheme作用域内组件缺省配色。 |
-
-## ThemeColorMode<sup>10+</sup>枚举说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 说明       |
-| ------ | ---------- |
-| SYSTEM | 跟随系统深浅色模式。 |
-| LIGHT  | 固定使用浅色模式。  |
-| DARK   | 固定使用深色模式。  |
 
 ## 示例
 

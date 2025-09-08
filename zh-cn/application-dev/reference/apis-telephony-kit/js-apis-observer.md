@@ -739,6 +739,10 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
 订阅sim状态更改事件，使用callback方式作为异步方法。
 
+>**说明：**
+>
+> 此接口不包含sim卡的激活状态，具体请参见[sim.isSimActive](js-apis-sim.md#simissimactive7)接口。
+
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
 **参数：**

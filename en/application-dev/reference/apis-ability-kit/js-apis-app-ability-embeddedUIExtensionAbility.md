@@ -1,5 +1,12 @@
 # @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbility for Embedded UIs Across Processes)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 EmbeddedUIExtensionAbility provides extended capabilities for the embedded UI across processes. It inherits from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**

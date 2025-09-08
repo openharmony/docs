@@ -43,11 +43,11 @@ Describes the criteria for filtering business abilities.
 
 **System API**: This is a system API.
 
-| Name        | Type        | Read-only| Mandatory| Description                                  |
+| Name        | Type        | Read-only| Optional| Description                                  |
 | ------------ | ------------ | ---- | ---- | -------------------------------------- |
-| businessType | [BusinessType](#businesstype) | No  | Yes  | Type of the business ability.          |
-| mimeType     | string       | No  | No  | MIME type supported by the business ability.|
-| uri          | string       | No  | No  | URI supported by the business ability.       |
+| businessType | [BusinessType](#businesstype) | No  | No  | Type of the business ability.          |
+| mimeType     | string       | No  | Yes  | MIME type supported by the business ability.|
+| uri          | string       | No  | Yes  | URI supported by the business ability.       |
 
 ## businessAbilityRouter.queryBusinessAbilityInfo
 

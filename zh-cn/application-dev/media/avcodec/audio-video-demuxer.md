@@ -63,7 +63,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <multimedia/player_framework/native_avbuffer.h>
    #include <fcntl.h>
    #include <sys/stat.h>
-   #include <string.h>
+   #include <string>
    ```
 
 2. 创建资源管理实例。

@@ -1,5 +1,11 @@
 # Component Startup Rules (Stage Model)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 Component startup refers to the behavior of starting or connecting to an application component.
 

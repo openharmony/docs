@@ -54,7 +54,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接，并且[module.json5配置文件](../../quick-start/module-configuration-file.md)中`extensionAbilities`的`type`需要是与接口匹配的`service`。
 
 ## 16000003 指定的ID不存在
 
@@ -838,6 +838,24 @@ Failed to obtain the target application information.
 2. 检查分身应用索引是否在允许范围内。
 3. 检查目标应用是否创建了该索引对应的分身应用。
 <!--DelEnd-->
+
+## 16000083 不允许该类型ExtensionAbility启动指定Ability
+
+**错误信息**
+
+The ExtensionAbility cannot start the ability due to system control.
+
+**错误描述**
+
+不同类型ExtensionAbility所需要的能力不同。系统不允许该类型ExtensionAbility启动指定Ability。
+
+**可能原因**
+
+当前类型ExtensionAbility受系统管控，不允许该类型ExtensionAbility启动指定Ability。
+
+**处理步骤**
+
+查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
 
 ## 16000084 只允许DelegatorAbility单次调用
 

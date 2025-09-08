@@ -290,7 +290,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 | 参数名                | 类型                                                         | 必填 | 说明             |
 | --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
 | value                 | boolean                                                      | 是   | 是否显示计数器。<br/>true表示显示计时器，false表示不显示。 |
-| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
+| options<sup>11+</sup> | [InputCounterOptions](ts-universal-attributes-text-style.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### style<sup>10+</sup>
 
@@ -536,7 +536,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value  | [TextDecorationOptions](ts-universal-attributes-text-style.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -670,8 +670,6 @@ textOverflow(value: TextOverflow)
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，[wordBreak](ts-appendix-enums.md#wordbreak11)属性可设置为WordBreak.BREAK_ALL。
 
 当textOverflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合[maxLines](#maxlines10)使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
-
-**卡片能力：** 该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1272,7 +1270,7 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 
 ## TextAreaController<sup>8+</sup>
 
-TextArea组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)，涉及的接口有[getTextContentRect](ts-types.md#gettextcontentrect10)、[getTextContentLineCount](ts-types.md#gettextcontentlinecount10)、[getCaretOffset](ts-types.md#getcaretoffset11)、[addText](ts-types.md#addtext15)、[deleteText](ts-types.md#deletetext15)、[getSelection](ts-types.md#getselection15)、[clearPreviewText](ts-types.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
+TextArea组件的控制器继承自[TextContentControllerBase](ts-universal-attributes-text-style.md#textcontentcontrollerbase)，涉及的接口有[getTextContentRect](ts-universal-attributes-text-style.md#gettextcontentrect)、[getTextContentLineCount](ts-universal-attributes-text-style.md#gettextcontentlinecount)、[getCaretOffset](ts-universal-attributes-text-style.md#getcaretoffset11)、[addText](ts-universal-attributes-text-style.md#addtext15)、[deleteText](ts-universal-attributes-text-style.md#deletetext15)、[getSelection](ts-universal-attributes-text-style.md#getselection15)、[clearPreviewText](ts-universal-attributes-text-style.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1326,7 +1324,7 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 | ------ | ---- | ---- | ---- |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时，按0处理；当selectionStart大于文字最大长度时，按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时，按0处理；当selectionEnd大于文字最大长度时，按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -1538,7 +1536,7 @@ struct TextAreaExample {
           this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType) => {
-          console.log("trigger area onSubmit" + enterKey);
+          console.info("trigger area onSubmit" + enterKey);
         })
       Button('改变EnterKeyType').onClick(() => {
         this.index = (this.index + 1) % this.enterTypes.length;
@@ -1992,19 +1990,19 @@ struct TextAreaExample {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
-      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
-      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
       return false;
     }
     return false;
@@ -2160,27 +2158,27 @@ struct TextAreaExample {
         .margin(20)
         .fontSize(16)
         .onEditChange((isEditing: boolean) => {
-          console.log(`isEditing ${isEditing}`);
+          console.info(`isEditing ${isEditing}`);
         })
         .onCopy((value) => {
-          console.log(`copy ${value}`);
+          console.info(`copy ${value}`);
         })
         .onCut((value) => {
-          console.log(`cut ${value}`);
+          console.info(`cut ${value}`);
         })
         .onPaste((value, event) => {
           // 阻止系统粘贴功能，开发者可自行实现
           if (event.preventDefault) {
             event.preventDefault();
           }
-          console.log(`paste:${value}`);
+          console.info(`paste:${value}`);
           this.text = value;
         })
         .onTextSelectionChange((start: number, end: number) => {
-          console.log(`onTextSelectionChange start ${start}, end ${end}`);
+          console.info(`onTextSelectionChange start ${start}, end ${end}`);
         })
         .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
-          console.log(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`);
+          console.info(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`);
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -2246,7 +2244,7 @@ struct TextAreaExample {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
       } else {
         this.currentFontSizeScale = scale;
-        console.log('updateConfiguration success.');
+        console.info('updateConfiguration success.');
       }
     });
   }

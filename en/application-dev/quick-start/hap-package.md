@@ -1,4 +1,10 @@
 # HAP
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The Harmony Ability Package (HAP) is the basic unit for installing and running applications. A HAP is a module package consisting of code, resource files, third-party libraries, and an application configuration file. There are two types of HAPs: entry and feature.
 
@@ -11,18 +17,18 @@ An application package can contain either only one entry HAP or one entry HAP pl
 
 - Single HAP: If your application only uses the UIAbility (that is, no ExtensionAbility is required), a single HAP (entry HAP) is recommended. While a HAP can contain one or more UIAbilities, adopt the "one UIAbility + multiple pages" mode to avoid unnecessary resource loading.
 
-- Multi-HAP: If your application needs to use ExtensionAbilities, develop multiple HAPs (one entry HAP and one or more feature HAPs) for it, with each HAP containing one UIAbility or one ExtensionAbility. Note that repeated packaging may arise if these HAPs reference the same library file.
+- Multi-HAP: If your application needs to use ExtensionAbilities, develop multiple HAPs (one entry HAP and one or more feature HAPs) for it, with each HAP containing one UIAbility or one ExtensionAbility. In this scenario, multiple HAPs reference the same library file, which may cause repeated packaging.
 
 
 ## Constraints
 
 - APIs and ArkUI components cannot be exported from the HAP to other modules.
 
-- In an App Pack that contains multiple HAPs, each type of device supports only one entry HAP and zero, one, or more feature HAPs.
+- In an App Pack that contains multiple HAPs, each type of device supports zero or one entry HAP and zero, one, or more feature HAPs.
 
 - If an application has multiple HAPs, the settings of the following parameters must be consistent across the configuration files of these HAPs: **bundleName**, **versionCode**, **versionName**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, and **apiReleaseType**. The value of **moduleName** for any HAP of the same device type must be unique. The IDE validates the settings of these parameters when packaging the HAPs into an App Pack.
 
-- If an application has multiple HAPs, the signing certificates of all HAPs and HSPs of this application must be the same. Applications are released to the application market in the form of App Pack after being signed. Before distribution, the application market splits an App Pack into HAPs and resigns them to ensure the consistency of HAP signing certificates. Before installing HAPs on a device through the CLI or DevEco Studio for debugging purposes, ensure that their signing certificates are the same. Otherwise, the installation will fail.
+- If an application has multiple HAPs, the signing certificates of all HAPs and HSPs of this application must be the same. Applications are released to the AppGallery in the form of App Pack after being signed. Before distribution, the AppGallery splits an App Pack into HAPs and resigns them to ensure the consistency of HAP signing certificates. In the debugging phase, ensure that all HAP signing certificates are the same when you install HAP on the device using the CLI or DevEco Studio. Otherwise, the installation may fail. For details about the signing operations, see [Configuring a Debug Signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing).
 
 ## Creating a HAP
 
@@ -38,19 +44,19 @@ To create a HAP in DevEco Studio:
 
 ## Developing a HAP
 
-- You can add a UIAbility or ExtensionAbility to a HAP. For details, see [Adding an Ability to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-add-new-ability-V13).
+- You can add a UIAbility, an ExtensionAbility, or a page to a HAP. For details, see [Adding an Ability to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-add-new-ability) and [Adding a Page](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-add-page).
 
-- You can also configure a HAP to reference a HAR or HSP. For details, see [Using an HAR](./har-package.md#using-an-har) and [Using an HSP](./in-app-hsp.md#using-an-hsp).
+- You can also configure a HAP to reference a HAR or HSP. For details, see [Using a HAR](./har-package.md#using-a-har) and [Using an HSP](./in-app-hsp.md#using-an-hsp).
 
 ## Debugging a HAP
 
-After building code into one or more HAPs and installing or updating these HAPs, you can debug them. For details about how to compile the same HAP into different versions based on the deployment environment, target user group, and running environment, see Introduction of [Configuring Multi-Target and Multi-Product](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-customized-multi-targets-and-products-guides-V13).
+After building code into one or more HAPs and installing or updating these HAPs, you can debug them. For details about how to compile the same HAP into different versions based on the deployment environment, target user group, and running environment, see [Customizing Multi-Target Builds](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-customized-multi-targets-and-products-guides#section1011341611469).
 
 To debug a HAP, use either of the following tools:
 
-- **Method 1**: Use DevEco Studio for debugging. For details, see [Running/Debugging Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-run-debug-configurations-V13).
+- **Method 1**: Use DevEco Studio for debugging. For details, see [Running/Debugging Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-debug-configurations).
 
-- Method 2: Use <!--Del-->[<!--DelEnd-->hdc<!--Del-->](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> (obtained from the **toolchains** directory in the OpenHarmony SDK) for debugging.
+- **Method 2**: Use [hdc](../dfx/hdc.md) for debugging.
 
    Before debugging a HAP, install or update it using either of the methods:
 
@@ -59,34 +65,34 @@ To debug a HAP, use either of the following tools:
       When specifying the HAP, use the path to it on the operating system. In the following example, the operating system is Windows:
 
       ```shell
-      // Installation and update: Multiple file paths can be specified.
+      # Install and update. Multiple file paths can be specified for multiple HAPs.
       hdc install entry.hap feature.hap
-      // Execution result
+      # Review the execution result.
       install bundle successfully.
-      // Uninstall
+      # Uninstall.
       hdc uninstall com.example.myapplication
-      // Execution result
+      # Review the execution result.
       uninstall bundle successfully.
       ```
 
-   - Run the hdc shell command, and then use the Bundle Manager (bm) tool to install and update the HAP.
+   - Run the **hdc shell** command, and then use the Bundle Manager (bm) tool to install and update the HAP.
 
       When specifying the HAP, use the path to it on the real device. The sample code is as follows:
 
       ```shell
-      // Run the hdc shell command before using the bm tool.
+      # Run the hdc shell command before using the bm tool.
       hdc shell
-      // Installation and update: Multiple file paths can be specified.
+      # Install and update. Multiple file paths can be specified for multiple HAPs.
       bm install -p /data/app/entry.hap /data/app/feature.hap
-      // Execution result
+      # Review the execution result.
       install bundle successfully.
-      // Uninstall
+      # Uninstall.
       bm uninstall -n com.example.myapplication
-      // Execution result
+      # Review the execution result.
       uninstall bundle successfully.
       ```
 
-   After the HAP is installed or updated, you can debug it by following the instructions in [Ability Assistant](../tools/aa-tool.md).
+   After the HAP is installed or updated, you can debug it using the [attach](../tools/aa-tool.md#attach) command.
 
 <!--RP4-->
 <!--RP4End-->

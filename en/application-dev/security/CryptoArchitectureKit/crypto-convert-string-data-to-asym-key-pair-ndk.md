@@ -1,5 +1,11 @@
 # Converting a PEM String into an Asymmetric Key Pair (C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 This topic walks you through on how to convert a string in PEM format into an RSA asymmetric key pair (**OH_CryptoKeyPair**).
 
@@ -7,9 +13,9 @@ This topic walks you through on how to convert a string in PEM format into an RS
 >
 > The **convertPemKey** operation must comply with the following requirements: 
 >
-> - The public key must comply with X.509 specifications, PKCS \#1 specifications, and PEM encoding format.
+> - The public key must comply with X.509 specifications, PKCS\#1 specifications, and PEM encoding format.
 >
-> - The private key must comply with the PKCS \#8 or PKCS \#1 specifications and the PEM encoding format.
+> - The private key must comply with the PKCS\#8, PKCS\#1 specifications, and the PEM encoding format.
 >
 > - Currently, only RSA asymmetric keys can be converted.
 
@@ -18,17 +24,16 @@ This topic walks you through on how to convert a string in PEM format into an RS
 target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
-
 ## Converting a String in PEM Format into an RSA Key Pair
 
 For details about the algorithm specifications, see [RSA](crypto-asym-key-generation-conversion-spec.md#rsa).
 
-1. Call [OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create) with the string parameter **'RSA1024'** to create an asymmetric key generator (**OH_CryptoAsymKeyGenerator**) object for a 1024-bit RSA key with two primes.
+1. Call [OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoasymkeygenerator_create) with the string parameter **'RSA1024'** to create an asymmetric key generator (**OH_CryptoAsymKeyGenerator**) object for a 1024-bit RSA key with two primes.
 
    The default number of primes for creating an RSA asymmetric key is **2**. The **PRIMES_2** parameter is omitted in the string parameter here.
 
-2. Call [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the binary data into an asymmetric key pair (**OH_CryptoKeyPair**).
-3. Call [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) to convert the public key in the asymmetric key object into the PKCS #1 or X.509 format.
+2. Call [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoasymkeygenerator_convert) to convert the binary data into an asymmetric key pair (**OH_CryptoKeyPair**).
+3. Call [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptopubkey_encode) to convert the public key in the asymmetric key object into the PKCS #1 or X.509 format.
 
 - Example: Convert binary data into an RSA key pair.
 

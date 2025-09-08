@@ -3462,7 +3462,7 @@ let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
 
 arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
-将Blob数据放入ArrayBuffer中，并返回一个Promise。
+将Blob数据放入ArrayBuffer中返回，使用Promise进行异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3522,7 +3522,7 @@ console.info("type:", blob3.type); // type: MIME
 
 text(): Promise&lt;string&gt;
 
-使用utf8解码并返回文本。使用Promise进行异步回调。
+使用utf8解码并返回字符串。使用Promise进行异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3531,7 +3531,7 @@ text(): Promise&lt;string&gt;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise对象，返回包含以utf8解码的文本。 |
+| Promise&lt;string&gt; | Promise对象，返回以utf8解码后的字符串。 |
 
 **示例：**
 ```ts

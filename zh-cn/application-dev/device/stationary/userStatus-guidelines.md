@@ -39,7 +39,7 @@ UserStatus（用户状态感知）模块提供用户感知能力，可以感知�
 
    ```
    let callback : Callback<userStatus.UserClassification> = (data : userStatus.UserClassification) => {
-     console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+     console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
    };
    ```
 

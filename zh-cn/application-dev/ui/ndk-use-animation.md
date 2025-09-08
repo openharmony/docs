@@ -23,7 +23,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 提供全局animateTo显式动画接口，来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
 
-1. 在.ets文件中获取[UIContext](../reference//apis-arkui/arkts-apis-uicontext-uicontext.md#class-uicontext)，把this.getUIContext()当做参数输出到Native方法中。
+1. 在.ets文件中获取[UIContext](../reference//apis-arkui/arkts-apis-uicontext-uicontext.md)，把this.getUIContext()当做参数输出到Native方法中。
    ```ts
    // createNativeNode是Native侧暴露的方法
    nativeNode.createNativeNode("xcomponentId", this.getUIContext());

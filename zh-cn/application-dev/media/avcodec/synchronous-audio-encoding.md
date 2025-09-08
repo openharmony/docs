@@ -25,7 +25,8 @@
 
   编辑PCM后导出音频文件的场景，需要编码成对应音频格式，最后封装成所需格式的文件。具体封装方法请参考[媒体数据封装](audio-video-muxer.md)。
 > **说明：**
-> AAC编码器默认采用的VBR可变码率模式，这可能导致与预期码率有偏差。
+> - AAC编码器默认采用的VBR可变码率模式，这可能导致与预期码率有偏差。
+> - AAC编码器默认输出携带ADTS头部，帧数据的前7字节为ADTS头部。
 
 ## 开发指导
 
@@ -100,7 +101,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | OH_MD_KEY_BITRATE             |       码率       |  可选  |  必须 |   必须   |   -   |
    | OH_MD_KEY_CHANNEL_LAYOUT      |     声道布局     |  可选  |  必须 |    -     |   -   |
    | OH_MD_KEY_MAX_INPUT_SIZE      |   最大输入长度    |  可选  |  可选 |   可选   |  可选  |
-   | OH_MD_KEY_AAC_IS_ADTS         |     是否adts     |  可选  |   -   |    -    |   -    |
    | OH_MD_KEY_COMPLIANCE_LEVEL    |    兼容性等级     |  -    |  可选 |    -     |   -    |
    <!--RP1End-->
 

@@ -21,6 +21,45 @@
 
 检测原理详见[资源泄漏检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-leak-guidelines)。
 
+## 自定义规格设置
+
+### 接口说明
+
+| 接口名 | 描述 |
+| -------- | -------- |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | 设置资源泄漏日志规格参数，name应为资源泄漏事件名称常量hiappevent.event.RESOURCE_OVERLIMIT。**仅支持js内存泄漏类型。**<br />**说明**：从API version 20开始，支持该接口。 |
+
+### 参数设置
+
+开发者可以使用HiAppEvent提供的接口，在Record&lt;string, ParamType>中设置RESOURCE_OVERLIMIT的日志和回调事件规格。具体参数说明如下：
+
+| 参数名          | 类型   | 必填 | 说明                                                         |
+| --------------- | ------ | ---- | ------------------------------------------------------------ |
+| js_heap_logtype | string | 否   | event：应用发生oom时，不传递堆快照。<br />event_rawheap：应用发生oom时，系统生成并传递堆快照<br />**注意：**当前仅接收以上二值，如果传入其他内容，方法将调用失败，不会产生任何效果。 |
+
+> **注意：**
+>
+> 即使参数js_heap_logtype设置为是event_rawheap，也不能保证生成堆快照文件。这是因为生成堆快照时，应用可能因性能问题触发冻屏而提前退出。
+
+参数配置示例：
+
+```ts
+let configParams: Record<string, hiAppEvent.ParamType> = {
+    "js_heap_logtype": "event", // 仅获取事件
+    // "js_heap_logtype": "event_rawheap", // 同时获取堆快照
+};
+
+hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
+```
+
+> **注意：**
+>
+> 应用调用setEventConfig接口时，每次调用的内容只会在当前应用生命周期内生效。应用重启后，需要重新通过setEventConfig接口设置。
+>
+> 在同一个应用生命周期内，可以多次调用setEventConfig，以最后一次成功调用的值为准。
+>
+> 开发者在调式以及自测试过程中，单日内触发oom次数过多，可能会遇到无法收到hiappevent回传js内存泄漏事件的情况，可以通过将系统时间往后调一天进行规避。
+
 ## params字段说明
 
 资源泄漏事件信息中params属性的详细说明如下：
@@ -79,11 +118,11 @@
 | -------- | -------- | -------- |
 | num | number | thread总数量。 |
 
-## 资源泄漏事件自定义参数设置
+## 自定义params参数
 
 当前资源泄漏事件上报**js内存泄漏**事件信息，可能无法满足开发者的个性化需求，因此提供事件setEventParam方法，自定义事件上报信息。
 
-### 自定义参数设置接口
+### 接口说明
 
 | 接口名 | 描述 |
 | -------- | -------- |

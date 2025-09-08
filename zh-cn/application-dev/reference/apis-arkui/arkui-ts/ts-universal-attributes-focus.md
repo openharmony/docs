@@ -6,7 +6,7 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-自定义组件的走焦效果，可设置组件是否走焦和具体的走焦顺序，tab键或者方向键切换焦点。
+自定义组件的走焦效果，可设置组件是否走焦和具体的走焦顺序，使用TAB键或方向键切换焦点。
 
 >  **说明：**
 >
@@ -856,7 +856,7 @@ struct TabStop {
 ```
 示意图：
 
-连续按下两次TAB键时，焦点转移到button2上。
+连续按下两次TAB键，焦点转移到button2上。
 
 ![tabStop2](figures/tabStop2.png)
 

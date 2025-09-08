@@ -1,4 +1,10 @@
 # @ohos.bundle.innerBundleManager (innerBundleManager) (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The innerBundleManager module provides APIs for the Home Screen application.
 
@@ -26,10 +32,7 @@ SystemCapability.BundleManager.BundleFramework
 getLauncherAbilityInfos(bundleName: string, userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void
 
 Obtains an array of the launcher ability information based on a given bundle name. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9) instead.
+This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9) instead.
 
 **Required permissions**
 
@@ -57,10 +60,7 @@ This is a system API.
 getLauncherAbilityInfos(bundleName: string, userId: number) : Promise&lt;Array&lt;LauncherAbilityInfo&gt;&gt;
 
 Obtains an array of the launcher ability information based on a given bundle name. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9) instead.
+This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9) instead.
 
 **Required permissions**
 
@@ -92,10 +92,7 @@ This is a system API.
 on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback, callback: AsyncCallback&lt;string&gt;) : void
 
 Registers a callback to receive bundle status changes. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [bundleMonitor.on](js-apis-bundleMonitor-sys.md#bundlemonitoron) instead.
+This API is deprecated since API version 9. You are advised to use [bundleMonitor.on](js-apis-bundleMonitor-sys.md#bundlemonitoron) instead.
 
 **Required permissions**
 
@@ -122,10 +119,7 @@ This is a system API.
 on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback) : Promise&lt;string&gt;
 
 Registers a callback to receive bundle status changes. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [bundleMonitor.on](js-apis-bundleMonitor-sys.md#bundlemonitoron) instead.
+This API is deprecated since API version 9. You are advised to use [bundleMonitor.on](js-apis-bundleMonitor-sys.md#bundlemonitoron) instead.
 
 **Required permissions**
 
@@ -156,11 +150,8 @@ This is a system API.
 
 off(type:"BundleStatusChange", callback: AsyncCallback&lt;string&gt;) : void
 
-Deregisters the callback that receives bundle status changes. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [bundleMonitor.off](js-apis-bundleMonitor-sys.md#bundlemonitoroff) instead.
+Unregisters the callback that receives bundle status changes. This API uses an asynchronous callback to return the result.
+This API is deprecated since API version 9. You are advised to use [bundleMonitor.off](js-apis-bundleMonitor-sys.md#bundlemonitoroff) instead.
 
 **Required permissions**
 
@@ -185,11 +176,8 @@ This is a system API.
 
 off(type:"BundleStatusChange") : Promise&lt;string&gt;
 
-Deregisters the callback that receives bundle status changes. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [bundleMonitor.off](js-apis-bundleMonitor-sys.md#bundlemonitoroff) instead.
+Unregisters the callback that receives bundle status changes. This API uses a promise to return the result.
+This API is deprecated since API version 9. You are advised to use [bundleMonitor.off](js-apis-bundleMonitor-sys.md#bundlemonitoroff) instead.
 
 **Required permissions**
 
@@ -220,10 +208,7 @@ This is a system API.
 getAllLauncherAbilityInfos(userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void
 
 Obtains the information about all launcher abilities. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetalllauncherabilityinfo9) instead.
+This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetalllauncherabilityinfo9) instead.
 
 **Required permissions**
 
@@ -249,10 +234,7 @@ This is a system API.
 getAllLauncherAbilityInfos(userId: number) : Promise&lt;Array&lt;LauncherAbilityInfo&gt;&gt;
 
 Obtains the information about all launcher abilities. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetalllauncherabilityinfo9) instead.
+This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetalllauncherabilityinfo9) instead.
 
 **Required permissions**
 
@@ -283,10 +265,7 @@ This is a system API.
 getShortcutInfos(bundleName :string, callback: AsyncCallback&lt;Array&lt;ShortcutInfo&gt;&gt;) : void
 
 Obtains an array of the shortcut information based on a given bundle name. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9) instead.
+This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9) instead.
 
 **Required permissions**
 
@@ -312,10 +291,7 @@ This is a system API.
 getShortcutInfos(bundleName : string) : Promise&lt;Array&lt;ShortcutInfo&gt;&gt;
 
 Obtains an array of the shortcut information based on a given bundle name. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9) instead.
+This API is deprecated since API version 9. You are advised to use [launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9) instead.
 
 **Required permissions**
 

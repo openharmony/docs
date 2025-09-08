@@ -1,4 +1,10 @@
 # @ohos.bundle.bundleManager (bundleManager)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs for obtaining application information, including [bundle information](js-apis-bundleManager-bundleInfo.md), [application information](js-apis-bundleManager-applicationInfo.md), [ability information](js-apis-bundleManager-abilityInfo.md) (information about a UIAbility), and [ExtensionAbility information](js-apis-bundleManager-extensionAbilityInfo.md).
 
@@ -34,43 +40,41 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 
 ## ExtensionAbilityType
 
-Enumerates the types of ExtensionAbilities.
+Enumerates the types of ExtensionAbility components.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
-| INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-|<!--DelRow--> SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md): enables applications to run in the background and provide services.|
-| ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)<!--RP1End-->: provides accessibility for access to and operations on the UI.|
-|<!--DelRow--> DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md): enables applications to read and write data.|
-|<!--DelRow--> FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
-|<!--DelRow--> STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md): provides APIs for processing static events, such as the startup event.|
-|<!--DelRow--> WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved and supported only by system applications.|
-| BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
-|<!--DelRow--> WINDOW     |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md): allows system applications to display UIs of other applications.|
-| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
-|<!--DelRow--> THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved and supported only by system applications.|
-|<!--DelRow--> PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
-|<!--DelRow--> PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. This ability is supported only by system applications.|
-| SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
-|<!--DelRow--> PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
-| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. When an application configures an ExtensionAbility of the driver type, it is recognized as a driver application. Driver applications do not differentiate between users during installation, uninstall, and recovery. Moreover, when a new user account is created, the existing driver applications on the device are installed for that user. For example, when a sub-user is created, the driver applications already installed by the primary user is automatically installed for the sub-user. If a driver application is uninstalled for a sub-user, it is also removed for the primary user.|
-| ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
+| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): provides extended capabilities related to deferred tasks, enabling applications to execute non-real-time tasks when the system is idle.|
+| INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides extended capabilities related to input method applications.|
+|<!--DelRow--> SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md): provides extended capabilities related to background services.|
+| ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)<!--RP1End-->: provides extended capabilities related to accessibility services, supporting access and operation of the foreground UI.|
+|<!--DelRow--> DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md): provides extended capabilities related to data sharing, providing data reading and writing services.|
+|<!--DelRow--> FILE_SHARE       | 6   | FileShareExtensionAbility: provides extended capabilities related to file sharing between applications. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md): provides extended capabilities related to static broadcast, used to handle static events such as startup events.|
+|<!--DelRow--> WALLPAPER        | 8   | WallpaperExtensionAbility: provides extended capabilities to implement wallpapers displayed on home screen. This ability is reserved and supported only by system applications.|
+| BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides extended capabilities for data backup and restore.|
+|<!--DelRow--> WINDOW     |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md): provides extended capabilities that allow system applications to pull up and embed UIs of other applications.|
+| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides extended capabilities for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
+|<!--DelRow--> THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides extended capabilities for offering thumbnails for files. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> PREVIEW          | 14  | PreviewExtensionAbility: provides extended capabilities for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides extended capabilities for printing photos and documents in office scenarios. This ability is supported only by system applications.|
+| SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on the UIExtensionAbility.|
+|<!--DelRow--> PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides extended capabilities for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
+| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides extended capabilities for the peripheral driver. When an application configures an ExtensionAbility of the driver type, it is recognized as a driver application. Driver applications do not differentiate between users during installation, uninstall, and recovery. Moreover, when a new user account is created, the existing driver applications on the device are installed for that user. For example, when a sub-user is created, the driver applications already installed by the primary user is automatically installed for the sub-user. If a driver application is uninstalled for a sub-user, it is also removed for the primary user.|
+| ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on the UIExtensionAbility.|
 |<!--DelRow--> ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This ability is supported only by system applications.|
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md): provides extended capabilities for the embeddable UI across process.|
-| INSIGHT_INTENT_UI<sup>12+</sup> | 22 | InsightIntentUIExtensionAbility: provides APIs that enable applications to be called by Celia intents so as to be displayed in windows.|
-| FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md): provides geofence-related capabilities. It inherits from ExtensionAbility.|
-| ASSET_ACCELERATION<sup>18+</sup> | 26 | AssetAccelerationExtensionAbility: provides the capability of pre-downloading background resources when the device is idle.|
-| FORM_EDIT<sup>18+</sup> | 27 | [FormEditExtensionAbility](../apis-form-kit/js-apis-app-form-formEditExtensionAbility.md): provides widget editing capabilities. It inherits from UIExtensionAbility.|
-| DISTRIBUTED<sup>20+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md): provides DistributedExtensionAbility capabilities and lifecycle callbacks for creation, destruction, and connection of DistributedExtensionAbilities.|
+| INSIGHT_INTENT_UI<sup>12+</sup> | 22 | InsightIntentUIExtensionAbility: provides extended capabilities that enable applications to be called by Celia intents so as to be displayed in windows.|
+| FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md): provides geofence-related capabilities. It inherits from ExtensionAbility.|<!--RP2--><!--RP2End-->
+| ASSET_ACCELERATION<sup>18+</sup> | 26 | AssetAccelerationExtensionAbility: provides extended capabilities of pre-downloading background resources when the device is idle.|
+| FORM_EDIT<sup>18+</sup> | 27 | [FormEditExtensionAbility](../apis-form-kit/js-apis-app-form-formEditExtensionAbility.md): provides extended capabilities related to widget editing. It inherits from UIExtensionAbility.|
+| DISTRIBUTED<sup>20+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md): provides extended capabilities for distributed services and lifecycle callbacks for creation, destruction, and connection of the DistributedExtensionAbility.|
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md): provides backend service capabilities for enterprise common applications.|
 | LIVE_FORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md): provides extended capabilities for interactive widgets, and provides lifecycle callbacks for creating and destroying interactive widgets.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
-|<!--DelRow--> SELECTION<sup>20+</sup> | 31 | [SelectionExtensionAbility](../apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md): provides extended capabilities related to word selection, and provides connection and disconnection callbacks.|
-| UNSPECIFIED      | 255 | The ability type is not specified. <!--Del-->It can be used in [queryExtensionAbilityInfo](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo) to obtain ExtensionAbilities of all types.<!--DelEnd-->|
-<!--RP2--><!--RP2End-->
+| UNSPECIFIED      | 255 | The ability type is not specified. <!--Del-->It can be used in [queryExtensionAbilityInfo](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo) to obtain ExtensionAbility components of all types.<!--DelEnd-->|
 
 ## PermissionGrantState
 
@@ -217,7 +221,7 @@ Enumerates the ability flags, which indicate the type of ability information to 
 | GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | Used to obtain the ability information containing metadata.                           |
 | GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | Used to obtain the ability information of disabled abilities.                  |
 | GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | Used to obtain the ability information of system applications.                          |
-| GET_ABILITY_INFO_WITH_APP_LINKING | 0x00000040 | Used to obtain the ability information that passes [domain name verification](../../quick-start/module-configuration-file.md#skills).         |
+| GET_ABILITY_INFO_WITH_APP_LINKING | 0x00000040 | Used to obtain the ability information that passes <!--RP3-->[domain name verification](../../application-models/app-linking-startup.md#working-principles)<!--RP3End-->.         |
 | GET_ABILITY_INFO_WITH_SKILL       | 0x00000080 | Used to obtain the ability information containing skills.                   |
 
 ## bundleManager.getBundleInfoForSelf
@@ -800,7 +804,7 @@ Checks whether a link can be opened. The scheme of the specified link must be co
 
 | Type                                             | Description                |
 | ------------------------------------------------- | -------------------- |
-| boolean | Check result. The value **true** is returned if the link can be opened, and **false** is returned otherwise.|
+| boolean | Check result for whether the link can be opened. **true** if it can be opened, **false** otherwise.|
 
 **Error codes**
 
@@ -1154,7 +1158,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
+Obtains the bundle information for the caller's user based on the given bundle name and bundle flags. This API returns the result synchronously.
 
 No permission is required for obtaining the caller's own information.
 
@@ -1468,6 +1472,8 @@ Obtains the ability information based on the given resource identifier and abili
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
+**Device behavior differences**: This API can be properly called only on PCs/2-in-1 devices. If it is called on other device types, error code 201 is returned.
+
 **Parameters**
 
 | Name     | Type  | Mandatory| Description                                                 |
@@ -1777,5 +1783,3 @@ Describes the identity information of an application clone.
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14) |Identity information of an application clone.|
-
-<!--no_check-->

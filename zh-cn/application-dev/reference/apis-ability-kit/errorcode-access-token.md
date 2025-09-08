@@ -17,6 +17,10 @@
 
 Invalid Parameter. Error message: messageInfo.
 
+**错误描述**
+
+当入参错误时，将返回该错误码。
+
 **可能原因**
 
 1. tokenId值为0。
@@ -43,6 +47,10 @@ Invalid Parameter. Error message: messageInfo.
 
 TokenId does not exist.
 
+**错误描述**
+
+当指定的tokenId不符合条件时，将返回该错误码。
+
 **可能原因**
 
 1. 指定的tokenId不存在。
@@ -58,6 +66,10 @@ TokenId does not exist.
 **错误信息**
 
 Permission does not exist.
+
+**错误描述**
+
+当指定的权限名不符合条件时，将返回该错误码。
 
 **可能原因**
 
@@ -76,6 +88,10 @@ Permission does not exist.
 
 The API is not used in pair with others.
 
+**错误描述**
+
+当接口未配套使用时，将返回该错误码。
+
 **可能原因**
 
 1. 当前接口在未配套使用的情况下，重复调用。
@@ -93,6 +109,10 @@ The API is not used in pair with others.
 
 The number of listeners exceeds the limit.
 
+**错误描述**
+
+当监听器数量超过限制时，将返回该错误码。
+
 **可能原因**
 
 该错误码表示当前监听器数量超过限制200个。
@@ -107,6 +127,10 @@ The number of listeners exceeds the limit.
 **错误信息**
 
 The specified application does not support the permissions granted or ungranted as specified.
+
+**错误描述**
+
+当指定的应用不支持被授予或被取消授予指定的权限时，将返回该错误码。
 
 **可能原因**
 
@@ -125,6 +149,10 @@ The specified application does not support the permissions granted or ungranted 
 
 The service is abnormal.
 
+**错误描述**
+
+当系统服务工作异常时，将返回该错误码。
+
 **可能原因**
 
 1. 权限管理服务无法正常启动。
@@ -141,6 +169,10 @@ The service is abnormal.
 
 Out of memory.
 
+**错误描述**
+
+当内存申请失败时，将返回该错误码。
+
 **可能原因**
 
 系统内存不足。
@@ -156,6 +188,10 @@ Out of memory.
 
 Common inner error.
 
+**错误描述**
+
+当服务内部错误时，将返回该错误码。
+
 **可能原因**
 
 系统服务内部错误。
@@ -169,6 +205,10 @@ Common inner error.
 **错误信息**
 
 The request already exists.
+
+**错误描述**
+
+当存在未被处理的请求时，将返回该错误码。
 
 **可能原因**
 
@@ -185,6 +225,10 @@ The request already exists.
 
 All permissions in the permission list have been granted.
 
+**错误描述**
+
+当输入的所有权限均已被授权时，将返回该错误码。
+
 **可能原因**
 
 所有权限均已被授权。
@@ -193,12 +237,15 @@ All permissions in the permission list have been granted.
 
 无需处理，返回此错误码表示申请权限已被授权，不会拉起权限设置弹框。
 
-
 ## 12100012 输入的权限中存在未被用户拒绝过的权限
 
 **错误信息**
 
 The permission list contains the permission that has not been revoked by the user.
+
+**错误描述**
+
+当输入的权限中存在未被用户拒绝过的权限时，将返回该错误码。
 
 **可能原因**
 
@@ -208,12 +255,15 @@ The permission list contains the permission that has not been revoked by the use
 
 请先调用requestPermissionsFromUser向用户申请权限。
 
-
 ## 12100013 全局开关已开启
 
 **错误信息**
 
 The specific global switch is already open.
+
+**错误描述**
+
+当全局开关已开启时，将返回该错误码。
 
 **可能原因**
 

@@ -1,4 +1,10 @@
 # @ohos.bundle.overlay (overlay)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs for installing a module with the overlay feature, querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
 
@@ -32,7 +38,7 @@ Enables or disables a module with the overlay feature in the current application
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.              |
-| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
+| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -86,7 +92,7 @@ Enables or disables a module with the overlay feature in the current application
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.              |
-| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
+| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. **true** to enable, **false** otherwise.|
 | callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**

@@ -33,6 +33,7 @@
 检测原理如下图：
 
 **图1**
+
 ![thread_block](figures/thread_block.png)
 
 ### APP_INPUT_BLOCK 用户输入响应超时
@@ -44,6 +45,7 @@
 检测原理如下图：
 
 **图2**
+
 ![app_input_block](figures/app_input_block.png)
 
 ### 生命周期切换超时
@@ -77,9 +79,9 @@ DevEco Studio会收集设备/data/log/faultlog/faultlogger/路径下的进程崩
 
 **方式二：通过HiAppEvent接口订阅**
 
-HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅应用冻屏事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)或[订阅应用冻屏事件（C/C++）](hiappevent-watcher-freeze-events-ndk.md)完成应用冻屏事件订阅，并通过事件的[external_log](hiappevent-watcher-crash-events.md#事件字段说明)字段读取故障日志文件内容。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅应用冻屏事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)或[订阅应用冻屏事件（C/C++）](hiappevent-watcher-freeze-events-ndk.md)完成应用冻屏事件订阅，并通过事件的[external_log](hiappevent-watcher-freeze-events.md#事件字段说明)字段读取故障日志文件内容。
 
-**方式三：通过hdc获取日志，需打开开发者选项**
+**方式三：通过hdc获取日志，需打开开发者选项** 
 
 在开发者选项打开的情况下，开发者可以通过hdc file recv /data/log/faultlog/faultlogger D:\命令导出故障日志到本地，故障日志文件名格式为appfreeze-进程名-进程UID-毫秒级时间.log。
 
@@ -109,6 +111,13 @@ Uid:20020177
 Reason:THREAD_BLOCK_6S
 appfreeze: com.samples.freezedebug THREAD_BLOCK_6S at 20250628140837
 DisplayPowerInfo:powerState:UNKNOWN
+Page switch history:
+  14:08:30:327 /ets/pages/Index:Appfreeze
+  14:08:28:986 /ets/pages/Index
+  14:08:26:502 :enters foreground
+  14:08:07:606 :leaves foreground
+  14:08:06:246 /ets/pages/Index:Appfreeze
+  14:08:01:955 :enters foreground
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
 STRINGID:THREAD_BLOCK_6S
@@ -117,8 +126,10 @@ PID:13680
 UID:20020177
 PACKAGE_NAME:com.samples.freezedebug
 PROCESS_NAME:com.samples.freezedebug
+NOTE: Current fault may be caused by the system's low memory or thermal throttling, you may ignore it and analysis other faults.
 ***
 ```
+从API version 20开始，当整机资源告警（如整机低内存或热限频）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
 
 三种AppFreeze事件都包含以下几部分信息，具体解释如下：
 
@@ -127,6 +138,7 @@ PROCESS_NAME:com.samples.freezedebug
 | Reason | 应用无响应原因，与应用无响应检测能力点对应。 |
 | PID | 发生故障时的pid。 |
 | PACKAGE_NAME | 应用进程包名。 |
+|[Page switch history](./cppcrash-guidelines.md#有页面切换轨迹的故障场景日志规格)| 从API 20开始，维测进程会记录应用切换历史。应用发生故障后，生成的故障文件将包含页面切换历史轨迹。如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。|
 
 ### 日志主干通用信息
 
@@ -335,7 +347,7 @@ ReclaimAvailBuffer:                    4676608 kB
 
 ## 日志差异性信息
 
-1. 生命周期超时事件
+生命周期超时事件
 
 ```
 DOMAIN:AAFWK

@@ -36,7 +36,7 @@
 当前支持直接拉起设置应用中如下功能界面，未列出的暂不支持。
 - **权限设置：** 当应用通过[requestPermissionsFromUser()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口拉起权限申请弹框时，如果用户拒绝授权，将无法使用该接口再次拉起弹框，需要调用[requestPermissionOnSetting](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12)接口拉起权限设置弹窗。
 
-  [二次向用户申请授权](../security/AccessToken/request-user-authorization-second.md)中以申请麦克风权限为例，介绍了如何拉起权限设置弹窗。该文档中的示例代码同样适用于[应用权限组列表](../security/AccessToken/app-permission-group-list.md)中的所有权限，只需将对应的权限名进行替换即可。以下为开发者经常用到的一些场景。
+  [二次向用户申请授权](../security/AccessToken/request-user-authorization-second.md)介绍了如何拉起权限设置弹窗。该文档中的示例代码同样适用于[应用权限组列表](../security/AccessToken/app-permission-group-list.md)中的所有权限，只需将对应的权限名进行替换即可。以下为开发者经常用到的一些场景。
   
     - 拉起位置权限设置弹窗
     - 拉起相机权限设置弹窗

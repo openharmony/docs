@@ -1,5 +1,11 @@
 # tensor.h
-<!--Kit_MindSpore Lite Kit--><!--System_AI-->
+
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 

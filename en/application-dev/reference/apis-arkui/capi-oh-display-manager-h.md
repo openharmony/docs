@@ -1,8 +1,14 @@
 # oh_display_manager.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
-The **oh_display_manager.h** file declares the functions for basic display management. You can call the functions to obtain various information about the default display and listen for display status changes, such as rotation, folding, and unfolding.
+The file declares the functions for basic display management. You can call the functions to obtain various information about the default display and listen for display status changes, such as rotation, folding, and unfolding.
 
 **File to include**: <window_manager/oh_display_manager.h>
 
@@ -298,7 +304,7 @@ Obtains the logical pixel density of the default display.
 
 | Parameter| Description|
 | -- | -- |
-| float *densityPixels | Pointer to the logical pixel density, which indicates the scaling coefficient of the physical pixels and logical pixels. The value is a floating point number in the range [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.  |
+| float *densityPixels | Pointer to the logical pixel density, which indicates the scaling coefficient of the physical pixels and logical pixels. The value is a floating-point number in the range [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.  |
 
 **Return value**
 
@@ -352,7 +358,7 @@ Obtains the number of physical pixels per inch on the default display in the X d
 
 | Parameter| Description|
 | -- | -- |
-| float *xDpi | Pointer to the number of physical pixels per inch in the X dimension. The value is a floating point number.|
+| float *xDpi | Pointer to the number of physical pixels per inch in the X dimension. The value is a floating-point number.|
 
 **Return value**
 
@@ -379,7 +385,7 @@ Obtains the number of physical pixels per inch on the default display in the Y d
 
 | Parameter| Description|
 | -- | -- |
-| float *yDpi | Pointer to the number of physical pixels per inch in the Y dimension. The value is a floating point number.|
+| float *yDpi | Pointer to the number of physical pixels per inch in the Y dimension. The value is a floating-point number.|
 
 **Return value**
 
@@ -459,7 +465,7 @@ Checks whether the current device is foldable.
 
 | Type| Description|
 | -- | -- |
-| bool | Check result. The value **true** means that the device is foldable, and **false** means the opposite.|
+| bool | Check result for whether the device is foldable. **true** if foldable, **false** otherwise.|
 
 ### OH_NativeDisplayManager_GetFoldDisplayMode()
 
@@ -745,7 +751,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(Nati
 
 **Description**
 
-Obtains the object that contains the information about the primary display. For devices other than 2-in-1 devices, the **displayInfo** object obtained contains information about the built-in screen. For 2-in-1 devices with an external screen, the displayInfo object obtained contains information about the current primary screen. For 2-in-1 devices without an external screen, the displayInfo object obtained contains information about the built-in screen.
+Obtains the object that contains the information about the primary display. For devices other than 2-in-1 devices, the displayInfo object obtained contains information about the built-in screen. For 2-in-1 devices with an external screen, the displayInfo object obtained contains information about the current primary screen. For 2-in-1 devices without an external screen, the displayInfo object obtained contains information about the built-in screen.
 
 **System capability**: SystemCapability.Window.SessionManager.Core
 
@@ -1069,8 +1075,8 @@ Obtains the position of a display.
 | Parameter| Description|
 | -- | -- |
 | uint64_t displayId | Display ID, which is a non-negative integer.|
-| int32_t *x | Pointer to the X coordinate of the upper left corner of the primary screen.|
-| int32_t *y | Pointer to the Y coordinate of the upper left corner of the primary screen.|
+| int32_t *x | Pointer to the X coordinate of the upper-left corner of the primary screen.|
+| int32_t *y | Pointer to the Y coordinate of the upper-left corner of the primary screen.|
 
 **Return value**
 

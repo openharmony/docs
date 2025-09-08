@@ -1,5 +1,12 @@
 # @ohos.account.distributedAccount (Distributed Account Management)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The **distributedAccount** module provides APIs for managing distributed accounts, including querying and updating account login states.
 
 > **NOTE**
@@ -22,9 +29,9 @@ Obtains a **DistributedAccountAbility** instance.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.||
+  | Type| Description|
+  | -------- | -------- |
+  | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.||
 
 **Example**
   ```ts
@@ -47,11 +54,13 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ------------------- |
@@ -90,11 +99,13 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ------------------- |
@@ -132,9 +143,9 @@ Queries distributed account information. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Example**
   ```ts
@@ -167,9 +178,9 @@ Queries distributed account information. This API uses a promise to return the r
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
 
 **Example**
   ```ts
@@ -195,12 +206,14 @@ Sets the distributed account information. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ------------------- |
@@ -242,17 +255,19 @@ Sets the distributed account information. This API uses a promise to return the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ------------------- |
@@ -296,10 +311,10 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to update. |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to update.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
   ```ts
@@ -310,9 +325,9 @@ Updates the distributed account information. This API uses an asynchronous callb
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
-      console.error('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error(`updateOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('queryOsAccountDistributedInfo successfully');
+      console.info('updateOsAccountDistributedInfo successfully');
     }
   });
   ```
@@ -332,15 +347,15 @@ Updates the distributed account information. This API uses a promise to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to update. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to update.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```ts

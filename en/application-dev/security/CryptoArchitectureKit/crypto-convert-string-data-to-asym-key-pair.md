@@ -1,14 +1,21 @@
 # Converting a PEM String into an Asymmetric Key Pair (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 This topic walks you through on how to convert a string in PEM format into an RSA asymmetric key pair (**KeyPair**).
 
 > **NOTE**
 >
 > The **convertPemKey** operation must comply with the following requirements: 
 >
-> - The public key must comply with X.509 specifications, PKCS \#1 specifications, and PEM encoding format.
+> - The public key must comply with X.509 specifications, PKCS\#1 specifications, and PEM encoding format.
 >
-> - The private key must comply with the PKCS \#8 or PKCS \#1 specifications and the PEM encoding format.
+> - The private key must comply with the PKCS\#8, PKCS\#1 specifications, and the PEM encoding format.
 >
 > - Currently, only RSA asymmetric keys can be converted.
 

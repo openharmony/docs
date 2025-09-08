@@ -20,7 +20,7 @@
 
 ## 接口
 
-### RichEditor<sup>10+</sup>
+### RichEditor
 
 RichEditor(value: RichEditorOptions)
 
@@ -103,7 +103,7 @@ bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, response
 | spanType     | [RichEditorSpanType](#richeditorspantype)                    | 是   | 菜单的类型。<br/>默认值：<br/>RichEditorSpanType.TEXT    |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 菜单的内容。                                              |
 | responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp; \| &nbsp;[RichEditorResponseType](#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
-| options      | [SelectionMenuOptions](#selectionmenuoptions10)              | 否   | 菜单的选项。                                              |
+| options      | [SelectionMenuOptions](#selectionmenuoptions)              | 否   | 菜单的选项。                                              |
 
 ### copyOptions
 
@@ -119,7 +119,7 @@ copyOptions(value: CopyOptions)
 
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择菜单。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
-设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、分享、搜索、帮写功能。
+设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、分享、搜索、帮写功能，且不支持拖拽操作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1110,7 +1110,7 @@ selectionStart和selectionEnd均为-1时表示全选，均为0时可以清空选
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### isEditing<sup>12+</sup>
 
@@ -1184,7 +1184,7 @@ getCaretRect(): RectResult | undefined
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [RectResult](ts-types.md#rectresult10) \| undefined | 当前光标与RichEditor的相对位置。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) \| undefined | 当前光标与RichEditor的相对位置。 |
 
 ## RichEditorController
 
@@ -1248,7 +1248,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-添加用户自定义布局Span。
+在RichEditor中添加用户自定义布局（BuilderSpan）。
 
 > **说明：**
 >
@@ -1286,7 +1286,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
-在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
+在RichEditor中添加图标小符号（SymbolSpan），如果组件光标闪烁，插入后光标位置更新为新插入SymbolSpan的后面。
 
 暂不支持手势、复制、拖拽处理。
 
@@ -1298,8 +1298,8 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 | 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | [Resource](ts-types.md#resource)         | 是    | 组件内容。 |
-| options | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11) | 否    | 组件选项。 |
+| value   | [Resource](ts-types.md#resource)         | 是    | symbol资源信息。 |
+| options | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11) | 否    | symbol选项。 |
 
 **返回值：**
 
@@ -1455,7 +1455,7 @@ fromStyledString(value: StyledString): Array\<RichEditorSpan>
 
 toStyledString(value: RichEditorRange): StyledString
 
-将给定范围的组件内容转换成属性字符串。
+将给定范围的组件内容转换成属性字符串，SymbolSpan和BuilderSpan不支持转换。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1822,7 +1822,7 @@ RichEditor span信息。
 | [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
 | [RichEditorTextSpanResult](#richeditortextspanresult) | 后端返回的文本信息。 |
 
-## SelectionMenuOptions<sup>10+</sup>
+## SelectionMenuOptions
 
 菜单的选项。
 
@@ -1896,7 +1896,7 @@ RichEditor span信息。
 | 名称          | 类型            | 只读 | 可选   | 说明            |
 | ----------- | ---------- | ---- | ------|------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否 | 是    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否 | 是    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
+| onLongPress | Callback\<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)\>  | 否 | 是    | [GestureEvent](ts-gesture-common.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
 

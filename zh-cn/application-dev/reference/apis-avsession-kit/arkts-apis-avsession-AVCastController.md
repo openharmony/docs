@@ -166,8 +166,7 @@ getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLeve
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
-let resolutionLeve = avSession.ResolutionLevel;
-aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
+aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLevel: avSession.ResolutionLevel) => {
   console.info('getRecommendedResolutionLevel successfully');
 }).catch((err: BusinessError) => {
   console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);

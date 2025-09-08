@@ -1,4 +1,10 @@
 # Connecting to a ServiceAbility
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 <!--deprecated_code_no_check-->
 
 If a ServiceAbility wants to interact with a PageAbility or a ServiceAbility in another application, you must first create a connection by calling [connectAbility()](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7). This method is defined in the [featureAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md) class for the PageAbility and in the [particleAbility](../reference/apis-ability-kit/js-apis-ability-particleAbility.md) class for the ServiceAbility. For details about the connection rules, see [Component Startup Rules](component-startup-rules-fa.md). When using **connectAbility()** to process the callback, pass in the instances of [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) and [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) of the target ServiceAbility. [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) provides the following callbacks that you should implement.

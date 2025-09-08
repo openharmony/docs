@@ -73,7 +73,7 @@ objectFit(value: ImageFit)
 
 alt(value:&nbsp;PixelMap)
 
-设置图片加载时显示的占位图。
+设置图片加载过程中显示的占位图。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -83,7 +83,7 @@ alt(value:&nbsp;PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 加载时显示的占位图，支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。<br/>默认值：null |
+| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 设置图片加载过程中显示的占位图，支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。<br/>默认值：null |
 
 ### colorFilter<sup>14+</sup>
 
@@ -146,6 +146,8 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
@@ -273,10 +275,10 @@ struct Index {
         ImageSpan(this.src)
           .width(100).height(100)
           .onError((err) => {
-            console.log("onError: " + err.message);
+            console.info("onError: " + err.message);
           })
           .onComplete((event) => {
-            console.log("onComplete: " + event.loadingStatus);
+            console.info("onComplete: " + event.loadingStatus);
           })
       }
     }.width('100%').height('100%')
@@ -350,7 +352,7 @@ struct SpanExample {
       if (error) {
         console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
       } else {
-        console.log(`http request success.`);
+        console.info(`http request success.`);
         let imageData: ArrayBuffer = data.result as ArrayBuffer;
         let imageSource: image.ImageSource = image.createImageSource(imageData);
 

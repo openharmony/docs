@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -50,6 +51,7 @@ The **task.h** file declares the task APIs in C.
 | [FFRT_C_API uint32_t ffrt_task_handle_dec_ref(ffrt_task_handle_t handle)](#ffrt_task_handle_dec_ref) | Decreases the number of task handle references.|
 | [FFRT_C_API void ffrt_task_handle_destroy(ffrt_task_handle_t handle)](#ffrt_task_handle_destroy) | Destroys a task handle.|
 | [FFRT_C_API void ffrt_wait_deps(const ffrt_deps_t* deps)](#ffrt_wait_deps) | Waits until the dependent tasks are complete.|
+| [FFRT_C_API void ffrt_wait(void)](#ffrt_wait) | Waits until all submitted tasks are complete.|
 
 ## Function Description
 
@@ -607,3 +609,15 @@ Waits until the dependent tasks are complete.
 | Name| Description|
 | -- | -- |
 | [const ffrt_deps_t](capi-ffrt-ffrt-deps-t.md)* deps | Pointer to the dependencies.|
+
+### ffrt_wait()
+
+```
+FFRT_C_API void ffrt_wait(void)
+```
+
+**Description**
+
+Waits until all submitted tasks are complete.
+
+**Since**: 10

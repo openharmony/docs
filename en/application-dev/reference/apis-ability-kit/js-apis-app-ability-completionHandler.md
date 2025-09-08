@@ -1,6 +1,12 @@
-# @ohos.app.ability.CompletionHandler (CompletionHandler)
+# @ohos.app.ability.CompletionHandler (Application Launch Result Handler)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1; @yangxuguang-huawei; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-**CompletionHandler** is an optional parameter of [StartOptions](js-apis-app-ability-startOptions.md) and is used to handle the results of application launching requests.
+**CompletionHandler** is an optional parameter of [StartOptions](js-apis-app-ability-startOptions.md) and is used to handle the result of an application launch request.
 
 
 > **NOTE**
@@ -34,13 +40,13 @@ import { CompletionHandler } from '@kit.AbilityKit';
 
 ## CompletionHandler
 
-CompletionHandler provides two callback functions, [onRequestSuccess](#onrequestsuccess) and [onRequestFailure](#onrequestfailure), to handle the results of successful and failed application launching requests, respectively.
+CompletionHandler provides two callback functions, [onRequestSuccess](#onrequestsuccess) and [onRequestFailure](#onrequestfailure), to handle the results of successful and failed application launch requests, respectively.
 
 ### onRequestSuccess
 
 onRequestSuccess(elementName: ElementName, message: string): void
 
-Callback invoked when the application is successfully launched.
+Called when the application is successfully launched.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -50,8 +56,8 @@ Callback invoked when the application is successfully launched.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes| Element name of the launched application.|
-| message | string | Yes| Message displayed when the application is successfully launched. This message is in JSON format, as follows:<br>{<br>    "errMsg": "Succeeded."<br>}<br>|
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes| **ElementName** information used to identify the target application. <br>- Typically, **ElementName** includes only **abilityName** and **bundleName**. The presence of **moduleName** and **deviceId** depends on whether the caller provides them. **shortName** and **uri** are empty.<br>- If the target being launched is an atomic service, **ElementName** contains only **bundleName**.|
+| message | string | Yes| Message displayed when the application is successfully launched. This message is in JSON format, as follows:<br>{<br>&emsp;"errMsg": "Succeeded."<br>}<br>|
 
 **Example**
 
@@ -61,7 +67,7 @@ See [Usage of CompletionHandler](#usage-of-completionhandler).
 
 onRequestFailure(elementName: ElementName, message: string): void
 
-Callback invoked when the application fails to be launched.
+Called when the application fails to be launched.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -71,8 +77,8 @@ Callback invoked when the application fails to be launched.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes| Element name of the application that fails to be launched.|
-| message | string | Yes| Message displayed when the application fails to be launched. This message is in JSON format, as follows:<br>{<br>    "errMsg": "xxx"<br>}<br>The value of *xxx* is described as follows:<br>Failed to call \<api-name\>: An error occurs when calling the API. \<api-name\> is the specific API name, for example, **startAbility** or **openAtomicService**.<br>User refused redirection: The user has closed the application redirection dialog box.<br>User closed the implicit startup picker: The user has closed the dialog box for selecting an application for implicit startup.<br>User closed the app clone picker: The user has closed the dialog box for selecting a cloned application.<br>Free installation failed: The free installation fails.<br>|
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes| **ElementName** information used to identify the target application.<br>- Typically, **ElementName** includes only **abilityName** and **bundleName**. The presence of **moduleName** and **deviceId** depends on whether the caller provides them. **shortName** and **uri** are empty.<br>- If the target being launched is an atomic service, **ElementName** contains only **bundleName**.<br>- **ElementName** information cannot be obtained if the implicit startup fails.|
+| message | string | Yes| Message displayed when the application fails to be launched. This message is in JSON format, as follows:<br>{<br>&emsp;"errMsg": "xxx"<br>}<br>The value of *xxx* is described as follows:<br>Failed to call \<api-name\>: An error occurs when calling the API. \<api-name\> is the specific API name, for example, **startAbility** or **openAtomicService**.<br>User refused redirection: The user has closed the application redirection dialog box.<br>User closed the implicit startup picker: The user has closed the dialog box for selecting an application for implicit startup.<br>User closed the app clone picker: The user has closed the dialog box for selecting a cloned application.<br>Free installation failed: The free installation fails.<br>|
 
 **Example**
 
@@ -94,10 +100,10 @@ See [Usage of CompletionHandler](#usage-of-completionhandler).
 
       let completionHandler: CompletionHandler = {
         onRequestSuccess: (elementName: bundleManager.ElementName, message: string): void => {
-          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
+          console.info(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
         },
         onRequestFailure: (elementName: bundleManager.ElementName, message: string): void => {
-          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
+          console.error(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
         }
       };
 

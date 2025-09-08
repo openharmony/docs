@@ -1,6 +1,13 @@
 # AutoFillRequest (系统接口)
 
-当AutoFillExtensionAbility触发回调函数时，提供给开发者的页面数据和回调接口。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+当AutoFillExtensionAbility触发回调函数时，会提供给开发者页面数据及回调接口。
 
 > **说明：**
 > 
@@ -366,7 +373,6 @@ setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 **示例：**
 
 ```ts
-// MyAutoFillExtensionAbility.ts
 // MyAutoFillExtensionAbility.ts
 import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';

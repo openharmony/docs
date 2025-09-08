@@ -1,5 +1,12 @@
 # Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mode) (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
 
 **Encryption**
@@ -17,7 +24,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
    - Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
    - You are advised to check the result of each **update()**. If the result is not **null**, obtain the data and combine the data segments into complete ciphertext. The **update()** result may vary with the key specifications.
       
-      If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. That is, if the data of an **update()** operation matches the block size, the ciphertext is output. Otherwise, **null** is output, and the plaintext will be combined with the input data of the next **update()** to form a block. When **doFinal()** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **update()** API works in the same way in decryption.
+      If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. That is, if the data of an **update()** operation matches the block size, the ciphertext is output. Otherwise, **null** is output, and the plaintext will be combined with the input data of the next **update()** to form a block. When **doFinal** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **update()** API works in the same way in decryption.
 
       If a stream cipher mode (CTR or OFB) is used, the ciphertext length is usually the same as the plaintext length.
 

@@ -56,7 +56,7 @@
 | [JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOrigin(JSVM_Env env,JSVM_Value script,const uint8_t* cachedData,size_t cacheDataLength,bool eagerCompile,bool* cacheRejected,JSVM_ScriptOrigin* origin,JSVM_Script* result)](#oh_jsvm_compilescriptwithorigin) | 编译一串包含 sourcemap 信息的 JavaScript 代码，并返回编译后的脚本。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions(JSVM_Env env,JSVM_Value script,size_t optionCount,JSVM_CompileOptions options[],JSVM_Value* result)](#oh_jsvm_compilescriptwithoptions) | 编译一串JavaScript代码，并返回编译后的脚本。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_CreateCodeCache(JSVM_Env env,JSVM_Script script,const uint8_t** data,size_t* length)](#oh_jsvm_createcodecache) | 为编译后的脚本创建代码缓存。 |
-| [JSVM_EXTERN JSVM_Status OH_JSVM_RunScript(JSVM_Env env,JSVM_Script script,JSVM_Value* result)](#oh_jsvm_runscript) | 执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。如果没有 JIT 权限支持，则打印一行日志提示开发者。 |
+| [JSVM_EXTERN JSVM_Status OH_JSVM_RunScript(JSVM_Env env,JSVM_Script script,JSVM_Value* result)](#oh_jsvm_runscript) | 执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。如果没有 JIT 权限支持，执行含wasm的脚本会失败，在特定场景下存在性能差异，并打印一行日志提示开发者。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_SetInstanceData(JSVM_Env env,void* data,JSVM_Finalize finalizeCb,void* finalizeHint)](#oh_jsvm_setinstancedata) | 将data与当前运行的JSVM环境相关联。后续可以使用OH_JSVM_GetInstanceData()检索data。通过先前调用OH_JSVM_SetInstanceData()设置的任何与当前运行的JSVM环境相关联的现有数据都将被覆盖。如果先前提供了finalizeCb，则不会调用它。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_GetInstanceData(JSVM_Env env,void** data)](#oh_jsvm_getinstancedata) | 检索通过调用OH_JSVM_SetInstanceData()与当前运行JSVM环境产生关联的数据。如果未设置任何关联数据，该函数调用将成功，且data设置为NULL。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_GetLastErrorInfo(JSVM_Env env,const JSVM_ExtendedErrorInfo** result)](#oh_jsvm_getlasterrorinfo) | 检索JSVM_ExtendedErrorInfo结构，其中包含发生的最后一个错误的有关信息。返回的JSVM_ExtendedErrorInfo的内容仅在对同一env调用JSVM-API函数之前有效。这包括对OH_JSVM_IsExceptionPending的调用，因此可能经常需要复制信息以便以后使用。error_message中返回的指针指向一个静态定义的字符串，因此如果你在调用另一个JSVM-API函数之前将它从error_message字段（将被覆盖）中复制出来，则可以安全地使用该指针。 |
@@ -407,7 +407,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_IsProxy(JSVM_Env env,JSVM_Value value,bool* isPro
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用 JSVM-API 的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 需要检查的值。 |
-| bool* isProxy | 表示是否为 JavaScript Proxy。 |
+| bool* isProxy | 表示是否为 JavaScript Proxy，true为是，false为否。 |
 
 **返回：**
 
@@ -673,8 +673,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,JSVM_Value script,con
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) script | 包含要编译的脚本的JavaScript代码。 |
 | const uint8_t* cachedData | 可选。脚本的代码缓存数据。 |
 | size_t cacheDataLength | cachedData数组的长度。 |
-| bool eagerCompile | 是否立即编译脚本。 |
-| bool* cacheRejected | 代码缓存是否被编译拒绝。 |
+| bool eagerCompile | 是否立即编译脚本，true为是，false为否。 |
+| bool* cacheRejected | 代码缓存是否被编译拒绝，true为是，false为否。 |
 | [JSVM_Script](capi-jsvm-jsvm-script--8h.md)* result | 编译后的脚本。 |
 
 **返回：**
@@ -704,8 +704,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOrigin(JSVM_Env env,JSVM_Value 
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) script | 包含要编译的脚本的JavaScript代码。 |
 | const uint8_t* cachedData | 可选。脚本的代码缓存数据。 |
 | size_t cacheDataLength | cachedData数组的长度。 |
-| bool eagerCompile | 是否立即编译脚本。 |
-| bool* cacheRejected | 代码缓存是否被编译拒绝。 |
+| bool eagerCompile | 是否立即编译脚本，true为是，false为否。 |
+| bool* cacheRejected | 代码缓存是否被编译拒绝，true为是，false为否。 |
 | [JSVM_ScriptOrigin](capi-jsvm-jsvm-scriptorigin.md)* origin | 源代码信息，包括 source map 的位置和源代码文件名等信息。 |
 | [JSVM_Script](capi-jsvm-jsvm-script--8h.md)* result | 编译后的脚本。 |
 
@@ -780,7 +780,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RunScript(JSVM_Env env,JSVM_Script script,JSVM_V
 
 **描述**
 
-执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。如果没有 JIT 权限支持，则打印一行日志提示开发者。
+执行一串JavaScript代码并返回其结果，其中包含以下注意事项：与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域，这意味着require等伪全局变量将不可用。脚本可以访问全局作用域。脚本中的函数和var声明将被添加到全局对象。使用let和const的变量声明将全局可见，但不会被添加到全局对象。this的值在脚本内是global。如果没有 JIT 权限支持，执行含wasm的脚本会失败，在特定场景下存在性能差异，并打印一行日志提示开发者。
 
 **起始版本：** 11
 
@@ -1196,7 +1196,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsExceptionPending(JSVM_Env env,bool* result)
 | 参数项 | 描述 |
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
-| bool* result | 如果异常挂起，则设置为true的布尔值。 |
+| bool* result | 如果异常挂起，则设置为true的布尔值，否则为false。 |
 
 **返回：**
 
@@ -2349,7 +2349,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueBigintInt64(JSVM_Env env,JSVM_Value valu
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 代表JavaScript BigInt。 |
 | int64_t* result | 给定的JavaScript BigInt的C int64_t基础类型等价值。 |
-| bool* lossless | 指示BigInt值是否已无损转换。 |
+| bool* lossless | 指示BigInt值是否已无损转换，true为是，false为否。 |
 
 **返回：**
 
@@ -2377,7 +2377,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueBigintUint64(JSVM_Env env,JSVM_Value val
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 代表JavaScript BigInt。 |
 | uint64_t* result | 给定的JavaScript BigInt的C uint64_t基础类型等价值。 |
-| bool* lossless | 指示BigInt值是否已无损转换。 |
+| bool* lossless | 指示BigInt值是否已无损转换，true为是，false为否。 |
 
 **返回：**
 
@@ -2869,7 +2869,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Instanceof(JSVM_Env env,JSVM_Value object,JSVM_V
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) object | 要检查的JavaScript值。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) constructor | 要检查的构造函数的JavaScript函数对象。 |
-| bool* result | 如果object instanceof constructor为true，则设置为true的布尔值。 |
+| bool* result | 如果object instanceof constructor为true，则设置为true的布尔值，反之亦然。 |
 
 **返回：**
 
@@ -2896,7 +2896,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsArray(JSVM_Env env,JSVM_Value value,bool* resu
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JavaScript值。 |
-| bool* result | 表示给定的对象是否为数组。 |
+| bool* result | 表示给定的对象是否为数组，true为是，false为否。 |
 
 **返回：**
 
@@ -2923,7 +2923,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsArraybuffer(JSVM_Env env,JSVM_Value value,bool
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JavaScript值。 |
-| bool* result | 表示指定的对象是否为ArrayBuffer。 |
+| bool* result | 表示指定的对象是否为ArrayBuffer，true为是，false为否。 |
 
 **返回：**
 
@@ -2950,7 +2950,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsDate(JSVM_Env env,JSVM_Value value,bool* isDat
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JavaScript值。 |
-| bool* isDate | 给定的JSVM_Value是否表示JavaScript Date对象。 |
+| bool* isDate | 给定的JSVM_Value是否表示JavaScript Date对象，true为是，false为否。 |
 
 **返回：**
 
@@ -2977,7 +2977,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsTypedarray(JSVM_Env env,JSVM_Value value,bool*
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JavaScript值。 |
-| bool* result | 给定的JSVM_Value是否代表TypedArray。 |
+| bool* result | 给定的JSVM_Value是否代表TypedArray，true为是，false为否。 |
 
 **返回：**
 
@@ -3004,7 +3004,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsDataview(JSVM_Env env,JSVM_Value value,bool* r
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JavaScript值。 |
-| bool* result | 给定的JSVM_Value是否代表DataView。 |
+| bool* result | 给定的JSVM_Value是否代表DataView，true为是，false为否。 |
 
 **返回：**
 
@@ -3032,7 +3032,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_StrictEquals(JSVM_Env env,JSVM_Value lhs,JSVM_Va
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) lhs | 待检查的JavaScript值。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) rhs | 要检查的JavaScript值。 |
-| bool* result | 表示两个JSVM_Value对象是否严格相等（===）。 |
+| bool* result | 表示两个JSVM_Value对象是否严格相等（===），true为是，false为否。 |
 
 **返回：**
 
@@ -3060,7 +3060,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Equals(JSVM_Env env,JSVM_Value lhs,JSVM_Value rh
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) lhs | 待检查的JavaScript值。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) rhs | 要检查的JavaScript值。 |
-| bool* result | 表示两个JSVM_Value对象是否宽松相等（==）。 |
+| bool* result | 表示两个JSVM_Value对象是否宽松相等（==），true为是，false为否。 |
 
 **返回：**
 
@@ -3113,7 +3113,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsDetachedArraybuffer(JSVM_Env env,JSVM_Value va
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JavaScript ArrayBuffer。 |
-| bool* result | 表示ArrayBuffer是否被分离。 |
+| bool* result | 表示ArrayBuffer是否被分离，true为是，false为否。 |
 
 **返回：**
 
@@ -3254,7 +3254,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasProperty(JSVM_Env env,JSVM_Value object,JSVM_
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) object | 待查询的对象。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) key | 要检查其存在的属性的名称。 |
-| bool* result | 该属性是否存在于对象上。 |
+| bool* result | 该属性是否存在于对象上，true为是，false为否。 |
 
 **返回：**
 
@@ -3282,7 +3282,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeleteProperty(JSVM_Env env,JSVM_Value object,JS
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) object | 待查询的对象。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) key | 待删除的属性名。 |
-| bool* result | 表示属性删除是否成功。result可以选择性地通过传递NULL来忽略。 |
+| bool* result | 表示属性删除是否成功，true为是，false为否。result可以选择性地通过传递NULL来忽略。 |
 
 **返回：**
 
@@ -3310,7 +3310,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasOwnProperty(JSVM_Env env,JSVM_Value object,JS
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) object | 待查询的对象。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) key | 要检查的是否存在的属性名称。 |
-| bool* result | 表示对象是否存在该属性。 |
+| bool* result | 表示对象是否存在该属性，true为是，false为否。 |
 
 **返回：**
 
@@ -3394,7 +3394,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasNamedProperty(JSVM_Env env,JSVM_Value object,
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) object | 待查询的对象。 |
 | const char* utf8name | 待检查的属性名。 |
-| bool* result | 该属性是否存在于对象上。 |
+| bool* result | 该属性是否存在于对象上，true为是，false为否。 |
 
 **返回：**
 
@@ -3478,7 +3478,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_HasElement(JSVM_Env env,JSVM_Value object,uint32
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) object | 待查询的对象。 |
 | uint32_t index | 待确定是否存在元素的索引位置。 |
-| bool* result | 该属性是否存在于对象上。 |
+| bool* result | 该属性是否存在于对象上，true为是，false为否。 |
 
 **返回：**
 
@@ -3506,7 +3506,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeleteElement(JSVM_Env env,JSVM_Value object,uin
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) object | 待查询的对象。 |
 | uint32_t index | 要删除的属性的索引。 |
-| bool* result | 表示元素删除是否成功。 |
+| bool* result | 表示元素删除是否成功，true为是，false为否。 |
 
 **返回：**
 
@@ -3901,7 +3901,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CheckObjectTypeTag(JSVM_Env env,JSVM_Value value
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查类型标记的JavaScript对象或外部值。 |
 | [const JSVM_TypeTag](capi-jsvm-jsvm-typetag.md)* typeTag | 用于比较在对象上找到的任何标签的标签。 |
-| bool* result | 表示指定的类型标记是否与对象上的类型标记匹配。如果在对象上找不到该类型标记，也会返回false。 |
+| bool* result | 表示指定的类型标记是否与对象上的类型标记匹配。如果找到相同标签，设置result为true，否则为false。 |
 
 **返回：**
 
@@ -4143,7 +4143,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsPromise(JSVM_Env env,JSVM_Value value,bool* is
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的值。 |
-| bool* isPromise | 表示是否为原生Promise对象（即底层引擎创建的promise对象）的标志。 |
+| bool* isPromise | 表示是否为原生Promise对象（即底层引擎创建的promise对象）的标志，true为是，false为否。 |
 
 **返回：**
 
@@ -4440,7 +4440,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_WaitForDebugger(JSVM_Env env,bool breakNextLine)
 | 参数项 | 描述 |
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
-| bool breakNextLine | 是否在下一行JavaScript代码中中断。breakNextLine为true将暂停运行下一行JS代码，开发者需要通过调试器的调试按钮控制JS继续执行。 |
+| bool breakNextLine | 是否在下一行JavaScript代码中中断。breakNextLine为true将暂停运行下一行JS代码，开发者需要通过调试器的调试按钮控制JS继续执行；false则不会终端中断。|
 
 **返回：**
 
@@ -4500,7 +4500,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsUndefined(JSVM_Env env,JSVM_Value value,bool* 
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isUndefined | 表示给定的JSVM_Value是否为Undefined。 |
+| bool* isUndefined | 表示给定的JSVM_Value是否为Undefined，true为是，false为否。 |
 
 **返回：**
 
@@ -4527,7 +4527,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsNull(JSVM_Env env,JSVM_Value value,bool* isNul
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isNull | 表示给定的JSVM_Value是否为Null。 |
+| bool* isNull | 表示给定的JSVM_Value是否为Null，true为是，false为否。 |
 
 **返回：**
 
@@ -4554,7 +4554,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsNullOrUndefined(JSVM_Env env,JSVM_Value value,
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isNullOrUndefined | 表示给定的JSVM_Value是否为Null或Undefined。 |
+| bool* isNullOrUndefined | 表示给定的JSVM_Value是否为Null或Undefined，true为是，false为否。 |
 
 **返回：**
 
@@ -4581,7 +4581,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsBoolean(JSVM_Env env,JSVM_Value value,bool* is
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isBoolean | 表示给定的JSVM_Value是否为Boolean。 |
+| bool* isBoolean | 表示给定的JSVM_Value是否为Boolean，true为是，false为否。 |
 
 **返回：**
 
@@ -4608,7 +4608,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsNumber(JSVM_Env env,JSVM_Value value,bool* isN
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isNumber | 表示给定的JSVM_Value是否为Number。 |
+| bool* isNumber | 表示给定的JSVM_Value是否为Number，true为是，false为否。 |
 
 **返回：**
 
@@ -4635,7 +4635,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsString(JSVM_Env env,JSVM_Value value,bool* isS
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isString | 表示给定的JSVM_Value是否为String。 |
+| bool* isString | 表示给定的JSVM_Value是否为String，true为是，false为否。 |
 
 **返回：**
 
@@ -4662,7 +4662,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsSymbol(JSVM_Env env,JSVM_Value value,bool* isS
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isSymbol | 表示给定的JSVM_Value是否为Symbol。 |
+| bool* isSymbol | 表示给定的JSVM_Value是否为Symbol，true为是，false为否。 |
 
 **返回：**
 
@@ -4689,7 +4689,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsFunction(JSVM_Env env,JSVM_Value value,bool* i
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isFunction | 表示给定的JSVM_Value是否为Function。 |
+| bool* isFunction | 表示给定的JSVM_Value是否为Function，true为是，false为否。 |
 
 **返回：**
 
@@ -4716,7 +4716,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsObject(JSVM_Env env,JSVM_Value value,bool* isO
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isObject | 表示给定的JSVM_Value是否为Object。 |
+| bool* isObject | 表示给定的JSVM_Value是否为Object，true为是，false为否。 |
 
 **返回：**
 
@@ -4743,7 +4743,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsBigInt(JSVM_Env env,JSVM_Value value,bool* isB
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isBigInt | 表示给定的JSVM_Value是否为BigInt。 |
+| bool* isBigInt | 表示给定的JSVM_Value是否为BigInt，true为是，false为否。 |
 
 **返回：**
 
@@ -4796,7 +4796,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_IsMap(JSVM_Env env,JSVM_Value value,bool* isMap)
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isMap | 给定的值是否为Map。 |
+| bool* isMap | 给定的值是否为Map，true为是，false为否。 |
 
 **返回：**
 
@@ -4823,7 +4823,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_IsConstructor(JSVM_Env env,JSVM_Value value,bool*
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* isConstructor | 给定的值是否为构造函数。 |
+| bool* isConstructor | 给定的值是否为构造函数，true为是，false为否。 |
 
 **返回：**
 
@@ -4958,7 +4958,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsSet(JSVM_Env env,JSVM_Value value,bool* isSet)
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的对象。 |
-| bool* isSet | 给定的对象是否是Set类型。 |
+| bool* isSet | 给定的对象是否是Set类型，true为是，false为否。 |
 
 **返回：**
 
@@ -5012,7 +5012,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsRegExp(JSVM_Env env,JSVM_Value value,bool* res
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的JSVM_Value。 |
-| bool* result | 表示给定的JSVM_Value是否为JavaScript RegExp对象。 |
+| bool* result | 表示给定的JSVM_Value是否为JavaScript RegExp对象，true为是，false为否。 |
 
 **返回：**
 
@@ -5069,7 +5069,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_PumpMessageLoop(JSVM_VM vm,bool* result)
 | 参数项 | 描述 |
 | -- | -- |
 | [JSVM_VM](capi-jsvm-jsvm-vm--8h.md) vm | 启动任务队列的虚拟机实例。 |
-| bool* result | 表示任务队列是否成功启动。 |
+| bool* result | 表示任务队列是否成功启动，true为是，false为否。 |
 
 **返回：**
 
@@ -5203,7 +5203,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule(JSVM_Env env,const uint8_t *wa
 | size_t wasmBytecodeLength | WebAssembly 字节码的长度，单位：字节。 |
 | const uint8_t *cacheData | 可选的 WebAssembly 缓存。 |
 | size_t cacheDataLength | 可选的 WebAssembly 缓存长度，单位：字节。 |
-| bool *cacheRejected | 输出参数，表示提供的 WebAssembly 缓存是否被引擎拒绝。 |
+| bool *cacheRejected | 输出参数，表示提供的 WebAssembly 缓存是否被引擎拒绝，true为是，false为否。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) *wasmModule | 输出参数，表示生成的 WebAssembly 模块。 |
 
 **返回：**
@@ -5259,7 +5259,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsWasmModuleObject(JSVM_Env env,JSVM_Value value
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用 JSVM-API 的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的 JavaScript 值。 |
-| bool* result | 输出参数，表示给定的值是否是一个 WebAssembly 模块。 |
+| bool* result | 输出参数，表示给定的值是否是一个 WebAssembly 模块，true为是，false为否。 |
 
 **返回：**
 
@@ -5341,7 +5341,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsBigIntObject(JSVM_Env env,JSVM_Value value,boo
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用 JSVM-API 的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的 JavaScript 值。 |
-| bool* result | 输出参数，表示给定的值是否是一个BigInt对象。 |
+| bool* result | 输出参数，表示给定的值是否是一个BigInt对象，true为是，false为否。 |
 
 **返回：**
 
@@ -5368,7 +5368,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsBooleanObject(JSVM_Env env,JSVM_Value value,bo
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用 JSVM-API 的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的 JavaScript 值。 |
-| bool* result | 输出参数，表示给定的值是否是一个Boolean对象。 |
+| bool* result | 输出参数，表示给定的值是否是一个Boolean对象，true为是，false为否。 |
 
 **返回：**
 
@@ -5395,7 +5395,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsStringObject(JSVM_Env env,JSVM_Value value,boo
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用 JSVM-API 的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的 JavaScript 值。 |
-| bool* result | 输出参数，表示给定的值是否是一个String对象。 |
+| bool* result | 输出参数，表示给定的值是否是一个String对象，true为是，false为否。 |
 
 **返回：**
 
@@ -5422,7 +5422,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsNumberObject(JSVM_Env env,JSVM_Value value,boo
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用 JSVM-API 的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的 JavaScript 值。 |
-| bool* result | 输出参数，表示给定的值是否是一个Number对象。 |
+| bool* result | 输出参数，表示给定的值是否是一个Number对象，true为是，false为否。 |
 
 **返回：**
 
@@ -5449,7 +5449,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsSymbolObject(JSVM_Env env,JSVM_Value value,boo
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用 JSVM-API 的环境。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md) value | 待检查的 JavaScript 值。 |
-| bool* result | 输出参数，表示给定的值是否是一个Symbol对象。 |
+| bool* result | 输出参数，表示给定的值是否是一个Symbol对象，true为是，false为否。 |
 
 **返回：**
 
@@ -5899,7 +5899,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetDebugOption(JSVM_Env env, JSVM_DebugOption de
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
 | [JSVM_DebugOption](capi-jsvm-types-h.md#jsvm_debugoption) debugOption | 需要更改的调试选项。 |
-| bool isEnabled | 是否启用或禁用调试选项。 |
+| bool isEnabled | 是否启用或禁用调试选项，true为是，false为否。 |
 
 **返回：**
 
@@ -6016,7 +6016,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringLatin1(JSVM_Env env,char* str
 | [JSVM_Finalize](capi-jsvm-types-h.md#jsvm_finalize) finalizeCallback | 可选项，是当创建的字符串被 GC 回收时会触发的回调函数。更多细节详见 JSVM_Finalize 类型说明。 |
 | void* finalizeHint | 可选项，当字符串被回收时会传递给触发的 finalize callback。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md)* result | 接收创建完成的 JavaScript 外部字符串，表示为 JSVM_Value 类型。 |
-| bool* copied | 指示外部字符串是否成功创建的标志，为真表示创建外部字符串失败并返回一个原生 JS 字符串，否表示成功。 |
+| bool* copied | 指示外部字符串是否成功创建的标志，true表示创建外部字符串失败并返回一个原生 JS 字符串，false表示成功。 |
 
 **返回：**
 
@@ -6047,7 +6047,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringUtf16(JSVM_Env env,char16_t* 
 | [JSVM_Finalize](capi-jsvm-types-h.md#jsvm_finalize) finalizeCallback | 可选项，是当创建的字符串被 GC 回收时会触发的回调函数。更多细节详见 JSVM_Finalize 类型说明。 |
 | void* finalizeHint                                                   | 可选项，当字符串被回收时会传递给触发的 finalize callback。 |
 | [JSVM_Value](capi-jsvm-jsvm-value--8h.md)* result    | 接收创建完成的 JavaScript 外部字符串，表示为 JSVM_Value 类型。 |
-| bool* copied                                                         | 指示外部字符串是否成功创建的标志，为真表示创建外部字符串失败并返回一个原生 JS 字符串，否表示成功。 |
+| bool* copied                                                         | 指示外部字符串是否成功创建的标志，true表示创建外部字符串失败并返回一个原生 JS 字符串，false表示成功。 |
 
 **返回：**
 

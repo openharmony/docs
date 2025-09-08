@@ -579,7 +579,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
-安装指定路径下的应用包。使用promise异步回调。</br>此接口只能安装分发类型为enterprise_mdm（MDM应用）和enterprise_normal（企业普通应用）类型的应用。
+安装指定路径下的应用包。使用promise异步回调。</br>此接口只能安装分发类型为enterprise_mdm（MDM应用）和enterprise_normal（普通企业应用）类型的应用，可以通过[getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口查询应用自身的[BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md)，其中BundleInfo.appInfo.appDistributionType为应用的分发类型。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 

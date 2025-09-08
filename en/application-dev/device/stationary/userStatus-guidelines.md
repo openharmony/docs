@@ -1,4 +1,10 @@
 # User Status Awareness Development
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 The UserStatus module, designed for user status awareness, empowers the system to perceive specific conditions of the operator, such as determining their age group.
 
@@ -17,7 +23,7 @@ An application can invoke the UserStatus module when it needs to obtain the age 
 
 ### Constraints
 
- - The device must support the touchscreen and be compatible with specific chips.
+ - If the device does not support the age group detection function, error code 801 is returned.
 
 ### Development Procedure
 
@@ -33,7 +39,7 @@ An application can invoke the UserStatus module when it needs to obtain the age 
 
    ```
    let callback : Callback<userStatus.UserClassification> = (data : userStatus.UserClassification) => {
-     console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+     console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
    };
    ```
 
