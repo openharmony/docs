@@ -56,7 +56,7 @@ enum BatteryInfo_BatteryPluggedType
 
 **起始版本：** 13
 
-| 枚举项 | 值   | 描述 |
+| 枚举项 | 值 | 描述 |
 | -- | -- | -- |
 | PLUGGED_TYPE_NONE | 0 | 电源已拔下。 |
 | PLUGGED_TYPE_AC | 1 | 电源是交流充电。 |
