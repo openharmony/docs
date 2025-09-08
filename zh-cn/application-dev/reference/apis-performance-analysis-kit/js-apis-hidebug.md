@@ -113,7 +113,7 @@ let pss: bigint = hidebug.getPss();
 
 getVss(): bigint
 
-获取应用进程虚拟耗用内存大小。接口实现方式：读取/proc/{pid}/statm节点中的size值（内存页数），vss = size * 页大小（4K/页）。
+获取应用进程占用的虚拟内存大小。接口实现方式：读取/proc/{pid}/statm节点中的size值（内存页数），vss = size * 页大小（4KB/页）。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -121,7 +121,7 @@ getVss(): bigint
 
 | 类型   | 说明                                     |
 | ------ | ---------------------------------------- |
-| bigint | 返回应用进程虚拟耗用内存大小，单位为KB。 |
+| bigint | 返回应用进程占用的虚拟内存大小，单位为KB。 |
 
 **示例：**
 
@@ -551,7 +551,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 | 类型             | 说明            |
 | -----------------|---------------|
-| string           | 返回trace文件名路径。 |
+| string           | 返回trace文件名路径（接口返回真实物理路径，若应用内需要访问，请参考[应用沙箱路径和真实物理路径的对应关系](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)进行路径转换）。 |
 
 **错误码：**
 
@@ -1403,7 +1403,6 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 hidebug.setJsRawHeapTrimLevel(hidebug.JsRawHeapTrimLevel.TRIM_LEVEL_2);
 ```
