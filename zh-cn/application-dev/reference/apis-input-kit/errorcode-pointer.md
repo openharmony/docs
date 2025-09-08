@@ -1,4 +1,4 @@
-# 鼠标指针错误码
+# 鼠标光标错误码
 
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
