@@ -2971,7 +2971,7 @@ Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int64_t *timeInterval | timeInterval 时间间隔，单位为微秒。 |
+| int64_t *timeInterval | timeInterval 时间间隔，单位：μs。 |
 
 **返回：**
 
