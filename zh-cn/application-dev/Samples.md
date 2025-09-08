@@ -5526,7 +5526,7 @@ return formInfo.FormState.READY }。
 
 11.输入设备：使用[@ohos.multimodalInput.inputDevice](reference/apis-input-kit/js-apis-inputdevice.md) 获取输入设备列表，并显示输入设备信息，实现设备的热插拔监听。
 
-12.输入事件：使用[@ohos.multimodalInput.inputMonitor](reference/apis-input-kit/js-apis-inputmonitor-sys.md)开启监听全局触屏事件，当触发触屏事件时显示触屏详情，使用[@ohos.multimodalInput.inputEventClient](reference/apis-input-kit/js-apis-inputeventclient-sys.md)模拟返回按键进行按键注入，实现返回功能，在column组件中添加[@ohos.multimodalInput.touchEvent](reference/apis-input-kit/js-apis-touchevent.md)触摸事件，模拟按键被按下效果。
+12.输入事件：使用[@ohos.multimodalInput.inputMonitor](reference/apis-input-kit/js-apis-inputmonitor-sys.md)开启监听全局触屏输入事件，当触发触屏输入事件时显示触屏详情，使用[@ohos.multimodalInput.inputEventClient](reference/apis-input-kit/js-apis-inputeventclient-sys.md)模拟返回按键进行按键注入，实现返回功能，在column组件中添加[@ohos.multimodalInput.touchEvent](reference/apis-input-kit/js-apis-touchevent.md)触摸事件，模拟按键被按下效果。
 
 13.鼠标光标：使用[@ohos.multimodalInput.mouseEvent](reference/apis-input-kit/js-apis-mouseevent.md)监听鼠标事件，并显示鼠标操作回调信息，使用[@ohos.multimodalInput.pointer](reference/apis-input-kit/js-apis-pointer.md)实现鼠标光标的显示或隐藏状态，设置鼠标移动速度和显示样式。
 
