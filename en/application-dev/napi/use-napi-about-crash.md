@@ -1,8 +1,14 @@
 # Analyzing Error Logs and Crashes Triggered by Using Node-API
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 The maintenance and debugging measures mentioned in this topic rely on the Ark runtime multi-thread check. Therefore, you are advised to enable this feature before debugging. For details about how to enable Ark runtime multi-thread check, see [Analyzing CPP Crash](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-multi-thread-check).
 
-Unless otherwise specified, the maintenance and debugging measures used in this topic will interrupt the process once the Ark runtime multi-thread check is enabled.
+Unless otherwise specified, the maintenance and test methods described in this section immediately interrupt the process when the ArkTS multi-thread detection function is enabled.
 
 ## Inconsistent napi_env Between the Data Being Used and the Data Being Created
 
@@ -10,21 +16,21 @@ Unless otherwise specified, the maintenance and debugging measures used in this 
 
 The inconsistency in **napi_env** occurs in the following scenarios:
 
-1. When Node-API is called to use a created struct, the **napi_env** of the struct is inconsistent with that used to create the struct.
+1. The input parameter napi_env for invoking the napi method is different from the napi_env used for creating the napi data structure.
 
    > **Log**<br>
    > param env not equal to its owner.
    >
 
-2. When Node-API is called to use a created struct, the **napi_env** of the struct has the same address as the **napi_env** used to create the struct but the original **napi_env** has been destroyed.
+2. The input parameter napi_env for invoking the napi method is the same as napi_env used for creating the napi data structure, but the original napi_env has been released.
 
    > **Log**<br>
    >
-   > - For the methods other than thread-safe functions, the log information is as follows:
+   > 1. For the methods other than thread-safe functions, the log information is as follows:
    >
    >    owner env has been destroyed, owner id: &lt;owner id&gt; , current    env id: &lt;current id&gt;.
    >
-   > - For thread-safe functions, the log information is as follows:
+   > 2. For thread-safe functions, the log information is as follows:
    >
    >    current tsfn was created by dead env, owner id: &lt;owner id&gt;, current env id: &lt;current id&gt;
 
@@ -38,13 +44,15 @@ The following APIs may trigger this error:
 6. napi_call_threadsafe_function*
 7. napi_release_threadsafe_function*
 
-> **NOTE**<br>The APIs with an asterisk (*) can only trigger the log information in the second scenario.
+> Interfaces marked with \* can trigger only the maintenance and test information in the second scenario. Interfaces not marked with \* can trigger the maintenance and test information in the preceding two scenarios.
 
 ### Example
 
-> **NOTE**<br>The following code is intended only to create exception scenarios and trigger DFX error logs. Do not apply it to your code before you fully understand its purpose.
+> **NOTICE**
+>
+> The following code is used only to construct an exception scenario and trigger DFX logs of the exception branch. Do not apply it to your code before you fully understand its purpose.
 
-#### Utility Class
+Utility Class
 
 Define a utility class to construct the two exception scenarios.
 
@@ -181,9 +189,9 @@ private:
 };
 ```
 
-#### napi_ref APIs
+napi_ref APIs
 
-Sample code of **napi_get_reference_value** and **napi_delete_reference**:
+Sample code of napi_get_reference_value and napi_delete_reference
 
 ```cpp
 /*
@@ -200,12 +208,19 @@ napi_value TriggerDFXGetRef(napi_env env, napi_callback_info cbinfo)
         napi_value obj = nullptr;
         STRICT_NAPI_CALL(napi_create_object(localEnv, &obj));
         napi_ref ref = nullptr;
+        // napi_create_reference creates a strong reference for the JS object. You need to use napi_delete_reference to destroy the reference. Otherwise, the JS object cannot be reclaimed, causing memory leakage.
         napi_create_reference(localEnv, obj, 1, &ref);
         if (!localEnv.Recreate(same)) {
+            if (ref != nullptr) {
+                napi_delete_reference(localEnv, ref);
+            }
             return;
-        };
+        }
         napi_value result = nullptr;
         napi_get_reference_value(localEnv, ref, &result);
+        if (ref != nullptr) {
+            napi_delete_reference(localEnv, ref);
+        }
     }, same).detach();
     return nullptr;
 }
@@ -214,26 +229,32 @@ napi_value TriggerDFXGetRef(napi_env env, napi_callback_info cbinfo)
  * API declaration index.d.ts
  * const triggerDFXDelRef: () => void;
  */
-napi_value TriggerDFXDelRef(napi_env, napi_callback_info)
+napi_value TriggerDFXDelRef(napi_env, napi_callback_info info)
 {
     std::thread([]() {
         EngineProxy localEnv;
         napi_value obj = nullptr;
         STRICT_NAPI_CALL(napi_create_object(localEnv, &obj));
         napi_ref ref = nullptr;
+        // Call napi_delete_reference to release the reference to avoid memory leakage.
         napi_create_reference(localEnv, obj, 1, &ref);
         if (!localEnv.RecreateSame()) {
+            if (ref != nullptr) {
+                napi_delete_reference(localEnv, ref);
+            }
             return;
         };
-        napi_delete_reference(localEnv, ref);
+        if (ref != nullptr) {
+            napi_delete_reference(localEnv, ref);
+        }
     }).detach();
     return nullptr;
 }
 ```
 
-#### napi_async_work APIs
+napi_async_work APIs
 
-Sample code of **napi_queue_async_work**, **napi_queue_async_work_with_qos**, and **napi_cancel_async_work**:
+Sample code of napi_queue_async_work, napi_queue_async_work_with_qos, and napi_cancel_async_work
 
 ```cpp
 /*
@@ -254,14 +275,21 @@ napi_value name(napi_env env, napi_callback_info cbinfo)                        
             napi_value taskName = nullptr;                                         \
             napi_create_string_utf8(localEnv, #name, NAPI_AUTO_LENGTH, &taskName); \
             /* Do not use an empty execute callback to create napi_async_work. */                    \
+            /*Memory leakage may occur here. This is only for reproducing DFX maintenance and test.*/\
             napi_create_async_work(localEnv, nullptr, taskName,                    \
                 [](napi_env, void*) {}, [](napi_env, napi_status, void* ) {},      \
                 nullptr, &work);                                                   \
             if (!localEnv.Recreate(same)) {                                        \
+                if (work != nullptr) {                                             \
+                    napi_delete_async_work(localEnv, work);                        \
+                }                                                                  \
                 return;                                                            \
             }                                                                      \
         }                                                                          \
         (op);                                                                      \
+        if (work != nullptr) {                                                     \
+            napi_delete_async_work(localEnv, work);                                \
+        }                                                                          \
     }, same).detach();                                                             \
     return nullptr;                                                                \
 }
@@ -282,9 +310,9 @@ EXPAND_ASYNC_WORK_CASE(TriggerDFXCancelWork,
 #undef EXPAND_ASYNC_WORK_CASE
 ```
 
-#### napi_threadsafe_function APIs
+napi_threadsafe_function APIs
 
-Sample code of **napi_call_threadsafe_function** and **napi_release_threadsafe_function**:
+Sample code of napi_call_threadsafe_function and napi_release_threadsafe_function
 
 ```cpp
 /*
@@ -293,17 +321,23 @@ Sample code of **napi_call_threadsafe_function** and **napi_release_threadsafe_f
  * @variable napi_threadsafe_function tsfn
  */
 #define EXPAND_THREADSAFE_FUNCTION_CASE(name, op)                                       \
-    napi_value name(napi_env, napi_callback_info) {                                     \
+    napi_value name(napi_env, napi_callback_info info) {                                \
         std::thread([]() {                                                              \
             EngineProxy localEnv;                                                       \
             napi_threadsafe_function tsfn = nullptr;                                    \
             {                                                                           \
                 napi_value taskName = nullptr;                                          \
                 napi_create_string_utf8(localEnv, "Test", NAPI_AUTO_LENGTH, &taskName); \
+                // napi_create_threadsafe_function creates a thread-safe function. After the task is complete,\
+                // Invoke napi_release_threadsafe_function to release the memory.
                 napi_create_threadsafe_function(                                        \
                     localEnv, nullptr, nullptr, taskName, 0, 1, nullptr,                \
                     [](napi_env, void *, void *) {}, nullptr,                           \
                     [](napi_env, napi_value, void *, void *) {}, &tsfn);                \
+                if (status != napi_ok) {                                                \
+                    OH_INFO_ERROR(LOG_APP,"napi_create_threadsafe_function failed");    \
+                    return nullptr;                                                     \
+                }                                                                       \
                 if (!localEnv.RecreateSame()) {                                         \
                     return;                                                             \
                 };                                                                      \
@@ -332,7 +366,7 @@ EXPAND_THREADSAFE_FUNCTION_CASE(TriggerDFXTsfnRelease,
 
 Most Node-API interfaces are not thread-safe. Additional measures are used to locate the errors caused by improper use of Node-API interfaces. 
 
-Unless otherwise specified, the maintenance and debugging measures used in this topic will interrupt the process once the Ark runtime multi-thread check is enabled.
+Unless otherwise specified, the maintenance and test methods described in this section interrupt the process immediately after the ArkTS multi-thread detection switch is turned on.
 
 > **Log**<br>
 >
@@ -346,17 +380,17 @@ The following APIs may trigger this type of error:
 4. napi_set_instance_data
 5. napi_get_instance_data
 
-> **NOTE**
->
 > When the triggering conditions are met in the debugging process, the APIs with an asterisk (*) can print the ERROR log with call stack information instead of interrupting the process.
 
 ### Example
 
-> **NOTE**<br>The following code is intended only to create exception scenarios and trigger DFX error logs. Do not apply it to your code before you fully understand its purpose.
+> **NOTICE**
+>
+> The following code is used only to construct an exception scenario and trigger DFX logs of the exception branch. Do not apply it to your code before you fully understand its purpose.
 
-#### env_cleanup_hook APIs
+env_cleanup_hook APIs
 
-Sample code of **napi_add_env_cleanup_hook** and **napi_remove_env_cleanup_hook**:
+Sample code of napi_add_env_cleanup_hook and napi_remove_env_cleanup_hook
 
 ```cpp
 static void EnvCLeanUpCallback(void *arg) {
@@ -368,7 +402,7 @@ static void EnvCLeanUpCallback(void *arg) {
  * API declaration index.d.ts
  * const triggerDFXClnAddXT: () => void;
  */
-napi_value TriggerDFXClnAddXT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnAddXT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -385,7 +419,7 @@ napi_value TriggerDFXClnAddXT(napi_env env, napi_callback_info)
  * API declaration index.d.ts
  * const triggerDFXClnAddMT: () => void;
  */
-napi_value TriggerDFXClnAddMT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnAddMT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -401,7 +435,7 @@ napi_value TriggerDFXClnAddMT(napi_env env, napi_callback_info)
  * API declaration index.d.ts
  * const triggerDFXClnRmXT: () => void;
  */
-napi_value TriggerDFXClnRmXT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnRmXT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -418,7 +452,7 @@ napi_value TriggerDFXClnRmXT(napi_env env, napi_callback_info)
  * API declaration index.d.ts
  * const triggerDFXClnRmMT: () => void;
  */
-napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info info) 
 {
     char* data = new char;
     CHECK_NOT_NULL(data);
@@ -432,7 +466,7 @@ napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info)
 }
 ```
 
-#### async_cleanup_hook APIs
+async_cleanup_hook APIs
 
 Sample code of **napi_add_async_cleanup_hook**:
 
@@ -446,7 +480,7 @@ static void AsyncCleanupCallback(napi_async_cleanup_hook_handle handle, void *)
  * API declaration index.d.ts
  * const triggerDFXAsyncAddXT: () => void;
  */
-napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info) 
+napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info info) 
 {
     std::thread([](napi_env env) {
         napi_add_async_cleanup_hook(env, AsyncCleanupCallback, nullptr, nullptr);
@@ -455,7 +489,7 @@ napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info)
 }
 ```
 
-#### instance_data APIs
+instance_data APIs
 
 Sample code of **napi_set_instance_data** and **napi_get_instance_data**:
 
@@ -464,7 +498,7 @@ Sample code of **napi_set_instance_data** and **napi_get_instance_data**:
  * API declaration index.d.ts
  * const triggerDFXInsSetXT: () => void;
  */
-napi_value TriggerDFXInsSetXT(napi_env env, napi_callback_info)
+napi_value TriggerDFXInsSetXT(napi_env env, napi_callback_info info)
 {
     std::thread([](napi_env env) {
         napi_set_instance_data(env, nullptr, [](napi_env, void *, void *) {}, nullptr);
@@ -476,7 +510,7 @@ napi_value TriggerDFXInsSetXT(napi_env env, napi_callback_info)
  * API declaration index.d.ts
  * const triggerDFXInsGetXT: () => void;
  */
-napi_value TriggerDFXInsGetXT(napi_env env, napi_callback_info)
+napi_value TriggerDFXInsGetXT(napi_env env, napi_callback_info info)
 {
     std::thread([](napi_env env) {
         void *data = nullptr;

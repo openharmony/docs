@@ -1,12 +1,18 @@
 # JSVM-API Development Process
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
-To implement cross-language interaction using JSVM-API, you need to register and load modules based on the JSVM-API mechanism first.
+To use JSVM-API to implement cross-language interaction, you need to register and load modules based on the mechanism.
 
 - ArkTS/JS: Import the .so library and call C++ APIs.  
 
 - Native: Implement module registration via a .cpp file. You need to declare the name of the library to register and define the mappings between the native and JS/ArkTS APIs in the callback registered.
 
-The following demonstrates how to implement cross-language interaction by implementing **RunJsVm()** in ArkTS/JS code and **RunJsVm()** in native code.
+The following uses the RunJsVm () interface on the ArkTS/JS and Native sides as an example to describe how to use the JSVM-API to implement cross-language interaction.
 
 ## Creating a Native C++ Project
 
@@ -22,6 +28,7 @@ By referring to [Node-API Development Process](use-napi-process.md#implementing-
   // entry/src/main/cpp/types/libentry/index.d.ts
   export const runTest: () => void;
   ```
+  <!-- @[export_native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmProcess/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - Associate **index.d.ts** with **.cpp** in the **oh-package.json5** file.
 
@@ -54,7 +61,7 @@ By referring to [Node-API Development Process](use-napi-process.md#implementing-
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-- Implement the native **runTest** function. The code is as follows:
+- Create entry/src/main/cpp/hello.cpp to implement the runTest API on the Native side. The code is as follows:
 
   ```cpp
   // entry/src/main/cpp/hello.cpp
@@ -205,6 +212,7 @@ By referring to [Node-API Development Process](use-napi-process.md#implementing-
   
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
+  <!-- @[oh_jsvm_process](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmProcess/entry/src/main/cpp/hello.cpp) -->
   
 ## Calling C/C++ APIs in ArkTS
 
@@ -235,6 +243,7 @@ struct Index {
   }
 }
 ```
+<!-- @[call_native_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmProcess/entry/src/main/ets/pages/Index.ets) -->
 
 **Expected output**
 ```ts

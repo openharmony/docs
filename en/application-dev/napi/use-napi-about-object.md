@@ -1,8 +1,14 @@
 # Working with Objects Using Node-API
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## Overview
 
-Node-API provides APIs for basic ArkTS object operations, including creating an object, obtaining the prototype of an object, freezing or sealing an object, and checking the object type. You can use these APIs to manage ArkTS objects.
+Node-APIs provide APIs for performing basic operations on objects, such as creating objects, obtaining prototypes, freezing and sealing objects, and checking object types.
 
 ## Basic Concepts
 
@@ -23,7 +29,7 @@ The following table lists the APIs for operating and managing ArkTS objects.
 | napi_typeof | Obtains the type of an ArkTS value.|
 | napi_instanceof | Checks whether an ArkTS object is an instance of the specified constructor.|
 | napi_type_tag_object | Associates the value of a tag pointer with an ArkTS object.|
-| napi_check_object_type_tag | Checks whether a tag pointer is associated with a ArkTS object.|
+| napi_check_object_type_tag | Checks whether a tag pointer is associated with an ArkTS object.|
 | napi_create_symbol | Creates an ArkTS **Symbol** object.|
 | napi_create_external | Creates an ArkTS external object, which can be used to pass custom data structs or objects in C/C++ to ArkTS so that it can be accessible from ArkTS.|
 | napi_get_value_external | Obtains the ArkTS data from the external object created by **napi_create_external**. This API can be used to pass data between ArkTS and C/C++.|
@@ -55,6 +61,7 @@ static napi_value GetPrototype(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_get_prototype](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -62,11 +69,12 @@ API declaration:
 // index.d.ts
 export const getPrototype: (object: Object) => Object;
 ```
+<!-- @[napi_get_prototype_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // Define a class.
 class Person {
@@ -88,9 +96,10 @@ let applePrototype = testNapi.getPrototype(person);
 if (applePrototype === Person.prototype) {
   hilog.info(0x0000, 'Node-API', 'get_prototype_success');
 } else {
-  hilog.info(0x0000, 'Node-API', 'get_prototype_fail');
+  hilog.error(0x0000, 'Node-API', 'get_prototype_fail');
 }
 ```
+<!-- @[ark_napi_get_prototype](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/napiGetPrototype.ts) -->
 
 ### napi_create_object
 
@@ -118,6 +127,7 @@ napi_value NewObject(napi_env env, napi_callback_info info)
     return object;
 }
 ```
+<!-- @[napi_create_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -125,11 +135,12 @@ API declaration:
 // index.d.ts
 export const createObject: () => { name: string };
 ```
+<!-- @[napi_create_object_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   const myObject = testNapi.createObject();
@@ -138,6 +149,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_object errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_create_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_object_freeze
 
@@ -166,6 +178,7 @@ static napi_value ObjectFreeze(napi_env env, napi_callback_info info)
     return objFreeze;
 }
 ```
+<!-- @[napi_object_freeze](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -177,11 +190,12 @@ export interface Obj {
 }
 export const objectFreeze: (objFreeze: Object) => Obj;
 ```
+<!-- @[napi_object_freeze_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   class Obj {
@@ -195,6 +209,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_object_freeze error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_object_freeze](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_object_seal
 
@@ -217,11 +232,15 @@ static napi_value ObjectSeal(napi_env env, napi_callback_info info)
     napi_status status = napi_object_seal(env, objSeal);
     if (status == napi_ok) {
         OH_LOG_INFO(LOG_APP, "Node-API napi_object_seal success");
+    } else {
+        napi_throw_error(env, nullptr, "Node-API napi_object_seal failed");
+        return nullptr;
     }
     // Return the sealed object to ArkTS.
     return objSeal;
 }
 ```
+<!-- @[napi_object_seal](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -234,18 +253,19 @@ export interface Obj {
 }
 export const objectSeal : (objSeal: Object) => Obj;
 ```
+<!-- @[napi_object_seal_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
     message: string = ""
     // Optional property.
-    address?: number = 0
+    address?: number
   }
   let obj: Obj = { data: 0, message: "hello world"};
   let objSeal = testNapi.objectSeal(obj);
@@ -257,10 +277,21 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_object_seal error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_object_seal](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_typeof
 
-Call **napi_typeof** to obtain the type of an ArkTS value.
+Obtains the ArkTS type of a given ArkTS value.
+
+**Note**: napi_typeof can be used to determine the following types:  
+undefined  
+null  
+boolean  
+number  
+string  
+object  
+function  
+bigint
 
 CPP code:
 
@@ -315,18 +346,20 @@ static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
+<!-- @[napi_typeof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
 ```ts
 // index.d.ts
-export const napiTypeOf : <T>(value: T) => string | void;
+export const napiTypeOf : <T>(value: T) => string | undefined;
 ```
+<!-- @[napi_typeof_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let varUndefined: undefined;
@@ -345,14 +378,15 @@ try {
   }
   let varObject: Obj = {id: 1, name: "LiLei"};
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varObject));
-  const addNum = (a: number, b: number): number => a * b;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(addNum));
+  const mulNum = (a: number, b: number): number => a * b;
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(mulNum));
   let varBigint = BigInt("1234567890123456789012345678901234567890");
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varBigint));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_typeof error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_typeof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_instanceof
 
@@ -383,18 +417,20 @@ static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
+<!-- @[napi_instanceof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
 ```ts
 // index.d.ts
-export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | undefined;
 ```
+<!-- @[napi_instanceof_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   class Person {
@@ -418,6 +454,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_instanceof error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_instanceof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_type_tag_object
 
@@ -484,19 +521,21 @@ static napi_value CheckObjectTypeTag(napi_env env, napi_callback_info info)
     return checked;
 }
 ```
+<!-- @[napi_type_tag_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
 ```ts
 // index.d.ts
-export const setTypeTagToObject: (obj: Object, index: number) => boolean | void;
+export const setTypeTagToObject: (obj: Object, index: number) => boolean | undefined;
 export const checkObjectTypeTag: (obj: Object, index: number) => boolean;
 ```
+<!-- @[napi_type_tag_object_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 class Obj {
   data: number = 0
@@ -509,6 +548,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objB -> 0: %{p
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objA -> 0: %{public}s', testNapi.checkObjectTypeTag(objA, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objB -> 1: %{public}s', testNapi.checkObjectTypeTag(objB, 1));
 ```
+<!-- @[ark_napi_type_tag_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_external
 
@@ -519,6 +559,7 @@ CPP code:
 ```cpp
 #include <cstdlib>
 #include <string>
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 // Callback used to release the external data.
@@ -551,18 +592,23 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     const size_t dataSize = 10;
     // Allocate memory to the external data.
     void *data = malloc(dataSize);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
     // Initialize the external data.
     memset(data, 0, dataSize);
     napi_value result = nullptr;
     // Return an object with external data.
     napi_status status = napi_create_external(env, data, finalizeCallback, nullptr, &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, " Node-API Failed to create external data");
+        OH_LOG_ERROR(LOG_APP, " Node-API Failed to create external data");
         return nullptr;
     }
     return result;
 }
 ```
+<!-- @[napi_create_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -571,15 +617,17 @@ API declaration:
 export const createExternal: () => Object;
 export const getExternalType: (externalData: Object) => boolean;
 ```
+<!-- @[napi_create_external_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 const externalData = testNapi.createExternal();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external:%{public}s', testNapi.getExternalType(externalData));
 ```
+<!-- @[ark_napi_create_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_external
 
@@ -606,6 +654,7 @@ static napi_value GetValueExternal(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_get_value_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -613,14 +662,16 @@ API declaration:
 // index.d.ts
 export const getValueExternal: () => number;
 ```
+<!-- @[napi_get_value_external_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 hilog.info(0x0000, 'Node-API', 'get_value_external:%{public}d', testNapi.getValueExternal());
 ```
+<!-- @[ark_napi_get_value_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_symbol
 
@@ -630,19 +681,29 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateSymbol(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     const char *des = "only";
     // Use napi_create_string_utf8 to create a description string.
-    napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    napi_status status = napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_string_utf8 failed");
+        return nullptr;
+    }
     napi_value returnSymbol = nullptr;
     // Create a symbol and return it.
-    napi_create_symbol(env, result, &returnSymbol);
+    status = napi_create_symbol(env, result, &returnSymbol);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_symbol failed");
+        return nullptr;
+    }
     return returnSymbol;
 }
 ```
+<!-- @[napi_create_symbol](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -650,15 +711,17 @@ API declaration:
 // index.d.ts
 export const createSymbol : () => symbol;
 ```
+<!-- @[napi_create_symbol_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let varSymbol = testNapi.createSymbol();
 hilog.info(0x0000, 'Node-API', 'createSymbol:%{public}s', typeof varSymbol);
 ```
+<!-- @[ark_napi_create_symbol](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 
@@ -666,5 +729,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

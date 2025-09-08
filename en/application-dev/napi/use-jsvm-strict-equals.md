@@ -1,8 +1,14 @@
 # Comparing JS Values Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-This topic walks you through on how to use JSVM-API to check whether two JavaScript (JS) values are strictly equal (equal in both value and type). The API provided is equivalent to the JS strict equality operator (===).  
+The function in JSVM-API is used to determine whether two JavaScript values are strictly equal, which is similar to the `===` operator in JavaScript. This function avoids type conversion and loose equality comparison to ensure that values and types are equal.
 
 ## Basic Concepts
 
@@ -44,7 +50,7 @@ static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_StrictEquals: success: %{public}d", result);
     }
-    JSVM_Value isStrictEqual;
+    JSVM_Value isStrictEqual = nullptr;
     OH_JSVM_GetBoolean(env, result, &isStrictEqual);
     return isStrictEqual;
 }
@@ -60,8 +66,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(data = '123';value = '123';isStrictEquals(data,value);)JS";
 ```
+<!-- @[oh_jsvm_strict_equals](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/strictequals/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```ts
 JSVM OH_JSVM_StrictEquals: success: 1
