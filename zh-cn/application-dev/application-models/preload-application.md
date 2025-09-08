@@ -1,4 +1,11 @@
 # 应用预加载
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+ 
 
 ## 概述
 
@@ -52,31 +59,22 @@
 
 2. 配置入口UIAbility（新建工程默认已自动配置）。
 
-    以EntryAbility为例，在entry模块的[module.json5配置文件](../quick-start/module-configuration-file.md)中，设置mainElement为EntryAbility，且EntryAbility的skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。
+    1. 以EntryAbility为例，在entry模块的[module.json5配置文件](../quick-start/module-configuration-file.md)中，设置mainElement为EntryAbility，且EntryAbility的skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。
+
+    2. 当[app.json5配置文件](../quick-start/app-configuration-file.md)中的[appPreloadPhase](../quick-start/app-configuration-file.md#配置文件标签)配置为windowStageCreated时，需要在entry模块的[module.json5配置文件](../quick-start/module-configuration-file.md)中配置EntryAbility的launchType标签为[singleton](uiability-launch-type.md#singleton启动模式)或[specified](uiability-launch-type.md#specified启动模式)。
 
     ```json
     {
       "module": {
         "name": "entry",
         "type": "entry",
-        "description": "$string:module_desc",
         "mainElement": "EntryAbility",
-        "deviceTypes": [
-          "2in1"
-        ],
-        "deliveryWithInstall": true,
-        "installationFree": false,
-        "pages": "$profile:main_pages",
+        // ...
         "abilities": [
           {
             "name": "EntryAbility",
             "srcEntry": "./ets/entryability/EntryAbility.ets",
-            "description": "$string:EntryAbility_desc",
-            "icon": "$media:layered_image",
-            "label": "$string:EntryAbility_label",
-            "startWindowIcon": "$media:startIcon",
-            "startWindowBackground": "$color:start_window_background",
-            "exported": true,
+            "launchType": "singleton",
             "skills": [
               {
                 "entities": [
@@ -87,6 +85,7 @@
                 ]
               }
             ]
+            // ...
           }
         ]
       }
