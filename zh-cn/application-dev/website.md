@@ -553,7 +553,7 @@
             - [单一手势](ui/arkts-gesture-events-single-gesture.md)
             - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
             - [多层级手势事件](ui/arkts-gesture-events-multi-level-gesture.md)
-            - [手势拦截](ui/arkts-gesture-events-gesture-judge.md)
+            - [手势冲突处理](ui/arkts-gesture-events-gesture-judge.md)
           - [支持统一拖拽](ui/arkts-common-events-drag-event.md)
           - [支持焦点处理](ui/arkts-common-events-focus-event.md)
         - 使用动画<!--arkts-use-animation-->
@@ -847,7 +847,7 @@
           <!--DelEnd-->
       - 用户文件<!--user-files-->
         - [用户文件概述](file-management/user-file-overview.md)
-        - [用户文件uri介绍](file-management/user-file-uri-intro.md)
+        - [用户文件URI介绍](file-management/user-file-uri-intro.md)
         - [FileUri开发指导(C/C++)](file-management/native-fileuri-guidelines.md)
         - [获取用户目录环境(C/C++)](file-management/native-environment-guidelines.md)
         - 选择与保存用户文件<!--select-save-user-file-->
@@ -1272,7 +1272,7 @@
         - 应用跨设备连接管理<!--abilityconnect-distributed-->
           - [UIAbility与UIAbility连接开发指南](distributedservice/abilityconnectmanager-guidelines.md)
           <!--Del-->
-          - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-guidelines.md)
+          - [DistributedExtensionAbility开发指南](distributedservice/distributedextension-guidelines.md)
           <!--DelEnd-->
           - [增强连接开发指南](distributedservice/linkEnhance_development-guide.md)
         - 硬件跨设备连接管理<!--devconnect-distributed-->
@@ -1350,7 +1350,7 @@
               - [USB控制传输](basic-services/usb/usbManager/usbHost/controlTransfer.md)
               - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
               - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
-              - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
+              - [USB实时传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
           - 开发USB串口通信服务<!--usb-serial-dev-->
             - [USB串口通信服务开发概述](basic-services/usb/usbSerial/usbSerial-overview.md)
             - [USB串口配置管理](basic-services/usb/usbSerial/usbSerial-configuration.md)
@@ -1394,13 +1394,11 @@
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
         - [按键拦截监听开发指导](device/input/keypressed-guidelines.md)
-        - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
-        <!--Del-->
+        - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)<!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
         - [全局快捷键开发指导](device/input/inputconsumer-guidelines.md)
-        - [系统预置全局快捷键开发指导](device/input/shortkey-guidelines.md)
-        <!--DelEnd-->
+        - [系统预置全局快捷键开发指导](device/input/shortkey-guidelines.md)<!--DelEnd-->
         - [事件监听开发指导（C/C++）](device/input/monitor-guidelines.md)
         - [事件拦截开发指导（C/C++）](device/input/interceptor-guidelines.md)
       - MDM Kit（企业设备管理服务）<!--mdm-kit-->
@@ -1428,6 +1426,7 @@
         - [获取用户动作开发指导](device/stationary/motion-guidelines.md)
         - [设备状态感知开发指导](device/stationary/deviceStatus-guidelines.md)
         - [用户状态感知开发指导](device/stationary/userStatus-guidelines.md)
+        - [记忆链接开发指导](device/stationary/metadataBinding-guidelines.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
         - [Sensor Service Kit开发简介](device/sensor/sensorservice-kit-intro.md)
         - 传感器<!--sensor-->
@@ -1528,9 +1527,9 @@
           - [hiperf](dfx/hiperf.md)
           - [hiprofiler](dfx/hiprofiler.md)
           - [uinput](dfx/uinput.md)
-        <!--Del-->
+          <!--Del-->
           - [hisysevent](dfx/hisysevent.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-kit-->
         - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
         - [SmartPerf性能工具使用指导](application-test/smartperf-guidelines.md)
@@ -1556,6 +1555,7 @@
         - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
         <!--DelEnd-->
         - [atm工具](tools/atm-tool.md)
+        - [network-cfg工具](tools/network-cfg.md)
         <!--Del-->
         - [acm工具](tools/acm-tool.md)
         <!--DelEnd-->
@@ -1563,7 +1563,7 @@
           - [toybox工具](tools/toybox.md)
           - [mediatool工具](tools/mediatool.md)
           - [devicedebug工具](tools/devicedebug-tool.md)
-          - [rawheap_translator工具](tools/rawheap-translator.md)
+          - [rawheap-translator工具](tools/rawheap-translator.md)
         - [二进制签名工具](tools/binary-sign-tool.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
@@ -1990,48 +1990,48 @@
             - [JSVM-API使用规范](napi/jsvm-guidelines.md)
             - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
         - JSVM-API使用指导<!--jsvm-use-->
-            - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
-            - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
-            - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
-            - [使用JSVM-API接口进行函数创建和调用](napi/use-jsvm-function-call.md)
-            - [使用JSVM-API接口进行JSON操作](napi/use-jsvm-about-JSON.md)
-            - [使用JSVM-API接口进行array相关开发](napi/use-jsvm-about-array.md)
-            - [使用JSVM-API接口进行ArrayBuffer相关开发](napi/use-jsvm-about-arraybuffer.md)
-            - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
-            - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
-            - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
-            - [使用JSVM-API接口进行debug操作](napi/use-jsvm-about-debug-option.md)
-            - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
-            - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
-            - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
-            - [使用JSVM-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
-            - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
-            - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
-            - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
-            - [使用JSVM-API接口进行JavaScript代码调试调优](napi/use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
-            - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
-            - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
-            - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
-            - [使用JSVM-API进行异常的定制化处理](napi/use-jsvm-trigger-exceptions.md)
-            - [使用JSVM-API感知JSVM引擎生命周期管理](napi/use-jsvm-trigger-gc.md)
-            - [使用JSVM-API接口进行 private 属性相关开发](napi/use-jsvm-about-private.md)
-            - [使用JSVM-API接创建 external string](napi/use-jsvm-about-external-string.md)
-            - [使用JSVM-API接口进行Proxy相关开发](napi/use-jsvm-about-proxy.md)
-            - [使用JSVM-API接口进行well-known symbols相关开发](napi/use-jsvm-about-well-known-symbols.md)
-            - [使用JSVM-API接口进行装箱类型判断相关开发](napi/use-jsvm-about-wrapper-object.md)
-            - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
+          - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
+          - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
+          - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
+          - [使用JSVM-API接口进行函数创建和调用](napi/use-jsvm-function-call.md)
+          - [使用JSVM-API接口进行JSON操作](napi/use-jsvm-about-JSON.md)
+          - [使用JSVM-API接口进行array相关开发](napi/use-jsvm-about-array.md)
+          - [使用JSVM-API接口进行ArrayBuffer相关开发](napi/use-jsvm-about-arraybuffer.md)
+          - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
+          - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
+          - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
+          - [使用JSVM-API接口进行debug操作](napi/use-jsvm-about-debug-option.md)
+          - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
+          - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
+          - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
+          - [使用JSVM-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
+          - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
+          - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
+          - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
+          - [使用JSVM-API接口进行JavaScript代码调试调优](napi/use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
+          - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
+          - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
+          - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
+          - [使用JSVM-API进行异常的定制化处理](napi/use-jsvm-trigger-exceptions.md)
+          - [使用JSVM-API感知JSVM引擎生命周期管理](napi/use-jsvm-trigger-gc.md)
+          - [使用JSVM-API接口进行 private 属性相关开发](napi/use-jsvm-about-private.md)
+          - [使用JSVM-API接口提供Latin1/UTF16格式字符串相关开发](napi/use-jsvm-about-external-string.md)
+          - [使用JSVM-API接口进行Proxy相关开发](napi/use-jsvm-about-proxy.md)
+          - [使用JSVM-API接口进行Well-known symbols相关开发](napi/use-jsvm-about-well-known-symbols.md)
+          - [使用JSVM-API接口进行Wrapper object相关开发](napi/use-jsvm-about-wrapper-object.md)
+          - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
-            - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
-            - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
-            - [JSVM-API 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
-            - [JSVM-API 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
-            - [JSVM-API 内存泄漏问题定位指导](napi/jsvm-locate-memory-leak.md)
-            - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
-              - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
-              - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
-              - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
+          - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+          - [使用JSVM-API接口进行Trace相关开发](napi/use-jsvm-about-trace.md)
+          - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
+          - [JSVM-API 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
+          - [JSVM 定位内存泄漏问题指导](napi/jsvm-locate-memory-leak.md)
+          - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
+            - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
+            - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
+            - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
         - JSVM性能调试指导<!--jsvm-performance-->
-            - [使用HiSmartPerf采集V8 trace](napi/use-jsvm-about-v8-trace.md)
+          - [使用HiSmartPerf采集V8 trace](napi/use-jsvm-about-v8-trace.md)
       - Longque-JS-API<!--longque-->
         - [Longque-JS-API使用指导](napi/use-longque-js-api.md)
       - OpenMP支持<!--openmp-->
@@ -2429,8 +2429,8 @@
           - [ability_runtime_common.h](reference/apis-ability-kit/capi-ability-runtime-common-h.md)
           - [application_context.h](reference/apis-ability-kit/capi-application-context-h.md)
           - [context_constant.h](reference/apis-ability-kit/capi-context-constant-h.md)
-          - [native_interface_bundle.h](reference/apis-ability-kit/capi-native-interface-bundle-h.md)
           - [native_child_process.h](reference/apis-ability-kit/capi-native-child-process-h.md)
+          - [native_interface_bundle.h](reference/apis-ability-kit/capi-native-interface-bundle-h.md)
           - [start_options.h](reference/apis-ability-kit/capi-start-options-h.md)
           - [want.h](reference/apis-ability-kit/capi-want-h.md)
         - 结构体<!--ability-struct-->
@@ -2969,6 +2969,7 @@
           - [文本组件公共接口 (系统接口)](reference/apis-arkui/arkui-ts/ts-text-common-sys.md)
           - [TextInput (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md)
           - [属性字符串 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-styled-string-sys.md)
+          - [RichEditor(系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-richeditor-sys.md)
           <!--DelEnd-->
         - 图片与视频<!--images-and-videos-->
           - [Image](reference/apis-arkui/arkui-ts/ts-basic-components-image.md)
@@ -3067,7 +3068,7 @@
           - [SaveButton (系统接口)](reference/apis-arkui/arkui-ts/ts-security-components-savebutton-sys.md)
           <!--DelEnd-->
         - 主题<!--themes-->
-          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
+          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md) 
         - 原子化服务<!--atomic-services-->
           - [AtomicServiceNavigation](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
           - [AtomicServiceSearch](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceSearch.md)
@@ -3539,7 +3540,7 @@
           - [注册节点渲染状态监听错误码](reference/apis-arkui/errorcode-node-render-monitor.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
-          - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
+          - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)   
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
@@ -3547,11 +3548,11 @@
           - [Video组件错误码](reference/apis-arkui/errorcode-video.md)
           - [状态管理错误码](reference/apis-arkui/errorcode-stateManagement.md)
           - [渲染节点错误码](reference/apis-arkui/errorcode-node-render.md)
-        - UI编译<!--arkui-compile-arkts-errcode-->
-          - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
+        - UI编译<!--arkui-compile-arkts-errcode-->
+          - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
     - ArkWeb（方舟Web）<!--arkweb-api-->
       - ArkTS API<!--arkweb-arkts-->
         - @ohos.web.webview (Webview)<!--js-apis-webview-->
@@ -3580,12 +3581,12 @@
           - [Class (WebSchemeHandler)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandler.md)
           - [Class (WebSchemeHandlerRequest)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerRequest.md)
           - [Class (WebSchemeHandlerResponse)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerResponse.md)
-          - [Class (WebStorage)](reference/apis-arkweb/arkts-apis-webview-WebStorage.md)
+          - [Class (WebStorage)](reference/apis-arkweb/arkts-apis-webview-WebStorage.md)  
           - [Interface (BackForwardList)](reference/apis-arkweb/arkts-apis-webview-BackForwardList.md)
           - [Interface (NativeMediaPlayerBridge)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md)
           - [Interface (NativeMediaPlayerHandler)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md)
           - [Interface (WebMessagePort)](reference/apis-arkweb/arkts-apis-webview-WebMessagePort.md)
-          - [Interfaces（其他）](reference/apis-arkweb/arkts-apis-webview-i.md)
+          - [Interfaces (其他)](reference/apis-arkweb/arkts-apis-webview-i.md)
           - [Enums](reference/apis-arkweb/arkts-apis-webview-e.md)
           - [Types](reference/apis-arkweb/arkts-apis-webview-t.md)
         - [@ohos.web.netErrorList](reference/apis-arkweb/arkts-apis-netErrorList.md)
@@ -3658,7 +3659,7 @@
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
       - ArkTS API<!--background-tasks-arkts-->
         - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)
-        - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
+        - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) 
         - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)
         - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)
         - [@ohos.resourceschedule.backgroundProcessManager (后台子进程管控)](reference/apis-backgroundtasks-kit/js-apis-backgroundProcessManager.md)
@@ -3666,7 +3667,7 @@
         - [@ohos.reminderAgentManager (后台代理提醒)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md)
         - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md)
         - [@ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md)
-        - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)
+        - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md) 
         <!--DelEnd-->
         - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
@@ -3724,8 +3725,8 @@
         - [@ohos.file.fileAccess (公共文件访问与管理)(系统接口)](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)
         - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)(系统接口)](reference/apis-core-file-kit/js-apis-fileExtensionInfo-sys.md)
         - [@ohos.file.keyManager (用户秘钥管理)(系统接口)](reference/apis-core-file-kit/js-apis-file-keymanager-sys.md)
-        - [@ohos.file.picker (选择器)(系统接口)](reference/apis-core-file-kit/js-apis-file-picker-sys.md)
         - [@ohos.file.recent(最近访问列表)(系统接口)](reference/apis-core-file-kit/js-apis-file-recent-sys.md)
+        - [@ohos.file.picker (选择器)(系统接口)](reference/apis-core-file-kit/js-apis-file-picker-sys.md)
         - [@ohos.file.storageStatistics (应用空间统计)(系统接口)](reference/apis-core-file-kit/js-apis-file-storage-statistics-sys.md)
         - [@ohos.file.trash (回收站)(系统接口)](reference/apis-core-file-kit/js-apis-file-trash-sys.md)
         - [@ohos.file.volumeManager (卷管理)(系统接口)](reference/apis-core-file-kit/js-apis-file-volumemanager-sys.md)
@@ -3776,7 +3777,7 @@
           - [LiveFormExtensionContext](reference/apis-form-kit/js-apis-application-LiveFormExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext(系统接口)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
-          <!--DelEnd-->
+         <!--DelEnd-->
       - 已停止维护的接口<!--form-arkts-dep-->
         - [@ohos.application.formBindingData (卡片数据绑定类)](reference/apis-form-kit/js-apis-application-formBindingData.md)
         - [@ohos.application.formError (FormError)](reference/apis-form-kit/js-apis-application-formError.md)
@@ -3841,10 +3842,10 @@
           - [ipc_error_code.h](reference/apis-ipc-kit/capi-ipc-error-code-h.md)
           - [ipc_kit.h](reference/apis-ipc-kit/capi-ipc-kit-h.md)
         - 结构体<!--ipc-struct-->
-            - [OH_IPC_MessageOption](reference/apis-ipc-kit/capi-ohipcremoteobject-oh-ipc-messageoption.md)
-            - [OHIPCRemoteProxy](reference/apis-ipc-kit/capi-ohipcparcel-ohipcremoteproxy.md)
-            - [OHIPCRemoteStub](reference/apis-ipc-kit/capi-ohipcparcel-ohipcremotestub.md)
-            - [OHIPCDeathRecipient](reference/apis-ipc-kit/capi-ohipcremoteobject-ohipcdeathrecipient.md)
+          - [OH_IPC_MessageOption](reference/apis-ipc-kit/capi-ohipcremoteobject-oh-ipc-messageoption.md)
+          - [OHIPCRemoteProxy](reference/apis-ipc-kit/capi-ohipcparcel-ohipcremoteproxy.md)
+          - [OHIPCRemoteStub](reference/apis-ipc-kit/capi-ohipcparcel-ohipcremotestub.md)
+          - [OHIPCDeathRecipient](reference/apis-ipc-kit/capi-ohipcremoteobject-ohipcdeathrecipient.md)
       - 错误码<!--ipc-arkts-errcode-->
         - [RPC错误码](reference/apis-ipc-kit/errorcode-rpc.md)
     - Localization Kit（本地化开发服务）<!--localization-api-->
@@ -3854,11 +3855,11 @@
         - [@ohos.resourceManager (资源管理)](reference/apis-localization-kit/js-apis-resource-manager.md)
         - [@ohos.sendableResourceManager (资源管理)](reference/apis-localization-kit/js-apis-sendable-resource-manager.md)
         <!--Del-->
-        - [@ohos.fontManager (字体管理)](reference/apis-localization-kit/js-apis-font-manager-sys.md)
+        - [@ohos.fontManager (字体管理)(系统接口)](reference/apis-localization-kit/js-apis-font-manager-sys.md)
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md)
+          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md) 
           - [Resource](reference/apis-localization-kit/js-apis-resource.md)
           - [SendableResource](reference/apis-localization-kit/js-apis-sendableResource.md)
       - C API<!--localization-c-->
@@ -4222,7 +4223,6 @@
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
           - [内核错误码](reference/apis-network-kit/errorcode-kernel.md)
-
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
@@ -4435,17 +4435,17 @@
             - [fiber.h](reference/apis-ffrt-kit/capi-fiber-h.md)
             - [type_def.h](reference/apis-ffrt-kit/capi-type-def-h.md)
           - 结构体<!--function-flow-runtime-struct-->
-            - [ffrt_cond_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-cond-t.md)
-            - [ffrt_condattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-condattr-t.md)
+            - [ffrt_function_header_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-function-header-t.md)
             - [ffrt_dependence_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-dependence-t.md)
             - [ffrt_deps_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-deps-t.md)
-            - [ffrt_function_header_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-function-header-t.md)
-            - [ffrt_mutex_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutex-t.md)
-            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutexattr-t.md)
-            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-attr-t.md)
-            - [ffrt_rwlock_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlock-t.md)
-            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlockattr-t.md)
             - [ffrt_task_attr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-attr-t.md)
+            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-attr-t.md)
+            - [ffrt_condattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-condattr-t.md)
+            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutexattr-t.md)
+            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlockattr-t.md)
+            - [ffrt_mutex_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutex-t.md)
+            - [ffrt_rwlock_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlock-t.md)
+            - [ffrt_cond_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-cond-t.md)
             - [ffrt_loop_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-loop-t.md)
             - [ffrt_queue_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-t.md)
             - [ffrt_task_handle_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-handle-t.md)
@@ -4477,7 +4477,7 @@
           <!--DelEnd-->
         - C API<!--input-c-->
           - 模块<!--input-module-->
-            - [Input](reference/apis-input-kit/capi-input.md)
+            - [input](reference/apis-input-kit/capi-input.md)
           - 头文件<!--input-headerfile-->
             - [oh_axis_type.h](reference/apis-input-kit/capi-oh-axis-type-h.md)
             - [oh_input_manager.h](reference/apis-input-kit/capi-oh-input-manager-h.md)
@@ -4518,7 +4518,7 @@
           - [@ohos.enterprise.securityManager（安全管理）](reference/apis-mdm-kit/js-apis-enterprise-securityManager.md)
           - [@ohos.enterprise.systemManager （系统管理）](reference/apis-mdm-kit/js-apis-enterprise-systemManager.md)
           - [@ohos.enterprise.usbManager（USB管理）](reference/apis-mdm-kit/js-apis-enterprise-usbManager.md)
-          - [@ohos.enterprise.wifiManager（WiFi管理）](reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md)
+          - [@ohos.enterprise.wifiManager（Wi-Fi管理）](reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md)
           - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)
           - [@ohos.enterprise.telephony（通话管理）](reference/apis-mdm-kit/js-apis-enterprise-telephonyManager.md)
           <!--Del-->
@@ -4536,7 +4536,7 @@
           - [@ohos.enterprise.restrictions （限制类策略）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-restrictions-sys.md)
           - [@ohos.enterprise.securityManager（安全管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-securityManager-sys.md)
           - [@ohos.enterprise.usbManager（USB管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-usbManager-sys.md)
-          - [@ohos.enterprise.wifiManager（WiFi管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-wifiManager-sys.md)
+          - [@ohos.enterprise.wifiManager（Wi-Fi管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-wifiManager-sys.md)
           <!--DelEnd-->
         - 错误码<!--mdm-arkts-errcode-->
           - [企业设备管理错误码](reference/apis-mdm-kit/errorcode-enterpriseDeviceManager.md)
@@ -4612,16 +4612,16 @@
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-api-->
         - ArkTS API<!--multimodal-awareness-arkts-->
           - [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
-          - [@ohos.multimodalAwareness.motion (动作感知能力)](reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)
-          - [@js-apis-awareness-metadataBinding (回旋镖)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)
+          - [@ohos.multimodalAwareness.motion (动作感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)
+          - [@js-apis-awareness-metadataBinding (记忆链接)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)
           - [@ohos.multimodalAwareness.deviceStatus (设备状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-deviceStatus.md)
-          - [@ohos.multimodalAwareness.userStatus (用户状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-userStatus.md)
+          - [@ohos.multimodalAwareness.userStatus (用户状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-userStatus.md) 
           <!--Del-->
-          - [@js-apis-awareness-metadataBinding (回旋镖)(系统接口)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding-sys.md)
+          - [@js-apis-awareness-metadataBinding (记忆链接)(系统接口)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding-sys.md)
           <!--DelEnd-->
         - 错误码<!--ultimodal-awareness-arkts-errcode-->
-          - [行为动作感知错误码](reference/apis-multimodalawareness-kit/errorcode-motion.md)
-          - [回旋镖错误码](reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md)
+          - [动作感知错误码](reference/apis-multimodalawareness-kit/errorcode-motion.md)
+          - [记忆链接错误码](reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md)
           - [设备状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-deviceStatus.md)
           - [用户状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-userStatus.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
@@ -4657,7 +4657,6 @@
         - 错误码<!--mechanic-service-arkts-errcode-->
           - [Mechanic错误码](reference/apis-mechanic-kit/errorcode-mechanic.md)
     - 调测调优<!--system-debug-optimize-api-->
-
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
         - ArkTS API<!--performance-analysis-arkts-->
           - [@ohos.hichecker (检测模式)](reference/apis-performance-analysis-kit/js-apis-hichecker.md)
@@ -4693,21 +4692,21 @@
             - [log.h](reference/apis-performance-analysis-kit/capi-log-h.md)
             - [trace.h](reference/apis-performance-analysis-kit/capi-trace-h.md)
           - 结构体<!--performance-analysis-struct-->
-            - [HiAppEvent_AppEventGroup](reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-appeventgroup.md)
             - [HiAppEvent_AppEventInfo](reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-appeventinfo.md)
+            - [HiAppEvent_AppEventGroup](reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-appeventgroup.md)
             - [ParamListNode*](reference/apis-performance-analysis-kit/capi-hiappevent-paramlistnode8h.md)
             - [HiAppEvent_Watcher](reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-watcher.md)
             - [HiAppEvent_Processor](reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-processor.md)
             - [HiAppEvent_Config](reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-config.md)
             - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/capi-hicollie-hicollie-detectionparam.md)
             - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/capi-hicollie-hicollie-settimerparam.md)
-            - [HiDebug_JsStackFrame](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-jsstackframe.md)
-            - [HiDebug_MemoryLimit](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-memorylimit.md)
+            - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-threadcpuusage.md)
+            - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-systemmeminfo.md)
             - [HiDebug_NativeMemInfo](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-nativememinfo.md)
+            - [HiDebug_MemoryLimit](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-memorylimit.md)
+            - [HiDebug_JsStackFrame](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-jsstackframe.md)
             - [HiDebug_NativeStackFrame](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-nativestackframe.md)
             - [HiDebug_StackFrame](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-stackframe.md)
-            - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-systemmeminfo.md)
-            - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-threadcpuusage.md)
             - [HiDebug_MallocDispatch](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-mallocdispatch.md)
             - [HiDebug_Backtrace_Object__*](reference/apis-performance-analysis-kit/capi-hidebug-hidebug-backtrace-object--8h.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/capi-hitrace-hitraceid.md)
@@ -4718,25 +4717,25 @@
           - [HiDebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
           - [HiCollie错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
           - [JsLeakWatcher错误码](reference/apis-performance-analysis-kit/errorcode-jsleakwatcher.md)
-          <!--Del-->
+            <!--Del-->
           - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
           - [维测日志错误码](reference/apis-performance-analysis-kit/errorcode-loglibrary-sys.md)
-          <!--DelEnd-->
+            <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-api-->
         - ArkTS API<!--test-arkts-->
-           - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
-           - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
-           - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md)
-           - [@ohos.test.PerfTest](reference/apis-test-kit/js-apis-perftest.md)
-           - 接口依赖的元素及定义<!--test-api-interface-depend-->
-              - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
-              - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
-              - [shellCmdResult](reference/apis-test-kit/js-apis-inner-application-shellCmdResult.md)
-           - 已停止维护的接口<!--test-arkts-dep-->
-              - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
+          - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
+          - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
+          - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md)
+          - [@ohos.test.PerfTest](reference/apis-test-kit/js-apis-perftest.md)
+          - 接口依赖的元素及定义<!--test-api-interface-depend-->
+            - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
+            - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
+            - [shellCmdResult](reference/apis-test-kit/js-apis-inner-application-shellCmdResult.md)
+          - 已停止维护的接口<!--test-arkts-dep-->
+            - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
         - 错误码<!--test-arkts-errcode-->
-           - [uitest错误码](reference/apis-test-kit/errorcode-uitest.md)
-           - [perftest错误码](reference/apis-test-kit/errorcode-perftest.md)
+          - [uitest错误码](reference/apis-test-kit/errorcode-uitest.md)
+          - [perftest错误码](reference/apis-test-kit/errorcode-perftest.md)
   - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->
@@ -4760,6 +4759,7 @@
         - [@ohos.multimedia.audioHaptic (音振协同)](reference/apis-audio-kit/js-apis-audioHaptic.md)
         <!--Del-->
         - [@ohos.multimedia.audio (音频管理)(系统接口)](reference/apis-audio-kit/js-apis-audio-sys.md)
+        - [@ohos.multimedia.audioHaptic (音振协同)(系统接口)](reference/apis-audio-kit/js-apis-audioHaptic-sys.md)
         - [@ohos.multimedia.systemSoundManager (系统声音管理)(系统接口)](reference/apis-audio-kit/js-apis-systemSoundManager-sys.md)
         - multimedia
           - [ringtonePlayer (铃声播放器)(系统接口)](reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
@@ -4773,7 +4773,6 @@
         - 头文件<!--audio-headerfile-->
           - [native_audiocapturer.h](reference/apis-audio-kit/capi-native-audiocapturer-h.md)
           - [native_audio_manager.h](reference/apis-audio-kit/capi-native-audio-manager-h.md)
-          - [native_audio_resource_manager.h](reference/apis-audio-kit/capi-native-audio-resource-manager-h.md)
           - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
           - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
           - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
@@ -4781,12 +4780,11 @@
           - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
           - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
+          - [native_audio_resource_manager.h](reference/apis-audio-kit/capi-native-audio-resource-manager-h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
           - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
           - [OH_AudioManager](reference/apis-audio-kit/capi-ohaudio-oh-audiomanager.md)
-          - [OH_AudioResourceManager](reference/apis-audio-kit/capi-ohaudio-oh-audioresourcemanager.md)
-          - [OH_AudioWorkgroup](reference/apis-audio-kit/capi-ohaudio-oh-audioworkgroup.md)
           - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-ohaudio-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-deactivatedevent.md)
@@ -4796,6 +4794,8 @@
           - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-ohaudio-oh-audiovolumemanager.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-ohaudio-oh-audiodevicedescriptorarray.md)
           - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-ohaudio-oh-audiodevicedescriptor.md)
+          - [OH_AudioResourceManager](reference/apis-audio-kit/capi-ohaudio-oh-audioresourcemanager.md)
+          - [OH_AudioWorkgroup](reference/apis-audio-kit/capi-ohaudio-oh-audioworkgroup.md)
           - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-ohaudio-oh-audiostreaminfo.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md)
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md)
@@ -5514,19 +5514,19 @@
     - Ads Kit（广告服务）<!--ads-api-->
       - ArkTS API<!--ads-arkts-->
         - [@ohos.advertising (广告服务框架)](reference/apis-ads-kit/js-apis-advertising.md)
-        - [@ohos.identifier.oaid (广告标识服务)](reference/apis-ads-kit/js-apis-oaid.md)
+        - [@ohos.identifier.oaid (开放匿名设备标识服务)](reference/apis-ads-kit/js-apis-oaid.md)
         - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)](reference/apis-ads-kit/js-apis-adsserviceextensionability.md)
         - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)(系统接口)](reference/apis-ads-kit/js-apis-adsserviceextensionability-sys.md)
-        - [@ohos.identifier.oaid (广告标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
+        - [@ohos.identifier.oaid (开放匿名设备标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
         - 接口依赖的元素及定义<!--ads-api-interface-depend-->
           - advertising<!--ads-advertising-->
-            - [Advertisement](reference/apis-ads-kit/js-apis-inner-advertising-advertisement.md)
+            - [advertisement (广告内容)](reference/apis-ads-kit/js-apis-inner-advertising-advertisement.md)
       - ArkTS组件<!--ads-comp-->
-        - [@ohos.advertising.AdComponent (非全屏广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
+        - [@ohos.advertising.AdComponent (广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
         - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](reference/apis-ads-kit/js-apis-autoadcomponent.md)
-      - 错误码ads<!--ads-arkts-errcode-->
+      - 错误码<!--ads-arkts-errcode-->
         - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
-        - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
+        - [开放匿名设备标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
     <!--DelEnd-->
     - Calendar Kit（日历服务）<!--calendar-api-->
       - ArkTS API<!--calendar-arkts-->
@@ -5596,7 +5596,7 @@
         - 模块<!--notification-module-->
           - [NOTIFICATION](reference/apis-notification-kit/capi-notification.md)
         - 头文件<!--notification-struct-->
-          - [notification.h](reference/apis-notification-kit/capi-notification-h.md)
+            - [notification.h](reference/apis-notification-kit/capi-notification-h.md)
       - 错误码<!--notification-arkts-errcode-->
         - [通知错误码](reference/apis-notification-kit/errorcode-notification.md)
   - AI<!--ai-api-->
