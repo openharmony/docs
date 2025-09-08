@@ -17,7 +17,7 @@ These concepts are important in exception and error handling. Properly using met
 
 ## Available APIs
 
-The following table lists the APIs provided by the Node-API module for handling ArkTS errors and exceptions in C/C++.  
+The following table lists the APIs provided by the Node-API module for handling ArkTS errors and exceptions in C/C++. Procedure:
 | API| Description|
 | -------- | -------- |
 | napi_create_error, napi_create_type_error, napi_create_range_error| Creates an error, which can be thrown to ArkTS using **napi_throw**.|
@@ -41,7 +41,6 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
-#include <assert.h>
 static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
 {
     // Obtain the input parameter, that is the message string in this example.
@@ -52,12 +51,18 @@ static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
     int32_t value = 0;
     napi_status status = napi_get_value_int32(env, args[0], &value);
     // The return value (status) is not napi_ok, which means an error occurred.
-    assert(status != napi_ok);
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_value_int32 return status, status is not equal to napi_ok.");
+    }
+
     // Call napi_get_last_error_info to obtain the last error message.
     const napi_extended_error_info *errorInfo;
     napi_get_last_error_info(env, &errorInfo);
     // Obtain the error code and compare it with the return value (status) obtained.
-    assert(errorInfo->error_code == status);
+    if (errorInfo->error_code == status) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_last_error_info return errorInfo, error_code equal to status.");
+    }
+
     // Obtain the error message as the return value and print it.
     napi_value result = nullptr;
     napi_create_string_utf8(env, errorInfo->error_message, NAPI_AUTO_LENGTH, &result);
@@ -75,8 +80,8 @@ export const getLastErrorInfo: (str: string) => string;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_last_error_info: %{public}s', testNapi.getLastErrorInfo('message'));
 } catch (error) {
@@ -117,8 +122,8 @@ export const createTypeError: () => Error;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   throw testNapi.createTypeError();
 } catch (error) {
@@ -159,8 +164,8 @@ export const createRangeError: () => Error;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   throw testNapi.createRangeError();
 } catch (error) {
@@ -209,8 +214,8 @@ export const napiThrow: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   testNapi.napiThrow();
 } catch (error) {
@@ -263,8 +268,8 @@ export const napiThrowError: (dividend: number, divisor: number) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   testNapi.napiThrowErrorMessage();
 } catch (error) {
@@ -273,13 +278,13 @@ try {
 try {
   testNapi.napiThrowError(5, 0);
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorManager: %{public}s', error.code, error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorMessage: %{public}s', error.code, error.message);
 }
 ```
 
 ### napi_throw_type_error
 
-Call **napi_throw_type_error** to throw an ArkTS **TypeError** object with text information.
+Use **napi_throw_type_error** to throw an ArkTS **TypeError** object with text information.
 
 CPP code:
 
@@ -322,8 +327,8 @@ export const throwTypeError: (message: string) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   testNapi.throwTypeErrorMessage();
 } catch (error) {
@@ -338,7 +343,7 @@ try {
 
 ### napi_throw_range_error
 
-Call **napi_create_range_error** to create an ArkTS **RangeError** with text information.
+Use **napi_throw_range_error** to throw an ArkTS **RangeError** with text information.
 
 CPP code:
 
@@ -381,14 +386,14 @@ API declaration:
 ```ts
 // index.d.ts
 export const throwRangeErrorMessage: () => void;
-export const throwRangeError: (num: number) => number | void;
+export const throwRangeError: (num: number) => number | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   testNapi.throwRangeErrorMessage();
 } catch (error) {
@@ -438,8 +443,8 @@ export const napiIsError: <T>(obj: T) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   throw new Error("throwing an error");
 } catch (error) {
@@ -477,14 +482,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getAndClearLastException: () => Error | void;
+export const getAndClearLastException: () => Error | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 // Obtain the last unprocessed exception.
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_and_clear_last_exception, error.message: %{public}s',
            testNapi.getAndClearLastException());
@@ -528,14 +533,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const isExceptionPending: () => Object | void;
+export const isExceptionPending: () => Object | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 interface MyObject {
   code: string;
   message: string;
@@ -581,8 +586,8 @@ export const fatalError: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   testNapi.fatalError();
 } catch (error) {
@@ -627,8 +632,8 @@ export const fatalException: (err: Error) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 const err = new Error("a fatal exception occurred");
 testNapi.fatalException(err);
@@ -640,5 +645,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

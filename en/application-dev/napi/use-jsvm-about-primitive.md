@@ -6,7 +6,7 @@ JSVM-API provides APIs for converting data between C/C++ and JavaScript (JS) dat
 
 ## Basic Concepts
 
-Before using JSVM-API to operate JS objects, you need to understand the following basic concepts:
+Before using the JSVM to operate JavaScript objects, you need to understand the following basic concepts:
 
 - Conversion between JS and C/C primitives: You can use JSVM-API to convert JS values to C/C++ data types, for example, convert a JS value into a C/C++ integer and convert a JS string into a C/C++ string array. You can also convert C/C++ data into a JS value and return the JS value to JS.
 
@@ -26,7 +26,7 @@ Before using JSVM-API to operate JS objects, you need to understand the followin
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in primitive development.
+For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the interface.
 
 ### OH_JSVM_CoerceToBool
 
@@ -71,7 +71,7 @@ const char *srcCallNative = R"JS(coerceToBool("123"))JS";
 
 Expected result:
 ```
-SVM OH_JSVM_CoerceToBool success:1
+JSVM OH_JSVM_CoerceToBool success:1
 ```
 
 ### OH_JSVM_CoerceToNumber
@@ -147,7 +147,7 @@ static JSVM_Value CoerceToObject(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return obj;
 }
-// Register the CoerceToObjec callback.
+// Register the CoerceToObject callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToObject},
 };
@@ -240,11 +240,11 @@ static JSVM_Value GetBoolean(JSVM_Env env, JSVM_CallbackInfo info)
     }
     JSVM_Status status = OH_JSVM_GetBoolean(env, type, &returnValue);
     if (status != JSVM_OK) {
-        OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_CoerceToNumber fail");
+        OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_GetBoolean fail");
     } else {
         bool result = false;
         OH_JSVM_GetValueBool(env, returnValue, &result);
-        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CoerceToNumber success:%{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_GetBoolean success:%{public}d", result);
     }
     // Return the result.
     return returnValue;
@@ -265,9 +265,9 @@ const char *srcCallNative2 = R"JS(getBoolean(1, 1))JS";
 
 Expected result:
 ```
-JSVM OH_JSVM_CoerceToNumber success:0
+JSVM OH_JSVM_GetBoolean success:0
 JSVM resultType equal
-JSVM OH_JSVM_CoerceToNumber success:1
+JSVM OH_JSVM_GetBoolean success:1
 ```
 
 ### OH_JSVM_GetValueBool
@@ -289,7 +289,7 @@ static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     bool result = false;
     JSVM_Status status = OH_JSVM_GetValueBool(env, args[0], &result);
-    if (status == JSVM_BOOLEAN_EXPECTED || status != JSVM_OK) {
+    if (status != JSVM_OK) {
         // If OH_JSVM_GetValueBool is successful, JSVM_OK is returned. If a non-Boolean value is passed in, JSVM_BOOLEAN_EXPECTED is returned.
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetValueBool fail:%{public}d", status);
         return nullptr;
@@ -310,9 +310,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // Call C++ code from JS.
-const char *srcCallNative = R"JS(getValueBool("abc"))JS";
-const char *srcCallNative = R"JS(getValueBool(true))JS";
-const char *srcCallNative = R"JS(getValueBool(false))JS";
+const char *srcCallNative = R"JS(getValueBool("abc");
+                                getValueBool(true);
+                                getValueBool(false);)JS";
 ```
 
 Expected result:
@@ -369,7 +369,7 @@ JSVM OH_JSVM_GetGlobal success
 
 ### OH_JSVM_GetNull
 
-Call **OH_JSVM_GetNull** to obtain a JS **null** object.
+Obtains the JavaScript null object.
 
 CPP code:
 
@@ -402,14 +402,14 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getNull())JS";
 ```
 
-Expected result:
+Expected Results
 ```
 JSVM OH_JSVM_GetNull success
 ```
 
 ### OH_JSVM_GetUndefined
 
-Call **OH_JSVM_GetUndefined** to obtain a JS **undefined** object.
+Obtains the JavaScript undefined object.
 
 CPP code:
 
@@ -421,7 +421,7 @@ CPP code:
 // Define OH_JSVM_GetUndefined.
 static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain and parse the input parameters.
+    //Obtain and parse the input parameters.
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -448,7 +448,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getUndefined())JS";
 ```
 
-Expected result:
+Expected Results
 ```
 JSVM OH_JSVM_GetUndefined success
 ```

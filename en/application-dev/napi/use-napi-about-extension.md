@@ -18,15 +18,15 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### Example
 
-#### napi_load_module
+**napi_load_module**
 
 Call **napi_load_module** to [load a module in the main thread](use-napi-load-module.md).
 
-#### napi_load_module_with_info
+**napi_load_module_with_info**
 
 Call **napi_load_module_with_info** to [load a module](use-napi-load-module-with-info.md).
 
-#### napi_module_register
+**napi_module_register**
 
 Call **napi_module_register** to register a custom module, which is implemented by using Node-API, with the ArkTS environment.
 
@@ -98,8 +98,8 @@ export const add: (a: number, b: number) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2, 3));
 ```
@@ -115,7 +115,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2
 
 ### Example
 
-#### napi_create_object_with_properties
+**napi_create_object_with_properties**
 
 Call **napi_create_object_with_properties** to create an ArkTS object with the given **napi_property_descriptor**. The key of **napi_property_descriptor** must be a string and cannot be converted into a number.
 
@@ -154,14 +154,14 @@ export const createObjectWithProperties: (data: string) => Object;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithProperties('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_properties:%{public}s', JSON.stringify(value));
 ```
 
-#### napi_create_object_with_named_properties
+**napi_create_object_with_named_properties**
 
 Call **napi_create_object_with_named_properties** to create an ArkTS object with the specified **napi_value** and key. The key must be a string and cannot be converted into a number.
 
@@ -204,14 +204,14 @@ export const createObjectWithNameProperties: (data: string) => string | { name: 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithNameProperties('ls');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s', JSON.stringify(value));
 ```
 
-## Runing an .abc File
+## Running an .abc File
 
 ### Available APIs
 
@@ -221,7 +221,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties
 
 ### Example
 
-#### napi_run_script_path
+**napi_run_script_path**
 
 Call **napi_run_script_path** to run an .abc file.
 
@@ -258,8 +258,8 @@ export const runScriptPath: () => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 try {
   // Return true is the script is executed successfully; return false otherwise.
@@ -293,7 +293,7 @@ add(1, 2);
 
 ### Example
 
-#### napi_queue_async_work_with_qos
+**napi_queue_async_work_with_qos**
 
 Call **napi_queue_async_work_with_qos** to add an async work to the queue. Then, the async work will be scheduled for execution based on the specified QoS priority.
 
@@ -311,18 +311,16 @@ See [Prioritizing Asynchronous Tasks](../performance/develop-Native-modules-usin
 
 ### Example
 
-#### napi_coerce_to_native_binding_object
+**napi_coerce_to_native_binding_object**
 
 Call **napi_coerce_to_native_binding_object** to bind an ArkTS object and a native callback with necessary data. This API allows the ArkTS object to carry native information.
 
 CPP code:
 
 ```cpp
-#include <bits/alltypes.h>
 #include <hilog/log.h>
 #include <mutex>
 #include <unordered_set>
-#include <uv.h>
 #include "napi/native_api.h"
 
 class Object {
@@ -630,7 +628,7 @@ Call **napi_coerce_to_native_binding_object** to add the **detach()** and **atta
 
 ### Example
 
-#### napi_run_event_loop and napi_stop_event_loop
+napi_run_event_loop and napi_stop_event_loop
 
 See [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](use-napi-event-loop.md)
 
@@ -645,7 +643,7 @@ See [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API 
 
 ### Example
 
-#### napi_create_ark_runtime and napi_destroy_ark_runtime
+napi_create_ark_runtime and napi_destroy_ark_runtime
 
 See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md).
 
@@ -661,7 +659,7 @@ See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.
 
 ### Example
 
-#### napi_serialize, napi_deserialize, and napi_delete_serialization_data
+napi_serialize, napi_deserialize, and napi_delete_serialization_data
 
 Call **napi_serialize** to convert an ArkTS object into native data; call **napi_deserialize** to convert native data into an ArkTS object; call **napi_delete_serialization_data** to delete serialized data.
 
@@ -716,8 +714,8 @@ export const aboutSerialize: (obj: Object) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 class Obj {
   numKey:number = 0;
 }
@@ -735,7 +733,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 
 ### Example
 
-#### napi_call_threadsafe_function_with_priority
+**napi_call_threadsafe_function_with_priority**
 
 See [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md).
 
@@ -755,11 +753,11 @@ See [Passing a Task with the Specified Priority to an ArkTS Thread from an Async
 | napi_wrap_sendable | Wraps a native instance into an ArkTS object.|
 | napi_wrap_sendable_with_size | Wraps a native instance of the specified size into an ArkTS object.|
 | napi_unwrap_sendable | Unwraps the native instance from an ArkTS object.|
-| napi_remove_wrap_sendable | Removes the native instance from an ArkTS object.|
+| napi_remove_wrap_sendable | Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.|
 
 ### Example
 
-#### napi_is_sendable
+**napi_is_sendable**
 
 Call **napi_is_sendable** to check whether an ArkTS value is sendable.
 
@@ -790,14 +788,14 @@ export const isSendable: <T>(a: T) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.isSendable('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_is_sendable: %{public}s', JSON.stringify(value));
 ```
 
-#### napi_define_sendable_class
+**napi_define_sendable_class**
 
 Call **napi_define_sendable_class** to create a sendable class.
 
@@ -889,14 +887,14 @@ export class SendableClass {
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = new testNapi.SendableClass();
 hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s', value.str);
 ```
 
-#### napi_create_sendable_object_with_properties
+**napi_create_sendable_object_with_properties**
 
 Call **napi_create_sendable_object_with_properties** to create a sendable object with the given **napi_property_descriptor**.
 
@@ -927,14 +925,14 @@ export const getSendableObject: () => { x: true };
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableObject();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_properties: %{public}s', JSON.stringify(value));
 ```
 
-#### napi_create_sendable_array
+**napi_create_sendable_array**
 
 Call **napi_create_sendable_array** to create a sendable array.
 
@@ -960,14 +958,14 @@ export const getSendableArray: () => [];
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArray();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s', JSON.stringify(value));
 ```
 
-#### napi_create_sendable_array_with_length
+**napi_create_sendable_array_with_length**
 
 Call **napi_create_sendable_array_with_length** to create a sendable array of the specified length.
 
@@ -991,14 +989,14 @@ export const getSendableArrayWithLength: () => [];
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArrayWithLength();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: %{public}s', JSON.stringify(value.length));
 ```
 
-#### napi_create_sendable_arraybuffer
+**napi_create_sendable_arraybuffer**
 
 Call **napi_create_sendable_arraybuffer** to create a sendable **ArrayBuffer**.
 
@@ -1030,13 +1028,13 @@ export const getSendableArrayBuffer: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableArrayBuffer();
 ```
 
-#### napi_create_sendable_typedarray
+**napi_create_sendable_typedarray**
 
 Call **napi_create_sendable_typedarray** to create a sendable **TypedArray**.
 
@@ -1072,13 +1070,13 @@ export const getSendableTypedArray: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableTypedArray();
 ```
 
-#### napi_wrap_sendable
+**napi_wrap_sendable**
 
 Call **napi_wrap_sendable** to wrap a native instance into an ArkTS object.
 
@@ -1113,13 +1111,13 @@ export const wrapSendable: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendable();
 ```
 
-#### napi_wrap_sendable_with_size
+**napi_wrap_sendable_with_size**
 
 Call **napi_wrap_sendable_with_size** to wrap a native instance of the specified size into an ArkTS object.
 
@@ -1154,13 +1152,13 @@ export const wrapSendableWithSize: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendableWithSize();
 ```
 
-#### napi_unwrap_sendable
+**napi_unwrap_sendable**
 
 Call **napi_unwrap_sendable** to unwrap the native instance from an ArkTS object.
 
@@ -1199,15 +1197,15 @@ export const unwrapSendable: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.unwrapSendable();
 ```
 
-#### napi_remove_wrap_sendable
+**napi_remove_wrap_sendable**
 
-Call **napi_remove_wrap_sendable** to remove the native instance from an ArkTS object.
+Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.
 
 CPP code:
 
@@ -1244,8 +1242,8 @@ export const removeWrapSendable: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.removeWrapSendable();
 ```
@@ -1256,5 +1254,62 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
+```
+
+
+## napi_wrap Enhancement
+
+### Available APIs
+
+| API| Description|
+| -------- | -------- |
+| napi_wrap_enhance | Wraps a Node-API instance into an ArkTS object and specifies the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).|
+
+### Example
+
+**napi_wrap_enhance**
+
+Call **napi_wrap_enhance** to wrap a Node-API instance into an ArkTS object and specify the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).
+
+CPP code:
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value TestNapiWrapEnhance(napi_env env, napi_callback_info info)
+{
+    napi_value testClass = nullptr;
+    napi_define_class(
+        env, "TestClass", NAPI_AUTO_LENGTH,
+        [](napi_env env, napi_callback_info info) -> napi_value {
+            napi_value thisVar = nullptr;
+            napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+            return thisVar;
+        },
+        nullptr, 0, nullptr, &testClass);
+
+    napi_value obj = nullptr;
+    napi_new_instance(env, testClass, 0, nullptr, &obj);
+    const char* testStr = "test";
+    napi_ref wrappedRef = nullptr;
+    napi_wrap_enhance(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, false, nullptr, sizeof(testStr), &wrappedRef);
+    return nullptr;
+}
+```
+
+API declaration:
+
+```ts
+// index.d.ts
+export const testNapiWrapEnhance: () => void;
+```
+
+ArkTS code:
+
+```ts
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+
+testNapi.testNapiWrapEnhance();
 ```
