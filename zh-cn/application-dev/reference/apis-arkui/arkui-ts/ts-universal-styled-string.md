@@ -95,7 +95,7 @@ equals(other: StyledString): boolean
 
 subStyledString(start: number, length?: number): StyledString
 
-获取属性字符串的子字符串。
+获取属性字符串的子字符串。不能超出属性字符串的长度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -126,7 +126,7 @@ subStyledString(start: number, length?: number): StyledString
 
 getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<SpanStyle>
 
-获取指定范围属性字符串的样式集合。
+获取指定范围属性字符串的样式集合。不能超出属性字符串的长度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
