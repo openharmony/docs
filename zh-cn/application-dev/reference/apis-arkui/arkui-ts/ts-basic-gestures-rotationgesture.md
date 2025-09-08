@@ -45,7 +45,7 @@ RotationGesture(options?: RotationGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [RotationGestureHandlerOptions](./ts-uigestureevent.md#rotationgesturehandleroptions) | 否 |旋转手势处理器配置参数。 |
+| options | [RotationGestureHandlerOptions](./ts-gesturehandler.md#rotationgesturehandleroptions) | 否 |旋转手势处理器配置参数。 |
 
 
 ## 事件

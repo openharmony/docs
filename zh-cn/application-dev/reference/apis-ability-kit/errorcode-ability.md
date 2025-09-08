@@ -839,6 +839,24 @@ Failed to obtain the target application information.
 3. 检查目标应用是否创建了该索引对应的分身应用。
 <!--DelEnd-->
 
+## 16000083 不允许该类型ExtensionAbility启动指定Ability
+
+**错误信息**
+
+The ExtensionAbility cannot start the ability due to system control.
+
+**错误描述**
+
+不同类型ExtensionAbility所需要的能力不同。系统不允许该类型ExtensionAbility启动指定Ability。
+
+**可能原因**
+
+当前类型ExtensionAbility受系统管控，不允许该类型ExtensionAbility启动指定Ability。
+
+**处理步骤**
+
+查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
+
 ## 16000084 只允许DelegatorAbility单次调用
 
 **错误信息**

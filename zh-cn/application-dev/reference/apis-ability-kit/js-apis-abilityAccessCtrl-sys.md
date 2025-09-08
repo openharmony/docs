@@ -75,7 +75,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionFlags: number = 1;
 atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-  console.log('grantUserGrantedPermission success');
+  console.info('grantUserGrantedPermission success');
 }).catch((err: BusinessError) => {
   console.error(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
 });
@@ -130,7 +130,7 @@ atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', perm
   if (err) {
     console.error(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
   } else {
-    console.log('grantUserGrantedPermission success');
+    console.info('grantUserGrantedPermission success');
   }
 });
 ```
@@ -186,7 +186,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionFlags: number = 1;
 atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-  console.log('revokeUserGrantedPermission success');
+  console.info('revokeUserGrantedPermission success');
 }).catch((err: BusinessError) => {
   console.error(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
 });
@@ -241,7 +241,7 @@ atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', per
   if (err) {
     console.error(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
   } else {
-    console.log('revokeUserGrantedPermission success');
+    console.info('revokeUserGrantedPermission success');
   }
 });
 ```
@@ -295,7 +295,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
-  console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
+  console.info(`getPermissionFlags success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
 });
@@ -440,7 +440,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let promise = atManager.getVersion();
 promise.then((data: number) => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
+    console.info(`promise: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -491,7 +491,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: Array<abilityAccessCtrl.PermissionStatus>) => {
-  console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
+  console.info(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
 });
@@ -651,7 +651,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，普通应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.requestPermissionOnApplicationSetting(tokenID).then(() => {
-  console.log('requestPermissionOnApplicationSetting success');
+  console.info('requestPermissionOnApplicationSetting success');
 }).catch((err: BusinessError) => {
   console.error(`requestPermissionOnApplicationSetting fail, err->${JSON.stringify(err)}`);
 });
