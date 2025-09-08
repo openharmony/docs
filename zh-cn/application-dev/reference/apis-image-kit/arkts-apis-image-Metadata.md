@@ -55,7 +55,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function GetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -112,7 +112,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function SetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -158,7 +158,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function GetAllProperties(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -202,7 +202,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Clone(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }

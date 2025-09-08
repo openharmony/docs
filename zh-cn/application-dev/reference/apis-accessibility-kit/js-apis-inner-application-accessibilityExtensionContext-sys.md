@@ -1081,7 +1081,7 @@ findElementByContent(condition: string): Promise\<Array\<AccessibilityElement>>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -1141,7 +1141,7 @@ findElementByFocusDirection(condition: FocusDirection): Promise\<AccessibilityEl
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -1204,7 +1204,7 @@ findElementsByAccessibilityHintText(condition: string): Promise\<Array\<Accessib
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -1269,7 +1269,7 @@ findElementById(condition: number): Promise\<AccessibilityElement>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |

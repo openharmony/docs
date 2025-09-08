@@ -1,4 +1,10 @@
 # @ohos.telephony.observer (observer)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @Fanyl8-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块提供订阅管理功能，可以订阅/取消订阅的事件包括：网络状态变化、信号状态变化、通话状态变化、蜂窝数据链路连接状态、蜂窝数据业务的上下行数据流状态、SIM状态变化。
 
@@ -738,6 +744,10 @@ observer.off('cellularDataFlowChange');
 on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
 订阅sim状态更改事件，使用callback方式作为异步方法。
+
+>**说明：**
+>
+> 此接口不包含sim卡的激活状态，具体请参见[sim.isSimActive](js-apis-sim.md#simissimactive7)接口。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 

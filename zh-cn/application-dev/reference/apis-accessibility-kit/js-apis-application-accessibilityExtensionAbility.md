@@ -19,6 +19,10 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能�
 import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 ```
 
+## AccessibilityExtensionAbility
+
+AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力。
+
 ### 属性
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -37,7 +41,7 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 | 名称      | 类型              | 只读             | 可选                      | 说明                       |
 | --------- |----------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 否   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。 |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 否   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；<br />TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。 |
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 否  | 是    | 发生事件的目标组件。  |
 | timeStamp | number              | 否        | 是         | 事件时间戳，单位是毫秒。默认值为0。                          |
 | elementId<sup>12+</sup> | number            | 否             | 是             | 主动聚焦的组件ID。默认值为0。                 |
@@ -47,9 +51,15 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 ## AccessibilityElement<sup>10+</sup>
 
+type AccessibilityElement = _AccessibilityElement
+
 表示无障碍节点元素，请参考[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _AccessibilityElement  | 表示无障碍节点元素，请参考[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)。 |
 
 **示例：**
 
@@ -61,9 +71,15 @@ let accessibilityElement: AccessibilityElement;
 
 ## ElementAttributeValues<sup>10+</sup>
 
+type ElementAttributeValues = _ElementAttributeValues
+
 表示节点元素具备的属性名称及属性值类型信息，请参考[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _ElementAttributeValues | 表示节点元素具备的属性名称及属性值类型信息，请参考[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)。 |
 
 **示例：**
 
@@ -75,9 +91,15 @@ let elementAttributeValues: ElementAttributeValues;
 
 ## FocusDirection<sup>10+</sup>
 
+type FocusDirection = _FocusDirection
+
 表示查询下一焦点元素的方向，请参考[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _FocusDirection | 表示查询下一焦点元素的方向，请参考[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)。 |
 
 **示例：**
 
@@ -106,9 +128,15 @@ let elementAttributeKeys: ElementAttributeKeys;
 
 ## FocusType<sup>10+</sup>
 
+type FocusType = _FocusType
+
 表示查询焦点元素的类型，请参考[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _FocusType | 表示查询焦点元素的类型，请参考[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)。 |
 
 **示例：**
 
@@ -120,9 +148,15 @@ let focusType: FocusType;
 
 ## WindowType <sup>10+</sup>
 
+type WindowType = _WindowType
+
 表示窗口的类型，请参考[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _WindowType | 表示窗口的类型，请参考[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)。 |
 
 **示例：**
 
@@ -134,9 +168,15 @@ let windowType: WindowType;
 
 ## Rect<sup>10+</sup>
 
+type Rect = _Rect
+
 表示矩形区域，请参考[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _Rect | 表示矩形区域，请参考[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)。 |
 
 **示例：**
 
@@ -146,7 +186,33 @@ import { Rect } from '@kit.AccessibilityKit';
 let rect: Rect;
 ```
 
+## AccessibilityExtensionContext<sup>10+</sup>
+
+type AccessibilityExtensionContext = _AccessibilityExtensionContext.default
+
+表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _AccessibilityExtensionContext.default | 表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)。 |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+
+class EntryAbility extends AccessibilityExtensionAbility {
+  onConnect(): void {
+    let axContext = this.context; 
+  } 
+}
+```
+
 ## GestureType
+
+type GestureType = 'left' | 'leftThenRight' | 'leftThenUp' | 'leftThenDown' | 'right' | 'rightThenLeft' | 'rightThenUp' | 'rightThenDown' | 'up' | 'upThenLeft' | 'upThenRight' | 'upThenDown' | 'down' | 'downThenLeft' | 'downThenRight' | 'downThenUp' | 'twoFingerSingleTap' | 'twoFingerDoubleTap' | 'twoFingerDoubleTapAndHold' | 'twoFingerTripleTap' | 'twoFingerTripleTapAndHold' | 'threeFingerSingleTap' | 'threeFingerDoubleTap' | 'threeFingerDoubleTapAndHold' | 'threeFingerTripleTap' | 'threeFingerTripleTapAndHold' | 'fourFingerSingleTap' | 'fourFingerDoubleTap' | 'fourFingerDoubleTapAndHold' | 'fourFingerTripleTap' | 'fourFingerTripleTapAndHold' | 'threeFingerSwipeUp' | 'threeFingerSwipeDown' | 'threeFingerSwipeLeft' | 'threeFingerSwipeRight' | 'fourFingerSwipeUp' | 'fourFingerSwipeDown' | 'fourFingerSwipeLeft' | 'fourFingerSwipeRight'
 
 手势事件类型。
 
@@ -209,7 +275,7 @@ type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
 
 ## TouchGuideType
 
-TouchGuideType = 'touchBegin' | 'touchEnd'
+type TouchGuideType = 'touchBegin' | 'touchEnd'
 
 触摸浏览事件类型。
 
@@ -318,6 +384,11 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 | 参数名      | 类型                                               | 必填   | 说明                      |
 | -------- |--------------------------------------------------| ---- | ----------------------- |
 | keyEvent | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。|
+
+**返回值：**
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示此事件被消费，不会继续传递。<br>返回false表示些事件未被消费，会继续传递。|
 
 **示例：**
 

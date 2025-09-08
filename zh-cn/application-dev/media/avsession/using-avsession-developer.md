@@ -57,6 +57,7 @@
           Column() {
               Text(this.message)
               .onClick(async () => {
+                try {
                   // 开始创建并激活媒体会话。
                   // 创建session。
                   let context = this.getUIContext().getHostContext() as Context;
@@ -64,6 +65,11 @@
                   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
                   await session.activate();
                   console.info(`session create done : sessionId : ${session.sessionId}`);
+                } catch (err) {
+                  if (err) {
+                    console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+                  }
+                }
               })
           }
           .width('100%')
@@ -349,7 +355,7 @@
               });
               session.on('setSpeed', (speed) => {
                 console.info(`on setSpeed , the speed is ${speed}`);
-                // 实现具体功能
+                // 实现具体功能。
               });
               session.on('setLoopMode', (mode) => {
                 console.info(`on setLoopMode , the loop mode is ${mode}`);
@@ -390,28 +396,34 @@
         Column() {
           Text(this.message)
             .onClick(async () => {
-              let context = this.getUIContext().getHostContext() as Context;
-              // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-              let type: AVSessionManager.AVSessionType = 'audio';
-              let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-              // 一般在监听器中会对播放器做相应逻辑处理。
-              // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
-              session.on('skipToQueueItem', (itemId) => {
-                console.info(`on skipToQueueItem , do skip task`);
-                // 实现具体功能
-              });
-              session.on('handleKeyEvent', (event) => {
-                console.info(`on handleKeyEvent , the event is ${JSON.stringify(event)}`);
-                // 实现具体功能
-              });
-              session.on('outputDeviceChange', (device) => {
-                console.info(`on outputDeviceChange , the device info is ${JSON.stringify(device)}`);
-                // 实现具体功能
-              });
-              session.on('commonCommand', (commandString, args) => {
-                console.info(`on commonCommand , command is ${commandString}, args are ${JSON.stringify(args)}`);
-                // 实现具体功能
-              });
+              try {
+                let context = this.getUIContext().getHostContext() as Context;
+                // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+                let type: AVSessionManager.AVSessionType = 'audio';
+                let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                // 一般在监听器中会对播放器做相应逻辑处理。
+                // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
+                session.on('skipToQueueItem', (itemId) => {
+                  console.info(`on skipToQueueItem , do skip task`);
+                  // 实现具体功能。
+                });
+                session.on('handleKeyEvent', (event) => {
+                  console.info(`on handleKeyEvent , the event is ${JSON.stringify(event)}`);
+                  // 实现具体功能。
+                });
+                session.on('outputDeviceChange', (device) => {
+                  console.info(`on outputDeviceChange , the device info is ${JSON.stringify(device)}`);
+                  // 实现具体功能。
+                });
+                session.on('commonCommand', (commandString, args) => {
+                  console.info(`on commonCommand , command is ${commandString}, args are ${JSON.stringify(args)}`);
+                  // 实现具体功能。
+                });
+              } catch (err) {
+                if (err) {
+                  console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+                }
+              }
             })
         }
         .width('100%')
@@ -434,23 +446,29 @@
           Column() {
             Text(this.message)
               .onClick(async () => {
-                let context = this.getUIContext().getHostContext() as Context;
-                // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-                let type: AVSessionManager.AVSessionType = 'audio';
-                let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-      
-                // 通过已有session获取一个controller对象。
-                let controller = await session.getController();
-      
-                // controller可以与原session对象进行基本的通信交互，比如下发播放命令。
-                let avCommand: AVSessionManager.AVControlCommand = { command: 'play' };
-                controller.sendControlCommand(avCommand);
-      
-                // 或者做状态变更监听。
-                controller.on('playbackStateChange', 'all', (state) => {
-      
-                  // do some things.
-                });
+                try {
+                  let context = this.getUIContext().getHostContext() as Context;
+                  // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+                  let type: AVSessionManager.AVSessionType = 'audio';
+                  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+        
+                  // 通过已有session获取一个controller对象。
+                  let controller = await session.getController();
+        
+                  // controller可以与原session对象进行基本的通信交互，比如下发播放命令。
+                  let avCommand: AVSessionManager.AVControlCommand = { command: 'play' };
+                  controller.sendControlCommand(avCommand);
+                  
+                  // 或者做状态变更监听。
+                  controller.on('playbackStateChange', 'all', (state) => {
+        
+                    // do some things.
+                  });
+                } catch (err) {
+                  if (err) {
+                    console.error(`AVSession create or getController Error: ${JSON.stringify(err)}`);
+                  }
+                }
               })
           }
           .width('100%')

@@ -21,7 +21,7 @@
 
 PinchGesture(value?: { fingers?: number; distance?: number })
 
-继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置捏合手势事件。
+继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)，设置捏合手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -47,7 +47,7 @@ PinchGesture(options?: PinchGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [PinchGestureHandlerOptions](./ts-uigestureevent.md#pinchgesturehandleroptions) | 否 | 捏合手势处理器配置参数。 |
+| options | [PinchGestureHandlerOptions](./ts-gesturehandler.md#pinchgesturehandleroptions) | 否 | 捏合手势处理器配置参数。 |
 
 
 ## 事件

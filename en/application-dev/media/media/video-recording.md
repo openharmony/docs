@@ -1,4 +1,10 @@
 # Using AVRecorder to Record Videos (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 You can use the [AVRecorder](media-kit-intro.md#avrecorder) to develop the video recording service. The AVRecorder supports audio capture, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
@@ -43,12 +49,14 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let avRecorder: media.AVRecorder;
-   media.createAVRecorder().then((recorder: media.AVRecorder) => {
-     avRecorder = recorder;
-   }, (error: BusinessError) => {
-     console.error('createAVRecorder failed');
-   })
+   private avRecorder: media.AVRecorder | undefined = undefined;
+
+   try {
+     this.avRecorder = await media.createAVRecorder();
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to create avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 2. Set the events to listen for.
@@ -62,13 +70,13 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    import { BusinessError } from '@kit.BasicServicesKit';
 
    // Callback function for state changes.
-   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-     console.info('current state is: ' + state);
-   })
+   this.avRecorder?.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+     console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
+   });
    // Callback function for errors.
-   this.avRecorder.on('error', (err: BusinessError) => {
-     console.error('error happened, error message is ' + err);
-   })
+   this.avRecorder?.on('error', (error: BusinessError) => {
+     console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
+   });
    ```
 
 3. Set video recording parameters and call **prepare()**. The AVRecorder enters the **prepared** state.
@@ -79,7 +87,8 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    >
    > - Before parameter configuration, ensure that you have gained the required permissions. For details, see [Requesting Permissions](#requesting-permissions).
    >
-   > - In pure video recording scenarios, set only video-related parameters in **avConfig** of **prepare()**. If audio-related parameters are configured, the system regards it as audio and video recording.
+   > - In pure video recording scenarios, set only video-related parameters in **avConfig** of **prepare()**.
+   >   If audio-related parameters are configured, the system regards it as audio and video recording.
    >
    > - The [recording specifications](media-kit-intro.md#supported-formats) in use must be those supported. The video bit rate, resolution, and frame rate are subject to the ranges supported by the hardware device.
    >
@@ -96,7 +105,7 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
      videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
      videoFrameWidth: 640, // Video frame width.
      videoFrameHeight: 480, // Video frame height.
-     videoFrameRate: 30 // Video frame rate.
+     videoFrameRate: 30 // Video frame rate
    };
 
    let videoMetaData: media.AVMetadata = {
@@ -106,19 +115,22 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    const context: Context = this.getUIContext().getHostContext()!; // Refer to Accessing Application Files.
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-   let fileFd = videoFile.fd; // Obtain the file FD.
+   let fileFd: number = videoFile.fd; // Obtain the file FD.
   
    let avConfig: media.AVRecorderConfig = {
      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
-     profile : avProfile,
+     profile: avProfile,
      url: 'fd://' + fileFd.toString(), // Create, read, and write a video file by referring to the sample code in Accessing Application Files.
-     metadata : videoMetaData
+     metadata: videoMetaData
    };
-   this.avRecorder.prepare(avConfig).then(() => {
-     console.info('avRecorder prepare success');
-   }, (error: BusinessError) => {
-     console.error('avRecorder prepare failed');
-   })
+
+   try {
+     await this.avRecorder?.prepare(avConfig);
+     console.info('Succeeded in preparing avRecorder');
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to prepare avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 4. Obtain the surface ID required for video recording.
@@ -130,11 +142,11 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   this.avRecorder.getInputSurface().then((surfaceId: string) => {
-     console.info('avRecorder getInputSurface success');
+   this.avRecorder?.getInputSurface().then((surfaceId: string) => {
+     console.info('Succeeded in getting input surface');
    }, (error: BusinessError) => {
-     console.error('avRecorder getInputSurface failed');
-   })
+     console.error(`Failed to get input surface, error code: ${error.code}, message: ${error.message}`);
+   });
    ```
 
 5. Initialize the video data input source.
@@ -156,166 +168,193 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
 11. Call **release()** to release the resources. The AVRecorder enters the **released** state. In addition, release the video data input source resources (camera resources in this example).
 
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
 
 ```ts
+import { common } from '@kit.AbilityKit';
+import { camera } from '@kit.CameraKit';
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-
-const TAG = 'VideoRecorderDemo:';
-export class VideoRecorderDemo extends CustomComponent {
-  private context: Context;
-  constructor() {
-    super();
-    this.context = this.getUIContext().getHostContext()!;
+async function videoRecording(context: common.Context): Promise<void> {
+  // Create an AVRecorder instance.
+  let avRecorder: media.AVRecorder | undefined = undefined;
+  try {
+    avRecorder = await media.createAVRecorder();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to create avRecorder, error code: ${err.code}, message: ${err.message}`);
+    return;
   }
-  private avRecorder: media.AVRecorder | undefined = undefined;
-  private videoOutSurfaceId: string = "";
-  private avProfile: media.AVRecorderProfile = {
+  
+  // Set AVRecorder callback functions.
+  try {
+    // Callback for state changes.
+    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+      console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
+    });
+    // Callback function for errors.
+    avRecorder.on('error', (error: BusinessError) => {
+      console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
+    });
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to set avRecorder callback, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // Set recording parameters to complete the preparations.
+  let avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
     videoBitrate: 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
-    videoFrameRate: 30 // Video frame rate.
+    videoFrameRate: 30 // Video frame rate
   };
-  private videoMetaData: media.AVMetadata = {
+  let videoMetaData: media.AVMetadata = {
     videoOrientation: '0' // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
   };
-  private avConfig: media.AVRecorderConfig = {
+  let avConfig: media.AVRecorderConfig = {
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
-    profile : this.avProfile,
+    profile: avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Accessing Application Files.
-    metadata : this.videoMetaData
+    metadata: videoMetaData
   };
-  
-  private uriPath: string = ''; // File URI, which can be used by the security component to save the media asset.
-  private filePath: string = ''; // File path.
-  private fileFd: number = 0;
-  
+
   // Create a file and set avConfig.url.
-  async createAndSetFd() {
-    const path: string = this.context.filesDir + '/example.mp4'; // File sandbox path. The file name extension must match the container format.
-    const videoFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    this.avConfig.url = 'fd://' + videoFile.fd; // Set the URL.
-    this.fileFd = videoFile.fd; // File FD.
-    this.filePath = path;
+  let filePath: string = ''; // File path.
+  let videoFile: fs.File | undefined = undefined;
+  try {
+    filePath = context.filesDir + '/example.mp4'; // File sandbox path. The file name extension must match the container format.
+    videoFile = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // Open the file.
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to open file, error code: ${err.code}, message: ${err.message}`);
+  }
+  if (videoFile !== undefined) {
+    avConfig.url = 'fd://' + videoFile.fd; // Update the URL.
   }
 
-  // Set AVRecorder callback functions.
-  setAvRecorderCallback() {
-    if (this.avRecorder != undefined) {
-      // Callback for state changes.
-      this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-        console.info(TAG + 'current state is: ' + state);
-      })
-      // Callback function for errors.
-      this.avRecorder.on('error', (err: BusinessError) => {
-        console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
-      })
+  // Set recording parameters to complete the preparations.
+  try {
+    if (avRecorder.state === 'idle' || avRecorder.state === 'stopped') { // prepare() can be called only when the AVRecorder is in the idle or stopped state.
+      await avRecorder.prepare(avConfig);
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to prepare avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
   // Complete camera-related preparations.
-  async prepareCamera() {
-    // For details on the implementation, see the camera document.
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let videoOutSurfaceId: string = await avRecorder.getInputSurface();
+  await prepareCamera(cameraManager, videoOutSurfaceId);
+
+  // Start recording.
+  try {
+    if (avRecorder.state === 'prepared') { // start() can be called only when the AVRecorder is in the prepared state .
+      await startCameraOutput(); // Start camera stream output.
+      await avRecorder.start();
+    }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to start avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // Start the camera stream output.
-  async startCameraOutput() {
-    // Call start of the VideoOutput class to start video output.
+  // Pause recording.
+  try {
+    if (avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
+      await avRecorder.pause();
+      await stopCameraOutput(); // Stop the camera stream output.
+    }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to pause avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // Stop the camera stream output.
-  async stopCameraOutput() {
-    // Call stop of the VideoOutput class to stop video output.
+  // Resume recording.
+  try {
+    if (avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
+      await startCameraOutput(); // Start camera stream output.
+      await avRecorder.resume();
+    }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to resume avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // Stop recording.
+  try {
+    if (avRecorder.state === 'started' || avRecorder.state === 'paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+      await avRecorder.stop();
+      await stopCameraOutput(); // Stop the camera stream output.
+    }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to stop avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+  
+  // Reset recording.
+  try {
+    await avRecorder.reset();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to reset avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // Release the AVRecorder instance.
+  try {
+    await avRecorder.release();
+    avRecorder = undefined;
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to release avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // Close the file descriptor of the recording file.
+  try {
+    if (videoFile !== undefined) {
+      await fs.close(videoFile.fd);
+    }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to close fd, error code: ${err.code}, message: ${err.message}`);
   }
 
   // Release the camera instance.
-  async releaseCamera() {
-    // Release the instances created during camera preparation.
-  }
-
-  // Process of starting recording.
-  async startRecordingProcess() {
-    if (this.avRecorder === undefined) {
-      // 1. Create an AVRecorder instance.
-      this.avRecorder = await media.createAVRecorder();
-      this.setAvRecorderCallback();
-    }
-    // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
-    // 3. Set recording parameters to complete the preparations.
-    await this.avRecorder.prepare(this.avConfig);
-    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
-    // 4. Complete camera-related preparations.
-    await this.prepareCamera();
-    // 5. Start the camera stream output.
-    await this.startCameraOutput();
-    // 6. Start recording.
-    await this.avRecorder.start();
-
-  }
-
-  // Process of pausing recording.
-  async pauseRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
-      await this.avRecorder.pause();
-      await this.stopCameraOutput(); // Stop the camera stream output.
-    }
-  }
-
-  // Process of resuming recording.
-  async resumeRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
-      await this.startCameraOutput(); // Start camera stream output.
-      await this.avRecorder.resume();
-    }
-  }
-
-  async stopRecordingProcess() {
-    if (this.avRecorder != undefined) {
-      // 1. Stop recording.
-      if (this.avRecorder.state === 'started'
-        || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
-        await this.avRecorder.stop();
-        await this.stopCameraOutput();
-      }
-      // 2. Reset the AVRecorder.
-      await this.avRecorder.reset();
-      // 3. Release the AVRecorder instance.
-      await this.avRecorder.release();
-      // 4. After the file is recorded, close the file descriptor. The implementation is omitted here.
-      await fs.close(this.fileFd);
-      // 5. Release the camera instance.
-      await this.releaseCamera();
-    }
-  }
+  await releaseCamera();
   
   // The security component saves the media asset to Gallery.
-  async saveRecorderAsset() {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
-    // Ensure that the asset specified by uriPath exists.
-    this.uriPath = fileUri.getUriFromPath(this.filePath); // Obtain the file URI, which is used by the security component when saving the file to Gallery.
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
-      photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
-    await phAccessHelper.applyChanges(assetChangeRequest);
-  }
+  let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  // Ensure that the asset specified by uriPath exists.
+  let uriPath: string = fileUri.getUriFromPath(filePath); // Obtain the file URI, which is used by the security component when saving the file to Gallery.
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
+    photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(context, uriPath);
+  await phAccessHelper.applyChanges(assetChangeRequest);
+}
 
-  // Complete sample code for starting, pausing, resuming, and stopping recording.
-  async videoRecorderDemo() {
-    await this.startRecordingProcess();         // Start recording.
-    // You can set the recording duration. For example, you can set the sleep mode to prevent code execution.
-    await this.pauseRecordingProcess();         // Pause recording.
-    await this.resumeRecordingProcess();        // Resume recording.
-    await this.stopRecordingProcess();          // Stop recording.
-    // The security component saves the media asset to Gallery.
-    await this.saveRecorderAsset();
-  }
+// Complete camera-related preparations.
+async function prepareCamera(cameraManager: camera.CameraManager, videoOutSurfaceId: string) {
+  // For details on the implementation, see the camera document.
+}
+
+// Start the camera stream output.
+async function startCameraOutput() {
+  // Call start of the VideoOutput class to start video output.
+}
+
+// Stop the camera stream output.
+async function stopCameraOutput() {
+  // Call stop of the VideoOutput class to stop video output.
+}
+
+// Release the camera instance.
+async function releaseCamera() {
+  // Release the instances created during camera preparation.
 }
 ```

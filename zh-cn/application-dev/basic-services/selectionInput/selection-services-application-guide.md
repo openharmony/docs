@@ -1,5 +1,12 @@
 # 实现一个划词应用（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: SelectionInput-->
+<!--Owner: @no86-->
+<!--Designer: @mmwwbb-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @fang-jinxu-->
+
 ## 接口说明
 
 请参考[selectionInput.SelectionManager](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionManager-sys.md)文档获取接口详情。
@@ -34,7 +41,9 @@
 
 2. 继承[SelectionExtensionAbility](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)，实现扩展生命周期函数。
     ```ts
-    import { selectionManager, PanelInfo, PanelType, SelectionExtensionAbility } from '@kit.BasicServicesKit';
+    import { selectionManager, PanelInfo, PanelType, SelectionExtensionAbility, BusinessError } from '@kit.BasicServicesKit';
+    import { Want } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
 
     class SelectionAbilityStub extends rpc.RemoteObject {
       constructor(des) {
@@ -59,13 +68,16 @@
       panel_: selectionManager.Panel = undefined;
 
       onConnect(want: Want): rpc.RemoteObject {
+        // 当SelectionExtensionAbility实例完成创建时，系统会触发该回调。开发者可在该回调中执行初始化逻辑（如定义变量、加载资源、监听划词事件等）。
         return new SelectionAbilityStub('remote');
       }
 
       onDisconnect(): void {
+        // 当SelectionExtensionAbility实例被销毁（例如用户关闭划词开关或切换划词应用）时，系统触发该回调。开发者可以在该生命周期中执行资源清理、数据保存等相关操作。
       }
     }
     ```
+    上述代码中，划词扩展被拉起时会触发[onConnect](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md#onconnect)回调，可以在该回调中监听划词事件，完成划词窗口的创建、窗口内容设定、窗口的移动、窗口的显示和隐藏等操作；当划词扩展退出时会触发[onDisconnect](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md#ondisconnect)回调，可以在该回调中完成窗口销毁的操作。部分操作可参见下面3、4、5步。
 
 3. 在划词扩展被拉起时，使用划词Ability接口监听划词事件。
     ```ts

@@ -930,7 +930,7 @@ isSupportEffectSync(effectId: string): boolean
 
 ## vibrator.getEffectInfoSync<sup>19+</sup>
 
-getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
+getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo
 
 通过设备ID和可控马达ID获取预置振动效果信息，用于判断该预置振动效果是否受支持。
 
@@ -1214,8 +1214,8 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| time     | number                                | 是   | 长期振动的起始时间。单位ms，取值范围(0,1800000)区间内所有整数。 |
-| duration | number                                | 是   | 长期振动的持续时间。单位ms，取值范围(0,5000]区间内所有整数。 |
+| time     | number                                | 是   | 长振事件的起始时间。单位ms，取值范围[0,1800000]区间内所有整数。 |
+| duration | number                                | 是   | 长振事件的持续时间。单位ms，取值范围(0,5000]区间内所有整数。 |
 | options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。                                     |
 
 **返回值**：
@@ -1280,7 +1280,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 | 参数名  | 类型                                | 必填 | 说明                                                         |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| time    | number                              | 是   | 长期振动的起始时间。单位ms，取值范围(0,1800000)区间内所有整数。 |
+| time    | number                              | 是   | 短振事件的起始时间。单位ms，取值范围[0,1800000]区间内所有整数。 |
 | options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。                                     |
 
 **返回值**：

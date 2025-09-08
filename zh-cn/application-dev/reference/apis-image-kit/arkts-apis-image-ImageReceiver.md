@@ -233,7 +233,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 ```ts
 async function On(receiver : image.ImageReceiver) {
   receiver.on('imageArrival', () => {
-    // image arrival, do something.
+    // 接收到图片，实现回调函数逻辑。
   });
 }
 ```
@@ -258,7 +258,7 @@ off(type: 'imageArrival', callback?: AsyncCallback\<void>): void
 ```ts
 async function Off(receiver : image.ImageReceiver) {
   let callbackFunc = ()=>{
-      // do something.
+      // 实现回调函数逻辑。
   };
   receiver.on('imageArrival', callbackFunc);
   receiver.off('imageArrival', callbackFunc);

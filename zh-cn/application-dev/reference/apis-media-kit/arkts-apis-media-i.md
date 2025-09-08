@@ -152,7 +152,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>- AMR_NB编码支持采样率范围[8000]。<br>- AMR_WB编码支持采样率范围[16000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR、AAC封装格式，当前AAC音频封装默认为ADTS帧头格式。不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
-| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
+| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC和VIDEO_HEVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，推荐范围[1 - 60]。             |
@@ -190,16 +190,16 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 系统能力：SystemCapability.Multimedia.Media.AVRecorder
 
-| 名称       | 类型                             | 可读 | 可写 | 说明                                                         |
+| 名称       | 类型                             | 只读 | 可选 | 说明                                                         |
 | ---------- | -------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| mimeType   | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8) | 是   | 否   | 编码器MIME类型名称。                                           |
-| type       | string                           | 是   | 否   | 编码器类型，audio表示音频编码器，video表示视频编码器。         |
-| bitRate    | [Range](#range11)                | 是   | 否   | 比特率，包含该编码器的最大和最小值。                           |
-| frameRate  | [Range](#range11)                | 是   | 否   | 视频帧率，包含帧率的最大和最小值，仅视频编码器拥有。          |
-| width      | [Range](#range11)                | 是   | 否   | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有。       |
-| height     | [Range](#range11)                | 是   | 否   | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有。       |
-| channels   | [Range](#range11)                | 是   | 否   | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有。   |
-| sampleRate | Array\<number>                    | 是   | 否   | 音频采样率，包含所有可以使用的音频采样率值数组，具体数值依赖编码器类型，仅音频编码器拥有。 |
+| mimeType   | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8) | 否   | 否   | 编码器MIME类型名称。                                           |
+| type       | string                           | 否   | 否   | 编码器类型，audio表示音频编码器，video表示视频编码器。         |
+| bitRate    | [Range](#range11)                | 否   | 是   | 比特率，包含该编码器的最大和最小值。                           |
+| frameRate  | [Range](#range11)                | 否   | 是   | 视频帧率，包含帧率的最大和最小值，仅视频编码器拥有。          |
+| width      | [Range](#range11)                | 否   | 是   | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有。       |
+| height     | [Range](#range11)                | 否   | 是   | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有。       |
+| channels   | [Range](#range11)                | 否   | 是   | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有。   |
+| sampleRate | Array\<number>                    | 否   | 是   | 音频采样率，包含所有可以使用的音频采样率值数组，具体数值依赖编码器类型，仅音频编码器拥有。 |
 
 ## Range<sup>11+</sup>
 
@@ -207,10 +207,10 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 系统能力：SystemCapability.Multimedia.Media.AVRecorder
 
-| 名称 | 类型   | 可读 | 可写 | 说明         |
+| 名称 | 类型   | 只读 | 可选 | 说明         |
 | ---- | ------ | ---- | ---- | ------------ |
-| min  | number | 是   | 否   | 范围的最小值。 |
-| max  | number | 是   | 否   | 范围的最大值。 |
+| min  | number | 否   | 否   | 范围的最小值。 |
+| max  | number | 否   | 否   | 范围的最大值。 |
 
 ## AVTranscoderConfig<sup>12+</sup>
 
@@ -283,10 +283,10 @@ AVMetadata.tracks支持的[MediaDescriptionKey](arkts-apis-media-e.md#mediadescr
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-| 名称   | 类型   | 可读 | 可写 | 说明                                                                            |
+| 名称   | 类型   | 只读 | 可选 | 说明                                                                            |
 |--------|--------|------|------|---------------------------------------------------------------------------------|
-| width  | number | 是   | 是   | 输出的缩略图宽度。应保证大于0且不大于原始视频宽度。否则返回的缩略图不会进行缩放。 |
-| height | number | 是   | 是   | 输出的缩略图高度。应保证大于0且不大于原始视频高度。否则返回的缩略图不会进行缩放。 |
+| width  | number | 否   | 是   | 输出的缩略图宽度。应保证大于0且不大于原始视频宽度。否则返回的缩略图不会进行缩放。 |
+| height | number | 否   | 是   | 输出的缩略图高度。应保证大于0且不大于原始视频高度。否则返回的缩略图不会进行缩放。 |
 
 ## OutputSize<sup>20+</sup>
 

@@ -3,9 +3,11 @@
 
 ## Overview
 
-The **native_cencinfo.h** file declares the native APIs used to set decryption parameters.
+The file declares the native APIs used to set decryption parameters.
 
 **Library**: libnative_media_avcencinfo.so
+
+**File to include**: <multimedia/player_framework/native_cencinfo.h>
 
 **Since**: 12
 
@@ -54,8 +56,8 @@ The **native_cencinfo.h** file declares the native APIs used to set decryption p
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVCencInfo](_multimedia___drm.md#oh_avcencinfo) \* [OH_AVCencInfo_Create](_multimedia___drm.md#oh_avcencinfo_create) () | Creates an **OH_AVCencInfo** instance for setting the CENC information.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) \* [OH_AVCencInfo_Destroy](_multimedia___drm.md#oh_avcencinfo_destroy) ([OH_AVCencInfo](_multimedia___drm.md#oh_avcencinfo) \*cencInfo) | Destroys an **OH_AVCencInfo** instance and clears internal resources.| 
+| [OH_AVCencInfo](_multimedia___drm.md#oh_avcencinfo) \* [OH_AVCencInfo_Create](_multimedia___drm.md#oh_avcencinfo_create) () | Creates an OH_AVCencInfo instance for setting the CENC information.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) \* [OH_AVCencInfo_Destroy](_multimedia___drm.md#oh_avcencinfo_destroy) ([OH_AVCencInfo](_multimedia___drm.md#oh_avcencinfo) \*cencInfo) | Destroys an OH_AVCencInfo instance and clears internal resources.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) \* [OH_AVCencInfo_SetAlgorithm](_multimedia___drm.md#oh_avcencinfo_setalgorithm) ([OH_AVCencInfo](_multimedia___drm.md#oh_avcencinfo) \*cencInfo, enum [DrmCencAlgorithm](_multimedia___drm.md#drmcencalgorithm) algo) | Sets an encryption algorithm of the CENC information.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) \* [OH_AVCencInfo_SetKeyIdAndIv](_multimedia___drm.md#oh_avcencinfo_setkeyidandiv) ([OH_AVCencInfo](_multimedia___drm.md#oh_avcencinfo) \*cencInfo, uint8_t \*keyId, uint32_t keyIdLen, uint8_t \*iv, uint32_t ivLen) | Sets the key ID and IV in the CENC information.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) \* [OH_AVCencInfo_SetSubsampleInfo](_multimedia___drm.md#oh_avcencinfo_setsubsampleinfo) ([OH_AVCencInfo](_multimedia___drm.md#oh_avcencinfo) \*cencInfo, uint32_t encryptedBlockCount, uint32_t skippedBlockCount, uint32_t firstEncryptedOffset, uint32_t subsampleCount, [DrmSubsample](_drm_subsample.md) \*subsamples) | Sets the subsample information in the CENC information.| 

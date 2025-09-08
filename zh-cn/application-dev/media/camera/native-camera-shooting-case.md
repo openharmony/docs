@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的拍照流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、拍照）的介绍请参考[相机开发指导(Native)](native-camera-device-management.md)的具体章节。
 
@@ -174,6 +174,10 @@
         int32_t ret = OH_NativeBuffer_Map(nativeBuffer, &virAddr); // 映射后通过第二个参数virAddr返回内存的首地址。
         OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Map err:%{public}d", ret);
         // 通过回调函数，将处理完的buffer传给ArkTS侧做显示或通过安全控件写文件保存，参考拍照(C/C++)开发指导。
+        if (bufferCb == nullptr) {
+            OH_LOG_INFO(LOG_APP, "Current buffercb invalid error");
+            return;
+        }
         auto cb = (void (*)(void *, size_t))(bufferCb);
         cb(virAddr, nativeBufferSize);
         // 在处理完之后，解除映射并释放缓冲区。
@@ -365,7 +369,7 @@
             if (ret == CAMERA_OK) {
                 OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetFlashMode success.");
             } else {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFlashMode failed. %{public}d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFlashMode failed. ret : %{public}d ", ret);
             }
 
             // 获取当前设备的闪光灯模式。
@@ -373,7 +377,7 @@
             if (ret == CAMERA_OK) {
                 OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFlashMode success. flashMode：%{public}d ", flashMode);
             } else {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFlashMode failed. %d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFlashMode failed. ret : %{public}d ", ret);
             }
         } else {
             OH_LOG_ERROR(LOG_APP, "isFlashModeSupported fail");
@@ -390,13 +394,13 @@
             OH_LOG_INFO(LOG_APP, "isFocusModeSupported success");
             ret = OH_CaptureSession_SetFocusMode(captureSession, focusMode);
             if (ret != CAMERA_OK) {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFocusMode failed. %{public}d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFocusMode failed. ret : %{public}d ", ret);
             }
             ret = OH_CaptureSession_GetFocusMode(captureSession, &focusMode);
             if (ret == CAMERA_OK) {
                 OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFocusMode success. focusMode%{public}d ", focusMode);
             } else {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFocusMode failed. %d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFocusMode failed. ret : %{public}d ", ret);
             }
         } else {
             OH_LOG_ERROR(LOG_APP, "isFocusModeSupported fail");
@@ -418,7 +422,7 @@
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetZoomRatio success.");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetZoomRatio failed. %{public}d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetZoomRatio failed. ret : %{public}d ", ret);
         }
 
         // 获取当前设备的变焦值。
@@ -426,7 +430,7 @@
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetZoomRatio success. zoom：%{public}f ", maxZoom);
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatio failed. %{public}d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatio failed. ret : %{public}d ", ret);
         }
 
         // 无拍照设置进行拍照。
@@ -434,7 +438,7 @@
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. ret : %{public}d ", ret);
         }
 
         // 停止当前会话。
@@ -442,7 +446,7 @@
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Stop success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed. ret : %{public}d ", ret);
         }
 
         // 释放相机输入流。
@@ -450,7 +454,7 @@
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CameraInput_Close success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Close failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Close failed. ret : %{public}d ", ret);
         }
 
         // 释放预览输出流。
@@ -458,7 +462,7 @@
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_PreviewOutput_Release success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Release failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Release failed. ret : %{public}d ", ret);
         }
 
         // 释放拍照输出流。
@@ -466,7 +470,7 @@
         if (ret == CAMERA_OK) {
           OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Release success ");
         } else {
-          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Release failed. %d ", ret);
+          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Release failed. ret : %{public}d ", ret);
         }
 
         // 释放会话。
@@ -474,7 +478,7 @@
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Release success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. ret : %{public}d ", ret);
         }
 
         // 资源释放。
