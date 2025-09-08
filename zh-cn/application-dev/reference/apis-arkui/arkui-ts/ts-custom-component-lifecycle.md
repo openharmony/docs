@@ -622,7 +622,7 @@ pageTransition?(): void
 
 onFormRecycle?(): string
 
-onFormRecycle回调函数在卡片回收时会被执行，卡片提供方可以返回需要卡片管理服务代保存的数据，在卡片恢复时再带给卡片提供方。
+onFormRecycle回调函数在卡片回收时会被执行，卡片提供方可以返回需要卡片管理服务代保存的数据，在卡片恢复时通过onFormRecover接口传给卡片提供方。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -634,7 +634,7 @@ onFormRecycle回调函数在卡片回收时会被执行，卡片提供方可以�
 
 | 类型                | 说明        |
 | ------------------- | ---------   |
-| string | 返回卡片提供方需要管理服务代保存的数据。 |
+| string | 返回卡片提供方需要卡片管理服务代保存的数据。 |
 
 ## onFormRecover<sup>11+</sup>
 
