@@ -13,7 +13,7 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参�
 本文仅介绍LocalStorage使用场景和相关的装饰器：\@LocalStorageProp和\@LocalStorageLink。
 
 
-在阅读本文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+在阅读本文档前，需要开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
 
 LocalStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发Storage对应key的增删改查，建议配合[LocalStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9)阅读。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
@@ -172,7 +172,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 **框架行为**
 
 
-1. 使用\@LocalStorageLink(key)装饰的变量更新时，会同步写回LocalStorage对应的key，还会引起所属的自定义组件的重新渲染。
+1. 使用\@LocalStorageLink(key)装饰的变量更新时，会同步写回LocalStorage对应的key，还会触发当前自定义组件的重新渲染。
 
 2. 当LocalStorage中对应key的值发生变化时，所有绑定该key的数据（包括双向\@LocalStorageLink和单向\@LocalStorageProp）都会同步更新。
 
@@ -413,13 +413,19 @@ struct Child {
   build() {
     Row() {
       Text(this.label)
-        .width(50).height(60).fontSize(12)
+        .width(50)
+        .height(60)
+        .fontSize(12)
       Text(`playCountLink ${this.playCountLink}: inc by 1`)
         .onClick(() => {
           this.playCountLink += 1;
         })
-        .width(200).height(60).fontSize(12)
-    }.width(300).height(60)
+        .width(200)
+        .height(60)
+        .fontSize(12)
+    }
+    .width(300)
+    .height(60)
   }
 }
 
@@ -432,29 +438,43 @@ struct Parent {
     Column() {
       Row() {
         Text('Parent')
-          .width(50).height(60).fontSize(12)
+          .width(50)
+          .height(60)
+          .fontSize(12)
         Text(`playCount ${this.playCount} dec by 1`)
           .onClick(() => {
             this.playCount -= 1;
           })
-          .width(250).height(60).fontSize(12)
-      }.width(300).height(60)
+          .width(250)
+          .height(60)
+          .fontSize(12)
+      }
+      .width(300)
+      .height(60)
 
       Row() {
         Text('LocalStorage')
-          .width(50).height(60).fontSize(12)
+          .width(50)
+          .height(60)
+          .fontSize(12)
         Text(`countStorage ${this.playCount} incr by 1`)
           .onClick(() => {
             storage.set<number | undefined>('countStorage', Number(storage.get<number>('countStorage')) + 1);
           })
-          .width(250).height(60).fontSize(12)
-      }.width(300).height(60)
+          .width(250)
+          .height(60)
+          .fontSize(12)
+      }
+      .width(300)
+      .height(60)
 
       Child({ label: 'ChildA' })
       Child({ label: 'ChildB' })
 
       Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
-        .width(300).height(60).fontSize(12)
+        .width(300)
+        .height(60)
+        .fontSize(12)
     }
   }
 }
@@ -908,12 +928,16 @@ struct LocalStorageLinkComponent {
   build() {
     Column() {
       Text('@LocalStorageLink接口初始化，@LocalStorageLink取值')
-      Text(`${this.LinkA}`).fontSize(20).onClick(() => {
-        this.LinkA ? this.LinkA = null : this.LinkA = 1;
-      })
-      Text(`${this.LinkB}`).fontSize(20).onClick(() => {
-        this.LinkB ? this.LinkB = undefined : this.LinkB = 1;
-      })
+      Text(`${this.LinkA}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.LinkA ? this.LinkA = null : this.LinkA = 1;
+        })
+      Text(`${this.LinkB}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.LinkB ? this.LinkB = undefined : this.LinkB = 1;
+        })
     }
     .borderWidth(3).borderColor(Color.Green)
 
@@ -928,14 +952,19 @@ struct LocalStoragePropComponent {
   build() {
     Column() {
       Text('@LocalStorageProp接口初始化，@LocalStorageProp取值')
-      Text(`${this.PropA}`).fontSize(20).onClick(() => {
-        this.PropA ? this.PropA = null : this.PropA = 1;
-      })
-      Text(`${this.PropB}`).fontSize(20).onClick(() => {
-        this.PropB ? this.PropB = undefined : this.PropB = 1;
-      })
+      Text(`${this.PropA}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.PropA ? this.PropA = null : this.PropA = 1;
+        })
+      Text(`${this.PropB}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.PropB ? this.PropB = undefined : this.PropB = 1;
+        })
     }
-    .borderWidth(3).borderColor(Color.Yellow)
+    .borderWidth(3)
+    .borderColor(Color.Yellow)
 
   }
 }
