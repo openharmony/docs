@@ -706,29 +706,11 @@ onFormRecover回调函数在卡片恢复时执行，卡片提供方可以拿到�
 @Entry
 @Component
 struct WidgetCard {
-  /*
-   * The title.
-   */
-  readonly title: string = 'Recover';
-  /*
-   * The action type.
-   */
+  readonly title: string = 'Hello World';
   readonly actionType: string = 'router';
-  /*
-   * The ability name.
-   */
   readonly abilityName: string = 'EntryAbility';
-  /*
-   * The message.
-   */
   readonly message: string = 'add detail';
-  /*
-   * The width percentage setting.
-   */
   readonly fullWidthPercent: string = '100%';
-  /*
-   * The height percentage setting.
-   */
   readonly fullHeightPercent: string = '100%';
 
   onFormRecycle(): string {
