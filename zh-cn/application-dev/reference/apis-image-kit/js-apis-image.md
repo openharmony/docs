@@ -6425,7 +6425,7 @@ const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath: string = context.filesDir + "/image_source.jpg";
-// 支持设备：Phone，PC/2in1，Tablet,TV
+// 支持设备：Phone，PC/2in1，Tablet，TV
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
