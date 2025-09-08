@@ -205,21 +205,21 @@ let arrString: string[] = ['hello', 'world'];
 ``` TypeScript
 function div(a: number, b: number): number {
   if (a <= 0 || b <= 0) {
-    throw new Error('Invalid numbers.')
+    throw new Error('Invalid numbers.');
   }
-  return a / b
+  return a / b;
 }
 
 function sum(num: number): number {
-  let sum = 0
+  let sum = 0;
   try {
     for (let t = 1; t < 100; t++) {
-      sum += div(t, num)
+      sum += div(t, num);
     }
   } catch (e) {
-    console.log(e.message)
+    console.info(e.message);
   }
-  return sum
+  return sum;
 }
 ```
 
@@ -228,19 +228,19 @@ function sum(num: number): number {
 ``` TypeScript
 function div(a: number, b: number): number {
   if (a <= 0 || b <= 0) {
-    return NaN
+    return NaN;
   }
-  return a / b
+  return a / b;
 }
 
 function sum(num: number): number {
-  let sum = 0
+  let sum = 0;
   for (let t = 1; t < 100; t++) {
-    if (t <= 0 || num <= 0) {
-      console.log('Invalid numbers.')
+    if (num <= 0) {
+      console.info('Invalid numbers.');
     }
-    sum += div(t, num)
+    sum += div(t, num);
   }
-  return sum
+  return sum;
 }
 ```
