@@ -75,7 +75,7 @@ this.myBuilderFunction()
 
 > **说明：**
 >
-> 若\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的@LocalBuilder函数，子组件传入的参数发生变化，不会引起\@LocalBuilder函数内的UI刷新。
+> 若\@LocalBuilder函数和[`$$`](./arkts-two-way-sync.md)参数一起使用，子组件调用父组件的@LocalBuilder函数，子组件传入的参数发生变化，不会引起\@LocalBuilder函数内的UI刷新。
 
 组件Parent内的\@LocalBuilder函数在build函数内调用，按键值对写法进行传值，当点击Click me时，\@LocalBuilder内的Text文本内容会随着状态变量内容的改变而改变。
 
@@ -388,8 +388,8 @@ struct ParentPage {
         .backgroundColor('#000000').margin(10)
       Button('change info1&info2')
         .onClick(() => {
-          this.info1 = { name: 'Cat', age: 18 }; // Text1不会刷新，原因是info1没被装饰器装饰，无法监听到值的改变。
-          this.info2 = { name: 'Cat', age: 18 }; // Text2会刷新，原因是info2有装饰器装饰，可以监听到值的改变。
+          this.info1 = { name: 'Cat', age: 18 }; // info1不会刷新，原因是info1没被装饰器装饰，无法监听到值的改变。
+          this.info2 = { name: 'Cat', age: 18 }; // info2会刷新，原因是info2有装饰器装饰，可以监听到值的改变。
         })
     }
   }

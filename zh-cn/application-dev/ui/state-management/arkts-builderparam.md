@@ -151,7 +151,7 @@
 
 - 当\@Require装饰器和\@BuilderParam装饰器一起使用时，必须初始化@BuilderParam装饰器。具体参见[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
 
-- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam装饰的方法不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
+- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam装饰的方法不能有参数。具体请参见[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
 ## 使用场景
 
@@ -167,7 +167,7 @@ class Tmp {
 @Builder
 function overBuilder($$: Tmp) {
   Text($$.label)
-    .width(400)
+    .width('100%')
     .height(50)
     .backgroundColor(Color.Green)
 }
@@ -485,7 +485,7 @@ struct HelloWorldPage {
 }
 ```
 **module.json5**
-这个文件一般位于应用模块的更目录下（例如 entry/src/main/module.json5）
+这个文件一般位于应用模块的更目录下，例如 entry/src/main/module.json5 。
 ```ts
 
 {
