@@ -267,8 +267,8 @@
        let records = outputData.getRecords();
        if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
          let record = records[0] as unifiedDataChannel.PlainText;
-         console.info('GetPlainText success, type:' + records[0].getType() + ', details:' +
-         JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+         console.info('GetPlainText success, type:' + records[0].getType() );
+         //注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
        } else {
          console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
        }
