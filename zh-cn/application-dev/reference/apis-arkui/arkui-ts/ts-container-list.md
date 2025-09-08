@@ -1965,7 +1965,6 @@ struct ListExample {
 
 该示例展示了在设置了[contentStartOffset](#contentstartoffset11)、[contentEndOffset](#contentendoffset11)属性的情况下，设置滚动条边距的效果。
 
-<!--code_no_check-->
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
