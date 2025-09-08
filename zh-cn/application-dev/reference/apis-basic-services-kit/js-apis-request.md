@@ -8,6 +8,8 @@
 
 request模块给应用提供上传下载文件、后台代理传输的基础功能。
 
+- request暂不支持在Extension中调用。
+
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -2694,7 +2696,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ## Timeout<sup>20+</sup>
 
-任务的超时配置。
+任务的超时配置。任务处于等待状态的时间不参与计算，上传下载任务会存在以下任务等待的原因:[WaitingReason<sup>20+</sup>](#waitingreason20)。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
