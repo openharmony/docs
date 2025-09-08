@@ -1,7 +1,13 @@
 # @ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)
 
-UIServiceExtensionAbility提供浮窗组件相关扩展能力，继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)。主要用于向三方应用提供带界面的服务。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo; @xuzhihao666-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
+UIServiceExtensionAbility提供浮窗组件相关扩展能力，继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)。主要用于向三方应用提供带界面的服务。
 
 > **说明：**
 >
@@ -44,9 +50,9 @@ onCreate(want: Want): void
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- |  -------- |
-| want |  [Want](js-apis-app-ability-want.md) | 是  | 否| 当前[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)相关的 [Want](js-apis-app-ability-want.md) 类型信息，包括Ability名称、Bundle名称等。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-app-ability-want.md) | 是 | 当前[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)相关的 [Want](js-apis-app-ability-want.md) 类型信息，包括Ability名称、Bundle名称等。 |
 
 **示例：**
 
@@ -104,10 +110,10 @@ onConnect(want: Want, proxy: UIServiceHostProxy): void
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| want |  [Want](js-apis-app-ability-want.md)| 是 | 否| 当前[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)相关的[Want](js-apis-app-ability-want.md)类型信息，包括Ability名称、Bundle名称等。 |
-| proxy | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) | 是 | 否 | 一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-app-ability-want.md)| 是 | 当前[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)相关的[Want](js-apis-app-ability-want.md)类型信息，包括Ability名称、Bundle名称等。 |
+| proxy | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) | 是 | 一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。 |
 
 
 **示例：**
@@ -135,10 +141,10 @@ onDisconnect(want: Want, proxy: UIServiceHostProxy): void
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-app-ability-want.md)| 是 | 否 | 当前[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)相关的[Want](js-apis-app-ability-want.md)类型信息，包括Ability名称、Bundle名称等。 |
-| proxy |[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)| 是 | 否 | 往发起方发送数据的Proxy。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-app-ability-want.md)| 是 | 当前[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)相关的[Want](js-apis-app-ability-want.md)类型信息，包括Ability名称、Bundle名称等。 |
+| proxy |[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)| 是 | 往发起方发送数据的Proxy。 |
 
 **示例：**
 
@@ -165,9 +171,9 @@ onWindowWillCreate(config: window.ExtensionWindowConfig): void
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| config |[window.ExtensionWindowConfig](../apis-arkui/js-apis-window-sys.md#extensionwindowconfig14)| 是 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)窗体配置信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| config |[window.ExtensionWindowConfig](../apis-arkui/js-apis-window-sys.md#extensionwindowconfig14)| 是 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)窗体配置信息。 |
 
 **示例：**
 
@@ -194,9 +200,9 @@ onWindowDidCreate(window: window.Window): void
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- |  -------- |
-| window | [window.Window](../apis-arkui/js-apis-window-sys.md#window) | 是 | 否 | 表示已创建的Window。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- |  -------- |
+| window | [window.Window](../apis-arkui/js-apis-window-sys.md#window) | 是 | 表示已创建的Window。 |
 
 **示例：**
 
@@ -223,10 +229,10 @@ onData(proxy: UIServiceHostProxy, data: Record&lt;string, Object&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- |  -------- |
-| proxy | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) | 是 | 否 | 往客户端发送数据的Proxy。 |
-| data | Record&lt;string, Object&gt; | 是 | 否 | 表示接收到的数据。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- |  -------- |
+| proxy | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) | 是 | 往客户端发送数据的Proxy。 |
+| data | Record&lt;string, Object&gt; | 是 | 表示接收到的数据。 |
 
 **示例：**
 

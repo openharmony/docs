@@ -9,7 +9,7 @@
 
 ## 概述
 
-自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架（JsUnit）、UI测试框架（UiTest）及白盒性能测试框架（PerfTest）。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。<br>PerfTest提供基于代码段的白盒性能测试能力，支持采集指定代码段执行期间或指定场景发生时的性能数据。<br>本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行方法。同时，以shell命令方式，对外提供了获取截屏、控件树、录制用户操作、便捷注入UI模拟操作等能力，助力开发者更灵活方便测试和验证。
+自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架（JsUnit）、UI测试框架（UiTest）及白盒性能测试框架（PerfTest）。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。<br>PerfTest提供基于代码段的白盒性能测试能力，支持采集指定代码段执行期间或指定场景发生时的性能数据。<br>本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行方法。同时，以shell命令方式，对外提供了获取截屏、控件树、录制界面操作、便捷注入UI模拟操作等能力，助力开发者更灵活方便测试和验证。
 
 ## 实现原理
 
@@ -521,7 +521,7 @@ export default function abilityTest() {
 
 ## 基于shell命令测试
 
-在开发过程中，若需要快速进行截屏、录屏、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
+在开发过程中，若需要快速进行截屏、录制界面操作、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
 
 > **说明：**
 >
@@ -533,7 +533,7 @@ export default function abilityTest() {
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名，只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
 | dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件，也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
-| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
+| uiRecord        | uiRecord \<record \| read>|录制界面操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
 | uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
 | start-daemon|start-daemon| 拉起uitest测试进程。 |

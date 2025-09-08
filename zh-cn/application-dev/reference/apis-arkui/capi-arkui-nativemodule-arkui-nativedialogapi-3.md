@@ -44,7 +44,7 @@ ArkUI提供的Native侧自定义弹窗接口集合。
 | [int32_t (\*setCustomShadow)(ArkUI_NativeDialogHandle handle, const ArkUI_AttributeItem* customShadow)](#setcustomshadow) | 设置自定义弹窗的背板阴影。 |
 | [int32_t (\*setBackgroundBlurStyle)(ArkUI_NativeDialogHandle handle, ArkUI_BlurStyle blurStyle)](#setbackgroundblurstyle) | 设置自定义弹窗的背板模糊材质。 |
 | [int32_t (\*setKeyboardAvoidMode)(ArkUI_NativeDialogHandle handle, ArkUI_KeyboardAvoidMode keyboardAvoidMode)](#setkeyboardavoidmode) | 设置自定义弹窗避让键盘模式。 |
-| [int32_t (\*enableHoverMode)(ArkUI_NativeDialogHandle handle, bool enableHoverMode)](#enablehovermode) | 设置自定义弹窗是否相应悬停态。 |
+| [int32_t (\*enableHoverMode)(ArkUI_NativeDialogHandle handle, bool enableHoverMode)](#enablehovermode) | 设置自定义弹窗是否响应悬停态。 |
 | [int32_t (\*setHoverModeArea)(ArkUI_NativeDialogHandle handle, ArkUI_HoverModeAreaType hoverModeAreaType)](#sethovermodearea) | 设置悬停态下自定义弹窗默认展示区域。 |
 | [int32_t (\*setFocusable)(ArkUI_NativeDialogHandle handle, bool focusable)](#setfocusable) | 设置自定义弹窗是否获取焦点。 |
 | [int32_t (\*setBackgroundBlurStyleOptions)(ArkUI_NativeDialogHandle handle, const ArkUI_AttributeItem* backgroundBlurStyleOptions)](#setbackgroundblurstyleoptions) | 设置自定义弹窗的背景模糊效果。 |
@@ -329,7 +329,7 @@ int32_t (*setWidth)(ArkUI_NativeDialogHandle handle, float width, ArkUI_LengthMe
 | -- | -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
 |  float width | 背板宽度。 |
-|  [ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit) unit | 指定高度的单位，默认为vp。 |
+|  [ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit) unit | 指定宽度的单位，默认为vp。 |
 
 **返回：**
 
@@ -420,7 +420,7 @@ int32_t (*setCustomShadow)(ArkUI_NativeDialogHandle handle, const ArkUI_Attribut
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
-| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与NODE_SHADOW属性一致。 |
+| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与[ArkUI_NodeAttributeType](./capi-native-node-h.md#arkui_nodeattributetype)中的NODE_SHADOW属性一致。 |
 
 **返回：**
 
@@ -441,7 +441,7 @@ int32_t (*setBackgroundBlurStyle)(ArkUI_NativeDialogHandle handle, ArkUI_BlurSty
 
 > **说明：** 
 >
-> setBackgroundBlurStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调
+> setBackgroundBlurStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -497,7 +497,7 @@ int32_t (*enableHoverMode)(ArkUI_NativeDialogHandle handle, bool enableHoverMode
 **描述：**
 
 
-设置自定义弹窗是否相应悬停态。
+设置自定义弹窗是否响应悬停态。
 
 > **说明：** 
 >
@@ -510,7 +510,7 @@ int32_t (*enableHoverMode)(ArkUI_NativeDialogHandle handle, bool enableHoverMode
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
-|  bool enableHoverMode | 是否相应悬停态，默认false。true表示响应悬停态，false表示不响应悬停态。 |
+|  bool enableHoverMode | 是否响应悬停态，默认false。true表示响应悬停态，false表示不响应悬停态。 |
 
 **返回：**
 

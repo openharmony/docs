@@ -14,7 +14,7 @@
 
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-在开发相机应用时，请先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 ## 导入相关依赖
 ```ts
@@ -162,7 +162,7 @@ struct Index {
   }
 
   aboutToAppear(): void {
-    console.log(TAG + 'aboutToAppear is called');
+    console.info(TAG + 'aboutToAppear is called');
     this.initContext();
     this.requestPermissionsFn();
     this.initCameraManager();

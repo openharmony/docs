@@ -359,8 +359,8 @@ std::shared_ptr<ArkUIWaterflowNode> CreateWaterflowExample() {
     
     // 设置分段
     auto sections = std::make_shared<WaterflowSection>();
-    SectionOption MARGIN_GAP_SECTION_1 = {10, 2, 10, 10, margin : {20, 30, 40, 50}, nullptr, nullptr};
-    SectionOption MARGIN_GAP_SECTION_2 = {10, 4, 10, 10, margin : {20, 30, 40, 50}, nullptr, nullptr};
+    SectionOption MARGIN_GAP_SECTION_1 = {10, 2, 10, 10, {20, 30, 40, 50}, nullptr, nullptr};
+    SectionOption MARGIN_GAP_SECTION_2 = {10, 4, 10, 10, {20, 30, 40, 50}, nullptr, nullptr};
     for (int i = 0; i < 10; i++) {
         sections->SetSection(sections->GetSectionOptions(), i, i % 2 ? MARGIN_GAP_SECTION_1 : MARGIN_GAP_SECTION_2);
     }

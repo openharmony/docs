@@ -577,7 +577,7 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [T extends Session](arkts-apis-camera-Session.md)   | Session实例。接口调用失败会返回相应的错误码，错误码类型为[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| [T](arkts-apis-camera-Session.md)   | Session实例。接口调用失败会返回相应的错误码，错误码类型为[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -1008,15 +1008,17 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager,
+  cameraDeviceArray: Array<camera.CameraDevice>): Array<camera.CameraConcurrentInfo> {
+  let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
   try {
-    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
     cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
     console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
+  return cameraConcurrentInfos;
 }
 ```
 

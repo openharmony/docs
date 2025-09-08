@@ -232,4 +232,4 @@ setResponseIsReady(IsReady: boolean): void
 
 | 参数名   | 类型    | 必填  | 说明          |
 | ------- | ------- | ---- | ------------- |
-| IsReady | boolean | 是   | 资源响应数据是否已经就绪。<br>true表示资源响应数据已经就绪，false表示资源响应数据未就绪。默认值：true。 |
+| IsReady | boolean | 是   | 资源响应数据是否已经就绪。<br>true表示资源响应数据已经就绪，false表示资源响应数据未就绪。<br>如果数据是异步提供，需要显式设置为false。设置为非法值如null，undefined或者不设置都会被认为数据已经准备好。 |

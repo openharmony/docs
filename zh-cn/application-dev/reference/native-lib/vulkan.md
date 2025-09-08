@@ -140,7 +140,6 @@
 |FUNC|vkCreateShaderModule|
 |FUNC|vkCreateSharedSwapchainsKHR|
 |FUNC|vkCreateSwapchainKHR|
-|FUNC|vkCreateWin32SurfaceKHR|
 |FUNC|vkDestroyBuffer|
 |FUNC|vkDestroyBufferView|
 |FUNC|vkDestroyCommandPool|
@@ -239,7 +238,6 @@
 |FUNC|vkGetPhysicalDeviceSurfacePresentModesKHR|
 |FUNC|vkGetPhysicalDeviceSurfaceSupportKHR|
 |FUNC|vkGetPhysicalDeviceToolProperties|
-|FUNC|vkGetPhysicalDeviceWin32PresentationSupportKHR|
 |FUNC|vkGetPipelineCacheData|
 |FUNC|vkGetPrivateData|
 |FUNC|vkGetQueryPoolResults|

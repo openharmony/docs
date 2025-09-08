@@ -28,13 +28,13 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [OH_CryptoAsymCipher](capi-cryptoasymcipherapi-oh-cryptoasymcipher.md) | OH_CryptoAsymCipher | 定义非对称加密结构。 |
-| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) | OH_CryptoSm2CiphertextSpec | 定义SM2密文规范结构。 |
+| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) | OH_CryptoSm2CiphertextSpec | 定义SM2密文规格结构。 |
 
 ### 枚举
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) | CryptoSm2CiphertextSpec_item | 定义SM2密文规范项类型。 |
+| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) | CryptoSm2CiphertextSpec_item | 定义SM2密文规格项类型。 |
 
 ### 函数
 
@@ -44,11 +44,11 @@
 | [OH_Crypto_ErrCode OH_CryptoAsymCipher_Init(OH_CryptoAsymCipher *ctx, Crypto_CipherMode mode, OH_CryptoKeyPair *key)](#oh_cryptoasymcipher_init) | 初始化非对称加密。 |
 | [OH_Crypto_ErrCode OH_CryptoAsymCipher_Final(OH_CryptoAsymCipher *ctx, const Crypto_DataBlob *in,Crypto_DataBlob *out)](#oh_cryptoasymcipher_final) | 完成非对称加密。 |
 | [void OH_CryptoAsymCipher_Destroy(OH_CryptoAsymCipher *ctx)](#oh_cryptoasymcipher_destroy) | 销毁非对称加密上下文。 |
-| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Ciphertext, OH_CryptoSm2CiphertextSpec **spec)](#oh_cryptosm2ciphertextspec_create) | 创建SM2密文规范。 |
-| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_GetItem(OH_CryptoSm2CiphertextSpec *spec,CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *out)](#oh_cryptosm2ciphertextspec_getitem) | 获取SM2密文规范中的指定项。 |
-| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec *spec,CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *in)](#oh_cryptosm2ciphertextspec_setitem) | 设置SM2密文规范中的指定项。 |
-| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *spec, Crypto_DataBlob *out)](#oh_cryptosm2ciphertextspec_encode) | 将SM2密文规范编码为DER格式密文。 |
-| [void OH_CryptoSm2CiphertextSpec_Destroy(OH_CryptoSm2CiphertextSpec *spec)](#oh_cryptosm2ciphertextspec_destroy) | 销毁SM2密文规范。 |
+| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Ciphertext, OH_CryptoSm2CiphertextSpec **spec)](#oh_cryptosm2ciphertextspec_create) | 创建SM2密文规格。 |
+| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_GetItem(OH_CryptoSm2CiphertextSpec *spec,CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *out)](#oh_cryptosm2ciphertextspec_getitem) | 获取SM2密文规格中的指定项。 |
+| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec *spec,CryptoSm2CiphertextSpec_item item, Crypto_DataBlob *in)](#oh_cryptosm2ciphertextspec_setitem) | 设置SM2密文规格中的指定项。 |
+| [OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *spec, Crypto_DataBlob *out)](#oh_cryptosm2ciphertextspec_encode) | 将SM2密文规格编码为DER格式密文。 |
+| [void OH_CryptoSm2CiphertextSpec_Destroy(OH_CryptoSm2CiphertextSpec *spec)](#oh_cryptosm2ciphertextspec_destroy) | 销毁SM2密文规格。 |
 
 ## 枚举类型说明
 
@@ -60,7 +60,7 @@ enum CryptoSm2CiphertextSpec_item
 
 **描述**
 
-定义SM2密文规范项类型。
+定义SM2密文规格项类型。
 
 **起始版本：** 20
 
@@ -188,7 +188,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Cipherte
 
 **描述**
 
-创建SM2密文规范。
+创建SM2密文规格。
 
 **起始版本：** 20
 
@@ -197,8 +197,8 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Cipherte
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *sm2Ciphertext | SM2密文DER格式数据，如果为NULL则创建空的SM2密文规范。 |
-| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) **spec | 输出的SM2密文规范。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *sm2Ciphertext | SM2密文DER格式数据，如果为NULL则创建空的SM2密文规格。 |
+| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) **spec | 输出的SM2密文规格。 |
 
 **返回：**
 
@@ -214,7 +214,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_GetItem(OH_CryptoSm2CiphertextSpec 
 
 **描述**
 
-获取SM2密文规范中的指定项。
+获取SM2密文规格中的指定项。
 
 **起始版本：** 20
 
@@ -223,8 +223,8 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_GetItem(OH_CryptoSm2CiphertextSpec 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规范。 |
-| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规范项。 |
+| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规格。 |
+| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规格项。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 输出数据。 |
 
 **返回：**
@@ -241,7 +241,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec 
 
 **描述**
 
-设置SM2密文规范中的指定项。
+设置SM2密文规格中的指定项。
 
 **起始版本：** 20
 
@@ -250,8 +250,8 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规范。 |
-| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规范项。 |
+| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规格。 |
+| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规格项。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 输入数据。 |
 
 **返回：**
@@ -268,7 +268,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *
 
 **描述**
 
-将SM2密文规范编码为DER格式密文。
+将SM2密文规格编码为DER格式密文。
 
 **起始版本：** 20
 
@@ -277,7 +277,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规范。 |
+| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规格。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 输出数据。 |
 
 **返回：**
@@ -294,7 +294,7 @@ void OH_CryptoSm2CiphertextSpec_Destroy(OH_CryptoSm2CiphertextSpec *spec)
 
 **描述**
 
-销毁SM2密文规范。
+销毁SM2密文规格。
 
 **起始版本：** 20
 
@@ -303,6 +303,6 @@ void OH_CryptoSm2CiphertextSpec_Destroy(OH_CryptoSm2CiphertextSpec *spec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规范。 |
+| [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规格。 |
 
 

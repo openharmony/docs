@@ -165,22 +165,26 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let path = context.cacheDir;
-let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-let readDataCallback = (buffer: ArrayBuffer) => {
-   let options: Options = {
+let file: fs.File;
+let readDataCallback: Callback<ArrayBuffer>;
+
+async function initArguments(context: common.UIAbilityContext) {
+  let path = context.cacheDir;
+  // 确保该沙箱路径下存在该资源。
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
+  file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  readDataCallback = (buffer: ArrayBuffer) => {
+    let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
-   }
-   fs.writeSync(file.fd, buffer, options);
-   bufferSize += buffer.byteLength;
-};
+    }
+    fs.writeSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+  };
+}
 
 // 初始化，创建实例，设置监听事件。
-function init() {
+async function init() {
   audio.createAudioCapturer(audioCapturerOptions, (err, capturer) => { // 创建AudioCapturer实例。
     if (err) {
       console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
@@ -189,22 +193,22 @@ function init() {
     console.info(`${TAG}: create AudioCapturer success`);
     audioCapturer = capturer;
     if (audioCapturer !== undefined) {
-       (audioCapturer as audio.AudioCapturer).on('readData', readDataCallback);
+      audioCapturer.on('readData', readDataCallback);
     }
   });
 }
 
 // 开始一次音频采集。
-function start() {
+async function start() {
   if (audioCapturer !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf((audioCapturer as audio.AudioCapturer).state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集。
+    if (stateGroup.indexOf(audioCapturer.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集。
       console.error(`${TAG}: start failed`);
       return;
     }
 
     // 启动采集。
-    (audioCapturer as audio.AudioCapturer).start((err: BusinessError) => {
+    audioCapturer.start((err: BusinessError) => {
       if (err) {
         console.error('Capturer start failed.');
       } else {
@@ -215,16 +219,16 @@ function start() {
 }
 
 // 停止采集。
-function stop() {
+async function stop() {
   if (audioCapturer !== undefined) {
     // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止。
-    if ((audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_RUNNING && (audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_PAUSED) {
+    if (audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
 
-    //停止采集。
-    (audioCapturer as audio.AudioCapturer).stop((err: BusinessError) => {
+    // 停止采集。
+    audioCapturer.stop((err: BusinessError) => {
       if (err) {
         console.error('Capturer stop failed.');
       } else {
@@ -236,22 +240,91 @@ function stop() {
 }
 
 // 销毁实例，释放资源。
-function release() {
+async function release() {
   if (audioCapturer !== undefined) {
     // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release。
-    if ((audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_RELEASED || (audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_NEW) {
+    if (audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED || audioCapturer.state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
 
-    //释放资源。
-    (audioCapturer as audio.AudioCapturer).release((err: BusinessError) => {
+    // 释放资源。
+    audioCapturer.release((err: BusinessError) => {
       if (err) {
         console.error('Capturer release failed.');
       } else {
         console.info('Capturer release success.');
       }
     });
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Scroll() {
+      Column() {
+        Row() {
+          Column() {
+            Text('初始化').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            initArguments(context);
+            init();
+          });
+
+          Column() {
+            Text('开始录制').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            start();
+          });
+        }
+
+        Row() {
+          Column() {
+            Text('停止录制').fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_effect_manager_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            stop();
+          });
+
+          Column() {
+            Text('释放资源').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            release();
+          });
+        }
+        .padding(12)
+      }
+      .height('100%')
+      .width('100%')
+      .backgroundColor('#F1F3F5');
+    }
   }
 }
 ```

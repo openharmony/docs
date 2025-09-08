@@ -34,6 +34,10 @@ NA
 
 The ComponentContent is incorrect.
 
+> **说明：**
+>
+> 当接口是[openCustomDialog](arkts-apis-uicontext-promptaction.md#opencustomdialog12)、[openCustomDialogWithController](arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18)、[closeCustomDialog](arkts-apis-uicontext-promptaction.md#closecustomdialog12)和[updateCustomDialog](arkts-apis-uicontext-promptaction.md#updatecustomdialog12)时，返回的错误信息为Dialog content error. The ComponentContent is incorrect.
+
 **错误描述**
 
 自定义弹窗内容节点错误，无法渲染显示。
@@ -69,6 +73,10 @@ NA
 **错误信息**
 
 The ComponentContent cannot be found.
+
+> **说明：**
+>
+> 当接口是[closeCustomDialog](arkts-apis-uicontext-promptaction.md#closecustomdialog12)和[updateCustomDialog](arkts-apis-uicontext-promptaction.md#updatecustomdialog12)时，返回的错误信息为Dialog content not found. The ComponentContent cannot be found.
 
 **错误描述**
 

@@ -283,7 +283,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以往相册名为'albumName'的用户相册中移除一张图片为例。
+下面以从相册名为'albumName'的用户相册中移除一张图片为例。
 
 **开发步骤**
 

@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.inputEvent (输入事件)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 设备上报的基本事件。
 
 > **说明：**

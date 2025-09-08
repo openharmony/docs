@@ -1,11 +1,11 @@
 # @ohos.app.form.formHost (formHost)(系统接口)
-
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
 <!--Designer: @xueyulong-->
 <!--Tester: @chenmingze-->
 <!--Adviser: @Brilliantry_Rui-->
+
 formHost模块提供了卡片使用方相关接口的能力，包括对使用方同一用户下安装的卡片进行删除、释放、请求更新、获取卡片信息、状态等操作。
 
 > **说明：**
@@ -2907,7 +2907,7 @@ on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): vo
 
 | 参数名 | 类型       | 必填 | 说明 |
 |----------|--------|---|---------------------------------------|
-| type     | string | 是 | 事件回调类型，仅支持事件'formOverflow'，表示互动卡片动效请求。|
+| type     | string | 是 | 事件回调类型，支持的事件为'formOverflow'，表示互动卡片动效请求。|
 | callback | Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#overflowrequest20)&gt; | 是 | 回调函数，用于卡片使用方对动效请求进行处理。|
 
 **错误码：**
@@ -2947,7 +2947,7 @@ off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): 
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------ |----|----------------------------------------|
-| type | string | 是  | 事件回调类型，仅支持事件'formOverflow'，表示互动卡片动效请求。 |
+| type | string | 是  | 事件回调类型，支持的事件为'formOverflow'，表示互动卡片动效请求。 |
 | callback |Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#overflowrequest20)&gt; | 否  | 回调函数，对应已订阅互动卡片动效请求。缺省时，表示注销所有已注册互动卡片动效请求事件回调。 |
 
 **错误码：**

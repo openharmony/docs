@@ -78,7 +78,7 @@ PhotoPickerComponent({
 
 ## PickerOptions
 
-继承自[BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions12)。
+Picker配置选项，继承自[BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions10)。
 
 Picker配置选项。
 
@@ -156,6 +156,12 @@ type videoPlayStateChangedCallback = (state: VideoPlayerState) => void
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                                           |
+| -------- |-------------------------------| -------- |----------------------------------------------|
+| state | [VideoPlayerState](#videoplayerstate14) | 是 | 视频播放状态。 |
 
 ## PickerController
 
@@ -565,6 +571,7 @@ import {
 } from '@ohos.file.PhotoPickerComponent';
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -742,7 +749,8 @@ struct PickerDemo {
                   fetchColumns: [],
                   predicates: predicates
                 };
-                let photoHelper = photoAccessHelper.getPhotoAccessHelper(getContext());
+                let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                let photoHelper = photoAccessHelper.getPhotoAccessHelper(context);
                 let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
                   await photoHelper.getAssets(fetchOptions);
                 let asset = await fetchResult.getFirstObject()

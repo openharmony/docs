@@ -60,6 +60,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <string.h>
+
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
@@ -81,6 +82,7 @@ OH_Huks_Result InitParamSet(
     }
     return ret;
 }
+
 static struct OH_Huks_Param g_genSignVerifyParamsTest[] = {
     {
         .tag = OH_HUKS_TAG_ALGORITHM,
@@ -99,6 +101,7 @@ static struct OH_Huks_Param g_genSignVerifyParamsTest[] = {
         .uint32Param = OH_HUKS_DIGEST_SHA384
     },
 };
+
 static struct OH_Huks_Param g_signParamsTest[] = {
     {
         .tag = OH_HUKS_TAG_ALGORITHM,
@@ -117,6 +120,7 @@ static struct OH_Huks_Param g_signParamsTest[] = {
         .uint32Param = OH_HUKS_DIGEST_SHA384
     }
 };
+
 static struct OH_Huks_Param g_verifyParamsTest[] = {
     {
         .tag = OH_HUKS_TAG_ALGORITHM,
@@ -135,10 +139,12 @@ static struct OH_Huks_Param g_verifyParamsTest[] = {
         .uint32Param = OH_HUKS_DIGEST_SHA384
     }
 };
+
 static const uint32_t RSA_COMMON_SIZE = 1024;
 static const char *g_dataToSign = "Hks_RSA_Sign_Verify_Test_0000000000000000000000000000000000000000000000000000000"
                                     "00000000000000000000000000000000000000000000000000000000000000000000000000000000"
                                     "0000000000000000000000000000000000000000000000000000000000000000000000000_string";
+
 static napi_value SignVerifyKey(napi_env env, napi_callback_info info) 
 {
     struct OH_Huks_Blob g_keyAlias = {
@@ -154,7 +160,8 @@ static napi_value SignVerifyKey(napi_env env, napi_callback_info info)
     struct OH_Huks_ParamSet *verifyParamSet = nullptr;
     OH_Huks_Result ohResult;
     do {
-        ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsTest, sizeof(g_genSignVerifyParamsTest) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsTest,
+            sizeof(g_genSignVerifyParamsTest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
@@ -162,7 +169,8 @@ static napi_value SignVerifyKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsTest, sizeof(g_verifyParamsTest) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsTest,
+            sizeof(g_verifyParamsTest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

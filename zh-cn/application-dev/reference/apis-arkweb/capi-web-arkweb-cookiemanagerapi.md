@@ -78,7 +78,7 @@ ArkWeb_ErrorCode (*configCookieSync)(const char* url,const char* cookieValue, bo
 | -- | -- |
 | const char* url | 指定cookie所属的URL，建议填写完整的URL。 |
 | const char* cookieValue | 要设置的cookie的值。 |
-|  bool incognito | true表示在隐私模式下设置对应URL的Cookie，talse表示以非隐私模式设置对应URL的cookie。 |
+|  bool incognito | true表示在隐私模式下设置对应URL的Cookie，false表示以非隐私模式设置对应URL的cookie。 |
 |  bool includeHttpOnly | 如果为true，则标记为HTTP-Only的cookie也可以被覆盖。 |
 
 **返回：**

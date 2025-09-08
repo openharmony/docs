@@ -52,3 +52,33 @@ applyNormalAttribute?(instance: SymbolGlyphAttribute): void
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | instance | [SymbolGlyphAttribute](ts-basic-components-symbolGlyph.md) | 是   | 动态设置SymbolGlyph组件的属性。 |
+
+## 示例
+
+该示例通过[SymbolGlyphModifier](#symbolglyphmodifier)和TextInput组件的[cancelButton](ts-basic-components-textinput.md#cancelbutton18)属性展示了自定义右侧symbol类型清除按钮样式的效果。
+
+```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State text: string = '';
+  symbolModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular);
+
+  build() {
+    Column() {
+      TextInput({ text: this.text, placeholder: 'input your word...' })
+        .height(50)
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: this.symbolModifier // 从API version 18开始支持symbol类型
+        })
+    }.margin(10)
+  }
+}
+```
+
+![SymbolGlyphModifier](figures/symbolGlyphModifier.PNG)

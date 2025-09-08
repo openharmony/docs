@@ -1,4 +1,10 @@
 # Interface (Album)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -18,10 +24,10 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称           | 类型    | 可读   | 可写  | 说明   |
+| 名称           | 类型    | 只读   | 可选  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| imageCount<sup>11+</sup> | number | 是   | 否   | 相册中图片数量。|
-| videoCount<sup>11+</sup> | number | 是   | 否   | 相册中视频数量。|
+| imageCount<sup>11+</sup> | number | 是   | 是   | 相册中图片数量。|
+| videoCount<sup>11+</sup> | number | 是   | 是   | 相册中视频数量。|
 
 ## commitModify
 

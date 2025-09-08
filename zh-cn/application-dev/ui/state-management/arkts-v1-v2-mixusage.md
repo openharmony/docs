@@ -19,8 +19,8 @@
 
 ## 校验规则
 在API version 19以前，状态管理V1V2的混用规则可以总结为：
-1. V1装饰器不能和@ObserveV2一起使用。
-2. V2装饰器不能和@Observed一起使用。
+1. V1装饰器不能和[@ObserveV2](./arkts-new-observedV2-and-trace.md)一起使用。
+2. V2装饰器不能和[@Observed](./arkts-observed-and-objectlink.md)一起使用。
 3. V1->V2只能传简单类型，不允许传复杂类型，包括built-in类型Array、Map、Set、Date。
 4. V2->V1可以传简单类型和普通class，不允许传built-in类型Array、Map、Set、Date。
 
@@ -541,7 +541,7 @@ struct ArrayCompV2 {
 ```
 **不推荐写法**
 
-在下面的例子中，没有调用enableV2Compatibility和makeV1Observed，则有V1和V2双重代理和刷新不一致的问题。
+在下面的例子中，没有调用enableV2Compatibility和makeV1Observed，则有V1和V2双重代理的问题。
 ```ts
 @Entry
 @Component
@@ -551,7 +551,7 @@ struct ArrayCompV1 {
   build() {
     Column() {
       Text(`V1 ${this.arr[0]}`).onClick(() => {
-        // V1代理，可触发ArrayCompV1的刷新，但无法触发ArrayCompV2的刷新
+        // V1代理，可触发ArrayCompV1的刷新并通知ArrayCompV2更新@Param的值
         this.arr[0]++;
       })
       // 传递给ArrayCompV2，被再次包装V2的代理

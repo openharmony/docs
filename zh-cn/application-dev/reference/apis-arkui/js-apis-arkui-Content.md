@@ -1,4 +1,10 @@
 # Content
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 定义ComponentContent和NodeContent基类。
 
@@ -14,7 +20,7 @@ import { Content } from '@kit.ArkUI';
 
 ## Content
 
-定义ComponentContent和NodeContent的基类。
+定义[ComponentContent](./js-apis-arkui-ComponentContent.md)和[NodeContent](./js-apis-arkui-NodeContent.md)的基类。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

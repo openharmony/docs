@@ -21,7 +21,7 @@
 
 对于支持多点触控的输入设备，使用多根手指同时操作可以产生多个触点，全部的触点信息可以通过touches成员得到，而changedTouches会给出当前事件上报时，是哪些触点在产生变化。
 
-其他更多的事件信息可以从TouchEvent的基类[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent对象说明8)中获得。
+其他更多的事件信息可以从TouchEvent的基类[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent8)中获得。
 
 
 ## 阻止冒泡
@@ -69,7 +69,7 @@ struct Index {
 
 ## 重采样与历史点
 
-基础事件的上报频率与具体的输入设备类型有关，但一般频率都是非常高的，如触屏一般每5~7ms即上报一个点，而对于一些高精度鼠标，上报频率最高可达到每1ms上报一次；由于对输入事件的响应是为了UI界面的变化来产生对用户操作的响应，因此将如此之高的基础事件上报给应用，多数情况下是冗余的，为此系统会对两帧之间所收到的基础事件进行重采样，只在帧内上报一次给应用，重采样是针对每个触点单独进行的，不同触点会单独进行重采样。
+基础事件的上报频率与具体的输入设备类型有关，但一般频率都是非常高的，如触屏一般每5~7ms即上报一个点，而对于一些高精度鼠标，上报频率最高可达到每1ms上报一次。由于对输入事件的响应是为了UI界面的变化来产生对用户操作的响应，因此将如此之高的基础事件上报给应用，多数情况下是冗余的，为此系统会对两帧之间所收到的基础事件进行重采样，只在帧内上报一次给应用，重采样是针对每个触点单独进行的，不同触点会单独进行重采样。
 
 ![resample](figures/events-resample.png)
 
@@ -188,7 +188,7 @@ struct Index {
 
 ## 触控笔
 
-触控笔操作触摸屏与通过手指操作类似，都会产生触摸事件，可以通过sourceTool进行区分。而对于一些主动式电容笔，上报的触摸事件中，还会包含笔接触屏幕时的夹角信息，可参考[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent对象说明8)。
+触控笔操作触摸屏与通过手指操作类似，都会产生触摸事件，可以通过sourceTool进行区分。而对于一些主动式电容笔，上报的触摸事件中，还会包含笔接触屏幕时的夹角信息，可参考[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent8)。
 
 - tiltX：触控笔在设备平面上的投影与设备平面X轴的夹角。
 - tiltY：触控笔在设备平面上的投影与设备平面Y轴的夹角。

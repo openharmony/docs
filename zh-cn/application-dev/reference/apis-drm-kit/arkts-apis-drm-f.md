@@ -1,5 +1,10 @@
 # Functions
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -24,7 +29,7 @@ createMediaKeySystem(name: string): MediaKeySystem
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称。                   |
+| name  | string     | 是   | DRM解决方案名称，如"com.clearplay.drm"。                   |
 
 **返回值：**
 
@@ -56,7 +61,7 @@ try {
 }
 ```
 
-## drm.isMediaKeySystemSupported
+## drm.isMediaKeySystemSupported 
 
 isMediaKeySystemSupported(name: string): boolean
 
@@ -70,7 +75,7 @@ isMediaKeySystemSupported(name: string): boolean
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称。                   |
+| name  | string     | 是   | DRM解决方案名称，如"com.clearplay.drm"。                     |
 
 **返回值：**
 
@@ -115,10 +120,10 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称。                   |
-| mimeType  | string     | 是   | 媒体类型，由DRM解决方案决定具体的支持类型。                   |
+| 参数名     | 类型                                             | 必填 | 说明                                                                                                          |
+| -------- | ----------------------------------------------- | ---- |-------------------------------------------------------------------------------------------------------------|
+| name  | string     | 是   | DRM解决方案名称。建议先调用[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)判断是否是支持的解决方案名称。 |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hev。                                                               |
 
 **返回值：**
 
@@ -163,11 +168,11 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称。                   |
-| mimeType  | string     | 是   | 媒体类型，由DRM解决方案决定具体的支持类型。                   |
-| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | 是   | 内容保护级别。                   |
+| 参数名     | 类型                                             | 必填 | 说明                                                                                                                            |
+| -------- | ----------------------------------------------- | ---- |-------------------------------------------------------------------------------------------------------------------------------|
+| name  | string     | 是   | DRM解决方案名称。建议先调用[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)判断是否是支持的解决方案名称。          |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案。建议先调用[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)判断是否是DRM解决方案支持的类型。 |
+| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | 是   | 内容保护级别。                                                                                                                       |
 
 **返回值：**
 
@@ -214,7 +219,7 @@ getMediaKeySystemUuid(name: string): string;
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称。                   |
+| name  | string     | 是   | DRM解决方案名称，支持的解决方案名称可通过[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)判断。                   |
 
 **返回值：**
 
