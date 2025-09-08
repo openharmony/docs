@@ -55,7 +55,7 @@ Represents the configuration of the latest image or video.
 |-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
 | period                  | number                                                                                  | No   | Time period for the latest image or video, in seconds. The maximum value is **86400** seconds (one day), which is also the default value.<br>If the value is less than or equal to 0, greater than 86400, or not set, the most recent photos over the longest period of up to one day is displayed by default. If there is no image or video in the specified period, the component is not displayed.|
 | MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | No   | Types of the file displayed. The default value is **PhotoViewMIMETypes.IMAGE_VIDEO_TYPE**.                        |
-| photoSource             | [PhotoSource](#photosource)                                                             | No   | Source of the latest image or video, for example, photo or video taken by the camera or screenshot. By default, the source is not restricted.                              |
+| photoSource             | [PhotoSource](#photosource)                                                             | No   | Source of the latest image or video, for example, image or video taken by the camera or screenshot. By default, the source is not restricted.                              |
 
 ## RecentPhotoInfo<sup>13+</sup>
 
@@ -135,8 +135,8 @@ Enumerates the sources of the image or video data.
 
 | Name               | Value  | Description                                                                                                                |
 |-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
-| ALL | 0   | Images and videos from all sources.|
-| CAMERA | 1   | Photo or video taken by the camera.|
+| ALL | 0   | Image or video from all sources.|
+| CAMERA | 1   | Image or video taken by the camera.|
 | SCREENSHOT | 2   | Screenshot or screen capture video.|
 
 ## Example
@@ -168,14 +168,14 @@ struct PickerDemo {
   }
 
   private onRecentPhotoCheckResult(recentPhotoExists: boolean): void {
-    // Photo or video that meets the search criteria exists.
+    // Image or video that meets the search criteria exists.
     if (recentPhotoExists) {
       console.info('The photo is exist.');
     }
   }
 
   private onRecentPhotoClick(recentPhotoInfo: BaseItemInfo): boolean {
-    // Return the photo or video.
+    // Return the image or video.
     if (recentPhotoInfo) {
       console.info('The photo uri is ' + recentPhotoInfo.uri);
       return true;
@@ -184,7 +184,7 @@ struct PickerDemo {
   }
 
   private onRecentPhotoCheckInfo(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
-    // Check whether a photo or video that meets the conditions exists. If yes, obtain information about the photo or video.
+    // Check whether an image or video that meets the conditions exists. If yes, obtain information about the image or video.
   }
 
   build() {
