@@ -32,7 +32,7 @@
    ```ts
    // ParentWorker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker, collections, ArkTSUtils } from '@kit.ArkTS'
-   import { CopyEntry } from '../CopyEntry'
+   import { CopyEntry } from '../Sendable/CopyEntry'
 
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -110,7 +110,7 @@
    ```ts
    // ChildWorker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker} from '@kit.ArkTS'
-   import { CopyEntry } from '../CopyEntry'
+   import { CopyEntry } from '../Sendable/CopyEntry'
 
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -135,7 +135,7 @@
    ```ts
    // Index.ets
    import { worker, collections } from '@kit.ArkTS';
-   import { CopyEntry } from '../CopyEntry'
+   import { CopyEntry } from '../Sendable/CopyEntry'
    
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
