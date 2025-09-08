@@ -11,7 +11,7 @@
     - [@ohos.app.ability.Ability (Ability基类)](js-apis-app-ability-ability.md)
     - [@ohos.app.ability.AbilityConstant (Ability相关常量)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)](js-apis-app-ability-abilityLifecycleCallback.md)
-    - [@ohos.app.ability.AbilityStage (组件管理器)](js-apis-app-ability-abilityStage.md)
+    - [@ohos.app.ability.AbilityStage (AbilityStage组件管理器)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.application (应用工具类)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)](js-apis-app-ability-applicationStateChangeCallback.md)
@@ -48,7 +48,6 @@
     - [@ohos.app.appstartup.StartupListener (启动框架任务监听器)](js-apis-app-appstartup-startupListener.md)
     - [@ohos.app.appstartup.startupManager (启动框架管理能力)](js-apis-app-appstartup-startupManager.md)
     - [@ohos.app.appstartup.StartupTask (启动框架任务)](js-apis-app-appstartup-startupTask.md)
-    - [@ohos.app.ability.autoStartupManager (开机自启管理能力)](js-apis-app-ability-autoStartupManager.md)
     <!--Del-->
     - [@ohos.app.ability.AbilityConstant (Ability相关常量)(系统接口)](js-apis-app-ability-abilityConstant-sys.md)
     - [@ohos.app.ability.application (Application)(系统接口)](js-apis-app-ability-application-sys.md)
