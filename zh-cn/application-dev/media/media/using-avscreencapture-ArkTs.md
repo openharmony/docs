@@ -40,8 +40,8 @@
 
     ```javascript
     import { common } from '@kit.AbilityKit';
-    import media from '@ohos.multimedia.media';
-    import fs from '@ohos.file.fs';
+    import { media } from '@kit.MediaKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
     ```
 
 2. 创建AVScreenCaptureRecorder类型的成员变量screenCapture。
@@ -180,17 +180,15 @@
 下面展示了使用AVScreenCaptureRecorder屏幕录屏存文件的完整示例代码。
 
 ```javascript
-import { common } from '@kit.AbilityKit';
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
+import { media } from '@kit.MediaKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
   private captureFile: fs.File | undefined = undefined;
   private captureConfig: media.AVScreenCaptureRecordConfig | undefined = undefined;
 
-  private openFile(): void {
-    const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private openFile(context: Context): void {
     const path: string = context.filesDir + '/screenCapture.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应。
     this.captureFile = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   }
@@ -280,13 +278,13 @@ export class AVScreenCaptureDemo {
   }
 
   // 调用startRecording方法可以开始一次录屏存文件的流程，结束录屏可以通过点击录屏胶囊停止按钮进行操作。
-  async startRecording(): Promise<void> {
+  async startRecording(context: Context): Promise<void> {
     this.screenCapture = await media.createAVScreenCaptureRecorder();
     if (!this.screenCapture) {
       // failed.
       return;
     }
-    this.openFile();
+    this.openFile(context);
     if (!this.captureFile) {
       console.error("处理异常情况");
       return;
