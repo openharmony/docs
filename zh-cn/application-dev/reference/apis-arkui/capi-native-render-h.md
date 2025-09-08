@@ -1669,7 +1669,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachFloatProperty(ArkUI_RenderContentModifier
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_RenderContentModifierHandle](./capi-arkui-nativemodule-arkui-rendercontentmodifierhandle.md) modifier | 为目标内容修改器设置浮点属性。 |
-| ArkUI_FloatPropertyHandle property | 浮点属性。 |
+| [ArkUI_FloatPropertyHandle](./capi-arkui-nativemodule-arkui-floatpropertyhandle.md) property | 浮点属性。 |
 
 **返回：**
 | 类型 | 说明 |
