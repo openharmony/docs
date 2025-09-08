@@ -18,7 +18,7 @@ import { inputEventClient } from '@kit.InputKit';
 | -------------------------------------------- | -------------------------- |
 | injectEvent({KeyEvent: KeyEvent}): void |按键（包括单个按键和组合键）注入。 |
 | injectMouseEvent(mouseEvent: MouseEventData): void |鼠标/触控板事件注入。 |
-| injectTouchEvent(touchEvent: TouchEventData): void |触屏事件注入。|
+| injectTouchEvent(touchEvent: TouchEventData): void |触屏输入事件注入。|
 
 ## 开发步骤
 
