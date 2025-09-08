@@ -422,7 +422,7 @@ if **encoding** is not base64 (including null values), ASCII encoding is used fo
 >
 > - If the rich text in HTML contains special characters such as hash (#), you are advised to set the values of **baseUrl** and **historyUrl** to spaces.
 >
-> - To load texts, you need to set **<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">** to avoid inconsistent font sizes.
+> - To load texts, you need to set `<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">` to avoid inconsistent font sizes.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
