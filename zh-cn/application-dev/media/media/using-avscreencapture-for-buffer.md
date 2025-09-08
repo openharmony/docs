@@ -177,9 +177,14 @@ config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
 config_.videoInfo.videoCapInfo.displayId = 0;
 
 // (可选)若有期望录制的窗口，可传入单个窗口Id。
-vector<int32_t> missionIds = {61}; // 表示弹出的Picker默认选中61号窗口。
-config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+int32_t* missionIds = new int32_t[]{61}; // 表示弹出的Picker默认选中61号窗口。
+int32_t missionIdsLen = 1;
+config_.videoInfo.videoCapInfo.missionIDs = missionIds;
+config_.videoInfo.videoCapInfo.missionIDsLen = missionIdsLen;
+
+// 在config_使用完成后，对申请的内存进行释放
+delete[] config_.videoInfo.videoCapInfo.missionIDs;
+config_.videoInfo.videoCapInfo.missionIDs = nullptr;
 ```
 
 另外，PC/2in1设备录屏窗口选择界面兼容以下几种模式的录屏：
@@ -198,9 +203,14 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     config_.videoInfo.videoCapInfo.displayId = 0;
 
     // 传入多个窗口Id。
-    vector<int32_t> missionIds = {60, 61}; // 表示期望同时录制60、61号窗口。
-    config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-    config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+    int32_t* missionIds = new int32_t[]{60, 61}; // 表示期望同时录制60、61号窗口。
+    int32_t missionIdsLen = 2;
+    config_.videoInfo.videoCapInfo.missionIDs = missionIds;
+    config_.videoInfo.videoCapInfo.missionIDsLen = missionIdsLen;
+
+    // 在config_使用完成后，对申请的内存进行释放
+    delete[] config_.videoInfo.videoCapInfo.missionIDs;
+    config_.videoInfo.videoCapInfo.missionIDs = nullptr;
     ```
 
 2. OH_CAPTURE_SPECIFIED_SCREEN模式。
