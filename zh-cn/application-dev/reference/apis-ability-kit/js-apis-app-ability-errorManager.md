@@ -758,7 +758,7 @@ ErrorObserver模块。
 
 type LoopObserver = _LoopObserver
 
-LoopObserver模块。
+LoopObserver模块。定义异常监听，可作为 `errormanager.on` 函数的参数，监听并处理当前应用主线程超时的事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
