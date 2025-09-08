@@ -3344,21 +3344,23 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 
 ## sim.getAllSimAccountInfoList<sup>20+</sup>
 
-getAllSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
+getAllSimAccountInfoList(callback: AsyncCallback\<Array\<IccAccountInfo\>\>): void
 
-获取所有SIM卡账户信息的列表，返回一个Promise对象，解析为一个IccAccountInfo数组。
+获取所有SIM卡账户信息的列表，返回一个Promise对象，并解析为一个IccAccountInfo数组。
 
 **系统能力**：SystemCapability.Telephony.CoreService
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。 返回检查应用(调用者)是否已被授予运营商权限。<br/>- true:授权。<br/>- false：未授权。 |
+| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。 返回检查应用（调用者）是否已被授予运营商权限。<br/> true表示授权。false表示未授权。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[电话子系统错误码](errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -3387,28 +3389,30 @@ async function getAllSimAccountInfoList((err, accountInfoList) => {
 
 ## sim.getAllSimAccountInfoList<sup>20+</sup>
 
-getAllSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
+getAllSimAccountInfoList( ): Promise\<Array\<IccAccountInfo\>\>
 
-获取所有SIM卡账户信息的列表。该函数返回一个Promise对象，解析为一个 IccAccountInfo 数组。
+获取所有SIM卡账户信息的列表。该函数返回一个Promise对象，并解析为一个IccAccountInfo数组。
 
 **系统能力**：SystemCapability.Telephony.CoreService
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。返回激活SIM卡帐户信息列表。 |
+| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。返回激活SIM卡帐户信息列表。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| AsyncCallback&lt;Array&lt;[IccAccountInfo](#iccaccountinfo10)&gt;&gt; | 以Promise形式返回指定卡槽是否激活。<br/>- true:激活。<br/>- false：未激活。 |
+| AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 以Promise形式返回指定卡槽是否激活。<br/>- true:激活。<br/>- false：未激活。 |
 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[电话子系统错误码](errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -3435,8 +3439,6 @@ async getAllSimAccountInfoList(): Promise<ResponseData<sim.IccAccountInfo[] | nu
     }
   }
 ```
-
-## LockType<sup>8+</sup>
 
 锁类型。
 
