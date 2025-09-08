@@ -97,9 +97,9 @@ stride的值可以通过[getImageInfo()](../../reference/apis-image-kit/arkts-ap
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function CreatePixelMapUsingAllocator(context : Context) {
+async function CreatePixelMapUsingAllocator(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("test.jpg");  // 测试图片。
+  const rawFile = await resourceMgr.getRawFileContent("test.jpg"); // 测试图片。
   let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer);
   let options: image.DecodingOptions = {};
   let pixelmap = await imageSource.createPixelMapUsingAllocator(options, image.AllocatorType.AUTO);
@@ -107,7 +107,11 @@ async function CreatePixelMapUsingAllocator(context : Context) {
     let info = await pixelmap.getImageInfo();
     // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
     console.info("stride = " + info.stride);
-    let region: image.Region = { x: 0, y: 0, size: {height: 100, width:35} }; // 在(0, 0)位置, 裁剪100 * 35的pixelMap, 用于DMA_ALLOC的stride和SHARE_MEMORY的stride对齐方式不同。
+    let region: image.Region = {
+      x: 0,
+      y: 0,
+      size: { height: 100, width: 35 }
+    }; // 在(0, 0)位置，裁剪100 * 35的pixelMap，用于DMA_ALLOC的stride和SHARE_MEMORY的stride对齐方式不同。
     if (pixelmap != undefined) {
       await pixelmap.crop(region);
       let imageInfo = await pixelmap.getImageInfo();
