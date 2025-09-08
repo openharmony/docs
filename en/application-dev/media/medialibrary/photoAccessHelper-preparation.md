@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 An application needs to obtain a PhotoAccessHelper instance before accessing or modifying the media data in an album. User personal data is involved in the PhotoAccessHelper module. Therefore, the application must also apply for the related read and write permissions from the user. Unless otherwise specified, the APIs of the PhotoAccessHelper module are used in **pages/index.ets** of the project or other customized .ets files.
 

@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Applications can call photoAccessHelper APIs to manage media assets (images and videos).
 
@@ -20,6 +21,10 @@ To ensure application running efficiency, most PhotoAccessHelper APIs are asynch
 You can obtain media assets based on the specified conditions, such as the media type, date, or album name.
 
 Use [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) with the [FetchOptions](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-i.md#fetchoptions) object to specify the search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained, check whether the media assets exist in the database.
+
+> **NOTICE**
+>
+> When [PhotoAccessHelper.PhotoKeys.URI](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys) is used as the search criterion, only the [DataSharePredicates.equalTo](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) API is supported.
 
 To obtain the object at the specified position (for example, the first one, the last one, or the one with the specified index) in the result set, use [FetchResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md).
 
