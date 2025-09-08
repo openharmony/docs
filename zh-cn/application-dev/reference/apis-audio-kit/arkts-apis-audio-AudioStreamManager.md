@@ -931,7 +931,7 @@ isIntelligentNoiseReductionEnabledForCurrentDevice(sourceType: SourceType): bool
 
 查询指定source type的智能降噪开关是否已开启。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
