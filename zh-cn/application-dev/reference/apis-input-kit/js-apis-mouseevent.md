@@ -109,7 +109,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 | button         | [Button](#button)      | 否    | 否    | 鼠标按键。                       |        
 | pressedButtons | [Button](#button)[]    | 否    | 否    | 当前处于按下状态的鼠标按键。                              |
 | axes           | [AxisValue](#axisvalue)[] | 否    | 否    | 鼠标轴类型和轴的值。                               |
-| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 否    | 否    | 键值。                            |
+| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 否    | 否    | 当前处于按下状态的键值列表。                            |
 | ctrlKey        | boolean     | 否    | 否    | 当前ctrlKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。    |
 | altKey         | boolean     | 否    | 否    | 当前altKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                         |
 | shiftKey       | boolean     | 否    | 否    | 当前shiftKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                       |

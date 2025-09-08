@@ -30,10 +30,10 @@
 | [Input_InterceptorEventCallback](capi-input-input-interceptoreventcallback.md) | Input_InterceptorEventCallback | 拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。 |
 | [Input_DeviceListener](capi-input-input-devicelistener.md) | Input_DeviceListener | 定义一个结构体用于监听设备热插拔。 |
 | [Input_KeyState](capi-input-input-keystate.md) | Input_KeyState | 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。 |
-| [Input_KeyEvent](capi-input-input-keyevent.md) | Input_KeyEvent | 要注入的按键事件。 |
-| [Input_MouseEvent](capi-input-input-mouseevent.md) | Input_MouseEvent | 要注入的鼠标事件。 |
-| [Input_TouchEvent](capi-input-input-touchevent.md) | Input_TouchEvent | 要注入的触屏事件。 |
-| [Input_AxisEvent](capi-input-input-axisevent.md) | Input_AxisEvent | 要注入的轴事件。 |
+| [Input_KeyEvent](capi-input-input-keyevent.md) | Input_KeyEvent | 按键事件对象。 |
+| [Input_MouseEvent](capi-input-input-mouseevent.md) | Input_MouseEvent | 鼠标事件对象。 |
+| [Input_TouchEvent](capi-input-input-touchevent.md) | Input_TouchEvent | 触屏事件对象。 |
+| [Input_AxisEvent](capi-input-input-axisevent.md) | Input_AxisEvent | 轴事件对象。 |
 | [Input_Hotkey](capi-input-input-hotkey.md) | Input_Hotkey | 定义快捷键结构体。 |
 | [Input_DeviceInfo](capi-input-input-deviceinfo.md) | Input_DeviceInfo | 输入设备信息。 |
 | [Input_InterceptorOptions](capi-input-input-interceptoroptions.md) | Input_InterceptorOptions | 事件拦截选项。 |
@@ -360,7 +360,7 @@ enum InputEvent_SourceType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标指针移动、按键按下和释放以及滚轮滚动的事件。 |
+| SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标光标移动、按键按下和释放以及滚轮滚动的事件。 |
 | SOURCE_TYPE_TOUCHSCREEN = 2 | 表示输入源产生触摸屏多点触屏事件。 |
 | SOURCE_TYPE_TOUCHPAD = 3 | 表示输入源产生触控板多点触屏事件。 |
 
@@ -524,7 +524,7 @@ typedef void (*Input_DeviceAddedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 
 ### Input_DeviceRemovedCallback()
 
@@ -543,7 +543,7 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 
 ### Input_InjectAuthorizeCallback()
 
@@ -3427,7 +3427,7 @@ Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 | [Input_DeviceInfo](capi-input-input-deviceinfo.md) **deviceInfo | deviceInfo 指向输入设备信息[Input_DeviceInfo](capi-input-input-deviceinfo.md)的指针。 |
 
 **返回：**
@@ -3496,7 +3496,7 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 | int32_t *keyboardType | keyboardType 指向输入设备的键盘指针。 |
 
 **返回：**
