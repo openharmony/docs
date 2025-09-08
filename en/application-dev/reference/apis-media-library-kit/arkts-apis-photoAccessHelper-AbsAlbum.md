@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -19,11 +20,11 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name          | Type   | Readable  | Writable | Description  |
+| Name          | Type   | Read-Only  | Optional | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType | [AlbumType](arkts-apis-photoAccessHelper-e.md#albumtype) | Yes   | No   | Type of the album.   |
 | albumSubtype | [AlbumSubtype](arkts-apis-photoAccessHelper-e.md#albumsubtype) | Yes   | No  | Subtype of the album.   |
-| albumName | string | Yes   | Yes for a user album; no for a system album.  | Name of the album.   |
+| albumName | string | No   | No  | Name of the album. System albums are not writable, whereas user albums can be written to.   |
 | albumUri | string | Yes   | No   | URI of the album.  |
 | count | number | Yes   | No   |  Number of files in the album.|
 | coverUri | string | Yes   | No   | URI of the cover file of the album.|

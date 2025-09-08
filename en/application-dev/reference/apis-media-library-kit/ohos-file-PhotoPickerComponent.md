@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xuchangda-->
-<!--SE: @guxinggang-->
-<!--TSE: @wangbeibei-->
+<!--Designer: @guxinggang-->
+<!--Tester: @wangbeibei-->
+<!--Adviser: @zengyawen-->
 
 You can embed the **PhotoPickerComponent** in your application's layout to let users pick images or videos without requiring extra permissions. Once the users have made their selection, your application gets read-only access to the chosen images or videos.
 
@@ -78,9 +79,7 @@ Allows the application to access images or videos in the user directory without 
 
 ## PickerOptions
 
-Describes the configuration of a Picker. It inherits from [BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions12).
-
- 
+Describes the configuration of a Picker. It inherits from [BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions10).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -88,7 +87,7 @@ Describes the configuration of a Picker. It inherits from [BaseSelectOptions](ar
 |---------------------------------|-----------------------------------------|-----|--------------------------------------------------------------------------|
 | checkBoxColor                   | string                                  | No  | Background color of the check box. The value is an 8-digit hexadecimal color code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                  |
 | backgroundColor                 | string                                  | No  | Background color of the Picker grid page. The value is an 8-digit hexadecimal color code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                            |
-| isRepeatSelectSupported         | boolean                                 | No  | Whether to support repeat selection of a single image. The value **true** means that a single image can be repeatedly selected. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                  |
+| isRepeatSelectSupported         | boolean                                 | No  | Whether a single image can be repeatedly selected. The value **true** means that a single image can be repeatedly selected. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                  |
 | checkboxTextColor               | string                                  | No  | Text color in the check box. The value is an 8-digit hexadecimal color code. (This capability is not supported currently.)<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                       |
 | photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | No  | Background color of the photo browser page. The options are **AUTO**, **LIGHT**, and **DARK**. The default value is **AUTO**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                       |
 | maxSelectedReminderMode         | [ReminderMode](#remindermode)           | No  | Mode of the reminder when the number of selected items reaches the maximum. The options are **NONE**, **TOAST**, and **MASK**. The default value **TOAST**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                        |
@@ -97,7 +96,7 @@ Describes the configuration of a Picker. It inherits from [BaseSelectOptions](ar
 | maxPhotoSelectNumber            | number                                  | No  | Maximum number of images that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                          |
 | maxVideoSelectNumber            | number                                  | No  | Maximum number of videos that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                          |
 | isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | No  | Whether sliding selection (selecting multiple items by sliding finger across the screen) is supported. The value **true** means that sliding selection is supported. By default, it is not supported. This parameter is not available for repeat selection.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                                           |
-| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper left corner of the component. The default value is [0, 0].<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper-left corner of the component. The default value is [0, 0].<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a grid page.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a photo browser page.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | No  | Single-line display mode of a grid page. In single-line mode, the component does not provide functions for viewing a larger image. The component does not support callbacks related to large images, and the PickerController does not support APIs related to large images, making API calls ineffective.<br>**Atomic service API**: This API can be used in atomic services since API version 20.     |  
@@ -156,6 +155,12 @@ Callback to be invoked when the video playback state on a photo browser page cha
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name| Type                           | Mandatory| Description                                          |
+| -------- |-------------------------------| -------- |----------------------------------------------|
+| state | [VideoPlayerState](#videoplayerstate14) | Yes| Enumerates the video playback states.|
 
 ## PickerController
 
@@ -564,6 +569,7 @@ import {
 } from '@ohos.file.PhotoPickerComponent';
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -741,7 +747,8 @@ struct PickerDemo {
                   fetchColumns: [],
                   predicates: predicates
                 };
-                let photoHelper = photoAccessHelper.getPhotoAccessHelper(getContext());
+                let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                let photoHelper = photoAccessHelper.getPhotoAccessHelper(context);
                 let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
                   await photoHelper.getAssets(fetchOptions);
                 let asset = await fetchResult.getFirstObject()
