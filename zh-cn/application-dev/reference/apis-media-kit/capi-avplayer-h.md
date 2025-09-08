@@ -395,45 +395,7 @@ OH_AVErrCode OH_AVPlayer_SetVolume(OH_AVPlayer *player, float leftVolume, float 
 | 类型 | 说明 |
 | -- | -- |
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功设置音量。<br>         AV_ERR_INVALID_VAL：输入player为空指针，或者player SetVolume执行失败。 |
-
-### OH_AVPlayer_SetLoudnessGain()
-
-```
-OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain)
-```
-
-**描述**
-
-设置播放响度。
-
-当播放处于prepared / playing / paused / completed/ stopped状态时，可调用该接口。
-
-调用此API后，响度增益立即生效。响度范围为[-90.0, 24.0]。默认值为0.0dB。
-
-调用此接口时，需确保已设置音频渲染信息[OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage)(../apis-audio-kit/arkts-apis-audio-e.md#streamusage)参数必须是AUDIOSTREAM_USAGE_MUSIC、AUDIOSTREAM_USAGE_MOVIE、AUDIOSTREAM_USAGE_AUDIOBOOK其中之一。
-
-
-
-
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**起始版本：** 21
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
-| float loudnessGain | 设置播放的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。 |
-
-**返回：**
-
-
-| 类型 | 说明 |
-| -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功设置播放响度。<br>AV_ERR_INVALID_VAL：输入player为空指针。<br>AV_ERR_INVALID_STATE: player SetLoudnessGain执行失败。<br>AV_ERR_SERVICE_DIED：系统错误。|
-
+|
 ### OH_AVPlayer_Seek()
 
 ```
