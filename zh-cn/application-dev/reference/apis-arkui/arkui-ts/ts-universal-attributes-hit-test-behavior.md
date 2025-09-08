@@ -6,7 +6,7 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-设置组件的触摸测试类型。在ArkUI开发框架中，处理触屏事件时，会在触屏事件触发前进行按压点与组件区域的触摸测试，以收集需响应触屏事件的组件。基于测试结果，框架会分发相应的触屏事件。hitTestBehavior属性用于设置不同的触摸测试响应模式，影响触摸测试收集结果及后续触屏事件分发。具体影响参考[HitTestMode](./ts-appendix-enums.md#hittestmode9)枚举说明。
+设置组件的[触摸测试](../../../ui/arkts-interaction-basic-principles.md#触摸测试)类型。在ArkUI开发框架中，处理触屏事件和鼠标事件时，会在事件触发前进行按压点与组件响应热区的触摸测试，以收集需响应事件的组件。基于测试结果，框架会分发相应的事件。hitTestBehavior属性用于设置不同的触摸测试响应模式，影响触摸测试收集结果及后续事件分发。具体影响参考[HitTestMode](./ts-appendix-enums.md#hittestmode9)枚举说明。影响[点击事件](ts-universal-events-click.md)、[触摸事件](ts-universal-events-touch.md)、[拖拽事件](ts-universal-events-drag-drop.md)、[鼠标事件](ts-universal-mouse-key.md)、[轴事件](ts-universal-events-axis.md)、[悬浮事件](ts-universal-events-hover.md)、[无障碍悬浮事件](ts-universal-accessibility-hover-event.md)和[手势事件](ts-gesture-settings.md)的分发。
 
 >  **说明：**
 >  - 从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
