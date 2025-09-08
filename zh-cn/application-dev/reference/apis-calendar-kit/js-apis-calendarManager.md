@@ -1202,6 +1202,8 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 getEvents(callback: AsyncCallback\<Event[]>): void
 
+默认查询字段：type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。
+
 查询当前日历下所有日程，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
@@ -1315,7 +1317,7 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 | 参数名      | 类型                        | 必填 | 说明       |
 | ----------- | --------------------------- | ---- | ---------- |
 | eventFilter | [EventFilter](#eventfilter) | 否   | 查询条件。 |
-| eventKey    | (keyof [Event](#event))[]   | 否   | 查询字段。 |
+| eventKey    | (keyof [Event](#event))[]   | 否   | 查询字段。默认查询字段：type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。|
 
 **返回值**：
 
