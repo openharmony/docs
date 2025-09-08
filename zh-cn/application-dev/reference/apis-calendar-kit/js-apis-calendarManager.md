@@ -1317,7 +1317,7 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 | 参数名      | 类型                        | 必填 | 说明       |
 | ----------- | --------------------------- | ---- | ---------- |
 | eventFilter | [EventFilter](#eventfilter) | 否   | 查询条件。 |
-| eventKey    | (keyof [Event](#event))[]   | 否   | 查询字段。默认查询字段：type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。|
+| eventKey    | (keyof [Event](#event))[]   | 否   | 查询字段。不填时，默认查询字段为：type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。|
 
 **返回值**：
 
