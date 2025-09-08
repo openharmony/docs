@@ -7,7 +7,7 @@
 <!--Adviser: @huipeizi-->
 
 
-本模块提供应用启动框架配置的能力。
+本模块提供[应用启动框架](../../application-models/app-startup.md)配置的能力。
 
 > **说明：**
 >
@@ -21,11 +21,15 @@
 import { StartupConfigEntry } from '@kit.AbilityKit';
 ```
 
-## StartupConfigEntry.onConfig
+## StartupConfigEntry
+
+### onConfig
 
 onConfig?(): StartupConfig
 
-应用启动时调用以配置应用启动框架的设置。
+在回调[AbilityStage.onCreate](js-apis-app-ability-abilityStage.md#oncreate)前，若该AbilityStage对应的HAP中启动框架配置文件中[定义了启动框架配置](../../application-models/app-startup.md#定义启动参数配置)，则会触发该回调。
+
+开发者可以在该回调中设置启动框架配置信息，详细使用方法可参考[设置启动参数](../../application-models/app-startup.md#设置启动参数)章节。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
@@ -33,7 +37,7 @@ onConfig?(): StartupConfig
 
 | 类型 | 说明 |
 | -------- | -------- |
-| StartupConfig | 启动框架配置。 |
+| [StartupConfig](js-apis-app-appstartup-startupConfig.md#startupconfig) | 启动框架配置信息。 |
 
 **示例：**
 
@@ -65,11 +69,15 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 }
 ```
 
-## StartupConfigEntry.onRequestCustomMatchRule<sup>20+</sup>
+### onRequestCustomMatchRule<sup>20+</sup>
 
 onRequestCustomMatchRule(want: Want): string
 
-应用启动时，启动框架会调用此接口获取自定义匹配规则。可以根据传入Want中的不同参数来返回不同的自定义规则值，并与启动任务配置的matchRules中customization字段进行匹配。若匹配成功，任务将在自动模式执行。当一个启动场景无法通过uri、action或意图名称规则来匹配启动任务时，可以使用本接口对匹配规则进一步细化。详细说明请参考[添加任务匹配规则](../../application-models/app-startup.md#添加任务匹配规则)章节。
+在回调[AbilityStage.onCreate](js-apis-app-ability-abilityStage.md#oncreate)前，若该AbilityStage对应的HAP中启动框架配置文件中[定义了启动框架配置](../../application-models/app-startup.md#定义启动参数配置)，则会在[StartupConfigEntry.onConfig](#onconfig)后触发该回调。
+
+开发者可以在该回调中，可以根据调用方传入启动UIAbility的Want中的不同参数来返回不同的自定义匹配规则。启动框架会将其与启动任务配置的matchRules中customization字段进行匹配。若匹配成功，任务将在自动模式执行。详细匹配规则请参考[添加任务匹配规则](../../application-models/app-startup.md#添加任务匹配规则)章节。
+
+该接口通常用于无法直接通过uri、action或意图名称规则来匹配启动任务的场景，可以使用本接口对匹配规则进一步细化。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
