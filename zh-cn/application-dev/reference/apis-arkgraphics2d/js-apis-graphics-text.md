@@ -551,7 +551,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 ## LineHeightStyle<sup>21+</sup>
 
-行高缩放基数样式。
+行高缩放基数样式枚举。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -589,8 +589,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 否 | 是 | 文本阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 否 | 是 | 文本矩形框样式。|
 | badgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | 否   | 是   | 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。|
-| lineHeightMaximum<sup>21+</sup>   | number | 否   | 是   | 开启行高上限。若同时开启行高缩放，当heightScale大于0时行高上限才生效。 |
-| lineHeightMinimum<sup>21+</sup>   | number | 否   | 是   | 开启行高下限。若同时开启行高缩放，当heightScale大于0时行高下限才生效。 |
+| lineHeightMaximum<sup>21+</sup>   | number | 否   | 是   | 开启行高上限。若同时开启行高缩放，当heightScale大于0时行高上限才生效。正数浮点数，默认值为Number.MAX_VALUE。 |
+| lineHeightMinimum<sup>21+</sup>   | number | 否   | 是   | 开启行高下限。若同时开启行高缩放，当heightScale大于0时行高下限才生效。非负浮点数，默认值为0。 |
 | lineHeightStyle<sup>21+</sup>   | [LineHeightStyle](#lineheightstyle21) | 否   | 是   | 行高缩放基数样式。FONT_SIZE表示以字号值为基数进行行高缩放，最终行高为fontSize * heightScale。FONT_HEIGHT表示以该字号下实际文本高度为基数进行行高缩放，最终行高为塑形后字形高度 * heightScale。默认缩放基数为FONT_SIZE。 |
 
 ## StrutStyle
