@@ -21,7 +21,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## Action
 
-触屏事件类型。
+触屏输入事件类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -92,13 +92,13 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## TouchEvent
 
-触屏事件。
+触屏输入事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称         | 类型       | 只读   | 可选   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
-| action     | [Action](#action)     | 否    | 否    | 触屏事件类型。     |
+| action     | [Action](#action)     | 否    | 否    | 触屏输入事件类型。     |
 | touch      | [Touch](#touch)      | 否    | 否    | 当前触屏点信息。   |
 | touches    | [Touch](#touch)[]    | 否    | 否    | 所有触屏点。     |
 | sourceType | [SourceType](#sourcetype) | 否    | 否    | 触屏来源的设备类型。 |
