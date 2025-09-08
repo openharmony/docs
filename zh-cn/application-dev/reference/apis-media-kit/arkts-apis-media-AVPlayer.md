@@ -1733,12 +1733,12 @@ avPlayer.off('mediaKeySystemInfoUpdate');
 
 setLoudnessGain(loudnessGain: double): Promise\<void>
 
-设置播放响度。调用该接口后，响度增益立即生效。使用Promise异步回调。
+设置播放器的响度。调用该接口后，响度增益立即生效。使用Promise异步回调。
 
 > **说明：**
 >
-> - 当播放处于prepared / playing / paused / completed/ stopped状态时，可调用该接口。
-> - 调用此接口时，需确保已设置音频渲染信息AVPlayer.audioRendererInfo，audioRendererInfo的[usage](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)参数必须是STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_AUDIOBOOK其中之一。
+> - 当播放处于prepared/playing/paused/completed/stopped状态时，可调用该接口。
+> - 调用此接口时，需确保已设置音频渲染信息AVPlayer.audioRendererInfo，audioRendererInfo的usage参数必须是[STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)其中之一。
 
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1747,7 +1747,13 @@ setLoudnessGain(loudnessGain: double): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| loudnessGain | double | 是   | 设置播放的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。|
+| loudnessGain | double | 是   |设置播放器的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。|
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | 设置播放器的响度Promise返回值。 |
 
 **错误码：**
 
@@ -1755,9 +1761,7 @@ setLoudnessGain(loudnessGain: double): Promise\<void>
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by promise. e.g. The function is called in an incorrect state, or the stream [usage](../apis-audio-kit/arkts-apis-audio-e.md#streamusage) of audioRendererInfo is not one of STREAM_USAGE_MUSIC, STREAM_USAGE_MOVIE or STREAM_USAGE_AUDIOBOOK.|
-| 5410005  | Service died. |
-| 5410008  | Parameter check failed. Returned by promise. |
+| 5400102  | Operation not allowed. Return by promise. e.g. The function is called in an incorrect state, or the stream usage of audioRendererInfo is not one of [STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage), [STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage) or [STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage).|
 
 **示例：**
 
