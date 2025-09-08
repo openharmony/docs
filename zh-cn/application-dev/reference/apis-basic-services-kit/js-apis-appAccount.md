@@ -5552,7 +5552,7 @@ getRemoteObject(): rpc.RemoteObject;
 
 | 类型             | 说明                                                   |
 | ---------------- | ----------------------------------------------------- |
-| rpc.[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 认证器Authenticator的远程对象。用于跨进程通信。          |
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 认证器Authenticator的远程对象。用于跨进程通信。          |
 
 **示例：**
 
