@@ -34,6 +34,8 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 **系统接口**：此接口为系统接口。
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 是 | 表示规避区类型。 |
@@ -78,6 +80,8 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 
 **系统接口**：此接口为系统接口。
 
+**参数：**
+
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | type     | string | 是   | 监听的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
@@ -116,6 +120,8 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 
 **系统接口**：此接口为系统接口。
 
+**参数：**
+
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | type     | string | 是   | 注销的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
@@ -151,6 +157,8 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
 **系统接口**：此接口为系统接口。
+
+**参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -190,6 +198,8 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 **系统接口**：此接口为系统接口。
 
+**参数：**
+
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
@@ -216,35 +226,13 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### properties
+### 属性
 
-properties: UIExtensionHostWindowProxyProperties
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-宿主应用窗口和UIExtensionComponent组件的信息。
-
-**系统能力**：SystemCapability.ArkUI.ArkUI.Full
-
-**系统接口**：此接口为系统接口。
-
-| 参数名     | 类型                                 | 说明                             |
-| ---------- | ------------------------------------ | -------------------------------- |
-| properties | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) | UIExtensionComponent组件以及宿主窗口的信息。 |
-
-**示例：**
-
-```ts
-// ExtensionProvider.ts
-import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-
-export default class EntryAbility extends UIExtensionAbility {
-  onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    // 获取UIExtensionComponent位置和大小信息
-    const rect = extensionHostWindow.properties.uiExtensionHostWindowProxyRect;
-    console.log(`Rect Info: ${JSON.stringify(rect)}`);
-  }
-}
-```
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| properties          | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) |  否  |  否  | UIExtensionComponent组件以及宿主窗口的信息。 |
 
 ### hideNonSecureWindows
 
