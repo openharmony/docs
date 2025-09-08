@@ -114,11 +114,6 @@ struct Index {
   private mSurfaceId: string = '';
   private mCameraPosition: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_BACK;
   private mCameraManager: camera.CameraManager | undefined = undefined;
-  // surface宽高根据需要自行选择。
-  private surfaceRect: SurfaceRect = {
-    surfaceWidth: 1080,
-    surfaceHeight: 1920
-  };
   private curCameraDevice: camera.CameraDevice | undefined = undefined;
   private mCameraInput: camera.CameraInput | undefined = undefined;
   private mPreviewOutput: camera.PreviewOutput | undefined = undefined;
@@ -148,7 +143,7 @@ struct Index {
     ]).then((): void => {
       this.isShow = true;
     }).catch((error: BusinessError): void => {
-      console.error(TAG + 'ohos.permission.CAMERA no permission.');
+      console.error(TAG + `ohos.permission.CAMERA no permission, error: ${error.code}`);
     });
   }
 
@@ -158,7 +153,12 @@ struct Index {
   }
 
   initCameraManager(): void {
-    this.mCameraManager = camera.getCameraManager(this.mContext);
+    try {
+      this.mCameraManager = camera.getCameraManager(this.mContext);
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`getCameraManager failed, error: ${err.code}`);
+    }
   }
 
   aboutToAppear(): void {
