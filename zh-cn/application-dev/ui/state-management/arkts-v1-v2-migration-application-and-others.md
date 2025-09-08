@@ -33,7 +33,7 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
-  para:Record<string, number> = { 'count': 47 };
+  para: Record<string, number> = { 'count': 47 };
   storage: LocalStorage = new LocalStorage(this.para);
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -51,6 +51,7 @@ export default class EntryAbility extends UIAbility {
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
   pageStack: NavPathStack = new NavPathStack();
+  
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -131,12 +132,14 @@ V2:
 @ObservedV2
 export class MyStorage {
   static singleton_: MyStorage;
+
   static instance() {
-    if(!MyStorage.singleton_) {
+    if (!MyStorage.singleton_) {
       MyStorage.singleton_ = new MyStorage();
-    };
+    }
     return MyStorage.singleton_;
   }
+
   @Trace count: number = 47;
 }
 ```
@@ -150,6 +153,7 @@ import { MyStorage } from './storage';
 struct Page1 {
   storage: MyStorage = MyStorage.instance();
   pageStack: NavPathStack = new NavPathStack();
+
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -181,6 +185,7 @@ export function Page2Builder() {
 struct Page2 {
   storage: MyStorage = MyStorage.instance();
   pathStack: NavPathStack = new NavPathStack();
+
   build() {
     NavDestination() {
       Column() {
@@ -221,6 +226,7 @@ struct Page2 {
 ```ts
 // Page1.ets
 export let storage: LocalStorage = new LocalStorage();
+
 storage.setOrCreate('count', 47);
 
 @Entry(storage)
@@ -228,6 +234,7 @@ storage.setOrCreate('count', 47);
 struct Page1 {
   @LocalStorageProp('count') count: number = 0;
   pageStack: NavPathStack = new NavPathStack();
+
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -253,6 +260,7 @@ struct Page1 {
 ```ts
 // Page2.ets
 import { storage } from './Page1'
+
 @Builder
 export function Page2Builder() {
   Page2()
@@ -263,6 +271,7 @@ export function Page2Builder() {
 struct Page2 {
   @LocalStorageProp('count') count: number = 0;
   pathStack: NavPathStack = new NavPathStack();
+
   build() {
     NavDestination() {
       Column() {
@@ -300,9 +309,10 @@ struct Page1 {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
+
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -342,9 +352,10 @@ struct Page2 {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Page2 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Page2 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
+
   build() {
     NavDestination() {
       Column() {
@@ -563,7 +574,7 @@ import { MyStorageA, MyStorageB, MyStorageC } from './storage';
 @Entry
 @ComponentV2
 struct MyNavigationTestStack {
-   pageInfo: NavPathStack = new NavPathStack();
+  pageInfo: NavPathStack = new NavPathStack();
 
   @Builder
   PageMap(name: string) {
@@ -605,7 +616,7 @@ struct pageOneStack {
     NavDestination() {
       Column() {
         // 显示'PropA'
-        NavigationContentMsgStack({storage: this.storageA})
+        NavigationContentMsgStack({ storage: this.storageA })
         // 显示'PropA'
         Text(`${this.storageA.propA}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
@@ -662,7 +673,7 @@ struct pageTwoStack {
 @ComponentV2
 struct pageThreeStack {
   pageInfo: NavPathStack = new NavPathStack();
-  @Local storageC: MyStorageC = new MyStorageC("PropC");
+  @Local storageC: MyStorageC = new MyStorageC('PropC');
 
   build() {
     NavDestination() {
@@ -693,7 +704,7 @@ struct pageThreeStack {
 
 @ComponentV2
 struct NavigationContentMsgStack {
-  @Require@Param storage: MyStorageA;
+  @Require @Param storage: MyStorageA;
 
   build() {
     Column() {
@@ -716,6 +727,7 @@ AppStorage与应用进程绑定，支持跨Ability数据共享。
 ```ts
 // EntryAbility Index.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
@@ -741,9 +753,10 @@ struct Index {
 }
 ```
 
-```
+```ts
 // EntryAbility1 Index1.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index1 {
@@ -773,7 +786,7 @@ V2:
 可以使用AppStorageV2实现跨Ability共享。
 如下面示例：
 
-```
+```ts
 import { common, Want } from '@kit.AbilityKit';
 import { AppStorageV2 } from '@kit.ArkUI';
 
@@ -808,7 +821,7 @@ struct Index {
 
 ```
 
-```
+```ts
 import { common, Want } from '@kit.AbilityKit';
 import { AppStorageV2 } from '@kit.ArkUI';
 
@@ -849,6 +862,7 @@ V1：
 ```ts
 // EntryAbility Index.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
@@ -881,6 +895,7 @@ struct Index {
 ```ts
 // EntryAbility1 Index1.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index1 {
@@ -932,9 +947,10 @@ struct Index {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.count}`)
@@ -976,7 +992,7 @@ struct Index1 {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
 
@@ -1018,6 +1034,7 @@ Environment.envProp('languageCode', 'en');
 @Component
 struct Index {
   @StorageProp('languageCode') languageCode: string = 'en';
+
   build() {
     Row() {
       Column() {
@@ -1033,7 +1050,7 @@ V2:
 
 封装Env类型来传递多个系统环境变量。
 
-```
+```ts
 // Env.ets
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
@@ -1047,7 +1064,7 @@ export class Env {
 export let env: Env = new Env();
 ```
 在`onCreate`里获取需要的系统环境变量：
-```
+```ts
 // EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -1068,7 +1085,7 @@ export default class EntryAbility extends UIAbility {
 
 ```
 在页面中获取当前Env的值。
-```
+```ts
 // Index.ets
 import { env } from '../pages/Env';
 
@@ -1262,16 +1279,18 @@ let storage: LocalStorage = new LocalStorage();
 @ObservedV2
 class V1StorageData {
   @Trace title: string = 'V1OldComponent'
+
   @Monitor('title')
   onStrChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+      console.info(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
       if (path === 'title') {
         storage.setOrCreate('title', this.title);
       }
     })
   }
 }
+
 let v1Data: V1StorageData = new V1StorageData();
 
 @Entry(storage)
@@ -1295,7 +1314,8 @@ struct V1OldComponent {
 
 @Component
 struct Bridge {
-  @LocalStorageLink('title')@Watch('titleWatch') title: string = 'Bridge';
+  @LocalStorageLink('title') @Watch('titleWatch') title: string = 'Bridge';
+
   titleWatch() {
     v1Data.title = this.title;
   }
@@ -1304,6 +1324,7 @@ struct Bridge {
     NewV2Component()
   }
 }
+
 @ComponentV2
 struct NewV2Component {
   build() {
@@ -1726,14 +1747,14 @@ struct Index {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.myModifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.myModifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
 
@@ -1793,14 +1814,14 @@ struct Index {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.myModifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.myModifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
 
@@ -1853,14 +1874,14 @@ struct MyImage1 {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.modifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.modifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
     }
@@ -1927,14 +1948,14 @@ struct MyImage1 {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.modifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.modifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
     }
