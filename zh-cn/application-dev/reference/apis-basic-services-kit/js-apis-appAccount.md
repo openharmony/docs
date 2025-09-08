@@ -5464,6 +5464,10 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 ### verifyCredential<sup>9+</sup>
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+
 verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
 验证应用账号的凭据。使用callback异步回调。
@@ -5480,6 +5484,10 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 
 ### setProperties<sup>9+</sup>
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+
 setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 
 设置认证器属性。使用callback异步回调。
@@ -5494,6 +5502,10 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回设置结果。 |
 
 ### checkAccountLabels<sup>9+</sup>
+
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
 
 checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCallback): void
 
@@ -5511,6 +5523,10 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 
 ### checkAccountRemovable<sup>9+</sup>
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+
 checkAccountRemovable(name: string, callback: AuthCallback): void
 
 判断账号是否可以删除。使用callback异步回调。
@@ -5525,6 +5541,10 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回判断结果。 |
 
 ### getRemoteObject<sup>9+</sup>
+
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
 
 getRemoteObject(): rpc.RemoteObject;
 
