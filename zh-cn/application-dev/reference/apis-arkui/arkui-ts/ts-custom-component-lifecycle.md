@@ -636,6 +636,71 @@ onFormRecycle回调函数在卡片回收时执行，卡片提供方可以返回�
 | ------------------- | ---------   |
 | string | 返回卡片提供方需要卡片管理服务代保存的数据。 |
 
+**示例代码：**
+```ts
+@Entry
+@Component
+struct WidgetCard {
+  /*
+   * The title.
+   */
+  readonly title: string = 'Hello World';
+  /*
+   * The action type.
+   */
+  readonly actionType: string = 'router';
+  /*
+   * The ability name.
+   */
+  readonly abilityName: string = 'EntryAbility';
+  /*
+   * The message.
+   */
+  readonly message: string = 'add detail';
+  /*
+   * The width percentage setting.
+   */
+  readonly fullWidthPercent: string = '100%';
+  /*
+   * The height percentage setting.
+   */
+  readonly fullHeightPercent: string = '100%';
+
+  onFormRecycle(): string {
+    let formId: string = "1859635745"
+    console.info("card is recycled, formID: " + formId);
+    return formId;
+  }
+
+  onFormRecover(statusData: string): void {
+    console.info("card has been restored, formID: " + statusData);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.title)
+          .fontSize($r('app.float.font_size'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('sys.color.font'))
+      }
+      .width(this.fullWidthPercent)
+    }
+    .height(this.fullHeightPercent)
+    .backgroundColor($r('sys.color.comp_background_primary'))
+    .onClick(() => {
+      postCardAction(this, {
+        action: this.actionType,
+        abilityName: this.abilityName,
+        params: {
+          message: this.message
+        }
+      });
+    })
+  }
+}
+```
+
 ## onFormRecover<sup>11+</sup>
 
 onFormRecover?(statusData: string): void
@@ -653,3 +718,68 @@ onFormRecover回调函数在卡片恢复时执行，卡片提供方可以拿到�
 | 参数名    | 类型                                       | 必填    | 说明         |
 |--------|------------------------------------------|------------|-------------------------|
 | statusData | string | 是     | 卡片回收时卡片管理服务代保存的数据。|
+
+**示例代码：**
+```ts
+@Entry
+@Component
+struct WidgetCard {
+  /*
+   * The title.
+   */
+  readonly title: string = 'Recover';
+  /*
+   * The action type.
+   */
+  readonly actionType: string = 'router';
+  /*
+   * The ability name.
+   */
+  readonly abilityName: string = 'EntryAbility';
+  /*
+   * The message.
+   */
+  readonly message: string = 'add detail';
+  /*
+   * The width percentage setting.
+   */
+  readonly fullWidthPercent: string = '100%';
+  /*
+   * The height percentage setting.
+   */
+  readonly fullHeightPercent: string = '100%';
+
+  onFormRecycle(): string {
+    let formId: string = "1859635745"
+    console.info("card is recycled, formID: " + formId);
+    return formId;
+  }
+
+  onFormRecover(statusData: string): void {
+    console.info("card has been restored, formID: " + statusData);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.title)
+          .fontSize($r('app.float.font_size'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('sys.color.font'))
+      }
+      .width(this.fullWidthPercent)
+    }
+    .height(this.fullHeightPercent)
+    .backgroundColor($r('sys.color.comp_background_primary'))
+    .onClick(() => {
+      postCardAction(this, {
+        action: this.actionType,
+        abilityName: this.abilityName,
+        params: {
+          message: this.message
+        }
+      });
+    })
+  }
+}
+```
