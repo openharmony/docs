@@ -32,7 +32,7 @@
    ```ts
    // ParentWorker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker, collections, ArkTSUtils } from '@kit.ArkTS'
-   import { CopyEntry } from './CopyEntry'
+   import { CopyEntry } from '../CopyEntry'
 
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -45,8 +45,8 @@
    // 异步锁
    const asyncLock = new ArkTSUtils.locks.AsyncLock();
    // 创建子Worker
-   const copyWorker1 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
-   const copyWorker2 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
+   const copyWorker1 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
+   const copyWorker2 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 
    workerPort.onmessage = (e : MessageEvents) => {
      let array = e.data as collections.Array<CopyEntry>;
@@ -110,7 +110,7 @@
    ```ts
    // ChildWorker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker} from '@kit.ArkTS'
-   import { CopyEntry } from './CopyEntry'
+   import { CopyEntry } from '../CopyEntry'
 
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -135,7 +135,7 @@
    ```ts
    // Index.ets
    import { worker, collections } from '@kit.ArkTS';
-   import { CopyEntry } from './CopyEntry'
+   import { CopyEntry } from '../CopyEntry'
    
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
@@ -147,7 +147,7 @@
    }
 
    async function postMessageTest() {
-     let ss = new worker.ThreadWorker("entry/ets/pages/ParentWorker.ets");
+     let ss = new worker.ThreadWorker("entry/ets/workers/ParentWorker.ets");
      let isTerminate = false;
      ss.onexit = () => {
        isTerminate = true;
