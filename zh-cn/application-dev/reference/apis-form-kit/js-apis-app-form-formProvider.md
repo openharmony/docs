@@ -425,7 +425,7 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 **示例：**
 
 ```ts
-import { router } from '@kit.ArkUI';
+import { formProvider } from '@kit.FormKit';
 
 const TAG: string = 'FormEditDemo-Page] -->';
 

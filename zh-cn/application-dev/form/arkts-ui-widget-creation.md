@@ -15,7 +15,12 @@
 >
 >基于不同版本的DevEco Studio，请以实际界面为准。
 
+<<<<<<< HEAD
 在已有的应用工程中，可以通过右键新建ArkTS卡片，具体的操作方式如下。
+=======
+- 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget】。在API 10及以上 Stage模型的工程中，开发者可通过Service Widget菜单可直接选择创建动态卡片（Dynamic Widget）或静态卡片（Static Widget）。创建卡片后，也可在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md#配置文件字段说明)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。静态卡片和动态卡片切换之后用户交互实现也需要修改，具体参考ArkTS卡片概述中的[动态卡片](./arkts-form-overview.md#动态卡片)和[静态卡片](./arkts-form-overview.md#静态卡片)。<br>
+   ![WidgetProjectCreate1](figures/创建共hap包卡片_1.png)
+>>>>>>> a5e4c22470c... 新增onFormRecycle、onFormRecover接口说明、优化文档描述
 
 1. 右键新建卡片。  
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
@@ -53,5 +58,3 @@
 - [卡片配置](arkts-ui-widget-configuration.md)：包含FormExtensionAbility的配置和卡片的配置。
    - 在[module.json5配置文件](../quick-start/module-configuration-file.md)中的extensionAbilities标签下，配置FormExtensionAbility相关信息。
    - 在resources/base/profile/目录下的[form_config.json](arkts-ui-widget-configuration.md#配置文件字段说明)配置文件中，配置卡片（WidgetCard.ets）相关信息。
-
-
