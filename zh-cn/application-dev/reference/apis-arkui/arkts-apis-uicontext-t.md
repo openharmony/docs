@@ -40,7 +40,7 @@ ArkTS GestureEvent事件监听函数类型。
 
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
-| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明) | 是 | 触发事件监听的点击事件的相关信息。 |
+| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent) | 是 | 触发事件监听的点击事件的相关信息。 |
 | node | [FrameNode](js-apis-arkui-frameNode.md) | 否 | 触发事件监听的点击事件所绑定的组件。 |
 
 ## PanListenerCallback<sup>19+</sup>
