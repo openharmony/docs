@@ -636,34 +636,16 @@ onFormRecycle回调函数在卡片回收时执行，卡片提供方可以返回�
 | ------------------- | ---------   |
 | string | 返回卡片提供方需要卡片管理服务代保存的数据。 |
 
-**示例代码：**
+**示例：**
 ```ts
 @Entry
 @Component
 struct WidgetCard {
-  /*
-   * The title.
-   */
   readonly title: string = 'Hello World';
-  /*
-   * The action type.
-   */
   readonly actionType: string = 'router';
-  /*
-   * The ability name.
-   */
   readonly abilityName: string = 'EntryAbility';
-  /*
-   * The message.
-   */
   readonly message: string = 'add detail';
-  /*
-   * The width percentage setting.
-   */
   readonly fullWidthPercent: string = '100%';
-  /*
-   * The height percentage setting.
-   */
   readonly fullHeightPercent: string = '100%';
 
   onFormRecycle(): string {
@@ -719,7 +701,7 @@ onFormRecover回调函数在卡片恢复时执行，卡片提供方可以拿到�
 |--------|------------------------------------------|------------|-------------------------|
 | statusData | string | 是     | 卡片回收时卡片管理服务代保存的数据。|
 
-**示例代码：**
+**示例：**
 ```ts
 @Entry
 @Component
