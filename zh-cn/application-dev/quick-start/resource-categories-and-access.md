@@ -318,7 +318,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
     // 该资源存在%1$s、%2$d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
     Text($r('app.string.message_notification', 'LiHua', 2))
     // 对于plural.json中name为"eat_apple"，单数的value为"%d apple"，复数的value为"%d apples"
-    // 调用plural.json资源，第一个参数需要传递一个量词，传递1表示单数，大于1表示复数，且在中文环境下始终为复数
+    // 访问plural.json资源，第一个参数控制字符串显示单数形式或复数形式，传递1表示单数，大于1表示复数，且在中文环境下始终为复数
     // 该资源存在%d一个占位符，需要替代为2，则采用如下方式访问
     Text($r('app.plural.eat_apple', 2, 2))
   ```
@@ -377,8 +377,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
    ```
   > **说明** 
   >
-  > - hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如`$rawfile('[hsp].oneDir/twoDir/icon.png')`，使用`$r`和`$rawfile`跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
-  > - 不建议在hsp中调用hap资源。
+  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如`$rawfile('[hsp].oneDir/twoDir/icon.png')`，使用`$r`和`$rawfile`跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
 
 
 ### 系统资源
