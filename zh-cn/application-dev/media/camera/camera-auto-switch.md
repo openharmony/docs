@@ -153,7 +153,12 @@ struct Index {
   }
 
   initCameraManager(): void {
-    this.mCameraManager = camera.getCameraManager(this.mContext);
+    try {
+      this.mCameraManager = camera.getCameraManager(this.mContext);
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`getCameraManager failed, error: ${err.code}`);
+    }
   }
 
   aboutToAppear(): void {
