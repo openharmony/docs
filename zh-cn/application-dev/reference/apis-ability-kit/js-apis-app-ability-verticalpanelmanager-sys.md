@@ -11,8 +11,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口仅可在Stage模型下使用。
+> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 <br>
+> 本模块接口仅可在Stage模型下使用。 <br>
 > 本模块接口均为系统接口。
 
 ## 导入模块
@@ -21,9 +21,9 @@
 import { verticalPanelManager } from '@kit.AbilityKit';
 ```
 
-## verticalPanelManager.StartVerticalPanel
+## verticalPanelManager.startVerticalPanel
 
-startVerticalPanel(context: common.UIAbilityContext, wantParam: Record&lt;string, Object&gt;, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback): Promise\<void>
+startVerticalPanel(context: common.UIAbilityContext, wantParam: Record\<string, Object>, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback): Promise\<void>
 
 启动带有面板配置的垂域UIAbility。使用Promise异步回调。仅支持在主线程调用和处于前台的应用调用。
 
@@ -79,11 +79,10 @@ struct Index {
         })
         .onClick(() => {
           this.callStartVerticalPanelNapi()
-
-        })
+        });
     }
     .height('100%')
-    .width('100%')
+    .width('100%');
   }
 
   callStartVerticalPanelNapi() {
@@ -97,17 +96,17 @@ struct Index {
     };
 
     // Param[2] PanelConfig
-    let sourceAppInfo: Record<string, string> = {}
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_BUNDLE_NAME] = 'unknown.bundle.name'
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_MODULE_NAME] = 'unknown.module.name'
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_ABILITY_NAME] = 'unknown.ability.name'
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_WINDOW_ID] = '30'
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_SCREEN_MODE] = '1'
+    let sourceAppInfo: Record<string, string> = {};
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_BUNDLE_NAME] = 'come.huawei.hmos.browser';
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_MODULE_NAME] = 'entry';
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_ABILITY_NAME] = 'MainAbility';
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_WINDOW_ID] = '0';
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_SCREEN_MODE] = '1';
 
     let panelConfig: verticalPanelManager.PanelConfig = {
       type: verticalPanelManager.VerticalType.NAVIGATION,
       sourceAppInfo: sourceAppInfo
-    }
+    };
 
     // Param[3] PanelStartCallback
     let callback: verticalPanelManager.PanelStartCallback = {
@@ -117,7 +116,7 @@ struct Index {
       onResult: (result: common.AbilityResult): void => {
         console.info(`startVerticalPanel onResult result ${JSON.stringify(result)}`);
       },
-    }
+    };
 
     try {
       console.info(`call startVerticalPanel`);
@@ -127,7 +126,7 @@ struct Index {
         })
         .catch((error: BusinessError) => {
           console.error(`call startVerticalPanel promise catch error : ${error}`);
-        })
+        });
     } catch (error) {
       console.error(`call startVerticalPanel catch error : ${error}`);
     }
@@ -148,7 +147,7 @@ struct Index {
 
 ## VerticalType 
 
-提供能力类型定义的枚举。
+提供拉起垂域面板选择器能力的枚举。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -168,8 +167,8 @@ struct Index {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| onError | [OnErrorFn](#onerrorfn) | 否 | 否 | 在发生除与UIAbility或UIExtensionAbility断开连接之外的错误时调用。|
-| onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 在UIExtensionAbility终止并返回结果时调用。 |
+| onError | [OnErrorFn](#onerrorfn) | 否 | 否 | 在发生除与UIAbility或UIExtensionAbility断开连接之外的错误时回调。|
+| onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 在UIExtensionAbility终止并返回结果时回调。 |
 
 ## OnErrorFn
 
@@ -183,9 +182,9 @@ type OnErrorFn = (code: number, name: string, message: string) => void
 
 | 参数名 | 类型  | 必填  | 说明 |
 | -------- | -------- | -------- | -------- |
-| code | number | 是 | 如果UIAbility或UIExtensionAbility无法启动，则返回的代码。 |
-| name | string | 是 | UIAbility或UIExtensionAbility启动失败时返回的名称。 |
-| message | string | 是 | UIAbility或UIExtensionAbility启动失败时返回的消息。 |
+| code | number | 是 | 拉起UIAbility或UIExtensionAbility执行失败时返回的结果码。 |
+| name | string | 是 | 拉起UIAbility或UIExtensionAbility执行失败时返回的名称。 |
+| message | string | 是 | 拉起UIAbility或UIExtensionAbility执行失败时返回的错误信息。 |
 
 **示例：**
 
@@ -235,8 +234,8 @@ let callback: verticalPanelManager.PanelStartCallback = {
 
 | 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 导出bundleName的常量字符串并将其提供给sourceAppInfo。 |
-| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 导出moduleName的常量字符串并将其提供给sourceAppInfo。 |
-| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 导出abilityName的常量字符串并将其提供给sourceAppInfo。 |
-| SOURCE_APP_WINDOW_ID | string | 'windowId' | 导出windowId的常量字符串并将其提供给sourceAppInfo。 |
-| SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 导出screenMode的常量字符串，并将其提供给sourceAppInfo。 |
+| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 常量字符串bundleName，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 常量字符串moduleName，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 常量字符串abilityName，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_WINDOW_ID | string | 'windowId' | 常量字符串windowId，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 常量字符串screenMode，可以作为[sourceAppInfo](#panelconfig)的key值。 |
