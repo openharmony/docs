@@ -131,7 +131,7 @@ try {
 
 getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
-传入overlay模块的module名称，获取当前应用中指定的module的overlayModuleInfo信息。使用Promise异步回调。
+传入overlay模块的module名称，获取当前应用中overlay特征module的overlayModuleInfo信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -182,7 +182,7 @@ let moduleName = "feature";
 
 getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleInfo>): void
 
-传入overlay模块的module名称，获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调。
+传入overlay模块的module名称，获取当前应用中overlay特征module的overlayModuleInfo信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
