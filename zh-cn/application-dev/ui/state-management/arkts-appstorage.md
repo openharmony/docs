@@ -271,10 +271,10 @@ struct StorageLinkComponent {
   build() {
     Column() {
       Text('@StorageLink接口初始化，@StorageLink取值')
-      Text(`${this.LinkA}`).fontSize(20).onClick(() => {
+      Text(`${this.linkA}`).fontSize(20).onClick(() => {
         this.linkA ? this.linkA = null : this.linkA = 1;
       })
-      Text(`${this.LinkB}`).fontSize(20).onClick(() => {
+      Text(`${this.linkB}`).fontSize(20).onClick(() => {
         this.linkB ? this.linkB = undefined : this.linkB = 1;
       })
     }
