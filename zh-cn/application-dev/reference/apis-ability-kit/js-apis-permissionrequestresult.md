@@ -41,15 +41,15 @@ let atManager = abilityAccessCtrl.createAtManager();
 try {
   let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   atManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
-      console.info("data:" + JSON.stringify(data));
+      console.info(`data: ${data}`);
       console.info("data permissions:" + data.permissions);
       console.info("data authResults:" + data.authResults);
       console.info("data dialogShownResults:" + data.dialogShownResults);
       console.info("data errorReasons:" + data.errorReasons);
   }).catch((err: BusinessError) => {
-      console.error("data:" + JSON.stringify(err));
+      console.error(`code: ${err.code}, message: ${err.message}`);
   })
 } catch(err) {
-  console.error(`catch err->${JSON.stringify(err)}`);
+  console.error(`catch errcode: ${err.code}, message: ${err.message}`);
 }
 ```
