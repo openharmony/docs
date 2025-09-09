@@ -61,29 +61,24 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    let windowClass: window.Window | undefined = undefined;
-    let config: window.Configuration = {
-      name: "test",
-      windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context
-    };
-    try {
-      window.createWindow(config, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        windowClass = data;
-        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-        windowClass.resize(500, 1000);
-      });
-    } catch (exception) {
-      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG
+};
+try {
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
+    windowClass.resize(500, 1000);
+  });
+} catch (exception) {
+  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
