@@ -2416,22 +2416,22 @@ error: Failed to uninstall the app because the app is locked.
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
 
-### 9568420 禁止通过bm安装release的预装应用
+### 9568420 禁止通过bm安装release的预置应用
 **错误信息**
 
 error: os_integration Bundle is not allowed to install for shell.
 
 **错误描述**
 
-禁止通过bm安装release的预装应用。
+禁止通过bm安装release的预置应用。
 
 **可能原因**
 
-通过bm安装release的预装应用。
+通过bm安装release的预置应用。
 
 **处理步骤**
 
-1. 检查应用是否是release的预装应用。
+检查应用是否为预置的release版本。如果是，需要替换应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->的类型，重新签名并安装。
 
 ### 9568278 安装包的版本号不一致
 **错误信息**
