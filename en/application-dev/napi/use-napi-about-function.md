@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Node-API provides APIs for calling ArkTS functions and passing parameters or creating ArkTS methods in C/C++.
+Function calling allows you to call ArkTS functions from the Node-API module and pass parameters, or create ArkTS functions in the Node-API module.
 
 ## Basic Concepts
 
@@ -18,8 +18,7 @@ Functions are blocks of reusable code that performs specific tasks or operations
 
 ## Example
 
-If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to function invocation. The **napi_create_function** API is different. For details, see the example.
-
+If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to function invocation.
 ## napi_get_cb_info
 
 Use **napi_get_cb_info** to obtain detailed information about function calls.
@@ -67,8 +66,8 @@ export const getCbContext: () => Object;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 function summation(arr: Array<number>) {
   let sum: number = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -106,8 +105,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_cb_info get thisArg:%{publ
 ## napi_call_function
 
 Use **napi_call_function** to call an ArkTS function from a C/C++ addon.
-
-> **NOTE**<br>The length of **argv** passed by **napi_call_function** must be greater than or equal to the value of **argc** and must be initialized to **nullptr**.
+Note: The length of argv passed by napi_call_function must be greater than or equal to the number of argc declarations, and each element must be initialized to nullptr.
 
 CPP code:
 
@@ -156,8 +154,8 @@ export const objCallFunction: (obj: Object, func: Function) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 function returnNumber() {
   return 10;
@@ -216,8 +214,8 @@ export const calculateArea: (width: number, height: number) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API create_function:%{public}d ', testNapi.calculateArea(1.2, 4));
 ```
@@ -228,5 +226,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

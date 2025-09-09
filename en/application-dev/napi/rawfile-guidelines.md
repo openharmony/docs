@@ -2,25 +2,25 @@
 
 ## When to Use
 
-This guide describes how to use native Rawfile APIs to manage the rawfile directories and the files in them. You can use Rawfile APIs to perform operations such as traversing the file list, opening, searching for, reading, and closing rawfiles. 
-The APIs ended with **64** are new APIs. These APIs can be used to open rawfiles larger than 2 GB. For details, see [Rawfile](../reference/apis-localization-kit/capi-rawfile.md). The development procedure is the same for the APIs not ended with **64**. For example, you can use **OH_ResourceManager_OpenRawFile** and **OH_ResourceManager_OpenRawFile64** in the same way.
+This document describes how to use native RawFile APIs to manage raw file directories and files in OpenHarmony. You can use the APIs to perform operations such as traversing a file list and opening, searching for, reading, and closing raw files. 
+The APIs ended with **64** are new APIs. These APIs can be used to open rawfiles larger than 2 GB. For details, see [Rawfile](../reference/apis-localization-kit/capi-rawfile.md). The development procedure is the same for the API ended with **64** and the one does not. For example, you can use **OH_ResourceManager_OpenRawFile** and **OH_ResourceManager_OpenRawFile64** in the same way.
 
 ## Available APIs
 
-| Name                                                      | Description                                    |
+| API                                                      | Description                                    |
 | :----------------------------------------------------------- | :--------------------------------------- |
 | NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr) | Initializes the native resource manager.         |
-| RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName) | Opens a rawfile directory.                   |
-| int OH_ResourceManager_GetRawFileCount(RawDir *rawDir)       | Obtains the number of rawfiles in the specified **rawfile** directory.|
-| const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index) | Obtains the name of a rawfile.                       |
-| RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName) | Opens a rawfile.                   |
-| long OH_ResourceManager_GetRawFileSize(RawFile *rawFile)     | Obtains the size of a rawfile.                   |
-| int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length) | Reads a rawfile.                   |
-| void OH_ResourceManager_CloseRawFile(RawFile *rawFile)       | Closes a rawfile to release resources.               |
-| void OH_ResourceManager_CloseRawDir(RawDir *rawDir)          | Closes a rawfile directory to release resources.               |
-| bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | Obtains the file descriptor (FD) of a rawfile.                       |
+| RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName) | Opens a raw file directory.                   |
+| int OH_ResourceManager_GetRawFileCount(RawDir *rawDir)       | Obtains the number of raw files in a directory.|
+| const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index) | Obtains the name of a raw file.                       |
+| RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName) | Opens a raw file.                   |
+| long OH_ResourceManager_GetRawFileSize(RawFile *rawFile)     | Obtains the size of a raw file.                   |
+| int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length) | Reads a raw file.                   |
+| void OH_ResourceManager_CloseRawFile(RawFile *rawFile)       | Closes a raw file to release resources.               |
+| void OH_ResourceManager_CloseRawDir(RawDir *rawDir)          | Closes a raw file directory to release resources.               |
+| bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | Obtains the file descriptor (FD) of a raw file.                       |
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | Releases the native resource manager.   |
-| bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | Checks whether the path of a rawfile is a subdirectory in the **rawfile** directory.   |
+| bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | Checks whether a path is a subdirectory in the **rawfile** directory.   |
 
 For details about the APIs, see [rawfile](../reference/apis-localization-kit/capi-rawfile.md).
 
@@ -28,11 +28,11 @@ For details about the APIs, see [rawfile](../reference/apis-localization-kit/cap
 
    The following uses the ArkTS as an example to describe how to obtain the rawfile list, rawfile content, rawfile descriptor (**fd**, **offset**, and **length**), and determine whether the path of a rawfile is a subdirectory in the **rawfile** directory.
 
-**1. Creating a Project**
+1. Create a project on DevEco Studio.
 
 ![Creating a C++ application](figures/rawfile1.png)
 
-**2. Adding Dependencies**
+2. Add dependencies.
 
 After the project is created, the **cpp** directory is created in the project directory. In the **cpp** directory, there are files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
 
@@ -52,7 +52,7 @@ After the project is created, the **cpp** directory is created in the project di
     export const isRawDir: (resmgr: resourceManager.ResourceManager, path: string) => boolean;
     ```
 
-**3. Modifying the Source File**
+3. Modify the source file.
 
 1. Open the **src/main/cpp/hello.cpp** file, and add the mapping between ArkTS APIs and C++ APIs in the **Init** method. The ArkTS APIs **getFileList**, **getRawFileContent**, **getRawFileDescriptor**, and **isRawDir** map to the C++ APIs **GetFileList**, **GetRawFileContent**, **GetRawFileDescriptor**, and **IsRawDir**, respectively.
 
@@ -72,7 +72,7 @@ After the project is created, the **cpp** directory is created in the project di
     }
     EXTERN_C_END
     ```
-    <!-- @[module_registration](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[module_registration](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 2. Add the four C++ native APIs to the **src/main/cpp/hello.cpp** file.
 
@@ -98,18 +98,18 @@ After the project is created, the **cpp** directory is created in the project di
     #include "rawfile/raw_dir.h"
     #include "hilog/log.h"
     ```
-    <!-- @[includes](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[includes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
     Declare the **DOMAIN** and **TAG** constants of hilog.
     ```c++
     const int GLOBAL_RESMGR = 0xFF00;
     const char *TAG = "[Sample_rawfile]";
     ```
-    <!-- @[constants](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[constants](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
-    Example: 
+    Examples:
     ```c++
-    // Example 1: Use GetFileList to obtain the rawfile list.
+    // Example 1: Use GetFileList to obtain the raw file list.
     static napi_value GetFileList(napi_env env, napi_callback_info info)
     {
         OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "NDKTest GetFileList Begin");
@@ -155,11 +155,11 @@ After the project is created, the **cpp** directory is created in the project di
         return fileList;
     }
     ```
-    <!-- @[example_get_file_list](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_get_file_list](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 
     ```c++
-    // Example 2: Use rawDir pointer object to obtain the content of the rawfile.
+    // Example 2: Use GetRawFileContent to obtain the content of the raw file.
     napi_value CreateJsArrayValue(napi_env env, std::unique_ptr<uint8_t[]> &data, long length)
     {
         // Create a JS ArrayBuffer object with external data.
@@ -199,30 +199,30 @@ After the project is created, the **cpp** directory is created in the project di
         napi_get_value_string_utf8(env, argv[1], strBuf, sizeof(strBuf), &strSize);
         std::string filename(strBuf, strSize);
 
-        // Obtain the rawfile pointer object.
+        // Obtain the raw file pointer object.
         RawFile *rawFile = OH_ResourceManager_OpenRawFile(mNativeResMgr, filename.c_str());
         if (rawFile != nullptr) {
             OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "OH_ResourceManager_OpenRawFile success");
         }
-        // Obtain the size of the rawfile and apply for memory.
+        // Obtain the size of the raw file and apply for memory.
         long len = OH_ResourceManager_GetRawFileSize(rawFile);
         std::unique_ptr<uint8_t[]> data = std::make_unique<uint8_t[]>(len);
 
-        // Read all content of the rawfile at a time.
+        // Read all content of the raw file at a time.
         int res = OH_ResourceManager_ReadRawFile(rawFile, data.get(), len);
 
-        // Close the rawFile pointer object.
+        // Close the rawDir pointer object.
         OH_ResourceManager_CloseRawFile(rawFile);
         OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
-        // Convert the native object to a JavaScript object.
+        // Convert the native object to a JS object.
         return CreateJsArrayValue(env, data, len);
     }
     ```
-    <!-- @[example_get_rawfile_content](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_get_rawfile_content](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 
     ```c++
-    // Example 3: Use GetRawFileDescriptor to obtain the FD of the rawfile.
+    // Example 3: Use GetRawFileDescriptor to obtain the FD of the raw file.
     // Define a function to convert RawFileDescriptor to a JS object.
     napi_value createJsFileDescriptor(napi_env env, RawFileDescriptor& descriptor)
     {
@@ -282,7 +282,7 @@ After the project is created, the **cpp** directory is created in the project di
         char strBuf[256];
         napi_get_value_string_utf8(env, argv[1], strBuf, sizeof(strBuf), &strSize);
         std::string filename(strBuf, strSize);
-        // Obtain the rawfile pointer object.
+        // Obtain the raw file pointer object.
         RawFile *rawFile = OH_ResourceManager_OpenRawFile(mNativeResMgr, filename.c_str());
         if (rawFile != nullptr) {
             OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "OH_ResourceManager_OpenRawFile success");
@@ -290,14 +290,14 @@ After the project is created, the **cpp** directory is created in the project di
         // Obtain the FD of the rawfile, that is, RawFileDescriptor {fd, offset, length}.
         RawFileDescriptor descriptor;
         OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
-        // Close the rawFile pointer object.
+        // Close the rawDir pointer object.
         OH_ResourceManager_CloseRawFile(rawFile);
         OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
-        // Convert the native object to a JavaScript object.
+        // Convert the native object to a JS object.
         return createJsFileDescriptor(env, descriptor);
     }
     ```
-    <!-- @[example_get_rawfile_descriptor](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_get_rawfile_descriptor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 
     ```c++
@@ -339,7 +339,7 @@ After the project is created, the **cpp** directory is created in the project di
         return CreateJsBool(env, result);
     }
     ```
-    <!-- @[example_is_raw_dir](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
+    <!-- @[example_is_raw_dir](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
 **4. Calling ArkTS APIs**
 
@@ -349,7 +349,7 @@ After the project is created, the **cpp** directory is created in the project di
     
 3. Call the APIs declared in **src/main/cpp/types/libentry/index.d.ts**. For example, call **getFileList** with the JS resource object and the relative path of the rawfile specified.
 
-   For example, to obtain a **resourceManager** object for intra-package resources within the application, use the following code:
+   Example: Obtain a **resourceManager** object for intra-package resources within the application.
 
 	```js
 	import { util } from '@kit.ArkTS';
@@ -408,5 +408,10 @@ After the project is created, the **cpp** directory is created in the project di
 	  }
 	}
 	```
-    <!-- @[native_rawfile_guide_sample](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/ets/pages/Index.ets) -->
+    <!-- @[native_rawfile_guide_sample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/ets/pages/Index.ets) -->
 
+##  
+
+ 
+
+- [Obtaining Rawfile Resources (API 9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)

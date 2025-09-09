@@ -131,7 +131,7 @@ A maximum of 64 runtime environments can be created for a process.
    ```ts
    // ObjectUtils.ets
    export function Logger() {
-       console.log("print log");
+       console.info("print log");
    }
 
    // Call ArkTS APIs.
@@ -139,3 +139,4 @@ A maximum of 64 runtime environments can be created for a process.
 
    testNapi.createArkRuntime();
    ```
+

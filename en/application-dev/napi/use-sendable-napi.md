@@ -224,7 +224,7 @@ You can use **napi_wrap_sendable** to wrap a C++ object in a Sendable ArkTS obje
 4. ArkTS code:
 
     ```ts
-    import hilog from '@ohos.hilog';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
     import { MyObject } from 'libentry.so';
 
     let object : MyObject = new MyObject(0);

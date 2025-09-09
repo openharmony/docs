@@ -7,9 +7,7 @@ You can use **napi_load_module** to load a module in the main thread. After the 
 ## Function Description
 
 ```cpp
-napi_status napi_load_module(napi_env env,
-                             const char* path,
-                             napi_value* result);
+napi_status napi_load_module(napi_env env, const char* path, napi_value* result);
 ```
 
 | Parameter           | Description         |
@@ -51,7 +49,10 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
         // 2. Call napi_get_named_property to obtain the info function.
         napi_value infoFn;
-        napi_get_named_property(env, result, "info", &infoFn);
+        status = napi_get_named_property(env, result, "info", &infoFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         
         napi_value tag;
         std::string formatStr = "test";
@@ -66,7 +67,10 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
         napi_value args[3] = {flag, tag, outputString};
         // 3. Call napi_call_function to invoke the info function.
-        napi_call_function(env, result, infoFn, 3, args, nullptr);
+        status = napi_call_function(env, result, infoFn, 3, args, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -79,7 +83,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -88,19 +92,19 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/Test.ets"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "sources": [
+              "./src/main/ets/Test.ets"
+            ]
+          }
         }
+      }
     }
     ```
 
-2. Call **napi_load_module** to load the module from the **Test.ets** file, call the **test()** function, and obtain the variable values.
+2. Call **napi_load_module** to load the module from the **Test.ets** file, call the **test()** function, and obtain the **value** variable.
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -110,19 +114,28 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-        // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        // 4. Call napi_get_property to obtain the value variable.
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -134,7 +147,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -143,19 +156,19 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/Test.ets"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "sources": [
+              "./src/main/ets/Test.ets"
+            ]
+          }
         }
+      }
     }
     ```
 
-2. Call **napi_load_module** to load the module from the **Test.ets** file, call the **test()** function, and obtain the variable values.
+2. Call **napi_load_module** to load the module from the **Test.ets** file, call the **test()** function, and obtain the **value** variable.
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -165,19 +178,28 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-        // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        // 4. Call napi_get_property to obtain the value variable.
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -190,7 +212,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
     // Library Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -199,9 +221,9 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "dependencies": {
-            "library": "file:../library"
-        }
+      "dependencies": {
+        "library": "file:../library"
+      }
     }
     ```
 
@@ -209,19 +231,19 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "library"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "library"
+            ]
+          }
         }
+      }
     }
     ```
 
-3. Call **napi_load_module** to load the library, call the **test** function, and obtain the variable values.
+3. Call **napi_load_module** to load the library, call the **test** function, and obtain the **value** variable.
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -231,19 +253,28 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-        // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        // 4. Call napi_get_property to obtain the value variable.
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -256,7 +287,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
     // Shared library Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -265,9 +296,9 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "dependencies": {
-            "sharedlibrary": "file:../sharedlibrary"
-        }
+      "dependencies": {
+        "sharedlibrary": "file:../sharedlibrary"
+      }
     }
     ```
 
@@ -275,19 +306,19 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "sharedlibrary"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "sharedlibrary"
+            ]
+          }
         }
+      }
     }
     ```
 
-3. Call **napi_load_module** to load the shared library, call the **test** function, and obtain the variable values.
+3. Call **napi_load_module** to load the shared library, call the **test** function, and obtain the **value** variable.
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -297,19 +328,28 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
 
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-        // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        // 4. Call napi_get_property to obtain the value variable.
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -320,9 +360,9 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "dependencies": {
-            "@ohos/hypium": "1.0.16"
-        }
+      "dependencies": {
+        "@ohos/hypium": "1.0.16"
+      }
     }
     ```
 
@@ -330,15 +370,15 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "@ohos/hypium"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "@ohos/hypium"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -352,13 +392,16 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value key;
         std::string keyStr = "DEFAULT";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 2. Call napi_get_property to obtain the DEFAULT variable.
         napi_value defaultValue;
-        napi_get_property(env, result, key, &defaultValue);
+        status = napi_get_property(env, result, key, &defaultValue);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -369,9 +412,9 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "dependencies": {
-            "@ohos/axios": "2.2.4",
-        }
+      "dependencies": {
+        "@ohos/axios": "2.2.4",
+      }
     }
     ```
 
@@ -379,15 +422,15 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "@ohos/axios"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "@ohos/axios"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -401,13 +444,16 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value key;
         std::string keyStr = "VERSION";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 2. Call napi_get_property to obtain the version.
         napi_value defaultValue;
-        napi_get_property(env, result, key, &defaultValue);
+        status = napi_get_property(env, result, key, &defaultValue);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -425,9 +471,9 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "dependencies": {
-            "libentry.so": "file:../src/main/cpp/types/libentry"
-        }
+      "dependencies": {
+        "libentry.so": "file:../src/main/cpp/types/libentry"
+      }
     }
     ```
 
@@ -435,15 +481,15 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "libentry.so"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "libentry.so"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -457,10 +503,13 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value addFn;
         // 2. Call napi_get_named_property to obtain the add() function.
-        napi_get_named_property(env, result, "add", &addFn);
+        status = napi_get_named_property(env, result, "add", &addFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         
         napi_value a;
         napi_value b;
@@ -469,7 +518,10 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         napi_value args[2] = {a, b};
         // 3. Call napi_call_function to invoke the add() function.
         napi_value returnValue;
-        napi_call_function(env, result, addFn, 2, args, &returnValue);
+        status = napi_call_function(env, result, addFn, 2, args, &returnValue);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -482,7 +534,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
     //har2 Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -491,9 +543,9 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "dependencies": {
-            "har2": "file:../har2"
-        }
+      "dependencies": {
+        "har2": "file:../har2"
+      }
     }
     ```
 
@@ -501,18 +553,18 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "har2"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "har2"
+            ]
+          }
         }
+      }
     }
     ```
-3. Call **napi_load_module** to load **har2** to **har1**, call the **test** function, and obtain the variable value.
+3. Call **napi_load_module** to load **har2** to **har1**, call the **test** function, and obtain the **value** variable.
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -525,16 +577,25 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-        // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        // 4. Call napi_get_property to obtain the value variable.
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
