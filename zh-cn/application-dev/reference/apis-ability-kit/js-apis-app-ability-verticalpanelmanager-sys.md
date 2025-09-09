@@ -92,16 +92,16 @@ struct Index {
     // Param[1] wantParam: Record<string, Object>
     let wantParam: Record<string, Object> = {
       'sceneType': 3,
-      'destinationName': 'address'
+      'destinationName': '练秋湖研发中心'
     };
 
     // Param[2] PanelConfig
     let sourceAppInfo: Record<string, string> = {};
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_BUNDLE_NAME] = 'come.huawei.hmos.browser';
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_BUNDLE_NAME] = 'com.huawei.hmos.browser';
     sourceAppInfo[verticalPanelManager.SOURCE_APP_MODULE_NAME] = 'entry';
     sourceAppInfo[verticalPanelManager.SOURCE_APP_ABILITY_NAME] = 'MainAbility';
     sourceAppInfo[verticalPanelManager.SOURCE_APP_WINDOW_ID] = '0';
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_SCREEN_MODE] = '1';
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_SCREEN_MODE] = '3';
 
     let panelConfig: verticalPanelManager.PanelConfig = {
       type: verticalPanelManager.VerticalType.NAVIGATION,
