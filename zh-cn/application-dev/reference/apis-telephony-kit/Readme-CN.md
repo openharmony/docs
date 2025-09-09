@@ -21,7 +21,6 @@
 - C API<!--telephony-c-->
   - 模块<!--telephony-module-->
     - [Telephony](capi-telephony.md)
-    - [Telephony Radio](ndk-apis-telephony-radio.md)
   - 头文件<!--telephony-headerfile-->
     - [telephony_data.h](capi-telephony-data-h.md)
     - [telephony_radio.h](capi-telephony-radio-h.md)
