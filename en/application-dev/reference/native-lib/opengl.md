@@ -4,7 +4,7 @@
 
 ## Supported Capabilities
 
-OpenGL 3.0
+OpenGL 3.0 is supported since API version 20.
 
 ## Symbols Exported from the Standard Library
 
