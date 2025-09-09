@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @tangye123456-->
-<!--SE: @YanSanzo-->
-<!--TSE: @tinygreyy-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 The **MovingPhotoView** component is used to play moving photos and control the playback status.
 
@@ -166,7 +167,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### setPlaybackPeriod<sup>20+</sup>
 
-setPlaybackPeriod(startTime: double, endTime: double)
+setPlaybackPeriod(startTime: number, endTime: number)
 
 Sets the playback range, which takes effect for the next playback.
 
@@ -178,8 +179,8 @@ Sets the playback range, which takes effect for the next playback.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| startTime| double| Yes  | Start of the range, in ms. The value must be greater than or equal to 0.|
-| endTime| double| Yes  | End of the range, in ms. The value must be greater than **startTime**.|
+| startTime| number| Yes  | Start of the range, in ms. The value must be greater than or equal to 0.|
+| endTime| number| Yes  | End of the range, in ms. The value must be greater than **startTime**.|
 
 **Error codes**
 
