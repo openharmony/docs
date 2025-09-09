@@ -65,7 +65,9 @@
    ```
 
 <!--RP2-->
-2. KeyboardController.ts文件。
+2. KeyboardController.ts文件。KeyboardController中除创建输入法窗口，设置输入法事件监听，实现文本插入、删除之外，还可以获取[输入法键盘与系统面板的偏移区域](../reference/apis-ime-kit/js-apis-inputmethodengine.md#getsystempanelcurrentinsets21)，输入法系统面板在不同设备上存在差异，当设备有系统面板时，输入法软键盘相对系统面板的偏移区域如图所示：
+
+   ![偏移区域示意图](./figures/系统面板与软键盘偏移区域示意图.png)
 
    ```ts
    import { display } from '@kit.ArkUI';
@@ -135,6 +137,17 @@
            await this.panel.resize(dWidth, keyHeight);
            await this.panel.moveTo(0, nonBarPosition);
            await this.panel.setUiContent('InputMethodExtensionAbility/pages/Index');
+           // 获取输入法键盘与系统面板偏移区域大小，实际开发中可以根据实际情况判断是否需要实现
+	       let defaultDisplay = display.getDefaultDisplaySync();
+           if (defaultDisplay !== undefined) {
+             this.panel.getSystemPanelCurrentInsets(defaultDisplay.id)
+               .then((insets: inputMethodEngine.SystemPanelInsets) => {
+                 console.info(`getSystemPanelCurrentInsets success, insets is { left: ${insets.left}, right: ${insets.right}, bottom: ${insets.bottom} }`);
+               })
+               .catch((error: BusinessError) => {
+                 console.error(`getSystemPanelCurrentInsets failed, code: ${error.code}, message: ${error.message}`);
+               })
+           }
          }
        }).catch((err: BusinessError) => {
          console.error(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
