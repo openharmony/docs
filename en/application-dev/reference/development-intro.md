@@ -49,7 +49,7 @@ System capability refers to a relatively independent feature in the operating sy
 
 The following description is provided for each API in the reference document to describe the system capability of the API: "**System capability**: SystemCapability.xxx.xxx"
 
-You can use the [SystemCapability List](syscap-list.md) to query the devices supported by a specific capability set.
+You can use the [SystemCapability List](phone-syscap-list.md) to query the devices supported by a specific capability set.
 
 ## Deprecated API Description
 
