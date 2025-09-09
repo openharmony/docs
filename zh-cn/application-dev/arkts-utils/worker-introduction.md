@@ -68,14 +68,10 @@ Worker线程文件需要放在"{moduleName}/src/main/ets/"目录层级之下，�
 // 导入模块
 import { worker } from '@kit.ArkTS';
 
-// API 9及之后版本使用：
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
-// API 8及之前版本使用：
-const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets');
 ```
 
-
-#### Stage模型下的文件路径规则
+**Stage模型下的文件路径规则**
 
 构造函数中的scriptURL要求如下：
 
@@ -133,7 +129,7 @@ const workerStage5: worker.ThreadWorker = new worker.ThreadWorker('../../workers
 ```
 
 
-#### FA模型下的文件路径规则
+**FA模型下的文件路径规则**
 
   构造函数中的scriptURL为：Worker线程文件与"{moduleName}/src/main/ets/MainAbility"的相对路径。
 
