@@ -1,4 +1,10 @@
 # SoundPool (Sound Pool)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The module provides APIs for loading, unloading, playing, and stopping playing sounds, setting the volume, and setting the number of loops.
 
@@ -77,8 +83,9 @@ This API cannot be used to load resources in the **rawfile** directory. Instead,
 
 >**NOTE**
 >
->After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
->Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the player, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple players.
+>
+> Competition occurs when multiple players use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -104,6 +111,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -146,8 +155,9 @@ This API cannot be used to load resources in the **rawfile** directory. Instead,
 
 >**NOTE**
 >
->After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
->Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the player, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple players.
+>
+>Competition occurs when multiple players use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -178,6 +188,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -220,8 +232,9 @@ Loads a sound. This API uses an asynchronous callback to obtain the sound ID. Th
 
 >**NOTE**
 >
->After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
->Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the player, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple players.
+>
+> Competition occurs when multiple players use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -249,6 +262,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -332,8 +347,9 @@ Loads a sound. This API uses a promise to obtain the sound ID. The input paramet
 
 >**NOTE**
 >
->After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
->Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the player, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple players.
+>
+> Competition occurs when multiple players use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -366,6 +382,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -467,6 +485,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -507,7 +527,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 play(soundID: number, callback: AsyncCallback\<number>): void
 
-Plays a sound. This API uses an asynchronous callback to obtain the audio stream ID.
+Plays a sound using the default parameters. This API uses an asynchronous callback to obtain the audio stream ID.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -532,6 +552,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -596,6 +618,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -660,6 +684,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -722,6 +748,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -777,6 +805,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -841,6 +871,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -898,6 +930,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -962,6 +996,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1020,6 +1056,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1084,6 +1122,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1142,6 +1182,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1207,6 +1249,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1263,6 +1307,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1325,6 +1371,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1378,6 +1426,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1431,6 +1481,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1474,6 +1526,8 @@ Subscribes to events indicating that a sound finishes loading.
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1514,6 +1568,8 @@ Unsubscribes from events indicating that a sound finishes loading.
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1557,6 +1613,8 @@ When both [on('playFinished')](#onplayfinished) and [on('playFinishedWithStreamI
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool_: media.SoundPool;
@@ -1596,6 +1654,8 @@ Unsubscribes from events indicating that a sound finishes playing.
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool_: media.SoundPool;
@@ -1634,6 +1694,8 @@ Subscribes to events indicating that a sound finishes playing.
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1674,6 +1736,8 @@ Unsubscribes from events indicating that a sound finishes playing.
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1713,6 +1777,8 @@ Subscribes to error events of this SoundPool instance. This event is used only f
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1754,6 +1820,8 @@ Unsubscribes from error events of this SoundPool instance.
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1792,6 +1860,8 @@ Subscribes to error events of this [SoundPool](#soundpool) instance and returns 
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
@@ -1837,6 +1907,8 @@ Unsubscribes from error events of this SoundPool instance.
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;

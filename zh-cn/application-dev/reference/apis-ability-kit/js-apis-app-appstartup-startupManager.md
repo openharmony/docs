@@ -6,7 +6,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-本模块提供应用启动框架管理启动任务的能力，只能在主线程调用。
+本模块提供[应用启动框架](../../application-models/app-startup.md)管理启动任务的能力，只能在主线程调用。
 
 > **说明：**
 >
@@ -29,7 +29,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 > **说明：**
 >
-> 如果需要执行feature类型HAP中的启动任务，不支持使用该接口，需要使用[startupManager.run](#startupmanagerrun20)接口。
+> 本接口不支持执行feature类型HAP中的启动任务，如需要使用相关能力请调用[startupManager.run](#startupmanagerrun20)接口。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
@@ -37,8 +37,8 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| startupTasks | Array\<string\> | 是 | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称和预加载so名称的数组。 |
-| config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与启动任务监听器配置。 |
+| startupTasks | Array\<string\> | 是 | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称的数组。 |
+| config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 表示启动任务配置信息，包含启动框架超时时间与启动任务监听器配置。 |
 
 **返回值：**
 
@@ -100,9 +100,9 @@ run(startupTasks: Array\<string\>, context: common.AbilityStageContext, config: 
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| startupTasks | Array\<string\>                                              | 是   | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称和预加载so名称的数组。 |
+| startupTasks | Array\<string\>                                              | 是   | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称的数组。 |
 | context      | [common.AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 是   | 表示执行启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的AbilityStage上下文，作为入参传给启动任务的[init](js-apis-app-appstartup-startupTask.md#init)。 |
-| config       | [StartupConfig](./js-apis-app-appstartup-startupConfig.md)   | 是   | 启动框架超时时间与启动任务监听器配置。                       |
+| config       | [StartupConfig](./js-apis-app-appstartup-startupConfig.md)   | 是   | 表示启动任务配置信息，包含启动框架超时时间与启动任务监听器配置。 |
 
 **返回值：**
 
@@ -149,7 +149,7 @@ export default class MyAbilityStage extends AbilityStage {
 
     try {
       // 手动调用run方法
-      startupManager.run(["StartupTask_001", "libentry_001"], this.context, config).then(() => {
+      startupManager.run(['StartupTask_001', 'libentry_001'], this.context, config).then(() => {
         hilog.info(0x0000, 'testTag', '%{public}s', 'startupManager.run success');
       }).catch((error: BusinessError<void>) => {
         hilog.error(0x0000, 'testTag', 'startupManager.run promise catch error: %{public}s', JSON.stringify(error));
@@ -178,13 +178,21 @@ removeAllStartupTaskResults(): void
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try {
+      startupManager.run(['StartupTask_001', 'libentry_001']).then(() => {
+        hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -213,15 +221,15 @@ getStartupTaskResult(startupTask: string): Object
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名或so文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Object | 输入为启动任务名时，返回指定的启动任务结果。<br/> 输入为so文件名时，返回undefined。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Object | 输入为启动任务名时，返回指定的启动任务[init](js-apis-app-appstartup-startupTask.md#init)返回的执行结果。<br/>输入为so文件名时，返回undefined。 |
 
 **错误码：**
 
@@ -237,19 +245,27 @@ getStartupTaskResult(startupTask: string): Object
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try {
+      startupManager.run(['StartupTask_001']).then(() => {
+        hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.getStartupTaskResult("StartupTask_001"); // 手动获取启动任务结果
-    console.info("getStartupTaskResult result = " + result);
+    let result = startupManager.getStartupTaskResult('StartupTask_001'); // 手动获取启动任务结果
+    hilog.info(0x0000, 'testTag', 'getStartupTaskResult result = %{public}s', result);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -272,9 +288,9 @@ isStartupTaskInitialized(startupTask: string): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名称。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
 
 **返回值：**
 
@@ -296,13 +312,21 @@ isStartupTaskInitialized(startupTask: string): boolean
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try {
+      startupManager.run(['StartupTask_001', 'libentry_001']).then(() => {
+      hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -310,14 +334,14 @@ export default class EntryAbility extends UIAbility {
     let result1 = startupManager.isStartupTaskInitialized('StartupTask_001');
     let result2 = startupManager.isStartupTaskInitialized('libentry_001');
     if (result1) {
-      console.info("StartupTask_001 init successful");
+      console.info('StartupTask_001 init successful');
     } else {
-      console.info("StartupTask_001 uninitialized");
+      console.info('StartupTask_001 uninitialized');
     }
     if (result2) {
-      console.info("libentry_001 init successful");
+      console.info('libentry_001 init successful');
     } else {
-      console.info("libentry_001 uninitialized");
+      console.info('libentry_001 uninitialized');
     }
 
     windowStage.loadContent('pages/Index', (err, data) => {
@@ -345,9 +369,9 @@ removeStartupTaskResult(startupTask: string): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
 
 **错误码：**
 
@@ -363,19 +387,27 @@ removeStartupTaskResult(startupTask: string): void
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(["StartupTask_001", "libentry_001"]).then(() => {
-      console.info("StartupTask_001 init successful");
-    })
+    try{
+      startupManager.run(['StartupTask_001', 'libentry_001']).then(() => {
+        hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
+      }).catch((error: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error: %{public}s`,
+          JSON.stringify(error) ?? '');
+      });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error: %{public}s`, JSON.stringify(error) ?? '');
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    startupManager.removeStartupTaskResult("StartupTask_001");
-    startupManager.removeStartupTaskResult("libentry_001");
+    startupManager.removeStartupTaskResult('StartupTask_001');
+    startupManager.removeStartupTaskResult('libentry_001');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {

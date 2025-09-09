@@ -4,7 +4,7 @@
 <!--Subsystem: Graphic-->
 <!--Owner: @xubo85-->
 <!--Designer: @comicchang; @wang-luyu4-->
-<!--Tester: @civilong-->
+<!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
 
 本模块提供管理抽象化色域对象的一些基础能力，包括色域对象的创建与色域基础属性的获取等。
@@ -131,7 +131,7 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | primaries       | [ColorSpacePrimaries](#colorspaceprimaries)| 是   | 色域标准三原色。               |
-| gamma           | number                                     | 是   | 色域gamma值。                 |
+| gamma           | number                                     | 是   | 色域gamma值，取值为大于0的浮点数。|
 
 **返回值：**
 

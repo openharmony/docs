@@ -19,7 +19,7 @@
 
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
-继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置滑动手势事件。
+继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)，设置滑动手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -45,7 +45,7 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SwipeGestureHandlerOptions](./ts-uigestureevent.md#swipegesturehandleroptions) | 否 | 滑动事件处理器配置参数。 |
+| options | [SwipeGestureHandlerOptions](./ts-gesturehandler.md#swipegesturehandleroptions) | 否 | 滑动事件处理器配置参数。 |
 
 ## SwipeDirection枚举说明
 
@@ -65,7 +65,7 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 >  **说明：**
 >
->  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 
 **原子化服务API：** 从API version 8开始，该接口支持在原子化服务中使用。
 
@@ -75,7 +75,7 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 onAction(event: (event: GestureEvent) => void)
 
-Swipe手势识别成功回调。
+Swipe手势识别成功时触发回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -85,7 +85,7 @@ Swipe手势识别成功回调。
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
 
 ## 示例
 

@@ -42,7 +42,7 @@
 
 - 当应用需要在后台播放媒体类型（流类型为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE和STREAM_USAGE_AUDIOBOOK）和游戏类型（流类型为STREAM_USAGE_GAME）时，必须接入媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）并申请AUDIO_PLAYBACK类型长时任务。
 
-- 除了上述播放类型，当应用需要在后台长时间运行用户可感知的其他后台播放任务时，必须申请AUDIO_PLAYBACK类型长时任务，无需接入AVSession。
+- 除了上述播放类型，针对用户可感知的其他播放任务，如果应用需要在后台长时间运行该任务，必须申请AUDIO_PLAYBACK类型长时任务，无需接入AVSession。
 
 - 如果应用不满足上述接入规范，退至后台播放时会被系统静音并冻结，无法在后台正常播放，直到应用重新切回前台时，才会解除静音并恢复播放。
 
@@ -102,7 +102,9 @@
             {
                 "backgroundModes": [
                  // 长时任务类型的配置项
-                "audioRecording"
+                "audioRecording",
+                "bluetoothInteraction",
+                "audioPlayback"
                 ]
             }
         ],
@@ -164,6 +166,7 @@
         }
       }
 
+      // 申请长时任务.then()写法
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // 点击通知后，将要执行的动作列表
@@ -180,7 +183,7 @@
           requestCode: 0,
           // 点击通知后，动作执行属性
           actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
-          // 车钥匙长时任务子类型。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
+          // 车钥匙长时任务子类型，从API version 16开始支持。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
           // 确保extraInfo参数中的Key值为backgroundTaskManager.BackgroundModeType.SUB_MODE，否则子类型不生效。
           // extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
         };
@@ -208,7 +211,48 @@
         }
       }
 
-   
+      // 申请长时任务async/await写法
+      // async startContinuousTask() {
+      //   let wantAgentInfo: wantAgent.WantAgentInfo = {
+      //     // 点击通知后，将要执行的动作列表
+      //     // 添加需要被拉起应用的bundleName和abilityName
+      //     wants: [
+      //       {
+      //         bundleName: "com.example.myapplication",
+      //         abilityName: "MainAbility"
+      //       }
+      //     ],
+      //     // 指定点击通知栏消息后的动作是拉起ability
+      //     actionType: wantAgent.OperationType.START_ABILITY,
+      //     // 使用者自定义的一个私有值
+      //     requestCode: 0,
+      //     // 点击通知后，动作执行属性
+      //     actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+      //     // 车钥匙长时任务子类型。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
+      //     // 确保extraInfo参数中的Key值为backgroundTaskManager.BackgroundModeType.SUB_MODE，否则子类型不生效。
+      //     // extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
+      //   };
+      // 
+      //   try {
+      //     // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+      //     // 在原子化服务中，使用const wantAgentObj: object = await wantAgent.getWantAgent(wantAgentInfo);替换下面一行代码
+      //     const wantAgentObj: WantAgent = await wantAgent.getWantAgent(wantAgentInfo);
+      //     try {
+      //       let list: Array<string> = ["audioRecording"];
+      //       // let list: Array<string> = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
+      //       // 在原子化服务中，let list: Array<string> = ["audioPlayback"];
+      //       const res: backgroundTaskManager.ContinuousTaskNotification = await backgroundTaskManager.startBackgroundRunning(this.context as Context, list, wantAgentObj);
+      //       console.info(`Operation startBackgroundRunning succeeded, notificationId: ${res.notificationId}`);
+      //       // 此处执行具体的长时任务逻辑，如录音，录制等。
+      //     } catch (error) {
+      //       console.error(`Failed to Operation startBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //     }
+      //   } catch (error) {
+      //     console.error(`Failed to Operation getWantAgent. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //   }
+      // }
+
+      // 取消长时任务.then()写法
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
            console.info(`Succeeded in operationing stopBackgroundRunning.`);
@@ -216,7 +260,17 @@
            console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
          });
       }
-   
+
+      // 取消长时任务async/await写法
+      // async stopContinuousTask() {
+      //   try {
+      //     await backgroundTaskManager.stopBackgroundRunning(this.context);
+      //     console.info(`Succeeded in operationing stopBackgroundRunning.`);
+      //   } catch (error) {
+      //     console.error(`Failed to operation stopBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`)
+      //   }
+      // }
+
       build() {
         Row() {
           Column() {
@@ -334,9 +388,9 @@
       num: number = 0;
       str: string = '';
 
-      constructor(num: number, string: string) {
+      constructor(num: number, str: string) {
         this.num = num;
-        this.str = string;
+        this.str = str;
       }
 
       marshalling(messageSequence: rpc.MessageSequence) {

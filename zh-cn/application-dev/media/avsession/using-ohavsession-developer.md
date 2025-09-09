@@ -34,6 +34,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    ```c++
    OH_AVSession* avsession;
    OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example.application",   "MainAbility", &avsession);
+   OH_AVSession_Activate(avsession);
    ```
  
    `AVSession_Type`包含如下四种类型：

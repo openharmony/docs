@@ -731,30 +731,6 @@ openSync(path: string, flags?: number, mode?: number): number
   | ------ | ----------- |
   | number | 打开文件的文件描述符。 |
 
-**示例：**
-
-  ```ts
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o640);
-  ```
-  ```ts
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o666);
-  fileio.writeSync(fd, 'hello world');
-  let fd1 = fileio.openSync(filePath, 0o2002);
-  fileio.writeSync(fd1, 'hello world');
-  class Option {
-    offset: number = 0;
-    length: number = 4096;
-    position: number = 0;
-  }
-  let option = new Option();
-  option.position = 0;
-  let buf = new ArrayBuffer(4096)
-  let num = fileio.readSync(fd1, buf, option);
-  console.info("num == " + num);
-  ```
-
 
 ## fileio.read
 
@@ -782,24 +758,6 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   | ---------------------------------- | ------ |
   | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o640);
-  let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer).then((readResult: fileio.ReadOut) => {
-    console.info("read file data succeed");
-    let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
-    console.log(`The content of file: ${buf.toString()}`);
-    fileio.closeSync(fd);
-  }).catch((err: BusinessError) => {
-    console.error("read file data failed with error:" + err);
-  });
-  ```
-
 
 ## fileio.read
 
@@ -821,24 +779,6 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
   | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步读取数据之后的回调。                             |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o640);
-  let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer, (err: BusinessError, readResult: fileio.ReadOut) => {
-    if (readResult) {
-      console.info("read file data succeed");
-      let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
-      console.info(`The content of file: ${buf.toString()}`);
-    }
-    fileio.closeSync(fd);
-  });
-  ```
 
 
 ## fileio.readSync

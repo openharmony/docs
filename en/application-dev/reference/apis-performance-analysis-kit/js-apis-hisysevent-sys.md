@@ -1,5 +1,11 @@
 # @ohos.hiSysEvent (System Event Logging) (System API)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @lyj_love_code-->
+<!--SE: @tangyyan-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 The **hiSysEvent** module provides the system event logging functions, such as configuring trace points, subscribing to system events, and querying system events written to the event file.
 
 > **NOTE**
@@ -32,12 +38,12 @@ Defines a system event.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| domain | string | Yes| Event domain.|
-| name | string | Yes| Event name.|
-| eventType | [EventType](#eventtype) | Yes| Event type.|
-| params | object | No| Event parameters.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| domain | string | No| No| Event domain.|
+| name | string | No| No| Event name.|
+| eventType | [EventType](#eventtype) | No| No| Event type.|
+| params | object | No| Yes| Event parameters.|
 
 
 ## hiSysEvent.write
@@ -188,12 +194,12 @@ Defines event subscription rules.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| domain | string | Yes| Event domain.|
-| name | string | Yes| Event name.|
-| tag | string | No| Event tag.|
-| ruleType | [RuleType](#ruletype) | Yes| Matching rule type.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| domain | string | No| No| Event domain.|
+| name | string | No| No| Event name.|
+| tag | string | No| Yes| Event tag.|
+| ruleType | [RuleType](#ruletype) | No| No| Matching rule type.|
 
 ## Watcher
 
@@ -201,11 +207,11 @@ Defines a watcher for event subscription.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| rules | [WatchRule](#watchrule)[] | Yes| Array of matching event subscription rules.|
-| onEvent | function | Yes| Callback for event subscription: (info: [SysEventInfo](#syseventinfo)) => void|
-| onServiceDied | function | Yes| Callback for disabling of event subscription: () => void|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| rules | [WatchRule](#watchrule)[] | No| No| Array of matching event subscription rules.|
+| onEvent | function | No| No| Callback for event subscription: (info: [SysEventInfo](#syseventinfo)) => void|
+| onServiceDied | function | No| No| Callback for disabling of event subscription: () => void|
 
 ## hiSysEvent.addWatcher
 
@@ -325,13 +331,13 @@ Defines arguments for an event query.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| beginTime | number | Yes| Start time (13-digit timestamp) for the event query.|
-| endTime | number | Yes| End time (13-digit timestamp) for the event query.|
-| maxEvents | number | Yes| Maximum number of events that can be queried.|
-| fromSeq<sup>10+</sup> | number | No  | Start SN of the events to be queried. The default value is **-1**.|
-| toSeq<sup>10+</sup> | number | No  | End SN of the system events to be queried. The default value is **-1**.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| beginTime | number | No| No| Start time (13-digit timestamp) for the event query.|
+| endTime | number | No| No| End time (13-digit timestamp) for the event query.|
+| maxEvents | number | No| No| Maximum number of events that can be queried.|
+| fromSeq<sup>10+</sup> | number | No| Yes| Start SN of the events to be queried. The default value is **-1**.|
+| toSeq<sup>10+</sup> | number | No| Yes| End SN of the system events to be queried. The default value is **-1**.|
 
 ## QueryRule 
 
@@ -339,11 +345,11 @@ Defines event query rules.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| domain | string | Yes| Event domain.|
-| names | string[] | Yes| Array of event names. A **QueryRule** object contains multiple system event names.|
-| condition<sup>10+</sup> | string | No| Additional event conditions. The value of this parameter is in the format of {"version":"V1","condition":{"and":[{"param":"*Parameter*","op":"*Operator*","value":"*Comparison value*"}]}}.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| domain | string | No| No| Event domain.|
+| names | string[] | No| No| Array of event names. A **QueryRule** object contains multiple system event names.|
+| condition<sup>10+</sup> | string | No| Yes| Additional event conditions. The value of this parameter is in the format of {"version":"V1","condition":{"and":[{"param":"*Parameter*","op":"*Operator*","value":"*Comparison value*"}]}}.|
 
 ## Querier
 
@@ -351,10 +357,10 @@ Defines an event query instance.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| onQuery | function | Yes| Callback used to return the queried system events: (infos: [SysEventInfo](#syseventinfo)[]) => void.|
-| onComplete | function | Yes| Callback used to return the query result statistics: (reason: number, total: number) => void|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| onQuery | function | No| No| Callback used to return the queried system events: (infos: [SysEventInfo](#syseventinfo)[]) => void.|
+| onComplete | function | No| No| Callback used to return the query result statistics: (reason: number, total: number) => void|
 
 ## hiSysEvent.query
 

@@ -50,7 +50,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
        }
        Camera_MetadataObjectType* metaDataObjectType = nullptr;
        bool isSupported = false;
-       for (int index = 0; index < cameraOutputCapability->metadataProfilesSize; index++) {
+       for (uint32_t index = 0; index < cameraOutputCapability->metadataProfilesSize; index++) {
            if (cameraOutputCapability->supportedMetadataObjectTypes[index] != nullptr &&
                *cameraOutputCapability->supportedMetadataObjectTypes[index] == FACE_DETECTION) {
                metaDataObjectType = *cameraOutputCapability->supportedMetadataObjectTypes;

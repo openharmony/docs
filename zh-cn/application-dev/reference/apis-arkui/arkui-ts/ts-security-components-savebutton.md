@@ -122,6 +122,7 @@ SaveButton(options: SaveButtonOptions)
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 保存控件点击后权限授权成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存控件点击后权限授权失败。 |
+| CANCELED_BY_USER<sup>21+</sup>  | 2 | 保存控件点击后弹窗用户取消授权。 |
 
 ## SaveButtonCallback<sup>18+</sup>
 
@@ -133,11 +134,13 @@ type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, e
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
+| event | [ClickEvent](ts-universal-events-click.md#clickevent) |是 |见ClickEvent对象说明。|
 | result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为一分钟，即触发点击后，可以在一分钟之内不限制次数的调用特定媒体库接口，超出一分钟的调用会鉴权失败。|
-| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击保存控件授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
+| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击保存控件授权成功或用户取消授权。<br>错误码1表示系统内部错误，包括但不限于：<br>1. ipc通信失败。<br>2. 安全控件弹窗失败。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
 
 ## SaveButtonAttribute
 SaveButtonAttribute提供自定义图标（setIcon）、自定义文本（setText）、图标尺寸（iconSize）、图标圆角（iconBorderRadius），以及按压态效果（stateEffect）等属性设置的方法。
@@ -232,6 +235,22 @@ stateEffect(enabled: boolean)
 |------------|------|-------|---------|
 | enabled | boolean |是 | 表示是否开启按压效果，true表示保存控件按压时显示按压效果，false表示保存控件按压时不显示按压效果。<br/>默认值：true。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，按压效果设置不生效。 |
 
+### userCancelEvent<sup>21+</sup>
+
+userCancelEvent(enabled: boolean)
+
+设置接收保存控件的用户取消授权事件。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| enabled | boolean | 是 | 表示是否接收保存控件的用户取消授权事件，true表示接收保存控件的用户取消授权事件，false表示不接收保存控件的用户取消授权事件。<br/>默认值：false。<br/> |
+
 ## 属性
 
 不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md)。
@@ -254,7 +273,7 @@ onClick(event: SaveButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [SaveButtonCallback](#savebuttoncallback18) |是 |见SaveButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为SaveButtonCallback。|
+| event | [SaveButtonCallback](#savebuttoncallback18) |是 |见SaveButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为SaveButtonCallback。|
 
 ## 示例1
 
@@ -269,7 +288,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
     async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError) => {
-      if (result == SaveButtonOnClickResult.SUCCESS) {
+      if (result === SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();
           let helper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -284,6 +303,9 @@ struct Index {
         } catch (error) {
           console.error("error is " + JSON.stringify(error));
         }
+      } else if (result === SaveButtonOnClickResult.CANCELED_BY_USER) {
+        console.info("errCode: " + error?.code);
+        console.info("errMessage: " + error?.message);
       } else {
         console.error("errCode: " + error?.code);
         console.error("errMessage: " + error?.message);
@@ -319,13 +341,17 @@ struct Index {
             minHeight: 0,
             maxHeight: 30
           })
+        // 设置保存控件接收用户取消授权事件。
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
+          .onClick((this.handleSaveButtonClick))
+          .userCancelEvent(true)
       }.width('100%')
     }.height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001643320073](figures/zh-cn_image_0000001643320073.png)
+![zh-cn_image_0000001643320073](figures/save_button_demo_1.png)
 
 ## 示例2
 

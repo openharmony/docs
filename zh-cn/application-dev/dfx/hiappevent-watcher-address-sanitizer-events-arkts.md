@@ -56,7 +56,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      name: "watcher",
      // 开发者可以订阅感兴趣的系统事件，此处是订阅了地址越界事件
      appEventFilters: [
-       
+       {
          domain: hiAppEvent.domain.OS,
          names: [hiAppEvent.event.ADDRESS_SANITIZER]
        }

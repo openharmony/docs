@@ -68,10 +68,10 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| isExtraRegionPerpendicular | boolean | 否 | 扩展区域是否从上到下贯穿整个组件，当且仅当extra有效时此字段才生效。设置为true时表示扩展区域从上到下贯穿整个组件，设置为false时表示扩展区域不从上到下贯穿整个组件。<br/>默认值：true |
-| verticalSplitRatio | number | 否 | 主要区域与次要区域之间的高度比例。<br/>默认值：PresetSplitRatio.LAYOUT_1V1 |
-| horizontalSplitRatio | number | 否 | 主要区域与扩展区域之间的宽度比例，当且仅当extra有效时此字段才生效。<br/>默认值：PresetSplitRatio.LAYOUT_3V2 |
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息，当且仅当isExtraRegionPerpendicular = false有效时此字段才生效。<br/>默认值：ExtraRegionPosition.top |
+| isExtraRegionPerpendicular | boolean | 否 | 设置为true时，扩展区域从上到下贯穿整个组件；设置为false时，扩展区域不贯穿整个组件。此字段仅在extra有效时生效。<br/>默认值：true |
+| verticalSplitRatio | number | 否 | 主要区域与次要区域之间的高度比例。<br/>默认值：[PresetSplitRatio](#presetsplitratio).LAYOUT_1V1 |
+| horizontalSplitRatio | number | 否 | 主要区域与扩展区域之间的宽度比例。此字段在extra有效时生效。<br/>默认值：[PresetSplitRatio](#presetsplitratio).LAYOUT_3V2 |
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息。当isExtraRegionPerpendicular设置为false时，此字段生效。<br/>默认值：ExtraRegionPosition.top |
 
 ## HoverModeRegionLayoutOptions
 
@@ -84,8 +84,8 @@ FoldSplitContainer({
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | showExtraRegion | boolean | 否 | 可折叠屏幕在半折叠状态下是否显示扩展区域。设置为true时表示显示扩展区域，设置为false时表示不显示扩展区域。<br/>默认值：false |
-| horizontalSplitRatio | number | 否 | 主要区域与扩展区域之间的宽度比例，当且仅当extra有效时此字段才生效。<br/>默认值：PresetSplitRatio.LAYOUT_3V2 |
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息，当且仅当showExtraRegion时此字段才生效。<br/>默认值：ExtraRegionPosition.top |
+| horizontalSplitRatio | number | 否 | 主要区域与扩展区域之间的宽度比例，当且仅当extra有效时此字段才生效。<br/>默认值：[PresetSplitRatio](#presetsplitratio).LAYOUT_3V2 |
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息，当且仅当showExtraRegion设置为true时此字段才生效。<br/>默认值：ExtraRegionPosition.top |
 
 > **说明：**
 >
@@ -102,7 +102,7 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| verticalSplitRatio | number | 否 | 主要区域与次要区域之间的高度比例。默认值：PresetSplitRatio.LAYOUT_1V1 |
+| verticalSplitRatio | number | 否 | 主要区域与次要区域之间的高度比例。默认值：[PresetSplitRatio](#presetsplitratio).LAYOUT_1V1 |
 
 ## OnHoverStatusChangeHandler
 

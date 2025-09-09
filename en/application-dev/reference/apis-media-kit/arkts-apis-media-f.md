@@ -1,4 +1,10 @@
 # Functions
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -20,6 +26,7 @@ Creates an AVPlayer instance. This API uses an asynchronous callback to return t
 >
 > - You are advised to create a maximum of 16 AVPlayer instances for an application in both audio and video playback scenarios.<!--Del-->
 > - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 AVPlayer instances for an application in audio and video playback scenarios.<!--DelEnd-->
+> - Applications must properly manage AVPlayer instances according to their specific needs, creating and freeing them when necessary. Holding too many AVPlayer instances can lead to high memory usage, and in some cases, the system might terminate applications to free up resources.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -65,6 +72,7 @@ Creates an AVPlayer instance. This API uses a promise to return the result.
 >
 > - You are advised to create a maximum of 16 AVPlayer instances for an application in both audio and video playback scenarios.<!--Del-->
 > - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 AVPlayer instances for an application in audio and video playback scenarios.<!--DelEnd-->
+> - Applications must properly manage AVPlayer instances according to their specific needs, creating and freeing them when necessary. Holding too many AVPlayer instances can lead to high memory usage, and in some cases, the system might terminate applications to free up resources.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -176,7 +184,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
 let avRecorder: media.AVRecorder;
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
   if (recorder != null) {
@@ -412,7 +419,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
   if (soundpool_ != null) {
     soundPool = soundpool_;
-    console.info('Succceeded in creating SoundPool');
+    console.info('Succeeded in creating SoundPool');
   } else {
     console.error('Failed to create SoundPool');
   }
@@ -580,26 +587,23 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 <!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { resourceManager } from '@kit.LocalizationKit';
+import { media } from "@kit.MediaKit";
 
-private context: Context | undefined;
-constructor(context: Context) {
-  this.context = context; // this.getUIContext().getHostContext();
+async function test(context: Context){
+    // this.getUIContext().getHostContext();
+    let mgr = context?.resourceManager;
+    if (!mgr) {
+        return;
+    }
+    let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
+
+    let fd: string = fileDescriptor.fd.toString();
+    let offset: string = fileDescriptor.offset.toString();
+    let length: string = fileDescriptor.length.toString();
+    let fdUrl: string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
+
+    let mediaSource: media.MediaSource = media.createMediaSourceWithUrl(fdUrl);
 }
-let mgr = this.context.resourceManager;
-let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
-
-let fd:string = fileDescriptor.fd.toString();
-let offset:string = fileDescriptor.offset.toString();
-let length:string = fileDescriptor.length.toString();
-let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
-
-let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  headers);
-
-let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
-mediaSource.setMimeType(mimeType);
 
 ```
 
@@ -631,7 +635,7 @@ Creates a multi-bitrate media source for streaming media. Currently, only the HT
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
 streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
-streams.push({url: "http://xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/1080p.flv", width: 1920, height: 1080, bitrate: 2000000});
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 

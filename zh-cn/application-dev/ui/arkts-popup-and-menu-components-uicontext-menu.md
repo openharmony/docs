@@ -123,10 +123,10 @@
    ```ts
    promptAction.closeMenu(contentNode)
      .then(() => {
-       console.info('openMenu success');
+       console.info('closeMenu success');
      })
     .catch((err: BusinessError) => {
-      console.error('openMenu error: ' + err.code + ' ' + err.message);
+      console.error('closeMenu error: ' + err.code + ' ' + err.message);
     })
    ```
 

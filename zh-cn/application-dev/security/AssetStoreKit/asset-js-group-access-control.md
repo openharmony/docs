@@ -55,9 +55,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset to the group. Code is ${err.code}, message is ${err.message}`);
   })
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to add Asset to the group. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to add Asset to the group. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -84,9 +83,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove Asset from the group. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset from the group. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to remove Asset from the group. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -116,9 +114,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to update Asset in the group. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset in the group. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to update Asset in the group. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -157,9 +154,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to query Asset. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -191,8 +187,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset from the group. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset from the group. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to query Asset from the group. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

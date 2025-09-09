@@ -12,8 +12,7 @@
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 
-> - 该组件不支持在Wearable设备上使用。
+>
 
 ## 导入模块
 
@@ -38,6 +37,8 @@ ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifi
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称                   | 类型                                                               | 必填 | 装饰器类型               | 说明                                                           |
 | -------------------- | ---------------------------------------------------------------- | -- |---------------------|--------------------------------------------------------------|
 | toolBarList          | [ToolBarV2Item](#toolbarv2item)\[]                               | 是  | @Param<br/>@Require | 工具栏列表。                                                       |
@@ -53,6 +54,8 @@ ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifi
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 
@@ -76,6 +79,8 @@ ToolBarV2Item的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名       | 类型                                            | 必填 | 说明       |
@@ -89,6 +94,8 @@ ToolBarV2Item的构造函数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称                       | 类型                                              | 必填 | 说明                                                                                                                                                                                                                  |
 |:-------------------------| :---------------------------------------------- | :- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -110,6 +117,8 @@ type ToolBarV2ItemAction = (index: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明 |
@@ -125,6 +134,8 @@ type ToolBarV2ItemAction = (index: number) => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 
@@ -144,6 +155,8 @@ ToolBarV2ItemText的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名       | 类型                                                    | 必填 | 说明         |
@@ -157,6 +170,8 @@ ToolBarV2ItemText的构造函数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称                  | 类型                                                          | 必填 | 说明                                                       |
 | :------------------ |:------------------------------------------------------------| :- |:---------------------------------------------------------|
@@ -173,6 +188,8 @@ ToolBarV2ItemText的构造函数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 
@@ -192,6 +209,8 @@ ToolBarV2ItemImage的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名       | 类型                                                    | 必填 | 说明         |
@@ -205,6 +224,8 @@ ToolBarV2ItemImage的构造函数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称                  | 类型                                                          | 必填 | 说明                                                       |
 |:--------------------|:------------------------------------------------------------| :- |:---------------------------------------------------------|
@@ -222,6 +243,8 @@ type ToolBarV2ItemIconType = ToolBarV2ItemImage | ToolBarV2SymbolGlyph
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 类型                                            | 说明            |
 |:----------------------------------------------| :------------ |
 | [ToolBarV2ItemImage](#toolbarv2itemimage)     | 用于定义普通图标。     |
@@ -235,6 +258,8 @@ ToolBarV2Modifier提供设置工具栏高度(height)、背景色(backgroundColor
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ### backgroundColor
 
 backgroundColor(backgroundColor: ColorMetrics): ToolBarV2Modifier
@@ -244,6 +269,8 @@ backgroundColor(backgroundColor: ColorMetrics): ToolBarV2Modifier
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -267,6 +294,8 @@ padding(padding: LengthMetrics): ToolBarV2Modifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名     | 类型                                                            | 必填 | 说明                                                                  |
@@ -287,6 +316,8 @@ height(height: LengthMetrics): ToolBarV2Modifier
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -310,6 +341,8 @@ stateEffect(stateEffect: boolean): ToolBarV2Modifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名         | 类型      | 必填 | 说明                                                     |
@@ -330,6 +363,8 @@ stateEffect(stateEffect: boolean): ToolBarV2Modifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称       | 值 | 说明              |
 | -------- | - | --------------- |
 | ENABLE   | 1 | 工具栏子项为正常可点击状态。  |
@@ -345,6 +380,8 @@ ToolBarV2SymbolGlyph定义Symbol图标的属性。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 
@@ -363,6 +400,8 @@ ToolBarV2SymbolGlyph的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名     | 类型                                                        | 必填 | 说明          |
@@ -376,6 +415,8 @@ ToolBarV2SymbolGlyphOptions定义图标的属性。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称        | 类型                                                                   | 必填 | 说明                                                                                   |
 | --------- | -------------------------------------------------------------------- | -- | ------------------------------------------------------------------------------------ |

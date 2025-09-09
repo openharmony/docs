@@ -33,7 +33,7 @@
   - [键鼠穿越管理错误码](errorcode-devicestatus.md)
   
   <!--DelEnd-->
-  - [连接增强错误码](errorcode_linkEnhance.md)
+  - [增强连接错误码](errorcode-link-enhance.md)
   - [代理通道管理错误码](errorcode_proxyChannelManager.md)
 - C API<!--distributed-service-c-->
   - 模块<!--distributed-service-moudle-->

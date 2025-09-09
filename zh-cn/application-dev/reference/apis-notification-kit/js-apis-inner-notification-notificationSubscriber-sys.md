@@ -1,4 +1,10 @@
 # NotificationSubscriber(系统接口)
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
 
 作为订阅通知接口[subscribe](./js-apis-notificationSubscribe-sys.md)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
 
@@ -129,7 +135,7 @@ let subscribeCallback = (err: BusinessError) => {
 
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onUpdate: (map) => {
-    console.info('===> onUpdateCallback map:' + JSON.stringify(map));
+    console.info(`===> onUpdateCallback map: ${JSON.stringify(map)}`);
   }
 };
 
@@ -346,7 +352,7 @@ let subscribeCallback = (err: BusinessError) => {
 };
 
 let onDoNotDisturbChangedCallback = (mode: notificationManager.DoNotDisturbDate) => {
-  console.info('===> onDoNotDisturbChanged:' + JSON.stringify(mode));
+  console.info(`===> onDoNotDisturbChanged: ${JSON.stringify(mode)}`);
 }
 
 let subscriber: notificationSubscribe.NotificationSubscriber = {
@@ -468,7 +474,7 @@ let subscribeCallback = (err: BusinessError) => {
 };
 
 let BadgeEnabledChangedCallback = (data: notificationSubscribe.EnabledNotificationCallbackData) => {
-  console.info('onBadgeEnabledChanged, badge enabled state change to: ', JSON.stringify(data));
+  console.info(`onBadgeEnabledChanged, badge enabled state change to: ${JSON.stringify(data)}`);
 };
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onBadgeEnabledChanged: BadgeEnabledChangedCallback
@@ -564,11 +570,19 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>
 
+### (data: EnabledNotificationCallbackData)<sup>12+</sup>
+
+(data: EnabledNotificationCallbackData): void
+
+注册应用角标使能状态变化的回调函数类型。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
-| 名称        | 类型   | 只读 | 可选 | 说明     |
-| ----------- | ------ | ---- | ---- |------------ |
-| data        | [EnabledNotificationCallbackData](#enablednotificationcallbackdata8) | 是   | 是    |   回调返回监听到的角标使能状态信息。 |
+**参数**：
+
+| 参数名        | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | ------------ |
+| data        | [EnabledNotificationCallbackData](#enablednotificationcallbackdata8) | 是    |   回调返回监听到的角标使能状态信息。 |
 

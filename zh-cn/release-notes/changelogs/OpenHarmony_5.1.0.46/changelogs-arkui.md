@@ -52,13 +52,11 @@ Text组件的minFontSize、maxFontSize接口。
 
 **变更影响**
 
-此变更不涉及应用适配。
+变更前：父节点设为不可见、子节点设为可见时，如果子节点和父节点之间存在UINode类型节点，子节点调用isVisible结果为true。
 
-变更前：父节点设为不可见、子节点设为可见时，如果子节点被UINode类型节点包裹，子节点调用isVisible结果为true。
+变更后：父节点设为不可见、子节点设为可见时，如果子节点和父节点之间存在UINode类型节点，子节点调用isVisible结果为false。
 
-变更后：父节点设为不可见、子节点设为可见时，如果子节点被UINode类型节点包裹，子节点调用isVisible结果为false。
-
-父节点设为不可见、子节点设为可见时，如果子节点被UINode类型节点包裹，调用isVisible接口返回值结果变更前后会不一致，例如：
+父节点设为不可见、子节点设为可见时，如果子节点和父节点之间存在UINode类型节点，调用isVisible接口返回值结果变更前后会不一致，例如：
 ```ts
 import { FrameNode } from '@kit.ArkUI'
 
@@ -112,7 +110,7 @@ FrameNode.d.ts文件isVisible接口。
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，但开发者需审视此变更是否对自身相关业务代码逻辑产生影响，若有影响需根据自身业务代码进行对应适配。
 
 ## cl.arkui.3 Search组件searchButton属性行为变更，设置为undefined后，获取searchButton属性的值为空
 **访问级别**

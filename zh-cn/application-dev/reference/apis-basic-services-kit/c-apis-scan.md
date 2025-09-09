@@ -1,11 +1,19 @@
 # ohscan.h
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
 
 ## 概述
 
 向应用提供使用CAPI访问扫描仪设备的能力。
 
 **起始版本：** 12
+**库：** libohscan.so
+**系统能力：** SystemCapability.Print.PrintFramework
 
 
 ## 汇总
@@ -118,23 +126,23 @@
 
 **起始版本：** 12
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| SCAN_ERROR_NONE | 成功。 |
-| SCAN_ERROR_NO_PERMISSION | 没有权限。 |
-| SCAN_ERROR_INVALID_PARAMETER | 无效的参数。 |
-| SCAN_ERROR_GENERIC_FAILURE | 一般的内部错误。 |
-| SCAN_ERROR_RPC_FAILURE | RPC通信错误。 |
-| SCAN_ERROR_SERVER_FAILURE | 服务端错误。 |
-| SCAN_ERROR_UNSUPPORTED | 不支持该操作。 |
-| SCAN_ERROR_CANCELED | 操作被取消。 |
-| SCAN_ERROR_DEVICE_BUSY | 设备忙碌。 |
-| SCAN_ERROR_INVALID | 无效操作。 |
-| SCAN_ERROR_JAMMED | 进纸器卡纸。 |
-| SCAN_ERROR_NO_DOCS | 没有纸。 |
-| SCAN_ERROR_COVER_OPEN | 扫描仪的盖子被打开。 |
-| SCAN_ERROR_IO_ERROR | 扫描仪IO过程中错误。 |
-| SCAN_ERROR_NO_MEMORY | 扫描仪没有内存。 |
+| 枚举值 | 描述 | 值 |
+| -------- | -------- | -------- |
+| SCAN_ERROR_NONE | 成功。 | 0 |
+| SCAN_ERROR_NO_PERMISSION | 没有权限。 | 201 |
+| SCAN_ERROR_INVALID_PARAMETER | 无效的参数。 | 401 |
+| SCAN_ERROR_GENERIC_FAILURE | 一般的内部错误。 | 24300101 |
+| SCAN_ERROR_RPC_FAILURE | RPC通信错误。 | 24300102 |
+| SCAN_ERROR_SERVER_FAILURE | 服务端错误。 | 24300103 |
+| SCAN_ERROR_UNSUPPORTED | 不支持该操作。 | 24300104 |
+| SCAN_ERROR_CANCELED | 操作被取消。 | 24300105 |
+| SCAN_ERROR_DEVICE_BUSY | 设备忙碌。 | 24300106 |
+| SCAN_ERROR_INVALID | 无效操作。 | 24300107 |
+| SCAN_ERROR_JAMMED | 进纸器卡纸。 | 24300108 |
+| SCAN_ERROR_NO_DOCS | 没有纸。 | 24300109 |
+| SCAN_ERROR_COVER_OPEN | 扫描仪的盖子被打开。 | 24300110 |
+| SCAN_ERROR_IO_ERROR | 扫描仪IO过程中错误。 | 24300111 |
+| SCAN_ERROR_NO_MEMORY | 扫描仪没有内存。 | 24300112 |
 
 
 ## 函数说明
@@ -150,7 +158,7 @@ int32_t OH_Scan_Init();
 
 这个接口用于拉起扫描服务，初始化客户端，并建立与扫描服务的连接。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -174,7 +182,7 @@ int32_t OH_Scan_StartScannerDiscovery(Scan_ScannerDiscoveryCallback callback);
 
 这个接口用于搜索扫描仪，注册一个回调函数来处理发现的扫描仪。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -204,7 +212,7 @@ int32_t OH_Scan_OpenScanner(const char* scannerId);
 
 这个接口用于连接扫描仪。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -242,7 +250,7 @@ int32_t OH_Scan_CloseScanner(const char* scannerId);
 
 这个接口用于断开与扫描仪的连接。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -274,7 +282,7 @@ Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t*
 
 这个接口用于获取扫描仪设置选项，返回的结构体指针在[OH_Scan_Exit](#oh_scan_exit)时自动释放内存，每个型号的扫描仪在内存中只存储一个副本。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -295,6 +303,8 @@ Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t*
 
 返回SCAN_ERROR_SERVER_FAILURE表示服务端出现异常。
 
+返回SCAN_ERROR_INVALID_PARAMETER表示无效参数。
+
 ### OH_Scan_SetScannerParameter()
 
 ```cpp
@@ -305,7 +315,7 @@ int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option,
 
 这个接口用于设置扫描仪的选项参数，选项值的返回通过[OH_Scan_GetScannerParameter](#oh_scan_getscannerparameter)接口获得。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -339,7 +349,7 @@ int32_t OH_Scan_StartScan(const char* scannerId, bool batchMode);
 
 这个接口用于启动扫描仪。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -383,7 +393,7 @@ int32_t OH_Scan_CancelScan(const char* scannerId);
 
 这个接口用于取消扫描。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -415,7 +425,7 @@ int32_t OH_Scan_GetPictureScanProgress(const char* scannerId, Scan_PictureScanPr
 
 这个接口用于查询图片扫描进度。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 
@@ -460,7 +470,7 @@ int32_t OH_Scan_Exit();
 
 这个接口用于退出扫描服务，清除客户端内存，取消注册的扫描回调函数。
 
-**系统能力：** ohos.permission.PRINT
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **起始版本：** 12
 

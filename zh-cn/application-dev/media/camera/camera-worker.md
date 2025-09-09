@@ -25,7 +25,7 @@
      private imageWidth: number = 1920;
      private imageHeight: number = 1080;
      private cameraManager: camera.CameraManager | undefined = undefined;
-     private cameras: Array<camera.CameraDevice> | Array<camera.CameraDevice> = [];
+     private cameras: Array<camera.CameraDevice> = [];
      private cameraInput: camera.CameraInput | undefined = undefined;
      private previewOutput: camera.PreviewOutput | undefined = undefined;
      private photoOutput: camera.PhotoOutput | undefined = undefined;
@@ -43,7 +43,10 @@
            return;
          }
          this.cameras = this.cameraManager.getSupportedCameras();
-   
+         if (!this.cameras || this.cameras.length <= 0) {
+           console.error("cameraManager.getSupportedCameras error");
+           return;
+         }
          // 创建cameraInput输出对象。
          this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
          if (this.cameraInput === undefined) {
@@ -64,6 +67,7 @@
          this.previewOutput = this.cameraManager.createPreviewOutput(previewProfile, surfaceId);
          if (this.previewOutput === undefined) {
            console.error('Failed to create the preview stream.');
+           this.releaseCamera();
            return;
          }
    
@@ -78,11 +82,18 @@
          this.photoOutput = this.cameraManager.createPhotoOutput(photoProfile);
          if (this.photoOutput === undefined) {
            console.error('Failed to create the photoOutput.');
+           this.releaseCamera();
            return;
          }
    
          // 创建相机会话，启动会话。
-         this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+         let session = this.cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+         if (!session) {
+           console.error('session is null');
+           this.releaseCamera();
+           return;
+         }
+         this.session = session as camera.PhotoSession;
          this.session.beginConfig();
          this.session.addInput(this.cameraInput);
          this.session.addOutput(this.previewOutput);
@@ -92,27 +103,23 @@
        } catch (error) {
          let err = error as BusinessError;
          console.error(`initCamera fail: ${err}`);
+         this.releaseCamera();
        }
      }
    
      // 释放相机资源。
      async releaseCamera(): Promise<void> {
        console.info('releaseCamera is called');
-       try {
-         await this.previewOutput?.release();
-         await this.photoOutput?.release();
-         await this.session?.release();
-         await this.cameraInput?.close();
-       } catch (error) {
-         let err = error as BusinessError;
-         console.error(`releaseCamera fail: error: ${err}`);
-       } finally {
-         this.previewOutput = undefined;
-         this.photoOutput = undefined;
-         this.cameraManager = undefined;
-         this.session = undefined;
-         this.cameraInput = undefined;
-       }
+       // 停止当前会话。
+       await this.session?.stop().catch((e: BusinessError) => {console.error('Failed to stop session: ', e)});
+       // 释放相机输入流。
+       await this.cameraInput?.close().catch((e: BusinessError) => {console.error('Failed to close the camera: ', e)});
+       // 释放预览输出流。
+       await this.previewOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the preview stream: ', e)});
+       // 释放拍照输出流。
+       await this.photoOutput?.release().catch((e: BusinessError) => {console.error('Stop Photo Stream Failure: ', e)});
+       // 释放会话。
+       await this.session?.release().catch((e: BusinessError) => {console.error('Failed to release session: ', e)});
        console.info('releaseCamera success');
      }
    }

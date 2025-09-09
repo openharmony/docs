@@ -466,6 +466,28 @@ console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed}
   `allArraySize = ${vmMemory.allArraySize}` );
 ```
 
+## hidebug.getAppVMObjectUsed<sup>21+</sup>
+
+getAppVMObjectUsed(): bigint
+
+获取当前虚拟机中ArkTS对象所占用的内存大小。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值**：
+
+| 类型     | 说明                           |
+|--------|------------------------------|
+| bigint | 当前虚拟机中ArkTS对象所占用的内存大小，单位为KB。 |
+
+**示例：**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+console.info(`getAppVMObjectUsed = ${hidebug.getAppVMObjectUsed()}`);
+```
+
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
 
 getAppThreadCpuUsage(): ThreadCpuUsage[]
@@ -616,7 +638,7 @@ getAppMemoryLimit(): MemoryLimit
 | ------ | -------------------------- |
 | [MemoryLimit](#memorylimit12) | 应用程序进程内存限制。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -652,7 +674,7 @@ getSystemCpuUsage(): number
 | ------- |-------------------------------------------------|
 | 11400104 | The status of the system CPU usage is abnormal. |
 
-**示例**
+**示例：**
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -731,7 +753,7 @@ getAppNativeMemInfo(): NativeMemInfo
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -756,7 +778,7 @@ getAppNativeMemInfoAsync(): Promise&lt;NativeMemInfo&gt;
 |--------------------------------------------------| --------------------- |
 | Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | promise对象，返回应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 hidebug.getAppNativeMemInfoAsync().then((nativeMemInfo: hidebug.NativeMemInfo)=>{
@@ -790,7 +812,7 @@ getAppNativeMemInfoWithCache(forceRefresh?: boolean): NativeMemInfo
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfoWithCache();
@@ -813,7 +835,7 @@ getSystemMemInfo(): SystemMemInfo
 | ------ | -------------------------- |
 | [SystemMemInfo](#systemmeminfo12) | 系统内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -838,7 +860,7 @@ getVMRuntimeStats(): GcStats
 |-----------------------|----------|
 | [GcStats](#gcstats12) | 系统GC统计信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -885,7 +907,7 @@ getVMRuntimeStat(item: string): number
 | ------- |------------------------------------------------------------------------------------------------------------|
 | 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1073,7 +1095,7 @@ isDebugState(): boolean
 | ------ |------------------------------------------------------|
 | boolean | 应用进程的Ark层或Native层是否处于调试状态。true：处于调试状态。false：未处于调试状态。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1085,7 +1107,7 @@ console.info(`isDebugState = ${hidebug.isDebugState()}`)
 
 getGraphicsMemory(): Promise&lt;number&gt;
 
-获取应用显存大小，使用Promise异步回调。
+获取应用显存总大小（gl + graph），使用Promise异步回调。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1093,17 +1115,19 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型                    | 说明                        |
-|-----------------------|---------------------------|
-| Promise&lt;number&gt; | promise对象，返回应用显存大小，单位为KB。 |
+| 类型                    | 说明                         |
+|-----------------------|----------------------------|
+| Promise&lt;number&gt; | promise对象，返回应用显存总大小，单位为KB。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
@@ -1120,7 +1144,7 @@ hidebug.getGraphicsMemory().then((ret: number) => {
 
 getGraphicsMemorySync(): number
 
-使用同步方式获取应用显存大小。
+使用同步方式获取应用显存总大小（gl + graph）。
 
 > **注意：**
 >
@@ -1134,9 +1158,54 @@ getGraphicsMemorySync(): number
 
 | 类型  | 说明             |
 | ------ |----------------|
-| number | 应用显存大小，单位为KB。 |
+| number | 应用显存总大小，单位为KB。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | Failed to get the application memory due to a remote exception. |
+
+**示例：**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  console.info(`graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
+```
+
+## hidebug.getGraphicsMemorySummary<sup>21+</sup>
+
+getGraphicsMemorySummary(interval?: number): Promise&lt;GraphicsMemorySummary&gt;
+
+获取应用显存数据，使用Promise进行异步回调。
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                                                                          |
+| ------ | --------- |---|-------------------------------------------------------------------------------------------------------------|
+| interval  | number | 否 | 显存数据缓存值有效时间，单位为秒。默认值：300。取值范围为[2-3600]。若传入值超出取值范围时，将使用默认值。<br/>当显存数据缓存值存在时间超过该值时，获取最新显存数据并更新缓存值；否则，直接获取缓存值。 |
+
+**返回值：**
+
+| 类型                                                               | 说明                  |
+|------------------------------------------------------------------|---------------------|
+| Promise&lt;[GraphicsMemorySummary](#graphicsmemorysummary21)&gt; | promise对象，返回应用显存数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -1148,11 +1217,11 @@ getGraphicsMemorySync(): number
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  console.info(`graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
-} catch (error) {
-  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
-}
+hidebug.getGraphicsMemorySummary().then((ret: hidebug.GraphicsMemorySummary) => {
+  console.info(`get graphicsMemory gl: ${ret.gl} graph: ${ret.graph}.`)
+}).catch((error: BusinessError) => {
+  console.error(`error code: ${error.code}, error msg: ${error.message}.`);
+})
 ```
 
 ## hidebug.dumpJsRawHeapData<sup>18+</sup>
@@ -1197,7 +1266,7 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 | 11400112 | Repeated data dump. |
 | 11400113 | Failed to create dump file. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1241,7 +1310,7 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 |----------| ----------------------------------------------------------------- |
 | 11400114 | The number of GWP-ASAN applications of this device overflowed after last boot. |
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1280,7 +1349,7 @@ disableGwpAsanGrayscale(): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1301,7 +1370,7 @@ getGwpAsanGrayscaleState(): number
 |-----------|-------------|
 | number    |获取当前GWP-ASan剩余使能天数。若当前未使能，返回值0。|
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1330,7 +1399,7 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 | ------ | ------------------------------------------- | ---- | ---------------------- |
 | level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | 是   | 转储堆快照的裁剪级别，默认为TRIM_LEVEL_1。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1338,3 +1407,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 hidebug.setJsRawHeapTrimLevel(hidebug.JsRawHeapTrimLevel.TRIM_LEVEL_2);
 ```
+
+## GraphicsMemorySummary<sup>21+</sup>
+
+描述应用显存数据，包括gl和graph部分。
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型     | 只读  | 可选 | 说明                                                                              |
+| --------- |--------| ---- |---- |---------------------------------------------------------------------------------|
+| gl  | number |  否  |   否  | gl显存大小，进程统计的DMA内存占用，包括直接通过接口申请的DMA buffer和通过allocator_host申请的DMA buffer，以KB为单位。 |
+| graph  | number |  否  |   否  | graph显存大小，RenderService渲染进程加载所需资源占用的内存，例如图片、纹理等，以KB为单位。                         |

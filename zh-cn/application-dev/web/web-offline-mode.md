@@ -73,13 +73,13 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<Data[]>(WebBuilder);
 
-// myNodeController需要与NodeContainer一起使用,用于控制和反馈对应的NodeContainer上的节点的行为
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.log(" uiContext is undefined : "+ (uiContext === undefined));
+    console.info(" uiContext is undefined : "+ (uiContext === undefined));
     if (this.rootNode != null) {
       // 返回FrameNode节点
       return this.rootNode.getFrameNode();
@@ -89,17 +89,17 @@ export class myNodeController extends NodeController {
   }
   // 当布局大小发生变化时进行回调
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width  +  " height : " + size.height );
+    console.info("aboutToResize width : " + size.width  +  " height : " + size.height );
   }
 
   // 当controller对应的NodeContainer在Appear的时候进行回调
   aboutToAppear() {
-    console.log("aboutToAppear");
+    console.info("aboutToAppear");
   }
 
   // 当controller对应的NodeContainer在Disappear的时候进行回调
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.info("aboutToDisappear");
   }
 
   // 此函数为自定义函数，可作为初始化函数使用
@@ -214,13 +214,13 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<Data[]>(WebBuilder);
 
-// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.log(" uiContext is undefined : "+ (uiContext === undefined));
+    console.info(" uiContext is undefined : "+ (uiContext === undefined));
     if (this.rootNode != null) {
       // 返回FrameNode节点
       return this.rootNode.getFrameNode();
@@ -230,17 +230,17 @@ export class myNodeController extends NodeController {
   }
   // 当布局大小发生变化时进行回调
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width  +  " height : " + size.height );
+    console.info("aboutToResize width : " + size.width  +  " height : " + size.height );
   }
 
   // 当controller对应的NodeContainer在Appear的时候进行回调
   aboutToAppear() {
-    console.log("aboutToAppear");
+    console.info("aboutToAppear");
   }
 
   // 当controller对应的NodeContainer在Disappear的时候进行回调
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.info("aboutToDisappear");
   }
 
   // 此函数为自定义函数，可作为初始化函数使用
@@ -394,10 +394,10 @@ function WebBuilder(data:Data) {
   }
 }
 let wrap = wrapBuilder<Data[]>(WebBuilder);
-// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     console.info(" uiContext is undefined : "+ (uiContext === undefined));

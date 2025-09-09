@@ -1040,139 +1040,6 @@ let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode
 display.off('foldDisplayModeChange', callback);
 ```
 
-
-## display.getDefaultDisplay<sup>(deprecated)</sup>
-
-getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
-
-获取当前默认的Display对象，使用callback异步回调。
-
-> **说明：**
-> 
-> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的Display对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let displayClass: display.Display | null = null;
-display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-  displayClass = data;
-});
-```
-
-## display.getDefaultDisplay<sup>(deprecated)</sup>
-
-getDefaultDisplay(): Promise&lt;Display&gt;
-
-获取当前默认的Display对象，使用Promise异步回调。
-
-> **说明：**
-> 
-> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：**
-
-| 类型                               | 说明                                           |
-| ---------------------------------- | ---------------------------------------------- |
-| Promise&lt;[Display](#display)&gt; | Promise对象。返回当前默认的Display对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let displayClass: display.Display | null = null;
-let promise: Promise<display.Display> = display.getDefaultDisplay();
-promise.then((data: display.Display) => {
-  displayClass = data;
-  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
-});
-```
-
-## display.getAllDisplay<sup>(deprecated)</sup>
-
-getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
-
-获取当前所有的Display对象，使用callback异步回调。
-
-> **说明：**
-> 
-> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名   | 类型                                                 | 必填 | 说明                            |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调函数。返回当前所有的Display对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-});
-```
-
-## display.getAllDisplay<sup>(deprecated)</sup>
-
-getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
-
-获取当前所有的Display对象，使用Promise异步回调。
-
-> **说明：**
-> 
-> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：**
-
-| 类型                                            | 说明                                                    |
-| ----------------------------------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的Display对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let promise: Promise<Array<display.Display>> = display.getAllDisplay();
-promise.then((data: Array<display.Display>) => {
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
-});
-```
-
 ## display.createVirtualScreen<sup>16+</sup>
 
 createVirtualScreen(config:VirtualScreenConfig): Promise&lt;number&gt;
@@ -1479,6 +1346,138 @@ try {
 } catch (exception) {
   console.error(`Failed to convert the global coordinate to the relative coordinate. Code: ${exception.code}, message: ${exception.message}`);
 }
+```
+
+## display.getDefaultDisplay<sup>(deprecated)</sup>
+
+getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
+
+获取当前默认的Display对象，使用callback异步回调。
+
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的Display对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let displayClass: display.Display | null = null;
+display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+  displayClass = data;
+});
+```
+
+## display.getDefaultDisplay<sup>(deprecated)</sup>
+
+getDefaultDisplay(): Promise&lt;Display&gt;
+
+获取当前默认的Display对象，使用Promise异步回调。
+
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                               | 说明                                           |
+| ---------------------------------- | ---------------------------------------------- |
+| Promise&lt;[Display](#display)&gt; | Promise对象。返回当前默认的Display对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let displayClass: display.Display | null = null;
+let promise: Promise<display.Display> = display.getDefaultDisplay();
+promise.then((data: display.Display) => {
+  displayClass = data;
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## display.getAllDisplay<sup>(deprecated)</sup>
+
+getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
+
+获取当前所有的Display对象，使用callback异步回调。
+
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                            |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调函数。返回当前所有的Display对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+});
+```
+
+## display.getAllDisplay<sup>(deprecated)</sup>
+
+getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
+
+获取当前所有的Display对象，使用Promise异步回调。
+
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                                            | 说明                                                    |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的Display对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise: Promise<Array<display.Display>> = display.getAllDisplay();
+promise.then((data: Array<display.Display>) => {
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ## Display

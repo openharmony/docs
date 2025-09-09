@@ -49,6 +49,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
+class Tmp {
+  event: DragEvent | undefined = undefined;
+  extraParams: string = '';
+}
+
 @Entry
 @Component
 struct DragControllerPage {
@@ -75,10 +80,6 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               };
-              class tmp {
-                event: DragEvent | undefined = undefined;
-                extraParams: string = '';
-              }
               let eve: tmp = new tmp();
               this.getUIContext().getDragController().executeDrag(() => { this.DraggingBuilder() }, dragInfo, (err, eve) => {
                 if (eve.event) {
@@ -136,6 +137,11 @@ import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
+class Tmp {
+  event: DragResult | undefined = undefined;
+  extraParams: string = '';
+}
+
 @Entry
 @Component
 struct DragControllerPage {
@@ -181,11 +187,6 @@ struct DragControllerPage {
                   builder: () => { this.DraggingBuilder() },
                   extraInfo: "DragItemInfoTest"
                 };
-
-                class tmp {
-                  event: DragResult | undefined = undefined;
-                  extraParams: string = '';
-                }
                 let eve: tmp = new tmp();
                 this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
@@ -491,11 +492,11 @@ notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): vo
 **示例：**
 
 ```ts
+// xxx.ets
 import { unifiedDataChannel } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { dragController } from '@kit.ArkUI';
 
-// xxx.ets
 @Entry
 @Component
 struct NormalEts {

@@ -14,6 +14,10 @@
 
 ConsoleMessage的信息级别。
 
+> **说明：**
+>
+> - 在html5侧，调用console.log或console.info对应ConsoleMessage的信息级别都为MessageLevel.Info。  
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称    | 值 | 说明    |
@@ -25,6 +29,8 @@ ConsoleMessage的信息级别。
 | Warn  | 3 | 警告级别。 |
 
 ## MixedMode
+
+混合内容模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -52,6 +58,8 @@ ConsoleMessage的信息级别。
 | Unknown       | 7 | 未知内容。                    |
 
 ## CacheMode
+
+缓存模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

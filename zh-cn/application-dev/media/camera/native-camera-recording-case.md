@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的录像流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、录像）的介绍请参考[相机开发指导(Native)](camera-preparation.md)的具体章节。
 
@@ -188,7 +188,7 @@
             return;
         }
         previewProfile = cameraOutputCapability->previewProfiles[0];
-        OH_LOG_INFO(LOG_APP, "previewProfile width: %{public}, height: %{public}.", previewProfile->size.width,
+        OH_LOG_INFO(LOG_APP, "previewProfile width: %{public}d, height: %{public}d.", previewProfile->size.width,
             previewProfile->size.height);
         if (cameraOutputCapability->photoProfiles == nullptr) {
             OH_LOG_ERROR(LOG_APP, "photoProfiles == null");
@@ -208,7 +208,7 @@
             // 默认筛选CAMERA_FORMAT_YUV_420_SP的profile。
             if (isEqual && videoProfiles[index]->format == Camera_Format::CAMERA_FORMAT_YUV_420_SP) {
                 videoProfile = videoProfiles[index];
-                OH_LOG_INFO(LOG_APP, "videoProfile width: %{public}, height: %{public}.", videoProfile->size.width,
+                OH_LOG_INFO(LOG_APP, "videoProfile width: %{public}d, height: %{public}d.", videoProfile->size.width,
                     videoProfile->size.height);
                 break;
             }

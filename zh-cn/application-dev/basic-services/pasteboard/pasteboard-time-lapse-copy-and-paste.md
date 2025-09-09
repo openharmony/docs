@@ -4,7 +4,7 @@
 <!--Owner: @yangxiaodong41-->
 <!--Designer: @guo867-->
 <!--Tester: @maxiaorong-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -20,11 +20,21 @@
 
 - NDK接口仅支持Record级别的延迟复制粘贴。
 
-- ArkTS接口仅支持PasteData级别的延迟复制粘贴。
+- ArkTS接口仅支持PasteData级别的延迟复制粘贴（不建议使用）。
+
+- 当复制的数据量较小且准备数据所需时间不会影响用户体验时，不建议应用程序使用延迟复制功能，推荐将数据直接写入剪贴板。
 
 ## 使用基于Record级别的延迟复制粘贴（推荐）
 
 本方案可以在粘贴前查询数据type信息，应用可以据此决定是否向剪贴板请求数据，因此建议使用本方案实现延迟复制功能。
+
+从API version 21开始，应用退出不仅可以调用延迟复制接口[OH_Pasteboard_SetData](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_setdata)主动提交所有复制数据，还可以使用同步延迟数据接口[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)通知剪贴板获取全量数据。
+
+1. 当应用使用延迟复制功能复制时，仅将应用支持的数据类型写入剪贴板。应用应在退出时，重新调用[OH_Pasteboard_SetData](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_setdata)接口主动提交所有复制数据或调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口通知剪贴板获取全量数据，等待数据同步完成再继续退出，否则可能导致其他应用粘贴获取不到数据。
+
+2. 调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口会延长退出过程，建议应用在复制数据时直接设置数据到剪贴板，而不是调用延迟复制接口[OH_UdmfRecordProvider_SetData](../../reference/apis-arkdata/capi-udmf-h.md#oh_udmfrecordprovider_setdata)和同步延迟数据接口[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)。
+
+3. 延迟复制场景应用异常退出时，无法触发应用退出延迟数据同步流程，会导致其他应用粘贴时获取不到数据。
 
 ### 接口说明
 
@@ -38,6 +48,7 @@
 | int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data) | 向剪贴板中写入数据。                                    |
 | OH_UdmfData * OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status) | 获取剪贴板中的数据。 |
 | OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | 获取OH_UdmfData中全部的数据记录。                           |
+| void OH_Pasteboard_SyncDelayedDataAsync(OH_Pasteboard* pasteboard, void (*callback)(int errorCode)) | 通知剪贴板从应用同步所有延迟数据。 当应用使用延迟复制功能复制时，仅将应用支持的数据类型写入剪贴板。应用应在退出时，重新调用[OH_Pasteboard_SetData](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_setdata)接口主动提交所有复制数据或调用[OH_Pasteboard_SyncDelayedDataAsync](../../reference/apis-basic-services-kit/capi-oh-pasteboard-h.md#oh_pasteboard_syncdelayeddataasync)接口通知剪贴板获取全量数据，等待数据同步完成再继续退出，否则可能导致其他应用粘贴获取不到数据。|
 
 ### 开发步骤
 
@@ -83,49 +94,62 @@
    }
    ```
 
-3. 在剪贴板中准备延迟复制数据。需要注意，此步骤完成后纯文本类型数据与HTML类型数据并未真正写入剪贴板服务，只有当数据使用者从`OH_UdmfRecord`中获取`OH_UdsPlainText`或`OH_UdsHtml`时，才会触发上文定义的`GetDataCallback`数据提供函数，从中得到数据。
+3. 定义`OH_Pasteboard_SyncDelayedDataAsync`的回调函数。
+
+   ```c
+   // 3. 定义应用退出时调用延迟同步接口触发的回调函数。
+   void SyncCallback(int errorCode)
+   {
+       // 继续退出
+   }
+   ```
+
+4. 在剪贴板中准备延迟复制数据。此步骤完成后纯文本类型数据与HTML类型数据并未真正写入剪贴板服务，只有当数据使用者从`OH_UdmfRecord`中获取`OH_UdsPlainText`或`OH_UdsHtml`时，才会触发上文定义的`GetDataCallback`数据提供函数，从中得到数据。
    
    ```c
-   // 3. 创建OH_UdmfRecord对象。
+   // 4. 创建OH_UdmfRecord对象。
    OH_UdmfRecord* record = OH_UdmfRecord_Create();
 
-   // 4. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
+   // 5. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
    OH_UdmfRecordProvider* provider = OH_UdmfRecordProvider_Create();
    OH_UdmfRecordProvider_SetData(provider, (void*)record, GetDataCallback, ProviderFinalizeCallback);
 
-   // 5. 将provider绑定到record，并设置支持的数据类型。
+   // 6. 将provider绑定到record，并设置支持的数据类型。
    const char* types[2] = { UDMF_META_PLAIN_TEXT, UDMF_META_HTML };
    OH_UdmfRecord_SetProvider(record, types, 2, provider);
 
-   // 6. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
+   // 7. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
    OH_UdmfData* setData = OH_UdmfData_Create();
    OH_UdmfData_AddRecord(setData, record);
 
-   // 7. 创建OH_Pasteboard对象，将数据写入剪贴板中。
+   // 8. 创建OH_Pasteboard对象，将数据写入剪贴板中。
    OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
    OH_Pasteboard_SetData(pasteboard, setData);
+
+   // 9. 记录当前的剪贴板数据变化次数。
+   uint32_t changeCount = OH_Pasteboard_GetChangeCount(pasteboard);
    ```
 
-4. 从剪贴板获取延迟复制数据。
+5. 从剪贴板获取延迟复制数据。
    
    ```c
-   // 8. 从剪贴板获取OH_UdmfData。
+   // 10. 从剪贴板获取OH_UdmfData。
    int status = -1;
    OH_UdmfData* getData = OH_Pasteboard_GetData(pasteboard, &status);
 
-   // 9. 获取OH_UdmfData中的所有OH_UdmfRecord。
+   // 11. 获取OH_UdmfData中的所有OH_UdmfRecord。
    unsigned int recordCount = 0;
    OH_UdmfRecord** getRecords = OH_UdmfData_GetRecords(getData, &recordCount);
 
-   // 10. 遍历OH_UdmfRecord。
+   // 12. 遍历OH_UdmfRecord。
    for (unsigned int recordIndex = 0; recordIndex < recordCount; ++recordIndex) {
        OH_UdmfRecord* record = getRecords[recordIndex];
 
-       // 11. 查询OH_UdmfRecord中的数据类型。
+       // 13. 查询OH_UdmfRecord中的数据类型。
        unsigned typeCount = 0;
        char** recordTypes = OH_UdmfRecord_GetTypes(record, &typeCount);
 
-       // 12. 遍历数据类型。
+       // 14. 遍历数据类型。
        for (unsigned int typeIndex = 0; typeIndex < typeCount; ++typeIndex) {
            char* recordType = recordTypes[typeIndex];
 
@@ -151,7 +175,21 @@
    }
    ```
 
-5. 使用完毕后需要及时释放相关对象的内存。
+6. 应用退出时，如果剪贴板内的数据没有变化，则通知剪贴板获取全量数据，等待回调完成再继续退出，否则可能导致其他应用粘贴获取不到数据。
+
+   ```c
+   // 15. 查询剪贴板内的数据是否变化。
+   uint32_t newChangeCount = OH_Pasteboard_GetChangeCount(pasteboard);
+   if (newChangeCount == changeCount) {
+       // 16. 通知剪贴板获取全量数据。
+       OH_Pasteboard_SyncDelayedDataAsync(pasteboard, SyncCallback);
+       // 需要等待SyncCallback回调完成再继续退出
+   } else {
+       // 继续退出
+   }
+   ```
+
+7. 使用完毕后需要及时释放相关对象的内存。
    
    ```c
    OH_UdsPlainText_Destroy(udsText);
@@ -164,7 +202,7 @@
    ```
 
 
-## 使用基于PasteData级别的延迟复制粘贴
+## 使用基于PasteData级别的延迟复制粘贴（不建议使用）
 
 本方案不支持粘贴前对数据type的查询。
 

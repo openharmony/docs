@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 相机启动性能受限于底层器件上电、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前需确认是否支持相关特性。
 
@@ -46,18 +46,46 @@ import { camera } from '@kit.CameraKit';
 import { common } from '@kit.AbilityKit';
 
 async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
-  const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
-  const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
-  const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-  session.beginConfig();
-  session.addInput(cameraInput);
-  session.addOutput(previewOutput);
-  session.addOutput(photoOutput);
-  await session.commitConfig();
-  await session.start();
-  previewOutput.addDeferredSurface(previewSurfaceId);
+  if (!baseContext || !cameraInfo || !previewProfile || !photoProfile || !previewSurfaceId) {
+    return;
+  }
+  try {
+    const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    if (!cameraManager) {
+      console.error('cameraManager is null');
+      return;
+    }
+    const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
+    if (!cameraInput) {
+      console.error('cameraInput is null');
+      return;
+    }
+    const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
+    if (!previewOutput) {
+      console.error('previewOutput is null');
+      return;
+    }
+    const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+    if (!photoOutput) {
+      console.error('photoOutput is null');
+      return;
+    }
+    let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+    if (!session) {
+      console.error('session is null');
+      return;
+    }
+    const photoSession: camera.PhotoSession = session as camera.PhotoSession;
+    photoSession.beginConfig();
+    photoSession.addInput(cameraInput);
+    photoSession.addOutput(previewOutput);
+    photoSession.addOutput(photoOutput);
+    await photoSession.commitConfig();
+    await photoSession.start();
+    previewOutput.addDeferredSurface(previewSurfaceId);
+  } catch (err) {
+    console.error(`preview call failed. error: ${JSON.stringify(err)}`);
+  }
 }
 ```
 
@@ -98,31 +126,60 @@ import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
 
 async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
-  let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建PhotoSession实例。
-  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-  // 开始配置会话。
-  photoSession.beginConfig();
-  // 把CameraInput加入到会话。
-  let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
-  cameraInput.open();
-  photoSession.addInput(cameraInput);
-  // 把PhotoOutPut加入到会话。
-  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  photoSession.addOutput(photoOutPut);
-  let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
-  if (isSupported) {
-    // 使能快速缩略图。
-    photoOutPut.enableQuickThumbnail(true);
-    photoOutPut.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
-      if (err || pixelMap === undefined) {
-        console.error('photoOutPut on thumbnail failed');
-        return;
-      }
-      // 显示或保存pixelmap。
-      showOrSavePicture(pixelMap);
-    });
+  if (!baseContext || !photoProfile) {
+    console.error('baseContext is null or photoProfile is null');
+    return;
+  }
+  try {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    if (!cameraManager) {
+      console.error('cameraManager is null');
+      return;
+    }
+    let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+    if (!cameras || cameras.length == 0) {
+      console.error('cameras is null or []');
+      return;
+    }
+    let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
+    if (!cameraInput) {
+      console.error('cameraInput is null');
+      return;
+    }
+    await cameraInput.open();
+    let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+    if (!photoOutPut) {
+      console.error('photoOutPut is null');
+      return;
+    }
+    // 创建PhotoSession实例。
+    let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+    if (!session) {
+      console.error('session is null');
+      return;
+    }
+    let photoSession: camera.PhotoSession = session as camera.PhotoSession;
+    // 开始配置会话。
+    photoSession.beginConfig();
+    // 把CameraInput加入到会话。
+    photoSession.addInput(cameraInput);
+    // 把PhotoOutPut加入到会话。
+    photoSession.addOutput(photoOutPut);
+    let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
+    if (isSupported) {
+      // 使能快速缩略图。
+      photoOutPut.enableQuickThumbnail(true);
+      photoOutPut.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
+        if (err || pixelMap === undefined) {
+          console.error('photoOutPut on thumbnail failed');
+          return;
+        }
+        // 显示或保存pixelmap。
+        showOrSavePicture(pixelMap);
+      });
+    }
+  } catch (err) {
+    console.error(`enableQuickThumbnail call failed. error: ${JSON.stringify(err)}`);
   }
 }
 
@@ -166,7 +223,15 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
   import { common } from '@kit.AbilityKit';
 
   function preLaunch(baseContext: common.BaseContext): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    let cameraManager: camera.CameraManager | undefined = undefined;
+    try {
+      cameraManager = camera.getCameraManager(baseContext);
+    } catch (error) {
+      console.error(`enableQuickThumbnail call failed. error: ${JSON.stringify(error)}`);
+    }
+    if (!cameraManager) {
+      return;
+    }
     try {
       cameraManager.prelaunch();
     } catch (error) {
@@ -188,7 +253,15 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
   import { common } from '@kit.AbilityKit';
 
   function setPreLaunchConfig(baseContext: common.BaseContext): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    let cameraManager: camera.CameraManager | undefined = undefined;
+    try {
+      cameraManager = camera.getCameraManager(baseContext);
+    } catch (error) {
+      console.error(`enableQuickThumbnail call failed. error: ${JSON.stringify(error)}`);
+    }
+    if (!cameraManager) {
+      return;
+    }
     let cameras: Array<camera.CameraDevice> = [];
     try {
       cameras = cameraManager.getSupportedCameras();
@@ -196,7 +269,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
       let err = error as BusinessError;
       console.error(`getSupportedCameras catch error: Code: ${err.code}, message: ${err.message}`);
     }
-    if (cameras.length <= 0) {
+    if (!cameras || cameras.length == 0) {
       return;
     }
     if(cameraManager.isPrelaunchSupported(cameras[0])) {

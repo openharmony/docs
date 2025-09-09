@@ -865,9 +865,9 @@ struct Index {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明     |
-| ------ | ---- | ---- | ------------ |
-|isSynchronous|boolean|否|配置当前回调函数否是为同步回调。true为同步回调。默认值为false，即异步回调。|
+| 名称 | 类型 | 只读 | 可选 | 说明     |
+| ------ | ---- | ---- | ---- | ------------ |
+|isSynchronous|boolean|否|是|配置当前回调函数否是为同步回调。true为同步回调。默认值为false，即异步回调。|
 
 ## MonitorCallback<sup>20+</sup>
 type MonitorCallback = (monitorValue: IMonitor) => void
@@ -955,7 +955,7 @@ new(...args: any): T
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| ...args | any    | 是   | 函数入参。   |
+| ...args | any    | 否   | 函数入参。   |
 
 **返回值：**
 
