@@ -88,7 +88,7 @@
     const CONST_NUMBER_1: number = 1;
     const CONST_NUMBER_2: number = 2;
     
-    // ipc通信返回类型的实现，用于rpc通信数据序列化和反序列化
+    // ipc通信返回类型的实现，用于数据序列化和反序列化
     class MyParcelable implements rpc.Parcelable {
       num: number;
       str: string;
