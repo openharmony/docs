@@ -94,7 +94,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setBackgroundAllowed(true).then(() => {
-  console.log("setBackgroundAllowed success");
+  console.info("setBackgroundAllowed success");
 }).catch((error: BusinessError) => {
   console.error(JSON.stringify(error));
 });
@@ -136,7 +136,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -177,7 +177,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .isBackgroundAllowed()
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -200,7 +200,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 
 | 参数名   | 类型                            | 必填 | 说明                                           |
 | -------- | ------------------------------- | ---- | ---------------------------------------------- |
-| uid      | number                          | 是   | app 唯一标识符。                                 |
+| uid      | number                          | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数                                 |
 | policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略。                                 |
 | callback | AsyncCallback\<void>            | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
@@ -241,7 +241,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>
 
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
-| uid    | number                          | 是   | app 唯一标识符。 |
+| uid    | number                          | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数 |
 | policy | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略。 |
 
 **返回值：**
@@ -269,7 +269,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE)
   .then(() => {
-    console.log('setPolicyByUid success');
+    console.info('setPolicyByUid success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -292,7 +292,7 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
 | 参数名   | 类型                                            | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | -------------------------------------------------------- |
-| uid      | number                                          | 是   | app 唯一标识符。                                           |
+| uid      | number                                          | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数                                           |
 | callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | 是   | 回调函数。成功返回获取策略结果，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -313,7 +313,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -333,7 +333,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数 |
 
 **返回值：**
 
@@ -360,7 +360,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getPolicyByUid(11111)
   .then((data: policy.NetUidPolicy) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -404,7 +404,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -451,7 +451,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getUidsByPolicy(11111)
   .then((data: object) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -494,7 +494,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -534,7 +534,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getNetQuotaPolicies()
   .then((data: policy.NetQuotaPolicy[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -660,7 +660,7 @@ netQuotaPolicyList.push(netquotapolicy);
 policy
   .setNetQuotaPolicies(netQuotaPolicyList)
   .then(() => {
-    console.log('setNetQuotaPolicies success');
+    console.info('setNetQuotaPolicies success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -683,7 +683,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 
 | 参数名    | 类型                    | 必填 | 说明                                                      |
 | --------- | ----------------------- | ---- | --------------------------------------------------------- |
-| uid       | number                  | 是   | app 唯一标识符。                                            |
+| uid       | number                  | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数                                         |
 | isMetered | boolean                 | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。                                            |
 | callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应的计量网络。 |
 
@@ -705,7 +705,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -725,7 +725,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>
 
 | 参数名    | 类型    | 必填 | 说明           |
 | --------- | ------- | ---- | -------------- |
-| uid       | number  | 是   | app 唯一标识符。 |
+| uid       | number  | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数 |
 | isMetered | boolean | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。 |
 
 **返回值：**
@@ -753,7 +753,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .isUidNetAllowed(11111, true)
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -776,7 +776,7 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| uid      | number                  | 是   | app 唯一标识符。                                               |
+| uid      | number                  | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数                                               |
 | iface    | string                  | 是   | 网络对应的名称 。                                              |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应 iface 的网络。 |
 
@@ -798,7 +798,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -818,7 +818,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数 |
 | iface  | string | 是   | 网络对应的名称。 |
 
 **返回值：**
@@ -846,7 +846,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .isUidNetAllowed(11111, 'wlan0')
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -869,7 +869,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 
 | 参数名    | 类型                           | 必填 | 说明                                           |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
-| uids      | Array\<number>                 | 是   | app 唯一标识符。                                 |
+| uids      | Array\<number>                 | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数                                 |
 | isAllowed | boolean                        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。                                 |
 | callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
@@ -938,7 +938,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .setDeviceIdleTrustlist([11111, 22222], true)
   .then(() => {
-    console.log('setDeviceIdleTrustlist success');
+    console.info('setDeviceIdleTrustlist success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -981,7 +981,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -1021,7 +1021,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getDeviceIdleTrustlist()
   .then((data: number[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1044,7 +1044,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 
 | 参数名   | 类型                                                          | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------ |
-| uid      | number                                                        | 是   | app 唯一标识符。           |
+| uid      | number                                                        | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数           |
 | callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | 是   | 回调函数。返回获取结果。 |
 
 **错误码：**
@@ -1065,7 +1065,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -1085,7 +1085,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数 |
 
 **返回值：**
 
@@ -1112,7 +1112,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getBackgroundPolicyByUid(11111)
   .then((data: policy.NetBackgroundPolicy) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1202,7 +1202,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .resetPolicies('1')
   .then(() => {
-    console.log('resetPolicies success');
+    console.info('resetPolicies success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1307,7 +1307,7 @@ policy
     policy.RemindType.REMIND_TYPE_WARNING
   )
   .then(() => {
-    console.log('updateRemindPolicy success');
+    console.info('updateRemindPolicy success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1399,7 +1399,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .setPowerSaveTrustlist([11111, 22222], true)
   .then(() => {
-    console.log('setPowerSaveTrustlist success');
+    console.info('setPowerSaveTrustlist success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1442,7 +1442,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -1482,7 +1482,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getPowerSaveTrustlist()
   .then((data: number[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1505,7 +1505,7 @@ setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?:
 
 | 参数名         | 类型                                           | 必填 | 说明                                                                          |
 | ------------- | ---------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| uid           | number                                         | 是   | app 唯一标识符。                                                                |
+| uid           | number                                         | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数                                                                |
 | policy        | [NetworkAccessPolicy](#networkaccesspolicy12)  | 是   | 网络策略。                                                                      |
 | isReconfirmed | boolean                                        | 否   | 默认false；false 表示需要重确认，应用访问网络会弹框; true 表示不需要重确认，无弹框。 |
 
@@ -1538,7 +1538,7 @@ let accessPolicy: policy.NetworkAccessPolicy = {
 policy
   .setNetworkAccessPolicy(11111, accessPolicy)
   .then(() => {
-    console.log('setNetworkAccessPolicy success');
+    console.info('setNetworkAccessPolicy success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1561,7 +1561,7 @@ getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数 |
 
 **返回值：**
 
@@ -1588,7 +1588,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getNetworkAccessPolicy(11111)
   .then((data: policy.NetworkAccessPolicy) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1647,7 +1647,7 @@ policy
         }
       })
     })
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1700,7 +1700,7 @@ interface Data {
 
 try {
   policy.on('netUidPolicyChange', (data: Data) => {
-    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netUidPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
@@ -1749,7 +1749,7 @@ interface Data {
 
 try {
   policy.on('netUidPolicyChange', (data: Data) => {
-    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netUidPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
@@ -1757,7 +1757,7 @@ try {
 
 try {
   policy.off('netUidPolicyChange', (data: Data) => {
-    console.log('off netUidPolicyChange data: ' + JSON.stringify(data));
+    console.info('off netUidPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netUidPolicyChange error: ' + JSON.stringify(err));
@@ -1806,7 +1806,7 @@ interface Data {
 
 try {
   policy.on('netUidRuleChange', (data: Data) => {
-    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+    console.info('on netUidRuleChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidRuleChange error: ' + JSON.stringify(err));
@@ -1855,7 +1855,7 @@ interface Data {
 
 try {
   policy.on('netUidRuleChange', (data: Data) => {
-    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+    console.info('on netUidRuleChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidRuleChange error: ' + JSON.stringify(err));
@@ -1863,7 +1863,7 @@ try {
 
 try {
   policy.off('netUidRuleChange', (data: Data) => {
-    console.log('off netUidRuleChange data: ' + JSON.stringify(data));
+    console.info('off netUidRuleChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netUidRuleChange error: ' + JSON.stringify(err));
@@ -1907,7 +1907,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
-    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+    console.info('on netMeteredIfacesChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
@@ -1951,7 +1951,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
-    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+    console.info('on netMeteredIfacesChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
@@ -1959,7 +1959,7 @@ try {
 
 try {
   policy.off('netMeteredIfacesChange', (data: string[]) => {
-    console.log('off netMeteredIfacesChange data: ' + JSON.stringify(data));
+    console.info('off netMeteredIfacesChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netMeteredIfacesChange error: ' + JSON.stringify(err));
@@ -2008,7 +2008,7 @@ interface Data {
 
 try {
   policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
-    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netQuotaPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
@@ -2052,7 +2052,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netQuotaPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
@@ -2060,7 +2060,7 @@ try {
 
 try {
   policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-    console.log('off netQuotaPolicyChange data: ' + JSON.stringify(data));
+    console.info('off netQuotaPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netQuotaPolicyChange error: ' + JSON.stringify(err));
@@ -2104,7 +2104,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
-    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
@@ -2148,7 +2148,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
-    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
@@ -2156,7 +2156,7 @@ try {
 
 try {
   policy.off('netBackgroundPolicyChange', (data: boolean) => {
-    console.log('off netBackgroundPolicyChange data: ' + JSON.stringify(data));
+    console.info('off netBackgroundPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netBackgroundPolicyChange error: ' + JSON.stringify(err));
