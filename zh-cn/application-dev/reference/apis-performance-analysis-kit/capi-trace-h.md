@@ -9,7 +9,7 @@
 
 ## 概述
 
-HiTraceMeter和HitraceChain模块打点接口定义，通过这些接口实现性能打点和分布式跟踪功能。<br> 用户态tarce格式使用竖线字符作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。<br> 用户态trace总长度限制512字符，超过的部分将会被截断。
+HiTraceMeter和HitraceChain模块打点接口定义，通过这些接口实现性能打点和分布式跟踪功能。<br>用户态tarce格式使用竖线字符作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。<br>用户态trace总长度限制512字符，超过的部分将会被截断。
 
 **引用文件：** <hitrace/trace.h>
 
@@ -919,5 +919,4 @@ bool OH_HiTrace_IsTraceEnabled(void)
 | 类型 | 说明 |
 | -- | -- |
 | bool | 使用hitrace命令行工具等方式开启采集时返回true。<br> 未开启采集或停止采集后返回false，此时调用HiTraceMeter性能跟踪打点接口无效。 |
-
 

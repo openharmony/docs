@@ -15,7 +15,7 @@ HiDebug可用于获取系统或应用进程的内存、CPU和GPU等数据，以�
 
 ## 约束限制
 
-该模块的接口调用较为耗时，部分接口调用时长可达秒级，可能导致调用线程FREEZE。基于HiDebug模块定义，建议仅在应用调试、调优阶段使用该模块内的接口。若需在其他场景使用，请评估接口调用对应用性能的影响。
+该模块的接口调用较为耗时，部分接口调用时长可达秒级，导致调用线程卡顿。且基于HiDebug模块定义，该模块内的接口建议仅在应用调试、调优阶段使用。若需在其他场景使用，请评估接口调用对应用性能的影响。
 
 ## 获取内存信息
 
@@ -29,7 +29,7 @@ HiDebug可用于获取整机内存、应用进程内存占用、应用线程内�
 | hidebug.getNativeHeapAllocatedSize | 获取内存分配器统计的进程持有的已使用的普通块所占用的总字节数。mallinfo接口中获取到的uordblks。 |
 | hidebug.getNativeHeapFreeSize | 获取内存分配器统计的进程持有的空闲的普通块所占用的总字节数。mallinfo接口中获取到的fordblks。 |
 | hidebug.getPss | 获取应用进程实际使用的物理内存大小。读取/proc/{pid}/smaps_rollup节点中的Pss与SwapPss值并求和。 |
-| hidebug.getVss | 获取应用进程虚拟耗用内存大小。读取/proc/{pid}/statm节点中的size值（内存页数），vss = size * 页大小（4K/页）。 |
+| hidebug.getVss | 获取应用进程占用的虚拟内存大小。读取/proc/{pid}/statm节点中的size值（内存页数），vss = size * 页大小（4KB/页）。 |
 | hidebug.getSharedDirty | 获取进程的共享脏内存大小。读取/proc/{pid}/smaps_rollup节点中的Shared_Dirty值。 |
 | hidebug.getPrivateDirty | 获取进程的私有脏内存大小。读取/proc/{pid}/smaps_rollup中的Private_Dirty值。 |
 | hidebug.getAppNativeMemInfo | 获取应用进程内存信息。读取/proc/{pid}/smaps_rollup和/proc/{pid}/statm节点的数据。 |
@@ -61,7 +61,7 @@ HiDebug可获取应用占用的显存资源数据。在图形密集型应用中�
 | 接口名 | 描述                                                 |
 | -------- |----------------------------------------------------|
 | hidebug.getGraphicsMemory | 使用异步方式获取应用的显存总大小（graph + gl）。                      |
-| hidebug.getGraphicsMemorySync | 使用同步方式获取应用的显存总大小（graph + gl）。                    
+| hidebug.getGraphicsMemorySync | 使用同步方式获取应用的显存总大小（graph + gl）。 |                   
 | hidebug.getGraphicsMemorySummary | 使用异步方式获取应用程序的显存数据。<br/>说明：从API version 21开始，支持该接口。 |
 
 ### 接口说明（C/C++）
@@ -73,7 +73,7 @@ HiDebug可获取应用占用的显存资源数据。在图形密集型应用中�
 
 ## 获取CPU使用率
 
-应用开发中，监控CPU使用率是性能分析的关键。获取CPU使用率有助于优化应用性能，确保流畅运行。HiDebug提供了多个接口，方便获取CPU使用率。
+应用开发中，监控CPU使用率是性能分析的关键。为便于开发者优化应用性能，确保应用流畅运行，HiDebug模块提供了多个接口以获取CPU使用率。
 
 ### 实现原理
 
@@ -91,27 +91,27 @@ cpu  648079 547 703220 16994706 23006 101071 0 0 0 0
 
 CPU 指标字段含义：
 
-CPU的统计信息从左到右分别代表以下含义（其中cpu为所有cpu运行数据的总和）：
+CPU的统计信息从左到右分别代表以下含义（其中cpu为所有cpu运行数据的总和，单位：jiffies）：
 
-- user: 用户态时间（单位：jiffies）
+- user: 非低优先级进程（nice <= 0）所占用的用户态时间。
 
-- nice: nice 用户态时间（单位：jiffies）
+- nice: 低优先级进程（nice > 0）所占用的用户态时间。
 
-- system: 内核态时间（单位：jiffies）
+- system: 内核态时间。
 
-- idle: 空闲时间（单位：jiffies，不包含 IO 等待时间）
+- idle: 空闲时间（不包含 IO 等待时间）。
 
-- iowait: IO 等待时间（单位：jiffies）
+- iowait: IO 等待时间。
 
-- irq: 硬中断时间（单位：jiffies）
+- irq: 硬中断时间。
 
-- softirq: 软中断时间（单位：jiffies）
+- softirq: 软中断时间。
 
-- steal: 被盗时间（虚拟化环境中运行其他操作系统上花费的时间）
+- steal: 虚拟化环境中，运行在非该虚拟机内进程上的时间。
 
-- guest: 来宾时间（操作系统运行虚拟 CPU 花费的时间）
+- guest: 操作系统运行虚拟机中非低优先进程（nice <= 0）的时间（已包含在user字段中）。
 
-- guest_nice: nice 来宾时间（运行一个带 nice 值的 guest 花费的时间）
+- guest_nice: 操作系统运行虚拟机中低优先级进程（nice > 0）的时间（已包含在nice字段中）。
 
 2.进程CPU使用数据/线程CPU使用数据：
 
@@ -178,7 +178,7 @@ HiDebug可用于获取VM内存数据、GC统计数据及VM堆转储。
 | hidebug.getAppVMMemoryInfo | 获取VM内存相关信息。 |
 | hidebug.getVMRuntimeStats | 获取系统[GC](../arkts-utils/gc-introduction.md)统计信息。 |
 | hidebug.getVMRuntimeStat | 根据参数获取指定的系统[GC](../arkts-utils/gc-introduction.md)统计信息。 |
-| hidebug.dumpJsRawHeapData | 使用异步方式为当前线程转储虚拟机的原始堆快照，辅助[JS内存泄漏分析](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-js-memleak-detection)。 |
+| hidebug.dumpJsRawHeapData | 使用异步方式为当前线程转储虚拟机的原始堆快照，辅助[JS内存泄漏分析](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-js-memleak-detection)。<br/>**说明**：从API version 18开始，支持该接口。 |
 | hidebug.dumpJsHeapData | 使用同步方式导出虚拟机堆，辅助[JS内存泄漏分析](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-js-memleak-detection)。 |
 | hidebug.getAppMemoryLimit | 获取应用程序进程内存限制，其中vmHeapLimit为当前线程对应的虚拟机堆大小限制，vmTotalHeapSize为当前进程所有虚拟机堆总和大小的限制。 |
 | hidebug.getAppVMObjectUsed | 获取当前虚拟机中ArkTS对象所占用的内存大小。<br/>**说明**：从API version 21开始，支持该接口。 |
@@ -258,9 +258,9 @@ HiDebug提供了启停[GWP-ASan](https://developer.huawei.com/consumer/cn/doc/be
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| hidebug.enableGwpAsanGrayscale | 使能GWP-ASan，用于检测堆内存使用中的非法行为。 |
-| hidebug.disableGwpAsanGrayscale | 停止使能GWP-ASan。 |
-| hidebug.getGwpAsanGrayscaleState | 获取当前GWP-ASan剩余使能天数。 |
+| hidebug.enableGwpAsanGrayscale | 使能GWP-ASan，用于检测堆内存使用中的非法行为。<br/>**说明**：从API version 20开始，支持该接口。 |
+| hidebug.disableGwpAsanGrayscale | 停止使能GWP-ASan。<br/>**说明**：从API version 20开始，支持该接口。 |
+| hidebug.getGwpAsanGrayscaleState | 获取当前GWP-ASan剩余使能天数。<br/>**说明**：从API version 20开始，支持该接口。 |
 
 ## 其他
 

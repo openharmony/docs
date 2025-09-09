@@ -59,7 +59,7 @@ LongPressGesture(options?: LongPressGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [LongPressGestureHandlerOptions](./ts-uigestureevent.md#longpressgesturehandleroptions) | 否 | 长按手势处理器配置参数。 |
+| options | [LongPressGestureHandlerOptions](./ts-gesturehandler.md#longpressgesturehandleroptions) | 否 | 长按手势处理器配置参数。 |
 
 
 ## 事件

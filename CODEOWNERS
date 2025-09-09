@@ -19,7 +19,7 @@ zh-cn/release-notes/changelogs/ @ang-huawei
 zh-cn/release-notes/changelogs/**/changelogs-ability.md  @ang-huawei  @huipeizi
 
 [设备开发]
-zh-cn/device-dev/ @w_Machine_cc @zengyawen @fang-jinxu
+zh-cn/device-dev/ @zengyawen @fang-jinxu
 
 [入门-快速入门]
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
@@ -519,11 +519,11 @@ zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @zhang_
 zh-cn/application-dev/basic-services/compress  @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 
 [开发-Basic Services Kit-剪贴板]
-zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/native-use-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/Readme-CN.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md	@guo867	@maxiaorong	@HelloCrease
+zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/native-use-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/Readme-CN.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md	@guo867	@maxiaorong	@fang-jinxu
 
 [开发-CalendarManager Kit]
 zh-cn/application-dev/calendarmanager @liuqian677 @jt_123456 @edollar
@@ -737,6 +737,8 @@ zh-cn/application-dev/device/device-location-geocoding.md @RayShih
 
 [开发-Media]
 zh-cn/application-dev/media/ @zengyawen
+zh-cn/application-dev/media/audio/ @w_Machine_cc
+zh-cn/application-dev/media/avsession/ @w_Machine_cc
 
 [开发-MDM Kit]
 zh-cn/application-dev/mdm/mdm-kit-intro.md @liuzuming @Brilliantry_Rui @lpw_work @lucifinil_han
@@ -910,6 +912,9 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExt
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md @huipeizi @zhangyafei-echo @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-uripermissionmanager-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-errorManager.md  @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-errorObserver.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-loopObserver.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
 
 
 
@@ -1699,7 +1704,6 @@ zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zh
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
-zh-cn/application-dev/reference/common/js-apis-timer.md   @ge-yafang
 zh-cn/application-dev/reference/common/js-apis-timer.md @yao_dashuai @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
 zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @zhang_yixin13
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13  @murphy1984 @hu-kai45
@@ -1973,9 +1977,9 @@ zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @chen
 
 
 [API参考-Media]
-zh-cn/application-dev/reference/apis-audio-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-audio-kit/ @w_Machine_cc
 zh-cn/application-dev/reference/apis-avcodec-kit/ @zengyawen
-zh-cn/application-dev/reference/apis-avsession-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-avsession-kit/ @w_Machine_cc
 zh-cn/application-dev/reference/apis-camera-kit/ @zengyawen
 zh-cn/application-dev/reference/apis-drm-kit/ @zengyawen
 zh-cn/application-dev/reference/apis-image-kit/ @zengyawen
@@ -2099,16 +2103,15 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-deviceAttest-sys
 
 [API参考-剪贴板]
 
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-h.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-h.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
 
 [工具-元能力、包管理、通知等]
 zh-cn/application-dev/tools/aa-tool.md @huipeizi @ccllee1 @lixueqing513

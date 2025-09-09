@@ -23,7 +23,7 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 跟踪标志组合类型枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -40,7 +40,7 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 跟踪埋点类型枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -54,7 +54,7 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 跟踪通信类型枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -67,7 +67,7 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 此接口为HiTraceId对象接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

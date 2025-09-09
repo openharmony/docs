@@ -47,7 +47,7 @@ Web媒体策略的配置。
 | 名称         | 类型           | 只读 | 可选   | 说明           |
 | ----------- | -------------- | --- | ------|--------------- |
 | script      | string         | 否  |  否    | 需要注入、执行的JavaScript脚本。 |
-| scriptRules | Array\<string> | 否  |  否    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以"://"结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
+| scriptRules | Array\<string> | 否  |  否    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以`://`结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
 
 ## NestedScrollOptionsExt<sup>14+</sup>
 
@@ -109,6 +109,8 @@ Web媒体策略的配置。
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 是     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 是     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
 | previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 是     | 自定义选择预览菜单选项。 |
+| onMenuShow<sup>21+</sup> | Callback\<void\> | 否     | 是     | 自定义选择菜单显示时回调。 |
+| onMenuHide<sup>21+</sup> | Callback\<void\> | 否     | 是     | 自定义选择菜单隐藏时回调。 |
 
 ## PreviewMenuOptions<sup>20+</sup>
 

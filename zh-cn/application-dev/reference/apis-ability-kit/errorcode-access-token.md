@@ -272,3 +272,22 @@ The specific global switch is already open.
 **处理步骤**
 
 无需处理，返回此错误码表示全局开关已开启，不会拉起全局开关设置弹框。
+
+## 12100014 非预期的权限
+
+**错误信息**
+
+Unexpected permission.
+
+**错误描述**
+
+当输入的权限不符合使用场景时，将返回该错误码。
+
+**可能原因**
+
+1. [再次拉起权限设置弹框](js-apis-abilityAccessCtrl.md#requestpermissiononsetting12)时，传入了manual_settings授权方式的权限。
+2. 授权或取消授权时，传入了非user_grant和manual_settings授权方式的权限。
+
+**处理步骤**
+
+请确认输入的权限是否符合使用场景。

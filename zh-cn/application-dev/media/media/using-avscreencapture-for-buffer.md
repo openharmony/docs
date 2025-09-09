@@ -106,7 +106,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
 
 7. 设置此次录屏的可配置策略。（可选）
 
-   7.1 设置屏幕录制隐私窗口屏蔽模式。（可选）
+    7.1 设置屏幕录制隐私窗口屏蔽模式。（可选）
 
         value值设为0，表示全屏屏蔽模式。value值设为1，表示窗口屏蔽模式。默认为全屏屏蔽模式。
 
@@ -117,9 +117,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
         OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
         ```
 
-   7.2 设置屏幕录屏自动跟随旋转配置。（可选）
+    7.2 （可选）（API 20起支持）设置屏幕录屏自动跟随旋转配置。
 
-       设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，确保输出画面及时跟随旋转。设置后在旋转通知后，无需再手动调用OH_AVScreenCapture_ResizeCanvas接口。
+        设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，确保输出画面及时跟随旋转。设置后在旋转通知后，无需再手动调用OH_AVScreenCapture_ResizeCanvas接口。
 
         ```c++
         OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
@@ -177,9 +177,14 @@ config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
 config_.videoInfo.videoCapInfo.displayId = 0;
 
 // (可选)若有期望录制的窗口，可传入单个窗口Id。
-vector<int32_t> missionIds = {61}; // 表示弹出的Picker默认选中61号窗口。
-config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+int32_t* missionIds = new int32_t[]{61}; // 表示弹出的Picker默认选中61号窗口。
+int32_t missionIdsLen = 1;
+config_.videoInfo.videoCapInfo.missionIDs = missionIds;
+config_.videoInfo.videoCapInfo.missionIDsLen = missionIdsLen;
+
+// 在config_使用完成后，对申请的内存进行释放
+delete[] config_.videoInfo.videoCapInfo.missionIDs;
+config_.videoInfo.videoCapInfo.missionIDs = nullptr;
 ```
 
 另外，PC/2in1设备录屏窗口选择界面兼容以下几种模式的录屏：
@@ -198,9 +203,14 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     config_.videoInfo.videoCapInfo.displayId = 0;
 
     // 传入多个窗口Id。
-    vector<int32_t> missionIds = {60, 61}; // 表示期望同时录制60、61号窗口。
-    config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-    config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+    int32_t* missionIds = new int32_t[]{60, 61}; // 表示期望同时录制60、61号窗口。
+    int32_t missionIdsLen = 2;
+    config_.videoInfo.videoCapInfo.missionIDs = missionIds;
+    config_.videoInfo.videoCapInfo.missionIDsLen = missionIdsLen;
+
+    // 在config_使用完成后，对申请的内存进行释放
+    delete[] config_.videoInfo.videoCapInfo.missionIDs;
+    config_.videoInfo.videoCapInfo.missionIDs = nullptr;
     ```
 
 2. OH_CAPTURE_SPECIFIED_SCREEN模式。

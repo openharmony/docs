@@ -14,6 +14,10 @@
 
 ConsoleMessage的信息级别。
 
+> **说明：**
+>
+> - 在html5侧，调用console.log或console.info对应ConsoleMessage的信息级别都为MessageLevel.Info。  
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称    | 值 | 说明    |
@@ -328,6 +332,7 @@ Web布局模式的配置。
 | --------- | -- | ----------------- |
 | IMAGE     | 1 | 网页元素为图像类型。 |
 | LINK<sup>20+</sup>     | 2 | 网页元素为超链接类型。 |
+| TEXT<sup>21+</sup>     | 3 | 网页元素为文本或可编辑区域类型。 |
 
 ## WebResponseType<sup>13+</sup>
 
@@ -340,6 +345,7 @@ Web布局模式的配置。
 | 名称            | 值 | 说明                |
 | -------------- | -- | ------------------  |
 | LONG_PRESS     | 1 | 通过长按触发菜单弹出。 |
+| RIGHT_CLICK<sup>21+</sup>    | 2 | 通过鼠标右键触发菜单弹出。 |
 
 ## AudioSessionType<sup>20+</sup>
 

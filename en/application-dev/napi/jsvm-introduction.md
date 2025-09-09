@@ -1,15 +1,20 @@
 # JSVM-API Overview
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-The OpenHarmony JSVM-API provides a set of stable APIs based on the standard JavaScript (JS) engine. It provides complete JS engine capabilities, including creating and destroying a JS engine, executing JS code, and implementing interaction between JS and C/C++ modules.
+OpenHarmony JSVM-API provides a set of stable APIs based on the standard JS engine and supports key functions such as engine creation and destruction, JS code execution, and interaction between JS and C++.
 
 OpenHarmony JSVM-API provides a set of APIs written in C programming language that complies with C99.
 
-JSVM-API allows dynamically loaded JS code segment to be directly run during application runtime. With JSVM-API, you can also use C/C++ to implement core functionalities that demand high performance or closely rely on underlying system invocation, register C++ methods in JS code, and directly call the JS code to improve the execution speed.
+With the JSVM-API, the dynamically loaded JS code can be directly executed during application running. In addition, core functions that have high requirements on performance and underlying system invoking can be implemented in C/C++, and C++ methods can be registered with the JS side. In this way, the functions can be directly called in the JS code, improving the application execution efficiency.
 
 Unless otherwise specified, JSVM-API in this document refers to OpenHarmony JSVM-API.
-
 
 ## JSVM-API Architecture
 
@@ -33,7 +38,7 @@ Unless otherwise specified, JSVM-API in this document refers to OpenHarmony JSVM
 
 - Debugger: debugs JS code.
 
-- CPU Profiler: records the JS code execution time and helps analyze the JS code performance bottlenecks.
+- CPU Profiler: This tool records the execution time of JavaScript code, helping developers analyze performance bottlenecks and providing data support for code optimization.
 
 - Heap Snapshot: helps you perform JS heap memory analysis, identify memory issues, and make improvements.
 

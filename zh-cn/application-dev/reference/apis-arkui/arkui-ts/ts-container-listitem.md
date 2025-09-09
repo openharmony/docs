@@ -276,6 +276,76 @@ ListItem元素被鼠标框选的状态改变时触发回调。
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | isSelected | boolean | 是   | 进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
 
+## ListItemSwipeActionManager<sup>21+</sup>
+
+ListItem划出菜单的管理器。
+
+### expand<sup>21+</sup>
+expand(node: FrameNode, direction: ListItemSwipeActionDirection)
+
+展开指定ListItem的划出菜单。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| node | [FrameNode](../js-apis-arkui-frameNode.md) | 是   | ListItem节点对象。 |
+| direction | [ListItemSwipeActionDirection](#listitemswipeactiondirection21枚举说明) | 是   | ListItem划出菜单的展开方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[自定义节点错误码](../errorcode-node.md)。
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 100023   | The component type of the node is incorrect. |
+| 106203   | The node is not mounted to the component tree. |
+
+> **说明：**
+>
+> - 如果List组件cachedCount属性isShow参数设置为true，List显示区域外已预加载完成的ListItem支持展开，否则List显示区域外节点不支持展开。
+
+### collapse<sup>21+</sup>
+collapse(node: FrameNode)
+
+收起指定ListItem的划出菜单。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| node | [FrameNode](../js-apis-arkui-frameNode.md) | 是   | ListItem节点对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[自定义节点错误码](../errorcode-node.md)。
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 100023   | The component type of the node is incorrect. |
+| 106203   | The node is not mounted to the component tree. |
+
+## ListItemSwipeActionDirection<sup>21+</sup>枚举说明
+
+ListItem划出菜单的展开方向。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| START |  0  | 当列表方向是垂直方向时，LTR模式下表示ListItem的左边，RTL模式下表示ListItem的右边。当列表是水平方向时，表示ListItem的上边。 |
+| END   |  1  | 当列表方向是垂直方向时，LTR模式下表示ListItem的右边，RTL模式下表示ListItem的左边。当列表是水平方向时，表示ListItem的下边。 |
+
 ## 示例
 
 ### 示例1（创建ListItem）
@@ -551,3 +621,98 @@ struct ListItemExample {
 }
 ```
 ![ListItemStyle](figures/deleteListItem_example04.gif)
+
+### 示例5（通过ListItemSwipeActionManager管理划出菜单）
+该示例通过ListItemSwipeActionManager管理ListItem的划出菜单。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct ListItemExample5 {
+  @Builder
+  itemAction(str: string) {
+    Row() {
+      Button(str).margin('4vp')
+    }.padding('4vp').justifyContent(FlexAlign.SpaceEvenly)
+  }
+
+  getList(): FrameNode | undefined | null {
+    let node: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(this.getUniqueId());
+    let count: number = node?.getChildrenCount() ?? 0;
+    for (let i = 0; i < count; i++) {
+      let child: FrameNode | undefined | null = node?.getChild(i);
+      if (child?.getNodeType() === "List") {
+        return child;
+      }
+    }
+    return undefined;
+  }
+
+  build() {
+    Flex({ wrap: FlexWrap.Wrap }) {
+      Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween }) {
+        Button("expand start")
+          .onClick(() => {
+            try {
+              ListItemSwipeActionManager.expand(this.getList()?.getChild(0), ListItemSwipeActionDirection.START)
+            } catch (error) {
+              console.error("Error expand item:", (error as BusinessError).code, (error as BusinessError).message);
+            }
+          })
+        Button("expand end")
+          .onClick(() => {
+            try {
+              ListItemSwipeActionManager.expand(this.getList()?.getChild(0), ListItemSwipeActionDirection.END)
+            } catch (error) {
+              console.error("Error expand item:", (error as BusinessError).code, (error as BusinessError).message);
+            }
+          })
+        Button("collapse")
+          .onClick(() => {
+            try {
+              ListItemSwipeActionManager.collapse(this.getList()?.getChild(Number(0)))
+            } catch (error) {
+              console.error("Error collapse item:", (error as BusinessError).code, (error as BusinessError).message);
+            }
+          })
+      }
+      .margin({ bottom: 10 })
+
+      List({ space: 10 }) {
+        ListItem() {
+          Text("item")
+            .width('100%')
+            .height(100)
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+        }
+        .transition({ type: TransitionType.Delete, opacity: 0 })
+        .swipeAction({
+          start: {
+            builder: () => {
+              this.itemAction('start')
+            },
+          },
+          end: {
+            builder: () => {
+              this.itemAction('end')
+            },
+          }
+        })
+      }
+      .height('80%')
+
+    }
+    .padding(10)
+    .backgroundColor(0xDCDCDC)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![ListItemSwipeActionManager](figures/listItemSwipeActionManager_example05.gif)

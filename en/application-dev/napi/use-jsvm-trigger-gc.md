@@ -1,8 +1,14 @@
 # Triggering GC Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-JSVM-API provides APIs for registering a callback for listening for the memory garbage collection (GC) of a JavaScript VM (JSVM). You can customize logic to perform profiling, debugging, or performance monitoring before or after the GC.
+JSVM-API provides the capability of registering callback functions to monitor the memory GC of the JavaScript VM. You can add custom logic before and after garbage collection to perform optimization, debugging, or performance monitoring during garbage collection.
 
 ## Basic Concepts
 
@@ -23,10 +29,10 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_AddHandlerForGC & OH_JSVM_RemoveHandlerForGC
 
-You can call **OH_JSVM_AddHandlerForGC** multiple times to register callbacks with a JSVM, and all registered callbacks will take effect. The registration behavior uses the callback pointer and **native-data** as the key. If multiple registration behaviors have the same key, the registration will be considered invalid and the **JSVM_INVALID_ARG** error code will be returned. The order in which callbacks are invoked under the same triggering condition does not strictly following the registration order.
+You can call **OH_JSVM_AddHandlerForGC** multiple times to register callbacks with a JSVM, and all registered callbacks will take effect. During registration, the callback function pointer and native-data are used as keys. If the same key exists in multiple registrations, the registration is invalid and the error code JSVM_INVALID_ARG is returned. Under the same triggering condition, the callback sequence of the callback function is not strictly consistent with the registration sequence.
 You can use **OH_JSVM_RemoveHandlerForGC** to remove a registered callback from a JSVM. Removing callbacks with the same key will be considered an invalid removal, and the **JSVM_INVALID_ARG** error will be returned.
 
-#### CPP Code
+CPP code:
 
 ```cpp
 // hello.cpp
@@ -96,7 +102,7 @@ static JSVM_Value TriggerGC(JSVM_Env env, JSVM_CallbackInfo info)
     // Remove the OnAfter2 callback.
     JSVM_CALL(OH_JSVM_RemoveHandlerForGC(vm, JSVM_CB_TRIGGER_AFTER_GC, OnAfterGC2, NULL));
     // Repeated removal of OnAfter2 is invalid.
-    if (OH_JSVM_RemoveHandlerForGC(vm, JSVM_CB_TRIGGER_AFTER_GC, OnAfterGC2, new int(12)) == JSVM_INVALID_ARG) {
+    if (OH_JSVM_RemoveHandlerForGC(vm, JSVM_CB_TRIGGER_AFTER_GC, OnAfterGC2, NULL) == JSVM_INVALID_ARG) {
         remove_repeated = true;
     }
     // Removing a callback that has never been registered is invalid.
@@ -105,13 +111,13 @@ static JSVM_Value TriggerGC(JSVM_Env env, JSVM_CallbackInfo info)
     }
     // Notify the system when the JSVM is under high memory pressure, which is likely to trigger GC of the JSVM.
     JSVM_CALL(OH_JSVM_MemoryPressureNotification(env, JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL));
-    if ((before_flag1 == true) &&
-        (before_flag2 == true) &&
-        (after_flag1 == true) &&
-        (after_flag2 == false) &&
-        (remove_repeated == true) &&
-        (remove_notAdded == true) &&
-        (add_repeated == true)) {
+    if ((before_flag1) &&
+        (before_flag2) &&
+        (after_flag1) &&
+        (!after_flag2) &&
+        (remove_repeated) &&
+        (remove_notAdded) &&
+        (add_repeated)) {
         OH_LOG_INFO(LOG_APP, "JSVM Trigger GC: success");
     } else {
         OH_LOG_ERROR(LOG_APP, "JSVM Trigger GC: failed");
@@ -130,11 +136,14 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerGC", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-#### JS Example
+JS Example
+```cpp
 const char *srcCallNative = R"JS(triggerGC();)JS";
+```
+**Execution result**
 
-#### Expected Result
 The following information is displayed in the log:
+```cpp
 == before GC ==
 gc type: 4
 gc flag: 4
@@ -143,3 +152,4 @@ gc type: 4
 gc flag: 4
 data: 2024
 JSVM Trigger GC: success
+```

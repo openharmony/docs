@@ -2900,7 +2900,7 @@ class C {
     console.info(this.p);
   }
   q(r: string) {
-    return this.p == r;
+    return this.p === r;
   }
 }
 ```

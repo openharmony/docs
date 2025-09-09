@@ -2945,7 +2945,7 @@ getOsAccountName(): Promise&lt;string&gt;
 
 ### getForegroundOsAccountLocalId<sup>15+</sup>
 
-getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
+getForegroundOsAccountLocalId(): Promise&lt;number&gt;
 
 获取前台系统账号的ID。
 

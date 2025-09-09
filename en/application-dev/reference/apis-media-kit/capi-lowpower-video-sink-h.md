@@ -1,5 +1,12 @@
 # lowpower_video_sink.h
 
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @Saber_e-->
+<!--Designer: @yangde_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## Overview
 
 The file declares the native APIs provided by the LowPowerVideoSink. You can use the APIs to implement low-power video playback.
@@ -36,7 +43,7 @@ The file declares the native APIs provided by the LowPowerVideoSink. You can use
 | [OH_AVErrCode OH_LowPowerVideoSink_Reset(OH_LowPowerVideoSink* sink)](#oh_lowpowervideosink_reset) | Resets an OH_LowPowerVideoSink instance.<br>To reuse the instance, you must call [OH_LowPowerVideoSink_Configure](#oh_lowpowervideosink_configure) to configure the instance again.|
 | [OH_AVErrCode OH_LowPowerVideoSink_Destroy(OH_LowPowerVideoSink* sink)](#oh_lowpowervideosink_destroy) | Clears internal resources of an OH_LowPowerVideoSink instance and destroys the instance. You only need to call the function once.|
 | [OH_AVErrCode OH_LowPowerVideoSink_SetSyncAudioSink(OH_LowPowerVideoSink* videoSink, OH_LowPowerAudioSink* audioSink)](#oh_lowpowervideosink_setsyncaudiosink) | Sets an OH_LowPowerAudioSink instance for audio-video synchronization in an OH_LowPowerVideoSink instance.|
-| [OH_AVErrCode OH_LowPowerVideoSink_SetTargetStartFrame(OH_LowPowerVideoSink* sink,const int64_t framePts,OH_LowPowerVideoSink_OnTargetArrived onTargetArrived,const int64_t timeoutMs,void* userData)](#oh_lowpowervideosink_settargetstartframe) | Sets the target rendering frame for an OH_LowPowerVideoSink instance.|
+| [OH_AVErrCode OH_LowPowerVideoSink_SetTargetStartFrame(OH_LowPowerVideoSink* sink, const int64_t framePts, OH_LowPowerVideoSink_OnTargetArrived onTargetArrived, const int64_t timeoutMs,void* userData)](#oh_lowpowervideosink_settargetstartframe) | Sets the target rendering frame for an OH_LowPowerVideoSink instance.|
 | [OH_AVErrCode OH_LowPowerVideoSink_SetPlaybackSpeed(OH_LowPowerVideoSink* sink, const float speed)](#oh_lowpowervideosink_setplaybackspeed) | Sets the playback speed for an OH_LowPowerVideoSink instance.|
 | [OH_AVErrCode OH_LowPowerVideoSink_ReturnSamples(OH_LowPowerVideoSink* sink, OH_AVSamplesBuffer* samples)](#oh_lowpowervideosink_returnsamples) | Provides a buffer to an OH_LowPowerVideoSink instance for procesing.|
 | [OH_AVErrCode OH_LowPowerVideoSink_RegisterCallback(OH_LowPowerVideoSink* sink, OH_LowPowerVideoSinkCallback* callback)](#oh_lowpowervideosink_registercallback) | Registers a callback for an OH_LowPowerVideoSink instance.|
@@ -46,8 +53,8 @@ The file declares the native APIs provided by the LowPowerVideoSink. You can use
 | [OH_AVErrCode OH_LowPowerVideoSinkCallback_SetErrorListener(OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnError onError, void* userData)](#oh_lowpowervideosinkcallback_seterrorlistener) | Sets an error listener for an OH_LowPowerVideoSinkCallback instance.|
 | [OH_AVErrCode OH_LowPowerVideoSinkCallback_SetRenderStartListener(OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnRenderStarted onRenderStarted, void* userData)](#oh_lowpowervideosinkcallback_setrenderstartlistener) | Sets a render start listener for an OH_LowPowerVideoSinkCallback instance.|
 | [OH_AVErrCode OH_LowPowerVideoSinkCallback_SetStreamChangedListener(OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnStreamChanged onStreamChanged, void* userData)](#oh_lowpowervideosinkcallback_setstreamchangedlistener) | Sets a stream change listener for an OH_LowPowerVideoSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerVideoSinkCallback_SetFirstFrameDecodedListener(OH_LowPowerVideoSinkCallback* callback,OH_LowPowerVideoSink_OnFirstFrameDecoded onFirstFrameDecoded,void* userData)](#oh_lowpowervideosinkcallback_setfirstframedecodedlistener) | Sets a first-frame ready listener for an OH_LowPowerVideoSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerVideoSinkCallback_SetEosListener(OH_LowPowerVideoSinkCallback* callback,OH_LowPowerVideoSink_OnEos onEos, void* userData)](#oh_lowpowervideosinkcallback_seteoslistener) | Sets an end-of-stream listener for an OH_LowPowerVideoSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerVideoSinkCallback_SetFirstFrameDecodedListener(OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnFirstFrameDecoded onFirstFrameDecoded, void* userData)](#oh_lowpowervideosinkcallback_setfirstframedecodedlistener) | Sets a first-frame ready listener for an OH_LowPowerVideoSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerVideoSinkCallback_SetEosListener(OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnEos onEos, void* userData)](#oh_lowpowervideosinkcallback_seteoslistener) | Sets an end-of-stream listener for an OH_LowPowerVideoSinkCallback instance.|
 
 ## Function Description
 
