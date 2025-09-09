@@ -1278,10 +1278,11 @@ isOpenAccessibilitySync(): boolean
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
-
+<!--RP3-->
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。<!--RP3--><!--RP3End--> |
+| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。|
+<!--RP3End-->
 
 **示例：**
 
