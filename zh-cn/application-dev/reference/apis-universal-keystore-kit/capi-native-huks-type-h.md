@@ -564,7 +564,7 @@ enum OH_Huks_SecureSignType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1 | 签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。<br>**注意**：携带的认证信息包含身份信息，开发者需在其隐私声明中对此身份信息的使用目的、存留策略和销毁方式进行说明。 |
+| OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1 | 签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。注意：携带的认证信息包含身份信息，开发者需在其隐私声明中对此身份信息的使用目的、存留策略和销毁方式进行说明。 |
 
 ### OH_Huks_KeyWrapType
 
@@ -596,62 +596,62 @@ enum OH_Huks_Tag
 
 | 枚举项 | 描述 |
 | -- | -- |
-| OH_HUKS_TAG_ALGORITHM = OH_HUKS_TAG_TYPE_UINT | 1 | 算法类型。 |
-| OH_HUKS_TAG_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 2 | 密钥用途。 |
-| OH_HUKS_TAG_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT | 3 | 密钥长度 。 |
-| OH_HUKS_TAG_DIGEST = OH_HUKS_TAG_TYPE_UINT | 4 | 摘要算法。 |
-| OH_HUKS_TAG_PADDING = OH_HUKS_TAG_TYPE_UINT | 5 | 填充算法。 |
-| OH_HUKS_TAG_BLOCK_MODE = OH_HUKS_TAG_TYPE_UINT | 6 | 加密模式。 |
-| OH_HUKS_TAG_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT | 7 | 密钥类型。 |
-| OH_HUKS_TAG_ASSOCIATED_DATA = OH_HUKS_TAG_TYPE_BYTES | 8 | 附加身份验证数据。 |
-| OH_HUKS_TAG_NONCE = OH_HUKS_TAG_TYPE_BYTES | 9 | 密钥加解密的NONCE字段。 |
-| OH_HUKS_TAG_IV = OH_HUKS_TAG_TYPE_BYTES | 10 | 初始化的向量。 |
-| OH_HUKS_TAG_INFO = OH_HUKS_TAG_TYPE_BYTES | 11 | 密钥派生时的信息。 |
-| OH_HUKS_TAG_SALT = OH_HUKS_TAG_TYPE_BYTES | 12 | 派生盐值。 |
-| OH_HUKS_TAG_ITERATION = OH_HUKS_TAG_TYPE_UINT | 14 | 派生迭代次数。 |
-| OH_HUKS_TAG_KEY_GENERATE_TYPE = OH_HUKS_TAG_TYPE_UINT | 15 | 生成密钥的类型，类型可在枚举[OH_Huks_KeyGenerateType](capi-native-huks-type-h.md#oh_huks_keygeneratetype)中选择。 |
-| OH_HUKS_TAG_AGREE_ALG = OH_HUKS_TAG_TYPE_UINT | 19 | 密钥协商时的算法类型。 |
-| OH_HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL | 20 | 密钥协商时的公钥别名。 |
-| OH_HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 21 | 密钥协商时的私钥别名。 |
-| OH_HUKS_TAG_AGREE_PUBLIC_KEY = OH_HUKS_TAG_TYPE_BYTES | 22 | 用于协商的公钥。 |
-| OH_HUKS_TAG_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 23 | 密钥别名。 |
-| OH_HUKS_TAG_DERIVE_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT | 24 | 派生密钥大小。 |
-| OH_HUKS_TAG_IMPORT_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT | 25 | 导入密钥类型，类型可在枚举[OH_Huks_ImportKeyType](capi-native-huks-type-h.md#oh_huks_importkeytype)中选择。 |
-| OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE = OH_HUKS_TAG_TYPE_UINT | 26 | 导入加密密钥的套件。 |
-| OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 29 | 派生密钥/协商密钥的存储类型，类型可在枚举[OH_Huks_KeyStorageType](capi-native-huks-type-h.md#oh_huks_keystoragetype)中选择。 |
-| OH_HUKS_TAG_RSA_PSS_SALT_LEN_TYPE = OH_HUKS_TAG_TYPE_UINT | 30 | RSA算法，填充模式为PSS时的盐值长度类型。 |
-| OH_HUKS_TAG_ALL_USERS = OH_HUKS_TAG_TYPE_BOOL | 301 | 多用户中的所有用户。 |
-| OH_HUKS_TAG_USER_ID = OH_HUKS_TAG_TYPE_UINT | 302 | 表示多用户id。 |
-| OH_HUKS_TAG_NO_AUTH_REQUIRED = OH_HUKS_TAG_TYPE_BOOL | 303 | 表示是否需要密钥访问控制。 |
-| OH_HUKS_TAG_USER_AUTH_TYPE = OH_HUKS_TAG_TYPE_UINT | 304 | 表示密钥访问控制中用户认证类型。 |
-| OH_HUKS_TAG_AUTH_TIMEOUT = OH_HUKS_TAG_TYPE_UINT | 305 | 表示密钥访问控制类型中密钥访问的超时时间。 |
-| OH_HUKS_TAG_AUTH_TOKEN = OH_HUKS_TAG_TYPE_BYTES | 306 | 表示密钥访问控制中使用密钥时传入的authtoken的类型。 |
-| OH_HUKS_TAG_KEY_AUTH_ACCESS_TYPE = OH_HUKS_TAG_TYPE_UINT | 307 | 表示安全访问控制类型，需要和用户认证类型同时设置，类型可在枚举[OH_Huks_AuthAccessType](capi-native-huks-type-h.md#oh_huks_authaccesstype)中选择。 |
-| OH_HUKS_TAG_KEY_SECURE_SIGN_TYPE = OH_HUKS_TAG_TYPE_UINT | 308 | 表示生成或导入密钥时，指定该密钥的签名类型。 |
-| OH_HUKS_TAG_CHALLENGE_TYPE = OH_HUKS_TAG_TYPE_UINT | 309 | 表示密钥使用时生成的challenge类型，类型可在枚举[OH_Huks_ChallengeType](capi-native-huks-type-h.md#oh_huks_challengetype)中选择。 |
-| OH_HUKS_TAG_CHALLENGE_POS = OH_HUKS_TAG_TYPE_UINT | 310 | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据的位置，类型可在枚举[OH_Huks_ChallengePosition](capi-native-huks-type-h.md#oh_huks_challengeposition)中选择。 |
-| OH_HUKS_TAG_KEY_AUTH_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 311 | 表示密钥认证用途的类型。 |
-| OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316 | 密钥文件存储访问控制的类别，类型可在枚举[OH_Huks_AuthStorageLevel](capi-native-huks-type-h.md#oh_huks_authstoragelevel)中选择。<br>**起始版本：** 11 |
-| OH_HUKS_TAG_USER_AUTH_MODE = OH_HUKS_TAG_TYPE_UINT | 319 | 表示密钥访问控制中用户认证模式，类型可在枚举[OH_Huks_UserAuthMode](capi-native-huks-type-h.md#oh_huks_userauthmode)中选择。<br>**起始版本：** 12 |
-| OH_HUKS_TAG_ATTESTATION_CHALLENGE = OH_HUKS_TAG_TYPE_BYTES | 501 | 密钥认证时的挑战值。 |
-| OH_HUKS_TAG_ATTESTATION_APPLICATION_ID = OH_HUKS_TAG_TYPE_BYTES | 502 | 密钥认证时拥有该密钥的application的Id。 |
-| OH_HUKS_TAG_ATTESTATION_ID_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 511 | 密钥认证时的别名。 |
-| OH_HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = OH_HUKS_TAG_TYPE_BYTES | 514 | 密钥认证时的安全凭据。 |
-| OH_HUKS_TAG_ATTESTATION_ID_VERSION_INFO = OH_HUKS_TAG_TYPE_BYTES | 515 | 密钥认证时的版本号。 |
-| OH_HUKS_TAG_KEY_OVERRIDE = OH_HUKS_TAG_TYPE_BOOL | 520 | 是否覆写同名密钥。<br>**起始版本：** 20 |
-| OH_HUKS_TAG_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL | 1001 | 是否是密钥别名。 |
-| OH_HUKS_TAG_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 1002 | 密钥存储方式的标签，类型可在枚举 [OH_Huks_KeyStorageType](capi-native-huks-type-h.md#oh_huks_keystoragetype)选择。 |
-| OH_HUKS_TAG_IS_ALLOWED_WRAP = OH_HUKS_TAG_TYPE_BOOL | 1003 | 是否允许密钥封装。 |
-| OH_HUKS_TAG_KEY_WRAP_TYPE = OH_HUKS_TAG_TYPE_UINT | 1004 | 密钥封装的类型。 |
-| OH_HUKS_TAG_KEY_AUTH_ID = OH_HUKS_TAG_TYPE_BYTES | 1005 | 密钥认证的ID。 |
-| OH_HUKS_TAG_KEY_ROLE = OH_HUKS_TAG_TYPE_UINT | 1006 | 密钥角色。 |
-| OH_HUKS_TAG_KEY_FLAG = OH_HUKS_TAG_TYPE_UINT | 1007 | 密钥标记，类型可在枚举[OH_Huks_KeyFlag](capi-native-huks-type-h.md#oh_huks_keyflag)选择。 |
-| OH_HUKS_TAG_IS_ASYNCHRONIZED = OH_HUKS_TAG_TYPE_UINT | 1008 | 是否异步。 |
-| OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT | 1011 | 密钥域。 |
-| OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET = OH_HUKS_TAG_TYPE_BOOL | 1012 | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。<br> True表示只有在密码设置时才能生成和使用密钥。<br>**起始版本：** 11 |
-| OH_HUKS_TAG_AE_TAG = OH_HUKS_TAG_TYPE_BYTES | 10009 | 用于传入GCM模式中的AEAD数据的字段。 |
-| OH_HUKS_TAG_SYMMETRIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20001 | 对称密钥数据。 |
-| OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20002 | 非对称密钥公钥数据。 |
-| OH_HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20003 | 非对称密钥私钥数据。 |
+| OH_HUKS_TAG_ALGORITHM = OH_HUKS_TAG_TYPE_UINT \| 1 | 算法类型。 |
+| OH_HUKS_TAG_PURPOSE = OH_HUKS_TAG_TYPE_UINT \| 2 | 密钥用途。 |
+| OH_HUKS_TAG_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT \| 3 | 密钥长度 。 |
+| OH_HUKS_TAG_DIGEST = OH_HUKS_TAG_TYPE_UINT \| 4 | 摘要算法。 |
+| OH_HUKS_TAG_PADDING = OH_HUKS_TAG_TYPE_UINT \| 5 | 补齐算法。 |
+| OH_HUKS_TAG_BLOCK_MODE = OH_HUKS_TAG_TYPE_UINT \| 6 | 加密模式。 |
+| OH_HUKS_TAG_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT \| 7 | 密钥类型。 |
+| OH_HUKS_TAG_ASSOCIATED_DATA = OH_HUKS_TAG_TYPE_BYTES \| 8 | 附加身份验证数据。 |
+| OH_HUKS_TAG_NONCE = OH_HUKS_TAG_TYPE_BYTES \| 9 | 密钥加解密的字段。 |
+| OH_HUKS_TAG_IV = OH_HUKS_TAG_TYPE_BYTES \| 10 | 初始化的向量。 |
+| OH_HUKS_TAG_INFO = OH_HUKS_TAG_TYPE_BYTES \| 11 | 密钥派生时的信息。 |
+| OH_HUKS_TAG_SALT = OH_HUKS_TAG_TYPE_BYTES \| 12 | 派生盐值。 |
+| OH_HUKS_TAG_ITERATION = OH_HUKS_TAG_TYPE_UINT \| 14 | 派生迭代次数。 |
+| OH_HUKS_TAG_KEY_GENERATE_TYPE = OH_HUKS_TAG_TYPE_UINT \| 15 | 生成密钥的类型，类型可在枚举[OH_Huks_KeyGenerateType](#oh_huks_keygeneratetype)中选择。 |
+| OH_HUKS_TAG_AGREE_ALG = OH_HUKS_TAG_TYPE_UINT \| 19 | 密钥协商时的算法类型。 |
+| OH_HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL \| 20 | 密钥协商时的公钥别名。 |
+| OH_HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES \| 21 | 密钥协商时的私钥别名。 |
+| OH_HUKS_TAG_AGREE_PUBLIC_KEY = OH_HUKS_TAG_TYPE_BYTES \| 22 | 用于协商的公钥。 |
+| OH_HUKS_TAG_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES \| 23 | 密钥别名。 |
+| OH_HUKS_TAG_DERIVE_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT \| 24 | 派生密钥大小。 |
+| OH_HUKS_TAG_IMPORT_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT \| 25 | 导入密钥类型，类型可在枚举[OH_Huks_ImportKeyType](#oh_huks_importkeytype)中选择。 |
+| OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE = OH_HUKS_TAG_TYPE_UINT \| 26 | 导入加密密钥的套件。 |
+| OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT \| 29 | 派生密钥/协商密钥的存储类型，类型可在枚举[OH_Huks_KeyStorageType](#oh_huks_keystoragetype)中选择。 |
+| OH_HUKS_TAG_RSA_PSS_SALT_LEN_TYPE = OH_HUKS_TAG_TYPE_UINT \| 30 | RSA算法，填充模式为PSS时的盐值长度类型。 |
+| OH_HUKS_TAG_ALL_USERS = OH_HUKS_TAG_TYPE_BOOL \| 301 | 多用户中的所有用户。 |
+| OH_HUKS_TAG_USER_ID = OH_HUKS_TAG_TYPE_UINT \| 302 | 表示多用户id。 |
+| OH_HUKS_TAG_NO_AUTH_REQUIRED = OH_HUKS_TAG_TYPE_BOOL \| 303 | 表示是否需要密钥访问控制。 |
+| OH_HUKS_TAG_USER_AUTH_TYPE = OH_HUKS_TAG_TYPE_UINT \| 304 | 表示密钥访问控制中用户认证类型。 |
+| OH_HUKS_TAG_AUTH_TIMEOUT = OH_HUKS_TAG_TYPE_UINT \| 305 | 表示密钥访问控制类型中密钥访问的超时时间。 |
+| OH_HUKS_TAG_AUTH_TOKEN = OH_HUKS_TAG_TYPE_BYTES \| 306 | 表示密钥访问控制中使用密钥时传入的authtoken的类型。 |
+| OH_HUKS_TAG_KEY_AUTH_ACCESS_TYPE = OH_HUKS_TAG_TYPE_UINT \| 307 | 表示安全访问控制类型，需要和用户认证类型同时设置，类型可在枚举[OH_Huks_AuthAccessType](#oh_huks_authaccesstype)中选择。 |
+| OH_HUKS_TAG_KEY_SECURE_SIGN_TYPE = OH_HUKS_TAG_TYPE_UINT \| 308 | 表示生成或导入密钥时，指定该密钥的签名类型。 |
+| OH_HUKS_TAG_CHALLENGE_TYPE = OH_HUKS_TAG_TYPE_UINT \| 309 | 表示密钥使用时生成的challenge类型，类型可在枚举[OH_Huks_ChallengeType](#oh_huks_challengetype)中选择。 |
+| OH_HUKS_TAG_CHALLENGE_POS = OH_HUKS_TAG_TYPE_UINT \| 310 | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据的位置，类型可在枚举[OH_Huks_ChallengePosition](#oh_huks_challengeposition)中选择。 |
+| OH_HUKS_TAG_KEY_AUTH_PURPOSE = OH_HUKS_TAG_TYPE_UINT \| 311 | 表示密钥认证用途的类型。 |
+| OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT \| 316 | 密钥文件存储访问控制的类别，类型可在枚举[OH_Huks_AuthStorageLevel](#oh_huks_authstoragelevel)中选择。<br>**起始版本：** 11 |
+| OH_HUKS_TAG_USER_AUTH_MODE = OH_HUKS_TAG_TYPE_UINT \| 319 | 表示密钥访问控制中用户认证模式，类型可在枚举[OH_Huks_UserAuthMode](#oh_huks_userauthmode)中选择。<br>**起始版本：** 12 |
+| OH_HUKS_TAG_ATTESTATION_CHALLENGE = OH_HUKS_TAG_TYPE_BYTES \| 501 | 密钥认证时的挑战值。 |
+| OH_HUKS_TAG_ATTESTATION_APPLICATION_ID = OH_HUKS_TAG_TYPE_BYTES \| 502 | 密钥认证时拥有该密钥的application的Id。 |
+| OH_HUKS_TAG_ATTESTATION_ID_ALIAS = OH_HUKS_TAG_TYPE_BYTES \| 511 | 密钥别名。 |
+| OH_HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = OH_HUKS_TAG_TYPE_BYTES \| 514 | 密钥认证时的安全凭据。 |
+| OH_HUKS_TAG_ATTESTATION_ID_VERSION_INFO = OH_HUKS_TAG_TYPE_BYTES \| 515 | 密钥认证时的版本号。 |
+| OH_HUKS_TAG_KEY_OVERRIDE = OH_HUKS_TAG_TYPE_BOOL \| 520 | 是否覆写同名密钥。<br>**起始版本：** 20 |
+| OH_HUKS_TAG_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL \| 1001 | 是否是密钥别名。 |
+| OH_HUKS_TAG_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT \| 1002 | 密钥存储方式的标签，类型可在枚举 [OH_Huks_KeyStorageType](#oh_huks_keystoragetype)选择。 |
+| OH_HUKS_TAG_IS_ALLOWED_WRAP = OH_HUKS_TAG_TYPE_BOOL \| 1003 | 是否允许密钥封装。 |
+| OH_HUKS_TAG_KEY_WRAP_TYPE = OH_HUKS_TAG_TYPE_UINT \| 1004 | 密钥封装的类型。 |
+| OH_HUKS_TAG_KEY_AUTH_ID = OH_HUKS_TAG_TYPE_BYTES \| 1005 | 密钥认证的ID。 |
+| OH_HUKS_TAG_KEY_ROLE = OH_HUKS_TAG_TYPE_UINT \| 1006 | 密钥角色。 |
+| OH_HUKS_TAG_KEY_FLAG = OH_HUKS_TAG_TYPE_UINT \| 1007 | 密钥标记，类型可在枚举[OH_Huks_KeyFlag](#oh_huks_keyflag)选择。 |
+| OH_HUKS_TAG_IS_ASYNCHRONIZED = OH_HUKS_TAG_TYPE_UINT \| 1008 | 是否异步。 |
+| OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT \| 1011 | 密钥域。 |
+| OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET = OH_HUKS_TAG_TYPE_BOOL \| 1012 | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。<br> True表示只有在密码设置时才能生成和使用密钥。<br>**起始版本：** 11|
+| OH_HUKS_TAG_AE_TAG = OH_HUKS_TAG_TYPE_BYTES \| 10009 | 用于传入GCM模式中的AEAD数据的字段。 |
+| OH_HUKS_TAG_SYMMETRIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES \| 20001 | 对称密钥数据。 |
+| OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES \| 20002 | 非对称密钥公钥数据。 |
+| OH_HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES \| 20003 | 非对称密钥私钥数据。 |
 
 
