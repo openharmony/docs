@@ -1,22 +1,28 @@
 # Building and Running Applications Using OpenMP
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yangming4249-->
+<!--Designer: @ychen3--->
+<!--Tester: @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 The OpenHarmony NDK provides dynamic and static library files of OpenMP so that you can use OpenMP in native applications. This topic guides you through on how to call library files in [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/) to use OpenMP. For details about the APIs and examples, see [clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html).
 
 ## How to Develop
 
 ### 1. Creating a Native C++ Project
-[Create an NDK Project](create-with-ndk.md).
+[Creating an NDK Project](./create-with-ndk.md)
 
 ### 2. Adding Dependencies
 
-There are two ways to incorporate the OpenMP library: static linking and dynamic linking.
+The OpenMP library can be introduced through static linking or dynamic linking.
 
 > **NOTE**
 > 
 > The [OpenMP Tools Interface (OMPT)](https://www.openmp.org/spec-html/5.0/openmpsu15.html#x25-240001.5.1) tool can be used only for static linking.
 >
 
-#### Static Linking
+Static Linking
 
 (1) Open the **entry/src/main/cpp/CMakeLists.txt** file, and add the static library **libomp.a** and log dependency **libhilog\_ndk.z.so** to **target\_link\_libraries**.
 
@@ -36,15 +42,15 @@ target_link_libraries(entry PUBLIC libomp.a libace_napi.z.so libhilog_ndk.z.so)
   }
 ```
 
-#### Dynamic Linking
+**Dynamic linking**
 
-(1) Open the **entry/src/main/cpp/CMakeLists.txt** file, and add the dynamic library **libomp.so** and log dependency **libhilog\_ndk.z.so** to **target\_link\_libraries**.
+ (1) Open the **entry/src/main/cpp/CMakeLists.txt** file, and add the dynamic library **libomp.so** and log dependency **libhilog\_ndk.z.so** to **target\_link\_libraries**.
 
 ```makelists
 target_link_libraries(entry PUBLIC libomp.so libace_napi.z.so libhilog_ndk.z.so)
 ```
 
-(2) Open the **entry/build-profile.json5** file, and add **-fopenmp** to **cppFlags** under **buildOption** > **externalNativeOptions**.
+ (2) Open the **entry/build-profile.json5** file, and add **-fopenmp** to **cppFlags** under **buildOption** > **externalNativeOptions**.
 
 ```
 "buildOption": {
@@ -56,11 +62,11 @@ target_link_libraries(entry PUBLIC libomp.so libace_napi.z.so libhilog_ndk.z.so)
   }
 ```
 
-(3) Copy the dynamic library file **libomp.so** in the {*SDK installation directory*}\{*Version number*}**\openharmony\native\llvm\lib\aarch64-linux-ohos** directory to the **entry/libs/arm64-v8a** directory of the project.
+ (3) Copy the dynamic library file **libomp.so** in the {*SDK installation directory*}\{*Version number*}**\openharmony\native\llvm\lib\aarch64-linux-ohos** directory to the **entry/libs/arm64-v8a** directory of the project.
 
 ### 3. Modifying Source Files
 
-(1) In **entry/src/main/cpp/napi_init.cpp**, include the **omp.h** header file, and add the **OmpTest** function.
+ (1) In **entry/src/main/cpp/napi_init.cpp**, include the **omp.h** header file, and add the **OmpTest** function.
 
 ```cpp
 #include "napi/native_api.h"
@@ -111,13 +117,13 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 
 ```
 
-(2) In **entry/src/main/cpp/types/libentry/Index.d.ts**, export the **ompTest** function.
+ (2) In **entry/src/main/cpp/types/libentry/Index.d.ts**, export the **ompTest** function.
 
 ```TS
 export const ompTest: () => null;
 ```
 
-(3) In **entry/src/main/ets/pages/Index.ets**, call the **ompTest** function.
+ (3) In **entry/src/main/ets/pages/Index.ets**, call the **ompTest** function.
 
 ```TS
 import testNapi from 'libentry.so';
