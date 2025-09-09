@@ -6,11 +6,11 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-用于触发滑动事件，滑动速度大于速度阈值时可识别成功，默认最小速度为100vp/s。
+用于触发滑动手势，滑动速度需大于速度阈值，默认最小速度为100vp/s。
 
 >  **说明：**
 >
->  从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 8开始支持。后续版本如有新增内容，将采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
@@ -29,13 +29,13 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | { fingers?: number; direction?: SwipeDirection; speed?: number } | 否 | 设置滑动事件参数。 <br> - fingers：触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 <br> - direction：触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All <br> - speed：识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
+| value | { fingers?: number; direction?: SwipeDirection; speed?: number } | 否 | 设置滑动事件参数。 <br> - fingers：触发滑动的最少手指数。<br/>默认值：1 <br/>取值范围：[1, 10]<br> - direction：触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All <br> - speed：识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
 
 ### SwipeGesture<sup>15+</sup>
 
 SwipeGesture(options?: SwipeGestureHandlerOptions)
 
-设置滑动手势事件。与[SwipeGesture](#swipegesture-1)相比，options参数新增了对isFingerCountLimited参数，表示是否检查触摸屏幕的手指数量。
+设置滑动手势事件。与[SwipeGesture](#swipegesture-1)相比，options参数新增了isFingerCountLimited，表示是否检查触摸屏幕的手指数量。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -65,7 +65,7 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 >  **说明：**
 >
->  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议开发者优先使用fingerInfos。
 
 **原子化服务API：** 从API version 8开始，该接口支持在原子化服务中使用。
 
@@ -89,7 +89,7 @@ Swipe手势识别成功时触发回调。
 
 ## 示例
 
-该示例通过配置SwipeGesture实现了滑动手势的识别。
+该示例展示了如何实现滑动手势的识别。
 
 ```ts
 // xxx.ets
