@@ -137,24 +137,19 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    let config: window.Configuration = {
-      name: "test",
-      windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context
-    };
-    try {
-      window.createWindow(config).then((value:window.Window) => {
-        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(value));
-        value.resize(500, 1000);
-      }).catch((err:BusinessError)=> {
-        console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (exception) {
-      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG
+};
+try {
+  window.createWindow(config).then((value:window.Window) => {
+    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(value));
+    value.resize(500, 1000);
+  }).catch((err:BusinessError)=> {
+    console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -172,7 +167,7 @@ findWindow(name: string): Window
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| name   | string | 是   | 窗口名字，即[Configuration](arkts-apis-window-i.md#configuration9)中的name。 |
+| name   | string | 是   | 窗口名字，查找子窗时，即[Configuration](arkts-apis-window-i.md#configuration9)中的name；查找主窗时，可以使用[getWindowName](arkts-apis-uicontext-uicontext.md#getwindowname12)获取当前实例所在窗口的名称。 |
 
 **返回值：**
 
