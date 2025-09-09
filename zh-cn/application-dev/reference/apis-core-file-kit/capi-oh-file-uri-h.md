@@ -10,7 +10,7 @@
 
 提供uri和路径path之间的相互转换，目录uri获取，以及uri的有效性校验的方法。
 
-**引用文件：** <filemanagement/file_uri/oh_file_uri.h>
+**引用文件：** <filemanagement/fileuri/oh_file_uri.h>
 
 **库：** libohfileuri.so
 
