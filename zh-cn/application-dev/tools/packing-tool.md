@@ -19,16 +19,16 @@
 
 **表1** module.json与配置文件属性的对照表
 
-| module.json属性          | [module.json5](../quick-start/module-configuration-file.md#配置文件标签)配置项         | [app.json5](../quick-start/app-configuration-file.md#配置文件标签)配置项            | [工程级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)配置项  |
-| ------------------------ | ------------------------ | -------------------------- | --------------------------       |
-| bundleName               | -                        | bundleName                 | -                                |
-| bundleType               | -                        | bundleType                 | -                                |
-| versionCode              | -                        | versionCode                | -                                |
-| debug                    | -                        | debug                      | -                                |
-| module/name              | module/name              | -                          | -                                |
-| minCompatibleVersionCode | -                        | minCompatibleVersionCode   | -                                |
-| minAPIVersion            | -                        | minAPIVersion              | compatibleSdkVersion             |
-| targetAPIVersion         | -                        | targetAPIVersion           | targetSdkVersion或compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
+| module.json属性          | 含义          | [module.json5](../quick-start/module-configuration-file.md#配置文件标签)配置项         | [app.json5](../quick-start/app-configuration-file.md#配置文件标签)配置项            | [工程级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)配置项  |
+| ------------------------ | ------------------------ | ------------------------ | -------------------------- | --------------------------       |
+| bundleName               | 应用的Bundle名称。        | -                        | bundleName                 | -                                |
+| bundleType               | 应用的Bundle类型。        | -                        | bundleType                 | -                                |
+| versionCode              | 应用的版本号。            | -                        | versionCode                | -                                |
+| debug                    | 应用是否可调试。          | -                        | debug                      | -                                |
+| module/name              | 当前Module的名称。        | module/name              | -                          | -                                |
+| minCompatibleVersionCode | 应用能够兼容的最低历史版本号。| -                        | minCompatibleVersionCode   | -                                |
+| minAPIVersion            | 应用运行所需的最小API版本。| -                        | minAPIVersion              | compatibleSdkVersion             |
+| targetAPIVersion         | 应用运行需要的API目标版本。 | -                        | targetAPIVersion           | targetSdkVersion/compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
 
 ## 约束与限制
 
@@ -81,7 +81,7 @@
 | --ap-path        | 否         | NA            | 存放[ap文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效。 |
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
 | --compress-level | 否         | number        | lib库下文件压缩等级，默认值1。可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
-| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅Stage模型生效。              |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。当app.json5配置文件中bundleType取值不是appPlugin，且module.json5配置文件中requestPermissions取值包含"ohos.permission.kernel.SUPPORT_PLUGIN"时，该参数必填。 | 仅Stage模型生效。              |
 | --hnp-path | 否 | NA | 指定native软件包文件路径，将native软件包打入HAP包内。 | NA |
 
 ## HSP打包指令
@@ -113,8 +113,8 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 | --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        |
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hsp为后缀。                       |
 | --force          | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  |
-| --compress-level | 否         | number        | lib库下文件压缩等级，默认值1。可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
-| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 |
+| --compress-level | 否         | number        | lib库下文件压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。当app.json5配置文件中bundleType取值不是appPlugin，且module.json5配置文件中requestPermissions取值包含"ohos.permission.kernel.SUPPORT_PLUGIN"时，该参数必填。 |
 
 ## App打包指令
 
