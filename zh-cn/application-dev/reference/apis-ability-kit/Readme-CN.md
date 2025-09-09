@@ -108,7 +108,7 @@
     - [@ohos.app.businessAbilityRouter (业务路由模块)(系统接口)](js-apis-businessAbilityRouter-sys.md)
     - [@ohos.application.uriPermissionManager (URI权限管理)(系统接口)](js-apis-uripermissionmanager-sys.md)
     <!--DelEnd-->
-    - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
+    - [@ohos.bundle.bundleManager (应用程序包管理模块)](js-apis-bundleManager.md)
     - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
@@ -116,7 +116,7 @@
     <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
     - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](js-apis-appDomainVerify-sys.md)
-    - [@ohos.bundle.bundleManager (bundleManager模块(系统接口))](js-apis-bundleManager-sys.md)
+    - [@ohos.bundle.bundleManager (应用程序包管理模块)(系统接口)](js-apis-bundleManager-sys.md)
     - [@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](js-apis-bundleMonitor-sys.md)
     - [@ohos.bundle.bundleResourceManager (bundleResourceManager模块)(系统接口)](js-apis-bundleResourceManager-sys.md)
     - [@ohos.bundle.defaultAppManager (默认应用管理)(系统接口)](js-apis-defaultAppManager-sys.md)
