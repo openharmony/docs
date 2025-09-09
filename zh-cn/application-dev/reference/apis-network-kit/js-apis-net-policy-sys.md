@@ -200,7 +200,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 
 | 参数名   | 类型                            | 必填 | 说明                                           |
 | -------- | ------------------------------- | ---- | ---------------------------------------------- |
-| uid      | number                          | 是   | app 唯一标识符。                                 |
+| uid      | number                          | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。                                |
 | policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略。                                 |
 | callback | AsyncCallback\<void>            | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
@@ -241,7 +241,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>
 
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
-| uid    | number                          | 是   | app 唯一标识符。 |
+| uid    | number                          | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。 |
 | policy | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略。 |
 
 **返回值：**
@@ -292,7 +292,7 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
 | 参数名   | 类型                                            | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | -------------------------------------------------------- |
-| uid      | number                                          | 是   | app 唯一标识符。                                           |
+| uid      | number                                          | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。                                           |
 | callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | 是   | 回调函数。成功返回获取策略结果，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -333,7 +333,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。 |
 
 **返回值：**
 
@@ -683,7 +683,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 
 | 参数名    | 类型                    | 必填 | 说明                                                      |
 | --------- | ----------------------- | ---- | --------------------------------------------------------- |
-| uid       | number                  | 是   | app 唯一标识符。                                            |
+| uid       | number                  | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。                                           |
 | isMetered | boolean                 | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。                                            |
 | callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应的计量网络。 |
 
@@ -725,7 +725,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>
 
 | 参数名    | 类型    | 必填 | 说明           |
 | --------- | ------- | ---- | -------------- |
-| uid       | number  | 是   | app 唯一标识符。 |
+| uid       | number  | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。 |
 | isMetered | boolean | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。 |
 
 **返回值：**
@@ -776,7 +776,7 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| uid      | number                  | 是   | app 唯一标识符。                                               |
+| uid      | number                  | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。                                               |
 | iface    | string                  | 是   | 网络对应的名称 。                                              |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应 iface 的网络。 |
 
@@ -818,7 +818,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。 |
 | iface  | string | 是   | 网络对应的名称。 |
 
 **返回值：**
@@ -1044,7 +1044,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 
 | 参数名   | 类型                                                          | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------ |
-| uid      | number                                                        | 是   | app 唯一标识符。           |
+| uid      | number                                                        | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。           |
 | callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | 是   | 回调函数。返回获取结果。 |
 
 **错误码：**
@@ -1085,7 +1085,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。 |
 
 **返回值：**
 
@@ -1505,7 +1505,7 @@ setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?:
 
 | 参数名         | 类型                                           | 必填 | 说明                                                                          |
 | ------------- | ---------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| uid           | number                                         | 是   | app 唯一标识符。                                                                |
+| uid           | number                                         | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。                                                                |
 | policy        | [NetworkAccessPolicy](#networkaccesspolicy12)  | 是   | 网络策略。                                                                      |
 | isReconfirmed | boolean                                        | 否   | 默认false；false 表示需要重确认，应用访问网络会弹框; true 表示不需要重确认，无弹框。 |
 
@@ -1561,7 +1561,7 @@ getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy>
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符。 |
+| uid    | number | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。 |
 
 **返回值：**
 
