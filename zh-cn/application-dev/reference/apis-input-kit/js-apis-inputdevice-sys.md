@@ -7,8 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-本模块提供输入设备管理能力，包括查询输入设备信息等。
-
+本模块提供输入设备管理能力，包括查询输入设备信息，设置/获取键盘按键重复时延，设置输入设备的开关状态等。
 
 > **说明**：
 >
@@ -469,7 +468,7 @@ setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | ------------------------- |
-| deviceId | number  | 是   | 目标设备Id。              |
+| deviceId | number  | 是   | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。              |
 | enabled  | boolean | 是   | 输入设备的开关状态，取值为true表示开启输入设备，取值为false表示关闭输入设备。 |
 
 **错误码**：

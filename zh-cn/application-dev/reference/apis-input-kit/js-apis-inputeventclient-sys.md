@@ -7,7 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-输入事件注入模块，提供输入事件注入能力。
+输入事件注入模块，提供输入按键、鼠标/触控板、触屏输入事件注入能力。
 
 > **说明：**
 >
@@ -171,7 +171,7 @@ struct Index {
 
 injectMouseEvent(mouseEvent: MouseEventData): void
 
-鼠标/触摸板事件注入。
+鼠标/触控板事件注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -181,7 +181,7 @@ injectMouseEvent(mouseEvent: MouseEventData): void
 
 | 参数名       | 类型                    | 必填   | 说明        |
 | -------- | --------------------- | ---- | --------- |
-| mouseEvent | [MouseEventData](#mouseeventdata11) | 是    | 鼠标/触摸板事件注入描述信息。 |
+| mouseEvent | [MouseEventData](#mouseeventdata11) | 是    | 鼠标/触控板事件注入描述信息。 |
 
 **错误码**：
 
@@ -284,7 +284,7 @@ struct Index {
 
 injectTouchEvent(touchEvent: TouchEventData): void
 
-触摸屏事件注入。
+触屏输入事件注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -294,7 +294,7 @@ injectTouchEvent(touchEvent: TouchEventData): void
 
 | 参数名       | 类型                    | 必填   | 说明        |
 | -------- | --------------------- | ---- | --------- |
-| touchEvent | [TouchEventData](#toucheventdata11) | 是    | 触摸屏事件注入描述信息。 |
+| touchEvent | [TouchEventData](#toucheventdata11) | 是    | 触屏注入描述信息。 |
 
 **错误码**：
 
@@ -439,8 +439,8 @@ struct Index {
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | isPressed       | boolean | 否    |  否 | 按键是否按下。<br>true表示按键按下，false表示按键抬起。   |
-| keyCode         | number  | 否    |  否 | 按键键码值。当前仅支持返回键/KEYCODE_BACK键。 |
-| keyDownDuration | number  | 否    |  否 | 按键按下持续时间，单位为微秒（μs）。           |
+| keyCode         | number  | 否    |  否 | 按键键值。当前仅支持返回键/KEYCODE_BACK键。 |
+| keyDownDuration | number  | 否    |  否 | 按键按下持续时间，单位：μs。           |
 | isIntercepted   | boolean | 否    |  否 | 按键是否可以被拦截。<br>true表示可以被拦截，false表示不可被拦截。 |
 
 ## KeyEventData<sup>11+</sup>
@@ -461,16 +461,16 @@ struct Index {
 
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| mouseEvent | [MouseEvent](js-apis-mouseevent.md#mouseevent) | 否    |  否 | 鼠标注入描述信息。   |
+| mouseEvent | [MouseEvent](js-apis-mouseevent.md#mouseevent) | 否    |  否 | 鼠标事件。   |
 | useGlobalCoordinate<sup>20+</sup> | boolean | 否    |  是 | 是否使用全局坐标来计算注入的鼠标事件。默认值为false，取值为false表示使用以指定屏幕左上角为原点的相对坐标系的坐标来计算注入的鼠标事件。取值为true表示使用以主屏左上角为原点的全局坐标系的坐标来计算注入的鼠标事件。  |
 
 ## TouchEventData<sup>11+</sup>
 
-触摸屏注入描述信息。
+触屏注入描述信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 否    |  否 | 触摸屏注入描述信息。   |
-| useGlobalCoordinate<sup>20+</sup> | boolean | 否    |  是 | 是否使用全局坐标来计算注入的触摸屏事件。默认值为false，取值为false表示使用以指定屏幕左上角为原点的相对坐标系的坐标来计算注入的触摸屏事件。取值为true表示使用以主屏左上角为原点的全局坐标系的坐标来计算注入的触摸屏事件。   |
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 否    |  否 | 触屏输入事件。   |
+| useGlobalCoordinate<sup>20+</sup> | boolean | 否    |  是 | 是否使用全局坐标来计算注入的触屏输入事件。默认值为false，取值为false表示使用以指定屏幕左上角为原点的相对坐标系的坐标来计算注入的触屏输入事件。取值为true表示使用以主屏左上角为原点的全局坐标系的坐标来计算注入的触屏输入事件。   |
