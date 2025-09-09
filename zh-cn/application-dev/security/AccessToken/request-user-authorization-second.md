@@ -31,8 +31,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionOnSetting(context, ['ohos.permission.APPROXIMATELY_LOCATION']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
-  console.info(`requestPermissionOnSetting success. Result: ${data}`);
+  console.info(`requestPermissionOnSetting success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`requestPermissionOnSetting fail. Code: ${err.code}, message: ${err.message}`);
+  console.error(`requestPermissionOnSetting fail, code: ${err.code}, message: ${err.message}`);
 });
 ```

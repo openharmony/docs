@@ -144,7 +144,7 @@ static initializeWebEngine(): void
 本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { webview } from '@kit.ArkWeb';
 
@@ -183,7 +183,7 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4916,7 +4916,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { webview } from '@kit.ArkWeb';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
@@ -5355,7 +5355,7 @@ static warmupServiceWorker(url: string): void
 **示例：**
 
 ```ts
-// xxx.ts
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -5744,7 +5744,7 @@ static getDefaultUserAgent(): string
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { webview } from '@kit.ArkWeb';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
@@ -9364,6 +9364,14 @@ getProgress(): number
 | :------------------------------ | ---------------------- |
 | number | 当前页面加载进度，取值范围[0, 100] |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801 | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -9524,6 +9532,7 @@ avoidVisibleViewportBottom(avoidHeight: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 801 | Capability not supported. |
 
 **示例：**
 
@@ -9750,8 +9759,7 @@ getBlanklessInfoWithKey(key: string): BlanklessInfo
 > - 如果发现快照相似度（即[BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20)中的similarity）极低，请确认key值是否传递正确。
 > - 调用本接口后，将启用页面加载快照检测及生成过渡帧计算，会产生一定的资源开销。
 > - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加约12*w*h B，页面打开后内存回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
-
-**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
+> - 请在module.json5中添加权限: ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9825,8 +9833,7 @@ setBlanklessLoadingWithKey(key: string, is_start: boolean): WebBlanklessErrorCod
 > - 需在触发页面加载的接口之后调用，其他约束同[getBlanklessInfoWithKey](#getblanklessinfowithkey20)。
 > - 页面加载必须在调用本接口的组件中进行。
 > - 当相似度较低时，系统将判定为跳变过大，启用插帧会失败。
-
-**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
+> - 请在module.json5中添加权限: ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10164,6 +10171,98 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+    }
+  }
+}
+```
+## getSiteIsolationMode<sup>21+</sup>
+
+static getSiteIsolationMode(): SiteIsolationMode
+
+查询当前生效的站点隔离模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 站点隔离模式类型。<br>getSiteIsolationMode()查询当前生效的站点隔离模式。
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getSiteIsolationMode')
+        .onClick(() => {
+          let mode = webview.WebviewController.getSiteIsolationMode();
+          console.info("getSiteIsolationMode: " + mode);
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+## setSiteIsolationMode<sup>21+</sup>
+
+setSiteIsolationMode(mode: SiteIsolationMode): void
+
+设置站点隔离模式。站点隔离机制将不同源的网站隔离在不同的Render进程中，减少跨域攻击面。例如：PC等设备上，在未启用站点隔离模式时，原有进程模型是每一个Tab对应一个Render进程，开启站点隔离后，一个Tab下不同源的Iframe可在独立的Render进程中运行。
+
+对于仅加载可信网页的第三方应用，可以关闭此功能，以提升性能并减少内存占用，同时减少跨域访问的拦截。默认值根据不同的设备而定，PC/Table采用严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，Phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。[坚盾守护模式](../..//web/web-secure-shield-mode.md)下采用严格站点隔离。
+
+> **说明：**
+>
+> 不能在单子进程模式下设置严格站点隔离。
+>
+> 接口只能在初始化时调用一次，不支持反复修改。
+
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 是 | 设置站点隔离模式。<br>默认值取决于设备类型和设备模式：PC/Tablet默认严格站点隔离，Phone默认部分站点隔离；坚盾守护模式默认严格站点隔离。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 |Init Error .  |
+
+**示例：**
+
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear() {
+    Column() {
+      Button('setSiteIsolationMode')
+        .onClick(() => {
+          webview.WebviewController.setSiteIsolationMode(web_webview.SiteIsolationMode.PARTIAL);          
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }

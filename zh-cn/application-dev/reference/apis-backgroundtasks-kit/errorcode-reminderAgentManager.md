@@ -1,5 +1,12 @@
 # reminderAgentManager错误码
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -17,12 +24,12 @@ Notification is not enabled.
 **可能原因**
 
 1. 未申请通知使能权限。
-2. 通知使能被关闭。
+2. 应用的通知开关为关闭状态。
 
 **处理步骤**
 
 1. 申请通知使能权限弹窗[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)。
-2. 检查通知使能是否被关闭。
+2. 通知设置里开启应用通知开关。
 
 ## 1700002 提醒数量超出限制
 

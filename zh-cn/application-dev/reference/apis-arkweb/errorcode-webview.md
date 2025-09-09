@@ -160,11 +160,11 @@ Failed to post messages through the port.
 
 **错误信息**
 
-Invalid origin.
+Invalid origin.The origin format must follow defined in RFC 6454.
 
 **错误描述**
 
-输入参数origin错误。
+输入参数origin错误。origin格式必须遵循RFC 6454中定义的格式。
 
 **可能原因**
 

@@ -22,7 +22,6 @@
    #include <cstdint>
    #include <cstdlib>
    #include <cstring>
-   #include <string.h>
    #include <memory>
    #include "hilog/log.h"
    #include "napi/native_api.h"

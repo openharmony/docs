@@ -501,10 +501,10 @@ zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.
 zh-cn/application-dev/account/ @zengyawen
 
 [开发-Basic Services Kit-公共事件]
-zh-cn/application-dev/basic-services/common-event/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/basic-services/common-event/common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/basic-services/common-event/itc-with-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/basic-services/common-event/native-common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/basic-services/common-event/common-event-*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/itc-with-emitter.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/native-common-event-*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 [开发-Basic Services Kit-设备管理]
 zh-cn/application-dev/device/usb-overview.md @w_Machine_cc @Kevin-Lau @liuhonggang123
@@ -519,11 +519,11 @@ zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @zhang_
 zh-cn/application-dev/basic-services/compress  @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 
 [开发-Basic Services Kit-剪贴板]
-zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/native-use-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/Readme-CN.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md	@guo867	@maxiaorong	@HelloCrease
+zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/native-use-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/Readme-CN.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md	@guo867	@maxiaorong	@fang-jinxu
 
 [开发-CalendarManager Kit]
 zh-cn/application-dev/calendarmanager @liuqian677 @jt_123456 @edollar
@@ -778,10 +778,10 @@ zh-cn/application-dev/napi/usb-ddk-guidelines.md @w_Machine_cc @Kevin-Lau @liuho
 
 
 [开发-Notification Kit]
-zh-cn/application-dev/notification/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/notification/notification-distributed*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/notification/notification-quickreply.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/notification/progress-bar-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/notification/notification-distributed*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/notification-quickreply.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/progress-bar-notification.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 
 [开发-Performance]
@@ -910,6 +910,9 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExt
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md @huipeizi @zhangyafei-echo @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-uripermissionmanager-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-errorManager.md  @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-errorObserver.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-loopObserver.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
 
 
 
@@ -1665,13 +1668,13 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
-zh-cn/application-dev/reference/apis-basic-services-kit/common_event/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-commonevent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-CommonEventService.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtension*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/common_event/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEvent*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-emitter.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-commonevent*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-CommonEventService.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtension*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 [API参考-Basic Services Kit-设备管理]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @w_Machine_cc  @alien0208
@@ -1699,7 +1702,6 @@ zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zh
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
-zh-cn/application-dev/reference/common/js-apis-timer.md   @ge-yafang
 zh-cn/application-dev/reference/common/js-apis-timer.md @yao_dashuai @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
 zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @zhang_yixin13
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13  @murphy1984 @hu-kai45
@@ -2052,10 +2054,10 @@ zh-cn/application-dev/reference/apis-neural-network-runtime-kit/_neural_network_
 
 
 [API参考-Notification Kit]
-zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi @dongqingran @wanghong1997
-zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/reference/apis-notification-kit/js-apis-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/ @fang-jinxu @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notification*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-notification*.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 
 
 [API参考-Security]
@@ -2099,16 +2101,15 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-deviceAttest-sys
 
 [API参考-剪贴板]
 
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-h.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md	@guo867	@maxiaorong	@HelloCrease
-
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-h.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md	@guo867	@maxiaorong	@fang-jinxu
 
 [工具-元能力、包管理、通知等]
 zh-cn/application-dev/tools/aa-tool.md @huipeizi @ccllee1 @lixueqing513
@@ -2116,8 +2117,8 @@ zh-cn/application-dev/tools/bm-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2
 zh-cn/application-dev/tools/packing-tool.md @Brilliantry_Rui @jsjzju @lixueqing513
 zh-cn/application-dev/tools/unpacking-tool.md @Brilliantry_Rui @jsjzju @lixueqing513 
 zh-cn/application-dev/tools/app-check-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2  
-zh-cn/application-dev/tools/cem-tool.md @huipeizi @dongqingran @wulong158 @wanghong1997
-zh-cn/application-dev/tools/anm-tool.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/tools/cem-tool.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/tools/anm-tool.md @fang-jinxu @dongqingran @wulong158 @wanghong1997
 zh-cn/application-dev/tools/restool.md  @Brilliantry_Rui @lliule21 @lpw_work @budda-wang
 zh-cn/application-dev/tools/rawheap-translator.md @wanghuan2025 @wanghuan2025 @kir175 @zsw_zhushiwei @foryourself
 zh-cn/application-dev/tools/toybox.md @yan-mingzhen @liveery @liuhaonan2 @foryourself
@@ -2128,4 +2129,4 @@ zh-cn/application-dev/tools/Readme-CN.md @foryourself @lingminghw @RayShih @fory
 [FAQ]
 zh-cn/application-dev/faqs/faqs-ability.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/faqs/faqs-bundle-management.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
-zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/faqs/faqs-event-notification.md @fang-jinxu @dongqingran @wulong158 @wanghong1997

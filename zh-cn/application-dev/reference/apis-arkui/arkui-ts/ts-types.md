@@ -705,51 +705,6 @@ Callback<T,V = void> = (data: T) => V;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## HoverCallback<sup>12+</sup>
-
-hover事件的回调类型。
-
-type HoverCallback = (isHover: boolean, event: HoverEvent)=> void
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名            | 类型            | 只读   |   可选         | 说明                                       |
-| ------------- | ---------------------- | -------- | ---------------------| --------------------------------------- |
-| isHover | boolean |  否  |  否  |是否处于hover状态，true表示处于hover状态，false表示不在hover状态。 |
-| event | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) |  否  |  否   |  获取鼠标或手写笔悬浮的位置坐标。 |
-
-## VisibleAreaEventOptions<sup>12+</sup>
-
-关于区域变化相关的参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名 | 类型                                                | 只读 | 可选 | 说明                                                         |
-| ------ | --------------------------------------------------- | ---- | -------- | ------------------------------------------------------------ |
-| ratios | Array&lt;number&gt;                                 | 否 | 否   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
-| expectedUpdateInterval | number | 否 | 是 | 定义了开发者期望的计算间隔，单位为ms。默认值：1000|
-
-## VisibleAreaChangeCallback<sup>12+</sup>
-
-组件可见区域变化事件的回调类型。
-
-type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) => void;
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名            | 类型               | 只读  |  可选       | 说明                                       |
-| ------------- | ------------------   | -------------   | -------- | ---------------------- |
-| isExpanding | boolean | 否 | 否 | 视组件的可见面积与自身面积的比值与上一次回调相比的情况而定，比值变大为true，比值变小为false。 |
-| currentRatio | number | 否 | 否 | 触发回调时，组件可见面积与自身面积的比值。 |
-
 ## DividerStyleOptions<sup>12+</sup>
 
 分割线样式属性集合, 用于描述分割线相关信息。
