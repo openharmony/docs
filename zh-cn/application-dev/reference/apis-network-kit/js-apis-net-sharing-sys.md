@@ -49,7 +49,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharingSupported((error: BusinessError, data: boolean) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -90,7 +90,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 sharing
   .isSharingSupported()
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -133,7 +133,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharing((error: BusinessError, data: boolean) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -174,7 +174,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 sharing
   .isSharing()
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -278,7 +278,7 @@ let SHARING_WIFI = 0;
 sharing
   .startSharing(SHARING_WIFI)
   .then(() => {
-    console.log('start wifi sharing successful');
+    console.info('start wifi sharing successful');
   })
   .catch((error: BusinessError) => {
     console.error('start wifi sharing failed');
@@ -380,7 +380,7 @@ let SHARING_WIFI = 0;
 sharing
   .stopSharing(SHARING_WIFI)
   .then(() => {
-    console.log('stop wifi sharing successful');
+    console.info('stop wifi sharing successful');
   })
   .catch((error: BusinessError) => {
     console.error('stop wifi sharing failed');
@@ -423,7 +423,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsRxBytes((error: BusinessError, data: number) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -464,7 +464,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 sharing
   .getStatsRxBytes()
   .then((data: number) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -507,7 +507,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTxBytes((error: BusinessError, data: number) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -548,7 +548,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 sharing
   .getStatsTxBytes()
   .then((data: number) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -591,7 +591,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -632,7 +632,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 sharing
   .getStatsTotalBytes()
   .then((data: number) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -678,7 +678,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[]) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -727,7 +727,7 @@ let SHARING_BLUETOOTH = 2;
 sharing
   .getSharingIfaces(SHARING_BLUETOOTH)
   .then((data: string[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -773,7 +773,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -822,7 +822,7 @@ let SHARING_WIFI = 0;
 sharing
   .getSharingState(SHARING_WIFI)
   .then((data: sharing.SharingIfaceState) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -868,7 +868,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) => {
   console.error(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -917,7 +917,7 @@ let SHARING_WIFI = 0;
 sharing
   .getSharableRegexes(SHARING_WIFI)
   .then((data: string[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -957,7 +957,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingStateChange', (data: boolean) => {
-  console.log('on sharingStateChange: ' + JSON.stringify(data));
+  console.info('on sharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
@@ -994,7 +994,7 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingStateChange', (data: boolean) => {
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -1031,7 +1031,7 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<InterfaceSharingStat
 import { sharing } from '@kit.NetworkKit';
 
 sharing.on('interfaceSharingStateChange', (data: object) => {
-  console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
+  console.info('on interfaceSharingStateChange:' + JSON.stringify(data));
 });
 ```
 
@@ -1068,7 +1068,7 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<InterfaceSharingSt
 import { sharing } from '@kit.NetworkKit';
 
 sharing.off('interfaceSharingStateChange', (data: object) => {
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -1105,7 +1105,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingUpstreamChange', (data: object) => {
-  console.log('on sharingUpstreamChange:' + JSON.stringify(data));
+  console.info('on sharingUpstreamChange:' + JSON.stringify(data));
 });
 ```
 
@@ -1142,7 +1142,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingUpstreamChange', (data: object) => {
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
