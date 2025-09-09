@@ -25,7 +25,7 @@ import { WantAgent } from '@kit.AbilityKit';
 
 getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
-获取WantAgent对象的want（callback形式）。
+获取WantAgent对象的want。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -36,7 +36,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 参数名     | 类型                  | 必填 | 说明                            |
 | -------- | --------------------- | ---- | ------------------------------- |
 | agent    | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent)             | 是   | WantAgent对象。                   |
-| callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 获取WantAgent对象want的回调方法。 |
+| callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 回调函数。当获取WantAgent对象的want成功，err为undefined，data为want对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -124,7 +124,7 @@ try {
 
 getWant(agent: WantAgent): Promise\<Want\>
 
-获取WantAgent对象的want（Promise形式）。
+获取WantAgent对象的want。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -140,7 +140,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[Want](js-apis-app-ability-want.md)\> | 以Promise形式返回获取WantAgent对象的want。 |
+| Promise\<[Want](js-apis-app-ability-want.md)\> | Promise对象，返回WantAgent对象的want。 |
 
 **错误码：**
 
@@ -327,7 +327,7 @@ triggerAsync(agent: WantAgent, triggerInfo: TriggerInfo, context: Context): Prom
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CompleteData](js-apis-app-ability-wantAgent.md#completedata)\> | 以Promise形式返回主动激发WantAgent获得的数据。 |
+| Promise\<[CompleteData](js-apis-app-ability-wantAgent.md#completedata)\> | Promise对象，返回主动激发WantAgent获得的数据。 |
 
 **错误码：**
 
