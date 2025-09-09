@@ -1135,7 +1135,7 @@ hasDefaultNetSync(): boolean
 
 | 类型              | 说明                                            |
 | ----------------- | ----------------------------------------------- |
-| boolean | 表示默认数据网络是否被激活。true表示默认数据网络被激活，fasle表示默认数据网络没有被激活。 |
+| boolean | 表示默认数据网络是否被激活。true表示默认数据网络被激活，false表示默认数据网络没有被激活。 |
 
 **错误码：**
 
@@ -2514,7 +2514,7 @@ interface Data {
 
 bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void\>
 
-将TCPSocket或UDPSockett绑定到当前NetHandle对应的网络，使用Promise方式作为异步方法。
+将TCPSocket或UDPSocket绑定到当前NetHandle对应的网络，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
