@@ -709,7 +709,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取
 let permissionFlags: number = 2;
 atManager.grantPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-  console.log('grantPermission success');
+  console.info('grantPermission success');
 }).catch((err: BusinessError) => {
   console.error(`grantPermission fail, err->${JSON.stringify(err)}`);
 });
@@ -767,7 +767,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取
 let permissionFlags: number = 2;
 atManager.revokePermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-  console.log('revokePermission success');
+  console.info('revokePermission success');
 }).catch((err: BusinessError) => {
   console.error(`revokePermission fail, err->${JSON.stringify(err)}`);
 });
