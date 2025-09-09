@@ -14,7 +14,7 @@
 >
 > - 该组件不建议开发者在动效过程中修改属性数据。
 >
-> - 该组件最大显示行数在横竖屏模式下存在差异，竖屏为5行，横屏为3行。
+> - 最大显示行数在横、竖屏模式下存在差异。竖屏时默认为5行，横屏时依赖系统配置，未配置时默认显示为3行。可通过如下参数查看具体配置值$r('sys.float.ohos_id_picker_show_count_landscape')。
 >
 > - 多列非联动数据选择器和多列联动数据选择器在下文中统称为多列数据选择器。
 
@@ -88,7 +88,7 @@ TextPicker(options?: TextPickerOptions)
 
 | 名称        | 类型                                       | 只读 | 可选 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| strokeWidth | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线的线宽。<br/>默认值：2.0px<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。不支持"百分比"类型。 |
+| strokeWidth | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线的线宽。<br/>默认值：2.0px<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。不支持“百分比”类型。 |
 | startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边起始端的距离。<br/>默认值：0<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。不支持“百分比”类型。 |
 | endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边结束端的距离。<br/>默认值：0<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。不支持“百分比”类型。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 分割线的颜色。<br/>默认值：'#33000000'                       |
