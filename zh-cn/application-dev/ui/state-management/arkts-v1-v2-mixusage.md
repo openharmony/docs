@@ -468,7 +468,7 @@ struct CompV1 {
         // 触发刷新
         this.observedClass.name += 'a';
       })
-      // 使用非@Track的变量在V2中不会崩溃，但不触发刷新
+      // 使用非@Track的变量在V2中不会崩溃，但不响应更新
       Text(`count: ${this.observedClass.count}`).onClick(() => {
         this.observedClass.count++;
       })

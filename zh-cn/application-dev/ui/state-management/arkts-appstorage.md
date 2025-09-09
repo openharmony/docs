@@ -323,7 +323,7 @@ struct Index {
 >
 > 从API version 12开始，AppStorage支持Date类型。
 
-以下示例中，@StorageLink装饰的selectedDate类型为Date。点击Button改变selectedDate的值，视图会随之刷新。
+在下面的示例中，@StorageLink装饰的selectedDate类型为Date。点击Button改变selectedDate的值，视图会随之刷新。
 
 ```ts
 @Entry

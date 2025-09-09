@@ -595,7 +595,7 @@ struct Page1 {
           // 未被@Trace保存的对象无法自动存储，需要调用key存储
           this.p.father.groupId += 1;
           PersistenceV2.save('connect2');
-          this.refresh += 1
+          this.refresh += 1;
         })
         .fontSize(25)
     }
@@ -671,7 +671,7 @@ struct Page1 {
           // 未被@Trace保存的对象无法自动存储，需要调用key存储
           this.p.father.groupId += 1;
           PersistenceV2.save('connect2');
-          this.refresh += 1
+          this.refresh += 1;
         })
         .fontSize(25)
     }
