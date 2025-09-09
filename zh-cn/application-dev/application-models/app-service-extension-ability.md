@@ -443,7 +443,7 @@ let options: common.ConnectOptions = {
         hilog.error(DOMAIN_NUMBER, TAG, `sendRequest failed`);
       }
     }).catch((error: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
     });
   },
   onDisconnect(elementName): void {
@@ -484,7 +484,7 @@ struct Page_AppServiceExtensionAbility {
 **服务端**：使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9)接口接收客户端发送的消息。
 
 ```ts
-import { AppServiceExtensionAbility } from '@kit.AbilityKit';
+import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 

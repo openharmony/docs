@@ -210,9 +210,9 @@ struct WebComponent {
           if (url === 'link://www.example.com') {
             (this.getUIContext().getHostContext() as common.UIAbilityContext).openLink(url)
               .then(() => {
-                console.log('openLink success');
+                console.info('openLink success.');
               }).catch((err: BusinessError) => {
-                console.error('openLink failed, err:' + JSON.stringify(err));
+                console.error(`openLink failed, err: ${JSON.stringify(err)}.`);
               });
             return true;
           }

@@ -1,5 +1,12 @@
 # UIExtensionAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)是UI类型的ExtensionAbility，常用于有进程隔离诉求的系统弹窗、状态栏、胶囊等模块化开发的场景。有嵌入式显示与系统弹窗两种形式。
@@ -388,30 +395,30 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 
     export default class UIExtAbility extends UIExtensionAbility {
       onCreate() {
-        console.log(TAG, `onCreate`);
+        console.info(TAG, `onCreate`);
       }
 
       onForeground() {
-        console.log(TAG, `onForeground`);
+        console.info(TAG, `onForeground`);
       }
 
       onBackground() {
-        console.log(TAG, `onBackground`);
+        console.info(TAG, `onBackground`);
       }
 
       onDestroy() {
-        console.log(TAG, `onDestroy`);
+        console.info(TAG, `onDestroy`);
       }
 
       onSessionCreate(want: Want, session: UIExtensionContentSession) {
-        console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}}`);
+        console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
         let storage: LocalStorage = new LocalStorage();
         storage.setOrCreate('session', session);
         session.loadContent('pages/Extension', storage);
       }
 
       onSessionDestroy(session: UIExtensionContentSession) {
-        console.log(TAG, `onSessionDestroy`);
+        console.info(TAG, `onSessionDestroy`);
       }
     }
     ```

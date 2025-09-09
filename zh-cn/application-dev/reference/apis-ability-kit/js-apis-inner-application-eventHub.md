@@ -42,7 +42,7 @@ import { common, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   eventFunc() {
-    console.log('eventFunc is called');
+    console.info('eventFunc is called');
   }
 
   onCreate() {
@@ -117,7 +117,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   eventFunc() {
-    console.log(`eventFunc is called, value: ${this.value}`);
+    console.info(`eventFunc is called, value: ${this.value}`);
   }
 }
 ```
@@ -136,7 +136,7 @@ export default class EntryAbility extends UIAbility {
     try {
       // 支持使用匿名函数订阅事件
       this.context.eventHub.on('myEvent', () => {
-        console.log(`anonymous eventFunc is called, value: ${this.value}`);
+        console.info(`anonymous eventFunc is called, value: ${this.value}`);
       });
     } catch (e) {
       let code: number = (e as BusinessError).code;
@@ -158,7 +158,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   eventFunc() {
-    console.log(`eventFunc is called, value: ${this.value}`);
+    console.info(`eventFunc is called, value: ${this.value}`);
   }
 }
 ```
@@ -212,11 +212,11 @@ export default class EntryAbility extends UIAbility {
   }
 
   eventFunc1() {
-    console.log('eventFunc1 is called');
+    console.info('eventFunc1 is called');
   }
 
   eventFunc2() {
-    console.log('eventFunc2 is called');
+    console.info('eventFunc2 is called');
   }
 }
 ```
@@ -276,7 +276,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   eventFunc(argOne: number, argTwo: number) {
-    console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
+    console.info(`eventFunc is called, ${argOne}, ${argTwo}`);
   }
 }
 ```

@@ -52,7 +52,8 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     let onCompletedCallback = (error: BusinessError<void>) => {
       hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code,
+          error.message);
       } else {
         hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
@@ -96,12 +97,9 @@ onRequestCustomMatchRule(want: Want): string
 **示例：**
 
 ```ts
-import { StartupConfig, StartupConfigEntry, StartupListener, Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { StartupConfigEntry, Want } from '@kit.AbilityKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
-
   // ...
 
   onRequestCustomMatchRule(want: Want): string {

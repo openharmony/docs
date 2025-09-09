@@ -1,5 +1,12 @@
 # @ohos.app.ability.missionManager (missionManager)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 missionManager模块提供系统任务管理能力，包括对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 > **说明：**
@@ -62,13 +69,13 @@ import { window } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 let listener: missionManager.MissionListener = {
-  onMissionCreated: (mission: number) => {console.log('--------onMissionCreated-------');},
-  onMissionDestroyed: (mission: number) => {console.log('--------onMissionDestroyed-------');},
-  onMissionSnapshotChanged: (mission: number) => {console.log('--------onMissionSnapshotChanged-------');},
-  onMissionMovedToFront: (mission: number) => {console.log('--------onMissionMovedToFront-------');},
-  onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {console.log('--------onMissionIconUpdated-------');},
-  onMissionClosed: (mission: number) => {console.log('--------onMissionClosed-------');},
-  onMissionLabelUpdated: (mission: number) => {console.log('--------onMissionLabelUpdated-------');}
+  onMissionCreated: (mission: number) => {console.info('--------onMissionCreated-------');},
+  onMissionDestroyed: (mission: number) => {console.info('--------onMissionDestroyed-------');},
+  onMissionSnapshotChanged: (mission: number) => {console.info('--------onMissionSnapshotChanged-------');},
+  onMissionMovedToFront: (mission: number) => {console.info('--------onMissionMovedToFront-------');},
+  onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {console.info('--------onMissionIconUpdated-------');},
+  onMissionClosed: (mission: number) => {console.info('--------onMissionClosed-------');},
+  onMissionLabelUpdated: (mission: number) => {console.info('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
@@ -77,7 +84,7 @@ let context: common.UIAbilityContext;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log('[Demo] EntryAbility onCreate');
+    console.info('[Demo] EntryAbility onCreate');
     abilityWant = want;
     context = this.context;
   }
@@ -85,8 +92,8 @@ export default class EntryAbility extends UIAbility {
   onDestroy() {
     try {
       if (listenerId !== -1) {
-        missionManager.off('mission', listenerId).catch((err: BusinessError) => {
-          console.log(JSON.stringify(err));
+        missionManager.off('mission', listenerId).catch((error: BusinessError) => {
+          console.info(JSON.stringify(error));
         });
       }
     } catch (paramError) {
@@ -94,12 +101,12 @@ export default class EntryAbility extends UIAbility {
       let message = (paramError as BusinessError).message;
       console.error(`error: ${code}, ${message} `);
     }
-    console.log('[Demo] EntryAbility onDestroy');
+    console.info('[Demo] EntryAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    console.log('[Demo] EntryAbility onWindowStageCreate');
+    console.info('[Demo] EntryAbility onWindowStageCreate');
     try {
       listenerId = missionManager.on('mission', listener);
     } catch (paramError) {
@@ -124,7 +131,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
-解注册任务状态监听器。
+解注册任务状态监听器。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -138,7 +145,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
   | -------- | -------- | -------- | -------- |
   | type     | string   | 是       | 取消监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当解注册任务状态监听器成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -160,13 +167,27 @@ import { window } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 let listener: missionManager.MissionListener = {
-  onMissionCreated: (mission: number) => {console.log('--------onMissionCreated-------');},
-  onMissionDestroyed: (mission: number) => {console.log('--------onMissionDestroyed-------');},
-  onMissionSnapshotChanged: (mission: number) => {console.log('--------onMissionSnapshotChanged-------');},
-  onMissionMovedToFront: (mission: number) => {console.log('--------onMissionMovedToFront-------');},
-  onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {console.log('--------onMissionIconUpdated-------');},
-  onMissionClosed: (mission: number) => {console.log('--------onMissionClosed-------');},
-  onMissionLabelUpdated: (mission: number) => {console.log('--------onMissionLabelUpdated-------');}
+  onMissionCreated: (mission: number) => {
+    console.info('--------onMissionCreated-------');
+  },
+  onMissionDestroyed: (mission: number) => {
+    console.info('--------onMissionDestroyed-------');
+  },
+  onMissionSnapshotChanged: (mission: number) => {
+    console.info('--------onMissionSnapshotChanged-------');
+  },
+  onMissionMovedToFront: (mission: number) => {
+    console.info('--------onMissionMovedToFront-------');
+  },
+  onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
+    console.info('--------onMissionIconUpdated-------');
+  },
+  onMissionClosed: (mission: number) => {
+    console.info('--------onMissionClosed-------');
+  },
+  onMissionLabelUpdated: (mission: number) => {
+    console.info('--------onMissionLabelUpdated-------');
+  }
 };
 
 let listenerId = -1;
@@ -175,7 +196,7 @@ let context: common.UIAbilityContext;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log('[Demo] EntryAbility onCreate');
+    console.info('[Demo] EntryAbility onCreate');
     abilityWant = want;
     context = this.context;
   }
@@ -183,8 +204,12 @@ export default class EntryAbility extends UIAbility {
   onDestroy() {
     try {
       if (listenerId !== -1) {
-        missionManager.off('mission', listenerId, (err: BusinessError) => {
-          console.log(`${err.code}`);
+        missionManager.off('mission', listenerId, (error: BusinessError) => {
+          if (error) {
+            console.error(`MissionManager.off failed, error code: ${error.code}, error msg: ${error.message}`);
+            return;
+          }
+          console.info(`MissionManager.off success.`);
         });
       }
     } catch (paramError) {
@@ -192,12 +217,12 @@ export default class EntryAbility extends UIAbility {
       let message = (paramError as BusinessError).message;
       console.error(`error: ${code}, ${message} `);
     }
-    console.log('[Demo] EntryAbility onDestroy');
+    console.info('[Demo] EntryAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    console.log('[Demo] EntryAbility onWindowStageCreate');
+    console.info('[Demo] EntryAbility onWindowStageCreate');
     try {
       listenerId = missionManager.on('mission', listener);
     } catch (paramError) {
@@ -222,7 +247,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
-解注册任务状态监听，以promise方式返回执行结果。
+解注册任务状态监听。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -241,7 +266,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -263,13 +288,27 @@ import { window } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 let listener: missionManager.MissionListener = {
-  onMissionCreated: (mission: number) => {console.log('--------onMissionCreated-------');},
-  onMissionDestroyed: (mission: number) => {console.log('--------onMissionDestroyed-------');},
-  onMissionSnapshotChanged: (mission: number) => {console.log('--------onMissionSnapshotChanged-------');},
-  onMissionMovedToFront: (mission: number) => {console.log('--------onMissionMovedToFront-------');},
-  onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {console.log('--------onMissionIconUpdated-------');},
-  onMissionClosed: (mission: number) => {console.log('--------onMissionClosed-------');},
-  onMissionLabelUpdated: (mission: number) => {console.log('--------onMissionLabelUpdated-------');}
+  onMissionCreated: (mission: number) => {
+    console.info('--------onMissionCreated-------');
+  },
+  onMissionDestroyed: (mission: number) => {
+    console.info('--------onMissionDestroyed-------');
+  },
+  onMissionSnapshotChanged: (mission: number) => {
+    console.info('--------onMissionSnapshotChanged-------');
+  },
+  onMissionMovedToFront: (mission: number) => {
+    console.info('--------onMissionMovedToFront-------');
+  },
+  onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
+    console.info('--------onMissionIconUpdated-------');
+  },
+  onMissionClosed: (mission: number) => {
+    console.info('--------onMissionClosed-------');
+  },
+  onMissionLabelUpdated: (mission: number) => {
+    console.info('--------onMissionLabelUpdated-------');
+  }
 };
 
 let listenerId = -1;
@@ -278,7 +317,7 @@ let context: common.UIAbilityContext;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log('[Demo] EntryAbility onCreate');
+    console.info('[Demo] EntryAbility onCreate');
     abilityWant = want;
     context = this.context;
   }
@@ -286,8 +325,8 @@ export default class EntryAbility extends UIAbility {
   onDestroy() {
     try {
       if (listenerId !== -1) {
-        missionManager.off('mission', listenerId).catch((err: BusinessError) => {
-          console.log(`${err.code}`);
+        missionManager.off('mission', listenerId).catch((error: BusinessError) => {
+          console.error(`MissionManager.off failed, error code: ${error.code}, error msg: ${error.message}.`);
         });
       }
     } catch (paramError) {
@@ -295,12 +334,12 @@ export default class EntryAbility extends UIAbility {
       let message = (paramError as BusinessError).message;
       console.error(`error: ${code}, ${message} `);
     }
-    console.log('[Demo] EntryAbility onDestroy');
+    console.info('[Demo] EntryAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    console.log('[Demo] EntryAbility onWindowStageCreate');
+    console.info('[Demo] EntryAbility onWindowStageCreate');
     try {
       listenerId = missionManager.on('mission', listener);
     } catch (paramError) {
@@ -324,7 +363,7 @@ export default class EntryAbility extends UIAbility {
 
 getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void
 
-获取任务信息，以异步回调的方式返回任务信息。
+获取任务信息。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -338,7 +377,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | 是 | 执行结果回调函数，返回任务信息。 |
+  | callback | AsyncCallback&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | 是 | 回调函数。当获取任务信息成功，err为undefined，data为获取到的任务信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -358,7 +397,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let testMissionId = 1;
 
-missionManager.getMissionInfos('',10)
+missionManager.getMissionInfos('', 10)
   .then((allMissions: Array<missionManager.MissionInfo>) => {
     try {
       if (allMissions && allMissions.length > 0) {
@@ -369,12 +408,12 @@ missionManager.getMissionInfos('',10)
         if (error) {
           console.error(`getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}`);
         } else {
-          console.log(`mission.missionId = ${mission.missionId}`);
-          console.log(`mission.runningState = ${mission.runningState}`);
-          console.log(`mission.lockedState = ${mission.lockedState}`);
-          console.log(`mission.timestamp = ${mission.timestamp}`);
-          console.log(`mission.label = ${mission.label}`);
-          console.log(`mission.iconPath = ${mission.iconPath}`);
+          console.info(`mission.missionId = ${mission.missionId}`);
+          console.info(`mission.runningState = ${mission.runningState}`);
+          console.info(`mission.lockedState = ${mission.lockedState}`);
+          console.info(`mission.timestamp = ${mission.timestamp}`);
+          console.info(`mission.label = ${mission.label}`);
+          console.info(`mission.iconPath = ${mission.iconPath}`);
         }
       });
     } catch (paramError) {
@@ -383,14 +422,16 @@ missionManager.getMissionInfos('',10)
       console.error(`error: ${code}, ${message} `);
     }
   })
-  .catch((err: BusinessError) => {console.log(`${err.code}`);});
+  .catch((error: BusinessError) => {
+    console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
+  });
 ```
 
 ## missionManager.getMissionInfo
 
 getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
-获取任务信息，以promise方式返回任务信息。
+获取任务信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -409,7 +450,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | 任务信息。 |
+  | Promise&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | Promise对象，返回任务信息。 |
 
 **错误码：**
 
@@ -430,11 +471,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let testMissionId = 1;
 
 try {
-  missionManager.getMissionInfo('', testMissionId).then((data: missionManager.MissionInfo) => {
-    console.info(`getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
-  }).catch((error: BusinessError) => {
-    console.error(`getMissionInfo failed. Cause: ${error.message}`);
-  });
+  missionManager.getMissionInfo('', testMissionId)
+    .then((data: missionManager.MissionInfo) => {
+      console.info(`getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
+    })
+    .catch((error: BusinessError) => {
+      console.error(`getMissionInfo failed. Cause: ${error.message}`);
+    });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`getMissionInfo failed. Cause: ${err.message}`);
@@ -445,7 +488,7 @@ try {
 
 getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void
 
-获取所有任务信息，以回调函数的方式返回任务信息数组。
+获取所有任务信息。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -459,7 +502,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | numMax | number | 是 | 任务信息数量上限。 |
-  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
+  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | 是 | 回调函数。当获取所有任务信息成功，err为undefined，data为获取到的所有任务信息的数组；否则为错误对象。 |
 
 **错误码：**
 
@@ -482,14 +525,14 @@ try {
     if (error) {
       console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
     } else {
-      console.log(`size = ${missions.length}`);
-      console.log(`missions = ${JSON.stringify(missions)}`);
+      console.info(`size = ${missions.length}`);
+      console.info(`missions = ${JSON.stringify(missions)}`);
     }
   });
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
-  console.error(`error: ${code}, ${message} `);
+  console.error(`getMissionInfos failed, error code: ${code}, error msg: ${message}.`);
 }
 ```
 
@@ -498,7 +541,7 @@ try {
 
 getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;
 
-获取所有任务信息，以promise的方式返回任务信息数组。
+获取所有任务信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -517,7 +560,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | 任务信息数组。 |
+  | Promise&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | Promise对象，返回所有任务信息的数组。 |
 
 **错误码：**
 
@@ -551,7 +594,7 @@ try {
 
 getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void
 
-获取任务快照，以回调函数的方式返回快照内容。
+获取任务快照。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -565,7 +608,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 回调函数。当获取任务快照成功，err为undefined，data为获取到的任务快照对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -585,7 +628,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let testMissionId = 2;
 
 try {
-  missionManager.getMissionSnapShot('', testMissionId, (err: BusinessError, data: missionManager.MissionSnapshot ) => {
+  missionManager.getMissionSnapShot('', testMissionId, (err: BusinessError, data: missionManager.MissionSnapshot) => {
     if (err) {
       console.error(`getMissionSnapShot failed: ${err.message}`);
     } else {
@@ -602,7 +645,7 @@ try {
 
 getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;
 
-获取任务快照，以promise的方式返回快照内容。
+获取任务快照。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -621,7 +664,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 任务快照信息。 |
+  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | Promise对象，返回任务快照信息。 |
 
 **错误码：**
 
@@ -656,7 +699,7 @@ try {
 
 getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void
 
-获取任务低分辨率快照。
+获取任务低分辨率快照。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -670,7 +713,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 回调函数。当获取任务低分辨率快照成功，err为undefined，data为获取到的任务快照对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -690,13 +733,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let testMissionId = 2;
 
 try {
-  missionManager.getLowResolutionMissionSnapShot('', testMissionId, (err: BusinessError, data: missionManager.MissionSnapshot) => {
-    if (err) {
-      console.error(`getLowResolutionMissionSnapShot failed: ${err.message}`);
-    } else {
-      console.info(`getLowResolutionMissionSnapShot successfully: ${JSON.stringify(data)}`);
-    }
-  });
+  missionManager.getLowResolutionMissionSnapShot('', testMissionId,
+    (err: BusinessError, data: missionManager.MissionSnapshot) => {
+      if (err) {
+        console.error(`getLowResolutionMissionSnapShot failed: ${err.message}`);
+      } else {
+        console.info(`getLowResolutionMissionSnapShot successfully: ${JSON.stringify(data)}`);
+      }
+    });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`getLowResolutionMissionSnapShot failed: ${err.message}`);
@@ -707,7 +751,7 @@ try {
 
 getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>
 
-获取任务低分辨率快照。
+获取任务低分辨率快照。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -726,7 +770,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<M
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 任务快照信息。 |
+  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | Promise对象，返回任务快照信息。 |
 
 **错误码：**
 
@@ -763,7 +807,7 @@ try {
 
 lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-锁定指定任务id的任务，以回调函数的方式返回。
+锁定指定任务ID的任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -776,7 +820,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当锁定指定任务ID的任务成功，err为undefined；否则为错误对象。 |
 
 **错误码**：
 
@@ -815,7 +859,7 @@ try {
 
 lockMission(missionId: number): Promise&lt;void&gt;
 
-锁定指定任务id的任务，以promise方式返回。
+锁定指定任务ID的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -833,7 +877,7 @@ lockMission(missionId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -869,7 +913,7 @@ try {
 
 unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-解锁指定任务id的任务，以回调函数的方式返回。
+解锁指定任务ID的任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -882,7 +926,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | missionId | number | 是 | 任务ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当解锁指定任务ID的任务成功，err为undefined；否则为错误对象。 |
 
 **错误码**：
 
@@ -920,7 +964,7 @@ try {
 
 unlockMission(missionId: number): Promise&lt;void&gt;
 
-解锁指定任务id的任务，以promise的方式返回。
+解锁指定任务ID的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -938,7 +982,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -975,7 +1019,7 @@ try {
 
 clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-清理指定任务id的任务，无论该任务是否被锁定，以回调函数的方式返回。
+清理指定任务ID的任务，无论该任务是否被锁定。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -988,7 +1032,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当清理指定任务ID的任务成功，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -1027,7 +1071,7 @@ try {
 
 clearMission(missionId: number): Promise&lt;void&gt;
 
-清理指定任务id的任务，无论该任务是否被锁定，以promise的方式返回。
+清理指定任务ID的任务，无论该任务是否被锁定。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1045,7 +1089,7 @@ clearMission(missionId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1081,7 +1125,7 @@ try {
 
 clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
-清理所有未锁定的任务，以回调函数的方式返回。
+清理所有未锁定的任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1093,7 +1137,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当清理所有未锁定的任务成功，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -1129,7 +1173,7 @@ try {
 
 clearAllMissions(): Promise&lt;void&gt;
 
-清理所有未锁定的任务，以promise的方式返回。
+清理所有未锁定的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1141,7 +1185,7 @@ clearAllMissions(): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1174,7 +1218,7 @@ try {
 
 moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-把指定任务id的任务切到前台，以回调函数的方式返回。
+把指定任务ID的任务切到前台。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1187,7 +1231,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当把指定任务ID的任务切到前台成功，err为undefined；否则为错误对象。 |
 
 **错误码**：
 
@@ -1226,7 +1270,7 @@ try {
 
 moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以回调函数的方式返回。
+把指定任务ID的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1240,7 +1284,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当把指定任务ID的任务切到前台成功，err为undefined；否则为错误对象。 |
 
 **错误码**：
 
@@ -1262,7 +1306,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let testMissionId = 2;
 
 try {
-  missionManager.moveMissionToFront(testMissionId, {windowMode : 101}, (err: BusinessError, data: void) => {
+  missionManager.moveMissionToFront(testMissionId, { windowMode: 101 }, (err: BusinessError, data: void) => {
     if (err) {
       console.error(`moveMissionToFront failed: ${err.message}`);
     } else {
@@ -1279,7 +1323,7 @@ try {
 
 moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;
 
-把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以promise的方式返回。
+把指定任务ID的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1298,7 +1342,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -1335,7 +1379,7 @@ try {
 
 moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-将指定任务批量切到前台，以回调函数的方式返回。
+将指定任务批量切到前台。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1348,7 +1392,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当将指定任务批量切到前台成功，err为undefined；否则为错误对象。 |
 
 **错误码**：
 
@@ -1402,7 +1446,7 @@ try {
 
 moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void
 
-将指定任务批量切换到前台，并将任务ID等于topMission的任务移动到最顶层，以回调函数的方式返回。
+将指定任务批量切换到前台，并将任务ID等于topMission的任务移动到最顶层。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1416,7 +1460,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, ca
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
   | topMission | number | 是 | 待移动到最顶层的任务ID |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当将指定任务批量切换到前台成功，err为undefined；否则为错误对象。 |
 
 **错误码**：
 
@@ -1470,7 +1514,7 @@ try {
 
 moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;
 
-将指定任务批量切到前台，并将任务ID等于topMission的任务移动到最顶层，以promise的方式返回。
+将指定任务批量切到前台，并将任务ID等于topMission的任务移动到最顶层。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1489,7 +1533,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): 
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -1525,7 +1569,7 @@ try {
       }
     }
     missionManager.moveMissionsToForeground(toShows, toShows[0]).then(() => {
-      console.log(`moveMissionsToForeground is called`);
+      console.info(`moveMissionsToForeground is called`);
     });
   });
 } catch (paramError) {
@@ -1539,7 +1583,7 @@ try {
 
 moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-将指定任务批量切到后台，以回调函数的方式返回，返回的结果任务ID按被隐藏时的任务层级排序。
+将指定任务批量切到后台，返回的结果任务ID按被隐藏时的任务层级排序。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1552,7 +1596,7 @@ moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
-  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。当将指定任务批量切到后台成功，err为undefined，data为获取到的结果任务ID；否则为错误对象。 |
 
 **错误码**：
 
@@ -1580,7 +1624,7 @@ try {
 
     let toHides = new Array<number>();
     for (let missionInfo of missionInfos) {
-      if (missionInfo.abilityState ==  abilityManager.AbilityState.FOREGROUND) {
+      if (missionInfo.abilityState == abilityManager.AbilityState.FOREGROUND) {
         toHides.push(missionInfo.missionId);
       }
     }
@@ -1603,7 +1647,7 @@ try {
 
 moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-将指定任务批量切到后台，以promise的方式返回，返回的结果按被隐藏时的任务层级排序。
+将指定任务批量切到后台，返回的结果按被隐藏时的任务层级排序。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1621,7 +1665,7 @@ moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;number&gt;&gt; | promise方式返回执行结果。 |
+  | Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回任务ID。 |
 
 **错误码**：
 
@@ -1649,12 +1693,12 @@ try {
 
     let toHides = new Array<number>();
     for (let missionInfo of missionInfos) {
-      if (missionInfo.abilityState ==  abilityManager.AbilityState.FOREGROUND) {
+      if (missionInfo.abilityState == abilityManager.AbilityState.FOREGROUND) {
         toHides.push(missionInfo.missionId);
       }
     }
     missionManager.moveMissionsToBackground(toHides).then((hideRes: Array<number>) => {
-      console.log(`moveMissionsToBackground is called, res: ${JSON.stringify(hideRes)}`);
+      console.info(`moveMissionsToBackground is called, res: ${JSON.stringify(hideRes)}`);
     });
   });
 } catch (paramError) {

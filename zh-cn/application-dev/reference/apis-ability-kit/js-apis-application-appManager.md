@@ -40,9 +40,9 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   appManager.isRunningInStabilityTest((error, flag) => {
     if (error && error.code !== 0) {
-        console.error(`isRunningInStabilityTest fail, error: ${JSON.stringify(error)}`);
+      console.error(`isRunningInStabilityTest fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log(`isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}`);
+      console.info(`isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}`);
     }
   });
   ```
@@ -69,9 +69,9 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
   import { BusinessError } from '@ohos.base';
 
   appManager.isRunningInStabilityTest().then((flag) => {
-      console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
+    console.info(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
   }).catch((error: BusinessError) => {
-      console.error(`error: ${JSON.stringify(error)}`);
+    console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -97,9 +97,9 @@ isRamConstrainedDevice(): Promise\<boolean>
   import { BusinessError } from '@ohos.base';
 
   appManager.isRamConstrainedDevice().then((data) => {
-      console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+    console.info(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
-      console.error(`error: ${JSON.stringify(error)}`);
+    console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -123,11 +123,11 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
   import appManager from '@ohos.application.appManager';
 
   appManager.isRamConstrainedDevice((error, data) => {
-      if (error && error.code !== 0) {
-          console.error(`isRamConstrainedDevice fail, error: ${JSON.stringify(error)}`);
-      } else {
-          console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
-      }
+    if (error && error.code !== 0) {
+      console.error(`isRamConstrainedDevice fail, error: ${JSON.stringify(error)}`);
+    } else {
+      console.info(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+    }
   });
   ```
 
@@ -152,9 +152,9 @@ getAppMemorySize(): Promise\<number>
   import { BusinessError } from '@ohos.base';
 
   appManager.getAppMemorySize().then((data) => {
-      console.log(`The size of app memory is: ${JSON.stringify(data)}`);
+    console.info(`The size of app memory is: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
-      console.error(`error: ${JSON.stringify(error)}`);
+    console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -178,11 +178,11 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
   import appManager from '@ohos.application.appManager';
 
   appManager.getAppMemorySize((error, data) => {
-      if (error && error.code !== 0) {
-          console.error(`getAppMemorySize fail, error: ${JSON.stringify(error)}`);
-      } else {
-          console.log(`The size of app memory is: ${JSON.stringify(data)}`);
-      }
+    if (error && error.code !== 0) {
+      console.error(`getAppMemorySize fail, error: ${JSON.stringify(error)}`);
+    } else {
+      console.info(`The size of app memory is: ${JSON.stringify(data)}`);
+    }
   });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
@@ -210,9 +210,9 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
   import { BusinessError } from '@ohos.base';
 
   appManager.getProcessRunningInfos().then((data) => {
-      console.log(`The process running infos is: ${JSON.stringify(data)}`);
+    console.info(`The process running infos is: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
-      console.error(`error: ${JSON.stringify(error)}`);
+    console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -240,10 +240,10 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
   import appManager from '@ohos.application.appManager';
 
   appManager.getProcessRunningInfos((error, data) => {
-      if (error && error.code !== 0) {
-          console.error(`getProcessRunningInfos fail, error: ${JSON.stringify(error)}`);
-      } else {
-          console.log(`getProcessRunningInfos success, data: ${JSON.stringify(data)}`);
-      }
+    if (error && error.code !== 0) {
+      console.error(`getProcessRunningInfos fail, error: ${JSON.stringify(error)}`);
+    } else {
+      console.info(`getProcessRunningInfos success, data: ${JSON.stringify(data)}`);
+    }
   });
   ```

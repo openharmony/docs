@@ -164,7 +164,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         if (err) {
           console.error(`sendDialogResult error, errorCode: ${err.code}`);
         } else {
-          console.log(`sendDialogResult success`);
+          console.info(`sendDialogResult success`);
         }
       });
     } catch (err) {
@@ -234,7 +234,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     try {
       dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow)
         .then((data) => {
-          console.log(`sendDialogResult success, pid: ${data}`);
+          console.info(`sendDialogResult success, pid: ${data}`);
         }, (err: BusinessError) => {
           console.error(`sendDialogResult error, errorCode: ${err.code}`);
         });

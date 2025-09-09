@@ -75,14 +75,14 @@ let callbackId: number;
 
 export default class MyAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate');
+    console.info('MyAbility onCreate');
     let environmentCallback: EnvironmentCallback  =  {
       onConfigurationUpdated(config){
-        console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
+        console.info(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
       },
 
       onMemoryLevel(level){
-        console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
+        console.info(`onMemoryLevel level: ${JSON.stringify(level)}`);
       }
     };
     // 1.获取applicationContext
@@ -93,7 +93,7 @@ export default class MyAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
+    console.info(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
   }
 
   onDestroy() {
@@ -103,7 +103,7 @@ export default class MyAbility extends UIAbility {
         if (error && error.code !== 0) {
           console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
         } else {
-          console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
+          console.info(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
         }
       });
     } catch (paramError) {

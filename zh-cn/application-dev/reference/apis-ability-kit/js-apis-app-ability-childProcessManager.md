@@ -92,7 +92,7 @@ import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
-    console.log("DemoProcess OnStart() called");
+    console.info('DemoProcess OnStart() called');
   }
 }
 ```
@@ -109,12 +109,12 @@ try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ets", childProcessManager.StartMode.SELF_FORK)
     .then((data) => {
-      console.log(`startChildProcess success, pid: ${data}`);
+      console.info(`startChildProcess success, pid: ${data}`);
     }, (err: BusinessError) => {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     })
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}, errorMsg: ${(err as BusinessError).message}.`);
 }
 ```
 
@@ -160,7 +160,7 @@ import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
-    console.log("DemoProcess OnStart() called");
+    console.info('DemoProcess OnStart() called');
   }
 }
 ```
@@ -177,13 +177,13 @@ try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ets", childProcessManager.StartMode.SELF_FORK, (err, data) => {
     if (data) {
-      console.log(`startChildProcess success, pid: ${data}`);
+      console.info(`startChildProcess success, pid: ${data}`);
     } else {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     }
   });
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}, errorMsg: ${(err as BusinessError).message}.`);
 }
 ```
 

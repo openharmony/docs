@@ -1,5 +1,12 @@
 # @ohos.application.abilityManager (AbilityManager)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 AbilityManager模块提供对Ability相关信息和状态信息进行获取、新增、修改等能力。
 
 > **说明：**
@@ -57,7 +64,7 @@ let config: Configuration = {
 };
 
 abilityManager.updateConfiguration(config, () => {
-    console.log('------------ updateConfiguration -----------');
+    console.info('------------ updateConfiguration -----------');
 });
 ```
 
@@ -97,7 +104,7 @@ let config: Configuration = {
 };
 
 abilityManager.updateConfiguration(config).then(() => {
-  console.log('updateConfiguration success');
+  console.info('updateConfiguration success');
 }).catch((err: BusinessError) => {
   console.error('updateConfiguration fail');
 });
@@ -127,8 +134,12 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 import abilityManager from '@ohos.application.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getAbilityRunningInfos((err: BusinessError, data) => { 
-    console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
+abilityManager.getAbilityRunningInfos((error: BusinessError, data) => {
+  if (error) {
+    console.error(`GetAbilityRunningInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
+    return;
+  }
+  console.info(`GetAbilityRunningInfos success, data: ${JSON.stringify(data)}.`);
 });
 ```
 
@@ -157,8 +168,8 @@ import abilityManager from '@ohos.application.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 abilityManager.getAbilityRunningInfos().then((data) => {
-    console.log(`getAbilityRunningInfos  data: ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`getAbilityRunningInfos err: ${JSON.stringify(err)}`);
+  console.info(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+  console.error(`getAbilityRunningInfos error code : ${error.code}, error msg: ${error.message}.`);
 });
 ```
