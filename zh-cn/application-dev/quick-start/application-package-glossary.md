@@ -58,7 +58,7 @@ API version 9开始新增的应用模型，提供UIAbility、ExtensionAbility两
 
 ### UIAbility
 
-Stage模型中的组件类型名，即UIAbility组件，包含UI，提供展示UI的能力，主要用于和用户交互。
+Stage模型中的组件类型名，即UIAbility组件，包含UI，提供展示UI的能力，主要用于和用户交互。如果UIAbility中skills标签下面的entities中包含"entity.system.home"，且actions中包含"ohos.want.action.home"，那么也称该UIAbility为入口UIAbility。
 
 <!--Del-->
 ## X
