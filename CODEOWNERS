@@ -19,7 +19,7 @@ zh-cn/release-notes/changelogs/ @ang-huawei
 zh-cn/release-notes/changelogs/**/changelogs-ability.md  @ang-huawei  @huipeizi
 
 [设备开发]
-zh-cn/device-dev/ @w_Machine_cc @zengyawen @fang-jinxu
+zh-cn/device-dev/ @zengyawen @fang-jinxu
 
 [入门-快速入门]
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
@@ -737,6 +737,8 @@ zh-cn/application-dev/device/device-location-geocoding.md @RayShih
 
 [开发-Media]
 zh-cn/application-dev/media/ @zengyawen
+zh-cn/application-dev/media/audio/ @w_Machine_cc
+zh-cn/application-dev/media/avsession/ @w_Machine_cc
 
 [开发-MDM Kit]
 zh-cn/application-dev/mdm/mdm-kit-intro.md @liuzuming @Brilliantry_Rui @lpw_work @lucifinil_han
@@ -1975,9 +1977,9 @@ zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @chen
 
 
 [API参考-Media]
-zh-cn/application-dev/reference/apis-audio-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-audio-kit/ @w_Machine_cc
 zh-cn/application-dev/reference/apis-avcodec-kit/ @zengyawen
-zh-cn/application-dev/reference/apis-avsession-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-avsession-kit/ @w_Machine_cc
 zh-cn/application-dev/reference/apis-camera-kit/ @zengyawen
 zh-cn/application-dev/reference/apis-drm-kit/ @zengyawen
 zh-cn/application-dev/reference/apis-image-kit/ @zengyawen
