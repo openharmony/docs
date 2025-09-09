@@ -35,7 +35,7 @@ Post Message数据相关的Native API结构体。在调用接口前建议通过[
 | [void (\*setType)(ArkWeb_WebMessagePtr webMessage, ArkWeb_WebMessageType type)](#settype)    | 设置消息类型。                     |
 | [ArkWeb_WebMessageType (\*getType)(ArkWeb_WebMessagePtr webMessage)](#gettype)               | 获取消息类型。                         |
 | [void (\*setData)(ArkWeb_WebMessagePtr webMessage, void* data, size_t dataLength)](#setdata) | 设置数据。 |
-| [void* (*getData)(ArkWeb_WebMessagePtr webMessage, size_t* dataLength)](#getdata)            | 获取数据。                                                                  |
+| [void* (\*getData)(ArkWeb_WebMessagePtr webMessage, size_t* dataLength)](#getdata)           | 获取数据。                         |
 
 ## 成员函数说明
 

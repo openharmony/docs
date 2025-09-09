@@ -28,7 +28,7 @@
 
 | 名称                                                                                                                      | 描述 |
 |-------------------------------------------------------------------------------------------------------------------------|----|
-| [ArkWeb_JavaScriptValuePtr (*createJavaScriptValue)(ArkWeb_JavaScriptValueType type, void* data, size_t dataLength)](#createjavascriptvalue) | 创建一个JavaScript值，用于返回给HTML。   |
+| [ArkWeb_JavaScriptValuePtr (\*createJavaScriptValue)(ArkWeb_JavaScriptValueType type, void* data, size_t dataLength)](#createjavascriptvalue) | 创建一个JavaScript值，用于返回给HTML。   |
 
 ## 成员函数说明
 
