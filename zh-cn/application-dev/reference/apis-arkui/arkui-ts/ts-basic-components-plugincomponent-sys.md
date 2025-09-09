@@ -290,7 +290,7 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 Plugin组件工具，用于使用方与提供方之间进行通信。需要根据模型类型选择对应代码，并拷贝至项目中。
 
-#### FA模型
+### FA模型
 ```js
 // 当前示例代码仅适用于FA模型
 import pluginComponentManager from '@ohos.pluginComponent'
@@ -369,7 +369,7 @@ export default {
 }
 ```
 
-#### Stage模型
+### Stage模型
 ```js
 // 当前示例代码仅适用于Stage模型
 import pluginComponentManager from '@ohos.pluginComponent'
