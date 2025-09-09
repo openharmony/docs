@@ -325,6 +325,8 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 | Hi3516解决方案-Linux（二进制）  | 6.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 235.1 MB |
 | RK3568标准系统解决方案（二进制）ROM包        | 6.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_rom.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_rom.tar.gz.sha256) | 	3.6 GB |
 | RK3568标准系统解决方案（二进制）XTS包        | 6.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_xts.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_xts.tar.gz.sha256) | 	4.1 GB |
+| 标准系统Public SDK包（Mac）             | 6.0.0.47 | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 6.0.0.47  | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
 | 标准系统Public SDK包（Windows/Linux）   | 6.0.0.47   | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 	2.3 GB |
 
 
