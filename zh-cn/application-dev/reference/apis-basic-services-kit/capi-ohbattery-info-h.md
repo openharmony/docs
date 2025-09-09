@@ -56,13 +56,13 @@ enum BatteryInfo_BatteryPluggedType
 
 **起始版本：** 13
 
-| 枚举项 | 值 | 描述 |
-| -- | -- | -- |
-| PLUGGED_TYPE_NONE | 0 | 电源已拔下。 |
-| PLUGGED_TYPE_AC | 1 | 电源是交流充电。 |
-| PLUGGED_TYPE_USB | 2 | 电源是USB DC充电。 |
-| PLUGGED_TYPE_WIRELESS | 3 | 电源为无线充电。 |
-| PLUGGED_TYPE_BUTT | 4 |预留枚举 |
+| 枚举项 | 描述 |
+| -- | -- |
+| PLUGGED_TYPE_NONE = 0 | 电源已拔下。 |
+| PLUGGED_TYPE_AC = 1 | 电源是交流充电。 |
+| PLUGGED_TYPE_USB = 2 | 电源是USB DC充电。 |
+| PLUGGED_TYPE_WIRELESS = 3 | 电源为无线充电。 |
+| PLUGGED_TYPE_BUTT = 4 |预留枚举 |
 
 
 ## 函数说明
