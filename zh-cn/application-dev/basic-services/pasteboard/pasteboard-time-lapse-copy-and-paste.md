@@ -248,7 +248,6 @@
        systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
        console.info('Set app share options success.');
    } catch (err) {
-       let error: BusinessError = err as BusinessError;
        //处理异常场景
    }
    ```
@@ -261,7 +260,6 @@
 	   systemPasteboard.removeAppShareOptions();
 	   console.info('Remove app share options success.');
    } catch (err) {
-	   let error: BusinessError = err as BusinessError;
        //处理异常场景
    }
    ```
