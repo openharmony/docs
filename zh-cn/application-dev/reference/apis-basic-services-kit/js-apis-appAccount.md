@@ -5425,7 +5425,7 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 
 **示例：**
 
-接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 ### setProperties<sup>9+</sup>
 
@@ -5444,7 +5444,7 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 
 **示例：**
 
-接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 ### checkAccountLabels<sup>9+</sup>
 
@@ -5464,7 +5464,7 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 
 **示例：**
 
-接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 ### checkAccountRemovable<sup>9+</sup>
 
@@ -5483,7 +5483,7 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 
 **示例：**
 
-接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 ### getRemoteObject<sup>9+</sup>
 
@@ -5501,7 +5501,7 @@ getRemoteObject(): rpc.RemoteObject;
 
 **示例：**
 
-接口需组合使用，请查看[getRemoteObject](#getremoteobject)中的示例。
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 **示例：**
 
