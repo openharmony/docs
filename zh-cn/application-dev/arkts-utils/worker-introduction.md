@@ -77,7 +77,7 @@ Worker线程文件需要放在"{moduleName}/src/main/ets/"目录层级之下，�
 // 导入模块
 import { worker } from '@kit.ArkTS';
 
-const worker: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
 ```
 
 **Stage模型下的文件路径规则**
