@@ -43,10 +43,10 @@ let connectWant: Want = {
 
 let connectOptions: common.ConnectOptions = {
   onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-    console.log(`onConnect elementName: ${elementName}`);
+    console.info(`onConnect elementName: ${elementName}`);
   },
   onDisconnect(elementName: bundleManager.ElementName) {
-    console.log(`onDisconnect elementName: ${elementName}`);
+    console.info(`onDisconnect elementName: ${elementName}`);
   },
   onFailed(code: number) {
     console.error(`onFailed code: ${code}`);
@@ -88,10 +88,10 @@ let connectWant: Want = {
 
 let connectOptions: common.ConnectOptions = {
   onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-    console.log(`onConnect elementName: ${elementName}`);
+    console.info(`onConnect elementName: ${elementName}`);
   },
   onDisconnect(elementName: bundleManager.ElementName) {
-    console.log(`onDisconnect elementName: ${elementName}`);
+    console.info(`onDisconnect elementName: ${elementName}`);
   },
   onFailed(code: number) {
     console.error(`onFailed code: ${code}`);
@@ -133,10 +133,10 @@ let connectWant: Want = {
 
 let connectOptions: common.ConnectOptions = {
   onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-    console.log(`onConnect elementName: ${elementName}`);
+    console.info(`onConnect elementName: ${elementName}`);
   },
   onDisconnect(elementName: bundleManager.ElementName) {
-    console.log(`onDisconnect elementName: ${elementName}`);
+    console.info(`onDisconnect elementName: ${elementName}`);
   },
   onFailed(code: number) {
     console.error(`onFailed code: ${code}`);

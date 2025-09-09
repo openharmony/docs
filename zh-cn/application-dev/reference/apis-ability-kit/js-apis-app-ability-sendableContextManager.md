@@ -107,7 +107,8 @@ export default class EntryAbility extends UIAbility {
 
     // convert and post
     try {
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(this.context);
       let object: SendableObject = new SendableObject(sendableContext);
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability post message');
       this.worker.postMessageWithSharedSendable(object);
@@ -289,7 +290,8 @@ export default class EntryAbility extends UIAbility {
     try {
       let context: common.Context = this.context as common.Context;
       let applicationContext = context.getApplicationContext();
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(applicationContext);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(applicationContext);
       let object: SendableObject = new SendableObject(sendableContext, 'ApplicationContext');
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability post message');
       this.worker.postMessageWithSharedSendable(object);
@@ -400,7 +402,8 @@ export default class EntryAbility extends UIAbility {
 
     // convert and post
     try {
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(this.context);
       let object: SendableObject = new SendableObject(sendableContext, 'AbilityStageContext');
       hilog.info(0x0000, 'testTag', '%{public}s', 'AbilityStage post message');
       this.worker.postMessageWithSharedSendable(object);
@@ -511,7 +514,8 @@ export default class EntryAbility extends UIAbility {
 
     // convert and post
     try {
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(this.context);
       let object: SendableObject = new SendableObject(sendableContext, 'EntryAbilityContext');
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability post message');
       this.worker.postMessageWithSharedSendable(object);

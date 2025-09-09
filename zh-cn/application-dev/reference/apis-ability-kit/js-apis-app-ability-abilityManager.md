@@ -53,7 +53,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise对象，返回UIAbility运行时的相关信息。开发者可在此进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -72,7 +72,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   abilityManager.getAbilityRunningInfos()
     .then((data: abilityManager.AbilityRunningInfo[]) => {
-      console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
+      console.info(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     })
     .catch((error: BusinessError) => {
       console.error(`getAbilityRunningInfos fail, error code: ${JSON.stringify(error.code)}, error msg: ${JSON.stringify(error.message)}`);

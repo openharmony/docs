@@ -227,7 +227,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -322,7 +322,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动UIAbility时必要的Want，包含待启动UIAbility的名称等信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，包含返回给拉起方的信息。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined，data被拉起的UIAbility退出时的返回结果；否则为错误对象。 |
 
 **错误码：**
 
@@ -415,7 +415,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动UIAbility时必要的Want，包含待启动UIAbility的名称等信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动UIAbility所携带的额外参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，包含返回给拉起方的信息。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined，data被拉起的UIAbility退出时的返回结果；否则为错误对象。 |
 
 **错误码：**
 
@@ -516,7 +516,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象，返回给拉起方的信息。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象，返回被拉起的UIAbility退出时的返回结果。 |
 
 **错误码：**
 
@@ -700,7 +700,7 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -872,7 +872,7 @@ terminateSelf(): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -984,7 +984,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -1199,7 +1199,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | -------- | -------- | -------- | -------- |
 | link | string | 是 | 指示要打开的标准格式URL。 |
 | options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | 否 | 打开URL的选项参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 否 | 回调函数，包含返回给拉起方的信息。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 否 | 回调函数。当通过App Linking或Deep Linking方式启动UIAbility成功，err为undefined，data为UIAbility被拉起并退出后的结果；否则为错误对象。 |
 
 **返回值：**
 
@@ -1301,7 +1301,7 @@ export default class ShareExtAbility extends ShareExtensionAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-启动一个UIServiceExtensionAbility。
+启动一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1320,7 +1320,7 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1387,7 +1387,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-连接到一个UIServiceExtensionAbility。
+连接到一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1407,7 +1407,7 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 
 | 类型                    | 说明                 |
 | ----------------------- | -------------------- |
-| Promise&lt;UIServiceProxy&gt; | 连接UIServiceExtensionAbility成功时，返回[UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)对象，借助该对象可以往UIServiceExtensionAbility发送数据。 |
+| Promise&lt;UIServiceProxy&gt; | Promise对象，连接UIServiceExtensionAbility成功时，返回[UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)对象，借助该对象可以往UIServiceExtensionAbility发送数据。 |
 
 **错误码：**
 
@@ -1477,7 +1477,7 @@ struct Page_UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-断开UIServiceExtensionAbility。
+断开UIServiceExtensionAbility。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1491,7 +1491,7 @@ disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
 | 类型                    | 说明                 |
 | ----------------------- | -------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 

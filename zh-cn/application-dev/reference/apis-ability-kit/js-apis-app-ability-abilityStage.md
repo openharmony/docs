@@ -53,7 +53,7 @@ import { AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    console.log('MyAbilityStage.onCreate is called');
+    console.info('MyAbilityStage.onCreate is called');
   }
 }
 ```
@@ -91,7 +91,7 @@ import { AbilityStage, Want } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onAcceptWant(want: Want) {
-    console.log('MyAbilityStage.onAcceptWant called');
+    console.info('MyAbilityStage.onAcceptWant called');
     return 'com.example.test';
   }
 }
@@ -134,7 +134,7 @@ import { AbilityStage, Want } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onNewProcessRequest(want: Want) {
-    console.log('MyAbilityStage.onNewProcessRequest called');
+    console.info('MyAbilityStage.onNewProcessRequest called');
     return 'com.example.test';
   }
 }
@@ -164,7 +164,7 @@ import { AbilityStage, Configuration } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onConfigurationUpdate(config: Configuration) {
-    console.log(`MyAbilityStage.onConfigurationUpdate, language: ${config.language}`);
+    console.info(`MyAbilityStage.onConfigurationUpdate, language: ${config.language}`);
   }
 }
 ```
@@ -194,7 +194,7 @@ import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-    console.log(`MyAbilityStage.onMemoryLevel, level: ${JSON.stringify(level)}`);
+    console.info(`MyAbilityStage.onMemoryLevel, level: ${JSON.stringify(level)}`);
   }
 }
 ```
@@ -216,7 +216,7 @@ import { AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onDestroy() {
-    console.log('MyAbilityStage.onDestroy is called');
+    console.info('MyAbilityStage.onDestroy is called');
   }
 }
 ```

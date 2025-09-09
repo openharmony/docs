@@ -58,7 +58,7 @@ import { UIAbility, Configuration } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
   onConfigurationUpdate(config: Configuration) {
-    console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
+    console.info(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 }
 ```
@@ -87,7 +87,7 @@ import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
   onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-    console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
+    console.info(`onMemoryLevel, level: ${JSON.stringify(level)}`);
   }
 }
 ```

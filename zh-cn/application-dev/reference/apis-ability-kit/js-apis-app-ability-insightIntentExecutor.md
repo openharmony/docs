@@ -72,7 +72,8 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   export default class IntentExecutorImpl extends InsightIntentExecutor {
-    onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): insightIntent.ExecuteResult {
+    onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>,
+      pageLoader: window.WindowStage): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
         hilog.warn(0x0000, 'testTag', 'Unsupported insight intent %{public}s', name);
@@ -126,7 +127,8 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 
   export default class IntentExecutorImpl extends InsightIntentExecutor {
     // 实现异步接口需要使用async/await语法糖，通过async声明该接口是一个异步函数。
-    async onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): Promise<insightIntent.ExecuteResult> {
+    async onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>,
+      pageLoader: window.WindowStage): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
         hilog.warn(0x0000, 'testTag', 'Unsupported insight intent %{public}s', name);
@@ -210,7 +212,8 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 
   export default class IntentExecutorImpl extends InsightIntentExecutor {
     // 实现异步接口需要使用async/await语法糖，通过async声明该接口是一个异步函数。
-    async onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
+    async onExecuteInUIAbilityBackgroundMode(name: string,
+      param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult = await executeInsightIntent(param);
       return result;
     }
@@ -250,7 +253,8 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   export default class IntentExecutorImpl extends InsightIntentExecutor {
-    onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession): insightIntent.ExecuteResult {
+    onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>,
+      pageLoader: UIExtensionContentSession): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
         hilog.warn(0x0000, 'testTag', 'Unsupported insight intent %{public}s', name);
@@ -297,7 +301,8 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
 
   export default class IntentExecutorImpl extends InsightIntentExecutor {
     // 实现异步接口需要使用async/await语法糖，通过async声明该接口是一个异步函数。
-    async onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession): Promise<insightIntent.ExecuteResult> {
+    async onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>,
+      pageLoader: UIExtensionContentSession): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
         hilog.warn(0x0000, 'testTag', 'Unsupported insight intent %{public}s', name);
@@ -393,7 +398,8 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
 
   export default class IntentExecutorImpl extends InsightIntentExecutor {
     // 实现异步接口需要使用async/await语法糖，通过async声明该接口是一个异步函数。
-    async onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
+    async onExecuteInServiceExtensionAbility(name: string,
+      param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
         hilog.warn(0x0000, 'testTag', 'Unsupported insight intent %{public}s', name);

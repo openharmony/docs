@@ -35,7 +35,7 @@ appManager.getRunningProcessInformation((error, data) => {
   if (error) {
     console.error(`getRunningProcessInformation fail, error: ${JSON.stringify(error)}`);
   } else {
-    console.log(`getRunningProcessInformation success, data: ${JSON.stringify(data)}`);
+    console.info(`getRunningProcessInformation success, data: ${JSON.stringify(data)}`);
   }
 });
 ```
