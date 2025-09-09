@@ -3977,6 +3977,7 @@
       - Data Protection Kit（数据保护服务）<!--data-protection-api-->
         - ArkTS API<!--data-protection-arkts-->
           - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-protection-kit/js-apis-dlppermission.md)
+          - [@ohos.security.identifySensitiveContent (识别敏感内容)](reference/apis-data-protection-kit/js-apis-identifySensitiveContent.md)
           <!--Del-->
           - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-protection-kit/js-apis-dlppermission-sys.md)
           <!--DelEnd-->
