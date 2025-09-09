@@ -16,8 +16,8 @@ import { pointer } from '@kit.InputKit';
 
 | 接口名称                                                       | 描述                                                         |
 | ------------------------------------------ | ------------------------------------------------------- |
-| isPointerVisible(callback: AsyncCallback\<boolean>): void | 获取鼠标指针显示或隐藏状态。                                 |
-| setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void | 设置鼠标指针显示或隐藏状态，该接口会影响全局鼠标光标的显示状态。 |
+| isPointerVisible(callback: AsyncCallback\<boolean>): void | 获取鼠标光标显示或隐藏状态。                                 |
+| setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void | 设置鼠标光标显示或隐藏状态，该接口会影响全局鼠标光标的显示状态。 |
 | setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback\<void>): void | 设置鼠标光标样式，该接口会影响指定窗口鼠标光标样式。         |
 | getPointerStyle(windowId: number, callback: AsyncCallback\<PointerStyle>): void | 查询鼠标光标样式。                                           |
 
