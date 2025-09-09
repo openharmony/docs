@@ -81,15 +81,15 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <!-- '/common/myDream.mp4'需要替换为开发者所需的视频资源文件 -->
-  <video id='videoId' src='/common/myDream.mp4' muted='false' autoplay='false'
-         controls='true' onprepared='preparedCallback' onstart='startCallback'
-         onpause='pauseCallback' onfinish='finishCallback' onerror='errorCallback'
-         onseeking='seekingCallback' onseeked='seekedCallback' 
-         ontimeupdate='timeupdateCallback'
-         style="object-fit:fill; width:80%; height:400px;"
-         onclick="change_start_pause">
-   </video>
+<!-- '/common/myDream.mp4'需要替换为开发者所需的视频资源文件 -->
+    <video id='videoId' src='/common/myDream.mp4' muted='false' autoplay='false'
+           controls='true' onprepared='preparedCallback' onstart='startCallback'
+           onpause='pauseCallback' onfinish='finishCallback' onerror='errorCallback'
+           onseeking='seekingCallback' onseeked='seekedCallback'
+           ontimeupdate='timeupdateCallback'
+           style="object-fit: fill; width: 80%; height: 400px;"
+           onclick="change_start_pause">
+    </video>
 </div>
 ```
 
@@ -104,30 +104,45 @@
 ```js
 // xxx.js
 export default {
-  data: {
-    event:'',
-    seekingtime:'',
-    timeupdatetime:'',
-    seekedtime:'',
-    isStart: true,
-    duration: '',
-  },
-  preparedCallback:function(e){ this.event = '视频连接成功'; this.duration = e.duration;},
-  startCallback:function(){ this.event = '视频开始播放';},
-  pauseCallback:function(){ this.event = '视频暂停播放'; },
-  finishCallback:function(){ this.event = '视频播放结束';},
-  errorCallback:function(){ this.event = '视频播放错误';},
-  seekingCallback:function(e){ this.seekingtime = e.currenttime; },
-  timeupdateCallback:function(e){ this.timeupdatetime = e.currenttime;},
-  change_start_pause: function() {
-    if(this.isStart) {
-      this.$element('videoId').pause();
-      this.isStart = false;
-    } else {
-      this.$element('videoId').start();
-      this.isStart = true; 
-    }
-  },
+    data: {
+        event: '',
+        seekingTime: '',
+        timeupdateTime: '',
+        seekedTime: '',
+        isStart: true,
+        duration: '',
+    },
+    preparedCallback: function (e) {
+        this.event = '视频连接成功';
+        this.duration = e.duration;
+    },
+    startCallback: function () {
+        this.event = '视频开始播放';
+    },
+    pauseCallback: function () {
+        this.event = '视频暂停播放';
+    },
+    finishCallback: function () {
+        this.event = '视频播放结束';
+    },
+    errorCallback: function () {
+        this.event = '视频播放错误';
+    },
+    seekingCallback: function (e) {
+        this.seekingTime = e.currenttime;
+    },
+    timeupdateCallback: function (e) {
+        this.timeupdateTime = e.currenttime;
+    },
+    change_start_pause: function () {
+        if (this.isStart) {
+            this.$element('videoId').pause();
+            this.isStart = false;
+        } else {
+            this.$element('videoId').start();
+            this.isStart = true;
+        }
+    },
 }
 ```
 
