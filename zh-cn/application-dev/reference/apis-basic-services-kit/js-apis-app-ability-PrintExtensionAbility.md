@@ -19,7 +19,9 @@
 import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
-## PrintExtensionAbility.onCreate
+## PrintExtensionAbility
+
+### onCreate
 
 onCreate(want: Want): void
 
@@ -30,7 +32,7 @@ onCreate(want: Want): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| want | Want | 是 | 表示调用打印页面需要参数 |
+| want | [Want](../apis-ability-kit/js-apis-application-want.md#want) | 是 | 表示调用打印页面需要参数。 |
 
 **示例：**
 
@@ -46,7 +48,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onStartDiscoverPrinter
+### onStartDiscoverPrinter
 
 onStartDiscoverPrinter(): void
 
@@ -67,7 +69,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onStopDiscoverPrinter
+### onStopDiscoverPrinter
 
 onStopDiscoverPrinter(): void
 
@@ -88,7 +90,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onConnectPrinter
+### onConnectPrinter
 
 onConnectPrinter(printerId: number): void
 
@@ -99,7 +101,7 @@ onConnectPrinter(printerId: number): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | number | 是 | 表示打印机ID |
+| printerId | number | 是 | 表示打印机ID。 |
 
 **示例：**
 
@@ -114,7 +116,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onDisconnectPrinter
+### onDisconnectPrinter
 
 onDisconnectPrinter(printerId: number): void
 
@@ -125,7 +127,7 @@ onDisconnectPrinter(printerId: number): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | number | 是 | 表示打印机ID |
+| printerId | number | 是 | 表示打印机ID。 |
 
 **示例：**
 
@@ -140,7 +142,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
