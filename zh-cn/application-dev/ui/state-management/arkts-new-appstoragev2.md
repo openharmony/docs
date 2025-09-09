@@ -27,20 +27,7 @@ AppStorageV2支持应用的[主线程](../../application-models/thread-model-sta
 
 ## 使用说明
 
-### connect：创建或获取存储的数据
-
-```JavaScript
-static connect<T extends object>(
-    type: TypeConstructorWithArgs<T>,
-    keyOrDefaultCreator?: string | StorageDefaultCreator<T>,
-    defaultCreator?: StorageDefaultCreator<T> 
-): T | undefined;
-```
-
-| connect      | 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br>keyOrDefaultCreator：指定的key，或者是默认数据的构造器；</br>defaultCreator：默认数据的构造器。                                          |
-| 返回值       | 创建或获取数据成功时，返回数据；否则返回undefined。 |
+- connect：创建或获取存储的数据。
 
 >**说明：**
 >
@@ -54,31 +41,15 @@ static connect<T extends object>(
 >
 >5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 
-### remove：删除指定key的存储数据
-
-```JavaScript
-static remove<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
-```
-
-| remove       | 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | keyOrType：需要删除的key；如果指定的是type类型，删除的key为type的name。                                          |
-| 返回值       | 无。 |
+- remove：删除指定key的存储数据。
 
 >**说明：**
 >
 >删除AppStorageV2中不存在的key会报警告。
 
-### keys：返回所有AppStorageV2中的key
+- keys：返回所有AppStorageV2中的key。
 
-```JavaScript
-static keys(): Array<string>;
-```
-
-| keys         | 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | 无。                                         |
-| 返回值       | 所有AppStorageV2中的key。 |
+以上接口详细描述请参考[状态管理API指南](../../reference/apis-arkui/js-apis-StateManagement.md#appstoragev2)。
 
 
 ## 使用限制
@@ -91,7 +62,7 @@ static keys(): Array<string>;
 
 4、不支持非built-in类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
-5、不支持存储基本类型，如string、number、boolean等。注意：不支持存储基本类型意味着[connect](#connect创建或获取存储的数据)接口传入的类型不能是基本类型，但connect传入的class中可以包含基本类型。
+5、不支持存储基本类型，如string、number、boolean等。注意：不支持存储基本类型意味着connect接口传入的类型不能是基本类型，但connect传入的class中可以包含基本类型。
 
 ## 使用场景
 
