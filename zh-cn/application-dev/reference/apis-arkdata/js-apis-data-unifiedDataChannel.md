@@ -1463,7 +1463,7 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 | 参数名      | 类型                         | 必填 | 说明                           |
 |----------|----------------------------|----|------------------------------|
-| options  | [Options](#options)        | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。        |
+| options  | [Options](#options)        | 是  | 配置项参数，参数中intention字段必填，且不支持DRAG，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。        |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                        |
 | callback | AsyncCallback&lt;string&gt; | 是  | 回调函数，返回写入UDMF的数据的唯一标识符key的值。 |
 
@@ -1520,7 +1520,7 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 | 参数名     | 类型                          | 必填 | 说明                    |
 |---------|-----------------------------|----|-----------------------|
-| options | [Options](#options)         | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中intention字段必填，且不支持DRAG，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。                 |
 
 **返回值：**
@@ -1580,7 +1580,7 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 | 参数名      | 类型                          | 必填 | 说明                                  |
 |----------|-----------------------------|----|-------------------------------------|
-| options  | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。                     |
+| options  | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；intention参数仅支持DATA_HUB；其他字段是否填写均不影响接口的使用。                     |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                               |
 | callback | AsyncCallback&lt;void&gt;   | 是  | 回调函数。当更新数据成功，err为undefined，否则为错误对象。 |
 
@@ -1657,7 +1657,7 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 | 参数名     | 类型                          | 必填 | 说明              |
 |---------|-----------------------------|----|-----------------|
-| options | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；intention参数仅支持DATA_HUB；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
 
 **返回值：**
@@ -1737,7 +1737,7 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                               |
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                    |
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，且intention参数不支持DRAG，根据传入的参数做相应的校验以返回不同的值。                                                                                                                   |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据；<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
 
 **错误码：**
@@ -1795,7 +1795,7 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | 参数名     | 类型                  | 必填 | 说明                                            |
 |---------|---------------------|----|-----------------------------------------------|
-| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，且intention参数不支持DRAG，根据传入的参数做相应的校验以返回不同的值。 |
 
 **返回值：**
 
@@ -1856,7 +1856,7 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                                                     |
 |----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，且intention参数仅支持DATA_HUB，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回删除的所有数据。<br>如果options中填入的是key，则删除key对应的数据并返回该数据。<br>如果options中填入的是intention，则删除intention下所有数据并返回删除的数据。<br>如intention和key均填写了，取两者数据的交集进行删除，并返回删除的数据，与options只填入key的结果一致；如没有交集报错。 |
 
 **错误码：**
@@ -1914,7 +1914,7 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | 参数名     | 类型                  | 必填 | 说明     |
 |---------|---------------------|----|--------|
-| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，且intention参数仅支持DATA_HUB，根据传入的参数做相应的校验以返回不同的值。 |
 
 **返回值：**
 
