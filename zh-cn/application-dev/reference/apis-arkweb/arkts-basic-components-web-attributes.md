@@ -1496,6 +1496,8 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 >
 > - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
+>
+> - javaScriptOnDocumentStart在[onControllerAttached](./arkts-basic-components-web-events.md#oncontrollerattached10)之后执行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
