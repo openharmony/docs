@@ -1,5 +1,12 @@
 # libc++
 
+<!--Kit: Standard Libraries-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @eric96-->
+<!--Designer: @liuyingying19huawei-->
+<!--Tester: @hwu-mc-->
+<!--Adviser: @fang-jinxu-->
+
 OpenHarmony uses [libc++](https://libcxx.llvm.org/) of the open-source LLVM project as its C++ runtime library.
 
 ## libc++ Version
@@ -12,7 +19,7 @@ OpenHarmony uses [libc++](https://libcxx.llvm.org/) of the open-source LLVM proj
 
 ## Support for C++ Capabilities
 
-C++11 and C++14 are fully supported. C++17 and C++20 are being improved. You can set the C++ version as required. For details, see [How do I change the C++ version supported by a project?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-9-V5). For details about the standards supported, see the corresponding Release Notes at [https://libcxx.llvm.org/](https://libcxx.llvm.org/).
+C++11 and C++14 are fully supported, and some features of C++17 and C++20 are available. You can specify the C++ standard version by [changing the C++ version in project settings](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-ndk-9). Setting the C++ version to C++17 or C++20 and using unsupported features will result in compilation errors. For details about the standards supported, see the corresponding Release Notes at [https://libcxx.llvm.org/](https://libcxx.llvm.org/).
 
 
 ## Selecting libc++ in CMake
@@ -30,7 +37,7 @@ In OpenHarmony, both the system library and the application native library use l
 
    The two libc++ libraries use different namespaces. **libc++_shared.so** uses **__n1** as the namespace for C++ symbols, and **libc++.so** uses **__h** for C++ symbols.
 
-   > **NOTE**<br>The system library cannot use the libc++ of the application native library, and vice versa. Currently, the Native APIs must be C interfaces only. This also isolates the two libc runtime environments.
+   Note: The system library cannot use the libc++ of the application native library, and vice versa. Currently, the Native APIs must be C interfaces only. This also isolates the two libc runtime environments.
 
 ## Precautions
 
