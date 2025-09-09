@@ -240,6 +240,11 @@ setFrameRate(minFps: number, maxFps: number): void
 
 > **说明：**
 > 仅在[PhotoSession](arkts-apis-camera-PhotoSession.md)或[VideoSession](arkts-apis-camera-VideoSession.md)模式下支持。
+>
+> 添加多条流时，设置某条流的帧率需要检查其他流帧率：
+> (1) 其他流未设置过可按照上报范围设置。
+> (2) 某条流设置过固定帧率，当前流和前述流帧率需要形成倍数关系，且必须为固定帧率。
+> (3) 某条流设置过范围帧率，当前流和前述流需设置相同帧率范围。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
