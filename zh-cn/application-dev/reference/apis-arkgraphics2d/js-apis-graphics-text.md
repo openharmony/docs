@@ -551,14 +551,14 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 ## LineHeightStyle<sup>21+</sup>
 
-行高缩放基数样式枚举。
+行高缩放基数枚举。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称   | 值 | 说明      |
 | ------ | - | --------- |
-| FONT_SIZE | 0 | 以字号作为缩放基数。 |
-| FONT_HEIGHT | 1 | 以塑形后字形高度作为缩放基数。 |
+| FONT_SIZE | 0 | 以字号大小作为缩放基数。 |
+| FONT_HEIGHT | 1 | 以字形高度作为缩放基数。 |
 
 ## TextStyle
 
@@ -589,9 +589,9 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 否 | 是 | 文本阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 否 | 是 | 文本矩形框样式。|
 | badgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | 否   | 是   | 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。|
-| lineHeightMaximum<sup>21+</sup>   | double | 否   | 是   | 开启行高上限。若同时开启行高缩放，当heightScale大于0时行高上限才生效。取值范围为正数浮点数，默认值为Number.MAX_VALUE。 |
-| lineHeightMinimum<sup>21+</sup>   | double | 否   | 是   | 开启行高下限。若同时开启行高缩放，当heightScale大于0时行高下限才生效。取值范围为非负浮点数，默认值为0。 |
-| lineHeightStyle<sup>21+</sup>   | [LineHeightStyle](#lineheightstyle21) | 否   | 是   | 行高缩放基数样式。FONT_SIZE表示以字号值为基数进行行高缩放，最终行高为fontSize * heightScale。FONT_HEIGHT表示以该字号下实际文本高度为基数进行行高缩放，最终行高为塑形后字形高度 * heightScale。默认缩放基数为FONT_SIZE。 |
+| lineHeightMaximum<sup>21+</sup> | double | 否   | 是   | 开启行高上限。若同时开启行高缩放，行高上限在heightScale大于0时生效。取值为正数浮点数，默认值为 Number.MAX_VALUE。 |
+| lineHeightMinimum<sup>21+</sup> | double | 否 | 是 | 开启行高下限。若同时开启行高缩放，行高下限在heightScale大于0时生效。取值范围为非负浮点数，默认值为0。 |
+| lineHeightStyle<sup>21+</sup> | [LineHeightStyle](#lineheightstyle21) | 否 | 是 | 行高缩放基数样式。FONT_SIZE 表示以字号值为基数进行行高缩放，最终行高为 fontSize * heightScale。FONT_HEIGHT 表示以该字号下实际文本高度为基数进行行高缩放，最终行高为塑形后字形高度 * heightScale。默认为 FONT_SIZE。 |
 
 ## StrutStyle
 
@@ -938,7 +938,7 @@ struct Index {
 | trailingSpaceOptimized<sup>20+</sup>   | boolean | 否   | 是   | 表示文本排版时行尾空格是否参与对齐计算。true表示行尾空格不参与计算，false表示行尾空格参与计算，默认值为false。|
 | autoSpace<sup>20+</sup>   | boolean | 否   | 是   | 设置文本排版时是否使能自动间距。true表示使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。false表示不使能自动间距，默认值为false。|
 | verticalAlign<sup>20+</sup>   | [TextVerticalAlign](#textverticalalign20) | 否   | 是   | 文本垂直对齐方式，开启行高缩放（即设置[TextStyle](#textstyle)的heightScale）或行内不同字号（即设置[TextStyle](#textstyle)的fontSize）文本混排时生效。若行内有上下标文本（即设置[TextStyle](#textstyle)的badgeType属性文本），上下标文本将与普通文本一样参与垂直对齐。 |
-| lineSpacing<sup>21+</sup>   | double | 否   | 是   | 行间距，默认值为0。lineSpacing不受lineHeightMaximum和lineHeightMinimum限制。尾行默认添加行间距，若不需要尾行行间距，可通过设置textHeightBehavior为DISABLE_ALL或DISABLE_LAST_ASCENT关闭尾行行间距。 |
+| lineSpacing<sup>21+</sup>   | double | 否   | 是   | 行间距，默认值为0。lineSpacing不受lineHeightMaximum和lineHeightMinimum限制。尾行默认添加行间距，若不需要尾行行间距，可通过设置textHeightBehavior为DISABLE_ALL或DISABLE_LAST_ASCENT禁用尾行行间距。 |
 
 ## PlaceholderAlignment
 
