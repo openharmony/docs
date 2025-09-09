@@ -186,7 +186,7 @@ import { Rect } from '@kit.AccessibilityKit';
 let rect: Rect;
 ```
 
-## AccessibilityExtensionContext
+## AccessibilityExtensionContext<sup>10+</sup>
 
 type AccessibilityExtensionContext = _AccessibilityExtensionContext.default
 
