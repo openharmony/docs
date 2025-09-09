@@ -4811,7 +4811,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { webview } from '@kit.ArkWeb';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
@@ -4854,7 +4854,7 @@ static clearPrefetchedResource(cacheKeyList: Array\<string>): void
 **示例：**
 
 ```ts
-// xxx.ets
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
