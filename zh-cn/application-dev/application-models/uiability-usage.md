@@ -1,5 +1,11 @@
 # UIAbility组件基本用法
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wendel-->
+<!--Designer: @wendel-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件的基本用法包括：指定UIAbility的启动页面以及获取UIAbility的上下文[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。
 
@@ -196,24 +202,24 @@ export default class EntryAbility extends UIAbility {
     export default class UIAbilityB extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         // 调用方无需手动传递parameters参数，系统会自动向Want对象中传递调用方信息。
-        console.log(`onCreate, callerPid: ${want.parameters?.['ohos.aafwk.param.callerPid']}.`);
-        console.log(`onCreate, callerBundleName: ${want.parameters?.['ohos.aafwk.param.callerBundleName']}.`);
-        console.log(`onCreate, callerAbilityName: ${want.parameters?.['ohos.aafwk.param.callerAbilityName']}.`);
+        console.info(`onCreate, callerPid: ${want.parameters?.['ohos.aafwk.param.callerPid']}.`);
+        console.info(`onCreate, callerBundleName: ${want.parameters?.['ohos.aafwk.param.callerBundleName']}.`);
+        console.info(`onCreate, callerAbilityName: ${want.parameters?.['ohos.aafwk.param.callerAbilityName']}.`);
       }
 
       onDestroy(): void {
-        console.log(`UIAbilityB onDestroy.`);
+        console.info(`UIAbilityB onDestroy.`);
       }
 
       onWindowStageCreate(windowStage: window.WindowStage): void {
-        console.log(`Ability onWindowStageCreate.`);
+        console.info(`Ability onWindowStageCreate.`);
 
         windowStage.loadContent('pages/Index', (err) => {
           if (err.code) {
             console.error(`Failed to load the content, error code: ${err.code}, error msg: ${err.message}.`);
             return;
           }
-          console.log(`Succeeded in loading the content.`);
+          console.info(`Succeeded in loading the content.`);
         });
       }
     }

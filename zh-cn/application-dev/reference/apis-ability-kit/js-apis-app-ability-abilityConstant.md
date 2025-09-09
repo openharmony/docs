@@ -72,7 +72,7 @@ import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
-      console.log('The ability has been started by the way of startAbility.');
+      console.info('The ability has been started by the way of startAbility.');
     }
   }
 }
@@ -106,10 +106,10 @@ import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
-      console.log('The ability has exit last because the ability was not responding.');
+      console.info('The ability has exit last because the ability was not responding.');
     }
     if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
-      console.log('The ability has exit last because the rss control，the lastExitReason is '+  launchParam.lastExitReason + ', the lastExitMessage is ' + launchParam.lastExitMessage);
+      console.info(`The ability has exit last because the rss control，the lastExitReason is ${launchParam.lastExitReason}, the lastExitMessage is ${launchParam.lastExitMessage}.`);
     }
   }
 }
@@ -141,15 +141,15 @@ import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.lastExitDetailInfo) {
-      console.log('pid: ' + launchParam.lastExitDetailInfo.pid +
-        '\n processName: ' + launchParam.lastExitDetailInfo.processName +
-        '\n uid: ' + launchParam.lastExitDetailInfo.uid +
-        '\n exitSubReason: ' + launchParam.lastExitDetailInfo.exitSubReason +
-        '\n exitMsg: ' + launchParam.lastExitDetailInfo.exitMsg +
-        '\n rss: ' + launchParam.lastExitDetailInfo.rss +
-        '\n pss: ' + launchParam.lastExitDetailInfo.pss +
-        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp +
-        '\n processState: ' + launchParam.lastExitDetailInfo.processState
+      console.info(`pid: ${launchParam.lastExitDetailInfo.pid}
+      \n processName: ${launchParam.lastExitDetailInfo.processName}
+      \n uid: ${launchParam.lastExitDetailInfo.uid}
+      \n exitSubReason: ${launchParam.lastExitDetailInfo.exitSubReason}
+      \n exitMsg: ${launchParam.lastExitDetailInfo.exitMsg}
+      \n rss: ${launchParam.lastExitDetailInfo.rss}
+      \n pss: ${launchParam.lastExitDetailInfo.pss}
+      \n timestamp: ${launchParam.lastExitDetailInfo.timestamp}
+      \n processState: ${launchParam.lastExitDetailInfo.processState}.`
       );
     }
   }
@@ -211,7 +211,7 @@ import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onMemoryLevel(level: AbilityConstant.MemoryLevel) {
     if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
-      console.log('The memory of device is critical, please release some memory.');
+      console.info('The memory of device is critical, please release some memory.');
     }
   }
 }
@@ -247,7 +247,7 @@ let option: StartOptions = {
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.startAbility(want, option).then(() => {
-      console.log('Succeed to start ability.');
+      console.info('Succeed to start ability.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
@@ -305,7 +305,7 @@ import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     if (reason === AbilityConstant.StateType.CONTINUATION) {
-      console.log('Save the ability data when the ability continuation.');
+      console.info('Save the ability data when the ability continuation.');
     }
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }

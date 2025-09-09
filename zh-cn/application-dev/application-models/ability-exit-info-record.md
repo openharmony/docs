@@ -35,11 +35,11 @@
     const MAX_PSS_THRESHOLD: number = 100000;
 
     function doSomething() {
-      console.log('do Something');
+      console.info('do Something');
     }
 
     function doAnotherThing() {
-      console.log('do Another Thing');
+      console.info('do Another Thing');
     }
 
     class MyAbility extends UIAbility {
@@ -79,8 +79,7 @@
         doAnotherThing();
     } else if (reason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
         // Ability上次因rss管控而退出，此处可实现处理逻辑，最简单的就是打印出来。
-        console.log('The ability has exit last because the rss control，the lastExitReason is '+  reason + 
-        ', subReason is ' + subReason + ', lastExitMessage is ' + exitMsg);
+        console.info(`The ability has exit last because the rss control，the lastExitReason is ${reason}, subReason is ${subReason}, lastExitMessage is ${exitMsg}.`);
     }
     ```
 
@@ -89,12 +88,12 @@
     ```ts
     if (rss > MAX_RSS_THRESHOLD || pss > MAX_PSS_THRESHOLD) {
         // RSS或PSS值过大，说明内存使用率接近或达到上限，打印告警，或者增加处理逻辑。
-        console.warn('Process ' + processName + '(' + pid + ') memory usage approaches or reaches the upper limit.');
+        console.warn(`Process ${processName}(${pid}) memory usage approaches or reaches the upper limit.`);
     }
     ```
 
     - 根据异常退出时刻的时间戳，明确异常发生的时刻，便于问题定位。
 
     ```ts
-    console.log('App ' + uid + ' terminated at ' + timestamp);
+    console.info(`App ${uid} terminated at ${timestamp}.`);
     ```

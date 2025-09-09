@@ -526,7 +526,7 @@ export default class LifecycleAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log('Register applicationStateChangeCallback');
+    console.info('Register applicationStateChangeCallback');
   }
 }
 ```
