@@ -1415,7 +1415,7 @@ pasteStart(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
