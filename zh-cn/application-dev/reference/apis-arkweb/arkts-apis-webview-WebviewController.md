@@ -4747,7 +4747,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 **示例：**
 
 ```ts
-// EntryAbility.ets
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
