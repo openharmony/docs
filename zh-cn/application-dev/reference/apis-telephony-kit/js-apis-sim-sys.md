@@ -3440,8 +3440,6 @@ async getAllSimAccountInfoList(): Promise<ResponseData<sim.IccAccountInfo[] | nu
   }
 ```
 
-
-
 ## LockType<sup>8+</sup>
 
 锁类型。
