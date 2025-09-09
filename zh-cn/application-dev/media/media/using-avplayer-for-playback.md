@@ -215,7 +215,7 @@ export class AVPlayerDemo {
         return -1;
       }
     };
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
