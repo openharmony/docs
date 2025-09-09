@@ -1,5 +1,12 @@
 # @ohos.net.policy (网络策略管理)（系统接口）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 网络策略管理通过对用户使用数据流量进行控制管理，采用防火墙技术实现网络策略的管理。
 
 > **说明：**
