@@ -27,7 +27,7 @@
 | typedef struct ArkUI_AccessibilityProvider [ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider) | 第三方操作provider，承载回调函数实现。                         |
 | typedef struct [ArkUI_AccessibilityProviderCallbacks](arkui_native_interface_accessibility.md#arkui_accessibilityprovidercallbacks) | 第三方操作provider回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。 |
 | typedef struct [ArkUI_AccessibilityProviderCallbacksWithInstance](arkui_native_interface_accessibility.md#arkui_accessibilityprovidercallbackswithinstance) | 适配多实例场景第三方操作provider回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance注册到系统侧。 |
-| typedef struct ArkUI_AccessibilityActionArguments [ArkUI_AccessibilityActionArguments](arkui_native_interface_accessibility.md#arkui_accessibilityactionarguments) | Action附加字段，对需要执行的Action进行处理的进一步说明。     |
+| typedef struct ArkUI_AccessibilityActionArguments [ArkUI_AccessibilityActionArguments](arkui_native_interface_accessibility.md#arkui_accessibilityactionarguments) | 用于设置无障碍操作的具体参数。     |
 | typedef struct [ArkUI_AccessibleRect](arkui_native_interface_accessibility.md#arkui_accessiblerect) | 节点所在坐标位置。                                           |
 | typedef struct [ArkUI_AccessibleRangeInfo](arkui_native_interface_accessibility.md#arkui_accessiblerangeinfo) | 用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。 |
 | typedef struct [ArkUI_AccessibleGridInfo](arkui_native_interface_accessibility.md#arkui_accessiblegridinfo) | 用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。 |
