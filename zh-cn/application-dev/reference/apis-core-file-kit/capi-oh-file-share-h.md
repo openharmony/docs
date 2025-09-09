@@ -10,7 +10,7 @@
 
 提供基于URI的文件及目录授予持久化权限、权限激活、权限查询等方法。
 
-**引用文件：** <filemanagement/environment/oh_file_share.h>
+**引用文件：** <filemanagement/fileshare/oh_file_share.h>
 
 **库：** libohfileshare.so
 
