@@ -98,12 +98,15 @@
    export default class EntryAbility extends UIAbility {
      async onWindowStageCreate(windowStage: window.WindowStage): Promise<void> {
        let store: relationalStore.RdbStore | null = null;
-
-       store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
-       await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
-       // 将已创建的表设置分布式表。
-       await store.setDistributedTables(['EMPLOYEE']);
-       // 进行数据的相关操作
+       try {
+         store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+         await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+         // 将已创建的表设置分布式表。
+         await store.setDistributedTables(['EMPLOYEE']);
+         // 进行数据的相关操作
+       } catch (err) {
+         console.error(`Failed to set distributed tables. code: ${err.code}, message: ${err.message}`);
+       }
      }
    }
    ```
@@ -213,7 +216,7 @@
        try {
          // 调用同步数据的接口拉取其他设备数据变化至当前设备
          const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PULL, predicates);
-         console.info('Push data success.');
+         console.info('Pull data success.');
          // 获取同步结果
          for (let i = 0; i < result.length; i++) {
            const deviceId = result[i][0];
@@ -225,7 +228,7 @@
            }
          }
        } catch (e) {
-         console.error('Push data failed, code: ' + e.code + ', message: ' + e.message);
+         console.error('Pull data failed, code: ' + e.code + ', message: ' + e.message);
        }
      }
    }

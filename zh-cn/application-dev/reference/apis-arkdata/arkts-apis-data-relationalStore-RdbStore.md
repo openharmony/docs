@@ -4017,7 +4017,11 @@ let deviceId: string | undefined = undefined;
 try {
   dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
-  deviceId = devices[0].networkId;
+  if (!devices || devices.length === 0) {
+    console.error("No available devices found");
+  } else {
+    deviceId = devices[0].networkId;
+  }
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
@@ -4782,7 +4786,8 @@ try {
     'CODES': value4
   };
   if (store != undefined) {
-    (store as relationalStore.RdbStore).insert('test', valueBucket);
+    const rowId = await store.insert('EMPLOYEE', valueBucket);
+    console.info(`Insert success, rowId is: ${rowId}`);
   }
 } catch (err) {
   console.error(`insert fail, code:${err.code}, message: ${err.message}`);

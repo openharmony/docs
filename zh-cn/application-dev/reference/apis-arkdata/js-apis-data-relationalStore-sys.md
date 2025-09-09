@@ -166,7 +166,7 @@ predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates, (err, rows) => {
     if (err) {
-      console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+      console.error(`Updated failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info(`Updated row count: ${rows}`);
@@ -266,7 +266,7 @@ if (store != undefined) {
   (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
-    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+    console.error(`Updated failed, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```
@@ -329,7 +329,7 @@ predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates, (err, rows) => {
     if (err) {
-      console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+      console.error(`Delete failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info(`Delete rows: ${rows}`);
@@ -402,7 +402,7 @@ if (store != undefined) {
   (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
-    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+    console.error(`Delete failed, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```
@@ -449,7 +449,7 @@ predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, (err, resultSet) => {
     if (err) {
-      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      console.error(`Query failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -510,7 +510,7 @@ predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
     if (err) {
-      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      console.error(`Query failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -588,7 +588,7 @@ if (store != undefined) {
     // 释放数据集的内存
     resultSet.close();
   }).catch((err: BusinessError) => {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    console.error(`Query failed, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```
@@ -755,7 +755,7 @@ if (store != undefined) {
   }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
-    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+    console.error(`cloudSync failed, code is ${err.code}, message is ${err.message}`);
   });
 };
 ```
@@ -828,7 +828,7 @@ if (store != undefined) {
     console.info(`sharing resource: ${res}`);
     sharingResource = res;
   }).catch((err: BusinessError) => {
-    console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
+    console.error(`query sharing resource failed, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```
@@ -887,7 +887,7 @@ predicates.equalTo('data', 'data_test');
 if (store != undefined) {
   (store as relationalStore.RdbStore).querySharingResource(predicates, (err, resultSet) => {
     if (err) {
-      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      console.error(`sharing resource failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     if (!resultSet.goToFirstRow()) {
@@ -956,7 +956,7 @@ predicates.equalTo('data', 'data_test');
 if (store != undefined) {
   (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
     if (err) {
-      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      console.error(`sharing resource failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     if (!resultSet.goToFirstRow()) {
@@ -1008,7 +1008,7 @@ if (store != undefined) {
   (store as relationalStore.RdbStore).lockCloudContainer().then((time: number) => {
     console.info('lockCloudContainer succeeded time:' + time);
   }).catch((err: BusinessError) => {
-    console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+    console.error(`lockCloudContainer failed, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```
@@ -1046,7 +1046,7 @@ if (store != undefined) {
   (store as relationalStore.RdbStore).unlockCloudContainer().then(() => {
     console.info('unlockCloudContainer succeeded');
   }).catch((err: BusinessError) => {
-    console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+    console.error(`unlockCloudContainer failed, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```
@@ -1104,7 +1104,7 @@ if (store != undefined) {
   promiseRestore.then(() => {
     console.info('Succeeded in restoring.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to restore, code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to restore, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```

@@ -226,6 +226,7 @@
          console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
        }
      }
+     store.version = storeVersion;
      // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
    });
    ```
