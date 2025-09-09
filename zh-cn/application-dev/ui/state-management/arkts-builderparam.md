@@ -6,7 +6,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-当开发者创建自定义组件并需要为其添加特定功能（例如：点击跳转操作）时，如果直接在组件内嵌入事件方法，会导致所有该自定义组件的实例都增加此功能。为了解决组件功能定制化的问题，ArkUI引入了@BuilderParam装饰器。@BuilderParam用于装饰指向@Builder方法的变量，开发者可以在初始化自定义组件时，使用不同的方式（例如：参数修改、尾随闭包、借用箭头函数等）对@BuilderParam装饰的自定义构建函数进行传参赋值。在自定义组件内部，通过调用@BuilderParam为组件增加特定功能。该装饰器用于声明任意UI描述的元素，类似于slot占位符。
+当开发者创建自定义组件并需要为其添加特定功能（例如页面跳转功能）时，如果直接在组件内嵌入事件方法，会导致所有该自定义组件的实例都增加此功能。为了解决此问题，ArkUI引入了\@BuilderParam装饰器。\@BuilderParam用于装饰指向\@Builder方法的变量，开发者可以在初始化自定义组件时，使用不同的方式（如参数修改、尾随闭包、借用箭头函数等）对\@BuilderParam装饰的自定义构建函数进行传参赋值。在自定义组件内部，通过调用\@BuilderParam为组件增加特定功能。
 
 在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
 
@@ -47,7 +47,7 @@
   }
   ```
 
-- 用父组件自定义构建函数初始化子组件\@BuilderParam装饰的方法。
+- 使用父组件自定义构建函数初始化子组件\@BuilderParam装饰的方法。
 
   ```ts
   @Component
@@ -87,7 +87,7 @@
 
 - 需要注意this的指向。
 
-  this指向示例如下：
+  示例如下：
 
     ```ts
     @Component
@@ -147,9 +147,9 @@
 
 ## 限制条件
 
-- 使用`@BuilderParam`装饰的变量只能通过`@Builder`函数进行初始化。具体参见[@BuilderParam装饰器初始化的值必须为@Builder](#builderparam装饰器初始化的值必须为builder)。
+- 使用\@BuilderParam装饰的变量只能通过\@Builder函数进行初始化。具体参见[@BuilderParam装饰器初始化的值必须为@Builder](#builderparam装饰器初始化的值必须为builder)。
 
-- 当@Require装饰器和@BuilderParam装饰器一起使用时，@BuilderParam装饰器必须进行初始化。具体请参见[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
+- 当\@Require装饰器和\@BuilderParam装饰器一起使用时，必须初始化@BuilderParam装饰器。具体参见[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
 
 - 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam装饰的方法不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
@@ -157,7 +157,7 @@
 
 ### 参数初始化组件
 
-`@BuilderParam`装饰的方法为有参数或无参数两种形式，需与指向的`@Builder`方法类型匹配。
+\@BuilderParam装饰的方法为有参数或无参数的形式，必须与指向的\@Builder方法类型匹配。
 
 ```ts
 class Tmp {
@@ -286,7 +286,7 @@ struct CustomContainerUser {
 
 ![builderparam-demo4](figures/builderparam-demo4.png)
 
-使用全局`@Builder`和局部`@Builder`通过尾随闭包的形式对`@ComponentV2`装饰的自定义组件中的`@BuilderParam`进行初始化。
+可以使用全局\@Builder和局部\@Builder通过尾随闭包的形式对\@ComponentV2装饰的自定义组件中的\@BuilderParam进行初始化。
 
 示例2：
 
@@ -360,7 +360,7 @@ struct ParentPage {
 
 ### 使用\@BuilderParam隔离多组件对\@Builder跳转逻辑的调用
 
-当@Builder封装的系统组件包含跳转逻辑时，所有调用该@Builder的自定义组件将具备该跳转功能。对于需要禁用跳转的特定组件，可使用@BuilderParam来隔离跳转逻辑。
+当\@Builder封装的系统组件包含跳转逻辑时，所有调用该\@Builder的自定义组件将具备该跳转功能。如果需要禁用特定组件的跳转功能，可使用\@BuilderParam来隔离跳转逻辑。
 
 > **说明：**
 >
@@ -666,7 +666,7 @@ struct ParentPage {
 
 ### 改变内容UI不刷新
 
-调用自定义组件ChildPage时，通过`this.componentBuilder`形式传递`@Builder`参数。由于`this`指向自定义组件内部，因此在父组件中改变`label`的值时，自定义组件ChildPage无法感知到这一变化。
+调用自定义组件`ChildPage`时，通过`this.componentBuilder`传递\@Builder参数。`this`指向自定义组件内部，因此父组件中改变`label`的值时，`ChildPage`无法感知这一变化。
 
 【反例】
 
@@ -717,7 +717,7 @@ struct ParentPage {
 }
 ```
 
-使用箭头函数将`@Builder`传递到自定义组件`ChildPage`中，这样`this`指向会停留在父组件`ParentPage`里。因此，在父组件中改变`label`的值时，`ChildPage`会感知到并重新渲染UI。
+使用箭头函数将\@Builder传递到自定义组件`ChildPage`中，`this`指向会停留在父组件`ParentPage`里。在父组件中改变`label`的值时，`ChildPage`会感知到并重新渲染UI。
 
 【正例】
 
@@ -771,7 +771,7 @@ struct ParentPage {
 
 ### @Require装饰器和@BuilderParam装饰器联合使用
 
-由于@Require装饰器所装饰的变量需进行初始化，若变量未初始化，在编译时会输出报错信息。
+由于\@Require装饰器所装饰的变量需进行初始化，若变量未初始化，编译时会输出报错信息。
 
 【反例】
 
@@ -804,7 +804,7 @@ struct ChildPage {
 }
 ```
 
-对@Require装饰的变量进行外部传入初始化。
+\@Require装饰的变量必须从外部初始化。
 
 【正例】
 
@@ -838,7 +838,7 @@ struct ChildPage {
 
 ### @BuilderParam装饰器初始化的值必须为@Builder
 
-使用`@State`装饰器装饰的变量，给子组件的`@BuilderParam`和`ChildBuilder`变量初始化时，编译时会输出报错信息。
+使用\@State装饰器装饰的变量，在初始化子组件的\@BuilderParam和`ChildBuilder`变量时，编译时会输出报错信息。
 
 【反例】
 
@@ -873,7 +873,7 @@ struct ChildPage {
 }
 ```
 
-使用全局`@Builder`装饰的`globalBuilder()`方法为子组件`@BuilderParam`装饰的`ChildBuilder`变量进行初始化，编译时无报错，功能正常。
+使用全局\@Builder装饰的`globalBuilder()`方法为子组件\@BuilderParam装饰的`ChildBuilder`变量初始化，编译无报错，功能正常。
 
 【正例】
 
