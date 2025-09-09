@@ -27,13 +27,13 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Input_InterceptorEventCallback](capi-input-input-interceptoreventcallback.md) | Input_InterceptorEventCallback | 拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。 |
+| [Input_InterceptorEventCallback](capi-input-input-interceptoreventcallback.md) | Input_InterceptorEventCallback | 拦截回调事件结构体，拦截鼠标事件、触屏输入事件和轴事件。 |
 | [Input_DeviceListener](capi-input-input-devicelistener.md) | Input_DeviceListener | 定义一个结构体用于监听设备热插拔。 |
 | [Input_KeyState](capi-input-input-keystate.md) | Input_KeyState | 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。 |
-| [Input_KeyEvent](capi-input-input-keyevent.md) | Input_KeyEvent | 要注入的按键事件。 |
-| [Input_MouseEvent](capi-input-input-mouseevent.md) | Input_MouseEvent | 要注入的鼠标事件。 |
-| [Input_TouchEvent](capi-input-input-touchevent.md) | Input_TouchEvent | 要注入的触屏事件。 |
-| [Input_AxisEvent](capi-input-input-axisevent.md) | Input_AxisEvent | 轴事件。 |
+| [Input_KeyEvent](capi-input-input-keyevent.md) | Input_KeyEvent | 按键事件对象。 |
+| [Input_MouseEvent](capi-input-input-mouseevent.md) | Input_MouseEvent | 鼠标事件对象。 |
+| [Input_TouchEvent](capi-input-input-touchevent.md) | Input_TouchEvent | 触屏输入事件对象。 |
+| [Input_AxisEvent](capi-input-input-axisevent.md) | Input_AxisEvent | 轴事件对象。 |
 | [Input_Hotkey](capi-input-input-hotkey.md) | Input_Hotkey | 定义快捷键结构体。 |
 | [Input_DeviceInfo](capi-input-input-deviceinfo.md) | Input_DeviceInfo | 输入设备信息。 |
 | [Input_InterceptorOptions](capi-input-input-interceptoroptions.md) | Input_InterceptorOptions | 事件拦截选项。 |
@@ -60,7 +60,7 @@
 | [typedef void (\*Input_HotkeyCallback)(Input_Hotkey* hotkey)](#input_hotkeycallback) | Input_HotkeyCallback | 回调函数，用于回调快捷键事件。 |
 | [typedef void (\*Input_KeyEventCallback)(const Input_KeyEvent* keyEvent)](#input_keyeventcallback) | Input_KeyEventCallback | 按键事件的回调函数，keyEvent的生命周期为回调函数内。 |
 | [typedef void (\*Input_MouseEventCallback)(const Input_MouseEvent* mouseEvent)](#input_mouseeventcallback) | Input_MouseEventCallback | 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。 |
-| [typedef void (\*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent)](#input_toucheventcallback) | Input_TouchEventCallback | 触屏事件的回调函数，touchEvent的生命周期为回调函数内。 |
+| [typedef void (\*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent)](#input_toucheventcallback) | Input_TouchEventCallback | 触屏输入事件的回调函数，touchEvent的生命周期为回调函数内。 |
 | [typedef void (\*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent)](#input_axiseventcallback) | Input_AxisEventCallback | 轴事件的回调函数，axisEvent的生命周期为回调函数内。 |
 | [typedef void (\*Input_DeviceAddedCallback)(int32_t deviceId)](#input_deviceaddedcallback) | Input_DeviceAddedCallback | 回调函数，用于回调输入设备的热插事件。 |
 | [typedef void (\*Input_DeviceRemovedCallback)(int32_t deviceId)](#input_deviceremovedcallback) | Input_DeviceRemovedCallback | 回调函数，用于回调输入设备的热拔事件。 |
@@ -106,24 +106,24 @@
 | [void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId)](#oh_input_setmouseeventwindowid) | - | 设置鼠标事件的窗口Id。 |
 | [int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventwindowid) | - | 获取鼠标事件的窗口Id。 |
 | [void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId)](#oh_input_setmouseeventdisplayid) | - | 设置鼠标事件的屏幕Id。 |
-| [struct Input_TouchEvent* OH_Input_CreateTouchEvent()](#oh_input_createtouchevent) | - | 创建触屏事件对象。 |
-| [void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent)](#oh_input_destroytouchevent) | - | 销毁触屏事件对象。 |
-| [void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action)](#oh_input_settoucheventaction) | - | 设置触屏事件的动作。 |
-| [int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventaction) | - | 获取触屏事件的动作。 |
-| [void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id)](#oh_input_settoucheventfingerid) | - | 设置触屏事件的手指ID。 |
-| [int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventfingerid) | - | 获取触屏事件的手指ID。 |
-| [void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)](#oh_input_settoucheventdisplayx) | - | 设置触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
-| [int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayx) | - | 获取触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
-| [void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)](#oh_input_settoucheventdisplayy) | - | 设置触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
-| [int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayy) | - | 获取触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
-| [void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime)](#oh_input_settoucheventactiontime) | - | 设置触屏事件发生的时间。 |
-| [int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventactiontime) | - | 获取触屏事件发生的时间。 |
-| [void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId)](#oh_input_settoucheventwindowid) | - | 设置触屏事件的窗口Id。 |
-| [int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventwindowid) | - | 获取触屏事件的窗口Id。 |
-| [void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId)](#oh_input_settoucheventdisplayid) | - | 设置触屏事件的屏幕Id。 |
-| [int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayid) | - | 获取触屏事件的屏幕Id。 |
+| [struct Input_TouchEvent* OH_Input_CreateTouchEvent()](#oh_input_createtouchevent) | - | 创建触屏输入事件对象。 |
+| [void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent)](#oh_input_destroytouchevent) | - | 销毁触屏输入事件对象。 |
+| [void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action)](#oh_input_settoucheventaction) | - | 设置触屏输入事件的动作。 |
+| [int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventaction) | - | 获取触屏输入事件的动作。 |
+| [void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id)](#oh_input_settoucheventfingerid) | - | 设置触屏输入事件的手指ID。 |
+| [int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventfingerid) | - | 获取触屏输入事件的手指ID。 |
+| [void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)](#oh_input_settoucheventdisplayx) | - | 设置触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayx) | - | 获取触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)](#oh_input_settoucheventdisplayy) | - | 设置触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
+| [int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayy) | - | 获取触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
+| [void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime)](#oh_input_settoucheventactiontime) | - | 设置触屏输入事件发生的时间。 |
+| [int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventactiontime) | - | 获取触屏输入事件发生的时间。 |
+| [void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId)](#oh_input_settoucheventwindowid) | - | 设置触屏输入事件的窗口Id。 |
+| [int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventwindowid) | - | 获取触屏输入事件的窗口Id。 |
+| [void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId)](#oh_input_settoucheventdisplayid) | - | 设置触屏输入事件的屏幕Id。 |
+| [int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayid) | - | 获取触屏输入事件的屏幕Id。 |
 | [void OH_Input_CancelInjection()](#oh_input_cancelinjection) | - | 取消事件注入并撤销授权。 |
-| [Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)](#oh_input_requestinjection) | - | 当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。 |
+| [Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)](#oh_input_requestinjection) | - | 当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏输入事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。 |
 | [Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status)](#oh_input_queryauthorizedstatus) | - | 查询当前应用注入的权限状态。 |
 | [Input_AxisEvent* OH_Input_CreateAxisEvent(void)](#oh_input_createaxisevent) | - | 创建轴事件对象实例。 |
 | [Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent)](#oh_input_destroyaxisevent) | - | 销毁轴事件对象实例。 |
@@ -147,12 +147,12 @@
 | [Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId)](#oh_input_getaxiseventdisplayid) | - | 获取轴事件的屏幕Id。 |
 | [Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback)](#oh_input_addkeyeventmonitor) | - | 添加按键事件监听。 |
 | [Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback)](#oh_input_addmouseeventmonitor) | - | 添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。 |
-| [Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback)](#oh_input_addtoucheventmonitor) | - | 添加触屏事件监听。 |
+| [Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback)](#oh_input_addtoucheventmonitor) | - | 添加触屏输入事件监听。 |
 | [Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback)](#oh_input_addaxiseventmonitorforall) | - | 添加所有类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](capi-oh-axis-type-h.md#inputevent_axiseventtype)中。 |
 | [Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback)](#oh_input_addaxiseventmonitor) | - | 添加指定类型的轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](capi-oh-axis-type-h.md#inputevent_axiseventtype)中。 |
 | [Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback)](#oh_input_removekeyeventmonitor) | - | 移除按键事件监听。 |
 | [Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)](#oh_input_removemouseeventmonitor) | - | 移除鼠标事件监听。 |
-| [Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)](#oh_input_removetoucheventmonitor) | - | 移除触屏事件监听。 |
+| [Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)](#oh_input_removetoucheventmonitor) | - | 移除触屏输入事件监听。 |
 | [Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback)](#oh_input_removeaxiseventmonitorforall) | - | 移除所有类型轴事件监听。 |
 | [Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback)](#oh_input_removeaxiseventmonitor) | - | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](capi-oh-axis-type-h.md#inputevent_axiseventtype)中。 |
 | [Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option)](#oh_input_addkeyeventinterceptor) | - | 添加按键事件的拦截，重复添加只有第一次生效。仅在应用获焦时拦截按键事件。 |
@@ -189,7 +189,7 @@
 | [Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor)](#oh_input_getdevicevendor) | - | 获取输入设备的厂商信息。 |
 | [Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address)](#oh_input_getdeviceaddress) | - | 获取输入设备的物理地址。 |
 | [Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)](#oh_input_getfunctionkeystate) | - | 获取功能键状态。 |
-| [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | 使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏事件。 |
+| [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | 使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏输入事件。 |
 | [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | 使用以指定屏幕左上角为原点的相对坐标系的坐标注入鼠标事件。 |
 | [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayid) | - | 获取鼠标事件的屏幕Id。 |
 | [Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)](#oh_input_querymaxtouchpoints) | - | 查询设备支持的最大触屏报点数。 |
@@ -198,11 +198,11 @@
 | [int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventglobalx) | - | 获取鼠标事件以主屏左上角为原点的全局坐标系的X坐标。 |
 | [void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY)](#oh_input_setmouseeventglobaly) | - | 设置鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 | [int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventglobaly) | - | 获取鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。 |
-| [int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttoucheventglobal) | - | 使用以主屏左上角为原点的全局坐标系的坐标注入触屏事件。 |
-| [void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX)](#oh_input_settoucheventglobalx) | - | 设置触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
-| [int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobalx) | - | 获取触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
-| [void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY)](#oh_input_settoucheventglobaly) | - | 设置触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
-| [int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobaly) | - | 获取触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| [int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttoucheventglobal) | - | 使用以主屏左上角为原点的全局坐标系的坐标注入触屏输入事件。 |
+| [void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX)](#oh_input_settoucheventglobalx) | - | 设置触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobalx) | - | 获取触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY)](#oh_input_settoucheventglobaly) | - | 设置触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| [int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobaly) | - | 获取触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 | [Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX)](#oh_input_setaxiseventglobalx) | - | 设置轴事件以主屏左上角为原点的全局坐标系的X坐标。 |
 | [Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX)](#oh_input_getaxiseventglobalx) | - | 获取轴事件以主屏左上角为原点的全局坐标系的X坐标。 |
 | [Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY)](#oh_input_setaxiseventglobaly) | - | 设置轴事件以主屏左上角为原点的全局坐标系的Y坐标。 |
@@ -360,9 +360,9 @@ enum InputEvent_SourceType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标光标移动、按钮按下和释放以及滚轮滚动的事件。 |
-| SOURCE_TYPE_TOUCHSCREEN = 2 | 表示输入源产生触摸屏多点触屏事件。 |
-| SOURCE_TYPE_TOUCHPAD = 3 | 表示输入源产生触摸板多点触屏事件。 |
+| SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标光标移动、按键按下和释放以及滚轮滚动的事件。 |
+| SOURCE_TYPE_TOUCHSCREEN = 2 | 表示输入源产生触摸屏多点触屏输入事件。 |
+| SOURCE_TYPE_TOUCHPAD = 3 | 表示输入源产生触控板多点触屏输入事件。 |
 
 ### Input_KeyboardType
 
@@ -477,7 +477,7 @@ typedef void (*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent)
 
 **描述**
 
-触屏事件的回调函数，touchEvent的生命周期为回调函数内。
+触屏输入事件的回调函数，touchEvent的生命周期为回调函数内。
 
 **起始版本：** 12
 
@@ -486,7 +486,7 @@ typedef void (*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| const [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 ### Input_AxisEventCallback()
 
@@ -524,7 +524,7 @@ typedef void (*Input_DeviceAddedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备的ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 
 ### Input_DeviceRemovedCallback()
 
@@ -543,7 +543,7 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备的ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 
 ### Input_InjectAuthorizeCallback()
 
@@ -1353,7 +1353,7 @@ void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t
 | 参数项 | 描述 |
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象。<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
-| int32_t axisType | 轴类型，比如垂直轴、水平轴。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
+| int32_t axisType | 鼠标轴类型，比如垂直轴、水平轴。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
 
 ### OH_Input_GetMouseEventAxisType()
 
@@ -1380,7 +1380,7 @@ int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 轴类型。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
+| int32_t | 鼠标轴类型。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。 |
 
 ### OH_Input_SetMouseEventAxisValue()
 
@@ -1559,7 +1559,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent()
 
 **描述**
 
-创建触屏事件对象。
+创建触屏输入事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1579,7 +1579,7 @@ void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent)
 
 **描述**
 
-销毁触屏事件对象。
+销毁触屏输入事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1590,7 +1590,7 @@ void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_TouchEvent](capi-input-input-touchevent.md)** touchEvent | 触屏事件对象。 |
+| struct [Input_TouchEvent](capi-input-input-touchevent.md)** touchEvent | 触屏输入事件对象。 |
 
 ### OH_Input_SetTouchEventAction()
 
@@ -1600,7 +1600,7 @@ void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t a
 
 **描述**
 
-设置触屏事件的动作。
+设置触屏输入事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1611,7 +1611,7 @@ void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t a
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 | int32_t action | 触屏的动作。相关取值可参考[Input_TouchEventAction](#input_toucheventaction)。 |
 
 ### OH_Input_GetTouchEventAction()
@@ -1622,7 +1622,7 @@ int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)
 
 **描述**
 
-获取触屏事件的动作。
+获取触屏输入事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1633,7 +1633,7 @@ int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 **返回：**
 
@@ -1649,7 +1649,7 @@ void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t
 
 **描述**
 
-设置触屏事件的手指ID。
+设置触屏输入事件的手指ID。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1660,7 +1660,7 @@ void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 | int32_t id | 触屏的手指ID。第一个手指碰到屏幕，id就是0，第二个手指碰到屏幕，id就是1，依次累加。 |
 
 ### OH_Input_GetTouchEventFingerId()
@@ -1671,7 +1671,7 @@ int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent
 
 **描述**
 
-获取触屏事件的手指ID。
+获取触屏输入事件的手指ID。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1682,7 +1682,7 @@ int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 **返回：**
 
@@ -1698,7 +1698,7 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
 
 **描述**
 
-设置触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。
+设置触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1709,8 +1709,8 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
-| int32_t displayX | 触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
+| int32_t displayX | 触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 ### OH_Input_GetTouchEventDisplayX()
 
@@ -1720,7 +1720,7 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
 
 **描述**
 
-获取触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。
+获取触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1731,13 +1731,13 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| int32_t | 触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 ### OH_Input_SetTouchEventDisplayY()
 
@@ -1747,7 +1747,7 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
 
 **描述**
 
-设置触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
+设置触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1758,8 +1758,8 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
-| int32_t displayY | 触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
+| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
+| int32_t displayY | 触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 ### OH_Input_GetTouchEventDisplayY()
 
@@ -1769,7 +1769,7 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
 
 **描述**
 
-获取触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
+获取触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1780,13 +1780,13 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
+| int32_t | 触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 ### OH_Input_SetTouchEventActionTime()
 
@@ -1796,7 +1796,7 @@ void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64
 
 **描述**
 
-设置触屏事件发生的时间。
+设置触屏输入事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1807,8 +1807,8 @@ void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64
 
 | 参数项 | 描述 |
 | -- | -- |
-| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
-| int64_t actionTime | 触屏事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。 |
+| touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
+| int64_t actionTime | 触屏输入事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。 |
 
 ### OH_Input_GetTouchEventActionTime()
 
@@ -1818,7 +1818,7 @@ int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEve
 
 **描述**
 
-获取触屏事件发生的时间。
+获取触屏输入事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1829,13 +1829,13 @@ int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEve
 
 | 参数项 | 描述 |
 | -- | -- |
-| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int64_t | 返回触屏事件发生的时间。 |
+| int64_t | 返回触屏输入事件发生的时间。 |
 
 ### OH_Input_SetTouchEventWindowId()
 
@@ -1845,7 +1845,7 @@ void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t
 
 **描述**
 
-设置触屏事件的窗口Id。
+设置触屏输入事件的窗口Id。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1856,8 +1856,8 @@ void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
-| int32_t windowId | 触屏事件的窗口Id。 |
+| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
+| int32_t windowId | 触屏输入事件的窗口Id。 |
 
 ### OH_Input_GetTouchEventWindowId()
 
@@ -1867,7 +1867,7 @@ int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent
 
 **描述**
 
-获取触屏事件的窗口Id。
+获取触屏输入事件的窗口Id。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1878,13 +1878,13 @@ int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件的窗口Id。 |
+| int32_t | 触屏输入事件的窗口Id。 |
 
 ### OH_Input_SetTouchEventDisplayId()
 
@@ -1894,7 +1894,7 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
 
 **描述**
 
-设置触屏事件的屏幕Id。
+设置触屏输入事件的屏幕Id。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1905,8 +1905,8 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
-| int32_t displayId | 触屏事件的屏幕Id。 |
+| struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
+| int32_t displayId | 触屏输入事件的屏幕Id。 |
 
 ### OH_Input_GetTouchEventDisplayId()
 
@@ -1916,7 +1916,7 @@ int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEven
 
 **描述**
 
-获取触屏事件的屏幕Id。
+获取触屏输入事件的屏幕Id。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1927,13 +1927,13 @@ int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEven
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件的屏幕Id。 |
+| int32_t | 触屏输入事件的屏幕Id。 |
 
 ### OH_Input_CancelInjection()
 
@@ -1957,7 +1957,7 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)
 
 **描述**
 
-当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。
+当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏输入事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2622,7 +2622,7 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback)
 
 **描述**
 
-添加触屏事件监听。
+添加触屏输入事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2635,13 +2635,13 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_TouchEventCallback](#input_toucheventcallback) callback | 回调函数，用于接收触屏事件。 |
+| [Input_TouchEventCallback](#input_toucheventcallback) callback | 回调函数，用于接收触屏输入事件。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | 若添加触屏事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；<br>         若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。 |
+| [Input_Result](#input_result) | 若添加触屏输入事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；<br>         若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。 |
 
 ### OH_Input_AddAxisEventMonitorForAll()
 
@@ -2768,7 +2768,7 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
 
 **描述**
 
-移除触屏事件监听。
+移除触屏输入事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2781,13 +2781,13 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_TouchEventCallback](#input_toucheventcallback) callback | 指定要被移除的用于触屏事件监听的回调函数。 |
+| [Input_TouchEventCallback](#input_toucheventcallback) callback | 指定要被移除的用于触屏输入事件监听的回调函数。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | 若移除触屏事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；<br>         若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。 |
+| [Input_Result](#input_result) | 若移除触屏输入事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；<br>         若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。 |
 
 ### OH_Input_RemoveAxisEventMonitorForAll()
 
@@ -2971,7 +2971,7 @@ Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int64_t *timeInterval | timeInterval 时间间隔，单位为微秒。 |
+| int64_t *timeInterval | timeInterval 时间间隔，单位：μs。 |
 
 **返回：**
 
@@ -3427,7 +3427,7 @@ Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 | [Input_DeviceInfo](capi-input-input-deviceinfo.md) **deviceInfo | deviceInfo 指向输入设备信息[Input_DeviceInfo](capi-input-input-deviceinfo.md)的指针。 |
 
 **返回：**
@@ -3496,7 +3496,7 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t deviceId | 设备ID。 |
+| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id可能会发生变化。 |
 | int32_t *keyboardType | keyboardType 指向输入设备的键盘指针。 |
 
 **返回：**
@@ -3735,7 +3735,7 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)
 
 **描述**
 
-使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏事件。
+使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏输入事件。
 
 如果当前处于用户未授权状态，调用该接口注入事件不生效。
 
@@ -3748,7 +3748,7 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 | 
 
 **返回：**
 
@@ -3958,7 +3958,7 @@ int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEven
 
 **描述**
 
-使用以主屏左上角为原点的全局坐标系的坐标注入触屏事件。
+使用以主屏左上角为原点的全局坐标系的坐标注入触屏输入事件。
 
 如果当前处于用户未授权状态，调用该接口注入事件不生效。
 
@@ -3970,7 +3970,7 @@ int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEven
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 | 
 
 **返回：**
 
@@ -3986,7 +3986,7 @@ void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t 
 
 **描述**
 
-设置触屏事件以主屏左上角为原点的全局坐标系的X坐标。
+设置触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -3994,8 +3994,8 @@ void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t 
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
-| int32_t globalX | 触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 | 
+| int32_t globalX | 触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 ### OH_Input_GetTouchEventGlobalX()
 
@@ -4005,7 +4005,7 @@ int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
 
 **描述**
 
-获取触屏事件以主屏左上角为原点的全局坐标系的X坐标。
+获取触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -4013,13 +4013,13 @@ int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 | 
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| int32_t | 触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 ### OH_Input_SetTouchEventGlobalY()
 
@@ -4029,7 +4029,7 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
 
 **描述**
 
-设置触屏事件以主屏左上角为原点的全局坐标系的Y坐标。
+设置触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -4037,8 +4037,8 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
-| int32_t globalY | 触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 | 
+| int32_t globalY | 触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 ### OH_Input_GetTouchEventGlobalY()
 
@@ -4048,7 +4048,7 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
 
 **描述**
 
-获取触屏事件以主屏左上角为原点的全局坐标系的Y坐标。
+获取触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -4056,13 +4056,13 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
+| const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏输入事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏输入事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏输入事件对象。 | 
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| int32_t | 触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 ### OH_Input_SetAxisEventGlobalX()
 

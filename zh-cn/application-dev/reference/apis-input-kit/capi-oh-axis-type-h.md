@@ -48,10 +48,10 @@ enum InputEvent_AxisType
 | 枚举项 | 描述             |
 | -- |----------------|
 | AXIS_TYPE_UNKNOWN | 未知轴类型，通常作为初始值。 |
-| AXIS_TYPE_SCROLL_VERTICAL | 垂直滚动轴，当您滚动鼠标滚轮或在触摸板上进行单指或双指滑动时，垂直滚动轴的状态改变。               |
-| AXIS_TYPE_SCROLL_HORIZONTAL | 水平滚动轴，当您滚动鼠标滚轮或在触摸板上进行双指滑动时，水平滚动轴的状态发生变化。               |
-| AXIS_TYPE_PINCH | 捏合轴，用于描述触摸板上的双指捏合手势。               |
-| AXIS_TYPE_ROTATE | 旋转轴，用于描述触摸板上的双指旋转手势。               |
+| AXIS_TYPE_SCROLL_VERTICAL | 垂直滚动轴，当您滚动鼠标滚轮或在触控板上进行单指或双指滑动时，垂直滚动轴的状态改变。               |
+| AXIS_TYPE_SCROLL_HORIZONTAL | 水平滚动轴，当您滚动鼠标滚轮或在触控板上进行双指滑动时，水平滚动轴的状态发生变化。               |
+| AXIS_TYPE_PINCH | 捏合轴，用于描述触控板上的双指捏合手势。               |
+| AXIS_TYPE_ROTATE | 旋转轴，用于描述触控板上的双指旋转手势。               |
 
 ### InputEvent_AxisEventType
 
