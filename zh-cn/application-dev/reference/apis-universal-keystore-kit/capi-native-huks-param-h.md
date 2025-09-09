@@ -17,7 +17,7 @@
 
 **系统能力：** SystemCapability.Security.Huks.Core
 
-- 在API 9-19，系统能力为SystemCapability.Security.Huks；从API 20起，系统能力变更为SystemCapability.Security.Huks.Core
+在API 9-19，系统能力为SystemCapability.Security.Huks；从API 20起，系统能力变更为SystemCapability.Security.Huks.Core
 
 **起始版本：** 9
 
