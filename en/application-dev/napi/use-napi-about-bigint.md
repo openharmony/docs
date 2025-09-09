@@ -9,7 +9,7 @@ BigInt is a data type used to represent integers of any precision in ArkTS, with
 Before using Node-API to operate BigInt values, you need to understand the following basic concepts:
 
 - BigInt: a data type used to represent integers of any precision in ArkTS. Different from the Number type, BigInt can accurately represent very large integers without losing precision or causing overflows.
-- BigInt creation: You can use Node-API to create a ArkTS BigInt object from a C **Int64** or **Uint64** value. This makes it easy to create BigInt values using C/C++.
+- BigInt creation: You can use Node-API to create an ArkTS BigInt object from a C **Int64** or **Uint64** value. This makes it easy to create BigInt values using C/C++.
 - BigInt operation: Node-API provides APIs for operating BigInt values. You can use these APIs to obtain and convert BigInt values and perform arithmetic and bitwise operations.
 
 ## Available APIs
@@ -58,8 +58,8 @@ export const createBigintInt64t: () => bigint;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_int64: %{public}d', testNapi.createBigintInt64t());
 ```
@@ -94,8 +94,8 @@ export const createBigintUint64t: () => bigint;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_uint64: %{public}d', testNapi.createBigintUint64t());
 ```
@@ -129,14 +129,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const createBigintWords: () => bigint | void;
+export const createBigintWords: () => bigint | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_words: %{public}d', testNapi.createBigintWords());
 } catch (error) {
@@ -169,8 +169,13 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
     }
     // If the API is successfully called, return true to ArkTS.
     napi_value returnValue = nullptr;
-    napi_get_boolean(env, status == napi_ok, &returnValue);
-    return returnValue;
+    if (status == napi_ok) {
+      napi_get_boolean(env, true, &returnValue);
+      return returnValue;
+    } else {
+      napi_throw_error(env, nullptr, "napi_get_value_bigint_int64 failed");
+      return nullptr;
+    }
 }
 ```
 
@@ -178,14 +183,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getValueBigintInt64t: (bigInt64: bigint) => boolean | void;
+export const getValueBigintInt64t: (bigInt64: bigint) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let bigInt = BigInt(-5555555555555555);
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_int64: %{public}s',
@@ -229,14 +234,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getValueBigintUint64t: (bigUint64: bigint) => boolean | void;
+export const getValueBigintUint64t: (bigUint64: bigint) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let bigUint = BigInt(5555555555555555);
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_uint64: %{public}s',
@@ -263,21 +268,36 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int signBit = 0;
     size_t wordCount = 0;
-    uint64_t words = 0;
     // Call napi_get_value_bigint_words to obtain wordCount.
     napi_status status = napi_get_value_bigint_words(env, args[0], nullptr, &wordCount, nullptr);
     OH_LOG_INFO(LOG_APP, "Node-API , wordCount:%{public}d.", wordCount);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API , get wordCount fail, status:%{public}d.", status);
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words call failed");
+        return nullptr;
+    }
+    if (wordCount == 0) {
+        OH_LOG_ERROR(LOG_APP, "Node-API , wordCount is 0, invalid BigInt or empty value.");
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words returned wordCount 0");
+        return nullptr;
+    }
+    // Allocate sufficient space to store all words.
+    uint64_t* words = new uint64_t[wordCount];
     // Call napi_get_value_bigint_words to obtain BigInt information, such as whether the value passed by signBit is a positive or negative number.
-    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, &words);
+    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, words);
     OH_LOG_INFO(LOG_APP, "Node-API , signBit: %{public}d.", signBit);
     if (status != napi_ok) {
         OH_LOG_ERROR(LOG_APP, "Node-API , reason:%{public}d.", status);
-        napi_throw_error(env, nullptr, "napi_get_date_value fail");
+        delete[] words;
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words fail");
         return nullptr;
     }
-    // Convert the sign bit into a value of Int type and pass it.
+    // The content of the words array can be processed here, for example, log output.
+    // ...
+     // Convert the sign bit into a value of Int type and pass it.
     napi_value returnValue = nullptr;
     napi_create_int32(env, signBit, &returnValue);
+    delete[] words;
     return returnValue;
 }
 ```
@@ -286,14 +306,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getValueBigintWords: (bigIntWords: bigint) => bigint | void;
+export const getValueBigintWords: (bigIntWords: bigint) => bigint | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let bigInt = BigInt(-5555555555555555);
 let bigUint = BigInt(5555555555555555);
 try {
@@ -310,5 +330,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

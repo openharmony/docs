@@ -55,14 +55,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const newInstance: (obj: Object, param: string) => Object
+export const newInstance: (obj: Object, param: string) => Object;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 class Fruit {
   name: string;
   constructor(name: string) {
@@ -79,13 +79,17 @@ hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(ob
 
 Call **napi_get_new_target** to obtain **new.target** of a constructor. In ArkTS, **new.target** is a meta property used to determine whether a constructor was called using the **new** operator.
 
-For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
+For more information, see:
+
+[Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
 
 ### napi_define_class
 
 Call **napi_define_class** to define an ArkTS class. This API creates an ArkTS class and associates the methods and properties of the ArkTS class with those of a C/C++ class.
 
-For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
+For more information, see:
+
+[Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
 
 ### napi_wrap
 
@@ -118,6 +122,8 @@ CPP code:
 #include <string>
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_18 = 18; // Age: 18 years old
+
 struct Object {
     std::string name;
     int32_t age;
@@ -126,7 +132,10 @@ struct Object {
 static void DerefItem(napi_env env, void *data, void *hint) {
     // Optional native callback, which is used to release the native instance when the ArkTS object is garbage-collected.
     OH_LOG_INFO(LOG_APP, "Node-API DerefItem");
-    (void)hint;
+    Object *obj = reinterpret_cast<Object *>(data);
+    if (obj != nullptr) {
+        delete obj;
+    }
 }
 
 static napi_value Wrap(napi_env env, napi_callback_info info)
@@ -135,11 +144,16 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     // Initialize the native object.
     struct Object *obj = new struct Object();
     obj->name = "liLei";
-    obj->age = 18;
+    obj->age = INT_ARG_18;
     size_t argc = 1;
     napi_value toWrap;
     // Call napi_wrap to wrap the native object in an ArkTS object.
-    napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
+    napi_status status_cb = napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
+    if (status_cb != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
+        delete obj;
+        return nullptr;
+    }
     napi_status status = napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
     if (status != napi_ok) {
         // Proactively release the memory.
@@ -158,7 +172,6 @@ static napi_value RemoveWrap(napi_env env, napi_callback_info info)
     // Call napi_remove_wrap to remove the wrapping.
     napi_get_cb_info(env, info, &argc, &wrapped, nullptr, nullptr);
     napi_remove_wrap(env, wrapped, &data);
-
     return nullptr;
 }
 
@@ -169,8 +182,12 @@ static napi_value UnWrap(napi_env env, napi_callback_info info)
     napi_value wrapped = nullptr;
     napi_get_cb_info(env, info, &argc, &wrapped, nullptr, nullptr);
     // Call napi_unwrap to retrieve the data from the ArkTS object and print the data.
-    struct Object *data;
-    napi_unwrap(env, wrapped, reinterpret_cast<void **>(&data));
+    struct Object *data = nullptr;
+    napi_status status = napi_unwrap(env, wrapped, reinterpret_cast<void **>(&data));
+    if (status != napi_ok || data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_unwrap failed or data is nullptr");
+        return nullptr;
+    }
     OH_LOG_INFO(LOG_APP, "Node-API name: %{public}s", data->name.c_str());
     OH_LOG_INFO(LOG_APP, "Node-API age: %{public}d", data->age);
     return nullptr;
@@ -189,8 +206,8 @@ export const removeWrap: (obj: Object) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
     class Obj {}
     let obj: Obj = {};
@@ -208,5 +225,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

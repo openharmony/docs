@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This topic walks you through on how to use JSVM-API to check whether two JavaScript (JS) values are strictly equal (equal in both value and type). The API provided is equivalent to the JS strict equality operator (===).  
+The function in JSVM-API is used to determine whether two JavaScript values are strictly equal, which is similar to the `===` operator in JavaScript. This function avoids type conversion and loose equality comparison to ensure that values and types are equal.
 
 ## Basic Concepts
 
@@ -44,7 +44,7 @@ static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_StrictEquals: success: %{public}d", result);
     }
-    JSVM_Value isStrictEqual;
+    JSVM_Value isStrictEqual = nullptr;
     OH_JSVM_GetBoolean(env, result, &isStrictEqual);
     return isStrictEqual;
 }
@@ -61,7 +61,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(data = '123';value = '123';isStrictEquals(data,value);)JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```ts
 JSVM OH_JSVM_StrictEquals: success: 1
