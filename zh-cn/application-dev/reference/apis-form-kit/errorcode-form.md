@@ -135,7 +135,9 @@ The form cannot be operated by the current application.
 **处理步骤**
 
 1. 检查传入卡片ID，是否属于本应用。
-<!--DelRow-->2. 升级权限为SystemApp。
+<!--Del-->
+2. 升级权限为SystemApp。
+<!--DelEnd-->
 
 ## 16501006 卡片渲染服务连接失败
 
