@@ -37,7 +37,7 @@ controller: TextController = new TextController();
 let layoutManager: LayoutManager = this.controller.getLayoutManager();
 ```
 
-### getLineCount
+### getLineCount<sup>12+</sup>
 
 getLineCount(): number
 
@@ -53,7 +53,7 @@ getLineCount(): number
 | ------ | --------- |
 | number | 组件内容的总行数。 |
 
-### getGlyphPositionAtCoordinate
+### getGlyphPositionAtCoordinate<sup>12+</sup>
 
 getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
@@ -76,7 +76,7 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 | --------------------------------------------- | ----------- |
 | [PositionWithAffinity](#positionwithaffinity12) | 字形位置信息。|
 
-### getLineMetrics
+### getLineMetrics<sup>12+</sup>
 
 getLineMetrics(lineNumber: number): LineMetrics
 
