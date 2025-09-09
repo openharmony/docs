@@ -8,7 +8,7 @@ SystemCapability (SysCap) refers to a standalone feature in the operating system
 
 ![image-SysCap.png](figures/image-SysCap.png)
 
-<!--Del-->For details about the SysCap sets in OpenHarmony, see [SysCap List](syscap-list.md).<!--DelEnd-->
+<!--Del-->For details about the SysCap sets in OpenHarmony, see [SysCap List](phone-syscap-list.md).<!--DelEnd-->
 
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 
@@ -149,6 +149,8 @@ You can also find out the SysCap to which an API belongs by referring to the API
 
 The performance of a SysCap may vary by device type. For example, a tablet is superior to a smart wearable device in terms of the camera capability.
 
+The example below demonstrates the use of facial recognition features:：
+
 ```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
@@ -160,6 +162,8 @@ const authParam : userAuth.AuthParam = {
 const widgetParam :userAuth.WidgetParam = {
   title: 'Enter password',
 };
+
+// When using the API, you can catch exceptions using try...catch. If the SysCap of the API is not supported on the current device, error code 801 is returned.
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   userAuthInstance.start();
