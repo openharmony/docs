@@ -2,14 +2,15 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xuchangda;@yixiaoff-->
-<!--SE: @guxinggang;@liweilu1-->
-<!--TSE: @wangbeibei;@xchaosioda-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
 
 > **NOTE**
 >
@@ -98,9 +99,9 @@ Enumerates the keys available for image or video files.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | URI of the file.<br>**NOTE**: Only the [DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) predicate can be used for this field during photo query.<br>**Atomic service API**: This API can be used in atomic services since API version 20.           |
+| URI           | 'uri'                 | URI of the file.<br>Note: Only the [DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) predicate can be used for this field during photo query.<br>**Atomic service API**: This API can be used in atomic services since API version 20.           |
 | PHOTO_TYPE    | 'media_type'           | Type of the file.<br>**Atomic service API**: This API can be used in atomic services since API version 20. |
-| DISPLAY_NAME  | 'display_name'        | File name displayed. The specifications are as follows:<br>- The file name consists of a valid file name and an image or video file name extension.<br>- The file name cannot exceed 255 characters.<br>- The file name cannot contain any of the following characters:<br>- The title does not contain any of the following characters:.. \ / : * ? " ' ` < > \| { } [ ]<br>**Atomic service API**: This API can be used in atomic services since API version 20.     |
+| DISPLAY_NAME  | 'display_name'        | File name displayed. The file name must meet the following requirements:<br>- A valid file name must include a base name and a supported image or video extension.<br>- The total length of the file name must be between 1 and 255 characters.<br>- The base name must not contain any invalid characters, which are:.. \ / : * ? " ' ` < > \| { } [ ]<br>**Atomic service API**: This API can be used in atomic services since API version 20.     |
 | SIZE          | 'size'                | File size, in bytes. The size of a moving photo includes the total size of the image and video.<br>**Atomic service API**: This API can be used in atomic services since API version 20.   |
 | DATE_ADDED    | 'date_added'          | Unix timestamp when the file was created, in seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 20.        |
 | DATE_MODIFIED | 'date_modified'       | Unix timestamp when the file content (not the file name) was last modified, in seconds. This value is updated when the file content is modified, but not when the file name is modified.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
@@ -279,13 +280,15 @@ Enumerates the operators that can be used for filtering.
 
 Enumerates the asset delivery modes.
 
+These modes are used for segmented photo or video delivery. If the device does not support segmentation, the three delivery modes below work the same way and just return the requested image or video directly. The request result is returned through the [onDataPrepared](./arkts-apis-photoAccessHelper-MediaAssetDataHandler.md#ondataprepared11) callback.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| FAST_MODE |  0 |  Fast mode.|
-| HIGH_QUALITY_MODE |  1 |  High-quality mode.|
-| BALANCE_MODE |  2 |  Balance mode.|
+| FAST_MODE |  0 |  Fast mode.<br>For segmented photo or video delivery, if a high-quality version is available, it quickly returns the callback for that high-quality version. If only a low-quality version is available, it returns the callback for the low-quality version right away.|
+| HIGH_QUALITY_MODE |  1 |  High-quality mode.<br>For segmented photo or video delivery, if a high-quality version is available, it quickly returns the callback for that high-quality version. If only a low-quality version is available, it starts a task to generate a high-quality version and returns the callback for the high-quality version once that version is ready.|
+| BALANCE_MODE |  2 |  Balance mode.<br>- For segmented photo delivery, if a high-quality version is available, it quickly returns the callback for that high-quality version. If only a low-quality version is available, it returns the callback for the low-quality version, starts a task to generate a high-quality version, and returns the callback for the high-quality version once that version is ready.<br>- For segmented video delivery, if a high-quality version is available, it quickly returns the callback for that high-quality version. If only a low-quality version is available, it returns the callback for the low-quality version right away.|
 
 ## CompatibleMode<sup>15+</sup>
 
@@ -330,6 +333,6 @@ Enumerates the sources of the image or video data.
 
 | Name               | Value  | Description                                                                                                                |
 |-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
-| ALL | 0   | Images and videos from all sources.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
-| CAMERA | 1   | Photo or video taken by the camera.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| ALL | 0   | Image or video from all sources.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| CAMERA | 1   | Image or video taken by the camera.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 | SCREENSHOT | 2   | Screenshot or screen capture video.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|

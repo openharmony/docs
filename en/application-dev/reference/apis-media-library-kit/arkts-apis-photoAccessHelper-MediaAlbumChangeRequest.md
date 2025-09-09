@@ -1,4 +1,10 @@
 # Class (MediaAlbumChangeRequest)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -111,9 +117,9 @@ setAlbumName(name: string): void
 
 Sets the album name.
 
-The album name must comply with the following specifications:
-- It does not exceed 255 characters.
-- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
+The album name must meet the following requirements:
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - It is case-insensitive.
 - Duplicate album names are not allowed.
 

@@ -2,9 +2,10 @@
 
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xuchangda;@yixiaoff-->
-<!--SE: @guxinggang;@liweilu1-->
-<!--TSE: @wangbeibei;@xchaosioda-->
+<!--Owner: @xuchangda; @yixiaoff-->
+<!--Designer: @guxinggang; @liweilu1-->
+<!--Tester: @wangbeibei; @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -230,7 +231,7 @@ If you do not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can crea
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
 | extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
-| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | Yes  | Options used for creation. Currently, only **title** is supported, for example, **{title: 'testPhoto'}**.<br>**NOTE**: If other options are passed, the configuration does not take effect.     |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | Yes  | Options used for creation. Currently, only **title** is supported, for example, **{title: 'testPhoto'}**.<br>**NOTE**: If other options are passed, the configuration does not take effect.<br>The file name must not contain any invalid characters, which are:.. \ / : * ? " ' ` < > \| { } [ ]       |
 | callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video asset.|
 
 **Error codes**
@@ -344,7 +345,7 @@ If you do not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can crea
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
 | extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
-| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | No  | Options used for creation. Currently, only **title** is supported, for example, **{title: 'testPhoto'}**.<br>**NOTE**: If other options are passed, the configuration does not take effect.     |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | No  | Options used for creation. Currently, only **title** is supported, for example, **{title: 'testPhoto'}**.<br>**NOTE**: If other options are passed, the configuration does not take effect.<br>The file name must not contain any invalid characters, which are:.. \ / : * ? " ' ` < > \| { } [ ]      |
 
 **Return value**
 
@@ -593,7 +594,7 @@ Registers listening for the specified URI. This API uses a callback to return th
 | Name   | Type                                       | Mandatory| Description                                                        |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the photo asset, URI of the album, or [DefaultChangeUri](arkts-apis-photoAccessHelper-e.md#defaultchangeuri).|
-| forChildUris | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only.<br>If **uri** is the URI of a photoAsset, there is no difference between **true** and false for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is false, the URI cannot be found and no message can be received.|
+| forChildUris | boolean                                     | Yes  | Whether to perform fuzzy listening.<br> If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only.<br>If **uri** is the URI of a photoAsset, there is no difference between **true** and false for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is false, the URI cannot be found and no message can be received.|
 | callback  | Callback&lt;[ChangeData](arkts-apis-photoAccessHelper-i.md#changedata)&gt; | Yes  | Callback used to return [ChangeData](arkts-apis-photoAccessHelper-i.md#changedata). **NOTE**: Multiple callback listeners can be registered for a URI. You can use [unRegisterChange](#unregisterchange) to unregister all listeners for the URI or a specified callback listener.|
 
 **Error codes**
@@ -1514,13 +1515,13 @@ Obtains the information about the recent image or video when the application use
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#RecentPhotoOptions20) | No  | Options for retrieving the recent image or video. If this parameter is not provided, the API finds the recent image or video based on the timestamp.<br>If this parameter is specified, it must match the **options** configuration in the **RecentPhotoComponent**. Otherwise, there may be discrepancies where the API finds a recent image or video but the component does not.|
+| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#recentphotooptions20) | No  | Options for retrieving the recent image or video. If this parameter is not provided, the API finds the recent image or video based on the timestamp.<br>If this parameter is specified, it must match the **options** configuration in the **RecentPhotoComponent**. Otherwise, there may be discrepancies where the API finds a recent image or video but the component does not.|
 
 **Return value**
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise\<[RecentPhotoInfo](arkts-apis-photoAccessHelper-class.md#RecentPhotoInfo20)>| Promise used to return the information about the recent image or video.|
+| Promise\<[RecentPhotoInfo](arkts-apis-photoAccessHelper-class.md#recentphotoinfo20)>| Promise used to return the information about the recent image or video.|
 
 **Example**
 
