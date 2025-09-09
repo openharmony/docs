@@ -11,6 +11,8 @@
 
 声明条件变量的C接口。
 
+**引用文件：** <ffrt/condition_variable.h>
+
 **库：** libffrt.z.so
 
 **系统能力：** SystemCapability.Resourceschedule.Ffrt.Core
