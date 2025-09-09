@@ -1,4 +1,10 @@
 # Basic Services Kit（基础服务）
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 
 - ArkTS API<!--basic-services-arkts-->
   - 账号管理<!--account-management-arkts-->
