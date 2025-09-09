@@ -6,13 +6,13 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-用于触发捏合手势，触发捏合手势的最少手指为2指，最大为5指，最小识别距离为5vp。
+用于触发捏合手势，最少需要2指，最多5指，最小识别距离为5vp。
 
 >  **说明：**
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->  
->  在捏合手势触发成功后，需要抬起所有手指，重新按下进行捏合才能再次触发捏合手势。
+>
+>  捏合手势触发成功后，抬起手指直至不再满足触发条件。再次满足条件时，可重新触发捏合手势。
 
 
 ## 接口
@@ -31,13 +31,13 @@ PinchGesture(value?: { fingers?: number; distance?: number })
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | { fingers?: number; distance?: number } | 否 | 设置捏合手势事件参数。<br> - fingers：触发捏合的最少手指数，&nbsp;最小为2指，最大为5指。<br/>默认值：2 <br/>触发手势手指可以多于fingers数目，但只有先落下的与fingers相同数目的手指参与手势计算。<br> - distance：最小识别距离，单位为vp。<br/>默认值：5 <br/>**说明：** <br/>取值范围：[0, +∞)。当识别距离的值小于等于0时，会被转化为默认值。 |
+| value | { fingers?: number; distance?: number } | 否 | 设置捏合手势事件参数。<br> - fingers：触发捏合的最少手指数，最小为2指，最大为5指。<br/>默认值：2 <br/>取值范围：[2, 5]。当设置的值不在该范围内时，会被转化为默认值。<br/>触发手势的手指数量可以多于fingers数目，但只有最先落下的与fingers相同数目的手指参与手势计算。<br> - distance：最小识别距离，单位为vp。<br/>默认值：5 <br/>**说明：** <br/>取值范围：[0, +∞)。当识别距离的值小于等于0时，会被转化为默认值。|
 
 ### PinchGesture<sup>15+</sup>
 
 PinchGesture(options?: PinchGestureHandlerOptions)
 
-设置捏合手势事件。与[PinchGesture](#pinchgesture-1)相比，options参数新增了对isFingerCountLimited参数，表示是否检查触摸屏幕的手指数量。
+设置捏合手势事件。与[PinchGesture](#pinchgesture-1)相比，options参数新增isFingerCountLimited，表示是否检查触摸屏幕的手指数量。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -54,13 +54,13 @@ PinchGesture(options?: PinchGestureHandlerOptions)
 
 >  **说明：**
 >
->  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议开发者优先使用fingerInfos。
 
 ### onActionStart
 
 onActionStart(event: (event: GestureEvent) => void)
 
-Pinch手势识别成功回调。
+Pinch手势识别成功后触发回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -92,7 +92,7 @@ Pinch手势移动过程中回调。
 
 onActionEnd(event: (event: GestureEvent) => void)
 
-Pinch手势识别成功，手指抬起后触发回调。
+Pinch手势识别成功，当抬起最后一根满足手势触发条件的手指后，触发回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -108,7 +108,7 @@ Pinch手势识别成功，手指抬起后触发回调。
 
 onActionCancel(event: () => void)
 
-Pinch手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。
+Pinch手势识别成功，接收到触摸取消事件触发的回调，不返回手势事件信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -124,7 +124,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。返回手势
 
 onActionCancel(event: Callback\<GestureEvent\>)
 
-Pinch手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。
+Pinch手势识别成功并接收到触摸取消事件的回调。与[onActionCancel](#onactioncancel)相比，该回调返回手势事件信息。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -140,7 +140,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。返回手势
 
 ### 示例1（实现简单缩放）
 
-该示例通过配置PinchGesture实现了三指捏合手势的识别。
+该示例通过配置PinchGesture实现了三指捏合手势的识别功能。
 
 ```ts
 // xxx.ets
@@ -166,7 +166,7 @@ struct PinchGestureExample {
       .scale({ x: this.scaleValue, y: this.scaleValue, z: 1 })
       // 三指捏合触发该手势事件
       .gesture(
-      PinchGesture({ fingers: 3 })
+      PinchGesture({ fingers: 3 }) // 三指捏合手势，用于缩放操作
         .onActionStart((event: GestureEvent) => {
           console.info('Pinch start')
         })
@@ -191,7 +191,7 @@ struct PinchGestureExample {
 
 ### 示例2（实现图片跟手缩放）
 
-该示例通过配置PinchGesture实现了图片的跟手缩放效果。
+通过配置PinchGesture，该示例实现了图片的跟手缩放效果。
 
 ```ts
 // xxx.ets
@@ -244,7 +244,7 @@ struct PinchGestureExample {
     }
     // 双指捏合触发该手势事件
     .gesture(
-      PinchGesture({ fingers: 2 })
+      PinchGesture({ fingers: 2 }) // 双指捏合手势，用于缩放图片
         .onActionStart((event: GestureEvent) => {
           // 图片本次缩放前展示大小
           const displayWidth = this.contentWidth * this.curScale;
