@@ -6945,7 +6945,7 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
-let proxyOptions: socket.ProxyOptions = {
+let oneWayproxyOptions: socket.ProxyOptions = {
   type : 1,
   address: socks5Server,
   username: "xxx",
@@ -6954,7 +6954,7 @@ let proxyOptions: socket.ProxyOptions = {
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: proxyOptions,
+  proxy: oneWayproxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
@@ -7149,7 +7149,7 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
-let proxyOptions: socket.ProxyOptions = {
+let oneWayproxyOptions: socket.ProxyOptions = {
   type : 1,
   address: socks5Server,
   username: "xxx",
@@ -7158,7 +7158,7 @@ let proxyOptions: socket.ProxyOptions = {
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: proxyOptions,
+  proxy: oneWayproxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
