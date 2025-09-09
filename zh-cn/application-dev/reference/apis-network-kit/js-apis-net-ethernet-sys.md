@@ -1,5 +1,12 @@
 # @ohos.net.ethernet (以太网连接管理)（系统接口）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS，代理等信息。
 
 > **说明：**
