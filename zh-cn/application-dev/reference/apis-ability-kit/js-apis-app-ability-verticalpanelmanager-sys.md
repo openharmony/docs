@@ -78,8 +78,8 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          this.callStartVerticalPanelNapi()
-        });
+          this.callStartVerticalPanelNapi();
+        })
     }
     .height('100%')
     .width('100%');
@@ -147,7 +147,7 @@ struct Index {
 
 ## VerticalType 
 
-提供拉起垂域面板选择器能力的枚举。
+提供拉起垂域面板选择器类型的枚举。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
