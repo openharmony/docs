@@ -1,6 +1,6 @@
 # 播放框架子系统变更说明
 
-## cl.<playframeworks>.1 MediaKit API20 OH_AVScreenCapture_SetCaptureStrategy变更。
+## cl.multimedia.1 Media Kit OH_AVScreenCapture_SetCaptureStrategy接口变更
 
 **访问级别**
 
@@ -8,15 +8,13 @@
 
 **变更原因**
 
-在启动屏幕录制后，调用该接口返回错误码AV_SCREEN_CAPTURE_ERR_UNSUPPORT，错误描述不准确，进行更正。
+在启动屏幕录制后，调用该接口返回错误码AV_SCREEN_CAPTURE_ERR_UNSUPPORT，错误描述不准确，为优化开发者体验，更正错误码描述。
 
 **变更影响**
 
-接口在HDC版本发布，暂无应用适配
+变更前：在启动屏幕录制后，调用OH_AVScreenCapture_SetCaptureStrategy返回错误码AV_SCREEN_CAPTURE_ERR_UNSUPPORT。
 
-变更前：在启动屏幕录制后，调用OH_AVScreenCapture_SetCaptureStrategy返回错误码AV_SCREEN_CAPTURE_ERR_UNSUPPORT；
-
-变更后：在启动屏幕录制后，调用OH_AVScreenCapture_SetCaptureStrategy返回错误码AV_SCREEN_CAPTURE_ERR_INVALID_STATE；
+变更后：在启动屏幕录制后，调用OH_AVScreenCapture_SetCaptureStrategy返回错误码AV_SCREEN_CAPTURE_ERR_INVALID_STATE。
 
 **起始 API Level**
 
@@ -28,7 +26,9 @@ API 20
 
 **变更的接口/组件**
 
-AVScreenCapture
+native_avscreen_capture.h：
+
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureStrategy(struct OH_AVScreenCapture *capture, OH_AVScreenCapture_CaptureStrategy *strategy)
 
 **适配指导**
 
