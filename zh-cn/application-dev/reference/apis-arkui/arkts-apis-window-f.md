@@ -858,9 +858,9 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: ColorMetrics): Promise&lt;void&gt;
 
-设置同应用内指定mouduleName、abilityName对应UIAbility的启动页背景色，使用Promise异步回调。
+设置同一应用包名下指定mouduleName、abilityName对应UIAbility的启动页背景色，使用Promise异步回调。
 
-该接口对同应用的所有进程生效，例如多实例或应用分身场景。
+该接口对同一应用包名下的所有进程生效，例如多实例或应用分身场景。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
  
