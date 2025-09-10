@@ -36,8 +36,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [typedef void (\*Player_MediaKeySystemInfoCallback)(OH_AVPlayer *player, DRM_MediaKeySystemInfo* mediaKeySystemInfo)](#player_mediakeysysteminfocallback) | Player_MediaKeySystemInfoCallback | 播放器DRM信息更新时调用。 |
-| [OH_AVPlayer *OH_AVPlayer_Create(void)](#oh_avplayer_create) | - | 创建播放器。<br> 推荐单个应用创建的音视频播放器实例（即音频、视频、音视频三类相加）不超过16个。<br> 可创建的音视频播放器实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放器实例。 |
+| [typedef void (\*Player_MediaKeySystemInfoCallback)(OH_AVPlayer \*player, DRM_MediaKeySystemInfo\* mediaKeySystemInfo)](#player_mediakeysysteminfocallback) | Player_MediaKeySystemInfoCallback | 播放器DRM信息更新时调用。 |
+| [OH_AVPlayer *OH_AVPlayer_Create(void)](#oh_avplayer_create) | - | 创建播放器。<br> 推荐单个应用创建的音视频播放器实例（即音频、视频、音视频三类相加）不超过16个。<!--Del--><br> 可创建的音视频播放器实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放器实例。<!--DelEnd--> |
 | [OH_AVErrCode OH_AVPlayer_SetURLSource(OH_AVPlayer *player, const char *url)](#oh_avplayer_seturlsource) | - | 设置播放器的播放源。对应的源可以是http url。 |
 | [OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t offset, int64_t size)](#oh_avplayer_setfdsource) | - | 设置播放器的媒体文件描述符来源。 |
 | [OH_AVErrCode OH_AVPlayer_Prepare(OH_AVPlayer *player)](#oh_avplayer_prepare) | - | 准备播放环境，异步缓存媒体数据。<br> 此函数必须在SetSource之后调用。 |
@@ -48,7 +48,7 @@
 | [OH_AVErrCode OH_AVPlayer_Release(OH_AVPlayer *player)](#oh_avplayer_release) | - | 异步释放播放器资源。<br> 异步释放可以提升性能，但不能确保播放画面的SurfaceBuffer已释放。调用者需要确保播放画面窗口的生命周期安全。 |
 | [OH_AVErrCode OH_AVPlayer_ReleaseSync(OH_AVPlayer *player)](#oh_avplayer_releasesync) | - | 同步释放播放器资源。<br> 同步过程保证了播放画面的SurfaceBuffer释放，但该过程耗时较长，建议调用者自行设计异步机制。 |
 | [OH_AVErrCode OH_AVPlayer_SetVolume(OH_AVPlayer *player, float leftVolume, float rightVolume)](#oh_avplayer_setvolume) | - | 设置播放器的音量。<br> 可以在播放或暂停的过程中使用。0表示无声音，1为原始值。 |
-| [OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain)](#oh_avplayer_setloudnessgain) | - | 设置播放器的响度。当播放处于prepared/playing/paused/completed/stopped状态时，可调用该接口。<br> 默认响度增益0.0dB。播放器流的usage参数必须是{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_MUSIC，<br> {@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_MOVIE，{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_AUDIOBOOK 之一。<br> 音频渲染器的延迟模式必须是{@link OH_AudioStream_LatencyMode}.AUDIOSTREAM_LATENCY_MODE_NORMAL。<br> 如果通过高分辨率管道播放，则不支持此操作。 |
+| [OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain)](#oh_avplayer_setloudnessgain) | - | 设置播放器的响度。当播放处于prepared/playing/paused/completed/stopped状态时，可调用该接口。<br> 默认响度增益0.0dB。播放器流的usage参数必须是[OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_MUSIC，<br> [OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_MOVIE，[OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_AUDIOBOOK 之一。<br> 音频渲染器的延迟模式必须是[OH_AudioStream_LatencyMode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_latencymode).AUDIOSTREAM_LATENCY_MODE_NORMAL。<br> 如果通过高分辨率管道播放，则不支持此操作。 |
 | [OH_AVErrCode OH_AVPlayer_Seek(OH_AVPlayer *player, int32_t mSeconds, AVPlayerSeekMode mode)](#oh_avplayer_seek) | - | 改变播放位置。<br> 此函数可以在播放或暂停时使用。 |
 | [OH_AVErrCode OH_AVPlayer_GetCurrentTime(OH_AVPlayer *player, int32_t *currentTime)](#oh_avplayer_getcurrenttime) | - | 获取播放位置，精确到毫秒。 |
 | [OH_AVErrCode OH_AVPlayer_GetVideoWidth(OH_AVPlayer *player, int32_t *videoWidth)](#oh_avplayer_getvideowidth) | - | 获取视频宽度。 |
@@ -107,7 +107,7 @@ OH_AVPlayer *OH_AVPlayer_Create(void)
 
 **描述**
 
-创建播放器。<br> 推荐单个应用创建的音视频播放器实例（即音频、视频、音视频三类相加）不超过16个。<br> 可创建的音视频播放器实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放器实例。
+创建播放器。<br> 推荐单个应用创建的音视频播放器实例（即音频、视频、音视频三类相加）不超过16个。<br> <!--Del-->可创建的音视频播放器实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放器实例。<!--DelEnd-->
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -117,7 +117,7 @@ OH_AVPlayer *OH_AVPlayer_Create(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVPlayer *](capi-avplayer-oh-avplayer.md) | 如果创建成功返回指向OH_AVPlayer实例的指针，否则返回空指针。<br> 可能的失败原因：<br> 1.PlayerFactory::CreatePlayer执行失败。<br> 2.new PlayerObject执行失败。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) * | 如果创建成功返回指向OH_AVPlayer实例的指针，否则返回空指针。<br> 可能的失败原因：<br> 1.PlayerFactory::CreatePlayer执行失败。<br> 2.new PlayerObject执行失败。 |
 
 ### OH_AVPlayer_SetURLSource()
 
@@ -403,7 +403,7 @@ OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain
 
 **描述**
 
-设置播放器的响度。当播放处于prepared/playing/paused/completed/stopped状态时，可调用该接口。<br> 默认响度增益0.0dB。播放器流的usage参数必须是{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_MUSIC，<br> {@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_MOVIE，{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_AUDIOBOOK 之一。<br> 音频渲染器的延迟模式必须是{@link OH_AudioStream_LatencyMode}.AUDIOSTREAM_LATENCY_MODE_NORMAL。<br> 如果通过高分辨率管道播放，则不支持此操作。
+设置播放器的响度。当播放处于prepared/playing/paused/completed/stopped状态时，可调用该接口。<br> 默认响度增益0.0dB。播放器流的usage参数必须是[OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_MUSIC，<br> [OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_MOVIE，[OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage).AUDIOSTREAM_USAGE_AUDIOBOOK 之一。<br> 音频渲染器的延迟模式必须是[OH_AudioStream_LatencyMode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_latencymode).AUDIOSTREAM_LATENCY_MODE_NORMAL。<br> 如果通过高分辨率管道播放，则不支持此操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -421,7 +421,7 @@ OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AVErrCode | AV_ERR_OK：成功设置响度。<br>         AV_ERR_INVALID_VAL：输入player为空指针，或者输入的loudnessGain是无效参数。<br>         AV_ERR_INVALID_STATE：函数在不正常的状态下调用，或者audioRendererInfo的usage参数不是{@link StreamUsage}.STREAM_USAGE_MUSIC，<br>              {@link StreamUsage}.STREAM_USAGE_MOVIE ，{@link StreamUsage}.STREAM_USAGE_AUDIOBOOK 之一。<br>         AV_ERR_SERVICE_DIED：系统错误。 |
+| OH_AVErrCode | AV_ERR_OK：成功设置响度。<br>         AV_ERR_INVALID_VAL：输入player为空指针，或者输入的loudnessGain是无效参数。<br>         AV_ERR_INVALID_STATE：函数在不正常的状态下调用，或者audioRendererInfo的usage参数不是[StreamUsage]().STREAM_USAGE_MUSIC，<br>              {@link StreamUsage}.STREAM_USAGE_MOVIE ，{@link StreamUsage}.STREAM_USAGE_AUDIOBOOK 之一。<br>         AV_ERR_SERVICE_DIED：系统错误。 |
 
 ### OH_AVPlayer_Seek()
 
@@ -962,7 +962,7 @@ OH_AVErrCode OH_AVPlayer_SelectTrack(OH_AVPlayer *player, int32_t index)
 
 **描述**
 
-选择音频或字幕轨道。<br> 默认播放第一个带数据的音轨，不播放字幕轨迹。<br> 设置生效后，原音轨将失效。请设置字幕处于准备/播放/暂停/完成状态，并将音轨设置为准备状态。
+该接口在当前版本暂不支持，将在后续版本开放能力。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
