@@ -62,7 +62,7 @@ struct Index {
                 console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Device id list: ${JSON.stringify(ids)}`);
+              console.info(`Device id list: ${JSON.stringify(ids)}`);
             });
           } catch (error) {
             console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -101,7 +101,7 @@ struct Index {
         .onClick(() => {
           try {
             inputDevice.getDeviceList().then((ids: Array<Number>) => {
-              console.log(`Device id list: ${JSON.stringify(ids)}`);
+              console.info(`Device id list: ${JSON.stringify(ids)}`);
             });
           } catch (error) {
             console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -154,7 +154,7 @@ struct Index {
                 console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Device info: ${JSON.stringify(deviceData)}`);
+              console.info(`Device info: ${JSON.stringify(deviceData)}`);
             });
           } catch (error) {
             console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -208,7 +208,7 @@ struct Index {
           // 获取输入设备id为1的设备信息。
           try {
             inputDevice.getDeviceInfo(1).then((deviceData: inputDevice.InputDeviceData) => {
-              console.log(`Device info: ${JSON.stringify(deviceData)}`);
+              console.info(`Device info: ${JSON.stringify(deviceData)}`);
             });
           } catch (error) {
             console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -262,7 +262,7 @@ struct Index {
           // 获取输入设备id为1的设备信息。
           try {
             let deviceData: inputDevice.InputDeviceData = inputDevice.getDeviceInfoSync(1);
-            console.log(`Device info: ${JSON.stringify(deviceData)}`);
+            console.info(`Device info: ${JSON.stringify(deviceData)}`);
           } catch (error) {
             console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -310,9 +310,9 @@ struct Index {
           let isPhysicalKeyboardExist = true;
           try {
             inputDevice.on("change", (data: inputDevice.DeviceListener) => {
-              console.log(`Device event info: ${JSON.stringify(data)}`);
+              console.info(`Device event info: ${JSON.stringify(data)}`);
               inputDevice.getKeyboardType(data.deviceId, (err: Error, type: inputDevice.KeyboardType) => {
-                console.log("The keyboard type is: " + type);
+                console.info("The keyboard type is: " + type);
                 if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
                   // 监听物理键盘已连接。
                   isPhysicalKeyboardExist = true;
@@ -368,7 +368,7 @@ struct Index {
       Text()
         .onClick(() => {
           let callback = (data: inputDevice.DeviceListener) => {
-            console.log(`Report device event info: ${JSON.stringify(data, [`type`, `deviceId`])}`);
+            console.info(`Report device event info: ${JSON.stringify(data, [`type`, `deviceId`])}`);
           };
 
           try {
@@ -429,7 +429,7 @@ struct Index {
               console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
               return;
             }
-            console.log(`Device id list: ${JSON.stringify(ids)}`);
+            console.info(`Device id list: ${JSON.stringify(ids)}`);
           });
         })
     }
@@ -466,7 +466,7 @@ struct Index {
       Text()
         .onClick(() => {
           inputDevice.getDeviceIds().then((ids: Array<Number>) => {
-            console.log(`Device id list: ${JSON.stringify(ids)}`);
+            console.info(`Device id list: ${JSON.stringify(ids)}`);
           });
         })
     }
@@ -509,7 +509,7 @@ struct Index {
               console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
               return;
             }
-            console.log(`Device info: ${JSON.stringify(deviceData)}`);
+            console.info(`Device info: ${JSON.stringify(deviceData)}`);
           });
         })
     }
@@ -553,7 +553,7 @@ struct Index {
         .onClick(() => {
           // 获取输入设备id为1的设备信息。
           inputDevice.getDevice(1).then((deviceData: inputDevice.InputDeviceData) => {
-            console.log(`Device info: ${JSON.stringify(deviceData)}`);
+            console.info(`Device info: ${JSON.stringify(deviceData)}`);
           });
         })
     }
@@ -600,7 +600,7 @@ struct Index {
           // 查询id为1的输入设备对于17、22和2055按键的支持情况。
           try {
             inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<Boolean>) => {
-              console.log(`Query result: ${JSON.stringify(supportResult)}`);
+              console.info(`Query result: ${JSON.stringify(supportResult)}`);
             });
           } catch (error) {
             console.error(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -655,7 +655,7 @@ struct Index {
           // 查询id为1的输入设备对于17、22和2055按键的支持情况。
           try {
             inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<Boolean>) => {
-              console.log(`Query result: ${JSON.stringify(supportResult)}`);
+              console.info(`Query result: ${JSON.stringify(supportResult)}`);
             });
           } catch (error) {
             console.error(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -710,7 +710,7 @@ struct Index {
           // 查询id为1的输入设备对于17、22和2055按键的支持情况。
           try {
             let supportResult: Array<Boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
-            console.log(`Query result: ${JSON.stringify(supportResult)}`)
+            console.info(`Query result: ${JSON.stringify(supportResult)}`)
           } catch (error) {
             console.error(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
           }
@@ -762,7 +762,7 @@ struct Index {
                 console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Keyboard type: ${JSON.stringify(type)}`);
+              console.info(`Keyboard type: ${JSON.stringify(type)}`);
             });
           } catch (error) {
             console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -816,7 +816,7 @@ struct Index {
           // 示例查询设备id为1的设备键盘类型。
           try {
             inputDevice.getKeyboardType(1).then((type: Number) => {
-              console.log(`Keyboard type: ${JSON.stringify(type)}`);
+              console.info(`Keyboard type: ${JSON.stringify(type)}`);
             });
           } catch (error) {
             console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -870,7 +870,7 @@ struct Index {
           // 示例查询设备id为1的设备键盘类型。
           try {
             let type: number = inputDevice.getKeyboardTypeSync(1)
-            console.log(`Keyboard type: ${JSON.stringify(type)}`)
+            console.info(`Keyboard type: ${JSON.stringify(type)}`)
           } catch (error) {
             console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
           }
@@ -923,7 +923,7 @@ struct Index {
         .onClick(() => {
           try {
             inputDevice.isFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK).then((state: boolean) => {
-              console.log(`capslock state: ${JSON.stringify(state)}`);
+              console.info(`capslock state: ${JSON.stringify(state)}`);
             });
           } catch (error) {
             console.error(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -1024,7 +1024,7 @@ struct Index {
       Text()
         .onClick(() => {
           inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
-            console.log(`Interval since last input: ${JSON.stringify(timeInterval)}`);
+            console.info(`Interval since last input: ${JSON.stringify(timeInterval)}`);
           });
         })
     }
