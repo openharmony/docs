@@ -1,4 +1,5 @@
 # photo_output.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
@@ -70,6 +71,8 @@
 | [Camera_ErrorCode OH_PhotoOutput_DeleteProfile(Camera_Profile* profile)](#oh_photooutput_deleteprofile) | - | 删除照片配置文件实例。 |
 | [Camera_ErrorCode OH_PhotoOutput_IsMovingPhotoSupported(Camera_PhotoOutput* photoOutput, bool* isSupported)](#oh_photooutput_ismovingphotosupported) | - | 检查是否支持动态照片。 |
 | [Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutput, bool enabled)](#oh_photooutput_enablemovingphoto) | - | 是否启用动态照片。 |
+| [Camera_ErrorCode OH_PhotoOutput_IsPhotoQualityPrioritizationSupported(Camera_PhotoOutput* photoOutput, Camera_PhotoQualityPrioritization qualityPrioritization, bool* isSupported)](#oh_photooutput_isphotoqualityprioritizationsupported) | - | 检查是否支持指定的拍照画质优先策略。 |
+| [Camera_ErrorCode OH_PhotoOutput_SetPhotoQualityPrioritization(Camera_PhotoOutput* photoOutput, Camera_PhotoQualityPrioritization qualityPrioritization)](#oh_photooutput_setphotoqualityprioritization) | - | 设置拍照画质优先策略。 |
 
 ## 函数说明
 
@@ -150,11 +153,12 @@ typedef void (*OH_PhotoOutput_OnError)(Camera_PhotoOutput* photoOutput, Camera_E
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
-|  [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 拍照输出的错误码。 |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 拍照输出的错误码。 |
 
 **参考：**
 
 [CAMERA_SERVICE_FATAL_ERROR](capi-camera-h.md#camera_errorcode)
+
 
 ### OH_PhotoOutput_CaptureEnd()
 
@@ -194,7 +198,7 @@ typedef void (*OH_PhotoOutput_CaptureStartWithInfo)(Camera_PhotoOutput* photoOut
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
-|  [Camera_CaptureStartInfo](capi-oh-camera-camera-capturestartinfo.md)* Info | 回调传递的拍照开始信息。 |
+| [Camera_CaptureStartInfo](capi-oh-camera-camera-capturestartinfo.md)* Info | 回调传递的拍照开始信息。 |
 
 ### OH_PhotoOutput_OnFrameShutterEnd()
 
@@ -214,7 +218,7 @@ typedef void (*OH_PhotoOutput_OnFrameShutterEnd)(Camera_PhotoOutput* photoOutput
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
-| [Camera_FrameShutterInfo](capi-oh-camera-camera-frameshutterinfo.md)* info | 回调传递的帧快门回调信息。 |
+| [Camera_FrameShutterInfo](capi-oh-camera-camera-frameshutterinfo.md)* Info | 回调传递的帧快门回调信息。 |
 
 ### OH_PhotoOutput_CaptureReady()
 
@@ -273,7 +277,7 @@ typedef void (*OH_PhotoOutput_PhotoAvailable)(Camera_PhotoOutput* photoOutput, O
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
-|  [OH_PhotoNative](capi-oh-camera-oh-photonative.md)* photo | 回调传递的OH_PhotoNative。 |
+| [OH_PhotoNative](capi-oh-camera-oh-photonative.md)* photo | 回调传递的OH_PhotoNative。 |
 
 ### OH_PhotoOutput_PhotoAssetAvailable()
 
@@ -293,7 +297,7 @@ typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutp
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
-|  [OH_MediaAsset](../apis-media-library-kit/capi-mediaassetmanager-oh-mediaasset.md)* photoAsset | 回调传递的媒体资源。 |
+| [OH_MediaAsset](../apis-media-library-kit/capi-mediaassetmanager-oh-mediaasset.md)* photoAsset | 回调传递的媒体资源。 |
 
 ### OH_PhotoOutput_RegisterCallback()
 
@@ -350,7 +354,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCallback(Camera_PhotoOutput* photoOutp
 ### OH_PhotoOutput_RegisterCaptureStartWithInfoCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_CaptureStartWithInfo callback)
+Camera_ErrorCode OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_CaptureStartWithInfo callback)
 ```
 
 **描述**
@@ -376,7 +380,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(Camera_Phot
 ### OH_PhotoOutput_GetPhotoRotation()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput, int deviceDegree,Camera_ImageRotation* imageRotation)
+Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput, int deviceDegree, Camera_ImageRotation* imageRotation)
 ```
 
 **描述**
@@ -403,7 +407,7 @@ Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput
 ### OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_CaptureStartWithInfo callback)
+Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_CaptureStartWithInfo callback)
 ```
 
 **描述**
@@ -429,7 +433,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(Camera_Ph
 ### OH_PhotoOutput_RegisterCaptureEndCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_RegisterCaptureEndCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_CaptureEnd callback)
+Camera_ErrorCode OH_PhotoOutput_RegisterCaptureEndCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_CaptureEnd callback)
 ```
 
 **描述**
@@ -455,7 +459,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureEndCallback(Camera_PhotoOutput* p
 ### OH_PhotoOutput_UnregisterCaptureEndCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureEndCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_CaptureEnd callback)
+Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureEndCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_CaptureEnd callback)
 ```
 
 **描述**
@@ -481,7 +485,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureEndCallback(Camera_PhotoOutput*
 ### OH_PhotoOutput_RegisterFrameShutterEndCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_RegisterFrameShutterEndCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_OnFrameShutterEnd callback)
+Camera_ErrorCode OH_PhotoOutput_RegisterFrameShutterEndCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_OnFrameShutterEnd callback)
 ```
 
 **描述**
@@ -507,7 +511,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterFrameShutterEndCallback(Camera_PhotoOutp
 ### OH_PhotoOutput_UnregisterFrameShutterEndCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_UnregisterFrameShutterEndCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_OnFrameShutterEnd callback)
+Camera_ErrorCode OH_PhotoOutput_UnregisterFrameShutterEndCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_OnFrameShutterEnd callback)
 ```
 
 **描述**
@@ -533,7 +537,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterFrameShutterEndCallback(Camera_PhotoOu
 ### OH_PhotoOutput_RegisterCaptureReadyCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_RegisterCaptureReadyCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_CaptureReady callback)
+Camera_ErrorCode OH_PhotoOutput_RegisterCaptureReadyCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_CaptureReady callback)
 ```
 
 **描述**
@@ -559,7 +563,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureReadyCallback(Camera_PhotoOutput*
 ### OH_PhotoOutput_UnregisterCaptureReadyCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureReadyCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_CaptureReady callback)
+Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureReadyCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_CaptureReady callback)
 ```
 
 **描述**
@@ -585,7 +589,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureReadyCallback(Camera_PhotoOutpu
 ### OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_EstimatedCaptureDuration callback)
+Camera_ErrorCode OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_EstimatedCaptureDuration callback)
 ```
 
 **描述**
@@ -611,7 +615,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(Camera_
 ### OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_EstimatedCaptureDuration callback)
+Camera_ErrorCode OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_EstimatedCaptureDuration callback)
 ```
 
 **描述**
@@ -637,7 +641,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(Camer
 ### OH_PhotoOutput_RegisterPhotoAvailableCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_PhotoAvailable callback)
+Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_PhotoAvailable callback)
 ```
 
 **描述**
@@ -663,7 +667,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutpu
 ### OH_PhotoOutput_UnregisterPhotoAvailableCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_PhotoAvailable callback)
+Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_PhotoAvailable callback)
 ```
 
 **描述**
@@ -689,7 +693,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOut
 ### OH_PhotoOutput_RegisterPhotoAssetAvailableCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_PhotoAssetAvailable callback)
+Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_PhotoAssetAvailable callback)
 ```
 
 **描述**
@@ -715,7 +719,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_Photo
 ### OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_PhotoAssetAvailable callback)
+Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput, OH_PhotoOutput_PhotoAssetAvailable callback)
 ```
 
 **描述**
@@ -766,7 +770,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)
 ### OH_PhotoOutput_Capture_WithCaptureSetting()
 
 ```
-Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting(Camera_PhotoOutput* photoOutput,Camera_PhotoCaptureSetting setting)
+Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting(Camera_PhotoOutput* photoOutput, Camera_PhotoCaptureSetting setting)
 ```
 
 **描述**
@@ -970,5 +974,58 @@ Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutpu
 | 类型 | 说明 |
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
+
+### OH_PhotoOutput_IsPhotoQualityPrioritizationSupported()
+
+```
+Camera_ErrorCode OH_PhotoOutput_IsPhotoQualityPrioritizationSupported(Camera_PhotoOutput* photoOutput, Camera_PhotoQualityPrioritization qualityPrioritization, bool* isSupported)
+```
+
+**描述**
+
+检查是否支持指定的拍照画质优先策略。
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 用于获取是否支持拍照画质优先策略的拍照输出实例。 |
+| [Camera_PhotoQualityPrioritization](capi-camera-h.md#camera_photoqualityprioritization) qualityPrioritization | 要检查的拍照画质优先策略。 |
+| bool* isSupported | 是否支持指定的拍照画质优先策略。true表示支持，false表示不支持。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
+
+### OH_PhotoOutput_SetPhotoQualityPrioritization()
+
+```
+Camera_ErrorCode OH_PhotoOutput_SetPhotoQualityPrioritization(Camera_PhotoOutput* photoOutput, Camera_PhotoQualityPrioritization qualityPrioritization)
+```
+
+**描述**
+
+设置拍照画质优先策略。
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 用于设置拍照画质优先策略的拍照输出实例。 |
+| [Camera_PhotoQualityPrioritization](capi-camera-h.md#camera_photoqualityprioritization) qualityPrioritization | 要设置的拍照画质优先策略。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_OPERATION_NOT_ALLOWED：操作不允许。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
 
 
