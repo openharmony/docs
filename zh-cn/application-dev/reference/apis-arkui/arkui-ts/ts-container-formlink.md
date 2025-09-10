@@ -1,6 +1,6 @@
 # FormLink
 
-提供静态卡片交互组件，用于静态卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件。
+提供静态卡片交互组件，用于静态卡片内部和卡片提供方应用间的交互，当前支持router、message和call三种类型的事件。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@
 >
 > - 该组件仅可以在静态卡片中使用。
 >
-> - 卡片具体开发指导请参考[卡片开发指南](../../../form/formkit-overview.md)。
+> - 这里只介绍静态卡片，其他卡片的详细开发指导请参考[卡片开发指南](../../../form/formkit-overview.md)。
 
 ## 权限
 
@@ -16,7 +16,7 @@
 
 ## 子组件
 
-支持单个子组件
+支持单个子组件。
 
 ## 接口
 
@@ -51,11 +51,11 @@ FormLink(options: FormLinkOptions)
 
 ## 属性
 
-支持[通用属性](ts-component-general-attributes.md)
+支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 
-不支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
