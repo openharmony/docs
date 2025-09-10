@@ -13,7 +13,7 @@
 import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
-## 属性
+## 常量
 
 描述电池信息。
 
@@ -119,6 +119,7 @@ import {batteryInfo} from '@kit.BasicServicesKit';
 
 | 名称           | 值 | 说明                       |
 | -------------- | ------ | ---------------------------- |
+| LEVEL_NONE     | 0      | 表示电池电量等级为未知电量。   |
 | LEVEL_FULL     | 1      | 表示电池电量等级为满电量。   |
 | LEVEL_HIGH     | 2      | 表示电池电量等级为高电量。   |
 | LEVEL_NORMAL   | 3      | 表示电池电量等级为正常电量。 |
