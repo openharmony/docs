@@ -17,6 +17,10 @@
 
 Memory error.
 
+**错误描述**
+
+内存错误。
+
 **可能原因**
 
 当前系统内存分配失败。
@@ -32,6 +36,10 @@ Memory error.
 
 Runtime error.
 
+**错误描述**
+
+运行时外部错误。
+
 **可能原因**
 
 系统出现的不可预料的错误。
@@ -46,6 +54,10 @@ Runtime error.
 
 Indicates that parameter check failed.
 
+**错误描述**
+
+参数检查失败。
+
 **可能原因**
 
 输入枚举值不在范围内。
@@ -59,6 +71,10 @@ Indicates that parameter check failed.
 **错误信息**
 
 Crypto operation error.
+
+**错误描述**
+
+调用三方算法库API出错。
 
 **可能原因**
 
@@ -75,6 +91,10 @@ Crypto operation error.
 
 The certificate signature verification failed.
 
+**错误描述**
+
+证书签名验证错误。
+
 **可能原因**
 
 证书校验过程中，证书的签名信息不对。
@@ -88,6 +108,10 @@ The certificate signature verification failed.
 **错误信息**
 
 The certificate has not taken effect.
+
+**错误描述**
+
+证书尚未生效。
 
 **可能原因**
 
@@ -105,6 +129,10 @@ The certificate has not taken effect.
 
 The certificate has expired.
 
+**错误描述**
+
+证书过期。
+
 **可能原因**
 
 证书失效。基于当前系统时间或者业务指定的时间点，证书已经失效。
@@ -121,6 +149,10 @@ The certificate has expired.
 
 Failed to obtain the certificate issuer.
 
+**错误描述**
+
+无法获取证书的颁发者。
+
 **可能原因**
 
 证书校验过程中，无法获取当前证书的颁发者。
@@ -129,11 +161,15 @@ Failed to obtain the certificate issuer.
 
 检查证书的正确性。
 
-## 19030006 证书的秘钥用途不包括证书签名
+## 19030006 证书的密钥用途不包括证书签名
 
 **错误信息**
 
 The key cannot be used for signing a certificate.
+
+**错误描述**
+
+证书的密钥用途不含证书签名。
 
 **可能原因**
 
@@ -143,11 +179,15 @@ The key cannot be used for signing a certificate.
 
 检查证书的正确性。
 
-## 19030007 证书的秘钥用途不包括数字签名
+## 19030007 证书的密钥用途不包括数字签名
 
 **错误信息**
 
 The key cannot be used for digital signature.
+
+**错误描述**
+
+证书的密钥用途不含数字签名。
 
 **可能原因**
 
@@ -162,6 +202,10 @@ The key cannot be used for digital signature.
 **错误信息**
 
 The password may be wrong.
+
+**错误描述**
+
+私钥密码错误。
 
 **可能原因**
 
