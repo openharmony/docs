@@ -5119,3 +5119,17 @@ Allows a system application to set the certificate status of independent binary 
 **Supported devices**: PC/2in1
 
 **Valid since**: 20
+
+## ohos.permission.DATA_IDENTIFY_ANONYMIZE
+
+Allows the system application to invoke the data identification capability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: PC/2in1 | Phone | Tablet | TV | Car
+
+**Valid since**：21
