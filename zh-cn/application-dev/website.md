@@ -4823,8 +4823,8 @@
         - 模块<!--avcodec-module-->
           - [AVCapability](reference/apis-avcodec-kit/capi-avcapability.md)
           - [AudioCodec](reference/apis-avcodec-kit/capi-audiocodec.md)
-          - [AVDemuxer](reference/apis-avcodec-kit/_a_v_demuxer.md)
-          - [AVMuxer](reference/apis-avcodec-kit/_a_v_muxer.md)
+          - [AVDemuxer](reference/apis-avcodec-kit/capi-avdemuxer.md)
+          - [AVMuxer](reference/apis-avcodec-kit/capi-avmuxer.md)
           - [AVSource](reference/apis-avcodec-kit/_a_v_source.md)
           - [CodecBase](reference/apis-avcodec-kit/_codec_base.md)
           - [Core](reference/apis-avcodec-kit/_core.md)
@@ -4841,11 +4841,11 @@
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
-          - [native_avdemuxer.h](reference/apis-avcodec-kit/native__avdemuxer_8h.md)
           - [native_averrors.h](reference/apis-avcodec-kit/native__averrors_8h.md)
           - [native_avformat.h](reference/apis-avcodec-kit/native__avformat_8h.md)
           - [native_avmemory.h](reference/apis-avcodec-kit/native__avmemory_8h.md)
-          - [native_avmuxer.h](reference/apis-avcodec-kit/native__avmuxer_8h.md)
+          - [native_avdemuxer.h](reference/apis-avcodec-kit/capi-native-avdemuxer-h.md)
+          - [native_avmuxer.h](reference/apis-avcodec-kit/capi-native-avmuxer-h.md)
           - [native_avsource.h](reference/apis-avcodec-kit/native__avsource_8h.md)
           - [native_cencinfo.h](reference/apis-avcodec-kit/native__cencinfo_8h.md)
         - 结构体<!--avcodec-struct-->
@@ -4858,6 +4858,9 @@
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVDataSourceExt](reference/apis-avcodec-kit/_o_h___a_v_data_source_ext.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
+          - [OH_AVDemuxer](reference/apis-avcodec-kit/capi-avdemuxer-oh-avdemuxer.md)
+          - [DRM_MediaKeySystemInfo](reference/apis-avcodec-kit/capi-avdemuxer-drm-mediakeysysteminfo.md)
+          - [OH_AVMuxer](reference/apis-avcodec-kit/capi-avmuxer-oh-avmuxer.md)
         - 已停止维护的接口<!--avcodec-arkts-dep-->
           - 模块<!--avcodec-module-arkts-dep-->
             - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
