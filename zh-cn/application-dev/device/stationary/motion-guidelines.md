@@ -6,6 +6,8 @@
 
 详细的接口介绍请参考[Motion接口](../../reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)。
 
+从API version 15开始，支持获取操作手状态。
+
 ## 接口说明
 
 | 接口名                                                       | 描述                                   |
@@ -48,7 +50,6 @@
    ```ts
    import { motion } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调函数接收操作手结果
