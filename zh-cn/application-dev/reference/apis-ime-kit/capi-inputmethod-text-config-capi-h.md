@@ -283,7 +283,7 @@ InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config,
 
 **描述**
 
-获文本配置信息中的输入框类型。
+获取文本配置信息中的输入框类型。
 
 **起始版本：** 12
 
