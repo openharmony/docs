@@ -111,7 +111,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 ```ts
 stationary.once('still', (data) => {
-    console.info("data=" + JSON.stringify(data));
+    console.info('data=' + JSON.stringify(data));
 })
 ```
 
