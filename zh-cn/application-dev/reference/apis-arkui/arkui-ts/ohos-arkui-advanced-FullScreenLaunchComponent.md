@@ -78,13 +78,13 @@ struct Index {
           appId: this.appId,
           options: {},
           onTerminated: (info) => {
-            console.info("onTerminated code: " + info.code.toString());
+            console.info(`onTerminated code: ${info.code.toString()}`);
           },
           onError: (err) => {
-            console.error("onError code: " + err.code + ", message: ", err.message);
+            console.error(`onError code: ${err.code}, message: ${err.message}`);
           },
           onReceive: (data) => {
-            console.info("onReceive, data: " + JSON.stringify(data));
+            console.info(`onReceive, data: ${JSON.stringify(data)}`);
           }
         }).width("80vp").height("80vp")
       }
@@ -152,10 +152,9 @@ import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
 
-@Entry({ storage : new LocalStorage() })
 @Component
 struct Index {
-  storage = new LocalStorage()
+  private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
 
   build() {
     Row() {
@@ -167,18 +166,21 @@ struct Index {
                 this.testSetSystemBarEnable()
               }).width(120)
           }.height(60)
+
           GridCol() {
             Button("setGestureBack")
               .onClick(() => {
                 this.testSetGestureBackEnable()
               }).width(120)
           }.height(60)
+
           GridCol() {
             Button("setImmersive")
               .onClick(() => {
                 this.testSetImmersiveEnable()
               }).width(120)
           }.height(60)
+
           GridCol() {
             Button("setSpecificSystemBarEnabled")
               .onClick(() => {
@@ -191,39 +193,43 @@ struct Index {
     }
     .height('100%')
   }
+
   testSetSystemBarEnable() {
     let window: window.Window | undefined = this.storage.get("window");
     let p = window?.setWindowSystemBarEnable(["status"])
     p?.then(() => {
       console.info('setWindowSystemBarEnable success');
     }).catch((err: BusinessError) => {
-      console.info('setWindowSystemBarEnable failed, error = ' + JSON.stringify(err));
+      console.error(`setWindowSystemBarEnable failed, error = ${JSON.stringify(err)}`);
     })
   }
+
   testSetGestureBackEnable() {
     let window: window.Window | undefined = this.storage.get("window");
     let p = window?.setGestureBackEnabled(true)
     p?.then(() => {
       console.info('setGestureBackEnabled success');
     }).catch((err: BusinessError) => {
-      console.info('setGestureBackEnabled failed, error = ' + JSON.stringify(err));
+      console.error(`setGestureBackEnabled failed, error = ${JSON.stringify(err)}`);
     })
   }
+
   testSetImmersiveEnable() {
     let window: window.Window | undefined = this.storage.get("window");
-    try{
+    try {
       window?.setImmersiveModeEnabledState(true)
-    } catch(err) {
-      console.info('setImmersiveModeEnabledState failed, error = ' + JSON.stringify(err));
+    } catch (err) {
+      console.error(`setImmersiveModeEnabledState failed, error = ${JSON.stringify(err)}`);
     }
   }
+
   testSetSpecificSystemBarEnabled() {
     let window: window.Window | undefined = this.storage.get("window");
     let p = window?.setSpecificSystemBarEnabled('navigationIndicator', false, false)
     p?.then(() => {
       console.info('setSpecificSystemBarEnabled success');
     }).catch((err: BusinessError) => {
-      console.info('setSpecificSystemBarEnabled failed, error = ' + JSON.stringify(err));
+      console.error(`setSpecificSystemBarEnabled failed, error = ${JSON.stringify(err)}`);
     })
   }
 }
