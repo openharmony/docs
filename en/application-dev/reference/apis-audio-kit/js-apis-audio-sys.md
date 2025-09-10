@@ -1,4 +1,10 @@
 # @ohos.multimedia.audio (Audio Management) (System API)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 The module provides basic audio management capabilities, including audio volume and audio device management, and audio data collection and rendering.
 
@@ -494,7 +500,7 @@ kvpairs = {
 
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set the audio extra parameters ${err}`);
 });
 ```
@@ -540,7 +546,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let subKeys: Array<String> = ['key_example'];
 audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
   console.info(`Promise returned to indicate that the value of the audio extra parameters is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get the audio extra parameters ${err}`);
 });
 ```
@@ -605,7 +611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set the audio scene mode ${err}`);
 });
 ```
@@ -678,7 +684,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.disableSafeMediaVolume().then(() => {
   console.info('disableSafeMediaVolume success.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
 });
 ```
@@ -689,7 +695,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](arkts-apis-audio-AudioVolumeManager.md#onvolumechange9) in AudioVolumeManager.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](arkts-apis-audio-AudioVolumeManager.md#onvolumechangedeprecated) in AudioVolumeManager.
 
 Subscribes to the system volume change event, which is triggered when the system volume is changed. This API uses an asynchronous callback to return the result.
 
@@ -1009,13 +1015,13 @@ Checks whether the application volume is muted based on the application ID. This
 | Name    | Type                                     | Mandatory| Description                                       |
 | ---------- | ---------------------------------------- | ---- |-------------------------------------------|
 | uid    | number                                   | Yes  | Application ID.                                   |
-| owned    | boolean                                   | Yes  | Mute state to check. The value **true** means to check the mute state for the current caller, and **false** means to check the mute state for the application.|
+| owned    | boolean                                   | Yes  | Mute state to check. **true** to check the mute state for the current caller, **false** to check the mute state for the application.|
 
 **Return value**
 
 | Type               | Description                 |
 | ------------------- |---------------------|
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application volume is muted, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result, indicating whether the application volume is muted. **true** if muted, **false** otherwise.|
 
 **Error codes**
 
@@ -1052,7 +1058,7 @@ Sets the mute state for an application based on the application ID. This API use
 | Name    | Type                                     | Mandatory| Description                            |
 | ---------- | ---------------------------------------- | ---- |--------------------------------|
 | uid    | number                                   | Yes  | Application ID.                        |
-| owned    | boolean                                   | Yes  | Mute state to set. The value **true** means to mute the application, and **false** means to unmute the application.|
+| owned    | boolean                                   | Yes  | Mute state to set. **true** to mute, **false** otherwise.|
 
 **Return value**
 
@@ -1265,7 +1271,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9).|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated).|
 | callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1301,7 +1307,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9).|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated).|
 
 **Return value**
 
@@ -1336,7 +1342,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                  |
 | ---------- | ----------------------------------- | ---- |--------------------------------------|
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                              |
-| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9).|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated).|
 | flags      | number                              | Yes  | Whether to display the system volume bar. The value **0** means not to display the system volume bar, and **1** means the opposite.|
 
 **Return value**
@@ -1381,7 +1387,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                 |
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
-| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
+| mute       | boolean                             | Yes  | Mute status to set. **true** to mute, **false** otherwise.|
 | callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1417,7 +1423,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                 |
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
-| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
+| mute       | boolean                             | Yes  | Mute status to set. **true** to mute, **false** otherwise.|
 
 **Return value**
 
@@ -1518,7 +1524,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 | Name| Type   | Mandatory| Description                                         |
 | ------ | ------- | ---- | --------------------------------------------- |
-| mute   | boolean | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
+| mute   | boolean | Yes  | Mute status to set. **true** to mute, **false** otherwise.|
 
 **Return value**
 
@@ -2708,7 +2714,7 @@ Describes the enabled status of spatial audio rendering of the device.
 | Name                | Type                                                        | Read-Only| Optional| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- |---| ------------------------- |
 | deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | No| No| Descriptor of the device.    |
-| enabled               | boolean                                                      | No| No| Whether spatial audio rendering or head tracking is enabled. The value **true** means that it is enabled, and **false** means the opposite. |
+| enabled               | boolean                                                      | No| No| Whether spatial audio rendering or head tracking is enabled. **true** if enabled, **false** otherwise. |
 
 ## AudioSpatializationManager<sup>11+</sup>
 
@@ -2728,7 +2734,7 @@ Checks whether the system supports spatial audio rendering. This API returns the
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the system supports spatial audio rendering, and returns **false** otherwise.|
+| boolean | Check result for the support of spatial audio rendering. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -2772,7 +2778,7 @@ Checks whether a device supports spatial audio rendering. This API returns the r
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the device supports spatial audio rendering, and returns **false** otherwise.|
+| boolean | Check result for the support of spatial audio rendering. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -2828,7 +2834,7 @@ Checks whether the system supports head tracking. This API returns the result sy
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the system supports head tracking, and returns **false** otherwise.|
+| boolean | Check result for the support of head tracking. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -2873,7 +2879,7 @@ Checks whether a device supports head tracking. This API returns the result sync
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the device supports head tracking, and returns **false** otherwise.|
+| boolean | Check result for the support of head tracking. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -2935,7 +2941,7 @@ Enables or disables spatial audio rendering. This API uses an asynchronous callb
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                      | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
+| enable                      | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. **true** to enable, **false** otherwise. |
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2985,7 +2991,7 @@ Enables or disables spatial audio rendering. This API uses a promise to return t
 
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
+| enable                | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. **true** to enable, **false** otherwise. |
 
 **Return value**
 
@@ -3034,7 +3040,7 @@ Enables or disables spatial audio rendering for a device. This API uses a promis
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
 | deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
-| enabled               | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
+| enabled               | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. **true** to enable, **false** otherwise. |
 
 **Return value**
 
@@ -3101,7 +3107,7 @@ Checks whether spatial audio rendering is enabled. This API returns the result s
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if spatial audio rendering is enabled, and returns **false** otherwise.|
+| boolean | Check result for whether spatial audio rendering is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3146,7 +3152,7 @@ Checks whether spatial audio rendering is enabled. This API returns the result s
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if spatial audio rendering is enabled for the device, and returns **false** otherwise.|
+| boolean | Check result for whether spatial audio rendering is enabled for the device. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3207,7 +3213,7 @@ Subscribes to the spatial audio rendering status change event, which is triggere
 | Name  | Type                                                | Mandatory| Description                                          |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the spatial audio rendering status is changed.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the result, indicating whether spatial audio rendering is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3286,7 +3292,7 @@ Unsubscribes from the spatial audio rendering status change event. This API uses
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the spatial audio rendering status is changed.|
-| callback | Callback<boolean\> | No  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
+| callback | Callback<boolean\> | No  | Callback used to return the result, indicating whether spatial audio rendering is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3380,7 +3386,7 @@ Enables or disables head tracking. This API uses an asynchronous callback to ret
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                      | boolean                                                      | Yes  | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
+| enable                      | boolean                                                      | Yes  | Whether to enable or disable head tracking. **true** to enable, **false** otherwise. |
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3430,7 +3436,7 @@ Enables or disables head tracking. This API uses a promise to return the result.
 
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                | boolean                                                      | Yes  | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
+| enable                | boolean                                                      | Yes  | Whether to enable or disable head tracking. **true** to enable, **false** otherwise. |
 
 **Return value**
 
@@ -3480,7 +3486,7 @@ Enables or disables head tracking for a device. This API uses a promise to retur
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
 | deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
-| enable                | boolean                                                      | Yes  | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
+| enable                | boolean                                                      | Yes  | Whether to enable or disable head tracking. **true** to enable, **false** otherwise. |
 
 **Return value**
 
@@ -3546,7 +3552,7 @@ Checks whether head tracking is enabled. This API returns the result synchronous
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if head tracking is enabled, and returns **false** otherwise.|
+| boolean | Check result for whether head tracking is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3591,7 +3597,7 @@ Checks whether head tracking is enabled for a device. This API returns the resul
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if head tracking is enabled for the device, and returns **false** otherwise.|
+| boolean | Check result for whether head tracking is enabled for the device. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3652,7 +3658,7 @@ Subscribes to the head tracking status change event, which is triggered when the
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the head tracking status is changed.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the result, indicating whether head tracking is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3689,7 +3695,7 @@ Subscribes to the head tracking status change event, which is triggered when the
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the head tracking status is changed.|
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result, indicating whether head tracking is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3731,7 +3737,7 @@ Unsubscribes from the head tracking status change event. This API uses an asynch
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the head tracking status is changed.|
-| callback | Callback<boolean\> | No  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+| callback | Callback<boolean\> | No  | Callback used to return the result, indicating whether head tracking is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3776,7 +3782,7 @@ Unsubscribes from the head tracking status change event. This API uses an asynch
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the head tracking status is changed.|
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result, indicating whether head tracking is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3952,8 +3958,8 @@ Defines the state information of a spatial device.
 | Name                         | Type                      | Read-Only| Optional| Description      |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | address | string         | No| No| Address of the spatial device.|
-| isSpatializationSupported | boolean        | No| No| Whether the spatial device supports spatial audio rendering. The value **true** means that spatial audio rendering is supported, and **false** means the opposite.|
-| isHeadTrackingSupported | boolean        | No| No| Whether the spatial device supports head tracking. The value **true** means that head tracking is supported, and **false** means the opposite.|
+| isSpatializationSupported | boolean        | No| No| Whether the spatial device supports spatial audio rendering. **true** if supported, **false** otherwise.|
+| isHeadTrackingSupported | boolean        | No| No| Whether the spatial device supports head tracking. **true** if supported, **false** otherwise.|
 | spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | No| No| Type of the spatial device.|
 
 **Example**
@@ -4310,7 +4316,7 @@ Sets an ASR AEC mode. This API returns the result synchronously.
 
 | Type| Description                                   |
 |-------|---------------------------------------|
-| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+| boolean | Setting result. **true** if successful, **false** otherwise.|
 
 **Error codes**
 
@@ -4381,7 +4387,7 @@ Sets an ASR noise suppression mode. This API returns the result synchronously.
 
 | Type| Description                                    |
 |-------|----------------------------------------|
-| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+| boolean | Setting result. **true** if successful, **false** otherwise.|
 
 **Error codes**
 
@@ -4445,7 +4451,7 @@ Checks whether it is in the whisper state.
 
 | Type| Description                      |
 |-------|--------------------------|
-| boolean | **true**: It is in the whisper state.<br>**false**: It is not in the whisper state.|
+| boolean | Check result for whether it is in the whisper state. **true** if in the whisper state, **false** otherwise.|
 
 **Error codes**
 
@@ -4482,7 +4488,7 @@ Sets an ASR whisper detection mode.
 
 | Type| Description                                    |
 |-------|----------------------------------------|
-| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+| boolean | Setting result. **true** if successful, **false** otherwise.|
 
 **Error codes**
 
@@ -4549,13 +4555,13 @@ Sets an ASR voice control mode of the uplink channel for reporting modem and cal
 | Name | Type                 | Mandatory| Description    |
 |------|---------------------|-------|--------|
 | mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | Yes| ASR voice control mode.|
-| enable   | boolean             | Yes| Whether to enable the ASR voice control mode. The value **true** means to enable the ASR voice control mode, and **false** means the opposite.  |
+| enable   | boolean             | Yes| Whether to enable the ASR voice control mode. **true** to enable, **false** otherwise.  |
 
 **Return value**
 
 | Type| Description                                                           |
 |-------|---------------------------------------------------------------|
-| boolean | Operation result. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Setting result. **true** if successful, **false** otherwise.|
 
 **Error codes**
 
@@ -4589,13 +4595,13 @@ Sets an ASR voice mute mode.
 | Name | Type                                   | Mandatory| Description      |
 |------|---------------------------------------|-------|----------|
 | mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | Yes| ASR voice mute mode.|
-| enable   | boolean                               | Yes| Whether to enable the ASR voice mute mode. The value **true** means to enable the ASR voice mute mode, and **false** means the opposite.|
+| enable   | boolean                               | Yes| Whether to enable the ASR voice mute mode. **true** to enable, **false** otherwise.|
 
 **Return value**
 
 | Type| Description                                              |
 |-------|--------------------------------------------------|
-| boolean | Operation result. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Setting result. **true** if successful, **false** otherwise.|
 
 **Error codes**
 
@@ -4613,5 +4619,3 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let flag = asrProcessingController.setAsrVoiceMuteMode(audio.AsrVoiceMuteMode.OUTPUT_MUTE, true);
 ```
-
-<!--no_check-->

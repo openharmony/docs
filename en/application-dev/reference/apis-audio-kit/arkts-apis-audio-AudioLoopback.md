@@ -1,4 +1,10 @@
 # Interface (AudioLoopback)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -185,13 +191,13 @@ Enables or disables audio loopback. This API uses a promise to return the result
 
 | Name| Type  | Mandatory| Description                                               |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| enable   | boolean | Yes  | Whether to enable or disable audio loopback. The value **true** means to enable audio loopback, and **false** means the opposite.|
+| enable   | boolean | Yes  | Whether to enable or disable audio loopback. **true** to enable, **false** otherwise.|
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** is returned if the API is called successfully, and **false** is returned otherwise.|
+| Promise\<boolean> | Promise used to return the result, indicating whether the API call is successful. **true** is successful, **false** otherwise.|
 
 **Error codes**
 

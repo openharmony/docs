@@ -1,4 +1,10 @@
 # Interface (AudioRenderer)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -50,11 +56,12 @@ Obtains the information about this audio renderer. This API uses an asynchronous
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
-  console.info('Renderer GetRendererInfo:');
-  console.info(`Renderer content: ${rendererInfo.content}`);
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`);
+audioRenderer.getRendererInfo((err: BusinessError, audioRendererInfo: audio.AudioRendererInfo) => {
+  if (err) {
+    console.error(`Failed to get renderer info. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
+  }
 });
 ```
 
@@ -77,13 +84,10 @@ Obtains the information about this audio renderer. This API uses a promise to re
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
-  console.info('Renderer GetRendererInfo:');
-  console.info(`Renderer content: ${rendererInfo.content}`);
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
+audioRenderer.getRendererInfo().then((audioRendererInfo: audio.AudioRendererInfo) => {
+  console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${err}`);
+  console.error(`Failed to get renderer info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -107,13 +111,11 @@ Obtains the information about this audio renderer. This API returns the result s
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let rendererInfo: audio.AudioRendererInfo = audioRenderer.getRendererInfoSync();
-  console.info(`Renderer content: ${rendererInfo.content}`);
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
+  let audioRendererInfo = audioRenderer.getRendererInfoSync();
+  console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${error}`);
+  console.error(`Failed to get renderer info. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1623,7 +1625,7 @@ setSilentModeAndMixWithOthers(on: boolean): void
 
 Sets the silent mode in concurrent playback for the audio stream.
 
-If the silent mode in concurrent playback is enabled, the system mutes the audio stream and does not interrupt other audio streams. If the silent mode in concurrent playback is disabled, the audio stream can gain focus based on the system focus policy.
+If the silent mode in concurrent playback is enabled, the system mutes the audio stream and does not interrupt other audio streams. If the silent mode in concurrent playback is disabled, the audio stream can gain focus based on the system focus strategy.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -1631,7 +1633,7 @@ If the silent mode in concurrent playback is enabled, the system mutes the audio
 
 | Name| Type                                    | Mandatory| Description                  |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| on | boolean | Yes  | Whether to enable or disable the silent mode in concurrent playback for the audio stream. The value **true** means to enable the silent mode in concurrent playback, and **false** means the opposite.|
+| on | boolean | Yes  | Whether to enable or disable the silent mode in concurrent playback for the audio stream. **true** to enable, **false** otherwise.|
 
 **Example**
 
@@ -1651,7 +1653,7 @@ Obtains the silent mode in concurrent playback for the audio stream.
 
 | Type                                             | Description       |
 | ------------------------------------------------- |-----------|
-| boolean | Enabled status. The value **true** means that the silent mode in concurrent playback is enabled, and **false** means the opposite.|
+| boolean | Enabled status of the silent mode in concurrent playback. **true** if enabled, **false** otherwise.|
 
 **Example**
 
@@ -1745,59 +1747,56 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
-let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
-onAudioInterrupt();
+let isPlaying: boolean = false; // An identifier specifying whether rendering is in progress.
+let isDucked: boolean = false; // An identifier specifying whether the audio volume is reduced.
 
-async function onAudioInterrupt(){
-  audioRenderer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
-    // When an audio interruption event occurs, the AudioRenderer receives the interruptEvent callback and performs processing based on the content in the callback.
-    // 1. (Optional) The AudioRenderer reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
-    // Note: In the default focus policy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
-    // 2. (Mandatory) The AudioRenderer then reads the value of interruptEvent.hintType and performs corresponding processing.
-    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // The audio focus event has been forcibly executed by the system. The application needs to update its status and displayed content.
-      switch (interruptEvent.hintType) {
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
-          console.info('Force paused. Update playing status and stop writing');
-          isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume rendering.
-          console.info('Force stopped. Update playing status and stop writing');
-          isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // The audio stream is rendered at a reduced volume.
-          console.info('Force ducked. Update volume status');
-          isDucked = true; // A simplified processing indicating several operations for updating the volume status.
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // The audio stream is rendered at the normal volume.
-          console.info('Force ducked. Update volume status');
-          isDucked = false; // A simplified processing indicating several operations for updating the volume status.
-          break;
-        default:
-          console.info('Invalid interruptEvent');
-          break;
-      }
-    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // The audio focus event needs to be operated by the application, which can choose the processing mode. It is recommended that the application process the event according to the value of InterruptHint.
-      switch (interruptEvent.hintType) {
-        case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-          // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
-          // The INTERRUPT_HINT_RESUME operation must be proactively executed by the application and cannot be forcibly executed by the system. Therefore, the INTERRUPT_HINT_RESUME event must map to INTERRUPT_SHARE.
-          console.info('Resume force paused renderer or ignore');
-          // To continue rendering, the application must perform the required operations.
-          break;
-        default:
-          console.info('Invalid interruptEvent');
-          break;
-      }
+audioRenderer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+  // When an audio interruption event occurs, the AudioRenderer receives the interruptEvent callback and performs processing based on the content in the callback.
+  // 1. (Optional) The AudioRenderer reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
+  // Note: In the default focus strategy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
+  // 2. (Mandatory) The AudioRenderer then reads the value of interruptEvent.hintType and performs corresponding processing.
+  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+    // The audio focus event has been forcibly executed by the system. The application needs to update its status and displayed content.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+        // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+        console.info('Force paused. Update playing status and stop writing');
+        isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_STOP:
+        // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume rendering.
+        console.info('Force stopped. Update playing status and stop writing');
+        isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+        // The audio stream is rendered at a reduced volume.
+        console.info('Force ducked. Update volume status');
+        isDucked = true; // A simplified processing indicating several operations for updating the volume status.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+        // The audio stream is rendered at the normal volume.
+        console.info('Force unducked. Update volume status');
+        isDucked = false; // A simplified processing indicating several operations for updating the volume status.
+        break;
+      default:
+        console.info('Invalid interruptEvent');
+        break;
     }
-  });
-}
+  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+    // The audio focus event needs to be operated by the application, which can choose the processing mode. It is recommended that the application process the event according to the value of InterruptHint.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+        // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
+        // The INTERRUPT_HINT_RESUME operation must be proactively executed by the application and cannot be forcibly executed by the system. Therefore, the INTERRUPT_HINT_RESUME event must map to INTERRUPT_SHARE.
+        console.info('Resume force paused renderer or ignore');
+        // To continue rendering, the application must perform the required operations.
+        break;
+      default:
+        console.info('Invalid interruptEvent');
+        break;
+    }
+  }
+});
 ```
 
 ## off('audioInterrupt')<sup>18+</sup>
@@ -1836,7 +1835,7 @@ let isDucked: boolean; // An identifier specifying whether the audio volume is r
 let audioInterruptCallback = (interruptEvent: audio.InterruptEvent) => {
   // When an audio interruption event occurs, the AudioRenderer receives the interruptEvent callback and performs processing based on the content in the callback.
   // 1. (Optional) The AudioRenderer reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
-  // Note: In the default focus policy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
+  // Note: In the default focus strategy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
   // 2. (Mandatory) The AudioRenderer then reads the value of interruptEvent.hintType and performs corresponding processing.
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
     // The audio focus event has been forcibly executed by the system. The application needs to update its status and displayed content.
@@ -1858,7 +1857,7 @@ let audioInterruptCallback = (interruptEvent: audio.InterruptEvent) => {
         break;
       case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
         // The audio stream is rendered at the normal volume.
-        console.info('Force ducked. Update volume status');
+        console.info('Force unducked. Update volume status');
         isDucked = false; // A simplified processing indicating several operations for updating the volume status.
         break;
       default:
@@ -2393,8 +2392,8 @@ audioRenderer.getBufferSize().then((data: number)=> {
         offset: i * bufferSize,
         length: bufferSize
       };
-      let readSize: number = await fs.read(file.fd, buf, options);
-      let writeSize: number = await new Promise((resolve,reject)=>{
+      await fs.read(file.fd, buf, options);
+      await new Promise((resolve,reject)=>{
         audioRenderer.write(buf,(err: BusinessError, writeSize: number)=>{
           if(err){
             reject(err)
@@ -2463,9 +2462,9 @@ audioRenderer.getBufferSize().then((data: number) => {
         offset: i * bufferSize,
         length: bufferSize
       };
-      let readSize: number = await fs.read(file.fd, buf, options);
+      await fs.read(file.fd, buf, options);
       try{
-        let writeSize: number = await audioRenderer.write(buf);
+        await audioRenderer.write(buf);
       } catch(err) {
         let error = err as BusinessError;
         console.error(`audioRenderer.write err: ${error}`);
@@ -2655,7 +2654,7 @@ Sets the playback loudness. This API uses a promise to return the result.
 
 | Name      | Type   | Mandatory| Description                                     |
 | ------------ | -------| ---- |------------------------------------------ |
-| loudnessGain | number | Yes  | Loudness, in the range [-90.0, 24.0], in dB. The default value is 0.0 dB. |
+| loudnessGain | number | Yes  | Loudness, in the range [-90.0, 24.0], in dB. The default value is 0.0 dB.|
 
 **Return value**
 

@@ -1,4 +1,10 @@
 # Interface (AudioCapturer)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -344,15 +350,12 @@ Starts this audio capturer to start capturing audio data. This API uses a promis
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.start().then(() => {
-  console.info('AudioFrameworkRecLog: ---------START---------');
-  console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
-  console.info(`AudioFrameworkRecLog: AudioCapturer: STATE: ${audioCapturer.state}`);
-  console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
-  if ((audioCapturer.state == audio.AudioState.STATE_RUNNING)) {
+  console.info('Succeeded in doing start.');
+  if (audioCapturer.state == audio.AudioState.STATE_RUNNING) {
     console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
   }
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
+  console.error(`Failed to start. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -405,13 +408,12 @@ Stops this audio capturer, ceasing the input audio stream. This API uses a promi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.stop().then(() => {
-  console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
-  console.info('AudioFrameworkRecLog: Capturer stopped: SUCCESS');
-  if ((audioCapturer.state == audio.AudioState.STATE_STOPPED)){
+  console.info('Succeeded in doing stop.');
+  if (audioCapturer.state == audio.AudioState.STATE_STOPPED){
     console.info('AudioFrameworkRecLog: State is Stopped:');
   }
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
+  console.error(`Failed to stop. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -557,7 +559,7 @@ getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
 Obtains the timestamp and position information of an input audio stream.
 
-This API obtains the actual recording position (specified by **framePosition**) of the audio channel and the timestamp when recording to that position (specified by **timestamp**, in nanoseconds).
+This API obtains the actual recording position (specified by **framePos**) of the audio channel and the timestamp when recording to that position (specified by **timestamp**, in nanoseconds).
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -643,13 +645,10 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
-  if (!err) {
-    console.info(`BufferSize : ${bufferSize}`);
-    audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
-      console.info(`Buffer read is ${buffer.byteLength}`);
-    }).catch((err: BusinessError) => {
-      console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
-    });
+  if (err) {
+    console.error(`Failed to get buffer size. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting buffer size, BufferSize: ${bufferSize}.`);
   }
 });
 ```
@@ -673,13 +672,10 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bufferSize: number = 0;
-
-audioCapturer.getBufferSize().then((data: number) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
-  bufferSize = data;
+audioCapturer.getBufferSize().then((bufferSize: number) => {
+  console.info(`Succeeded in getting buffer size, BufferSize: ${bufferSize}.`);
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
+  console.error(`Failed to get buffer size. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -702,14 +698,12 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API return
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bufferSize: number = 0;
-
 try {
-  bufferSize = audioCapturer.getBufferSizeSync();
-  console.info(`AudioFrameworkRecLog: getBufferSizeSync :SUCCESS ${bufferSize}`);
+  let bufferSize = audioCapturer.getBufferSizeSync();
+  console.info(`Succeeded in getting buffer size, BufferSize: ${bufferSize}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`AudioFrameworkRecLog: getBufferSizeSync :ERROR : ${error}`);
+  console.error(`Failed to get buffer size. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -811,48 +805,45 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let isCapturing: boolean; // An identifier specifying whether capturing is in progress.
-onAudioInterrupt();
+let isCapturing: boolean = false; // An identifier specifying whether capturing is in progress.
 
-async function onAudioInterrupt(){
-  audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
-    // When an audio interruption event occurs, the AudioCapturer receives the interruptEvent callback and performs processing based on the content in the callback.
-    // 1. (Optional) The AudioCapturer reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
-    // Note: In the default focus policy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
-    // 2. (Mandatory) The AudioCapturer then reads the value of interruptEvent.hintType and performs corresponding processing.
-    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // The audio focus event has been forcibly executed by the system. The application needs to update its status and displayed content.
-      switch (interruptEvent.hintType) {
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
-          console.info('Force paused. Update capturing status and stop reading');
-          isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume capturing.
-          console.info('Force stopped. Update capturing status and stop reading');
-          isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
-          break;
-        default:
-          console.info('Invalid interruptEvent');
-          break;
-      }
-    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // The audio focus event needs to be operated by the application, which can choose the processing mode. It is recommended that the application process the event according to the value of InterruptHint.
-      switch (interruptEvent.hintType) {
-        case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-          // It is recommended that the application continue capturing. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume capturing now.)
-          // The INTERRUPT_HINT_RESUME operation must be proactively executed by the application and cannot be forcibly executed by the system. Therefore, the INTERRUPT_HINT_RESUME event must map to INTERRUPT_SHARE.
-          console.info('Resume force paused renderer or ignore');
-          // To continue capturing, the application must perform the required operations.
-          break;
-        default:
-          console.info('Invalid interruptEvent');
-          break;
-      }
+audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+  // When an audio interruption event occurs, the AudioCapturer receives the interruptEvent callback and performs processing based on the content in the callback.
+  // 1. (Optional) The AudioRenderer reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
+  // Note: In the default focus strategy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
+  // 2. (Mandatory) The AudioRenderer then reads the value of interruptEvent.hintType and performs corresponding processing.
+  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+    // The audio focus event has been forcibly executed by the system. The application needs to update its status and displayed content.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+        // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+        console.info('Force paused. Update capturing status and stop reading');
+        isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_STOP:
+        // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume capturing.
+        console.info('Force stopped. Update capturing status and stop reading');
+        isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      default:
+        console.info('Invalid interruptEvent');
+        break;
     }
-  });
-}
+  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+    // The audio focus event needs to be operated by the application, which can choose the processing mode. It is recommended that the application process the event according to the value of InterruptHint.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+        // It is recommended that the application continue capturing. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume capturing now.)
+        // The INTERRUPT_HINT_RESUME operation must be proactively executed by the application and cannot be forcibly executed by the system. Therefore, the INTERRUPT_HINT_RESUME event must map to INTERRUPT_SHARE.
+        console.info('Resume force paused renderer or ignore');
+        // To continue capturing, the application must perform the required operations.
+        break;
+      default:
+        console.info('Invalid interruptEvent');
+        break;
+    }
+  }
+});
 ```
 
 ## off('audioInterrupt')<sup>10+</sup>
@@ -1400,7 +1391,7 @@ Sets whether to [mute the current audio recording stream when an audio interrupt
 
 | Name    | Type            | Mandatory  | Description                                                     |
 | ---------- |---------------- | ------ |---------------------------------------------------------|
-| muteWhenInterrupted | boolean  | Yes | Whether to mute the current audio recording stream during an audio interruption. The value **true** means to mute it, and **false** (default value) means the opposite.|
+| muteWhenInterrupted | boolean  | Yes | Whether to mute the current audio recording stream during an audio interruption. **true** to mute, **false** otherwise.|
 
 **Return value**
 
@@ -1414,7 +1405,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800103 | Operation not permit at current state. |
+| 6800103 | Operation not permitted at current state. |
 
 **Example**
 
@@ -1445,7 +1436,7 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 | Name        | Type                       | Mandatory| Description                            |
 | :------------- | :-------------------------- | :--- | :------------------------------- |
 | size           | number                      | Yes  | Number of bytes to read.                  |
-| isBlockingRead | boolean                     | Yes  | Whether to block the read operation. The value **true** means to block the read operation, and **false** means the opposite.                |
+| isBlockingRead | boolean                     | Yes  | Whether to block the read operation. **true** to block, **false** otherwise.                |
 | callback       | AsyncCallback<ArrayBuffer\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the buffer read; otherwise, **err** is an error object.|
 
 **Example**
@@ -1453,19 +1444,17 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bufferSize: number = 0;
-
-audioCapturer.getBufferSize().then((data: number) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
-  bufferSize = data;
+audioCapturer.getBufferSize().then((bufferSize: number) => {
+  console.info('Succeeded in doing getBufferSize.');
+  audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) => {
+    if (err) {
+      console.error(`Failed to read. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in doing read.');
+  });
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
-});
-
-audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) => {
-  if (!err) {
-    console.info('Success in reading the buffer data');
-  }
+  console.error(`Failed to getBufferSize. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1486,7 +1475,7 @@ Reads the buffer. This API uses a promise to return the result.
 | Name        | Type   | Mandatory| Description            |
 | :------------- | :------ | :--- | :--------------- |
 | size           | number  | Yes  | Number of bytes to read.  |
-| isBlockingRead | boolean | Yes  | Whether to block the read operation. The value **true** means to block the read operation, and **false** means the opposite.|
+| isBlockingRead | boolean | Yes  | Whether to block the read operation. **true** to block, **false** otherwise.|
 
 **Return value**
 
@@ -1499,19 +1488,14 @@ Reads the buffer. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bufferSize: number = 0;
-
-audioCapturer.getBufferSize().then((data: number) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
-  bufferSize = data;
+audioCapturer.getBufferSize().then((bufferSize: number) => {
+  console.info('Succeeded in doing getBufferSize.');
+  audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
+    console.info('Succeeded in doing read.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to read. Code: ${err.code}, message: ${err.message}`);
+  });
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
-});
-console.info(`Buffer size: ${bufferSize}`);
-
-audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
-  console.info('buffer read successfully');
-}).catch((err: BusinessError) => {
-  console.error(`ERROR : ${err}`);
+  console.error(`Failed to getBufferSize. Code: ${err.code}, message: ${err.message}`);
 });
 ```

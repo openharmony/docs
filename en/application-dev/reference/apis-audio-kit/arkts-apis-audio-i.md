@@ -1,4 +1,10 @@
 # Interfaces (Others)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -84,6 +90,16 @@ Describes the event indicating that an audio session is deactivated.
 | :------------ |:------------------------------------------------------------------| :--- |---| :--------------- |
 | reason        | [AudioSessionDeactivatedReason](arkts-apis-audio-e.md#audiosessiondeactivatedreason12) | No| No| Reason for deactivating an audio session.      |
 
+## AudioSessionStateChangedEvent<sup>20+</sup>
+
+Describes the event indicating that the audio session state changes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name         | Type                                             | Read-Only| Optional| Description            |
+| :------------ |:------------------------------------------------| :--- |---| :--------------- |
+| stateChangeHint        | [AudioSessionStateChangeHint](arkts-apis-audio-e.md#audiosessionstatechangehint20) | No| No| Hint for the audio session state change.|
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 Describes the audio renderer change event.
@@ -96,36 +112,6 @@ Describes the audio renderer change event.
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | Yes  | No  | Audio renderer information.              |
 | deviceDescriptors  | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)      | Yes  | No  | Audio device description.|
 
-**Example**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-const audioManager = audio.getAudioManager();
-let audioStreamManager = audioManager.getStreamManager();
-
-audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
-  for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-    console.info(`## RendererChange on is called for ${i} ##`);
-    console.info(`StreamId for ${i} is: ${AudioRendererChangeInfoArray[i].streamId}`);
-    console.info(`Content for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.content}`);
-    console.info(`Stream for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.usage}`);
-    console.info(`Flag ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags}`);
-    let devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
-    for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
-      console.info(`Id: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].id}`);
-      console.info(`Type: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
-      console.info(`Role: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
-      console.info(`Name: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].name}`);
-      console.info(`Addr: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].address}`);
-      console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-  }
-});
-```
-
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
 Describes the audio capturer change event.
@@ -137,36 +123,7 @@ Describes the audio capturer change event.
 | streamId           | number                                    | Yes  | No  | Unique ID of an audio stream.               |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | Yes  | No  | Audio capturer information.              |
 | deviceDescriptors  | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)      | Yes  | No  | Audio device information.|
-| muted<sup>11+</sup>  | boolean    | Yes  | Yes| Whether the audio capturer is muted. The value **true** means that the audio capturer is muted, and **false** means the opposite.|
-
-**Example**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-const audioManager = audio.getAudioManager();
-let audioStreamManager = audioManager.getStreamManager();
-
-audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
-  for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-    console.info(`## CapChange on is called for element ${i} ##`);
-    console.info(`StrId for  ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`Src for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
-    console.info(`Flag ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    let devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
-    for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-      console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
-      console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
-      console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
-      console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
-      console.info(`Addr: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
-      console.info(`SR: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`C ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`CM ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-  }
-});
-```
+| muted<sup>11+</sup>  | boolean    | Yes  | Yes| Whether the audio capturer is muted. **true** if muted, **false** otherwise.|
 
 ## AudioDeviceDescriptor
 
@@ -184,30 +141,7 @@ Describes an audio device.
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | Yes  | No  | Supported channel masks.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | displayName<sup>10+</sup>     | string                     | Yes  | No  | Display name of the device.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](arkts-apis-audio-e.md#audioencodingtype8)&gt;                     | Yes  | Yes| Supported encoding types.<br> **System capability**: SystemCapability.Multimedia.Audio.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| spatializationSupported<sup>18+</sup>     | boolean                     | Yes  | Yes| Whether the device supports spatial audio rendering. The value **true** means that the device supports spatial audio rendering, and **false** means the opposite.<br> **System capability**: SystemCapability.Multimedia.Audio.Spatialization|
-
-**Example**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
-  deviceRoleValue = value.deviceRole;
-  deviceTypeValue = value.deviceType;
-}
-
-let deviceRoleValue: audio.DeviceRole | undefined = undefined;
-let deviceTypeValue: audio.DeviceType | undefined = undefined;
-audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
-  console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
-  value.forEach(displayDeviceProp);
-  if (deviceTypeValue != undefined && deviceRoleValue != undefined){
-    console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
-  } else {
-    console.error('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
-  }
-});
-```
+| spatializationSupported<sup>18+</sup>     | boolean                     | Yes  | Yes| Whether the device supports spatial audio rendering. **true** if supported, **false** otherwise.<br> **System capability**: SystemCapability.Multimedia.Audio.Spatialization|
 
 ## VolumeEvent<sup>9+</sup>
 
@@ -219,7 +153,7 @@ Describes the event received by the application when the volume is changed.
 | ---------- | ----------------------------------- | ---- |---|-------------------------------------------|
 | volumeType | [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) | No| No| Audio stream type.                                   |
 | volume     | number                              | No| No|Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
-| updateUi   | boolean                             | No| No|  Whether to show the volume change in UI. The value **true** means to show the volume change in UI, and **false** means the opposite.            |
+| updateUi   | boolean                             | No| No|  Whether to show the volume change in UI. **true** to show, **false** otherwise.            |
 | volumeMode<sup>19+</sup> | [AudioVolumeMode](arkts-apis-audio-e.md#audiovolumemode19) | No| Yes| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
 
 
@@ -231,7 +165,7 @@ Describes the event received by the application when the microphone mute status 
 
 | Name      | Type                               | Read-Only| Optional| Description                                                    |
 | ---------- | ----------------------------------- | ---- |---|-------------------------------------------------------- |
-| mute | boolean | No| No| Mute status of the microphone The value **true** means that the microphone is muted, and **false** means the opposite.         |
+| mute | boolean | No| No| Mute status of the microphone **true** if muted, **false** otherwise.         |
 
 
 ## StreamVolumeEvent<sup>20+</sup>
@@ -244,7 +178,7 @@ Describes the event received by the application when the audio stream volume is 
 | ---------- | ----------------------------------- | ---- |---|-------------------------------------------------------- |
 | streamUsage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | No| No| Audio stream for which the volume changes.         |
 | volume | number | No| No| Volume.         |
-| updateUi | boolean | No| No| Whether to show the volume change in UI. The value **true** means to show the volume change in UI, and **false** means the opposite.         |
+| updateUi | boolean | No| No| Whether to show the volume change in UI. **true** to show, **false** otherwise.         |
 
 ## DeviceChangeAction
 
@@ -269,6 +203,18 @@ Describes the event received by the application when the audio stream device is 
 | :---------------- |:------------------------------------------------------------------| :--- |---| :----------------- |
 | devices              | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)                 | No| No| Device information.|
 | changeReason | [AudioStreamDeviceChangeReason](arkts-apis-audio-e.md#audiostreamdevicechangereason11) | No| No| Reason for the change.|
+
+## CurrentOutputDeviceChangedEvent<sup>20+</sup>
+
+Describes the event indicating that the output device changes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name             | Type                                                               | Read-Only| Optional| Description              |
+| :---------------- |:------------------------------------------------------------------| :--- |---| :----------------- |
+| devices              | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)                 | No| No| Device information.|
+| changeReason | [AudioStreamDeviceChangeReason](arkts-apis-audio-e.md#audiostreamdevicechangereason11) | No| No| Reason for the device change.|
+| recommendedAction | [OutputDeviceChangeRecommendedAction](arkts-apis-audio-e.md#outputdevicechangerecommendedaction20) | No| No| Recommended action after the device change.|
 
 ## AudioTimestampInfo<sup>19+</sup>
 
@@ -316,7 +262,7 @@ Describes input parameters of audio interruption events.
 | --------------- | --------------------------- | ----|---| ------------------------------------------------------------ |
 | streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage) | No| No| Audio stream usage.                                            |
 | contentType     | [ContentType](arkts-apis-audio-e.md#contenttypedeprecated) | No| No| Audio content type.                                          |
-| pauseWhenDucked | boolean                     | No| No| Whether audio playback can be paused during an audio interruption. The value **true** means that audio playback can be paused during an audio interruption, and **false** means the opposite.|
+| pauseWhenDucked | boolean                     | No| No| Whether audio playback can be paused during an audio interruption. **true** if audio playback can be paused, **false** otherwise.|
 
 ## CaptureFilterOptions<sup>(deprecated)</sup>
 
@@ -359,4 +305,4 @@ Describes the callback invoked for audio interruption or focus gain events.
 | actionType | [InterruptActionType](arkts-apis-audio-e.md#interruptactiontypedeprecated) | No| No| Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event.|
 | type       | [InterruptType](arkts-apis-audio-e.md#interrupttype)             | No| Yes| Type of the audio interruption event.                                              |
 | hint       | [InterruptHint](arkts-apis-audio-e.md#interrupthint)             | No| Yes| Hint provided along with the audio interruption event.                                              |
-| activated  | boolean                                     | No| Yes| Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released.|
+| activated  | boolean                                     | No| Yes| Whether the focus is gained or released. **true** if the focus is gained or released, **false** if the focus fails to be gained or released.|
