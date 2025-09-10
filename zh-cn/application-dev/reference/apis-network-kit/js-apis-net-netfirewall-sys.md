@@ -24,7 +24,7 @@ import netfirewall from '@ohos.net.netFirewall';
 
 getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage\>
 
-按userId获取截获的记录，需要指定分页查询参数，使用Promise异步回调。
+按userId获取截获的记录，需要指定分页查询参数。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
