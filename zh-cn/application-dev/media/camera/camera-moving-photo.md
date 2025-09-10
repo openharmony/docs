@@ -41,7 +41,7 @@
        return;
      }
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray || previewProfilesArray.length === 0) {
+     if (!photoProfilesArray || photoProfilesArray.length === 0) {
        console.error("photoProfilesArray is null or []");
        return;
      }
