@@ -85,17 +85,12 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            console.info("btn click");
-          })
-        Button('Start Extension')
-          .onClick(() => {
-            vpnExtension.startVpnExtensionAbility(want);
-          })
-          .width('70%')
-          .fontSize(45)
-          .margin(16)
+          .fontWeight(FontWeight.Bold).onClick(() => {
+          console.info("btn click")
+        })
+        Button('Start Extension').onClick(() => {
+          vpnExtension.startVpnExtensionAbility(want);
+        }).width('70%').fontSize(45).margin(16)
       }.width('100%')
     }.height('100%')
   }
@@ -134,31 +129,19 @@ struct Index {
       Column() {
         Text(this.message)
           .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            console.info("btn click");
-          })
+          .fontWeight(FontWeight.Bold).onClick(() => {
+          console.info("btn click")
+        })
+        Button('Start Extension').onClick(() => {
+          vpnExtension.startVpnExtensionAbility(want);
+        }).width('70%').fontSize(45).margin(16)
+        Button('Stop Extension').onClick(() => {
+          console.info("btn end")
+          vpnExtension.stopVpnExtensionAbility(want);
+        }).width('70%').fontSize(45).margin(16)
 
-        Button('Start Extension')
-          .onClick(() => {
-            vpnExtension.startVpnExtensionAbility(want);
-          })
-          .width('70%')
-          .fontSize(45)
-          .margin(16)
-
-        Button('Stop Extension')
-          .onClick(() => {
-            console.info("btn end");
-            vpnExtension.stopVpnExtensionAbility(want);
-          })
-          .width('70%')
-          .fontSize(45)
-          .margin(16)
-      }
-      .width('100%')
-    }
-    .height('100%')
+      }.width('100%')
+    }.height('100%')
   }
 }
 ```
@@ -171,17 +154,16 @@ import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: vpnExtension.VpnExtensionContext;
+
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onDestroy() {
-    let vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
-    vpnConnection.destroy()
-      .then(() => {
-        console.info("destroy success.");
-      })
-      .catch((error: BusinessError) => {
-        console.error("destroy fail: " + JSON.stringify(error));
-      });
+    let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    VpnConnection.destroy().then(() => {
+      console.info("destroy success.");
+    }).catch((error: BusinessError) => {
+      console.error("destroy fail" + JSON.stringify(error));
+    });
   }
 }
 ```
@@ -196,10 +178,10 @@ import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
 import { vpnExtension } from "@kit.NetworkKit";
 
 export default class VpnTest extends VpnExtensionAbility {
-  vpnId: string = '';
+  vpnId: string = ''
 
   getVpnId() {
-    const vpnConnection = vpnExtension.createVpnConnection(this.context);
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
     vpnConnection?.generateVpnId().then((data) => {
       if (data) {
         this.vpnId = data;
@@ -217,8 +199,8 @@ import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
 import { vpnExtension } from "@kit.NetworkKit";
 
 export default class VpnTest extends VpnExtensionAbility {
-  vpnId: string = 'test_vpn_id';
-  vpnConnection: vpnExtension.VpnConnection | undefined;
+  vpnId: string = 'test_vpn_id'
+  vpnConnection: vpnExtension.VpnConnection | undefined
 
   destroy() {
     this.vpnConnection = vpnExtension.createVpnConnection(this.context);
@@ -257,37 +239,33 @@ import { vpnExtension } from '@kit.NetworkKit';
 
 let vpnConfig: vpnExtension.VpnConfig = {
   // 配置VPN虚拟网卡的IP地址。
-  addresses: [
-    {
-      address: {
-        address: '192.x.x.5',
-        family: 1
-      },
-      prefixLength: 24
-    }
-  ],
+  addresses: [{
+    address: {
+      address: '192.x.x.5',
+      family: 1
+    },
+    prefixLength: 24
+  }],
   // 配置路由参数。
-  routes: [
-    {
-      // VPN虚拟网卡接口名固定为“vpn-tun”。
-      interface: 'vpn-tun',
-      destination: {
-        address: {
-          address: '10.x.x.8',
-          family: 1,
-          port: 8080
-        },
-        prefixLength: 24
-      },
-      gateway: {
-        address: '10.x.x.5',
+  routes: [{
+    // VPN虚拟网卡接口名固定为“vpn-tun”。
+    interface: 'vpn-tun',
+    destination: {
+      address: {
+        address: '10.x.x.8',
         family: 1,
         port: 8080
       },
-      hasGateway: false,
-      isDefaultRoute: false
-    }
-  ],
+      prefixLength: 24
+    },
+    gateway: {
+      address: '10.x.x.5',
+      family: 1,
+      port: 8080
+    },
+    hasGateway: false,
+    isDefaultRoute: false,
+  }],
   // 配置最大传输单元值。
   mtu: 1400,
   // 配置VPN使用的DNS服务器。
@@ -295,16 +273,15 @@ let vpnConfig: vpnExtension.VpnConfig = {
   // VPN生效白名单的应用。
   trustedApplications: ['com.test.browser'],
   // 不生效VPN黑名单的应用。
-  blockedApplications: ['com.test.games']
-};
-
+  blockedApplications: ['com.test.games'],
+}
 let context: vpnExtension.VpnExtensionContext;
 
 function vpnCreate() {
   let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
   VpnConnection.create(vpnConfig).then((data) => {
     console.info("vpn create " + JSON.stringify(data));
-  });
+  })
 }
 ```
 
