@@ -27,7 +27,7 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelM
 
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
-**系统API**：此接口为系统接口。
+**系统API**：此接口为系统接口
 
 **参数**：
 
@@ -76,7 +76,7 @@ function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
 
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
-**系统API**：此接口为系统接口。
+**系统API**：此接口为系统接口
 
 **参数**：  
 
@@ -122,7 +122,7 @@ notifyMetadataBindingEvent(metadata: string): void
 
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
-**系统API**：此接口为系统接口。
+**系统API**：此接口为系统接口
 
 **参数**：  
 
