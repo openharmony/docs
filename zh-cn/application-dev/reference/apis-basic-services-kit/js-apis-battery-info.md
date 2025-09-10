@@ -37,7 +37,7 @@ import {batteryInfo} from '@kit.BasicServicesKit';
 | batteryTemperature                        | number                                         | 是   | 表示当前设备电池的温度，单位0.1摄氏度。                    |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | 是   | 表示当前设备是否支持电池或者电池是否在位。true表示支持电池或电池在位，false表示不支持电池或电池不在位，默认为false。                 |
 | batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 表示当前设备电池电量的等级。                                                  
-| nowCurrent<sup>12+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。                        |         
+| nowCurrent<sup>12+</sup>                  | number                                         | 是   | 表示当前设备电池的电流，单位毫安。                        |         
 
 **示例**：
 
@@ -126,6 +126,7 @@ import {batteryInfo} from '@kit.BasicServicesKit';
 
 | 名称           | 值 | 说明                       |
 | -------------- | ------ | ---------------------------- |
+| LEVEL_NONE     | 0      | 表示电池电量等级为未知电量。   |
 | LEVEL_FULL     | 1      | 表示电池电量等级为满电量。   |
 | LEVEL_HIGH     | 2      | 表示电池电量等级为高电量。   |
 | LEVEL_NORMAL   | 3      | 表示电池电量等级为正常电量。 |
