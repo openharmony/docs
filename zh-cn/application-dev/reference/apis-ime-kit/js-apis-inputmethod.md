@@ -225,7 +225,7 @@ inputMethod.switchInputMethod(currentIme, (err: BusinessError, result: boolean) 
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
@@ -279,7 +279,7 @@ inputMethod.switchInputMethod(currentIme).then((result: boolean) => {
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
@@ -363,7 +363,7 @@ inputMethod.switchCurrentInputMethodSubtype({
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -430,7 +430,7 @@ inputMethod.switchCurrentInputMethodSubtype({
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -508,7 +508,7 @@ inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType, (err: Busi
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
@@ -567,7 +567,7 @@ inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType).then((resu
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getInputMethodController<sup>(deprecated)</sup>
 
