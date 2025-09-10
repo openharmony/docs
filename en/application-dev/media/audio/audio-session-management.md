@@ -1,4 +1,10 @@
 # Using AudioSession to Manage Audio Focus (ArkTS)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 In the scenario where multiple audio streams are concurrently playing, the system has preset a [default audio focus strategy](audio-playback-concurrency.md#audio-focus-strategy) for unified audio focus management of all streams (including playback and recording).
 
@@ -13,6 +19,7 @@ Create an AudioSessionManager instance. Before using any APIs of AudioSessionMan
   ```ts
   import { audio } from '@kit.AudioKit';
 
+  let audioManager = audio.getAudioManager();
   let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
   ```
 
@@ -31,9 +38,9 @@ During the activation, specify an [audio session strategy](audio-playback-concur
   };
   
   audioSessionManager.activateAudioSession(strategy).then(() => {
-    console.info('activateAudioSession SUCCESS');
+    console.info('Succeeded in doing activateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to activateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -53,9 +60,9 @@ Call [deactivateAudioSession](../../reference/apis-audio-kit/arkts-apis-audio-Au
   import { BusinessError } from '@kit.BasicServicesKit';
   
   audioSessionManager.deactivateAudioSession().then(() => {
-    console.info('deactivateAudioSession SUCCESS');
+    console.info('Succeeded in doing deactivateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to deactivateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -83,9 +90,8 @@ Call [off('audioSessionDeactivated')](../../reference/apis-audio-kit/arkts-apis-
   audioSessionManager.off('audioSessionDeactivated');
   ```
 
-## Sample Code
 
-Refer to the sample code below to complete the process of creating, activating, and listening of an audio session.
+**Below is a comprehensive example of creating, activating, and listening for an audio session:**
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -101,9 +107,9 @@ Refer to the sample code below to complete the process of creating, activating, 
 
   // Activate an audio session.
   audioSessionManager.activateAudioSession(strategy).then(() => {
-    console.info('activateAudioSession SUCCESS');
+    console.info('Succeeded in doing activateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to activateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
 
   // Check whether the audio session is activated.
@@ -118,11 +124,102 @@ Refer to the sample code below to complete the process of creating, activating, 
 
   // Deactivate the audio session.
   audioSessionManager.deactivateAudioSession().then(() => {
-    console.info('deactivateAudioSession SUCCESS');
+    console.info('Succeeded in doing deactivateAudioSession.');
   }).catch((err: BusinessError) => {
-    console.error(`ERROR: ${err}`);
+    console.error(`Failed to deactivateAudioSession. Code: ${err.code}, message: ${err.message}`);
   });
 
   // Cancel listening for audio session deactivation events.
   audioSessionManager.off('audioSessionDeactivated');
   ```
+
+## Requesting Focus by Setting Audio Session Scene Parameters
+The application requests focus using an audio session. Call [setAudioSessionScene](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setaudiosessionscene20) to set the scene parameters, and then call [activateAudioSession](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#activateaudiosession12) to activate the audio session.
+  ```ts
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  audioSessionManager.setAudioSessionScene(audio.AudioSessionScene.AUDIO_SESSION_SCENE_MEDIA);
+
+  let strategy: audio.AudioSessionStrategy = {
+    concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
+  };
+
+  audioSessionManager.activateAudioSession(strategy).then(() => {
+    console.info('activateAudioSession SUCCESS');
+  }).catch((err: BusinessError) => {
+    console.error(`ERROR: ${err}`);
+  });
+  ```
+
+## Listening for Audio Session Focus State Change events
+Listen for audio session focus state changes through [AudioSessionStateChangedEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiosessionstatechangedevent20).
+
+**Below is a comprehensive example of requesting focus for an audio session and listening for focus change events:**
+
+```ts
+import { audio } from '@kit.AudioKit';  // Import the audio module.
+import { BusinessError } from '@kit.BasicServicesKit'; // Import BusinessError.
+
+let audioSessionStateChangedCallback = (audioSessionStateChangedEvent: audio.AudioSessionStateChangedEvent) => {
+  console.info(`hint of audioSessionStateChanged: ${audioSessionStateChangedEvent.stateChangeHint} `);
+
+  switch (audioSessionStateChangedEvent.stateChangeHint) {
+  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE:
+    // The system has paused the audio stream. The application should switch to the audio paused state.
+    // Temporarily losing focus: When other audio streams release focus, the application will receive a resume event and can resume playback.
+    break;
+  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_RESUME:
+    // The system has resumed the audio session.
+    break;
+  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_STOP:
+    // The system has stopped the audio stream (focus is permanently lost). To ensure state consistency, the application should switch to the audio paused state.
+    // Permanently losing focus: No audio focus event will be received. The user must manually trigger the operation to resume playback.
+    break;
+  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP:
+    // The system has stopped the audio session (permanently losing focus) due to inactivity. The application should switch to the audio paused state.
+    // Permanently losing focus: No audio focus event will be received. The user must manually trigger the operation to resume playback.
+    break;
+  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_DUCK:
+    // The system has ducked the volume down (to 20% of the normal volume by default).
+    break;
+  case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK:
+    // The system has restored the audio volume to normal.
+    break;
+  default:
+    break;
+  }
+};
+
+let audioManager = audio.getAudioManager();
+let audioSessionManager = audioManager.getSessionManager();
+
+audioSessionManager.on('audioSessionStateChanged', audioSessionStateChangedCallback);
+
+// In this example, AUDIO_SESSION_SCENE_MEDIA is selected. You can change the session scene as needed.
+audioSessionManager.setAudioSessionScene(audio.AudioSessionScene.AUDIO_SESSION_SCENE_MEDIA);
+
+// In this example, CONCURRENCY_MIX_WITH_OTHERS is selected. You can change the strategy as needed.
+let strategy: audio.AudioSessionStrategy = {
+  concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
+};
+
+// Activate the audio session to gain focus.
+audioSessionManager.activateAudioSession(strategy).then(() => {
+  console.info('activateAudioSession SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+
+// Start multiple audio renderers or other audio playback as needed.
+
+// Deactivate the audio session to release focus.
+audioSessionManager.deactivateAudioSession().then(() => {
+  console.info('deactivateAudioSession SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+
+audioSessionManager.off('audioSessionStateChanged', audioSessionStateChangedCallback);
+
+```

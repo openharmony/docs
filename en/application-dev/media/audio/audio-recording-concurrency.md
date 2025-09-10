@@ -1,4 +1,10 @@
 # Shared Audio Input
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 Audio input sources usually consist of audio data captured by built-in microphones, external devices, or remote distributed devices. They can also be audio data sent by other applications to the system for playback. Depending on the audio source, audio input can be categorized into two types: internal recording and external recording.
 
@@ -21,7 +27,7 @@ When concurrent recording occurs, each application requesting audio recording wa
 
 Previously, the system did not support concurrent recording of different audio stream types between different applications, which was strictly controlled by [audio focus strategies](audio-playback-concurrency.md#audio-focus-strategy).
 
-Concurrent recording between internal and external audio inputs is not subject to this limitation if permitted by security and privacy policies. For example, when an internal recording stream is enabled in a screen recording application, it is possible to simultaneously use a voice recorder for recording or a voice assistant for voice recognition.
+Concurrent recording between internal and external audio inputs is not subject to this limitation if permitted by security and privacy strategies. For example, when an internal recording stream is enabled in a screen recording application, it is possible to simultaneously use a voice recorder for recording or a voice assistant for voice recognition.
 
 The current system version has relaxed some restrictions on concurrent recording between different audio stream types, allowing multiple audio streams to obtain audio data simultaneously. However, since the data originates from the same audio input, the audio effects will be the same. This may partially meet the needs for concurrent recording.
 
