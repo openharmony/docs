@@ -1,4 +1,10 @@
 # Constants
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -6,8 +12,8 @@
 
 | Name                                   | Type     | Read-Only| Description              |
 | --------------------------------------- | ----------|---| ------------------ |
-| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes| Default volume group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Volume      |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes| Default audio interruption group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
+| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes| Default volume group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Volume      |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes| Default audio interruption group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
 
 **Example**
 
