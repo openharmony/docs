@@ -12,9 +12,9 @@
 >
 > 本模块首批接口从API version 11开始支持。
 >
->从API version 12开始，wrapBuilder支持在元服务中使用。
+> 从API version 12开始，wrapBuilder支持在元服务中使用。
 >
->后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## wrapBuilder
 
