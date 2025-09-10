@@ -1383,7 +1383,7 @@ struct BackGround {
   @Builder
   myImages() {
     Column() {
-      // 从应用media目录加载名为startIcon的图像资源
+      // 从应用media目录加载名为startIcon的图像资源。此处'app.media.startIcon'仅作示例，请开发者自行替换。
       Image($r('app.media.startIcon')).width('100%').height('100%')
     }
   };

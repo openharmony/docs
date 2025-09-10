@@ -485,7 +485,7 @@ struct HelloWorldPage {
 }
 ```
 **module.json5**
-这个文件一般位于应用模块的更目录下，例如 entry/src/main/module.json5 。
+这个文件一般位于应用模块的根目录下，例如 entry/src/main/module.json5 。
 ```ts
 
 {
