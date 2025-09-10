@@ -1,4 +1,10 @@
 # Prebuilt UTDs
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 A Uniform Type Descriptor (UTD) is used to address data type ambiguity in a system. It provides a standardized way to describe the same data type in different representations, such as MIME types and file name extensions. For example, when describing a JPG/JPEG image, you can use **image/jpeg**, **.jpg**, **.jpeg**, or **image/picture**. For details, see [Generic UTDs](#generic-utds).
 
@@ -8,7 +14,7 @@ To facilitate use, OpenHarmony is prebuilt with common UTDs, which are classifie
 
 ## Generic UTDs
 
-Generic UTDs define universal data types that can be identified by a majority of applications, devices, and platforms in cross-application and cross-device interaction. The IDs of these type of UTDs are in **general.xxx** format. The following table lists the generic UTDs prebuilt in the system. 
+Generic UTDs define universal data types that can be identified by the vast majority of applications, devices, and platforms in cross-application, cross-device, and cross-platform interactions. The IDs of these types of UTDs are in **general.xxx** format. The following table lists the generic UTDs prebuilt in the system.
 
 | **UTD ID**                         | **BelongingTo**        | **File Name Extension**               | **MIME Type**                                                                        | **Description**                            |
 |-------------------------------------|-------------------------------|----------------------------------------|----------------------------------------------------------------------------------------|------------------------------------|
@@ -95,7 +101,7 @@ Generic UTDs define universal data types that can be identified by a majority of
 | general.archive                     | general.object                |                -                       |                                           -                                            | Base archive type.                   |
 | general.tar-archive                 | general.archive               | .tar                                   | application/x-tar, application/tar                                                     | TAR archive format.                         |
 | general.zip-archive                 | general.archive               | .zip                                   | application/zip                                                                        | ZIP archive format.                         |
-| general.disk-image                  | general.archive               |                -                       |                                            -                                           | Generic type of all file that can be mounted as volumes                |
+| general.disk-image                  | general.archive               |                -                       |                                            -                                           | Generic type of all files that can be mounted as volumes.              |
 | general.bz2-archive                 | general.archive               | .bz2, .bzip2                           | application/x-bzip2                                                                    | BZ2 archive format.                         |
 | general.opg                         | general.archive               | .opg                                   |                                            -                                           | OPG archive file format.                         |
 | general.lha-archive                 | general.archive               | .lha                                   | application/x-lha                                                                      | LHARC archive format.                       |
@@ -223,7 +229,7 @@ The system-specific UTDs are closely related to a platform or an operating syste
 | openharmony.styled-string  | general.composite-object |                  -                    |-                                                                    | String type defined by OpenHarmony.         |
 | openharmony.moving-photo   | general.media            |                  -                    |-                                                                    | Moving photo defined by OpenHarmony.|
 | openharmony.pixel-map      | general.image            |                  -                    |-                                                                    | Pixel Map defined by OpenHarmony.   |
-| macos.dmg                  | general.disk-image       | .dmg                                  | application/x-apple-diskimage                                      | Installation package format defined by MacOS.             |
+| macos.dmg                  | general.disk-image       | .dmg                                  | application/x-apple-diskimage                                      | Installation package format defined by macOS.             |
 | debian.deb                 | general.archive          | .deb,.udeb                            | application/x-debian-package,application/vnd.debian.binary-package  | Software package format defined by Debian.               |
 | com.android.apk            | general.archive          | .apk, .apks, .aab, .xapk, .apkm, .akp | application/vnd.android.package-archive                             | Android application installation package format.                  |
 | redhat.rpm-archive         | general.archive          | .rpm                                  | application/x-rpm                                                   | RedHat application installation package format.                   |
@@ -231,7 +237,7 @@ The system-specific UTDs are closely related to a platform or an operating syste
 | openharmony.dlp            | general.composite-object | .dlp                                  |-                                                                    | Account-based encryption file defined by OpenHarmony.    |
 
 ## Application-specific UTDs
-Application-specific UTDs are defined and maintained by a specific application or organization, and the data interaction is identified by the specific application. The IDs of these type of UTDs are in the **com.*company-name*.xxx** or **org.*organization-name*.xxx** format. The following table lists the application-specific UTDs prebuilt in the system.
+Application-specific UTDs are defined and maintained by a specific application or organization, and the data interaction is identified by the specific application. The IDs of these types of UTDs are in the **com.*company-name*.xxx** or **org.*organization-name*.xxx** format. The following table lists the application-specific UTDs prebuilt in the system.
 | **UTD ID**                                                 | **BelongingTo**                                                   | **File Name Extension**        | **MIME Type**                                                           | **Description**                                   |
 |-------------------------------------------------------------|--------------------------------------------------------------------------|---------------------------------|---------------------------------------------------------------------------|-------------------------------------------|
 | com.microsoft.bmp                                           | general.image                                                            | .bmp, .bm               | image/bmp, image/x-ms-bmp                                                 | Microsoft Windows BMP format.                            |
@@ -479,7 +485,7 @@ Application-specific UTDs are defined and maintained by a specific application o
 | org.w3.woff                                                 | general.font                                                             | .woff                   | font/woff                                                                 | Web Open Font Format (WOFF).|
 | org.sqlite.database                                         | general.database                                                         | .sqlite, .sqlite3, .db, .db3, .s3db, .sl3  | application/vnd.sqlite3                                | SQLite database format.|
 | com.microsoft.pdb                                           | general.database                                                         | .pdb                    | application/x-ms-pdb                                                      | Program database format.|
-| com.monkeysaudio.ape-audio                                  | general.audio                                                            | .pdb                    | audio/x-monkeys-audio                                                     | Monkey's audio format.|
+| com.monkeysaudio.ape-audio                                  | general.audio                                                            | .ape                    | audio/x-monkeys-audio                                                     | Monkey's audio format.|
 | org.xiph.opus-audio                                         | general.audio                                                            | .opus                   | audio/opus                                                                | Opus lossy audio encoding format.|
 | com.microsoft.tlb                                           | general.object                                                           | .tlb                    |                                                                           | OLE library file format.|
 | com.microsoft.catalog                                       | general.object                                                           | .cat                    |                                                                           | Windows catalog file format.|

@@ -1,4 +1,10 @@
-# ArkData Terms
+# ArkData Glossary
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @widecode-->
+<!--Designer: @widecode-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Write Ahead Log (WAL)
 

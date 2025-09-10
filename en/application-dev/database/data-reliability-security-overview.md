@@ -1,4 +1,10 @@
 # Data Reliability and Security Overview
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997; @dboy190-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Introduction
 
@@ -10,14 +16,14 @@ A database fault may be caused by storage corruption, insufficient storage space
 
 - Access control by device and data level: The access to data across devices is controlled based on the device security level and data security labels.
 
-- EL5 database: The database in the **el5/** directory stores sensitive user information. To protect the data in such as database, the key will be destroyed when the screen is locked and certain conditions are met, and the database cannot be operated. After the screen is unlocked, the key is restored and the read and write operations on the database are restored.
+- EL5 database: The database in the **el5/** directory stores sensitive user information. To protect the data in such as database, the key will be destroyed when the screen is locked and certain conditions are met, and the database cannot be operated. After the screen is unlocked, the key is restored and the read and write operations on the database are restored. This feature ensures the security of sensitive information.
 
 In addition, the backup database is stored in the application sandbox. When the storage space is insufficient, you can delete the local database backup to release space.
 
 
 ## Basic Concepts
 
-Before developing functions related to data reliability and security, understand the following concepts.
+Before developing functions related to data reliability and security, understand the following concepts:
 
 
 ### Database Backup and Restore
@@ -54,7 +60,7 @@ The data of a database is backed up to the specified file. Subsequent operations
 
 ### Database Encryption Mechanism
 
-When encrypting a database, you do not need to pass in the key for encryption. The only thing you need to do is set the database encryption status. The system automatically calls the [HUKS APIs](../reference/apis-universal-keystore-kit/js-apis-huks.md) to generate a key and encrypt the database.
+When encrypting a database, you do not need to pass in the key for encryption. All you need to do is set the database encryption status. The system automatically calls the [HUKS APIs](../reference/apis-universal-keystore-kit/js-apis-huks.md) to generate a key and encrypt the database.
 
 
 ## Constraints
