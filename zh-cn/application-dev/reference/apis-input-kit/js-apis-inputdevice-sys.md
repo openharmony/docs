@@ -67,7 +67,7 @@ struct Index {
                 console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Set keyboard repeat delay success`);
+              console.info(`Set keyboard repeat delay success`);
             });
           } catch (error) {
             console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -123,7 +123,7 @@ struct Index {
         .onClick(() => {
           try {
             inputDevice.setKeyboardRepeatDelay(350).then(() => {
-              console.log(`Set keyboard repeat delay success`);
+              console.info(`Set keyboard repeat delay success`);
             });
           } catch (error) {
             console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -177,7 +177,7 @@ struct Index {
                 console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Get keyboard repeat delay success`);
+              console.info(`Get keyboard repeat delay success`);
             });
           } catch (error) {
             console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -227,7 +227,7 @@ struct Index {
         .onClick(() => {
           try {
             inputDevice.getKeyboardRepeatDelay().then((delay: Number) => {
-              console.log(`Get keyboard repeat delay success`);
+              console.info(`Get keyboard repeat delay success`);
             });
           } catch (error) {
             console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -282,7 +282,7 @@ struct Index {
                 console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Set keyboard repeat rate success`);
+              console.info(`Set keyboard repeat rate success`);
             });
           } catch (error) {
             console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -338,7 +338,7 @@ struct Index {
         .onClick(() => {
           try {
             inputDevice.setKeyboardRepeatRate(60).then(() => {
-              console.log(`Set keyboard repeat rate success`);
+              console.info(`Set keyboard repeat rate success`);
             });
           } catch (error) {
             console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -392,7 +392,7 @@ struct Index {
                 console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Get keyboard repeat rate success`);
+              console.info(`Get keyboard repeat rate success`);
             });
           } catch (error) {
             console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -442,7 +442,7 @@ struct Index {
         .onClick(() => {
           try {
             inputDevice.getKeyboardRepeatRate().then((rate: Number) => {
-              console.log(`Get keyboard repeat rate success`);
+              console.info(`Get keyboard repeat rate success`);
             });
           } catch (error) {
             console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -480,7 +480,7 @@ setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 202      | Permission verification failed.                                       |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 3900001  | The specified device does not exist.                         |
 

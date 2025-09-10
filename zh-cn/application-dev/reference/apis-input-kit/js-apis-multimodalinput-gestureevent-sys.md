@@ -21,7 +21,7 @@
 import { Touch } from '@kit.InputKit';
 ```
 
-## TouchGestureEvent
+## TouchGestureEvent<sup>18+</sup>
 
 触摸屏手势事件。
 
