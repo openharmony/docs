@@ -56,11 +56,7 @@ Repeat<string>(this.arr)
 
 ## 属性
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+除支持[拖拽排序](./ts-universal-attributes-drag-sorting.md)属性外，还支持以下属性。
 
 ### each
 

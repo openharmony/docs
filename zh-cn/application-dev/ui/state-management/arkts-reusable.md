@@ -443,7 +443,7 @@ struct ReuseDemo {
 @Reusable
 @Component
 export struct CardView {
-  // 被\@State修饰的变量item才能更新，未被\@State修饰的变量不会更新。
+  // 被@State修饰的变量item才能更新，未被@State修饰的变量不会更新。
   @State item: string = '';
 
   aboutToReuse(params: Record<string, Object>): void {

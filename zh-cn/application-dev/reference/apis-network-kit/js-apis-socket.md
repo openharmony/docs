@@ -951,7 +951,7 @@ udp.off('error');
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address<sup>11+</sup> | string | 是   | 本地绑定的ip地址。                                           |
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
-| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4。默认为1。<br />- 2：IPv6。地址为IPV6类型，该字段必须被显式指定为2。<br />- 3：Domain<sup>18+</sup>。地址为Domain类型，该字段必须被显式指定为3。|
+| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4。默认为1。<br />- 2：IPv6。地址为IPV6类型，该字段必须被显式指定为2。<br />- 3：Domain<sup>18+</sup>。地址为Domain类型，该字段必须被显式指定为3。当前仅支持[TCPSocket.connect](#connect)和[TLSSocket.connect](#connect9)。|
 
 ## ProxyOptions<sup>18+</sup>
 
@@ -6945,7 +6945,7 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
-let proxyOptions: socket.ProxyOptions = {
+let oneWayProxyOptions: socket.ProxyOptions = {
   type : 1,
   address: socks5Server,
   username: "xxx",
@@ -6954,7 +6954,7 @@ let proxyOptions: socket.ProxyOptions = {
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: proxyOptions,
+  proxy: oneWayProxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
@@ -7149,7 +7149,7 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
-let proxyOptions: socket.ProxyOptions = {
+let oneWayProxyOptions: socket.ProxyOptions = {
   type : 1,
   address: socks5Server,
   username: "xxx",
@@ -7158,7 +7158,7 @@ let proxyOptions: socket.ProxyOptions = {
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: proxyOptions,
+  proxy: oneWayProxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");

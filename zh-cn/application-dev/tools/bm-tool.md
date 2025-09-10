@@ -334,7 +334,7 @@ delete quick fix successfully
 ## 共享库查询命令（dump-shared）
 
 ```bash
-bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
+bm dump-shared [-h] [-a] [-n bundleName]
 ```
 
   **共享库查询命令参数列表**
@@ -344,7 +344,6 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 | -h | 帮助信息。 |
 | -a | 可选参数，查询系统中所有已安装的共享库。|
 | -n | 可选参数，查询指定包名的共享库详细信息。|
-| -m | 可选参数，查询指定模块名的共享库详细信息。|
 
 
 示例：
@@ -354,8 +353,6 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 bm dump-shared -a
 # 显示该共享库的详细信息
 bm dump-shared -n com.ohos.lib
-# 显示指定应用指定模块依赖的共享库信息
-bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 ## 共享库依赖关系查询命令（dump-dependencies）
@@ -425,7 +422,7 @@ bm copy-ap -n com.example.myapplication
 ## 查询overlay应用信息命令（dump-overlay）
 
 ```bash
-bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
+bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName] [-u userId]
 ```
 
 **dump-overlay命令参数列表**
@@ -433,7 +430,8 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -b | 必选参数，获取指定Overlay应用的所有OverlayModuleInfo信息。|
-| -m | 可选参数，默认当前Overlay应用主模块名。根据指定Overlay应用的包名和module名查询OverlayModuleInfo信息。|
+| -m | 可选参数，根据指定Overlay特征module的名称查询OverlayModuleInfo信息，默认当前Overlay应用主模块名。|
+| -t | 可选参数，根据指定目标module的名称查询OverlayModuleInfo信息，默认参数为空。|
 | -u | 可选参数，在指定[用户](#userid)下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-overlay -b com.ohos.app -u 102`查询OverlayModuleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
 
 示例：
@@ -445,11 +443,11 @@ bm dump-overlay -b com.ohos.app
 # 在用户100下，根据包名来获取overlay应用com.ohos.app中的所有OverlayModuleInfo信息
 bm dump-overlay -b com.ohos.app -u 100
 
-# 根据包名和module来获取overlay应用com.ohos.app中overlay module为entry的所有OverlayModuleInfo信息
-bm dump-overlay -b com.ohos.app -m entry
+# 根据包名和module来获取overlay应用com.ohos.app中overlay module为libraryModuleName的所有OverlayModuleInfo信息
+bm dump-overlay -b com.ohos.app -m libraryModuleName
 
-# 根据包名和module来获取overlay应用com.ohos.app中目标module为feature的所有OverlayModuleInfo信息
-bm dump-overlay -b com.ohos.app -m feature
+# 根据目标包名和module来获取overlay应用com.ohos.app中目标module为entryModuleName的所有OverlayModuleInfo信息
+bm dump-overlay -b com.ohos.app -t entryModuleName
 ```
 
 ## 查询应用的overlay相关信息命令（dump-target-overlay）
@@ -2416,22 +2414,22 @@ error: Failed to uninstall the app because the app is locked.
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
 
-### 9568420 禁止通过bm安装release的预装应用
+### 9568420 禁止通过bm安装release的预置应用
 **错误信息**
 
 error: os_integration Bundle is not allowed to install for shell.
 
 **错误描述**
 
-禁止通过bm安装release的预装应用。
+禁止通过bm安装release的预置应用。
 
 **可能原因**
 
-通过bm安装release的预装应用。
+通过bm安装release的预置应用。
 
 **处理步骤**
 
-1. 检查应用是否是release的预装应用。
+检查应用是否为预置的release版本。如果是，需要替换应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->的类型，重新签名并安装。
 
 ### 9568278 安装包的版本号不一致
 **错误信息**

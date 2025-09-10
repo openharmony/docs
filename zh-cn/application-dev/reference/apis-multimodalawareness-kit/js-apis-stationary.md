@@ -88,7 +88,7 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 ```ts
 let reportLatencyNs = 1000000000;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-    console.info('data='+ JSON.stringify(data));
+    console.info('data=' + JSON.stringify(data));
 })
 ```
 
@@ -111,7 +111,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 ```ts
 stationary.once('still', (data) => {
-    console.info("data="+ JSON.stringify(data));
+    console.info('data=' + JSON.stringify(data));
 })
 ```
 

@@ -518,6 +518,20 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：16
 
+## ohos.permission.GET_ETHERNET_LOCAL_MAC
+
+允许应用查询以太网当前MAC地址。
+
+<!--RP51--><!--RP51End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：13
+
+**变更信息**：API 13，该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用；从API 16开始，在PC/2in1设备上面向普通应用开放，在其余设备上仍仅面向系统应用开放。
+
 ## ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
 
 允许应用关闭进程内.got.plt段的只读保护。
