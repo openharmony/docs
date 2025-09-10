@@ -52,3 +52,4 @@
   - [录像实践(C/C++)](native-camera-recording-case.md)
   - [元数据(C/C++)](native-camera-metadata.md)
   - [手电筒使用(C/C++)](native-camera-torch-use.md)
+  - [压力管控(C/C++)](native-camera-system-pressure.md)
