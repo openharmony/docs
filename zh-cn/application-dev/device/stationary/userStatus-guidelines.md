@@ -24,7 +24,7 @@ UserStatus（用户状态感知）模块提供用户感知能力，可以感知�
 ### 约束与限制
 
  - 此功能如果设备不支持，将返回801错误码。
- - 此功能部分应用开放使用，其它如需使用，请 [联系我们](https://developer.huawei.com/consumer/cn/support/feedback)。
+  <!--RP1--> <!--RP1End-->
 
 ### 开发步骤
 
