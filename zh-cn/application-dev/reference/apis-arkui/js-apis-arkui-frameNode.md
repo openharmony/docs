@@ -79,7 +79,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 ## UIState<sup>20+</sup>
 
-多态样式状态枚举。
+多态样式状态枚举，用于处理多态样式。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -132,7 +132,7 @@ FrameNode的构造函数。
 
 getRenderNode(): RenderNode | null
 
-获取FrameNode中持有的RenderNode。
+获取FrameNode中持有的[RenderNode](./js-apis-arkui-renderNode.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -149,12 +149,14 @@ getRenderNode(): RenderNode | null
 ```ts
 import { NodeController, FrameNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
 
+    // 获取rootNode持有的RenderNode
     const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
       renderNode.size = { width: 100, height: 100 };
@@ -191,7 +193,7 @@ isModifiable(): boolean
 
 | 类型    | 说明                                                                                                                                  |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| boolean | 判断当前节点是否可修改。<br/>true表示当前节点可修改，false表示当前节点不可修改。<br/>当节点为系统组件的代理节点或节点已经[dispose](#dispose12)时返回false。<br/>当返回false时，当前FrameNode不支持appendChild、insertChildAfter、removeChild、clearChildren、createAnimation、cancelAnimations的操作。 |
+| boolean | 判断当前节点是否可修改。<br/>true表示当前节点可修改，false表示当前节点不可修改。<br/>当节点为系统组件的代理节点或节点已经[dispose](#dispose12)时返回false。<br/>当返回false时，当前FrameNode不支持[appendChild](#appendchild12)、[insertChildAfter](#insertchildafter12)、[removeChild](#removechild12)、[clearChildren](#clearchildren12)、[createAnimation](#createanimation20)、[cancelAnimations](#cancelanimations20)的操作。 |
 
 **示例：**
 
@@ -201,7 +203,7 @@ isModifiable(): boolean
 
 appendChild(node: FrameNode): void
 
-在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。[typeNode](#typenode12)在appendChild时会校验子组件类型或个数，不满足抛出异常信息，限制情况请查看[typeNode](#typenode12)描述。
+在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。[typeNode](#typenode12)在appendChild时会校验子组件类型或个数，不满足时抛出异常信息，限制情况请查看[typeNode](#typenode12)描述。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -211,7 +213,7 @@ appendChild(node: FrameNode): void
 
 | 参数名 | 类型                    | 必填 | 说明                  |
 | ------ | ----------------------- | ---- | --------------------- |
-| node   | [FrameNode](#framenode-1) | 是   | 需要添加的FrameNode。<br/>**说明：**<br/> node节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> node节点不可以拥有父节点，否则抛出异常信息。|
+| node   | [FrameNode](#framenode-1) | 是   | 需要添加的FrameNode。<br/> node节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> node节点不可以拥有父节点，否则抛出异常信息。|
 
 **错误码：**
 
@@ -237,7 +239,7 @@ insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                                         |
 | ------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| child   | [FrameNode](#framenode-1)                   | 是   | 需要添加的子节点。<br/>**说明：**<br/> child节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> child节点不可以拥有父节点，否则抛出异常信息。                                                           |
+| child   | [FrameNode](#framenode-1)                   | 是   | 需要添加的子节点。<br/>child节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> child节点不可以拥有父节点，否则抛出异常信息。                                                           |
 | sibling | [FrameNode](#framenode-1)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
 
 **错误码：**
@@ -494,7 +496,7 @@ getChildrenCount(): number
 
 moveTo(targetParent: FrameNode, index?: number): void
 
-将当前FrameNode移动到目标FrameNode的指定位置。当前FrameNode如果不可修改，抛出异常信息。targetParent为[typeNode](#typenode12)时会校验子组件类型或个数，不满足抛出异常信息，限制情况请查看[typeNode](#typenode12)描述。
+将当前FrameNode移动到目标FrameNode的指定位置。当前FrameNode如果不可修改，抛出异常信息。targetParent为[typeNode](#typenode12)时会校验子组件类型或个数，不满足时抛出异常信息，限制情况请查看[typeNode](#typenode12)描述。
 
 > **说明：**
 >
@@ -510,7 +512,7 @@ moveTo(targetParent: FrameNode, index?: number): void
 
 | 参数名        | 类型                    | 必填 | 说明                  |
 | ------------ | ----------------------- | ---- | --------------------- |
-| targetParent | [FrameNode](#framenode-1) | 是   | 目标父节点。<br/>**说明：**<br/>targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
+| targetParent | [FrameNode](#framenode-1) | 是   | 目标父节点。<br/>targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
 | index        | number                  | 否   | 子节点序列号。当前FrameNode将被添加到目标FrameNode对应序列号的子节点之前，若目标FrameNode有n个节点，index取值范围为[0, n-1]。<br/>若参数无效或不指定，则添加到目标FrameNode的最后。<br/>默认值：-1 |
 
 **错误码：**
@@ -546,6 +548,7 @@ import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
 
 const TEST_TAG: string = "FrameNode ";
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
   private rootNode: FrameNode | null = null;
@@ -560,6 +563,7 @@ class MyNodeController extends NodeController {
   }
 
   getPositionToWindow() {
+    // 获取FrameNode相对于窗口的位置偏移
     let positionToWindow = this.rootNode?.getPositionToWindow();
     console.info(`${TEST_TAG}${JSON.stringify(positionToWindow)}`);
   }
@@ -628,6 +632,7 @@ import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
 
 const TEST_TAG: string = "FrameNode ";
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
   private rootNode: FrameNode | null = null;
@@ -643,6 +648,7 @@ class MyNodeController extends NodeController {
   }
 
   getPositionToParent() {
+    // 获取FrameNode相对于父组件的位置偏移
     let positionToParent = this.rootNode?.getPositionToParent();
     console.info(TEST_TAG + JSON.stringify(positionToParent));
   }
@@ -710,6 +716,7 @@ import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
 
 const TEST_TAG: string = "FrameNode ";
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
   private rootNode: FrameNode | null = null;
@@ -725,6 +732,7 @@ class MyNodeController extends NodeController {
   }
 
   getPositionToScreen() {
+    // 获取FrameNode相对于屏幕的位置偏移
     let positionToScreen = this.rootNode?.getPositionToScreen();
     console.info(TEST_TAG + JSON.stringify(positionToScreen));
   }
@@ -795,7 +803,7 @@ getGlobalPositionOnDisplay(): Position
 
 getPositionToParentWithTransform(): Position
 
-获取FrameNode相对于父组件带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于父组件带有绘制属性的位置偏移，单位为VP，绘制属性比如[transform](./arkui-ts/ts-universal-attributes-transformation.md#transform), [translate](./arkui-ts/ts-universal-attributes-transformation.md#translate)等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -814,6 +822,7 @@ import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
 
 const TEST_TAG: string = "FrameNode ";
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
   private rootNode: FrameNode | null = null;
@@ -829,6 +838,7 @@ class MyNodeController extends NodeController {
   }
 
   getPositionToParentWithTransform() {
+    // 获取FrameNode相对于父组件带有绘制属性的位置偏移
     let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
     console.info(TEST_TAG + JSON.stringify(positionToParentWithTransform));
   }
@@ -876,7 +886,7 @@ struct Index {
 
 getPositionToWindowWithTransform(): Position
 
-获取FrameNode相对于窗口带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于窗口带有绘制属性的位置偏移，单位为VP，绘制属性比如[transform](./arkui-ts/ts-universal-attributes-transformation.md#transform), [translate](./arkui-ts/ts-universal-attributes-transformation.md#translate)等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -895,6 +905,7 @@ import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
 
 const TEST_TAG: string = "FrameNode ";
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
   private rootNode: FrameNode | null = null;
@@ -910,6 +921,7 @@ class MyNodeController extends NodeController {
   }
 
   getPositionToWindowWithTransform() {
+    // 获取FrameNode相对于窗口带有绘制属性的位置偏移
     let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.info(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
   }
@@ -956,7 +968,7 @@ struct Index {
 
 getPositionToScreenWithTransform(): Position
 
-获取FrameNode相对于屏幕带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于屏幕带有绘制属性的位置偏移，单位为VP，绘制属性比如[transform](./arkui-ts/ts-universal-attributes-transformation.md#transform), [translate](./arkui-ts/ts-universal-attributes-transformation.md#translate)等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -975,6 +987,7 @@ import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
 
 const TEST_TAG: string = "FrameNode ";
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
   private rootNode: FrameNode | null = null;
@@ -990,6 +1003,7 @@ class MyNodeController extends NodeController {
   }
 
   getPositionToScreenWithTransform() {
+    // 获取FrameNode相对于屏幕带有绘制属性的位置偏移
     let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
     console.info(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
   }
@@ -1199,7 +1213,7 @@ getUniqueId(): number
 
 getNodeType(): string
 
-获取节点的类型。系统组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
+获取节点的类型。系统组件类型为组件名称，例如，按钮组件[Button](arkui-ts/ts-basic-components-button.md)的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1335,14 +1349,14 @@ getInspectorInfo(): Object
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Object | 节点的结构信息。 |
 
-以查询Button组件节点为例获取到的Object结果部分值如下所示
+以查询[Button](arkui-ts/ts-basic-components-button.md)组件节点为例获取到的Object结果部分值如下所示
 ```json
 {
     "$type": "Button", // 组件类型
     "$ID": 44, // 组件id
     "type": "build-in", // build-in为系统组件，custom为自定义组件
     "$rect": "[498.00, 468.00],[718.00,598.00]", // 组件框左上角坐标和右下角坐标
-    "$debugLine": "", // 组件对应源码的调试信息，包括源码路径和组件所在的行号。
+    "$debugLine": "", // 组件对应源码的调试信息，包括源码路径和组件所在的行号
     "$attrs": {
         "borderStyle": "BorderStyle.Solid",
         "borderColor": "#FF000000",
@@ -1438,6 +1452,7 @@ function buildComponent() {
   TestComponent()
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private builderNode: BuilderNode<[]> | null = null;
@@ -1459,9 +1474,11 @@ class MyNodeController extends NodeController {
 
   disposeFrameNode() {
     if (this.rootNode !== null && this.builderNode !== null) {
+      // 解除rootNode对实体FrameNode节点的引用关系前，移除rootNode的所有子节点
       this.rootNode.removeChild(this.builderNode.getFrameNode());
+      // 解除builderNode对实体FrameNode节点的引用关系
       this.builderNode.dispose();
-
+      // 解除rootNode对实体FrameNode节点的引用关系
       this.rootNode.dispose();
     }
   }
@@ -1761,6 +1778,7 @@ function buildText() {
   }
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -1774,8 +1792,10 @@ class MyNodeController extends NodeController {
       .borderWidth(1)
       .borderColor(Color.Black)
       .backgroundColor(Color.Green)
+    // 创建组件内容
     let component = new ComponentContent<Object>(uiContext, wrapBuilder(buildText))
     if (row4.isModifiable()) {
+      // 添加新创建的builderText至row4中
       row4.addComponentContent(component)
       col.appendChild(row4)
     }
@@ -1809,6 +1829,7 @@ disposeTree(): void
 ```ts
 import { FrameNode, NodeController, BuilderNode } from '@kit.ArkUI';
 
+// 自定义挂载事件的自定义组件，作为自定义组件树的入口
 @Component
 struct TestComponent {
   private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent2));
@@ -1833,6 +1854,7 @@ struct TestComponent {
   }
 }
 
+// 自定义挂载事件的自定义组件，作为TestComponent1的子组件与TestComponent3、TestComponent4的父组件
 @Component
 struct TestComponent2 {
   private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent3));
@@ -1859,6 +1881,7 @@ struct TestComponent2 {
   }
 }
 
+// 自定义挂载事件的自定义组件，作为buildComponent2的子组件
 @Component
 struct TestComponent3 {
   build() {
@@ -1881,6 +1904,7 @@ struct TestComponent3 {
   }
 }
 
+// 自定义挂载事件的自定义组件，作为buildComponent2的子组件
 @Component
 struct TestComponent4 {
   build() {
@@ -1923,6 +1947,7 @@ function buildComponent4() {
   TestComponent4()
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private builderNode: BuilderNode<[]> | null = null;
@@ -1942,6 +1967,7 @@ class MyNodeController extends NodeController {
 
   dispose() {
     if (this.builderNode !== null) {
+      // 下树并递归释放当前节点为根的子树
       this.builderNode.getFrameNode()?.disposeTree()
     }
   }
@@ -1989,7 +2015,7 @@ setCrossLanguageOptions(options: CrossLanguageOptions): void
 
 > **说明：**
 >
-> 当前仅支持[Scroll](#scroll12), [Swiper](#swiper12)，[List](#list12)，[ListItem](#listitem12),[ListImteGroup](#listitemgroup12)，[WatterFlow](#waterflow12)，[FlowItem](#flowitem12)，[Grid](#grid14)，[GridTime](#griditem14)，[TextInput](#textinput12)，[TextArea](#textarea14)，[Column](#column12)，[Row](#row12)，[Stack](#stack12)，[Flex](#flex12)，[RelativeContainer](#relativecontainer12)，[Progress](#progress12)，[LoadingProgress](#loadingprogress12)，[Image](#image12)，[Button](#button12)，[CheckBox](#checkbox18)，[Radio](#radio18)，[Slider](#slider18)，[Toggle](#toggle18)，[XComponent](#xcomponent12)类型的[TypedFrameNode](#typedframenode12)设置跨ArkTS语言访问选项。
+> 当前仅支持[Scroll](#scroll12), [Swiper](#swiper12)，[List](#list12)，[ListItem](#listitem12)，[ListImteGroup](#listitemgroup12)，[WatterFlow](#waterflow12)，[FlowItem](#flowitem12)，[Grid](#grid14)，[GridTime](#griditem14)，[TextInput](#textinput12)，[TextArea](#textarea14)，[Column](#column12)，[Row](#row12)，[Stack](#stack12)，[Flex](#flex12)，[RelativeContainer](#relativecontainer12)，[Progress](#progress12)，[LoadingProgress](#loadingprogress12)，[Image](#image12)，[Button](#button12)，[CheckBox](#checkbox18)，[Radio](#radio18)，[Slider](#slider18)，[Toggle](#toggle18)，[XComponent](#xcomponent12)类型的[TypedFrameNode](#typedframenode12)设置跨ArkTS语言访问选项。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -2051,7 +2077,7 @@ getInteractionEventBindingInfo(eventType: EventQueryType): InteractionEventBindi
 
 | 类型               | 说明               |
 | ------------------ | ------------------ |
-| [InteractionEventBindingInfo](#interactioneventbindinginfo19)&nbsp;\|&nbsp;undefined | 如果当前节点上绑定了所要查询的交互事件，则返回一个InteractionEventBindingInfo对象，指示事件绑定详细信息，如果没有绑定任何交互事件则返回undefined。 |
+| [InteractionEventBindingInfo](#interactioneventbindinginfo19)&nbsp;\|&nbsp;undefined | 如果当前节点上绑定了任意交互事件，则返回一个InteractionEventBindingInfo对象，指示事件绑定详细信息，如果没有绑定任何交互事件则返回undefined。 |
 
 **示例：**
 
@@ -2142,7 +2168,7 @@ createAnimation(property: AnimationPropertyType, startValue: Optional\<number[]>
 | 参数名  | 类型 | 必填 | 说明                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | property  | [AnimationPropertyType](./arkui-ts/ts-appendix-enums.md#animationpropertytype20) | 是   | 动画属性枚举。 |
-| startValue  | Optional\<number[]> | 是 | 动画属性的起始值。取值为undefined或数组，取值为数组时数组长度需要和属性枚举匹配。如果为undefined则表示不显式指定动画初值，节点上一次设置的属性终值为此次动画的起点值。如果取值为数组，<br/>- 对于AnimationPropertyType.ROTATION，取值格式为[rotationX, rotationY, rotationZ]，单位为度（°），表示绕x、y、z轴的旋转角。<br/>- 对于AnimationPropertyType.TRANSLATION，取值格式为[translateX, translateY]，单位为px，表示沿x、y轴的平移量。<br/>- 对于AnimationPropertyType.SCALE，取值格式为[scaleX, scaleY]，表示x、y方向的缩放比例。<br/>- 对于AnimationPropertyType.OPACITY，取值格式为[opacity]，表示不透明度。opacity的取值范围为[0, 1]。<br/>**说明：**<br/>当节点上从未设置过该属性时，需要显式指定startValue才能正常创建动画。当节点上已经设置过属性（如第二次及之后创建动画），则推荐不显式指定startValue或者显式指定startValue为上一次的终值，表示使用上一次的终值作为新的动画起点，避免起始值跳变。 |
+| startValue  | Optional\<number[]> | 是 | 动画属性的起始值。取值为undefined或数组，取值为数组时数组长度需要和属性枚举匹配。如果为undefined则表示不显式指定动画初值，节点上一次设置的属性终值为此次动画的起点值。如果取值为数组，<br/>- 对于AnimationPropertyType.ROTATION，取值格式为[rotationX, rotationY, rotationZ]，单位为度（°），表示绕x、y、z轴的旋转角。<br/>- 对于AnimationPropertyType.TRANSLATION，取值格式为[translateX, translateY]，单位为px，表示沿x、y轴的平移量。<br/>- 对于AnimationPropertyType.SCALE，取值格式为[scaleX, scaleY]，表示x、y方向的缩放比例。<br/>- 对于AnimationPropertyType.OPACITY，取值格式为[opacity]，表示不透明度。opacity的取值范围为[0, 1]。<br/>当节点上从未设置过该属性时，需要显式指定startValue才能正常创建动画。当节点上已经设置过属性（如第二次及之后创建动画），则推荐不显式指定startValue或者显式指定startValue为上一次的终值，表示使用上一次的终值作为新的动画起点，避免起始值跳变。 |
 | endValue  | number[] | 是 | 动画属性的终止值。取值为数组，数组长度需要和属性枚举匹配。<br/>- 对于AnimationPropertyType.ROTATION，取值格式为[rotationX, rotationY, rotationZ]，单位为度（°），表示绕x、y、z轴的旋转角。<br/>- 对于AnimationPropertyType.TRANSLATION，取值格式为[translateX, translateY]，单位为px，表示沿x、y轴的平移量。<br/>- 对于AnimationPropertyType.SCALE，取值格式为[scaleX, scaleY]，表示x、y方向的缩放比例。<br/>- 对于AnimationPropertyType.OPACITY，取值格式为[opacity]，表示不透明度。opacity的取值范围为[0, 1]。 |
 | param  | [AnimateParam](./arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是 | 动画参数。包含时长、动画曲线、结束回调等参数。 |
 
@@ -2176,7 +2202,7 @@ cancelAnimations(properties: AnimationPropertyType[]): boolean
 
 | 类型               | 说明               |
 | ------------------ | ------------------ |
-| boolean | 表示动画是否取消成功。<br/>返回值为true：动画取消成功。<br/>返回值为false：动画取消失败。<br/>可能导致动画取消失败的原因：<br/>&nbsp;1. 节点已经释放，调用过[dispose](#dispose12)方法。<br/>&nbsp;2. 对于系统组件的代理节点，即对于[isModifiable](#ismodifiable12)为false的节点，调用该接口会失败。<br/>&nbsp;3. 属性枚举数组存在非法枚举值。<br/>&nbsp;4. 系统异常。如发生ipc异常导致动画取消失败。<br/>**说明：**<br/>&nbsp;1. 即使属性上没有动画，尝试取消该属性的动画，在无系统异常情况下调用取消接口也会返回true。<br/>&nbsp;2. 如果开发者保证传入参数合法且节点正常，返回false时表明发生了系统异常。此时开发者可隔一段时间后再次尝试取消，或通过调用duration为0的[createAnimation](#createanimation20)接口停止属性上的动画。|
+| boolean | 表示动画是否取消成功。<br/>返回值为true：动画取消成功。<br/>返回值为false：动画取消失败。<br/>可能导致动画取消失败的原因：<br/>&nbsp;1. 节点已经释放，调用过[dispose](#dispose12)方法。<br/>&nbsp;2. 对于系统组件的代理节点，即对于[isModifiable](#ismodifiable12)为false的节点，调用该接口会失败。<br/>&nbsp;3. 属性枚举数组存在非法枚举值。<br/>&nbsp;4. 系统异常。如发生ipc异常导致动画取消失败。<br/>&nbsp;1. 即使属性上没有动画，尝试取消该属性的动画，在无系统异常情况下调用取消接口也会返回true。<br/>&nbsp;2. 如果开发者保证传入参数合法且节点正常，返回false时表明发生了系统异常。此时开发者可隔一段时间后再次尝试取消，或通过调用duration为0的[createAnimation](#createanimation20)接口停止属性上的动画。|
 
 **示例：**
 
@@ -2202,7 +2228,7 @@ getNodePropertyValue(property: AnimationPropertyType): number[]
 
 | 类型               | 说明               |
 | ------------------ | ------------------ |
-| number[] | 表示渲染节点上的属性值，返回的数组长度与属性枚举相关，异常时返回空数组。<br/>对不同属性枚举的返回值格式：<br/>- 当节点已经释放，调用过[dispose](#dispose12)方法，或者属性枚举非法时，返回长度为0的空数组。<br/>- 对于AnimationPropertyType.ROTATION，返回值为[rotationX, rotationY, rotationZ]，单位为度（°），表示绕x、y、z轴的旋转角。<br/>- 对于AnimationPropertyType.TRANSLATION，返回值为[translateX, translateY]，单位为px，表示沿x、y轴的平移量。<br/>- 对于AnimationPropertyType.SCALE，返回值为[scaleX, scaleY]，表示x、y方向的缩放比例。<br/>- 对于AnimationPropertyType.OPACITY，返回值为[opacity]，表示不透明度。<br/>**说明：**<br/>1. 动画正常取消后，节点上的属性值被恢复为取消时的值，通过该接口可以获取取消后的显示值。<br/>2. 动画期间该接口的返回值为该属性的终值，而不是动画过程的实时值。<br/>|
+| number[] | 表示渲染节点上的属性值，返回的数组长度与属性枚举相关，异常时返回空数组。<br/>对不同属性枚举的返回值格式：<br/>- 当节点已经释放，调用过[dispose](#dispose12)方法，或者属性枚举非法时，返回长度为0的空数组。<br/>- 对于AnimationPropertyType.ROTATION，返回值为[rotationX, rotationY, rotationZ]，单位为度（°），表示绕x、y、z轴的旋转角。<br/>- 对于AnimationPropertyType.TRANSLATION，返回值为[translateX, translateY]，单位为px，表示沿x、y轴的平移量。<br/>- 对于AnimationPropertyType.SCALE，返回值为[scaleX, scaleY]，表示x、y方向的缩放比例。<br/>- 对于AnimationPropertyType.OPACITY，返回值为[opacity]，表示不透明度。<br/>1. 动画正常取消后，节点上的属性值被恢复为取消时的值，通过该接口可以获取取消后的显示值。<br/>2. 动画期间该接口的返回值为该属性的终值，而不是动画过程的实时值。<br/>|
 
 **示例：**
 
@@ -2230,6 +2256,7 @@ invalidateAttributes(): void
  //index.ets
 import { FrameNode, NodeController, typeNode, NodeContent } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义NodeAdapter控制器
 class MyNodeAdapterController extends NodeController {
   rootNode: FrameNode | null = null;
   imageUrl: string = "";
@@ -2241,10 +2268,12 @@ class MyNodeAdapterController extends NodeController {
     let imageNode = typeNode.createNode(uiContext, "Image");
     imageNode.initialize($r(this.imageUrl))
     imageNode.attribute.syncLoad(true).width(100).height(100);
+    // 强制当前帧内即时节点更新，避免出现切换闪烁
     imageNode.invalidateAttributes();
     return imageNode;
   }
 }
+// 自定义挂载事件的自定义组件，挂载前加载样例图片
 @Component
 struct NodeComponent3 {
   private rootSlot: NodeContent = new NodeContent();
@@ -2260,6 +2289,7 @@ struct NodeComponent3 {
     ContentSlot(this.rootSlot)
   }
 }
+// 自定义挂载事件的自定义组件，挂载前加载样例图片
 @Component
 struct NodeComponent4 {
   private rootSlot: NodeContent = new NodeContent();
@@ -2334,7 +2364,7 @@ TypedFrameNode继承自[FrameNode](#framenode-1)，用于声明具体类型的Fr
 
 typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础接口进行自定义的挂载，使用占位容器进行显示。
 
-使用typeNode创建Text、Image、Select、Toggle节点时，当传入的[UIContext](./arkts-apis-uicontext-uicontext.md)对应的UI实例销毁后，调用该接口会返回一个无效的FrameNode节点，无法正常挂载和显示。
+使用typeNode创建[Text](./arkui-ts/ts-basic-components-text.md)、[Image](./arkui-ts/ts-basic-components-image.md)、[Select](./arkui-ts/ts-basic-components-select.md)、[Toggle](./arkui-ts/ts-basic-components-toggle.md)节点时，当传入的[UIContext](./arkts-apis-uicontext-uicontext.md)对应的UI实例销毁后，调用该接口会返回一个无效的FrameNode节点，无法正常挂载和显示。
 
 **示例：**
 
@@ -2352,7 +2382,7 @@ Text类型的FrameNode节点类型。不允许添加子组件。
 
 | 类型                                               | 说明                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[TextInterface](./arkui-ts/ts-basic-components-text.md#接口), [TextAttribute](./arkui-ts/ts-basic-components-text.md#属性)&gt; | 提供Text类型FrameNode节点。<br/>**说明：**<br/> TextInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Text组件的构造函数类型。 <br/> TextAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Text组件的属性设置对象。 |
+| TypedFrameNode&lt;[TextInterface](./arkui-ts/ts-basic-components-text.md#接口), [TextAttribute](./arkui-ts/ts-basic-components-text.md#属性)&gt; | 提供Text类型FrameNode节点。<br/> TextInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Text组件的构造函数类型。 <br/> TextAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Text组件的属性设置对象。 |
 
 ### createNode('Text')<sup>12+</sup>
 
@@ -2382,6 +2412,7 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -2440,6 +2471,7 @@ getAttribute(node: FrameNode, nodeType: 'Text'): TextAttribute | undefined
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -2479,7 +2511,7 @@ struct FrameNodeTypeTest {
 
 bindController(node: FrameNode, controller: TextController, nodeType: 'Text'): void
 
-将文本控制器TextController绑定到Text节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将文本控制器[TextController](arkui-ts/ts-basic-components-text.md#textcontroller11)绑定到[Text](#text12)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2507,6 +2539,7 @@ bindController(node: FrameNode, controller: TextController, nodeType: 'Text'): v
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   // 设置TextController，可以在外部获取
   controller: TextController = new TextController()
@@ -2560,7 +2593,7 @@ Column类型的FrameNode节点类型。
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ColumnInterface](./arkui-ts/ts-container-column.md#接口), [ColumnAttribute](./arkui-ts/ts-container-column.md#属性)&gt; | 提供Column类型FrameNode节点。<br/>**说明：**<br/> ColumnInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Column组件的构造函数类型。 <br/> ColumnAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Column组件的属性设置对象。 |
+| TypedFrameNode&lt;[ColumnInterface](./arkui-ts/ts-container-column.md#接口), [ColumnAttribute](./arkui-ts/ts-container-column.md#属性)&gt; | 提供Column类型FrameNode节点。<br/> ColumnInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Column组件的构造函数类型。 <br/> ColumnAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Column组件的属性设置对象。 |
 
 ### createNode('Column')<sup>12+</sup>
 
@@ -2590,10 +2623,12 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Column控制器
 class MyColumnController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
     node.commonAttribute
+    // 创建Column
     let col = typeNode.createNode(uiContext, 'Column')
     col.initialize({ space: 5 })
       .width('50%')
@@ -2693,7 +2728,7 @@ Row类型的FrameNode节点类型。
 
 | 类型                                             | 说明                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[RowInterface](./arkui-ts/ts-container-row.md#接口), [RowAttribute](./arkui-ts/ts-container-row.md#属性)&gt; | 提供Row类型FrameNode节点。<br/>**说明：**<br/> RowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Row组件的构造函数类型。 <br/> RowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Row组件的属性设置对象。 |
+| TypedFrameNode&lt;[RowInterface](./arkui-ts/ts-container-row.md#接口), [RowAttribute](./arkui-ts/ts-container-row.md#属性)&gt; | 提供Row类型FrameNode节点。<br/> RowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Row组件的构造函数类型。 <br/> RowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Row组件的属性设置对象。 |
 
 ### createNode('Row')<sup>12+</sup>
 
@@ -2723,10 +2758,12 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Row控制器
 class MyRowController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
     node.commonAttribute
+    // 创建row
     let row = typeNode.createNode(uiContext, 'Row')
     row.initialize({ space: 5 })
       .width('50%')
@@ -2826,7 +2863,7 @@ Stack类型的FrameNode节点类型。
 
 | 类型                                                 | 说明                                                         |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[StackInterface](./arkui-ts/ts-container-stack.md#接口), [StackAttribute](./arkui-ts/ts-container-stack.md#属性)&gt; | 提供Stack类型FrameNode节点。<br/>**说明：**<br/> StackInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Stack组件的构造函数类型。 <br/> StackAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Stack组件的属性设置对象。 |
+| TypedFrameNode&lt;[StackInterface](./arkui-ts/ts-container-stack.md#接口), [StackAttribute](./arkui-ts/ts-container-stack.md#属性)&gt; | 提供Stack类型FrameNode节点。<br/> StackInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Stack组件的构造函数类型。 <br/> StackAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Stack组件的属性设置对象。 |
 
 ### createNode('Stack')<sup>12+</sup>
 
@@ -2856,10 +2893,12 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Stack控制器
 class MyStackController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
     node.commonAttribute
+    // 创建Stack
     let stack = typeNode.createNode(uiContext, 'Stack')
     stack.initialize({ alignContent: Alignment.Top })
       .width('50%')
@@ -2868,6 +2907,7 @@ class MyStackController extends NodeController {
     node.appendChild(stack)
     let text = typeNode.createNode(uiContext, 'Text')
     text.initialize("This is Text")
+    // 向stack添加text
     stack.appendChild(text)
     return node;
   }
@@ -2962,7 +3002,7 @@ GridRow类型的FrameNode节点类型。只允许添加GridCol类型子组件。
 
 | 类型                                                     | 说明                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[GridRowInterface](./arkui-ts/ts-container-gridrow.md#接口), [GridRowAttribute](./arkui-ts/ts-container-gridrow.md#属性)&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridRow组件的属性设置对象。 |
+| TypedFrameNode&lt;[GridRowInterface](./arkui-ts/ts-container-gridrow.md#接口), [GridRowAttribute](./arkui-ts/ts-container-gridrow.md#属性)&gt; | 提供GridRow类型FrameNode节点。<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridRow组件的属性设置对象。 |
 
 ### createNode('GridRow')<sup>12+</sup>
 
@@ -2992,20 +3032,24 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义GridRow控制器
 class MyGridRowController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
     node.commonAttribute
+    // 创建GridRow
     let gridRow = typeNode.createNode(uiContext, 'GridRow')
     gridRow.initialize({ columns: 12 })
       .width('50%')
       .height('50%')
       .backgroundColor(Color.Gray)
     node.appendChild(gridRow)
+    // 创建GridCol
     let gridCol = typeNode.createNode(uiContext, 'GridCol')
     gridCol.initialize({ span: 2, offset: 4 })
       .height("100%")
       .backgroundColor(Color.Red)
+    // 向gridRow添加gridCol
     gridRow.appendChild(gridCol)
     return node;
   }
@@ -3037,7 +3081,7 @@ GridCol类型的FrameNode节点类型。不允许添加子组件。
 
 | 类型                                                     | 说明                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[GridColInterface](./arkui-ts/ts-container-gridcol.md#接口), [GridColAttribute](./arkui-ts/ts-container-gridcol.md#属性)&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridCol组件的属性设置对象。 |
+| TypedFrameNode&lt;[GridColInterface](./arkui-ts/ts-container-gridcol.md#接口), [GridColAttribute](./arkui-ts/ts-container-gridcol.md#属性)&gt; | 提供GridCol类型FrameNode节点。<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridCol组件的属性设置对象。 |
 
 ### createNode('GridCol')<sup>12+</sup>
 
@@ -3067,20 +3111,24 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义GridRow控制器
 class MyGridRowController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
     node.commonAttribute
+    // 创建GridRow
     let gridRow = typeNode.createNode(uiContext, 'GridRow')
     gridRow.initialize({ columns: 12 })
       .width('50%')
       .height('50%')
       .backgroundColor(Color.Gray)
     node.appendChild(gridRow)
+    // 创建GridCol
     let gridCol = typeNode.createNode(uiContext, 'GridCol')
     gridCol.initialize({ span: 2, offset: 4 })
       .height("100%")
       .backgroundColor(Color.Red)
+    // 向gridRow添加gridCol
     gridRow.appendChild(gridCol)
     return node;
   }
@@ -3112,7 +3160,7 @@ Flex类型的FrameNode节点类型。
 
 | 类型                                               | 说明                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[FlexInterface](./arkui-ts/ts-container-flex.md#接口), [FlexAttribute](./arkui-ts/ts-container-flex.md#属性)&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Flex组件的属性设置对象。 |
+| TypedFrameNode&lt;[FlexInterface](./arkui-ts/ts-container-flex.md#接口), [FlexAttribute](./arkui-ts/ts-container-flex.md#属性)&gt; | 提供Flex类型FrameNode节点。<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Flex组件的属性设置对象。 |
 
 ### createNode('Flex')<sup>12+</sup>
 
@@ -3142,10 +3190,12 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Flex控制器
 class MyFlexController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
     node.commonAttribute
+    // 创建Flex
     let flex = typeNode.createNode(uiContext, 'Flex')
     flex.initialize()
       .width('50%')
@@ -3245,7 +3295,7 @@ Swiper类型的FrameNode节点类型。
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[SwiperInterface](./arkui-ts/ts-container-swiper.md#接口), [SwiperAttribute](./arkui-ts/ts-container-swiper.md#属性)&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Swiper组件的属性设置对象。 |
+| TypedFrameNode&lt;[SwiperInterface](./arkui-ts/ts-container-swiper.md#接口), [SwiperAttribute](./arkui-ts/ts-container-swiper.md#属性)&gt; | 提供Swiper类型FrameNode节点。<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Swiper组件的属性设置对象。 |
 
 ### createNode('Swiper')<sup>12+</sup>
 
@@ -3277,27 +3327,34 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Swiper控制器
 class MySwiperController extends NodeController {
   swiperController: SwiperController = new SwiperController()
 
   makeNode(uiContext: UIContext): FrameNode | null {
+    // 创建Swiper
     let swiperNode = typeNode.createNode(uiContext, 'Swiper')
 
+    // 创建Text
     let text0 = typeNode.createNode(uiContext, 'Text')
     text0.initialize("0")
       .width('100%')
       .height('100%')
       .textAlign(TextAlign.Center)
+    // 向swiper添加text0
     swiperNode.appendChild(text0)
+    // 创建另一个Text用于切换
     let text1 = typeNode.createNode(uiContext, 'Text')
     text1.initialize("1")
       .width('100%')
       .height('100%')
       .textAlign(TextAlign.Center)
+    // 向swiper添加text1
     swiperNode.appendChild(text1)
     swiperNode.commonAttribute.width('100%')
       .height('20%')
       .backgroundColor(0xAFEEEE)
+    // 向swiper绑定控制器
     typeNode.bindController(swiperNode, this.swiperController, 'Swiper')
     typeNode.getAttribute(swiperNode, 'Swiper')?.loop(false)
     return swiperNode;
@@ -3350,7 +3407,7 @@ getAttribute(node: FrameNode, nodeType: 'Swiper'): SwiperAttribute | undefined
 
 bindController(node: FrameNode, controller: SwiperController, nodeType: 'Swiper'): void
 
-将控制器SwiperController绑定到Swiper节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将控制器[SwiperController](arkui-ts/ts-container-swiper.md#swipercontroller)绑定到[Swiper](#swiper12)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3389,7 +3446,7 @@ Progress类型的FrameNode节点类型。不允许添加子组件。
 
 | 类型                                                       | 说明                                                         |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ProgressInterface](./arkui-ts/ts-basic-components-progress.md#接口), [ProgressAttribute](./arkui-ts/ts-basic-components-progress.md#属性)&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Progress组件的属性设置对象。 |
+| TypedFrameNode&lt;[ProgressInterface](./arkui-ts/ts-basic-components-progress.md#接口), [ProgressAttribute](./arkui-ts/ts-basic-components-progress.md#属性)&gt; | 提供Progress类型FrameNode节点。<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Progress组件的属性设置对象。 |
 
 ### createNode('Progress')<sup>12+</sup>
 
@@ -3419,6 +3476,7 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Progress控制器
 class MyProgressNodeController extends NodeController {
   public uiContext: UIContext | null = null;
   public rootNode: FrameNode | null = null;
@@ -3426,6 +3484,7 @@ class MyProgressNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     this.uiContext = uiContext;
     this.rootNode = new FrameNode(uiContext);
+    // 创建Progress
     let node = typeNode.createNode(uiContext, 'Progress');
     node.initialize({
       value: 15,
@@ -3478,6 +3537,7 @@ getAttribute(node: FrameNode, nodeType: 'Progress'): ProgressAttribute | undefin
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Progress控制器
 class MyProgressNodeController extends NodeController {
   public uiContext: UIContext | null = null;
   public rootNode: FrameNode | null = null;
@@ -3523,7 +3583,7 @@ Scroll类型的FrameNode节点类型。允许添加一个子组件。
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ScrollInterface](./arkui-ts/ts-container-scroll.md#接口), [ScrollAttribute](./arkui-ts/ts-container-scroll.md)&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Scroll组件的属性设置对象。 |
+| TypedFrameNode&lt;[ScrollInterface](./arkui-ts/ts-container-scroll.md#接口), [ScrollAttribute](./arkui-ts/ts-container-scroll.md)&gt; | 提供Scroll类型FrameNode节点。<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Scroll组件的属性设置对象。 |
 
 ### createNode('Scroll')<sup>12+</sup>
 
@@ -3553,12 +3613,14 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Scroll控制器
 class MyScrollController extends NodeController {
   public rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
 
+    // 创建Scroll
     let scroller: Scroller = new Scroller();
     //创建Scroll并设置属性
     let scrollNode = typeNode.createNode(uiContext, 'Scroll');
@@ -3566,6 +3628,7 @@ class MyScrollController extends NodeController {
     typeNode.getAttribute(scrollNode, "Scroll")?.friction(0.6);
 
     let colNode = typeNode.createNode(uiContext, 'Column');
+    // 向scroll添加column
     scrollNode.appendChild(colNode);
 
     for (let i = 0; i < 10; i++) {
@@ -3655,7 +3718,7 @@ getEvent(node: FrameNode, nodeType: 'Scroll'): UIScrollEvent | undefined
 
 bindController(node: FrameNode, controller: Scroller, nodeType: 'Scroll'): void
 
-将滚动控制器Scroller绑定到Scroll节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将滚动控制器[Scroller](arkui-ts/ts-container-scroll.md#scroller)绑定到[Scroll](#scroll12)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -3696,7 +3759,7 @@ RelativeContainer类型的FrameNode节点类型。
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[RelativeContainerInterface](./arkui-ts/ts-container-relativecontainer.md#接口), [RelativeContainerAttribute](./arkui-ts/ts-container-relativecontainer.md#属性)&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
+| TypedFrameNode&lt;[RelativeContainerInterface](./arkui-ts/ts-container-relativecontainer.md#接口), [RelativeContainerAttribute](./arkui-ts/ts-container-relativecontainer.md#属性)&gt; | 提供RelativeContainer类型FrameNode节点。<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
 
 ### createNode('RelativeContainer')<sup>12+</sup>
 
@@ -3726,10 +3789,12 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Relative控制器
 class MyRelativeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
     node.commonAttribute
+    // 创建RelativeContainer
     let relative = typeNode.createNode(uiContext, 'RelativeContainer')
     relative.initialize()
       .width('50%')
@@ -3829,7 +3894,7 @@ Divider类型的FrameNode节点类型。不允许添加子组件。
 
 | 类型                                                     | 说明                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[DividerInterface](./arkui-ts/ts-basic-components-divider.md#接口), [DividerAttribute](./arkui-ts/ts-basic-components-divider.md#属性)&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Divider组件的属性设置对象。 |
+| TypedFrameNode&lt;[DividerInterface](./arkui-ts/ts-basic-components-divider.md#接口), [DividerAttribute](./arkui-ts/ts-basic-components-divider.md#属性)&gt; | 提供Divider类型FrameNode节点。<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Divider组件的属性设置对象。 |
 
 ### createNode('Divider')<sup>12+</sup>
 
@@ -3859,6 +3924,7 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Divider控制器
 class MyDividerController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -3868,9 +3934,11 @@ class MyDividerController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建divider
     let divider = typeNode.createNode(uiContext, 'Divider')
     divider.initialize()
       .strokeWidth(1)
+    // 向col添加divider
     col.appendChild(divider)
 
     return node;
@@ -3904,7 +3972,7 @@ LoadingProgress类型的FrameNode节点类型。不允许添加子组件。
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[LoadingProgressInterface](./arkui-ts/ts-basic-components-loadingprogress.md#接口), [LoadingProgressAttribute](./arkui-ts/ts-basic-components-loadingprogress.md#属性)&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
+| TypedFrameNode&lt;[LoadingProgressInterface](./arkui-ts/ts-basic-components-loadingprogress.md#接口), [LoadingProgressAttribute](./arkui-ts/ts-basic-components-loadingprogress.md#属性)&gt; | 提供LoadingProgress类型FrameNode节点。<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
 
 ### createNode('LoadingProgress')<sup>12+</sup>
 
@@ -3934,6 +4002,7 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义LoadingProgress控制器
 class MyLoadingProgressNodeController extends NodeController {
   public uiContext: UIContext | null = null;
   public rootNode: FrameNode | null = null;
@@ -3941,6 +4010,7 @@ class MyLoadingProgressNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     this.uiContext = uiContext;
     this.rootNode = new FrameNode(uiContext);
+    // 创建LoadingProgress
     let node = typeNode.createNode(uiContext, 'LoadingProgress');
     node.initialize()
       .width(100)
@@ -3967,7 +4037,7 @@ struct Sample {
 
 getAttribute(node: FrameNode, nodeType: 'LoadingProgress'): LoadingProgressAttribute | undefined
 
-获取LoadingProgress节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+获取[LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3991,6 +4061,7 @@ getAttribute(node: FrameNode, nodeType: 'LoadingProgress'): LoadingProgressAttri
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义LoadingProgress控制器
 class MyLoadingProgressNodeController extends NodeController {
   public uiContext: UIContext | null = null;
   public rootNode: FrameNode | null = null;
@@ -4034,7 +4105,7 @@ Search类型的FrameNode节点类型。
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[SearchInterface](./arkui-ts/ts-basic-components-search.md#接口), [SearchAttribute](./arkui-ts/ts-basic-components-search.md#属性)&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Search组件的属性设置对象。 |
+| TypedFrameNode&lt;[SearchInterface](./arkui-ts/ts-basic-components-search.md#接口), [SearchAttribute](./arkui-ts/ts-basic-components-search.md#属性)&gt; | 提供Search类型FrameNode节点。<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Search组件的属性设置对象。 |
 
 ### createNode('Search')<sup>12+</sup>
 
@@ -4064,6 +4135,7 @@ createNode(context: UIContext, nodeType: 'Search'): Search
 ```ts
 iimport { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -4107,7 +4179,7 @@ Blank类型的FrameNode节点类型。不允许添加子组件。
 
 | 类型                                                 | 说明                                                         |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[BlankInterface](./arkui-ts/ts-basic-components-blank.md#接口), [BlankAttribute](./arkui-ts/ts-basic-components-blank.md#属性)&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Blank组件的属性设置对象。 |
+| TypedFrameNode&lt;[BlankInterface](./arkui-ts/ts-basic-components-blank.md#接口), [BlankAttribute](./arkui-ts/ts-basic-components-blank.md#属性)&gt; | 提供Blank类型FrameNode节点。<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Blank组件的属性设置对象。 |
 
 ### createNode('Blank')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Blank'): Blank
@@ -4136,6 +4208,7 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Blank控制器
 class MyBlankController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -4145,6 +4218,7 @@ class MyBlankController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Blank
     let blank = typeNode.createNode(uiContext, 'Blank')
     blank.initialize()
       .width('50%')
@@ -4183,7 +4257,7 @@ Image类型的FrameNode节点类型。不允许添加子组件。
 
 | 类型                                                 | 说明                                                         |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ImageInterface](./arkui-ts/ts-basic-components-image.md#接口), [ImageAttribute](./arkui-ts/ts-basic-components-image.md#属性)&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Image组件的属性设置对象。 |
+| TypedFrameNode&lt;[ImageInterface](./arkui-ts/ts-basic-components-image.md#接口), [ImageAttribute](./arkui-ts/ts-basic-components-image.md#属性)&gt; | 提供Image类型FrameNode节点。<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Image组件的属性设置对象。 |
 
 ### createNode('Image')<sup>12+</sup>
 
@@ -4213,6 +4287,7 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Image控制器
 class MyImageController extends NodeController {
   public uiContext: UIContext | null = null;
   public rootNode: FrameNode | null = null;
@@ -4220,9 +4295,10 @@ class MyImageController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     this.uiContext = uiContext;
     this.rootNode = new FrameNode(uiContext);
+    // 创建Image
     let imageNode = typeNode.createNode(uiContext, 'Image');
     imageNode
-      // $r('app.media.img')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.img')需要替换为开发者所需的图像资源文件
       .initialize($r('app.media.img'))
       .width(100)
       .height(100)
@@ -4281,6 +4357,7 @@ getAttribute(node: FrameNode, nodeType: 'Image'): ImageAttribute | undefined
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Image控制器
 class MyImageController extends NodeController {
   public uiContext: UIContext | null = null;
   public rootNode: FrameNode | null = null;
@@ -4290,7 +4367,7 @@ class MyImageController extends NodeController {
     this.rootNode = new FrameNode(uiContext);
     let imageNode = typeNode.createNode(uiContext, 'Image');
     imageNode
-      // $r('app.media.img')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.img')需要替换为开发者所需的图像资源文件
       .initialize($r('app.media.img'))
       .width(100)
       .height(100)
@@ -4325,7 +4402,7 @@ struct Sample {
 
 type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
 
-List类型的FrameNode节点类型。只允许添加ListItem、ListItemGroup类型子组件。
+List类型的FrameNode节点类型。只允许添加[ListItem](#listitem12)、[ListItemGroup](#listitemgroup12)类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4333,7 +4410,7 @@ List类型的FrameNode节点类型。只允许添加ListItem、ListItemGroup类�
 
 | 类型                                               | 说明                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ListInterface](./arkui-ts/ts-container-list.md#接口), [ListAttribute](./arkui-ts/ts-container-list.md#属性)&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回List组件的属性设置对象。 |
+| TypedFrameNode&lt;[ListInterface](./arkui-ts/ts-container-list.md#接口), [ListAttribute](./arkui-ts/ts-container-list.md#属性)&gt; | 提供List类型FrameNode节点。<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回List组件的属性设置对象。 |
 
 ### createNode('List')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'List'): List
@@ -4362,12 +4439,14 @@ createNode(context: UIContext, nodeType: 'List'): List
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义List控制器
 class MyListController extends NodeController {
   public rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     //创建list节点
     this.rootNode = new FrameNode(uiContext);
+    // 创建List
     let listNode = typeNode.createNode(uiContext, 'List');
     listNode.initialize({ space: 3 }).size({ width: '100%', height: '100%' });
     typeNode.getAttribute(listNode, "List")?.friction(0.6);
@@ -4385,6 +4464,7 @@ class MyListController extends NodeController {
     listItemNode1.appendChild(text1);
     listItemGroupNode.appendChild(listItemNode1);
 
+    // 创建ListItem，添加Text至ListItem，添加至listItemGroup
     let listItemNode2 = typeNode.createNode(uiContext, 'ListItem');
     listItemNode2.initialize({ style: ListItemStyle.CARD }).borderWidth(1).backgroundColor('#FF00FF');
     typeNode.getAttribute(listItemNode2, "ListItem")?.height(100);
@@ -4471,7 +4551,7 @@ getAttribute(node: FrameNode, nodeType: 'List'): ListAttribute | undefined
 
 bindController(node: FrameNode, controller: Scroller, nodeType: 'List'): void
 
-将滚动控制器Scroller绑定到List节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将滚动控制器[Scroller](arkui-ts/ts-container-scroll.md#scroller)绑定到[List](#list12)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4514,7 +4594,7 @@ ListItem类型的FrameNode节点类型。
 
 | 类型                                                       | 说明                                                         |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ListItemInterface](./arkui-ts/ts-container-listitem.md#接口), [ListItemAttribute](./arkui-ts/ts-container-listitem.md#属性)&gt; | 提供ListItem类型FrameNode节点。<br/>**说明：**<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回ListItem组件的属性设置对象。 |
+| TypedFrameNode&lt;[ListItemInterface](./arkui-ts/ts-container-listitem.md#接口), [ListItemAttribute](./arkui-ts/ts-container-listitem.md#属性)&gt; | 提供ListItem类型FrameNode节点。<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回ListItem组件的属性设置对象。 |
 
 ### createNode('ListItem')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'ListItem'): ListItem
@@ -4580,7 +4660,7 @@ TextInput类型的FrameNode节点类型。
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[TextInputInterface](./arkui-ts/ts-basic-components-textinput.md#接口), [TextInputAttribute](./arkui-ts/ts-basic-components-textinput.md#属性)&gt; | 提供TextInput类型FrameNode节点。<br/>**说明：**<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextInput组件的属性设置对象。 |
+| TypedFrameNode&lt;[TextInputInterface](./arkui-ts/ts-basic-components-textinput.md#接口), [TextInputAttribute](./arkui-ts/ts-basic-components-textinput.md#属性)&gt; | 提供TextInput类型FrameNode节点。<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextInput组件的属性设置对象。 |
 
 ### createNode('TextInput')<sup>12+</sup>
 
@@ -4610,6 +4690,7 @@ createNode(context: UIContext, nodeType: 'TextInput'): TextInput
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -4667,6 +4748,7 @@ getAttribute(node: FrameNode, nodeType: 'TextInput'): TextInputAttribute | undef
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -4701,7 +4783,7 @@ struct FrameNodeTypeTest {
 ### bindController('TextInput')<sup>20+</sup>
 bindController(node: FrameNode, controller: TextInputController, nodeType: 'TextInput'): void
 
-将输入框控制器TextInputController绑定到TextInput节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将输入框控制器[TextInputController](arkui-ts/ts-basic-components-textinput.md#textinputcontroller8)绑定到[TextInput](#textinput12)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4729,6 +4811,7 @@ bindController(node: FrameNode, controller: TextInputController, nodeType: 'Text
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -4775,7 +4858,7 @@ Button类型的FrameNode节点类型。以子组件模式创建允许添加一�
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ButtonInterface](./arkui-ts/ts-basic-components-button.md#接口), [ButtonAttribute](./arkui-ts/ts-basic-components-button.md#属性)&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件,并且不允许再设置子组件，否则会抛出异常。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。<br/> 以子组件模式创建时，只能包含一个子组件，不能设置多个子组件，否则会抛出异常。 |
+| TypedFrameNode&lt;[ButtonInterface](./arkui-ts/ts-basic-components-button.md#接口), [ButtonAttribute](./arkui-ts/ts-basic-components-button.md#属性)&gt; | 提供Button类型FrameNode节点。<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件,并且不允许再设置子组件，否则会抛出异常。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。<br/> 以子组件模式创建时，只能包含一个子组件，不能设置多个子组件，否则会抛出异常。 |
 
 ### createNode('Button')<sup>12+</sup>
 
@@ -4805,6 +4888,7 @@ createNode(context: UIContext, nodeType: 'Button'): Button
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Button控制器
 class MyButtonController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -4814,6 +4898,7 @@ class MyButtonController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Button
     let button = typeNode.createNode(uiContext, 'Button')
     button.initialize("This is Button")
       .onClick(() => {
@@ -4868,6 +4953,7 @@ getAttribute(node: FrameNode, nodeType: 'Button'): ButtonAttribute | undefined
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Button控制器
 class MyButtonController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -4882,6 +4968,7 @@ class MyButtonController extends NodeController {
       .onClick(() => {
         uiContext.getPromptAction().showToast({ message: "Button clicked" })
       })
+    // 获取Button属性
     typeNode.getAttribute(button,'Button')?.buttonStyle(ButtonStyleMode.TEXTUAL)
     col.appendChild(button)
 
@@ -4907,7 +4994,7 @@ struct FrameNodeTypeTest {
 ### ListItemGroup<sup>12+</sup>
 type ListItemGroup = TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt;
 
-ListItemGroup类型的FrameNode节点类型。只允许添加ListItem类型子组件。
+ListItemGroup类型的FrameNode节点类型。只允许添加[ListItem](./arkui-ts/ts-container-listitem.md)类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4915,7 +5002,7 @@ ListItemGroup类型的FrameNode节点类型。只允许添加ListItem类型子�
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[ListItemGroupInterface](./arkui-ts/ts-container-listitem.md#接口), [ListItemGroupAttribute](./arkui-ts/ts-container-listitem.md#属性)&gt; | 提供ListItemGroup类型FrameNode节点。<br/>**说明：**<br/> ListItemGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为ListItemGroup组件的构造函数类型。 <br/> ListItemGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回ListItemGroup组件的属性设置对象。 |
+| TypedFrameNode&lt;[ListItemGroupInterface](./arkui-ts/ts-container-listitem.md#接口), [ListItemGroupAttribute](./arkui-ts/ts-container-listitem.md#属性)&gt; | 提供ListItemGroup类型FrameNode节点。<br/> ListItemGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为ListItemGroup组件的构造函数类型。 <br/> ListItemGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回ListItemGroup组件的属性设置对象。 |
 
 ### createNode('ListItemGroup')<sup>12+</sup>
 
@@ -4979,7 +5066,7 @@ typeNode.getAttribute(node, 'ListItemGroup');
 
 type WaterFlow = TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt;
 
-WaterFlow类型的FrameNode节点类型。只允许添加FlowItem类型子组件。
+WaterFlow类型的FrameNode节点类型。只允许添加[FlowItem](./arkui-ts/ts-container-flowitem.md)类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4987,7 +5074,7 @@ WaterFlow类型的FrameNode节点类型。只允许添加FlowItem类型子组件
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[WaterFlowInterface](./arkui-ts/ts-container-waterflow.md#接口), [WaterFlowAttribute](./arkui-ts/ts-container-waterflow.md#属性)&gt; | 提供WaterFlow类型FrameNode节点。<br/>**说明：**<br/> WaterFlowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为WaterFlow组件的构造函数类型。 <br/> WaterFlowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回WaterFlow组件的属性设置对象。 |
+| TypedFrameNode&lt;[WaterFlowInterface](./arkui-ts/ts-container-waterflow.md#接口), [WaterFlowAttribute](./arkui-ts/ts-container-waterflow.md#属性)&gt; | 提供[WaterFlow](#waterflow12)类型FrameNode节点。<br/> WaterFlowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为WaterFlow组件的构造函数类型。 <br/> WaterFlowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回WaterFlow组件的属性设置对象。 |
 
 ### createNode('WaterFlow')<sup>12+</sup>
 
@@ -5017,6 +5104,7 @@ createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义WaterFlow控制器
 class MyWaterFlowController extends NodeController {
   public rootNode: FrameNode | null = null;
   private minHeight: number = 80;
@@ -5078,7 +5166,7 @@ struct FrameNodeTypeTest {
 
 getEvent(node: FrameNode, nodeType: 'WaterFlow'): UIWaterFlowEvent | undefined
 
-获取WaterFlow节点中持有的UIWaterFlowEvent对象，用于设置滚动事件。设置的滚动事件与声明式定义的事件平行；设置的滚动事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
+获取[WaterFlow](#waterflow12)节点中持有的UIWaterFlowEvent对象，用于设置滚动事件。设置的滚动事件与声明式定义的事件平行；设置的滚动事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -5132,7 +5220,7 @@ getAttribute(node: FrameNode, nodeType: 'WaterFlow'): WaterFlowAttribute | undef
 
 bindController(node: FrameNode, controller: Scroller, nodeType: 'WaterFlow'): void
 
-将滚动控制器Scroller绑定到WaterFlow节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将滚动控制器[Scroller](arkui-ts/ts-container-scroll.md#scroller)绑定到[WaterFlow](#waterflow12)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -5175,7 +5263,7 @@ FlowItem类型的FrameNode节点类型。允许添加一个子组件。
 
 | 类型                                                       | 说明                                                         |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[FlowItemInterface](./arkui-ts/ts-container-flowitem.md#接口), [FlowItemAttribute](./arkui-ts/ts-container-flowitem.md#属性)&gt; | 提供FlowItem类型FrameNode节点。<br/>**说明：**<br/> FlowItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为FlowItem组件的构造函数类型。 <br/> FlowItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回FlowItem组件的属性设置对象。 |
+| TypedFrameNode&lt;[FlowItemInterface](./arkui-ts/ts-container-flowitem.md#接口), [FlowItemAttribute](./arkui-ts/ts-container-flowitem.md#属性)&gt; | 提供FlowItem类型FrameNode节点。<br/> FlowItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为FlowItem组件的构造函数类型。 <br/> FlowItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回FlowItem组件的属性设置对象。 |
 
 ### createNode('FlowItem')<sup>12+</sup>
 
@@ -5243,7 +5331,7 @@ XComponent类型的FrameNode节点类型。
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TypedFrameNode&lt;[XComponentInterface](./arkui-ts/ts-basic-components-xcomponent.md#接口), [XComponentAttribute](./arkui-ts/ts-basic-components-xcomponent.md#属性)&gt; | 提供XComponent类型FrameNode节点。<br/>**说明：**<br/> XComponentInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为XComponent组件的构造函数类型。 <br/> XComponentAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回XComponent组件的属性设置对象。 |
+| TypedFrameNode&lt;[XComponentInterface](./arkui-ts/ts-basic-components-xcomponent.md#接口), [XComponentAttribute](./arkui-ts/ts-basic-components-xcomponent.md#属性)&gt; | 提供XComponent类型FrameNode节点。<br/> XComponentInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为XComponent组件的构造函数类型。 <br/> XComponentAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回XComponent组件的属性设置对象。 |
 
 ### createNode('XComponent')<sup>12+</sup>
 
@@ -5275,6 +5363,7 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -5283,6 +5372,7 @@ class MyNodeController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col);
+    // 创建XComponent
     let xcomponent = typeNode.createNode(uiContext, 'XComponent');
     xcomponent.attribute.backgroundColor(Color.Red);
     col.appendChild(xcomponent);
@@ -5335,6 +5425,7 @@ createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOption
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   controller: XComponentController = new XComponentController();
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -5344,10 +5435,12 @@ class MyNodeController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col);
+    // 设置XComponent参数对象
     let options: XComponentOptions = {
       type: XComponentType.SURFACE,
       controller: this.controller
     };
+    // 创建XComponent
     let xcomponent = typeNode.createNode(uiContext, 'XComponent', options);
     xcomponent.attribute.backgroundColor(Color.Red);
     col.appendChild(xcomponent);
@@ -5400,6 +5493,7 @@ createNode(context: UIContext, nodeType: 'XComponent', parameters: NativeXCompon
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   controller: XComponentController = new XComponentController();
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -5412,6 +5506,7 @@ class MyNodeController extends NodeController {
     let parameters: NativeXComponentParameters = {
       type: XComponentType.SURFACE
     };
+    // 创建XComponent
     let xcomponent = typeNode.createNode(uiContext, 'XComponent', parameters);
     xcomponent.attribute.backgroundColor(Color.Red);
     col.appendChild(xcomponent);
@@ -5475,7 +5570,7 @@ QRCode类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[QRCodeInterface](./arkui-ts/ts-basic-components-qrcode.md#接口), [QRCodeAttribute](./arkui-ts/ts-basic-components-qrcode.md#属性)&gt; | 提供QRCode类型FrameNode节点。<br/>**说明：**<br/> QRCodeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为QRCode组件的构造函数类型。 <br/> QRCodeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回QRCode组件的属性设置对象。 |
+| TypedFrameNode&lt;[QRCodeInterface](./arkui-ts/ts-basic-components-qrcode.md#接口), [QRCodeAttribute](./arkui-ts/ts-basic-components-qrcode.md#属性)&gt; | 提供QRCode类型FrameNode节点。<br/> QRCodeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为QRCode组件的构造函数类型。 <br/> QRCodeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回QRCode组件的属性设置对象。 |
 
 ### createNode('QRCode')<sup>14+</sup>
 
@@ -5520,7 +5615,7 @@ Badge类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[BadgeInterface](./arkui-ts/ts-container-badge.md#接口), [BadgeAttribute](./arkui-ts/ts-container-badge.md#属性)&gt; | 提供Badge类型FrameNode节点。<br/>**说明：**<br/> BadgeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Badge组件的构造函数类型。 <br/> BadgeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Badge组件的属性设置对象。 |
+| TypedFrameNode&lt;[BadgeInterface](./arkui-ts/ts-container-badge.md#接口), [BadgeAttribute](./arkui-ts/ts-container-badge.md#属性)&gt; | 提供Badge类型FrameNode节点。<br/> BadgeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Badge组件的构造函数类型。 <br/> BadgeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Badge组件的属性设置对象。 |
 
 ### createNode('Badge')<sup>14+</sup>
 
@@ -5565,7 +5660,7 @@ Grid类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[GridInterface](./arkui-ts/ts-container-grid.md#接口), [GridAttribute](./arkui-ts/ts-container-grid.md#属性)&gt; | 提供Grid类型FrameNode节点。<br/>**说明：**<br/> GridInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Grid组件的构造函数类型。 <br/> GridAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Grid组件的属性设置对象。 |
+| TypedFrameNode&lt;[GridInterface](./arkui-ts/ts-container-grid.md#接口), [GridAttribute](./arkui-ts/ts-container-grid.md#属性)&gt; | 提供Grid类型FrameNode节点。<br/> GridInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Grid组件的构造函数类型。 <br/> GridAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Grid组件的属性设置对象。 |
 
 ### createNode('Grid')<sup>14+</sup>
 
@@ -5595,6 +5690,7 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Grid控制器
 class MyGridController extends NodeController {
   public rootNode: FrameNode | null = null;
   private scroller: Scroller = new Scroller();
@@ -5705,7 +5801,7 @@ getAttribute(node: FrameNode, nodeType: 'Grid'): GridAttribute | undefined
 
 bindController(node: FrameNode, controller: Scroller, nodeType: 'Grid'): void
 
-将滚动控制器Scroller绑定到Grid节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将滚动控制器[Scroller](arkui-ts/ts-container-scroll.md#scroller)绑定到[Grid](#grid14)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -5748,7 +5844,7 @@ GridItem类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[GridItemInterface](./arkui-ts/ts-container-griditem.md#接口), [GridItemAttribute](./arkui-ts/ts-container-griditem.md#属性)&gt; | 提供GridItem类型FrameNode节点。<br/>**说明：**<br/> GridItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridItem组件的构造函数类型。 <br/> GridItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridItem组件的属性设置对象。 |
+| TypedFrameNode&lt;[GridItemInterface](./arkui-ts/ts-container-griditem.md#接口), [GridItemAttribute](./arkui-ts/ts-container-griditem.md#属性)&gt; | 提供GridItem类型FrameNode节点。<br/> GridItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridItem组件的构造函数类型。 <br/> GridItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridItem组件的属性设置对象。 |
 
 ### createNode('GridItem')<sup>14+</sup>
 
@@ -5816,7 +5912,7 @@ TextClock类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[TextClockInterface](./arkui-ts/ts-basic-components-textclock.md#接口), [TextClockAttribute](./arkui-ts/ts-basic-components-textclock.md#属性)&gt; | 提供TextClock类型FrameNode节点。<br/>**说明：**<br/> TextClockInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextClock组件的构造函数类型。 <br/> TextClockAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextClock组件的属性设置对象。 |
+| TypedFrameNode&lt;[TextClockInterface](./arkui-ts/ts-basic-components-textclock.md#接口), [TextClockAttribute](./arkui-ts/ts-basic-components-textclock.md#属性)&gt; | 提供TextClock类型FrameNode节点。<br/> TextClockInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextClock组件的构造函数类型。 <br/> TextClockAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextClock组件的属性设置对象。 |
 
 ### createNode('TextClock')<sup>14+</sup>
 
@@ -5861,7 +5957,7 @@ TextTimer类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[TextTimerInterface](./arkui-ts/ts-basic-components-texttimer.md#接口), [TextTimerAttribute](./arkui-ts/ts-basic-components-texttimer.md#属性)&gt; | 提供TextTimer类型FrameNode节点。<br/>**说明：**<br/> TextTimerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextTimer组件的构造函数类型。 <br/> TextTimerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextTimer组件的属性设置对象。 |
+| TypedFrameNode&lt;[TextTimerInterface](./arkui-ts/ts-basic-components-texttimer.md#接口), [TextTimerAttribute](./arkui-ts/ts-basic-components-texttimer.md#属性)&gt; | 提供TextTimer类型FrameNode节点。<br/> TextTimerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextTimer组件的构造函数类型。 <br/> TextTimerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextTimer组件的属性设置对象。 |
 
 ### createNode('TextTimer')<sup>14+</sup>
 
@@ -5906,7 +6002,7 @@ Marquee类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[MarqueeInterface](./arkui-ts/ts-basic-components-marquee.md#接口), [MarqueeAttribute](./arkui-ts/ts-basic-components-marquee.md#属性)&gt; | 提供Marquee类型FrameNode节点。<br/>**说明：**<br/> MarqueeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Marquee组件的构造函数类型。 <br/> MarqueeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Marquee组件的属性设置对象。 |
+| TypedFrameNode&lt;[MarqueeInterface](./arkui-ts/ts-basic-components-marquee.md#接口), [MarqueeAttribute](./arkui-ts/ts-basic-components-marquee.md#属性)&gt; | 提供Marquee类型FrameNode节点。<br/> MarqueeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Marquee组件的构造函数类型。 <br/> MarqueeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Marquee组件的属性设置对象。 |
 
 ### createNode('Marquee')<sup>14+</sup>
 
@@ -5936,6 +6032,7 @@ createNode(context: UIContext, nodeType: 'Marquee'): Marquee
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -5978,7 +6075,7 @@ TextArea类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[TextAreaInterface](./arkui-ts/ts-basic-components-textarea.md#接口), [TextAreaAttribute](./arkui-ts/ts-basic-components-textarea.md#属性)&gt; | 提供TextArea类型FrameNode节点。<br/>**说明：**<br/> TextAreaInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextArea组件的构造函数类型。 <br/> TextAreaAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextArea组件的属性设置对象。 |
+| TypedFrameNode&lt;[TextAreaInterface](./arkui-ts/ts-basic-components-textarea.md#接口), [TextAreaAttribute](./arkui-ts/ts-basic-components-textarea.md#属性)&gt; | 提供TextArea类型FrameNode节点。<br/> TextAreaInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextArea组件的构造函数类型。 <br/> TextAreaAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextArea组件的属性设置对象。 |
 
 ### createNode('TextArea')<sup>14+</sup>
 
@@ -6008,6 +6105,7 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -6065,6 +6163,7 @@ getAttribute(node: FrameNode, nodeType: 'TextArea'): TextAreaAttribute | undefin
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -6100,7 +6199,7 @@ struct FrameNodeTypeTest {
 
 bindController(node: FrameNode, controller: TextAreaController, nodeType: 'TextArea'): void
 
-将输入框控制器TextAreaController绑定到TextArea节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+将输入框控制器[TextAreaController](arkui-ts/ts-basic-components-textarea.md#textareacontroller8)绑定到[TextArea](#textarea14)节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -6128,6 +6227,7 @@ bindController(node: FrameNode, controller: TextAreaController, nodeType: 'TextA
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -6174,7 +6274,7 @@ SymbolGlyph类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[SymbolGlyphInterface](./arkui-ts/ts-basic-components-symbolGlyph.md#接口), [SymbolGlyphAttribute](./arkui-ts/ts-basic-components-symbolGlyph.md#属性)&gt; | 提供SymbolGlyph类型FrameNode节点。<br/>**说明：**<br/> SymbolGlyphInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为SymbolGlyph组件的构造函数类型。 <br/> SymbolGlyphAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回SymbolGlyph组件的属性设置对象。 |
+| TypedFrameNode&lt;[SymbolGlyphInterface](./arkui-ts/ts-basic-components-symbolGlyph.md#接口), [SymbolGlyphAttribute](./arkui-ts/ts-basic-components-symbolGlyph.md#属性)&gt; | 提供SymbolGlyph类型FrameNode节点。<br/> SymbolGlyphInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为SymbolGlyph组件的构造函数类型。 <br/> SymbolGlyphAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回SymbolGlyph组件的属性设置对象。 |
 
 ### createNode('SymbolGlyph')<sup>14+</sup>
 
@@ -6204,6 +6304,7 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 ```ts
 import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -6245,7 +6346,7 @@ Checkbox类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[CheckboxInterface](./arkui-ts/ts-basic-components-checkbox.md#接口), [CheckboxAttribute](./arkui-ts/ts-basic-components-checkbox.md#属性)&gt; | 提供Checkbox类型FrameNode节点。<br/>**说明：**<br/> CheckboxInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Checkbox组件的构造函数类型。 <br/> CheckboxAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Checkbox组件的属性设置对象。 |
+| TypedFrameNode&lt;[CheckboxInterface](./arkui-ts/ts-basic-components-checkbox.md#接口), [CheckboxAttribute](./arkui-ts/ts-basic-components-checkbox.md#属性)&gt; | 提供Checkbox类型FrameNode节点。<br/> CheckboxInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Checkbox组件的构造函数类型。 <br/> CheckboxAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Checkbox组件的属性设置对象。 |
 
 ### createNode('Checkbox')<sup>18+</sup>
 
@@ -6275,6 +6376,7 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Checkbox控制器
 class MyCheckboxController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6284,12 +6386,15 @@ class MyCheckboxController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Checkbox
     let checkbox = typeNode.createNode(uiContext, 'Checkbox')
     checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
 
+    // 创建另一个Checkbox
     let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
     checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
 
+    // 将两个checkbox添加至col进行比较
     col.appendChild(checkbox)
     col.appendChild(checkbox1)
     return node;
@@ -6338,6 +6443,7 @@ getAttribute(node: FrameNode, nodeType: 'Checkbox'): CheckboxAttribute | undefin
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Checkbox控制器
 class MyCheckboxController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6347,12 +6453,16 @@ class MyCheckboxController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Checkbox
     let checkbox = typeNode.createNode(uiContext, 'Checkbox')
     checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
 
+    // 创建另一个Checkbox
     let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
     checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
+    // 给首个Checkbox设置形状属性
     typeNode.getAttribute(checkbox1,'Checkbox')?.shape(CheckBoxShape.ROUNDED_SQUARE)
+    // 将两个checkbox添加至col进行比较
     col.appendChild(checkbox)
     col.appendChild(checkbox1)
     return node;
@@ -6385,7 +6495,7 @@ CheckboxGroup类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[CheckboxGroupInterface](./arkui-ts/ts-basic-components-checkboxgroup.md#接口), [CheckboxGroupAttribute](./arkui-ts/ts-basic-components-checkboxgroup.md#属性)&gt; | 提供CheckboxGroup类型FrameNode节点。<br/>**说明：**<br/> CheckboxGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为CheckboxGroup组件的构造函数类型。 <br/> CheckboxGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回CheckboxGroup组件的属性设置对象。 |
+| TypedFrameNode&lt;[CheckboxGroupInterface](./arkui-ts/ts-basic-components-checkboxgroup.md#接口), [CheckboxGroupAttribute](./arkui-ts/ts-basic-components-checkboxgroup.md#属性)&gt; | 提供CheckboxGroup类型FrameNode节点。<br/> CheckboxGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为CheckboxGroup组件的构造函数类型。 <br/> CheckboxGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回CheckboxGroup组件的属性设置对象。 |
 
 ### createNode('CheckboxGroup')<sup>18+</sup>
 
@@ -6415,6 +6525,7 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义CheckboxGroup控制器
 class MyCheckboxGroupController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6430,6 +6541,7 @@ class MyCheckboxGroupController extends NodeController {
     let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
     checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
 
+    // 创建checkboxGroup
     let checkboxGroup = typeNode.createNode(uiContext, 'CheckboxGroup')
     checkboxGroup.initialize({ group: 'checkboxGroup1' })
 
@@ -6466,7 +6578,7 @@ Rating类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[RatingInterface](./arkui-ts/ts-basic-components-rating.md#接口), [RatingAttribute](./arkui-ts/ts-basic-components-rating.md#属性)&gt; | 提供Rating类型FrameNode节点。<br/>**说明：**<br/> RatingInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Rating组件的构造函数类型。 <br/> RatingAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Rating组件的属性设置对象。 |
+| TypedFrameNode&lt;[RatingInterface](./arkui-ts/ts-basic-components-rating.md#接口), [RatingAttribute](./arkui-ts/ts-basic-components-rating.md#属性)&gt; | 提供Rating类型FrameNode节点。<br/> RatingInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Rating组件的构造函数类型。 <br/> RatingAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Rating组件的属性设置对象。 |
 
 ### createNode('Rating')<sup>18+</sup>
 
@@ -6496,6 +6608,7 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Rating控制器
 class MyRatingController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6505,6 +6618,7 @@ class MyRatingController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建rating
     let rating = typeNode.createNode(uiContext, 'Rating')
     rating.initialize({ rating: 0 })
     col.appendChild(rating)
@@ -6540,7 +6654,7 @@ Radio类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[RadioInterface](./arkui-ts/ts-basic-components-radio.md#接口), [RadioAttribute](./arkui-ts/ts-basic-components-radio.md#属性)&gt; | 提供Radio类型FrameNode节点。<br/>**说明：**<br/> RadioInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Radio组件的构造函数类型。 <br/> RadioAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Radio组件的属性设置对象。 |
+| TypedFrameNode&lt;[RadioInterface](./arkui-ts/ts-basic-components-radio.md#接口), [RadioAttribute](./arkui-ts/ts-basic-components-radio.md#属性)&gt; | 提供Radio类型FrameNode节点。<br/> RadioInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Radio组件的构造函数类型。 <br/> RadioAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Radio组件的属性设置对象。 |
 
 ### createNode('Radio')<sup>18+</sup>
 
@@ -6570,6 +6684,7 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Radio控制器
 class MyRadioController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6579,9 +6694,11 @@ class MyRadioController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Radio
     let radio1 = typeNode.createNode(uiContext, 'Radio')
     radio1.initialize({ value: 'radio1', group: 'radioGroup' })
 
+    // 创建另一个Radio用于对比
     let radio2 = typeNode.createNode(uiContext, 'Radio')
     radio2.initialize({ value: 'radio2', group: 'radioGroup' })
 
@@ -6633,6 +6750,7 @@ getAttribute(node: FrameNode, nodeType: 'Radio'): RadioAttribute | undefined
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Radio控制器
 class MyRadioController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6642,9 +6760,11 @@ class MyRadioController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建radio
     let radio1 = typeNode.createNode(uiContext, 'Radio')
     radio1.initialize({ value: 'radio1', group: 'radioGroup' })
     typeNode.getAttribute(radio1,'Radio')?.checked(true)
+    // 创建另一个radio用于对比
     let radio2 = typeNode.createNode(uiContext, 'Radio')
     radio2.initialize({ value: 'radio2', group: 'radioGroup' })
 
@@ -6681,7 +6801,7 @@ Slider类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[SliderInterface](./arkui-ts/ts-basic-components-slider.md#接口), [SliderAttribute](./arkui-ts/ts-basic-components-slider.md#属性)&gt; | 提供Slider类型FrameNode节点。<br/>**说明：**<br/> SliderInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Slider组件的构造函数类型。 <br/> SliderAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Slider组件的属性设置对象。 |
+| TypedFrameNode&lt;[SliderInterface](./arkui-ts/ts-basic-components-slider.md#接口), [SliderAttribute](./arkui-ts/ts-basic-components-slider.md#属性)&gt; | 提供Slider类型FrameNode节点。<br/> SliderInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Slider组件的构造函数类型。 <br/> SliderAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Slider组件的属性设置对象。 |
 
 ### createNode('Slider')<sup>18+</sup>
 
@@ -6711,6 +6831,7 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Slider控制器
 class MySliderController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6720,6 +6841,7 @@ class MySliderController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Slider
     let slider = typeNode.createNode(uiContext, 'Slider')
     slider.initialize({value:50})
     col.appendChild(slider)
@@ -6770,6 +6892,7 @@ getAttribute(node: FrameNode, nodeType: 'Slider'): SliderAttribute | undefined
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Slider控制器
 class MySliderController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6779,6 +6902,7 @@ class MySliderController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Slider
     let slider = typeNode.createNode(uiContext, 'Slider')
     slider.initialize({value:50})
     typeNode.getAttribute(slider,'Slider')?.selectedColor(Color.Pink)
@@ -6814,7 +6938,7 @@ Select类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[SelectInterface](./arkui-ts/ts-basic-components-select.md#接口), [SelectAttribute](./arkui-ts/ts-basic-components-select.md#属性)&gt; | 提供Select类型FrameNode节点。<br/>**说明：**<br/> SelectInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Select组件的构造函数类型。 <br/> SelectAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Select组件的属性设置对象。 |
+| TypedFrameNode&lt;[SelectInterface](./arkui-ts/ts-basic-components-select.md#接口), [SelectAttribute](./arkui-ts/ts-basic-components-select.md#属性)&gt; | 提供Select类型FrameNode节点。<br/> SelectInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Select组件的构造函数类型。 <br/> SelectAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Select组件的属性设置对象。 |
 
 ### createNode('Select')<sup>18+</sup>
 
@@ -6844,6 +6968,7 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Select控制器
 class MySelectController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6853,6 +6978,7 @@ class MySelectController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Select并设置选项
     let select = typeNode.createNode(uiContext, 'Select')
     select.initialize([{ value: "option one" }, { value: "option two" }, { value: "option three" }])
     col.appendChild(select)
@@ -6876,9 +7002,9 @@ struct FrameNodeTypeTest {
 
 ### Toggle<sup>18+</sup>
 
-type Toggle = TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt;
+type Toggle = TypedFrameNode&lt;[ToggleInterface](./arkui-ts/ts-basic-components-toggle.md#接口), [ToggleAttribute](./arkui-ts/ts-basic-components-toggle.md#属性)&gt;
 
-Toggle类型的FrameNode节点类型。
+[Toggle](arkui-ts/ts-basic-components-toggle.md)类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6886,7 +7012,7 @@ Toggle类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;[ToggleInterface](./arkui-ts/ts-basic-components-toggle.md#接口), [ToggleAttribute](./arkui-ts/ts-basic-components-toggle.md#属性)&gt; | 提供Toggle类型FrameNode节点。<br/>**说明：**<br/> ToggleInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Toggle组件的构造函数类型。 <br/> ToggleAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Toggle组件的属性设置对象。 |
+| TypedFrameNode&lt;[ToggleInterface](./arkui-ts/ts-basic-components-toggle.md#接口), [ToggleAttribute](./arkui-ts/ts-basic-components-toggle.md#属性)&gt; | 提供Toggle类型FrameNode节点。<br/> ToggleInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Toggle组件的构造函数类型。 <br/> ToggleAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Toggle组件的属性设置对象。 |
 
 ### createNode('Toggle')<sup>18+</sup>
 
@@ -6917,6 +7043,7 @@ createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Tog
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Toggle控制器
 class MyToggleController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6926,6 +7053,7 @@ class MyToggleController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Toggle
     let toggleSwitch = typeNode.createNode(uiContext, 'Toggle')
     toggleSwitch.initialize({ type: ToggleType.Switch })
     col.appendChild(toggleSwitch)
@@ -6977,6 +7105,7 @@ getAttribute(node: FrameNode, nodeType: 'Toggle'): ToggleAttribute | undefined
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义Toggle控制器
 class MyToggleController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext)
@@ -6986,6 +7115,7 @@ class MyToggleController extends NodeController {
       .width('100%')
       .height('100%')
     node.appendChild(col)
+    // 创建Toggle
     let toggleSwitch = typeNode.createNode(uiContext, 'Toggle')
     toggleSwitch.initialize({ type: ToggleType.Switch })
     typeNode.getAttribute(toggleSwitch,'Toggle')?.selectedColor(Color.Orange)
@@ -7339,6 +7469,7 @@ isDisposed(): boolean
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     let node = new FrameNode(uiContext);
@@ -7380,6 +7511,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const TEST_TAG: string = "FrameNode "
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
   public childList: Array<FrameNode> = new Array<FrameNode>();
@@ -7968,6 +8100,7 @@ class BasicDataSource implements IDataSource {
   }
 }
 
+// 自定义数据管理类管理string数组
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = []
 
@@ -8026,6 +8159,7 @@ function buildData(params: Params) {
   .listDirection(Axis.Horizontal)
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private uiContext: UIContext | null = null;
@@ -8148,6 +8282,7 @@ struct Index {
 ```ts
 import { NodeController, FrameNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
 
@@ -8338,6 +8473,7 @@ class BasicDataSource implements IDataSource {
   }
 }
 
+// 自定义数据管理类管理string数组
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
 
@@ -8436,7 +8572,7 @@ export struct TrackNode {
   }
 
   onDidBuild(): void {
-    // 构建埋点的虚拟树，获取的node为当前页面的根节点（用例中为Row）。
+    // 构建埋点的虚拟树，获取的node为当前页面的根节点（用例中为Row）
     let uid = this.getUniqueId()
     let node: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(uid);
     console.info("Track onDidBuild node:" + node?.getNodeType())
@@ -8447,7 +8583,7 @@ export struct TrackNode {
     this.trackShadow.id = node?.getUniqueId()
     this.trackShadow.track = this.track;
     TrackManager.get().addTrack(this.trackShadow.id, this.trackShadow)
-    // 通过setOnVisibleAreaApproximateChange监听记录埋点组件的可视区域。
+    // 通过setOnVisibleAreaApproximateChange监听记录埋点组件的可视区域
     node?.commonEvent.setOnVisibleAreaApproximateChange(
       { ratios: [0, 0.1, 0.2, 0.5, 0.8, 1], expectedUpdateInterval: 500 },
       (ratioInc: boolean, ratio: number) => {
@@ -8556,7 +8692,7 @@ export class TrackManager {
   }
 
   startListenClick(context: UIContext) {
-    // 通过无感监听获取FrameNode查找埋点信息。
+    // 通过无感监听获取FrameNode查找埋点信息
     context.getUIObserver().on("willClick", (event: ClickEvent, node?: FrameNode) => {
       console.info("Track clicked:" + node)
       if (node == undefined) {
@@ -8580,6 +8716,7 @@ export class TrackManager {
 ```ts
 import { NodeController, FrameNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
 
@@ -8669,6 +8806,7 @@ function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode
   return res;
 }
 
+// 自定义FrameNode实现自定义布局函数
 class MyFrameNode extends FrameNode {
   public width: number = 10;
   private space: number = 1;
@@ -8718,6 +8856,7 @@ class MyFrameNode extends FrameNode {
   }
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public rootNode: MyFrameNode | null = null;
 
@@ -8762,6 +8901,7 @@ struct Index {
 ```ts
 import { FrameNode, NodeController, NodeAdapter, typeNode } from '@kit.ArkUI';
 
+// 自定义NodeAdapter管理数据
 class MyNodeAdapter extends NodeAdapter {
   uiContext: UIContext
   cachePool: Array<FrameNode> = new Array();
@@ -8887,7 +9027,7 @@ class MyNodeAdapter extends NodeAdapter {
     textNode?.initialize(this.data[index]).fontSize(20);
   }
 }
-
+// 继承NodeController实现自定义NodeAdapter控制器
 class MyNodeAdapterController extends NodeController {
   rootNode: FrameNode | null = null;
   nodeAdapter: MyNodeAdapter | null = null;
@@ -8974,6 +9114,7 @@ function buttonBuilder(params: Params) {
   }
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private buttonNode: BuilderNode<[Params]> | null = null;
   private rootNode: FrameNode | null = null;
@@ -8997,16 +9138,16 @@ class MyNodeController extends NodeController {
     console.info("myButton on detach");
   }
 
-  //  onBind时，子节点已经重新上树，此时调用reuse，保证子组件的能重新被复用。
+  //  onBind时，子节点已经重新上树，此时调用reuse，保证子组件的能重新被复用
   onBind(containerId: number): void {
-    // 该方法触发子组件复用，全局复用场景下，复用FrameNode后端资源。
+    // 该方法触发子组件复用，全局复用场景下，复用FrameNode后端资源
     this.rootNode?.reuse();
     console.info("myButton reuse");
   }
 
-  //  onUnbind时，子节点已经完全下树，此时调用recycle，保证子组件的能完全被回收。
+  //  onUnbind时，子节点已经完全下树，此时调用recycle，保证子组件的能完全被回收
   onUnbind(containerId: number): void {
-    // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用。
+    // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用
     this.rootNode?.recycle();
     console.info("myButton recycle");
   }
@@ -9058,6 +9199,7 @@ struct Index {
 ```ts
 import { NodeController, FrameNode, typeNode, UIState } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private isEnable: boolean = true;
   private theStatesToBeSupported = UIState.NORMAL | UIState.PRESSED | UIState.FOCUSED | UIState.DISABLED | UIState.SELECTED;
@@ -9172,6 +9314,7 @@ struct FrameNodeTypeTest {
 
 ``` ts
 import { FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private isRunning: boolean = false; // 表示节点上动画是否在运行
@@ -9262,6 +9405,7 @@ struct CreateAnimationExample {
 ```ts
 import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
 
@@ -9349,7 +9493,7 @@ struct Index {
 
 ## 检验FrameNode是否有效示例
 
-该示例演示了FrameNode释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
+该示例演示了FrameNode释放节点前后分别使用[isDisposed](#isdisposed20)接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
 
 ```ts
 import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
@@ -9381,6 +9525,7 @@ function buildComponent() {
   TestComponent()
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private builderNode: BuilderNode<[]> | null = null;
@@ -9464,11 +9609,12 @@ struct Index {
 
 ## 检验NodeAdapter是否有效示例
 
-该示例演示了NodeAdapter释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
+该示例演示了[NodeAdapter](#nodeadapter12)释放节点前后分别使用[isDisposed](#isdisposed20)接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
 
 ```ts
 import { FrameNode, NodeController, NodeAdapter, typeNode } from '@kit.ArkUI';
 
+// 自定义NodeAdapter管理数据
 class MyNodeAdapter extends NodeAdapter {
   uiContext: UIContext
   cachePool: Array<FrameNode> = new Array();
@@ -9511,6 +9657,7 @@ class MyNodeAdapter extends NodeAdapter {
   }
 }
 
+// 继承NodeController实现自定义NodeAdapter控制器
 class MyNodeAdapterController extends NodeController {
   rootNode: FrameNode | null = null;
   nodeAdapter: MyNodeAdapter | null = null;
@@ -9600,10 +9747,10 @@ struct ChildView {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // 通过id查询获得Text节点的FrameNode对象。不建议设置多个相同的id的节点。
+          // 通过id查询获得Text节点的FrameNode对象。不建议设置多个相同的id的节点
           let node = this.getUIContext().getFrameNodeById("HelloWorld");
           console.info(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
-          // 通过while循环遍历查询页面的根节点。如果当前节点为自定义组件，则会继续遍历其父节点。
+          // 通过while循环遍历查询页面的根节点。如果当前节点为自定义组件，则会继续遍历其父节点
           while (node && node.getParent() && node.getParent()!.getUniqueId() > 0) {
             node = node.getParent();
             console.info(`Find FrameNode Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
