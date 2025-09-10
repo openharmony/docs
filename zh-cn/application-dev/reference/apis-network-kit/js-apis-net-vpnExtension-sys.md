@@ -74,7 +74,7 @@ vpnExtension.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
 
 isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
-获取always on VPN开关状态，使用Promise异步回调。
+获取always on VPN开关状态。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
