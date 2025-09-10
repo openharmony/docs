@@ -251,7 +251,7 @@ Obtains the device ID based on an audio device descriptor.
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | Operation result. **AUDIODEVICE_SUCCESS** is returned if the operation is successful; **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM** is returned otherwise.|
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | Operation result. **AUDIOCOMMON_RESULT_SUCCESS** is returned if the operation is successful; **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM** is returned otherwise.|
 
 ### OH_AudioDeviceDescriptor_GetDeviceName()
 
