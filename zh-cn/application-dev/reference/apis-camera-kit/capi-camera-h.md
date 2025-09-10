@@ -580,6 +580,16 @@ enum Camera_ControlCenterEffectType
 
 ### Camera_PhotoQualityPrioritization
 
+```
+enum Camera_PhotoQualityPrioritization
+```
+
+**描述**
+
+拍照画质优先策略枚举。
+
+**起始版本：** 21
+
 | 枚举项 | 描述 |
 | -- | -- |
 | CAMERA_PHOTO_QUALITY_PRIORITIZATION_HIGH_QUALITY = 0 | 画质优先，拍照需要较长的时间，以输出高画质的图片。 |
