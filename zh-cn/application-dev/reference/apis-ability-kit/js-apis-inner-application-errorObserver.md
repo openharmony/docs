@@ -74,10 +74,10 @@ let observer: errorManager.ErrorObserver = {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
   },
   onException(errorObj) {
-    console.log('onException, name: ', errorObj.name);
-    console.log('onException, message: ', errorObj.message);
+    console.error('onException, name: ', errorObj.name);
+    console.error('onException, message: ', errorObj.message);
     if (typeof (errorObj.stack) === 'string') {
-      console.log('onException, stack: ', errorObj.stack);
+      console.error('onException, stack: ', errorObj.stack);
     }
   }
 };
