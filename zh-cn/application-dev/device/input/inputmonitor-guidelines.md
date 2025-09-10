@@ -49,14 +49,14 @@ struct Index {
           let BUTTON_DOWN = 2;
           let callback = (mouseEvent: MouseEvent) => {
             console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-            if(mouseEvent.action = BUTTON_DOWN){
-              return true;//鼠标按下回调
+            if (mouseEvent.action = BUTTON_DOWN) {
+              return true; //鼠标按下回调
             }
             return false;
           };
 
           try {
-            inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {//开始监听鼠标事件
+            inputMonitor.on('mouse', (mouseEvent: MouseEvent) => { //开始监听鼠标事件
               console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
               return false;
             });
@@ -65,7 +65,7 @@ struct Index {
           }
           //监听鼠标按下，按下callbackreturn true
           try {
-            inputMonitor.off('mouse', callback);//关闭监听鼠标事件
+            inputMonitor.off('mouse', callback); //关闭监听鼠标事件
             console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor off failed, error: ${JSON.stringify(error, ["code", "message"])}`);
