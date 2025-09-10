@@ -1,4 +1,10 @@
 # utd.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -414,7 +420,7 @@ Checks whether two UTDs are the same.
 
 | Name                        | Description                                                        |
 | ------------------------------ | ------------------------------------------------------------ |
-| [OH_Utd](capi-udmf-oh-utd.md)* utd1 | Pointer to a [OH_Utd](capi-udmf-oh-utd.md) instance.|
+| [OH_Utd](capi-udmf-oh-utd.md)* utd1 | Pointer to an [OH_Utd](capi-udmf-oh-utd.md) instance.|
 | [OH_Utd](capi-udmf-oh-utd.md)* utd2 | Pointer to another [OH_Utd](capi-udmf-oh-utd.md) instance.|
 
 **Returns**

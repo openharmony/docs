@@ -1,4 +1,10 @@
 # @ohos.data.distributedDataObject (Distributed Data Object)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **distributedDataObject** module provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices. Although this module does not parse user data, you are advised not to transfer sensitive personal data or privacy data due to low-level security of storage path.
 
@@ -123,11 +129,11 @@ Represents the information returned by the callback of [save](#save9).
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| Unique ID for multi-device collaboration.|
-| version | number | Yes| Version of the saved object, which is a non-negative integer.|
-| deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates a local device.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| sessionId | string | No| No| Unique ID for multi-device collaboration.|
+| version | number | No| No| Version of the saved object, which is a non-negative integer.|
+| deviceId | string | No| No| ID of the device where the distributed data object is stored. The value **local** indicates a local device.|
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
 
@@ -135,9 +141,9 @@ Represents the information returned by the callback of [revokeSave](#revokesave9
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| Unique ID for multi-device collaboration.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| sessionId | string | No| No| Unique ID for multi-device collaboration.|
 
 ## BindInfo<sup>11+</sup>
 
@@ -161,6 +167,8 @@ Defines an observer for obtaining the data change of a distributed object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
+**Parameters**
+
 | Name    | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sessionId | string                           | Yes  |   Session ID of the distributed data object, with a maximum length of 128 bytes. The value can contain only letters, digits, and underscores (_).                                         |
@@ -173,6 +181,8 @@ type StatusObserver = (sessionId: string, networkId: string, status: string) => 
 Defines an observer for obtaining the status change of a distributed object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -187,6 +197,8 @@ type ProgressObserver = (sessionId: string, progress: number) => void
 Defines an observer for obtaining the transfer progress.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1082,7 +1094,7 @@ The following table lists the exception scenarios.
   | Name  | Type                   | Mandatory| Description                                                                              |
   | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
   | assetKey | string                  | Yes  | Property name of the asset in the distributed object.<br>**Constraints**<br>(1) The corresponding **assetKey** file must exist and be of the [Asset](js-apis-data-commonType.md#asset) type. Otherwise, an asset setting error may occur.<br>(2) In the collaboration or continuation scenario, the corresponding **assetKey** file must exist and be of the asset type at both devices so that the asset can be synchronized to the peer device.                                            |
-  | uri      | string                  | Yes  | URI of the new asset to be set, indicating the distributed path for storing the existing asset.|
+  | uri      | string                  | Yes  | URI of the new asset to be set, indicating the distributed path for storing the asset. The value must correspond to an existing asset.|
 
 **Return value**
 
