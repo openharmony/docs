@@ -692,7 +692,7 @@ Web组件进入全屏回调事件的详情。
 
 ## LargestContentfulPaint<sup>12+</sup>
 
-提供网页绘制页面主要内容的详细信息。
+提供网页绘制页面最大内容的详细信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
