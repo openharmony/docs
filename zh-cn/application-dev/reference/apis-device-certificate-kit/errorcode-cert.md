@@ -161,7 +161,7 @@ Failed to obtain the certificate issuer.
 
 检查证书的正确性。
 
-## 19030006 证书的秘钥用途不包括证书签名
+## 19030006 证书的密钥用途不包括证书签名
 
 **错误信息**
 
@@ -169,7 +169,7 @@ The key cannot be used for signing a certificate.
 
 **错误描述**
 
-证书的秘钥用途不含证书签名。
+证书的密钥用途不含证书签名。
 
 **可能原因**
 
@@ -179,7 +179,7 @@ The key cannot be used for signing a certificate.
 
 检查证书的正确性。
 
-## 19030007 证书的秘钥用途不包括数字签名
+## 19030007 证书的密钥用途不包括数字签名
 
 **错误信息**
 
@@ -187,7 +187,7 @@ The key cannot be used for digital signature.
 
 **错误描述**
 
-证书的秘钥用途不含数字签名。
+证书的密钥用途不含数字签名。
 
 **可能原因**
 
