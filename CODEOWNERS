@@ -573,8 +573,8 @@ zh-cn/application-dev/file-management/user-file-uri-intro.md @wang_zhangjun @zhu
 
 
 [开发-Driverdevelopment kit]
-zh-cn/application-dev/application-models/driverextensionability.md @w_Machine_cc @w00373942 @dong-dongzhen
-zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w00373942 @dong-dongzhen
+zh-cn/application-dev/application-models/driverextensionability.md @w_Machine_cc @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w00373942 @dong-dongzhen @hu-zhiqiong
 
 
 [开发-Form Kit]
@@ -766,7 +766,7 @@ zh-cn/application-dev/device/stationary/userStatus-guidelines.md @hu-zhiqiong @z
 
 
 [开发-Network Kit]
-zh-cn/application-dev/network/ @zhang_yixin13 @guo-min_net @tongxilin @hu-zhiqiong
+zh-cn/application-dev/network/ @zhang_yixin13 @guo-min_net @tongxilin 
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -1422,12 +1422,12 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingc
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-page-transition-animation.md	@CCFFWW	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-particle-animation.md	@CCFFWW	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-picker-common.md	@weixin_52725220	@xiong0104	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md	@keerecles	@TerryTsao	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md	@keerecles	@TerryTsao	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md	@keerecles	@TerryTsao	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-sys.md	@s10021109	@TerryTsao	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md	@s10021109	@TerryTsao	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management.md	@s10021109	@TerryTsao	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md	@keerecles	@TerryTsao	@zhang_yixin13
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md	@keerecles	@TerryTsao	@zhang_yixin13
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md	@keerecles	@TerryTsao	@zhang_yixin13
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-sys.md	@s10021109	@TerryTsao	@zhang_yixin13
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md	@s10021109	@TerryTsao	@zhang_yixin13
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management.md	@s10021109	@TerryTsao	@zhang_yixin13
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-swiper-components-indicator.md	@jiangdayuan	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-text-common-sys.md	@pssea	@jiaoaozihao	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-text-common.md	@pssea	@jiaoaozihao	@HelloCrease
@@ -1928,11 +1928,11 @@ zh-cn/application-dev/reference/apis-performance-analysis-kit/Readme-CN.md @mzya
 
 
 [API参考-Distributedservice Kit]
-zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @w_Machine_cc
-zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 
+zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @w_Machine_cc @hu-zhiqiong
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208  @hu-zhiqiong
 
 [API参考-Driverdevelopment kit]
-zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w00373942 @dong-dongzhen
+zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w00373942 @dong-dongzhen @hu-zhiqiong
 
 
 
@@ -2048,7 +2048,7 @@ zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.
 
 
 [API参考-Network Kit]
-zh-cn/application-dev/reference/apis-network-kit/ @zhang_yixin13 @guo-min_net @tongxilin @hu-zhiqiong
+zh-cn/application-dev/reference/apis-network-kit/ @zhang_yixin13 @guo-min_net @tongxilin 
 
 
 [API参考-Neural NetWork Runtime Kit]
