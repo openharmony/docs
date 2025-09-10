@@ -1527,7 +1527,7 @@ type ResponseHeaders = {
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| undefined   | [k:string]:string \| string[] \| undefined | 是   | 包含一个或多个键值对的对象，其键的类型为字符，可取任意值，其值的类型为字符、字符数组或undefined。 |
+|  [k:string]  | string \| string[] \| undefined | 是   | 键值对形式存储。其键的类型为字符，可取任意值，其值的类型为字符、字符数组或undefined |
 
 ## close错误码说明
 
