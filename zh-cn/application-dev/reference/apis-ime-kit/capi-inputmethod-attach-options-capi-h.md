@@ -154,7 +154,7 @@ InputMethod_ErrorCode OH_AttachOptions_GetRequestKeyboardReason(InputMethod_Atta
 | 参数项 | 描述 |
 | -- | -- |
 | [InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md) *options | 表示被读取值的[InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md)实例。 |
-| int *requestKeyboardReason |  表示一个指向[InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md)实例的指针。该参数用于表示请求键盘输入原因。 |
+| int *requestKeyboardReason |  表示请求键盘输入原因。 |
 
 **返回：**
 
