@@ -17,7 +17,7 @@ import { statistics } from '@kit.NetworkKit';
 
 on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
-订阅流量改变事件通知，使用callback异步回调。
+订阅流量改变事件通知。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -62,7 +62,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void
 
-取消订阅流量改变事件通知，使用callback异步回调。
+取消订阅流量改变事件通知。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
