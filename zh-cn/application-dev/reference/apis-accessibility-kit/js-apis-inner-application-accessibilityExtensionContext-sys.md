@@ -611,7 +611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowId: number = 10;
 
-axContext.getRootInActiveWindow(windowId)..then((element: AccessibilityElement) => {
+axContext.getRootInActiveWindow(windowId).then((element: AccessibilityElement) => {
   console.info("AccessibilityElement.checkable: " + element.checkable)
   console.info("AccessibilityElement.checked: " + element.checked)
   console.info("AccessibilityElement.clickable: " + element.clickable)
