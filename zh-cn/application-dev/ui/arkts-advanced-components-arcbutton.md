@@ -7,7 +7,7 @@
 <!--Adviser: @HelloCrease-->
 
 
-ArcButton是弧形按钮组件，用于圆形屏幕。为手表用户提供强调、普通、警告等样式按钮。具体用法请参考[ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)。
+从API version 18开始支持ArcButton。ArcButton是弧形按钮组件，用于圆形屏幕。为手表用户提供强调、普通、警告等样式按钮。具体用法请参考[ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)。
 
 
 ## 创建按钮
