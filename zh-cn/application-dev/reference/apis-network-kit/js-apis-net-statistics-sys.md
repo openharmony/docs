@@ -1,5 +1,12 @@
 # @ohos.net.statistics (流量管理)（系统接口）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 流量管理模块，支持基于网卡/UID 的实时流量统计和历史流量统计查询能力。
 
 > **说明：**
