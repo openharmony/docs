@@ -487,7 +487,7 @@ getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promi
 
 | 类型                                                         | 说明                             |
 | ------------------------------------------------------------ | -------------------------------- |
-| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise对象，返回ApplicationInfo。 |
+| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise对象。返回ApplicationInfo。 |
 
 **错误码：**
 
@@ -652,7 +652,7 @@ getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInf
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise对象，返回Array\<BundleInfo>。 |
+| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise对象。返回Array\<BundleInfo>。 |
 
 **错误码：**
 
@@ -1919,7 +1919,7 @@ cleanAllBundleCache(): Promise\<void>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2028,7 +2028,7 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
 
 **错误码：**
 
@@ -2087,7 +2087,7 @@ cleanBundleCacheFiles(bundleName: string, appIndex: number): Promise\<void>
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
 
 **错误码：**
 
@@ -5136,7 +5136,7 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<string>> | 以Promise方式返回接口运行结果及扩展资源对应的moduleNames。 |
+| Promise\<Array\<string>> | Promise对象，返回接口运行结果及扩展资源对应的moduleNames。 |
 
 **错误码：**
 
@@ -5195,7 +5195,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5261,7 +5261,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5323,7 +5323,7 @@ disableDynamicIcon(bundleName: string): Promise\<void>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5385,7 +5385,7 @@ disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5444,7 +5444,7 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<string> | 以Promise方式返回接口运行结果及动态图标对应的moduleName。 |
+| Promise\<string> | Promise对象。返回接口运行结果及动态图标对应的moduleName。 |
 
 **错误码：**
 
@@ -5498,7 +5498,7 @@ getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<AppCloneIdentity> | 以Promise方式返回\<AppCloneIdentity>。 |
+| Promise\<AppCloneIdentity> | Promise对象。返回\<AppCloneIdentity>。 |
 
 **错误码：**
 
@@ -5672,7 +5672,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<BundleInfo> | 以Promise方式返回应用包信息。 |
+| Promise\<BundleInfo> | Promise对象。返回应用包信息。 |
 
 **错误码：**
 
@@ -5736,7 +5736,7 @@ getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: numbe
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<BundleInfo>> | 以Promise方式返回应用包信息列表。 |
+| Promise\<Array\<BundleInfo>> | Promise对象。返回应用包信息列表。 |
 
 **错误码：**
 
@@ -5851,7 +5851,7 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 
 | 类型       | 说明                 |
 | ---------- | -------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5917,7 +5917,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5973,7 +5973,7 @@ deleteAbc(abcPath: string): Promise\<void>
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

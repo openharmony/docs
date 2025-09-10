@@ -1381,7 +1381,7 @@ getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<[AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14)> | 以Promise方式返回\<AppCloneIdentity>。 |
+| Promise\<[AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14)> | Promise对象，返回\<AppCloneIdentity>。 |
 
 **错误码：**
 
@@ -1488,7 +1488,7 @@ getAbilityInfo(uri: string, abilityFlags: number): Promise\<Array\<AbilityInfo>>
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 返回获取到的Ability信息数组。 |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回获取到的Ability信息数组。 |
 
 **错误码：**
 
@@ -1535,7 +1535,7 @@ cleanBundleCacheFilesForSelf(): Promise\<void>
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
