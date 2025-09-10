@@ -23,7 +23,7 @@ import { image } from '@kit.ImageKit';
 
 writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 
-读取ArrayBuffer中的辅助图片数据，并将数据写入AuxiliaryPicture对象，使用Promise形式返回。
+读取ArrayBuffer中的辅助图片数据，并将数据写入AuxiliaryPicture对象。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -74,7 +74,7 @@ async function WritePixelsFromBuffer(context: Context) {
 
 readPixelsToBuffer(): Promise\<ArrayBuffer>
 
-读取图像像素映射数据并将数据写入ArrayBuffer，使用Promise形式返回。
+读取图像像素映射数据并将数据写入ArrayBuffer。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

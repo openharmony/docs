@@ -33,7 +33,7 @@ import { image } from '@kit.ImageKit';
 
 dequeueImage(callback: AsyncCallback\<Image>): void
 
-从空闲队列中获取buffer图片，用于绘制UI内容，并使用callback返回结果。
+从空闲队列中获取buffer图片，用于绘制UI内容。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -63,7 +63,7 @@ async function DequeueImage(creator : image.ImageCreator) {
 
 dequeueImage(): Promise\<Image>
 
-从空闲队列中获取buffer图片，用于绘制UI内容，并使用promise返回结果。
+从空闲队列中获取buffer图片，用于绘制UI内容。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -91,7 +91,7 @@ async function DequeueImage(creator : image.ImageCreator) {
 
 queueImage(image: Image, callback: AsyncCallback\<void>): void
 
-将绘制好的图片放入队列，并使用callback返回结果。
+将绘制好的图片放入队列。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -134,7 +134,7 @@ async function QueueImage(creator : image.ImageCreator) {
 
 queueImage(image: Image): Promise\<void>
 
-将绘制好的图片放入队列，并使用promise返回结果。
+将绘制好的图片放入队列。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -180,7 +180,7 @@ async function QueueImage(creator : image.ImageCreator) {
 
 on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 
-监听imageRelease事件，并使用callback返回结果。
+监听imageRelease事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -238,7 +238,7 @@ async function Off(creator : image.ImageCreator) {
 
 release(callback: AsyncCallback\<void>): void
 
-释放当前图像，并使用callback返回结果。
+释放当前图像。使用callback异步回调。
 
 ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -270,7 +270,7 @@ async function Release(creator : image.ImageCreator) {
 
 release(): Promise\<void>
 
-释放当前图像，并使用promise返回结果。
+释放当前图像。使用Promise异步回调。
 
 ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
