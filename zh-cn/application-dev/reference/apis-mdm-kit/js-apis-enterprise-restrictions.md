@@ -73,7 +73,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 |telephoneCall<sup>20+</sup>|设备通话能力，禁用后电话无法呼入和呼出。当前仅支持手机、平板设备使用。|
 |appClone<sup>21+</sup>|[应用分身能力](../../quick-start/app-clone.md)，禁用后无法创建应用分身。对已创建的应用分身无效。|
 |externalStorageCard<sup>21+</sup> |外置存储能力，禁用后设备无法使用外置存储，并且当前已连接的外置存储会被卸载。如果外置存储中有文件正在被使用，可能会导致卸载失败，返回9200013错误码。重新启用后，需要手动重新连入外置存储。|
-|randomMac<sup>21+</sup>|WiFi连接时使用随机MAC能力，设置禁用后，连接WiFi仅能使用设备物理MAC。|
+|randomMac<sup>21+</sup>|Wi-Fi连接时使用随机MAC能力，设置禁用后，连接Wi-Fi仅能使用设备物理MAC。|
 <!--RP1--><!--RP1End-->
 
 **错误码**：
@@ -158,7 +158,7 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 |telephoneCall<sup>20+</sup>|设备通话能力，禁用后电话无法呼入和呼出。当前仅支持手机、平板设备使用。|
 |appClone<sup>21+</sup>|[应用分身能力](../../quick-start/app-clone.md)，禁用后无法创建应用分身。|
 |externalStorageCard<sup>21+</sup> |外置存储能力。|
-|randomMac<sup>21+</sup>|WiFi连接时使用随机MAC能力。|
+|randomMac<sup>21+</sup>|Wi-Fi连接时使用随机MAC能力。|
 <!--RP2--><!--RP2End-->
 
 **返回值：**
