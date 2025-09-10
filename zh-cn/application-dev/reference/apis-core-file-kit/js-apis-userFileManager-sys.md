@@ -1524,7 +1524,7 @@ async function example(mgr: userFileManager.UserFileManager) {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // 获取相册的uri
+    // 获取相册的uri。
     let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
     let album: userFileManager.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1535,7 +1535,7 @@ async function example(mgr: userFileManager.UserFileManager) {
     };
     let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
     let expectIndex = 1;
-    // 获取第二个文件的uri
+    // 获取第二个文件的uri。
     let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
       if (err == undefined) {
@@ -1600,7 +1600,7 @@ async function example(mgr: userFileManager.UserFileManager) {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // 获取相册的uri
+    // 获取相册的uri。
     let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
     let album: userFileManager.Album = await albumFetchResult.getFirstObject();
     if (album === undefined) {
@@ -1615,7 +1615,7 @@ async function example(mgr: userFileManager.UserFileManager) {
     };
     let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
     let expectIndex = 1;
-    // 获取第二个文件的uri
+    // 获取第二个文件的uri。
     let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
@@ -1736,15 +1736,15 @@ async function example(mgr: userFileManager.UserFileManager) {
   }
   let onCallback1 = (changeData: userFileManager.ChangeData) => {
       console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
-    // 图像文件已更改，请执行操作
+    // 图像文件已更改，请执行操作。
   }
   let onCallback2 = (changeData: userFileManager.ChangeData) => {
       console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
-    // 图像文件已更改，请执行操作
+    // 图像文件已更改，请执行操作。
   }
-  // 注册onCallback1监听
+  // 注册onCallback1监听。
   mgr.on(fileAsset.uri, false, onCallback1);
-  // 注册onCallback2监听
+  // 注册onCallback2监听。
   mgr.on(fileAsset.uri, false, onCallback2);
 
   fileAsset.favorite(true, (err) => {
@@ -1806,11 +1806,11 @@ async function example(mgr: userFileManager.UserFileManager) {
     console.info('onCallback2 on');
   }
   if (fileAsset.uri !== undefined) {
-    // 注册onCallback1监听
+    // 注册onCallback1监听。
     mgr.on(fileAsset.uri, false, onCallback1);
-    // 注册onCallback2监听
+    // 注册onCallback2监听。
     mgr.on(fileAsset.uri, false, onCallback2);
-    // 关闭onCallback1监听，onCallback2 继续监听
+    // 关闭onCallback1监听，onCallback2 继续监听。
     mgr.off(fileAsset.uri, onCallback1);  
   }
   fileAsset.favorite(true, (err) => {
@@ -1850,7 +1850,7 @@ async function example(mgr: userFileManager.UserFileManager) {
   let count = 0;
   mgr.on('imageChange', () => {
     count++;
-    // 图像文件已更改，请执行操作
+    // 图像文件已更改，请执行操作。
   });
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -1860,14 +1860,14 @@ async function example(mgr: userFileManager.UserFileManager) {
   } catch (err) {
     console.error('createPhotoAsset failed, message = ' + err);
   }
-  // 睡眠一秒
+  // 睡眠一秒。
   if (count > 0) {
     console.info('onDemo success');
   } else {
     console.error('onDemo fail');
   }
   mgr.off('imageChange', () => {
-    // 停止监听成功
+    // 停止监听成功。
   });
 }
 ```
@@ -1899,11 +1899,11 @@ async function example(mgr: userFileManager.UserFileManager) {
   let count = 0;
   mgr.on('imageChange', () => {
     count++;
-    // 图像文件已更改，请执行操作
+    // 图像文件已更改，请执行操作。
   });
 
   mgr.off('imageChange', () => {
-    // 停止监听成功
+    // 停止监听成功。
   });
 
   try {
@@ -1914,7 +1914,7 @@ async function example(mgr: userFileManager.UserFileManager) {
   } catch (err) {
     console.error('createPhotoAsset failed, message = ' + err);
   }
-  // 睡眠一秒
+  // 睡眠一秒。
   if (count == 0) {
     console.info('offDemo success');
   } else {
