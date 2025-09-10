@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -16,9 +16,8 @@
 >  1. 当组件插入或删除时（如if条件改变、ForEach新增删除组件），会递归的触发所有新插入/删除的组件的transition效果。
 >  2. 当组件[Visibility](ts-universal-attributes-visibility.md)属性在可见和不可见之间改变时，只触发该组件的transition效果。
 
-## 接口
 
-### transition
+## transition
 
 transition(value: TransitionOptions | TransitionEffect): T
 
@@ -42,7 +41,7 @@ transition(value: TransitionOptions | TransitionEffect): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-### transition<sup>12+</sup>
+## transition<sup>12+</sup>
 
 transition(effect: TransitionEffect, onFinish: Optional&lt;TransitionFinishCallback&gt;): T
 

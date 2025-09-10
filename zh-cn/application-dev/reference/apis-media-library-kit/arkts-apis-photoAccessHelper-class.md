@@ -22,7 +22,7 @@
 | recommendationType | [RecommendationType](arkts-apis-photoAccessHelper-e.md#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | textContextInfo<sup>12+</sup> | [TextContextInfo](arkts-apis-photoAccessHelper-i.md#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## BaseSelectOptions<sup>12+</sup>
+## BaseSelectOptions<sup>10+</sup>
 
 图库选择选项基类。
 
@@ -48,7 +48,7 @@
 
 PhotoSelectOptions extends BaseSelectOptions
 
-图库选择选项子类，继承自[BaseSelectOptions](#baseselectoptions12)。
+图库选择选项子类，继承自[BaseSelectOptions](#baseselectoptions10)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -136,7 +136,7 @@ PhotoSelectOptions extends BaseSelectOptions
 
 ## PhotoViewMimeTypeFileSizeFilter<sup>20+</sup>
 
-媒体文件视频时长过滤配置。
+指定媒体文件类型和文件大小进行过滤。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

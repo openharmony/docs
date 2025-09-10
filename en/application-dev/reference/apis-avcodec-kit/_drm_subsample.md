@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **DrmSubsample** struct describes the subsample type.
+The struct describes the subsample type.
 
 **Since**: 12
 

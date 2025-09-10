@@ -36,23 +36,29 @@
 
 2. 确定拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
-   function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
-     let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
-     }
-     let photoOutput: camera.PhotoOutput | undefined = undefined;
-     try {
-       photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${err}`);
-     }
-     return photoOutput;
+   function getPhotoOutput(cameraManager: camera.CameraManager,
+    cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+    let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
+    if (photoProfilesArray === null || photoProfilesArray === undefined) {
+      console.error("createOutput photoProfilesArray is null!");
+      return undefined;
+    }
+    let photoOutput: camera.PhotoOutput | undefined = undefined;
+    try {
+      if (photoProfilesArray.length > 0) {
+        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+      } else {
+        console.log("the length of photoProfilesArray<=0!");
+        return undefined;
+      }
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`Failed to createPhotoOutput. error: ${err}`);
+    }
+    return photoOutput;
    }
    ```
 
@@ -106,7 +112,7 @@
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // 获取缩略图 pixelMap。
+       // 获取缩略图pixelMap。
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
@@ -125,7 +131,7 @@
    ```ts
    async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context) {    
      try {
-       // 创建 photoAsset。
+       // 创建photoAsset。
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
        let photoAsset = await accessHelper.createAsset(testFileName);

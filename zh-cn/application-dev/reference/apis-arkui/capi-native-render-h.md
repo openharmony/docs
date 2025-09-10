@@ -1669,7 +1669,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachFloatProperty(ArkUI_RenderContentModifier
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_RenderContentModifierHandle](./capi-arkui-nativemodule-arkui-rendercontentmodifierhandle.md) modifier | 为目标内容修改器设置浮点属性。 |
-| ArkUI_FloatPropertyHandle property | 浮点属性。 |
+| [ArkUI_FloatPropertyHandle](./capi-arkui-nativemodule-arkui-floatpropertyhandle.md) property | 浮点属性。 |
 
 **返回：**
 | 类型 | 说明 |
@@ -2632,7 +2632,7 @@ void OH_ArkUI_RenderNodeUtils_SetCircleShapeOptionRadius(ArkUI_CircleShapeOption
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_CircleShapeOption](./capi-arkui-nativemodule-arkui-circleshapeoption.md)* option | 指向圆形形状的指针。 |
-| float radius | 半径值。 |
+| float radius | 半径值（以像素为单位）。 |
 
 ### OH_ArkUI_RenderNodeUtils_CreateRoundRectShapeOption()
 

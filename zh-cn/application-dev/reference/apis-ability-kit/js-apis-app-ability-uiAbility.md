@@ -49,7 +49,7 @@ import { UIAbility } from '@kit.AbilityKit';
 
 ## UIAbility
 
-表示包含UI界面的应用组件，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力。
+表示包含UI界面的应用组件，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备后台通信能力。
 
 ### 属性
 
@@ -58,16 +58,16 @@ import { UIAbility } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 否 | UIAbility的上下文。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility冷启动时接收到的Want参数，取值为[onCreate](#oncreate)接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时接收到的Want参数，取值为[onCreate](#oncreate)接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 最近一次拉起UIAbility请求的Want参数。<br>- 首次拉起UIAbility时，取值为[onCreate](#oncreate)接收到的Want参数。<br>- 重复拉起UIAbility时，取值为[onNewWant](#onnewwant)最近一次接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
-| callee | [Callee](#callee) | 否 | 否 | 系统为UIAbility创建的后台通信对象，Callee UIAbility（被调用方），可以通过Callee对象接收Caller对象发送的数据进。 |
+| callee | [Callee](#callee) | 否 | 否 | 系统为UIAbility创建的后台通信对象，Callee UIAbility（被调用方）可以通过Callee对象接收Caller对象发送的数据。 |
 
 
 ### onCreate
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-当UIAbility实例完成创建时，系统会触发该回调，开发者可在该回调中执行初始化逻辑（如定义变量、加载资源等）。该回调仅会在UIAbility[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时触发。
+当UIAbility实例创建完成时，系统会触发该回调，开发者可在该回调中执行初始化逻辑（如定义变量、加载资源等）。该回调仅会在UIAbility[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时触发。
 
 同步接口，不支持异步回调。
 
@@ -92,8 +92,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class MyUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 执行异步任务
-    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
-    hilog.info(0x0000, 'testTag', `the launchReason is +  ${launchParam.launchReason} + , the lastExitReason is  + ${launchParam.lastExitReason}`);
+    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}, the launchReason is ${launchParam.launchReason}, the lastExitReason is ${launchParam.lastExitReason}`);
   }
 }
 ```
@@ -103,7 +102,7 @@ export default class MyUIAbility extends UIAbility {
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
-当WindowStage实例创建完成后，系统会触发该回调。开发者可以在该回调中通过WindowStage加载页面。
+当[WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md)实例创建完成后，系统会触发该回调。开发者可以在该回调中通过WindowStage加载页面。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -203,7 +202,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 > **说明：**
 >
-> 在应用迁移启动时，无论是冷启动还是热启动，都会在执行完[onCreate()](#oncreate)/[onNewWant()](#onnewwant)后，触发onWindowStageRestore()生命周期函数，不执行onWindowStageCreate()生命周期函数。
+> 在应用迁移启动时，无论是[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)还是[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)，都会在执行完[onCreate()](#oncreate)/[onNewWant()](#onnewwant)后，触发onWindowStageRestore()生命周期函数，不执行onWindowStageCreate()生命周期函数。
 
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -235,11 +234,14 @@ export default class MyUIAbility extends UIAbility {
 
 onDestroy(): void | Promise&lt;void&gt;
 
-当UIAbility被销毁（例如使用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口停止UIAbility）时，系统触发该回调。开发者可以在该生命周期中执行资源清理、数据保存等相关操作。使用同步回调或Promise异步回调。
+当UIAbility被销毁（例如使用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口停止UIAbility）时，系统触发该回调。开发者可以在该生命周期中执行资源清理、数据保存等相关操作。
 
-在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。推荐使用Promise异步回调，避免因应用退出导致onDestroy中的异步函数（比如异步写入数据库）未能正确执行。
+使用同步回调或Promise异步回调。
 
-仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
+> **说明：**
+>
+> - 在执行完onDestroy生命周期回调后，应用可能会退出，从而导致其中的异步函数（比如异步写入数据库）未能正确执行。在此情况下，推荐使用Promise异步回调。
+> - 该回调仅在UIAbility正常退出时触发，当UIAbility异常退出（例如低内存查杀）时，该回调将不被触发。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -369,7 +371,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class MyUIAbility extends UIAbility {
   onForeground() {
-    // 执行异步任务
     hilog.info(0x0000, 'testTag', `onForeground`);
   }
 }
@@ -530,7 +531,7 @@ export default class MyUIAbility extends UIAbility {
 
 onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
-当Ability准备迁移时触发，保存数据。
+当UIAbility准备跨端迁移时触发，可以保存待迁移的业务数据。
 
 > **说明：**
 >
@@ -596,8 +597,9 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-当已在前台运行过的UIAbility实例被再次拉起时，会触发该生命周期回调。若在特定场景下（参见[Scenarios](./js-apis-app-ability-contextConstant.md#scenarios20)），不需要触发该生命周期回调，可以使用[setOnNewWantSkipScenarios](./js-apis-inner-application-uiAbilityContext.md#setonnewwantskipscenarios20)接口设置。
+当已经启动的UIAbility实例再次被拉起时，系统会触发该回调。若在特定场景下（参见[Scenarios](./js-apis-app-ability-contextConstant.md#scenarios20)），不需要触发该生命周期回调，可以使用[setOnNewWantSkipScenarios](./js-apis-inner-application-uiAbilityContext.md#setonnewwantskipscenarios20)接口设置。
 
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -608,7 +610,7 @@ onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 调用方再次拉起该UIAbility时传递的数据。 |
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | UIAbility启动的原因。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | UIAbility启动参数，包含启动原因等。 |
 
 **示例：**
 
@@ -627,7 +629,7 @@ export default class MyUIAbility extends UIAbility {
 
 onDump(params: Array\<string>): Array\<string>
 
-应用调测场景下，通过命令行dump UIAbility转储UIAbility数据时回调。开发者可以在该回调中返回UIAbility要dump出的非敏感信息。
+应用调测场景下，通过命令行dump UIAbility数据时，系统会触发该回调。开发者可以在该回调中返回UIAbility要转储的非敏感信息。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -663,13 +665,11 @@ export default class MyUIAbility extends UIAbility {
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。当应用出现故障时，如果已启用自动保存状态，框架将调用onSaveState来保存UIAbility的状态。
-
-如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中saveOccasion参数配置为SAVE_WHEN_ERROR），当应用出现故障时，将触发该回调来保存UIAbility的数据。
+该接口需要与[appRecovery](js-apis-app-ability-appRecovery.md)配合使用。如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中的saveOccasion参数设置为SAVE_WHEN_ERROR），当应用出现故障时，系统将触发该回调来保存UIAbility的数据。
 
 > **说明：**
 >
-> 从API version 20开始，当[UIAbility.onSaveStateAsync](#onsavestateasync20)实现时，本回调函数将不执行。
+> 从API version 20开始，当[onSaveStateAsync](#onsavestateasync20)实现时，本回调函数将不执行。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -680,7 +680,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 触发应用保存状态的原因，当前仅支持APP_RECOVERY（即应用故障恢复场景）。 |
-| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在onCreate中的Want.parameters中。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在[onCreate](#oncreate)的Want.parameters中。 |
 
 **返回值：**
 
@@ -706,7 +706,7 @@ export default class MyUIAbility extends UIAbility {
 
 onSaveStateAsync(stateType: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): Promise\<AbilityConstant.OnSaveResult>
 
-如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中的saveOccasion参数设置为SAVE_WHEN_ERROR），当应用出现故障时，将触发该回调来保存UIAbility的数据。使用Promise异步回调。
+该接口需要与[appRecovery](js-apis-app-ability-appRecovery.md)配合使用。如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中的saveOccasion参数设置为SAVE_WHEN_ERROR），当应用出现故障时，将触发该回调来保存UIAbility的数据。使用Promise异步回调。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -717,7 +717,7 @@ onSaveStateAsync(stateType: AbilityConstant.StateType, wantParam: Record&lt;stri
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | stateType | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 触发应用保存状态的原因，当前仅支持`APP_RECOVERY`（即应用故障恢复场景）。 |
-| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在Want.parameters中。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在[onCreate](#oncreate)的Want.parameters中。 |
 
 **返回值：**
 
@@ -913,9 +913,9 @@ onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.Collabor
 UIAbility生命周期回调，在多设备协同场景下，协同方应用在被拉起的过程中返回是否接受协同。
 
  **说明：**
-- 该生命周期回调不支持specified启动模式。
-- 通过startAbility()等方法拉起协同方应用时，需要在Want对象中设置协同标记[Flags](js-apis-ability-wantConstant.md#flags)为FLAG_ABILITY_ON_COLLABORATE。
-- 冷启动时，该回调在[onForeground](#onforeground)前或[onBackground](#onbackground)后调用；热启动时，该回调在[onNewWant](#onnewwant)前调用。
+- 该生命周期回调不支持[specified启动模式](../../application-models/uiability-launch-type.md#specified启动模式)。
+- 通过[startAbility](./js-apis-inner-application-uiAbilityContext.md#startability)等方法拉起协同方应用时，需要在Want对象中设置协同标记[Flags](js-apis-app-ability-wantConstant.md#flags)为FLAG_ABILITY_ON_COLLABORATE。
+- [冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时，该回调在[onForeground](#onforeground)前或[onBackground](#onbackground)后调用；[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时，该回调在[onNewWant](#onnewwant)前调用。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -946,7 +946,7 @@ export default class MyAbility extends UIAbility {
 
 ## Caller
 
-调用方Caller UIAbility（仅支持系统应用）可以通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口拉起目标Callee UIAbility（可以为三方应用）。Callee UIAbility会返回一个Caller对象给到Caller UIAbility。Caller UIAbility拿到这个Caller对象后，就可以通过Caller对象与Callee UIAbility通讯，发送数据。
+调用方Caller UIAbility（仅支持系统应用）可以通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口拉起目标Callee UIAbility（可以为三方应用）。目标UIAbility启动成功后，会返回一个Caller对象给调用方进行通信。
 
 ### call
 
@@ -1178,7 +1178,7 @@ export default class MainUIAbility extends UIAbility {
 
 onRelease(callback: OnReleaseCallback): void
 
-Caller可使用该接口注册Callee UIAbility断开的通知，通过callback回调监听Callee UIAbility主动断开或异常断开事件。
+Caller UIAbility可使用该接口注册与Callee UIAbility连接断开通知的监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1283,7 +1283,7 @@ export default class MainAbility extends UIAbility {
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-Caller可使用该接口注册Callee UIAbility断开的通知，通过callback回调监听Callee UIAbility主动断开或异常断开事件。
+Caller UIAbility可使用该接口注册与Callee UIAbility连接断开通知的监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1337,7 +1337,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-取消注册Callee UIAbility断开的通知，与[Caller.on('release')](#onrelease-1)是反向操作，当前暂未支持。
+取消注册Callee UIAbility断开通知的监听，与[on('release')](#onrelease-1)是反向操作，当前暂未支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1391,7 +1391,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release'): void
 
-取消注册Callee UIAbility断开的通知，与[Caller.on('release')](#onrelease-1)是反向操作，当前暂未支持。
+取消注册Callee UIAbility断开通知的监听，与[Caller.on('release')](#onrelease-1)是反向操作，当前暂未支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1444,7 +1444,7 @@ export default class MainUIAbility extends UIAbility {
 
 ## Callee
 
-通用组件服务端注册和解除客户端caller通知送信的callback接口。
+系统为UIAbility创建的后台通信对象，Callee UIAbility（被调用方）可以通过Callee对象接收Caller对象发送的数据。
 
 ### on
 
@@ -1458,7 +1458,7 @@ on(method: string, callback: CalleeCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| method | string | 是 | 与客户端约定的通知消息字符串。 |
+| method | string | 是 | 由Caller和Callee双方约定好的方法名，Callee方通过该字段区分消息类型。 |
 | callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
 
 **错误码：**

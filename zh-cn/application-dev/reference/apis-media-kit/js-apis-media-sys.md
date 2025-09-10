@@ -19,6 +19,18 @@
 import { media } from '@kit.MediaKit';
 ```
 
+## AVErrorCode<sup>9+</sup>
+
+[媒体错误码](errorcode-media.md)类型枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**系统接口：** 该接口为系统接口
+
+| 名称                                  | 值      | 说明                                 |
+| :------------------------------------ | ------- | ------------------------------------ |
+| AVERR_SESSION_NOT_EXIST<sup>20+</sup> | 5400109 | 表示传入的会话ID不存在。                   |
+
 ## media.createVideoRecorder<sup>9+</sup>
 
 createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
@@ -313,9 +325,9 @@ media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.Soun
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-| 名称     | 类型   |  可读   |   可写    |  说明                   |
+| 名称     | 类型   |  只读   |   可选    |  说明                   |
 | -------- | ------ |   ------| ------ | ---------------------- |
-| colorFormat  | [PixelFormat](#pixelformat11) |  是   |  是   | 输出的缩略图颜色格式<br>**系统接口：** 该接口为系统接口      |
+| colorFormat  | [PixelFormat](#pixelformat11) |  否   |  是   | 输出的缩略图颜色格式。<br>**系统接口：** 该接口为系统接口。      |
 
 ## PixelFormat<sup>11+</sup>
 

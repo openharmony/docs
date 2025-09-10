@@ -17,14 +17,14 @@ API接口的使用说明，包括参数使用限制和取值范围，请参考[H
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \* watcher) | 添加应用的事件观察者，以添加对应用的事件订阅。 |
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher \* watcher) | 移除应用的事件观察者，以移除对应用的事件订阅。 |
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher) | 添加应用的事件观察者。 |
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher) | 移除应用的事件观察者。 |
 
 **打点接口功能介绍**：
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| int OH_HiAppEvent_Write(const char \* domain, const char \* name, enum EventType type, const ParamList list) | 实现对参数为列表类型的应用事件打点。 |
+| int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType type, const ParamList list) | 实现对参数为列表类型的应用事件打点。 |
 
 ## 事件订阅开发指导
 
@@ -82,7 +82,7 @@ API接口的使用说明，包括参数使用限制和取值范围，请参考[H
 ### 步骤二：订阅事件
 
 1. 订阅事件。分别使用OnReceive类型观察者、OnTrigger类型观察者的订阅方式。
-   - 订阅崩溃事件（系统事件），采用OnReceive类型观察者的订阅方式，观察者接收到事件后回立即触发OnReceive()回调。编辑“napi_init.cpp”文件，定义OnReceive类型观察者相关方法：
+   - 订阅崩溃事件（系统事件），采用OnReceive类型观察者的订阅方式，观察者接收到事件后会立即触发OnReceive()回调。编辑“napi_init.cpp”文件，定义OnReceive类型观察者相关方法：
 
       ```c++
       // 定义变量，用来缓存创建的观察者的指针。

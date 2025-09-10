@@ -5,7 +5,7 @@
 <!--Owner: @peixu-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 本文档提供了系统定义的公共事件清单。
 公共事件类型定义在[ohos.commonEventManager模块的Support枚举](../js-apis-commonEventManager.md#support)中。
@@ -267,6 +267,21 @@
 
 **取值：** "usual.event.MINORSMODE_OFF"
 
+
+## ArkData
+
+
+### COMMON_EVENT_DATA_SHARE_READY<sup>12+</sup>
+
+表示datashare服务可用。
+
+datashare服务启动完成后，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.DATA_SHARE_READY"
 
 
 ## ArkUI
@@ -2095,4 +2110,3 @@ Store Kit面向应用发布如下系统公共事件。
 
 **取值：** "usual.event.SPN_INFO_CHANGED"
 <!--no_check-->
- 

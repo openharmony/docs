@@ -1,4 +1,10 @@
 # JSVM-API FAQs
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Fault Location
 
@@ -42,7 +48,7 @@ If an unexpected behavior occurs during the running of the application, locate t
 
 2. Q: The application crashes when the native function injected during JSVM initialization is executed by JS.
 
-   A: Check whether **JSVM_CallbackStruct** is a variable in the stack. When **JSVM_CallbackStruct** is used across functions, the lifecycle of **JSVM_CallbackStruct** must be greater than that of **JSVM_Env**.
+   A: Check whether `JSVM_CallbackStruct` is a variable on the stack. If the `JSVM_CallbackStruct` is used across functions, ensure that the lifecycle of the `JSVM_CallbackStruct` is longer than that of the `JSVM_Env`.
 
    ```
    func {
@@ -55,7 +61,7 @@ If an unexpected behavior occurs during the running of the application, locate t
            {"consoleinfo", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
            {"add", NULL, &param[1], NULL, NULL, NULL, JSVM_DEFAULT},
        };
-       // Create env, register native method, and open env scope.
+       // Create env, register a native method, and open an env scope.
        JSVM_Env env;
        OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
       // ...
@@ -64,7 +70,7 @@ If an unexpected behavior occurs during the running of the application, locate t
    }
    ```
 
-   In the previous example, the JSVM instance is closed before the function ends. Therefore, the **JSVM_CallbackStruct param** in the stack can be used.
+   In the preceding sample code, the JS engine instance is closed before the function ends. Therefore, you can directly use the `param` on the stack.
 
 3. Q: The application crashes when **OH_JSVM_ReferenceRef**, **OH_JSVM_ReferenceUnRef**, **OH_JSVM_CreateReference**, or **OH_JSVM_DeleteReference** is called.
 

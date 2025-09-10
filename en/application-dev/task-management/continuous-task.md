@@ -1,5 +1,12 @@
 # Continuous Task (ArkTS)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Overview
 
 ### Introduction
@@ -107,6 +114,7 @@ The following walks you through how to request a continuous task for recording t
    
    Import the modules related to continuous tasks: @ohos.resourceschedule.backgroundTaskManager and @ohos.app.ability.wantAgent. Import other modules based on the project requirements.
 
+   <!--RP1-->
    ```ts
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -114,7 +122,9 @@ The following walks you through how to request a continuous task for recording t
     import { rpc } from '@kit.IPCKit'
     import { BusinessError } from '@kit.BasicServicesKit';
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
+    // In atomic services, please remove the WantAgent import.
    ```
+   <!--RP1End-->
 
 4. Request and cancel a continuous task.
 
@@ -154,6 +164,7 @@ The following walks you through how to request a continuous task for recording t
         }
       }
 
+      // Request a continuous task using .then().
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // List of operations to be executed after the notification is clicked.
@@ -177,10 +188,12 @@ The following walks you through how to request a continuous task for recording t
 
         try {
           // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+          // In atomic services, replace the following line of code with wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {.
           wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
             try {
               let list: Array<string> = ["audioRecording"];
               // let list: Array<string> = ["bluetoothInteraction"]; The bluetoothInteraction type is included in the continuous task, and the CAR_KEY subtype is valid.
+              // In atomic services, let list: Array<string> = ["audioPlayback"];
               backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
                 console.info("Operation startBackgroundRunning succeeded");
                 // Execute the continuous task logic, for example, recording.
@@ -196,7 +209,48 @@ The following walks you through how to request a continuous task for recording t
         }
       }
 
-   
+      // Request a continuous task using async/await.
+      // async startContinuousTask() {
+      //   let wantAgentInfo: wantAgent.WantAgentInfo = {
+      //     // List of operations to be executed after the notification is touched.
+      //     // Add the bundleName and abilityName of the application to start.
+      //     wants: [
+      //       {
+      //         bundleName: "com.example.myapplication",
+      //         abilityName: "MainAbility"
+      //       }
+      //     ],
+      //     // Specify the action to perform (starting the ability) after the notification message is clicked.
+      //     actionType: wantAgent.OperationType.START_ABILITY,
+      //     // Custom request code.
+      //     requestCode: 0,
+      //     // Execution attribute of the operation to perform after the notification is clicked.
+      //     actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+      //     // CAR_KEY subtype, which takes effect only when a continuous task of the bluetoothInteraction type is requested.
+      //     // Ensure that the key value in the extraInfo parameter is backgroundTaskManager.BackgroundModeType.SUB_MODE. Otherwise, the subtype does not take effect.
+      //     // extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
+      //   };
+      // 
+      //   try {
+      //     // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+      //     // In atomic services, replace the following line of code with const wantAgentObj: object = await wantAgent.getWantAgent(wantAgentInfo);.
+      //     const wantAgentObj: WantAgent = await wantAgent.getWantAgent(wantAgentInfo);
+      //     try {
+      //       let list: Array<string> = ["audioRecording"];
+      //       // let list: Array<string> = ["bluetoothInteraction"]; The bluetoothInteraction type is included in the continuous task, and the CAR_KEY subtype is valid.
+      //       // In atomic services, let list: Array<string> = ["audioPlayback"];
+      //       const res: backgroundTaskManager.ContinuousTaskNotification = await backgroundTaskManager.startBackgroundRunning(this.context as Context, list, wantAgentObj);
+      //       console.info(`Operation startBackgroundRunning succeeded, notificationId: ${res.notificationId}`);
+      //       // Execute the continuous task logic, for example, recording.
+      //     } catch (error) {
+      //       console.error(`Failed to Operation startBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //     }
+      //   } catch (error) {
+      //     console.error(`Failed to Operation getWantAgent. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //   }
+      // }
+
+      // Cancel a continuous task using .then().
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
            console.info(`Succeeded in operationing stopBackgroundRunning.`);
@@ -204,7 +258,17 @@ The following walks you through how to request a continuous task for recording t
            console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
          });
       }
-   
+
+      // Cancel a continuous task using async/await.
+      // async stopContinuousTask() {
+      //   try {
+      //     await backgroundTaskManager.stopBackgroundRunning(this.context);
+      //     console.info(`Succeeded in operationing stopBackgroundRunning.`);
+      //   } catch (error) {
+      //     console.error(`Failed to operation stopBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`)
+      //   }
+      // }
+
       build() {
         Row() {
           Column() {
@@ -299,9 +363,10 @@ The following walks you through how to request a continuous task for recording t
       };
 
       // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+      // In atomic services, replace the following line of code with wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {.
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
         backgroundTaskManager.startBackgroundRunning(mContext,
-          backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+          backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
           console.info(`Succeeded in operationing startBackgroundRunning.`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
@@ -321,9 +386,9 @@ The following walks you through how to request a continuous task for recording t
       num: number = 0;
       str: string = '';
 
-      constructor(num: number, string: string) {
+      constructor(num: number, str: string) {
         this.num = num;
-        this.str = string;
+        this.str = str;
       }
 
       marshalling(messageSequence: rpc.MessageSequence) {
@@ -436,8 +501,6 @@ The following walks you through how to request a continuous task for recording t
    
    ```js
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-    import { window } from '@kit.ArkUI';
     import { rpc } from '@kit.IPCKit'
     import { BusinessError } from '@kit.BasicServicesKit';
     import { wantAgent, WantAgent } from '@kit.AbilityKit';

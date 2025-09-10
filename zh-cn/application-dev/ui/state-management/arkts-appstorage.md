@@ -271,10 +271,10 @@ struct StorageLinkComponent {
   build() {
     Column() {
       Text('@StorageLink接口初始化，@StorageLink取值')
-      Text(`${this.LinkA}`).fontSize(20).onClick(() => {
+      Text(`${this.linkA}`).fontSize(20).onClick(() => {
         this.linkA ? this.linkA = null : this.linkA = 1;
       })
-      Text(`${this.LinkB}`).fontSize(20).onClick(() => {
+      Text(`${this.linkB}`).fontSize(20).onClick(() => {
         this.linkB ? this.linkB = undefined : this.linkB = 1;
       })
     }
@@ -323,7 +323,7 @@ struct Index {
 >
 > 从API version 12开始，AppStorage支持Date类型。
 
-以下示例中，@StorageLink装饰的selectedDate类型为Date。点击Button改变selectedDate的值，视图会随之刷新。
+在下面的示例中，@StorageLink装饰的selectedDate类型为Date。点击Button改变selectedDate的值，视图会随之刷新。
 
 ```ts
 @Entry
@@ -380,7 +380,7 @@ struct MapSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
           Divider()
@@ -425,7 +425,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.memberSet.entries()), (item: [number, number]) => {
           Text(`${item[0]}`)
             .fontSize(30)
           Divider()

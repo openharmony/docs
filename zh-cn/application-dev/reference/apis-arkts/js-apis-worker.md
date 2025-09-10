@@ -78,7 +78,7 @@ Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定�
 | onexit<sup>9+</sup> | (code: number) => void | 否 | 是 | 回调函数。表示Worker线程销毁时被调用的事件处理程序，该处理程序在宿主线程中执行。回调函数的code参数类型为number，异常退出时code为1，正常退出时code为0。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 | onerror<sup>9+</sup> | (err: [ErrorEvent](#errorevent)) => void | 否 | 是 | 回调函数，用于处理onmessage回调函数中同步代码产生的异常，处理程序在宿主线程中执行。回调函数的err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 | onAllErrors<sup>18+</sup> | [ErrorCallback](#errorcallback18) | 否 | 是 | 回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>**原子化服务API**：从API version 18开始，该属性支持在原子化服务中使用。|
-| onmessage<sup>9+</sup> | (event: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage或workerPort.[postMessageWithSharedSendable](#postmessagewithsharedsendable12-1)接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onmessage<sup>9+</sup> | (event: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.[postMessage](#postmessage9-3)或workerPort.[postMessageWithSharedSendable](#postmessagewithsharedsendable12-1)接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 | onmessageerror<sup>9+</sup> | (event: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。用于处理Worker对象接收到的无法被序列化的消息。该处理程序在宿主线程中执行，event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 
 请查看[onAllErrors接口与onerror接口之间的行为差异](../../arkts-utils/worker-introduction.md#onallerrors接口与onerror接口之间的行为差异)以了解onerror与onAllErrors的差异。
@@ -698,7 +698,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后执行的回调函数。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后执行。 |
 
 **错误码：**
 
@@ -871,7 +871,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调函数。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后执行。 |
 
 **错误码：**
 
@@ -997,7 +997,7 @@ Worker线程用于与宿主线程通信的类。ThreadWorkerGlobalScope类继承
 
 | 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
 | ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
-| onmessage<sup>9+</sup> | (this: ThreadWorkerGlobalScope, ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示Worker线程收到来自其宿主线程通过postMessage或[postMessageWithSharedSendable](#postmessagewithsharedsendable12)接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的宿主线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onmessage<sup>9+</sup> | (this: ThreadWorkerGlobalScope, ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示Worker线程收到来自其宿主线程通过[postMessage](#postmessage9-1)或[postMessageWithSharedSendable](#postmessagewithsharedsendable12)接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的宿主线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 | onmessageerror<sup>9+</sup> | (this: ThreadWorkerGlobalScope, ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示当Worker线程的Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 
 ### postMessage<sup>9+</sup>
@@ -1231,6 +1231,8 @@ let registerObj = new TestObj();
 // 在ThreadWorker实例上注册registerObj
 workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.postMessage("start worker");
+// 需要在组件生命周期结束时调用：
+// workerInstance.unregisterGlobalCallObject("myObj");
 ```
 
 ```ts
@@ -1343,7 +1345,8 @@ workerInstance.addEventListener("alert", (event: Event) => {
   console.info("event type is: ", JSON.stringify(event.type));
 });
 
-workerInstance.dispatchEvent({ type: "alert", timeStamp: 0 }); // timeStamp暂未支持
+const eventToDispatch : Event = { type: "alert", timeStamp: 0 }; // timeStamp暂未支持
+workerInstance.dispatchEvent(eventToDispatch);
 ```
 
 
@@ -1378,7 +1381,7 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 type MessageType = 'message' | 'messageerror';
 
-表示消息类型。
+表示消息类型。预留数据类型，暂未实现。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1682,7 +1685,7 @@ removeEventListener(type: string, callback?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 需要移除的事件类型。 |
-| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调函数。 |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 回调函数，删除监听事件后执行。 |
 
 **示例：**
 
@@ -1853,7 +1856,7 @@ import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (): void => {
+workerInstance.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
     console.info("receive data from worker.ets");
 }

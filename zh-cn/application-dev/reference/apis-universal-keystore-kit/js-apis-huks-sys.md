@@ -25,6 +25,8 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 
 指定用户身份生成密钥，使用Promise方式异步返回结果。基于密钥不出TEE原则，通过promise不会返回密钥材料内容，只用于表示此次调用是否成功。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Security.Huks.Extension
@@ -125,6 +127,8 @@ export default function HuksAsUserTest() {
 deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份删除密钥，使用Promise方式异步返回结果。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -236,6 +240,8 @@ importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 
 指定用户身份导入明文密钥，使用Promise方式异步返回结果。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Security.Huks.Extension
@@ -339,6 +345,8 @@ export default function HuksAsUserTest() {
 attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份获取密钥证书，使用Promise方式异步返回结果。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ATTEST_KEY, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS 必须同时拥有两个权限。
 
@@ -494,6 +502,8 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptio
 
 该操作需要联网进行，且耗时较长。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Security.Huks.Extension
@@ -646,6 +656,8 @@ export default function HuksAsUserTest() {
 importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份导入加密密钥，使用Promise方式异步返回结果。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1312,6 +1324,8 @@ exportKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 
 指定用户身份导出密钥，使用Promise方式回调异步返回的结果。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Security.Huks.Extension
@@ -1430,6 +1444,8 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, huksOptions: HuksOp
 
 指定用户身份获取密钥属性，使用Promise回调异步返回结果。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Security.Huks.Extension
@@ -1545,6 +1561,8 @@ hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : P
 
 指定用户身份判断密钥是否存在，使用Promise回调异步返回结果。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Security.Huks.Extension
@@ -1657,6 +1675,8 @@ export default function HuksAsUserTest() {
 initSessionAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksSessionHandle>
 
 指定用户身份操作密钥接口，使用Promise方式异步返回结果。huks.initSessionAsUser, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 

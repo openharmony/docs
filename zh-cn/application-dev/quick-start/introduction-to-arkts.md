@@ -1622,7 +1622,7 @@ class Derived1 extends Base implements Interface { }
 // Derived1在语义上等价于Derived2
 class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 
-function foo<T = number>(): T {
+function foo<T = number>(): void {
   // ...
 }
 foo();
@@ -1923,6 +1923,7 @@ class MyClass {
 }
 ```
 
+- 使用@interface声明注解。
 - 注解`ClassAuthor`需要将元信息添加到类声明中。
 - 注解必须放置在声明之前。
 - 注解可以包含上述示例中所示的参数。
@@ -1954,6 +1955,8 @@ class MyClass {
 > 如果需要在release模式并且开启混淆的情况下构建含有注解的HAR包，可以构建[TS HAR](har-package.md#编译生成ts文件)或者[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)。
 
 ### 用户自定义注解
+
+**从API version 20及之后版本，支持用户自定义注解。**
 
 **用户自定义注解的声明**
 `用户自定义注解`的定义与`interface`的定义类似，其中的`interface`关键字以符号`@`为前缀。<br>
@@ -2249,7 +2252,7 @@ export declare @interface MethodAnno {
 }
 
 @ClassAuthor
-export declare class C {
+export declare class MyClass {
   @MethodAnno({data: 123})
   foo(): void;
 

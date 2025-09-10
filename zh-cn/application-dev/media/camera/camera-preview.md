@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 预览是启动相机后看见的画面，通常在拍照和录像前执行。
 
@@ -56,11 +56,18 @@
     }
     ```
 
-3. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的previewProfiles属性获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过[createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)方法创建预览输出流，其中，[createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)方法中的两个参数分别是当前设备支持的预览配置信息previewProfile和步骤二中获取的surfaceId。
+3. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的previewProfiles属性获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过[createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)方法创建预览输出流，其中，[createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)方法中的两个参数分别是当前设备支持的预览配置信息previewProfile和步骤二中获取的surfaceId。
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
+     if (!cameraOutputCapability || !cameraOutputCapability.previewProfiles) {
+       return;
+     }
      let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
+     if (!previewProfilesArray || previewProfilesArray.length === 0) {
+       console.error("previewProfilesArray is null or []");
+       return;
+     }
      let previewOutput: camera.PreviewOutput | undefined = undefined;
      try {
        //previewProfilesArray要选择与步骤二设置宽高比一致的previewProfile配置信息，此处选择数组第一项仅供接口使用示例参考。
@@ -77,33 +84,42 @@
      
    ```ts
    async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
-     let cameraArray: Array<camera.CameraDevice> = [];
-     cameraArray = cameraManager.getSupportedCameras();
-     if (cameraArray.length == 0) {
-       console.error('no camera.');
-       return;
+     try {
+       let cameraArray: Array<camera.CameraDevice> = [];
+       cameraArray = cameraManager.getSupportedCameras();
+       if (cameraArray.length == 0) {
+         console.error('no camera.');
+         return;
+       }
+       // 获取支持的模式类型。
+       let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+       let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+       if (!isSupportPhotoMode) {
+         console.error('photo mode not support');
+         return;
+       }
+       let cameraInput: camera.CameraInput | undefined;
+       cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+       if (cameraInput === undefined) {
+         console.error('cameraInput is undefined');
+         return;
+       }
+       // 打开相机。
+       await cameraInput.open();
+       let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+       if (!session) {
+         console.error('session is null');
+         return;
+       }
+       let photoSession: camera.PhotoSession = session as camera.PhotoSession;
+       photoSession.beginConfig();
+       photoSession.addInput(cameraInput);
+       photoSession.addOutput(previewOutput);
+       await photoSession.commitConfig();
+       await photoSession.start();
+     } catch (error) {
+       console.error(`startPreviewOutput call failed, error: ${error}`);
      }
-     // 获取支持的模式类型。
-     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
-     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
-     if (!isSupportPhotoMode) {
-       console.error('photo mode not support');
-       return;
-     }
-     let cameraInput: camera.CameraInput | undefined = undefined;
-     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
-     if (cameraInput === undefined) {
-       console.error('cameraInput is undefined');
-       return;
-     }
-     // 打开相机。
-     await cameraInput.open();
-     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-     session.beginConfig();
-     session.addInput(cameraInput);
-     session.addOutput(previewOutput);
-     await session.commitConfig();
-     await session.start();
    }
    ```
 
@@ -152,7 +168,6 @@
 
 ```ts
 import { camera } from '@kit.CameraKit';
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
@@ -235,6 +250,7 @@ struct Index {
       this.cameraManager = camera.getCameraManager(this.context);
       if (!this.cameraManager) {
         console.error('initCamera getCameraManager');
+        return;
       }
       // 获取当前设备支持的相机device列表。
       this.cameras = this.cameraManager.getSupportedCameras();
@@ -245,16 +261,17 @@ struct Index {
       this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
       if (!this.cameraInput) {
         console.error('initCamera createCameraInput');
+        return;
       }
       // 打开相机。
-      await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${err}`);
-      })
+      await this.cameraInput.open();
       // 获取相机device支持的profile。
       let capability: camera.CameraOutputCapability =
         this.cameraManager.getSupportedOutputCapability(this.cameras[0], camera.SceneMode.NORMAL_VIDEO);
-      if (!capability) {
-        console.error('initCamera getSupportedOutputCapability');
+      if (!capability || capability.previewProfiles.length === 0) {
+        console.error('capability is null || []');
+        this.releaseCamera();
+        return;
       }
       let minRatioDiff : number = 0.1;
       let surfaceRatio : number = this.imageWidth / this.imageHeight; // 最接近16:9宽高比。
@@ -279,12 +296,17 @@ struct Index {
       this.previewOutput = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
       if (!this.previewOutput) {
         console.error('initCamera createPreviewOutput');
+        this.releaseCamera();
+        return;
       }
       // 创建录像模式相机会话。
-      this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
-      if (!this.session) {
-        console.error('initCamera createSession');
+      let session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO);
+      if (!session) {
+        console.error('session is null');
+        this.releaseCamera();
+        return;
       }
+      this.session = session as camera.VideoSession;
       // 开始配置会话。
       this.session.beginConfig();
       // 添加相机设备输入。
@@ -296,26 +318,22 @@ struct Index {
       // 开始启动已配置的输入输出流。
       await this.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      this.releaseCamera();
     }
   }
 
-
   // 释放相机。
   async releaseCamera(): Promise<void> {
-    console.info('releaseCamera E');
-    try {
-      // 停止当前会话。
-      await this.session?.stop();
-      // 释放相机输入流。
-      await this.cameraInput?.close();
-      // 释放预览输出流。
-      await this.previewOutput?.release();
-      // 释放会话。
-      await this.session?.release();
-    } catch (error) {
-      console.error(`initCamera fail: ${error}`);
-    }
+    console.info('releaseCamera');
+    // 停止当前会话。
+    await this.session?.stop().catch((e: BusinessError) => {console.error('Failed to stop session: ', e)});
+    // 释放相机输入流。
+    await this.cameraInput?.close().catch((e: BusinessError) => {console.error('Failed to close the camera: ', e)});
+    // 释放预览输出流。
+    await this.previewOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the preview stream: ', e)});
+    // 释放会话。
+    await this.session?.release().catch((e: BusinessError) => {console.error('Failed to release session: ', e)});
   }
 }
 ```

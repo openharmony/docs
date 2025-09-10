@@ -1,4 +1,4 @@
-# @ohos.app.ability.AbilityStage 组件管理器
+# @ohos.app.ability.AbilityStage (AbilityStage组件管理器)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->

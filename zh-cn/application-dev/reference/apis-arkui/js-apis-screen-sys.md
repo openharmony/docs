@@ -56,7 +56,9 @@ screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
     return;
   }
   console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
-  screenClass = data[0];
+  if(data.length > 0 ）{
+    screenClass = data[0];
+  }
 });
 ```
 
@@ -91,7 +93,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let screenClass: screen.Screen | null = null;
 let promise: Promise<Array<screen.Screen>> = screen.getAllScreens();
 promise.then((data: Array<screen.Screen>) => {
-  screenClass = data[0];
+  if(data.length > 0){
+  	screenClass = data[0];
+  }
   console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
@@ -1301,16 +1305,18 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 ### 属性
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 
 | 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | 是   | 否   | 屏幕的id，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                              |
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                          |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                  |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
-| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                       |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                     |
-| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，当前仅2in1设备支持此属性。其他设备暂不支持使用此属性。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager                        |       
+| id                | number                                         | 是   | 否   | 屏幕的id，该参数为整数。                           |
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数为整数。             |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。 |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。       |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。     |
+| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，当前仅2in1设备支持此属性。其他设备暂不支持使用此属性。                   |       
 
 ### setOrientation
 

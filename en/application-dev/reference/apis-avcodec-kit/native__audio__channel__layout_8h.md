@@ -3,9 +3,11 @@
 
 ## Overview
 
-The **native_audio_channel_layout.h** file declares the functions related to the speaker layout during recording and playback.
+The file declares the functions related to the speaker layout during recording and playback.
 
 **Library**: none
+
+**File to include**: <multimedia/native_audio_channel_layout.h>
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 

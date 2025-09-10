@@ -1,5 +1,6 @@
 # CPU Features
 
+
 CPU features are hardware extensions provided by CPUs. You can call instructions and set special registers to use the CPU features, such as VFP-v32d32, Neon, IDIV, and AES on the ARMv7-A architecture. Many CPU features are optional, and different CPU vendors provide different CPU features.
 
 
@@ -11,7 +12,7 @@ Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can
 
 ## How to Use
 
-1. Import the open source library to your OpenHarmony C++ project. Specifically, download the [cpu_features library](https://github.com/google/cpu_features), and decompress it to the **cpp** directory of the project. The following uses the C++ template in DevEco Studio as an example:
+1. Import the open source library to your OpenHarmony C++ project. Specifically, download the [cpu_features library](https://github.com/google/cpu_features), and decompress it to the **cpp** directory of the project. The following uses the DevEco Studio C++ template sample application as an example.
    - The directory structure after the decompression is as follows:
       ```
       MyApplication

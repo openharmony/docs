@@ -93,6 +93,8 @@ static OH_Crypto_ErrCode doTestGenCipherTextBySpec()
 3. 使用完毕后，调用[OH_CryptoSm2CiphertextSpec_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_destroy)销毁SM2密文规格对象。
 
 ```C++
+#include "CryptoArchitectureKit/crypto_architecture_kit.h"
+
 static OH_Crypto_ErrCode doTestGetCipherTextSpec()
 {
     // 准备标准ASN.1格式密文。

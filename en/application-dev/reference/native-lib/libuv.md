@@ -1,4 +1,10 @@
 # libuv
+<!--Kit: NDK Development-->
+<!--Subsystem: Developtools-->
+<!--Owner: @fu-yongyong-->
+<!--Designer: @huangke11-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
@@ -42,13 +48,13 @@ We will continue to provide capabilities of interacting with the main thread and
 
 If you are familiar with libuv and can handle memory management and multithreading problems, you can still use libuv to develop your services on OpenHarmony. Unless otherwise required, you do not need to import the libuv library to your application project.
 
-### Current Problems and Solutions
+## Current Problems and Solutions
 
 According to the existing mechanism, only one event loop can exist in a thread. To ensure proper running of the main event loop of the system application, the main event loop listens for the FD events in the JS environment and executes uv_run only when an FD event is reported. As a result, certain functions that depend on the **uvloop** event cannot take effect.
 
 Common scenarios and solutions are as follows:
 
-#### Scenario 1: The JS main thread throws an asynchronous task to a worker thread for execution and executes the result returned by the JS code.
+### Scenario 1: The JS main thread throws an asynchronous task to a worker thread for execution and executes the result returned by the JS code.
 
 **Example (incorrect)**
 
@@ -223,7 +229,7 @@ Add the following code to the **index.d.ts** file:
 export const test:() => number;
 ```
 
-#### Scenario 2: The libuv API does not work when throwing an FD event to the main loop of the application from the native side.
+### Scenario 2: The libuv API does not work when throwing an FD event to the main loop of the application from the native side.
 
 The main loop of the application receives only FD events, and executes **uv_run** only after **backend_fd** in **uvloop** is triggered. That means **uv_run** will never be executed if no FD event is triggered when **uv** APIs are called in the main loop of the application. As a result, calling libuv APIs does not take effect.
 
@@ -341,9 +347,9 @@ export const testClose:() => number;
 The process is as follows:
 
 1. Call **napi_get_uv_event_loop** to obtain **uvloop** of the application main thread.
-2. Create an **eventfd** instance.
-3. Initialize **uv_poll_t**, and start the handle for it to take effect. Invoke the **poll_handler** callback when the **eventfd** instance is readable.
-4. Create a thread and write data to **eventfd**.
+2. Create an eventfd instance.
+3. Initialize **uv_poll_t**, and start the handle for it to take effect. Invoke the **poll_handler** callback when the eventfd instance is readable.
+4. Create a thread and write data to the eventfd instance.
 
 After the preceding code is executed, **poll_handler** has no output. This is because the application main thread executes **uv_run** based on the FD rather than looping in UV_RUN_DEFAULT mode. Although **event_handler** listens for **backend_fd** in **uvloop**, the FD is not added to **backend_fd** through **epoll_ctl** when **uv_poll_start** is executed. The **epoll_ctl** function is executed only when **uv__io_poll** in **uv_run** is executed the next time. Therefore, if no **backend_fd** event is triggered in the application process, the libuv APIs may not work as expected.
 
@@ -468,7 +474,7 @@ In the libuv NDK, all the APIs that depend on **uv_run** do not work as expected
 
 Instead of using libuv APIs, you can use the equivalent Node-API provided by OpenHarmony, which includes asynchronous work APIs and thread-safe APIs.
 
-#### Asynchronous Work APIs
+**Asynchronous Task APIs**
 
 libuv provides the **uv_queue_work** API to perform a time-consuming operation in an asynchronous thread and return the result to the main thread for processing through a callback.
 
@@ -513,7 +519,7 @@ napi_status napi_queue_async_work(napi_env env, napi_async_work work);
 napi_status napi_delete_async_work(napi_env env, napi_async_work work);
 ```
 
-#### Thread-safe APIs for Cross-Thread Sharing and Invocation
+**Thread-safe APIs for Cross-Thread Sharing and Invocation**
 
 When you want to pass a callback from any child thread to the application main thread for execution, you can use the libuv **uv_async_t** handle for inter-thread communication, and the following functions:
 
@@ -522,7 +528,7 @@ When you want to pass a callback from any child thread to the application main t
 
 The equivalent Node-API interfaces are [napi_threadsafe_function](../../napi/use-napi-thread-safety.md) APIs.
 
- The related Node-API interfaces are as follows:
+The related Node-API interfaces are as follows:
 
 ```cpp
 /**
@@ -606,23 +612,15 @@ If you need to use other libuv APIs to implement service functions, read on to d
 
 ### Constraints for libuv Single Thread
 
-When using libuv in OpenHarmony, observe to the following:
+When using libuv in OpenHarmony, observe to the following: The thread for calling **uv_run** must be the loop thread (the thread that initializes the loop using **uv_loop_init**), and all non-thread-safe operations of **uvloop** must be performed on the loop thread. Otherwise, the application may crash. OpenHarmony imposes stricter restrictions on the use of libuv. For non-thread-safe functions, libuv implements the multi-thread check mechanism, which generates warning logs when detecting multi-threading problems. To ensure the check accuracy and prevent incorrect use of uv interfaces, it is recommended that the same thread be used for creating an event loop and executing **uv_run**. The constraints vary depending on the source of the loop. Specifically, you can create a loop or obtain a loop from **env**.
 
-The thread for calling **uv_run** must be the loop thread (the thread that initializes the loop using **uv_loop_init**), and all non-thread-safe operations of **uvloop** must be performed on the loop thread. Otherwise, the application may crash.
-
-OpenHarmony imposes stricter restrictions on the use of libuv. For non-thread-safe functions, libuv implements the multi-thread check mechanism, which generates warning logs when detecting multi-threading problems. To ensure the check accuracy and prevent incorrect use of uv interfaces, it is recommended that the same thread be used for creating an event loop and executing **uv_run**.
-
-#### Constraints
-
-The constraints vary depending on the source of the loop. Specifically, you can create a loop or obtain a loop from **env**.
-
-##### Creating a Loop
+**Creating a Loop**
 
 You can call **uv_loop_new** to create a loop or call **uv_loop_init** to initialize a loop. You need to manage the lifecycle of the loop. In this case, ensure that **uv_run** is executed on the loop thread, that is, the thread where the loop is created or initialized. In addition, non-thread-safe operations, such as operations related to the timer, must be performed on the loop thread.
 
 If tasks have to be thrown from other threads to the loop thread, use **uv_async_send**. Specifically, register a callback when the async handle is initialized, and implement the corresponding operation in the callback. When **uv_async_send** is called, execute the registered callback on the main thread.
 
-ArkTS:
+ArkTS side:
 
 ```typescript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -800,11 +798,11 @@ export const testTimerAsync:() => number;
 export const testTimerAsyncSend:() => number;
 ```
 
-##### Obtaining a Loop from env
+**Obtaining a Loop from env**
 
 Generally, the loop obtained from **env** by using **napi_get_uv_event_loop** is an event loop of a JS main thread created by the system. Therefore, avoid calling non-thread-safe functions on its child threads.
 
-If a non-thread-safe function has to be called on a non-loop thread due to service requirements, use the thread-safe function **uv_async_send** to submit the task to the loop thread. Specifically, define a handle of the **uv_async_t*** type. When initializing the handle, add the non-thread-safe function that needs to be called on a child thread in **async_cb**. Then, call **uv_async_send** in a non-loop thread, and execute **async_cb** on the loop thread. For details, see case 2 in [Correct Example](#correct-example).
+If a non-thread-safe function has to be called on a non-loop thread due to service requirements, use the thread-safe function **uv_async_send** to submit the task to the loop thread. Specifically, define a handle of the **uv_async_t*** type. When initializing the handle, add the non-thread-safe function that needs to be called on a child thread in async_cb. Then, call **uv_async_send** in a non-loop thread, and execute **async_cb** on the loop thread. For details, see case 2 of "Correct Example" in [Handles and Requests in libuv](#handles-and-requests-in-libuv).
 
 ### Thread-safe Functions
 
@@ -816,10 +814,9 @@ Thread-safe functions:
 - **uv_thread_create()**: creates a thread and executes the specified function. This API can be called in any thread.
 - Lock-related APIs, such as **uv\_mutex\_lock()** and **uv\_mutex\_unlock()**.
 
->  **NOTE**
->
-> - Even if the function like **uv_xxx_init** is implemented in a thread-safe manner, avoid calling it on multiple threads at the same time. Otherwise, resource contention may occur. The best way is to call the function in an event loop thread.
-> - After **uv_async_send** is called, the callback is invoked asynchronously. libuv only ensures that at least one callback is executed if **uv_async_send** is called multiple times. As a result, if **uv_async_send** is called multiple times for the same handle, the callback processing in libuv may not align with your expectations. However, the native side can ensure that the number of callback execution times matches the number of times that **napi_call_threadsafe_function** is called.
+Tips: Even if the function like **uv_xxx_init** is implemented in a thread-safe manner, avoid calling it on multiple threads at the same time. Otherwise, resource contention may occur. The best way is to call the function in an event loop thread.
+
+Note: After **uv_async_send** is called, the callback is invoked asynchronously. libuv only ensures that at least one callback is executed if **uv_async_send** is called multiple times. As a result, if **uv_async_send** is called multiple times for the same handle, the callback processing in libuv may not align with your expectations. However, the native side can ensure that the number of callback execution times matches the number of times that **napi_call_threadsafe_function** is called.
 
 Non-thread-safe functions:
 
@@ -834,14 +831,15 @@ Non-thread-safe functions:
 
 As a core concept in libuv, an event loop manages all resources of the entire event loop and runs through the lifecycle of the entire event loop. Generally, the thread where **uv_run** is located is the main thread of the event loop.
 
-#### Event Loop Running Modes
+**Event Loop Running Modes**
 
-- **UV_RUN_DEFAULT**: runs the event loop until there are no active handles or requests. This is the default mode.
-- **UV_RUN_ONCE**: polls for I/O once. If there is a callback in **pending_queue**, execute the callback and then skip **uv__io_poll**. In this mode, there is an event to occur in the loop by default.
+**UV_RUN_DEFAULT**: runs the event loop until there are no active handles or requests. This is the default mode.
 
-- **UV_RUN_NOWAIT**: polls for I/O once but do not block if there are no pending callbacks. In this mode, **uv__io_poll** is executed once and **pending_queue** is not executed.
+**UV_RUN_ONCE**: polls for I/O once. If there is a callback in **pending_queue**, execute the callback and then skip **uv__io_poll**. In this mode, there is an event to occur in the loop by default.
 
-#### Common APIs
+**UV_RUN_NOWAIT**: polls for I/O once but do not block if there are no pending callbacks. In this mode, **uv__io_poll** is executed once and **pending_queue** is not executed.
+
+**Common APIs**
 
 ```cpp
 int uv_loop_init(uv_loop_t* loop);
@@ -859,11 +857,8 @@ Closes a loop. The operation is successful only after all handles and requests i
 int uv_loop_delete(uv_loop_t* loop);
 ```
 
-Releases a loop. This API calls **uv_loop_close** to release all internal resources associated with the loop and then releases the loop. In OpenHarmony, the **assert()** function does not take effect. Therefore, the loop is released regardless of whether **uv_loop_close** successfully clears the loop resources. When using this API, ensure that the resources associated with the loop can be successfully released when the loop thread exits. That is, all the handles and requests associated with the loop must be closed. Otherwise, resource leaks occur. 
+Releases a loop. This API calls **uv_loop_close** to release all internal resources associated with the loop and then releases the loop. In OpenHarmony, the **assert()** function does not take effect. Therefore, the loop is released regardless of whether **uv_loop_close** successfully clears the loop resources. When using this API, ensure that the resources associated with the loop can be successfully released when the loop thread exits. That is, all the handles and requests associated with the loop must be closed. Otherwise, resource leaks occur. **Exercise caution when using this API. You are advised not to use this API unless necessary.**
 
-> **NOTE**
->
-> Exercise caution when using this API. You are advised not to use this API unless necessary.
 ```cpp
 uv_loop_t* uv_default_loop(void);
 ```
@@ -874,13 +869,13 @@ Creates a process-level loop. In OpenHarmony, libuv loops still exist in the app
 int uv_run(uv_loop_t* loop, uv_run_mode mode);
 ```
 
-  Runs an event loop. For details about the running mode, see [Event Loop Running Modes](#event-loop-running-modes).
+Runs an event loop. For details about the running mode, see "Event Loop Running Modes."
 
 ```cpp
 int uv_loop_alive(uv_loop_t loop);
 ```
 
-  Checks whether a loop is active.
+Checks whether a loop is active.
 
 ```cpp
 void uv_stop(uv_loop_t* loop);
@@ -910,9 +905,7 @@ typedef struct uv_work_s uv_work_t;
 typedef struct uv_fs_s uv_fs_t;
 ```
 
-> **NOTE** 
->
-> In handles, **uv_xxx_t** inherits from **uv_handle_t**. In requests, **uv_work_t** inherits from **uv_req_t**.
+Note: In handles, **uv_xxx_t** inherits from **uv_handle_t**. In requests, **uv_work_t** inherits from **uv_req_t**.
 
 It is critical to understand the handles in libuv and manage its lifecycle. Observe the following when using a handle:
 
@@ -926,14 +919,14 @@ Note that **uv_close** is used to close a handle asynchronously. Its prototype i
 void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
 ```
 
-  Where:
+Where:
 
-- **handle**: pointer to the handle to close.
-- **close_cb**: function used to process the handle. This function is used to perform operations such as memory management.
+  - **handle**: pointer to the handle to close.
+  - **close_cb**: function used to process the handle. This function is used to perform operations such as memory management.
 
 After **uv_close** is called, the handle to be closed is added to the **closing_handles** queue in the loop, and waits for the loop thread to run **uv__run_closing_handles**. Finally, the **close_cb** callback is executed in the next iteration of the loop. Therefore, operations such as memory release should be performed in **close_cb**. Improper use of the **close** API that is executed asynchronously may cause multithreading issues. You need to ensure correct timing of **uv_close** and ensure that all the handles are closed before **close_cb** is executed.
 
-> **Tips**<br>The following rule of thumb in the official libuv documentation (http://libuv.org/) needs to be observed.<br> If a handle of type **uv_foo_t** has a **uv_foo_start()** function, then it is active from the moment that function is called. Likewise, **uv_foo_stop()** deactivates the handle again.
+Tips: The following rule of thumb in the [official libuv documentation](http://libuv.org/) needs to be observed. If a handle of type **uv_foo_t** has a **uv_foo_start()** function, then it is active from the moment that function is called. Likewise, **uv_foo_stop()** deactivates the handle again.
 
 >  **NOTE**
 >
@@ -953,18 +946,18 @@ uv_queue_work(loop, work, [](uv_work_t* req) {
 });
 ```
 
-#### Using libuv Timers
+### Using libuv Timers
 
 Observe the following when using the libuv timers:
 
 - Do not use libuv APIs (**uv_timer_start**, **uv_timer_stop**, and **uv_timer_again**) in multiple threads to operate the timer heap of the same loop simultaneously. Otherwise, the application may crash. To use libuv APIs to operate timers, perform the operations on the thread associated with the current **env**'s loop.
 - To throw a timer to a thread, use **uv_async_send**.
 
-##### Incorrect Example
+**Incorrect Example**
 
 In the following example, operations on the timer heap of the same loop are performed in multiple threads at the same time, which poses a high crash rate.
 
-ArkTS:
+ArkTS side:
 
 ```typescript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -1059,7 +1052,7 @@ Add the following code to **index.d.ts**:
 export const testTimer:() => number;
 ```
 
-##### Correct Example
+**Correct Example**
 
 **Case 1**: Ensure that timer-related operations are performed on the JS main thread. Modify the **TestTimer()** function used in the previous example as follows:
 
@@ -1081,7 +1074,7 @@ static napi_value TestTimer(napi_env env, napi_callback_info info)
 
 **Case 2**: To throw a timer to a child thread, use the thread-safe function **uv_async_send**.
 
-ArkTS:
+ArkTS side:
 ```typescript
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so'
@@ -1198,21 +1191,25 @@ The inter-thread communication of libuv is implemented based on the **uv_async_t
 int uv_async_init(uv_loop_t* loop, uv_async_t* handle, uv_async_cb async_cb)
 ```
 
-  Initializes a handle.<br>**loop**: pointer to the event loop.
+Initializes a handle.
 
-  **handle**: pointer to the handle for inter-thread communication.
+- **loop**: pointer to the event loop.
 
-  **async_cb**: callback to be invoked.
+- **handle**: pointer to the handle for inter-thread communication.
 
-  This API returns **0** if the operation is successful; returns an error code if the operation fails.
+- **async_cb**: callback to be invoked.
+
+This API returns **0** if the operation is successful; returns an error code if the operation fails.
 
 ```cpp
 int uv_async_send(uv_async_t* handle)
 ```
 
-  Wakes up the event loop and calls the async handle's callback.<br>**handle**: pointer to the handle for inter-thread communication.
+Wakes up the event loop and calls the async handle's callback.
 
-  This API returns **0** if the operation is successful; returns an error code if the operation fails.
+- **handle**: pointer to the handle for inter-thread communication.
+
+This API returns **0** if the operation is successful; returns an error code if the operation fails.
 > **NOTE**
 >
 > - **uv_async_t** remains active after **uv_async_init** is called till it is closed by **uv_close**.
@@ -1304,24 +1301,28 @@ int uv_queue_work(uv_loop_t* loop,
                   uv_after_work_cb after_work_cb)
 ```
 
-Initializes a work request which will run the given **work_cb** in a thread from the thread pool.<br>**work_cb**: task submitted to the worker thread.
+Initializes a work request which will run the given **work_cb** in a thread from the thread pool.
 
-**after_work_cb**: callback to be executed by the loop thread.
+- **work_cb**: task submitted to the worker thread.
 
-**NOTE**<br>**after work_cb** is called after **work_cb** is complete. It is triggered by an FD event triggered by **uv_async_send(loop->wq_async)** and executed in the next iteration of the loop thread. The **uv_work_t** lifecycle ends only when **after_work_cb** is executed.
+- **after_work_cb**: callback to be executed by the loop thread.
 
-#### Submitting Asynchronous Tasks
+Note: **after work_cb** is called after **work_cb** is complete. It is triggered by an FD event triggered by **uv_async_send(loop->wq_async)** and executed in the next iteration of the loop thread. The **uv_work_t** lifecycle ends only when **after_work_cb** is executed.
+
+**Submitting Asynchronous Tasks**
 
 The following figure illustrates a simplified workflow of the native libuv thread pool. The default pending flag of the handle is 1. The number of worker threads is an example only.
 
 ![Working principle of the libuv thread pool](./figures/libuv-image-3.jpg)
 
-#### Precautions for Submitting Asynchronous Tasks
-##### Workflow of uv_queue_work
+**Precautions for Submitting Asynchronous Tasks**
 
-In OpenHarmony, **uv_queue_work()** in a UI thread works as follows: Throw **work_cb** to the thread pool of the related priority of Function Flow Runtime (FFRT) and wait for FFRT to schedule and execute the task; throw **after_work_cb** to the event queue of **eventhandler** with the corresponding priority, wait for **eventhandler** to schedule, and return to the loop thread for execution. <br>**NOTE**<br>After **uv_queue_work()** is called, it does not mean any task is complete. It only means **work_cb()** is inserted into the thread pool of the related priority of FFRT. The workflow of the taskpool and jsworker threads is the same as that of native libuv.
+In OpenHarmony, **uv_queue_work()** in a UI thread works as follows: Throw **work_cb** to the thread pool of the related priority of Function Flow Runtime (FFRT) and wait for FFRT to schedule and execute the task; throw **after_work_cb** to the event queue of **eventhandler** with the corresponding priority, wait for **eventhandler** to schedule, and return to the loop thread for execution. Note: After **uv_queue_work()** is called, it does not mean any task is complete. It only means **work_cb()** is inserted into the thread pool of the related priority of FFRT. The workflow of the taskpool and jsworker threads is the same as that of native libuv.
 
-In special cases, for example, in memory-sensitive cases, the same request can be used repeatedly when:<br>- The sequence of the same type of tasks is ensured.<br>-The request can be successfully released when **uv_queue_work** is called the last time.
+In special cases, for example, in memory-sensitive cases, the same request can be used repeatedly when:
+
+- The sequence of the same type of tasks is ensured.
+- The request can be successfully released when **uv_queue_work** is called the last time.
 
 ```C
 uv_work_t* work = new uv_work_t;
@@ -1340,11 +1341,11 @@ uv_queue_work(loop, work, [](uv_work_t* work) {
     )
 ```
 
-##### Constraints of Using uv_queue_work()
+**Constraints of Using uv_queue_work()**
 
 **uv_queue_work()** is only used to throw asynchronous tasks. The **execute()** callback of an asynchronous task added to the thread pool will be scheduled and executed. Therefore, it does not guarantee that tasks and their callbacks submitted multiple times will be executed in the order they were submitted.
 
-**uv_queue_work()** can be called only on the loop thread. This prevents multi-threading issues. Do not use **uv_queue_work()** as a means for inter-thread communication. Specifically, do not use **uv_queue_work** to throw an asynchronous task from thread A to thread B, setting **execute()** to an empty task and executing the **complete()** callback on thread B. This approach is not only inefficient but increases the difficulty in locating faults. To avoid inefficient task submission, use [napi_threadsafe_function](#thread-safe-apis-for-cross-thread-sharing-and-invocation).
+**uv_queue_work()** can be called only on the loop thread. This prevents multi-threading issues. Do not use **uv_queue_work()** as a means for inter-thread communication. Specifically, do not use **uv_queue_work** to throw an asynchronous task from thread A to thread B, setting **execute()** to an empty task and executing the **complete()** callback on thread B. This approach is not only inefficient but increases the difficulty in locating faults. To avoid inefficient task submission, use [napi_threadsafe_function](../../napi/use-napi-thread-safety.md).
 
 ### Use of libuv in OpenHarmony
 
@@ -1361,201 +1362,201 @@ The following types of requests can be processed as expected in the application 
 - uv_random_t
 
   Function prototype:
-
-```cpp
-/**
-* @brief Adds a work request to an event loop queue.
-* 
-* @param loop Pointer to the event loop.
-* @param req Pointer to the request.
-* @param buf Buffer for storing the random number.
-* @param buflen Length of the buffer.
-* @param flags Options for generating a random number. The value is an unsigned integer. 
-* @param cb Callback used to return the random number generated.
-*
-* @return Returns 0 if the operation is successful; returns an error code otherwise.
-*/
-int uv_random(uv_loop_t* loop,
-             uv_random_t* req,
-             void* buf,
-             size_t buflen,
-             unsigned flags,
-             uv_random_cb cb);
-```
-
+  
+  ```cpp
+  /**
+  * @brief Adds a work request to an event loop queue.
+  * 
+  * @param loop Pointer to the event loop.
+  * @param req Pointer to the request.
+  * @param buf Buffer for storing the random number.
+  * @param buflen Length of the buffer.
+  * @param flags Options for generating a random number. The value is an unsigned integer. 
+  * @param cb Callback used to return the random number generated.
+  *
+  * @return Returns 0 if the operation is successful; returns an error code otherwise.
+  */
+  int uv_random(uv_loop_t* loop,
+               uv_random_t* req,
+               void* buf,
+               size_t buflen,
+               unsigned flags,
+               uv_random_cb cb);
+  ```
+  
 - uv_work_t
 
     Function prototype:
 
-```cpp
-/**
-* @brief Adds a work request to an event loop queue. **work_cb** will be called by a new thread in the next iteration of the event loop. When **work_cb** is complete, **after_work_cb** will be called on the event loop thread.
-* 
-* @param loop Pointer to the event loop.
-* @param req Pointer to the work request.
-* @param work_cb Callback to be executed on a new thread.
-* @param after_work_cb Callback to be invoked on the event loop thread.
-*
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_queue_work(uv_loop_t* loop,
-                  uv_work_t* req,
-                  uv_work_cb work_cb,
-                  uv_after_work_cb after_work_cb);
-```
+    ```cpp
+    /**
+    * @brief Adds a work request to an event loop queue. **work_cb** will be called by a new thread in the next iteration of the event loop. When **work_cb** is complete, **after_work_cb** will be called on the event loop thread.
+    * 
+    * @param loop Pointer to the event loop.
+    * @param req Pointer to the work request.
+    * @param work_cb Callback to be executed on a new thread.
+    * @param after_work_cb Callback to be invoked on the event loop thread.
+    *
+    * @return Returns 0 if the operation is successful; returns -1 otherwise.
+    */
+    int uv_queue_work(uv_loop_t* loop,
+                      uv_work_t* req,
+                      uv_work_cb work_cb,
+                      uv_after_work_cb after_work_cb);
+    ```
 
 - uv_fs_t
 
     All asynchronous APIs provided by the file class can work as expected in the application main thread. Common APIs include the following:
 
-```cpp
-/**
-* @brief Reads a file asynchronously.
-*
-* @param loop Pointer to the event loop.
-* @param req Pointer to the file operation request.
-* @param file File descriptor.
-* @param bufs An array of buffers for storing the data read.
-* @param nbufs Number of buffers.
-* @param off Offset in the file from which data is read.
-* @param cb Callback to be invoked when the read operation is complete.
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_fs_read(uv_loop_t* loop, uv_fs_t* req,
-              uv_file file, 
-              const uv_buf_t bufs[],
-              unsigned int nbufs,
-              int64_t off,
-              uv_fs_cb cb);
-
-/**
-* @brief Opens a file asynchronously.
-*
-* @param loop Pointer to the event loop.
-* @param req Pointer to the file operation request.
-* @param path Pointer to the path of the file to open.
-* @param flags Modes for opening the file.
-* @param mode Permission on the file.
-* @param cb Callback to be invoked when the file is opened.
-*
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_fs_open(uv_loop_t* loop, 
-               uv_fs_t* req,
-               const char* path,
-               int flags,
-               int mode,
-               uv_fs_cb cb);
-
-/**
-* @brief Sends data from a file to another asynchronously.
-*
-* @param loop Pointer to the event loop.
-* @param req Pointer to the file operation request.
-* @param out_fd File descriptor of the destination file.
-* @param in_fd File descriptor of the source file.
-* @param off Offset in the source file from which data is sent.
-* @param len Length of the data to be sent.
-* @param cb Callback to be invoked when the data is sent.
-*
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_fs_sendfile(uv_loop_t* loop,
-                   uv_fs_t* req,
-                   uv_file out_fd,
-                   uv_file in_fd,
-                   int64_t off,
-                   size_t len,
-                   uv_fs_cb cb);
-
-/**
-* @brief Writes data to a file asynchronously.
-*
-* @param loop Pointer to the event loop.
-* @param req Pointer to the file operation request.
-* @param file File descriptor.
-* * @param data An array of buffers for storing the data to be written.
-* @param nbufs Number of buffers.
-* @param off Offset in the file from which data is written.
-* @param cb Callback to be invoked when the read operation is complete.
-*
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_fs_write(uv_loop_t* loop, 
-                uv_fs_t* req,
-                uv_file file,
-                const uv_buf_t bufs[],
-                unsigned int nbufs,
-                int64_t off,
-                uv_fs_cb cb);
-
-/**
-* @brief Copies a file asynchronously.
-*
-* @param loop Pointer to the event loop.
-* @param req Pointer to the file operation request.
-* @param path Pointer to the path of the file to copy.
-* @param new_path Pointer to the destination path.
-* @param flags Options for the copy operation.
-* @param cb Callback to be invoked when the copy operation is complete.
-*
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_fs_copyfile(uv_loop_t* loop,
+    ```cpp
+    /**
+    * @brief Reads a file asynchronously.
+    *
+    * @param loop Pointer to the event loop.
+    * @param req Pointer to the file operation request.
+    * @param file File descriptor.
+    * @param bufs An array of buffers for storing the data read.
+    * @param nbufs Number of buffers.
+    * @param off Offset in the file from which data is read.
+    * @param cb Callback to be invoked when the read operation is complete.
+    * @return Returns 0 if the operation is successful; returns -1 otherwise.
+    */
+    int uv_fs_read(uv_loop_t* loop, uv_fs_t* req,
+                  uv_file file, 
+                  const uv_buf_t bufs[],
+                  unsigned int nbufs,
+                  int64_t off,
+                  uv_fs_cb cb);
+    
+    /**
+    * @brief Opens a file asynchronously.
+    *
+    * @param loop Pointer to the event loop.
+    * @param req Pointer to the file operation request.
+    * @param path Pointer to the path of the file to open.
+    * @param flags Modes for opening the file.
+    * @param mode Permission on the file.
+    * @param cb Callback to be invoked when the file is opened.
+    *
+    * @return Returns 0 if the operation is successful; returns -1 otherwise.
+    */
+    int uv_fs_open(uv_loop_t* loop, 
                    uv_fs_t* req,
                    const char* path,
-                   const char* new_path
                    int flags,
+                   int mode,
                    uv_fs_cb cb);
-```
+    
+    /**
+    * @brief Sends data from a file to another asynchronously.
+    *
+    * @param loop Pointer to the event loop.
+    * @param req Pointer to the file operation request.
+    * @param out_fd File descriptor of the destination file.
+    * @param in_fd File descriptor of the source file.
+    * @param off Offset in the source file from which data is sent.
+    * @param len Length of the data to be sent.
+    * @param cb Callback to be invoked when the data is sent.
+    *
+    * @return Returns 0 if the operation is successful; returns -1 otherwise.
+    */
+    int uv_fs_sendfile(uv_loop_t* loop,
+                       uv_fs_t* req,
+                       uv_file out_fd,
+                       uv_file in_fd,
+                       int64_t off,
+                       size_t len,
+                       uv_fs_cb cb);
+    
+    /**
+    * @brief Writes data to a file asynchronously.
+    *
+    * @param loop Pointer to the event loop.
+    * @param req Pointer to the file operation request.
+    * @param file File descriptor.
+    * @param bufs An array of buffers for storing the data to be written.
+    * @param nbufs Number of buffers.
+    * @param off Offset in the file from which data is written.
+    * @param cb Callback to be invoked when the read operation is complete.
+    *
+    * @return Returns 0 if the operation is successful; returns -1 otherwise.
+    */
+    int uv_fs_write(uv_loop_t* loop, 
+                    uv_fs_t* req,
+                    uv_file file,
+                    const uv_buf_t bufs[],
+                    unsigned int nbufs,
+                    int64_t off,
+                    uv_fs_cb cb);
+    
+    /**
+    * @brief Copies a file asynchronously.
+    *
+    * @param loop Pointer to the event loop.
+    * @param req Pointer to the file operation request.
+    * @param path Pointer to the path of the file to copy.
+    * @param new_path Pointer to the destination path.
+    * @param flags Options for the copy operation.
+    * @param cb Callback to be invoked when the copy operation is complete.
+    *
+    * @return Returns 0 if the operation is successful; returns -1 otherwise.
+    */
+    int uv_fs_copyfile(uv_loop_t* loop,
+                       uv_fs_t* req,
+                       const char* path,
+                       const char* new_path
+                       int flags,
+                       uv_fs_cb cb);
+    ```
 
 - uv_getaddrinfo_t
 
      Function prototype:
 
-```cpp
-/**
-* @brief Obtains address information asynchronously.
-*
-* @param loop Pointer to the event loop.
-* @param req Pointer to the request for obtaining address information.
-* @param cb Callback to be invoked when the address information is obtained.
-* @param hostname Pointer to the host name to resolve.
-* @param service Pointer to the service name.
-* @param hints Pointer to the address information with additional address type constraints.
-*
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_getaddrinfo(uv_loop_t* loop,
-                   uv_getaddrinfo_t* req,
-                   uv_getaddrinfo_cb cb,
-                   const char* hostname,
-                   const char* service,
-                   const struct addrinfo* hints);
-```
+     ```cpp
+     /**
+     * @brief Obtains address information asynchronously.
+     *
+     * @param loop Pointer to the event loop.
+     * @param req Pointer to the request for obtaining address information.
+     * @param cb Callback to be invoked when the address information is obtained.
+     * @param hostname Pointer to the host name to resolve.
+     * @param service Pointer to the service name.
+     * @param hints Pointer to the address information with additional address type constraints.
+     *
+     * @return Returns 0 if the operation is successful; returns -1 otherwise.
+     */
+     int uv_getaddrinfo(uv_loop_t* loop,
+                        uv_getaddrinfo_t* req,
+                        uv_getaddrinfo_cb cb,
+                        const char* hostname,
+                        const char* service,
+                        const struct addrinfo* hints);
+     ```
 
 - uv_getnameinfo_t
 
      Function prototype:
 
-```cpp
-/**
-* @brief Obtains name information asynchronously.
-*
-* @param loop Pointer to the event loop.
-* @param req Pointer to the request.
-* @param cb Callback to be invoked when the name information is obtained.
-* @param addr Pointer to the address information to resolve.
-* @param flags Flags for controlling the behavior of the lookup.
-*
-* @return Returns 0 if the operation is successful; returns -1 otherwise.
-*/
-int uv_getnameinfo(uv_loop_t* loop,
-                   uv_getnameinfo_t* req,
-                   uv_getnameinfo_cb getnameinfo_cb,
-                   const struct sockaddr* addr,
-                   int flags);
-```
+     ```cpp
+     /**
+     * @brief Obtains name information asynchronously.
+     *
+     * @param loop Pointer to the event loop.
+     * @param req Pointer to the request.
+     * @param getnameinfo_cb Callback to be invoked when the name information is obtained.
+     * @param addr Pointer to the address information to resolve.
+     * @param flags Flags for controlling the behavior of the lookup.
+     *
+     * @return Returns 0 if the operation is successful; returns -1 otherwise.
+     */
+     int uv_getnameinfo(uv_loop_t* loop,
+                        uv_getnameinfo_t* req,
+                        uv_getnameinfo_cb getnameinfo_cb,
+                        const struct sockaddr* addr,
+                        int flags);
+     ```
 
 The following APIs do not work as expected in the application main thread:
 

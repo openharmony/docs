@@ -61,8 +61,8 @@ let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForW
 
 | 名称                  | 类型     | 只读  |可选| 说明                                |
 | ------------------- | ------ | ---- | ----|--------------------------------- |
-| rowIndex             | number | 是   |是 |网格行索引。                 |
-| columnIndex          | number | 是  | 是|网格列索引。        |
+| rowIndex             | number | 否   |否 |网格行索引。                 |
+| columnIndex          | number | 否  | 否|网格列索引。        |
 
 
 ## AccessibilitySpan<sup>20+</sup>
@@ -74,11 +74,11 @@ let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForW
 
 | 名称                  | 类型     | 只读  |可选| 说明                                |
 | ------------------- | ------ | ---- | ----|--------------------------------- |
-| spanId             | number | 是   |是 |超链接文本编号。                 |
-| spanText          | string | 是  | 是|超链接文本的文本内容。        |
-| accessibilityText          | string | 是  | 是|超链接文本的辅助功能文本。        |
-| accessibilityDescription          | string | 是  | 是|超链接文本的辅助功能描述。        |
-| accessibilityLevel          | string | 是  | 是|超链接文本的辅助功能级别。        |
+| spanId             | number | 否   |否 |超链接文本编号。                 |
+| spanText          | string | 否 | 否|超链接文本的文本内容。        |
+| accessibilityText          | string | 否  | 否|超链接文本的辅助功能文本。        |
+| accessibilityDescription          | string | 否  | 否|超链接文本的辅助功能描述。        |
+| accessibilityLevel          | string | 否  | 否|超链接文本的辅助功能级别。        |
 
 
 ## startAbility<sup>12+</sup>
@@ -422,6 +422,7 @@ getAccessibilityFocusedElement(): Promise\<AccessibilityElement>;
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 9300003 | No accessibility permission to perform the operation. |
+| 9300006 |  The target application failed to connect to accessibility service. |
 
 **示例：**
 
@@ -463,6 +464,7 @@ getRootInActiveWindow(windowId ?: number): Promise\<[AccessibilityElement](#acce
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 9300003 | No accessibility permission to perform the operation. |
+| 9300006 | The target application failed to connect to accessibility service. |
 
 **示例：**
 
@@ -494,7 +496,7 @@ getAccessibilityWindowsSync(displayId?: number): Array\<[AccessibilityElement](#
 | -------- | -------- | -------- | -------- |
 | displayId | number | No | 显示ID。如果未提供此参数，则表示默认displayId。 |
 
-**返回值：**s
+**返回值:**
 
 | 类型                                 | 描述                    |
 | ----------------------------------- | ---------------------- |
@@ -535,72 +537,72 @@ try {
 
 ### 属性
 
-| 名称                  | 类型                                                             | 可读 | 可写 | 描述             |
+| 名称                  | 类型                                                             | 只读 | 可选 | 描述             |
 |----------------------|--------------------------------------------------------------------|------|------|-------------------|
-| accessibilityFocused<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否因无障碍目的而获得焦点。值为 **true** 表示元素已获得焦点，**false** 表示相反情况。<br>默认值：**false**。|
-| bundleName<sup>20+</sup> | string                                                             | 是  | 否  | 包名。|
-| checkable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可勾选。值为 **true** 表示元素可勾选，**false** 表示相反情况。<br>默认值：**false**。|
-| checked<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否已勾选。值为 **true** 表示元素已勾选，**false** 表示相反情况。<br>默认值：**false**。|
-| clickable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可点击。值为 **true** 表示元素可点击，**false** 表示相反情况。<br>默认值：**false**。|
-| componentId<sup>20+</sup> | number                                                             | 是  | 否  | 元素所属组件的 ID。<br>默认值：**-1**。|
-| componentType<sup>20+</sup> | string                                                             | 是  | 否  | 元素所属组件的类型。|
-| contents<sup>20+</sup> | Array&lt;string&gt;                                                | 是  | 否  | 元素显示内容。|
-| currentIndex<sup>20+</sup> | number                                                             | 是  | 否  | 当前项的索引。<br>默认值：**0**。|
-| description<sup>20+</sup> | string                                                             | 是  | 否  | 元素的描述信息。|
-| editable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可编辑。值为 **true** 表示元素可编辑，**false** 表示相反情况。<br>默认值：**false**。|
-| endIndex<sup>20+</sup> | number                                                             | 是  | 否  | 屏幕上显示的最后一个列表项的索引。<br>默认值：**0**。|
-| error<sup>20+</sup> | string                                                             | 是  | 否  | 元素的错误状态。|
-| focusable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可获得焦点。值为 **true** 表示元素可获得焦点，**false** 表示相反情况。<br>默认值：**false**。|
-| hintText<sup>20+</sup> | string                                                             | 是  | 否  | 提示文本。|
-| inputType<sup>20+</sup> | number                                                             | 是  | 否  | 输入文本的类型。<br>默认值：**0**。|
-| inspectorKey<sup>20+</sup> | string                                                             | 是  | 否  | 检查器键。|
-| isActive<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否处于活动状态。值为 **true** 表示元素处于活动状态，**false** 表示相反情况。<br>默认值：**true**。|
-| isEnable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否已启用。值为 **true** 表示元素已启用，**false** 表示相反情况。<br>默认值：**false**。|
-| isHint<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否为提示信息。值为 **true** 表示元素是提示信息，**false** 表示相反情况。<br>默认值：**false**。|
-| isFocused<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否已获得焦点。值为 **true** 表示元素已获得焦点，**false** 表示相反情况。<br>默认值：**false**。|
-| isPassword<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否为密码。值为 **true** 表示元素是密码，**false** 表示相反情况。<br>默认值：**false**。|
-| isVisible<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可见。值为 **true** 表示元素可见，**false** 表示相反情况。<br>默认值：**false**。|
-| itemCount<sup>20+</sup> | number                                                             | 是  | 否  | 项目总数。<br>默认值：**0**。|
-| lastContent<sup>20+</sup> | string                                                             | 是  | 否  | 最后一项内容。|
-| layer<sup>20+</sup> | number                                                             | 是  | 否  | 元素的显示层级。|
-| longClickable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可长按。值为 **true** 表示元素可长按，**false** 表示相反情况。<br>默认值：**false**。|
-| pageId<sup>20+</sup> | number                                                             | 是  | 否  | 页面 ID。<br>默认值：**-1**。|
-| pluralLineSupported<sup>20+</sup>  | boolean                                                            | 是  | 否  | 元素是否支持多行文本。值为 **true** 表示元素支持多行文本，**false** 表示相反情况。<br>默认值：**false**。|
-| rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 是  | 否  | 元素的区域。|
-| resourceName<sup>20+</sup>         | string                                                             | 是  | 否  | 元素的资源名称。|
-| screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 是  | 否  | 元素的显示区域。|
-| scrollable<sup>20+</sup>           | boolean                                                            | 是  | 否  | 元素是否可滚动。值为 **true** 表示元素可滚动，**false** 表示相反情况。<br>默认值：**false**。|
-| selected<sup>20+</sup>             | boolean                                                            | 是  | 否  | 元素是否已选中。值为 **true** 表示元素已选中，**false** 表示相反情况。<br>默认值：**false**。|
-| startIndex<sup>20+</sup>           | number                                                             | 是  | 否  | 屏幕上第一个列表项的索引。<br>默认值：**0**。|
-| text<sup>20+</sup>                 | string                                                             | 是  | 否  | 元素的文本内容。|
-| textLengthLimit<sup>20+</sup>      | number                                                             | 是  | 否  | 元素的最大文本长度。|
-| textMoveUnit<sup>20+</sup>         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| 是  | 否  | 文本朗读时的移动单位。<br>默认值：**0**。|
-| triggerAction<sup>20+</sup>        | [accessibility.Action](js-apis-accessibility.md#action)            | 是  | 否  | 触发元素事件的操作。|
-| type<sup>20+</sup>                 | [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)                                          | 是  | 否  | 元素的窗口类型。|
-| valueMax<sup>20+</sup>             | number                                                             | 是  | 否  | 最大值。<br>默认值：**0**。|
-| valueMin<sup>20+</sup>             | number                                                             | 是  | 否  | 最小值。<br>默认值：**0**。|
-| valueNow<sup>20+</sup>             | number                                                             | 是  | 否  | 当前值。<br>默认值：**0**。|
-| windowId<sup>20+</sup>             | number                                                             | 是  | 否  | 窗口 ID。<br>默认值：**-1**。|
-| offset<sup>20+</sup>             | number              | 是  | 否  | 内容区域相对于可滚动组件（如 **List** 和 **Grid**）顶部坐标的像素偏移量。<br>默认值：**0**。|
-| textType<sup>20+</sup>             | string                                                             | 是  | 否  | 元素的无障碍文本类型，由组件的 **accessibilityTextHint** 属性配置。|
-| accessibilityText<sup>20+</sup> | string                                                  | 是  | 否  | 元素的无障碍文本信息。|
-| hotArea<sup>20+</sup>             | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                              | 是  | 否  | 元素的可触摸区域。|
-| customComponentType<sup>20+</sup>             | string                                                             | 是  | 否  | 自定义组件类型。|
-| accessibilityNextFocusId<sup>20+</sup>             | number                | 是  | 否  | 下一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
-| accessibilityPreviousFocusId<sup>20+</sup>             | number                | 是  | 否  | 上一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
-| extraInfo<sup>20+</sup>             | string     | 是  | 否  | 元素的额外信息。值为 JSON 字符串。|
-| accessibilityScrollable<sup>20+</sup>             | boolean                 | 是  | 否  | 元素是否因无障碍目的而可滚动。此属性优先级高于 **scrollable**。<br>- **true**（默认值）：元素可滚动。<br>- **false**：元素不可滚动。|
-| supportedActionNames<sup>20+</sup> | Array&lt;string&gt;                                                | 是  | 否  | 支持的操作名称。|
-| accessibilityGroup<sup>20+</sup>  | boolean                                                            | 是  | 否  | 元素是否为无障碍组。值为 **true** 表示元素是无障碍组，**false** 表示相反情况。<br>默认值：**false**。|
-| accessibilityLevel<sup>20+</sup>             | string                                                             | 是  | 否  | 组件的无障碍级别。<br> **'auto'**：当前组件由无障碍分组服务和ArkUI进行综合判断组件是否可被辅助功能识别。<br> **'yes'**：当前组件可被辅助功能识别。<br> **'no'**：当前组件不可被辅助功能识别。<br> **'no-hide-descendants'**：当前组件及其所有子组件不可被辅助功能识别。|
-| navDestinationId<sup>20+</sup>             | number                                                             | 是  | 否  | 组件的导航目标 ID。|
-| currentItem<sup>20+</sup>             | [AccessibilityGrid](#accessibilitygrid20)                                                             | 是  | 否  | 组件网格中的当前项。|
-| spans<sup>20+</sup>             | [AccessibilitySpan](#accessibilityspan20)[]                                                             | 是  | 否  | 组件的跨度数组。|
-| accessibilityVisible<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否无障碍可见。值为 **true** 表示可见，**false** 表示不可见。|
-| mainWindowId<sup>20+</sup>             | number                                                             | 是  | 否 | 组件的主窗口 ID。|
-| clip<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否需要裁剪。值为 **true** 表示需要裁剪，**false** 表示不需要裁剪。|
-| parentId<sup>20+</sup>             | number                                                             | 是  | 否  | 组件的父元素 ID。|
-| childrenIds<sup>20+</sup>             | Array\<number>                                                             | 是  | 否  | 组件的子元素 ID 列表。|
+| accessibilityFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否因无障碍目的获得焦点。true表示已获得焦点，false表示未获得焦点。<br>默认值：false。|
+| bundleName<sup>20+</sup> | string                                                             | 否  | 是  | 包名。|
+| checkable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可勾选。true表示可勾选，false表示不可勾选。<br>默认值：false。|
+| checked<sup>20+</sup> | boolean | 否 | 是 | 元素是否已勾选。true表示已勾选，false表示未勾选。<br>默认值：false。|
+| clickable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可点击。true表示可点击，false表示不可点击。<br>默认值：false。|
+| componentId<sup>20+</sup> | number | 否 | 是 | 元素所属组件的ID。<br>默认值：-1。|
+| componentType<sup>20+</sup> | string                                                             | 否  | 是  | 元素所属组件的类型。|
+| contents<sup>20+</sup> | Array&lt;string&gt;                                                | 否  | 是  | 元素显示内容。|
+| currentIndex<sup>20+</sup> | number                                                             | 否  | 是  | 当前项的索引。<br>默认值：0。|
+| description<sup>20+</sup> | string                                                             | 否  | 是  | 元素的描述信息。|
+| editable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可编辑。true表示可编辑，false表示不可编辑。<br>默认值：false。|
+| endIndex<sup>20+</sup> | number                                                             | 否  | 是  | 屏幕上显示的最后一个列表项的索引。<br>默认值：0。|
+| error<sup>20+</sup> | string                                                             | 否  | 是  | 元素的错误状态。|
+| focusable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可获得焦点。true表示可获得焦点，false表示不可获得焦点。<br/>默认值：false。|
+| hintText<sup>20+</sup> | string                                                             | 否  | 是  | 提示文本。|
+| inputType<sup>20+</sup> | number                                                             | 否  | 是  | 输入文本的类型。<br>默认值：0。|
+| inspectorKey<sup>20+</sup> | string                                                             | 否  | 是  | 检查器键。|
+| isActive<sup>20+</sup> | boolean | 否 | 是 | 元素是否处于活动状态。true表示活动状态，false表示非活动状态。<br>默认值：true。|
+| isEnable<sup>20+</sup> | boolean | 否 | 是 | 元素是否启用。true表示启用，false表示未启用。<br>默认值：false。|
+| isHint<sup>20+</sup> | boolean | 否 | 是 | 元素是否为提示信息。true表示元素是提示信息，false表示非提示信息。<br>默认值：false。|
+| isFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否已获得焦点。true表示已获得焦点，false表示未获得焦点。<br>默认值：false。|
+| isPassword<sup>20+</sup> | boolean                                                            | 否  | 是  | 元素是否为密码。true表示元素是密码，false表示不是密码。<br>默认值：false。|
+| isVisible<sup>20+</sup> | boolean | 否 | 是 | 元素是否可见。true表示元素可见，false表示元素不可见。<br>默认值：false。|
+| itemCount<sup>20+</sup> | number                                                             | 否  | 是  | 项目总数。<br>默认值：0。|
+| lastContent<sup>20+</sup> | string                                                             | 否  | 是  | 最后一项内容。|
+| layer<sup>20+</sup> | number                                                             | 否  | 是  | 元素的显示层级。|
+| longClickable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可长按。true表示可长按，false表示不可长按。<br>默认值：false。|
+| pageId<sup>20+</sup> | number | 否 | 是 | 页面ID。<br>默认值：-1。|
+| pluralLineSupported<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否支持多行文本。true表示支持，false表示不支持。<br>默认值：false。|
+| rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                      | 否  | 是  | 元素的区域。|
+| resourceName<sup>20+</sup>         | string                                                             | 否  | 是  | 元素的资源名称。|
+| screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                      | 否  | 是  | 元素的显示区域。|
+| scrollable<sup>20+</sup>           | boolean                                                            | 否  | 是  | 元素是否可滚动。true表示元素可滚动，false表示不可滚动。<br>默认值：false。|
+| selected<sup>20+</sup>             | boolean                                                            | 否  | 是  | 元素是否已选中。true表示已选中，false表示未选中。<br>默认值：false。|
+| startIndex<sup>20+</sup>           | number                                                             | 否  | 是  | 屏幕上第一个列表项的索引。<br>默认值：0。|
+| text<sup>20+</sup>                 | string                                                             | 否  | 是  | 元素的文本内容。|
+| textLengthLimit<sup>20+</sup>      | number                                                             | 否  | 是  | 元素的最大文本长度。|
+| textMoveUnit<sup>20+</sup>         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| 否  | 是  | 文本朗读时的移动单位。<br>默认值：0。|
+| triggerAction<sup>20+</sup>        | [accessibility.Action](js-apis-accessibility.md#action)            | 否  | 是  | 触发元素事件的操作。|
+| type<sup>20+</sup>                 | [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)                                          | 否  | 是  | 元素的窗口类型。|
+| valueMax<sup>20+</sup>             | number                                                             | 否  | 是  | 最大值。<br>默认值：0。|
+| valueMin<sup>20+</sup>             | number                                                             | 否  | 是  | 最小值。<br>默认值：0。|
+| valueNow<sup>20+</sup>             | number                                                             | 否  | 是  | 当前值。<br>默认值：0。|
+| windowId<sup>20+</sup>             | number                                                             | 否  | 是  | 窗口ID。<br>默认值：-1。|
+| offset<sup>20+</sup>             | number              | 否  | 是  | 内容区域相对于可滚动组件（如List和Grid）顶部坐标的像素偏移量。<br>默认值：0。|
+| textType<sup>20+</sup>             | string                                                             | 否  | 是  | 元素的无障碍文本类型，由组件的accessibilityTextHint属性配置。|
+| accessibilityText<sup>20+</sup> | string                                                  | 否  | 是  | 元素的无障碍文本信息。|
+| hotArea<sup>20+</sup>             | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                              | 否  | 是  | 元素的可触摸区域。|
+| customComponentType<sup>20+</sup>             | string                                                             | 否  | 是  | 自定义组件类型。|
+| accessibilityNextFocusId<sup>20+</sup>             | number                | 否  | 是  | 下一个要获得焦点的组件的ID。<br>默认值：-1。|
+| accessibilityPreviousFocusId<sup>20+</sup>             | number                | 否  | 是  | 上一个要获得焦点的组件的ID。<br>默认值：-1。|
+| extraInfo<sup>20+</sup>             | string     | 否  | 是  | 元素的额外信息。值为JSON字符串。|
+| accessibilityScrollable<sup>20+</sup>             | boolean                 | 否  | 是  | 元素是否因无障碍目的而可滚动。此属性优先级高于scrollable。<br>true表示元素可滚动，false表示元素不可滚动。<br>默认值：true。|
+| supportedActionNames<sup>20+</sup> | Array&lt;string&gt;                                                | 否  | 是  | 支持的操作名称。|
+| accessibilityGroup<sup>20+</sup>  | boolean                                                            | 否  | 是  | 元素是否为无障碍组。true表示元素是无障碍组，false表示元素不是无障碍组。<br>默认值：false。|
+| accessibilityLevel<sup>20+</sup>             | string                                                             | 否  | 是  | 组件的无障碍级别。<br>'auto'：当前组件由无障碍分组服务和ArkUI进行综合判断组件是否可被辅助功能识别。<br>'yes'：当前组件可被辅助功能识别。<br>'no'：当前组件不可被辅助功能识别。<br>'no-hide-descendants'：当前组件及其所有子组件不可被辅助功能识别。|
+| navDestinationId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的导航目标ID。|
+| currentItem<sup>20+</sup>             | [AccessibilityGrid](#accessibilitygrid20)                                                             | 否  | 是  | 组件网格中的当前项。|
+| spans<sup>20+</sup>             | [AccessibilitySpan](#accessibilityspan20)[]                                                             | 否  | 是  | 组件的跨度数组。|
+| accessibilityVisible<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否无障碍可见。true表示可见，false表示不可见。|
+| mainWindowId<sup>20+</sup>             | number                                                             | 否  | 是 | 组件的主窗口ID。|
+| clip<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否需要裁剪。true表示需要裁剪，false表示不需要裁剪。|
+| parentId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的父元素ID。|
+| childrenIds<sup>20+</sup>             | Array\<number>                                                             | 否  | 是  | 组件的子元素ID列表。|
 
 **示例：**
 ```ts
@@ -678,7 +680,11 @@ export default class AccessibilityManager {
   }
 
   onEvent(accessibilityEvent: AccessibilityEvent): void {
-    this.context?.getWindowRootElement().then((rootElement: AccessibilityElement) => {
+    if (!this.context) {
+      console.error('context is not available!');
+      return;
+    }
+    this.context.getWindowRootElement().then((rootElement: AccessibilityElement) => {
       console.log(`Succeeded in get root element of the window, ${JSON.stringify(rootElement)}`);
       rootElement.enableScreenCurtain(true);
       console.log(`Succeeded in enableScreenCurtain`);
@@ -865,7 +871,8 @@ executeAction(action: AccessibilityAction, parameters?: Parameter): Promise\<voi
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401     | Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201     | Permission verification failed.The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.     |
 | 9300005 | This action is not supported.            |
 
 **示例：**
@@ -1052,7 +1059,7 @@ for (let window of windows) {
 
 ### findElementByContent<sup>20+</sup>
 
-findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
+findElementByContent(condition: string): Promise\<Array\<AccessibilityElement>>;
 
 根据内容查找元素。
 
@@ -1064,7 +1071,7 @@ findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | ---- | -------- | ------------------------------------------------------------ |
-| content | string | 是 | 内容。 |
+| condition | string | 是 | 内容。 |
 
 **返回值：**
 
@@ -1074,12 +1081,13 @@ findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300006 | The target application failed to connect to accessibility service. |
 
 **示例：**
 
@@ -1111,7 +1119,7 @@ axContext.getRootInActiveWindow(windowId)..then((root: AccessibilityElement) => 
 
 ### findElementByFocusDirection<sup>20+</sup>
 
-findElementByFocusDirection(direction: FocusDirection): Promise\<AccessibilityElement>;
+findElementByFocusDirection(condition: FocusDirection): Promise\<AccessibilityElement>;
 
 根据焦点方向查找元素。
 
@@ -1123,7 +1131,7 @@ findElementByFocusDirection(direction: FocusDirection): Promise\<AccessibilityEl
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | ---- | -------- | ------------------------------------------------------------ |
-| direction | FocusDirection | 是 | 焦点方向。 |
+| condition | FocusDirection | 是 | 焦点方向。 |
 
 **返回值：**
 
@@ -1133,12 +1141,13 @@ findElementByFocusDirection(direction: FocusDirection): Promise\<AccessibilityEl
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300006 | The target application failed to connect to accessibility service. |
 
 **示例：**
 
@@ -1173,7 +1182,7 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 
 ### findElementsByAccessibilityHintText<sup>20+</sup>
 
-findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<AccessibilityElement>>;
+findElementsByAccessibilityHintText(condition: string): Promise\<Array\<AccessibilityElement>>;
 
 根据性提示文本查找元素。
 
@@ -1185,7 +1194,7 @@ findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<Accessibi
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | ---- | -------- | ------------------------------------------------------------ |
-| hintText | string | 是 | 提示文本。 |
+| condition | string | 是 | 提示文本。 |
 
 **返回值：**
 
@@ -1195,12 +1204,13 @@ findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<Accessibi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300006 | The target application failed to connect to accessibility service. |
 
 **示例：**
 
@@ -1237,7 +1247,7 @@ axContext.getRootInActiveWindow(windowId).then((root: AccessibilityElement) => {
 
 ### findElementById<sup>20+</sup>
 
-findElementById(elementId: number): Promise\<AccessibilityElement>;
+findElementById(condition: number): Promise\<AccessibilityElement>;
 
 根据元素 ID 查找元素。
 
@@ -1249,7 +1259,7 @@ findElementById(elementId: number): Promise\<AccessibilityElement>;
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | ---- | -------- | ------------------------------------------------------------ |
-| id | number | 是 | 元素 ID。 |
+| condition | number | 是 | 元素 ID。 |
 
 **返回值：**
 
@@ -1259,12 +1269,13 @@ findElementById(elementId: number): Promise\<AccessibilityElement>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
 | 201 | Permission verification failed.The application does not have the permission required to call the API.|
 | 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300006 | The target application failed to connect to accessibility service. |
 
 **示例：**
 

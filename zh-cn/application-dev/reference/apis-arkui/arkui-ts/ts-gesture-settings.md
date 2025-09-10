@@ -11,20 +11,10 @@
 >  **说明：**
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 绑定手势识别
-
-通过如下方法给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
-可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
->  **说明：**
 >
->  gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
+> 可以通过gesture、priorityGesture和parallelGesture给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
 
-### gesture
+## gesture
 
 gesture(gesture: GestureType, mask?: GestureMask): T
 
@@ -38,8 +28,8 @@ gesture(gesture: GestureType, mask?: GestureMask): T
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| gesture  |  [GestureType](#gesturetype) | 是   | 绑定的手势类型。 |
-| mask  |  [GestureMask](#gesturemask枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
+| gesture  |  [GestureType](./ts-gesture-common.md#gesturetype11-1) | 是   | 绑定的手势类型。 |
+| mask  |  [GestureMask](./ts-gesture-common.md#gesturemask11枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
 
 **返回值：**
 
@@ -47,7 +37,7 @@ gesture(gesture: GestureType, mask?: GestureMask): T
 | ------ | --------- |
 | T | 返回当前组件。 |
 
-### priorityGesture
+## priorityGesture
 
 priorityGesture(gesture: GestureType, mask?: GestureMask): T
 
@@ -65,8 +55,8 @@ priorityGesture(gesture: GestureType, mask?: GestureMask): T
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| gesture  |  [GestureType](#gesturetype) | 是   | 绑定的手势对象。 |
-| mask  |  [GestureMask](#gesturemask枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
+| gesture  |  [GestureType](./ts-gesture-common.md#gesturetype11-1) | 是   | 绑定的手势对象。 |
+| mask  |  [GestureMask](./ts-gesture-common.md#gesturemask11枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
 
 **返回值：**
 
@@ -74,7 +64,7 @@ priorityGesture(gesture: GestureType, mask?: GestureMask): T
 | ------ | --------- |
 | T | 返回当前组件。 |
 
-### parallelGesture
+## parallelGesture
 
 parallelGesture(gesture: GestureType, mask?: GestureMask): T
 
@@ -88,103 +78,14 @@ parallelGesture(gesture: GestureType, mask?: GestureMask): T
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| gesture  |  [GestureType](#gesturetype) | 是   | 绑定的手势对象。 |
-| mask  |  [GestureMask](#gesturemask枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
+| gesture  |  [GestureType](./ts-gesture-common.md#gesturetype11-1) | 是   | 绑定的手势对象。 |
+| mask  |  [GestureMask](./ts-gesture-common.md#gesturemask11枚举说明) | 否   | 事件响应设置。<br/>默认值：GestureMask.Normal |
 
 **返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
 | T | 返回当前组件。 |
-
-
-## GestureType
-
-declare type GestureType = TapGesture | LongPressGesture | PanGesture | PinchGesture | SwipeGesture | RotationGesture | GestureGroup;
-
-定义手势类型。取值类型为下表类型中的并集。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [TapGesture](ts-basic-gestures-tapgesture.md) | 点击手势，支持单次点击、多次点击识别。 |
-| [LongPressGesture](ts-basic-gestures-longpressgesture.md) | 长按手势。 |
-| [PanGesture](ts-basic-gestures-pangesture.md) | 平移手势，当滑动的距离达到最小阈值时触发滑动手势事件，默认滑动阈值为5vp。 |
-| [PinchGesture](ts-basic-gestures-pinchgesture.md) | 捏合手势。 |
-| [RotationGesture](ts-basic-gestures-rotationgesture.md) | 旋转手势。 |
-| [SwipeGesture](ts-basic-gestures-swipegesture.md) | 滑动手势，滑动速度大于等于速度阈值时可识别成功，默认最小速度为100vp/s。 |
-| [GestureGroup](ts-combined-gestures.md) | 手势识别组，多种手势组合为复合手势，支持连续识别、并行识别和互斥识别。 |
-
-## GestureInterface\<T><sup>11+</sup>
-
-定义Gesture接口。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### tag<sup>11+</sup>
-
-tag(tag: string): T
-
-设置手势的标志。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                        |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| tag  |  string | 是   | 手势的标志。 |
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| T | 返回当前组件。 |
-
-### allowedTypes<sup>14+</sup>
-
-allowedTypes(types: Array\<SourceTool>): T
-
-设置手势响应的输入类型。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                        |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| types  |  Array\<[SourceTool](#sourcetool枚举说明9)> | 是   | 手势响应的输入类型。 |
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| T | 返回当前组件。 |
-
-
-## GestureMask枚举说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 |值| 说明 |
-| -------- | ---- |-------- |
-| Normal | - |不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 |
-| IgnoreInternal | - | 屏蔽子组件的手势，包括子组件上系统内置的手势，如子组件为List组件时，内置的滑动手势同样会被屏蔽。 若父子组件区域存在部分重叠，则只会屏蔽父子组件重叠的部分。|
-
-## 响应手势事件
-
-组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过[TapGesture](./ts-basic-gestures-tapgesture.md)手势对象的[onAction](./ts-basic-gestures-tapgesture.md#onaction)事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势，请使用[组合手势](ts-combined-gestures.md)。
 
 ## SourceType枚举说明<sup>8+</sup>
 
@@ -198,23 +99,6 @@ allowedTypes(types: Array\<SourceTool>): T
 | Mouse | - | 鼠标。 |
 | TouchScreen | - | 触摸屏。 |
 
-## FingerInfo对象说明<sup>8+</sup>
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 只读 | 可选| 说明 |
-| -------- | -------- |  -------- |--------- |-------- |
-| id | number | 否  | 否     |手指的索引编号，由按下手指的数量决定，按下一根手指为0，之后每按下1根手指索引编号加一。<br/>**说明：**<br/> 鼠标（索引编号为1001）、手写笔（索引编号为102）、鼠标滚轮（索引编号为0）、触摸板双指滑动（索引编号为0）的索引编号也会被转化为手指的索引编号。<br/>取值范围：[0, 9)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| globalX | number | 否  |  否     |相对于应用窗口左上角的x轴坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| globalY | number | 否  |  否     |相对于应用窗口左上角的y轴坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| localX | number | 否  |  否     |相对于当前组件元素原始区域左上角的x轴坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| localY | number | 否  |  否     |相对于当前组件元素原始区域左上角的y轴坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| displayX<sup>12+</sup> | number | 否  | 否     | 相对于屏幕左上角的x轴坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| displayY<sup>12+</sup> | number | 否  |  否     |相对于屏幕左上角的y轴坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| hand<sup>15+</sup> | [InteractionHand](#interactionhand枚举说明15) | 否  |  是     |表示事件是由左手点击还是右手点击触发。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| globalDisplayX<sup>20+</sup> | number | 否  |  是     |相对于全局屏幕的左上角的X坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| globalDisplayY<sup>20+</sup> | number | 否  |  是     |相对于全局屏幕的左上角的Y坐标，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-
 ## SourceTool枚举说明<sup>9+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -227,21 +111,6 @@ allowedTypes(types: Array\<SourceTool>): T
 | MOUSE<sup>12+</sup> | - | 鼠标输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | TOUCHPAD<sup>12+</sup> | - | 触控板输入。触控板单指输入被视为鼠标输入操作。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | JOYSTICK<sup>12+</sup> | - | 手柄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-
-## InteractionHand枚举说明<sup>15+</sup>
-
-定义事件是由左手点击还是右手点击触发。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 值 | 描述 |
-| -------- | -------- | -------- |
-| NONE | 0 | 未知。 |
-| LEFT | 1 | 左手。 |
-| RIGHT | 2 | 右手。 |
-
 
 ## 示例
 

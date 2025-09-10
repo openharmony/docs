@@ -21,7 +21,7 @@
 
 LongPressGesture(value?: { fingers?: number; repeat?: boolean; duration?: number })
 
-创建长按手势对象。继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)。
+创建长按手势对象。继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)。
 
 当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。长按手势与拖拽会出现冲突，事件优先级如下： 
 
@@ -59,7 +59,7 @@ LongPressGesture(options?: LongPressGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [LongPressGestureHandlerOptions](./ts-uigestureevent.md#longpressgesturehandleroptions) | 否 | 长按手势处理器配置参数。 |
+| options | [LongPressGestureHandlerOptions](./ts-gesturehandler.md#longpressgesturehandleroptions) | 否 | 长按手势处理器配置参数。 |
 
 
 ## 事件

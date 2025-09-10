@@ -94,7 +94,7 @@ import { Vec2, Vec3, Vec4, Quaternion, Aabb, Color, Rect, GeometryType, Primitiv
 
 | 名称 | 值 | 说明 |
 | ---- | ---- | ---- |
-| CUSTOM | 0 | 未定义类型。 |
+| CUSTOM | 0 | 自定义几何体类型。 |
 | CUBE | 1 | 立方体类型。 |
 | PLANE | 2 | 平面类型。 |
 | SPHERE | 3 | 球体类型。 |

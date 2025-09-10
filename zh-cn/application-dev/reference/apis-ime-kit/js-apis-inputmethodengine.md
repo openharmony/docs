@@ -1079,8 +1079,8 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 import type { KeyEvent } from '@kit.InputKit';
 
 inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
-  console.info('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
-  console.info('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
+  console.info(`inputMethodEngine keyEvent.action:${ keyEvent.action}`);
+  console.info(`inputMethodEngine keyEvent.key.code: ${keyEvent.key.code}`);
   console.info(`inputMethodEngine keyEvent.ctrlKey: ${keyEvent.ctrlKey}`);
   console.info(`inputMethodEngine keyEvent.unicodeChar: ${keyEvent.unicodeChar}`);
   return true;
@@ -1127,7 +1127,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 | 参数名    | 类型  | 必填  | 说明  |
 | -------- | ---- | ---- | ----- |
 | type     | string | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
-| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-x为光标上端的的x坐标值，y为光标上端的y坐标值，height为光标的高度值。 |
+| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>- x为光标上端的x坐标值，y为光标上端的y坐标值，height为光标的高度值。 |
 
 **示例：**
 
@@ -1485,8 +1485,8 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标面板的宽度，单位为px。|
-| height | number | 是   | 目标面板的高度，单位为px。|
+| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。|
+| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
@@ -1527,8 +1527,8 @@ resize(width: number, height: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标面板的宽度，单位为px。|
-| height | number | 是   | 目标面板的高度，单位为px。|
+| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。|
+| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。|
 
 **返回值：**
 
@@ -1568,8 +1568,8 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | x轴方向移动的值，值大于0表示右移，单位为px。|
-| y | number | 是   | y轴方向移动的值，值大于0表示下移，单位为px。|
+| x | number | 是   | 横轴方向移动的值，值大于0表示右移，单位为px。该参数应为整数。|
+| y | number | 是   | 纵轴方向移动的值，值大于0表示下移，单位为px。该参数应为整数。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
@@ -1606,8 +1606,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   |x轴方向移动的值，值大于0表示右移，单位为px。|
-| y | number | 是   |y轴方向移动的值，值大于0表示下移，单位为px。|
+| x | number | 是   |横轴方向移动的值，值大于0表示右移，单位为px。该参数应为整数。|
+| y | number | 是   |纵轴方向移动的值，值大于0表示下移，单位为px。该参数应为整数。|
 
 **返回值：**
 
@@ -2040,7 +2040,8 @@ panel.on('sizeChange', (windowSize: window.Size) => {
 });
 
 panel.on('sizeChange', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
-  console.info(`panel size changed, windowSize: ${JSON.stringify(windowSize)}, keyboardArea: ${JSON.stringify(keyboardArea)}`);
+  console.info(`panel size changed, windowSize: ${windowSize.width}, ${windowSize.height}, ` +
+    `keyboardArea: ${keyboardArea.top}, ${keyboardArea.bottom}, ${keyboardArea.left}, ${keyboardArea.right}`);
 });
 ```
 
@@ -2331,6 +2332,58 @@ panel.setKeepScreenOn(true).then(() => {
   console.info(`setKeepScreenOn success.`);
 }).catch((error: BusinessError) => {
   console.error(`setKeepScreenOn failed, code: ${error.code}, message: ${error.message}`);
+})
+```
+### getSystemPanelCurrentInsets<sup>21+</sup>
+
+getSystemPanelCurrentInsets(displayId: number): Promise\<SystemPanelInsets>
+
+获取指定屏幕当前状态（例如：折叠或展开）下，当前输入法键盘状态（例如：悬浮或固定）下输入法软键盘相对系统面板的偏移区域。使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| displayId | number | 是   | 输入法键盘所在屏幕的displayId,可通过[getDisplayId](#getdisplayid15)获取 |
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise\<[SystemPanelInsets](#systempanelinsets21)> | Promise对象。输入法键盘与系统面板的偏移区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. Possible causes: 1. Current panel's type is not SOFT_KEYBOARD.  2. Panel's flag is not FLG_FIXED or FLG_FLOATING. |
+| 12800022 | invalid displayId. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
+let panelConfig: inputMethodEngine.PanelInfo = {
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
+}
+// 以下逻辑需要在输入法InputMethodExtensionAbility中执行，this.context是InputMethodExtensionAbility的上下文
+inputMethodAbility.createPanel(this.context, panelConfig).then( (panel: inputMethodEngine.Panel) =>{
+  panel.getDisplayId().then((displayId: number) => {
+    panel.getSystemPanelCurrentInsets(displayId).then((insets: inputMethodEngine.SystemPanelInsets) => {
+      console.info(`getSystemPanelCurrentInsets success, insets is { left: ${insets.left}, right: ${insets.right}, bottom: ${insets.bottom} }`);
+    }).catch((error: BusinessError) => {
+      console.error(`getSystemPanelCurrentInsets failed, code: ${error.code}, message: ${error.message}`);
+    })
+  });
 })
 ```
 
@@ -4099,8 +4152,8 @@ getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getCallingWindowInfo().then((windowInfo: inputMethodEngine.WindowInfo) => {
-  console.info(`windowInfo.rect: ${JSON.stringify(windowInfo.rect)}`);
-  console.info('windowInfo.status: ' + JSON.stringify(windowInfo.status));
+  console.info(`windowInfo.rect: ${windowInfo.rect.left}, ${windowInfo.rect.top}, ${windowInfo.rect.width}, ${windowInfo.rect.height}`);
+  console.info(`windowInfo.status: ${windowInfo.status}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getCallingWindowInfo. Code is ${err.code}, message is ${err.message}`);
 });
@@ -4625,6 +4678,18 @@ console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
 | gradientHeight   | number                      | 否   | 否   | 渐变高度，不能超过屏幕高度的15%。|
 | gradientMode | [GradientMode](#gradientmode20) | 否   | 否   | 渐变模式。 |
 
+## SystemPanelInsets<sup>21+</sup>
+
+输入法软键盘相对系统面板的偏移区域。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| bottom | number | 是   | 否   | 键盘区域的下边界到系统面板区域下边界的距离，单位为px，该参数为整数。 |
+| left   | number | 是   | 否   | 键盘区域的左边界到系统面板区域左边界的距离，单位为px，该参数为整数。 |
+| right  | number | 是   | 否   | 键盘区域的右边界到系统面板区域右边界的距离，单位为px，该参数为整数。 |
+
 ## TextInputClient<sup>(deprecated)</sup>
 
 > **说明：** 
@@ -4769,7 +4834,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let length: number = 1;
 textInputClient.getBackward(length).then((text: string) => {
-  console.info('Succeeded in getting backward: ' + JSON.stringify(text));
+  console.info(`'Succeeded in getting backward: ${text}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getBackward. Code is ${err.code}, message is ${err.message}`);
 });
@@ -5147,8 +5212,8 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-  console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`);
+  console.info(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute. Code is ${err.code}, message is ${err.message}`);
 });

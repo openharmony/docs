@@ -22,7 +22,7 @@ import { print } from '@kit.BasicServicesKit';
 
 打印任务完成后的事件监听回调接口类。
 
-### PrintTask.on
+### on
 
 on(type: 'block', callback: Callback&lt;void&gt;): void
 
@@ -51,7 +51,7 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -65,7 +65,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### PrintTask.on
+### on
 
 on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
@@ -94,7 +94,7 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -108,7 +108,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### PrintTask.on
+### on
 
 on(type: 'fail', callback: Callback&lt;void&gt;): void
 
@@ -137,7 +137,7 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -151,7 +151,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### PrintTask.on
+### on
 
 on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
@@ -180,7 +180,7 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -194,7 +194,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### PrintTask.off
+### off
 
 off(type: 'block', callback?: Callback&lt;void&gt;): void
 
@@ -223,7 +223,7 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -237,7 +237,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### PrintTask.off
+### off
 
 off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
@@ -266,7 +266,7 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -280,7 +280,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### PrintTask.off
+### off
 
 off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
@@ -309,7 +309,7 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -323,7 +323,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### PrintTask.off
+### off
 
 off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
@@ -352,7 +352,7 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
@@ -402,7 +402,7 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
     onStartLayoutWrite(jobId: string, oldAttrs: print.PrintAttributes, newAttrs: print.PrintAttributes, fd: number,
@@ -454,7 +454,7 @@ onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
     onStartLayoutWrite(jobId: string, oldAttrs: print.PrintAttributes, newAttrs: print.PrintAttributes, fd: number,
@@ -506,7 +506,7 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
@@ -556,7 +556,7 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
@@ -601,7 +601,7 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 @Entry
@@ -668,7 +668,7 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileUri } from '@kit.CoreFileKit';
 
 @Entry
@@ -735,7 +735,7 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -786,14 +786,14 @@ struct Index {
 **系统能力：** SystemCapability.Print.PrintFramework
 
 **属性：**
-| **名称** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| copyNumber | number | 否 | 表示文件打印份数。默认值为1。 |
-| pageRange | [PrintPageRange](#printpagerange11) | 否 | 表示待打印文件的页面范围。 |
-| pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | 否 | 表示待打印文件的纸张类型。 |
-| directionMode | [PrintDirectionMode](#printdirectionmode11) | 否 | 表示待打印文件的方向。 |
-| colorMode | [PrintColorMode](#printcolormode11) | 否 | 表示待打印文件的色彩模式。 |
-| duplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示待打印文件的单双面模式。 |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| copyNumber | number | 否 | 是 | 表示文件打印份数。默认值为1。 |
+| pageRange | [PrintPageRange](#printpagerange11) | 否 | 是 | 表示待打印文件的页面范围。 |
+| pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | 否 | 是 | 表示待打印文件的纸张类型。 |
+| directionMode | [PrintDirectionMode](#printdirectionmode11) | 否 | 是 | 表示待打印文件的方向。 |
+| colorMode | [PrintColorMode](#printcolormode11) | 否 | 是 | 表示待打印文件的色彩模式。 |
+| duplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 是 | 表示待打印文件的单双面模式。 |
 
 ## PrintPageRange<sup>11+</sup>
 
@@ -802,11 +802,11 @@ struct Index {
 **系统能力：** SystemCapability.Print.PrintFramework
 
 **属性：**
-| **名称** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| startPage | number | 否 | 表示起始页。默认值为1。 |
-| endPage | number | 否 | 表示结束页。默认值为待打印文件的最大页数。 |
-| pages | Array&lt;number&gt; | 否 | 表示待打印的页面范围的集合。默认值为空。|
+| **名称** | **类型** | **只读** | **可选** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| startPage | number | 否 | 是 | 表示起始页。默认值为1。 |
+| endPage | number | 否 | 是 | 表示结束页。默认值为待打印文件的最大页数。 |
+| pages | Array&lt;number&gt; | 否 | 是 | 表示待打印的页面范围的集合。默认值为空。|
 
 
 ## PrintPageSize<sup>11+</sup>
@@ -816,12 +816,12 @@ struct Index {
 **系统能力：** SystemCapability.Print.PrintFramework
 
 **属性：**
-| **名称** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| id | string | 是 | 表示纸张类型ID。 |
-| name | string | 是 | 表示纸张类型名称。 |
-| width | number | 是 | 表示页面宽度，单位：毫米。 |
-| height | number | 是 | 表示页面高度，单位：毫米。 |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| id | string | 否 | 否 | 表示纸张类型ID。 |
+| name | string | 否 | 否 | 表示纸张类型名称。 |
+| width | number | 否 | 否 | 表示页面宽度，单位：毫米。 |
+| height | number | 否 | 否 | 表示页面高度，单位：毫米。 |
 
 
 
@@ -947,7 +947,7 @@ struct Index {
 | PRINT_JOB_COMPLETED_SUCCESS | 0 | 表示打印任务成功。 |
 | PRINT_JOB_COMPLETED_FAILED | 1 | 表示打印任务失败。 |
 | PRINT_JOB_COMPLETED_CANCELLED | 2 | 表示打印任务已取消。|
-| PRINT_JOB_COMPLETED_FILE_CORRUPTED | 3 | 表示打印任务已损坏。 |
+| PRINT_JOB_COMPLETED_FILE_CORRUPTED | 3 | 表示打印文件已损坏。 |
 | PRINT_JOB_BLOCK_OFFLINE | 4 | 表示打印处于离线状态。 |
 | PRINT_JOB_BLOCK_BUSY | 5 | 表示打印被其他进程占用。 |
 | PRINT_JOB_BLOCK_CANCELLED | 6 | 表示打印任务已取消。 |
@@ -1043,7 +1043,7 @@ addPrinterToDiscovery(printerInformation: PrinterInformation): Promise&lt;void&g
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerInformation : print.PrinterInformation = {
     printerId : 'testPrinterId',
@@ -1094,7 +1094,7 @@ updatePrinterInDiscovery(printerInformation: PrinterInformation): Promise&lt;voi
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let testPageSize : print.PrintPageSize = {
     id : 'ISO_A4',
@@ -1163,7 +1163,7 @@ removePrinterFromDiscovery(printerId: string): Promise&lt;void&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId : string = 'testPrinterId';
 print.removePrinterFromDiscovery(printerId).then(() => {
@@ -1206,7 +1206,7 @@ getPrinterInformationById(printerId: string): Promise&lt;PrinterInformation&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId : string = 'testPrinterId';
 print.getPrinterInformationById(printerId).then((printerInformation : print.PrinterInformation) => {
@@ -1223,18 +1223,18 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 **系统能力：** SystemCapability.Print.PrintFramework
 
 **属性：**
-| **名称** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 表示打印机ID。 |
-| printerName | string | 是 | 表示打印机名称。 |
-| printerStatus | [PrinterStatus](#printerstatus14) | 是 | 表示当前打印机状态。 |
-| description | string | 否 | 表示打印机说明。 |
-| capability | [PrinterCapabilities](#printercapabilities14) | 否 | 表示打印机能力。 |
-| uri | string | 否 | 表示打印机uri。 |
-| printerMake | string | 否 | 表示打印机型号。 |
-| preferences<sup>18+</sup> | [PrinterPreferences](#printerpreferences18) | 否 | 表示打印机首选项。 |
-| alias<sup>18+</sup> | string | 否 | 表示打印机别名。 |
-| options | string | 否 | 表示打印机详细信息。 |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| printerId | string | 否 | 否 | 表示打印机ID。 |
+| printerName | string | 否 | 否 | 表示打印机名称。 |
+| printerStatus | [PrinterStatus](#printerstatus14) | 否 | 否 | 表示当前打印机状态。 |
+| description | string | 否 | 是 | 表示打印机说明。 |
+| capability | [PrinterCapabilities](#printercapabilities14) | 否 | 是 | 表示打印机能力。 |
+| uri | string | 否 | 是 | 表示打印机uri。 |
+| printerMake | string | 否 | 是 | 表示打印机型号。 |
+| preferences<sup>18+</sup> | [PrinterPreferences](#printerpreferences18) | 否 | 是 | 表示打印机首选项。 |
+| alias<sup>18+</sup> | string | 否 | 是 | 表示打印机别名。 |
+| options | string | 否 | 是 | 表示打印机详细信息。 |
 
 ## PrinterCapabilities<sup>14+</sup>
 
@@ -1243,15 +1243,15 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 **系统能力：** SystemCapability.Print.PrintFramework
 
 **属性：**
-| **名称** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| supportedPageSizes | Array&lt;[PrintPageSize](#printpagesize11)&gt; | 是 | 表示打印机支持的纸张尺寸列表。 |
-| supportedColorModes | Array&lt;[PrintColorMode](#printcolormode11)&gt; | 是 | 表示打印机支持的色彩模式列表。 |
-| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printduplexmode11)&gt; | 是 | 表示打印机支持的单双面模式列表。 |
-| supportedMediaTypes | Array&lt;string&gt; | 否 | 表示打印机支持的纸张类型列表。 |
-| supportedQualities | Array&lt;[PrintQuality](#printquality14)&gt; | 否 | 表示打印机支持的打印质量列表。 |
-| supportedOrientations | Array&lt;[PrintOrientationMode](#printorientationmode14)&gt; | 否 | 表示打印机支持的打印方向列表。 |
-| options | string | 否 | 表示打印机能力详细信息。 |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| supportedPageSizes | Array&lt;[PrintPageSize](#printpagesize11)&gt; | 否 | 否 | 表示打印机支持的纸张尺寸列表。 |
+| supportedColorModes | Array&lt;[PrintColorMode](#printcolormode11)&gt; | 否 | 否 | 表示打印机支持的色彩模式列表。 |
+| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printduplexmode11)&gt; | 否 | 否 | 表示打印机支持的单双面模式列表。 |
+| supportedMediaTypes | Array&lt;string&gt; | 否 | 是 | 表示打印机支持的纸张类型列表。 |
+| supportedQualities | Array&lt;[PrintQuality](#printquality14)&gt; | 否 | 是 | 表示打印机支持的打印质量列表。 |
+| supportedOrientations | Array&lt;[PrintOrientationMode](#printorientationmode14)&gt; | 否 | 是 | 表示打印机支持的打印方向列表。 |
+| options | string | 否 | 是 | 表示打印机能力详细信息。 |
 
 ## PrintQuality<sup>14+</sup>
 
@@ -1298,15 +1298,15 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 **系统能力：** SystemCapability.Print.PrintFramework
 
 **属性：**
-| **名称** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| defaultDuplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示默认单双面模式。 |
-| defaultPrintQuality | [PrintQuality](#printquality14) | 否 | 表示默认打印质量。 |
-| defaultMediaType | string | 否 | 表示默认纸张类型。 |
-| defaultPageSizeId | string | 否 | 表示默认纸张尺寸的ID，其范围包含国际标准化组织定义的标准纸张尺寸，如ISO_A4，和系统中定义的非标准的纸张尺寸，如Custom.178x254mm，表示这种纸张尺寸为178毫米 x 254毫米。 |
-| defaultOrientation | [PrintOrientationMode](#printorientationmode14) | 否 | 表示默认打印方向。 |
-| borderless | boolean | 否 | 表示是否无边距打印，true表示无边距，false表示有边距。默认值为false。 |
-| options | string | 否 | 表示打印机首选项中不在以上字段中的其他字段，查询打印机或者从打印机驱动获取，以json格式存储在string中。 |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| defaultDuplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 是 | 表示默认单双面模式。 |
+| defaultPrintQuality | [PrintQuality](#printquality14) | 否 | 是 | 表示默认打印质量。 |
+| defaultMediaType | string | 否 | 是 | 表示默认纸张类型。 |
+| defaultPageSizeId | string | 否 | 是 | 表示默认纸张尺寸的ID，其范围包含国际标准化组织定义的标准纸张尺寸，如ISO_A4，和系统中定义的非标准的纸张尺寸，如Custom.178x254mm，表示这种纸张尺寸为178毫米 x 254毫米。 |
+| defaultOrientation | [PrintOrientationMode](#printorientationmode14) | 否 | 是 | 表示默认打印方向。 |
+| borderless | boolean | 否 | 是 | 表示是否无边距打印，true表示无边距，false表示有边距。默认值为false。 |
+| options | string | 否 | 是 | 表示打印机首选项中不在以上字段中的其他字段，查询打印机或者从打印机驱动获取，以json格式存储在string中。 |
 
 ## PrinterEvent<sup>18+</sup>
 
@@ -1361,7 +1361,7 @@ getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 print.getAddedPrinters().then((printers: string[]) => {
     console.log('getAddedPrinters success ' + JSON.stringify(printers));
@@ -1383,7 +1383,7 @@ type PrinterChangeCallback = (event: PrinterEvent, printerInformation: PrinterIn
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | event | [PrinterEvent](#printerevent18) | 是 | 表示打印机事件。 |
-| printerInformation | PrinterInformation | 是 | 表示打印机信息。 |
+| printerInformation | [PrinterInformation](#printerinformation14) | 是 | 表示打印机信息。 |
 
 ## print.on<sup>18+</sup>
 
@@ -1490,7 +1490,7 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 加载所有打印扩展能力
 let extensionList: string[] = [];
@@ -1537,7 +1537,7 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 加载所有打印扩展能力
 let extensionList: string[] = [];
@@ -1577,7 +1577,7 @@ stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 print.stopDiscoverPrinter((err: BusinessError) => {
     if (err) {
@@ -1615,7 +1615,7 @@ stopDiscoverPrinter(): Promise&lt;void&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 print.stopDiscoverPrinter().then(() => {
     console.log('stop Discovery success');
@@ -1652,7 +1652,7 @@ connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId: string = 'printerId_32';
 print.connectPrinter(printerId, (err: BusinessError) => {
@@ -1696,7 +1696,7 @@ connectPrinter(printerId: string): Promise&lt;void&gt;
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId: string = 'printerId_32';
 print.connectPrinter(printerId).then(() => {
