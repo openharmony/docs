@@ -147,11 +147,11 @@
 
 ## 限制条件
 
-- 使用\@BuilderParam装饰的变量只能通过\@Builder函数进行初始化。具体参见[@BuilderParam装饰器初始化的值必须为@Builder](#builderparam装饰器初始化的值必须为builder)。
+- 使用\@BuilderParam装饰的变量只能通过\@Builder函数进行初始化。具体参考[@BuilderParam装饰器初始化的值必须为@Builder](#builderparam装饰器初始化的值必须为builder)。
 
-- 当\@Require装饰器和\@BuilderParam装饰器一起使用时，必须初始化@BuilderParam装饰器。具体参见[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
+- 当\@Require装饰器和\@BuilderParam装饰器一起使用时，必须初始化\@BuilderParam装饰器。具体参考[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
 
-- 在自定义组件尾随闭包的场景下，子组件有且仅有一个@BuilderParam用来接收此尾随闭包，且此@BuilderParam装饰的方法不能有参数。具体参见[尾随闭包初始化组件](#尾随闭包初始化组件)。
+- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam装饰的方法不能有参数。具体参考[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
 ## 使用场景
 
@@ -471,7 +471,7 @@ struct HelloWorldPage {
 ```
 
 **router_map.json**
-这个文件一般位于项目的resources/base/profile/目录下。
+这个文件一般位于项目的`resources/base/profile`目录下。
 ```ts
 
 {
@@ -485,7 +485,7 @@ struct HelloWorldPage {
 }
 ```
 **module.json5**
-这个文件一般位于应用模块的根目录下，例如 entry/src/main/module.json5 。
+这个文件一般位于应用模块的根目录下，例如`entry/src/main/module.json5`。
 ```ts
 
 {
