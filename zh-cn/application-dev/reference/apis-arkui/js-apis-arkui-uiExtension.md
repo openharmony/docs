@@ -167,7 +167,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
-注册宿主应用组件（EmbeddedComponent或UIExtensionComponent）尺寸变化的监听。
+注册组件（EmbeddedComponent或UIExtensionComponent）尺寸变化的监听。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,7 +178,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 是   | 回调函数：入参用于接收当前组件（EmbeddedComponent或UIExtensionComponent）的尺寸。 |
 
 **错误码**：
 
@@ -210,7 +210,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
-注销宿主应用组件（EmbeddedComponent或UIExtensionComponent）尺寸变化的监听。
+注销组件（EmbeddedComponent或UIExtensionComponent）尺寸变化的监听。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
