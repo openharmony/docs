@@ -481,6 +481,7 @@
             - [Dialog Box Layer Management](ui/arkts-dialog-levelorder.md)
             - [Dialog Controller](ui/arkts-dialog-controller.md)
             - [Dialog Box Focus Policy](ui/arkts-dialog-focusable.md)
+            - [Popup Mask Control](ui/arkts-dialog-mask.md)
           - Using Menus<!--arkts-use-menu-->
             - [Menu Overview](ui/arkts-menu-overview.md)
             - [Menu Control (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -731,6 +732,7 @@
         - [Enabling Immersive Full-Screen Video Playback](web/web_full_screen.md)
       - Processing Web Page Content<!--web-process-page-content-->
         - [Printing Frontend Pages](web/web-print.md)
+        - [Saving a Frontend Page as a PDF File](web/web-createpdf.md)
         - [Previewing PDF Files](web/web-pdf-preview.md)
         - [Calculating and Adjusting Safe Area Insets](web/web-safe-area-insets.md)
         - [Using Web Menus](web/web_menu.md)
@@ -1743,6 +1745,7 @@
         - [Using fdsan](napi/fdsan.md)
       - Using Node-API<!--using-napi-interaction-with-cpp-->
         - [Node-API Overview](napi/napi-introduction.md)
+        - [Node-API Returned Status Codes](napi/napi_status_introduction.md)
         - [Node-API Data Types and APIs](napi/napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi/napi-guidelines.md)
         - [Node-API Development Process](napi/use-napi-process.md)
@@ -1780,7 +1783,10 @@
           - [Analyzing Exceptions and Crashes Triggered by Using Node-API](napi/use-napi-about-crash.md)
           - [Calling an ArkTS Method with Return Value of a promise Using Node-API](napi/use-napi-method-promise.md)
         - Node-API FAQs<!--napi-questions-->
-          - [Node-API FAQs](napi/use-napi-faqs.md)
+          - [Summary of Node-API FAQs](napi/use-napi-faqs.md)
+          - [FAQs About Stability](napi/napi-faq-about-stability.md)
+          - [FAQs About Memory Leaks](napi/napi-faq-about-memory-leak.md)
+          - [FAQs About Basic Functions](napi/napi-faq-about-common-basic.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
         - [JSVM-API Data Types and APIs](napi/jsvm-data-types-interfaces.md)
@@ -1822,6 +1828,7 @@
           - [JSVM-API Debugging](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
           - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
           - [Requesting the JIT Profile for JSVMs](napi/jsvm-apply-jit-profile.md)
+          - [JSVM Secure Shield Mode](napi/jsvm-secure-shield-mode.md)
           - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
             - [Creating and Destroying JS VMs Using JSVM-API](napi/use-jsvm-runtime-task.md)
             - [Accelerating Compilation Using a Code Cache](napi/use-jsvm-about-code-cache.md)
