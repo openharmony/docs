@@ -246,7 +246,7 @@
 3. 向系统剪贴板中存入一条PlainText数据。
 
    ```ts
-   let SetDelayPlainText = (() => {
+   let SetDelayPlainText = () => {
      plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
      // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
      plainTextData.properties.getDelayData = GetDelayPlainText;
@@ -255,7 +255,7 @@
      }).catch((error: BusinessError) => {
        // 处理异常场景
      });
-   })
+   }
    ```
 
 4. 从系统剪贴板中读取这条text数据。
@@ -267,8 +267,8 @@
        let records = outputData.getRecords();
        if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
          let record = records[0] as unifiedDataChannel.PlainText;
-         console.info('GetPlainText success, type:' + records[0].getType() + ', details:' +
-         JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+         console.info('GetPlainText success, type:' + records[0].getType() );
+         //注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
        } else {
          console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
        }
@@ -281,12 +281,11 @@
 5. 应用设置本应用剪贴板数据的可粘贴范围。
 
    ```ts
-   let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+   const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
    try {
        systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
        console.info('Set app share options success.');
    } catch (err) {
-       let error: BusinessError = err as BusinessError;
        //处理异常场景
    }
    ```
@@ -294,12 +293,11 @@
 6. 应用删除本应用设置的剪贴板数据可粘贴范围配置。
 
    ```ts
-   let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+   const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
    try {
 	   systemPasteboard.removeAppShareOptions();
 	   console.info('Remove app share options success.');
    } catch (err) {
-	   let error: BusinessError = err as BusinessError;
        //处理异常场景
    }
    ```
