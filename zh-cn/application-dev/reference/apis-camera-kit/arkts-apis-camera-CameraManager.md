@@ -1008,15 +1008,17 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager,
+  cameraDeviceArray: Array<camera.CameraDevice>): Array<camera.CameraConcurrentInfo> {
+  let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
   try {
-    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
     cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
     console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
+  return cameraConcurrentInfos;
 }
 ```
 

@@ -1,4 +1,10 @@
 # Getting Started with the NDK
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @liyiming13-->
+<!--Designer: @huang_huijin-->
+<!--Tester: @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 The Native Development Kit (NDK) is a toolset that allows you to use C and C++ code with OpenHarmony. As a subset of OpenHarmony SDK, it provides native APIs, compile scripts, and compile toolchain to help you implement key application features using C or C++. The NDK covers only some basic underlying capabilities of OpenHarmony, such as the C runtime libc, graphics library, window system, multimedia, compression library, and Node-API that bridges ArkTS/JS and C code. It does not provide complete capabilities of ArkTS/JS APIs.
 
@@ -28,17 +34,6 @@ You are not advised to use the NDK to develop the following:
 Before getting started, familiarity with the following basics is helpful.
 
 
-### Basic NDK Concepts
-
-- **[Node-API](napi-introduction.md)**
-
-  Node-API, formerly called NAPI, is a set of interfaces provided for you to use C and C++ code with OpenHarmony ArkTS/JS. It is a part of NDK interfaces. Although extended from Node-API provided by Node.js, OpenHarmony Node-API is not fully compatible with it.
-
-- **C API**
-
-  C API is a former name of OpenHarmony NDK and is no longer used.
-
-
 ### Preparatory Knowledge
 
 - Linux C programming knowledge
@@ -53,6 +48,8 @@ Before getting started, familiarity with the following basics is helpful.
 - Clang/LLVM
   Basic knowledge of the Clang or LLVM compiler helps you compile better native dynamic libraries.
 
+- **[Node-API](napi-introduction.md)**
+  NAPI is a cross-language API provided by OpenHarmony for ArkTS/JS and C/C++. This API is extended based on Node.js Node-API but is not fully compatible.
 
 ### NDK Directory Structure
 
@@ -78,20 +75,20 @@ Before getting started, familiarity with the following basics is helpful.
 
 ## Common NDK Modules
 
-The following table describes the common modules of the NDK.
+The following table describes the common modules of the NDK and their functions.
 
 
-| Module| Description| 
+| Module| Description|
 | -------- | -------- |
-| C standard library| Provides C standard library interfaces based on musl.| 
-| C++ standard library| Provides libc++_shared, a C++ runtime library.| 
-| Log| Prints logs to the HiLog interface of the system.| 
-| Node-API | Acts as an intermediary between ArkTS/JS and C/C++.| 
-| FFRT | Provides a task-based concurrent programming framework.| 
-| libuv | Provides a third-party asynchronous I/O library.| 
-| zlib | Provides basic data compression and decompression interfaces.| 
-| Rawfile | Provides interfaces for reading various packaged resources of an application.| 
-| XComponent | Provides surface and touchscreen event interfaces for you to develop high-performance graphics applications.| 
-| Drawing | Provides a 2D graphics library for drawing on the surface.| 
-| OpenGL | Provides OpenGL 3D graphics interfaces.| 
-| OpenSL ES | Provides interfaces for 2D and 3D audio acceleration.| 
+| C standard library| Provides standard C library APIs based on musl.|
+| C++ standard library| C++ runtime library interface, which provides C++ runtime capabilities.|
+| Log| Provides an interface for outputting HiLogs to the system.|
+| Node-API | Interaction interfaces between ArkTS/JS and C/C++ are supported.|
+| FFRT | Provides a task-based concurrent programming framework.|
+| libuv | Provides a third-party asynchronous I/O library.|
+| zlib | Provides the zlib library for compressing and decompressing basic data.|
+| Rawfile | Provides APIs for accessing built-in resources of applications, which can be used to read various resources packaged in applications.|
+| XComponent | Provides surface and touchscreen event interfaces for you to develop high-performance graphics applications.|
+| Drawing | Provides a 2D graphics library for drawing on the surface.|
+| OpenGL | Provides OpenGL 3D graphics interfaces.|
+| OpenSL ES | Supports 2D and 3D audio acceleration.|

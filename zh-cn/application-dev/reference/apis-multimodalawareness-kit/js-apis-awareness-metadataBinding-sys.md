@@ -48,24 +48,24 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelM
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   202    | Permission check failed. A non-system application uses the system API.|
-|32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encoding failed. Possible causes: 1. Image processing error; 2. Channel coding error.|
+|   202    | Permission check failed. A non-system application uses the system API. |
+| 32100001 | Internal handling failed. File creation failed. |
+| 32100002 | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error. |
 
 **示例**：
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let captureImage: image.PixelMap | undefined = undefined;
 let metadata: string = "";
 let srcImage: image.PixelMap | undefined = undefined;
-metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) =>{
-	captureImage = pixelMap;
-}).catch((error:BusinessError)=>{
-	console.error("encode image error" + error);
+metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) => {
+  captureImage = pixelMap;
+}).catch((error: BusinessError) => {
+  console.error("encode image error" + error);
 });
 ```
 
@@ -96,22 +96,22 @@ function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   202    | Permission check failed. A non-system application uses the system API.|
-|32100001  | Internal handling failed. File creation failed.|
-|32100003  | Decoding failed. Possible causes: 1. Image not encoded; 2. Image destroyed.|
+|   202    | Permission check failed. A non-system application uses the system API. |
+| 32100001 | Internal handling failed. File read failed. |
+| 32100003 | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed. |
 
 **示例：**  
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
 let captureMetadata: string = "";
-metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
-	captureMetadata = metadata;
-}).catch((error:BusinessError)=>{
-	console.error("decode image error" + error);
+metadataBinding.decodeImage(encodeImage).then((metadata: string) => {
+  captureMetadata = metadata;
+}).catch((error: BusinessError) => {
+  console.error("decode image error" + error);
 }); 
 ```
 
@@ -136,7 +136,8 @@ notifyMetadataBindingEvent(metadata: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. File creation failed.|
+|   202    | Permission check failed. A non-system application uses the system API. |
+| 32100001 | Internal handling failed. Obtain metadata failed. |
 
 **示例**：
 
@@ -144,8 +145,8 @@ notifyMetadataBindingEvent(metadata: string): void
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let metadata:string = '';
-metadataBinding.notifyMetadataBindingEvent(metadata).catch((error: BusinessError)=>{
+let metadata: string = '';
+metadataBinding.notifyMetadataBindingEvent(metadata).catch((error: BusinessError) => {
   console.error("notify metadata error" + error);
 });
 ```

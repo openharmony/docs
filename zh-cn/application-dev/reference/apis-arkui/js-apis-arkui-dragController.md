@@ -63,6 +63,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry
 @Component
 struct DragControllerPage {
@@ -95,10 +100,6 @@ struct DragControllerPage {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
-              }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
               }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -179,6 +180,11 @@ import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
+class Tmp{
+  event:DragResult|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry
 @Component
 struct DragControllerPage {
@@ -236,11 +242,6 @@ struct DragControllerPage {
                 pixelMap: this.pixmap,
                 builder: ()=>{this.DraggingBuilder()},
                 extraInfo: "DragItemInfoTest"
-              }
-
-              class tmp{
-                event:DragResult|undefined = undefined
-                extraParams:string = ''
               }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo) // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -1034,6 +1035,11 @@ import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry()
 @Component
 struct DragControllerPage {
@@ -1095,10 +1101,6 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-            class tmp{
-              event:DragEvent|undefined = undefined
-              extraParams:string = ''
-            }
             let eve:tmp = new tmp()
             this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
               this.DraggingBuilder()
@@ -1133,7 +1135,7 @@ struct DragControllerPage {
 
 | 名称     | 值 | 说明                                                         |
 | -------- | -- | ------------------------------------------------------------ |
-| WAITING   | 0 | 应用准备数据中，无法发起拖拽。 |
+| WAITING   | 0 | 应用在准备数据阶段，无法发起拖拽。 |
 | READY | 1 | 应用数据准备完成，可以发起拖拽。 |
 
 ## DragSpringLoadingState<sup>20+</sup>
@@ -1160,8 +1162,8 @@ struct DragControllerPage {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型   |只读| 可选 | 说明                                   |	
-| --------------------- | ------ | ---- | --- | ---------------------------------------------------- |	
+| 名称                 | 类型   |只读| 可选 | 说明                                   |
+| --------------------- | ------ | ---- | --- | ---------------------------------------------------- |
 | stillTimeLimit         | number | 否   |    是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
 | updateInterval         | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
 | updateNotifyCount      | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|

@@ -1,5 +1,12 @@
 # Vulkan Capabilities
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @andrew1993-->
+<!--Designer: @ext4FAT1-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 [Vulkan](https://www.vulkan.org/) is a set of 2D and 3D rendering APIs that feature cross-platform and high-performance. OpenHarmony SDK now supports Vulkan v1.4.309, and the available version depends on the GPU driver implementation.
 
 ## Supported Standard APIs
@@ -140,7 +147,6 @@ The table below lists the supported APIs of Vulkan v1.4.309.
 |FUNC|vkCreateShaderModule|
 |FUNC|vkCreateSharedSwapchainsKHR|
 |FUNC|vkCreateSwapchainKHR|
-|FUNC|vkCreateWin32SurfaceKHR|
 |FUNC|vkDestroyBuffer|
 |FUNC|vkDestroyBufferView|
 |FUNC|vkDestroyCommandPool|
@@ -239,7 +245,6 @@ The table below lists the supported APIs of Vulkan v1.4.309.
 |FUNC|vkGetPhysicalDeviceSurfacePresentModesKHR|
 |FUNC|vkGetPhysicalDeviceSurfaceSupportKHR|
 |FUNC|vkGetPhysicalDeviceToolProperties|
-|FUNC|vkGetPhysicalDeviceWin32PresentationSupportKHR|
 |FUNC|vkGetPipelineCacheData|
 |FUNC|vkGetPrivateData|
 |FUNC|vkGetQueryPoolResults|
@@ -287,4 +292,4 @@ In addition to the standard APIs, OpenHarmony provides extended APIs for creatin
 |FUNC|vkAcquireImageOHOS|
 |FUNC|vkQueueSignalReleaseImageOHOS|
 
-For details about the extended APIs, see [Vulkan Module](_vulkan.md).
+For details about the extended APIs, see [Vulkan Module](capi-vulkan.md).

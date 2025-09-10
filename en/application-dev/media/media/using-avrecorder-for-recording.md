@@ -1,4 +1,10 @@
 # Using AVRecorder to Record Audio (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 In this topic, you will learn how to use the [AVRecorder](media-kit-intro.md#avrecorder) to develop audio recording functionalities including starting, pausing, resuming, and stopping recording.
 
@@ -35,18 +41,20 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
 
    > **NOTE**
    >
-   > Perform the subsequent operations after the AVRecorder completes value assignment, that is, after **avRecorder = recorder;** is executed.
+   > Perform the subsequent operations after the AVRecorder completes value assignment.
 
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let avRecorder: media.AVRecorder;
-   media.createAVRecorder().then((recorder: media.AVRecorder) => {
-     avRecorder = recorder;
-   }, (error: BusinessError) => {
-     console.error(`createAVRecorder failed`);
-   })
+   private avRecorder: media.AVRecorder | undefined = undefined;
+
+   try {
+     this.avRecorder = await media.createAVRecorder();
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to create avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 2. Set the events to listen for.
@@ -59,20 +67,21 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    import { BusinessError } from '@kit.BasicServicesKit';
 
    // Callback function for state changes.
-   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-     console.log(`current state is ${state}`);
+   this.avRecorder?.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+     console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
      // You can add the action to be performed after the state is switched.
-   })
+   });
 
    // Callback function for errors.
-   this.avRecorder.on('error', (err: BusinessError) => {
-     console.error(`avRecorder failed, code is ${err.code}, message is ${err.message}`);
-   })
+   this.avRecorder?.on('error', (error) => {
+     console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
+   });
    ```
 
 3. Set audio recording parameters and call **prepare()**. The AVRecorder enters the **prepared** state.
 
    > **NOTE**
+   > 
    > Pay attention to the following when configuring parameters:
    >
    > - Before parameter configuration, ensure that you have gained the required permissions. For details, see [Requesting Permissions](#requesting-permissions).
@@ -89,7 +98,7 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 112000, // Audio bit rate.
      audioChannels: 2, // Number of audio channels.
-     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, ACC, MP3, and G711MU are supported.
+     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, AAC, MP3, and G711MU are supported.
      audioSampleRate: 48000, // Audio sampling rate.
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, MP4, M4A, MP3, WAV, AMR, and AAC are supported.
    };
@@ -97,7 +106,7 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
    const context: Context = this.getUIContext().getHostContext()!; // Refer to Accessing Application Files.
    let filePath: string = context.filesDir + '/example.mp3';
    let audioFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-   let fileFd: number = this.audioFile.fd; // Obtain the file FD.
+   let fileFd: number = audioFile.fd; // Obtain the file FD.
     
    let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
@@ -105,163 +114,194 @@ Read [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
      url: 'fd://' + fileFd.toString(), // Obtain the file descriptor of the created audio file by referring to the sample code in Accessing Application Files.
    };
     
-   this.avRecorder.prepare(avConfig).then(() => {
-     console.log('Invoke prepare succeeded.');
-   }, (err: BusinessError) => {
-     console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-   })
+   try {
+     await this.avRecorder?.prepare(avConfig);
+     console.info('Succeeded in preparing avRecorder');
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to prepare avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 4. Call **start()** to start recording. The AVRecorder enters the **started** state.
 
    ```ts
    // Start recording.
-   avRecorder.start();
+   await this.avRecorder?.start();
    ```
 
 5. Call **pause()** to pause recording. The AVRecorder enters the **paused** state.
 
    ```ts
    // Pause recording.
-   avRecorder.pause();
+   await this.avRecorder?.pause();
    ```
 
 6. Call **resume()** to resume recording. The AVRecorder enters the **started** state again.
 
    ```ts
    // Resume recording.
-   avRecorder.resume();
+   await this.avRecorder?.resume();
    ```
 
 7. Call **stop()** to stop recording. The AVRecorder enters the **stopped** state.
 
    ```ts
    // Stop recording.
-   avRecorder.stop();
+   await this.avRecorder?.stop();
    ```
 
 8. Call **reset()** to reset the resources. The AVRecorder enters the **idle** state. In this case, you can reconfigure the recording parameters.
 
    ```ts
    // Reset resources.
-   avRecorder.reset();
+   await this.avRecorder?.reset();
    ```
 
 9. Call **release()** to switch the AVRecorder to the **released** state. Now your application exits the recording.
 
    ```ts
    // Destroy the instance.
-   avRecorder.release();
+   await this.avRecorder?.release();
    ```
 
-## Sample Code
+## Complete Sample Code
 
-  Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
+Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-export class AudioRecorderDemo extends CustomComponent {
-  private avRecorder: media.AVRecorder | undefined = undefined;
-  private avProfile: media.AVRecorderProfile = {
+async function audioRecording(context: common.Context): Promise<void> {
+  // Create an AVRecorder instance named avRecorder.
+  let avRecorder: media.AVRecorder | undefined = undefined;
+  try {
+    avRecorder = await media.createAVRecorder();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to create avRecorder, error code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  
+  // Set AVRecorder callback functions.
+  try {
+    // Callback for state changes.
+    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+      console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
+    });
+    // Callback function for errors.
+    avRecorder.on('error', (error: BusinessError) => {
+      console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
+    });
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to set avRecorder callback, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  let avProfile: media.AVRecorderProfile = {
     audioBitrate: 112000, // Audio bit rate.
     audioChannels: 2, // Number of audio channels.
-    audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, ACC, MP3, and G711MU are supported.
+    audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, AAC, MP3, and G711MU are supported.
     audioSampleRate: 48000, // Audio sampling rate.
     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, MP4, M4A, MP3, WAV, AMR, and AAC are supported.
   };
-  private avConfig: media.AVRecorderConfig = {
+  let avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
-    profile: this.avProfile,
+    profile: avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Accessing Application Files.
   };
-  private uriPath: string = '';
-  private filePath: string = '';
-  private fileFd: number = 0;
-  
+
   // Create a file and set avConfig.url.
-  async createAndSetFd(): Promise<void> {
-      const context: Context = this.getUIContext().getHostContext()!; // Non-null assertion, ensuring the context is of type Context and not null.
-      const path: string = context.filesDir + '/example.mp3'; // File sandbox path. The file name extension must match the container format.
-      const audioFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      this.avConfig.url = 'fd://' + audioFile.fd; // Update the URL.
-      this.fileFd = audioFile.fd;
-      this.filePath = path;
+  let audioFile: fs.File | undefined = undefined;
+  try {
+    let path: string = context.filesDir + '/example.mp3'; // File sandbox path. The file name extension must match the container format.
+    audioFile = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // Open the file.
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to open file, error code: ${err.code}, message: ${err.message}`);
   }
-
-  // Set AVRecorder callback functions.
-  setAudioRecorderCallback() {
-    if (this.avRecorder != undefined) {
-      // Callback for state changes.
-      this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-        console.log(`AudioRecorder current state is ${state}`);
-      })
-      // Callback function for errors.
-      this.avRecorder.on('error', (err: BusinessError) => {
-        console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
-      })
+  if (audioFile !== undefined) {
+    avConfig.url = 'fd://' + audioFile.fd; // Update the URL.
+  }
+  
+  // Set recording parameters to complete the preparations.
+  try {
+    if (avRecorder.state === 'idle' || avRecorder.state === 'stopped') { // prepare() can be called only when the AVRecorder is in the idle or stopped state.
+      await avRecorder.prepare(avConfig);
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to prepare avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // Process of starting recording.
-  async startRecordingProcess() {
-    if (this.avRecorder != undefined) {
-      await this.avRecorder.release();
-      this.avRecorder = undefined;
+  // Start recording.
+  try {
+    if (avRecorder.state === 'prepared') { // start() can be called only when the AVRecorder is in the prepared state .
+      await avRecorder.start();
     }
-    // 1. Create an AVRecorder instance.
-    this.avRecorder = await media.createAVRecorder();
-    this.setAudioRecorderCallback();
-    // 2. Obtain the file descriptor of the recording file and assign it to the URL in avConfig. For details, see FilePicker.
-    this.createAndSetFd();
-
-    // 3. Set recording parameters to complete the preparations.
-    await this.avRecorder.prepare(this.avConfig);
-    // 4. Start recording.
-    await this.avRecorder.start();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to start avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // Process of pausing recording.
-  async pauseRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
-      await this.avRecorder.pause();
+  // Pause recording.
+  try {
+    if (avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
+      await avRecorder.pause();
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to pause avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // Process of resuming recording.
-  async resumeRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
-      await this.avRecorder.resume();
+  // Resume recording.
+  try {
+    if (avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
+      await avRecorder.resume();
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to resume avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // Process of stopping recording.
-  async stopRecordingProcess() {
-    if (this.avRecorder != undefined) {
-      // 1. Stop recording.
-      if (this.avRecorder.state === 'started'
-        || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
-        await this.avRecorder.stop();
-      }
-      // 2. Reset the AVRecorder.
-      await this.avRecorder.reset();
-      // 3. Release the AVRecorder instance.
-      await this.avRecorder.release();
-      this.avRecorder = undefined;
-      // 4. Close the file descriptor of the recording file.
-      await fs.close(this.fileFd);
+  // Stop recording.
+  try {
+    if (avRecorder.state === 'started' || avRecorder.state === 'paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+      await avRecorder.stop();
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to stop avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+  
+  // Reset recording.
+  try {
+    await avRecorder.reset();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to reset avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // Complete sample code for starting, pausing, resuming, and stopping recording.
-  async audioRecorderDemo() {
-    await this.startRecordingProcess(); // Start recording.
-    // You can set the recording duration. For example, you can set the sleep mode to prevent code execution.
-    await this.pauseRecordingProcess(); // Pause recording.
-    await this.resumeRecordingProcess(); // Resume recording.
-    await this.stopRecordingProcess(); // Stop recording.
+  // Release the AVRecorder instance.
+  try {
+    await avRecorder.release();
+    avRecorder = undefined;
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to release avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // Close the file descriptor of the recording file.
+  try {
+    if (audioFile !== undefined) {
+      await fs.close(audioFile.fd);
+    }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to close fd, error code: ${err.code}, message: ${err.message}`);
   }
 }
 ```

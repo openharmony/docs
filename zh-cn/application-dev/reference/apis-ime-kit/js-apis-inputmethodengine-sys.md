@@ -66,7 +66,8 @@ on(type: 'sizeUpdate', callback: SizeUpdateCallback): void
 import { window } from '@kit.ArkUI';
 
 panel.on('sizeUpdate', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
-  console.info(`panel size changed, windowSize: ${JSON.stringify(windowSize)}, keyboardArea: ${JSON.stringify(keyboardArea)}`);
+  console.info(`panel size changed, windowSize: ${windowSize.width}, ${windowSize.height}, ` +
+    `keyboardArea: ${keyboardArea.top}, ${keyboardArea.bottom}, ${keyboardArea.left}, ${keyboardArea.right}`);
 });
 ```
 

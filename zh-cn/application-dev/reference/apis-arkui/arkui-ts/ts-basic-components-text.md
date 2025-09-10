@@ -438,7 +438,7 @@ copyOption(value: CopyOptions)
 
 - 若需要支持Ctrl+C复制，需同时设置[textSelectable](#textselectable12)为TextSelectableMode.SELECTABLE_FOCUSABLE。
 
-此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
+此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#parallelgesture)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
 
 由于卡片没有长按事件，此场景下长按文本，不会弹出文本选择菜单。
 
@@ -765,6 +765,8 @@ fontFeature属性列表：
 >  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
 >
 >  系统默认字体支持的liga连字：Th fb ff fb ffb ffh ffi ffk ffl fh fi fk。常导致Span、属性字符串的效果不符合预期，关闭liga连字特性可以规避。
+>
+>  文字特性效果与使用的字体文件密切相关。例如，8标点挤压功能在当前系统默认字体中仅对左侧标点符号生效，而右侧标点符号及感叹号、顿号、问号均不生效。
 
 ### lineSpacing<sup>12+</sup>
 
@@ -1257,7 +1259,7 @@ Text组件的控制器。
 controller: TextController = new TextController()
 ```
 
-### closeSelectionMenu
+### closeSelectionMenu<sup>11+</sup>
 
 closeSelectionMenu(): void
 
@@ -1876,7 +1878,7 @@ struct TextExample7 {
 
 ### 示例8（文本绑定自定义菜单）
 
-从API version 11开始，该示例通过[bindSelectionMenu](#bindselectionmenu11)、[onTextSelectionChange](#ontextselectionchange11)、[closeSelectionMenu](#closeselectionmenu)接口实现了文本绑定自定义菜单的功能。
+从API version 11开始，该示例通过[bindSelectionMenu](#bindselectionmenu11)、[onTextSelectionChange](#ontextselectionchange11)、[closeSelectionMenu](#closeselectionmenu11)接口实现了文本绑定自定义菜单的功能。
 
 ```ts
 // xxx.ets

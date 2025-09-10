@@ -1,4 +1,10 @@
 # Core
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 
 ## Overview
@@ -19,18 +25,18 @@ The Core module provides the basic backbone capabilities for the media system, i
 | -------- | -------- |
 | [media_types.h](media__types_8h.md) | Declares the common media types.| 
 | [native_audio_channel_layout.h](native__audio__channel__layout_8h.md) | Declares the functions related to the speaker layout during recording and playback.| 
-| [native_avbuffer.h](native__avbuffer_8h.md) | Declares the functions of the media struct **AVBuffer**.| 
-| [native_avbuffer_info.h](native__avbuffer__info_8h.md) | Declares the attribute definition of the media struct **AVBuffer**.| 
+| [native_avbuffer.h](native__avbuffer_8h.md) | Declares the functions of the media struct AVBuffer.| 
+| [native_avbuffer_info.h](native__avbuffer__info_8h.md) | Declares the attribute definition of the media struct AVBuffer.| 
 | [native_averrors.h](native__averrors_8h.md) | Declares the error codes used by the media system.| 
-| [native_avformat.h](native__avformat_8h.md) | Declares the functions and enums related to **OH_AVFormat**.| 
-| [native_avmemory.h](native__avmemory_8h.md) | Declares the attribute definition of the media struct **AVMemory**.| 
+| [native_avformat.h](native__avformat_8h.md) | Declares the functions and enums related to OH_AVFormat.| 
+| [native_avmemory.h](native__avmemory_8h.md) | Declares the attribute definition of the media struct AVMemory.| 
 
 
 ### Structs
 
 | Name| Description| 
 | -------- | -------- |
-| struct  [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) | Describes the description information about the buffer of an **OH_AVCodec** instance. | 
+| struct  [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) | Describes the description information about the buffer of an OH_AVCodec instance. | 
 
 
 ### Types
@@ -38,15 +44,15 @@ The Core module provides the basic backbone capabilities for the media system, i
 | Name| Description| 
 | -------- | -------- |
 | typedef enum [OH_Core_HdrType](#oh_core_hdrtype) [OH_Core_HdrType](#oh_core_hdrtype) | Defines an enum for the HDR types.| 
-| typedef enum [OH_AudioChannelSet](#oh_audiochannelset-1) [OH_AudioChannelSet](#oh_audiochannelset) | Defines an enum for the audio channel sets.| 
+| typedef enum [OH_AudioChannelSet](#oh_audiochannelset-1) [OH_AudioChannelSet](#oh_audiochannelset) | Defines an enum for the audio channels.| 
 | typedef enum [OH_AmbAttributeSet](#oh_ambattributeset-1) [OH_AmbAttributeSet](#oh_ambattributeset) | Defines an enum for the Hi-Fi stereo reverberation settings.| 
-| typedef enum [OH_AudioChannelLayout](#oh_audiochannellayout-1) [OH_AudioChannelLayout](#oh_audiochannellayout) | Defines an enum for the audio channel layouts.| 
+| typedef enum [OH_AudioChannelLayout](#oh_audiochannellayout-1) [OH_AudioChannelLayout](#oh_audiochannellayout) | Defines an enum for the layouts of audio channels.| 
 | typedef struct [OH_AVBuffer](#oh_avbuffer) [OH_AVBuffer](#oh_avbuffer) | Defines a struct that describes a native object for the media memory interface.| 
 | typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | Defines a struct that describes a native object for the graphics memory interface.| 
-| typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | Defines an enum for the flags for the buffer of an **OH_AVCodec** instance.| 
-| typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | Defines the description information about the buffer of an **OH_AVCodec** instance.| 
+| typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | Defines an enum for the flags for the buffer of an OH_AVCodec instance.| 
+| typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | Defines the description information about the buffer of an OH_AVCodec instance.| 
 | typedef enum [OH_AVErrCode](#oh_averrcode-1) [OH_AVErrCode](#oh_averrcode) | Defines an enum for the error codes used by the media system.| 
-| typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | Defines a struct for a native object for the **OH_AVFormat** interface.| 
+| typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | Defines a struct for a native object for the OH_AVFormat interface.| 
 | typedef enum [OH_AVPixelFormat](#oh_avpixelformat-1) [OH_AVPixelFormat](#oh_avpixelformat) | Defines an enum for the video pixel formats.| 
 | typedef struct [OH_AVMemory](#oh_avmemory) [OH_AVMemory](#oh_avmemory) | Defines a struct that describes a native object for the audio and video memory interface.| 
 
@@ -56,49 +62,51 @@ The Core module provides the basic backbone capabilities for the media system, i
 | Name| Description| 
 | -------- | -------- |
 | [OH_Core_HdrType](#oh_core_hdrtype-1) {<br> OH_CORE_HDR_TYPE_NONE = 0, <br>OH_CORE_HDR_TYPE_VIVID = 1 } | Enumerates the HDR types.| 
-| [OH_AudioChannelSet](#oh_audiochannelset-1) {<br>CH_SET_FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>CH_SET_FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>CH_SET_FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>CH_SET_LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>CH_SET_BACK_LEFT = 1ULL &lt;&lt; 4U,<br>CH_SET_BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>CH_SET_FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>CH_SET_FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>CH_SET_BACK_CENTER = 1ULL &lt;&lt; 8U,<br>CH_SET_SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>CH_SET_SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>CH_SET_TOP_CENTER = 1ULL &lt;&lt; 11U,<br>CH_SET_TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>CH_SET_TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>CH_SET_TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>CH_SET_TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>CH_SET_TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>CH_SET_TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>CH_SET_STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>CH_SET_STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>CH_SET_WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>CH_SET_WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>CH_SET_SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>CH_SET_SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>CH_SET_LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>CH_SET_TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>CH_SET_TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>CH_SET_BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>CH_SET_BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>CH_SET_BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U<br>} | Enumerates the audio channel sets.| 
+| [OH_AudioChannelSet](#oh_audiochannelset-1) {<br>CH_SET_FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>CH_SET_FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>CH_SET_FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>CH_SET_LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>CH_SET_BACK_LEFT = 1ULL &lt;&lt; 4U,<br>CH_SET_BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>CH_SET_FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>CH_SET_FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>CH_SET_BACK_CENTER = 1ULL &lt;&lt; 8U,<br>CH_SET_SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>CH_SET_SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>CH_SET_TOP_CENTER = 1ULL &lt;&lt; 11U,<br>CH_SET_TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>CH_SET_TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>CH_SET_TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>CH_SET_TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>CH_SET_TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>CH_SET_TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>CH_SET_STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>CH_SET_STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>CH_SET_WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>CH_SET_WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>CH_SET_SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>CH_SET_SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>CH_SET_LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>CH_SET_TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>CH_SET_TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>CH_SET_BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>CH_SET_BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>CH_SET_BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U<br>} | Enumerates the audio channels.| 
 | [OH_AmbAttributeSet](#oh_ambattributeset-1) {<br>AMB_ORD_1 = 1ULL &lt;&lt; 0U,<br>AMB_ORD_2 = 2ULL &lt;&lt; 0U,<br>AMB_ORD_3 = 3ULL &lt;&lt; 0U,<br>AMB_COM_ACN = 0ULL &lt;&lt; 8U,<br>AMB_COM_FUMA = 1ULL &lt;&lt; 8U,<br>AMB_NOR_N3D = 0ULL &lt;&lt; 12U,<br>AMB_NOR_SN3D = 1ULL &lt;&lt; 12U,<br>AMB_MODE = 1ULL &lt;&lt; 44U<br>} | Enumerates the Hi-Fi stereo reverberation settings.| 
 | [OH_AudioChannelLayout](#oh_audiochannellayout-1) {<br>CH_LAYOUT_UNKNOWN = 0ULL,<br>CH_LAYOUT_MONO = CH_SET_FRONT_CENTER,<br>CH_LAYOUT_STEREO = CH_SET_FRONT_LEFT \| CH_SET_FRONT_RIGHT,<br>CH_LAYOUT_STEREO_DOWNMIX = CH_SET_STEREO_LEFT \| CH_SET_STEREO_RIGHT,<br>CH_LAYOUT_2POINT1 = CH_LAYOUT_STEREO \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_3POINT0 = CH_LAYOUT_STEREO \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_SURROUND = CH_LAYOUT_STEREO \| CH_SET_FRONT_CENTER,<br>CH_LAYOUT_3POINT1 = CH_LAYOUT_SURROUND \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_4POINT0 = CH_LAYOUT_SURROUND \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_QUAD_SIDE = CH_LAYOUT_STEREO \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br>CH_LAYOUT_QUAD = CH_LAYOUT_STEREO \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_2POINT0POINT2 = CH_LAYOUT_STEREO \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_AMB_ORDER1_ACN_N3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_N3D, CH_LAYOUT_AMB_ORDER1_ACN_SN3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER1_FUMA = AMB_MODE \| AMB_ORD_1 \| AMB_COM_FUMA,<br>CH_LAYOUT_4POINT1 = CH_LAYOUT_4POINT0 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_5POINT0 = CH_LAYOUT_SURROUND \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br>CH_LAYOUT_5POINT0_BACK = CH_LAYOUT_SURROUND \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_2POINT1POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_3POINT0POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_FRONT_CENTER,<br>CH_LAYOUT_5POINT1 = CH_LAYOUT_5POINT0 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_5POINT1_BACK = CH_LAYOUT_5POINT0_BACK \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_6POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_3POINT1POINT2 = CH_LAYOUT_3POINT1 \| CH_SET_TOP_FRONT_LEFT \| CH_SET_TOP_FRONT_RIGHT,<br>CH_LAYOUT_6POINT0_FRONT = CH_LAYOUT_QUAD_SIDE \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_HEXAGONAL = CH_LAYOUT_5POINT0_BACK \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1_FRONT = CH_LAYOUT_6POINT0_FRONT \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_7POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_7POINT0_FRONT = CH_LAYOUT_5POINT0 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_7POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_OCTAGONAL = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_CENTER \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_5POINT1POINT2 = CH_LAYOUT_5POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_7POINT1_WIDE = CH_LAYOUT_5POINT1 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_7POINT1_WIDE_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_AMB_ORDER2_ACN_N3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_N3D,<br>CH_LAYOUT_AMB_ORDER2_ACN_SN3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER2_FUMA = AMB_MODE \| AMB_ORD_2 \| AMB_COM_FUMA,<br>CH_LAYOUT_5POINT1POINT4,<br>CH_LAYOUT_7POINT1POINT2 = CH_LAYOUT_7POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_7POINT1POINT4,<br>CH_LAYOUT_10POINT2,<br>CH_LAYOUT_9POINT1POINT4 = CH_LAYOUT_7POINT1POINT4 \| CH_SET_WIDE_LEFT \| CH_SET_WIDE_RIGHT,<br>CH_LAYOUT_9POINT1POINT6 = CH_LAYOUT_9POINT1POINT4 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_HEXADECAGONAL,<br>CH_LAYOUT_AMB_ORDER3_ACN_N3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_N3D,<br>CH_LAYOUT_AMB_ORDER3_ACN_SN3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER3_FUMA = AMB_MODE \| AMB_ORD_3 \| AMB_COM_FUMA,<br>CH_LAYOUT_22POINT2<br>} | Enumerates the audio channel layouts.| 
-| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) {<br>AVCODEC_BUFFER_FLAGS_NONE = 0,<br>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3, <br>AVCODEC_BUFFER_FLAGS_DISCARD = 1 &lt;&lt; 4, <br>AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 &lt;&lt; 5<br>} | Enumerates the flags for the buffer of an **OH_AVCodec** instance. | 
-| [OH_AVErrCode](#oh_averrcode-1)  {<br>AV_ERR_OK = 0,<br>AV_ERR_NO_MEMORY = 1,<br>AV_ERR_OPERATE_NOT_PERMIT = 2,<br>AV_ERR_INVALID_VAL = 3,<br>AV_ERR_IO = 4,<br>AV_ERR_TIMEOUT = 5,<br>AV_ERR_UNKNOWN = 6,<br>AV_ERR_SERVICE_DIED = 7,<br>AV_ERR_INVALID_STATE = 8,<br>AV_ERR_UNSUPPORT = 9, <br>AV_ERR_UNSUPPORTED_FORMAT = 11,<br>AV_ERR_EXTEND_START = 100,<br>AV_ERR_DRM_BASE = 200,<br>AV_ERR_DRM_DECRYPT_FAILED = 201,<br>AV_ERR_VIDEO_BASE = 300,<br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301<br>} | Enumerates the error codes used by the media system. |
-| [OH_AVPixelFormat](#oh_avpixelformat-1) {<br>AV_PIXEL_FORMAT_YUVI420 = 1,<br>AV_PIXEL_FORMAT_NV12 = 2,<br>AV_PIXEL_FORMAT_NV21 = 3,<br>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
+| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) {<br>AVCODEC_BUFFER_FLAGS_NONE = 0,<br>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3, <br>AVCODEC_BUFFER_FLAGS_DISCARD = 1 &lt;&lt; 4, <br>AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 &lt;&lt; 5<br>} | Enumerates the flags for the buffer of an OH_AVCodec instance. | 
+| [OH_AVErrCode](#oh_averrcode-1)  {<br>AV_ERR_OK = 0,<br>AV_ERR_NO_MEMORY = 1,<br>AV_ERR_OPERATE_NOT_PERMIT = 2,<br>AV_ERR_INVALID_VAL = 3,<br>AV_ERR_IO = 4,<br>AV_ERR_TIMEOUT = 5,<br>AV_ERR_UNKNOWN = 6,<br>AV_ERR_SERVICE_DIED = 7,<br>AV_ERR_INVALID_STATE = 8,<br>AV_ERR_UNSUPPORT = 9, <br>AV_ERR_UNSUPPORTED_FORMAT = 11,<br>AV_ERR_EXTEND_START = 100,<br>AV_ERR_DRM_BASE = 200,<br>AV_ERR_DRM_DECRYPT_FAILED = 201,<br>AV_ERR_VIDEO_BASE = 300,<br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301,<br>AV_ERR_IO_CANNOT_FIND_HOST = 5411001,<br>AV_ERR_IO_CONNECTION_TIMEOUT = 5411002,<br>AV_ERR_IO_NETWORK_ABNORMAL = 5411003,<br>AV_ERR_IO_NETWORK_UNAVAILABLE = 5411004,<br>AV_ERR_IO_NO_PERMISSION = 5411005,<br>AV_ERR_IO_NETWORK_ACCESS_DENIED = 5411006,<br>AV_ERR_IO_RESOURCE_NOT_FOUND = 5411007,<br>AV_ERR_IO_SSL_CLIENT_CERT_NEEDED = 5411008,<br>AV_ERR_IO_SSL_CONNECT_FAIL = 5411009,<br>AV_ERR_IO_SSL_SERVER_CERT_UNTRUSTED = 5411010,<br>AV_ERR_IO_UNSUPPORTED_REQUEST = 5411011,<br>AV_ERR_STREAM_CHANGED = 5410005,<br>AV_ERR_TRY_AGAIN_LATER  = 5410006<br>} | Enumerates the error codes used by the media system. |
+| [OH_AVPixelFormat](#oh_avpixelformat-1) {<br>AV_PIXEL_FORMAT_YUVI420 = 1,<br>AV_PIXEL_FORMAT_NV12 = 2,<br>AV_PIXEL_FORMAT_NV21 = 3,<br>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>AV_PIXEL_FORMAT_RGBA = 5,<br>AV_PIXEL_FORMAT_RGBA1010102 = 6<br>} | Enumerates the video pixel formats.| 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | Creates an **OH_AVBuffer** instance. You must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.| 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Releases an **OH_AVBuffer** instance.| 
+| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | Creates an OH_AVBuffer instance. You must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the OH_AVBuffer instance returned.| 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Releases an OH_AVBuffer instance.| 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | Obtains the basic attributes, including **pts**, **size**, **offset**, and **flags**, of a buffer.| 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | Sets the basic attributes, including **pts**, **size**, **offset**, and **flags**, of a buffer.| 
-| [OH_AVFormat](#oh_avformat) \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Obtains parameters except basic attributes of a buffer. The information is carried in an **OH_AVFormat** instance.| 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVFormat](#oh_avformat) \*format) | Sets parameters except basic attributes of a buffer. The information is carried in an **OH_AVFormat** instance.| 
+| [OH_AVFormat](#oh_avformat) \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Obtains parameters except basic attributes of a buffer. The information is carried in an OH_AVFormat instance.| 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVFormat](#oh_avformat) \*format) | Sets parameters except basic attributes of a buffer. The information is carried in an OH_AVFormat instance.| 
 | uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Obtains the virtual address of a data buffer.| 
 | int32_t [OH_AVBuffer_GetCapacity](#oh_avbuffer_getcapacity) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Obtains the capacity (in bytes) of a buffer.| 
-| [OH_NativeBuffer](#oh_nativebuffer) \* [OH_AVBuffer_GetNativeBuffer](#oh_avbuffer_getnativebuffer) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Obtains the pointer to an **OH_NativeBuffer** instance.| 
-| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_Create](#oh_avformat_create) (void) | Create an **OH_AVFormat** instance for reading and writing data.| 
-| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateAudioFormat](#oh_avformat_createaudioformat) (const char \*mimeType, int32_t sampleRate, int32_t channelCount) | Creates an audio **OH_AVFormat** instance with specified parameters for reading and writing data.| 
-| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | Creates a video **OH_AVFormat** instance with specified parameters for reading and writing data.| 
-| void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct [OH_AVFormat](#oh_avformat) \*format) | Destroys an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct [OH_AVFormat](#oh_avformat) \*to, struct [OH_AVFormat](#oh_avformat) \*from) | Copies an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | Assigns a value of the int type to a key in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | Assigns a value of the long type to a key in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | Assigns a value of the float type to a key in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | Assigns a value of the double type to a key in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | Assigns a value of the string type to a key in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | Writes data blocks of a specified length to an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | Obtains the value of the int type of a key in an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | Obtains the value of the long type of a key in an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float \*out) | Obtains the value of the float type of a key in an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | Obtains the value of the double type of a key in an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | Obtains the value of the string type of a key in an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | Reads data blocks of a specified length from an **OH_AVFormat** instance.| 
-| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | Returns a string consisting of key-value pairs contained in an **OH_AVFormat** instance.| 
-| [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | Creates an **OH_AVMemory** instance. (This function is deprecated in API version 11.)| 
-| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Obtains the virtual memory address. (This function is deprecated in API version 11.)| 
-| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Obtains the memory length. (This function is deprecated in API version 11.)| 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Releases an **OH_AVMemory** instance. (This function is deprecated in API version 11.)| 
+| [OH_NativeBuffer](#oh_nativebuffer) \* [OH_AVBuffer_GetNativeBuffer](#oh_avbuffer_getnativebuffer) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Obtains the pointer to an OH_NativeBuffer instance.| 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_Create](#oh_avformat_create) (void) | Create an OH_AVFormat instance for reading and writing data.| 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateAudioFormat](#oh_avformat_createaudioformat) (const char \*mimeType, int32_t sampleRate, int32_t channelCount) | Creates an audio OH_AVFormat instance with specified parameters for reading and writing data.| 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | Creates a video OH_AVFormat instance with specified parameters for reading and writing data.| 
+| void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct [OH_AVFormat](#oh_avformat) \*format) | Destroys an OH_AVFormat instance.| 
+| bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct [OH_AVFormat](#oh_avformat) \*to, struct [OH_AVFormat](#oh_avformat) \*from) | Copies an OH_AVFormat instance.| 
+| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | Assigns a value of the int type to a key in an OH_AVFormat instance.|
+| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | Assigns a value of the long type to a key in an OH_AVFormat instance.|
+| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | Assigns a value of the float type to a key in an OH_AVFormat instance.|
+| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | Assigns a value of the double type to a key in an OH_AVFormat instance.|
+| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | Assigns a value of the string type to a key in an OH_AVFormat instance.|
+| bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | Writes data blocks of a specified length to an OH_AVFormat instance.| 
+| bool [OH_AVFormat_SetIntBuffer](#oh_avformat_setintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const int32_t \*addr, size_t size) | Writes data blocks of the int32_t type with a specified length to an OH_AVFormat instance.| 
+| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | Obtains the value of the int type of a key in an OH_AVFormat instance.| 
+| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | Obtains the value of the long type of a key in an OH_AVFormat instance.| 
+| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float \*out) | Obtains the value of the float type of a key in an OH_AVFormat instance.| 
+| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | Obtains the value of the double type of a key in an OH_AVFormat instance.| 
+| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | Obtains the value of the string type of a key in an OH_AVFormat instance.| 
+| bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | Reads data blocks of a specified length from an OH_AVFormat instance.| 
+| bool [OH_AVFormat_GetIntBuffer](#oh_avformat_getintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*\*addr, size_t \*size) | Reads an array of int32_t data from an OH_AVFormat instance.| 
+| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | Returns a string consisting of key-value pairs contained in an OH_AVFormat instance.| 
+| [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | Creates an OH_AVMemory instance. (It is deprecated from API version 11.)| 
+| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Obtains the virtual memory address. (It is deprecated from API version 11.)| 
+| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Obtains the memory length. (It is deprecated from API version 11.)| 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Releases an OH_AVMemory instance. (It is deprecated from API version 11.)| 
 
 
 ## Type Description
@@ -146,9 +154,9 @@ typedef enum OH_AudioChannelSet OH_AudioChannelSet
 
 **Description**
 
-Defines an enum for the audio channel sets.
+Defines an enum for the audio channels.
 
-Each audio channel is mapped to an int64_t variable.
+Each channel is mapped to a variable of int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -175,7 +183,7 @@ typedef struct OH_AVCodecBufferAttr OH_AVCodecBufferAttr
 
 **Description**
 
-Defines the description information about the buffer of an **OH_AVCodec** instance.
+Defines the description information about the buffer of an OH_AVCodec instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -190,7 +198,7 @@ typedef enum OH_AVCodecBufferFlags OH_AVCodecBufferFlags
 
 **Description**
 
-Defines an enum for the flags for the buffer of an **OH_AVCodec** instance.
+Defines an enum for the flags for the buffer of an OH_AVCodec instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -317,7 +325,7 @@ enum OH_AudioChannelLayout
 
 **Description**
 
-Enumerates the audio channel layouts.
+Enumerates the layouts of audio channels.
 
 int64_t integers are used to indicate the appearance and sequence of speakers during recording or playback.
 
@@ -339,9 +347,9 @@ int64_t integers are used to indicate the appearance and sequence of speakers du
 | CH_LAYOUT_QUAD_SIDE | Quad side layout; 4 audio channels in total.| 
 | CH_LAYOUT_QUAD | Quad layout; 4 audio channels in total.| 
 | CH_LAYOUT_2POINT0POINT2 | 2.0.2 layout; 4 audio channels in total.| 
-| CH_LAYOUT_AMB_ORDER1_ACN_N3D | First-order FOA layout in ACN_N3D (ITU standards); 4 audio channels in total| 
-| CH_LAYOUT_AMB_ORDER1_ACN_SN3D | First-order FOA layout in ACN_SN3D (ITU standards); 4 audio channels in total| 
-| CH_LAYOUT_AMB_ORDER1_FUMA | First-order FOA layout in FUMA (ITU standards); 4 audio channels in total| 
+| CH_LAYOUT_AMB_ORDER1_ACN_N3D | First-order FOA layout in ACN_N3D (ITU standards); 4 audio channels in total.| 
+| CH_LAYOUT_AMB_ORDER1_ACN_SN3D | First-order FOA layout in ACN_SN3D (ITU standards); 4 audio channels in total.| 
+| CH_LAYOUT_AMB_ORDER1_FUMA | First-order FOA layout in FUMA (ITU standards); 4 audio channels in total.| 
 | CH_LAYOUT_4POINT1 | 4.1 layout; 5 audio channels in total.| 
 | CH_LAYOUT_5POINT0 | 5.0 layout; 5 audio channels in total.| 
 | CH_LAYOUT_5POINT0_BACK | 5.0 rear layout; 5 audio channels in total.| 
@@ -363,9 +371,9 @@ int64_t integers are used to indicate the appearance and sequence of speakers du
 | CH_LAYOUT_5POINT1POINT2 | 5.1.2 layout; 8 audio channels in total.| 
 | CH_LAYOUT_7POINT1_WIDE | 7.1 wide layout; 8 audio channels in total.| 
 | CH_LAYOUT_7POINT1_WIDE_BACK | 7.1 rear wide layout; 8 audio channels in total.| 
-| CH_LAYOUT_AMB_ORDER2_ACN_N3D | Second-order HOA layout in ACN_N3D (ITU standards); 9 audio channels in total| 
-| CH_LAYOUT_AMB_ORDER2_ACN_SN3D | Second-order HOA layout in ACN_SN3D (ITU standards); 9 audio channels in total| 
-| CH_LAYOUT_AMB_ORDER2_FUMA | Second-order HOA layout in FUMA (ITU standards); 9 audio channels in total| 
+| CH_LAYOUT_AMB_ORDER2_ACN_N3D | Second-order HOA layout in ACN_N3D (ITU standards); 9 audio channels in total.| 
+| CH_LAYOUT_AMB_ORDER2_ACN_SN3D | Second-order HOA layout in ACN_SN3D (ITU standards); 9 audio channels in total.| 
+| CH_LAYOUT_AMB_ORDER2_FUMA | Second-order HOA layout in FUMA (ITU standards); 9 audio channels in total.| 
 | CH_LAYOUT_5POINT1POINT4 | 5.1.4 layout; 10 audio channels in total.| 
 | CH_LAYOUT_7POINT1POINT2 | 7.1.2 layout; 10 audio channels in total.| 
 | CH_LAYOUT_7POINT1POINT4 | 7.1.4 layout; 12 audio channels in total.| 
@@ -373,9 +381,9 @@ int64_t integers are used to indicate the appearance and sequence of speakers du
 | CH_LAYOUT_9POINT1POINT4 | 9.1.4 layout; 14 audio channels in total.| 
 | CH_LAYOUT_9POINT1POINT6 | 9.1.6 layout; 16 audio channels in total.| 
 | CH_LAYOUT_HEXADECAGONAL | Hexadecagonal layout; 16 audio channels in total.| 
-| CH_LAYOUT_AMB_ORDER3_ACN_N3D | Third-order HOA layout in ACN_N3D (ITU standards); 16 audio channels in total| 
-| CH_LAYOUT_AMB_ORDER3_ACN_SN3D | Third-order HOA layout in ACN_SN3D (ITU standards); 16 audio channels in total| 
-| CH_LAYOUT_AMB_ORDER3_FUMA | Third-order HOA layout in FUMA (ITU standards); 16 audio channels in total| 
+| CH_LAYOUT_AMB_ORDER3_ACN_N3D | Third-order HOA layout in ACN_N3D (ITU standards); 16 audio channels in total.| 
+| CH_LAYOUT_AMB_ORDER3_ACN_SN3D | Third-order HOA layout in ACN_SN3D (ITU standards); 16 audio channels in total.| 
+| CH_LAYOUT_AMB_ORDER3_FUMA | Third-order HOA layout in FUMA (ITU standards); 16 audio channels in total.| 
 | CH_LAYOUT_22POINT2 | 22.2 layout; 24 audio channels in total.| 
 
 
@@ -387,9 +395,9 @@ enum OH_AudioChannelSet
 
 **Description**
 
-Enumerates the audio channel sets.
+Enumerates the audio channels.
 
-Each audio channel is mapped to an int64_t variable.
+Each channel is mapped to a variable of int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -398,11 +406,11 @@ Each audio channel is mapped to an int64_t variable.
 | Value| Description| 
 | -------- | -------- |
 | CH_SET_FRONT_LEFT | Front left channel.| 
-| CH_SET_FRONT_RIGHT | Front right channel| 
+| CH_SET_FRONT_RIGHT | Front right channel.| 
 | CH_SET_FRONT_CENTER | Front center channel.| 
 | CH_SET_LOW_FREQUENCY | Low-frequency channel.| 
 | CH_SET_BACK_LEFT | Rear left channel.| 
-| CH_SET_BACK_RIGHT | Rear right channel| 
+| CH_SET_BACK_RIGHT | Rear right channel.| 
 | CH_SET_FRONT_LEFT_OF_CENTER | Front left center channel.| 
 | CH_SET_FRONT_RIGHT_OF_CENTER | Front right center channel.| 
 | CH_SET_BACK_CENTER | Rear center channel.| 
@@ -437,7 +445,7 @@ enum OH_AVCodecBufferFlags
 
 **Description**
 
-Enumerates the flags for the buffer of an **OH_AVCodec** instance.
+Enumerates the flags for the buffer of an OH_AVCodec instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -483,9 +491,22 @@ Enumerates the error codes used by the media system.
 | AV_ERR_UNSUPPORTED_FORMAT | Coding format not supported.<br>**Since**: 18| 
 | AV_ERR_EXTEND_START  | Initial value for extended error codes.  | 
 | AV_ERR_DRM_BASE  | DRM start error code.<br>**Since**: 12| 
-| AV_ERR_DRM_DECRYPT_FAILED  | DRM decryption failed.<br>**Since**: 12| 
+| AV_ERR_DRM_DECRYPT_FAILED  | DRM decryption fails.<br>**Since**: 12| 
 | AV_ERR_VIDEO_BASE   | Video start error code.<br>**Since**: 12|
 | AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION   | Color Space Conversion (CSC) is not supported.<br>**Since**: 12|
+| AV_ERR_IO_CANNOT_FIND_HOST   | The host is not found. The possible cause is that the server address is incorrect.<br>**Since**: 14|
+| AV_ERR_IO_CONNECTION_TIMEOUT   | Network connection times out.<br>**Since**: 14|
+| AV_ERR_IO_NETWORK_ABNORMAL   | The connection fails due to a network error.<br>**Since**: 14|
+| AV_ERR_IO_NETWORK_UNAVAILABLE   | The connection fails due to network unavailability.<br>**Since**: 14|
+| AV_ERR_IO_NO_PERMISSION   | No network access permission.<br>**Since**: 14|
+| AV_ERR_IO_NETWORK_ACCESS_DENIED   | The client request parameter is incorrect or exceeds the processing capability.<br>**Since**: 14|
+| AV_ERR_IO_RESOURCE_NOT_FOUND   | No network resource is available.<br>**Since**: 14|
+| AV_ERR_IO_SSL_CLIENT_CERT_NEEDED   | Server authentication fails because the client certificate is not carried, is invalid, or has expired.<br>**Since**: 14|
+| AV_ERR_IO_SSL_CONNECT_FAIL   | Client authentication fails because the server certificate is not carried, is invalid, or has expired.<br>**Since**: 14|
+| AV_ERR_IO_SSL_SERVER_CERT_UNTRUSTED   | The SSL server certificate is untrusted.<br>**Since**: 14|
+| AV_ERR_IO_UNSUPPORTED_REQUEST   | The network protocol does not support the request.<br>**Since**: 14|
+| AV_ERR_STREAM_CHANGED | The stream format changes in synchronous mode. You can call [OH_VideoEncoder_GetOutputDescription](_video_encoder.md#oh_videoencoder_getoutputdescription) (video encoding), [OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription) (video decoding), or [OH_AudioCodec_GetOutputDescription](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_getoutputdescription) (audio encoding and decoding) to obtain the new stream configuration.<br>**Since**: 20|
+| AV_ERR_TRY_AGAIN_LATER  | The temporary buffer query fails in synchronous mode. You are advised to wait for a short period of time and try again.<br>**Since**: 20|
 
 ### OH_AVPixelFormat
 
@@ -508,6 +529,7 @@ Enumerates the video pixel formats.
 | AV_PIXEL_FORMAT_NV21 | NV21. YVU 420 semi-planar.| 
 | AV_PIXEL_FORMAT_SURFACE_FORMAT | Pixel format obtained from the surface. This value takes effect only in surface mode.| 
 | AV_PIXEL_FORMAT_RGBA | RGBA8888.| 
+| AV_PIXEL_FORMAT_RGBA1010102 | RGBA1010102.<br>**Since**: 20| 
 
 
 ### OH_Core_HdrType
@@ -541,7 +563,7 @@ OH_AVBuffer* OH_AVBuffer_Create (int32_t capacity)
 
 **Description**
 
-Creates an **OH_AVBuffer** instance. You must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.
+Creates an OH_AVBuffer instance. You must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the OH_AVBuffer instance returned.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -555,7 +577,7 @@ Creates an **OH_AVBuffer** instance. You must call [OH_AVBuffer_Destroy](#oh_avb
 
 **Returns**
 
-Returns the pointer to the **OH_AVBuffer** instance created if the operation is successful; returns NULL otherwise.
+Pointer to the OH_AVBuffer instance created. If the operation fails, NULL is returned.
 
 The possible causes of an operation failure are as follows:
 
@@ -571,7 +593,7 @@ OH_AVErrCode OH_AVBuffer_Destroy (OH_AVBuffer *buffer)
 
 **Description**
 
-Releases an **OH_AVBuffer** instance. A buffer cannot be destroyed repeatedly.
+Releases an OH_AVBuffer instance. A buffer cannot be destroyed repeatedly.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -581,15 +603,15 @@ Releases an **OH_AVBuffer** instance. A buffer cannot be destroyed repeatedly.
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
 
 **Returns**
 
-Returns any of the following result code:
+One of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_INVALID_VAL**: The passed-in value of **buffer** is a null pointer or fails parameter structure verification.
+**AV_ERR_INVALID_VAL**: The value of **buffer** is nullptr or fails parameter structure verification.
 
 **AV_ERR_OPERATE_NOT_PERMIT**: The input buffer is not created by the user.
 
@@ -630,16 +652,16 @@ The capability to obtain virtual addresses varies in scenarios, as described in 
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
 
 **Returns**
 
-Returns the virtual address if the operation is successful; returns NULL otherwise.
+Virtual address. If the operation fails, NULL is returned.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **buffer** is a null pointer.
-2. The passed-in value of **OH_AVBuffer** fails parameter structure verification.
+1. The value of **buffer** is nullptr.
+2. The value of **OH_AVBuffer** fails parameter structure verification.
 3. An internal error occurred.
 
 
@@ -661,20 +683,20 @@ Obtains the basic attributes, including **pts**, **size**, **offset**, and **fla
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
 | attr | Pointer to an [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) instance.| 
 
 **Returns**
 
-Returns any of the following result code:
+One of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
 **AV_ERR_INVALID_VAL**: The operation fails.
 
     Possible causes are as follows:
-    1. The passed-in value of **buffer** or **attr** is a null pointer.
-    2. The passed-in value of **buffer** fails parameter structure verification.
+    1. The value of **buffer** or **attr** is nullptr.
+    2. The value of **buffer** fails parameter structure verification.
 
 
 ### OH_AVBuffer_GetCapacity()
@@ -695,16 +717,16 @@ Obtains the capacity (in bytes) of a buffer.
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
 
 **Returns**
 
-Returns the capacity if the operation is successful; returns **-1** otherwise.
+Capacity. If the operation fails, **-1** is returned.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **buffer** is a null pointer.
-2. The passed-in value of **OH_AVBuffer** fails parameter structure verification.
+1. The value of **buffer** is nullptr.
+2. The value of **OH_AVBuffer** fails parameter structure verification.
 3. An internal error occurred.
 
 
@@ -716,7 +738,7 @@ OH_NativeBuffer* OH_AVBuffer_GetNativeBuffer (OH_AVBuffer *buffer)
 
 **Description**
 
-Obtains the pointer to an **OH_NativeBuffer** instance. You must call [OH_NativeBuffer_Unreference](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_unreference) to manually release the **OH_NativeBuffer** instance returned.
+Obtains the pointer to an OH_NativeBuffer instance. You must call [OH_NativeBuffer_Unreference](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_unreference) to manually release the OH_NativeBuffer instance returned.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -726,16 +748,16 @@ Obtains the pointer to an **OH_NativeBuffer** instance. You must call [OH_Native
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
 
 **Returns**
 
-Returns the pointer to the **OH_NativeBuffer** instance created if the operation is successful; returns NULL otherwise.
+Pointer to the OH_NativeBuffer instance created. If the operation fails, NULL is returned.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **buffer** is a null pointer.
-2. The passed-in value of **OH_AVBuffer** fails parameter structure verification.
+1. The value of **buffer** is nullptr.
+2. The value of **OH_AVBuffer** fails parameter structure verification.
 3. An internal error occurred.
 
 
@@ -747,7 +769,7 @@ OH_AVFormat* OH_AVBuffer_GetParameter (OH_AVBuffer *buffer)
 
 **Description**
 
-Obtains parameters except basic attributes of a buffer. The information is carried in an **OH_AVFormat** instance. You must call [OH_AVFormat_Destroy](#oh_avformat_destroy) to manually release the **OH_AVFormat** instance returned.
+Obtains parameters except basic attributes of a buffer. The information is carried in an OH_AVFormat instance. You must call [OH_AVFormat_Destroy](#oh_avformat_destroy) to manually release the OH_AVFormat instance returned.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -757,20 +779,17 @@ Obtains parameters except basic attributes of a buffer. The information is carri
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
 
 **Returns**
 
-Returns any of the following result code:
+Pointer to the OH_AVFormat instance created. If the operation is fails, NULL is returned.
 
-**AV_ERR_OK**: The operation is successful.
+The possible causes of an operation failure are as follows:
 
-**AV_ERR_INVALID_VAL**: The operation fails.
-
-    Possible causes are as follows:
-    1. The passed-in value of **buffer** is a null pointer.
-    2. The meta of the buffer is a null pointer.
-    3. The passed-in value of **buffer** fails parameter structure verification.
+1. The value of **buffer** is nullptr.
+2. The meta of the buffer is nullptr.
+3. The value of **buffer** fails parameter structure verification.
 
 
 ### OH_AVBuffer_SetBufferAttr()
@@ -791,20 +810,20 @@ Sets the basic attributes, including **pts**, **size**, **offset**, and **flags*
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
 | attr | Pointer to an [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) instance.| 
 
 **Returns**
 
-Returns any of the following result code:
+One of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
 **AV_ERR_INVALID_VAL**: The operation fails.
 
     Possible causes are as follows:
-    1. The passed-in value of **buffer** or **attr** is a null pointer.
-    2. The passed-in value of **buffer** fails parameter structure verification.
+    1. The value of **buffer** or **attr** is nullptr.
+    2. The value of **buffer** fails parameter structure verification.
     3. The memory size or offset of the buffer is invalid.
 
 
@@ -816,7 +835,7 @@ OH_AVErrCode OH_AVBuffer_SetParameter (OH_AVBuffer *buffer, const OH_AVFormat *f
 
 **Description**
 
-Sets parameters except basic attributes of a buffer. The information is carried in an **OH_AVFormat** instance.
+Sets parameters except basic attributes of a buffer. The information is carried in an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -826,21 +845,21 @@ Sets parameters except basic attributes of a buffer. The information is carried 
 
 | Name| Description| 
 | -------- | -------- |
-| buffer | Pointer to an **OH_AVBuffer** instance.| 
-| format | Pointer to an **OH_AVFormat** instance.| 
+| buffer | Pointer to an OH_AVBuffer instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 
 **Returns**
 
-Returns any of the following result code:
+One of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
 **AV_ERR_INVALID_VAL**: The operation fails.
 
     Possible causes are as follows:
-    1. The passed-in value of **buffer** or **format** is a null pointer.
-    2. The meta of the buffer is a null pointer.
-    3. The passed-in value of **buffer** fails parameter structure verification.
+    1. The value of **buffer** or **format** is nullptr.
+    2. The meta of the buffer is nullptr.
+    3. The value of **buffer** fails parameter structure verification.
 
 
 ### OH_AVFormat_Copy()
@@ -851,7 +870,7 @@ bool OH_AVFormat_Copy (struct OH_AVFormat *to, struct OH_AVFormat *from)
 
 **Description**
 
-Copies an **OH_AVFormat** instance.
+Copies an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -861,17 +880,17 @@ Copies an **OH_AVFormat** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| to | Pointer to the **OH_AVFormat** instance to which the data will be copied.| 
-| from | Pointer to the **OH_AVFormat** instance from which the data will be copied.| 
+| to | Pointer to the OH_AVFormat instance to which the data will be copied.| 
+| from | Pointer to the OH_AVFormat instance from which the data will be copied.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The input parameter is a null pointer.
-2. The passed-in value of **OH_AVFormat** fails parameter structure verification.
+1. The input parameter is nullptr.
+2. The value of **OH_AVFormat** fails parameter structure verification.
 
 
 ### OH_AVFormat_Create()
@@ -882,7 +901,7 @@ struct OH_AVFormat* OH_AVFormat_Create (void)
 
 **Description**
 
-Create an **OH_AVFormat** instance for reading and writing data.
+Create an OH_AVFormat instance for reading and writing data.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -890,7 +909,7 @@ Create an **OH_AVFormat** instance for reading and writing data.
 
 **Returns**
 
-Returns the pointer to an **OH_AVFormat** instance; returns NULL if system resources are insufficient.
+Pointer to an OH_AVFormat instance. If system resources are insufficient, NULL is returned.
 
 
 ### OH_AVFormat_CreateAudioFormat()
@@ -901,7 +920,7 @@ struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t
 
 **Description**
 
-Creates an audio **OH_AVFormat** instance with specified parameters for reading and writing data.
+Creates an audio OH_AVFormat instance with specified parameters for reading and writing data.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -917,7 +936,7 @@ Creates an audio **OH_AVFormat** instance with specified parameters for reading 
 
 **Returns**
 
-Returns the pointer to an **OH_AVFormat** instance; returns NULL if the passed-in value of **mimeType** is NULL or system resources are insufficient.
+Pointer to an OH_AVFormat instance. If the passed-in value of **mimeType** is NULL or system resources are insufficient, NULL is returned.
 
 
 ### OH_AVFormat_CreateVideoFormat()
@@ -928,7 +947,7 @@ struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t
 
 **Description**
 
-Creates a video **OH_AVFormat** instance with specified parameters for reading and writing data.
+Creates a video OH_AVFormat instance with specified parameters for reading and writing data.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -939,12 +958,12 @@ Creates a video **OH_AVFormat** instance with specified parameters for reading a
 | Name| Description| 
 | -------- | -------- |
 | mimeType | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables).| 
-| width | Luminance width, in pixels.| 
-| height | Luminance height, in pixels.| 
+| width | Image width, in pixels.| 
+| height | Image height, in pixels.| 
 
 **Returns**
 
-Returns the pointer to an **OH_AVFormat** instance; returns NULL if the passed-in value of **mimeType** is NULL or system resources are insufficient.
+Pointer to an OH_AVFormat instance. If the passed-in value of **mimeType** is NULL or system resources are insufficient, NULL is returned.
 
 
 ### OH_AVFormat_Destroy()
@@ -955,7 +974,7 @@ void OH_AVFormat_Destroy (struct OH_AVFormat *format)
 
 **Description**
 
-Destroys an **OH_AVFormat** instance. The instance cannot be destroyed repeatedly.
+Destroys an OH_AVFormat instance. The instance cannot be destroyed repeatedly.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -965,7 +984,7 @@ Destroys an **OH_AVFormat** instance. The instance cannot be destroyed repeatedl
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 
 **Returns**
 
@@ -979,7 +998,7 @@ const char* OH_AVFormat_DumpInfo (struct OH_AVFormat *format)
 
 **Description**
 
-Returns a string consisting of key-value pairs contained in an **OH_AVFormat** instance. A string of up to 1024 bytes can be returned. The string pointer is released when the **OH_AVFormat** instance is destroyed.
+Returns a string consisting of key-value pairs contained in an OH_AVFormat instance. A string of up to 1024 bytes can be returned. The string pointer is released when the OH_AVFormat instance is destroyed.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -989,11 +1008,11 @@ Returns a string consisting of key-value pairs contained in an **OH_AVFormat** i
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 
 **Returns**
 
-Returns the pointer to a collection of strings, in the format of key-value pairs; returns NULL if the passed-in value of **format** is NULL or system resources are insufficient.
+Pointer to a collection of strings, in the format of key-value pairs. If the passed-in value of **format** is NULL or system resources are insufficient, NULL is returned.
 
 
 ### OH_AVFormat_GetBuffer()
@@ -1004,7 +1023,7 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 
 **Description**
 
-Reads data blocks of a specified length from an **OH_AVFormat** instance.
+Reads data blocks of a specified length from an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1014,24 +1033,59 @@ Reads data blocks of a specified length from an **OH_AVFormat** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to read.| 
-| addr | Double pointer to the address where the data read is stored. The data read is destroyed when the **OH_AVFormat** instance is destroyed. To hold the data for an extended period of time, copy it to the memory.| 
+| addr | Double pointer to the address where the data read is stored. The data read is destroyed when the OH_AVFormat instance is destroyed. To hold the data for an extended period of time, copy it to the memory.| 
 | size | Pointer to the size of the data read.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **addr** is a null pointer.
-5. The passed-in value of **size** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **addr** is nullptr.
+5. The value of **size** is nullptr.
 6. The obtained key does not exist or is not set.
 
+### OH_AVFormat_GetIntBuffer()
+
+```
+bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size)
+```
+
+**Description**
+
+Reads an array of int32_t data from an OH_AVFormat instance.
+Note that the buffer lifecycle is bound to the OH_AVFormat instance. The buffer becomes invalid automatically when the OH_AVFormat instance is destroyed. To keep the data for an extended period, explicitly copy the data to newly allocated memory.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| format | Pointer to an OH_AVFormat instance.| 
+| key | Pointer to the key of the data to read.| 
+| addr | Double pointer to the memory where the data is stored.| 
+| size | Pointer to the number of elements read.| 
+
+**Returns**
+
+**TRUE** if the operation is successful; **FALSE** otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **addr** is nullptr.
+5. The value of **size** is nullptr.
 
 ### OH_AVFormat_GetDoubleValue()
 
@@ -1041,7 +1095,7 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **Description**
 
-Obtains the value of the double type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
+Obtains the value of the double type of a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1051,20 +1105,20 @@ Obtains the value of the double type of a [key](_codec_base.md#media-data-key-va
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to read.| 
 | out | Pointer to the value of the data read.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **out** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **out** is nullptr.
 5. The obtained key does not exist or is not set.
 
 
@@ -1076,7 +1130,7 @@ bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **Description**
 
-Obtains the value of the float type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
+Obtains the value of the float type of a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1086,20 +1140,20 @@ Obtains the value of the float type of a [key](_codec_base.md#media-data-key-val
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to read.| 
 | out | Pointer to the value of the data read.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **out** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **out** is nullptr.
 5. The obtained key does not exist or is not set.
 
 
@@ -1111,7 +1165,7 @@ bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **Description**
 
-Obtains the value of the int type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
+Obtains the value of the int type of a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1121,20 +1175,20 @@ Obtains the value of the int type of a [key](_codec_base.md#media-data-key-value
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to read.| 
 | out | Pointer to the value of the data read.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **out** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **out** is nullptr.
 5. The obtained key does not exist or is not set.
 
 
@@ -1146,7 +1200,7 @@ bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **Description**
 
-Obtains the value of the long type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
+Obtains the value of the long type of a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1156,20 +1210,20 @@ Obtains the value of the long type of a [key](_codec_base.md#media-data-key-valu
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to read.| 
 | out | Pointer to the value of the data read.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **out** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **out** is nullptr.
 5. The obtained key does not exist or is not set.
 
 
@@ -1181,7 +1235,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **Description**
 
-Obtains the value of the string type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
+Obtains the value of the string type of a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1191,20 +1245,20 @@ Obtains the value of the string type of a [key](_codec_base.md#media-data-key-va
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to read.| 
 | out | Double pointer to the string read. The lifecycle of the **out** data matches the string in **format**. To keep the **out** data for an extended period of time, you must copy it to the memory. The maximum length of the output string is 256 bytes. If the length exceeds 256 bytes, **false** is returned.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **out** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **out** is nullptr.
 5. The system resources are insufficient.
 6. The obtained key does not exist or is not set.
 7. The length of the **out** data exceeds 256 bytes.
@@ -1218,7 +1272,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 
 **Description**
 
-Writes data blocks of a specified length to an **OH_AVFormat** instance. This function can be used to set only parameters of the buffer type. For details, see [CodecBase](_codec_base.md).
+Writes data blocks of a specified length to an OH_AVFormat instance. This function can be used to set only parameters of the buffer type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1228,21 +1282,21 @@ Writes data blocks of a specified length to an **OH_AVFormat** instance. This fu
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to write.| 
-| addr | Double-pointer to the address to which data is written. The lifecycle is managed by the developer.| 
+| addr | Pointer to the address to which data is written. The lifecycle is managed by the developer.| 
 | size | Length of the data written, in MB. The value range is (0, 1].| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **addr** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **addr** is nullptr.
 5. The size is 0 or exceeds the upper limit (1 MB).
 6. The value type corresponding to the key is incorrect.
 
@@ -1255,7 +1309,7 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **Description**
 
-Assigns a value of the double type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the double type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the double type to a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the double type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1265,19 +1319,19 @@ Assigns a value of the double type to a [key](_codec_base.md#media-data-key-valu
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to write.| 
 | value | Value of the data to write.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
 4. The value type corresponding to the key is incorrect.
 
 
@@ -1289,7 +1343,7 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **Description**
 
-Assigns a value of the float type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the float type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the float type to a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the float type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1299,19 +1353,19 @@ Assigns a value of the float type to a [key](_codec_base.md#media-data-key-value
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to write.| 
 | value | Value of the data to write.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
 4. The value type corresponding to the key is incorrect.
 
 ### OH_AVFormat_SetIntValue()
@@ -1322,7 +1376,7 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **Description**
 
-Assigns a value of the int type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the int type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the int type to a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the int type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1332,19 +1386,19 @@ Assigns a value of the int type to a [key](_codec_base.md#media-data-key-value-p
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to write.| 
 | value | Value of the data to write.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
 4. The value type corresponding to the key is incorrect.
 
 
@@ -1356,7 +1410,7 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **Description**
 
-Assigns a value of the long type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the long type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the long type to a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the long type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1366,19 +1420,19 @@ Assigns a value of the long type to a [key](_codec_base.md#media-data-key-value-
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to write.| 
 | value | Value of the data to write.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
 4. The value type corresponding to the key is incorrect.
 
 
@@ -1390,7 +1444,7 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **Description**
 
-Assigns a value of the string type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the string type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the string type to a [key](_codec_base.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the string type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1400,20 +1454,20 @@ Assigns a value of the string type to a [key](_codec_base.md#media-data-key-valu
 
 | Name| Description| 
 | -------- | -------- |
-| format | Pointer to an **OH_AVFormat** instance.| 
+| format | Pointer to an OH_AVFormat instance.| 
 | key | Pointer to the key of the data to write.| 
 | value | Pointer to the data to be written to the string. The length should not exceed 256 bytes.| 
 
 **Returns**
 
-Returns **TRUE** if the operation is successful; returns **FALSE** otherwise.
+**TRUE** if the operation is successful; **FALSE** otherwise.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **format** is a null pointer.
-2. The passed-in value of **format** fails parameter structure verification.
-3. The passed-in value of **key** is a null pointer.
-4. The passed-in value of **value** is a null pointer.
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **value** is nullptr.
 5. The value type corresponding to the key is incorrect.
 
 
@@ -1425,7 +1479,7 @@ OH_AVMemory* OH_AVMemory_Create (int32_t size)
 
 **Description**
 
-Creates an **OH_AVMemory** instance.
+Creates an OH_AVMemory instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1443,7 +1497,7 @@ Creates an **OH_AVMemory** instance.
 
 **Returns**
 
-Returns the pointer to the **OH_AVMemory** instance created if the operation is successful; returns NULL otherwise. The instance must be released by calling **OH_AVMemory_Destroy** when it is no longer required.
+Pointer to the OH_AVMemory instance created. If the operation fails, NULL is returned. The instance must be released by calling **OH_AVMemory_Destroy** when it is no longer required.
 
 
 ### OH_AVMemory_Destroy()
@@ -1454,7 +1508,7 @@ OH_AVErrCode OH_AVMemory_Destroy (struct OH_AVMemory *mem)
 
 **Description**
 
-Releases an **OH_AVMemory** instance.
+Releases an OH_AVMemory instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1468,11 +1522,11 @@ Releases an **OH_AVMemory** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| mem | Pointer to an **OH_AVMemory** instance.| 
+| mem | Pointer to an OH_AVMemory instance.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](#oh_averrcode-1) otherwise.
+**AV_ERR_OK**. If the operation fails, an error code defined in [OH_AVErrCode](#oh_averrcode-1) is returned.
 
 
 ### OH_AVMemory_GetAddr()
@@ -1497,17 +1551,17 @@ Obtains the virtual memory address.
 
 | Name| Description| 
 | -------- | -------- |
-| mem | Pointer to an **OH_AVMemory** instance.| 
+| mem | Pointer to an OH_AVMemory instance.| 
 
 **Returns**
 
-Returns the pointer to the virtual memory address if the memory is valid; returns NULL otherwise.
+Pointer to the virtual memory address. If the memory is invalid, NULL is returned.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **mem** is a null pointer.
-2. The passed-in value of **mem** fails parameter structure verification.
-3. The memory in the passed-in value of **mem** is a null pointer.
+1. The value of **mem** is nullptr.
+2. The value of **mem** fails parameter structure verification.
+3. The memory in the passed-in value of **mem** is nullptr.
 
 
 ### OH_AVMemory_GetSize()
@@ -1532,14 +1586,51 @@ Obtains the memory length.
 
 | Name| Description| 
 | -------- | -------- |
-| mem | Pointer to an **OH_AVMemory** instance.| 
+| mem | Pointer to an OH_AVMemory instance.| 
 
 **Returns**
 
-Returns the memory size if the memory is valid; returns **-1** otherwise.
+Memory size. If the memory is invalid, **-1** is returned.
 
 The possible causes of an operation failure are as follows:
 
-1. The passed-in value of **mem** is a null pointer.
-2. The passed-in value of **mem** fails parameter structure verification.
-3. The memory in the passed-in value of **mem** is a null pointer.
+1. The value of **mem** is nullptr.
+2. The value of **mem** fails parameter structure verification.
+3. The memory in the passed-in value of **mem** is nullptr.
+
+### OH_AVFormat_SetIntBuffer()
+
+```
+bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size)
+```
+
+**Description**
+
+Writes data blocks of the int32_t type with a specified length to an OH_AVFormat instance.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| format | Pointer to an OH_AVFormat instance.| 
+| key | Pointer to the key of the data to write.| 
+| addr | Pointer to the address to which data is written. The lifecycle is managed by the developer.| 
+| size | Length of the data to write, in units of elements, not bytes.| 
+
+**Returns**
+
+**TRUE** if the operation is successful; **FALSE** otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The value of **format** is nullptr.
+2. The value of **format** fails parameter structure verification.
+3. The value of **key** is nullptr.
+4. The value of **addr** is nullptr.
+5. The value of **size** is **0**.
+
+<!--no_check-->

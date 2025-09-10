@@ -4,7 +4,7 @@
 <!--Owner: @yangxiaodong41-->
 <!--Designer: @guo867-->
 <!--Tester: @maxiaorong-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -12,8 +12,8 @@
 
 ## 基本概念
 
-- **OH_PasteboardObserver**：剪贴板数据变更观察者对象，用以监听剪贴板数据变更事件。
-- **OH_Pasteboard**：剪贴板对象，用来进行查询、写入等操作。
+- [**OH_PasteboardObserver**](../../reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md)：剪贴板数据变更观察者对象，用以监听剪贴板数据变更事件。
+- [**OH_Pasteboard**](../../reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md)：剪贴板对象，用来进行查询、写入等操作。
 - [**OH_UdmfData**](../../reference/apis-arkdata/capi-udmf-oh-udmfdata.md)：统一数据对象。
 
 ## 约束限制
@@ -138,7 +138,9 @@
      OH_UdsPlainText* plainText = OH_UdsPlainText_Create();
      OH_UdmfRecord_GetPlainText(record, plainText);
      const char* content = OH_UdsPlainText_GetContent(plainText);
-     printf("Get plain text success. content: %s", content);
+     if (content != nullptr){
+      printf("Get plain text success.");
+     }
      // 5. 使用完销毁指针
      OH_UdsPlainText_Destroy(plainText);
      OH_UdmfData_Destroy(udmfData);

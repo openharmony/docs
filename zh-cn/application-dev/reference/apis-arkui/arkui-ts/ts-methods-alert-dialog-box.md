@@ -605,7 +605,7 @@ struct AlertDialogExample {
 
 ### 示例5（悬停态弹窗）
 
-该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+<!--RP1-->该示例展示了在悬停态下设置dialog布局区域的效果。<!--RP1End-->
 
 ```ts
 // xxx.ets
@@ -653,7 +653,7 @@ struct AlertDialogExample {
 }
 ```
 
-![zh-cn_image_alert](figures/zh-cn_image_alert_hovermode.gif)
+<!--RP2--><!--RP2End-->
 
 ### 示例6（弹窗生命周期）
 
@@ -721,6 +721,7 @@ struct Example2 {
 struct AlertDialogExample {
   build() {
     Stack({ alignContent: Alignment.Top }) {
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
       Column() {
         Button("AlertDialog")
@@ -769,6 +770,7 @@ struct AlertDialogExample {
 struct AlertDialogExample {
   build() {
     Stack({ alignContent: Alignment.Top }) {
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
       Column() {
         Button("AlertDialog")

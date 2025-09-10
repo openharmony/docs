@@ -1,5 +1,12 @@
 # lowpower_audio_sink.h
 
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @Saber_e-->
+<!--Designer: @yangde_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义LowPowerAudioSink接口。使用LowPowerAudioSink提供的Native API进行音频通路的低功耗播放。
@@ -38,12 +45,12 @@
 | [OH_AVErrCode OH_LowPowerAudioSink_RegisterCallback(OH_LowPowerAudioSink* sink, OH_LowPowerAudioSinkCallback* callback)](#oh_lowpoweraudiosink_registercallback) | 为LowPowerAudioSink注册回调。 |
 | [OH_LowPowerAudioSinkCallback* OH_LowPowerAudioSinkCallback_Create(void)](#oh_lowpoweraudiosinkcallback_create) | 创建OH_LowPowerAudioSinkCallback实例。 |
 | [OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* callback)](#oh_lowpoweraudiosinkcallback_destroy) | 销毁OH_LowPowerAudioSinkCallback实例。 |
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnPositionUpdated onPositionUpdated,void* userData)](#oh_lowpoweraudiosinkcallback_setpositionupdatelistener) | 为LowPowerAudioSinkCallback设置进度更新监听。 |
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnDataNeeded onDataNeeded,void* userData)](#oh_lowpoweraudiosinkcallback_setdataneededlistener) | 为LowPowerAudioSinkCallback设置需要数据监听。 |
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnError onError,void* userData)](#oh_lowpoweraudiosinkcallback_seterrorlistener) | 为LowPowerAudioSinkCallback设置错误监听。 |
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnInterrupted onInterrupted,void* userData)](#oh_lowpoweraudiosinkcallback_setinterruptlistener) | 为LowPowerAudioSinkCallback设置音频焦点打断监听。 |
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnDeviceChanged onDeviceChanged,void* userData)](#oh_lowpoweraudiosinkcallback_setdevicechangelistener) | 为LowPowerAudioSinkCallback设置音频设备切换监听。 |
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetEosListener(OH_LowPowerAudioSinkCallback *callback,OH_LowPowerAudioSink_OnEos onEos,void* userData)](#oh_lowpoweraudiosinkcallback_seteoslistener) | 为LowPowerAudioSinkCallback设置播放完成监听。 |
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnPositionUpdated onPositionUpdated, void* userData)](#oh_lowpoweraudiosinkcallback_setpositionupdatelistener) | 为LowPowerAudioSinkCallback设置进度更新监听。 |
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnDataNeeded onDataNeeded, void* userData)](#oh_lowpoweraudiosinkcallback_setdataneededlistener) | 为LowPowerAudioSinkCallback设置需要数据监听。 |
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnError onError, void* userData)](#oh_lowpoweraudiosinkcallback_seterrorlistener) | 为LowPowerAudioSinkCallback设置错误监听。 |
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnInterrupted onInterrupted, void* userData)](#oh_lowpoweraudiosinkcallback_setinterruptlistener) | 为LowPowerAudioSinkCallback设置音频焦点打断监听。 |
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnDeviceChanged onDeviceChanged, void* userData)](#oh_lowpoweraudiosinkcallback_setdevicechangelistener) | 为LowPowerAudioSinkCallback设置音频设备切换监听。 |
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetEosListener(OH_LowPowerAudioSinkCallback *callback, OH_LowPowerAudioSink_OnEos onEos, void* userData)](#oh_lowpoweraudiosinkcallback_seteoslistener) | 为LowPowerAudioSinkCallback设置播放完成监听。 |
 
 ## 函数说明
 

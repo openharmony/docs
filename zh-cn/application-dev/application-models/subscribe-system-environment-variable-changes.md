@@ -47,7 +47,7 @@
 
 ### 设置字体大小
 
-应用字体大小默认不跟随系统变化，开发者可以通过将[configuration标签](../quick-start/app-configuration-file.md#configuration标签)中fontSizeScale的值配置为nonFollowSystem，使得应用字体大小跟随系统变化。
+应用字体大小默认不跟随系统变化，开发者可以通过将[configuration标签](../quick-start/app-configuration-file.md#configuration标签)中fontSizeScale的值配置为followSystem，使得应用字体大小跟随系统变化。
 
 开发者可以使用[setFontSizeScale](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)设置应用字体大小。设置后，应用字体将不跟随系统变化，不再支持订阅系统字体大小变化。
 

@@ -134,6 +134,8 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->
+
 **示例2：**
 
 发起用户认证，采用认证可信等级≥ATL3的人脸+认证类型相关+复用设备解锁最大有效时长认证，获取认证结果。
@@ -193,6 +195,8 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->
+
 **示例3：**
 
 发起用户认证，采用认证可信等级≥ATL3的人脸+任意应用认证类型相关+复用任意应用最大有效时长认证，获取认证结果。
@@ -252,6 +256,7 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->
 
 **示例4：**
 
@@ -303,3 +308,4 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->

@@ -40,8 +40,8 @@ import { osAccount } from '@kit.BasicServicesKit';
    ```ts
    let callback: osAccount.IUserAuthCallback = {
      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-       console.log('auth resultCode = ' + resultCode);
-       console.log('auth authResult = ' + JSON.stringify(authResult));
+       console.info('auth resultCode = ' + resultCode);
+       console.info('auth authResult = ' + JSON.stringify(authResult));
      }
    }
    ```
@@ -52,7 +52,7 @@ import { osAccount } from '@kit.BasicServicesKit';
    try {
      osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
    } catch (err) {
-     console.error('auth exception = ' + JSON.stringify(err));
+     console.error(`auth exception = ${err.message}`);
    }
    ```
 
@@ -67,8 +67,8 @@ import { osAccount } from '@kit.BasicServicesKit';
    ```ts
    let callback: osAccount.IUserAuthCallback = {
      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-       console.log('authWithPopup resultCode = ' + resultCode);
-       console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
+       console.info('authWithPopup resultCode = ' + resultCode);
+       console.info('authWithPopup authResult = ' + JSON.stringify(authResult));
      }
    }
    ```
@@ -79,6 +79,6 @@ import { osAccount } from '@kit.BasicServicesKit';
    try {
      osAccount.DomainAccountManager.authWithPopup(callback)
    } catch (err) {
-     console.error('authWithPopup exception = ' + JSON.stringify(err));
+     console.error(`authWithPopup exception = ${err.message}`);
    }
    ```

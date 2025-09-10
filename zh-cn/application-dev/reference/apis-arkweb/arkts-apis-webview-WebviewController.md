@@ -58,12 +58,12 @@ class WebObj {
   }
 
   webTest(): string {
-    console.log('Web test');
+    console.info('Web test');
     return "Web test";
   }
 
   webString(): void {
-    console.log('Web test toString');
+    console.info('Web test toString');
   }
 }
 
@@ -119,7 +119,7 @@ struct WebComponent {
           // This function call expects to return "Web test"
           let webStr = objTestName.webTest();
           document.getElementById("webDemo").innerHTML=webStr;
-          console.log('objTestName.webTest result:'+ webStr)
+          console.info('objTestName.webTest result:'+ webStr)
         }
       </script>
     </body>
@@ -144,15 +144,15 @@ static initializeWebEngine(): void
 本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate")
+    console.info("EntryAbility onCreate")
     webview.WebviewController.initializeWebEngine()
-    console.log("EntryAbility onCreate done")
+    console.info("EntryAbility onCreate done")
   }
 }
 ```
@@ -174,7 +174,7 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -183,14 +183,14 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate")
+    console.info("EntryAbility onCreate")
     try {
       webview.WebviewController.setHttpDns(webview.SecureDnsMode.AUTO, "https://example1.test")
     } catch (error) {
@@ -198,7 +198,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     AppStorage.setOrCreate("abilityWant", want);
-    console.log("EntryAbility onCreate done")
+    console.info("EntryAbility onCreate done")
   }
 }
 ```
@@ -221,7 +221,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -272,7 +272,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -444,7 +444,7 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -578,6 +578,41 @@ struct WebComponent {
 }
 ```
 
+加载沙箱图片。
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              "<img src=bb.jpg>", // 尝试从"file:///xxx/" + "bb.jpg"加载该图片。
+              "text/html",
+              "UTF-8",
+              // 加载本地应用沙箱内的图片路径，请将路径改为实际使用的沙箱路径。
+              "file:///data/storage/el2/base/haps/entry/files/data/.cache_dir/",
+              ""
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .fileAccess(true) // 为了加载应用沙箱内的图片，需要启用文件访问功能。 
+    }
+  }
+}
+```
+
 ## accessForward
 
 accessForward(): boolean
@@ -596,7 +631,7 @@ accessForward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -620,7 +655,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.accessForward();
-            console.log('result:' + result);
+            console.info('result:' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -641,7 +676,7 @@ forward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -699,7 +734,7 @@ accessBackward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -723,7 +758,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.accessBackward();
-            console.log('result:' + result);
+            console.info('result:' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -744,7 +779,7 @@ backward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -789,7 +824,7 @@ onActive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -835,7 +870,7 @@ onInactive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -879,7 +914,7 @@ refresh(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -935,7 +970,7 @@ accessStep(step: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -961,7 +996,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.accessStep(this.steps);
-            console.log('result:' + result);
+            console.info('result:' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -982,7 +1017,7 @@ clearHistory(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1047,7 +1082,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1066,21 +1101,21 @@ class TestObj {
   }
 
   test(testStr: string): string {
-    console.log('Web Component str' + testStr);
+    console.info('Web Component str' + testStr);
     return testStr;
   }
 
   toString(): void {
-    console.log('Web Component toString');
+    console.info('Web Component toString');
   }
 
   testNumber(testNum: number): number {
-    console.log('Web Component number' + testNum);
+    console.info('Web Component number' + testNum);
     return testNum;
   }
 
   asyncTestBool(testBol: boolean): void {
-    console.log('Web Component boolean' + testBol);
+    console.info('Web Component boolean' + testBol);
   }
 }
 
@@ -1089,12 +1124,12 @@ class WebObj {
   }
 
   webTest(): string {
-    console.log('Web test');
+    console.info('Web test');
     return "Web test";
   }
 
   webString(): void {
-    console.log('Web test toString');
+    console.info('Web test toString');
   }
 }
 
@@ -1103,11 +1138,11 @@ class AsyncObj {
   }
 
   asyncTest(): void {
-    console.log('Async test');
+    console.info('Async test');
   }
 
   asyncString(testStr: string): void {
-    console.log('Web async string' + testStr);
+    console.info('Web async string' + testStr);
   }
 }
 
@@ -1179,12 +1214,12 @@ struct Index {
           objName.testNumber(1);
           objName.asyncTestBool(true);
           document.getElementById("demo").innerHTML=str;
-          console.log('objName.test result:'+ str)
+          console.info('objName.test result:'+ str)
 
           // This function call expects to return "Web test"
           let webStr = objTestName.webTest();
           document.getElementById("webDemo").innerHTML=webStr;
-          console.log('objTestName.webTest result:'+ webStr)
+          console.info('objTestName.webTest result:'+ webStr)
 
           objAsyncName.asyncTest();
           objAsyncName.asyncString("async test data");
@@ -1220,7 +1255,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1282,7 +1317,7 @@ struct WebComponent {
     Hello world!
     <script type="text/javascript">
       function test() {
-        console.log('Ark WebComponent')
+        console.info('Ark WebComponent')
         return "This value is from index.html"
       }
     </script>
@@ -1320,7 +1355,7 @@ runJavaScript(script: string): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1347,7 +1382,7 @@ struct WebComponent {
           try {
             this.controller.runJavaScript('test()')
               .then((result) => {
-                console.log('result: ' + result);
+                console.info('result: ' + result);
               })
               .catch((error: BusinessError) => {
                 console.error("error: " + error);
@@ -1376,7 +1411,7 @@ struct WebComponent {
     Hello world!
     <script type="text/javascript">
       function test() {
-        console.log('Ark WebComponent')
+        console.info('Ark WebComponent')
         return "This value is from index.html"
       }
     </script>
@@ -1405,7 +1440,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1625,7 +1660,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1822,7 +1857,7 @@ deleteJavaScriptRegister(name: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1846,7 +1881,7 @@ class TestObj {
   }
 
   toString(): void {
-    console.log('Web Component toString');
+    console.info('Web Component toString');
   }
 }
 
@@ -1904,7 +1939,7 @@ struct WebComponent {
         function htmlTest() {
           let str=objName.test();
           document.getElementById("demo").innerHTML=str;
-          console.log('objName.test result:'+ str)
+          console.info('objName.test result:'+ str)
         }
       </script>
     </body>
@@ -1927,7 +1962,7 @@ zoom(factor: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1981,7 +2016,7 @@ searchAllAsync(searchString: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2014,7 +2049,7 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onSearchResultReceive(ret => {
           if (ret) {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+            console.info("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
               "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
           }
         })
@@ -2044,7 +2079,7 @@ clearMatches(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2096,7 +2131,7 @@ searchNext(forward: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2143,7 +2178,7 @@ clearSslCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2187,7 +2222,7 @@ clearClientAuthenticationCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2243,7 +2278,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2272,7 +2307,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2313,17 +2348,17 @@ struct WebComponent {
             this.ports[1].onMessageEvent((result: webview.WebMessage) => {
               let msg = 'Got msg from HTML:';
               if (typeof (result) == "string") {
-                console.log("received string message from html5, string is:" + result);
+                console.info("received string message from html5, string is:" + result);
                 msg = msg + result;
               } else if (typeof (result) == "object") {
                 if (result instanceof ArrayBuffer) {
-                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  console.info("received arraybuffer from html5, length is:" + result.byteLength);
                   msg = msg + "length is " + result.byteLength;
                 } else {
-                  console.log("not support");
+                  console.info("not support");
                 }
               } else {
-                console.log("not support");
+                console.info("not support");
               }
               this.receivedFromHtml = msg;
             })
@@ -2389,17 +2424,17 @@ window.addEventListener('message', function (event) {
               var msg = 'Got message from ets:';
               var result = event.data;
               if (typeof(result) == "string") {
-                console.log("received string message from html5, string is:" + result);
+                console.info("received string message from html5, string is:" + result);
                 msg = msg + result;
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
-                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  console.info("received arraybuffer from html5, length is:" + result.byteLength);
                   msg = msg + "length is " + result.byteLength;
                 } else {
-                  console.log("not support");
+                  console.info("not support");
                 }
               } else {
-                console.log("not support");
+                console.info("not support");
               }
               output.innerHTML = msg;
             }
@@ -2427,7 +2462,7 @@ requestFocus(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2471,7 +2506,7 @@ zoomIn(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2516,7 +2551,7 @@ zoomOut(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2567,7 +2602,7 @@ getWebId(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2620,7 +2655,7 @@ getUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2644,7 +2679,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let userAgent = this.controller.getUserAgent();
-            console.log("userAgent: " + userAgent);
+            console.info("userAgent: " + userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -2703,7 +2738,7 @@ getTitle(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2727,7 +2762,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let title = this.controller.getTitle();
-            console.log("title: " + title);
+            console.info("title: " + title);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -2754,7 +2789,7 @@ getPageHeight(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2807,7 +2842,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2874,7 +2909,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2934,7 +2969,7 @@ getUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2958,7 +2993,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let url = this.controller.getUrl();
-            console.log("url: " + url);
+            console.info("url: " + url);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -2979,7 +3014,7 @@ stop(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3031,7 +3066,7 @@ backOrForward(step: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3085,7 +3120,7 @@ scrollTo(x:number, y:number, duration?:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3141,7 +3176,7 @@ struct WebComponent {
             height:2000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3169,7 +3204,7 @@ scrollBy(deltaX:number, deltaY:number,duration?:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3229,7 +3264,7 @@ struct WebComponent {
             height:2000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3261,7 +3296,7 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3293,7 +3328,7 @@ struct WebComponent {
         .onClick(() => {
           try {
           let result = this.controller.scrollByWithResult(50, 50);
-          console.log("original result: " + result);
+          console.info("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3317,7 +3352,7 @@ struct WebComponent {
             height:2000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3343,7 +3378,7 @@ slideScroll(vx:number, vy:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3391,7 +3426,7 @@ struct WebComponent {
             height:3000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
         }
     </style>
 </head>
@@ -3418,7 +3453,7 @@ getOriginalUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3442,7 +3477,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let url = this.controller.getOriginalUrl();
-            console.log("original url: " + url);
+            console.info("original url: " + url);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3469,7 +3504,7 @@ getFavicon(): image.PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3521,7 +3556,7 @@ setNetworkAvailable(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3595,7 +3630,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3652,7 +3687,7 @@ hasImage(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3711,7 +3746,7 @@ removeCache(clearRom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3766,7 +3801,7 @@ static removeAllCache(clearRom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3816,7 +3851,7 @@ pageUp(top: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3899,7 +3934,7 @@ pageDown(bottom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3989,7 +4024,7 @@ getBackForwardEntries(): BackForwardList
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4039,7 +4074,7 @@ serializeWebState(): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4115,7 +4150,7 @@ restoreWebState(state: Uint8Array): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4199,7 +4234,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4235,7 +4270,7 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
         .onInterceptRequest((event) => {
           if (event) {
-            console.log('url:' + event.request.getRequestUrl());
+            console.info('url:' + event.request.getRequestUrl());
           }
           return this.responseWeb;
         })
@@ -4260,7 +4295,7 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4421,7 +4456,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4583,7 +4618,7 @@ setAudioMuted(mute: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4617,19 +4652,83 @@ struct WebComponent {
 }
 ```
 
+## prefetchPage<sup>21+</sup>
+
+prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>, prefetchOptions?: PrefetchOptions): void
+
+在预测到将要加载的页面之前调用，可提前下载页面所需的资源（包括：主资源和子资源），但不会执行网页JavaScript代码或呈现网页，以加快页面加载速度。
+
+> **说明：**
+>
+> - 下载的页面资源会缓存五分钟左右，超过这段时间Web组件会自动释放。
+>
+> - prefetchPage对302重定向页面同样正常预取。
+>
+> - 先执行prefetchPage再加载页面时，已预取的资源将直接从缓存中加载。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型                             | 必填  | 说明                      |
+| ------------------| --------------------------------| ---- | ------------- |
+| url               | string                          | 是    | 预加载的url。|
+| additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。<br>默认值： [] |
+| prefetchOptions | [PrefetchOptions](./arkts-apis-webview-PrefetchOptions.md) | 否    | 用来自定义预取行为的相关选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Button('prefetchPopularPage')
+        .onClick(() => {
+          try {
+            // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
+            let options = new webview.PrefetchOptions();
+            options.ignoreCacheControlNoStore = true;
+            options.minTimeBetweenPrefetchesMs = 100;
+            this.controller.prefetchPage('https://www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }], options);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      // 需要将'www.example1.com'替换成一个真实的网站地址。
+      Web({ src: 'www.example1.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## prefetchPage<sup>10+</sup>
 
 prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
-在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
+在预测到将要加载的页面之前调用，可提前下载页面所需的资源（包括：主资源和子资源），但不会执行网页JavaScript代码或呈现网页，以加快页面加载速度。
 
 > **说明：**
 >
-> - 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+> - 下载的页面资源会缓存五分钟左右，超过这段时间Web组件会自动释放。
 >
 > - prefetchPage对302重定向页面同样正常预取。
 >
-> - 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+> - 先执行prefetchPage再加载页面时，已预取的资源将直接从缓存中加载。
 >
 > - 连续prefetchPage多个url只有第一个生效。
 >
@@ -4646,7 +4745,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4702,7 +4801,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4712,7 +4811,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { webview } from '@kit.ArkWeb';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
@@ -4755,7 +4854,7 @@ static clearPrefetchedResource(cacheKeyList: Array\<string>): void
 **示例：**
 
 ```ts
-// xxx.ets
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -4807,7 +4906,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4817,18 +4916,18 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { webview } from '@kit.ArkWeb';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate");
+    console.info("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
     // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
     webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
     AppStorage.setOrCreate("abilityWant", want);
-    console.log("EntryAbility onCreate done");
+    console.info("EntryAbility onCreate done");
   }
 }
 ```
@@ -4859,7 +4958,7 @@ setCustomUserAgent(userAgent: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4883,7 +4982,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
       .onControllerAttached(() => {
-        console.log("onControllerAttached");
+        console.info("onControllerAttached");
         try {
           let userAgent = this.controller.getUserAgent() + this.customUserAgent;
           this.controller.setCustomUserAgent(userAgent);
@@ -4912,7 +5011,7 @@ setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4963,7 +5062,7 @@ startDownload(url: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5025,7 +5124,7 @@ getCustomUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5050,7 +5149,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.userAgent = this.controller.getCustomUserAgent();
-            console.log("userAgent: " + this.userAgent);
+            console.info("userAgent: " + this.userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5131,7 +5230,7 @@ static setUserAgentForHosts(userAgent: string, hosts: Array\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5190,7 +5289,7 @@ static setConnectionTimeout(timeout: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5214,7 +5313,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             webview.WebviewController.setConnectionTimeout(5);
-            console.log("setConnectionTimeout: 5s");
+            console.info("setConnectionTimeout: 5s");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5222,8 +5321,8 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
         .onErrorReceive((event) => {
           if (event) {
-            console.log('getErrorInfo:' + event.error.getErrorInfo());
-            console.log('getErrorCode:' + event.error.getErrorCode());
+            console.info('getErrorInfo:' + event.error.getErrorInfo());
+            console.info('getErrorCode:' + event.error.getErrorCode());
           }
         })
     }
@@ -5247,7 +5346,7 @@ static warmupServiceWorker(url: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5256,7 +5355,7 @@ static warmupServiceWorker(url: string): void
 **示例：**
 
 ```ts
-// xxx.ts
+// EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -5264,7 +5363,7 @@ import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate");
+        console.info("EntryAbility onCreate");
         webview.WebviewController.initializeWebEngine();
         webview.WebviewController.warmupServiceWorker("https://www.example.com");
         AppStorage.setOrCreate("abilityWant", want);
@@ -5293,7 +5392,7 @@ enableSafeBrowsing(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5317,7 +5416,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.enableSafeBrowsing(true);
-            console.log("enableSafeBrowsing: true");
+            console.info("enableSafeBrowsing: true");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5358,7 +5457,7 @@ struct WebComponent {
       Button('isSafeBrowsingEnabled')
         .onClick(() => {
           let result = this.controller.isSafeBrowsingEnabled();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -5384,7 +5483,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5410,7 +5509,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.enableIntelligentTrackingPrevention(true);
-            console.log("enableIntelligentTrackingPrevention: true");
+            console.info("enableIntelligentTrackingPrevention: true");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5439,7 +5538,7 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5464,7 +5563,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.isIntelligentTrackingPreventionEnabled();
-            console.log("result: " + result);
+            console.info("result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5493,7 +5592,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -5547,7 +5646,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -5595,7 +5694,7 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -5645,16 +5744,16 @@ static getDefaultUserAgent(): string
 **示例：**
 
 ```ts
-// xxx.ets
+// EntryAbility.ets
 import { webview } from '@kit.ArkWeb';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate");
+    console.info("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
     let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-    console.log("defaultUserAgent: " + defaultUserAgent);
+    console.info("defaultUserAgent: " + defaultUserAgent);
   }
 }
 ```
@@ -5679,7 +5778,7 @@ enableAdsBlock(enable: boolean): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5705,7 +5804,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.enableAdsBlock(true);
-            console.log("enableAdsBlock: true")
+            console.info("enableAdsBlock: true")
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5736,7 +5835,7 @@ isAdsBlockEnabled() : boolean
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5760,7 +5859,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let isAdsBlockEnabled: boolean = this.controller.isAdsBlockEnabled();
-            console.log("isAdsBlockEnabled:", isAdsBlockEnabled);
+            console.info("isAdsBlockEnabled:", isAdsBlockEnabled);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5792,7 +5891,7 @@ isAdsBlockEnabledForCurPage() : boolean
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5816,7 +5915,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let isAdsBlockEnabledForCurPage: boolean = this.controller.isAdsBlockEnabledForCurPage();
-            console.log("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage);
+            console.info("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5843,7 +5942,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -5933,7 +6032,7 @@ terminateRenderProcess(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5980,7 +6079,7 @@ postUrl(url: string, postData: ArrayBuffer): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6056,7 +6155,7 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
@@ -6107,7 +6206,7 @@ isIncognitoMode(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
@@ -6131,7 +6230,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.isIncognitoMode();
-            console.log('isIncognitoMode' + result);
+            console.info('isIncognitoMode' + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -6158,7 +6257,7 @@ getSecurityLevel(): SecurityLevel
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6205,7 +6304,7 @@ setScrollable(enable: boolean, type?: ScrollType): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6256,7 +6355,7 @@ getScrollable(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6280,7 +6379,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let scrollEnabled = this.controller.getScrollable();
-            console.log("scrollEnabled: " + scrollEnabled);
+            console.info("scrollEnabled: " + scrollEnabled);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -6307,7 +6406,7 @@ setPrintBackground(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6357,7 +6456,7 @@ getPrintBackground(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6407,7 +6506,7 @@ getLastJavascriptProxyCallingFrameUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6428,21 +6527,21 @@ class TestObj {
   }
 
   test(testStr: string): string {
-    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testStr;
   }
 
   toString(): void {
-    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
   }
 
   testNumber(testNum: number): number {
-    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testNum;
   }
 
   testBool(testBol: boolean): boolean {
-    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testBol;
   }
 }
@@ -6455,12 +6554,12 @@ class WebObj {
   }
 
   webTest(): string {
-    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return "Web test";
   }
 
   webString(): void {
-    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    console.info('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
   }
 }
 
@@ -6525,12 +6624,12 @@ struct Index {
           objName.testNumber(1);
           objName.testBool(true);
           document.getElementById("demo").innerHTML=str;
-          console.log('objName.test result:'+ str)
+          console.info('objName.test result:'+ str)
 
           // This function call expects to return "Web test"
           let webStr = objTestName.webTest();
           document.getElementById("webDemo").innerHTML=webStr;
-          console.log('objTestName.webTest result:'+ webStr)
+          console.info('objTestName.webTest result:'+ webStr)
         }
       </script>
     </body>
@@ -6544,6 +6643,14 @@ static pauseAllTimers(): void
 暂停所有WebView的定时器。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -6604,6 +6711,14 @@ static resumeAllTimers(): void
 恢复从pauseAllTimers()接口中被暂停的所有的定时器。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -6671,7 +6786,7 @@ stopAllMedia(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6715,7 +6830,7 @@ pauseAllMedia(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6759,7 +6874,7 @@ resumeAllMedia(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6803,7 +6918,7 @@ closeAllMediaPresentations(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6853,7 +6968,7 @@ getMediaPlaybackState(): MediaPlaybackState
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6904,7 +7019,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6950,7 +7065,7 @@ clearWebSchemeHandler(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7001,7 +7116,7 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7077,7 +7192,7 @@ startCamera(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7201,7 +7316,7 @@ stopCamera(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7221,7 +7336,7 @@ closeCamera(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7256,7 +7371,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7817,7 +7932,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](./arkts-apis-we
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8091,7 +8206,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -8117,7 +8232,7 @@ static clearHostIP(hostName: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -8240,7 +8355,7 @@ setUrlTrustList(urlTrustList: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8349,7 +8464,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -8408,8 +8523,8 @@ struct WebComponent {
             var file = "file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js";
             var xmlHttpReq = new XMLHttpRequest();
             xmlHttpReq.onreadystatechange = function(){
-                console.log("readyState:" + xmlHttpReq.readyState);
-                console.log("status:" + xmlHttpReq.status);
+                console.info("readyState:" + xmlHttpReq.readyState);
+                console.info("status:" + xmlHttpReq.status);
                 if(xmlHttpReq.readyState == 4){
                     if (xmlHttpReq.status == 200) {
                 // 如果ets侧正确设置路径列表，则此处能正常获取资源
@@ -8503,7 +8618,7 @@ setBackForwardCacheOptions(options: BackForwardCacheOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8560,7 +8675,7 @@ trimMemoryByPressureLevel(level: PressureLevel): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8613,7 +8728,7 @@ createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8696,7 +8811,7 @@ createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8808,13 +8923,13 @@ struct WebComponent {
           let pageHeight = this.controller.getPageHeight();
           if (this.controllerY < 0) {
             // case1：网页向下过滚动时，可直接使用ScrollOffset.y
-            console.log(`get downwards overscroll offsetY = ${this.controllerY}`);
+            console.info(`get downwards overscroll offsetY = ${this.controllerY}`);
           } else if ((this.controllerY != 0) && (this.controllerY > (pageHeight - webHeight))) {
             // case2：网页向上过滚动时，需计算出网页下边界与Web组件下边界的偏移量
-            console.log(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
+            console.info(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
           } else {
             // case3：网页未发生过滚动时，可直接使用ScrollOffset.y
-            console.log(`get scroll offsetY = ${this.controllerY}`);
+            console.info(`get scroll offsetY = ${this.controllerY}`);
           }
         })
         .height(600)
@@ -8838,7 +8953,7 @@ struct WebComponent {
             height:6000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
           }
       </style>
   </head>
@@ -8874,6 +8989,7 @@ getPageOffset(): ScrollOffset
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -8886,7 +9002,7 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onScroll((event) => {
           try {
-            console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+            console.info("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
             this.controller.getPageOffset().y);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -8945,7 +9061,7 @@ getLastHitTest(): HitTestValue
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9200,7 +9316,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9248,6 +9364,14 @@ getProgress(): number
 | :------------------------------ | ---------------------- |
 | number | 当前页面加载进度，取值范围[0, 100] |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801 | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -9290,7 +9414,7 @@ getHitTest(): WebHitTestType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9345,7 +9469,7 @@ getHitTestValue(): HitTestValue
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9403,11 +9527,12 @@ avoidVisibleViewportBottom(avoidHeight: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 801 | Capability not supported. |
 
 **示例：**
 
@@ -9634,8 +9759,7 @@ getBlanklessInfoWithKey(key: string): BlanklessInfo
 > - 如果发现快照相似度（即[BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20)中的similarity）极低，请确认key值是否传递正确。
 > - 调用本接口后，将启用页面加载快照检测及生成过渡帧计算，会产生一定的资源开销。
 > - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加约12*w*h B，页面打开后内存回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
-
-**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
+> - 请在module.json5中添加权限: ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9709,8 +9833,7 @@ setBlanklessLoadingWithKey(key: string, is_start: boolean): WebBlanklessErrorCod
 > - 需在触发页面加载的接口之后调用，其他约束同[getBlanklessInfoWithKey](#getblanklessinfowithkey20)。
 > - 页面加载必须在调用本接口的组件中进行。
 > - 当相似度较低时，系统将判定为跳变过大，启用插帧会失败。
-
-**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
+> - 请在module.json5中添加权限: ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10048,6 +10171,98 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+    }
+  }
+}
+```
+## getSiteIsolationMode<sup>21+</sup>
+
+static getSiteIsolationMode(): SiteIsolationMode
+
+查询当前生效的站点隔离模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 站点隔离模式类型。<br>getSiteIsolationMode()查询当前生效的站点隔离模式。
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getSiteIsolationMode')
+        .onClick(() => {
+          let mode = webview.WebviewController.getSiteIsolationMode();
+          console.info("getSiteIsolationMode: " + mode);
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+## setSiteIsolationMode<sup>21+</sup>
+
+setSiteIsolationMode(mode: SiteIsolationMode): void
+
+设置站点隔离模式。站点隔离机制将不同源的网站隔离在不同的Render进程中，减少跨域攻击面。例如：PC等设备上，在未启用站点隔离模式时，原有进程模型是每一个Tab对应一个Render进程，开启站点隔离后，一个Tab下不同源的Iframe可在独立的Render进程中运行。
+
+对于仅加载可信网页的第三方应用，可以关闭此功能，以提升性能并减少内存占用，同时减少跨域访问的拦截。默认值根据不同的设备而定，PC/Table采用严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，Phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。[坚盾守护模式](../..//web/web-secure-shield-mode.md)下采用严格站点隔离。
+
+> **说明：**
+>
+> 不能在单子进程模式下设置严格站点隔离。
+>
+> 接口只能在初始化时调用一次，不支持反复修改。
+
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| mode | [SiteIsolationMode](./arkts-apis-webview-e.md#siteisolationmode21) | 是 | 设置站点隔离模式。<br>默认值取决于设备类型和设备模式：PC/Tablet默认严格站点隔离，Phone默认部分站点隔离；坚盾守护模式默认严格站点隔离。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 |Init Error .  |
+
+**示例：**
+
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear() {
+    Column() {
+      Button('setSiteIsolationMode')
+        .onClick(() => {
+          webview.WebviewController.setSiteIsolationMode(web_webview.SiteIsolationMode.PARTIAL);          
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }

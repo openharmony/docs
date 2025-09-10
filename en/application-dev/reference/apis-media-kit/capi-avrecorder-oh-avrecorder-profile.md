@@ -1,4 +1,10 @@
 # OH_AVRecorder_Profile
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -26,7 +32,7 @@ For details about the value range of each parameter, see [AVRecorderProfile](ark
 | int32_t audioBitrate | Audio bit rate.|
 | int32_t audioChannels | Number of channels.|
 | [OH_AVRecorder_CodecMimeType](capi-avrecorder-base-h.md#oh_avrecorder_codecmimetype) audioCodec | Audio encoding format.|
-| int32_t audioSampleRate | Audio sampling rate.|
+| int32_t audioSampleRate | Audio sample rate.|
 | [OH_AVRecorder_ContainerFormatType](capi-avrecorder-base-h.md#oh_avrecorder_containerformattype) fileFormat | Output file format.|
 | int32_t videoBitrate | Video bit rate.|
 | [OH_AVRecorder_CodecMimeType](capi-avrecorder-base-h.md#oh_avrecorder_codecmimetype) videoCodec | Video encoding format.|

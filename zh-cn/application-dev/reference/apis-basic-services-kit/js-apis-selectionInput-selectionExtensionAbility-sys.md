@@ -1,5 +1,12 @@
 # @ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: SelectionInput-->
+<!--Owner: @no86-->
+<!--Designer: @mmwwbb-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @fang-jinxu-->
+
 本模块提供划词扩展功能，用于用户通过鼠标、触控板等方式选择文本后的搜索、翻译等场景。
 
 > **说明：**

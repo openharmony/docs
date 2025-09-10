@@ -1,4 +1,10 @@
 # @ohos.deviceInfo (设备信息)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Startup-->
+<!--Owner: @chenjinxiang3-->
+<!--Designer: @liveery-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供终端设备信息查询，开发者不可配置。
 
@@ -63,6 +69,8 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | ODID<sup>12+</sup> | string | 是 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者(developerId相同)的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>根据签名信息里developerId解析出的groupId生成，developerId规则为groupId.developerId，若无groupId则取整个developerId作为groupId。<br/>同一设备上运行的同一个开发者(developerId相同)的应用，ODID相同。<br/>同一个设备上不同开发者(developerId不同)的应用，ODID不同。<br/>不同设备上同一个开发者(developerId相同)的应用，ODID不同。<br/>不同设备上不同开发者(developerId不同)的应用，ODID不同。<br/>**说明**：数据长度为37字节。<br/>示例：1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
 | diskSN<sup>15+</sup> | string | 是 | 硬盘序列号。<br/> **说明** ：该字段只能在2in1上设备进行查询，其他设备查询结果为空。<br/> **需要权限**：ohos.permission.ACCESS_DISK_PHY_INFO <br/> 示例：2502EM400567 |
 | performanceClass<sup>19+</sup> | [PerformanceClassLevel](#performanceclasslevel19) | 是 | 描述设备能力等级。 |
+| chipType<sup>21+</sup> | string | 是 | 当前设备CPU芯片型号<br/> 示例：kirin9000s |
+| bootCount<sup>21+</sup> | number | 是 | 当前设备重启次数，获取失败时返回-1<br/> 示例：100 |
 
 **示例**
 
@@ -219,6 +227,14 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the deviceInfo performanceClass is :0
     console.info('the value of the deviceInfo performanceClass is :' + performanceClass);
 
+    let chipType: string = deviceInfo.chipType;
+    // 输出结果：the value of the deviceInfo chipType is :kirin9000s
+    console.info('the value of the deviceInfo chipType is :' + chipType);
+
+    let bootCount: number = deviceInfo.bootCount
+    // 输出结果：the value of the bootCount is :100
+    console.info('the value of the deviceInfo bootCount is :' + bootCount);
+
 ```
 
 ## PerformanceClassLevel<sup>19+</sup>
@@ -254,31 +270,31 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 **示例**
 
 ```ts
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_DEFAULT;
+    let deviceTypesInfoDefault: string = deviceInfo.DeviceTypes.TYPE_DEFAULT;
     // 输出结果：the value of the DeviceTypes is :default
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoDefault);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_PHONE;
+    let deviceTypesInfoPhone: string = deviceInfo.DeviceTypes.TYPE_PHONE;
     // 输出结果：the value of the DeviceTypes is :phone
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoPhone);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_TABLET;
+    let deviceTypesInfoTablet: string = deviceInfo.DeviceTypes.TYPE_TABLET;
     // 输出结果：the value of the DeviceTypes is :tablet
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoTablet);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_2IN1;
+    let deviceTypesInfo2IN1: string = deviceInfo.DeviceTypes.TYPE_2IN1;
     // 输出结果：the value of the DeviceTypes is :2in1
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfo2IN1);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_TV;
+    let deviceTypesInfoTV: string = deviceInfo.DeviceTypes.TYPE_TV;
     // 输出结果：the value of the DeviceTypes is :tv
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoTV);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_WEARABLE;
+    let deviceTypesInfoWearable: string = deviceInfo.DeviceTypes.TYPE_WEARABLE;
     // 输出结果：the value of the DeviceTypes is :wearable
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoWearable);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_CAR;
+    let deviceTypesInfoCar: string = deviceInfo.DeviceTypes.TYPE_CAR;
     // 输出结果：the value of the DeviceTypes is :car
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoCar);
 ```

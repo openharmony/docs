@@ -100,15 +100,17 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
     @Component
     struct Index {
       private resManager = this.getUIContext().getHostContext()?.resourceManager;
- 
+      // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
+      private layeredDrawableDescriptor: DrawableDescriptor | undefined =
+        this.resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+
       build() {
         Row() {
           Column() {
-            // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
-            Image((this.resManager?.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
-            // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
-            Image(((this.resManager?.getDrawableDescriptor($r('app.media.drawable')
-            .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
+            Image((this.layeredDrawableDescriptor instanceof LayeredDrawableDescriptor) ?
+              this.layeredDrawableDescriptor : undefined)
+            Image((this.layeredDrawableDescriptor instanceof LayeredDrawableDescriptor) ?
+              this.layeredDrawableDescriptor?.getForeground()?.getPixelMap() : undefined)
           }.height('50%')
         }.width('50%')
       }
@@ -216,8 +218,11 @@ getForeground(): DrawableDescriptor
       if (!drawable) {
         return undefined;
       }
-      let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
-      return layeredDrawableDescriptor;
+      if (drawable instanceof LayeredDrawableDescriptor) {
+        let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
+        return layeredDrawableDescriptor;
+      }
+      return undefined;
     }
 
     aboutToAppear(): void {

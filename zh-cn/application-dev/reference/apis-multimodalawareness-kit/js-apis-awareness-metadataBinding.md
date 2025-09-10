@@ -33,11 +33,11 @@ submitMetadata(metadata: string): void
 
 **错误码**：  
 
-以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Set Meta data to screenshot app fail.|
+| 32100001 | Internal handling failed. Set Meta data to screenshot app fail. |
 
 **示例**：
 
@@ -69,12 +69,12 @@ on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback&lt;nu
 
 **错误码**：
 
-以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100004|Subscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality; 3. Algorithm loading exception.|
+| 32100001 | Internal handling failed. Service exception. |
+| 32100004 | Subscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality; 3. Algorithm loading exception. |
 
 **示例：**  
 ```ts
@@ -83,7 +83,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
 try {
-  metadataBinding.on('operationSubmitMetadata', bundleName, (event: number) =>{
+  metadataBinding.on('operationSubmitMetadata', bundleName, (event: number) => {
     if (event == 1) {
       console.info("The screenshot request is intercepted and the app link is obtained");
     }
@@ -110,12 +110,12 @@ off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback&lt;
 
 **错误码**：  
 
-以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[记忆链接错误码](errorcode-metadataBinding.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100005|Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality|
+| 32100001 | Internal handling failed. Service exception. |
+| 32100005 | Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality. |
 
 **示例**：
 
@@ -125,7 +125,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
 try {
-  metadataBinding.off('operationSubmitMetadata', bundleName, (event: number)=>{});
+  metadataBinding.off('operationSubmitMetadata', bundleName, (event: number) => {
+  });
 } catch (error) {
   console.error("unsubscript screenshot event" + error);
 }

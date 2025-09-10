@@ -61,7 +61,7 @@ FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* 
 
 | 类型 | 说明 |
 | -- | -- |
-| FFRT_C_API int | 初始化rwlock成功返回ffrt_success，<br>          初始化rwlock失败返回ffrt_error_inval。 |
+| FFRT_C_API int | `rwlock`不为空，且`attr`为空则初始化成功，返回ffrt_success，<br>          反之初始化rwlock失败，返回ffrt_error_inval。 |
 
 ### ffrt_rwlock_wrlock()
 

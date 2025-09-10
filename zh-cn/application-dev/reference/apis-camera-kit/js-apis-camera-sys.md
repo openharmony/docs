@@ -465,6 +465,7 @@ prelaunch(): void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { camera } from '@kit.CameraKit';
 
 function preLaunch(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -986,7 +987,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
   try {
     let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
-    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+    console.info('Indicate that isDepthFusionSupported method execution success.');
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
@@ -1065,15 +1066,16 @@ isDepthFusionEnabled(): boolean
 **示例：**
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
-function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): boolean {
+  let isEnable: boolean = false;
   try {
-    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    isEnable = DepthFusion.isDepthFusionEnabled();
     console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
   };
+  return isEnable;
 }
 ```
 
@@ -1210,7 +1212,13 @@ async function preview(context: common.BaseContext, cameraDevice: camera.CameraD
   session.addOutput(previewOutput);
   session.addOutput(photoOutput);
   await session.commitConfig();
-  await session.start();
+  try {
+    await session.start();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`start session failed. error code: ${err.code}`);
+  }
   previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
@@ -1919,6 +1927,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
     AppStorage.setOrCreate('proxyThumbnail', thumbnail);
   });
@@ -1960,6 +1972,7 @@ isQuickThumbnailSupported(): boolean
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function isQuickThumbnailSupported(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -1969,12 +1982,22 @@ async function isQuickThumbnailSupported(context: common.BaseContext, mode: came
   // 开始配置会话。
   session.beginConfig();
   // 把CameraInput加入到会话。
+  if (cameras.length <= 0) {
+    console.info('Get supported cameras is null or [].');
+    return false;
+  }
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
   // 把photoOutput加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  session.addOutput(photoOutput);
+  try {
+    session.addOutput(photoOutput);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`AddOutput called failed. error code: ${err.code}`);
+    return false;
+  }
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   return isSupported;
 }
@@ -2014,6 +2037,7 @@ enableQuickThumbnail(enabled: boolean): void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { camera } from '@kit.CameraKit';
 
 async function enableQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -2068,6 +2092,7 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { camera } from '@kit.CameraKit';
 
 function callback(err: BusinessError, pixelMap: image.PixelMap): void {
   if (err || pixelMap === undefined) {
@@ -2075,7 +2100,7 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       return;
   }
   // 显示或保存pixelMap。
-  // do something.
+  // 执行操作。
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
@@ -5755,10 +5780,8 @@ getFocusAssist(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
-  let isFocusAssistOpened: boolean;
+  let isFocusAssistOpened: boolean = false;
   try {
     isFocusAssistOpened = professionalPhotoSession.getFocusAssist();
   } catch (error) {

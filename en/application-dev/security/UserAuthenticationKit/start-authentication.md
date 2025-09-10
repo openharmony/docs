@@ -34,10 +34,10 @@ The following figure shows the style of the user authentication widget, which ca
 <!--RP1End-->
 
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot exceed 500 characters. You can set the title based on actual requirements.
-
+<!--RP2-->
 - ②: Text on the navigation button (**WidgetParam.navigationButtonText**), which cannot exceed 60 characters. It can be configured only in single fingerprint or facial authentication scenarios in API versions 10 to 17. Since API version 18, it can also be configured in the combined fingerprint and facial authentication.
    
-  If biometric authentication fails, a button is displayed. The user can tap the button to switch to custom authentication.
+  If biometric authentication fails, a button is displayed. The user can tap the button to switch to custom authentication.<!--RP2End-->
 
 <!--Del-->
 - The following shows the display modes (**WidgetParam.windowMode**) of the user authentication widget.

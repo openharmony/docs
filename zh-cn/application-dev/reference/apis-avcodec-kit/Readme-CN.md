@@ -11,8 +11,8 @@
   - 模块<!--avcodec-module-->
     - [AVCapability](capi-avcapability.md)
     - [AudioCodec](capi-audiocodec.md)
-    - [AVDemuxer](_a_v_demuxer.md)
-    - [AVMuxer](_a_v_muxer.md)
+    - [AVDemuxer](capi-avdemuxer.md)
+    - [AVMuxer](capi-avmuxer.md)
     - [AVSource](_a_v_source.md)
     - [CodecBase](_codec_base.md)
     - [Core](_core.md)
@@ -29,11 +29,11 @@
     - [native_avcodec_base.h](native__avcodec__base_8h.md)
     - [native_avcodec_videodecoder.h](native__avcodec__videodecoder_8h.md)
     - [native_avcodec_videoencoder.h](native__avcodec__videoencoder_8h.md)
-    - [native_avdemuxer.h](native__avdemuxer_8h.md)
     - [native_averrors.h](native__averrors_8h.md)
     - [native_avformat.h](native__avformat_8h.md)
     - [native_avmemory.h](native__avmemory_8h.md)
-    - [native_avmuxer.h](native__avmuxer_8h.md)
+    - [native_avdemuxer.h](capi-native-avdemuxer-h.md)
+    - [native_avmuxer.h](capi-native-avmuxer-h.md)
     - [native_avsource.h](native__avsource_8h.md)
     - [native_cencinfo.h](native__cencinfo_8h.md)
   - 结构体<!--avcodec-struct-->
@@ -46,6 +46,9 @@
     - [OH_AVDataSource](_o_h___a_v_data_source.md)
     - [OH_AVDataSourceExt](_o_h___a_v_data_source_ext.md)
     - [DrmSubsample](_drm_subsample.md)
+    - [OH_AVDemuxer](capi-avdemuxer-oh-avdemuxer.md)
+    - [DRM_MediaKeySystemInfo](capi-avdemuxer-drm-mediakeysysteminfo.md)
+    - [OH_AVMuxer](capi-avmuxer-oh-avmuxer.md)
   - 已停止维护的接口<!--avcodec-arkts-dep-->
     - 模块<!--avcodec-module-arkts-dep-->
       - [AudioDecoder](_audio_decoder.md)

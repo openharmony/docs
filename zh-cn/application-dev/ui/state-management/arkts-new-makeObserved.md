@@ -273,7 +273,7 @@ struct Index {
       Divider()
         .color('blue')
       if (this.arrCollect.length > 0) {
-        Text(`the first one ${this.arrCollect[this.arrCollect.length - this.arrCollect.length].id}`)
+        Text(`the first one ${this.arrCollect[0].id}`)
         Text(`the last one ${this.arrCollect[this.arrCollect.length - 1].id}`)
       }
       Divider()

@@ -40,6 +40,8 @@
 >  Grid子组件设置position属性，会占用子组件对应的网格，子组件将显示在相对Grid左上角偏移position的位置。该子组件不会随其对应网格滚动，在对应网格滑出Grid显示范围外后不显示。
 >
 >  当Grid子组件之间留有空隙时，会根据当前的展示区域尽可能填补空隙，因此GridItem可能会随着网格滚动而改变相对位置。
+>
+>  从API version 21开始，Grid单个子组件的宽高最大为16777216px；API version 20及之前，Grid单个子组件的宽高最大为1000000px。子组件超出该大小可能导致滚动或显示异常。
 
 ## 接口
 
@@ -509,7 +511,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| alignment | Optional\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
+| alignment | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
 
 ### focusWrapMode<sup>20+</sup>
 
@@ -525,7 +527,7 @@ focusWrapMode(mode: Optional\<FocusWrapMode\>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
+| mode   | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
 
 ### syncLoad<sup>20+</sup>
 

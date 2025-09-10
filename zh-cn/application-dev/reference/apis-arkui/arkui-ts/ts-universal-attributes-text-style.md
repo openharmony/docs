@@ -35,7 +35,7 @@ getTextContentRect(): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) | 获取已编辑文本内容区域相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -148,7 +148,7 @@ getSelection(): TextRange
 
 clearPreviewText(): void
 
-清除当前的预上屏文本内容。
+通知输入法清除当前的预上屏文本内容。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 

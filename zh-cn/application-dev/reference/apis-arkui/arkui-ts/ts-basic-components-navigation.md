@@ -572,6 +572,22 @@ Navigation双栏模式下，支持设置右侧页面显示默认占位页，占�
 | ------ | -------------- | ---- | ------------------ |
 | placeholder  |[ComponentContent](../js-apis-arkui-ComponentContent.md#componentcontent-1) | 是   |设置Navigation双栏模式下右侧的默认占位页。|
 
+### enableShowHideWithContentCover<sup>21+</sup>
+
+enableShowHideWithContentCover(isEnabled: Optional&lt;boolean&gt;)
+
+设置是否启用[NavDestination](./ts-basic-components-navdestination.md)页面[onHidden](./ts-basic-components-navdestination.md#onhidden10)、[onShown](./ts-basic-components-navdestination.md#onshown10)生命周期与全模态的联动触发。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| isEnabled  | Optional&lt;boolean&gt; | 是   |是否启用NavDestination页面onShown、onHidden生命周期与全模态的联动触发。<br/>默认值：true<br/>true：全模态拉起时，会触发当前NavDestination页面的onHidden生命周期；全模态关闭时会触发当前NavDestination页面的onShown生命周期<br/>false：NavDestination页面onHidden、onShown生命周期不会因为全模态的拉起、关闭而触发。|
+
 ### subTitle<sup>(deprecated)</sup>
 
 subTitle(value: string)
@@ -688,7 +704,8 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation导航控制器，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDestination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。使用示例参见[示例10](#示例10定义导航控制器派生类)。
+Navigation导航控制器，以栈的数据结构管理Navigation中所有的子页面，并提供栈操作的方法用于控制Navigation中子页面的切换。
+从API version 12开始，NavPathStack允许被继承，派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10定义导航控制器派生类)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1914,7 +1931,7 @@ type SystemBarStyle = SystemBarStyle
 
 ## 示例
 
-示例效果请以真机为准，系统路由表不支持预览器，跨平台以及模拟器。
+示例效果请以真机为准，系统路由表不支持预览器以及模拟器。
 
 ### 示例1（Navigation页面布局）
 
@@ -1953,13 +1970,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -2224,15 +2244,18 @@ export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack();
   private menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/undo.svg'需要替换为开发者所需的资源文件
       value: "1",
       icon: 'resources/base/media/undo.svg',
     },
     {
+      // 'resources/base/media/redo.svg'需要替换为开发者所需的资源文件
       value: "2",
       icon: 'resources/base/media/redo.svg',
       isEnabled: false,
     },
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: "3",
       icon: 'resources/base/media/ic_public_ok.svg',
       isEnabled: true,
@@ -2264,7 +2287,7 @@ export struct PageTwo {
 }
 ```
 
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -2746,7 +2769,7 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3032,7 +3055,7 @@ export struct PageTwo {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3359,7 +3382,7 @@ export function PageOneBuilder(name: string) {
   .title(name)
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3469,7 +3492,7 @@ struct NavigationExample2 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3587,7 +3610,7 @@ struct NavigationExample3 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3650,7 +3673,7 @@ struct NavigationExample {
                     .backgroundColor(Color.Orange)
                     .margin({ top: 12 })
                 }
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }
           }
         }
@@ -3811,25 +3834,25 @@ struct NavigationExample {
   @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg' // 图标资源路径
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
+      // resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem2',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
     },
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
   ];
   @State toolItems: Array<ToolbarItem> = [
     {
-      // $r('sys.symbol.ohos_lungs')和$r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'toolItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
@@ -3840,7 +3863,7 @@ struct NavigationExample {
       }
     },
     {
-      // $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
+      // 'resources/base/media/ic_public_more.svg'需要替换为开发者所需的资源文件
       value: 'toolItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3849,7 +3872,6 @@ struct NavigationExample {
       }
     },
     {
-      // $r('sys.symbol.ohos_star')和$r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'toolItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3874,7 +3896,7 @@ struct NavigationExample {
         })
       }
     }
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)
@@ -3888,13 +3910,13 @@ export struct NavigationMenu {
   @Consume('navPathStack') navPathStack: NavPathStack;
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
       }
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value: 'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
@@ -3902,7 +3924,6 @@ export struct NavigationMenu {
       }
     },
     {
-      // $r('sys.symbol.repeat_1')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
       action: () => {
@@ -3921,8 +3942,8 @@ export struct NavigationMenu {
     }
     .hideTitleBar(false)
     .title('NavDestination title')
-    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))// $r('sys.color.ohos_id_color_titlebar_sub_bg')需要替换为开发者所需的资源文件
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))// $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
     .fontColor([Color.Blue]))
     .menus(this.menuItems)
   }
@@ -4075,6 +4096,7 @@ struct NavigationExample {
 export struct NavDestinationExample {
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
@@ -4375,7 +4397,7 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -4441,13 +4463,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'common/ic_public_more.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -4531,17 +4556,13 @@ struct NavigationExample {
   @State enable: boolean = false
   @State menuItems:Array<NavigationMenuItem> = [
     {
-      // $r('sys.symbol.card_writer')需要替换为开发者所需的资源文件
-      value:'menuItem1',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.card_writer')),
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value:'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus'))
     },
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
@@ -4549,19 +4570,16 @@ struct NavigationExample {
 
   @State toolItems:Array<ToolbarItem> = [
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'toolItem1',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
       action:()=>{}
     },
     {
-      // $r('sys.symbol.card_migration')需要替换为开发者所需的资源文件
       value:'toolItem2',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.card_migration')),
       action:()=>{}
     },
     {
-      // 需要替换为开发者所需的资源文件
       value:'toolItem3',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       action:()=>{}
@@ -4579,7 +4597,7 @@ struct NavigationExample {
     }
     .mode(NavigationMode.Stack)
     .enableToolBarAdaptation(this.enable) //是否启用工具栏自适应能力
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)
@@ -4647,9 +4665,8 @@ struct Index {
   }
 }
 ```
-在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
-// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {

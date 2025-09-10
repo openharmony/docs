@@ -89,7 +89,7 @@ ArkUI_GestureRecognizer* (*createLongPressGesture)(int32_t fingersNum, bool repe
 | 参数项 | 描述 |
 | -- | -- |
 | int32_t fingersNum | 触发长按的最少手指数，最小为1指， 最大取值为10指。 |
-|  bool repeatResult | 是否连续触发事件回调。 |
+|  bool repeatResult | 是否连续触发事件回调。<br>true：连续触发；false：不连续触发。 |
 |  int32_t durationNum | 触发长按的最短时间，单位为毫秒（ms）。设置小于等于0时，按照默认值500处理。 |
 
 **返回：**

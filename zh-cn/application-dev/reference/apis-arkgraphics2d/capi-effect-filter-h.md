@@ -1,4 +1,10 @@
 # effect_filter.h
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @hanamaru-->
+<!--Designer: @gaoweihua-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -23,7 +29,7 @@
 | [EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** filter)](#oh_filter_createeffect) | 创建一个OH_Filter对象。 |
 | [EffectErrorCode OH_Filter_Release(OH_Filter* filter)](#oh_filter_release) | 释放OH_Filter对象。 |
 | [EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius)](#oh_filter_blur) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 |
-| [EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, EffectTileMode tileMode)](#oh_filter_blurwithtilemode) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 |
+| [EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, EffectTileMode tileMode)](#oh_filter_blurwithtilemode) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面，支持着色器效果平铺模式选择。 |
 | [EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness)](#oh_filter_brighten) | 创建一个提亮效果并且添加到滤镜中。 |
 | [EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter)](#oh_filter_grayscale) | 创建一个灰度效果并且添加到滤镜中。 |
 | [EffectErrorCode OH_Filter_Invert(OH_Filter* filter)](#oh_filter_invert) | 创建一个反色效果并且添加到滤镜中。 |
@@ -117,7 +123,7 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
 
 **描述**
 
-创建一个毛玻璃滤镜效果，然后添加到滤镜里面。
+创建一个毛玻璃滤镜效果，然后添加到滤镜里面，支持着色器效果平铺模式选择。
 
 **起始版本：** 14
 
@@ -154,7 +160,7 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
-| float brightness | 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变。 |
+| float brightness | 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变，取值为1时图像全白。 |
 
 **返回：**
 

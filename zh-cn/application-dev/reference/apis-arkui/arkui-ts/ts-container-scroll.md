@@ -21,6 +21,7 @@
 ## 子组件
 
 支持单个子组件。
+> 从API version 21开始，Scroll单个子组件的宽高最大为16777216px；API version 20及之前，Scroll单个子组件的宽高最大为1000000px。子组件超出该大小可能导致滚动或显示异常。
 
 
 ## 接口
@@ -957,7 +958,7 @@ getItemRect(index: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
 
 **错误码**：
 

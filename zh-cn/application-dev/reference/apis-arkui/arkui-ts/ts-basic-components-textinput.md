@@ -1322,6 +1322,8 @@ onSubmit(callback: OnSubmitCallback)
 
 按下输入法回车键触发该回调。
 
+非TV设备按下回车键时输入框默认会失焦且收起键盘，可在OnSubmitCallback回调中配置是否收起键盘，参考[示例2（设置下划线）](#示例2设置下划线)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1617,7 +1619,7 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 | 参数名  | 类型   | 必填   | 说明  |
 | ------- | ------ | ---- | ----- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 是    | 文本选择区域结束位置。 |
+| selectionEnd   | number | 是    | 文本选择区域结束位置。当selectionEnd<0时，按照0处理；当selectionEnd大于文本长度时，按照文本长度处理。|
 | options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
 
 >  **说明：**
@@ -1669,7 +1671,7 @@ stopEditing(): void
 | ---- | ----- | ---- | ---- | ---- |
 | text              | string     | 否   | 否 | 输入框文本内容。                                   |
 
-### keepEditableState
+### keepEditableState<sup>11+</sup>
 
 keepEditableState(): void
 
@@ -1711,7 +1713,7 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
-| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
+| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。可以控制是否收起键盘。                                                   |
 
 ## OnTextSelectionChangeCallback<sup>18+</sup>
 

@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @maorh-->
-<!--Designer: @lixingchi1-->
+<!--Designer: @keerecles-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @HelloCrease-->
 
@@ -52,3 +52,7 @@ arr: Array<Type1 | Type2> = [];
 
 ForEach(this.arr, (item: Type1 | Type2) => {...}, (item: Type1 | Type2) => item.toString()) // item类型和数据项类型保持一致
 ```
+
+## 属性
+
+支持[拖拽排序](./ts-universal-attributes-drag-sorting.md)属性。

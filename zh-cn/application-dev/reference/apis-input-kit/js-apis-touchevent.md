@@ -7,7 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-设备上报的触屏事件，继承自[InputEvent](./js-apis-inputevent.md)。
+设备上报的触屏输入事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## Action
 
-触屏事件类型。
+触屏输入事件类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -69,10 +69,10 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 | 名称          | 类型   | 只读   | 可选   | 说明                                  |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
-| id          | number | 否    | 否    | 触屏事件标识。                                |
+| id          | number | 否    | 否    | 触屏输入事件id。                                |
 | pressedTime | number | 否    | 否    | 按下时间戳，单位：μs。                           |
-| screenX     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。    |
-| screenY     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。    |
+| screenX     | number | 否    | 否    | 该触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。    |
+| screenY     | number | 否    | 否    | 该触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。    |
 | windowX     | number | 否    | 否    | 触屏所在窗口左上角为原点的相对坐标系的X坐标。当前仅支持整数。 |
 | windowY     | number | 否    | 否    | 触屏所在窗口左上角为原点的相对坐标系的Y坐标。当前仅支持整数。 |
 | pressure    | number | 否    | 否    | 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。       |
@@ -87,18 +87,18 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | rawX        | number | 否    | 否    | 输入设备上的X坐标。当前仅支持整数。 |
 | rawY        | number | 否    | 否    | 输入设备上的Y坐标。当前仅支持整数。 |
 | toolType    | [ToolType](#tooltype) | 否    | 否    | 工具类型。                                |
-| globalX<sup>20+</sup> | number | 否    | 是    | 该触屏事件以主屏左上角为原点的全局坐标系的X坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的X坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
-| globalY<sup>20+</sup> | number | 否    | 是    | 该触屏事件以主屏左上角为原点的全局坐标系的Y坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的Y坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
+| globalX<sup>20+</sup> | number | 否    | 是    | 该触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的X坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
+| globalY<sup>20+</sup> | number | 否    | 是    | 该触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的Y坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
 
 ## TouchEvent
 
-触屏事件。
+触屏输入事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称         | 类型       | 只读   | 可选   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
-| action     | [Action](#action)     | 否    | 否    | 触屏事件类型。     |
+| action     | [Action](#action)     | 否    | 否    | 触屏输入事件类型。     |
 | touch      | [Touch](#touch)      | 否    | 否    | 当前触屏点信息。   |
 | touches    | [Touch](#touch)[]    | 否    | 否    | 所有触屏点。     |
 | sourceType | [SourceType](#sourcetype) | 否    | 否    | 触屏来源的设备类型。 |

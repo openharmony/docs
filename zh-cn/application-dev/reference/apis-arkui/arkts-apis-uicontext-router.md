@@ -20,7 +20,7 @@
 
 pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
+跳转到应用内的指定页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +36,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -173,7 +173,7 @@ struct Index {
 
 pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
+跳转到应用内的指定页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -190,7 +190,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -342,7 +342,7 @@ struct Index {
 
 replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回的结果。
+用应用内的某个页面替换当前页面，并销毁被替换的页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -358,7 +358,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -487,7 +487,7 @@ struct Index {
 
 replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
+用应用内的某个页面替换当前页面，并销毁被替换的页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -504,7 +504,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -648,7 +648,7 @@ struct Index {
 
 pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
+跳转到指定的命名路由页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -664,7 +664,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -800,7 +800,7 @@ struct Index {
 
 pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
+跳转到指定的命名路由页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -817,7 +817,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -968,7 +968,7 @@ struct Index {
 
 replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -984,7 +984,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1113,7 +1113,7 @@ struct Index {
 
 replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1131,7 +1131,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1285,7 +1285,7 @@ back(options?: router.RouterOptions ): void
 
 | 参数名     | 类型                                       | 必填   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 否    | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 否    | 返回页面描述信息，其中参数url指路由跳转时返回到指定url的页面，如果页面栈中没有对应url的页面，则不响应该操作；如果栈中存在对应url的页面，则返回至index最大的同名页面。<br/>如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
 
 **示例：**
 
@@ -1419,9 +1419,11 @@ let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let page = router.getState();
-console.info('current index = ' + page.index);
-console.info('current name = ' + page.name);
-console.info('current path = ' + page.path);
+if (page != undefined) {
+  console.info('current index = ' + page.index);
+  console.info('current name = ' + page.name);
+  console.info('current path = ' + page.path);
+}
 ```
 
 ## getStateByIndex<sup>12+</sup>
