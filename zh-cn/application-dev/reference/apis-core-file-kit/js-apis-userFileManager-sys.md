@@ -1524,7 +1524,7 @@ async function example(mgr: userFileManager.UserFileManager) {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // 获取相册的 uri
+    // 获取相册的uri
     let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
     let album: userFileManager.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1535,7 +1535,7 @@ async function example(mgr: userFileManager.UserFileManager) {
     };
     let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
     let expectIndex = 1;
-    // 获取第二个文件的 uri
+    // 获取第二个文件的uri
     let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
       if (err == undefined) {
@@ -1600,7 +1600,7 @@ async function example(mgr: userFileManager.UserFileManager) {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // 获取相册的 uri
+    // 获取相册的uri
     let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
     let album: userFileManager.Album = await albumFetchResult.getFirstObject();
     if (album === undefined) {
@@ -1615,7 +1615,7 @@ async function example(mgr: userFileManager.UserFileManager) {
     };
     let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
     let expectIndex = 1;
-    // 获取第二个文件的 uri
+    // 获取第二个文件的uri
     let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
@@ -1914,7 +1914,7 @@ async function example(mgr: userFileManager.UserFileManager) {
   } catch (err) {
     console.error('createPhotoAsset failed, message = ' + err);
   }
-  //睡眠一秒
+  // 睡眠一秒
   if (count == 0) {
     console.info('offDemo success');
   } else {
