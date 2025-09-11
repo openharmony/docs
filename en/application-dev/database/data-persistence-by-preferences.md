@@ -23,7 +23,7 @@ By default, user preferences are stored in XML format. Since API version 18, the
 Data is stored in the form of XML files, which allow high versatility and cross-platform operations. When XML is used, preference data operations are primarily performed in the memory. You can call **flush()** to persist the data when necessary. This storage type is recommended for single-process, small data volume scenarios.
 
 ### GSKV
-GSKV is available since API version 18. It supports concurrent read and write in multiple processes. When GSKV is used, preference data operations are flushed to the storage device in real time. This storage type is recommended for multi-process concurrency scenarios.
+GSKV is available since API version 18, where data is stored in binary format within files. It supports concurrent read and write in multiple processes. When GSKV is used, preference data operations are flushed to the storage device in real time. This storage type is recommended for multi-process concurrency scenarios.
 
 ## Constraints
 
