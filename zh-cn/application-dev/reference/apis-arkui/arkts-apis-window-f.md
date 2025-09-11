@@ -427,7 +427,7 @@ shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Prom
 
 该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，主窗口和子窗口可正常调用，用于将鼠标输入事件从源窗口转移到目标窗口。使用Promise异步回调。
 
-源窗口仅在[onMouse](arkui-ts/ts-universal-mouse-key.md#onMouse)事件（其中，事件类型必须为MouseAction.Press）的回调方法中调用此接口才会有鼠标输入事件转移效果，成功调用此接口后，系统会向源窗口补发鼠标抬起（mouse release）事件，并且向目标窗口补发鼠标按下（mouse press）事件。
+源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发鼠标按键抬起（touch up）事件，并且向目标窗口补发鼠标按键按下（touch down）事件。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
