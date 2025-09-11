@@ -899,13 +899,13 @@ MDNS服务信息。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
-| 名称                  | 类型                                | 必填 | 说明                                                         |
-| --------------------- | ---------------------------------- | --- |------------------------------------------------------------|
-| serviceType   | string                             |  是 | MDNS服务的类型。格式：_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。 |
-| serviceName | string                             |  是 | MDNS服务的名字。                                                 |
-| port            | number           |  否 | MDNS服务的端口号。取值范围[0，65535]。                                  |
-| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 | MDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。                      |
-| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否 | MDNS服务属性信息。                                                |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| serviceType   | string                             |  否   | 否 | MDNS服务的类型。格式：_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。 |
+| serviceName | string                             |  否   | 否| MDNS服务的名字。                                                 |
+| port            | number           |  否   | 是 | MDNS服务的端口号。取值范围[0，65535]。                                  |
+| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否   | 是 | MDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。                      |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否   | 是 | MDNS服务属性信息。                                                |
 
 ## ServiceAttribute
 
@@ -915,10 +915,10 @@ MDNS服务属性信息。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
-| 名称                  | 类型                                | 必填 | 说明                     |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| key   | string                             |  是 |  MDNS服务属性键值，键值长度应该小于9个字符。  |
-| value | Array\<number>                             |  是 |  MDNS服务属性值。   |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| key   | string                             |  否   | 否 |  MDNS服务属性键值，键值长度应该小于9个字符。  |
+| value | Array\<number>                             |  否   | 否 |  MDNS服务属性值。   |
 
 ## DiscoveryEventInfo<sup>11+</sup>
 
@@ -928,10 +928,10 @@ MDNS服务属性信息。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
-|    名称     |            类型                     | 必填 | 说明                  |
-| ----------- | ----------------------------------- | --- | --------------------- |
-| serviceInfo | LocalServiceInfo                    |  是 |  MDNS服务信息。        |
-| errorCode   | MdnsError                           |  否 |  MDNS错误信息。        |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| serviceInfo | LocalServiceInfo                    |  否   | 否 |  MDNS服务信息。        |
+| errorCode   | MdnsError                           |  否   | 是 |  MDNS错误信息。        |
 
 ## MdnsError
 
