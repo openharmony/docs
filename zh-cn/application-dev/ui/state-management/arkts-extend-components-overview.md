@@ -6,7 +6,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-ArkUI通过@Builder装饰器为开发者提供代码精简解决方案，该装饰器不仅能通过模块化封装简化UI开发流程，还衍生出@BuilderParam装饰器、@LocalBuilder装饰器和wrapBuilder机制，形成完整的可复用的UI结构体系。
+ArkUI使用@Builder装饰器为开发者提供代码精简方案。该装饰器通过模块化封装简化UI开发流程，并衍生出@BuilderParam、@LocalBuilder装饰器和wrapBuilder机制，构成可复用的UI结构体系。
 
 > **说明：**
 >
@@ -26,4 +26,4 @@ ArkUI通过@Builder装饰器为开发者提供代码精简解决方案，该装�
 
 ## wrapBuilder机制
 
-当页面中存在多个具有不同UI结构的全局@Builder函数时，开发者会面临较高的维护成本。为此，框架提供了[wrapBuilder](./arkts-wrapBuilder.md)机制来简化这一场景下的代码维护工作。
+当页面中存在多个不同UI结构的全局@Builder函数时，维护成本较高。框架提供了[wrapBuilder](./arkts-wrapBuilder.md)机制来简化代码维护工作。
