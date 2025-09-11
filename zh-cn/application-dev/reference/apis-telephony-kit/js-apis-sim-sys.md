@@ -3346,7 +3346,7 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 
 getAllSimAccountInfoList(callback: AsyncCallback\<Array\<IccAccountInfo\>\>): void
 
-获取所有SIM卡账户信息的列表。返回一个Callback对象，并解析为一个IccAccountInfo数组。
+获取所有SIM卡账户信息的列表，并通过Callback对象返回解析后的IccAccountInfo数组。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -3356,7 +3356,7 @@ getAllSimAccountInfoList(callback: AsyncCallback\<Array\<IccAccountInfo\>\>): vo
 
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。 获取SIM卡状态信息。|
+| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数，获取SIM卡状态信息。|
 
 **错误码：**
 
@@ -3391,7 +3391,7 @@ async function getAllSimAccountInfoList((err, accountInfoList) => {
 
 getAllSimAccountInfoList(): Promise\<Array\<IccAccountInfo\>\>
 
-获取所有SIM卡账户信息的列表。返回一个Promise对象，并解析为一个IccAccountInfo数组。
+获取所有SIM卡的账户信息列表。返回一个解析为IccAccountInfo数组的Promise对象。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -3401,7 +3401,7 @@ getAllSimAccountInfoList(): Promise\<Array\<IccAccountInfo\>\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<Array\<[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)\>\>| 回调函数。返回激活的SIM卡账户信息列表。 |
+| Promise\<Array\<[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)\>\>| 返回激活的SIM卡账户信息列表。 |
 
 **错误码：**
 

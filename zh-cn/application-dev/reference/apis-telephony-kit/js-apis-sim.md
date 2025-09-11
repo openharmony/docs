@@ -1483,7 +1483,7 @@ promise.then((data: number) => {
 
 getSimLabel(slotId: number, callback: AsyncCallback\<SimLabel\>): void
 
-查看卡槽ID和SIM卡的对应关系。卡槽1对应SIM卡1或者SIM卡2，卡槽2对应SIM卡2或者ESIMX。
+查看卡槽ID和SIM卡的对应关系：- 卡槽1对应SIM卡1或SIM卡2- 卡槽2对应SIM卡2或ESIMX
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1492,7 +1492,7 @@ getSimLabel(slotId: number, callback: AsyncCallback\<SimLabel\>): void
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| callback | AsyncCallback\<[SimLabel](#simlabel20)\> | 是   | 回调函数。 获取SIM卡标签信息。 |
+| callback | AsyncCallback\<[SimLabel](#simlabel20)\> | 是   | 回调函数。获取SIM卡标签信息。 |
 
 **错误码：**
 
@@ -1577,7 +1577,7 @@ async getSimLabel(slotId: number): Promise<sim.SimLabel|null> {
 
 getSimLabelSync(slotId: number): SimLabel
 
-通过提供SIM卡槽的ID，获取对应的SIM卡标签。
+通过传入SIM卡槽的ID，获取对应的SIM卡标签。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1612,7 +1612,7 @@ function exampleGetSimLabelSync() {
 
 ## SimType<sup>20+</sup>
 
-表示SIM卡类型的枚举。
+SIM卡类型的枚举。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1631,7 +1631,7 @@ SIM卡标签。
 | 名称         | 类型 | 只读| 可选  | 说明                                                       |
 | ---------------------|----|---- | ----| --------------------------------------------------- |
 |  simType   |  [SimType](#simtype20)  | 否  | 否|表示SIM卡类型的枚举。                      |
-| index |  number   |  否  |否 | SIM卡的标签索引。      |
+| index |  number   |  否  |否 | SIM卡的唯一标识索引值。      |
 
 ## SimState
 
