@@ -756,3 +756,19 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**：General
 
 **起始版本**：20
+
+## ohos.permission.HOOK_KEY_EVENT
+
+允许应用拦截键盘输入事件。
+
+获取该权限后，应用可以在按键事件分发到应用窗口前，将自定义的按键处理过程添加到系统的按键处理过程中。
+
+<!--RP52--><!--RP52End-->
+
+**权限级别**：system_basic
+
+**授权方式**：手动设置授权（manual_settings）
+
+**支持设备**：PC/2in1 | Tablet
+
+**起始版本**：21
