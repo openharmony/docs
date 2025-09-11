@@ -37,7 +37,7 @@ import { media } from '@kit.MediaKit';
 
 prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
-异步方式进行音视频录制的参数设置。通过注册回调函数获取返回值。
+音视频录制的参数设置。使用callback异步回调。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -108,7 +108,7 @@ avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
 
 prepare(config: AVRecorderConfig): Promise\<void>
 
-异步方式进行音视频录制的参数设置。通过Promise获取返回值。
+音视频录制的参数设置。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -130,7 +130,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | 异步音视频录制prepare方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -185,7 +185,8 @@ avRecorder.prepare(avRecorderConfig).then(() => {
 
 getInputSurface(callback: AsyncCallback\<string>): void
 
-异步方式获得录制需要的surface。通过注册回调函数获取返回值。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的视频数据。
+获得录制需要的surface。使用callback异步回调。
+开发者从此surface中获取surfaceBuffer，填入相应的视频数据。
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
@@ -230,7 +231,8 @@ avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
 
 getInputSurface(): Promise\<string>
 
-异步方式获得录制需要的surface。通过Promise获取返回值。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的视频数据。
+获得录制需要的surface。使用Promise异步回调。
+开发者从此surface中获取surfaceBuffer，填入相应的视频数据。
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
@@ -242,7 +244,7 @@ getInputSurface(): Promise\<string>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<string> | 异步获得surface的Promise返回值。 |
+| Promise\<string> | Promise对象，返回surface中获取的surfaceBuffer。 |
 
 **错误码：**
 
@@ -273,7 +275,7 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 
 updateRotation(rotation: number): Promise\<void>
 
-更新视频旋转角度。通过Promise获取返回值。
+更新视频旋转角度。使用Promise异步回调。
 
 当且仅当[prepare()](#prepare9-1)事件成功触发后，且在[start()](#start9)之前，才能调用updateRotation方法。
 
@@ -289,7 +291,7 @@ updateRotation(rotation: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步返回函数执行结果。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -335,7 +337,7 @@ setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt;| Promise对象。无返回结果的Promise对象。|
+| Promise&lt;void&gt;| Promise对象，无返回结果。|
 
 **错误码：**
 
@@ -363,7 +365,7 @@ avRecorder.setWillMuteWhenInterrupted(true).then(() => {
 
 start(callback: AsyncCallback\<void>): void
 
-异步方式开始视频录制。通过注册回调函数获取返回值。
+开始视频录制。使用callback异步回调。
 
 纯音频录制需在[prepare()](#prepare9)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
 
@@ -403,7 +405,7 @@ avRecorder.start((err: BusinessError) => {
 
 start(): Promise\<void>
 
-异步方式开始视频录制。通过Promise获取返回值。
+开始视频录制。使用Promise异步回调。
 
 纯音频录制需在[prepare()](#prepare9-1)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9-1)事件成功触发后，才能调用start方法。
 
@@ -415,7 +417,7 @@ start(): Promise\<void>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -444,7 +446,7 @@ avRecorder.start().then(() => {
 
 pause(callback: AsyncCallback\<void>): void
 
-异步方式暂停视频录制。通过注册回调函数获取返回值。
+暂停视频录制。使用callback异步回调。
 
 需要[start()](#start9)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume9)接口来恢复录制。
 
@@ -484,7 +486,7 @@ avRecorder.pause((err: BusinessError) => {
 
 pause(): Promise\<void>
 
-异步方式暂停视频录制。通过Promise获取返回值。
+暂停视频录制。使用Promise异步回调。
 
 需要[start()](#start9-1)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume9-1)接口来恢复录制。
 
@@ -496,7 +498,7 @@ pause(): Promise\<void>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -525,7 +527,7 @@ avRecorder.pause().then(() => {
 
 resume(callback: AsyncCallback\<void>): void
 
-异步方式恢复视频录制。通过注册回调函数获取返回值。
+恢复视频录制。使用callback异步回调。
 
 需要在[pause()](#pause9)事件成功触发后，才能调用resume方法。
 
@@ -565,7 +567,7 @@ avRecorder.resume((err: BusinessError) => {
 
 resume(): Promise\<void>
 
-异步方式恢复视频录制。通过Promise获取返回值。
+恢复视频录制。使用Promise异步回调。
 
 需要在[pause()](#pause9-1)事件成功触发后，才能调用resume方法。
 
@@ -577,7 +579,7 @@ resume(): Promise\<void>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -606,7 +608,7 @@ avRecorder.resume().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-异步方式停止视频录制。通过注册回调函数获取返回值。
+停止视频录制。使用callback异步回调。
 
 需要在[start()](#start9)或[pause()](#pause9)事件成功触发后，才能调用stop方法。
 
@@ -648,7 +650,7 @@ avRecorder.stop((err: BusinessError) => {
 
 stop(): Promise\<void>
 
-异步方式停止视频录制。通过Promise获取返回值。
+停止视频录制。使用Promise异步回调。
 
 需要在[start()](#start9-1)或[pause()](#pause9-1)事件成功触发后，才能调用stop方法。
 
@@ -662,7 +664,7 @@ stop(): Promise\<void>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -691,7 +693,7 @@ avRecorder.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-异步方式重置音视频录制。通过注册回调函数获取返回值。
+重置音视频录制。使用callback异步回调。
 
 纯音频录制时，需要重新调用[prepare()](#prepare9)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
@@ -730,7 +732,7 @@ avRecorder.reset((err: BusinessError) => {
 
 reset(): Promise\<void>
 
-异步方式重置音视频录制。通过Promise获取返回值。
+重置音视频录制。使用Promise异步回调。
 
 纯音频录制时，需要重新调用[prepare()](#prepare9-1)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-1)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
@@ -740,7 +742,7 @@ reset(): Promise\<void>
 
 | 类型           | 说明                                    |
 | -------------- | --------------------------------------- |
-| Promise\<void> | 异步重置音视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -768,7 +770,7 @@ avRecorder.reset().then(() => {
 
 release(callback: AsyncCallback\<void>): void
 
-异步方式释放音视频录制资源。通过注册回调函数获取返回值。
+释放音视频录制资源。使用callback异步回调。
 
 释放音视频录制资源之后，该AVRecorder实例不能再进行任何操作。
 
@@ -806,7 +808,7 @@ avRecorder.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-异步方式释放音视频录制资源。通过Promise获取返回值。
+释放音视频录制资源。使用Promise异步回调。
 
 释放音视频录制资源之后，该AVRecorder实例不能再进行任何操作。
 
@@ -818,7 +820,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<void> | 异步释放音视频录制资源方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -845,7 +847,7 @@ avRecorder.release().then(() => {
 
 getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeInfo>): void
 
-异步方式获取当前音频采集参数。通过注册回调函数获取返回值。
+获取当前音频采集参数。使用callback异步回调。
 
 在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
 
@@ -889,7 +891,7 @@ avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.
 
 getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 
-异步方式获取当前音频采集参数。通过Promise获取返回值。
+获取当前音频采集参数。使用Promise异步回调。
 
 在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
 
@@ -932,7 +934,7 @@ avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturer
 
 getAudioCapturerMaxAmplitude(callback: AsyncCallback\<number>): void
 
-异步方式获取当前音频最大振幅。通过注册回调函数获取返回值。
+获取当前音频最大振幅。使用callback异步回调。
 
 在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
 
@@ -976,7 +978,7 @@ avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) 
 
 getAudioCapturerMaxAmplitude(): Promise\<number>
 
-异步方式获取当前音频最大振幅参数。通过Promise获取返回值。
+获取当前音频最大振幅参数。使用Promise异步回调。
 
 在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
 
@@ -1019,7 +1021,7 @@ avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
 
 getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 
-异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+获取可用的编码器参数。使用callback异步回调。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1063,7 +1065,7 @@ avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) =
 
 getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
-异步方式获取可用的编码器参数。通过Promise获取返回值。
+获取可用的编码器参数。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1106,7 +1108,7 @@ avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
 
 getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
-异步方式获取实时的配置参数。通过注册回调函数获取返回值。
+获取实时的配置参数。使用callback异步回调。
 
 只能在[prepare()](#prepare9)接口调用后调用。
 
@@ -1149,7 +1151,7 @@ avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConf
 
 getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
-异步方式获取实时的配置参数。通过Promise获取返回值。
+获取实时的配置参数。使用Promise异步回调。
 
 只能在[prepare()](#prepare9-1)接口调用后调用。
 
@@ -1159,7 +1161,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<[AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9)> | 异步获得实时配置参数的回调方法。 |
+| Promise\<[AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9)> | Promise对象。返回实时配置参数。 |
 
 **错误码：**
 
@@ -1191,7 +1193,7 @@ avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
 
 on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 
-订阅录制状态机AVRecorderState切换的事件，当 AVRecorderState状态机发生变化时，会通过订阅的回调方法通知用户。用户只能订阅一个状态机切换事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+订阅录制状态机AVRecorderState切换的事件，当AVRecorderState状态机发生变化时，会通过订阅的回调方法通知用户。用户只能订阅一个状态机切换事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1202,7 +1204,7 @@ on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | [OnAVRecorderStateChangeHandler](arkts-apis-media-t.md#onavrecorderstatechangehandler12) | 是   | 状态机切换事件回调方法。 |
+| callback | [OnAVRecorderStateChangeHandler](arkts-apis-media-t.md#onavrecorderstatechangehandler12) | 是   | 回调函数，返回状态机切换事件。 |
 
 **错误码：**
 
@@ -1225,7 +1227,7 @@ avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.
 
 off(type: 'stateChange', callback?: OnAVRecorderStateChangeHandler): void
 
-取消订阅播放状态机[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)切换的事件。
+取消订阅播放状态机[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)切换的事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1236,7 +1238,7 @@ off(type: 'stateChange', callback?: OnAVRecorderStateChangeHandler): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | [OnAVRecorderStateChangeHandler](arkts-apis-media-t.md#onavrecorderstatechangehandler12) | 否   | 状态机切换事件回调方法。<br/>从API version 12开始支持此参数。 |
+| callback | [OnAVRecorderStateChangeHandler](arkts-apis-media-t.md#onavrecorderstatechangehandler12) | 否   | 回调函数，返回状态机切换事件。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1248,7 +1250,7 @@ avRecorder.off('stateChange');
 
 on(type: 'error', callback: ErrorCallback): void
 
-订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出录制操作。
+订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出录制操作。使用callback异步回调。
 
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -1261,7 +1263,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，返回录制错误事件。                                       |
 
 **错误码：**
 
@@ -1294,7 +1296,7 @@ avRecorder.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-取消订阅录制错误事件，取消后不再接收到AVRecorder的错误事件。
+取消订阅录制错误事件，取消后不再接收到AVRecorder的错误事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1305,7 +1307,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 录制错误事件回调方法。<br/>从API version 12开始支持此参数。                   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，返回录制错误事件。<br/>从API version 12开始支持此参数。                   |
 
 **示例：**
 
@@ -1317,7 +1319,7 @@ avRecorder.off('error');
 
 on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo>): void
 
-订阅录音配置变化的回调，任意录音配置的变化会触发变化后的录音配置全量信息回调。
+订阅录音配置变化的回调，任意录音配置的变化会触发变化后的录音配置全量信息回调。使用callback异步回调。
 
 当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -1328,7 +1330,7 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
-| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 是 | 变化后的录音配置全量信息。|
+| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 是 | 回调函数，返回变化后的录音配置全量信息。|
 
 **错误码：**
 
@@ -1355,7 +1357,7 @@ avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCaptu
 
 off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeInfo>): void
 
-取消订阅录音变化的回调事件。
+取消订阅录音变化的回调事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1364,7 +1366,7 @@ off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeIn
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
-| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 否 | 变化后的录音配置全量信息。<br/>从API version 12开始支持此参数。|
+| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 否 | 回调函数，返回变化后的录音配置全量信息。<br/>从API version 12开始支持此参数。|
 
 **示例：**
 
@@ -1376,7 +1378,7 @@ avRecorder.off('audioCapturerChange');
 
 on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
 
-订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9)操作结束后把[PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)对象回调给应用。
+订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9)操作结束后把[PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)对象回调给应用。使用callback异步回调。
 
 当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -1387,7 +1389,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)> | 是 | 系统创建的资源文件对应的PhotoAsset对象。|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)> | 是 | 回调函数，返回系统创建的资源文件对应的PhotoAsset对象。|
 
 **错误码：**
 
@@ -1444,7 +1446,7 @@ avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
 
 off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsset>): void
 
-取消订阅媒体资源的回调类型。
+取消订阅媒体资源的回调类型。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1453,7 +1455,7 @@ off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsse
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)> | 否 | 系统创建的资源文件对应的PhotoAsset对象。|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)> | 否 | 回调函数，返回系统创建的资源文件对应的PhotoAsset对象。|
 
 **示例：**
 
