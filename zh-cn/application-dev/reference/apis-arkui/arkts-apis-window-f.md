@@ -57,7 +57,6 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -128,7 +127,6 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
