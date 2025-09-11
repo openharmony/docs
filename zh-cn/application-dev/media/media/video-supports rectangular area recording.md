@@ -49,33 +49,43 @@
 1. 调用OH_AVScreenCapture_SetCaptureArea()接口传入希望录制的矩形区域。
 
     ```c++
-    capture = OH_AVScreenCapture_Create();
-    // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig。
-    OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
-    OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
-    OH_AudioInfo audioinfo = {
-        .micCapInfo = miccapinfo,
-    };
-    OH_VideoInfo videoinfo = {.videoCapInfo = videocapinfo};
-    OH_AVScreenCaptureConfig config = {.captureMode = OH_CAPTURE_HOME_SCREEN,
-                                       .dataType = OH_ORIGINAL_STREAM,
-                                       .audioInfo = audioinfo,
-                                       .videoInfo = videoinfo};
-    OH_AVScreenCapture_Init(capture, config);
-    // 1. 可选，可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0, 0）为起点的长100，宽100的矩形区域。
-    OH_Rect* region = new OH_Rect;
-    region->x = 0;
-    region->y = 0;
-    region->width = 100;
-    region->height = 100;
-    // 2. 传入矩形区域所在的屏幕Id。
-    unit64_t regionDisplayId = 0;
-    OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
+    #include "napi/native_api.h"
+    #include <multimedia/player_framework/native_avscreen_capture.h>
+    #include <multimedia/player_framework/native_avscreen_capture_base.h>
+    #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <fcntl.h>
+    #include <string>
 
-    // 开始录屏。
-    OH_AVScreenCapture_StartScreenCapture(capture);
+    //开始录屏时调用StartScreenCapture
+    static napi_value StartScreenCapture(napi_env env, napi_callback_info info){
+        struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
+        // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig。
+        OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
+        OH_VideoCaptureInfo videocapinfo = {
+            .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+        OH_AudioInfo audioinfo = {
+            .micCapInfo = miccapinfo,
+        };
+        OH_VideoInfo videoinfo = {.videoCapInfo = videocapinfo};
+        OH_AVScreenCaptureConfig config = {.captureMode = OH_CAPTURE_HOME_SCREEN,
+                                        .dataType = OH_ORIGINAL_STREAM,
+                                        .audioInfo = audioinfo,
+                                        .videoInfo = videoinfo};
+        OH_AVScreenCapture_Init(capture, config);
+        // 1. 可选，可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0, 0）为起点的长100，宽100的矩形区域。
+        OH_Rect* region = new OH_Rect;
+        region->x = 0;
+        region->y = 0;
+        region->width = 100;
+        region->height = 100;
+        // 2. 传入矩形区域所在的屏幕Id。
+        uint64_t regionDisplayId = 0;
+        OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
 
-    // mic开关设置。
-    OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
+        // 开始录屏。
+        OH_AVScreenCapture_StartScreenCapture(capture);
+        
+        napi_value sum;
+        return sum;
+    }
     ```
