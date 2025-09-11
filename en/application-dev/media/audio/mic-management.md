@@ -1,4 +1,10 @@
 # Microphone Management
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 The microphone is used to record audio data. To deliver an optimal recording effect, you are advised to query the microphone state before starting recording and listen for state changes during recording.
 
@@ -66,7 +72,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
    }
    ```
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to complete the process of muting and unmuting the microphone.
 

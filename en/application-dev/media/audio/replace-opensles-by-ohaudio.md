@@ -1,4 +1,10 @@
 # Switching from OpenSL ES to OHAudio (C/C++)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 You are advised to use OHAudio APIs instead of OpenSL ES APIs to develop audio services, since the latter may fail to provide extended audio capabilities. This topic describes how to switch the audio service code from the OpenSL ES APIs to the OHAudio APIs.
 
@@ -74,7 +80,7 @@ OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
 OH_AudioStreamBuilder_SetChannelCount(builder, 2);
 OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
 OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
-// This parameter specifies the audio usage and is supported only by OHAudio. The system implements audio policy adaptation based on the parameter.
+// This parameter specifies the audio usage and is supported only by OHAudio. The system implements audio strategy adaptation based on the parameter.
 OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC);
 // ...
 

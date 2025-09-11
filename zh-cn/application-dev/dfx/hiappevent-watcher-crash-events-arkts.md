@@ -66,7 +66,7 @@
     });
    ```
 
-3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在 `onCreate` 函数中添加系统事件的订阅。示例代码如下：
+3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在 `onCreate` 函数中订阅系统事件。示例代码如下：
 
    ```ts
     let watcher: hiAppEvent.Watcher = {

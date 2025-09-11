@@ -50,7 +50,7 @@
 
 ### 生命周期切换超时
 
-**概述**：生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
+**概述**：生命周期切换超时分为[UIAbility生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
 
 该故障发生在生命周期切换过程中，影响应用内Ability的切换或者不同PageAbility之间的切换。
 

@@ -35,7 +35,7 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    console.log('Duration timeout: ' + timeout);
+    console.info('Duration timeout: ' + timeout);
   }
 };
 

@@ -21,3 +21,7 @@
   - [USB串口通信管理](usbSerial/usbSerial-communication.md)
 - [常见问题](faqs-usb.md)
 - [术语](usb-glossary.md)
+<!--Del-->
+- [USB服务开发指导](usb-guidelines.md)
+- [USB服务开发概述](usb-overview.md)
+<!--DelEnd-->
