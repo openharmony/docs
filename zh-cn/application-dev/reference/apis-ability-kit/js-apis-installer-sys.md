@@ -971,7 +971,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -989,7 +989,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 ```ts
 import { installer } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -1033,7 +1033,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1051,7 +1051,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 ```ts
 import { installer } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -1670,7 +1670,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 
 | 类型            | 说明                                   |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1749,7 +1749,7 @@ uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: 
 
 | 类型            | 说明                                   |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
