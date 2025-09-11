@@ -1521,9 +1521,9 @@ type ResponseHeaders = {
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 类型   | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| [k:string]:string \| string[] \| undefined | header数据类型为键值对、字符串或者undefined。 |
+| 名称 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+|  [k:string]  | string \| string[] \| undefined | 是   | 键值对形式存储。其键的类型为字符，可取任意值，其值的类型为字符、字符数组或undefined。 |
 
 ## close错误码说明
 
