@@ -24,7 +24,7 @@
 - **支持的系统**：OpenHarmony6.0及以后。
 - **设置失败的处理**：如果区域位置设置失败，系统将按照上一次的区域进行捕获。建议开发者在设置区域时进行错误检查和处理，以确保捕获区域的准确性。
 - **录制区域限制**：安全图层不支持录制。不支持跨屏（一边在左边/一边在右边）录制。
-- **录制区域更改**：支持录制过程中，录制区域的拖动/缩放，不支持录制区域手工关闭或最小化。
+- **录制区域更改**：支持录制过程中，更新录制区域。
 
 ## 接口介绍
 
@@ -49,6 +49,20 @@
 1. 调用OH_AVScreenCapture_SetCaptureArea()接口传入希望录制的矩形区域。
 
     ```c++
+    capture = OH_AVScreenCapture_Create();
+    // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig。
+    OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
+    OH_VideoCaptureInfo videocapinfo = {
+        .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+    OH_AudioInfo audioinfo = {
+        .micCapInfo = miccapinfo,
+    };
+    OH_VideoInfo videoinfo = {.videoCapInfo = videocapinfo};
+    OH_AVScreenCaptureConfig config = {.captureMode = OH_CAPTURE_HOME_SCREEN,
+                                       .dataType = OH_ORIGINAL_STREAM,
+                                       .audioInfo = audioinfo,
+                                       .videoInfo = videoinfo};
+    OH_AVScreenCapture_Init(capture, config);
     // 1. 可选，可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0, 0）为起点的长100，宽100的矩形区域。
     OH_Rect* region = new OH_Rect;
     region->x = 0;
@@ -58,4 +72,10 @@
     // 2. 传入矩形区域所在的屏幕Id。
     unit64_t regionDisplayId = 0;
     OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
+
+    // 开始录屏。
+    OH_AVScreenCapture_StartScreenCapture(capture);
+
+    // mic开关设置。
+    OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
     ```
