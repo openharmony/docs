@@ -1268,7 +1268,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| SUB_MODE           | subMode    | 子类型。                  |
+| SUB_MODE           | 'subMode'    | 子类型。                  |
 
 ## ContinuousTaskSuspendInfo<sup>20+</sup>
 
