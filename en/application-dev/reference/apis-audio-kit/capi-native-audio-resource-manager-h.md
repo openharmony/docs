@@ -1,4 +1,10 @@
 # native_audio_resource_manager.h
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -27,9 +33,9 @@ The file declares the functions related to an audio resource manager.
 
 | Name| Description|
 | -- | -- |
-| [OH_AudioCommon_Result OH_AudioManager_GetAudioResourceManager(OH_AudioResourceManager **resourceManager)](#oh_audiomanager_getaudioresourcemanager) | Obtains an audio resource manager.<br>Before using the features related to the audio resource manager, you must obtain an audio resource manager instance.|
-| [OH_AudioCommon_Result OH_AudioResourceManager_CreateWorkgroup(OH_AudioResourceManager *resourceManager,const char *name, OH_AudioWorkgroup **group)](#oh_audioresourcemanager_createworkgroup) | Creates an audio workgroup.|
-| [OH_AudioCommon_Result OH_AudioResourceManager_ReleaseWorkgroup(OH_AudioResourceManager *resourceManager,OH_AudioWorkgroup *group)](#oh_audioresourcemanager_releaseworkgroup) | Releases an audio workgroup.|
+| [OH_AudioCommon_Result OH_AudioManager_GetAudioResourceManager(OH_AudioResourceManager **resourceManager)](#oh_audiomanager_getaudioresourcemanager) | Obtains an audio resource manager.<br> Before using the features related to the audio resource manager, you must obtain an audio resource manager instance.|
+| [OH_AudioCommon_Result OH_AudioResourceManager_CreateWorkgroup(OH_AudioResourceManager *resourceManager, const char *name, OH_AudioWorkgroup **group)](#oh_audioresourcemanager_createworkgroup) | Creates an audio workgroup.|
+| [OH_AudioCommon_Result OH_AudioResourceManager_ReleaseWorkgroup(OH_AudioResourceManager *resourceManager, OH_AudioWorkgroup *group)](#oh_audioresourcemanager_releaseworkgroup) | Releases an audio workgroup.|
 | [OH_AudioCommon_Result OH_AudioWorkgroup_AddCurrentThread(OH_AudioWorkgroup *group, int32_t *tokenId)](#oh_audioworkgroup_addcurrentthread) | Adds a thread to an audio workgroup.|
 | [OH_AudioCommon_Result OH_AudioWorkgroup_RemoveThread(OH_AudioWorkgroup *group, int32_t tokenId)](#oh_audioworkgroup_removethread) | Removes a thread from an audio workgroup.|
 | [OH_AudioCommon_Result OH_AudioWorkgroup_Start(OH_AudioWorkgroup *group, uint64_t startTime, uint64_t deadlineTime)](#oh_audioworkgroup_start) | Notifies the system that an audio workgroup starts working and provides the expected end time of the workgroup.|
@@ -62,7 +68,7 @@ Before using the features related to the audio resource manager, you must obtain
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>**AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **resourceManager** parameter is nullptr.|
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>         **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **resourceManager** parameter is nullptr.|
 
 ### OH_AudioResourceManager_CreateWorkgroup()
 
@@ -89,7 +95,7 @@ Creates an audio workgroup.
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>**AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**:<br>1. The **resourceManager** parameter is nullptr.<br>2. The **name** parameter is nullptr.<br>3. The **group** parameter is nullptr.<br>**AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to be created, and the returned workgroup is nullptr. |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>         **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**:<br>                                                        1. The **resourceManager** parameter is nullptr.<br>                                                        2. The **name** parameter is nullptr.<br>                                                        3. The **group** parameter is nullptr.<br>         **AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to be created, and the returned workgroup is nullptr.|
 
 ### OH_AudioResourceManager_ReleaseWorkgroup()
 
@@ -115,7 +121,7 @@ Releases an audio workgroup.
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>**AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**:<br>1. The **resourceManager** parameter is nullptr.<br>2. The **group** parameter is nullptr.<br>**AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to be released. |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>         **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**:<br>                                                        1. The **resourceManager** parameter is nullptr.<br>                                                        2. The **group** parameter is nullptr.<br>         **AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to be released.|
 
 ### OH_AudioWorkgroup_AddCurrentThread()
 
@@ -141,7 +147,7 @@ Adds a thread to an audio workgroup.
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>**AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>**AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The thread fails to be added to the workgroup.|
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>         **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>         **AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The thread fails to be added to the workgroup.|
 
 ### OH_AudioWorkgroup_RemoveThread()
 
@@ -167,7 +173,7 @@ Removes a thread from an audio workgroup.
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>**AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>**AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The thread fails to be removed from the workgroup.|
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>         **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>         **AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The thread fails to be removed from the workgroup.|
 
 ### OH_AudioWorkgroup_Start()
 
@@ -194,7 +200,7 @@ Notifies the system that an audio workgroup starts working and provides the expe
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>**AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>**AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to notify the system of the start.|
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |  **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>         **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>         **AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to notify the system of the start.|
 
 ### OH_AudioWorkgroup_Stop()
 
@@ -219,4 +225,4 @@ Notifies the system that an audio workgroup finishes working.
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>**AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>**AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to notify the system of the end.|
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | **AUDIOCOMMON_RESULT_SUCCESS**: The function is executed successfully.<br>         **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **group** parameter is nullptr.<br>         **AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE**: The workgroup fails to notify the system of the end.|

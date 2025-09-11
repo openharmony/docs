@@ -1,4 +1,10 @@
 # @ohos.multimedia.audioHaptic (Audio-Haptic) (System API)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 Audio-haptic enables users to get rhythmic auditory and haptic feedback while having incoming calls or messages.
 
@@ -30,7 +36,7 @@ Checks whether the device supports adjusting the intensity of haptic feedback.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| boolean             | Check result. The value **true** is returned if the device supports intensity adjustment, and **false** is returned otherwise.|
+| boolean             | Check result for the support of intensity adjustment. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -60,7 +66,7 @@ Checks whether the device supports gradually adjusting the intensity of haptic f
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| boolean             | Check result. The value **true** is returned if the device supports haptic ramping, and **false** is returned otherwise.|
+| boolean             | Check result for the support of haptic ramping. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -94,7 +100,7 @@ Enables the audio-haptic player to provide haptic feedback even when the device 
 
 | Name | Type                                    | Mandatory| Description                   |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| enable     | boolean                                | Yes | Whether to enable haptic feedback in silent mode. The value **true** means to enable haptic feedback in silent mode, and **false** means the opposite.|
+| enable     | boolean                                | Yes | Whether to enable haptic feedback in silent mode. **true** to enable, **false** otherwise.|
 
 **Error codes**
 

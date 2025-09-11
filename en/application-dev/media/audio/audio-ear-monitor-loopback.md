@@ -1,4 +1,12 @@
 # Low-Latency Audio Monitoring
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
+
+Low-latency audio loopback is supported since API version 20.
 
 AudioLoopback is an audio monitoring tool that delivers audio to headphones with reduced latency in real time, enabling users to hear their own voice or other relevant sounds immediately.
 
@@ -40,7 +48,7 @@ The [on('statusChange')](../../reference/apis-audio-kit/arkts-apis-audio-AudioLo
     import { audio } from '@kit.AudioKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     
-    let mode: audio.AudioLoopbackMode.HARDWARE;
+    let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
     let audioLoopback: audio.AudioLoopback;
     let isSupported = audio.getAudioManager().getStreamManager().isAudioLoopbackSupported(mode);
     if (isSupported) {
@@ -112,7 +120,7 @@ The [on('statusChange')](../../reference/apis-audio-kit/arkts-apis-audio-AudioLo
     });
    ```
 
-### Sample Code
+### Complete Sample Code
 
 The following example demonstrates how to use AudioLoopback to enable low-latency audio monitoring:
 
@@ -123,7 +131,7 @@ import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioLoopbackDemo';
 
-let mode: audio.AudioLoopbackMode.HARDWARE;
+let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
 let audioLoopback: audio.AudioLoopback | undefined = undefined;
 
 let statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
