@@ -314,10 +314,9 @@ function count(): void {
 ## Node
 3D场景由树状层次结构的结点组成，其中每个结点都实现了Node接口。继承自[SceneResource](js-apis-inner-scene-resources.md#sceneresource-1)。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
+### 属性
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | position | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 否 | 结点位置。 |
@@ -367,8 +366,6 @@ function getNode(): void {
 ## Geometry
 几何节点类型，用于承载可渲染的网格数据，并支持可选的形变功能，继承自[Node](#node)。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -388,8 +385,6 @@ function getNode(): void {
 
 ## Light
 光源，继承自[Node](#node)。
-
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -415,10 +410,9 @@ function getNode(): void {
 ## Camera
 相机类型，Camera继承自[Node](#node)。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
+### 属性
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | fov | number | 否 | 否 | 视场，取值在0到π弧度之间。 |

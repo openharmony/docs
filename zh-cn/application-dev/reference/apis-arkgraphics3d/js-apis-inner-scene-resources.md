@@ -37,10 +37,9 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, CullMode, Blend
 ## SceneResource
 用于表示场景中的资源。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
+### 属性
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | 否 | 否 | 名称，没有特殊格式要求。 |
@@ -81,8 +80,6 @@ function destroy(): void {
 ## Shader
 着色器，继承自[SceneResource](#sceneresource-1)。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -113,8 +110,6 @@ function destroy(): void {
 ## Blend<sup>20+</sup>
 用于控制材质的透明效果。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -123,8 +118,6 @@ function destroy(): void {
 
 ## RenderSort<sup>20+</sup>
 定义材质物体的渲染顺序，控制不同物体在渲染管线中的绘制先后。
-
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -135,8 +128,6 @@ function destroy(): void {
 
 ## Material
 材质类型，继承自[SceneResource](#sceneresource-1)。
-
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -152,8 +143,6 @@ function destroy(): void {
 ## MaterialProperty<sup>20+</sup>
 材质属性接口，用于定义材质所使用的纹理、属性因子及纹理采样器信息。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -164,7 +153,6 @@ function destroy(): void {
 
 ## MetallicRoughnessMaterial<sup>20+</sup>
 用于实现真实感外观的材质资源。采用基于物理渲染（PBR）的金属-粗糙度模型，通过调节金属度和粗糙度参数，可模拟金属、塑料等不同材质的表面光照与反射效果，继承自[Material](#material)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -183,7 +171,6 @@ function destroy(): void {
 
 ## ShaderMaterial
 着色器材质，继承自[Material](#material)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -216,8 +203,6 @@ function destroy(): void {
 ## Sampler<sup>20+</sup>
 采样器接口，用于定义纹理贴图采样时的过滤方式。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -230,7 +215,6 @@ function destroy(): void {
 
 ## SubMesh
 子网格类型。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -243,8 +227,6 @@ function destroy(): void {
 ## Morpher<sup>20+</sup>
 用于控制3D模型的形变，通过调整不同形变目标的权重，实现模型的动态变形效果。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -253,7 +235,6 @@ function destroy(): void {
 
 ## Mesh
 网格类型，继承自[SceneResource](#sceneresource-1)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -270,10 +251,10 @@ function destroy(): void {
 
 ## Animation
 动画类型，继承自[SceneResource](#sceneresource-1)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
+### 属性
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | enabled | boolean | 否 | 否 | 动画是否使能。true表示可以播放动画，false表示不可以播放动画。 |
@@ -516,7 +497,6 @@ function finish(): void {
 
 ## Environment
 环境类型，继承自[SceneResource](#sceneresource-1)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -532,7 +512,6 @@ function finish(): void {
 
 ## Image
 图片类型，继承自[SceneResource](#sceneresource-1)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
