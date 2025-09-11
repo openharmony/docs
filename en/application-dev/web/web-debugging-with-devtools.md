@@ -1,10 +1,84 @@
 # Debugging Frontend Pages by Using DevTools
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 
 The **Web** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use [setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess) to enable frontend page debugging for the **Web** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
 
+## Wireless Debugging
+Since API version 20, the wireless debugging API [setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20) can be used to simplify the debugging process.
 
-## Procedure
+### Enabling Web Debugging for Application Code
+
+Before debugging a web page, call the **setWebDebuggingAccess()** API to enable the web debugging feature.
+If the web debugging function is not enabled, DevTools cannot detect the web page to be debugged.
+
+   1. To enable the web debugging feature in application code, call the [setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20) API to set the TCP socket port and enable the web debugging feature.
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController();
+
+     aboutToAppear(): void {
+       try {
+         // Enable wireless web debugging and specify the TCP socket port.
+         webview.WebviewController.setWebDebuggingAccess(true, 8888);
+       } catch (error) {
+         console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+       }
+     }
+
+     build() {
+       Column() {
+         Web({ src: 'www.example.com', controller: this.controller })
+       }
+     }
+   }
+   ```
+   > **NOTE**
+   >
+   >  Port 8888 used in the sample code is for reference only. You must ensure that the port number can be used by applications in practice. If the port cannot be used because the port is occupied or the application does not have the permission to use the port, the API throws an exception or the ArkWeb cannot enable the debugging mode.
+   2. To enable the debugging feature, you need to add the following permission to the **module.json5** file of the application's HAP in DevEco Studio. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
+
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+   ```
+
+### Opening the Debugging Tool Page in Chrome
+
+   1. Input **chrome://inspect/\#devices** in the address box of Chrome on the PC and open the page. 
+   2. Configure the Chrome debugging tool. 
+     Select **Discover network targets** to discover the web page to be debugged based on the specified IP address and port number. 
+     (1) Click the **Configure** button. 
+     (2) In **Target discovery settings**, add the IP address of the device to be debugged and the port specified in the [setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20) API, for example, **192.168.0.3:8888**.
+
+   > **NOTE**
+   >
+   >  The debugging tool and the device to be debugged must be in the same LAN and can access each other. If the device to be debugged has multiple IP addresses, use the IP address that is in the same network segment as the IP address of the debugging tool.
+
+### Waiting for the Page to Be Debugged
+
+  If the preceding steps are successful, the page to be debugged is displayed on the Chrome debugging page. 
+  ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
+
+### Starting Web Page Debugging
+
+  ![debug-effect](figures/debug-effect.png)
+
+## USB Debugging
 
 ### Enabling Web Debugging for Application Code
 
@@ -34,7 +108,7 @@ If the web debugging function is not enabled, DevTools cannot detect the web pag
      }
    }
    ```
-2. Declare the required permission in the **module.json5** file of the HAP module in the application project in DevEco Studio. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
+2. To enable the debugging feature, you need to add the following permission to the **module.json5** file of the application's HAP in DevEco Studio. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
 
    ```
    "requestPermissions":[
@@ -71,7 +145,7 @@ Connect the device to a PC and enable Developer mode for subsequent port forward
    ```
 
 ### Port Forwarding
-After the application code calls the **setWebDebuggingAccess** API to enable web debugging, the ArkWeb kernel starts a domain socket listener to enable DevTools to debug web pages. For details, see [Automatically Mapping the WebView Debugging Link](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118). 
+After the application code calls the **setWebDebuggingAccess** API to enable web debugging, the ArkWeb kernel starts a domain socket listener to enable DevTools to debug web pages. For details, see [Automatically Mapping the WebView Debugging Link](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-debug-configurations#section48387420516). 
 However, Chrome cannot directly access the domain socket on the device. Therefore, the domain socket on the device needs to be forwarded to the PC.
 
 1. Run the following command in hdc shell to obtain the domain socket created by ArkWeb on the device. 
@@ -111,30 +185,8 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
    * If **[Empty]** is returned, the operation fails. 
    ![hdc_fport_ls_empty](figures/devtools_resources_hdc_fport_ls_empty.jpg)
 
-### Opening the Debugging Tool Page in Chrome
-  1. Input **chrome://inspect/\#devices** in the address box of Chrome on the PC and open the page. 
-  2. Configure the Chrome debugging tool. 
-     The web page to be debugged needs to be discovered from the local TCP port 9222. Therefore, ensure that **Discover network targets** is selected. Then, configure the network. 
-     (1) Click the **Configure** button. 
-     (2) Add **localhost:9222** to **Target discovery settings**.
-
-     ![chrome_configure](figures/devtools_resources_chrome_configure.jpg)
-
-  3. To debug multiple applications at the same time, add multiple port numbers in **Configure** of the **Devices** option on the Chrome debugging tool page.
-
-     ![debug-effect](figures/debug-domains.png)
-
-### Waiting for the Page to Be Debugged
-
-  If the preceding steps are successful, the page to be debugged is displayed on the Chrome debugging page. 
-  ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
-
-### Starting Web Page Debugging
-
-  ![debug-effect](figures/debug-effect.png)
-
-## Script
-### On Windows
+### Script
+#### On Windows
 Copy the following information to create a .bat file, enable application debugging, and run the file.
    ```
    @echo off
@@ -187,7 +239,7 @@ Copy the following information to create a .bat file, enable application debuggi
 
    :: If no process ID was found, prompt the user to open debugging in their application code and provide the documentation link
    if "!SOCKET_NAME!"=="" (
-       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitee.com/openharmony/docs/blob/master/en/application-dev/web/web-debugging-with-devtools.md]
+       echo No process ID was found. Please open debugging in your application code using the corresponding interface. You can find the relevant documentation at this link: [https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-debugging-with-devtools.md]
        pause
        exit /b
    )
@@ -200,16 +252,16 @@ Copy the following information to create a .bat file, enable application debuggi
    pause >nul
 
    :: Try to open the page in Edge
-   start msedge chrome://inspect/#devices.com
+   start msedge chrome://inspect/#devices
 
    :: If Edge is not available, then open the page in Chrome
    if errorlevel 1 (
-       start chrome chrome://inspect/#devices.com
+       start chrome chrome://inspect/#devices
    )
 
    endlocal
    ```
-### On Linux or macOS
+#### On Linux or macOS
 Copy the following information to create an .sh file. Note that you need to run the **chmod** command and convert the file format. Enable the application debugging and run the file.
 This script will delete all port forwarding. If other tools (such as DevEco Studio) are using port forwarding, they will be affected.
    ```
@@ -273,68 +325,34 @@ This script will delete all port forwarding. If other tools (such as DevEco Stud
    hdc fport ls
    ```
 
-## Wireless Debugging
-In [debugging procedure](#procedure), domain sockets need to be frequently queried and ports need to be forwarded in [port forwarding](#port forwarding), which is inconvenient for page debugging. Therefore, since API version 20, the wireless debugging API [setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20) can be used to simplify the debugging process.
+### Opening the Debugging Tool Page in Chrome
+  1. Input **chrome://inspect/\#devices** in the address box of Chrome on the PC and open the page. 
+  2. Configure the Chrome debugging tool. 
+     The web page to be debugged needs to be discovered from the local TCP port 9222. Therefore, ensure that **Discover network targets** is selected. Then, configure the network. 
+     (1) Click the **Configure** button. 
+     (2) Add **localhost:9222** to **Target discovery settings**.
 
-1. Enable web debugging for application code.
+     ![chrome_configure](figures/devtools_resources_chrome_configure.jpg)
 
-   In the application, call the [setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20) API to set the TCP Socket port number and enable web debugging.
-   ```ts
-   // xxx.ets
-   import { webview } from '@kit.ArkWeb';
-   import { BusinessError } from '@kit.BasicServicesKit';
+  3. To debug multiple applications at the same time, add multiple port numbers in **Configure** of the **Devices** option on the Chrome debugging tool page.
 
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController();
+     ![debug-effect](figures/debug-domains.png)
 
-     aboutToAppear(): void {
-       try {
-         // Enable wireless web debugging and specify the TCP socket port.
-         webview.WebviewController.setWebDebuggingAccess(true, 8888);
-       } catch (error) {
-         console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-       }
-     }
+### Waiting for the Page to Be Debugged
 
-     build() {
-       Column() {
-         Web({ src: 'www.example.com', controller: this.controller })
-       }
-     }
-   }
-   ```
-   > **NOTE**
-   >
-   >  Port 8888 used in the sample code is for reference only. You must ensure that the port number can be used by applications in practice. If the port cannot be used because the port is occupied or the application does not have the permission to use the port, the API throws an exception or the ArkWeb cannot enable the debugging mode.
+  If the preceding steps are successful, the page to be debugged is displayed on the Chrome debugging page. 
+  ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
 
-2. Connect the device to a PC.
+### Starting Web Page Debugging
 
-   If wireless debugging is successfully enabled, skip this step.
-
-3. Forward the port.
-
-   If wireless debugging is successfully enabled, skip this step.
-
-4. Open the debugging tool page in Chrome.
-
-   In step 2 "Configure the Chrome debugging tool" of [Opening the Debugging Tool Page in Chrome](#opening-the-debugging-tool-page-in-chrome), change (2) to the following: 
-   In **Target discovery settings**, add the IP address of the device to be debugged and the port specified in the [setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20) API, for example, **192.168.0.3:8888**.
-
-   > **NOTE**
-   >
-   >  The debugging tool and the device to be debugged must be in the same LAN and can access each other. If the device to be debugged has multiple IP addresses, use the IP address that is in the same network segment as the IP address of the debugging tool.
-
-5. Wait for the page to be debugged.
-
-   This step does not change.
-
-6. Start web page debugging.
-
-   This step does not change.
+  ![debug-effect](figures/debug-effect.png)
 
 ## FAQs
+
+### Can I debug web pages opened in the system browser?
+
+It depends on whether the web debugging feature is enabled for the system browser.
+* If yes, follow the steps in [USB Debugging](#usb-debugging).
 
 ### What should I do if hdc cannot discover devices?
 **Symptom**
@@ -375,7 +393,7 @@ In [debugging procedure](#procedure), domain sockets need to be frequently queri
   * Ensure that the step of [Enabling Web Debugging for Application Code](#enabling-web-debugging-for-application-code) is performed.
   * Ensure that the application uses the **Web** component to load the web page.
 
-### What should I do if port forwarding fails
+### What should I do if port forwarding fails?
 **Symptom**
 
    The configured forwarding task is not displayed after the following command is executed.
@@ -436,3 +454,15 @@ The port forwarding may be invalid due to the following reasons:
 
 * Ensure that the port can be used by applications.
 * Ensure that the debugging tool and the device to be debugged are in the same LAN and the network between them is normal.
+
+### What should I do if the Web component cannot be debugged using DevTools?
+**Symptom**
+
+  The web page to be debugged cannot be found in Chrome on the PC.
+
+**Possible Causes**
+
+* When both hdc and ADB are used, ADB interferes with the WebSocket connection between DevTools and the device.
+
+**Solution**
+* In this case, stop the ADB process and ensure that DevTools establishes a WebSocket connection with the device.

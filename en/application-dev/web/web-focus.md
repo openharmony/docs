@@ -1,4 +1,10 @@
 # Managing Focus
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 The **Web** component provides the focus management functionality for you to effectively manage the focus and defocus of the **Web** component. In addition, you can use the W3C standards-compliant API on the HTML5 side to manage the focus and defocus of the only interactive element on the Web page.
 
@@ -27,7 +33,7 @@ For details about the focus, focus chain, and focus navigation of the **Web** co
 Focus traversal can be divided into active and passive based on how it is triggered. For details, see [Focus Traversal Guidelines](../ui/arkts-common-events-focus-event.md#focus-traversal-guidelines).
 
 ### Active Focus Traversal
-Active focus traversal refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (Tab, Shift+Tab) and clicks/touches (gesture, mouse, or touchpad).
+Refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (**Tab** or **Shift+Tab**) and clicks or touches through (the gesture, mouse, or touchpad).
 
 - requestFocus
 
@@ -43,7 +49,7 @@ Active focus traversal refers to focus movement initiated by deliberate actions,
   Users can use gestures, the mouse, or touchpad to click/touch a **Web** component to obtain the focus. Elements in the **Web** component can also be focused when being clicked/touched. For example, an input box in a web page can be clicked/touched to change from a non-editable state to an editable state and activate the input method.
 
 ### Passive Focus Traversal
-Passive focus traversal occurs when the focus automatically shifts due to system actions or other operations without developer intervention, reflecting the default behavior of the focus system.
+Passive focus traversal occurs when the focus automatically shifts due to system actions or other operations without manual intervention, reflecting the default behavior of the focus system.
 
 Passive focus traversal occurs in the following scenarios:
 
@@ -53,7 +59,7 @@ Passive focus traversal occurs in the following scenarios:
 
 - Invisible **Web** components: In scenarios such as application foreground and background switchover, page switchover, and navigation, a focused **Web** component will lose focus and be focused again.
 
-- Web page loading: When the **Web** component loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. However, if the **Web** component is not focusable, the focus fails to be obtained. The common causes are as follows: The parent component cannot be focused during the animation. The **Web** component or its parent component is set to be not focusable on the application side. The application can call [requestFocus](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#requestfocus) to obtain the focus again. When the focus is obtained successfully, the **onFocus** and **w3c focus** events on the application side are reported.
+- Web page loading: When the **Web** component loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. However, if the **Web** component is not focusable, the focus fails to be obtained. The common causes are as follows: The parent component cannot be focused during the animation. The **Web** component or its parent component is set to be not focusable on the application side. The application can call [requestFocus](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#requestfocus) to obtain the focus again. When the focus is obtained successfully, the **onFocus** and **W3C focus** events on the application side are reported.
 
 - **autofocus**: Elements with the **autofocus** style are focused by default after web pages are loaded. If the element supports text input, the cursor blinks in the text box, but the soft keyboard is not displayed. For details about how to automatically display the soft keyboard, see [Automatically Displaying the Soft Keyboard](web-docking-softkeyboard.md#automatically-displaying-the-soft-keyboard).
 
@@ -81,8 +87,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
   controller2: webview.WebviewController = new webview.WebviewController();
-  @State webborderColor: Color = Color.Red;
-  @State webborderColor2: Color = Color.Red;
+  @State webBorderColor: Color = Color.Red;
+  @State webBorderColor2: Color = Color.Red;
 
   build() {
     Column() {
@@ -106,26 +112,26 @@ struct WebComponent {
       }
       Web({ src: 'www.example.com', controller: this.controller })
         .onFocus(() => {
-          this.webborderColor = Color.Green;
+          this.webBorderColor = Color.Green;
         })
         .onBlur(() => {
-          this.webborderColor = Color.Red;
+          this.webBorderColor = Color.Red;
         })
         .margin(3)
         .borderWidth(10)
-        .borderColor(this.webborderColor)
+        .borderColor(this.webBorderColor)
         .height("45%")
 
       Web({ src: 'www.example.com', controller: this.controller2 })
         .onFocus(() => {
-          this.webborderColor2 = Color.Green;
+          this.webBorderColor2 = Color.Green;
         })
         .onBlur(() => {
-          this.webborderColor2 = Color.Red;
+          this.webBorderColor2 = Color.Red;
         })
         .margin(3)
         .borderWidth(10)
-        .borderColor(this.webborderColor2)
+        .borderColor(this.webBorderColor2)
         .height("45%")
     }
   }
@@ -133,7 +139,7 @@ struct WebComponent {
 ```
 Figure 1 **onFocus**/**onBlur** events
 
-Use **requestfocus** to request focus, and change the border color of the **Web** component by listening for the **onFocus** and **onBlur** events.
+Use **requestFocus** to request focus, and change the border color of the **Web** component by listening for the **onFocus** and **onBlur** events.
 
 ![web-focus1.gif](figures/web-focus1.gif)
 

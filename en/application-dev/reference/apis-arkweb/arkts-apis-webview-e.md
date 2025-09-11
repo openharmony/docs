@@ -1,4 +1,10 @@
 # Enums
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -350,3 +356,30 @@ Enumerates the error codes of the blankless loading.
 | ERR_CONTROLLER_NOT_INITED   | -3 | **WebViewController** is not bound to any component.|
 | ERR_KEY_NOT_MATCH   | -4 | No key value is matched. [setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20) must be used with [getBlanklessInfoWithKey](./arkts-apis-webview-WebviewController.md#getblanklessinfowithkey20) and their key values must be the same. Otherwise, this error code is returned.|
 | ERR_SIGNIFICANT_CHANGE   | -5 | The similarity is low, and the system determines that the scene change is too large. As a result, the [setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20) API does not enable frame interpolation.|
+
+## ArkWebEngineVersion<sup>20+</sup>
+
+For details about the ArkWeb kernel version, see [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md).
+
+| **Kernel Type**| **Name**| **Description**|
+| ----------- | -------- | -------- |
+| Evergreen kernel    | EVERGREEN WebCore | Latest Web kernel of the system, based on which the complete functionalities are implemented. This kernel is recommended for applications.|
+| Legacy kernel    | LEGACY WebCore    | A previous-release kernel that receives only security and PR-related fixes, used solely for compatibility rollback, and is supported for a fixed duration only.|
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| SYSTEM_DEFAULT   | 0     | Default system kernel. For OpenHarmony 6.0, the default kernel is M132.|
+| M114             | 1     | Legacy kernel of OpenHarmony 6.0. You can select this legacy kernel. If it does not exist, the setting is invalid.|
+| M132             | 2     | Evergreen kernel of OpenHarmony 6.0, which is M132 by default. If it does not exist, the setting is invalid.|
+## SiteIsolationMode<sup>21+</sup>
+
+Enumerates the site isolation modes. The site isolation mechanism isolates websites from different sources in different render processes to reduce the cross-domain attack surface. For example, on a PC, each tab corresponds to a render process. After site isolation is enabled, Iframes from different sources run in independent render processes.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name| Value| Description|
+| ------------------------------- | - | ---------- |
+| PARTIAL | 0 | Partial site isolation. New sites are loaded in the same render process.|
+| STRICT  | 1 | Strict site isolation. Iframes from different sites are switched to new render processes.|

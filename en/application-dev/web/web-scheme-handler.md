@@ -1,4 +1,10 @@
 # Intercepting Network Requests Initiated by the Web Component
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 The [Network Interception APIs(arkweb_scheme_handler.h)](../reference/apis-arkweb/capi-arkweb-scheme-handler-h.md) are supported to intercept requests sent by **Web** components and provide custom response headers and bodies for intercepted requests.
 
@@ -8,7 +14,7 @@ Set **ArkWeb_SchemeHandler** for a specified **Web** component or ServiceWorker.
 
 **ArkWeb_OnRequestStart** is called when the request starts, and **ArkWeb_OnRequestStop** is called when the request ends.
 
-To intercept the first request sent by a **Web** component, you can use the [initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine) method to initialize the **Web** component in advance and then set an interceptor.
+To intercept the first request sent by a **Web** component, you can use the [initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine) method to initialize the **Web** component in advance and then set an interceptor. For details, see [Sample Code](#sample-code).
 
   ```c++
     // Create an ArkWeb_SchemeHandler object.
@@ -133,10 +139,16 @@ The network interception provides custom response bodies for intercepted request
     // Pass an error code to the Web component and end the request.
     OH_ArkWebResourceHandler_DidFinish(resourceHandler);
   ```
+  
+Since API version 20, to end the network request, you can call the **OH_ArkWebResourceHandler_DidFailWithErrorV2** API to return the default network error code **ARKWEB_ERR_CONNECTION_FAILED**. For details about the error codes, see [arkweb_net_error_list.h](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md).
+  ```c++
+    // Return the network error code ARKWEB_ERR_CONNECTION_FAILED to end the request.
+    OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, ARKWEB_ERR_FAILED, true);
+  ```
 
 ## Sample Code
 
-In DevEco Studio, create a default **Native C++** project. You need to prepare an MP4 file named **test.mp4** and place the file in **main/resources/rawfile**.
+In DevEco Studio, create a default native C++ project. You need to prepare an MP4 file named **test.mp4** and place the file in **main/resources/rawfile**.
 
 main/ets/pages/index.ets
 ```ts
@@ -270,6 +282,7 @@ void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler,
     RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebResourceRequest_GetUserData(request);
     if (rawfileRequest) {
         rawfileRequest->Stop();
+        delete rawfileRequest;
     }
 }
 
@@ -295,6 +308,7 @@ void OnURLRequestStopForSW(const ArkWeb_SchemeHandler *schemeHandler,
     RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebResourceRequest_GetUserData(request);
     if (rawfileRequest) {
         rawfileRequest->Stop();
+        delete rawfileRequest;
     }
 }
 
@@ -421,6 +435,7 @@ public:
     void DidReceiveData(const uint8_t *buffer, int64_t bufLen);
     void DidFinish();
     void DidFailWithError(ArkWeb_NetError errorCode);
+    void DidFailWithErrorV2(ArkWeb_NetError errorCode, bool completeIfNoResponse);
 
 private:
     const ArkWeb_ResourceRequest *resourceRequest_{nullptr};
@@ -520,7 +535,11 @@ RawfileRequest::RawfileRequest(const ArkWeb_ResourceRequest *resourceRequest,
           resourceHandler_(resourceHandler),
           resourceManager_(resourceManager) {}
 
-RawfileRequest::~RawfileRequest() {}
+RawfileRequest::~RawfileRequest() {
+    if (stream_) {
+        OH_ArkWebResourceRequest_DestroyHttpBodyStream(stream_);
+    }
+}
 
 void RawfileRequest::Start()
 {
@@ -664,6 +683,14 @@ void RawfileRequest::DidFailWithError(ArkWeb_NetError errorCode)
     OH_LOG_INFO(LOG_APP, "did finish with error %{public}d.", errorCode);
     if (!stopped_) {
         OH_ArkWebResourceHandler_DidFailWithError(resourceHandler_, errorCode);
+    }
+}
+
+void RawfileRequest::DidFailWithErrorV2(ArkWeb_NetError errorCode, bool completeIfNoResponse)
+{
+    OH_LOG_INFO(LOG_APP, "did finish with error %{public}d.", errorCode);
+    if (!stopped_) {
+        OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, errorCode, completeIfNoResponse);
     }
 }
 ```

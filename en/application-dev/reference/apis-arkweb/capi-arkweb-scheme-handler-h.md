@@ -1,4 +1,10 @@
 # arkweb_scheme_handler.h
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 
@@ -12,7 +18,7 @@ Declares the APIs used to intercept requests from ArkWeb.
 
 **Related module**: [Web](capi-web.md)
 
-**Example**: <!--RP1-->[ArkWebSchemeHandler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)<!--RP1End-->
+**Example**: <!--RP1-->[ArkWebSchemeHandler](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)<!--RP1End-->
 
 ## Summary
 
@@ -32,7 +38,7 @@ Declares the APIs used to intercept requests from ArkWeb.
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
 | [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) | ArkWeb_CustomSchemeOption | Enumerates the custom scheme options.|
-| [ArkWeb_ResourceType](#arkweb_resourcetype) | ArkWeb_ResourceType | Enumerates the resource types. The resource types match the corresponding items of **ResourceType** in Chromium and should not be renumbered.|
+| [ArkWeb_ResourceType](#arkweb_resourcetype) | ArkWeb_ResourceType | Enumerates the resource types of the request. The resource types match the corresponding items of **ResourceType** in Chromium and should not be renumbered.|
 
 ### Functions
 
@@ -104,6 +110,7 @@ Declares the APIs used to intercept requests from ArkWeb.
 | [int32_t OH_ArkWebResourceHandler_DidReceiveData(const ArkWeb_ResourceHandler* resourceHandler,const uint8_t* buffer,int64_t bufLen)](#oh_arkwebresourcehandler_didreceivedata) | - | Sends a response body to the intercepted request.|
 | [int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourceHandler)](#oh_arkwebresourcehandler_didfinish) | - | Notifies the ArkWeb kernel that the intercepted request has been finished and that no more data is available.|
 | [int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* resourceHandler,ArkWeb_NetError errorCode)](#oh_arkwebresourcehandler_didfailwitherror) | - | Notifies the ArkWeb kernel that the intercepted request fails.|
+| [int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,ArkWeb_NetError errorCode,bool completeIfNoResponse)](#oh_arkwebresourcehandler_didfailwitherrorv2) | - | Notifies the ArkWeb kernel that the intercepted request fails. Compared with **OH_ArkWebResourceHandler_DidFailWithError**, **completeIfNoResponse** is added. With this parameter set to **true**, if **OH_ArkWebResourceHandler_DidReceiveResponse** has not been called, a response is automatically generated to complete the network request and the network error code is **-104**. With this parameter set to **false**, the system waits for the application to call **OH_ArkWebResourceHandler_DidReceiveResponse** and transfers the response.|
 | [void OH_ArkWeb_ReleaseString(char* string)](#oh_arkweb_releasestring) | - | Releases the string created by NDK APIs.|
 | [void OH_ArkWeb_ReleaseByteArray(uint8_t* byteArray)](#oh_arkweb_releasebytearray) | - | Releases the byte array created by NDK APIs.|
 
@@ -125,6 +132,7 @@ Enumerates the custom scheme options.
 
 | Enumerated Value| Description|
 | -- | -- |
+| OH_ARKWEB_SCHEME_OPTION_NONE = 0 | No special behavior or capability is assigned when the custom scheme is registered.|
 | ARKWEB_SCHEME_OPTION_STANDARD = 1 << 0 | The scheme is processed as a standard scheme.|
 | ARKWEB_SCHEME_OPTION_LOCAL = 1 << 1 | The scheme is processed using the same security rule as the file URL.|
 | ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED = 1 << 2 | The request of the scheme can be initiated only by the page that is loaded using the same scheme.|
@@ -142,7 +150,7 @@ enum ArkWeb_ResourceType
 
 **Description**
 
-Enumerates the resource types. The resource types match the corresponding items of **ResourceType** in Chromium and should not be renumbered.<br>
+Enumerates the resource types of the request. The resource types match the corresponding items of **ResourceType** in Chromium and should not be renumbered.<br>
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -528,7 +536,7 @@ Obtains the resource type of a request.
 
 | Type| Description|
 | -- | -- |
-| int32_t | Resource type of a request. If **resourceRequest** is invalid, the value is **-1**.|
+| int32_t | Resource type of the request. If **resourceRequest** is invalid, the value is **-1**.|
 
 ### OH_ArkWebResourceRequest_GetFrameUrl()
 
@@ -723,7 +731,7 @@ void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream* httpBodyStre
 
 **Description**
 
-Exports the uploaded data of a request to the buffer. The buffer size must be greater than the value of **bufLen**.  The data from the worker thread is exported to the buffer. Therefore, before the callback returns the data, the buffer should not be used in other threads to avoid concurrency problems.
+Exports the uploaded data of a request to the buffer. The buffer size must be greater than **bufLen**. The data from the worker thread is exported to the buffer. Therefore, before the callback returns the data, the buffer should not be used in other threads to avoid concurrency problems.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1848,8 +1856,37 @@ Notifies the ArkWeb kernel that the intercepted request fails.
 
 | Name| Description|
 | -- | -- |
-| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | **ArkWeb_ResourceHandler** of the request.|
+| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | Handler used to intercept URL requests. You can use **ArkWeb_ResourceHandler** to send custom request headers and bodies.|
 | [ArkWeb_NetError](capi-arkweb-net-error-list-h.md#arkweb_neterror) errorCode | Error code of the request. For details, see [arkweb_net_error_list.h](capi-arkweb-net-error-list-h.md).|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| int32_t | **0** is returned when the operation is successful; **17100101** is returned when the parameter is invalid.|
+
+### OH_ArkWebResourceHandler_DidFailWithErrorV2()
+
+```
+int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,ArkWeb_NetError errorCode,bool completeIfNoResponse)
+```
+
+**Description**
+
+Notifies the ArkWeb kernel that the intercepted request fails. Compared with the [OH_ArkWebResourceHandler_DidFailWithError](#oh_arkwebresourcehandler_didfailwitherror) API, the **completeIfNoResponse** parameter is added. With this parameter set to **true**, if [OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse) has not been called, a response is automatically generated to complete the network request and the network error code is **-104**. With this parameter set to **false**, the system waits for the application to call [OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse) and pass the response.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Since**: 20
+
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | Defines a handler used to intercept URL requests. You can use **ArkWeb_ResourceHandler** to send custom request headers and bodies.|
+| [ArkWeb_NetError](capi-arkweb-net-error-list-h.md#arkweb_neterror) errorCode | Error code of the request. For details, see [arkweb_net_error_list.h](capi-arkweb-net-error-list-h.md).|
+| bool completeIfNoResponse | Whether the network request is complete when [OH_ArkWebResourceHandler_DidFailWithErrorV2](#oh_arkwebresourcehandler_didfailwitherrorv2) is called if [OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse) is not called before. If the value is **true** and [OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse) is not called before, a response is automatically generated to complete the network request, and the network error code is **-104**. If the value is **false**, the system waits for the application to call [OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse) and pass the response.|
 
 **Returns**
 

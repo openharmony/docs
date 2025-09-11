@@ -1,4 +1,10 @@
 # arkweb_error_code.h
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 
@@ -19,6 +25,7 @@ Declares the error codes of the ArkWeb NDK APIs.
 | Name                                   | typedef Keyword| Description|
 |---------------------------------------|------------|----|
 | [ArkWeb_ErrorCode](#arkweb_errorcode) | ArkWeb_ErrorCode  | Enumerates the error codes of ArkWeb NDK APIs. |
+| [ArkWeb_BlanklessErrorCode](#arkweb_blanklesserrorcode) | ArkWeb_BlanklessErrorCode  | Enumerates the error codes for the blankless loading. |
 
 ## Enum Description
 
@@ -41,7 +48,7 @@ Enumerates the error codes of ArkWeb NDK APIs.
 | ARKWEB_ERROR_UNKNOWN = 17100100            | Unknown error.                                         |
 | ARKWEB_INVALID_PARAM = 17100101            | Invalid parameter.                                         |
 | ARKWEB_SCHEME_REGISTER_FAILED = 17100102   | Failed to register the scheme. Register the scheme before creating the **Web** component.   |
-| ARKWEB_INVALID_URL = 17100103 = 17100104   | Invalid URL.                                        |
+| ARKWEB_INVALID_URL = 17100103              | Invalid URL.                                        |
 | ARKWEB_INVALID_COOKIE_VALUE = 17100104     | Invalid cookie value.                                   |
 | ARKWEB_LIBRARY_OPEN_FAILURE = 17100105     | Failed to open the dynamic link library.<br>**Since**: 15          |
 | ARKWEB_LIBRARY_SYMBOL_NOT_FOUND = 17100106 | The required symbol cannot be found in the dynamic link library.<br>**Since**: 15|

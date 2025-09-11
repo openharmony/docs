@@ -1,4 +1,10 @@
 # Interfaces (Others)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -75,10 +81,10 @@ Provides information used to obtain a full drawing result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type|  Mandatory| Description|
-|------|------|------|------|
-| id | string | No| Snapshot ID.|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | No| Size for web rendering. The maximum size is 16000 px × 16000 px. The length unit can be px, vp, or %. The length unit must be the consistent across parameters. The default unit is vp. If the size exceeds the specifications, the maximum size is returned. Example: **width: '100px', height: '200px'** or **width: '20%', height'30%'**. If only digits are written, the unit is vp.|
+| Name| Type|  Read-Only|  Optional| Description|
+|------|------|------|------|------|
+| id | string | No| Yes| Snapshot ID.|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | No| Yes| Size for web rendering. The maximum size is 16000 px × 16000 px. The length unit can be px, vp, or %. The length unit must be the consistent across parameters. The default unit is vp. If the size exceeds the specifications, the maximum size is returned. Example: **width: '100px', height: '200px'** or **width: '20%', height'30%'**. If only digits are written, the unit is vp.|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -86,12 +92,12 @@ Represents a full drawing result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory|  Description|
-|------|------|--|---------|
-| id | string | No| Snapshot ID.|
-| status | boolean | No|  Snapshot status. The value can be **true** (normal) or **false** (failure). If the full drawing result fails to be obtained, the width and height of the returned size are both 0, and the map is empty.|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | No| Actual size drawn on the web page. The value is of the number type, and the unit is vp.|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | No| Full drawing result in image.pixelMap format.|
+| Name| Type| Read-Only| Optional|  Description|
+|------|------|-- |--|---------|
+| id | string | No| Yes| Snapshot ID.|
+| status | boolean | No| Yes|  Snapshot status. The value can be **true** (normal) or **false** (failure). If the full drawing result fails to be obtained, the width and height of the returned size are both 0, and the map is empty.|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | No| Yes| Actual size drawn on the web page. The value is of the number type, and the unit is vp.|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | No| Yes| The **image.PixelMap** format.|
 
 ## OfflineResourceMap<sup>12+</sup>
 
@@ -116,16 +122,16 @@ Specifies the input parameters of **createPdf()**.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                 | Type   | Mandatory| Description                                                        |
-| --------------------- | ------- | ---- | ------------------------------------------------------------ |
-| width                 | number  | Yes  | Page width,<br>in inches.<br>Recommended value: 8.27 inches of A4 paper width.  |
-| height                | number  | Yes  | Page height,<br>in inches.<br>Recommended value: 11.69 inches of A4 paper height. |
-| scale                 | number  | No  | Scale multiple.<br>The value range is [0.0, 2.0]. If the value is less than 0.0, set it to **0.0**. If the value is greater than 2.0, set it to **2.0**.<br>Default value: **1.0**|
-| marginTop             | number  | Yes  | Top margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| marginBottom          | number  | Yes  | Bottom margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| marginRight           | number  | Yes  | Right margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| marginLeft            | number  | Yes  | Left margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
-| shouldPrintBackground | boolean | No  | Whether to print the background color. The value **true** means to print the background color, and **false** means the opposite.<br>Default value: **false**.                           |
+| Name       | Type  | Read-Only| Optional|Description                |
+| ----------- | ------ | -----|------|------------------- |
+| width                 | number  | No| No  | Page width,<br>in inches.<br>Recommended value: 8.27 inches of A4 paper width.  |
+| height                | number  | No| No  | Page height,<br>in inches.<br>Recommended value: 11.69 inches of A4 paper height. |
+| scale                 | number  | No| Yes  | Scale multiple.<br>The value range is [0.0, 2.0]. If the value is less than 0.0, set it to **0.0**. If the value is greater than 2.0, set it to **2.0**.<br>Default value: **1.0**|
+| marginTop             | number  | No| No  | Top margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| marginBottom          | number  | No| No  | Bottom margin.<br>The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| marginRight           | number  | No| No  | Right margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| marginLeft            | number  | No| No  | Left margin.<br>The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**.<br>Unit: inch.|
+| shouldPrintBackground | boolean | No| Yes  | Whether to print the background color. The value **true** means to print the background color, and **false** means the opposite.<br>Default value: **false**.                           |
 
 ## ScrollOffset<sup>13+</sup>
 
@@ -170,7 +176,7 @@ Describes prediction information about blankless loading, including the first sc
 | ----------- | ------ | -----|------|------------------- |
 | errCode | WebBlanklessErrorCode | No  | No  | Error code of blankless loading. For details, see [WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20).|
 | similarity | number | No  | No  | First screen similarity, which is calculated based on the historical first screen content. The value ranges from 0 to 1.0. 1.0 indicates that the content is the same. A value closer to 1 indicates a higher similarity. This value is lagging, and the similarity of local loading is displayed in the next loading. You are advised not to enable the blankless loading solution when the similarity is low.|
-| loadingTime | int | No  | No  | Loading duration estimated based on the historical first screen loading durations, in milliseconds. The value must be greater than 0.|
+| loadingTime | number | No  | No  | Loading duration estimated based on the historical first screen loading durations, in milliseconds. The value must be greater than 0.|
 
 ## HistoryItem
 
@@ -180,7 +186,7 @@ Describes a historical page record.
 
 | Name         | Type                                  | Read-Only| Optional| Description                        |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes  | No  | **PixelMap** object of the icon on the historical page.|
+| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | No  | No  | **PixelMap** object of the icon on the historical page.|
 | historyUrl    | string                                 | No  | No  | URL of the historical page.       |
 | historyRawUrl | string                                 | No  | No  | Original URL of the historical page.   |
 | title         | string                                 | No  | No  | Title of the historical page.          |
@@ -192,19 +198,19 @@ The object contains information about media on the web page. The application may
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| embedID | string | Yes| ID of **\<video>** or **\<audio>** on the web page.|
-| mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | Yes| Type of the media.|
-| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | Yes| Source of the media. There may be multiple sources. The application needs to select a supported source to play.|
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | Yes| Surface information used for same-layer rendering.|
-| controlsShown | boolean | Yes| Whether the **controls** attribute exists in **\<video>** or **\<audio>**.<br>The value **true** means that the **controls** attribute exists in **\<video>** or **\<audio>**, and **false** means the opposite.|
-| controlList | string[] | Yes| Value of the **controlslist** attribute in **\<video>** or **\<audio>**.|
-| muted | boolean | Yes| Whether to mute the player.<br>The value **true** means to mute the player, and **false** means the opposite.|
-| posterUrl | string | Yes| URL of a poster.|
-| preload | [Preload](./arkts-apis-webview-e.md#preload12) | Yes| Whether preloading is required.|
-| headers | Record\<string, string\> | Yes| HTTP headers that need to be included in the player's request for media resources.|
-| attributes | Record\<string, string\> | Yes| Attributes in **\<video>** or **\<audio>**.|
+| Name| Type| Read-Only| Optional| Description|
+|------|------|------|------|------|
+| embedID | string | No| No | ID of **\<video>** or **\<audio>** on the web page.|
+| mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | No| No| Type of the media.|
+| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | No| No| Source of the media. There may be multiple sources. The application needs to select a supported source to play.|
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | No| No| Surface information used for same-layer rendering.|
+| controlsShown | boolean | No| No| Whether the **controls** attribute exists in **\<video>** or **\<audio>**.<br>The value **true** means that the **controls** attribute exists in **\<video>** or **\<audio>**, and **false** means the opposite.|
+| controlList | string[] | No| No| Value of the **controlslist** attribute in **\<video>** or **\<audio>**.|
+| muted | boolean | No| No| Whether to mute the player.<br>The value **true** means to mute the player, and **false** means the opposite.|
+| posterUrl | string | No| No| URL of a poster.|
+| preload | [Preload](./arkts-apis-webview-e.md#preload12) | No| No| Whether preloading is required.|
+| headers | Record\<string, string\> | No| No| HTTP headers that need to be included in the player's request for media resources.|
+| attributes | Record\<string, string\> | No| No| Attributes in **\<video>** or **\<audio>**.|
 
 ## RectEvent<sup>12+<sup>
 
@@ -216,5 +222,5 @@ Defines a rectangle.
 | -------------- | --------- | ---- | ---- | ---------------------------- |
 | x  | number   | No  | No  | X-axis coordinate of the upper left corner of the rectangle.   |
 | y  | number   | No  | No  | Y-axis coordinate of the upper left corner of the rectangle.   |
-| width  | number   | No  | No  | Width of the rectangle.   |
-| height  | number   | No  | No  | Height of the rectangle.   |
+| width  | number   | No  | No  | Width of the rectangle.<br>Unit: px.  |
+| height | number   | No  | No  | Height of the rectangle.<br>Unit: px.  |

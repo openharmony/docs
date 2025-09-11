@@ -1,4 +1,10 @@
 # Managing Page Redirection and Browsing History Navigation
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 To speed up page access, browsing history navigation allows users to switch between history pages with the forward and back buttons. The **Web** component supports redirection to other pages within the application and across different applications.
 
@@ -6,7 +12,7 @@ To speed up page access, browsing history navigation allows users to switch betw
 
 When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#forward) and [backward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#backward) to browse the previous or next history record.
 
-If you need to obtain online resources when loading a page, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+To obtain network resources during page loading, configure the network access permission in the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
 
   ```
   "requestPermissions":[
