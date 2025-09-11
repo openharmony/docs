@@ -1,16 +1,15 @@
-# OH_AudioSession_DeactivatedEvent
+# OH_AudioSession_StateChangedEvent
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
+<!--Owner: @hao-liangfei-->
 <!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
 <!--Tester: @Filger-->
 <!--Adviser: @zengyawen-->
-
 ## Overview
 
-The struct describes the event indicating that an audio session is deactivated.
+The struct describes the event indicating that the audio session state changes.
 
-**Since**: 12
+**Since**: 20
 
 **Related module**: [OHAudio](capi-ohaudio.md)
 
@@ -22,4 +21,4 @@ The struct describes the event indicating that an audio session is deactivated.
 
 | Name| Description|
 | -- | -- |
-| [OH_AudioSession_DeactivatedReason](capi-native-audio-session-manager-h.md#oh_audiosession_deactivatedreason) reason | Reason for deactivating an audio session.|
+| [OH_AudioSession_StateChangeHint](capi-native-audio-session-manager-h.md#oh_audiosession_statechangehint) stateChangeHint | Reason for deactivating the audio session.|

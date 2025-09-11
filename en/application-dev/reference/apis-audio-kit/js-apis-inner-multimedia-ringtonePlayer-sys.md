@@ -1,4 +1,10 @@
 # ringtonePlayer (Ringtone Player) (System API)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 The ringtonePlayer module provides APIs for playing, configuring, and obtaining ringtones.
 
@@ -26,7 +32,7 @@ Enumerates the ringtone parameters.
 | Name     | Type           |Mandatory  | Description                             |
 | --------- | -------------- | ---- | --------------------------------- |
 | volume    | number         | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1.00** indicates the maximum volume (100%).|
-| loop      | boolean        | Yes  | Whether to enable loop playback. The value **true** means to enable loop playback, and **false** means the opposite.|
+| loop      | boolean        | Yes  | Whether to enable loop playback. **true** to enable, **false** otherwise.|
 
 ## RingtonePlayer
 
@@ -455,8 +461,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
-let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
+let isPlaying: boolean = false; // An identifier specifying whether rendering is in progress.
+let isDucked: boolean = false; // An identifier specifying whether the audio volume is reduced.
 
 systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
@@ -479,7 +485,7 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
         break;
       case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
         // The audio stream is rendered at the normal volume.
-        console.info('Force ducked. Update volume status');
+        console.info('Force unducked. Update volume status');
         isDucked = false; // A simplified processing indicating several operations for updating the volume status.
         break;
       default:
@@ -530,5 +536,3 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 systemRingtonePlayer.off('audioInterrupt');
 ```
-
-<!--no_check-->

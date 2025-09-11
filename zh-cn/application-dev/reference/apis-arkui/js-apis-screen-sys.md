@@ -26,6 +26,8 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 
 获取所有的屏幕，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -68,6 +70,8 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 获取所有的屏幕，使用Promise异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：** 
@@ -108,6 +112,8 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 
 开启屏幕状态变化的监听。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -140,6 +146,8 @@ screen.on('connect', callback);
 off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;number&gt;): void
 
 关闭屏幕状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -174,6 +182,8 @@ screen.off('connect');
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
 将屏幕设置为镜像模式，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -217,6 +227,8 @@ screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: numb
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;number&gt;
 
 将屏幕设置为镜像模式，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -263,6 +275,8 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 停止屏幕的镜像模式，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -303,6 +317,8 @@ screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
 stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 停止屏幕的镜像模式，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -346,6 +362,8 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将屏幕设置为异源模式，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -391,6 +409,8 @@ screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
 createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Screen&gt;): void
 
 创建虚拟屏幕，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -451,6 +471,8 @@ screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => 
 createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 创建虚拟屏幕，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -515,6 +537,8 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 销毁虚拟屏幕，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -555,6 +579,8 @@ screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
 destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 销毁虚拟屏幕，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -598,6 +624,8 @@ screen.destroyVirtualScreen(screenId).then(() => {
 setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置虚拟屏幕的surface，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -644,6 +672,8 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
 setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 设置虚拟屏幕的surface，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -692,6 +722,8 @@ screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
 setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
 
 设置屏幕的隐私蒙版图片，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -747,6 +779,8 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 
 查询当前自动转屏是否锁定，使用Promise异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -780,6 +814,8 @@ screen.isScreenRotationLocked().then((isLocked: boolean) => {
 isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前自动转屏是否锁定，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -817,6 +853,8 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
 设置自动转屏开关是否锁定，使用Promise异步回调，不适用于2in1设备。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -860,6 +898,8 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 
 设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -899,6 +939,8 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 setMultiScreenMode(primaryScreenId: number, secondaryScreenId: number, secondaryScreenMode: MultiScreenMode): Promise&lt;void&gt;
 
 设置扩展屏幕的显示模式（镜像/扩展），使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -946,6 +988,8 @@ screen.setMultiScreenMode(primaryScreenId, secondaryScreenId, screenMode).then((
 setMultiScreenRelativePosition(mainScreenOptions: MultiScreenPositionOptions, secondaryScreenOptions: MultiScreenPositionOptions): Promise&lt;void&gt;
 
 仅在扩展模式下，设置主屏和扩展屏幕的位置信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1002,6 +1046,8 @@ makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainSc
 
 将屏幕的某一矩形区域设置为镜像模式，使用Promise异步回调。调用该接口后，不建议再进行屏幕的旋转/折叠，否则可能导致镜像内容异常。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1057,6 +1103,8 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 > 
 > 从API version 9开始支持，从API version 20开始废弃。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1110,6 +1158,8 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 > **说明：**
 > 
 > 从API version 9开始支持，从API version 20开始废弃。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1166,6 +1216,8 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 > 
 > 从API version 10开始支持，从API version 20开始废弃。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1211,6 +1263,8 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 > 
 > 从API version 10开始支持，从API version 20开始废弃。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1252,6 +1306,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 扩展屏幕的参数。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称     | 类型 | 只读 | 可选 | 说明                |
@@ -1264,6 +1320,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 屏幕模式枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称              | 值  | 说明                            |
@@ -1274,6 +1332,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 ## MultiScreenPositionOptions<sup>13+</sup>
 
 屏幕位置信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1286,6 +1346,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 ## VirtualScreenOption
 
 创建虚拟屏幕的参数。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1305,6 +1367,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 ### 属性
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 
@@ -1323,6 +1387,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕方向，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1385,6 +1451,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 设置屏幕方向，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1451,6 +1519,8 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 设置屏幕当前显示模式，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1513,6 +1583,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 设置屏幕当前显示模式，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1580,6 +1652,8 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 设置屏幕的像素密度，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1642,6 +1716,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 设置屏幕的像素密度，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1706,6 +1782,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 屏幕方向枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称               | 值   | 说明                             |
@@ -1720,6 +1798,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 屏幕显示内容来源模式枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称               | 值   | 说明                             |
@@ -1733,6 +1813,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 屏幕显示模式信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称        | 类型 | 只读 | 可选 | 说明                                               |
@@ -1745,6 +1827,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 ## Rect<sup>19+</sup>
 
 矩形信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

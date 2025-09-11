@@ -55,17 +55,17 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelM
 **示例**：
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let captureImage: image.PixelMap | undefined = undefined;
 let metadata: string = "";
 let srcImage: image.PixelMap | undefined = undefined;
-metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) =>{
-	captureImage = pixelMap;
-}).catch((error:BusinessError)=>{
-	console.error("encode image error" + error);
+metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) => {
+  captureImage = pixelMap;
+}).catch((error: BusinessError) => {
+  console.error("encode image error" + error);
 });
 ```
 
@@ -102,16 +102,16 @@ function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
 
 **示例：**  
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
 let captureMetadata: string = "";
-metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
-	captureMetadata = metadata;
-}).catch((error:BusinessError)=>{
-	console.error("decode image error" + error);
+metadataBinding.decodeImage(encodeImage).then((metadata: string) => {
+  captureMetadata = metadata;
+}).catch((error: BusinessError) => {
+  console.error("decode image error" + error);
 }); 
 ```
 
@@ -145,8 +145,8 @@ notifyMetadataBindingEvent(metadata: string): void
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let metadata:string = '';
-metadataBinding.notifyMetadataBindingEvent(metadata).catch((error: BusinessError)=>{
+let metadata: string = '';
+metadataBinding.notifyMetadataBindingEvent(metadata).catch((error: BusinessError) => {
   console.error("notify metadata error" + error);
 });
 ```
