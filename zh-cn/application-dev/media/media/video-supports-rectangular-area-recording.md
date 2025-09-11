@@ -1,7 +1,7 @@
 # 屏幕录制支持矩形区域录制
 
 <!--Kit: Media Kit-->
-<!--Subsystem: Multimedia-->
+<!--Subsystem: AVScreenCapture-->
 <!--Owner: @xhjgc-->
 <!--Designer: @dpy2650--->
 <!--Tester: @cyakee-->
@@ -37,9 +37,9 @@
 
 |配置参数 |语义 |格式 |
 |------- |------- |------- |
-|capture   |指向[OH_AVScreenCapture]实例的指针 | struct*  |
-|displayId |需要执行屏幕捕获的屏幕ID            | uint64_t |
-|area      |指定捕获的区域                     | OH_Rect* |
+|capture   |指向[OH_AVScreenCapture]实例的指针 | OH_AVScreenCapture*  |
+|displayId |需要执行屏幕捕获的屏幕ID            | uint64_t             |
+|area      |指定捕获的区域                     | OH_Rect*             |
 
 **注意**
 1. 该接口设置的坐标和宽高不能为负数，捕获区域不能跨屏幕，区域位置设置失败后仍按照上一次的区域进行捕获。
