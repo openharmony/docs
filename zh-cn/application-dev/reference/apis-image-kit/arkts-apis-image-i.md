@@ -31,6 +31,10 @@
 
 表示图片信息。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 只读 | 可选 | 说明       |
@@ -92,6 +96,10 @@ ImageSource的初始化选项。
 
 PixelMap的初始化选项。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                     | 类型                               | 只读 |可选 |  说明           |
@@ -106,6 +114,10 @@ PixelMap的初始化选项。
 ## DecodingOptions<sup>7+</sup>
 
 图像解码设置选项。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -152,6 +164,8 @@ PixelMap的初始化选项。
 ## PackingOption
 
 表示图片编码选项。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -253,7 +267,7 @@ Gainmap使用的元数据值，[HdrMetadataKey](arkts-apis-image-e.md#hdrmetadat
 
 > **说明：**
 >
-> 从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
+> 从API version 7开始支持，从API version 11开始废弃，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
