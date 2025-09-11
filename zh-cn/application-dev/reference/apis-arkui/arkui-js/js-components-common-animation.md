@@ -46,7 +46,7 @@
 | scaleX                   | &lt;number&gt;                           | X轴方向缩放动画属性。                              |
 | scaleY                   | &lt;number&gt;                           | Y轴方向缩放动画属性。                              |
 | scaleZ<sup>6+</sup>      | &lt;number&gt;                           | Z轴的缩放参数。                                 |
-| rotate                   | &lt;deg&gt;&nbsp;\|&nbsp;&lt;rad&gt;&nbsp;\|&nbsp;&lt;grad&gt;<sup>6+</sup>&nbsp;\|&nbsp;&lt;turn&gt;6+ | 旋转动画属性，支持设置x轴和y轴两个维度的选中参数。               |
+| rotate                   | &lt;deg&gt;&nbsp;\|&nbsp;&lt;rad&gt;&nbsp;\|&nbsp;&lt;grad&gt;<sup>6+</sup>&nbsp;\|&nbsp;&lt;turn&gt;6+ | 旋转动画属性，支持设置x轴和y轴两个维度的旋转参数。               |
 | rotate3d<sup>6+</sup>    | &lt;deg&gt;&nbsp;\|&nbsp;&lt;rad&gt;&nbsp;\|&nbsp;&lt;grad&gt;&nbsp;\|&nbsp;&lt;turn&gt; | 四个入参，前三个分别为X轴、Y轴、Z轴的旋转向量，第四个是旋转角度。       |
 | rotateX                  | &lt;deg&gt;&nbsp;\|&nbsp;&lt;rad&gt;&nbsp;\|&nbsp;&lt;grad&gt;<sup>6+</sup>&nbsp;\|&nbsp;&lt;turn&gt;<sup>6+</sup> | X轴方向旋转动画属性。                              |
 | rotateY                  | &lt;deg&gt;&nbsp;\|&nbsp;&lt;rad&gt;&nbsp;\|&nbsp;&lt;grad&gt;<sup>6+</sup>&nbsp;\|&nbsp;&lt;turn&gt;<sup>6+</sup> | Y轴方向旋转动画属性。                              |

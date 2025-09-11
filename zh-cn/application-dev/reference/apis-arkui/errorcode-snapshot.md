@@ -18,7 +18,7 @@ The builder is not a valid build function.
 
 **错误描述**
 
-该错误码在内部运行时状态出现异常时被触发。
+该错误码在内部状态出现异常时被触发。
 
 **可能原因**
 

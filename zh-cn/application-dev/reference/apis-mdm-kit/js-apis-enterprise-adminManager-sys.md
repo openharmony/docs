@@ -619,7 +619,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 **返回值：**
 
-| 错误码ID           | 错误信息               |
+| 类型           | 说明               |
 | ----------------- | ------------------- |
 | Promise\<boolean> | Promise对象, 返回true表示指定的超级设备管理应用被激活，返回false表示指定的超级设备管理应用未激活。 |
 
@@ -1341,11 +1341,11 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 
 设置设备管理应用的运行模式。
 
-该接口仅在PC设备上生效。
-
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

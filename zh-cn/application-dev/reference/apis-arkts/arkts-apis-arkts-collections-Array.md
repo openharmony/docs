@@ -40,8 +40,6 @@ import { collections } from '@kit.ArkTS';
 
 ## constructor
 
-**构造函数**
-
 constructor()
 
 创建一个ArkTS Array的构造函数。
@@ -417,7 +415,7 @@ copyWithin(target: number, start: number, end?: number): Array\<T>
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| target | number | 是 | 目标起始位置的下标。 |
+| target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + array.length`位置开始。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + array.length`位置开始。 |
 | end | number | 否 | 源终止位置下标，如果`end < 0`，则会从`end + array.length`位置终止。默认为ArkTS Array的长度。|
 
@@ -1711,7 +1709,7 @@ splice(start: number, deleteCount: number, ...items: T[]): Array\<T>
 | 参数名       | 类型   | 必填 | 说明                                                                |
 | ----------- | ------ | --  | ------------------------------------------------------------------- |
 | start       | number | 是  | 开始索引。如果`-array.length =< start < 0`，从`start + array.length`开始，如果`start < -array.length`，则从0开始。 |
-| deleteCount | number | 是  | 删除元素的个数。                                                      |
+| deleteCount | number | 是  | 删除元素的个数， 如果`deleteCount <= 0`，则不删除任何元素。 |
 | items       | T[]    | 否  | 从`start`位置开始插入的新元素。如果省略，仅删除Array内的指定元素。        |
 
 **返回值：**
@@ -1791,6 +1789,8 @@ for (let item of array) {
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
 
 | 参数名    | 类型   | 必填 | 说明                                                            |
 | ----- | ------ | ---- | ------------------------------------------------------------------ |

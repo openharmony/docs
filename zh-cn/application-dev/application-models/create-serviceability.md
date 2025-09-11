@@ -57,7 +57,7 @@
       }
 
       onConnect(want: Want): rpc.RemoteObject {
-        hilog.info(domain, TAG, 'ServiceAbility onDisconnect' + want);
+        hilog.info(domain, TAG, 'ServiceAbility onConnect' + want);
         return new FirstServiceAbilityStub('test');
       }
 

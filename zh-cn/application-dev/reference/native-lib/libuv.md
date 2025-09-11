@@ -1,5 +1,10 @@
 # libuv
-
+<!--Kit: NDK Development-->
+<!--Subsystem: Developtools-->
+<!--Owner: @fu-yongyong-->
+<!--Designer: @huangke11-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @fang-jinxu-->
 ## 简介
 
 [libuv](http://libuv.org/)是一个跨平台库，基于事件驱动来实现异步I/O，适用于网络编程和文件系统操作。它是Node.js的核心库之一，也被其他语言的开发者广泛使用。
@@ -135,7 +140,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
-在index.d.ts文件中怎添加如下代码：
+在index.d.ts文件中添加如下代码：
 ```
 export const test:() => number;
 ```
@@ -220,7 +225,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
     napi_module_register(&demoModule);
 }
 ```
-在index.d.ts文件中怎添加如下代码：
+在index.d.ts文件中添加如下代码：
 ```index.d.ts
 export const test:() => number;
 ```
@@ -334,7 +339,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
-在index.d.ts增加如下代码：
+在index.d.ts添加如下代码：
 
 ```
 export const testClose:() => number;
@@ -456,7 +461,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
     napi_module_register(&demoModule);
 }
 ```
-在index.d.ts增加如下代码：
+在index.d.ts添加如下代码：
 
 ```
 export const testClose:() => number;
@@ -789,7 +794,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
-在index.d.ts增加如下代码：
+在index.d.ts添加如下代码：
 
 ```
 export const testTimerAsync:() => number;
@@ -1042,7 +1047,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
-在index.d.ts增加如下代码：
+在index.d.ts添加如下代码：
 
 ```typescript
 export const testTimer:() => number;
@@ -1170,7 +1175,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
-在index.d.ts增加如下代码：
+在index.d.ts添加如下代码：
 
 ```
 export const testTimerAsync:() => number;

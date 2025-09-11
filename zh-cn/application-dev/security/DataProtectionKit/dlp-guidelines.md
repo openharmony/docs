@@ -50,6 +50,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 |getSandboxAppConfig(): Promise&lt;string&gt;|查询沙箱应用配置信息。|
 |cleanSandboxAppConfig(): Promise&lt;void&gt;|清理沙箱应用配置信息。|
 | startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式）。 |
+|setEnterprisePolicy(policy: EnterprisePolicy): void|设置企业应用防护策略。|
 
 ## 开发步骤
 
@@ -349,4 +350,83 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     }).catch((err: BusinessError) => {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
     });
+    ```
+
+16. 设置企业应用防护策略。
+    
+    16.1 策略格式。
+    | 字段名 | 类型 | 说明 |
+    | -------- | -------- | -------- |
+    | rules | Array&lt;Rule&gt; | 具体规则列表，一条策略可以设置多条规则，最多32条。 |
+    | policyId |string | 策略名称。长度不超过64字节，只允许由字母（包括大写和小写）、数字（0-9）、下划线（_）组成。 |
+    | ruleConflictAlg | number | 规则冲突解决算法，0表示首次匹配，1表示完全匹配。 |
+
+    16.2 规则格式。
+    | 字段名 | 类型 | 说明 |
+    | -------- | -------- | -------- |
+      | ruleId |string | 规则名称，长度不超过64字节，只允许由字母（包括大写和小写）、数字（0-9）、下划线（_）组成。 |
+    | attributes | Array&lt;Attribute&gt; | 具体属性信息列表，一条规则可以设置多条规则，最多32条。 |
+
+    16.3 属性信息格式。
+    | 字段名 | 类型 | 说明 |
+    | -------- | -------- | -------- |
+      | attributeId |string | 属性信息名称。 |
+    | attributeValues | Array&lt;string&gt; | 属性值，一条属性信息可以设置多个属性值，最多32个。 |
+    | valueType | number | 属性值类型，0表示整型，1代表字符串。 |
+    | opt | number | 判断方法，用于真实属性信息与策略属性信息作比较。 |
+
+    16.4 当前支持的属性信息。
+    | 属性信息名称 | 属性值 | 属性值类型 | 场景 |
+    | -------- | -------- | -------- | -------- |
+     | DeviceHealthyStatus |1 <br> 2 <br> 3 <br> 4 | 整型 | 1：设备健康报告显示正常。 <br>2：设备有健康风险，但风险因子和root无关。 <br> 3：设备有健康风险，且风险因子和root相关。 <br> 4：异常场景。 |
+    | NetStatus | InterNet <br> ExtraNet <br> NoNet | 字符串 | InterNet：设备在公司内部使用。<br>ExtraNet：设备在公司外部使用。<br>NoNet：设备处于离线断网状态。 |
+    | DebugMode | 1 <br> 2 | 整型 | 1：该设备已开启调试模式。<br>2：该设备未开启调试模式。 |
+    | AdvancedSecurityMode | 1 <br> 2 | 整型 | 1：该设备已开启高级安全模式。<br>2：该设备未开启高级安全模式。  |
+
+    ```ts
+    import { dlpPermission } from '@kit.DataProtectionKit';
+
+    interface Attribute {
+      attributeId: string;
+      attributeValues: Array<string>;
+      valueType: number;
+      opt: number;
+    }
+
+    interface Rule {
+      ruleId: string;
+      attributes: Array<Attribute>;
+    }
+
+    interface Policy {
+      rules: Array<Rule>;
+      policyId: string;
+      ruleConflictAlg: number;
+    }
+
+    try {
+      let attributeValues: Array<string> = [ '1' ];
+      let attribute: Attribute = {
+        attributeId: 'DeviceHealthyStatus';
+        attributeValues: attributeValues;
+        valueType: 0;
+        opt: 2;
+      }; // 属性信息。
+      let rule: Rule = {
+        ruleId: 'ruleId';
+        attributes: [ attribute ];
+      }; // 规则。
+      let policy: Policy = {
+        rules: [ rule ];
+        policyId: 'policyId';
+        ruleConflictAlg: 0;
+      }; // 策略。
+      let enterprisePolicy: dlpPermission.EnterprisePolicy = {
+        policyString: JSON.stringify(policy);
+      };
+      dlpPermission.setEnterprisePolicy(enterprisePolicy);
+      console.info('set enterprise policy success');
+    } catch (err) {
+      console.error('error:' + err.code + err.message); // 失败报错。
+    }
     ```

@@ -500,7 +500,7 @@ kvpairs = {
 
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set the audio extra parameters ${err}`);
 });
 ```
@@ -546,7 +546,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let subKeys: Array<String> = ['key_example'];
 audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
   console.info(`Promise returned to indicate that the value of the audio extra parameters is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get the audio extra parameters ${err}`);
 });
 ```
@@ -611,7 +611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set the audio scene mode ${err}`);
 });
 ```
@@ -684,7 +684,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.disableSafeMediaVolume().then(() => {
   console.info('disableSafeMediaVolume success.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
 });
 ```

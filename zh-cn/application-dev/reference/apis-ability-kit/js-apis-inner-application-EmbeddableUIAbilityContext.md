@@ -1,6 +1,16 @@
 # EmbeddableUIAbilityContext
 
-EmbeddableUIAbilityContext是需要保存状态的[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)所对应的context，继承自[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+EmbeddableUIAbilityContext是[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)组件的上下文，继承自[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+
+每个EmbeddableUIAbility组件实例化时，系统都会自动创建对应的EmbeddableUIAbilityContext。
+
 
 > **说明：**
 >
@@ -15,10 +25,7 @@ import { common } from '@kit.AbilityKit';
 ```
 
 ## EmbeddableUIAbilityContext 
-
-EmbeddableUIAbilityContext是需要保存状态的[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)所对应的context，继承自[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
-
-EmbeddableUIAbilityContext提供EmbeddableUIAbility的相关配置信息以及操作EmbeddableUIAbility和ServiceExtensionAbility的方法，如启动EmbeddableUIAbility，停止当前EmbeddableUIAbilityContext所属的EmbeddableUIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
+开发者可以通过EmbeddableUIAbilityContext获取EmbeddableUIAbility的相关配置信息以及操作EmbeddableUIAbility和ServiceExtensionAbility的方法，如启动EmbeddableUIAbility，停止当前EmbeddableUIAbilityContext所属的EmbeddableUIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

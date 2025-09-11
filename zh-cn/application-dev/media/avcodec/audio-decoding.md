@@ -28,7 +28,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_audio_codec.md)。
+详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/capi-native-avcodec-audiocodec-h.md)。
 
 参考以下示例代码，完成音频解码的全流程，包括：创建解码器、设置解码参数（采样率/码率/声道数等）、开始、刷新、重置、销毁资源。
 
@@ -269,7 +269,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    <!--RP4-->
    <!--RP4End-->
 
-   API20新增[采样率范围](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerateranges)能力查询，以下几种音频解码类型支持对范围内的任意采样率进行解码（API20之后）：
+   API20新增[采样率范围](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapability_getaudiosupportedsamplerateranges)能力查询，以下几种音频解码类型支持对范围内的任意采样率进行解码（API20之后）：
 
    | 音频解码类型 |    采样率(Hz)   |
    | ----------- | --------------- |

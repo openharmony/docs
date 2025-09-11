@@ -1,12 +1,13 @@
 # 应用链接说明
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @liusu23-->
+<!--Designer: @ccllee1; @xukeke-->
+<!--Tester: @lixueqing513; @lusq-->
+<!--Adviser: @huipeizi-->
 
 ## uris标签说明
 当在[module.json5](../quick-start/module-configuration-file.md)文件的[skills字段](../quick-start/module-configuration-file.md#skills标签)中声明uris时，主要包含如下字段。
-
-> **说明：**
->
-> - 通过浏览器拉起应用页面时，浏览器会将uri中scheme和host中的大写字母自动转化为小写字母，导致无法正确匹配应用。因此建议scheme和host中不要包含大写字母。
-> - path、pathStartWith、pathRegex的取值前后均不需要加斜杠`/`。例如对于应用链接`https://developer.huawei.com/consumer/cn/support`，path字段应配置为`consumer/cn/support`。
 
 - scheme：协议名称。常见的取值有http、https、file、ftp等，也可以自定义。
 - host：域名或IP地址。例如域名`developer.huawei.com`或IP地址`127.0.0.1`。
@@ -17,6 +18,11 @@
 - pathStartWith：路径前缀，该字段在scheme存在时才有意义，表示域名服务器上的目录或文件路径的前缀，用于前缀匹配。
 - pathRegex：路径正则，该字段在scheme存在时才有意义，表示域名服务器上的目录或文件路径的正则表达式，用于正则匹配。
 - [linkFeature](#linkfeature标签说明)：应用的功能类型（如文件打开、分享、导航等）。取值为长度不超过127字节的字符串，不支持中文。
+
+> **说明：**
+>
+> - 通过浏览器拉起应用页面时，浏览器会将uri中scheme和host中的大写字母自动转化为小写字母，导致无法正确匹配应用。因此建议scheme和host中不要包含大写字母。
+> - path、pathStartWith、pathRegex的取值前后均不需要加斜杠`/`。例如对于应用链接`https://developer.huawei.com/consumer/cn/support`，path字段应配置为`consumer/cn/support`，pathStartWith字段可配置为`consumer/cn`，pathRegex字段可配置为`^consumer/cn/support$`。
 
 ### URL的基本格式
 
@@ -49,19 +55,20 @@
 
     |值|说明|
     |---|---|
-    |AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|
-    |FileOpen|指示打开处理文件的功能|
-    |Navigation|指示导航功能|
-    |RoutePlan|指示路线规划功能|
-    |PlaceSearch|指示地点搜索功能|
+    |AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能。使用场景详见[清理应用沙箱缓存数据场景](#清理应用沙箱缓存数据场景)。|
+    |FileOpen|指示打开处理文件的功能。使用场景详见[拉起文件处理类应用](./file-processing-apps-startup.md)。|
+    |Navigation|指示导航功能。使用场景详见[拉起导航类应用](./start-navigation-apps.md)。|
+    |RoutePlan|指示路线规划功能。使用场景详见[拉起导航类应用](./start-navigation-apps.md)。|
+    |PlaceSearch|指示地点搜索功能。使用场景详见[拉起导航类应用](./start-navigation-apps.md)。|
+    |AppNotificationMgmt|指示应用内通知设置的功能。|
 
 2. 跳转一键返回能力：用户从A应用跳转至B应用的某个功能界面后，B应用调用[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12)，可以支持用户直接返回A应用，无问询弹窗。例如：A应用跳转至B应用的支付界面，若B应用已申请了支付的linkFeature，则用户在B应用内完成操作后，可一键返回A应用。
 
     |值|说明|
     |---|---|
-    |Login|指示登录、授权登录等功能|
-    |Pay|指示支付页面、收银台等功能|
-    |Share|指示分享功能|
+    |Login|指示登录、授权登录等功能。|
+    |Pay|指示支付页面、收银台等功能。|
+    |Share|指示分享功能。|
 
 ## 配置示例
 

@@ -8,13 +8,13 @@
 
 KioskManager模块提供Kiosk模式管理能力，包括系统进入/退出Kiosk模式操作。
 
-该模块仅适用于企业应用。企业应用可以使用该模式将设备锁定至单一应用，确保界面只服务于特定的交互场景，例如银行ATM设备软件、KTV点歌系统、点餐系统等。
+Kiosk模式是一种特殊的设备锁定模式，可以确保设备界面只服务于特定的交互场景。在这种模式下，用户只能使用特定的应用。例如，在银行ATM机上，用户只能通过ATM软件进行交易操作，而不能退出该软件或切换到其他应用。
 
 > **说明：**
 >
-> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口仅可在Stage模型下使用。
+> - 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口仅可在Stage模型下使用。
+> - 本模块接口仅适用于通过[setAllowedKioskApps接口](../apis-mdm-kit/js-apis-enterprise-applicationManager.md#applicationmanagersetkioskfeatures20)配置的支持Kiosk模式的应用。
 
 ## 导入模块
 
@@ -28,8 +28,6 @@ enterKioskMode(context: UIAbilityContext): Promise&lt;void&gt;
 
 进入Kiosk模式。使用Promise异步回调。
 
-该接口仅适用于EDM配置的支持Kiosk模式的应用。
-
 **系统能力**： SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -42,7 +40,7 @@ enterKioskMode(context: UIAbilityContext): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 |------|------|
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -108,7 +106,7 @@ exitKioskMode(context: UIAbilityContext): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 |------|------|
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 

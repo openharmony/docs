@@ -1,4 +1,10 @@
 # @ohos.deviceInfo (设备信息)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Startup-->
+<!--Owner: @chenjinxiang3-->
+<!--Designer: @liveery-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供终端设备信息查询，开发者不可配置。
 
@@ -254,31 +260,31 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 **示例**
 
 ```ts
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_DEFAULT;
+    let deviceTypesInfoDefault: string = deviceInfo.DeviceTypes.TYPE_DEFAULT;
     // 输出结果：the value of the DeviceTypes is :default
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoDefault);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_PHONE;
+    let deviceTypesInfoPhone: string = deviceInfo.DeviceTypes.TYPE_PHONE;
     // 输出结果：the value of the DeviceTypes is :phone
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoPhone);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_TABLET;
+    let deviceTypesInfoTablet: string = deviceInfo.DeviceTypes.TYPE_TABLET;
     // 输出结果：the value of the DeviceTypes is :tablet
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoTablet);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_2IN1;
+    let deviceTypesInfo2IN1: string = deviceInfo.DeviceTypes.TYPE_2IN1;
     // 输出结果：the value of the DeviceTypes is :2in1
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfo2IN1);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_TV;
+    let deviceTypesInfoTV: string = deviceInfo.DeviceTypes.TYPE_TV;
     // 输出结果：the value of the DeviceTypes is :tv
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoTV);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_WEARABLE;
+    let deviceTypesInfoWearable: string = deviceInfo.DeviceTypes.TYPE_WEARABLE;
     // 输出结果：the value of the DeviceTypes is :wearable
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoWearable);
 
-    let deviceTypesInfo: string = deviceInfo.DeviceTypes.TYPE_CAR;
+    let deviceTypesInfoCar: string = deviceInfo.DeviceTypes.TYPE_CAR;
     // 输出结果：the value of the DeviceTypes is :car
-    console.info('the value of the DeviceTypes is :' + deviceTypesInfo);
+    console.info('the value of the DeviceTypes is :' + deviceTypesInfoCar);
 ```

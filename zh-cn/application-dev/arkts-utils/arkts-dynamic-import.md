@@ -176,7 +176,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHsp').then((ns:ESObject) => {
+  import('myhsp').then((ns:ESObject) => {
     console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
@@ -184,7 +184,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
 
@@ -201,7 +201,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHsp/Index').then((ns:ESObject) => {
+  import('myhsp/Index').then((ns:ESObject) => {
     console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
@@ -209,7 +209,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
 
@@ -384,7 +384,7 @@ import(filePath).then((obj: ESObject) => {
   ```
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  let packageName = 'myHsp';
+  let packageName = 'myhsp';
   import(packageName).then((ns:ESObject) => {
     console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
@@ -392,7 +392,7 @@ import(filePath).then((obj: ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
   ```json5
@@ -401,7 +401,7 @@ import(filePath).then((obj: ESObject) => {
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
-          "myHsp"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+          "myhsp"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
         ]
       }
     }

@@ -550,7 +550,7 @@ let wantTemp: Want = {
 try {
   let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
   let powerPolicy: deviceSettings.PowerPolicy = deviceSettings.getPowerPolicy(wantTemp, powerScene);
-  console.info(`Succeeded in getting power polilcy ${JSON.stringify(powerPolicy)}`);
+  console.info(`Succeeded in getting power policy ${JSON.stringify(powerPolicy)}`);
 } catch (err) {
   console.error(`Failed to get power policy. Code: ${err.code}, message: ${err.message}`);
 }

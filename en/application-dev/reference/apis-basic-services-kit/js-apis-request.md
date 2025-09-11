@@ -1,4 +1,10 @@
 # @ohos.request (Upload and Download)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 The request module provides applications with basic upload, download, and background transmission agent capabilities.
 
@@ -50,7 +56,7 @@ import { request } from '@kit.BasicServicesKit';
 | ERROR_UNKNOWN<sup>7+</sup> | number |   8   | (Download error codes) Unknown error.<br>In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an ERROR_UNKNOWN error.|
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | (Download error codes) No network connection.|
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | (Download error codes) Network type mismatch.|
-| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | (Causes of download pause) Download paused and queuing for a WLAN connection, because the file size exceeds the maximum value allowed for a mobile network session.|
+| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | (Causes of download pause) Download paused and queuing for a WLAN connection because the file size exceeds the maximum value allowed for a mobile network session.|
 | PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | (Causes of download pause) Download paused due to a network connection problem,<br>for example, network disconnection.|
 | PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | (Causes of download pause) Download paused due to network error and then retried.|
 | PAUSED_BY_USER<sup>9+</sup> | number |   3   | (Causes of download pause) The user paused the session.|
@@ -299,6 +305,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object through [request.uploadFile<sup>9+</sup>](#requestuploadfile9) in promise mode or [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) in callback mode.
 
+
+
 ### on('progress')
 
 on(type: 'progress', callback: (uploadedSize: number, totalSize: number) =&gt; void): void
@@ -396,9 +404,8 @@ Subscribes to upload completion or failure events. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to.| <br>\- **'complete'**: upload task completion.<br>\- **'fail'**: upload task failure. |
+| type | string | Yes| Type of the event to subscribe to. The options are as follows:<br>\- **'complete'**: upload task completion.<br>\- **'fail'**: upload task failure. |
 | callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | Yes| Callback used to return the result.  |
-
 
 **Error codes**
 
@@ -633,7 +640,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
 
-Deletes this upload task. This API uses an asynchronous callback to return the result.
+Deletes an upload task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -704,7 +711,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   ```js
   uploadTask.remove().then((result) => {
     console.info('Succeeded in removing the upload task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -714,7 +721,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 remove(callback: AsyncCallback&lt;boolean&gt;): void
 
-Removes this upload task. This API uses an asynchronous callback to return the result.
+Removes an upload task. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -748,8 +755,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     }
     if (result) {
       console.info('Succeeded in removing the upload task.');
-    } else {
-      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
     }
   });
   ```
@@ -761,7 +766,7 @@ Describes the configuration of an upload task.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#adding-network-configuration) is supported.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#intercepting-http) is supported.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
 | method | string | Yes|  HTTP request method. The value can be **POST** or **PUT**. The default value is **POST**. Use **POST** to add resources and **PUT** to modify resources.|
 | index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
@@ -802,7 +807,7 @@ The following table describes the enum values of **responseCode**.
 ## File
 Defines the file list in [UploadConfig<sup>6+</sup>](#uploadconfig6).
 
-**System capability**: SystemCapability.MiscServices.Download
+**System capability**: SystemCapability.MiscServices.Upload
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -815,7 +820,7 @@ Defines the file list in [UploadConfig<sup>6+</sup>](#uploadconfig6).
 ## RequestData
 Defines the form data in [UploadConfig<sup>6+</sup>](#uploadconfig6).
 
-**System capability**: SystemCapability.MiscServices.Download
+**System capability**: SystemCapability.MiscServices.Upload
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -930,7 +935,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      let downloadTask: request.DownloadTask = data;
     });
   } catch (err) {
     console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
@@ -1454,8 +1458,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   try {
     // Replace the URL with the HTTP address of the real server.
     request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-      let downloadTask: request.DownloadTask = data;
-      downloadTask.delete().then((result: boolean) => {
+      data.delete().then((result: boolean) => {
         console.info('Succeeded in removing the download task.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1477,7 +1480,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
 
-Deletes this download task. This API uses an asynchronous callback to return the result.
+Deletes a download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1917,7 +1920,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 restore(callback: AsyncCallback&lt;boolean&gt;): void
 
-Restores this download task. This API uses an asynchronous callback to return the result.
+Restores a download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -2002,7 +2005,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   ```js
   downloadTask.remove().then((result) => {
     console.info('Succeeded in removing the download task.');
-  }).catch ((err) => {
+  }).catch ((err: BusinessError) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2012,7 +2015,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 remove(callback: AsyncCallback&lt;boolean&gt;): void
 
-Removes this download task. This API uses an asynchronous callback to return the result.
+Removes a download task. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2082,7 +2085,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   ```js
   downloadTask.query().then((downloadInfo) => {    
     console.info('Succeeded in querying the download task.')
-  }) .catch((err) => {
+  }) .catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2162,7 +2165,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   ```js
   downloadTask.queryMimeType().then((data) => {    
     console.info('Succeeded in querying the download MimeType.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2242,7 +2245,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   ```js
   downloadTask.pause().then((result) => {    
     console.info('Succeeded in pausing the download task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2322,7 +2325,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   ```js
   downloadTask.resume().then((result) => {
     console.info('Succeeded in resuming the download task.')
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2336,7 +2339,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9-1) instead.
 
-Resumes this download task. This API uses an asynchronous callback to return the result.
+Resumes a download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -2376,7 +2379,7 @@ Defines the download task configuration.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#adding-network-configuration) is supported.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#intercepting-http) is supported.|
 | header | Object | No| HTTPS flag header to be included in the download request.|
 | enableMetered | boolean | No| Whether download is allowed on a metered connection. The value **true** means the download is allowed, and **false** means the opposite. The default value is **false**.<br>**Note:** In general cases, a mobile data connection is metered, while a Wi-Fi connection is not.|
 | enableRoaming | boolean | No| Whether download is allowed on a roaming network. The value **true** means the download is allowed, and **false** means the opposite. The default value is **false**.|
@@ -2499,7 +2502,7 @@ Provides the configuration information of an upload or download task.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**: Upload tasks.<br>- **DOWNLOAD**: Download tasks.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#adding-network-configuration) is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#intercepting-http) is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | mode | [Mode](#mode10) | No| Task mode. The default mode is background. Since API version 20, the task mode for downloading files to the user file folder must be set to **request.agent.Mode.FOREGROUND**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -2510,8 +2513,8 @@ Provides the configuration information of an upload or download task.
 | saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox path. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which can be the path of an application file or a user file. For the application file, the application bundle name must be matched and only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**. For the user file, its path must be the user file URI created by the caller.<br>Since API version 20, the default file path can be the cache path of the caller (that is, the passed context), except for [downloading network resource files to the user file](../../basic-services/request/app-file-upload-download.md#downloading-network-resource-files-to-the-user-file). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | metered | boolean | No| Whether the task is allowed on a metered connection.<br>- **true**: The task is allowed on a metered connection.<br>- **false** (default): The task is not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network.<br>- **true** (default): The task is allowed on a roaming connection.<br>- **false**: The task is not allowed on a roaming connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks.<br>- **true** (default): The automatic retry is enabled.<br>- **false**: The automatic retry is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network.<br>- **true** (default): The task is allowed on a roaming connection.<br>- **false** : The task is not allowed on a roaming connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks.<br>- **true** (default): The automatic retry is enabled.<br>- **false**: The task is not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | redirect | boolean | No| Whether redirection is allowed.<br>- **true** (default): The redirection is allowed.<br>- **false**: The redirection is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | proxy<sup>12+</sup> | string | No| Proxy address. The value contains a maximum of 512 characters.<br>It is in the format of http://\<domain or address\>:\<port\>. By default, this parameter is left blank.|
 | index | number | No| Path index of the task. It is usually used for resumable transfers. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -3040,11 +3043,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3124,13 +3130,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3210,11 +3222,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4468,9 +4483,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4537,9 +4555,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -4607,11 +4628,17 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4681,11 +4708,17 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -4752,9 +4785,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4824,9 +4860,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // Wait for 1 second before executing the next step to prevent asynchronous out-of-order.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -5089,7 +5128,7 @@ Obtains task information based on the task ID. This API uses a promise to return
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Task](#task10)&gt; | Promise used to return the configuration about the obtained task.|
+| Promise&lt;[Task](#task10)&gt; | Promise used to return the configuration about the created task.|
 
 **Error codes**
 

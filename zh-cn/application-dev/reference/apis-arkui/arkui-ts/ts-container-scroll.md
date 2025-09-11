@@ -500,7 +500,7 @@ onScrollEnd(event: () => void)
 
 1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后停止，带过渡动效。
 
-该事件从API version 9开始废弃，使用onScrollStop事件替代。
+该事件从API version 9开始废弃，使用[onScrollStop](#onscrollstop9)事件替代。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1044,10 +1044,10 @@ getItemIndex(x: number, y: number): number
 
 | 名称     | 说明                           |
 | ------ | ------------------------------ |
-| START   | 首部对齐。指定item首部与List首部对齐。  |
-| CENTER | 居中对齐。指定item主轴方向居中对齐于List。        |
-| END  | 尾部对齐。指定item尾部与List尾部对齐。 |
-| AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List，使指定item完全处于显示区。|
+| START   | 首部对齐。指定item首部与滚动容器组件首部对齐。  |
+| CENTER | 居中对齐。指定item主轴方向居中对齐于滚动容器组件。        |
+| END  | 尾部对齐。指定item尾部与滚动容器组件尾部对齐。 |
+| AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于滚动容器组件，使指定item完全处于显示区。|
 
 ## ScrollToIndexOptions<sup>12+</sup>对象说明
 
@@ -1704,7 +1704,7 @@ struct EnablePagingExample {
 
 ```ts
 // xxx.ets
-import { curves, LengthMetrics } from '@kit.ArkUI';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component

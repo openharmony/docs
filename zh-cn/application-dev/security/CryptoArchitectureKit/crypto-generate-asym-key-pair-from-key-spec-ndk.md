@@ -388,6 +388,37 @@ static OH_Crypto_ErrCode doTestEccGenKeyPairBySpec()
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
 #include <string>
 
+static OH_Crypto_ErrCode GetEccKeyParams(OH_CryptoKeyPair *keyCtx, Crypto_DataBlob *pubKeyXData,
+                                         Crypto_DataBlob *pubKeyYData, Crypto_DataBlob *privKeyData)
+{
+    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyCtx);
+    if (pubKey == nullptr) {
+        return CRYPTO_OPERTION_ERROR;
+    }
+    OH_Crypto_ErrCode ret = OH_CryptoPubKey_GetParam(pubKey, CRYPTO_ECC_PK_X_DATABLOB, pubKeyXData);
+    if (ret != CRYPTO_SUCCESS) {
+        return ret;
+    }
+    ret = OH_CryptoPubKey_GetParam(pubKey, CRYPTO_ECC_PK_Y_DATABLOB, pubKeyYData);
+    if (ret != CRYPTO_SUCCESS) {
+        return ret;
+    }
+
+    OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyCtx);
+    if (privKey == nullptr) {
+        return CRYPTO_OPERTION_ERROR;
+    }
+    ret = OH_CryptoPrivKey_GetParam(privKey, CRYPTO_ECC_SK_DATABLOB, privKeyData);
+    return ret;
+}
+
+static void FreeEccKeyParams(Crypto_DataBlob *pubKeyXData, Crypto_DataBlob *pubKeyYData, Crypto_DataBlob *privKeyData)
+{
+    OH_Crypto_FreeDataBlob(pubKeyXData);
+    OH_Crypto_FreeDataBlob(pubKeyYData);
+    OH_Crypto_FreeDataBlob(privKeyData);
+}
+
 size_t ConvertHex(uint8_t* dest, size_t count, const char* src)
 {
     size_t i;

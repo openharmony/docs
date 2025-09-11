@@ -331,7 +331,7 @@ AppearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -365,7 +365,7 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>

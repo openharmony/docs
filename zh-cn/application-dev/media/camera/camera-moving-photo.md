@@ -10,6 +10,7 @@
 
 应用开发动态照片主要分为以下步骤：
 
+- 应用开发动态照片前，请参考[申请相机开发的权限](camera-preparation.md)、[相机管理](camera-device-management.md)、[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)等流程完成相机应用开发必选能力配置。
 - 查询当前设备的当前模式是否支持拍摄动态照片。
 - 如果支持动态照片，可以调用相机框架提供的使能接口**使能**动态照片能力。
 - 监听照片回调，将照片存入媒体库。可参考[MediaLibrary Kit-访问和管理动态照片资源](../medialibrary/photoAccessHelper-movingphoto.md)。
@@ -19,8 +20,6 @@
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 > **说明：**
->
-> - 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
 > - 拍摄动态照片需要麦克风权限ohos.permission.MICROPHONE，权限申请和校验的方式请参考[开发准备](camera-preparation.md)。否则拍摄的照片没有声音。
 
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
@@ -33,14 +32,18 @@
 
 2. 确定拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
      cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     if (!cameraOutputCapability || !cameraOutputCapability.photoProfiles) {
+       return;
+     }
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
+     if (!photoProfilesArray || previewProfilesArray.length === 0) {
+       console.error("photoProfilesArray is null or []");
+       return;
      }
      let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
@@ -74,17 +77,21 @@
 
 4. 使能动态照片拍照能力。
 
-   ```ts
-   function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
-     try {
-       photoOutput.enableMovingPhoto(true);
-     } catch (error) {
-       // 失败返回错误码error.code并处理。
-       let err = error as BusinessError;
+    > **说明：**
+    >
+    > 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
+
+    ```ts
+    function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
+      try {
+        photoOutput.enableMovingPhoto(true);
+      } catch (error) {
+        // 失败返回错误码error.code并处理。
+        let err = error as BusinessError;
        console.error(`The enableMovingPhoto call failed. error code: ${err.code}`);
-     }
-   }
-   ```
+      }
+    }
+    ```
 
 5. 触发拍照，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
 

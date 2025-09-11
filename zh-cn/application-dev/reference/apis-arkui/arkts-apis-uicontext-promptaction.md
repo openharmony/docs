@@ -6,7 +6,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
-创建并显示文本提示框、对话框、操作菜单以及自定义弹窗。
+创建并显示即时反馈、对话框、操作菜单以及自定义弹窗。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@
 
 showToast(options: promptAction.ShowToastOptions): void
 
-创建并显示文本提示框。
+创建并显示即时反馈。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -30,7 +30,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是    | 文本弹窗选项。 |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是    | Toast选项。 |
 
 **错误码：**
 
@@ -43,7 +43,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
-该示例通过调用showToast接口，显示文本提示框。
+该示例通过调用showToast接口，创建并显示即时反馈。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -78,7 +78,7 @@ struct Index {
 
 openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 
-显示文本提示框并通过Promise返回其id。
+显示即时反馈并通过Promise返回其id。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -88,13 +88,13 @@ openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 
 | 参数名  | 类型                                                         | 必填 | 说明           |
 | ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是   | 文本弹窗选项。 |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是   | Toast选项。 |
 
 **返回值**
 
 | 类型             | 说明                                 |
 | ---------------- | ------------------------------------ |
-| Promise&lt;number&gt; | 返回供closeToast使用的文本提示框id。 |
+| Promise&lt;number&gt; | 返回即时反馈的id，可供closeToast使用。 |
 
 **错误码：**
 
@@ -107,7 +107,7 @@ openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 
 **示例：**
 
-该示例通过调用openToast和closeToast接口，展示了弹出以及关闭文本提示框的功能。
+该示例通过调用openToast和closeToast接口，展示了弹出以及关闭Toast的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -155,7 +155,7 @@ struct Index {
 
 closeToast(toastId: number): void
 
-关闭文本提示框。
+关闭即时反馈。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -165,7 +165,7 @@ closeToast(toastId: number): void
 
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| toastId | number | 是   | openToast返回的文本提示框id。 |
+| toastId | number | 是   | openToast返回的id。 |
 
 **错误码：**
 

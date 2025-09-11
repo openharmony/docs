@@ -1,5 +1,12 @@
 # @ohos.usbManager (USB Manager) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 The **usbManager** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
 
 > **NOTE**
@@ -344,7 +351,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 ```ts
 import {BusinessError} from '@kit.BasicServicesKit';
 let portId: number = 1;
-usbManager.setPortRoles(portId, usbManager.PowerRoleType.SOURCE, ususbManagerb.DataRoleType.HOST).then(() => {
+usbManager.setPortRoles(portId, usbManager.PowerRoleType.SOURCE, usbManager.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
 }).catch((err: BusinessError) => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);

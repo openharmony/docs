@@ -75,9 +75,9 @@ List(options?: [ListOptions](#listoptions18对象说明))
 
 | 名称       | 类型                                    | 只读 | 可选 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | -- | ------------------------------------------------------------ |
-| initialIndex<sup>7+</sup> | number | 否 | 是 | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| initialIndex<sup>7+</sup> | number | 否 | 是 | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。<br/>从API version 14开始，如果在List组件创建完成后首次布局前（如List的onAttach事件中），调用Scroller滚动控制器中不带动画的scrollToIndex或scrollEdge方法，会覆盖initialIndex设置的值。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | space<sup>7+</sup>        | number&nbsp;\|&nbsp;string                  | 否   | 是 | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。<br/> List子组件的visibility属性设置为None时不显示，但该子组件上下的space还是会生效。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| scroller<sup>7+</sup>      | [Scroller](ts-container-scroll.md#scroller) | 否   | 是 | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| scroller<sup>7+</sup>      | [Scroller](ts-container-scroll.md#scroller) | 否   | 是 | 可滚动组件的控制器。与List绑定后，可以通过它控制List的滚动。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -145,13 +145,13 @@ scrollBar(value: BarState)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10及以上版本的默认值为BarState.Auto。 |
+| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：API version 9及以下版本默认值为BarState.Off，API version 10及以上版本的默认值为BarState.Auto。 |
 
 ### cachedCount
 
 cachedCount(value: number)
 
-设置列表中ListItem/ListItemGroup的预加载数量，懒加载场景只会预加载List显示区域外cachedCount的内容，非懒加载场景会全部加载。懒加载、非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
+设置列表中ListItem/ListItemGroup的预加载数量，懒加载场景只会预加载List显示区域外上下各cachedCount行的ListItem，非懒加载场景会全部加载。懒加载、非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
 List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。
 
@@ -203,7 +203,7 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 > **说明：**
 >
-> 当List组件的内容区小于一屏时，默认没有回弹效果。若要启用回弹效果，可以通过设置edgeEffect属性的options参数来实现。
+> 当List组件的内容区小于一屏时，默认没有回弹效果。若要启用回弹效果，可以通过设置edgeEffect属性的options参数为{ alwaysEnabled: true }来实现。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -293,7 +293,7 @@ lanes(value: number | LengthConstrain, gutter?: Dimension)
 
 alignListItem(value: ListItemAlign)
 
-设置List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式。
+设置List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes + (lanes - 1) * gutter时，ListItem在List交叉轴方向的布局方式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -311,7 +311,7 @@ alignListItem(value: ListItemAlign)
 
 sticky(value: StickyStyle)
 
-配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。
+配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header是否要吸顶或footer是否要吸底。sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。
 
 > **说明：** 
 >
@@ -335,7 +335,7 @@ scrollSnapAlign(value: ScrollSnapAlign)
 
 设置列表项滚动结束对齐效果。
 
-对齐动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
+只支持item等高场景限位，不等高场景可能存在不准确的情况。对齐动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -381,7 +381,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
+| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。<br/>默认值：{ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_ONLY } |
 
 ### friction<sup>10+</sup>
 
@@ -444,7 +444,7 @@ childrenMainSize(value: ChildrenMainSize)
 > **说明：** 
 > - 该属性通过向List组件提供所有子组件在主轴方向的大小信息，确保在面对子组件主轴大小不一致、增删子组件、使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景时，List组件能够维护其滑动位置准确性。这样，[scrollTo](ts-container-scroll.md#scrollto)可以准确的跳转到指定位置，[currentOffset](ts-container-scroll.md#currentoffset)可以获取到当前准确的滑动位置，内置滚动条可以实现平滑移动无跳变。
 > - 当子组件是ListItemGroup时，需要根据ListItemGroup的列数、ListItemGroup中ListItem在主轴方向的间距以及ListItemGroup中header、footer和ListItem的大小，来准确计算出ListItemGroup在主轴方向的整体大小，并传递给List组件。
-> - 如果子组件有ListItemGroup，必须为每一个ListItemGroup设置childrenMainSize属性。List组件和每一个ListItemGroup组件都要通过childrenMainSize属性接口一对一绑定一个ChildrenMainSize对象。
+> - 如果子组件有ListItemGroup，必须为每一个ListItemGroup设置[childrenMainSize](./ts-container-listitemgroup.md#childrenmainsize12)属性。List组件和每一个ListItemGroup组件都要通过childrenMainSize属性接口一对一绑定一个ChildrenMainSize对象。
 > - 多列场景使用LazyForEach生成子组件时，需确保LazyForEach全部生成ListItemGroup组件或者全部生成ListItem组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -474,8 +474,8 @@ maintainVisibleContentPosition(enabled: boolean)
 | enabled  | boolean | 是   | 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方插入或删除数据时可见内容位置不变。|
 
 > **说明：** 
-> - 只有使用LazyForEach在显示区域外插入或删除数据时，才能保持可见内容位置不变。使用ForEach插入或删除数据或使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
-> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在懒加载场景下，显示区域外插入或删除数据时，保持可见内容位置不变。
+> - 只有使用LazyForEach在显示区域外插入或删除数据时，属性设置为true才能保持可见内容位置不变。使用ForEach插入或删除数据、使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
+> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在懒加载场景下，显示区域外插入或删除数据时，属性设置为true也能保持可见内容位置不变。
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
@@ -498,7 +498,7 @@ stackFromEnd(enabled: boolean)
 > **说明：** 
 > - stackFromEnd属性设置为true后，当List内容小于List组件高度时，内容底部对齐。
 > - stackFromEnd属性设置为true后，显示区域内有ListItem变高，或有插入ListItem，内容上方的ListItem往上移动。
-> - stackFromEnd属性设置为true后，initialIndex参数默认值为总item个数-1。
+> - stackFromEnd属性设置为true后，[ListOptions](#listoptions18对象说明)中initialIndex参数默认值为总item个数-1。
 
 ### focusWrapMode<sup>20+</sup>
 
@@ -584,8 +584,6 @@ ListItemGroup吸顶或吸底效果枚举。
 
 设置列表项滚动结束对齐效果。
 
-只支持item等高场景限位，不等高场景可能存在不准确的情况。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -594,7 +592,7 @@ ListItemGroup吸顶或吸底效果枚举。
 | ------ | ------ | ---------------------------------------- |
 | NONE   | 0 | 默认无项目滚动对齐效果。            |
 | START  | 1 | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
-| CENTER | 2 | 视图中的中间项将在列表中心对齐。<br/>**说明：**<br/>顶端和末尾的item都可以在列表中心对齐，列表显示可能露出空白，<br/>第一个或最后一个item会对齐到中间位置。 |
+| CENTER | 2 | 视图中的中间项将在列表中心对齐。<br/>**说明：**<br/>顶端和末尾的item都可以在列表中心对齐，列表显示可能露出空白。 |
 | END    | 3 | 视图中的最后一项将在列表末尾对齐。<br/>**说明：**<br/>当列表位移至顶端，需要将顶端的item完整显示，可能出现末尾不对齐的情况。 |
 ## CloseSwipeActionOptions<sup>11+</sup>对象说明
 
@@ -1524,6 +1522,7 @@ struct ListExample {
     }
     this.arr = new ListDataSource(list);
   }
+
   build() {
     Column() {
       Row() {
@@ -1589,6 +1588,7 @@ struct ListExample {
     // 前5个item的主轴大小不是默认大小100，因此需要通过ChildrenMainSize通知List。
     this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300]);
   }
+
   build() {
     Column() {
       List({ space: this.listSpace, initialIndex: 4, scroller: this.scroller }) {
@@ -1622,7 +1622,7 @@ struct ListExample {
         Button() { Text('scrollTo (0, 310)') }.onClick(()=>{
           // 310: 跳转到item 1顶部与List顶部平齐的位置。
           // 如果不设置childrenMainSize，item高度不一致时scrollTo会不准确。
-          this.scroller.scrollTo({xOffset: 0, yOffset: 310})
+          this.scroller.scrollTo({ xOffset: 0, yOffset: 310 })
         }).height('50%').width('30%')
       }.height('20%')
     }
@@ -1703,7 +1703,7 @@ struct ListItemGroupExample {
   }
 ];
   private scroller: ListScroller = new ListScroller();
-  @State listIndexInfo: VisibleListContentInfo = {index: -1};
+  @State listIndexInfo: VisibleListContentInfo = { index: -1 };
   @State mess:string = "null";
   @State itemBackgroundColorArr: boolean[] = [false];
   @Builder
@@ -1736,7 +1736,7 @@ struct ListItemGroupExample {
                   .height(100)
                   .fontSize(20)
                   .textAlign(TextAlign.Center)
-                  .backgroundColor(this.itemBackgroundColorArr[index *3 +subIndex] ? 0x68B4FF: 0xFFFFFF)
+                  .backgroundColor(this.itemBackgroundColorArr[index * 3 +subIndex] ? 0x68B4FF: 0xFFFFFF)
               }
             }, (item: string) => item)
           }
@@ -1800,6 +1800,7 @@ import { ListDataSource } from './ListDataSource';
 struct ListExample {
   private arr: ListDataSource=new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   scrollerForList: Scroller = new Scroller();
+
   build() {
     Column() {
 
@@ -1812,7 +1813,7 @@ struct ListExample {
           }
         }, (item: number) => item.toString())
       }
-      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+      .fadingEdge(true, { fadingEdgeLength: LengthMetrics.vp(80) })
     }
     .width('100%')
     .height('100%')
@@ -1851,7 +1852,7 @@ struct ListExample {
           }
         }, (item: string) => item)
       }
-      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .edgeEffect(EdgeEffect.Spring, {alwaysEnabled: true, effectEdge: EffectEdge.START})
       .width('90%').height('90%')
     }
     .width('100%')
@@ -1889,7 +1890,7 @@ struct ListExample {
                   .backgroundColor(0xFFFFFF)
                   .flexShrink(1)
                   .focusable(true)
-                  .offset({left:5})
+                  .offset({ left: 5 })
               }
             }
           }, (item: string) => item)
@@ -1902,7 +1903,7 @@ struct ListExample {
         .friction(0.6)
         .focusWrapMode(FocusWrapMode.WRAP_WITH_ARROW)
         .alignListItem(ListItemAlign.Center)
-        .offset({left:20})
+        .offset({ left: 20 })
       }.width('90%')
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }

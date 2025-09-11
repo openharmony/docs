@@ -26,10 +26,10 @@
 onMouse(event: (event?: MouseEvent) => void)
 ```
 
-鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。
+鼠标事件回调。每当鼠标指针在绑定该API的组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。
 
 
-开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton8)）、行为（[MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8)）、时间戳（[timestamp](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent对象说明8)）、交互组件的区域（[EventTarget](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#eventtarget8对象说明)）、事件来源（[SourceType](../reference/apis-arkui/arkui-ts/ts-gesture-settings.md#sourcetype枚举说明8)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
+开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton8)）、行为（[MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8)）、时间戳（[timestamp](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent8)）、交互组件的区域（[EventTarget](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#eventtarget8对象说明)）、事件来源（[SourceType](../reference/apis-arkui/arkui-ts/ts-gesture-settings.md#sourcetype枚举说明8)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
 
 >**说明：**
 >
@@ -248,10 +248,11 @@ class ListDataSource implements IDataSource {
 }
 
 @Entry
-@ComponentV2
+@Component
 struct ListExample {
   private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   private allSelectedItems: Array<number> = []
+  @State isSelected: boolean[] = []
 
   @Styles
   selectedStyle(): void {
@@ -261,10 +262,12 @@ struct ListExample {
   isItemSelected(item: number): boolean {
     for (let i = 0; i < this.allSelectedItems.length; i++) {
       if (this.allSelectedItems[i] == item) {
+        this.isSelected[item] = true;
         return true;
       }
     }
-    return false
+    this.isSelected[item] = false;
+    return false;
   }
 
   build() {
@@ -276,12 +279,12 @@ struct ListExample {
               .width('100%')
               .height(100)
               .fontSize(16)
-              .fontColor(this.isItemSelected(index) ? Color.White : Color.Black)
+              .fontColor(this.isSelected[index] ? Color.White : Color.Black)
               .textAlign(TextAlign.Center)
           }
           .backgroundColor(Color.White)
           .selectable(true)
-          .selected(this.isItemSelected(index))
+          .selected(this.isSelected[index])
           .stateStyles({
             selected: this.selectedStyle
           })
@@ -298,11 +301,16 @@ struct ListExample {
               // 如果没有按着ctrl键点鼠标，则强制清理掉其他选中的条目并只让当前条目选中
               if (!isCtrlPressing) {
                 this.allSelectedItems = []
+                for (let i = 0; i < this.isSelected.length; i++) {
+                  this.isSelected[i] = false
+                }
               }
-              if (!isSelected) {
+              if (isSelected) {
                 this.allSelectedItems.filter(item => item != index)
+                this.isSelected[index] = false
               } else {
                 this.allSelectedItems.push(index)
+                this.isSelected[index] = true
               }
             }
           })

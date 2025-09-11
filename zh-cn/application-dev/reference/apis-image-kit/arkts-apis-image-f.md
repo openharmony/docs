@@ -47,8 +47,6 @@ createPicture(mainPixelmap : PixelMap): Picture
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
 async function CreatePicture(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
@@ -100,7 +98,6 @@ createPictureFromParcel(sequence: rpc.MessageSequence): Picture
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 class MySequence implements rpc.Parcelable {
   picture: image.Picture | null = null;
@@ -120,9 +117,9 @@ class MySequence implements rpc.Parcelable {
   unmarshalling(messageSequence : rpc.MessageSequence) {
     this.picture = image.createPictureFromParcel(messageSequence);
     this.picture.getMainPixelmap().getImageInfo().then((imageInfo : image.ImageInfo) => {
-      console.info('Unmarshalling to get mainPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
+      console.info(`Unmarshalling to get mainPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
     }).catch((error: BusinessError) => {
-      console.error('Unmarshalling failed error.code: ${error.code} ,error.message: ${error.message}');
+      console.error(`Unmarshalling failed error.code: ${error.code} ,error.message: ${error.message}`);
     });
     return true;
   }
@@ -140,10 +137,10 @@ async function Marshalling_UnMarshalling(context: Context) {
   if (pictureObj != null) {
     let parcelable: MySequence = new MySequence(pictureObj);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    // marshalling.
+    // 序列化。
     data.writeParcelable(parcelable);
     let ret: MySequence = new MySequence(pictureObj);
-    // unmarshalling.
+    // 反序列化。
     data.readParcelable(ret);
   } else {
     console.error('PictureObj is null');
@@ -310,7 +307,6 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -356,7 +352,7 @@ async function CreatePixelMapFromParcel() {
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
 
@@ -370,10 +366,10 @@ async function CreatePixelMapFromParcel() {
 
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
-根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise形式返回。
+根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise形式返回。
 
 > **说明：**
-> 当开发设备为折叠屏，折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败，需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)
+> 当设备为折叠屏，且折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败。需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -382,7 +378,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
-| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 区域信息。[Region](arkts-apis-image-i.md#region8).size的宽高需和设置的预览流大小保持一致。 |
+| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须为0，Region.size中width和height的取值范围分别为[1, 预览流宽度]和[1, 预览流高度]。如需截取任意区域，可先使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)获取整个画面，再使用[crop](arkts-apis-image-PixelMap.md#crop9)截取所需区域。 |
 
 **返回值：**
 
@@ -419,10 +415,10 @@ async function CreatePixelMapFromSurface(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
-以同步方式，根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。
+以同步方式，根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。
 
 > **说明：**
-> 当开发设备为折叠屏，折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败，需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15)。
+> 当设备为折叠屏，且折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败。需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -431,7 +427,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
-| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 区域信息。[Region](arkts-apis-image-i.md#region8).size的宽高需和设置的预览流大小保持一致。 |
+| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须为0，Region.size中width和height的取值范围分别为[1, 预览流宽度]和[1, 预览流高度]。如需截取任意区域，可先使用[image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15)获取整个画面，再使用[cropSync](arkts-apis-image-PixelMap.md#cropsync12)截取所需区域。 |
 
 **返回值：**
 
@@ -452,11 +448,9 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 async function Demo(surfaceId: string) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-  let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
+  let pixelMap: image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
   return pixelMap;
 }
 ```
@@ -465,7 +459,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 
-从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+从Surface ID创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -496,7 +490,7 @@ createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo(surfaceId: string) {
+async function CreatePixelMapFromSurface(surfaceId: string) {
   image.createPixelMapFromSurface(surfaceId).then(() => {
     console.info('Succeeded in creating pixelmap from Surface');
   }).catch((error: BusinessError) => {
@@ -509,7 +503,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
 
-从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+从Surface ID创建一个PixelMap对象，同步返回PixelMap结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -538,13 +532,12 @@ createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function Demo(surfaceId: string) {
+async function CreatePixelMapFromSurfaceSync(surfaceId: string) {
   let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId);
   return pixelMap;
 }
 ```
+
 ## image.createPixelMapSync<sup>12+</sup>
 
 createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
@@ -577,9 +570,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
@@ -617,9 +608,7 @@ createPixelMapSync(options: InitializationOptions): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
   return pixelMap;
@@ -661,9 +650,7 @@ createPixelMapUsingAllocatorSync(colors: ArrayBuffer, param: InitializationOptio
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(color, opts, image.AllocatorType.AUTO);
@@ -704,9 +691,7 @@ createPixelMapUsingAllocatorSync(param: InitializationOptions, allocatorType?: A
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(opts, image.AllocatorType.AUTO);
   return pixelMap;
@@ -965,16 +950,12 @@ createImageSource(uri: string): ImageSource
 | [ImageSource](arkts-apis-image-ImageSource.md) | 返回ImageSource类实例，失败时返回undefined。 |
 
 **示例：**
-
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const path: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(path);
+async function CreateImageSource(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  const path: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(path);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1004,16 +985,13 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-
-let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const path: string = context.filesDir + "/test.png";
-let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
+async function CreateImageSource(context : Context) {
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+  // 此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  const path: string = context.filesDir + "/test.png";
+  let imageSourceObj: image.ImageSource = image.createImageSource(path, sourceOptions);
+}
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1040,17 +1018,15 @@ createImageSource(fd: number): ImageSource
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
+async function CreateImageSource(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imageSourceObj: image.ImageSource = image.createImageSource(file.fd);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1080,18 +1056,16 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
-let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-const filePath: string = context.filesDir + "/test.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
+async function CreateImageSource(context : Context) {
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  const filePath: string = context.filesDir + "/test.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imageSourceObj: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1118,12 +1092,13 @@ createImageSource(buf: ArrayBuffer): ImageSource
 | --------------------------- | -------------------------------------------- |
 | [ImageSource](arkts-apis-image-ImageSource.md) | 返回ImageSource类实例，失败时返回undefined。 |
 
-
 **示例：**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-const imageSourceApi: image.ImageSource = image.createImageSource(buf);
+async function CreateImageSource() {
+  const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  const imageSourceObj: image.ImageSource = image.createImageSource(buf);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1154,9 +1129,11 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 **示例：**
 
 ```ts
-const data: ArrayBuffer = new ArrayBuffer(112);
-let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOptions);
+async function CreateImageSource() {
+  const data: ArrayBuffer = new ArrayBuffer(112);
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+  const imageSourceObj: image.ImageSource = image.createImageSource(data, sourceOptions);
+}
 ```
 
 ## image.createImageSource<sup>11+</sup>
@@ -1184,21 +1161,20 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 获取resourceManager资源管理器。
-const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
-  const imageSourceApi: image.ImageSource = image.createImageSource(rawFileDescriptor);
-}).catch((error: BusinessError) => {
-  console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
-})
+import { BusinessError } from '@kit.BasicServicesKit';
+  
+async function CreateImageSource(context : Context) {
+  // 获取resourceManager资源管理器。
+  const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
+    const imageSourceObj: image.ImageSource = image.createImageSource(rawFileDescriptor);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
+  })
+}
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1232,31 +1208,27 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { image } from '@kit.ImageKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // 获取图像资源。
-// 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
-const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
-imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
-  imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
-    let imageInfo = pixelMap.getImageInfoSync();
-    console.info('Succeeded in creating pixelMap');
+async function CreateIncrementalImageSource(context : Context) {
+  let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // 获取图像资源。
+  // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
+  let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
+  let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
+  const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
+  imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
+    imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
+      let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+      let imageInfo = pixelMap.getImageInfoSync();
+      console.info('Succeeded in creating pixelMap');
+    }).catch((error : BusinessError) => {
+      console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
+    })
   }).catch((error : BusinessError) => {
     console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
-}).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
-})
+}
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1284,33 +1256,29 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { image } from '@kit.ImageKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id) // 获取图像资源。
-// 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
-let sourceOptions: image.SourceOptions = { sourceDensity: 120};
+async function CreateIncrementalImageSource(context : Context) {
+  let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // 获取图像资源。
+  // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
+  let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
+  let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120};
 
-const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength), sourceOptions);
-imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
-  imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
-    let imageInfo = pixelMap.getImageInfoSync();
-    console.info('Succeeded in creating pixelMap');
+  const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength), sourceOptions);
+  imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
+    imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
+      let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+      let imageInfo = pixelMap.getImageInfoSync();
+      console.info('Succeeded in creating pixelMap');
+    }).catch((error : BusinessError) => {
+      console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
+    })
   }).catch((error : BusinessError) => {
     console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
-}).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
-})
+}
 ```
 
 ## image.getImageSourceSupportedFormats<sup>20+</sup>
@@ -1330,8 +1298,7 @@ getImageSourceSupportedFormats(): string[]
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-function GetImageSourceSupportedFormats() {
+async function GetImageSourceSupportedFormats() {
     let formats = image.getImageSourceSupportedFormats();
     console.info('formats:', formats);
 }
@@ -1356,7 +1323,9 @@ createImagePacker(): ImagePacker
 **示例：**
 
 ```ts
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
+async function CreateImagePacker() {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+}
 ```
 
 ## image.getImagePackerSupportedFormats<sup>20+</sup>
@@ -1376,8 +1345,7 @@ getImagePackerSupportedFormats(): string[]
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-function GetImagePackerSupportedFormats() {
+async function GetImagePackerSupportedFormats() {
     let formats = image.getImagePackerSupportedFormats();
     console.info('formats:', formats);
 }
@@ -1416,12 +1384,10 @@ createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureTy
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
 async function CreateAuxiliaryPicture(context: Context) {
   let funcName = "CreateAuxiliaryPicture";
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // 需要支持hdr的图片。
   let auxBuffer: ArrayBuffer = rawFile.buffer as ArrayBuffer;
   let auxSize: Size = {
     height: 180,
@@ -1431,7 +1397,7 @@ async function CreateAuxiliaryPicture(context: Context) {
   let auxPictureObj: image.AuxiliaryPicture | null = image.createAuxiliaryPicture(auxBuffer, auxSize, auxType);
   if(auxPictureObj != null) {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
-    console.info(funcName, 'CreateAuxiliaryPicture succeeded this.Aux_picture.type.' + JSON.stringify(type));
+    console.info(funcName, `CreateAuxiliaryPicture succeeded this.Aux_picture.type ${type}`);
   } else {
     console.error(funcName, 'CreateAuxiliaryPicture failed');
   }
@@ -1452,7 +1418,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 | -------- | ------ | ---- | ---------------------- |
 | size    | [Size](arkts-apis-image-i.md#size)  | 是   | 图像的默认大小。该参数不会影响接收到的图片大小，实际返回大小由生产者决定，如相机。       |
 | format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 图像格式，取值为[ImageFormat](arkts-apis-image-e.md#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。             |
-| capacity | number | 是   | 同时访问的最大图像数。 |
+| capacity | number | 是   | 同时访问的最大图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 
 **返回值：**
 
@@ -1473,7 +1439,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 ```ts
 let size: image.Size = {
   height: 8192,
-  width: 8
+  width: 8192
 }
 let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
 ```
@@ -1492,7 +1458,7 @@ createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCrea
 | -------- | ------ | ---- | ---------------------- |
 | size    | [Size](arkts-apis-image-i.md#size)  | 是   | 图像的默认大小。       |
 | format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
-| capacity | number | 是   | 同时访问的最大图像数。 |
+| capacity | number | 是   | 同时访问的最大图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 
 **返回值：**
 
@@ -1514,7 +1480,7 @@ createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCrea
 ```ts
 let size: image.Size = {
   height: 8192,
-  width: 8
+  width: 8192
 }
 let creator: image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
 ```
@@ -1527,7 +1493,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 > **说明：**
 >
-> 从API version 11开始不再维护，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
+> 从API version 9开始支持，从API version 11废弃，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -1538,7 +1504,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | width    | number | 是   | 图像的默认宽度。单位：像素。该参数不会影响接收到的图片宽度，实际宽度由生产者决定，如相机。       |
 | height   | number | 是   | 图像的默认高度。单位：像素。该参数不会影响接收到的图片高度，实际高度由生产者决定，如相机。       |
 | format   | number | 是   | 图像格式，取值为[ImageFormat](arkts-apis-image-e.md#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。  |
-| capacity | number | 是   | 同时访问的最大图像数。 |
+| capacity | number | 是   | 同时访问的最大图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 
 **返回值：**
 
@@ -1549,7 +1515,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 **示例：**
 
 ```ts
-let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.ImageFormat.JPEG, 8);
+let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8192, image.ImageFormat.JPEG, 8);
 ```
 
 ## image.createImageCreator<sup>(deprecated)</sup>
@@ -1560,7 +1526,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 > **说明：**
 >
-> 从API version 11开始不再维护，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
+> 从API version 9开始支持，从API version 11废弃，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -1571,7 +1537,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 | width    | number | 是   | 图像的默认宽度。单位：像素。       |
 | height   | number | 是   | 图像的默认高度。单位：像素。       |
 | format   | number | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
-| capacity | number | 是   | 同时访问的最大图像数。 |
+| capacity | number | 是   | 同时访问的最大图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 
 **返回值：**
 
@@ -1582,7 +1548,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 **示例：**
 
 ```ts
-let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
+let creator: image.ImageCreator = image.createImageCreator(8192, 8192, image.ImageFormat.JPEG, 8);
 ```
 
 ## SVG标签说明
@@ -1590,7 +1556,7 @@ let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageF
 从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG标签需设置width，height。SVG文件可添加xml声明，应以“<?xml”开头，当前支持的标签列表有：
 
 - a
-- circla
+- circle
 - clipPath
 - defs
 - ellipse

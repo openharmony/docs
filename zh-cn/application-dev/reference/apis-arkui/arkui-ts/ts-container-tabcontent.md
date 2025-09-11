@@ -100,6 +100,7 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 >  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 >  - 建议对Tabs组件的所有TabContent子组件的tabBar属性，采用统一的参数类型。
 >  - 若TabContent内部有可获焦组件，Tabs组件内TabContent组件和TabBar组件之间的走焦，仅支持通过键盘的方向键控制。
+>  - TabBar的属性动态修改后，会重新进行渲染，更新相关属性并重置所有页签位置。
 
 ## TabBarOptions<sup>18+</sup>对象说明
 

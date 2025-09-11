@@ -85,6 +85,10 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 给组件绑定菜单，控制菜单显隐的触发方式为长按或右键点击，弹出的菜单项需自定义。若需通过代码逻辑控制菜单显隐，请使用[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用bindContextMenu(默认子窗实现)，详情见输入法框架的约束与限制说明[createPanel](../../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -113,6 +117,9 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 菜单弹出位置仅有placement设置决定，与点击位置无关。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用bindContextMenu(默认子窗实现)，详情见输入法框架的约束与限制说明[createPanel](../../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -144,7 +151,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | icon<sup>10+</sup>       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 是   | 菜单项图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | enabled<sup>11+</sup>    | boolean                                                      | 否   | 是   | 菜单条目是否可进行交互。<br/>默认值：true，菜单条目可以进行交互。<br/>值为false时，菜单条目不可以进行交互。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action                   | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 否   | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md) | 否   | 是   | 设置菜单项图标。通过Modifier配置菜单项图标，若同时配置symbolIcon和icon的情况下，icon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-text-style.md#symbolglyphmodifier12) | 否   | 是   | 设置菜单项图标。通过Modifier配置菜单项图标，若同时配置symbolIcon和icon的情况下，icon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## MenuOptions<sup>10+</sup>
 

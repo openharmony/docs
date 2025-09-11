@@ -54,7 +54,7 @@ Flex布局容器。
 | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否 | 是     | 所有子组件在Flex容器主轴上的对齐格式。<br/>**默认值：** FlexAlign.Start <br />**非法值：** 按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                  |
 | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否 | 是     | 所有子组件在Flex容器交叉轴上的对齐格式。 <br/>**默认值：** ItemAlign.Start <br />**非法值：** 按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否 | 是     | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。<br/>**默认值：** FlexAlign.Start <br />**非法值：** 按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | 否 | 是   | 所有子组件在Flex容器主轴或交叉轴的间距。<br/>**默认值：** {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} <br />**非法值：** 按默认值处理。 <br/>space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | 否 | 是   | 所有子组件在Flex容器主轴或交叉轴的间距。<br/>**默认值：** {main : LengthMetrics.px(0), cross : LengthMetrics.px(0)} <br />**非法值：** 按默认值处理。 <br/>space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## FlexSpaceOptions<sup>12+</sup>
 
@@ -66,8 +66,12 @@ Flex布局容器。
 
 | 名称          | 类型        |  只读     | 可选      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
+| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | Flex容器主轴上的space。<br/> 默认值：LengthMetrics.px(0) |
+| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Flex容器交叉轴上的space。<br/> 默认值：LengthMetrics.px(0) |
+
+## 属性
+
+支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 

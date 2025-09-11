@@ -25,6 +25,8 @@ import { i18n } from '@kit.LocalizationKit';
 
 ## System<sup>9+</sup>
 
+提供系统属性获取或设置的能力。
+
 ### setSystemLanguage<sup>9+</sup>
 
 static setSystemLanguage(language: string): void
@@ -951,6 +953,8 @@ try {
 
 ## SystemLocaleManager<sup>10+</sup>
 
+提供语言、地区和时区信息排序的能力。
+
 ### constructor<sup>10+</sup>
 
 constructor()
@@ -1099,7 +1103,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
   try {
     let timeZoneCityItemArray: Array<i18n.TimeZoneCityItem> = i18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
-        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
+        console.info(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
             ", " + timeZoneCityItemArray[i].offset + "\r\n");
     }
   } catch(error) {
