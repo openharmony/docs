@@ -1314,8 +1314,8 @@ request方法回调函数的返回值类型。
 | -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
 | name        | string | 否 | 否 | 数据名称。                                                                      |
 | contentType | string | 否 | 否 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等。 |
-| remoteFileName | string | 否 | 是 | 上传到服务器保存为文件的名称。                                                 |
-| data | string \| Object \| ArrayBuffer | 否 | 是 | 表单数据内容。<br>**说明**：指定该字段后，请求头中会添加filename字段，表示上传到服务器文件的名称。<br>（1）当上传数据为文件时，若通过data字段指定文件内容，通常需要设置remoteFileName字段，用以指定上传到服务器文件的名称（实际结果与服务器具体行为有关）；若通过filePath字段指定文件路径，请求头中会自动添加filename字段，其默认值为filePath中的文件名称，如需特殊指定，也可通过本字段对filename重新设置。<br>（2）当上传数据为二进制格式时，则必须设置remoteFileName字段。                                                 |
+| remoteFileName | string | 否 | 是 | 上传到服务器保存为文件的名称。<br>**说明**：指定该字段后，请求头中会添加filename字段，表示上传到服务器文件的名称。<br>（1）当上传数据为文件时，若通过data字段指定文件内容，通常需要设置remoteFileName字段，用以指定上传到服务器文件的名称（实际结果与服务器具体行为有关）；若通过filePath字段指定文件路径，请求头中会自动添加filename字段，其默认值为filePath中的文件名称，如需特殊指定，也可通过本字段对filename重新设置。<br>（2）当上传数据为二进制格式时，则必须设置remoteFileName字段。                                                 |
+| data | string \| Object \| ArrayBuffer | 否 | 是 | 表单数据内容。                                               |
 | filePath | string | 否 | 是 | 此参数根据文件的内容设置mime部件的正文内容。用于代替data将文件数据设置为数据内容，如果data为空，则必须设置filePath。如果data有值，则filePath不会生效。|
 
 ## http.createHttpResponseCache<sup>9+</sup>
