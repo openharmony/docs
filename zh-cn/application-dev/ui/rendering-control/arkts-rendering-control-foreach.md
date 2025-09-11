@@ -167,7 +167,7 @@ struct ChildItem {
 **图4**  ForEach非首次渲染案例运行效果图  
 ![ForEach-Non-Initial-Render-Case-Effect](figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
-从本例可以看出[\@State](./arkts-state.md)能够监听到简单数据类型数组`simpleList`数组项的变化。
+从本例可以看出[\@State](../state-management/arkts-state.md)能够监听到简单数据类型数组`simpleList`数组项的变化。
 
 1. 当`simpleList`数组项发生变化时，会触发`ForEach`重新渲染。
 2. `ForEach`遍历新的数据源`['one', 'two', 'new three']`，并生成对应的键值`one`、`two`和`new three`。
@@ -347,14 +347,14 @@ struct ArticleCard {
 **图6**  数据源数组项变化案例运行效果图  
 ![ForEach-DataSourceArrayChange](figures/ForEach-DataSourceArrayChange.png)
 
-在本示例中，`ArticleCard`组件作为`ArticleListView`组件的子组件，通过[\@Prop](./arkts-prop.md)装饰器接收一个`Article`对象，用于渲染文章卡片。
+在本示例中，`ArticleCard`组件作为`ArticleListView`组件的子组件，通过[\@Prop](../state-management/arkts-prop.md)装饰器接收一个`Article`对象，用于渲染文章卡片。
 
 1. 当列表滚动到底部且手势滑动距离超过80vp时，触发`loadMoreArticles()`函数。此函数在`articleList`数据源尾部添加新数据项，增加数据源长度。
 2. 数据源被`@State`装饰器修饰，ArkUI框架能够感知数据源长度的变化并触发`ForEach`进行重新渲染。
 
 ### 数据源数组项子属性变化
 
-当数据源的数组项为对象数据类型，并且只修改某个数组项的属性值时，由于数据源为复杂数据类型，ArkUI框架无法监听到`@State`装饰器修饰的数据源数组项的属性变化，从而无法触发`ForEach`的重新渲染。为实现`ForEach`重新渲染，需要结合[\@Observed和\@ObjectLink](./arkts-observed-and-objectlink.md)装饰器使用。例如，在文章列表卡片上点击“点赞”按钮，从而修改文章的点赞数量。
+当数据源的数组项为对象数据类型，并且只修改某个数组项的属性值时，由于数据源为复杂数据类型，ArkUI框架无法监听到`@State`装饰器修饰的数据源数组项的属性变化，从而无法触发`ForEach`的重新渲染。为实现`ForEach`重新渲染，需要结合[\@Observed和\@ObjectLink](../state-management/arkts-observed-and-objectlink.md)装饰器使用。例如，在文章列表卡片上点击“点赞”按钮，从而修改文章的点赞数量。
 
 ```ts
 @Observed
@@ -530,10 +530,11 @@ struct ForEachSort {
 - 不建议在键值中包含数据项索引`index`，可能会导致[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。如果确实需要使用`index`，例如列表通过`index`进行条件渲染，开发者需接受`ForEach`在数据源变更后重新创建组件导致的性能损耗。
 - 基本类型数组的数据项没有唯一`ID`属性。如果使用数据项作为键值，必须确保数据项无重复。对于数据源会变化的场景，建议将基本类型数组转换为具有唯一`ID`属性的Object类型数组，再使用唯一`ID`属性作为键值。
 - 对于以上限制规则，`index`参数存在的意义为：index是开发者保证键值唯一性的最终手段；对数据项进行修改时，由于`itemGenerator`中的`item`参数是不可修改的，所以须用index索引值对数据源进行修改，进而触发UI重新渲染。
-- ForEach在下列容器组件 [List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) 内使用的时候，不要与[LazyForEach](./arkts-rendering-control-lazyforeach.md) 混用。 以List为例，同时包含ForEach、LazyForEach的情形是不推荐的。
+- ForEach在滚动容器组件 [List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) 内使用的时候，不建议与[LazyForEach](./arkts-rendering-control-lazyforeach.md) 同时使用。
 - 在大量子组件的的场景下，ForEach可能会导致卡顿。请考虑使用[LazyForEach](./arkts-rendering-control-lazyforeach.md)替代。最佳实践请参考[使用懒加载优化性能](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization)。
 - 当数组项为对象类型时，不建议用内容相同的数组项替换旧项。若数组项发生变更但键值未变，会导致[数据变化不渲染](#数据变化不渲染)。
-## 不推荐案例
+
+## 错误使用案例
 
 对ForEach键值的错误使用会导致功能和性能问题，导致渲染效果非预期。详见案例[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。
 

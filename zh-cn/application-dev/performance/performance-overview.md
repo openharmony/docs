@@ -40,7 +40,7 @@
 应用启动和响应速度是用户体验的重要组成部分。为了[提升应用启动](improve-application-cold-start-speed.md)和[响应速度](improve-application-response.md)，可以采取以下措施：
 
 - **延迟加载：**
-  将不必要的资源延迟加载可以减少应用启动时间。使用[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)等容器组件时，配合系统提供的[LazyForEach数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)能力，可以有效减少应用启动时间和内存占用。
+  将不必要的资源延迟加载可以减少应用启动时间。使用[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)等容器组件时，配合系统提供的[LazyForEach数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)能力，可以有效减少应用启动时间和内存占用。
   
 - **使用缓存：**
   选择合适的[缓存策略](list-perf-improvment.md#缓存列表项)可以提高应用程序的性能和响应速度，从而提升应用响应速度。

@@ -17,7 +17,7 @@
 
 ## 子组件
 
-仅支持子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)和[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)，不建议自定义组件作为子组件。并且if/else和ForEach下也仅支持TabContent作为子组件，不建议自定义组件作为子组件。
+仅支持子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)和[ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)，不建议自定义组件作为子组件。并且if/else和ForEach下也仅支持TabContent作为子组件，不建议自定义组件作为子组件。
 
 >  **说明：**
 >
