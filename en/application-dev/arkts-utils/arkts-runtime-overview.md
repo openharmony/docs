@@ -1,6 +1,12 @@
 # Overview of ArkTS Runtime
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @guobingbing3-->
+<!--Designer: @xwcai98-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-ArkTS Runtime is the default language runtime for applications on OpenHarmony. It executes bytecode and standard libraries for ArkTS, TS, and JS languages, and supports the interpreter, Ahead-of-Time (AOT), and Just-In-Time (JIT) for efficient execution. It also provides [Node-API](../napi/napi-introduction.md) to enable multi-language hybrid development. 
+ArkTS Runtime is the default language runtime for applications on OpenHarmony. It supports the bytecode of ArkTS, TS, and JS languages and related standard libraries. It provides the interpreter, Ahead-of-Time (AOT), and Just-In-Time (JIT) for efficient execution, and implements comprehensive cross-language APIs via [Node-API](../napi/napi-introduction.md), supporting multi-language hybrid development.
 
 ArkTS Runtime is primarily composed of four subsystems:
 

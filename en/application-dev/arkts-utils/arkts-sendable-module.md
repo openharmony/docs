@@ -1,4 +1,10 @@
 # Shared Module
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 A shared module, marked with **use shared**, is loaded only once in a process.
 
@@ -16,22 +22,26 @@ A non-shared module is loaded once in the same thread and multiple times in diff
 
 - **side-effects-import** is not allowed in shared modules.
 
-  A shared module is loaded only once within a single process and can be used across multiple threads.
-
-  When a shared module is loaded, non-shared modules that it imports are not loaded immediately. Instead, these non-shared modules are lazy-imported within the current thread when their exported variables are accessed. This lazy loading ensures that non-shared modules remain isolated between threads, with each thread potentially loading the module once if needed.
-
-  side-effects-import, which does not involve exported variables, is never loaded and therefore is not supported.
+  A shared module is loaded only once within a single process and can be used across multiple threads.<br>
+  When a shared module is loaded, non-shared modules that it imports are not loaded immediately. Instead, these non-shared modules are lazy-imported within the current thread when their exported variables are accessed. Non-shared modules are isolated across threads, and are lazy-loaded when accessed by different threads.<br>
+  Because **side-effects-import** does not involve exported variables, it is not loaded and is not supported.
+  ```ts
+  // test.ets
+  console.info("This runs immediately when imported");
+  ```
 
   ```ts
-  // side-effects-import is not allowed.
-  import "./sharedModule";
+  // sharedModule.ets
+  // side-effects-import is not allowed. Compilation error.
+  import "./test";
+  "use shared"
   ```
 
 - All variables exported by shared modules must be Sendable objects.
 
   Since shared modules are shared across concurrent instances, all exported objects must be Sendable. For details, see [Sendable Data Types](arkts-sendable.md#sendable-data-types).
 
-- Modules cannot be directly exported from a shared module.
+- Shared modules do not support the **re-export** syntax.
 
   ```ts
   // test.ets
@@ -43,8 +53,8 @@ A non-shared module is loaded once in the same thread and multiple times in diff
   // share.ets
   // Shared module
   'use shared'
-  export * from './test'; // A compile-time error is reported. The module cannot be directly exported.
-  export {num, str} from './test'; // Correct example. Export the object set.
+  export * from './test'; // Compilation error.
+  export {num, str} from './test'; // Runtime error.
   ```
 
 
@@ -55,13 +65,13 @@ A non-shared module is loaded once in the same thread and multiple times in diff
   // test.ets
   import { num } from './A'; // Static loading is supported.
 
-  import worker from '@ohos.worker';
+  import { worker } from '@kit.ArkTS';
   let wk = new worker.ThreadWorker("./A"); // Other methods of loading shared modules are not supported and will result in runtime errors.
-  
+  ```
+  ```ts
   // A.ets
   'use shared'
-  
-  export {num, str} from './test';
+  export let num: number = 10;
   ```
 
 ## Usage Example
@@ -96,7 +106,7 @@ A non-shared module is loaded once in the same thread and multiple times in diff
    
    export let singletonA = new SingletonA();
    ```
-   <!-- @[export_sendable_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/sharedModule.ets) -->
+   <!-- @[export_sendable_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/sharedModule.ets) -->
 
 2. Operate an object exported from the shared module across multiple threads.
 
@@ -146,4 +156,4 @@ A non-shared module is loaded once in the same thread and multiple times in diff
      }
    }
    ```
-   <!-- @[ multi_thread_operate_exported_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsSendableModule.ets) -->
+   <!-- @[ multi_thread_operate_exported_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsSendableModule.ets) -->

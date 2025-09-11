@@ -1,35 +1,42 @@
 # Dynamic Import
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
+<!--Designer: @ctw-ian-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
+
 Dynamic imports support conditional loading and partial reflection, enhancing page load speed. It allows loading HSP modules, HAR modules, ohpm packages, and native libraries. It also enables module decoupling when only variables are dynamically imported between HAR modules.
 
 ## When to Use
-Dynamic imports can be used in application development when you need to import modules conditionally or on-demand, as an alternative to [static import](../quick-start/introduction-to-arkts.md#static-import). The following are some cases where you might want to use dynamic import:
+Dynamic imports can be used in application development when you need to import modules conditionally or on-demand, as an alternative to [static import](../quick-start/introduction-to-arkts.md#import). The following are some cases where you might want to use dynamic import:
 
 * Statically imported modules significantly slow the loading of your code and are rarely used or not immediately needed.
 * Statically imported modules consume a large amount of system memory and are rarely used.
 * The imported module does not exist at load time and needs to be fetched asynchronously.
-* The import specifier string needs to be constructed dynamically. Static imports only support static specifiers.
-* The imported module has side effects (which can be understood as code that runs directly in the module) that are only needed when certain conditions are triggered.
+* The import specifier string needs to be constructed dynamically. Static imports support only static specifiers.
+* The imported module has side effects (the module contains code that is directly executed) that are required only when specific conditions are met.
 
 ## Service Expansion Scenarios
 As aforementioned, in addition to conditional loading, dynamic imports can implement partial reflection. In the following example, an HAP dynamically imports a HAR package (**harlibrary**) and calls the static member function **staticAdd()**, instance member function **instanceAdd()**, and global function **addHarLibrary()** of the **Calc** class.
 ```typescript
 // harlibrary's src/main/ets/utils/Calc.ets
 export class Calc {
-  public static staticAdd(a:number, b:number):number {
+  public static staticAdd(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am harlibrary in staticAdd, %d + %d = %d', a, b, c);
     return c;
   }
 
-  public instanceAdd(a:number, b:number):number {
+  public instanceAdd(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am harlibrary in instanceAdd, %d + %d = %d', a, b, c);
     return c;
   }
 }
 
-export function addHarLibrary(a:number, b:number):number {
+export function addHarLibrary(a: number, b: number): number {
   let c = a + b;
   console.info('DynamicImport I am harlibrary in addHarLibrary, %d + %d = %d', a, b, c);
   return c;
@@ -69,7 +76,7 @@ import('harlibrary').then((ns:ESObject) => {
 ```
 
 ## Implementation of Dynamic Import
-A dynamic import expression accepts a constant or variable as its argument. 
+A dynamic import expression accepts a constant or variable as its argument.
 The following table lists the specifications of dynamic import.
 
 | Scenario| Module Specifier            | Description                                                    |
@@ -88,8 +95,8 @@ The following table lists the specifications of dynamic import.
 
 >**NOTE**
 > 
-> 1. Module names used in all imports are the aliases defined under **dependencies** in the **oh-package.json5** file.
-> 2. It is recommended that the alias configured under **dependencies** be the same as the values of **moduleName** and **packageName**, both of which indicate the name of the module to import. **moduleName** is set in the **module.json5** file of the module, and **packageName** is set in the **oh-package.json5** file.
+> 1. Module names used in all imports are the aliases defined under **dependencies** in the **oh-package.json5** file.<br>
+> 2. It is recommended that the alias configured under **dependencies** be the same as the values of **moduleName** and **packageName**, both of which indicate the name of the module to import. **moduleName** is set in the **module.json5** file of the module, and **packageName** is set in the **oh-package.json5** file.<br>
 > 3. Importing a module by name is importing the module's entry file, generally **Index.ets/ts**.
 
 ## Key Points in Dynamic Import Implementation
@@ -98,13 +105,13 @@ The following table lists the specifications of dynamic import.
 
 Dynamic imports with constant expressions refer to scenarios where the input to **import** is a constant. The following examples show how to use this type of dynamic import to import APIs of other modules into a HAP module.
 
-Note: In the examples, the paths, such as the path to **Index.ets**, are set based on the current DevEco Studio module configuration and are subject to change.
+In the examples, the paths, such as the path to **Index.ets**, are set based on the current DevEco Studio module configuration and are subject to change.
 
 - **HAP dynamically imports a HAR module using a constant module name**
 
   ```typescript
   // HAR's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
@@ -114,13 +121,13 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myhar').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
 
   // You can use await to process dynamic import. (It must be used in an async function.)
   async function asyncDynamicImport() {
     let ns:ESObject = await import('myhar');
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   }
   ```
 
@@ -135,7 +142,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HAR's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
@@ -145,7 +152,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myhar/Index').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
@@ -160,7 +167,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HSP's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
@@ -169,15 +176,15 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHsp').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+  import('myhsp').then((ns:ESObject) => {
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
 
@@ -185,7 +192,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HSP's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
@@ -194,15 +201,15 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHsp/Index').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+  import('myhsp/Index').then((ns:ESObject) => {
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
 
@@ -242,7 +249,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // HAP's src/main/ets/Calc.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
     return c;
@@ -252,7 +259,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('../Calc').then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
 
@@ -260,7 +267,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
   ```typescript
   // libnativeapi.so's index.d.ts
-  export const add: (a:number, b:number) => number;
+  export const add: (a: number, b: number) => number;
   ```
 
   ```typescript
@@ -290,7 +297,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
 
 ### Dynamic Imports with Variable Expressions
 
-In DevEco Studio, module dependencies are configured through **dependencies** in the **oh-package.json5** file. By default, all modules listed under **dependencies** are installed (for local modules) or downloaded (for remote modules), but are not built. During a HAP/HSP build, the dependency relationship is searched from the entry file (generally **Index.ets/ts**), and only the dependencies found are added to the build.
+In DevEco Studio, module dependencies are configured through the **dependencies** field in the **oh-package.json5** file. By default, all modules listed under **dependencies** are installed (for local modules) or downloaded (for remote modules), but are not built. During HAP/HSP compilation, the dependency relationship is searched from the entry file (generally **Index.ets/Index.ts**), and only the dependencies found are added to the compilation.
 During compilation, static imports and dynamic imports with constant expressions can be identified and parsed by the packaging tool rollup and its plug-ins. This means that the related dependencies can be added to the dependency tree, participate in the build process, and finally generate Ark bytecode. However, dynamic imports with variable expressions cannot be resolved at compile-time because their values may depend on runtime calculations or external inputs. To add these dependencies to the build process, add **runtimeOnly** under **buildOption** and set it to the actual module name or file path pertaining to the variable.
 
 **Schema configuration format of the runtimeOnly field**
@@ -302,13 +309,13 @@ If you are using dynamic imports with variable expressions to import modules or 
 let harName = 'myhar';
 import(harName).then((obj: ESObject) => {
     console.info('DynamicImport I am a har');
-}
+})
 
 // Dynamically import a file of the module itself based on the file path src/main/ets/index.ets.
-let filePath = './Calc';
+let filePath = './utils/Calc';
 import(filePath).then((obj: ESObject) => {
     console.info('DynamicImport I am a file');
-}
+})
 ```
 
 The corresponding **runtimeOnly** configuration is as follows:
@@ -317,8 +324,8 @@ The corresponding **runtimeOnly** configuration is as follows:
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [ "myhar" ]  // Set the name of the module to dynamically import. It must be the same as the one specified under dependencies.
-      "sources": ["./src/main/ets/utils/Calc.ets"] // Set the path of the file to dynamically import. The path is relative to the build-profile.json5 file of the module.
+      "packages": [ "myhar" ],  // Set the name of the module to dynamically import. It must be the same as the one specified under dependencies.
+      "sources": [ "./src/main/ets/utils/Calc.ets" ]  // Set the path of the file to dynamically import. The path is relative to the build-profile.json5 file of the module.
     }
   }
 }
@@ -333,7 +340,7 @@ The corresponding **runtimeOnly** configuration is as follows:
 
   ```typescript
   // HAR's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
@@ -343,7 +350,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   // HAP's src/main/ets/pages/Index.ets
   let packageName = 'myhar';
   import(packageName).then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
   ```json5
@@ -369,7 +376,7 @@ The corresponding **runtimeOnly** configuration is as follows:
 
   ```typescript
   // HSP's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
@@ -377,15 +384,15 @@ The corresponding **runtimeOnly** configuration is as follows:
   ```
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  let packageName = 'myHsp';
+  let packageName = 'myhsp';
   import(packageName).then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
   ```json5
@@ -394,7 +401,7 @@ The corresponding **runtimeOnly** configuration is as follows:
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
-          "myHsp"  // Applicable only when a variable is used to dynamically import a module.
+          "myhsp"  // Applicable only when a variable is used to dynamically import a module.
         ]
       }
     }
@@ -461,7 +468,7 @@ The corresponding **runtimeOnly** configuration is as follows:
 
   ```typescript
   // HAP's src/main/ets/Calc.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
     return c;
@@ -471,7 +478,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   // HAP's src/main/ets/pages/Index.ets
   let filePath = '../Calc';
   import(filePath).then((ns:ESObject) => {
-    console.info(ns.add(3, 5));
+    console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
   ```json5
@@ -491,7 +498,7 @@ The corresponding **runtimeOnly** configuration is as follows:
 
   ```typescript
   // libnativeapi.so's index.d.ts
-  export const add: (a:number, b:number) => number;
+  export const add: (a: number, b: number) => number;
   ```
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -547,146 +554,229 @@ The figure shows the dependency graph after dependency conversion.
 
 
 **Constraints**
-- This workaround is only applicable when circular dependencies occur between local HAR packages.
+- This workaround applies only to the scenario where circular dependencies exist between local HAR packages.
 - The transferred dependencies between HAR packages can only be through dynamic imports with variable expressions, not static imports or dynamic imports with constant expressions.
 - When transferring dependencies, both **dependencies** and **runtimeOnly** configurations must be transferred simultaneously.
 - HSP does not support transferring dependencies. For example, in the chain HAP -> HSP1 -> HSP2 -> HSP3, dependency between HSP2 and HSP3 cannot be transferred to HAP.
-- The entire chain of transferred dependencies must consist only of HAR packages. Dependencies cannot be transferred across HSP packages. For example, in the chain HAP-> HAR1 -> HAR2 -> HSP -> HAR3 -> HAR4, the dependency of HAR1 on HAR2 can be transferred to HAP, and the dependency of HAR3 on HAR4 can be transferred to HSP. However, HAR3 or HAR4 cannot be transferred to HAP.
+- The entire chain of transferred dependencies must consist only of HAR packages. Dependencies cannot be transferred across HSP packages. For example, in the chain HAP -> HAR1 -> HAR2 -> HSP -> HAR3 -> HAR4, the dependency of HAR1 on HAR2 can be transferred to HAP, and the dependency of HAR3 on HAR4 can be transferred to HSP. However, HAR3 or HAR4 cannot be transferred to HAP.
 - If there are references to other project modules, remote packages, or integrated HSP packages, you must ensure that the **useNormalizedOHMUrl** configuration is consistent and set to either **true** or **false**. Failure to do so may result in runtime errors such as **Cannot find dynamic-import module library**.
 
 
 **Usage Examples**
 
-In the following example, HAP dynamically imports HAR package har1, and har1 dynamically imports another HAR package har2 using variables.
+The following example adds dependencies HAR2 -> HAR1 and HAR3 -> HAR1 to the unidirectional dependency HAP -> HAR1 -> HAR2 -> HAR3, forming a circular dependency.
+
+![Circular dependency between HAR packages](figures/dynamicimport1.png)
+
+```typescript
+// HAP's src/main/ets/pages/Index.ets
+let harName = 'har1'
+import(harName).then((ns: ESObject) => {
+  console.info('[DynamicImport] hap -> har1, 0 + 1 = ' + ns.classHar1.add(0, 1));
+})
+
+// HAR1's src/main/ets/utils/Calc.ets
+export class classHar1 {
+  static isImportedHar2: boolean = false;
+
+  static add(a: number, b: number): number {
+    const c = a + b;
+    console.info('[DynamicImport] classHar1.add(), %d + %d = %d', a, b, c);
+
+    if (!classHar1.isImportedHar2) {
+      const harName = 'har2';
+      import(harName).then((ns: ESObject) => {
+        classHar1.isImportedHar2 = true;
+        console.info('[DynamicImport] har1 -> har2, 1 + 2 = ' + ns.classHar2.add(1, 2));
+      })
+    }
+
+    return c;
+  }
+}
+// HAR1's Index.ets
+export { classHar1 } from './src/main/ets/utils/Calc';
+
+// HAR2's src/main/ets/utils/Calc.ets
+export class classHar2 {
+  static isImportedHar1: boolean = false;
+  static isImportedHar3: boolean = false;
+
+  static add(a: number, b: number): number {
+    const c = a + b;
+    console.info('[DynamicImport] classHar2.add(), %d + %d = %d', a, b, c);
+
+    if (!classHar2.isImportedHar1) {
+      const harName = 'har1';
+      import(harName).then((ns: ESObject) => {
+        classHar2.isImportedHar1 = true;
+        console.info('[DynamicImport] har2 -> har1, 2 + 1 = ' + ns.classHar1.add(2, 1));
+      })
+    }
+
+    if (!classHar2.isImportedHar3) {
+      const harName = 'har3';
+      import(harName).then((ns: ESObject) => {
+        classHar2.isImportedHar3 = true;
+        console.info('[DynamicImport] har2 -> har3, 2 + 3 = ' + ns.classHar3.add(2, 3));
+      })
+    }
+
+    return c;
+  }
+}
+// HAR2's Index.ets
+export { classHar2 } from './src/main/ets/utils/Calc';
+
+// HAR3's src/main/ets/utils/Calc.ets
+export class classHar3 {
+  static isImportedHar1: boolean = false;
+
+  static add(a: number, b: number): number {
+    const c = a + b;
+    console.info('[DynamicImport] classHar3.add(), %d + %d = %d', a, b, c);
+
+    if (!classHar3.isImportedHar1) {
+      const harName = 'har1';
+      import(harName).then((ns: ESObject) => {
+        classHar3.isImportedHar1 = true;
+        console.info('[DynamicImport] har3 -> har1, 3 + 1 = ' + ns.classHar1.add(3, 1));
+      })
+    }
+
+    return c;
+  }
+}
+// HAR3's Index.ets
+export { classHar3 } from './src/main/ets/utils/Calc';
+```
+
+If **dependencies** and **runtimeOnly** configurations between HAR packages are not decoupled, ohpm cannot resolve cyclic dependencies, and the dependency installation fails.
 
 ```json5
 // HAP's oh-package.json5
 "dependencies": {
   "har1": "file:../har1"
 }
-```
-```json5
 // HAP's build-profile.json5
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [
-        "har1"  // Applicable only when a variable is used to dynamically import a module.
+      "packages": [ // Applicable only to dynamic variable loading. Static loading or constant dynamic loading does not need to be configured.
+        "har1"
       ]
     }
   }
 }
-```
-```typescript
-// HAP's src/main/ets/pages/Index.ets
-let harName = 'har1';
-import(harName).then((ns:ESObject) => {
-  console.info('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
-});
-```
-```json5
-// har1's oh-package.json5
+
+// HAR1's oh-package.json5
 "dependencies": {
   "har2": "file:../har2"
 }
-```
-```json5
-// har1's build-profile.json5
+// HAR1's build-profile.json5
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [
-        "har2"  // Applicable only when a variable is used to dynamically import a module.
-      ]
-    }
-  }
-}
-```
-```typescript
-// har1's Index.ets
-export { addHar1 } from './src/main/ets/utils/Calc'
-```
-```typescript
-// har1's src/main/ets/utils/Calc.ets
-export function addHar1(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har1, %d + %d = %d', a, b, c);
-
-  let harName = 'har2';
-  import(harName).then((ns:ESObject) => {
-    console.info('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
-  });
-  return c;
-}
-```
-```typescript
-// har2's Index.ets
-export { addHar2 } from './src/main/ets/utils/Calc'
-```
-```typescript
-// har2's src/main/ets/utils/Calc.ets
-export function addHar2(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har2, %d + %d = %d', a, b, c);
-  return c;
-}
-```
-
-The **dependencies** and **runtimeOnly** configurations of har1 on har2 are transferred to the HAP. In this way, the **dependencies** and **runtimeOnly** configuration of har2 do not need to be configured for har1.
-
-```json5
-// HAP's oh-package.json5
-"dependencies": {
-  "har1": "file:../har1",
-  "har2": "file:../har2"
-}
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "packages": [
-        "har1",
+      "packages": [ // Applicable only to dynamic variable loading. Static loading or constant dynamic loading does not need to be configured.
         "har2"
       ]
     }
   }
 }
-```
-```typescript
-// HAP's src/main/ets/pages/Index.ets
-let harName = 'har1';
-import(harName).then((ns:ESObject) => {
-  console.info('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
-});
-```
-```typescript
-// har1's Index.ets
-export { addHar1 } from './src/main/ets/utils/Calc'
-```
-```typescript
-// har1's src/main/ets/utils/Calc.ets
-export function addHar1(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har1, %d + %d = %d', a, b, c);
 
-  let harName = 'har2';
-  import(harName).then((ns:ESObject) => {
-    console.info('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
-  });
-  return c;
+// HAR2's oh-package.json5
+"dependencies": {
+  "har1": "file:../har1",
+  "har3": "file:../har3"
+}
+// HAR2's build-profile.json5
+"buildOption": {
+  "arkOptions": {
+    "runtimeOnly": {
+      "packages": [ // Applicable only to dynamic variable loading. Static loading or constant dynamic loading does not need to be configured.
+        "har1",
+        "har3"
+      ]
+    }
+  }
+}
+
+// HAR3's oh-package.json5
+"dependencies": {
+  "har1": "file:../har1",
+}
+// HAR3's build-profile.json5
+"buildOption": {
+  "arkOptions": {
+    "runtimeOnly": {
+      "packages": [ // Applicable only to dynamic variable loading. Static loading or constant dynamic loading does not need to be configured.
+        "har1"
+      ]
+    }
+  }
 }
 ```
-```typescript
-// har2's Index.ets
-export { addHar2 } from './src/main/ets/utils/Calc'
+
+**The error message is as follows:**
+
+```text
+ohpm ERROR: Run install command failed 
+Error: 00618005 Invalid Dependency
+Error Message: Invalid dependency har2@~\Coupled\har2 -> har2@1.0.0.
+
+Try the following:
+The name of an indirect dependency cannot be the same as the module name.
 ```
-```typescript
-// har2's src/main/ets/utils/Calc.ets
-export function addHar2(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har2, %d + %d = %d', a, b, c);
-  return c;
+
+You can transfer the **dependencies** and **runtimeOnly** configurations between HARs to the HAP, which decouples the cyclic dependencies between packages and allows the program to run correctly.
+
+```json5
+// HAP's oh-package.json5
+"dependencies": {
+  "har1": "file:../har1",
+  "har2": "file:../har2",
+  "har3": "file:../har3"
 }
+// HAP's build-profiles.json5
+"buildOption": {
+  "arkOptions": {
+    "runtimeOnly": {
+      "packages" : [ // Applicable only to dynamic variable loading. Static loading or constant dynamic loading does not need to be configured.
+        "har1",
+        "har2",
+        "har3"
+      ]
+    }
+  }
+}
+
+// HAR1's oh-package.json5
+"dependencies": {}
+// HAR1's build-profile.json5
+"buildOption": {}
+
+// HAR2's oh-package.json5
+"dependencies": {}
+// HAR2's build-profile.json5
+"buildOption": {}
+
+// HAR3's oh-package.json5
+"dependencies": {}
+// HAR3's build-profile.json5
+"buildOption": {}
+```
+
+**The corresponding run log is as follows:**
+
+```text
+[DynamicImport] classHar1.add(), 0 + 1 = 1
+[DynamicImport] hap -> har1, 0 + 1 = 1
+[DynamicImport] classHar2.add(), 1 + 2 = 3
+[DynamicImport] har1 -> har2, 1 + 2 = 3
+[DynamicImport] classHar1.add(), 2 + 1 = 3
+[DynamicImport] har2 -> har1, 2 + 1 = 3
+[DynamicImport] classHar3.add(), 2 + 3 = 5
+[DynamicImport] har2 -> har3, 2 + 3 = 5
+[DynamicImport] classHar1.add(), 3 + 1 = 4
+[DynamicImport] har3 -> har1, 3 + 1 = 4
 ```
