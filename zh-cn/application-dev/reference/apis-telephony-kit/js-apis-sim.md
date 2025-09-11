@@ -1483,7 +1483,7 @@ promise.then((data: number) => {
 
 getSimLabel(slotId: number, callback: AsyncCallback\<SimLabel\>): void
 
-查看slot和卡的对应关系，slot0对应卡1或者卡2，slot1对应卡2或者esimX
+查看卡槽ID和SIM卡的对应关系。卡槽1对应SIM卡1或者SIM卡2，卡槽2对应SIM卡2或者ESIMX。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1492,7 +1492,7 @@ getSimLabel(slotId: number, callback: AsyncCallback\<SimLabel\>): void
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| callback | AsyncCallback\<SimLabel\> | 是   | 回调函数。 返回检查应用(调用者)是否已被授予运营商权限。<br/>true表示授权，<br/>false表示未授权。 |
+| callback | AsyncCallback\<[SimLabel](#simlabel20)\> | 是   | 回调函数。 获取SIM卡标签信息。 |
 
 **错误码：**
 
@@ -1515,7 +1515,7 @@ import { sim } from '@kit.TelephonyKit';
 async function exampleGetSimLabel(slotId) {
     try {
         const simLabel = await getSimLabel(slotId);
-        console.log(`SIM卡标签: ${simLabel}`);
+        console.info(`SIM卡标签: ${simLabel}`);
     } catch (err) {
         console.error(`获取SIM卡标签失败: ${err.code} - ${err.message}`);
     }
@@ -1526,7 +1526,7 @@ async function exampleGetSimLabel(slotId) {
 
 getSimLabel(slotId: number): Promise\<SimLabel\>
 
-获取SIM卡的标签信息。通过Promise返回SIM卡的标签信息。
+获取SIM卡的标签信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1541,7 +1541,7 @@ getSimLabel(slotId: number): Promise\<SimLabel\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Array\<IccAccountInfo\> | 以Promise形式返回指定卡槽是否激活。<br/>true表示激活。<br/>false表示未激活。 |
+| Promise\<[SimLabel](#simlabel20) \>| 回调函数。获取SIM卡标签信息。 |
 
 **错误码：**
 
@@ -1577,7 +1577,7 @@ async getSimLabel(slotId: number): Promise<sim.SimLabel|null> {
 
 getSimLabelSync(slotId: number): SimLabel
 
-通过提供SIM卡插槽的ID，获取对应的SIM卡标签。
+通过提供SIM卡槽的ID，获取对应的SIM卡标签。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1591,7 +1591,7 @@ getSimLabelSync(slotId: number): SimLabel
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| SimLabel | SIM卡标签。 |
+| [SimLabel](#simlabel20) | SIM卡标签。 |
 
 **示例：**
 
@@ -1603,7 +1603,7 @@ function exampleGetSimLabelSync() {
     try {
         const slotId = 0; 
         const simLabel = getSimLabelSync(slotId);
-        console.log(`SIM卡标签: ${simLabel}`);
+        console.info(`SIM卡标签: ${simLabel}`);
     } catch (err) {
         console.error(`获取SIM卡标签失败: ${err.message}`);
     }
@@ -1616,22 +1616,22 @@ function exampleGetSimLabelSync() {
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
-| 名称                | 值   |只读|可选|说明                                                       |
-| --------------------- | ---- |----| ---------------------------------------------------------- |
-| PSIM     | 0   |是 | 否|SIM卡。                      |
-| ESIM | 1   |是 | 否|ESIM卡。      |
+| 名称                | 值 |  说明                                                       |
+| --------------------- | ----| ---------------------------------------------------------- |
+| PSIM     | 0   |实体SIM卡。                      |
+| ESIM | 1   |电子SIM卡。      |
 
 
 ## SimLabel<sup>20+</sup>
 
-SIM卡类型。
+SIM卡标签。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
-| 名称                | 类型   |只读|可选|说明                                               |
-| --------------------- | ---- |----| ---------------------------------------------------------- |
-| PSIM     | 0   |是 | 否|SIM卡。                      |
-| ESIM | 1   |是 | 否|ESIM卡。      |
+| 名称         | 值 | 只读| 可选  | 说明                                                       |
+| ---------------------|----|---- | ----| --------------------------------------------------- |
+|  simType   |  [SimType](#simtype20)  | 否  | 否|表示SIM卡类型的枚举。                      |
+| index |  number   |  否  |否 | SIM卡的标签索引。      |
 
 ## SimState
 
