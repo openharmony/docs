@@ -1275,7 +1275,7 @@ class VehicleDB {
 
 @Entry
 @ComponentV2
-struct entryCompSucc {
+struct EntryCompSucc {
   @Local vehicleItems: VehicleData[] = new VehicleDB().vehicleItems;
   @Local listChildrenSize: ChildrenMainSize = new ChildrenMainSize(60);
   @Local totalCount: number = this.vehicleItems.length;
