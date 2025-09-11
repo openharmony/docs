@@ -1,4 +1,10 @@
 # @ohos.data.intelligence (ArkData Intelligence Platform)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @my-2024-->
+<!--Designer: @cuile44; @fysun17; @AnruiWang-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ArkData Intelligence Platform (AIP) provides application data vectorization, which leverages embedding models to convert multi-modal data such as unstructured text and images into semantic vectors.
 

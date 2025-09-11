@@ -1,4 +1,10 @@
 # RDB Error Codes
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >
@@ -105,7 +111,7 @@ Check whether the result set is empty or whether the specified row number is out
 
 **Error Message**
 
-Resultset is empty or column index is out of bounds.
+ResultSet is empty or column index is out of bounds.
 
 **Description**
 

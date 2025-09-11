@@ -1,4 +1,10 @@
 # Database Encryption (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997; @dboy190-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## When to Use
 
@@ -6,7 +12,7 @@ OpenHarmony provides the database encryption capability to effectively protect t
 
 The encrypted database can be accessed only using an API, and the database file cannot be opened in other ways. Whether a database is encrypted is set when the database is created, and the setting cannot be changed.
 
-Both KV stores and RDB stores support database encryption. For RDB stores, you can custom the encryption/decryption keys and other parameters.
+Both KV stores and RDB stores support database encryption. For RDB stores, you can customize the encryption/decryption keys and other parameters.
 
 
 ## Encrypting a KV Store
@@ -40,7 +46,6 @@ export default class EntryAbility extends UIAbility {
       console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
     }
     if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
       try {
         const options: distributedKVStore.Options = {
           createIfMissing: true,
@@ -58,16 +63,15 @@ export default class EntryAbility extends UIAbility {
           }
           console.info('Succeeded in getting KVStore.');
           kvStore = store;
+          if (kvStore !== undefined) {
+            // Perform subsequent operations.
+            //...
+          }
         });
       } catch (e) {
         let error = e as BusinessError;
         console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
-    }
-    if (kvStore !== undefined) {
-      kvStore = kvStore as distributedKVStore.SingleKVStore;
-      // Perform subsequent operations.
-      //...
     }
   }
 }
@@ -144,7 +148,7 @@ export default class EntryAbility extends UIAbility {
       cryptoParam: CRYPTO_PARAM
     }
     try {
-      let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
       if (store == null) {
         console.error('Failed to get RdbStore.');
       } else {

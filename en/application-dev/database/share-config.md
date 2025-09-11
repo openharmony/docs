@@ -1,4 +1,10 @@
 # Sharing Configurations Between Applications (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## When to Use
 
@@ -20,7 +26,7 @@ The working principles of configuration sharing between applications are as foll
 An application can publish a maximum of 32 configuration items, including static and dynamic ones.
 
 ## Available APIs
-The following table lists the APIs used to share configurations between applications.  
+The following table lists the APIs used to share configurations between applications. For details about the APIs, see [dataShare.createDataProxyHandle](../reference/apis-arkdata/js-apis-data-dataShare.md#datasharecreatedataproxyhandle20).
 
 ### Public APIs
 
@@ -46,37 +52,40 @@ The following table lists the APIs used to share configurations between applicat
 
 ## Configuring the Publisher
 ### Configuration in module.json5
-Store the the **shared_config.json** file in the **resources/base/profile** directory and reference it by using the **$** symbol in the **crossAppSharedConfig** field of the **module.json5** file. The **shared_config.json** file defines the configuration items that can be shared between applications. 
+Reference the **shared_config.json** file by configuring the **crossAppSharedConfig** field in the **module.json5** file. The **shared_config.json** file defines the configuration items that can be shared between applications. You should store the file in the **resources/base/profile** directory of the project and reference it using the **$** symbol. 
 
 
 ```json
-"module":{
-    "crossAppSharedConfig": "$profile:shared_config.json"
+{
+  "module":{
+    "crossAppSharedConfig": "$profile:shared_config"
   }
+}
 ```
 
 
-The **shared_config.json** file contains the following configuration items:
+The name of the **shared_config.json** file can be customized. The root node **crossAppSharedConfig** is an object array and indicates the number of shared configuration items. An application can publish a maximum of 32 configuration items, including static and dynamic ones. If the number of static configuration items exceeds 32, only the first 32 items that meet the following configuration requirements are parsed, and other configuration items do not take effect.
 
-- **uri**: fixed at the format of **"datashareproxy://{*bundleName*}/{*path*}"**, in which **bundleName** indicates the bundle name of the publisher application, and **path** can be set to any value but must be unique in the same application. The maximum length is 256 bytes.
+The following table describes the parameters in the **crossAppSharedConfig** field.
 
-- **value**: value of the configuration item, with a maximum length of 4096 bytes.
+| Name| Description| Type| Mandatory|
+| ------- | ------- | ------- | ------- |
+| uri | Unique ID of a shared configuration, fixed at the format of **"datashareproxy://{*bundleName*}/{*path*}"**, in which **bundleName** indicates the bundle name of the publisher application, and **path** can be set to any value but must be unique in the same application. The maximum length is 256 bytes.| String| Yes|
+| value | Value of a shared configuration item, with a maximum of 4096 bytes.| String| Yes|
+| allowList | List of applications that are allowed to access the shared configuration items. The array can contain a maximum of 256 elements. Excess elements are invalid. Each element in the array is the [appIdentifier](../quick-start/common_problem_of_application.md#what-is-appidentifier) of an application. **appIdentifier** is a string containing only digits with a maximum of 128 bytes. If the **appIdentifier** exceeds 128 bytes, it does not take effect. You can use the [getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to obtain the **appIdentifier** of an application. | String array| Yes|
 
-- **allowList**: [appIdentifiers](../reference/apis-ability-kit/js-apis-bundleManager.md#signatureinfo) list of applications that are allowed to access the configuration. A maximum of 256 **appIdentifiers** are supported. You can use the [getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to obtain the **appIdentifier** of an application.
-
--  An application can publish a maximum of 32 configuration items, including static and dynamic ones.
 ```json
 {
     "crossAppSharedConfig": [
         {
             "uri": "datashareproxy://com.example.example/key1",
-            "value": "xxx",
-            "allowList": ["xxx", "xxx"]
+            "value": "SHARED_CONFIG_DEMO1",
+            "allowList": ["6917573629901742292"]
         },
         {
             "uri": "datashareproxy://com.example.example/key2",
-            "value": "xxx",
-            "allowList": ["xxx", "xxx"]
+            "value": "SHARED_CONFIG_DEMO2",
+            "allowList": ["6917573298752100864", "6917573298752100864"]
         }
     ]
 }
