@@ -192,7 +192,7 @@ libnative_rdb_ndk.z.so
 3. Modify or delete data based on the conditions specified by **OH_Predicates**.<br>Call **OH_Rdb_Update** to modify data, and call **OH_Rdb_Delete** to delete data. <br>Example:
 
    ```c
-// Modify data.
+   // Modify data.
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    valueBucket->putText(valueBucket, "NAME", "Rose");
    valueBucket->putInt64(valueBucket, "AGE", 22);
@@ -210,9 +210,9 @@ libnative_rdb_ndk.z.so
    double salary = 100.5;
    valueObject->putDouble(valueObject, &salary, count);
    predicates->equalTo(predicates, "SALARY", valueObject);
-   
+
    int changeRows = OH_Rdb_Update(store_, valueBucket, predicates);
-int rowId = OH_Rdb_Insert(store_, "EMPLOYEE", valueBucket);
+   int rowId = OH_Rdb_Insert(store_, "EMPLOYEE", valueBucket);
    OH_Predicates *predicates2 = OH_Rdb_CreatePredicates("EMPLOYEE");
    OH_VObject *valueObject2 = OH_Rdb_CreateValueObject();
    valueObject2->putText(valueObject2, "Rose");
@@ -220,9 +220,9 @@ int rowId = OH_Rdb_Insert(store_, "EMPLOYEE", valueBucket);
    valueBucket->putInt64(valueBucket, "ID", 1);
    valueBucket->putText(valueBucket, "NAME", "zhangsan");
    int64_t changeRows2 = -1;
-   
+
    // Configure conflict resolutions when data is updated.
-int result = OH_Rdb_UpdateWithConflictResolution(store_, valueBucket, predicates2,
+   int result = OH_Rdb_UpdateWithConflictResolution(store_, valueBucket, predicates2,
                                                     Rdb_ConflictResolution::RDB_CONFLICT_REPLACE, &changeRows2);
    valueObject->destroy(valueObject);
    valueObject2->destroy(valueObject2);
@@ -230,9 +230,9 @@ int result = OH_Rdb_UpdateWithConflictResolution(store_, valueBucket, predicates
    predicates->destroy(predicates);
    predicates2->destroy(predicates2);
    ```
-   
+
    ```c
-// Delete data.
+   // Delete data.
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    OH_VObject *valueObject = OH_Rdb_CreateValueObject();
    const char *name = "Lisa";
@@ -242,11 +242,11 @@ int result = OH_Rdb_UpdateWithConflictResolution(store_, valueBucket, predicates
    valueObject->destroy(valueObject);
    predicates->destroy(predicates);
    ```
-   
+
 4. Query data based on the conditions specified by **OH_Predicates**.<br>Call **OH_Rdb_Query** to query data. The data obtained is returned in an **OH_Cursor** object. <br>Example:
 
    ```c
-OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
+   OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    
    const char *columnNames[] = {"NAME", "AGE"};
    int len = sizeof(columnNames) / sizeof(columnNames[0]);
@@ -259,9 +259,9 @@ OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    int64_t age;
    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
        int32_t ageColumnIndex = -1;
-      cursor->getColumnIndex(cursor, "AGE", &ageColumnIndex);
+	   cursor->getColumnIndex(cursor, "AGE", &ageColumnIndex);
        if (ageColumnIndex != -1) {
-	        cursor->getInt64(cursor, ageColumnIndex, &age);
+           cursor->getInt64(cursor, ageColumnIndex, &age);
        }
    }
    
@@ -274,15 +274,15 @@ OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    Configure predicates to match data in LIKE or NOT LIKE mode. <br>Example:
    
    ```c
-OH_Predicates *likePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
+   OH_Predicates *likePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    
    OH_VObject *likePattern = OH_Rdb_CreateValueObject();
    likePattern->putText(likePattern, "zh%");
    // Configure predicates to match data in LIKE mode.
    likePredicates->like(likePredicates, "NAME", likePattern);
-   
+
    char *colName[] = { "NAME", "AGE" };
-auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2);
+   auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2);
    likeQueryCursor->goToNextRow(likeQueryCursor);
    size_t dataLength = 0;
    int colIndex = -1;
@@ -290,9 +290,9 @@ auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2);
    likeQueryCursor->getSize(likeQueryCursor, colIndex, &dataLength);
    char *name = (char*)malloc((dataLength + 1) * sizeof(char)); 
    likeQueryCursor->getText(likeQueryCursor, colIndex, name, dataLength + 1);
-   
+
    likeQueryCursor->destroy(likeQueryCursor);
-likePredicates->destroy(likePredicates);
+   likePredicates->destroy(likePredicates);
    likePattern->destroy(likePattern);
    free(name);
    
@@ -315,7 +315,7 @@ likePredicates->destroy(likePredicates);
    Configure predicates to match data in GLOB or NOT GLOB mode. <br>Example:
    ```c
    OH_Predicates *globPredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
-   //Configure predicates to match in GLOB mode.
+   // Configure predicates to match in GLOB mode.
    OH_Predicates_Glob(globPredicates, "NAME", "zh*");
    
    char *colName[] = { "NAME", "AGE" };
@@ -333,7 +333,7 @@ likePredicates->destroy(likePredicates);
    free(name);
    
    OH_Predicates *notGlobPredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
-   //Configure predicates to match in NOT GLOB mode.
+   // Configure predicates to match in NOT GLOB mode.
    OH_Predicates_NotGlob(notGlobPredicates, "NAME", "zh*");
    auto *notGlobQueryCursor = OH_Rdb_Query(store_, notGlobPredicates, colName, 2);
    notGlobQueryCursor->goToNextRow(notGlobQueryCursor);
@@ -358,7 +358,7 @@ likePredicates->destroy(likePredicates);
     For details about the constraints, see the **pluginLibs** configuration item in [StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig).
    
     ```c
- const char *plugins[] = {
+    const char *plugins[] = {
         "/data/storage/el1/bundle/libs/arm64/libtokenizer.so"
     };
     
