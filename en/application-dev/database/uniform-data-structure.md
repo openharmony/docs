@@ -29,7 +29,7 @@ The following table lists the uniform data structs provided by the UDMF.
 
 The following describes how to use the uniform data structs to define a hyperlink and a plaint text.
 
-The data provider can call **addRecord()** provided by the UMDF to add data records and call **getRecords()** to obtain all data records in the current data object.
+The data provider can call **addRecord()** provided by the UDMF to add data records and call **getRecords()** to obtain all data records in the current data object.
 
   ```ts
   // 1. Import the unifiedDataChannel and uniformTypeDescriptor modules.
