@@ -1,4 +1,10 @@
 # udmf_meta.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -67,8 +73,8 @@ Declares the unified data types.
 | UDMF_META_ENCAPSULATED_POSTSCRIPT "com.adobe.encapsulated-postscript" | Encapsulated PostScript.<br>This type belongs to **POSTSCRIPT**.<br>**Since**: 12|
 | UDMF_META_VIDEO "general.video"                              | Base video type.<br>This type belongs to **MEDIA**.<br>**Since**: 12    |
 | UDMF_META_AVI "general.avi"                                  | AVI.<br>This type belongs to **VIDEO**.<br>**Since**: 12         |
-| UDMF_META_MPEG "general.mpeg"                                | MPGE-1 or MPGE-2.<br>This type belongs to **VIDEO**.<br>**Since**: 12|
-| UDMF_META_MPEG4 "general.mpeg-4"                             | MPGE-4.<br>This type belongs to **VIDEO**.<br>**Since**: 12      |
+| UDMF_META_MPEG "general.mpeg"                                | MPEG-1 or MPEG-2.<br>This type belongs to **VIDEO**.<br>**Since**: 12|
+| UDMF_META_MPEG4 "general.mpeg-4"                             | MPEG-4.<br>This type belongs to **VIDEO**.<br>**Since**: 12      |
 | UDMF_META_VIDEO_3GPP "general.3gpp"                          | 3GP (3GPP file format).<br>This type belongs to **VIDEO**.<br>**Since**: 12        |
 | UDMF_META_VIDEO_3GPP2 "general.3gpp2"                        | 3G2 (3GPP2 file format).<br>This type belongs to **VIDEO**.<br>**Since**: 12       |
 | UDMF_META_WINDOWS_MEDIA_WM "com.microsoft.windows-media-wm"  | Windows WM format.<br>This type belongs to **VIDEO**.<br>**Since**: 12  |

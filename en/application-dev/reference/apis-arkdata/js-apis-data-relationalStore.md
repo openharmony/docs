@@ -1,4 +1,10 @@
 # @ohos.data.relationalStore (RDB Store)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The relational database (RDB) store manages data based on relational models. The **relationalStore** module provides a complete mechanism for managing local databases based on the underlying SQLite. You can use the APIs to perform operations such as adding, deleting, modifying, and querying data, and directly run SQL statements. You can also use [ResultSet.getSendableRow](#getsendablerow12) to obtain sendable data for cross-thread transmission.
 
@@ -8111,10 +8117,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 if (resultSet != undefined) {
-  const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
-  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
-  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
 }
 ```
 
@@ -8768,7 +8774,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 if (resultSet != undefined) {
-  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
 }
 ```
 
@@ -10223,7 +10229,7 @@ predicates.equalTo("NAME", "Lisa");
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.delete(predicates).then((rows: Number) => {
+    transaction.delete(predicates).then((rows: number) => {
       transaction.commit();
       console.info(`Delete rows: ${rows}`);
     }).catch((e: BusinessError) => {
@@ -10287,7 +10293,7 @@ predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
-      let rows: Number = (transaction as relationalStore.Transaction).deleteSync(predicates);
+      let rows: number = (transaction as relationalStore.Transaction).deleteSync(predicates);
       transaction.commit();
       console.info(`Delete rows: ${rows}`);
     } catch (e) {
