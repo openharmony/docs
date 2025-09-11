@@ -293,7 +293,7 @@
    **设备当前应用**申请和取消长时任务async/await写法示例代码如下：   
       
    ```ts
-   @Entry
+    @Entry
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
