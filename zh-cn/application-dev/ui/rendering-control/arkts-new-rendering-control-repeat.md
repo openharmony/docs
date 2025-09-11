@@ -27,12 +27,12 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 
 ## 使用限制
 
-- Repeat必须在滚动类容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[ListItemGroup](../../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat懒加载场景。
-<br/>循环渲染只允许创建一个子组件，子组件应当是允许包含在容器组件中的子组件。例如：Repeat与[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
+- Repeat必须在滚动类容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[ListItemGroup](../../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat懒加载场景。<br/>
+循环渲染只允许创建一个子组件，子组件应当是允许包含在容器组件中的子组件。例如：Repeat与[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
 - Repeat不支持V1装饰器，混用V1装饰器会导致渲染异常。
 - Repeat当前不支持动画效果。
-- 滚动容器组件内只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
-- 当Repeat与自定义组件或[@Builder](./arkts-builder.md)函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化。详见[Repeat与@Builder混用](#repeat与builder混用)。
+- 滚动容器组件内只能包含一个Repeat。以List为例，不建议同时包含ListItem、ForEach、LazyForEach，不建议同时包含多个Repeat。
+- 当Repeat与自定义组件或[@Builder](../state-management/arkts-builder.md)函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化。详见[Repeat与@Builder混用](#repeat与builder混用)。
 
 > **注意：**
 >
@@ -44,7 +44,7 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 
 Repeat子组件由`.each()`和`.template()`属性定义，只允许包含一个子组件。当页面首次渲染时，Repeat根据当前的有效加载范围（屏幕可视区域+预加载区域）按需创建子组件。如下图所示：
 
-![Repeat-Render](./figures/Repeat-Render.png)
+![Repeat-Render](figures/Repeat-Render.png)
 
 `.each()`适用于只需要循环渲染一种子组件的场景。下列示例代码使用Repeat组件进行简单的循环渲染。
 
@@ -82,7 +82,7 @@ struct RepeatExample {
 
 运行后界面如下图所示：
 
-![Repeat-Example-With-Each](./figures/Repeat-Example-With-Each.png) 
+![Repeat-Example-With-Each](figures/Repeat-Example-With-Each.png) 
 
 Repeat提供渲染模板（template）能力，可以在同一个数据源中渲染多种子组件。每个数据项会根据`.templateId()`得到template type，从而渲染type对应的`.template()`中的子组件。
 
@@ -141,7 +141,7 @@ struct RepeatExampleWithTemplates {
 
 运行后界面如下图所示：
 
-![Repeat-Example-With-Templates](./figures/Repeat-Example-With-Templates.png)
+![Repeat-Example-With-Templates](figures/Repeat-Example-With-Templates.png)
 
 ## 节点更新/复用能力说明
 
@@ -156,7 +156,7 @@ struct RepeatExampleWithTemplates {
 
 Repeat组件默认开启节点复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为了提高渲染性能，建议开发者保持节点复用。代码示例见[VirtualScrollOptions](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions)。
 
-从API version 18开始，Repeat支持L2缓存自定义组件冻结。详细描述见[缓存池自定义组件冻结](./arkts-custom-components-freezeV2.md#repeat)。
+从API version 18开始，Repeat支持L2缓存自定义组件冻结。详细描述见[缓存池自定义组件冻结](../state-management/arkts-custom-components-freezeV2.md#repeat)。
 
 下面通过典型的[滑动场景](#滑动场景)和[数据更新场景](#数据更新场景)示例来展示Repeat子组件的渲染逻辑。图中L1缓存为Repeat有效加载区域，L2缓存为每个循环渲染模板的空闲节点缓存池。
 
@@ -164,7 +164,7 @@ Repeat组件默认开启节点复用功能。从API version 18开始，可以通
 
 首次渲染，列表的节点状态如下图所示。
 
-![Repeat-Start](./figures/Repeat-Start.PNG)
+![Repeat-Start](figures/Repeat-Start.PNG)
 
 ### 滑动场景
 
@@ -174,7 +174,7 @@ index=0的节点滑出了有效加载范围。当UI主线程空闲时，会检�
 
 如果此时对应template type的缓存池已满，Repeat会销毁掉多余的节点。
 
-![Repeat-Slide](./figures/Repeat-Slide.PNG)
+![Repeat-Slide](figures/Repeat-Slide.PNG)
 
 ### 数据更新场景
 
@@ -182,11 +182,11 @@ index=0的节点滑出了有效加载范围。当UI主线程空闲时，会检�
 
 首先，删除index=4的节点后，失效节点加入`aa`缓存池。后面的列表节点前移，新进入有效加载区域的节点`item_11`会复用`bb`缓存池中的空闲节点，其他节点均只更新索引index。如下图所示。
 
-![Repeat-Update1](./figures/Repeat-Update1.PNG)
+![Repeat-Update1](figures/Repeat-Update1.PNG)
 
 其次，节点`item_5`前移，索引index更新为4。根据template type的计算规则，节点`item_5`的template type变为`aa`，需要从`aa`缓存池中复用空闲节点，并且将旧节点加入`bb`缓存池。如下图所示。
 
-![Repeat-Update2](./figures/Repeat-Update2.PNG)
+![Repeat-Update2](figures/Repeat-Update2.PNG)
 
 ## 键值生成函数
 
@@ -254,7 +254,7 @@ struct RepeatLazyLoading {
 
 运行效果：
 
-![Repeat-Lazyloading-1](./figures/repeat-lazyloading-demo1.gif)
+![Repeat-Lazyloading-1](figures/repeat-lazyloading-demo1.gif)
 
 **示例2**
 
@@ -297,7 +297,7 @@ struct RepeatLazyLoading {
 
 运行效果：
 
-![Repeat-Lazyloading-2](./figures/repeat-lazyloading-demo2.gif)
+![Repeat-Lazyloading-2](figures/repeat-lazyloading-demo2.gif)
 
 **示例3**
 
@@ -349,7 +349,7 @@ struct RepeatLazyLoading {
 
 运行效果：
 
-![Repeat-Lazyloading-3](./figures/repeat-lazyloading-demo3.gif)
+![Repeat-Lazyloading-3](figures/repeat-lazyloading-demo3.gif)
 
 
 ## 拖拽排序
@@ -410,7 +410,7 @@ struct RepeatVirtualScrollOnMove {
 
 运行效果：
 
-![Repeat-Drag-Sort](./figures/repeat-drag-sort.gif)
+![Repeat-Drag-Sort](figures/repeat-drag-sort.gif)
 
 ## 前插保持
 
@@ -482,7 +482,7 @@ struct PreInsertDemo {
 
 运行效果：
 
-![Repeat-pre-insert-preserve](./figures/repeat-pre-insert-preserve.gif)
+![Repeat-pre-insert-preserve](figures/repeat-pre-insert-preserve.gif)
 
 ## 常见使用场景
 
@@ -630,7 +630,7 @@ struct RepeatVirtualScroll2T {
 
 该示例代码展示了100项自定义类`RepeatClazz`的`message`字符串属性，List组件的cachedCount属性设为2，模板'odd'和'even'的空闲节点缓存池大小分别设为3和1。运行后界面如下图所示：
 
-![Repeat-VirtualScroll-2T-Demo](./figures/Repeat-VirtualScroll-2T-Demo.gif)
+![Repeat-VirtualScroll-2T-Demo](figures/Repeat-VirtualScroll-2T-Demo.gif)
 
 ### Repeat嵌套
 
@@ -698,7 +698,7 @@ struct RepeatNest {
 
 运行效果：
 
-![Repeat-Nest](./figures/Repeat-Nest.png)
+![Repeat-Nest](figures/Repeat-Nest.png)
 
 ### 父容器组件应用场景
 
@@ -806,7 +806,7 @@ struct DemoList {
 
 右滑并点击按钮，或点击底部按钮，可删除视频卡片：
 
-![Repeat-Demo-List](./figures/Repeat-Demo-List.gif)
+![Repeat-Demo-List](figures/Repeat-Demo-List.gif)
 
 **与Grid组合使用**
 
@@ -935,7 +935,7 @@ struct DemoGrid {
 
 下拉屏幕，或点击刷新按钮，或点击“先前浏览至此，点击刷新”，可加载新的视频内容：
 
-![Repeat-Demo-Grid](./figures/Repeat-Demo-Grid.gif)
+![Repeat-Demo-Grid](figures/Repeat-Demo-Grid.gif)
 
 **与Swiper组合使用**
 
@@ -1019,7 +1019,7 @@ struct DemoSwiper {
 
 定时1秒后加载图片，模拟网络延迟：
 
-![Repeat-Demo-Swiper](./figures/Repeat-Demo-Swiper.gif)
+![Repeat-Demo-Swiper](figures/Repeat-Demo-Swiper.gif)
 
 ## 关闭懒加载
 
@@ -1046,17 +1046,17 @@ struct DemoSwiper {
 
 最后，如果新数组键值遍历结束后，deletedKeys非空，则销毁集合中的键值所对应的节点。
 
-![Repeat-NonVS-FuncGen](./figures/Repeat-NonVS-FuncGen.png)
+![Repeat-NonVS-FuncGen](figures/Repeat-NonVS-FuncGen.png)
 
 以下图中的数组变化为例，图中的`item_X`表示数据项的键值key。
 
-![Repeat-NonVS-Example](./figures/Repeat-NonVS-Example.png)
+![Repeat-NonVS-Example](figures/Repeat-NonVS-Example.png)
 
 根据上述判断逻辑：`item_0`没有变化，`item_1`和`item_2`只更新了索引，`item_n1`和`item_n2`分别由`item_4`和`item_3`进行节点更新获得，`item_n3`为新创建的节点。
 
 > **说明：**
 > 
-> Repeat关闭懒加载场景与[ForEach](arkts-rendering-control-foreach.md)组件的区别：
+> Repeat关闭懒加载场景与[ForEach](./arkts-rendering-control-foreach.md)组件的区别：
 > - 针对特定数组更新场景的渲染性能进行了优化
 > - 将子组件的内容/索引管理职责转移至框架层面
 
@@ -1105,7 +1105,7 @@ struct ChildItem {
 }
 ```
 
-![ForEach-Non-Initial-Render-Case-Effect](./figures/ForEach-Non-Initial-Render-Case-Effect.gif)
+![ForEach-Non-Initial-Render-Case-Effect](figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
 点击红色字体，第三个数据项发生变化（直接使用旧的组件节点，仅刷新数据）。
 
@@ -1175,7 +1175,7 @@ struct RepeatTemplateSingle {
 
 运行效果：
 
-![repeat-case1-wrong](./figures/repeat-case1-wrong.gif)
+![repeat-case1-wrong](figures/repeat-case1-wrong.gif)
 
 以下为修正后的示例：
 在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
@@ -1239,7 +1239,7 @@ struct RepeatTemplateSingle {
 
 运行效果：
 
-![repeat-case1-fixed](./figures/repeat-case1-fixed.gif)
+![repeat-case1-fixed](figures/repeat-case1-fixed.gif)
 
 ### totalCount值大于数据源长度
 
@@ -1335,7 +1335,7 @@ struct entryCompSucc {
 
 示例代码运行效果：
 
-![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)
+![repeat-case2-succ](figures/repeat-case2-succ.gif)
 
 ### Repeat与@Builder混用
 
@@ -1432,4 +1432,4 @@ struct RepeatBuilderPage {
 
 界面展示如下图，进入页面后向下滑动一段距离可以看出差别，左边是错误用法，右边是正确用法（Text组件为黑色，Builder组件为红色）。上述代码展示了开发过程中易出错的场景，即在@Builder构造函数中传参方式为值传递。
 
-![Repeat-Builder](./figures/Repeat-Builder.png)
+![Repeat-Builder](figures/Repeat-Builder.png)
