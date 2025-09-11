@@ -185,7 +185,7 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let triggerTime = new Date().getTime();
+let triggerTime: number = new Date().getTime();
 triggerTime += 3000;
 
 try {
@@ -246,7 +246,7 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let triggerTime = new Date().getTime();
+let triggerTime: number = new Date().getTime();
 triggerTime += 3000;
 
 try {
@@ -299,7 +299,7 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let triggerTime = new Date().getTime();
+let triggerTime: number = new Date().getTime();
 triggerTime += 3000;
 
 try {
@@ -360,7 +360,7 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let triggerTime = new Date().getTime();
+let triggerTime: number = new Date().getTime();
 triggerTime += 3000;
 
 try {
@@ -414,7 +414,7 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let triggerTime = new Date().getTime();
+let triggerTime: number = new Date().getTime();
 triggerTime += 3000;
 
 try {
@@ -476,7 +476,7 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let triggerTime = new Date().getTime();
+let triggerTime: number = new Date().getTime();
 triggerTime += 3000;
 
 try {
