@@ -206,7 +206,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 <!--RP18--><!--RP18End-->
 
-**权限级别**：system_basic
+**权限级别**：normal
 
 **授权方式**：系统授权（system_grant）
 
