@@ -51,7 +51,7 @@
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
       - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
     - Node-API FAQs<!--napi-questions-->
-      - [Node-API FAQs](use-napi-faqs.md)
+      - [Summary of Node-API FAQs](use-napi-faqs.md)
       - [FAQs About Stability](napi-faq-about-stability.md)
       - [FAQs About Memory Leaks](napi-faq-about-memory-leak.md)
       - [FAQs About Basic Functions](napi-faq-about-common-basic.md)
