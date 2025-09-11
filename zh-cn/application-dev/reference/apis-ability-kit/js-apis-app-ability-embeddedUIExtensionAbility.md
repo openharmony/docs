@@ -9,7 +9,7 @@
 
 EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。
 
-开发者通过实现EmbeddedUIExtensionAbility，可使其提供的界面嵌入到同一应用内的UIAbility页面中。目前该能力仅在2in1和Tablet设备上生效。
+开发者通过实现EmbeddedUIExtensionAbility，可实现提供的界面嵌入到同一应用内的UIAbility页面中。目前该能力仅在2in1和Tablet设备上生效。
 
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 

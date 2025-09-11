@@ -9,7 +9,7 @@
 
 ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。
 
-开发者通过实现ActionExtensionAbility，可使其实现宿主应用的内容查看及交互处理功能。例如，以翻译文本为例。宿主应用将需要翻译的文本发送给ActionExtensionAbility，ActionExtensionAbility接收文本并进行翻译处理，翻译后的文本发送回宿主应用。
+开发者通过实现ActionExtensionAbility，可实现宿主应用的内容查看及交互处理功能。以翻译文本为例，宿主应用将需要翻译的文本发送给ActionExtensionAbility，ActionExtensionAbility接收文本并进行翻译处理，翻译后的文本发送回宿主应用。
 
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
