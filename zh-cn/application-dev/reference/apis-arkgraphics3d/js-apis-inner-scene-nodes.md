@@ -317,6 +317,9 @@ function count(): void {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ### 属性
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | position | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 否 | 结点位置。 |
@@ -413,6 +416,9 @@ function getNode(): void {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ### 属性
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | fov | number | 否 | 否 | 视场，取值在0到π弧度之间。 |

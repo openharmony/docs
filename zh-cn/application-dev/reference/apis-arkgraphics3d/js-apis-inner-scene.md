@@ -741,6 +741,9 @@ function registerResourcePath(): void {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ### 属性
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | environment | [Environment](js-apis-inner-scene-resources.md#environment) | 否 | 否 | 环境对象。 |

@@ -40,6 +40,9 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, CullMode, Blend
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ### 属性
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | 否 | 否 | 名称，没有特殊格式要求。 |
@@ -255,6 +258,9 @@ function destroy(): void {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ### 属性
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | enabled | boolean | 否 | 否 | 动画是否使能。true表示可以播放动画，false表示不可以播放动画。 |
