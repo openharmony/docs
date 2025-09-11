@@ -2,9 +2,9 @@
 
 <!--Kit: Media Kit-->
 <!--Subsystem: AVScreenCapture-->
-<!--Owner: @xhjgc-->
-<!--Designer: @dpy2650--->
-<!--Tester: @cyakee-->
+<!--Owner: @chenkun-->
+<!--Designer: @yxc2--->
+<!--Tester: @zengxi_3007-->
 <!--Adviser: @zengyawen-->
 
 ## 基础概念
