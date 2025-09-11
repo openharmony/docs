@@ -1,4 +1,10 @@
 # XML Conversion
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 Converting XML text into JavaScript objects can simplify data handling and manipulation, making it more suitable for use in JavaScript applications.
@@ -16,17 +22,17 @@ To ensure successful XML parsing and conversion, the input XML data must comply 
 
 To convert an XML document into a JavaScript object and obtain the tag values, proceed as follows:
 
-1. Import the module.
+1. Import the required module.
 
    ```ts
    import { convertxml } from '@kit.ArkTS';
    ```
 
-2. Input the XML document to be converted and set conversion options. For details about the supported conversion options and their meanings, see [ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions).
+2. Pass in the XML file to be converted and set conversion options. For details about the supported conversion options and their meanings, see [ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions).
 
    > **NOTE**
    >
-   > If the XML text to convert contains the ampersand (&), replace it with the entity reference **\&amp;**.
+   > Ensure that the input XML text complies with the standard format. If the XML text to convert contains the ampersand (&), replace it with the entity reference **\&amp;**.
 
    ```ts
    let xml: string =
@@ -64,7 +70,7 @@ To convert an XML document into a JavaScript object and obtain the tag values, p
    }
    ```
 
-3. Call the conversion function and print the result.
+3. Call the **fastConvertToJSObject** function and print the result.
 
    ```ts
    let conv: convertxml.ConvertXML = new convertxml.ConvertXML();

@@ -1,4 +1,10 @@
 # ArkUI Waterfall Rendering
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 This topic describes how to use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) to improve the rendering performance of the [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) component. When the UI thread queries large volumes of data from the database and renders the data to the **WaterFlow** component, the UI may become unresponsive, negatively impacting user experience. To address this, we can offload data query to child threads and return the data to the UI thread using TaskPool APIs.
 
@@ -31,7 +37,7 @@ This example describes the following scenarios:
       taskpool.execute(task);
     }
     ```
-    <!-- @[query_database_return_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Mock.ets) -->
+    <!-- @[query_database_return_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Mock.ets) -->
 
 2. Encapsulate a waterfall data source for loading data to the **WaterFlow** component.
 
@@ -149,7 +155,7 @@ This example describes the following scenarios:
       // Delete the last element.
       public deleteLastItem(): void {
         this.dataArray.splice(-1, 1);
-        this.notifyDataDelete(this.dataArray.length);
+        this.notifyDataDelete(this.dataArray.length - 1);
       }
 
       // Delete an element at the specified index.
@@ -166,7 +172,7 @@ This example describes the following scenarios:
       }
     }
     ```
-    <!-- @[encapsulate_waterfall_data_source](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterFlowDataSource.ets) -->
+    <!-- @[encapsulate_waterfall_data_source](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterFlowDataSource.ets) -->
 
 3. During cold start of the application, call the **getImgFromDB()** interface to offload the data query operation to a child thread. After the img receives data from the child thread, render the data to the **WaterFlow** component.
 
@@ -286,4 +292,4 @@ This example describes the following scenarios:
       }
     }
     ```
-    <!-- @[receive_child_thread_data_render_waterfall_component](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterfallRendering.ets) -->
+    <!-- @[receive_child_thread_data_render_waterfall_component](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterfallRendering.ets) -->

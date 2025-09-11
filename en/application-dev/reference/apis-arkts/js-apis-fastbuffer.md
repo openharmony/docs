@@ -1,12 +1,23 @@
 # @ohos.fastbuffer (FastBuffer)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 A **FastBuffer** object is a more efficient buffer container for representing a byte sequence of a fixed length. It is used to store binary data.
 
-**Recommended use case**: When constructing a FastBuffer with parameters of known types that are not **Symbol.toPrimitive** or **valueOf()** objects, you are advised to use FastBuffer for efficient handling of large volumes of binary data, such as in image processing and file uploads/downloads.
+When the **FastBuffer** object is constructed using **from**, only the parameters of the FastBuffer, Uint8Array, string, Array, and ArrayBuffer types are supported.
+
+FastBuffer is recommended if high-performance processing of large binary data (such as images, file transfer, and network communication) is required.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 20. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
+
 
 ## Modules to Import
 
@@ -80,9 +91,7 @@ console.info(buf3.toString());
 
 allocUninitializedFromPool(size: number): FastBuffer
 
-Creates a **FastBuffer** object of the specified size, without initializing it. initializing it.
-
-You need to use [fill()](#fill) to initialize the **FastBuffer** object created.
+Creates an uninitialized **FastBuffer** object of a specified size from the buffer pool. You need to use [fill](#fill) to initialize the **FastBuffer** object created.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -114,9 +123,7 @@ buf.fill(0);
 
 allocUninitialized(size: number): FastBuffer
 
-Creates a **FastBuffer** object of the specified size, without initializing it. This API does not allocate memory from the buffer pool.
-
-You need to use [fill()](#fill) to initialize the **FastBuffer** object created.
+Creates an uninitialized **FastBuffer** object of a specified size. You need to use [fill](#fill) to initialize the **FastBuffer** object created.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -172,7 +179,11 @@ Obtains the number of bytes of a string based on the encoding format.
 ```ts
 import { fastbuffer } from '@kit.ArkTS';
 
-let str = '\u00bd + \u00bc = \u00be';
+let str = 'hello world';
+console.info(`${str}: ${str.length} characters, ${fastbuffer.byteLength(str, 'utf-8')} bytes`);
+// Output: hello world: 11 characters, 11 bytes
+
+str = '\u00bd + \u00bc = \u00be';
 console.info(`${str}: ${str.length} characters, ${fastbuffer.byteLength(str, 'utf-8')} bytes`);
 // Output: ½ + ¼ = ¾: 9 characters, 12 bytes
 ```
@@ -304,7 +315,7 @@ console.info(buf.toString('hex'));
 
 from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?: number): FastBuffer
 
-Creates a **FastBuffer** object of the specified length that shares memory with ArrayBuffer.
+Creates a **FastBuffer** object of the specified length that shares memory with `ArrayBuffer`.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -348,7 +359,7 @@ console.info(buf.length.toString());
 
 from(buffer: FastBuffer | Uint8Array): FastBuffer
 
-Copies the data of a passed **FastBuffer** object to create a new **FastBuffer** object and returns the new one.
+Copies the data of a passed **FastBuffer** object to create a **FastBuffer** object and returns the new one.
 
 Creates a **FastBuffer** object based on the memory of a passed **Uint8Array** object and returns the new object, maintaining the memory association of the data.
 
@@ -583,7 +594,7 @@ console.info(JSON.stringify(buf.byteOffset));
 
 compare(target: FastBuffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
 
-Compares this **FastBuffer** object with another object.
+Compares the current **this** object with the **target** object and returns the comparison result.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -603,7 +614,7 @@ Compares this **FastBuffer** object with another object.
 
 | Type| Description|
 | -------- | -------- |
-| number | Comparison result.<br>-1: This object comes before the target object when sorted.<br>0: The two objects are the same.<br>1: This object comes after the target object when sorted.|
+| -1 \| 0 \| 1 | Comparison result.<br>-1: This object comes before the target object when sorted.<br>0: The two objects are the same.<br>1: This object comes after the target object when sorted.|
 
 **Error codes**
 
@@ -893,7 +904,7 @@ console.info(buf.indexOf('is').toString());
 
 keys(): IterableIterator&lt;number&gt;
 
-Creates and returns an iterator that contains the keys of this **FastBuffer** object.
+Iterator created.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -911,18 +922,18 @@ Creates and returns an iterator that contains the keys of this **FastBuffer** ob
 import { fastbuffer } from '@kit.ArkTS';
 
 let buf = fastbuffer.from('buffer');
-let numbers = Array.from(buf.keys());
-for (const key of numbers) {
+let keys = buf.keys();
+for (const key of keys) {
   console.info(key.toString());
-  /*
-  Output: 0
-           1
-           2
-           3
-           4
-           5
-  */
 }
+/*
+Output: 0
+        1
+        2
+        3
+        4
+        5
+*/
 ```
 
 ### values
@@ -1018,7 +1029,7 @@ Reads a 64-bit, big-endian, signed big integer from this **FastBuffer** object a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 **Return value**
 
@@ -1043,11 +1054,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigInt64BE(0).toString());
 // Output: 7161960797921896816
-
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
-console.info("result = " + result);
-// Output: result = 8
 ```
 
 ### readBigInt64LE
@@ -1064,7 +1070,7 @@ Reads a 64-bit, little-endian, signed big integer from this **FastBuffer** objec
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 **Return value**
 
@@ -1089,11 +1095,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigInt64LE(0).toString());
 // Output: 8100120198111388771
-
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64LE(BigInt(0xcafafecacefade), 0);
-console.info("result = " + result);
-// Output: result = 8
 ```
 
 ### readBigUInt64BE
@@ -1110,7 +1111,7 @@ Reads a 64-bit, big-endian, unsigned big integer from this **FastBuffer** object
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 **Return value**
 
@@ -1135,10 +1136,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigUInt64BE(0).toString());
 // Output: 7161960797921896816
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
-console.info("result = " + result);
-// Output: result = 8
 ```
 
 ### readBigUInt64LE
@@ -1155,7 +1152,7 @@ Reads a 64-bit, little-endian, unsigned big integer from this **FastBuffer** obj
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 **Return value**
 
@@ -1180,11 +1177,6 @@ let buf = fastbuffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.info(buf.readBigUInt64LE(0).toString());
 // Output: 8100120198111388771
-
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
-console.info("result = " + result);
-// Output: result = 8
 ```
 
 ### readDoubleBE
@@ -1201,7 +1193,7 @@ Reads a 64-bit, big-endian, double-precision floating-point number from this **F
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 **Return value**
 
@@ -1225,10 +1217,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readDoubleBE(0).toString());
 // Output: 8.20788039913184e-304
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeDoubleBE(123.456, 0);
-console.info("result = " + result);
-// Output: result = 8
 ```
 
 ### readDoubleLE
@@ -1245,7 +1233,7 @@ Reads a 64-bit, little-endian, double-precision floating-point number from this 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 **Return value**
 
@@ -1269,10 +1257,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readDoubleLE(0).toString());
 // Output: 5.447603722011605e-270
-let buf1 = fastbuffer.allocUninitializedFromPool(8);
-let result = buf1.writeDoubleLE(123.456, 0);
-console.info("result = " + result);
-// Output: result = 8
 ```
 
 ### readFloatBE
@@ -1289,7 +1273,7 @@ Reads a 32-bit, big-endian, single-precision floating-point number from this **F
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 **Return value**
 
@@ -1313,10 +1297,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readFloatBE(0).toString());
 // Output: 2.387939260590663e-38
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeFloatBE(0xcabcbcbc, 0);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### readFloatLE
@@ -1333,7 +1313,7 @@ Reads a 32-bit, little-endian, single-precision floating-point number from this 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 **Return value**
 
@@ -1357,10 +1337,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.info(buf.readFloatLE(0).toString());
 // Output: 1.539989614439558e-36
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeFloatLE(0xcabcbcbc, 0);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### readInt8
@@ -1377,7 +1353,7 @@ Reads an 8-bit signed integer from this **FastBuffer** object at the specified o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
 
 **Return value**
 
@@ -1403,10 +1379,6 @@ console.info(buf.readInt8(0).toString());
 // Output: -1
 console.info(buf.readInt8(1).toString());
 // Output: 5
-let buf1 = fastbuffer.allocUninitializedFromPool(2);
-let result = buf1.writeInt8(0x12);
-console.info("result = " + result);
-// Output: result = 1
 ```
 
 ### readInt16BE
@@ -1423,7 +1395,7 @@ Reads a 16-bit, big-endian, signed integer from this **FastBuffer** object at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 **Return value**
 
@@ -1447,10 +1419,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 5]);
 console.info(buf.readInt16BE(0).toString());
 // Output: 5
-let buf1 = fastbuffer.alloc(2);
-let result = buf1.writeInt16BE(0x1234, 0);
-console.info("result = " + result);
-// Output: result = 2
 ```
 
 ### readInt16LE
@@ -1467,7 +1435,7 @@ Reads a 16-bit, little-endian, signed integer from this **FastBuffer** object at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 **Return value**
 
@@ -1491,10 +1459,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 5]);
 console.info(buf.readInt16LE(0).toString());
 // Output: 1280
-let buf1 = fastbuffer.alloc(2);
-let result = buf1.writeInt16BE(0x1234, 0);
-console.info("result = " + result);
-// Output: result = 2
 ```
 
 ### readInt32BE
@@ -1511,7 +1475,7 @@ Reads a 32-bit, big-endian, signed integer from this **FastBuffer** object at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 **Return value**
 
@@ -1535,10 +1499,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 0, 0, 5]);
 console.info(buf.readInt32BE(0).toString());
 // Output: 5
-let buf1 = fastbuffer.alloc(4);
-let result = buf1.writeInt32BE(0x12345678, 0);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### readInt32LE
@@ -1555,7 +1515,7 @@ Reads a 32-bit, little-endian, signed integer from this **FastBuffer** object at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 **Return value**
 
@@ -1579,10 +1539,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0, 0, 0, 5]);
 console.info(buf.readInt32LE(0).toString());
 // Output: 83886080
-let buf1 = fastbuffer.alloc(4);
-let result = buf1.writeInt32BE(0x12345678, 0);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### readIntBE
@@ -1599,7 +1555,7 @@ Reads the specified number of bytes from this **FastBuffer** object at the speci
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to read. Value range: 1 <= byteLength <= 6|
 
 
@@ -1607,7 +1563,7 @@ Reads the specified number of bytes from this **FastBuffer** object at the speci
 
 | Type| Description|
 | -------- | -------- |
-| number | Data read. If the offset is a decimal, undefined is returned.|
+| number | Data read.|
 
 **Error codes**
 
@@ -1626,10 +1582,6 @@ let buf = fastbuffer.from("ab");
 let num = buf.readIntBE(0, 1);
 console.info(num.toString());
 // Output: 97
-let buf1 = fastbuffer.allocUninitializedFromPool(6);
-let result = buf1.writeIntBE(0x123456789011, 0, 6);
-console.info("result = " + result);
-// Output: result = 6
 ```
 
 
@@ -1647,7 +1599,7 @@ Reads the specified number of bytes from this **FastBuffer** object at the speci
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to read. Value range: 1 <= byteLength <= 6|
 
 
@@ -1655,7 +1607,7 @@ Reads the specified number of bytes from this **FastBuffer** object at the speci
 
 | Type| Description|
 | -------- | -------- |
-| number | Data read. If the offset is a decimal, undefined is returned.|
+| number | Data read.|
 
 **Error codes**
 
@@ -1673,10 +1625,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.info(buf.readIntLE(0, 6).toString(16));
 // Output: -546f87a9cbee
-let buf1 = fastbuffer.allocUninitializedFromPool(6);
-let result = buf1.writeIntLE(0x123456789011, 0, 6);
-console.info("result = " + result);
-// Output: result = 6
 ```
 
 ### readUInt8
@@ -1693,7 +1641,7 @@ Reads an 8-bit unsigned integer from this **FastBuffer** object at the specified
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
 
 
 **Return value**
@@ -1720,10 +1668,6 @@ console.info(buf.readUInt8(0).toString());
 // Output: 1
 console.info(buf.readUInt8(1).toString());
 // Output: 254
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt8(0x42);
-console.info("result = " + result);
-// Output: result = 1
 ```
 
 ### readUInt16BE
@@ -1740,7 +1684,7 @@ Reads a 16-bit, big-endian, unsigned integer from this **FastBuffer** object at 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 
 **Return value**
@@ -1767,10 +1711,6 @@ console.info(buf.readUInt16BE(0).toString(16));
 // Output: 1234
 console.info(buf.readUInt16BE(1).toString(16));
 // Output: 3456
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt16BE(0x1234, 0);
-console.info("result = " + result);
-// Output: result = 2
 ```
 
 ### readUInt16LE
@@ -1787,7 +1727,7 @@ Reads a 16-bit, little-endian, unsigned integer from this **FastBuffer** object 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 
 **Return value**
@@ -1814,10 +1754,6 @@ console.info(buf.readUInt16LE(0).toString(16));
 // Output: 3412
 console.info(buf.readUInt16LE(1).toString(16));
 // Output: 5634
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt16LE(0x1234, 0);
-console.info("result = " + result);
-// Output: result = 2
 ```
 
 ### readUInt32BE
@@ -1834,7 +1770,7 @@ Reads a 32-bit, big-endian, unsigned integer from this **FastBuffer** object at 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -1859,10 +1795,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78]);
 console.info(buf.readUInt32BE(0).toString(16));
 // Output: 12345678
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt32BE(0x12345678, 0);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### readUInt32LE
@@ -1879,7 +1811,7 @@ Reads a 32-bit, little-endian, unsigned integer from this **FastBuffer** object 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -1904,10 +1836,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78]);
 console.info(buf.readUInt32LE(0).toString(16));
 // Output: 78563412
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUInt32LE(0x12345678, 0);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### readUIntBE
@@ -1924,7 +1852,7 @@ Reads the specified number of bytes from this **FastBuffer** object at the speci
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to read.  Value range: 1 <= byteLength <= 6|
 
 
@@ -1950,10 +1878,6 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.info(buf.readUIntBE(0, 6).toString(16));
 // Output: 1234567890ab
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUIntBE(0x13141516, 0, 4);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### readUIntLE
@@ -1970,7 +1894,7 @@ Reads the specified number of bytes from this **FastBuffer** object at the speci
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to read. Value range: 1 <= byteLength <= 6|
 
 
@@ -1996,17 +1920,13 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf = fastbuffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.info(buf.readUIntLE(0, 6).toString(16));
 // Output: ab9078563412
-let buf1 = fastbuffer.allocUninitializedFromPool(4);
-let result = buf1.writeUIntLE(0x13141516, 0, 4);
-console.info("result = " + result);
-// Output: result = 4
 ```
 
 ### subarray
 
 subarray(start?: number, end?: number): FastBuffer
 
-Truncates this **FastBuffer** object from the specified position to create a new **FastBuffer** object.
+Truncates this **FastBuffer** object from the specified position to create a **FastBuffer** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2242,7 +2162,7 @@ Writes a string of the specified length to this **FastBuffer** object at the spe
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | str | string | Yes| String to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Offset. The default value is **0**.|
 | length | number | No| Maximum number of bytes to write. The default value is **this.length - offset**.|
 | encoding | string | No| Encoding format of the string. The default value is **'utf8'**.|
 
@@ -2293,7 +2213,7 @@ Writes a 64-bit, big-endian, signed big integer to this **FastBuffer** object at
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write. Value range: -INT64_MAX <= value <= INT64_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 
 **Return value**
@@ -2336,7 +2256,7 @@ Writes a 64-bit, little-endian, signed big integer to this **FastBuffer** object
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write. Value range: -INT64_MAX <= value <= INT64_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 
 **Return value**
@@ -2379,7 +2299,7 @@ Writes a 64-bit, big-endian, unsigned big integer to this **FastBuffer** object 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write. Value range: 0 <= value <= UINT64_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 
 **Return value**
@@ -2422,7 +2342,7 @@ Writes a 64-bit, little-endian, unsigned big integer to this **FastBuffer** obje
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write. Value range: 0 <= value <= UINT64_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 
 **Return value**
@@ -2465,7 +2385,7 @@ Writes a 64-bit, big-endian, double-precision floating-point number to this **Fa
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -DOUBLE_MAX <= value <= DOUBLE_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 
 **Return value**
@@ -2508,7 +2428,7 @@ Writes a 64-bit, little-endian, double-precision floating-point number to this *
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -DOUBLE_MAX <= value <= DOUBLE_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 8|
 
 
 **Return value**
@@ -2551,7 +2471,7 @@ Writes a 32-bit, big-endian, single-precision floating-point number to this **Fa
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -FLOAT_MAX <= value <= FLOAT_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -2574,7 +2494,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { fastbuffer } from '@kit.ArkTS';
 
 let buf = fastbuffer.allocUninitializedFromPool(8);
-let result = buf.writeFloatBE(0xcafebabe, 0);
+let result = buf.writeFloatBE(3.1415, 0);
 console.info("result = " + result);
 // Output: result = 4
 ```
@@ -2595,7 +2515,7 @@ Writes a 32-bit, little-endian, single-precision floating-point number to this *
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -FLOAT_MAX <= value <= FLOAT_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -2618,7 +2538,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { fastbuffer } from '@kit.ArkTS';
 
 let buf = fastbuffer.allocUninitializedFromPool(8);
-let result = buf.writeFloatLE(0xcafebabe, 0);
+let result = buf.writeFloatLE(3.1415, 0);
 console.info("result = " + result);
 // Output: result = 4
 ```
@@ -2638,7 +2558,7 @@ Writes an 8-bit signed integer to this **FastBuffer** object at the specified of
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -INT8_MAX <= value <= INT8_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
 
 
 **Return value**
@@ -2685,7 +2605,7 @@ Writes a 16-bit, big-endian, signed integer to this **FastBuffer** object at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -INT16_MAX <= value <= INT16_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 
 **Return value**
@@ -2729,7 +2649,7 @@ Writes a 16-bit, little-endian, signed integer to this **FastBuffer** object at 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -INT16_MAX <= value <= INT16_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 
 **Return value**
@@ -2772,7 +2692,7 @@ Writes a 32-bit, big-endian, signed integer to this **FastBuffer** object at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -INT32_MAX <= value <= INT32_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -2816,7 +2736,7 @@ Writes a 32-bit, little-endian, signed integer to this **FastBuffer** object at 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: -INT32_MAX <= value <= INT32_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -2859,7 +2779,7 @@ Writes a big-endian signed value of the specified length to this **FastBuffer** 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. The value range depends on **byteLength**. |
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -2904,7 +2824,7 @@ Writes a little-endian signed value of the specified length to this **FastBuffer
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. The value range depends on **byteLength**.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -2948,7 +2868,7 @@ Writes an 8-bit unsigned integer to this **FastBuffer** object at the specified 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: 0 <= value <= UINT8_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 1|
 
 
 **Return value**
@@ -3000,7 +2920,7 @@ Writes a 16-bit, big-endian, unsigned integer to this **FastBuffer** object at t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: 0 <= value <= UINT16_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 
 **Return value**
@@ -3046,7 +2966,7 @@ Writes a 16-bit, little-endian, unsigned integer to this **FastBuffer** object a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: 0 <= value <= UINT16_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 2|
 
 
 **Return value**
@@ -3092,7 +3012,7 @@ Writes a 32-bit, big-endian, unsigned integer to this **FastBuffer** object at t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: 0 <= value <= UINT32_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 4.|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -3135,7 +3055,7 @@ Writes a 32-bit, little-endian, unsigned integer to this **FastBuffer** object a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. Value range: 0 <= value <= UINT32_MAX|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - 4.|
+| offset | number | No| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - 4|
 
 
 **Return value**
@@ -3178,7 +3098,7 @@ Writes an unsigned big-endian value of the specified length to this **FastBuffer
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. The value range depends on **byteLength**.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -3222,7 +3142,7 @@ Writes an unsigned little-endian value of the specified length to this **FastBuf
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write. The value range depends on **byteLength**.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
+| offset | number | Yes| Offset. The default value is **0**. Value range: 0 <= offset <= this.length - byteLength|
 | byteLength | number | Yes| Number of bytes to write.|
 
 

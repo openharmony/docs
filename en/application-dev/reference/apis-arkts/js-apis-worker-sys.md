@@ -1,4 +1,10 @@
 # @ohos.worker (Starting the Worker) (System API)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 The Worker thread is an independent thread running in parallel with the main thread. The thread that creates the Worker thread is referred to as the host thread. The URL file passed in during worker creation is executed in the Worker thread. The Worker thread can process time-consuming operations, but cannot directly operate the UI.
 
@@ -23,7 +29,6 @@ import { worker } from '@kit.ArkTS';
 ## RestrictedWorker<sup>11+</sup>
 
 The RestrictedWorker class inherits [ThreadWorker<sup>9+</sup>](js-apis-worker.md#threadworker9) and supports all APIs in ThreadWorker.
-
 RestrictedWorker provides a restricted environment for running the Worker thread. In this environment, only the Worker module can be imported.
 
 ### constructor<sup>11+</sup>

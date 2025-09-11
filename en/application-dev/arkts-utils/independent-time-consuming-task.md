@@ -1,6 +1,12 @@
 # Using TaskPool for Independent Time-Consuming Tasks
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-For a time-consuming task that runs independently, you only need to return the result to the host thread after the task is executed. There is no context dependency. You can use the approach described in this topic.
+For a time-consuming task that runs independently, you only need to return the result to the host thread after the task is executed. You can use the approach described in this topic.
 
 This example uses image loading to illustrate the process.
 
@@ -18,7 +24,7 @@ This example uses image loading to illustrate the process.
      }
    }
    ```
-   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
+   <!-- @[implement_child_thread_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // IndependentTask.ets
@@ -42,7 +48,7 @@ This example uses image loading to illustrate the process.
      return iconItemSourceList;
    }
    ```
-   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTask.ets) -->
+   <!-- @[implement_child_thread_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTask.ets) -->
 
 2. Use the **execute** method of TaskPool to execute the task, that is, to load the images.
 
@@ -71,6 +77,8 @@ This example uses image loading to illustrate the process.
                taskpool.execute(loadPictureTask).then((res: object) => {
                  // Execution result of the loadPicture method.
                  iconItemSourceList = res as IconItemSource[];
+                 // Output: The length of iconItemSourceList is 180
+                 console.info("The length of iconItemSourceList is " + iconItemSourceList.length);
                })
              })
          }
@@ -80,4 +88,4 @@ This example uses image loading to illustrate the process.
      }
    }
    ```
-   <!-- @[execute_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTimeConsumingTask.ets) -->
+   <!-- @[execute_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTimeConsumingTask.ets) -->

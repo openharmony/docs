@@ -1,10 +1,16 @@
 # Customizing Ark Bytecode During Compilation
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @oatuwwutao-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 You can modify Ark bytecode files using the customization capabilities provided by the ArkTS compilation toolchain.
 
 ## Configuration
 
-Develop a dynamic library file to manipulate ARK bytecode files. In the **build-profile.json5** file of the project, add the [transformLib option](arkoptions-guide.md) and set its value to the path of the dynamic library. The compiler loads the dynamic library at the specified time and executes the **Transform** method in the library.
+Develop a dynamic library file to manipulate Ark bytecode files. In the **build-profile.json5** file of the project, add the [transformLib option](arkoptions-guide.md#transformlib) and set its value to the path of the dynamic library. The compiler loads the dynamic library at the specified time and executes the **Transform** method in the library.
 
 ## Execution
 

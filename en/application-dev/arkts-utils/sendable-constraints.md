@@ -1,4 +1,10 @@
 # Usage Rules and Constraints for Sendable
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 ## Inheritance Rules
 
@@ -22,7 +28,7 @@ class B extends A {
   }
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/inheritonly/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/inheritonly/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -59,7 +65,7 @@ class B extends A {
   }
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/inheritedfromnon/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/inheritedfromnon/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -90,7 +96,7 @@ interface I {};
 
 class B implements I {};
 ```
-<!-- @[counter_example_achieve_non](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/achievenon/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example_achieve_non](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/achievenon/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -108,7 +114,7 @@ class B implements I {}; // I is a Sendable interface. B cannot implement it. A 
 
 ### Member Variables Must Be Sendable Data Types
 
-Sendable objects cannot hold non-Sendable data. Therefore, member properties of Sendable classes or interfaces must be of Sendable data types.
+Sendable objects cannot hold non-Sendable data. Therefore, member properties of Sendable classes or interfaces must be of [Sendable data types](arkts-sendable.md#sendable-data-types).
 
 **Correct Example**
 
@@ -120,7 +126,7 @@ class A {
   a: number = 0;
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablesupport/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablesupport/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -148,7 +154,7 @@ class A {
   a: number = 0;
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablenotsupported/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablenotsupported/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -178,7 +184,7 @@ class A {
     }
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/nocalculationsupport/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/nocalculationsupport/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -212,7 +218,7 @@ try {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/templatetype/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/templatetype/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -267,7 +273,7 @@ class C {
   }
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/notallowedInside/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/notallowedInside/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -323,7 +329,7 @@ function SendableFunc() {
   console.info("Sendable func");
 }
 ```
-<!-- @[counter_example_only_support](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/achievenon/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example_only_support](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/achievenon/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -337,7 +343,7 @@ type D = C; // A compile-time error is reported.
 
 ### Sendable Classes and Functions Cannot Use Decorators Other Than @Sendable
 
-If a class decorator is defined in a TS file, the class layout may be modified, causing runtime errors.
+If a class decorator is defined in a .ts file, the class structure may be modified, causing runtime errors.
 
 **Correct Example**
 
@@ -347,7 +353,7 @@ class A {
   num: number = 1;
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/cannotbeused/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/cannotbeused/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -372,7 +378,7 @@ import { collections } from '@kit.ArkTS';
 
 let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); // The type is Sendable.
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/objectliterals/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/objectliterals/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -404,7 +410,7 @@ class SendableA {
 
 let a1: A = new SendableA() as A;
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/typecannot/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/typecannot/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -448,7 +454,7 @@ class SendableClass {
 
 let sendableClass = new SendableClass(SendableFunc);
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/arrowfunctions/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/arrowfunctions/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -484,10 +490,10 @@ For details about Node-APIs, see [Sendable-related Operations](../napi/use-napi-
 
 | Rule|
 | -------- |
-| Do not delete properties. Prohibited interfaces: **napi_delete_property**.|
-| Do not add properties. Prohibited interfaces: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
-| Do not change property types. Prohibited interfaces: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
-| Symbol-related interfaces and types are not supported. Prohibited interfaces: **napi_create_symbol**, **napi_is_symbol_object**, and **napi_symbol**.|
+| Do not delete properties. Prohibited API: **napi_delete_property**.|
+| Do not add properties. Prohibited APIs: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
+| Do not change the property type. Prohibited APIs: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
+| Do not use the Symbol-related APIs and types. Prohibited APIs: **napi_create_symbol**, **napi_is_symbol_object** and **napi_symbol**.|
 
 
 ## Rules for Interaction with the UI
@@ -498,5 +504,3 @@ To observe data changes in Sendable objects when interacting with UI, Sendable d
 ## Rules for Using Sendable in HARs
 
 When using Sendable in HAR, you must enable the configuration for compiling and generating TS files. For details, see [Building TS Files](../quick-start/har-package.md#building-ts-files).
-
-<!--no_check-->
