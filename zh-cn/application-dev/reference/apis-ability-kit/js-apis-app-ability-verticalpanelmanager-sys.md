@@ -101,7 +101,7 @@ struct Index {
     sourceAppInfo[verticalPanelManager.SOURCE_APP_MODULE_NAME] = 'entry';
     sourceAppInfo[verticalPanelManager.SOURCE_APP_ABILITY_NAME] = 'MainAbility';
     sourceAppInfo[verticalPanelManager.SOURCE_APP_WINDOW_ID] = '0';
-    sourceAppInfo[verticalPanelManager.SOURCE_APP_SCREEN_MODE] = '3';
+    sourceAppInfo[verticalPanelManager.SOURCE_APP_SCREEN_MODE] = '1';
 
     let panelConfig: verticalPanelManager.PanelConfig = {
       type: verticalPanelManager.VerticalType.NAVIGATION,
