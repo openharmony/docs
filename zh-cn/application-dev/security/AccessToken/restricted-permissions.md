@@ -150,6 +150,30 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
 <!--DelEnd-->
 
+## ohos.permission.READ_WHOLE_CALENDAR
+
+允许应用读取所有的日历信息。
+
+**权限级别**：system_basic
+
+**授权方式**：用户授权（user_grant）
+
+**ACL使能**：true
+
+**起始版本**：9
+
+## ohos.permission.WRITE_WHOLE_CALENDAR
+
+允许应用添加、移除或更改所有的日历活动。
+
+**权限级别**：system_basic
+
+**授权方式**：用户授权（user_grant）
+
+**ACL使能**：true
+
+**起始版本**：9
+
 ## ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
 允许应用访问公共目录下Desktop目录及子目录。
@@ -366,6 +390,21 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：14
 
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：14
+
+**变更信息**：在API 13，权限等级为normal；从API 14开始，权限等级变更为system_basic。
+
 ## ohos.permission.ACCESS_DISK_PHY_INFO
 
 允许应用获取硬盘的硬件信息。
@@ -570,6 +609,24 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **携带额外数据**：是，配置方法请见[Driver Development Kit开发指导](../../device/driver/externaldevice-guidelines.md#应用签名)。
+
+**起始版本**：18
+
+## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
+
+允许扩展外设驱动访问SCSI DDK接口开发SCSI Peripheral扩展外设驱动。
+
+支持以下类型的外设扩展驱动开发：
+外设以USB总线接入主机，且满足：
+
+1. 外设InterfaceClass为Mass Storage(0x08)、InterfaceSubClass为SCSI透明命令集(0x06)。
+2. 外设能够以对操作系统透明的方式来模拟SCSI设备。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
 
 **起始版本**：18
 
