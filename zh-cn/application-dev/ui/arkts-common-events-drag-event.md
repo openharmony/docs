@@ -44,6 +44,7 @@
 | [onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop) | 当用户在组件范围内释放拖拽操作时，此回调会被触发。开发者需在此回调中通过DragEvent的setResult方法来设置拖拽结果，否则在拖出方组件的onDragEnd方法中，通过getResult方法获取的将只是默认的处理结果DragResult.DRAG\_FAILED。<br>此回调是开发者干预系统默认拖入处理行为的关键点，系统会优先执行开发者定义的onDrop回调。通过在onDrop回调中调用setResult方法，开发者可以告知系统如何处理被拖拽的数据。<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理。<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理。<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理。<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，等同于设置DragResult.DRAG\_SUCCESSFUL。|
 | [onDragEnd](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10) | 当用户释放拖拽时，拖拽活动终止，发起拖出动作的组件将触发该回调函数。|
 | [onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12) | 当触发拖拽事件的不同阶段时，绑定此事件的组件会触发该回调函数。<br>开发者可利用此方法，在拖拽开始前的不同阶段，根据[PreDragStatus](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#predragstatus12枚举说明)枚举准备相应数据。<br>1. ACTION\_DETECTING\_STATUS：拖拽手势启动阶段。按下50ms时触发。<br>2. READY\_TO\_TRIGGER\_DRAG\_ACTION：拖拽准备完成，可发起拖拽阶段。按下500ms时触发。<br>3. PREVIEW\_LIFT\_STARTED：拖拽浮起动效发起阶段。按下800ms时触发。<br>4. PREVIEW\_LIFT\_FINISHED：拖拽浮起动效结束阶段。浮起动效完全结束时触发。<br>5. PREVIEW\_LANDING\_STARTED：拖拽落回动效发起阶段。落回动效发起时触发。<br>6. PREVIEW\_LANDING\_FINISHED：拖拽落回动效结束阶段。落回动效结束时触发。<br>7. ACTION\_CANCELED\_BEFORE\_DRAG：拖拽浮起落位动效中断。已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬起时触发。<br>8. PREPARING\_FOR_DRAG\_DETECTION<sup>18+</sup>：拖拽准备完成，可发起拖拽阶段。按下350ms时触发。|
+| [onDragSpringLoading](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragspringloading20) | 当拖拽对象悬停在绑定此事件的组件上时，触发回调通知。此时只有一个目标可以成为响应方，并且子组件始终具有更高的响应优先级。<br>开发者可以通过[SpringLoadingContext](../reference/apis-arkui/js-apis-arkui-dragController.md#springloadingcontext20)配置回调的上下文信息，包括当前悬停检测的状态、一次悬停检测中的回调通知次数、拖拽信息和配置信息等。|
 
 [DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持的get方法可用于获取拖拽行为的详细信息，下表展示了在相应的拖拽回调中，这些get方法是否能够返回有效数据。
 | 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop | onDragEnd |
@@ -56,6 +57,12 @@
 | getWindowX/Y    | 支持 | 支持 | 支持 | 支持 | 支持 |—|
 | getDisplayX/Y   | 支持 | 支持 | 支持 | 支持 | 支持 |—|
 | getX/Y          | 支持 | 支持 | 支持 | 支持 | 支持 |—|
+| getModifierKeyState | 支持 | 支持 | 支持 | 支持 | 支持 | 支持 |
+| startDataLoading    | — | — | — | — | 支持 |—|
+| getDisplayId        | 支持 | 支持 | 支持 | 支持 | 支持 |—|
+| getDragSource       | 支持 | 支持 | 支持 | 支持 | 支持 | 支持 |
+| isRemote            | 支持 | 支持 | 支持 | 支持 | 支持 | 支持 |
+| getGlobalDisplayX/Y | 支持 | 支持 | 支持 | 支持 | 支持 |—|
 | behavior        |—|—|—|—|—| 支持 |
 
 [DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持相关set方法向系统传递信息，这些信息部分会影响系统对UI或数据的处理方式。下表列出了set方法应该在回调的哪个阶段执行才会被系统接受并处理。
@@ -64,6 +71,7 @@
 | useCustomDropAnimation |—|—|—|—| 支持 |
 | setData                | 支持 |—|—|—|—|
 | setResult              | 支持，可通过set failed或cancel来阻止拖拽发起 | 支持，不作为最终结果传递给onDragEnd | 支持，不作为最终结果传递给onDragEnd | 支持，不作为最终结果传递给onDragEnd  | 支持，作为最终结果传递给onDragEnd |
+| setDataLoadParams      | 支持 |—|—|—|—|
 | behavior               |—| 支持 | 支持 | 支持 | 支持 |
 
 ## 拖拽背板图
@@ -92,7 +100,7 @@
     ```ts
     import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
-    Image($r('app.media.app_icon'))
+    Image($r('app.media.startIcon'))
         .width(100)
         .height(100)
         .draggable(true)
@@ -138,9 +146,8 @@
       pixelMapBuilder() {
           Column() {
             Image($r('app.media.startIcon'))
-              .width(120)
-              .height(120)
-              .backgroundColor(Color.Yellow)
+              .width(100)
+              .height(100)
           }
         }
         private getComponentSnapshot(): void {
@@ -188,12 +195,12 @@
     .allowDrop([uniformTypeDescriptor.UniformDataType.HYPERLINK, uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
     ```
 
-   在实现onDrop回调的情况下，还可以通过在onDragMove中设置[DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10枚举说明)为DROP_ENABLED，并将[DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10)设置为COPY或MOVE，以此来控制角标显示。如下代码将移动时的角标强制设置为“MOVE”。
+   在实现onDrop回调的情况下，还可以通过在onDragMove中设置[DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10枚举说明)为DROP_ENABLED，并将[DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10)设置为COPY或MOVE，以此来控制角标显示。如下代码将移动时的角标强制设置为“COPY”。
 
     ```ts
     .onDragMove((event) => {
         event.setResult(DragResult.DROP_ENABLED);
-        event.dragBehavior = DragBehavior.MOVE;
+        event.dragBehavior = DragBehavior.COPY;
     })
     ```
 
@@ -283,9 +290,8 @@ struct Index {
   pixelMapBuilder() {
     Column() {
       Image($r('app.media.startIcon'))
-        .width(120)
-        .height(120)
-        .backgroundColor(Color.Yellow)
+        .width(100)
+        .height(100)
     }
   }
 
@@ -343,7 +349,7 @@ struct Index {
           .margin(10)
           .backgroundColor('#008888')
         Row() {
-          Image($r('app.media.app_icon'))
+          Image($r('app.media.startIcon'))
             .width(100)
             .height(100)
             .draggable(true)
@@ -392,10 +398,10 @@ struct Index {
             .draggable(true)
             .margin({ left: 15 })
             .border({ color: Color.Black, width: 1 })
-            // 控制角标显示类型为MOVE，即不显示角标
+            // 控制角标显示类型为COPY，即显示角标
             .onDragMove((event) => {
               event.setResult(DragResult.DROP_ENABLED)
-              event.dragBehavior = DragBehavior.MOVE
+              event.dragBehavior = DragBehavior.COPY
             })
             .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
             .onDrop((dragEvent?: DragEvent) => {
