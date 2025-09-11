@@ -159,7 +159,7 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 - 新增addProcessorFromConfig接口，支持异步添加数据处理者和及其配置信息。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventaddprocessorfromconfig20)）
 
-- HiAppEvent的C API新增EVENT_APP_KILLED接口，订阅应用查杀事件。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md#event_app_killed)）
+- HiAppEvent的C API新增EVENT_APP_KILLED接口，订阅应用终止事件。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md#event_app_killed)）
 
 ### 升级
 
