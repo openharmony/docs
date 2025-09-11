@@ -210,32 +210,82 @@ cpp部分代码
 // log.h用于C++中日志打印
 #include "hilog/log.h"
 #include "napi/native_api.h"
-// 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_add_finalizer函数之前，你需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
-napi_ref g_ref;
+// 创建一个napi_ref类型的指针，用于存储创建的引用。在调用napi_add_finalizer函数前，分配一个napi_ref类型的变量，并传递其地址作为result参数。
+napi_ref gRefFinalizer = nullptr;
+
+// 创建一个napi_ref类型的指针，用于存储创建的引用。在调用napi_create_reference函数前，分配一个napi_ref类型的变量，并传递其地址作为result参数。
+napi_ref gRef = nullptr;
 
 void Finalizer(napi_env env, void *data, void *hint)
 {
     // 执行资源清理操作
-    OH_LOG_INFO(LOG_APP, "Node-API: Use terminators to release resources.");
+    OH_LOG_INFO(LOG_APP, "Test Node-API Use Finalizer to release resources.");
+    // do something 执行资源清理操作
+}
+
+static napi_value AddFinalizer(napi_env env, napi_callback_info info)
+{
+    napi_value obj = nullptr;
+    napi_status status = napi_create_object(env, &obj);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_object fail");
+        return nullptr;
+    }
+    napi_value value = nullptr;
+    status = napi_create_string_utf8(env, "AddFinalizer", NAPI_AUTO_LENGTH, &value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_string_utf8 fail");
+        return nullptr;
+    }
+    // 将键值对添加到对象中
+    status = napi_set_named_property(env, obj, "key", value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_set_named_property fail");
+        return nullptr;
+    }
+
+    // 注册回调函数Finalizer用于清理资源
+    void *data = {};
+    status = napi_add_finalizer(env, obj, data, Finalizer, nullptr, &gRefFinalizer);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_add_finalizer fail");
+        return nullptr;
+    }
+
+    return obj;
 }
 
 static napi_value CreateReference(napi_env env, napi_callback_info info)
 {
     napi_value obj = nullptr;
-    napi_create_object(env, &obj);
+    napi_status status = napi_create_object(env, &obj);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_object fail");
+        return nullptr;
+    }
     napi_value value = nullptr;
-    napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
+    status = napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_string_utf8 fail");
+        return nullptr;
+    }
     // 将键值对添加到对象中
-    napi_set_named_property(env, obj, "key", value);
-
-    // 添加终结器
-    void *data = {};
-    napi_add_finalizer(env, obj, data, Finalizer, nullptr, &g_ref);
+    status = napi_set_named_property(env, obj, "key", value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_set_named_property fail");
+        return nullptr;
+    }
+    // 创建对ArkTS对象的引用
+    status = napi_create_reference(env, obj, 1, &gRef);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_reference fail");
+        return nullptr;
+    }
     // 增加传入引用的引用计数并返回生成的引用计数
     uint32_t result = 0;
-    napi_reference_ref(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "napi_reference_ref, count = %{public}d.", result);
-    if (result != 2) {
+    status = napi_reference_ref(env, gRef, &result);
+    OH_LOG_INFO(LOG_APP, "Test Node-API napi_reference_ref, count = %{public}d.", result);
+    if (status != napi_ok || result != 2) {
         // 若传入引用的引用计数未增加，则抛出错误
         napi_throw_error(env, nullptr, "napi_reference_ref fail");
         return nullptr;
@@ -247,12 +297,12 @@ static napi_value UseReference(napi_env env, napi_callback_info info)
 {
     napi_value obj = nullptr;
     // 通过调用napi_get_reference_value获取引用的ArkTS对象
-    napi_status status = napi_get_reference_value(env, g_ref, &obj);
+    napi_status status = napi_get_reference_value(env, gRef, &obj);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_get_reference_value fail");
         return nullptr;
     }
-    // 将获取到的对象返回
+    // 返回获取的对象
     return obj;
 }
 
@@ -261,21 +311,32 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
     // 减少传入引用的引用计数并返回生成的引用计数
     uint32_t result = 0;
     napi_value count = nullptr;
-    napi_reference_unref(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "napi_reference_unref, count = %{public}d.", result);
-    if (result != 1) {
+    napi_status status = napi_reference_unref(env, gRef, &result);
+    OH_LOG_INFO(LOG_APP, "Test Node-API napi_reference_unref, count = %{public}d.", result);
+    if (status != napi_ok || result != 1) {
         // 若传入引用的引用计数未减少，则抛出错误
         napi_throw_error(env, nullptr, "napi_reference_unref fail");
         return nullptr;
     }
+
     // 通过调用napi_delete_reference删除对ArkTS对象的引用
-    napi_status status = napi_delete_reference(env, g_ref);
+    status = napi_delete_reference(env, gRef);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_delete_reference fail");
+        return nullptr;
+    }
+
+    status = napi_delete_reference(env, gRefFinalizer);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_delete_reference fail");
         return nullptr;
     }
     napi_value returnResult = nullptr;
-    napi_create_string_utf8(env, "napi_delete_reference success", NAPI_AUTO_LENGTH, &returnResult);
+    status = napi_create_string_utf8(env, "napi_delete_reference success", NAPI_AUTO_LENGTH, &returnResult);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_string_utf8 fail");
+        return nullptr;
+    }
     return returnResult;
 }
 ```
@@ -285,6 +346,7 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
+export const addFinalizer: () => Object | undefined;
 export const createReference: () => Object | undefined;
 export const useReference: () => Object | undefined;
 export const deleteReference: () => string | undefined;
@@ -297,6 +359,7 @@ ArkTS侧示例代码
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
+  hilog.info(0x0000, 'testTag', 'Test Node-API addFinalizer: %{public}s', JSON.stringify(testNapi.addFinalizer()));
   hilog.info(0x0000, 'testTag', 'Test Node-API createReference: %{public}s', JSON.stringify(testNapi.createReference()));
   hilog.info(0x0000, 'testTag', 'Test Node-API useReference: %{public}s', JSON.stringify(testNapi.useReference()));
   hilog.info(0x0000, 'testTag', 'Test Node-API deleteReference: %{public}s', testNapi.deleteReference());
