@@ -18,7 +18,7 @@
 import { ethernet } from '@kit.NetworkKit';
 ```
 
-## HttpProxy
+## HttpProxy<sup>10+</sup>
 
 type HttpProxy = connection.HttpProxy
 
