@@ -691,7 +691,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 <!--RP47--><!--RP47End-->
 
-**权限级别**: system_basic
+**权限级别**：system_basic
 
 **授权方式**: 系统授权（system_grant）
 
@@ -704,7 +704,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 允许原子化服务申请差异化的存储空间大小。
 
-**权限级别**: system_basic
+**权限级别**：system_basic
 
 **授权方式**: 系统授权（system_grant）
 
