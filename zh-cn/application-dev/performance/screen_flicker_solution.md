@@ -405,13 +405,13 @@ private getListView() {
 
 **可能原因**
 
-ForEach提供了一个名为keyGenerator的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义keyGenerator函数，则ArkUI框架会使用默认的键值生成函数，即(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }。可参考[键值生成规则](../ui/state-management/arkts-rendering-control-foreach.md#键值生成规则)。
+ForEach提供了一个名为keyGenerator的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义keyGenerator函数，则ArkUI框架会使用默认的键值生成函数，即(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }。可参考[键值生成规则](../ui/rendering-control/arkts-rendering-control-foreach.md#键值生成规则)。
 
 在使用ForEach的过程中，若对于键值生成规则的理解不够充分，可能会出现错误的使用方式。错误使用一方面会导致功能层面问题，例如渲染结果非预期，另一方面会导致性能层面问题，例如渲染性能降低。
 
 **解决措施**
 
-在ForEach第三个参数中定义自定义键值的生成规则，即(item: NewsData, index?: number) => item.id，这样可以在渲染时降低重复组件的渲染开销，从而消除闪屏问题。可参考[ForEach组件使用建议](../ui/state-management/arkts-rendering-control-foreach.md#使用建议)。
+在ForEach第三个参数中定义自定义键值的生成规则，即(item: NewsData, index?: number) => item.id，这样可以在渲染时降低重复组件的渲染开销，从而消除闪屏问题。可参考[ForEach组件使用建议](../ui/rendering-control/arkts-rendering-control-foreach.md#使用建议)。
 
 ```ts
 @Builder

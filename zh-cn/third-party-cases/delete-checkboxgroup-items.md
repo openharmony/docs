@@ -353,6 +353,6 @@ struct CheckboxDemo{
 - [Flex](../application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md)
 - [Button](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
 - [ohos.promptAction (弹窗)](../application-dev/reference/apis-as/js-apis-promptAction.md)
-- [ForEach循环渲染](../application-dev/ui/state-management/arkts-rendering-control-foreach.md)
+- [ForEach循环渲染](../application-dev/ui/rendering-control/arkts-rendering-control-foreach.md)
 - [@State状态管理](../application-dev/ui/state-management/arkts-state.md)
 - [@Builder动态构建UI元素](../application-dev/ui/state-management/arkts-builder.md)
