@@ -17,6 +17,8 @@
 >  多态样式仅支持[通用属性](ts-component-general-attributes.md)。如果多态样式不生效，则该属性可能为组件的私有属性，例如：[fontColor](./ts-universal-attributes-text-style.md)、[TextInput](./ts-basic-components-textinput.md)组件的[backgroundColor](./ts-universal-attributes-background.md#backgroundcolor18)等。此时，可以通过attributeModifier动态设置组件属性来解决此问题。
 >
 >  当前多态样式实现依赖于组件自定义节点的刷新机制。因Builder不具备独立的自定义父节点，无法直接触发刷新，致使多态样式无法直接在Builder中生效。解决方法是将多态样式封装至自定义组件内部，再将此组件置于@Builder中，以此来间接实现多态样式。示例代码可参考[示例3设置Builder多态样式](#示例3设置builder多态样式)。
+>  
+>  多态样式的焦点态只有在[焦点激活态](../../../ui/arkts-common-events-focus-event.md#基础概念)开启时生效。
 
 ## stateStyles
 
@@ -90,7 +92,8 @@ stateStyles(value: StateStyles): T
 struct StyleExample {
   @State isEnable: boolean = true
 
-  @Styles pressedStyles():void {
+  @Styles
+  pressedStyles(): void {
     .backgroundColor("#ED6F21")
     .borderRadius(10)
     .borderStyle(BorderStyle.Dashed)
@@ -101,7 +104,8 @@ struct StyleExample {
     .opacity(1)
   }
 
-  @Styles disabledStyles():void {
+  @Styles
+  disabledStyles(): void {
     .backgroundColor("#E5E5E5")
     .borderRadius(10)
     .borderStyle(BorderStyle.Solid)
@@ -112,7 +116,8 @@ struct StyleExample {
     .opacity(1)
   }
 
-  @Styles normalStyles():void {
+  @Styles
+  normalStyles(): void {
     .backgroundColor("#0A59F7")
     .borderRadius(10)
     .borderStyle(BorderStyle.Solid)
