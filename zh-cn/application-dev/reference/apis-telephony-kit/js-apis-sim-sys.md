@@ -3346,7 +3346,7 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 
 getAllSimAccountInfoList(callback: AsyncCallback\<Array\<IccAccountInfo\>\>): void
 
-获取所有SIM卡账户信息的列表，返回一个Promise对象，并解析为一个IccAccountInfo数组。
+获取所有SIM卡账户信息的列表。返回一个Callback对象，并解析为一个IccAccountInfo数组。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -3356,7 +3356,7 @@ getAllSimAccountInfoList(callback: AsyncCallback\<Array\<IccAccountInfo\>\>): vo
 
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。 返回检查应用（调用者）是否已被授予运营商权限。<br/> true表示授权。false表示未授权。 |
+| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。 获取SIM卡状态信息。|
 
 **错误码：**
 
@@ -3382,33 +3382,26 @@ async function getAllSimAccountInfoList((err, accountInfoList) => {
     if (err) {
       console.error('获取SIM卡账户信息失败:', err);
     } else {
-      console.log('获取到的SIM卡账户信息:', accountInfoList);
+      console.info('获取到的SIM卡账户信息:', accountInfoList);
     }
   });
 ```
 
 ## sim.getAllSimAccountInfoList<sup>20+</sup>
 
-getAllSimAccountInfoList( ): Promise\<Array\<IccAccountInfo\>\>
+getAllSimAccountInfoList(): Promise\<Array\<IccAccountInfo\>\>
 
-获取所有SIM卡账户信息的列表。该函数返回一个Promise对象，并解析为一个IccAccountInfo数组。
+获取所有SIM卡账户信息的列表。返回一个Promise对象，并解析为一个IccAccountInfo数组。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
 **系统接口：** 此接口为系统接口。
 
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                                     |
-| -------- | ------------------------ | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数。返回激活SIM卡帐户信息列表。 |
-
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 以Promise形式返回指定卡槽是否激活。<br/>- true:激活。<br/>- false：未激活。 |
-
+| Promise\<Array\<[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)\>\>| 回调函数。返回激活的SIM卡账户信息列表。 |
 
 **错误码：**
 
@@ -3439,6 +3432,7 @@ async getAllSimAccountInfoList(): Promise<ResponseData<sim.IccAccountInfo[] | nu
     }
   }
 ```
+
 
 ## LockType<sup>8+</sup>
 
