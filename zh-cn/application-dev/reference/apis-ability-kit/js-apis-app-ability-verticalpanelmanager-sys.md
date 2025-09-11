@@ -1,4 +1,4 @@
-# @ohos.app.ability.verticalPanelManager (启动垂域面板选择器)(系统接口)
+# @ohos.app.ability.verticalPanelManager (垂域面板管理)(系统接口)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -7,7 +7,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-本模块提供拉起垂域面板选择器功能。
+本模块提供垂域面板管理能力，当前仅提供启动垂域面板选择器接口。
 
 > **说明：**
 >
@@ -25,7 +25,7 @@ import { verticalPanelManager } from '@kit.AbilityKit';
 
 startVerticalPanel(context: common.UIAbilityContext, wantParam: Record\<string, Object>, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback): Promise\<void>
 
-启动带有面板配置的垂域UIAbility。使用Promise异步回调。仅支持在主线程调用和处于前台的应用调用。
+用于拉起垂域面板，并配合在垂域面板上拉起应用时，自动展示分屏效果的场景。其中，分屏对象为源应用（[sourceAppInfo](#panelconfig)）和目标应用（面板上选择的应用）。目前仅面向系统应用开放。使用Promise异步回调。仅支持处于前台的应用调用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -85,6 +85,7 @@ struct Index {
     .width('100%');
   }
 
+  // 构造参数，调用startVerticalPanel，拉起垂域面板
   callStartVerticalPanelNapi() {
     // Param[0] UIAbilityContext
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -143,7 +144,7 @@ struct Index {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | type | [VerticalType](#verticaltype) | 否 | 否 | 垂域面板的类型。 |
-| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括bundleName、moduleName、abilityName、windowId和screenMode。 |
+| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括bundleName、moduleName、abilityName、windowId和screenMode。在垂域面板中，选择并拉起目标应用时，源应用与目标应用自动形成分屏。 |
 
 ## VerticalType 
 
@@ -167,8 +168,8 @@ struct Index {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| onError | [OnErrorFn](#onerrorfn) | 否 | 否 | 在发生除与UIAbility或UIExtensionAbility断开连接之外的错误时回调。|
-| onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 在UIExtensionAbility终止并返回结果时回调。 |
+| onError | [OnErrorFn](#onerrorfn) | 否 | 否 | 拉起垂域面板执行失败的回调。 |
+| onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 拉起垂域面板终止时的回调。 |
 
 ## OnErrorFn
 
@@ -182,9 +183,9 @@ type OnErrorFn = (code: number, name: string, message: string) => void
 
 | 参数名 | 类型  | 必填  | 说明 |
 | -------- | -------- | -------- | -------- |
-| code | number | 是 | 拉起UIAbility或UIExtensionAbility执行失败时返回的结果码。 |
-| name | string | 是 | 拉起UIAbility或UIExtensionAbility执行失败时返回的名称。 |
-| message | string | 是 | 拉起UIAbility或UIExtensionAbility执行失败时返回的错误信息。 |
+| code | number | 是 | 拉起UIExtensionAbility执行失败时返回的结果码。 |
+| name | string | 是 | 拉起UIExtensionAbility执行失败时返回的名称。 |
+| message | string | 是 | 拉起UIExtensionAbility执行失败时返回的错误信息。 |
 
 **示例：**
 
