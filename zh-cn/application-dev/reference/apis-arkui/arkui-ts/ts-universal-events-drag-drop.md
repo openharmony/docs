@@ -584,7 +584,7 @@ executeDropAnimation(customDropAnimation: Callback\<void\>): void
 
 getDisplayId(): number
 
-获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。
+获取当前拖拽事件发生时所在的屏幕ID，不支持在onDragEnd阶段使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
