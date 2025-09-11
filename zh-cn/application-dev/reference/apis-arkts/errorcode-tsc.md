@@ -93,10 +93,54 @@ Type 'string' is not assignable to type 'number'.
 
 **处理步骤**
 
-根据报错描述，确保类型一致性，进行相应的的类型赋值修改，修改后代码如下：
+根据报错描述，确保类型一致性，进行相应的类型赋值修改，修改后代码如下：
 
 ```typescript
 let a: number = 1;
 let b: number = 2;
 a = b;
+```
+
+### js文件中接口导出异常
+
+**错误示例场景：**
+
+har1包中有js文件，存在导出接口：
+```
+// har1's src/main/ets/FileJs.js
+export let fileJs = 1;
+```
+har2包引用har1包中该接口：
+```
+import { fileJs } from 'har1/src/main/ets/FileJs';
+```
+
+**错误信息**
+
+Cannot find module XXX or its corresponding type declarations.
+
+**错误描述**
+
+当字节码har中有js文件时，编译无法生成声明文件，导致其余模块无法导入。
+
+**可能原因**
+
+js文件在编译时tsc不会生成对应的声明文件，导致其余模块无法导入。
+
+**处理步骤**
+
+若har包中的js文件需要提供对外导出功能，开发者需要：
+
+1.在js文件同级目录中手动编写对应的.d.ts声明文件，并随har包一起编译发布，示例如下：
+```
+// har1's src/main/ets/FileJs.d.ts
+export declare let fileJs: number;
+```
+2.在har1包顶层的Index.ets文件中增加export导出语句，示例如下：
+```
+export { fileJs } from './src/main/ets/FileJs';
+```
+3.在har2包引用har1包中该接口，示例如下：
+```
+import { fileJs } from 'har1/src/main/ets/FileJs';
 ```
