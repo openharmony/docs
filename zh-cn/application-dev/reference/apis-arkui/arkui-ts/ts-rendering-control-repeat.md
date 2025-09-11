@@ -12,7 +12,7 @@
 
 Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。
 
-本文档仅为API参数说明。组件描述和使用说明见[Repeat开发者指南](../../../ui/state-management/arkts-new-rendering-control-repeat.md)。
+本文档仅为API参数说明。组件描述和使用说明见[Repeat开发者指南](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md)。
 
 ## 接口
 
@@ -259,7 +259,7 @@ totalCount表示期望加载的数据长度，默认为原数组长度，可以�
 
 > **注意：** 
 >
-> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证在列表即将滑动到数据源末尾时请求后续数据。开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](../../../ui/state-management/arkts-new-rendering-control-repeat.md#totalcount值大于数据源长度)。
+> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证在列表即将滑动到数据源末尾时请求后续数据。开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md#totalcount值大于数据源长度)。
 
 ### onLazyLoading<sup>19+</sup>：数据精准懒加载
 

@@ -356,7 +356,7 @@ LazyForEach数据懒加载可以通过设置cachedCount属性来指定缓存数�
 
 [使用AVPlayer开发音频播放功能(ArkTS)](../media/media/using-avplayer-for-playback.md)
 
-[LazyForEach:数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)
+[LazyForEach:数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)
 
 [容器组件：Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)
 

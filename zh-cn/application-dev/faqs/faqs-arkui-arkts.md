@@ -28,7 +28,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[渲染控制语法](../ui/state-management/arkts-rendering-control-overview.md)
+[渲染控制语法](../ui/rendering-control/arkts-rendering-control-overview.md)
 
 
 ## 使用\@Builder装饰器包含自定义组件的方法与普通方法的区别是什么(API 9)
