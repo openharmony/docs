@@ -54,7 +54,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| Promise\<boolean> | Promise形式返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+| Promise\<boolean> | Promise对象，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
 **错误码：**
 
@@ -92,7 +92,7 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 | 参数名         | 类型                              | 必填   | 说明                                      |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#applicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。                            |
-| callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+| callback    | AsyncCallback\<boolean> | 是    | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为bool值，true表示是默认应用，false表示不是默认应用；否则为错误对象。 |
 
 **错误码：**
 
