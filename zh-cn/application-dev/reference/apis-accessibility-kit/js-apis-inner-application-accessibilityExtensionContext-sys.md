@@ -1106,7 +1106,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowId: number = 10;
 
-axContext.getRootInActiveWindow(windowId)..then((root: AccessibilityElement) => {
+axContext.getRootInActiveWindow(windowId).then((root: AccessibilityElement) => {
     root.findElementByContent('connect').then((elements: AccessibilityElement[]) => {
         console.log("findElementByContent size=" + elements.length)
     }).catch((err) => {
