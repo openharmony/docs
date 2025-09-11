@@ -129,6 +129,7 @@
    ```
 
 4. 开始录像。
+
    > **说明：**
    >
    > 在设置预览流帧率时，需要先通过[getActiveFrameRate](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#getactiveframerate12)查询当前录像流的帧率：
