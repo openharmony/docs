@@ -37,8 +37,6 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, CullMode, Blend
 ## SceneResource
 用于表示场景中的资源。
 
-**系统能力：** SystemCapability.ArkUi.Graphics3D
-
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -254,8 +252,6 @@ function destroy(): void {
 
 ## Animation
 动画类型，继承自[SceneResource](#sceneresource-1)。
-
-**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ### 属性
 

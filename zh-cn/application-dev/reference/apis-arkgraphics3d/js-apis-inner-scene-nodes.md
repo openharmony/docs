@@ -314,8 +314,6 @@ function count(): void {
 ## Node
 3D场景由树状层次结构的结点组成，其中每个结点都实现了Node接口。继承自[SceneResource](js-apis-inner-scene-resources.md#sceneresource-1)。
 
-**系统能力：** SystemCapability.ArkUi.Graphics3D
-
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -412,8 +410,6 @@ function getNode(): void {
 
 ## Camera
 相机类型，Camera继承自[Node](#node)。
-
-**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ### 属性
 

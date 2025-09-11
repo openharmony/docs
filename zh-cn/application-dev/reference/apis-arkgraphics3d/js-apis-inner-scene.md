@@ -738,8 +738,6 @@ function registerResourcePath(): void {
 ## Scene
 用于设置场景。
 
-**系统能力：** SystemCapability.ArkUi.Graphics3D
-
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
