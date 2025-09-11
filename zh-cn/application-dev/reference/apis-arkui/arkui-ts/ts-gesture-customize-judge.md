@@ -74,36 +74,6 @@ getModifierKeyState?(keys: Array\<string>): boolean
 
 **参数：**
 
-| 参数名  | 类型         | 必填 | 说明   |
-| ------- | ----------- | ---- | --------------------- |
-| keys | Array\<string> | 是    | 需要查询的功能键。 |
-
-**返回值：**
-
-| 类型              |       说明       |
-| ------- | --------------------------------- | 
-| boolean | 功能键的按压状态。true表示功能键被按下，false表示功能键未被按下。|
-
-**错误码**
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-
-### getModifierKeyState<sup>12+</sup>
-
-getModifierKeyState?(keys: Array&lt;string&gt;): boolean
-
-获取功能键按压状态。支持功能键 'Ctrl'\|'Alt'\|'Shift'。此接口不支持在手写笔场景下使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | keys  | Array&lt;string&gt; | 是   | 功能键列表。 |
