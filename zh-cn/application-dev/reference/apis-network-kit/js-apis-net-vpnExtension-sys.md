@@ -25,7 +25,7 @@ import { vpnExtension } from '@kit.NetworkKit';
 
 setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
-设置设备的启用/禁用always on VPN模式，使用Promise异步回调。
+设置设备的启用/禁用always on VPN模式。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
