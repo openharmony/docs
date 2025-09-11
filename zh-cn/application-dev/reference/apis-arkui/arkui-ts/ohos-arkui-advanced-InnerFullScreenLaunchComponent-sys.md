@@ -56,17 +56,21 @@ InnerFullScreenLaunchComponent({ content: Callback\<void>, controller: LaunchCon
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| ---- | ---------- | ------ |------ |
-|launchAtomicService | [LaunchAtomicServiceCallback](#launchatomicservicecallback) | 是 | 拉起原子化服务。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---------- | ------ |------ | -- |
+|launchAtomicService | [LaunchAtomicServiceCallback](#launchatomicservicecallback) | 否 | 否 | 拉起原子化服务。 |
 
 ## LaunchAtomicServiceCallback
+
+type LaunchAtomicServiceCallback = (appId: string, options?: AtomicServiceOptions) => void
+
+登录元服务触发的回调。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | --------------- | ------ |------ |------ |
 |appId | string |是| 原子化服务的appId。 |
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | 拉起原子化服务参数。 |
