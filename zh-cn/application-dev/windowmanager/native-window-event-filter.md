@@ -33,7 +33,7 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 
 | 接口名                                                       | 描述                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| OH_NativeWindowManager_RegisterKeyEventFilter (int32_t windowId, OH_NativeWindowManager_KeyEventFilter keyEventFilter) | 为指定的窗口注册过滤回调函数keyEventFilter。 |
+| OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId, OH_NativeWindowManager_KeyEventFilter keyEventFilter) | 为指定的窗口注册过滤回调函数keyEventFilter。 |
 | OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId) | 取消指定窗口上的过滤回调函数。               |
 
 - 应用窗口创建后，使用窗口ID绑定按键事件过滤函数。

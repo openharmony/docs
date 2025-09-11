@@ -1683,7 +1683,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
+**设备行为差异：** 在API version 12之前，该接口在所有设备中可正常调用。从API version 12开始，该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1755,7 +1755,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
+**设备行为差异：** 在API version 12之前，该接口在所有设备中可正常调用。从API version 12开始，该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -7342,7 +7342,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，对存在标题栏和三键区的窗口形态生效，用于设置窗口的标题栏高度，。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，对存在标题栏和三键区的窗口形态生效，用于设置窗口的标题栏高度。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 当主窗口进入全屏沉浸状态时，此时鼠标Hover到窗口标题栏热区时，会显示悬浮标题栏，悬浮标题栏高度固定为37vp。
 
@@ -8375,7 +8375,7 @@ try {
 
 startMoving(): Promise&lt;void&gt;
 
-自由窗口状态下，对主窗、子窗和系统窗口生效。非自由窗口状态下，仅对子窗、系统窗口生效。用于开始移动窗口，使用Promise异步回调。
+[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，对主窗、子窗和系统窗口生效。非自由窗口状态下，仅对子窗、系统窗口生效。用于开始移动窗口，使用Promise异步回调。
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
