@@ -211,6 +211,7 @@
         }
       }
 
+      // 取消长时任务.then()写法
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
            console.info(`Succeeded in operationing stopBackgroundRunning.`);
