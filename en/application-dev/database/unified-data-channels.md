@@ -49,7 +49,7 @@ The following table lists the UDMF APIs. All of them are executed asynchronously
 
 ## How to Develop
 
-The following example walks you through on how to implement many-to-many sharing of [PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext), [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html), and [PixelMap](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#pixelmap15) data. The data provider calls **insertData()** provided by UMDF to write data to the public data channel. The return value (unique identifier of the data written) can be used to update or delete the data. The data consumer uses the query() APIs provided by UDMF to obtain full data of the public data channel.
+The following example walks you through on how to implement many-to-many sharing of [PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext), [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html), and [PixelMap](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#pixelmap15) data. The data provider calls **insertData()** provided by UDMF to write data to the public data channel. The return value (unique identifier of the data written) can be used to update or delete the data. The data consumer uses the query() APIs provided by UDMF to obtain full data of the public data channel.
 
 ### Data Provider
 
