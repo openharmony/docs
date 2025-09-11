@@ -160,6 +160,8 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：9
 
+**变更信息**：在API 9-19，该权限面向系统应用开放；从API 20开始，面向普通应用开放。
+
 ## ohos.permission.WRITE_WHOLE_CALENDAR
 
 允许应用添加、移除或更改所有的日历活动。
@@ -169,6 +171,8 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：用户授权（user_grant）
 
 **起始版本**：9
+
+**变更信息**：在API 9-19，该权限面向系统应用开放；从API 20开始，面向普通应用开放。
 
 ## ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
