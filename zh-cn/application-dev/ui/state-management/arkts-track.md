@@ -25,7 +25,7 @@
 
 ## class属性级更新说明
 
-状态管理V1中\@State等装饰器默认支持观察第一层属性的变化，第一层属性的变化虽然可以触发更新，但无法做到类属性级的观察，如下面例子展示了这一限制：
+状态管理V1中\@State等装饰器默认支持观察第一层属性的变化，第一层属性的变化虽然可以触发更新，但无法做到类属性级的观察，下面的例子就展示了这一限制：
 
 ```ts
 class Info {
@@ -80,7 +80,7 @@ struct Index {
 Component 1 render
 Component 2 render
 ```
-- 当点击`Button('change name')`时，即使只修改了`info.name`，观察日志发现两个Text组件仍会重新渲染。组件```Text(age: ${this.info.age})```并未使用`name`属性，但仍因为`info.name`改变刷新，因此这次刷新是冗余的。日志输出如下：
+- 当点击`Button('change name')`时，即使只修改了`info.name`，观察日志发现两个Text组件仍会重新渲染。组件```Text(`age: ${this.info.age}`)```并未使用`name`属性，但仍因为`info.name`的改变而刷新，因此这次刷新是冗余的。日志输出如下：
 ```
 Component 1 render
 Component 2 render
@@ -193,7 +193,7 @@ struct AddLog {
 
 - 如果class类中使用了\@Track装饰器，那么该class类中非\@Track装饰的属性不能在\@Component UI中使用，包括不能绑定在组件上、不能用于初始化子组件，错误的使用将导致运行时报错，详见[在UI中使用非\@Track装饰的属性发生运行时报错](#在ui中使用非track装饰的属性发生运行时报错)；可以在非UI中使用非\@Track装饰的属性，如事件回调函数中、生命周期函数中等。
 
-- API version 18及以后，\@Track使用在\@ComponentV2的UI中，不会引起运行时报错，但依旧不会刷新。具体例子见[常见场景](./arkts-v1-v2-mixusage.md#observed装饰的class)。
+- API version 19及以后，\@Track使用在[\@ComponentV2](./arkts-new-componentV2.md)的UI中，不会引起运行时报错，但依旧不会刷新，详见[常见场景](./arkts-v1-v2-mixusage.md#observed装饰的class)。
 
 - 建议开发者不要混用包含\@Track的class对象和不包含\@Track的class对象，如联合类型中、类继承中等。
 
@@ -202,7 +202,7 @@ struct AddLog {
 
 ### \@Track和自定义组件更新
 
-以下示例展示组件更新和\@Track的处理步骤。对象log是\@State装饰的状态变量，logInfo是\@Track的成员属性，其余成员属性都是非\@Track装饰的，而且也不准备在UI中更新它们的值。
+以下示例展示组件更新和\@Track的处理步骤。对象log是\@State装饰的状态变量，logInfo是\@Track装饰的成员属性，其余成员属性都是非\@Track装饰的，而且也不准备在UI中更新它们的值。
 
 
 ```ts
