@@ -1,4 +1,10 @@
 # Establishing a Data Channel Between the Application and the Frontend Page
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 
 The [createWebMessagePorts()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createwebmessageports) API allows you to create message ports to implement communication between the application and frontend page.
@@ -25,7 +31,7 @@ In the following example, **createWebMessagePorts** is used to create two messag
     build() {
       Column() {
         // Display the content received from the HTML side.
-        Text(this.receivedFromHtml)
+        Text(this.receivedFromHtml);
         // Send the content in the text box to the HTML side.
         TextInput({ placeholder: 'Send this message from ets to HTML' })
           .onChange((value: string) => {
@@ -38,26 +44,30 @@ In the following example, **createWebMessagePorts** is used to create two messag
             try {
               // 1. Create two message ports.
               this.ports = this.controller.createWebMessagePorts();
-              // 2. Register a callback for the message port (for example, port 1) on the application.
-              this.ports[1].onMessageEvent((result: webview.WebMessage) => {
-                let msg = 'Got msg from HTML:';
-                if (typeof (result) === 'string') {
-                  console.info(`received string message from html5, string is: ${result}`);
-                  msg = msg + result;
-                } else if (typeof (result) === 'object') {
-                  if (result instanceof ArrayBuffer) {
-                    console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'length is ' + result.byteLength;
+              if (this.ports && this.ports[0] && this.ports[1]) {
+                // 2. Register a callback for the message port (for example, port 1) on the application.
+                this.ports[1].onMessageEvent((result: webview.WebMessage) => {
+                  let msg = 'Got msg from HTML:';
+                  if (typeof (result) === 'string') {
+                    console.info(`received string message from html5, string is: ${result}`);
+                    msg = msg + result;
+                  } else if (typeof (result) === 'object') {
+                    if (result instanceof ArrayBuffer) {
+                      console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
+                      msg = msg + 'length is ' + result.byteLength;
+                    } else {
+                      console.info('not support');
+                    }
                   } else {
                     console.info('not support');
                   }
-                } else {
-                  console.info('not support');
-                }
-                this.receivedFromHtml = msg;
-              })
-              // 3. Send the other message port (for example, port 0) to the HTML side, which then saves the message port.
-              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+                  this.receivedFromHtml = msg;
+                })
+                // 3. Send the other message port (for example, port 0) to the HTML side, which then saves the message port.
+                this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+              } else {
+                console.error(`ports is null, Please initialize first`);
+              }
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
@@ -112,11 +122,11 @@ In the following example, **createWebMessagePorts** is used to create two messag
                 var msg = 'Got message from ets:';
                 var result = event.data;
                 if (typeof(result) === 'string') {
-                  console.info(`received string message from html5, string is: ${result}`);
+                  console.info(`received string message from ets, string is: ${result}`);
                   msg = msg + result;
                 } else if (typeof(result) === 'object') {
                   if (result instanceof ArrayBuffer) {
-                    console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
+                    console.info(`received arraybuffer from ets, length is: ${result.byteLength}`);
                     msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');
@@ -141,3 +151,20 @@ In the following example, **createWebMessagePorts** is used to create two messag
   </script>
   </html>
   ```
+
+## FAQs
+
+### What should I do if the application cannot receive messages sent by the HTML5 page?
+Check whether the data type is correct. **WebMessage** supports the string and ArrayBuffer types. 
+To pass the object type, use the **JSON.stringify** method to convert it to the string type. Example:
+
+```ts
+  function PostMsgToEts(data) {
+      if (h5Port) {
+        let obj = {name:'exampleName',id:10}
+        h5Port.postMessage(JSON.stringify(obj));
+      } else {
+        console.error('h5Port is null. Please initialize it first.');
+      }
+  }
+```

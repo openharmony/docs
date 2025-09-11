@@ -1,4 +1,10 @@
 # Class (WebContextMenuParam)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **WebContextMenuParam** object, which is displayed after the user clicks the right mouse button or long presses a specific element, such as an image or a link. For details about the sample code, see [onContextMenuShow](./arkts-basic-components-web-events.md#oncontextmenushow9).
 
@@ -78,7 +84,7 @@ Obtains the URL of the unfiltered link.
 
 getSourceUrl(): string
 
-Obtain the source URL.
+Obtains the source URL.
 
 **System capability**: SystemCapability.Web.Webview.Core
 

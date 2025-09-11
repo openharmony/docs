@@ -1,4 +1,10 @@
 # Class (WebController, deprecated)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **WebController** to control the behavior of the **Web** component. A **WebController** can control only one **Web** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **Web** component.
 
@@ -129,7 +135,7 @@ This API is deprecated since API version 9. You are advised to use [accessBackwa
         Button('accessBackward')
           .onClick(() => {
             let result = this.controller.accessBackward()
-            console.log('result:' + result)
+            console.info('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -167,7 +173,7 @@ This API is deprecated since API version 9. You are advised to use [accessForwar
         Button('accessForward')
           .onClick(() => {
             let result = this.controller.accessForward()
-            console.log('result:' + result)
+            console.info('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -212,7 +218,7 @@ This API is deprecated since API version 9. You are advised to use [accessStep<s
         Button('accessStep')
           .onClick(() => {
             let result = this.controller.accessStep(this.steps)
-            console.log('result:' + result)
+            console.info('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -350,7 +356,7 @@ This API is deprecated since API version 9. You are advised to use [getHitTest<s
         Button('getHitTest')
           .onClick(() => {
             let hitType = this.controller.getHitTest()
-            console.log("hitType: " + hitType)
+            console.info("hitType: " + hitType)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -611,7 +617,7 @@ This API is deprecated since API version 9. You are advised to use [registerJava
     }
 
     toString(): void {
-      console.log('Web Component toString')
+      console.info('Web Component toString')
     }
   }
 
@@ -651,7 +657,7 @@ This API is deprecated since API version 9. You are advised to use [registerJava
           <script type="text/javascript">
               function htmlTest() {
                   str = objName.test("test function")
-                  console.log('objName.test result:'+ str)
+                  console.info('objName.test result:'+ str)
               }
           </script>
       </body>
@@ -717,7 +723,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
         Hello world!
         <script type="text/javascript">
             function test() {
-                console.log('Ark WebComponent')
+                console.info('Ark WebComponent')
                 return "This value is from index.html"
             }
         </script>

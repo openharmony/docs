@@ -1,4 +1,10 @@
 # Setting the Dark Mode
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @KeeGitee-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 The system provides the light and dark theme modes for users. Dark mode reduces the screen brightness and visual stimulus in low-light environments, improving reading experience. The **Web** component is rendered based on the web page style. If the web page is not adapted to dark mode, it will be separated from the system theme. To ensure a consistent user experience, you need to consider users' theme preferences and adapt the web page to dark mode.
 

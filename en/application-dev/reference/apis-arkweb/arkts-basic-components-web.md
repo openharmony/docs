@@ -1,4 +1,10 @@
 # Components
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 The **Web** component can be used to display web pages. It can be used with the [@ohos.web.webview](arkts-apis-webview.md) module, which provides APIs for web control.
 
@@ -7,6 +13,30 @@ The **Web** component can be used to display web pages. It can be used with the 
 > - The initial APIs of this component are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+
+This module provides the following common functionalities related to web page display:
+
+- [ClientAuthenticationHandler](./arkts-basic-components-web-ClientAuthenticationHandler.md): Client certificate request event.
+- [ConsoleMessage](./arkts-basic-components-web-ConsoleMessage.md): Console information.
+- [ControllerHandler](./arkts-basic-components-web-ControllerHandler.md): **WebviewController** object of the new **Web** component.
+- [DataResubmissionHandler](./arkts-basic-components-web-DataResubmissionHandler.md): Form data operation object.
+- [EventResult](./arkts-basic-components-web-EventResult.md): Same-layer event consumption result.
+- [FileSelectorParam](./arkts-basic-components-web-FileSelectorParam.md): File selector object of the **Web** component.
+- [FileSelectorResult](./arkts-basic-components-web-FileSelectorResult.md): File selection result of the **Web** component.
+- [FullScreenExitHandler](./arkts-basic-components-web-FullScreenExitHandler.md): Object for exiting full screen of the **Web** component.
+- [HttpAuthHandler](./arkts-basic-components-web-HttpAuthHandler.md): Object for performing operations related to HttpAuth authentication requests.
+- [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md): Geolocation permission related functionalities.
+- [JsResult](./arkts-basic-components-web-JsResult.md): Dialog box operations.
+- [PermissionRequest](./arkts-basic-components-web-PermissionRequest.md): Permission request.
+- [ScreenCaptureHandler](./arkts-basic-components-web-ScreenCaptureHandler.md): Screen capture permission operations.
+- [SslErrorHandler](./arkts-basic-components-web-SslErrorHandler.md): SSL error event operations.
+- [WebContextMenuParam](./arkts-basic-components-web-WebContextMenuParam.md): Menu information displayed when the screen is long-pressed or the right mouse button is clicked.
+- [WebContextMenuResult](./arkts-basic-components-web-WebContextMenuResult.md): Object that controls the menu displayed when the screen is long-pressed or the right mouse button is clicked.
+- [WebCookie](./arkts-basic-components-web-WebCookie.md): Cookie management operations of the **Web** component in the current application.
+- [WebKeyboardController](./arkts-basic-components-web-WebKeyboardController.md): Object that controls the custom keyboard.
+- [WebResourceError](./arkts-basic-components-web-WebResourceError.md): Resource management error.
+- [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md): Resource obtaining request.
+- [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md): Resource obtaining response.
 
 ## Required Permissions
 
@@ -102,12 +132,13 @@ Example of using the **Web** component to specify the shared rendering process.
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
+    controller1: webview.WebviewController = new webview.WebviewController();
+    controller2: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
-        Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: "111" })
       }
     }
   }

@@ -1,4 +1,10 @@
 # Migrating Web Components Between Different Windows
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--Designer: @libing23232323-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 The **Web** component can be attached to and detached from the component trees in different windows, which enables the same **Web** component to be migrated between different windows. For example, you can drag a tab page to an independent window or drag it to another window.
 
@@ -23,7 +29,7 @@ import { createNWeb, defaultUrl } from '../pages/common'
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
-      if (err.code) {
+      if (err && err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }

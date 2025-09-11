@@ -1,4 +1,10 @@
 # Intelligent Tracking Prevention
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 
 The **Web** component supports the intelligent tracking prevention feature. That is, when a tracking website is inserted into another web page as a third party, the network request sent by the website cannot carry cookies.

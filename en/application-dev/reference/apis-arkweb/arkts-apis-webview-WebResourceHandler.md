@@ -1,4 +1,10 @@
 # Class (WebResourceHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **WebResourceHandler** object, which can return custom response headers and response bodies to the **Web** component.
 
@@ -9,6 +15,12 @@ Implements a **WebResourceHandler** object, which can return custom response hea
 > - The initial APIs of this class are supported since API version 12.
 >
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+
+## Modules to Import
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
 
 ## didReceiveResponse<sup>12+</sup>
 
@@ -107,7 +119,6 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 17100021 | The resource handler is invalid. |
 
-**System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
 
@@ -156,25 +167,25 @@ struct WebComponent {
         .onControllerAttached(() => {
           try {
             this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
-              console.log("[schemeHandler] onRequestStart");
+              console.info("[schemeHandler] onRequestStart");
               try {
-                console.log("[schemeHandler] onRequestStart url:" + request.getRequestUrl());
-                console.log("[schemeHandler] onRequestStart method:" + request.getRequestMethod());
-                console.log("[schemeHandler] onRequestStart referrer:" + request.getReferrer());
-                console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame());
-                console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture());
-                console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length);
-                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType());
-                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl());
+                console.info("[schemeHandler] onRequestStart url:" + request.getRequestUrl());
+                console.info("[schemeHandler] onRequestStart method:" + request.getRequestMethod());
+                console.info("[schemeHandler] onRequestStart referrer:" + request.getReferrer());
+                console.info("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame());
+                console.info("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture());
+                console.info("[schemeHandler] onRequestStart header size:" + request.getHeader().length);
+                console.info("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType());
+                console.info("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl());
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
-                  console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
+                  console.info("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
                 }
                 let stream = request.getHttpBodyStream();
                 if (stream) {
-                  console.log("[schemeHandler] onRequestStart has http body stream");
+                  console.info("[schemeHandler] onRequestStart has http body stream");
                 } else {
-                  console.log("[schemeHandler] onRequestStart has no http body stream");
+                  console.info("[schemeHandler] onRequestStart has no http body stream");
                 }
               } catch (error) {
                 console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -188,13 +199,14 @@ struct WebComponent {
                 // Call didFail(WebNetErrorList.ERR_FAILED, true) to automatically construct a network request error ERR_CONNECTION_FAILED.
                 resourceHandler.didFail(WebNetErrorList.ERR_FAILED, true);
               } catch (error) {
+              	// If error.code is 17100101 and the error is not handled, the **didFail** method is also successfully called.
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
               return true;
             })
 
             this.schemeHandler.onRequestStop((request: webview.WebSchemeHandlerRequest) => {
-              console.log("[schemeHandler] onRequestStop");
+              console.info("[schemeHandler] onRequestStop");
             });
 
             this.controller.setWebSchemeHandler('https', this.schemeHandler);

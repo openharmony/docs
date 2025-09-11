@@ -1,4 +1,10 @@
 # Interface (NativeMediaPlayerHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhangyao75477-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **NativeMediaPlayerHandler** object used as a parameter of the [CreateNativeMediaPlayerCallback](./arkts-apis-webview-t.md#createnativemediaplayercallback12) callback.
 The application uses this object to report the player status to the ArkWeb engine.
@@ -41,7 +47,7 @@ Called to notify the ArkWeb engine of the volume of the player when the volume c
 
 | Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| volume | number | Yes| Volume of the player.|
+| volume | number | Yes| Volume of the player. The value range is [0, 1.0].|
 
 **Example**
 
@@ -77,7 +83,7 @@ Called to notify the ArkWeb engine of the playback rate of the player when the p
 
 | Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| playbackRate | number | Yes| Playback rate.|
+| playbackRate | number | Yes| Playback rate. The value range is [0, +∞).|
 
 **Example**
 
@@ -95,7 +101,7 @@ Called to notify the ArkWeb engine of the total duration of the media.
 
 | Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| duration | number | Yes| Total duration of the media.<br>Unit: second|
+| duration | number | Yes| Total duration of the media.<br>Unit: second. Value range: [0,+∞)|
 
 **Example**
 
@@ -113,7 +119,7 @@ Called to notify the ArkWeb engine of the playback progress when the playback pr
 
 | Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| currentPlayTime | number | Yes| Current progress. Unit: second. |
+| currentPlayTime | number | Yes| Current progress.<br>Unit: second. Value range: [0, duration] |
 
 **Example**
 
@@ -131,7 +137,7 @@ Called to notify the ArkWeb engine of the buffer time when the buffer time chang
 
 | Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| bufferedEndTime | number | Yes| Duration of media data in the buffer.|
+| bufferedEndTime | number | Yes| Duration of media data in the buffer.<br>Unit: second. Value range: [0, duration]|
 
 **Example**
 
@@ -258,8 +264,8 @@ Called to notify the ArkWeb engine of the video size of the player.
 
 | Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| width  | number | Yes| Video width.|
-| height | number | Yes| Video height.|
+| width  | number | Yes| Video width, in pixels. Value range: [0,+∞)|
+| height | number | Yes| Video height, in pixels. Value range: [0,+∞)|
 
 **Example**
 
