@@ -146,7 +146,7 @@ isBatteryConfigSupported(sceneName: string): boolean
   console.info("The result is: " + result);
   ```
 
-## 属性
+## 常量
 
 描述电池信息。
 
