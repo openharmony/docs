@@ -567,6 +567,10 @@ async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelp
       predicates: predicates
     };
     let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    if (fetchResult === undefined) {
+      console.error('photoAssetGet fetchResult is undefined');
+      return;
+    }
     let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
     let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title.toString());
@@ -740,6 +744,10 @@ async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelp
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   let asset = await fetchResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('getThumbnailPromise albums is undefined');
+    return;
+  }
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);

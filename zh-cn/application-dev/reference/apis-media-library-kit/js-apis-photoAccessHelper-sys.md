@@ -2158,7 +2158,15 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  if (fetchResult === undefined) {
+    console.error('fetchResult is undefined');
+    return;
+  }  
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  if (photoAsset === undefined) {
+    console.error('photoAsset is undefined');
+    return;
+  }
   let uriList: Array<string> = [
     photoAsset.uri,
   ];
@@ -2466,11 +2474,11 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData'
 
 let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
-    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback1 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
-    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback2 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 
@@ -2526,11 +2534,11 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData'
 
 let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
-    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback1 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
-    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback2 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 
@@ -2712,11 +2720,11 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData'
 
 let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback1 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback2 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 
@@ -2772,11 +2780,11 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData'
 
 let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback1 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback2 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 
@@ -2835,11 +2843,11 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData'
 
 let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback1 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback2 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 
@@ -2895,11 +2903,11 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData'
 
 let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback1 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
-    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+    console.info('onCallback2 success, changeData: ' + JSON.stringify(changeData));
   // file had changed, do something.
 }
 
@@ -3375,6 +3383,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   let asset = await fetchResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset is undefined');
+    return;
+  }
   asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
   }).catch((err: BusinessError) => {
@@ -4377,6 +4389,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (photoAsset === undefined) {
+      console.error('photoAsset is undefined');
+      return;
+    }
     let editData = '123456';
     let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     photoAsset.commitEditedAsset(editData, uri, (err) => {
@@ -4568,6 +4584,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (photoAsset === undefined) {
+      console.error('getHiddenAlbumsViewCallback albums is undefined');
+      return;
+    }
     photoAsset.revertToOriginal();
     console.info('revertToOriginal is successful');
   } catch (err) {
@@ -5444,8 +5464,20 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let fetchResult =
       await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT,
         fetchOptions);
+    if (fetchResult === undefined) {
+      console.error('getFaceId fetchResult is undefined');
+      return;
+    }
     let album = await fetchResult?.getFirstObject();
+    if (album === undefined) {
+      console.error('album is undefined');
+      return;
+    }
     let faceId = await album?.getFaceId();
+    if (faceId === undefined) {
+      console.error('faceId is undefined');
+      return;
+    }
     console.info(`getFaceId successfully, faceId: ${faceId}`);
     fetchResult.close();
   } catch (err) {
@@ -6759,9 +6791,16 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    if (albums === undefined) {
+      console.error('getHiddenAlbumsViewCallback albums is undefined');
+      return;
+    }
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-
+    if (asset === undefined) {
+      console.error('asset is undefined');
+      return;
+    }
     let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
     albumChangeRequest.setCoverUri(asset.uri);
     await phAccessHelper.applyChanges(albumChangeRequest);
@@ -6793,7 +6832,7 @@ resetCoverUri(): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](./arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6928,7 +6967,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-
+    if (asset === undefined) {
+      console.error('asset is undefined');
+      return;
+    }
     if (albumFetchResult.isAfterLast()) {
       console.error('lack of album to be moved into');
       return;
@@ -7104,8 +7146,16 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   };
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    if (albumFetchResult === undefined) {
+      console.error('albumFetchResult is undefined');
+      return;
+    }
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    if (fetchResult === undefined) {
+      console.error('fetchResult is undefined');
+      return;
+    }
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
 
     let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
@@ -9625,7 +9675,7 @@ async function example(context: Context) {
   crManager.removeCustomRecords(fetchOption).then(() => {
     console.info('removeCustomRecords successful');
   }).catch((err: BusinessError) => {
-    console.error('removeCustomRecords fail with error: ${err.code}, ${err.message}');
+    console.error(`removeCustomRecords fail with error: ${err.code}, ${err.message}`);
   });
 }
 ```
