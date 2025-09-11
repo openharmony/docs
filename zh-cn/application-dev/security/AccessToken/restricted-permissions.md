@@ -158,8 +158,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：用户授权（user_grant）
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ## ohos.permission.WRITE_WHOLE_CALENDAR
@@ -169,8 +167,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **权限级别**：system_basic
 
 **授权方式**：用户授权（user_grant）
-
-**ACL使能**：true
 
 **起始版本**：9
 
@@ -324,6 +320,18 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic，向普通应用开放。
 
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许运营商应用添加eSIM配置文件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：13
+
+**变更信息**：在API 13，权限等级为normal；从API 14开始，权限等级变更为system_basic。
+
 ## ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 允许应用禁用本应用的代码运行时完整性保护。
@@ -389,21 +397,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：14
-
-## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
-
-允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：14
-
-**变更信息**：在API 13，权限等级为normal；从API 14开始，权限等级变更为system_basic。
 
 ## ohos.permission.ACCESS_DISK_PHY_INFO
 
@@ -625,8 +618,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
 
 **起始版本**：18
 
