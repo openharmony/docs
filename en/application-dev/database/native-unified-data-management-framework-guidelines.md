@@ -1,4 +1,10 @@
 # UDMF Development (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## Introduction
@@ -46,7 +52,7 @@ For details about the APIs, see [UDMF](../reference/apis-arkdata/capi-udmf.md).
 | int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | Sets the link description for an **OH_UdsHyperlink** instance.                      |
 | OH_UdmfData* OH_UdmfData_Create()                            | Creates a pointer to an **OH_UdmfData** instance.                |
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                 | Destroys the pointer to an **OH_UdmfData** instance.                    |
-| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | Add an **OH_UdmfRecord** to an **OH_UdmfData** instance.             |
+| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | Adds an **OH_UdmfRecord** to an **OH_UdmfData** instance.             |
 | bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type) | Checks whether the specified type exists in an **OH_UdmfData** instance.              |
 | OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | Obtains all data records from an **OH_UdmfData** instance.                          |
 | OH_UdmfRecord* OH_UdmfRecord_Create()                        | Creates a pointer to an **OH_UdmfRecord** instance.              |
@@ -57,6 +63,7 @@ For details about the APIs, see [UDMF](../reference/apis-arkdata/capi-udmf.md).
 | int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | Obtains data from the UDMF database.                                   |
 | int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | Sets data in the UDMF database.                                   |
 | OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create()        | Creates a pointer to the unified data provider instance.                         |
+| int OH_UdmfRecordProvider_Destroy(OH_UdmfRecordProvider* provider) | Destroys the pointer to an **OH_UdmfRecordProvider** instance.|
 | int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize) | Sets a callback for the unified data provider.                             |
 | int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider) | Sets the unified data provider in an **OH_UdmfRecord** instance.                    |
 
@@ -271,6 +278,7 @@ OH_Udmf_SetUnifiedData(Udmf_Intention::UDMF_INTENTION_DRAG, data, key, sizeof(ke
 printf("key = %s", key);
 
 // 5. Destroy all the pointers created.
+OH_UdmfRecordProvider_Destroy(provider);
 OH_UdmfRecord_Destroy(record);
 OH_UdmfData_Destroy(data);
 ```

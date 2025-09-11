@@ -32,9 +32,9 @@ For details about the APIs, see [Pasteboard](../../reference/apis-basic-services
 
 | Name| Description                                                                  |
 | -------- |----------------------------------------------------------------------|
-| OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create()        | Creates a pointer to the unified data provider instance.                         |
-| int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize) | Sets a callback for the unified data provider.                             |
-| int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider) | Sets the unified data provider in an **OH_UdmfRecord** instance.                    |
+| OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create()        | Creates a pointer to the **OH_UdmfRecordProvider** instance.                         |
+| int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize) | Sets a callback for the **OH_UdmfRecordProvider**.                             |
+| int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider) | Sets **OH_UdmfRecordProvider** in an **OH_UdmfRecord** instance.                    |
 | int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data) | Writes data to the pasteboard.                                   |
 | OH_UdmfData * OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status) | Obtains data from the pasteboard.|
 | OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | Obtains all data records from an **OH_UdmfData** instance.                          |
@@ -83,7 +83,7 @@ For better code readability, the operation result verification of each step is o
    }
    ```
 
-3. Prepare the data for delayed copy in the pasteboard. Note that the plain text and HTML data is not written to the pasteboard until the **GetDataCallback** function is triggered when the data user obtains **OH_UdsPlainText** or **OH_UdsHtml** from **OH_UdmfRecord**.
+3. Prepare the data for delayed copy in the pasteboard. Note that the plain text and HTML data is not written to the pasteboard until the **GetDataCallback** function is triggered when the data consumer obtains **OH_UdsPlainText** or **OH_UdsHtml** from **OH_UdmfRecord**.
    
    ```c
    // 3. Create an OH_UdmfRecord object.

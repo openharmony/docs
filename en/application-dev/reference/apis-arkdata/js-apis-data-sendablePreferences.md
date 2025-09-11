@@ -1,4 +1,10 @@
 # @ohos.data.sendablePreferences (Shared User Preferences)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 The **sendablePreferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
@@ -985,7 +991,7 @@ Subscribes to changes of specific data. The registered callback will be invoked 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
 | keys     | Array&lt;string&gt;                                          | Yes  | Keys to be observed.                                         |
-| callback | callback: Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Yes  | Callback used to return the KV pairs changed. The keys are the keys observed, and the values are the new values. The values support the following types: number, string, boolean, bigint, and serializable object.|
+| callback | Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Yes  | Callback used to return the KV pairs changed. The keys are the keys observed, and the values are the new values. The values support the following types: number, string, boolean, bigint, and serializable object.|
 
 **Error codes**
 
