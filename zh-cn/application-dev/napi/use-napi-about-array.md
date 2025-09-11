@@ -17,8 +17,8 @@
 - **数组的创建**：在Node-API模块中需要创建一个新的ArkTS数组，可以使用napi_create_array接口创建数组，将数组传递给ArkTS层。
 - **数组相关操作**：在Node-API模块中通过对应的接口获取ArkTS数组的长度、检索指定索引处的元素以及设置指定索引处的元素值，从而实现Node-API模块与ArkTS数组的交互。
 - **TypedArray**：ArkTS中的TypedArray是一种用来描述二进制数据的类数组数据视图，可以简单理解为一种指定元素类型的数组，TypedArray没有直接构造器，但是可以用它的子类构造器构造TypedArray类型的数据。TypedArray的子类有：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int32Array等。
-- **DataView**：DataView是ArkTS中的一种视图，是可以从ArrayBuffer对象中读写多种数值类型的底层接口。
-- **ArrayBuffer**：ArrayBuffer是固定长度的二进制数据缓冲区。
+- **DataView**：DataView是ArkTS 中的一种灵活的二进制数据访问视图，提供了从 ArrayBuffer 读取和写入多种数值类型的方法。与 TypedArray 不同，DataView 不要求数据必须按特定字节对齐，因此可以处理任意字节偏移的数据结构。DataView 支持以下方法（均有对应的 get 和 set 版本）：Int8、Uint8、Int16、Uint16、Int32、Uint32、Float32、Float64等。
+- **ArrayBuffer**：ArrayBuffer 是固定长度的二进制数据缓冲区，不能直接读写，但可以通过 TypedArray 或 DataView 来操作其内容。
 
 ## 场景和功能介绍
 
