@@ -77,7 +77,7 @@ The actual rounding mode can be the union of the types listed below.
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
 | [Rounding](#rounding) | Same rounding mode as that represented by [Rounding](#constants). |
-| 9                      | Positive remainder Euclid's division, which is the same as [Decimal.EUCLIDEAN](see #constants).|
+| 9                      | Positive remainder Euclid's division, which is the same as [Decimal.EUCLIDEAN](#constants).|
 
 ## DecimalConfig
 

@@ -839,7 +839,7 @@ When checking the scenarios and configuration fields, you are advised to [use ob
 
 ### -keep-property-name
 
-Retains the specified property names. [Name wildcards](#name-wildcards) are supported. The following configuration is used to retain properties named `firstName` and `lastName`:
+Retains the specified property names. [Name wildcards](#wildcards-supported-by-retention-options) are supported. The following configuration is used to retain properties named `firstName` and `lastName`:
 
 ```txt
 -keep-property-name
@@ -982,7 +982,7 @@ class A {
 
 ### -keep-global-name
 
-Retains the specified top-level scope names and imported/exported element names. [Name wildcards](#name-wildcards) are supported. The configuration procedure is as follows:
+Retains the specified top-level scope names and imported/exported element names. [Name wildcards](#wildcards-supported-by-retention-options) are supported. The configuration procedure is as follows:
 
 ```
 -keep-global-name
@@ -1024,7 +1024,7 @@ myNapi();
 
 ### -keep-file-name
 
-Retains the file/folder names. You do not need to specify the file name extension. [Name wildcards](#name-wildcards) are supported.
+Retains the file/folder names. You do not need to specify the file name extension. [Name wildcards](#wildcards-supported-by-retention-options) are supported.
 
 The following uses **utils/file.ets** as an example to describe how to configure the trustlist:
 
@@ -1125,7 +1125,7 @@ StartupConfig
 
 ### -keep-comments
 
-Retains the classes, functions, namespaces, enums, structs, interfaces, modules, types, and JsDoc comments above properties in the declaration files generated after compilation. [Name wildcards](#name-wildcards) are supported. For example, to retain the JSDoc comments above the **Human** class in the declaration file, use the following configuration:
+Retains the classes, functions, namespaces, enums, structs, interfaces, modules, types, and JsDoc comments above properties in the declaration files generated after compilation. [Name wildcards](#wildcards-supported-by-retention-options) are supported. For example, to retain the JSDoc comments above the **Human** class in the declaration file, use the following configuration:
 ```
 -keep-comments
 Human
