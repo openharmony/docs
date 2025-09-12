@@ -156,7 +156,7 @@ struct Index {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NAVIGATION | 'navigation' | 指示导航的类型。 |
+| NAVIGATION | 'navigation' | 指示导航的类型。wantParam参数内容，可参考[拉起导航类应用（startAbilityByType）](../../application-models/start-navigation-apps.md)扩展面板参数说明。 |
 
 ## PanelStartCallback
 
