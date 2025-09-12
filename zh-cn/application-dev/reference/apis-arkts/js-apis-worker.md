@@ -38,6 +38,8 @@ import { worker } from '@kit.ArkTS';
 
 Worker构造函数的选项，用于为Worker添加其他信息。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -51,6 +53,8 @@ Worker构造函数的选项，用于为Worker添加其他信息。
 ## ThreadWorkerPriority<sup>18+</sup>
 
 Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定义](../../napi/qos-guidelines.md#qos等级定义)。
+
+**原子化服务API：**从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -990,6 +994,10 @@ workerPort.onmessage = (event: MessageEvents) => {
 ## ThreadWorkerGlobalScope<sup>9+</sup>
 
 Worker线程用于与宿主线程通信的类。ThreadWorkerGlobalScope类继承[GlobalScope](#globalscope9)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 ### 属性
 
@@ -1963,7 +1971,7 @@ parentPort.onmessage = (): void => {
 
 事件类。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
