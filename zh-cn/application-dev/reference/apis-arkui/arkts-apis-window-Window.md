@@ -7342,7 +7342,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，对存在标题栏和三键区的窗口形态生效，用于设置窗口的标题栏高度。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+设置窗口的标题栏高度，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+针对Tablet设备，非[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用此接口后，当设备切换到自由多窗模式时生效。在自由多窗模式下调用此接口后，立刻生效。
 
 当主窗口进入全屏沉浸状态时，此时鼠标Hover到窗口标题栏热区时，会显示悬浮标题栏，悬浮标题栏高度固定为37vp。
 
