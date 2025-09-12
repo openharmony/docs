@@ -686,7 +686,7 @@ try {
 
 getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
-获取当前屏幕的可见主窗口（未退至后台的主窗口）信息。使用Promise异步回调。
+获取当前屏幕的可见主窗口（未退至后台的主窗口，对应生命周期枚举值[SHOWN|ACTIVE|INACTIVE|RESUMED](arkts-apis-window-e.md#windowstageeventtype9)）信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -740,7 +740,7 @@ try {
 
 getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
-获取指定屏幕上生命周期位于前台的窗口对应的窗口模式，使用Promise异步回调。
+获取指定屏幕上生命周期位于前台（此时生命周期对应枚举值[SHOWN|ACTIVE|INACTIVE|RESUMED|PAUSED](arkts-apis-window-e.md#windowstageeventtype9)）的窗口对应的窗口模式，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
