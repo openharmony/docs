@@ -33,10 +33,10 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型                                              | 必填 | 装饰器类型 | 说明                             |
-| -------------- | ------------------------------------------------- | ---- | ---------- | -------------------------------- |
-| contentOptions | [DownloadContentOptions](#downloadcontentoptions) | 是   | @State     | 创建包含指定元素内容的下载按钮。 |
-| styleOptions   | [DownloadStyleOptions](#downloadstyleoptions)     | 是   | @State     | 创建包含指定元素样式的下载按钮。 |
+| 名称           | 类型                                                         | 必填 | 说明                             |
+| -------------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| contentOptions | [DownloadContentOptions](#downloadcontentoptions) | 是   | 创建包含指定元素内容的下载按钮。 |
+| styleOptions   | [DownloadStyleOptions](#downloadstyleoptions) | 是   | 创建包含指定元素样式的下载按钮。 |
 
 ## DownloadContentOptions
 
@@ -79,10 +79,10 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 值   | 说明                       |
-| ----------- | ---- | -------------------------- |
-| FULL_FILLED | 1    | 下载按钮展示填充样式图标。 |
-| LINES       | 2    | 下载按钮展示线条样式图标。 |
+| 类型        | 说明                       |
+| ----------- | -------------------------- |
+| FULL_FILLED | 下载按钮展示填充样式图标。 |
+| LINES       | 下载按钮展示线条样式图标。 |
 
 
 
@@ -94,16 +94,16 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 值   | 说明                             |
-| ------------------- | ---- | -------------------------------- |
-| DOWNLOAD            | 1    | 下载按钮的文字描述为“下载”。     |
-| DOWNLOAD_FILE       | 2    | 下载按钮的文字描述为“下载文件”。 |
-| SAVE                | 3    | 下载按钮的文字描述为“保存”。     |
-| SAVE_IMAGE          | 4    | 下载按钮的文字描述为“保存图片”。 |
-| SAVE_FILE           | 5    | 下载按钮的文字描述为“保存文件”。 |
-| DOWNLOAD_AND_SHARE  | 6    | 下载按钮的文字描述为“下载分享”。 |
-| RECEIVE             | 7    | 下载按钮的文字描述为“接收”。     |
-| CONTINUE_TO_RECEIVE | 8    | 下载按钮的文字描述为“继续接收”。 |
+| 类型                | 说明                             |
+| ------------------- | -------------------------------- |
+| DOWNLOAD            | 下载按钮的文字描述为“下载”。     |
+| DOWNLOAD_FILE       | 下载按钮的文字描述为“下载文件”。 |
+| SAVE                | 下载按钮的文字描述为“保存”。     |
+| SAVE_IMAGE          | 下载按钮的文字描述为“保存图片”。 |
+| SAVE_FILE           | 下载按钮的文字描述为“保存文件”。 |
+| DOWNLOAD_AND_SHARE  | 下载按钮的文字描述为“下载分享”。 |
+| RECEIVE             | 下载按钮的文字描述为“接收”。     |
+| CONTINUE_TO_RECEIVE | 下载按钮的文字描述为“继续接收”。 |
 
 
 
@@ -115,10 +115,10 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 值   | 说明                                       |
-| ---------- | ---- | ------------------------------------------ |
-| HORIZONTAL | 0    | 下载控件上图标和文字分布的方向为水平排列。 |
-| VERTICAL   | 1    | 下载控件上图标和文字分布的方向为垂直排列。 |
+| 类型       | 说明                                       |
+| ---------- | ------------------------------------------ |
+| HORIZONTAL | 下载控件上图标和文字分布的方向为水平排列。 |
+| VERTICAL   | 下载控件上图标和文字分布的方向为垂直排列。 |
 
 ## 事件
 
