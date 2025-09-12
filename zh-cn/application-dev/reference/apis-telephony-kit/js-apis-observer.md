@@ -493,6 +493,93 @@ observer.off('callStateChange');
 ```
 
 
+## observer.on('callStateChangeEx')
+
+on(type: 'callStateChangeEx', callback: Callback\<TelCallState\>, options?: ObserverOptions): void
+
+订阅通话状态变化拓展事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                           | 必填 | 说明                                                        |
+| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | string                                        | 是   | 通话状态变化事件，参数固定为'callStateChangeEx'。                |
+| callback | Callback\<[TelCallState](js-apis-call.md#telcallstate)\> | 是   | 以callback形式异步返回结果。<br/>应用可获取到TelCallState。<br/> |
+| options  | ObserverOptions                              | 否 | 电话相关事件订阅参数可选项。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 8800001  | Invalid parameter value.                     |
+| 8800002  | Service connection failed.                   |
+| 8800003  | System internal error.                       |
+| 8800999  | Unknown error.                               |
+
+**示例：**
+
+```ts
+import { call } from '@kit.TelephonyKit';
+
+let callback: (data: call.TelCallState) => void = (data: call.TelCallState) => {
+    console.log("on callStateChangeEx, data:" + JSON.stringify(data));
+}
+let options: observer.ObserverOptions = {
+    slotId: 0
+}
+
+observer.on('callStateChangeEx', callback, options);
+observer.on('callStateChangeEx', callback);
+```
+
+
+## observer.off('callStateChangeEx')
+
+off(type: 'callStateChangeEx', callback?: Callback\<TelCallState\>): void
+
+取消订阅通话状态变化拓展事件，使用callback方式作为异步方法。
+
+> **说明：**
+>
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
+| callback | Callback\<[TelCallState](js-apis-call.md#telcallstate)\>                | 否   | 以callback形式异步返回结果，参考call的[TelCallState](js-apis-call.md#telcallstate)。<br /> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 8800001  | Invalid parameter value.                     |
+| 8800002  | Service connection failed.                   |
+| 8800003  | System internal error.                       |
+| 8800999  | Unknown error.                               |
+
+**示例：**
+
+```ts
+let callback: (data: call.TelCallState) => void = (data: call.TelCallState) => {
+    console.log("on callStateChangeEx, data:" + JSON.stringify(data));
+}
+observer.on('callStateChangeEx', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+observer.off('callStateChange', callback);
+observer.off('callStateChange');
+```
+
+
 ## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
 on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectionStateInfo\>\): void
