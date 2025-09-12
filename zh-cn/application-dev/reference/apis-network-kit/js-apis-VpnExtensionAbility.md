@@ -44,7 +44,7 @@ import { Want } from '@kit.AbilityKit';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
     onCreate(want: Want) {
-       console.log('MyVpnExtAbility onCreate');
+       console.info('MyVpnExtAbility onCreate');
     }
 }
   ```
@@ -64,7 +64,7 @@ import { VpnExtensionAbility } from '@kit.NetworkKit';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
     onDestroy() {
-       console.log('MyVpnExtAbility onDestroy');
+       console.info('MyVpnExtAbility onDestroy');
     }
 }
   ```
