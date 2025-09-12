@@ -2,7 +2,7 @@
 
 The [ASON utility](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilsason) is similar to the JSON utility provided by JavaScript. JSON is used to serialize (via **stringify**) and deserialize (via **parse**) JavaScript objects. In contrast, ASON provides serialization and deserialization capabilities for [Sendable objects](arkts-sendable.md). The **ASON.stringify** method converts an object to a string, and **ASON.parse** converts a string back to a Sendable object. This enables high-performance pass-by-reference of these objects between concurrent tasks.
 
-The **ASON.stringify** method can also convert Map and Set objects into strings. These include Map, Set, [collections.Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap), [collections.Set](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsset), [HashMap](../reference/apis-arkts/js-apis-hashmap.md#hashmap), and [HashSet](../reference/apis-arkts/js-apis-hashset.md#hashset).
+The **ASON.stringify** method can also convert Map and Set objects into strings. These include Map, Set, [collections.Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap), [collections.Set](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsset), [HashMap](../reference/apis-arkts/js-apis-hashmap.md#hashmap) and [HashSet](../reference/apis-arkts/js-apis-hashset.md#hashset).
 
 > **NOTE**
 >

@@ -30,15 +30,19 @@ For details about the APIs of the XML module, see [@ohos.xml (XML Parsing and Ge
 
 2. Create a buffer and construct an XmlSerializer object, either based on an ArrayBuffer or a DataView object.
 
+   Method 1: Create an XmlSerializer object based on ArrayBuffer.
+
    ```ts
-   // Method 1: Create an XmlSerializer object based on ArrayBuffer.
    let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // Create a 2048-byte ArrayBuffer.
    let serializer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // Create an XmlSerializer object based on the ArrayBuffer.
+   ```
 
-   // Method 2: Create an XmlSerializer object based on DataView.
-   // let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); 
-   // let dataView: DataView = new DataView(arrayBuffer); 
-   // let serializer: xml.XmlSerializer = new xml.XmlSerializer(dataView);
+   Method 2: Create an XmlSerializer object based on DataView.
+
+   ```ts
+   let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // Create a 2048-byte ArrayBuffer.
+   let dataView: DataView = new DataView(arrayBuffer); // Create a DataView.
+   let serializer: xml.XmlSerializer = new xml.XmlSerializer(dataView); // Create an XmlSerializer object based on the object of the DataView type.
    ```
 
 3. Call the functions to generate XML data.

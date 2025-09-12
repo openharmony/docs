@@ -16,11 +16,9 @@ A non-shared module is loaded once in the same thread and multiple times in diff
 
 - **side-effects-import** is not allowed in shared modules.
 
-  A shared module is loaded only once within a single process and can be used across multiple threads.
-
-  When a shared module is loaded, non-shared modules that it imports are not loaded immediately. Instead, these non-shared modules are lazy-imported within the current thread when their exported variables are accessed. This lazy import feature ensures that non-shared modules remain isolated between threads, with each thread potentially loading the non-shared modules once if needed.<br>
-
-  side-effects-import, which does not involve exported variables, is never loaded and therefore is not supported.
+  A shared module is loaded only once within a single process and can be used across multiple threads.<br>
+  When a shared module is loaded, non-shared modules that it imports are not loaded immediately. Instead, these non-shared modules are lazy-imported within the current thread when their exported variables are accessed. Non-shared modules are isolated across threads, and are lazy-loaded when accessed by different threads.<br>
+  Because **side-effects-import** does not involve exported variables, it is not loaded and is not supported.
 
   ```ts
   // side-effects-import is not allowed.
@@ -43,7 +41,7 @@ A non-shared module is loaded once in the same thread and multiple times in diff
   // share.ets
   // Shared module
   'use shared'
-  export * from './test'; // A compile-time error is reported. The module cannot be directly exported.
+  export * from './test'; // Compilation error. Modules cannot be directly exported.
   export {num, str} from './test'; // Correct example. Export the object set.
   ```
 

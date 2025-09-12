@@ -23,7 +23,6 @@ import { worker } from '@kit.ArkTS';
 ## RestrictedWorker<sup>11+</sup>
 
 The RestrictedWorker class inherits [ThreadWorker<sup>9+</sup>](js-apis-worker.md#threadworker9) and supports all APIs in ThreadWorker.
-
 RestrictedWorker provides a restricted environment for running the Worker thread. In this environment, only the Worker module can be imported.
 
 ### constructor<sup>11+</sup>

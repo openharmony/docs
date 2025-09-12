@@ -42,7 +42,7 @@ import { TreeMap } from '@kit.ArkTS';
 
 constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
-A constructor used to create a **TreeMap** instance. It supports sorting elements in ascending or descending order by using comparators.
+A constructor used to create a **TreeMap** instance. It supports sorting elements in customized order by using comparators.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -456,6 +456,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.remove("sparrow"); // Delete data.
+console.log("result = " + result); // result = 356
 ```
 
 
@@ -558,7 +559,7 @@ Replaces an element in this TreeMap.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the target element.|
+| key | K | Yes| Target key.|
 | newValue | V | Yes| New value of the element.|
 
 **Return value**
@@ -693,7 +694,7 @@ while(!t.done) {
   console.info("TreeMap:", t.value);
   t = it.next();
 }
-// Output:
+// Output：
 // TreeMap: 356
 // TreeMap: 123
 ```

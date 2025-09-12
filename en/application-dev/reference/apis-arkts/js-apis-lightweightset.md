@@ -171,6 +171,7 @@ lightWeightSet.add("sparrow");
 let set: LightWeightSet<string> = new LightWeightSet();
 set.add("gull");
 let result = lightWeightSet.addAll(set);
+console.log("result = ", result); // result =  true
 ```
 
 
@@ -260,9 +261,7 @@ let result = lightWeightSet.has(123);
 
 increaseCapacityTo(minimumCapacity: number): void
 
-Increases the capacity of this LightWeightSet.
-
-If the passed-in capacity is greater than or equal to the number of elements in this LightWeightSet, the capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this LightWeightSet, the capacity is not changed.
+Increases the capacity of this LightWeightSet. If the passed-in capacity is greater than or equal to the number of elements in this LightWeightSet, the capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this LightWeightSet, the capacity is not changed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -748,7 +747,7 @@ Checks whether the elements of this LightWeightSet are the same as those of **ob
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 12. There is no substitute API.
+> This API is supported since API version 8 and deprecated since API version 12. There is no substitute API.
 
 **System capability**: SystemCapability.Utils.Lang
 

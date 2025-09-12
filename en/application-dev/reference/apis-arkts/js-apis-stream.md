@@ -107,15 +107,7 @@ writableStream.write('test', 'utf8');
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-Ends the writing process in a writable stream. This API uses an asynchronous callback to return the result.
-
-If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
-
-If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
-
-If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**.
-
-If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
+Ends the writing process in a writable stream. If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output. If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context. If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**. If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -221,9 +213,7 @@ console.info("Writable is result", result); // Writable is result true
 
 cork(): boolean
 
-Forces subsequent writes to be buffered. This API is called to optimize the performance of continuous write operations.
-
-After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork).
+Forces subsequent writes to be buffered. This API is called to optimize the performance of continuous write operations. After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -257,9 +247,7 @@ console.info("Writable cork result", result); // Writable cork result true
 
 uncork(): boolean
 
-Releases the cork state, flushing the buffered data and writing it to the target location.
-
-After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork).
+Releases the cork state, flushing the buffered data and writing it to the target location. After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1259,15 +1247,7 @@ console.info("duplexStream result", result); // duplexStream result true
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-Ends the writing process in a duplex stream. This API uses an asynchronous callback to return the result.
-
-If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
-
-If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
-
-If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**.
-
-If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
+Ends the writing process in a duplex stream. If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output. If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context. If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**. If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1374,9 +1354,7 @@ console.info("duplexStream is result", result); // duplexStream is result true
 
 cork(): boolean
 
-Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations.
-
-After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork-1).
+Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations. After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1400,9 +1378,7 @@ console.info("duplexStream cork result", result); // duplexStream cork result tr
 
 uncork(): boolean
 
-Flushes all data buffered, and writes the data to the target.
-
-After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork-1).
+Flushes all data buffered, and writes the data to the target. After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

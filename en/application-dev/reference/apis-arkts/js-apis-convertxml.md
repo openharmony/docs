@@ -19,7 +19,7 @@ import { convertxml } from '@kit.ArkTS';
 
 fastConvertToJSObject(xml: string, options?: ConvertOptions) : Object
 
-Converts an XML text into a JavaScript object.
+Converts an XML text to an object of the object type.
 
 > **NOTE**
 >
@@ -82,7 +82,7 @@ try {
 
 convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
-Converts an XML text into a JavaScript object.
+Converts an XML text to an object of the object type.
 
 > **NOTE**
 >

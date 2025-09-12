@@ -34,8 +34,8 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import * as add from 'libentry.so'
-add.add(2, 3);
+import * as entry from 'libentry.so'
+entry.add(2, 3);
 ```
 
 ## Indirect Import
@@ -43,7 +43,7 @@ add.add(2, 3);
 ### Export as Named Variables and Import
 ```ts
 // test1.ets
-import hilog from '@ohos.hilog'
+import { hilog } from '@kit.PerformanceAnalysisKit';
 export { hilog }
 ```
 ```ts
@@ -90,19 +90,19 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import('libentry.so').then((ns:ESObject) => {
-    ns.default.add(2, 3);
+import('libentry.so').then((entry:ESObject) => {
+    entry.default.add(2, 3);
 })
 ```
 ### Indirect Import
 ```ts
 // test1.ets
-import add from 'libentry.so'
-export { add }
+import entry from 'libentry.so'
+export { entry }
 
 // test2.ets
 import('./test1').then((ns:ESObject) => {
-    ns.add.add(2, 3);
+    ns.entry.add(2, 3);
 })
 ```
 

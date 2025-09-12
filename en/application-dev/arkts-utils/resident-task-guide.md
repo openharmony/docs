@@ -6,7 +6,7 @@ The development process and example are outlined as follows:
 
 1. Create Worker with DevEco Studio. Specifically, in DevEco Studio, right-click anywhere in the {moduleName} directory and choose **New > Worker** to automatically generate the Worker template file and configuration information. In this example, we will create a Worker named "Worker".
 
-   You can also manually create Worker files. For details, see [Precautions for Worker](worker-introduction.md#precautions-for-worker).
+   You can also manually create Worker thread files. For specific methods and related considerations, see [Precautions for Creating a Worker](worker-introduction.md#precautions-for-creating-a-worker).
 
 2. Import the Worker module.
 
@@ -15,7 +15,7 @@ The development process and example are outlined as follows:
    import { worker } from '@kit.ArkTS';
    ```
 
-3. In the host thread, call [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) of ThreadWorker to create a Worker object.
+3. Call [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) of ThreadWorker in the host thread to create a Worker object. The thread that creates the Worker object is the host thread.
 
    ```ts
    // Index.ets
@@ -70,7 +70,7 @@ The development process and example are outlined as follows:
        }
      } else if (type === 'stop') {
        isRunning = false;
-       workerPort.close(); // Close the Worker thread.
+       workerPort.close();  // Close the Worker thread.
      }
    }
    // Simulate a resident task.

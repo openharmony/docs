@@ -105,7 +105,7 @@ class B implements I {}; // I is a Sendable interface. B cannot implement it. A 
 
 ### Member Variables Must Be Sendable Data Types
 
-Sendable objects cannot hold non-Sendable data. Therefore, member properties of Sendable classes or interfaces must be of Sendable data types.
+Sendable objects cannot hold non-Sendable data. Therefore, member properties of Sendable classes or interfaces must be of [Sendable data types](arkts-sendable.md#sendable-data-types).
 
 **Correct Example**
 
@@ -328,7 +328,7 @@ type D = C; // A compile-time error is reported.
 
 ### Sendable Classes and Functions Cannot Use Decorators Other Than @Sendable
 
-If a class decorator is defined in a TS file, the class layout may be modified, causing runtime errors.
+If a class decorator is defined in a .ts file, the class structure may be modified, causing runtime errors.
 
 **Correct Example**
 
@@ -471,10 +471,10 @@ For details about Node-APIs, see [Sendable-related Operations](../napi/use-napi-
 
 | Rule|
 | -------- |
-| Do not delete properties. Prohibited interfaces: **napi_delete_property**.|
-| Do not add properties. Prohibited interfaces: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
-| Do not change property types. Prohibited interfaces: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
-| Symbol-related interfaces and types are not supported. Prohibited interfaces: **napi_create_symbol**, **napi_is_symbol_object**, and **napi_symbol**.|
+| Do not delete properties. Prohibited API: **napi_delete_property**.|
+| Do not add properties. Prohibited APIs: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
+| Do not change the property type. Prohibited APIs: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
+| Do not use the Symbol-related APIs and types. Prohibited APIs: **napi_create_symbol**, **napi_is_symbol_object** and **napi_symbol**.|
 
 
 ## Rules for Interaction with the UI

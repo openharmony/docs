@@ -1,7 +1,7 @@
 # Asynchronous Concurrency (Promise and Async/Await)
 
 
-Promise and async/await are standard JavaScript asynchronous syntax that provides asynchronous concurrency capabilities. Asynchronous code is suspended and continues to execute later, ensuring that only one piece of code is executed at any given moment. The following are typical scenarios of asynchronous concurrency:
+Promise and async/await are standard JavaScript asynchronous syntax, which provides the asynchronous concurrency capability. Asynchronous code is suspended and continues to execute later, ensuring that only one piece of code is executed at any given moment. The following are typical scenarios of asynchronous concurrency:
 
 - Non-blocking I/O operations: network requests, file reading and writing, and timers.
 
@@ -9,13 +9,13 @@ Promise and async/await are standard JavaScript asynchronous syntax that provide
 
 - Clear logical dependencies: tasks with explicit order or parallel relationships.
 
-Asynchronous concurrency is a feature of programming languages that allows programs to continue executing other operations without waiting for certain operations to complete.
+Asynchronous concurrency is a feature of programming languages that allows programs to continue executing other asynchronous code without waiting for certain operations to complete.
 
 ## Promise
 
-A Promise is an object used to process asynchronous operations. It converts asynchronous operations into a style similar to synchronous operations for easier code writing and maintenance. A Promise provides a state mechanism to manage different phases of asynchronous operations. There are three states for a Promise: pending (in progress), fulfilled (completed, also called resolved), and rejected (failed). After creation, a Promise is in the pending state and transitions to the fulfilled or rejected state upon completion of the asynchronous operation.
+A Promise is an object used to process asynchronous operations. It converts asynchronous operations into a style similar to synchronous operations for easier code writing and maintenance. A Promise manages different phases of asynchronous operations through the state mechanism. There are three states for a Promise: pending (in progress), fulfilled (completed, also called resolved), and rejected (failed). After creation, a Promise is in the pending state and transitions to the fulfilled or rejected state upon completion of the asynchronous operation.
 
-Promises offer **then** and **catch** methods to register callback functions for handling the success or failure of asynchronous operations. Changes in the Promise state trigger callbacks to be added to the microtask queue, awaiting execution. These callbacks rely on the event loop mechanism, which prioritizes microtasks after macro tasks have completed, ensuring asynchronous scheduling of callbacks.
+Promise provides the **then**, **catch**, and **finally** methods to register callback functions to handle the success or failure of asynchronous operations. When the Promise status changes, the callback function is added to the microtask queue for execution. The event loop mechanism ensures that microtasks are executed first after macro tasks are executed, thereby ensuring asynchronous scheduling of callback functions.
 
 The most basic usage involves instantiating a Promise object through its constructor, passing in a function (usually named **executor**) with two parameters. The two parameters are **resolve** and **reject**, which represent the callback functions for the success and failure of the asynchronous operation, respectively. For example, the code snippet below creates a Promise object and simulates an asynchronous operation:
 
@@ -55,17 +55,17 @@ promise.then((result: number) => {
 });
 ```
 
-In this example, the callback function of the **then** method receives the successful result of the Promise object as a parameter and outputs it to the console. If the Promise object enters the rejected state, the callback function of the **catch** method receives the error object as a parameter and outputs it to the console.
+In the preceding code, the callback function of the **then** method receives the success result of the Promise object and outputs the result to the console. If the Promise object enters the rejected state, the callback function of the **catch** method receives the error object and outputs the error object to the console.
 
 > **NOTE**
 >
-> When a Promise object is rejected and not handled by the **catch** method, it triggers the **unhandledRejection** event. You can use the [errorManager.on('unhandledrejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageroffunhandledrejection12) interface to listen for this event and globally capture unhandled Promise rejects.
+> When a Promise object is rejected and not handled by the **catch** method, it triggers the **unhandledrejection** event. You can use the [errorManager.on('unhandledrejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageroffunhandledrejection12) API to listen for this event and globally capture unhandled Promise rejects.
 
 ## Async/Await
 
-Async/Await is syntactic sugar for handling asynchronous operations with Promises, making it easier and more readable to write asynchronous code. By declaring a function as asynchronous with the **async** keyword and using the **await** keyword to wait for the resolution of a Promise (fulfilled or rejected), you can write asynchronous operations in a synchronous style.
+Async/Await is syntactic sugar for handling asynchronous operations with Promises, making it easier and more readable to write asynchronous code. You can use the **async** keyword to declare an asynchronous function and the **await** keyword to wait for the resolution (fulfilled or rejected) of a Promise, and write asynchronous operation code in synchronous mode.
 
-An **async** function implements asynchronous operations by returning a Promise object. It can contain zero or more **await** keywords, pausing execution until the associated Promise completes its state transition (fulfilled/rejected). If an exception is thrown during function execution, the exception directly triggers the returned Promise to enter the rejected state, and the error object can be captured using the **.catch()** method or the second callback parameter of **then**.
+An **async** function returns a Promise object to implement an asynchronous operation. It can contain zero or more **await** keywords, pausing execution until the associated Promise completes its state transition (fulfilled/rejected). If an exception is thrown during function execution, the exception directly triggers the returned Promise to enter the rejected state, and the error object can be captured using the **catch** method or the second callback parameter of **then**.
 
 The code snippet below uses async/await to simulate an asynchronous operation that returns a string after 3 seconds.
 
@@ -102,9 +102,9 @@ struct Index {
 }
 ```
 
-In this code, the await keyword is used to wait for the resolution of the Promise object and store its resolved value in the **result** variable.
+In the preceding example code, **await** waits for the Promise to resolve and stores the resolved value in the **result** variable.
 
-Note that when waiting for asynchronous operations, the entire operation should be wrapped in an **async** function and used with **await**. You can also use **try/catch** blocks to catch exceptions in asynchronous operations.
+Since you need to wait for the completion of the asynchronous operation, the entire operation must be wrapped in an **async** function and used with the **await** keyword. You can also use **try**/**catch** blocks to catch exceptions.
 
 ```ts
 async function myAsyncFunction(): Promise<void> {

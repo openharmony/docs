@@ -11,7 +11,7 @@ This operation is frequent and time consuming. If the camera captures data too q
    import { BusinessError, emitter } from '@kit.BasicServicesKit';
    ```
 
-2. Define a continuous task.
+2. Define a time-consuming task.
 
    ```ts
    // Index.ets
@@ -56,3 +56,5 @@ This operation is frequent and time consuming. If the camera captures data too q
      }
    }
    ```
+
+

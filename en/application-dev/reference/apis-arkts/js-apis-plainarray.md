@@ -90,6 +90,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 ```ts
 const plainArray: PlainArray<string> = new PlainArray();
 let result = plainArray.isEmpty();
+console.log("result = ", result); // result = true
 ```
 
 
@@ -105,7 +106,7 @@ Checks whether PlainArray has the specified key.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -130,6 +131,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 let result = plainArray.has(1);
+console.log("result = ", result); // result = true
 ```
 
 
@@ -145,7 +147,7 @@ Obtains the value of the specified key in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -186,7 +188,7 @@ Obtains the index of the element with the specified key in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -212,6 +214,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
+console.log("result = ", result); // result = 1
 ```
 
 
@@ -227,7 +230,7 @@ Obtains the index of the first occurrence of an element with the specified value
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the target element.|
 
@@ -267,7 +270,7 @@ Obtains the key of the element at the specified position in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -293,6 +296,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
+console.log("result = ", result); // result = 2
 ```
 
 ### getValueAt
@@ -307,7 +311,7 @@ Obtains the value of an element at the specified position in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -382,7 +386,7 @@ Adds an element to this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Key of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | value | T | Yes| Value of the target element.|
@@ -416,7 +420,7 @@ Removes a key-value pair with the specified key.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -457,7 +461,7 @@ Removes an element at the specified position from this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -498,7 +502,7 @@ Removes elements within the specified range.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Start position of the elements to remove. The value must be less than or equal to int32_max, that is, 2147483647.|
 | size | number | Yes| Number of elements to remove. The value must be less than or equal to int32_max, that is, 2147483647.|
@@ -541,7 +545,7 @@ Sets a value for an element at the specified position in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | value | T | Yes| Value of the target element.|
@@ -632,7 +636,7 @@ plainArray.clear();
 
 forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this PlainArray and obtain their indexes.
+Uses a callback to traverse each element in the **PlainArray** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -640,16 +644,16 @@ Uses a callback to traverse the elements in this PlainArray and obtain their ind
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the PlainArray.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn parameters
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| index | number | No| Position index of the element that is currently traversed.|
 | PlainArray | PlainArray&lt;T&gt;| No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**

@@ -93,7 +93,7 @@ let result = process.is64Bit();
 
 getStartRealtime(): number
 
-Obtains the duration, in milliseconds, from the time the system starts to the time the process starts.
+Obtains the duration (excluding the system sleep time), in milliseconds, from the time the system starts to the time the process starts.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -634,7 +634,7 @@ pro.exit(0);
 
 kill(signal: number, pid: number): boolean
 
-Sends a signal to the specified process to terminate it.
+Sends a signal to the specified process to terminate it. Only the current process can be terminated.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -222,7 +222,7 @@ import { exportObj } from './test';
 let arr = [1, 2];
 let rstArrStr = JSON.stringify(exportObj, arr);
 console.info(rstArrStr);
-// Output: "{"1":"John,""2":30}"
+// Output: "{"1":"John","2":30}"
 interface Person {
   name: string;
   age: number;
@@ -234,7 +234,7 @@ console.info(rstStr);
 // Output: "{"name":"John"}"
 let rstStrSpace = JSON.stringify(inputObj, ["name"], '  ');
 console.info(rstStrSpace);
-// Output:
+// Output：
 /*
 "{
   "name": "John"
@@ -242,7 +242,7 @@ console.info(rstStrSpace);
 */
 let rstStrStar = JSON.stringify(inputObj, ["name"], '&&');
 console.info(rstStrStar);
-// Output:
+// Output：
 /*
 "{
 &&"name": "John"
@@ -307,10 +307,10 @@ interface Person {
 let inputObj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
 let rstStr= JSON.stringify(inputObj, replacer);
 console.info(rstStr);
-// Output: "{"name":"JOHN,""age":30,"city":"CHONGQING"}"
+// Output: "{"name":"JOHN","age":30,"city":"CHONGQING"}"
 let rstStrSpace= JSON.stringify(inputObj, replacer, '  ');
 console.info(rstStrSpace);
-// Output:
+// Output：
 /*
 "{
   "name": "JOHN",
@@ -320,7 +320,7 @@ console.info(rstStrSpace);
 */
 let rstStrSymbol= JSON.stringify(inputObj, replacer, '@@@');
 console.info(rstStrSymbol);
-// Output:
+// Output：
 /*
 "{
 @@@"name": "JOHN",
@@ -334,12 +334,12 @@ console.info(rstStrSymbol);
 import { JSON } from '@kit.ArkTS';
 
 /*
- * Serialize BigInt objects.
+* Serialize BigInt objects.
  * */
 let bigIntObject = BigInt(112233445566778899)
 
 /*
- * Scenario 1: Serialize a BigInt object without a custom conversion function.
+* Scenario 1: Serialize a BigInt object without a custom conversion function.
  * */
 console.info(JSON.stringify(bigIntObject)); // 112233445566778896
 

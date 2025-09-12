@@ -13,7 +13,7 @@ The following demonstrates how to implement shared data access across concurrent
      constructor(arg: number);
      plusOne(): number;
    
-     public get value();
+     public get value(): number;
      public set value(newVal: number);
    }
    ```
@@ -74,6 +74,10 @@ The following demonstrates how to implement shared data access across concurrent
     void MyObject::Destructor(napi_env env, void *nativeObject, [[maybe_unused]] void *finalize_hint)
     {
         OH_LOG_INFO(LOG_APP, "MyObject::Destructor called");
+        if (g_ref != nullptr) {
+            napi_delete_reference(env, g_ref);
+            g_ref = nullptr;
+        }
         reinterpret_cast<MyObject *>(nativeObject)->~MyObject();
     }
 

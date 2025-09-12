@@ -6,7 +6,7 @@ Both Vector and [ArrayList](js-apis-arraylist.md) are implemented based on array
 
 **Recommended use case**: Use Vector when the data volume is large.
 
-This topic uses the following to identify the use of generics:
+This topic uses the following to identify the use of generics:<br>
 - T: Type
 
 > **NOTE**

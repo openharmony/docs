@@ -2,9 +2,9 @@
 
 It is a common requirement for communication between multi-level [Workers](worker-introduction.md) (where child Workers are created by parent Workers, forming a hierarchy). Since you are responsible for managing the lifecycles of Worker threads, it is crucial to properly manage the lifecycles of multi-level Workers. You should ensure that all child Workers are destroyed before the parent Worker is destroyed.
 
-This topic describes how to implement high-performance communication between multi-level Workers. The key is using [Sendable objects](arkts-sendable.md) with the Worker's [postMessageWithSharedSendable](../reference/apis-arkts/js-apis-worker.md#postmessagewithsharedsendable12) interface for high-performance object passing between threads. For example, in a data cloning scenario with three Workers (one parent and two children), the parent Worker creates the child Workers, sends cloning tasks to them, and receives the results back.
+This topic describes how to implement high-performance communication between multi-level Workers. The key is using [Sendable objects](arkts-sendable.md) with the Worker's [postMessageWithSharedSendable](../reference/apis-arkts/js-apis-worker.md#postmessagewithsharedsendable12) API for high-performance object passing between threads. For example, in a data cloning scenario with three Workers (one parent and two children), the parent Worker creates the child Workers, sends cloning tasks to them, and receives the results back.
 
-1. Prepare a Sendable class **CopyEntry** to encapsulate the cloning task data.
+1. Prepare the Sendable class **CopyEntry** to encapsulate cloning task data.
    
    ```ts
    // CopyEntry.ets
@@ -124,21 +124,19 @@ This topic describes how to implement high-performance communication between mul
    }
    ```
 
-3. On the main process page of the UI, create a parent Worker, prepare the data required for the cloning task, and send the data to the parent Worker.
+3. On the main thread page of the UI, create a parent Worker, prepare the data required for the cloning task, and send the data to the parent Worker.
 
    ```ts
    // Index.ets
    import { worker, collections } from '@kit.ArkTS';
-   import { BusinessError } from '@kit.BasicServicesKit';
    import { CopyEntry } from './CopyEntry'
 
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1);
-       }, 100)
-     }).then(undefined, (error: BusinessError) => {
-     })
+         resolve();
+       }, 100);
+     });
      return p;
    }
 
