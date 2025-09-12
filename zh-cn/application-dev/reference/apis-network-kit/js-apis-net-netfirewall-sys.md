@@ -78,16 +78,16 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 
 **系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
-| 名称       | 类型   | 必填 | 说明                |
-|------------| -------|------|-------------------- |
-| time       | number | 是   | 时间戳。            |
-| localIp    | string | 否   | 本地IP。            |
-| remoteIp   | string | 否   | 远端IP。            |
-| localPort  | number | 否   | 本地端口，默认值为0。          |
-| remotePort | number | 否   | 远端端口，默认值为0。          |
-| protocol   | number | 否   | 传输层协议，默认值为0。        |
-| appUid     | number | 否   | 应用程序或服务UID，默认值为0。 |
-| domain     | string | 否   | 域名。              |
+| 名称       | 类型   | 只读 |可选| 说明                |
+|------------| -------|------|---|-------------------- |
+| time       | number | 否   |否| 时间戳。            |
+| localIp    | string | 否   |是 |本地IP。            |
+| remoteIp   | string | 否   |是| 远端IP。            |
+| localPort  | number | 否   |是 |本地端口，默认值为0。          |
+| remotePort | number | 否   | 是|远端端口，默认值为0。          |
+| protocol   | number | 否   |是|传输层协议，默认值为0。        |
+| appUid     | number | 否   |是 |应用程序或服务UID，默认值为0。 |
+| domain     | string | 否   | 是|域名。              |
 
 ## InterceptedRecordPage
 
@@ -97,9 +97,9 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 
 **系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
-| 名称       | 类型                                            | 必填 | 说明       |
-|------------| ----------------------------------------------- |------|----------  |
-| page       | number                                          | 是   | 当前页码。 |
-| pageSize   | number                                          | 是   | 页面大小。 |
-| totalPage  | number                                          | 是   | 总页数。   |
-| data       | Array\<[InterceptedRecord](#interceptedrecord)> | 是   | 页面数据。 |
+| 名称       | 类型                                            | 只读 |可选| 说明       |
+|------------| ----------------------------------------------- |------|---|----------  |
+| page       | number                                          | 否   |否 |当前页码。 |
+| pageSize   | number                                          |   否  |否 |页面大小。 |
+| totalPage  | number                                          |  否   | 否|总页数。   |
+| data       | Array\<[InterceptedRecord](#interceptedrecord)> |  否   |否 |页面数据。 |
