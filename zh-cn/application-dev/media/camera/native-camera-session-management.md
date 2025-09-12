@@ -50,6 +50,10 @@
    Camera_CaptureSession* CreateCaptureSession(Camera_Manager* cameraManager)
    {
        Camera_CaptureSession* captureSession = nullptr;
+       if (cameraManager == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "cameraManager is nullptr.");
+           return captureSession;
+       }
        Camera_ErrorCode ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
        if (captureSession == nullptr || ret != CAMERA_OK) {
            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
