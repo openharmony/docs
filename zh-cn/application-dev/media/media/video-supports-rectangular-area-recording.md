@@ -27,6 +27,28 @@
 
 ## 开发指导
 
+**在CMake脚本中链接动态库**
+
+```cmake
+target_link_libraries(sample PUBLIC libnative_avscreen_capture.so)
+```
+
+> **说明：**
+>
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+>
+
+**添加头文件**
+
+```c++
+#include "napi/native_api.h"
+#include <multimedia/player_framework/native_avscreen_capture.h>
+#include <multimedia/player_framework/native_avscreen_capture_base.h>
+#include <multimedia/player_framework/native_avscreen_capture_errors.h>
+#include <fcntl.h>
+#include <string>
+```
+
 调用[OH_AVScreenCapture_SetCaptureArea()]({@link OH_AVScreenCapture_SetCaptureArea})接口传入希望录制的矩形区域。
 
 示例中的变量说明如下：
@@ -67,10 +89,12 @@
     // 开始录屏。
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
-    **注意**
-    **录制区域限制**：
-    - 安全图层不支持录制。
-    - 不支持跨屏（一边在左边/一边在右边）录制。
-    **录制区域更改**：支持录制过程中，更新录制区域。
-    **设置失败的处理**：如果区域位置设置失败，系统将按照上一次的区域进行捕获。建议开发者在设置区域时进行错误检查和处理，以确保捕获区域的准确性。
-    **参数设置非负**：该接口设置的坐标和宽高不能为负数，捕获区域不能跨屏幕，区域位置设置失败后仍按照上一次的区域进行捕获。
+    
+> **注意**
+> 
+> **录制区域限制**：
+> - 安全图层不支持录制。
+> - 不支持跨屏（一边在左边/一边在右边）录制。
+> **录制区域更改**：支持录制过程中，更新录制区域。
+> **设置失败的处理**：如果区域位置设置失败，系统将按照上一次的区域进行捕获。建议开发者在设置区域时进行错误检查和处理，以确保捕获区域的准确性。
+> **参数设置非负**：该接口设置的坐标和宽高不能为负数，捕获区域不能跨屏幕，区域位置设置失败后仍按照上一次的区域进行捕获。
