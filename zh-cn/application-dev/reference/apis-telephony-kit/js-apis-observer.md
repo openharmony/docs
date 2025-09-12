@@ -537,7 +537,7 @@ observer.on('callStateChangeEx', callback);
 ```
 
 
-## observer.off('callStateChangeEx')
+## observer.off('callStateChangeEx')<sup>21+</sup>
 
 off(type: 'callStateChangeEx', callback?: Callback\<TelCallState\>): void
 
