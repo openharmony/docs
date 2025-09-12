@@ -758,7 +758,7 @@ struct XComponentExample {
           .margin({ bottom: 24 })
           .onClick(() => {
             let surfaceId = this.xComponentController.getXComponentSurfaceId();
-            this.xComponentController.getXComponentSurfaceRect();
+            console.info(`surface rect is ${this.xComponentController.getXComponentSurfaceRect()}`);
             nativeRender.DrawPattern(BigInt(surfaceId));
             let hasDraw: boolean = false;
             if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
