@@ -70,13 +70,13 @@ import { DownloadFileButton } from '@kit.ArkUI';
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | iconSize        | Dimension                                                    | 否   | 下载控件上图标的尺寸，不支持百分比。<br/>默认值：16vp                      |
 | layoutDirection | [DownloadLayoutDirection](#downloadlayoutdirection) | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
-| fontSize        | Dimension                                                    | 否   | 下载控件上文字的尺寸，不支持百分比。<br/>默认值：16fp                      |
-| fontStyle       | FontStyle                                                    | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
-| fontWeight      | number \| FontWeight \| string                               | 否   | 下载控件上文字粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Medium           |
-| fontFamily      | string \| Resource                                           | 否   | 下载控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'        |
-| fontColor       | ResourceColor                                                | 否   | 下载控件上文字的颜色。<br/>默认值：#ffffffff                 |
-| iconColor       | ResourceColor                                                | 否   | 下载控件上图标的颜色。<br/>默认值：#ffffffff                 |
-| textIconSpace   | Dimension                                                    | 否   | 下载控件中图标和文字的间距。<br/>默认值：4vp                 |
+| fontSize        | Dimension          | 否   | 下载控件上文字的尺寸，不支持百分比。<br/>默认值：16fp                      |
+| fontStyle       | [FontStyle](ts-appendix-enums.md#fontstyle)       | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
+| fontWeight      | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string   | 否   | 下载控件上文字粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Medium           |
+| fontFamily      | string \| [Resource](ts-types.md#resource)    | 否   | 下载控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'        |
+| fontColor       |[ ResourceColor ](ts-types.md#resourcecolor)   | 否   | 下载控件上文字的颜色。<br/>默认值：#ffffffff                 |
+| iconColor       | [ ResourceColor ](ts-types.md#resourcecolor)  | 否   | 下载控件上图标的颜色。<br/>默认值：#ffffffff                 |
+| textIconSpace   | Dimension         | 否   | 下载控件中图标和文字的间距。<br/>默认值：4vp                 |
 
 ## DownloadIconStyle
 
