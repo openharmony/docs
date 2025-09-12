@@ -836,7 +836,7 @@ call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
 | CALL_STATE_ANSWERED<sup>11+</sup> | 3    | 表示来电已经接听。 |
 
 
-## TelCallState
+## TelCallState<sup>21+</sup>
 
 通话状态码。
 
