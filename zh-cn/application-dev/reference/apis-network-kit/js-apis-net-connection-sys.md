@@ -142,7 +142,7 @@ connection.setGlobalHttpProxy(httpProxy, (err: BusinessError) => {
         console.error(`setGlobalHttpProxy failed, callback: err->${JSON.stringify(err)}`);
         return;
     }
-    console.log(`setGlobalHttpProxy success.`);
+    console.info(`setGlobalHttpProxy success.`);
 });
 ```
 
@@ -388,7 +388,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.factoryReset().then(() => {
-    console.log("success");
+    console.info("success");
 }).catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
 })
@@ -448,7 +448,7 @@ setProxyMode(mode: ProxyMode): Promise\<void\>
 import { connection, ProxyMode } from '@kit.NetworkKit';
 
 connection.setProxyMode(ProxyMode.AUTO).then(() => {
-    console.log("Proxy mode set successfully.");
+    console.info("Proxy mode set successfully.");
 }).catch(error => {
     console.error("Error setting proxy mode:", error);
 });
@@ -479,7 +479,7 @@ getProxyMode(): Promise\<ProxyMode\>
 import { connection } from '@kit.NetworkKit';
 
 connection.getProxyMode().then(mode => {
-    console.log("Current proxy mode:", mode);
+    console.info("Current proxy mode:", mode);
 }).catch(error => {
     console.error("Error getting proxy mode:", error);
 });

@@ -18,7 +18,7 @@ import { vpnExtension } from '@kit.NetworkKit';
 
 setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
-设置设备的启用/禁用always on VPN模式。
+设置设备的启用/禁用always on VPN模式。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -74,7 +74,7 @@ vpnExtension.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
 
 isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
-获取always on VPN开关状态。
+获取always on VPN开关状态。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -173,6 +173,6 @@ let want: Want = {
 };
 
 let result: boolean = vpnExtension.updateVpnAuthorizedState(want.bundleName);
-console.log("Result: "+ result);
+console.info("Result: "+ result);
 ```
 
