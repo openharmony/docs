@@ -62,7 +62,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 
 绑定该方法的组件获焦后，按键动作优先触发该回调。
 
-该回调的返回值为`true`时，视作该按键事件已被消费，后续的事件回调（`keyboardShortcut`、输入法事件、`onKeyEvent`）会被拦截，不再触发。
+该回调的返回值为`true`时，视作该按键事件已被消费，后续的事件回调（`keyboardShortcut`、输入法事件、`onKeyEventDispatch`、`onKeyEvent`）会被拦截，不再触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -188,14 +188,15 @@ struct KeyEventExample {
       Button('KeyEvent')
         .defaultFocus(true)
         .onKeyEvent((event?: KeyEvent) => {
-          if(event){
+          if (event) {
             if (event.type === KeyType.Down) {
               this.eventType = 'Down'
             }
             if (event.type === KeyType.Up) {
               this.eventType = 'Up'
             }
-            this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText + '\nintentionCode:' + event.intentionCode
+            this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText +
+              '\nintentionCode:' + event.intentionCode
           }
         })
       Text(this.text).padding(15)
@@ -223,7 +224,7 @@ struct KeyEventExample {
     Column({ space: 10 }) {
       Button('KeyEvent')
         .onKeyEvent((event?: KeyEvent) => {
-          if(event){
+          if (event) {
             if (event.type === KeyType.Down) {
               this.eventType = 'Down'
             }
@@ -237,7 +238,9 @@ struct KeyEventExample {
             } else {
               this.keyType = ' '
             }
-            this.text = 'KeyType:' + this.eventType + '\nUnicode:' + event.unicode + '\nkeyCode:' + event.keyCode + '\nkeyType:' + this.keyType
+            this.text =
+              'KeyType:' + this.eventType + '\nUnicode:' + event.unicode + '\nkeyCode:' + event.keyCode + '\nkeyType:' +
+              this.keyType
           }
         })
       Text(this.text).padding(15)
@@ -270,8 +273,8 @@ struct PreImeEventExample {
       })
         .width("80%")
         .height("40vp")
-        .border({ radius:"20vp" })
-        .onKeyPreIme((event:KeyEvent) => {
+        .border({ radius: "20vp" })
+        .onKeyPreIme((event: KeyEvent) => {
           // 使用方向左键不生效
           if (event.keyCode == KeyCode.KEYCODE_DPAD_LEFT) {
             return true;
@@ -309,8 +312,8 @@ struct KeyEventExample {
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => {
           // 通过stopPropagation阻止事件冒泡
-          if(event){
-            if(event.stopPropagation){
+          if (event) {
+            if (event.stopPropagation) {
               event.stopPropagation();
             }
             if (event.type === KeyType.Down) {
@@ -333,7 +336,7 @@ struct KeyEventExample {
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
     .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
-      if(event){
+      if (event) {
         if (event.type === KeyType.Down) {
           this.columnType = 'Down';
         }
