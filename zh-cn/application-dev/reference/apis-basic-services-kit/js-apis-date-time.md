@@ -475,7 +475,7 @@ getTime(isNanoseconds?: boolean): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let time = systemDateTime.getTime(true)
+  let time: number = systemDateTime.getTime(true)
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to get time. message: ${error.message}, code: ${error.code}`);
@@ -517,7 +517,7 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
+  let time: number = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
@@ -696,7 +696,7 @@ getTimezoneSync(): string
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let timezone = systemDateTime.getTimezoneSync();
+  let timezone: string = systemDateTime.getTimezoneSync();
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
@@ -761,7 +761,7 @@ getAutoTimeStatus(): boolean
 
 | 错误码ID | 错误信息                                                                                                    |
 |-------|-------------------------------------------------------------------------------------------------------------|
-| 13000001    | Network connection error or OS error. Possible causes: AutoTime status is empty or get status failed.|
+| 13000001    | Network connection error or OS error. Possible causes: 1.System memory is insufficient; 2.Calls the underlying system interface failed.|
 
 **示例：**
 
@@ -769,7 +769,7 @@ getAutoTimeStatus(): boolean
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let status = systemDateTime.getAutoTimeStatus();
+  let status: boolean = systemDateTime.getAutoTimeStatus();
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to get autotime status. message: ${error.message}, code: ${error.code}`);
