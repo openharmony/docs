@@ -46,7 +46,7 @@
 
 - 如果应用不满足上述接入规范，退至后台播放时会被系统静音并冻结，无法在后台正常播放，直到应用重新切回前台时，才会解除静音并恢复播放。
 
-- 从API version 20开始，申请AUDIO_PLAYBACK类型长时任务但不接入AVSession时由长时任务发送通知，接入AVSession则由AVSession发送通知；对于API version 20之前的版本，必须接入AVSession，且长时任务不发送通知。
+- 从API version 20开始，申请AUDIO_PLAYBACK类型长时任务时，若不接入AVSession，由长时任务发送通知；若接入AVSession，由AVSession发送通知。对于API version 20之前的版本，必须接入AVSession，长时任务不发送通知。
 
 ### 约束与限制
 
