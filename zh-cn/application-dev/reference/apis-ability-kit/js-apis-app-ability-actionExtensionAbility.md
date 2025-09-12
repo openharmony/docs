@@ -1,4 +1,4 @@
-# @ohos.app.ability.ActionExtensionAbility (支持自定义服务能力的ExtensionAbility组件)
+# @ohos.app.ability.ActionExtensionAbility (支持业务操作自定义的ExtensionAbility组件)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->

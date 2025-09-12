@@ -1,4 +1,4 @@
-# @ohos.app.ability.EmbeddedUIExtensionAbility (支持跨进程界面嵌入能力的ExtensionAbility组件)
+# @ohos.app.ability.EmbeddedUIExtensionAbility (支持跨进程界面嵌入的ExtensionAbility组件)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->

@@ -1,4 +1,4 @@
-# @ohos.app.ability.ShareExtensionAbility (支持接入分享详情页能力的ExtensionAbility组件)
+# @ohos.app.ability.ShareExtensionAbility (支持分享详情页接入的ExtensionAbility组件)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
