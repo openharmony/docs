@@ -92,9 +92,9 @@ function createNodePromise() : Promise<Node> {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| node | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
-| centerDistance | number | 是 | 否 | 命中物体包围盒中心到摄像机中心的距离，取值范围大于0。 |
-| hitPosition | [Position3](js-apis-inner-scene-types.md#position3) | 是 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
+| node | [Node](js-apis-inner-scene-nodes.md#node) | 否 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
+| centerDistance | number | 否 | 否 | 命中物体包围盒中心到摄像机中心的距离，取值范围大于0。 |
+| hitPosition | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
 
 
 ## RaycastParameters<sup>20+</sup>
@@ -608,8 +608,6 @@ function createGeometryPromise() : Promise<Geometry> {
 
 ## SceneComponent<sup>20+</sup>
 表示基础场景组件，用于描述场景节点的组件信息，包括组件名称及其对应的属性集合。
-
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
