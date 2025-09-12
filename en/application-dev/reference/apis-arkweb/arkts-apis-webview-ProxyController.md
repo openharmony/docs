@@ -1,4 +1,10 @@
 # Class (ProxyController)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **ProxyController** object to set a proxy for an application.
 
@@ -109,18 +115,18 @@ struct WebComponent {
           }
           let bypassRules = proxyConfig.getBypassRules();
           for (let i = 0; i < bypassRules.length; i++) {
-            console.log("bypassRules: " + bypassRules[i]);
+            console.info("bypassRules: " + bypassRules[i]);
           }
           this.proxyRules = proxyConfig.getProxyRules();
           for (let i = 0; i < this.proxyRules.length; i++) {
-            console.log("SchemeFiletr: " + this.proxyRules[i].getSchemeFilter());
-            console.log("Url: " + this.proxyRules[i].getUrl());
+            console.info("SchemeFiletr: " + this.proxyRules[i].getSchemeFilter());
+            console.info("Url: " + this.proxyRules[i].getUrl());
           }
           let isReverseBypassRule = proxyConfig.isReverseBypassEnabled();
-          console.log("isReverseBypassRules: " + isReverseBypassRule);
+          console.info("isReverseBypassRules: " + isReverseBypassRule);
           try {
             webview.ProxyController.applyProxyOverride(proxyConfig, () => {
-              console.log("PROXYCONTROLLER proxy changed");
+              console.info("PROXYCONTROLLER proxy changed");
             });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -135,7 +141,7 @@ struct WebComponent {
         Button("removeProxyOverride").onClick(()=>{
           try {
           webview.ProxyController.removeProxyOverride(() => {
-            console.log("PROXYCONTROLLER proxy changed");
+            console.info("PROXYCONTROLLER proxy changed");
           });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

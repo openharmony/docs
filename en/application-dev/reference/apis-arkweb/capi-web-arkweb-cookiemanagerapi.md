@@ -1,8 +1,14 @@
 # ArkWeb_CookieManagerAPI
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 
-Defines the native cookie manager APIs provided by ArkWeb. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Defines the CookieManager API of ArkWeb. Before calling this API, you are advised to use [ARKWEB_MEMBER_MISSING](capi-arkweb-type-h.md#macros) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
 **Since**: 12
 
@@ -91,6 +97,12 @@ bool (*existCookies)(bool incognito)
 
 Checks whether cookies exist.
 
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+|  bool incognito | Whether the cookie exists in incognito mode or in non-incognito mode. The value **true** indicates that the cookie exists in incognito mode, and **false** indicates the opposite.|
+
 **Returns**
 
 | Type| Description|
@@ -107,9 +119,9 @@ void (*clearAllCookiesSync)(bool incognito)
 
 Clears all cookies.
 
-**Returns**
+**Parameters**
 
-| Type| Description|
+| Name| Description|
 |----|----|
 | bool incognito   | Whether to clear all cookies in incognito mode. The value **true** means to clear all cookies in incognito mode, and **false** means the opposite.  |
 

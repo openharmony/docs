@@ -1,4 +1,10 @@
 # Class (FileSelectorResult)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements the **FileSelectorResult** object to notify the file selection result. For details about the sample code, see [onShowFileSelector](./arkts-basic-components-web-events.md#onshowfileselector9).
 
