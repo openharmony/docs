@@ -1,5 +1,10 @@
 # Using AVPlayer to Play DRM Content (ArkTS)
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 You can call the ArkTS APIs of DRM Kit and Media Kit to implement the playback of DRM-protected content using the AVPlayer.
 
 ## How to Develop
@@ -17,7 +22,7 @@ You can call the ArkTS APIs of DRM Kit and Media Kit to implement the playback o
    import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
-3. Create an AVPlayer instance and set a DRM information listener.
+3. Call [createAVPlayer](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreateavplayer9) to create an AVPlayer instance and set a DRM information listener.
 
    ```ts
    let playerHandle: media.AVPlayer = await media.createAVPlayer()
@@ -28,7 +33,7 @@ You can call the ArkTS APIs of DRM Kit and Media Kit to implement the playback o
    })
    ```
 
-4. Create MediaKeySystem and MediaKeySession instances based on the UUID in the DRM information.
+4. Call [createMediaKeySystem](../../reference/apis-drm-kit/arkts-apis-drm-f.md#drmcreatemediakeysystem) and [createMediaKeySession](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#createmediakeysession) to create MediaKeySystem and MediaKeySession instances based on the UUID in the DRM information.
 
    ```ts
    let mediaKeySystem: drm.MediaKeySystem
@@ -53,7 +58,7 @@ You can call the ArkTS APIs of DRM Kit and Media Kit to implement the playback o
    }
    ```
 
-5. Generate a media key request based on the PSSH information in the DRM information and process its response.
+5. Call [generateMediaKeyRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#generatemediakeyrequest) to generate a media key request, and call [processMediaKeyResponse](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#processmediakeyresponse) to process its response.
 
    ```ts
    let initData: Uint8Array = new Uint8Array(drmInfoArr[i].pssh);
@@ -75,7 +80,7 @@ You can call the ArkTS APIs of DRM Kit and Media Kit to implement the playback o
    });
    ```
 
-6. Set the decryption session after the media key response is successfully processed.
+6. Call [requireSecureDecoderModule](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#requiresecuredecodermodule) and [setDecryptionConfig](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#setdecryptionconfig11) to set the decryption session after the media key response is successfully processed.
 
    ```ts
    let svp: boolean = mediaKeySession.requireSecureDecoderModule('video/avc');
@@ -86,10 +91,12 @@ You can call the ArkTS APIs of DRM Kit and Media Kit to implement the playback o
 
    ```ts
    playerHandle.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-     if (state == 'released') {
-       mediaKeySession.destroy();
-       mediaKeySystem.destroy();
-     }
-   }
-   await this.playerHandle.release()
+      if (state == 'released') {
+    mediaKeySession.destroy();
+    mediaKeySystem.destroy();
+  } else if (state == 'releasing') {  
+    await playerHandle.release();    
+  }
+   })
+  
    ```

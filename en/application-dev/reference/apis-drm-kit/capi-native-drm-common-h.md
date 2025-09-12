@@ -89,6 +89,8 @@ enum DRM_EventType
 
 Enumerates the types of events that can be subscribed to.
 
+**System capability**: SystemCapability.Multimedia.Drm.Core
+
 **Since**: 11
 
 | Enum Item| Description|
