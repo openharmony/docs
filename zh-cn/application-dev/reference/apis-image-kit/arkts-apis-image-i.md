@@ -31,10 +31,6 @@
 
 表示图片信息。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 只读 | 可选 | 说明       |
@@ -96,10 +92,6 @@ ImageSource的初始化选项。
 
 PixelMap的初始化选项。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                     | 类型                               | 只读 |可选 |  说明           |
@@ -114,10 +106,6 @@ PixelMap的初始化选项。
 ## DecodingOptions<sup>7+</sup>
 
 图像解码设置选项。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -164,8 +152,6 @@ PixelMap的初始化选项。
 ## PackingOption
 
 表示图片编码选项。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 

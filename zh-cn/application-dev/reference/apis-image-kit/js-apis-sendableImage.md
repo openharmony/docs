@@ -348,11 +348,9 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 在调用PixelMap的方法前，需要先通过[sendableImage.createPixelMap](#sendableimagecreatepixelmap)构建一个PixelMap对象。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
-
-### 属性
 
 | 名称              | 类型    | 只读 | 可选 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
@@ -1946,6 +1944,7 @@ async function Demo() {
 
 ImageSource类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#sendableimagecreateimagesource)构建一个ImageSource实例。
 
+
 ### createPixelMap
 
 createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
@@ -2022,9 +2021,9 @@ async function Demo(context : Context) {
 
 提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage)和[readLatestImage](#readlatestimage)接口时会返回image。继承自[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
 ### 属性
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     | 类型               | 只读 | 可选 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
@@ -2120,9 +2119,9 @@ async function Demo() {
 
 在调用以下方法前需要先创建ImageReceiver实例。
 
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
 ### 属性
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
