@@ -1,7 +1,7 @@
 # 屏幕录制支持矩形区域录制
 
 <!--Kit: Media Kit-->
-<!--Subsystem: AVScreenCapture-->
+<!--Subsystem: Multimedia-->
 <!--Owner: @chenkun-->
 <!--Designer: @yxc2-->
 <!--Tester: @zengxi_3007-->
