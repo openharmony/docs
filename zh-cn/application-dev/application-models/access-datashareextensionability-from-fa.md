@@ -1,9 +1,15 @@
 # FA模型访问Stage模型DataShareExtensionAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## 概述
 
-无论FA模型还是Stage模型，数据读写功能都包含客户端和服务端两部分。
+无论[FA模型](ability-terminology.md#fa模型)还是[Stage模型](ability-terminology.md#stage模型)，数据读写功能都包含客户端和服务端两部分。
 
 - FA模型中，客户端是由[DataAbilityHelper](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)提供对外接口，服务端是由[DataAbility](dataability-overview.md)提供数据库的读写服务。
 
