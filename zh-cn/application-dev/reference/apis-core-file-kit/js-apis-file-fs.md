@@ -168,10 +168,6 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
-| 13900020 | 非法参数值。 |
 
 **示例：**
 
@@ -215,11 +211,6 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
-| 13900020 | 非法参数值。 |
-
 **示例：**
 
   ```ts
@@ -257,10 +248,6 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
-| 13900020 | 非法参数值。|
 
 **示例：**
 
@@ -307,11 +294,6 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
-| 13900020 | 非法参数值。 |
-
 **示例：**
 
   ```ts
@@ -355,11 +337,6 @@ accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
-| 13900020 | 非法参数值。 |
 
 **示例：**
 
@@ -3621,7 +3598,7 @@ mkdtempSync(prefix: string): string
 
 utimes(path: string, mtime: number): void
 
-修改文件最近访问时间属性。
+更改文件上次修改该文件的时间。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3629,7 +3606,7 @@ utimes(path: string, mtime: number): void
 |    参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 | path  | string  |  是    | 文件的应用沙箱路径。 |
-| mtime  | number  |  是   | 待更新的时间戳。自1970年1月1日起至目标时间的毫秒数。仅支持修改文件最近访问时间属性。 |
+| mtime  | number  |  是   | 待更新的时间戳。自1970年1月1日起至目标时间的毫秒数。仅支持更改上次修改该文件的时间属性。 |
 
 **错误码：**
 
@@ -4751,7 +4728,7 @@ copySignal.onCancel();
 | atimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。<br>**注意**：目前用户数据分区默认以“noatime”方式挂载，atime更新被禁用。      |
 | mtimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | ctimeNs<sup>15+</sup>  | bigint | 是    | 是    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
-| location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
+| location<sup>11+</sup> | [LocationType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
 > **说明：**
 >

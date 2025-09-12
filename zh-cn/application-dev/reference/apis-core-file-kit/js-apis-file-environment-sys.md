@@ -6,12 +6,12 @@
 <!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
 <!--Adviser: @foryourself-->
 
-该模块提供环境目录能力：获取内存存储根目录、公共文件根目录的JS接口。
+该模块提供目录环境能力：获取内存存储根目录、公共文件根目录的JS接口。
 
 > **说明：**
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.file.environment (目录环境能力)](js-apis-file-environment-sys.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)。
 
 ## 导入模块
 
