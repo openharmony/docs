@@ -59,9 +59,9 @@
     };
     OH_VideoInfo videoinfo = {.videoCapInfo = videocapinfo};
     OH_AVScreenCaptureConfig config = {.captureMode = OH_CAPTURE_HOME_SCREEN,
-                                    .dataType = OH_ORIGINAL_STREAM,
-                                    .audioInfo = audioinfo,
-                                    .videoInfo = videoinfo};
+                                       .dataType = OH_ORIGINAL_STREAM,
+                                       .audioInfo = audioinfo,
+                                       .videoInfo = videoinfo};
     OH_AVScreenCapture_Init(capture, config);
     // 1. 可选，可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0, 0）为起点的长100，宽100的矩形区域。
     OH_Rect* region = new OH_Rect;
