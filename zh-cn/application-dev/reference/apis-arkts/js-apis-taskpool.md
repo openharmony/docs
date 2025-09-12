@@ -918,7 +918,9 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 表示所创建任务（Task）执行时的优先级。工作线程优先级跟随任务优先级更新，对应关系参考[QoS等级定义](../../napi/qos-guidelines.md#qos等级定义)。
 
-**系统能力：**  SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -1892,6 +1894,8 @@ let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first
 
 ## GenericsTask<sup>13+</sup>
 
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 表示泛型任务。GenericsTask继承自[Task](#task)。
@@ -1993,6 +1997,10 @@ let name: string = task.name;
 ## TaskGroup<sup>10+</sup>
 
 表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。如果任务组中存在多个任务失败的情况，则会抛出第一个失败任务的异常。任务组可以多次执行，但执行后不能新增任务。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>10+</sup>
 
@@ -2135,6 +2143,10 @@ taskGroup.addTask(task);
 ## SequenceRunner <sup>11+</sup>
 
 表示串行队列的任务，用于执行一组需要串行执行的任务。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>11+</sup>
 
@@ -2283,6 +2295,10 @@ async function seqRunner() {
 ## AsyncRunner<sup>18+</sup>
 
 表示异步队列。可以指定任务执行的并发度和排队策略。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>18+</sup>
 
@@ -2454,6 +2470,8 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2471,6 +2489,8 @@ async function asyRunner2() {
 工作线程的内部信息。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### 属性
 
@@ -2490,6 +2510,8 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2506,6 +2528,8 @@ async function asyRunner2() {
 处于等待或执行过程中的任务进行取消操作后，在catch分支里捕获到BusinessError里的补充信息。其他场景下该信息为undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 ### 属性
 
