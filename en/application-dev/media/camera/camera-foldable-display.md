@@ -120,7 +120,7 @@ function hasCameraAt(cameraManager: camera.CameraManager, cameraPosition: camera
 ```
 ## Camera Switching Logic
 When a fold state change is detected, the **foldStatus** variable, decorated with @StorageLink, is updated. This triggers the **reloadXComponent** API to reload the **XComponent**, thereby implementing the camera switching logic.
-## Sample Code
+## Complete Sample Code
 ```ts
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';

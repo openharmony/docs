@@ -8,7 +8,7 @@ Preview is the image you see after you start the camera application but before y
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
-1. Import the camera module, which provides camera-related attributes and methods.
+1. Import the camera module, which provides camera-related properties and methods.
      
    ```ts
    import { camera } from '@kit.CameraKit';
@@ -143,7 +143,7 @@ During camera application development, you can listen for the preview output str
   }
   ```
 
-## Sample Code
+## Complete Sample Code
 
 ```ts
 import { camera } from '@kit.CameraKit';
