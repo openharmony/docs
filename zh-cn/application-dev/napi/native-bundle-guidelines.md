@@ -21,6 +21,7 @@
 | [OH_NativeBundle_GetCompatibleDeviceType](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |
 | [OH_NativeBundle_IsDebugMode](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_isdebugmode) | 查询当前应用的调试模式。|
 | [OH_NativeBundle_GetModuleMetadata](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getmodulemetadata) | 获取当前应用的元数据信息。 |
+| [OH_NativeBundle_GetAbilityResourceInfo](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getabilityresourceinfo) | 获取支持打开特定文件类型的组件资源信息列表。从API version 21开始支持。 |
 
 
 ## 开发步骤
@@ -46,6 +47,7 @@
     //napi依赖头文件
     #include "napi/native_api.h"
     //NDK接口依赖头文件
+    #include "bundle/ability_resource_info.h"
     #include "bundle/native_interface_bundle.h"
     //free()函数依赖的基础库
     #include <cstdlib>
@@ -67,7 +69,8 @@
             { "getMainElementName", nullptr, GetMainElementName, nullptr, nullptr, nullptr, napi_default, nullptr},                 // 新增方法 getMainElementName
             { "getCompatibleDeviceType", nullptr, GetCompatibleDeviceType, nullptr, nullptr, nullptr, napi_default, nullptr},       // 新增方法 getCompatibleDeviceType
             { "isDebugMode", nullptr, IsDebugMode, nullptr, nullptr, nullptr, napi_default, nullptr},                               // 新增方法 isDebugMode
-            { "getModuleMetadata", nullptr, GetModuleMetadata, nullptr, nullptr, nullptr, napi_default, nullptr}                    // 新增方法 getModuleMetadata
+            { "getModuleMetadata", nullptr, GetModuleMetadata, nullptr, nullptr, nullptr, napi_default, nullptr},                   // 新增方法 getModuleMetadata
+            { "getAbilityResourceInfo", nullptr, GetAbilityResourceInfo, nullptr, nullptr, nullptr, napi_default, nullptr}          // 新增方法 getAbilityResourceInfo
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -85,6 +88,7 @@
     static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info);
     static napi_value IsDebugMode(napi_env env, napi_callback_info info);
     static napi_value GetModuleMetadata(napi_env env, napi_callback_info info);
+    static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info);
 3. 在src/main/cpp/napi_init.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js侧获取应用的信息：
 
     ```c++
@@ -250,6 +254,144 @@
         free(modules);
         return result;
     }
+
+    static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) {
+        size_t argc = 1;
+        napi_value args[1];
+        napi_status status;
+
+        // 获取传入的参数
+        status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+        if (status != napi_ok || argc < 1) {
+            napi_throw_error(env, nullptr, "Invalid arguments. Expected fileType string.");
+            return nullptr;
+        }
+
+        // 检查参数类型是否为字符串
+        napi_valuetype valuetype;
+        status = napi_typeof(env, args[0], &valuetype);
+        if (status != napi_ok || valuetype != napi_string) {
+            napi_throw_error(env, nullptr, "Argument must be a string");
+            return nullptr;
+        }
+
+        // 获取字符串参数
+        char fileType[256] = {0}; // 假设文件类型不会超过255个字符
+        size_t str_len;
+        status = napi_get_value_string_utf8(env, args[0], fileType, sizeof(fileType) - 1, &str_len);
+        if (status != napi_ok) {
+            napi_throw_error(env, nullptr, "Failed to get fileType string");
+            return nullptr;
+        }
+
+        size_t infosCount = 0;
+        OH_NativeBundle_AbilityResourceInfo *infos = nullptr;
+
+        // 调用Native接口获取组件资源信息，使用传入的fileType
+        BundleManager_ErrorCode ret = OH_NativeBundle_GetAbilityResourceInfo(fileType, &infos, &infosCount);
+
+        if (ret == BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED) {
+            napi_throw_error(env, nullptr, "BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED");
+            return nullptr;
+        }
+
+        if (infos == nullptr || infosCount == 0) {
+            napi_throw_error(env, nullptr, "no metadata found");
+            return nullptr;
+        }
+
+        napi_value result;
+        napi_create_array(env, &result);
+
+        for (size_t i = 0; i < infosCount; i++) {
+
+            auto temp = (OH_NativeBundle_AbilityResourceInfo *)((char *)infos + OH_NativeBundle_GetSize() * i);
+
+            napi_value infoObj;
+            napi_create_object(env, &infoObj);
+
+            // 1. 添加Default App
+            bool IsDefaultApp = true;
+            OH_NativeBundle_CheckDefaultApp(temp, &IsDefaultApp);
+            napi_value defaultAppValue;
+            napi_get_boolean(env, IsDefaultApp, &defaultAppValue);
+            napi_set_named_property(env, infoObj, "IsDefaultApp", defaultAppValue);
+
+            // 2. 添加App Index
+            int appIndex = -1;
+            OH_NativeBundle_GetAppIndex(temp, &appIndex);
+            napi_value appIndexValue;
+            napi_create_int32(env, appIndex, &appIndexValue);
+            napi_set_named_property(env, infoObj, "appIndex", appIndexValue);
+
+            // 3. 添加Label
+            char *label = nullptr;
+            OH_NativeBundle_GetLabel(temp, &label);
+            napi_value labelValue;
+            if (label) {
+                napi_create_string_utf8(env, label, NAPI_AUTO_LENGTH, &labelValue);
+                free(label);
+            } else {
+                napi_get_null(env, &labelValue);
+            }
+            napi_set_named_property(env, infoObj, "label", labelValue);
+
+            // 4. 添加Bundle Name
+            char *bundleName = nullptr;
+            OH_NativeBundle_GetBundleName(temp, &bundleName);
+            napi_value bundleNameValue;
+            if (bundleName) {
+                napi_create_string_utf8(env, bundleName, NAPI_AUTO_LENGTH, &bundleNameValue);
+                free(bundleName);
+            } else {
+                napi_get_null(env, &bundleNameValue);
+            }
+            napi_set_named_property(env, infoObj, "bundleName", bundleNameValue);
+
+            // 5. 添加Module Name
+            char *moduleName = nullptr;
+            OH_NativeBundle_GetModuleName(temp, &moduleName);
+            napi_value moduleNameValue;
+            if (moduleName) {
+                napi_create_string_utf8(env, moduleName, NAPI_AUTO_LENGTH, &moduleNameValue);
+                free(moduleName);
+            } else {
+                napi_get_null(env, &moduleNameValue);
+            }
+            napi_set_named_property(env, infoObj, "moduleName", moduleNameValue);
+
+            // 6. 添加Ability Name
+            char *abilityName = nullptr;
+            OH_NativeBundle_GetAbilityName(temp, &abilityName);
+            napi_value abilityNameValue;
+            if (abilityName) {
+                napi_create_string_utf8(env, abilityName, NAPI_AUTO_LENGTH, &abilityNameValue);
+                free(abilityName);
+            } else {
+                napi_get_null(env, &abilityNameValue);
+            }
+            napi_set_named_property(env, infoObj, "abilityName", abilityNameValue);
+
+            // 7. 添加Icon
+            char *icon = nullptr;
+            OH_NativeBundle_GetIcon(temp, &icon);
+            napi_value iconValue;
+            if (icon) {
+                napi_create_string_utf8(env, icon, NAPI_AUTO_LENGTH, &iconValue);
+                free(icon);
+            } else {
+                napi_get_null(env, &iconValue);
+            }
+            napi_set_named_property(env, infoObj, "icon", iconValue);
+
+            napi_set_element(env, result, i, infoObj);
+        }
+
+        // 释放内存
+        OH_AbilityResourceInfo_Destroy(infos, infosCount);
+
+        return result;
+    }
     ```
 
 **4. 接口暴露**
@@ -265,6 +407,7 @@ export const getMainElementName: () => object;          // 新增暴露方法 ge
 export const getCompatibleDeviceType: () => string;     // 新增暴露方法 getCompatibleDeviceType
 export const isDebugMode: () => string;                 // 新增暴露方法 isDebugMode
 export const getModuleMetadata: () => object;           // 新增暴露方法 getModuleMetadata
+export const getAbilityResourceInfo: (fileType: string) => object;      // 新增暴露方法 getAbilityResourceInfo
 ```
 
 **5. js侧调用**
@@ -308,6 +451,9 @@ export const getModuleMetadata: () => object;           // 新增暴露方法 ge
                 console.info("bundleNDK isDebugMode success, isDebugMode is " + isDebugMode);
                 let moduleMetadata = testNapi.getModuleMetadata();
                 console.info("bundleNDK getModuleMetadata success, data is " + JSON.stringify(moduleMetadata));
+                let fileType: string = '.png';
+                let abilityResourceInfo = testNapi.getAbilityResourceInfo(fileType);
+                console.info("bundleNDK getAbilityResourceInfo success, data is " + JSON.stringify(abilityResourceInfo));
             })
         }
         .width('100%')
