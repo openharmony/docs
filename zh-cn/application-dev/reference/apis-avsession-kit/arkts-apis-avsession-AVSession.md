@@ -836,7 +836,7 @@ async function setAVQueueItems() {
     });
   } catch (err) {
     if (err) {
-      console.error(`ImageSource or PixelMap create Error: ${JSON.stringify(err)}`);
+      console.error(`ImageSource or PixelMap create Error: code: ${err.code}, message: ${err.message}`);
     }
   }
 }
