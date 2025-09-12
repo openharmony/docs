@@ -113,12 +113,12 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
 > - 封装格式为mp4，音频编解码类型为MPEG（MP3）时采样率需大于等于16000Hz。  
 > - 封装格式为mp4/m4a，音频编解码类型为AAC时声道数范围为1~7。
 
-文件级数据已定义的key：
+文件级数据已定义的key如下所示：
    |                key                 |                       描述                    |
    | ---------------------------------- | :-------------------------------------------: |
-   | OH_MD_KEY_CREATION_TIME            | 媒体文件创建时间的元数据，值类型为string         |
-   | OH_MD_KEY_COMMENT                  | 媒体文件注释的键，值类型为string                |
-   | OH_MD_KEY_ENABLE_MOOV_FRONT        | 媒体文件moov元数据是否前置标志，值类型为int32_t  |
+   | OH_MD_KEY_CREATION_TIME            | 媒体文件创建时间的元数据，值类型为string。        |
+   | OH_MD_KEY_COMMENT                  | 媒体文件注释的键，值类型为string。               |
+   | OH_MD_KEY_ENABLE_MOOV_FRONT        | 媒体文件moov元数据是否前置标志，值类型为int32_t。 |
 
 配置选项key值说明：  
 
