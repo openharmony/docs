@@ -1,4 +1,10 @@
 # @ohos.telephony.call (拨打电话)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @Fanyl8-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 该模块提供呼叫管理功能，包括拨打电话、跳转到拨号界面、获取通话状态、格式化电话号码等。
 
@@ -842,7 +848,7 @@ call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
 | TEL_CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。                                     |
 | TEL_CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
 | TEL_CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号，并且没有新的来电振铃或等待。 |
-| TEL_CALL_STATE_ANSWERED<sup>11+</sup> | 3    | 表示来电已经接听。 |
+| TEL_CALL_STATE_ANSWERED | 3    | 表示来电已经接听。 |
 | TEL_CALL_STATE_CONNECTED | 4    | 表示电话已经接通中或呼叫保持。                                    |
 
 
