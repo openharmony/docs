@@ -243,7 +243,7 @@ getMediaKeySystemUuid(name: string): string;
 import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  let uuid: String = drm.getMediaKeySystemUuid("com.clearplay.drm");
+  let uuid: string = drm.getMediaKeySystemUuid("com.clearplay.drm");
   console.log("getMediaKeySystemUuid: ", uuid);
 } catch (err) {
   let error = err as BusinessError;
