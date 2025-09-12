@@ -18,7 +18,7 @@ import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
 type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
-**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
 
 | 类型 | 说明 |
 | -------- |  -------- |
@@ -28,7 +28,7 @@ type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
 ### 属性
 
-**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
