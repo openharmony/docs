@@ -25,7 +25,7 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
-增加指定用户的快捷方式信息。
+增加指定用户的快捷方式信息，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -110,7 +110,7 @@ struct ShortcutExample {
 
 deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
-删除指定用户的快捷方式信息。
+删除指定用户的快捷方式信息，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
