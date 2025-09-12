@@ -1402,6 +1402,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancem
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md	@piggyguy	@songyanhong	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-settings.md	@piggyguy	@songyanhong	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-image-common.md	@weixin_52725220	@xiong0104	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-image-svg2-capabilities.md	@weixin_52725220	@xiong0104	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md	@CCFFWW	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-media-components-video-sys.md	@sunbees	@liuli0427	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-media-components-video.md	@sunbees	@liuli0427	@HelloCrease
