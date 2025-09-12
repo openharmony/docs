@@ -486,7 +486,7 @@
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture <br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。  |
-| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源（单独启动录制不会开启3A算法，需同时使用STREAM_USAGE_VOICE_COMMUNICATION或STREAM_USAGE_VIDEO_COMMUNICATION类型的AudioRender起播才会触发开启3A算法）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源（单独启动录制不会开启3A算法，需同时使用[STREAM_USAGE_VOICE_COMMUNICATION](#streamusage)或[STREAM_USAGE_VIDEO_COMMUNICATION](#streamusage)类型的AudioRender起播才会触发开启3A算法）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
