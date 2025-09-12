@@ -239,9 +239,8 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
   ### 创建Shader材质并设置属性
 
    ```ts
-   import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-     LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry,
-     CullMode } from '@ohos.graphics.scene';
+   import { MaterialType, ShaderMaterial, SceneResourceParameters, SceneResourceFactory, Scene, Geometry,
+     CullMode } from '@kit.ArkGraphics3D';
 
    function createAndApplyShaderMaterial(): Promise<void> {
      // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -285,9 +284,8 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
   不同模型支持的PBR属性可能有所不同，设置材质前建议根据模型内容进行适配。本例使用CompareClearcoat模型作为示例，设置其支持的PBR属性，开发者可根据需要使用对应模型并设置相关属性。
 
    ```ts
-   import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-     LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, MetallicRoughnessMaterial,
-     Geometry, CullMode } from '@ohos.graphics.scene';
+   import { MaterialType, SceneResourceParameters, SceneResourceFactory, Scene, MetallicRoughnessMaterial, Geometry,
+     CullMode } from '@kit.ArkGraphics3D';
 
    function createAndApplyPBRMaterial(): Promise<void> {
      // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义

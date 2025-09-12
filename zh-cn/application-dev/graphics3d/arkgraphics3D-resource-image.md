@@ -14,8 +14,8 @@ ArkGraphics 3D提供基于png、jpg、ktx格式创建Image资源的能力，支�
 ## 图片资源的创建及使用
 3D场景中的图片资源是指GPU可以直接使用的图片资源。创建图片资源的关键参数包括图片资源的名字以及图片资源的路径。将图片资源应用到材质中作为材质属性，是常见的图片资源使用方式之一，示例代码如下：
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Image, MaterialType, Material, ShaderMaterial, SceneResourceParameters, SceneResourceFactory,
+  Scene } from '@kit.ArkGraphics3D';
 
 function createImagePromise(): Promise<Image> {
   return new Promise((resolve, reject) => {
