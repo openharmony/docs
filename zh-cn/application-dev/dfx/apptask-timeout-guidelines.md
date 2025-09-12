@@ -22,7 +22,8 @@
 ### 检测原理
 
 1. 触发流程
-   主线程超时150ms~450ms，触发采样调用栈流程；主线程超时450ms，触发采集trace流程。
+
+   主线程超时150ms~450ms，触发采样调用栈流程，生成以txt结尾的堆栈文件；主线程超时450ms，触发采集trace流程，生成以trace结尾的堆栈文件。
 
    150ms &lt; 主线程处理时长 &lt; 450ms：主线程超时采样栈。**同一个应用的PID一个生命周期仅会触发一次主线程超时事件采样栈。开发者选项打开，一小时一次。应用启动10s内不进行检测。**
 
@@ -32,7 +33,7 @@
 
    > **注意：**
    >
-   > 启动主线程超时检测抓取trace的功能的前提：**开发者使用nolog版本，开发者模式处于关闭状态**；
+   > 启动主线程超时检测抓取trace的功能的前提：**开发者使用[nolog](performance-analysis-kit-terminology.md#nolog版本)版本，关闭[开发者模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-developer-mode#section530763213432)**；
    >
    > log和nolog版本：在手机中，点击设置——搜索关键字“关于本机”——软件版本进行查看。log版本会以log结尾；
    >
