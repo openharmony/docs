@@ -11,7 +11,7 @@ if/else条件渲染是ArkUI应用开发框架提供的渲染控制的能力之�
 - 页面初始构建时，会评估条件语句，构建适用分支的组件，若缺少适用分支，则不构建任何内容。
 - 应用状态变化时，会重新评估条件语句，删除不适用分支的组件，构建适用分支的组件，若缺少适用分支，则不构建任何内容。
 
-关于条件渲染的详细说明，可以参考[if/else：条件渲染](../ui/state-management/arkts-rendering-control-ifelse.md)。
+关于条件渲染的详细说明，可以参考[if/else：条件渲染](../ui/rendering-control/arkts-rendering-control-ifelse.md)。
 
 ### 显隐控制
 

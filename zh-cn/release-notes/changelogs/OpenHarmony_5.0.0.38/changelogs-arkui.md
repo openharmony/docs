@@ -36,7 +36,7 @@ FrameNode的addComponentContent接口。
 
 **适配指导**
 
-开发者在使用addComponentContent前需要判断父节点的isModifiable是否为true，不支持isModifiable为false的FrameNode节点使用addComponentContent新增子节点。需要在声明式组件中动态添加内容时，可以通过占位节点[NodeContainer](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)、[ContentSlot](../../../application-dev/ui/state-management/arkts-rendering-control-contentslot.md)进行操作。
+开发者在使用addComponentContent前需要判断父节点的isModifiable是否为true，不支持isModifiable为false的FrameNode节点使用addComponentContent新增子节点。需要在声明式组件中动态添加内容时，可以通过占位节点[NodeContainer](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)、[ContentSlot](../../../application-dev/ui/rendering-control/arkts-rendering-control-contentslot.md)进行操作。
 
 ```ts
 import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI"

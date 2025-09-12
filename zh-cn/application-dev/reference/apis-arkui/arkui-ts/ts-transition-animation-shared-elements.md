@@ -84,7 +84,7 @@ struct SharedTransitionExample {
 // PageB.ets
 @Entry
 @Component
-struct pageBExample {
+struct PageBExample {
   build() {
     Stack() {
       // $r('app.media.ic_health_heart')需要替换为开发者所需的图像资源文件。

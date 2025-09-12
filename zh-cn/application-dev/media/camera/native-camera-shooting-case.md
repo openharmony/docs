@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的拍照流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、拍照）的介绍请参考[相机开发指导(Native)](native-camera-device-management.md)的具体章节。
 
@@ -50,7 +50,6 @@
 3. cpp侧导入NDK接口，并根据传入的SurfaceId进行拍照。
     ```c++
     #include "hilog/log.h"
-    #include "ndk_camera.h"
 
     void CaptureSessionOnFocusStateChange(Camera_CaptureSession* session, Camera_FocusState focusState)
     {

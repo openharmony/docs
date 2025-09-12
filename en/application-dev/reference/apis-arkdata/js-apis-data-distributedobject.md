@@ -1,4 +1,10 @@
 # @ohos.data.distributedDataObject (Distributed Data Object)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **distributedDataObject** module provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices. Although this module does not parse user data, you are advised not to transfer sensitive personal data or privacy data due to low-level security of storage path.
 
@@ -23,10 +29,10 @@ Creates a distributed data object. The object properties support basic types (nu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
-  | source | object | Yes| Properties of the distributed data object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| source | object | Yes| Properties of the distributed data object.|
 
 **Return value**
 
@@ -38,9 +44,9 @@ Creates a distributed data object. The object properties support basic types (nu
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -107,9 +113,9 @@ Creates a random session ID.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | string | Session ID created.|
+| Type| Description|
+| -------- | -------- |
+| string | Session ID created.|
 
 **Example**
 
@@ -123,11 +129,11 @@ Represents the information returned by the callback of [save](#save9).
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| Unique ID for multi-device collaboration.|
-| version | number | Yes| Version of the saved object, which is a non-negative integer.|
-| deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates a local device.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| sessionId | string | No| No| Unique ID for multi-device collaboration.|
+| version | number | No| No| Version of the saved object, which is a non-negative integer.|
+| deviceId | string | No| No| ID of the device where the distributed data object is stored. The value **local** indicates a local device.|
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
 
@@ -135,9 +141,9 @@ Represents the information returned by the callback of [revokeSave](#revokesave9
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| Unique ID for multi-device collaboration.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| sessionId | string | No| No| Unique ID for multi-device collaboration.|
 
 ## BindInfo<sup>11+</sup>
 
@@ -145,13 +151,13 @@ Represents the information about the joint asset in the RDB store to bind. Curre
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-  | Name      | Type                                                              | Read-Only| Optional| Description                                |
-  | ---------- | ------------------------------------------------------------------ | ---- | ---- | ------------------------------------ |
-  | storeName  | string                                                             | No  | No  | RDB store to which the target asset (asset to bind) belongs.  |
-  | tableName  | string                                                             | No  | No  | Table to which the target asset is located in the RDB store.  |
-  | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | No  | No  | Primary key of the target asset in the RDB store.  |
-  | field      | string                                                             | No  | No  | Column in which the target asset is located in the RDB store.  |
-  | assetName  | string                                                             | No  | No  | Name of the target asset in the RDB store.|
+| Name      | Type                                                              | Read-Only| Optional| Description                                |
+| ---------- | ------------------------------------------------------------------ | ---- | ---- | ------------------------------------ |
+| storeName  | string                                                             | No  | No  | RDB store to which the target asset (asset to bind) belongs.  |
+| tableName  | string                                                             | No  | No  | Table to which the target asset is located in the RDB store.  |
+| primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | No  | No  | Primary key of the target asset in the RDB store.  |
+| field      | string                                                             | No  | No  | Column in which the target asset is located in the RDB store.  |
+| assetName  | string                                                             | No  | No  | Name of the target asset in the RDB store.|
 
 ## DataObserver<sup>20+</sup>
 
@@ -160,6 +166,8 @@ type DataObserver = (sessionId: string, fields: Array&lt;string&gt;) => void
 Defines an observer for obtaining the data change of a distributed object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**Parameters**
 
 | Name    | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -174,6 +182,8 @@ Defines an observer for obtaining the status change of a distributed object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
+**Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sessionId | string | Yes| Session ID of the distributed data object, with a maximum length of 128 bytes. The value can contain only letters, digits, and underscores (_).|
@@ -187,6 +197,8 @@ type ProgressObserver = (sessionId: string, progress: number) => void
 Defines an observer for obtaining the transfer progress.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -209,20 +221,20 @@ Sets a session ID. This API uses an asynchronous callback to return the result. 
 
 **Parameters**
 
-  | Name   | Type                     | Mandatory| Description                                                                                                          |
-  | --------- | ------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
-  | sessionId | string                    | Yes  | ID of a distributed data object on a trusted network. The value can contain only letters, digits, and underscores (_), and cannot exceed 128 characters. t If this parameter is set to "" or **null**, the distributed data object exits the network.|
-  | callback  | AsyncCallback&lt;void&gt; | Yes  | Asynchronous callback invoked when the session ID is successfully set.                                                                                       |
+| Name   | Type                     | Mandatory| Description                                                                                                          |
+| --------- | ------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
+| sessionId | string                    | Yes  | ID of a distributed data object on a trusted network. The value can contain only letters, digits, and underscores (_), and cannot exceed 128 characters. t If this parameter is set to "" or **null**, the distributed data object exits the network.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Asynchronous callback invoked when the session ID is successfully set.                                                                                       |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-  | ID| Error Message                                                                                                                                                          |
-  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | 201      | Permission verification failed.                                                                                                                                    |
-  | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
-  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
+| ID| Error Message                                                                                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 201      | Permission verification failed.                                                                                                                                    |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
+| 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **Example**
 
@@ -247,18 +259,18 @@ Exits all sessions. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Incorrect parameter types. |
-  | 15400001 | Failed to create the in-memory database. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Incorrect parameter types. |
+| 15400001 | Failed to create the in-memory database. |
 
 **Example**
 
@@ -285,9 +297,9 @@ Sets a session ID or exits the distributed network. This API uses a promise to r
 
 **Parameters**
 
-  | Name   | Type  | Mandatory| Description                                                                                                                        |
-  | --------- | ------ | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-  | sessionId | string | No  | ID of a distributed data object on a trusted network. The value can contain only letters, digits, and underscores (_), and cannot exceed 128 characters. If this parameter is set to "" or **null**, or left empty, the distributed data object exits the network.|
+| Name   | Type  | Mandatory| Description                                                                                                                        |
+| --------- | ------ | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| sessionId | string | No  | ID of a distributed data object on a trusted network. The value can contain only letters, digits, and underscores (_), and cannot exceed 128 characters. If this parameter is set to "" or **null**, or left empty, the distributed data object exits the network.|
 
 **Return value**
 
@@ -299,11 +311,11 @@ Sets a session ID or exits the distributed network. This API uses a promise to r
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-  | ID| Error Message                                                                                                                                                          |
-  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | 201      | Permission verification failed.                                                                                                                                    |
-  | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
-  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
+| ID| Error Message                                                                                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 201      | Permission verification failed.                                                                                                                                    |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
+| 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **Example**
 
@@ -341,9 +353,9 @@ Subscribes to data changes of this distributed data object.
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -377,9 +389,9 @@ Unsubscribes from data changes of this distributed data object.
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -416,9 +428,9 @@ Subscribes to status changes of this distributed data object.
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -447,9 +459,9 @@ Unsubscribes from the status change of this distributed data object.
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -480,19 +492,19 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates a local device.|
-  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates a local device.|
+| callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-  | 801      | Capability not supported. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. |
 
 **Example**
 
@@ -529,24 +541,24 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates a local device. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates a local device. |
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-  | 801      | Capability not supported. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. |
 
 **Example**
 
@@ -576,18 +588,18 @@ If the object is stored on another device, the data on the local device will be 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Incorrect parameter types. |
-  | 801      | Capability not supported. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Incorrect parameter types. |
+| 801      | Capability not supported. |
 
 **Example**
 
@@ -630,17 +642,17 @@ If the object is stored on another device, the data on the local device will be 
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 801      | Capability not supported. |
+| ID| Error Message|
+| -------- | -------- |
+| 801      | Capability not supported. |
 
 **Example**
 
@@ -678,20 +690,20 @@ When an asset in a distributed object and an asset in an RDB store point to the 
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory| Description                                                                              |
-  | -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
-  | assetKey | string                    | Yes  | Key of the joint asset in the distributed data object.                                            |
-  | bindInfo | [BindInfo](#bindinfo11)   | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                                |
+| Name  | Type                     | Mandatory| Description                                                                              |
+| -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
+| assetKey | string                    | Yes  | Key of the joint asset in the distributed data object.                                            |
+| bindInfo | [BindInfo](#bindinfo11)   | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                                |
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-  | 801      | Capability not supported. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. |
 
 **Example**
 
@@ -760,25 +772,25 @@ When an asset in a distributed object and an asset in an RDB store point to the 
 
 **Parameters**
 
-  | Name  | Type                   | Mandatory| Description                                                                              |
-  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
-  | assetKey | string                  | Yes  | Key of the joint asset in the distributed data object.                                            |
-  | bindInfo | [BindInfo](#bindinfo11) | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
+| Name  | Type                   | Mandatory| Description                                                                              |
+| -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+| assetKey | string                  | Yes  | Key of the joint asset in the distributed data object.                                            |
+| bindInfo | [BindInfo](#bindinfo11) | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
 
 **Return value**
 
-  | Type               | Description         |
-  | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-  | 801      | Capability not supported. |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. |
 
 **Example**
 
@@ -1067,37 +1079,37 @@ Sets the property information about a single asset in a distributed object. This
 
 The following table lists the exception scenarios.
 
-  | Scenario | Execution Results|
-  | -------- | -------- |
-  | The [setAsset](#setasset20) API is called to set an asset after the [setSessionId](#setsessionid9-2) API is called to set a session ID.  | Error code 15400003 is thrown, indicating the asset setting failure.|
-  | The value of **assetKey** is invalid, for example, **null**, **undefined**, or '' (empty).           | Error code 15400002 is thrown, indicating the asset setting failure.|
-  | **assetKey** exists, but the corresponding file is not of the asset type.| The system forcibly changes the file type to asset and sets the asset field. As a result, the actual asset may fail to be synchronized to the peer device.|
-  | The value of **uri** is invalid, for example, **null**, **undefined**, or '' (empty).                 | Error code 15400002 is thrown, indicating the asset setting failure.|
+| Scenario | Execution Results|
+| -------- | -------- |
+| The [setAsset](#setasset20) API is called to set an asset after the [setSessionId](#setsessionid9-2) API is called to set a session ID.  | Error code 15400003 is thrown, indicating the asset setting failure.|
+| The value of **assetKey** is invalid, for example, **null**, **undefined**, or '' (empty).           | Error code 15400002 is thrown, indicating the asset setting failure.|
+| **assetKey** exists, but the corresponding file is not of the asset type.| The system forcibly changes the file type to asset and sets the asset field. As a result, the actual asset may fail to be synchronized to the peer device.|
+| The value of **uri** is invalid, for example, **null**, **undefined**, or '' (empty).                 | Error code 15400002 is thrown, indicating the asset setting failure.|
 
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
 
-  | Name  | Type                   | Mandatory| Description                                                                              |
-  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
-  | assetKey | string                  | Yes  | Property name of the asset in the distributed object.<br>**Constraints**<br>(1) The corresponding **assetKey** file must exist and be of the [Asset](js-apis-data-commonType.md#asset) type. Otherwise, an asset setting error may occur.<br>(2) In the collaboration or continuation scenario, the corresponding **assetKey** file must exist and be of the asset type at both devices so that the asset can be synchronized to the peer device.                                            |
-  | uri      | string                  | Yes  | URI of the new asset to be set, indicating the distributed path for storing the existing asset.|
+| Name  | Type                   | Mandatory| Description                                                                              |
+| -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+| assetKey | string                  | Yes  | Property name of the asset in the distributed object.<br>**Constraints**<br>(1) The corresponding **assetKey** file must exist and be of the [Asset](js-apis-data-commonType.md#asset) type. Otherwise, an asset setting error may occur.<br>(2) In the collaboration or continuation scenario, the corresponding **assetKey** file must exist and be of the asset type at both devices so that the asset can be synchronized to the peer device.                                            |
+| uri      | string                  | Yes  | URI of the new asset to be set, indicating the distributed path for storing the asset. The value must correspond to an existing asset. |
 
 **Return value**
 
-  | Type               | Description         |
-  | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
   For details about the error codes, see [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 15400002 | Parameter error. Possible causes: 1. The assetKey is invalid, such as ""; 2. The uri is invalid, such as "". |
-  | 15400003 | The sessionId of the distributed object has been set. |
+| ID| Error Message|
+| -------- | -------- |
+| 15400002 | Parameter error. Possible causes: 1. The assetKey is invalid, such as ""; 2. The uri is invalid, such as "". |
+| 15400003 | The sessionId of the distributed object has been set. |
 
 **Example**:
 
@@ -1157,38 +1169,38 @@ Sets the property information about multiple assets in a distributed object. Thi
 
 The following table lists the exception scenarios.
 
-  | Scenario | Execution Results|
-  | -------- | -------- |
-  | The [setAssets](#setassets20) API is called to set an asset after the [setSessionId](#setsessionid9-2) API is called to set a session ID.  | Error code 15400003 is thrown, indicating the asset setting failure.|
-  | The value of **assetsKey** is invalid, for example, **null**, **undefined**, or '' (empty).           | Error code 15400002 is thrown, indicating the asset setting failure.|
-  | **assetsKey** exists, but the corresponding file is not of the asset type.| The system forcibly changes the file type to asset and sets the asset field. As a result, the actual asset may fail to be synchronized to the peer device.|
-  | **assetsKey** exists and the corresponding file is of the asset type.| The asset is set successfully, and the URI information is updated.|
-  | The number of URI elements in the **uris** array is 0 or greater than 50.    | Error code 15400002 is thrown, indicating the asset setting failure.|
-  | The number of URI elements in the **uris** array ranges from 1 to 50, and one or more URIs are invalid, for example, **null**, **undefined**, or '' (empty).| Error code 15400002 is thrown, indicating the asset setting failure.|
+| Scenario | Execution Results|
+| -------- | -------- |
+| The [setAssets](#setassets20) API is called to set an asset after the [setSessionId](#setsessionid9-2) API is called to set a session ID.  | Error code 15400003 is thrown, indicating the asset setting failure.|
+| The value of **assetsKey** is invalid, for example, **null**, **undefined**, or '' (empty).           | Error code 15400002 is thrown, indicating the asset setting failure.|
+| **assetsKey** exists, but the corresponding file is not of the asset type.| The system forcibly changes the file type to asset and sets the asset field. As a result, the actual asset may fail to be synchronized to the peer device.|
+| **assetsKey** exists and the corresponding file is of the asset type.| The asset is set successfully, and the URI information is updated.|
+| The number of URI elements in the **uris** array is 0 or greater than 50.    | Error code 15400002 is thrown, indicating the asset setting failure.|
+| The number of URI elements in the **uris** array ranges from 1 to 50, and one or more URIs are invalid, for example, **null**, **undefined**, or '' (empty).| Error code 15400002 is thrown, indicating the asset setting failure.|
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
 
-  | Name  | Type                   | Mandatory| Description                                                                              |
-  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
-  | assetsKey | string                 | Yes  | Property name of the assets in the distributed object.<br>**Constraints**<br>(1) The corresponding **assetsKey** file must exist and be of the [Asset](js-apis-data-commonType.md#asset) type. Otherwise, an asset setting error may occur.<br>(2) In the collaboration or continuation scenario, the corresponding **assetsKey** file must exist and be of the asset type at both devices so that the asset array can be synchronized to the peer device.                                            |
-  | uris      | Array&lt;string&gt;    | Yes  | URIs of the new asset array to be set, indicating the distributed paths for storing each element of the asset. The number of array elements ranges from 1 to 50. The URI of an element must be the distributed path corresponding to an actual asset.|
+| Name  | Type                   | Mandatory| Description                                                                              |
+| -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+| assetsKey | string                 | Yes  | Property name of the assets in the distributed object.<br>**Constraints**<br>(1) The corresponding **assetsKey** file must exist and be of the [Asset](js-apis-data-commonType.md#asset) type. Otherwise, an asset setting error may occur.<br>(2) In the collaboration or continuation scenario, the corresponding **assetsKey** file must exist and be of the asset type at both devices so that the asset array can be synchronized to the peer device.                                            |
+| uris      | Array&lt;string&gt;    | Yes  | URIs of the new asset array to be set, indicating the distributed paths for storing each element of the asset. The number of array elements ranges from 1 to 50. The URI of an element must be the distributed path corresponding to an actual asset.|
 
 **Return value**
 
-  | Type               | Description         |
-  | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
   For details about the error codes, see [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 15400002 | Parameter error. Possible causes:1. The assetsKey is invalid, such as ""; 2. The uris is invalid, such as the length of uris is more than 50. |
-  | 15400003 | The sessionId of the distributed object has been set. |
+| ID| Error Message|
+| -------- | -------- |
+| 15400002 | Parameter error. Possible causes:1. The assetsKey is invalid, such as ""; 2. The uris is invalid, such as the length of uris is more than 50. |
+| 15400003 | The sessionId of the distributed object has been set. |
 
 **Example**:
 
@@ -1249,9 +1261,9 @@ Creates a distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | source | object | Yes| Properties of the distributed data object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| source | object | Yes| Properties of the distributed data object.|
 
 **Return value**
 
@@ -1298,15 +1310,15 @@ Sets a session ID. For the devices in the collaboration state in a trusted netwo
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
 
 **Example**
 
@@ -1486,7 +1498,6 @@ Unsubscribes from the status change of this distributed data object.
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **'status'**, which indicates the status change (online or offline) of the distributed object.|
 | callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | No| Callback to unregister. If this parameter is not specified, this API unsubscribes from all callbacks for status changes of this distributed object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
-
 
 **Example**
 

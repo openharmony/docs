@@ -518,6 +518,20 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：16
 
+## ohos.permission.GET_ETHERNET_LOCAL_MAC
+
+允许应用查询以太网当前MAC地址。
+
+<!--RP51--><!--RP51End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：13
+
+**变更信息**：API 13，该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用；从API 16开始，在PC/2in1设备上面向普通应用开放，在其余设备上仍仅面向系统应用开放。
+
 ## ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
 
 允许应用关闭进程内.got.plt段的只读保护。
@@ -677,7 +691,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 <!--RP47--><!--RP47End-->
 
-**权限级别**: system_basic
+**权限级别**：system_basic
 
 **授权方式**: 系统授权（system_grant）
 
@@ -690,7 +704,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 允许原子化服务申请差异化的存储空间大小。
 
-**权限级别**: system_basic
+**权限级别**：system_basic
 
 **授权方式**: 系统授权（system_grant）
 
@@ -742,3 +756,19 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**：General
 
 **起始版本**：20
+
+## ohos.permission.HOOK_KEY_EVENT
+
+允许应用拦截键盘输入事件。
+
+获取该权限后，应用可以在按键事件分发到应用窗口前，将自定义的按键处理过程添加到系统的按键处理过程中。
+
+<!--RP52--><!--RP52End-->
+
+**权限级别**：system_basic
+
+**授权方式**：手动设置授权（manual_settings）
+
+**支持设备**：PC/2in1 | Tablet
+
+**起始版本**：21

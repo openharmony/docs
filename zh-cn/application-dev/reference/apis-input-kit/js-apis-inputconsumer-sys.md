@@ -243,7 +243,7 @@ struct Index {
 
 ## KeyOptions
 
-快捷键选项。
+组合键选项。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 

@@ -48,18 +48,16 @@ for (int i = 0; i < 1000000; i++) {
 for (int i = 0; i < 1000000; i++) {
     napi_handle_scope scope;
     napi_status status = napi_open_handle_scope(env, &scope);
-    if (status != napi_ok) {
-        break;
-    }
-    napi_value result;
-    status = napi_get_element(env, object, i, &result);
-    if (status != napi_ok) {
-        break;
-    }
-    // do something with element
-    status = napi_close_handle_scope(env, scope);
-    if (status != napi_ok) {
-        break;
+    if (status == napi_ok) {
+        napi_value result;
+        status = napi_get_element(env, object, i, &result);
+        if (status == napi_ok) {
+            // do something with element
+        }
+        status = napi_close_handle_scope(env, scope);
+        if (status != napi_ok) {
+            break;
+        }
     }
 }
 ```
@@ -105,6 +103,9 @@ napi_status SaveConstructor(napi_env env, napi_value constructor) {
 
 napi_status GetConstructor(napi_env env) {
     napi_value constructor;
+    if ( g_constructor == NULL ){
+      return napi_generic_failure;
+    }
     return napi_get_reference_value(env, g_constructor, &constructor);
 };
 ```
@@ -120,8 +121,7 @@ napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
 napi_ref result;
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
 // 当jsobject和result后续不再使用时，及时调用napi_remove_wrap释放result
-napi_value result1;
-napi_remove_wrap(env, jsobject, result1)
+napi_remove_wrap(env, jsobject, &result);
 ```
 
 ## 跨语言调用开销
@@ -329,6 +329,7 @@ struct Index {
 **native 侧主线程中创建线程安全函数**
 
 ```cpp
+napi_ref cbObj = nullptr;
 static void CallJs(napi_env env, napi_value js_cb, void *context, void *data) {
 
     std::thread::id this_id = std::this_thread::get_id();
@@ -388,14 +389,23 @@ static napi_value ThreadSafeTest(napi_env env, napi_callback_info info) {
 **其他线程中调用线程安全函数**
 
 ```cpp
+
 std::thread t([]() {
     std::thread::id this_id = std::this_thread::get_id();
     OH_LOG_INFO(LOG_APP, "thread0 %{public}d.\n", this_id);
     napi_status status;
     status = napi_acquire_threadsafe_function(tsfn);
-    OH_LOG_INFO(LOG_APP, "thread1 : %{public}d", status == napi_ok);
+    if (status != napi_ok) {
+      OH_LOG_ERROR(LOG_APP, "thread1 failed to acquire threadsafe function! Status: %{public}d", status);
+    } else {
+      OH_LOG_INFO(LOG_APP, "thread1 Successfully acquired threadsafe function");
+    }
     status = napi_call_threadsafe_function(tsfn, NULL, napi_tsfn_blocking);
-    OH_LOG_INFO(LOG_APP, "thread2 : %{public}d", status == napi_ok);
+    if (status != napi_ok) {
+      OH_LOG_ERROR(LOG_APP, "thread2 failed to call threadsafe function! Status: %{public}d", status);
+    } else {
+      OH_LOG_INFO(LOG_APP, "thread2 Successfully called threadsafe function");
+    }
 });
 t.detach();
 ```

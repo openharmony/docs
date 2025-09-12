@@ -76,7 +76,7 @@
        tokenId = appInfo.accessTokenId;
      } catch (error) {
        const err: BusinessError = error as BusinessError;
-       console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get bundle info for self, code: ${err.code}, message: ${err.message}`);
      }
    
      // 校验应用是否被授予权限。
@@ -84,7 +84,7 @@
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
      } catch (error) {
        const err: BusinessError = error as BusinessError;
-       console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to check access token, code: ${err.code}, message: ${err.message}`);
      }
    
      return grantStatus;
@@ -139,7 +139,7 @@
           }
           // 授权成功。
         }).catch((err: BusinessError) => {
-          console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to request permissions from user, code: ${err.code}, message: ${err.message}`);
         })
       }
       export default class EntryAbility extends UIAbility {
@@ -178,7 +178,7 @@
           }
           // 授权成功。
         }).catch((err: BusinessError) => {
-          console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to request permissions from user, code: ${err.code}, message: ${err.message}`);
         })
       }
       

@@ -1,9 +1,16 @@
 # @ohos.net.ethernet (以太网连接管理)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块提供以太网连接管理能力，包括有线网络能力、获取有线网络的IP地址等信息。
 
 > **说明：**
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -11,7 +18,7 @@
 import { ethernet } from '@kit.NetworkKit';
 ```
 
-## HttpProxy
+## HttpProxy<sup>10+</sup>
 
 type HttpProxy = connection.HttpProxy
 
@@ -66,7 +73,7 @@ ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
-| 名称         | 类型                    | 必填 | 说明                                                 |
-| ------------ | ----------------------- | --- | ---------------------------------------------------- |
-| iface        | string                  |  是 | 以太网网卡名称。                                        |
-| macAddress       | string                |  是 | 以太网网卡MAC地址信息。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| iface        | string                  |  否   | 否 | 以太网网卡名称。                                        |
+| macAddress       | string                |  否   | 否 | 以太网网卡MAC地址信息。 |

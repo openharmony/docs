@@ -1,4 +1,10 @@
 # Creating an ArkTS Runtime Environment Using Node-API
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## When to Use
 
@@ -18,6 +24,7 @@ A maximum of 64 runtime environments can be created for a process.
    // index.d.ts
    export const createArkRuntime: () => object;
    ```
+   <!-- @[napi_ark_runtime_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
    **Configure compile settings.**
 
@@ -49,6 +56,7 @@ A maximum of 64 runtime environments can be created for a process.
        }
    }
    ```
+   <!-- @[napi_ark_runtime_build](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/build-profile.json5) -->
 
    **Register modules.**
 
@@ -80,6 +88,7 @@ A maximum of 64 runtime environments can be created for a process.
        napi_module_register(&nativeModule);
    }
    ```
+   <!-- @[napi_ark_runtime_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
 
 2. Create a thread and an ArkTS runtime environment, and load the module. For details about how to load a custom module, see [Loading a Module Using Node-API](use-napi-load-module-with-info.md).
 
@@ -125,17 +134,21 @@ A maximum of 64 runtime environments can be created for a process.
        return nullptr;
    }
    ```
+   <!-- @[napi_ark_runtime_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
 
 3. Write the ArkTS code.
 
    ```ts
    // ObjectUtils.ets
    export function Logger() {
-       console.log("print log");
+       console.info("print log");
    }
-
+   ```
+   <!-- @[napi_ark_runtime_utils](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/ObjectUtils.ets) -->
+   ```ts
    // Call ArkTS APIs.
    import testNapi from 'libentry.so';
 
    testNapi.createArkRuntime();
    ```
+   <!-- @[napi_ark_runtime_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->

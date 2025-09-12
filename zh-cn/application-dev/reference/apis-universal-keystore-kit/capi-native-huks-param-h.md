@@ -29,9 +29,9 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_initparamset) | 初始化参数集。 |
+| [struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_initparamset) | 初始化参数集，无参数信息，分配参数集默认可用内存空间。初始化后的参数集需要通过OH_Huks_FreeParamSet释放。添加参数的参数集需要使用OH_Huks_AddParams添加参数并且必须使用OH_Huks_BuildParamSet构造参数集。 |
 | [struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Param *params, uint32_t paramCnt)](#oh_huks_addparams) | 添加参数到参数集里面。 |
-| [struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_buildparamset) | 构造参数集。 |
+| [struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_buildparamset) | 构造参数集，在初始化参数集和添加参数操作之后，序列化参数集，将blob类型的数据拷贝到paramSet结构尾部相邻内存区域。 |
 | [void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_freeparamset) | 销毁参数集。 |
 | [struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromParamSet, uint32_t fromParamSetSize, struct OH_Huks_ParamSet **paramSet)](#oh_huks_copyparamset) | 复制参数集（深拷贝）。 |
 | [struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, uint32_t tag, struct OH_Huks_Param **param)](#oh_huks_getparam) | 从参数集中获取参数。 |
@@ -39,7 +39,7 @@
 | [struct OH_Huks_Result OH_Huks_IsParamSetTagValid(const struct OH_Huks_ParamSet *paramSet)](#oh_huks_isparamsettagvalid) | 检查参数集中的参数是否有效、是否有重复。 |
 | [struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *paramSet, uint32_t size)](#oh_huks_isparamsetvalid) | 检查参数集大小是否有效。 |
 | [struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param)](#oh_huks_checkparammatch) | 比较两个参数是否相同。 |
-| [void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet)](#oh_huks_freekeyaliasset) | 销毁参数集。 |
+| [void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet)](#oh_huks_freekeyaliasset) | 销毁密钥别名的参数集。 |
 
 ## 函数说明
 
@@ -51,7 +51,7 @@ struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)
 
 **描述**
 
-初始化参数集。
+初始化参数集，无参数信息，分配参数集默认可用内存空间。初始化后的参数集需要通过OH_Huks_FreeParamSet释放。添加参数的参数集需要使用OH_Huks_AddParams添加参数并且必须使用OH_Huks_BuildParamSet构造参数集。
 
 **起始版本：** 9
 
@@ -71,7 +71,7 @@ struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)
 ### OH_Huks_AddParams()
 
 ```
-struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,const struct OH_Huks_Param *params, uint32_t paramCnt)
+struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Param *params, uint32_t paramCnt)
 ```
 
 **描述**
@@ -103,7 +103,7 @@ struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)
 
 **描述**
 
-构造参数集。
+构造参数集，在初始化参数集和添加参数操作之后，序列化参数集，将blob类型的数据拷贝到paramSet结构尾部相邻内存区域。
 
 **起始版本：** 9
 
@@ -142,7 +142,7 @@ void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet)
 ### OH_Huks_CopyParamSet()
 
 ```
-struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromParamSet,uint32_t fromParamSetSize, struct OH_Huks_ParamSet **paramSet)
+struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromParamSet, uint32_t fromParamSetSize, struct OH_Huks_ParamSet **paramSet)
 ```
 
 **描述**
@@ -169,7 +169,7 @@ struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromPa
 ### OH_Huks_GetParam()
 
 ```
-struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, uint32_t tag,struct OH_Huks_Param **param)
+struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, uint32_t tag, struct OH_Huks_Param **param)
 ```
 
 **描述**
@@ -304,7 +304,7 @@ void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet)
 
 **描述**
 
-销毁参数集。
+销毁密钥别名的参数集。
 
 **起始版本：** 20
 
@@ -313,6 +313,6 @@ void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [struct OH_Huks_KeyAliasSet](capi-hukstypeapi-oh-huks-keyaliasset.md) *keyAliasSet | 指向要被销毁的参数集的指针地址。 |
+| [struct OH_Huks_KeyAliasSet](capi-hukstypeapi-oh-huks-keyaliasset.md) *keyAliasSet | 指向要被销毁的密钥别名的参数集的指针地址。 |
 
 

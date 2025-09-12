@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @tangye123456-->
-<!--SE: @YanSanzo-->
-<!--TSE: @tinygreyy-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 The system provides the **MovingPhotoView** component, which can be used to play moving photos in social networking and gallery applications.
 

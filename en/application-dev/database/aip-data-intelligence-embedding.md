@@ -12,6 +12,8 @@ In the pivotal shift from digital transformation to AI advancement, creating int
 
 Currently, ArkData Intelligence Platform (AIP) provides application data vectorization, which leverages embedding models to convert multi-modal data such as unstructured text and images into semantic vectors.
 
+Since API version 15, application data vectorization is supported.
+
 ## Basic Concepts
 
 To get started, it is helpful to understand the following concepts:
@@ -64,18 +66,18 @@ The following table lists the APIs related to application data vectorization. Fo
    ```
 
 2. Obtain a text embedding model using the **getTextEmbeddingModel** method. The sample code is as follows:
-   
-```ts
+
+   ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   
-let textConfig:intelligence.ModelConfig = {
+
+   let textConfig:intelligence.ModelConfig = {
      version:intelligence.ModelVersion.BASIC_MODEL,
      isNpuAvailable:false,
      cachePath:"/data"
    }
    let textEmbedding:intelligence.TextEmbedding;
-   
-intelligence.getTextEmbeddingModel(textConfig)
+
+   intelligence.getTextEmbeddingModel(textConfig)
      .then((data:intelligence.TextEmbedding) => {
        console.info("Succeeded in getting TextModel");
        textEmbedding = data;
@@ -83,11 +85,11 @@ intelligence.getTextEmbeddingModel(textConfig)
      .catch((err:BusinessError) => {
        console.error("Failed to get TextModel and code is " + err.code);
      })
-```
+   ```
 
 3. Load this embedding model using the **loadModel** method. The sample code is as follows:
-   
-```ts
+
+   ```ts
    textEmbedding.loadModel()
      .then(() => {
        console.info("Succeeded in loading Model");
@@ -95,10 +97,10 @@ intelligence.getTextEmbeddingModel(textConfig)
      .catch((err:BusinessError) => {
        console.error("Failed to load Model and code is " + err.code);
      })
-```
+   ```
 
 4. Split text. If the data length exceeds the limit, call **splitText()** to split the data into smaller text blocks and then vectorize them.
-   The sample code is as follows:
+    The sample code is as follows:
 
    ```ts
    let splitConfig:intelligence.SplitConfig = {
@@ -117,7 +119,7 @@ intelligence.getTextEmbeddingModel(textConfig)
    ```
 
 5. Obtain the embedding vector of the given text using the **getEmbedding** method. The given text can be a single piece of text or a collection of multiple text entries.
-   The sample code is as follows:
+    The sample code is as follows:
 
    ```ts
    let text = 'text';
@@ -142,8 +144,8 @@ intelligence.getTextEmbeddingModel(textConfig)
    ```
 
 6. Release this text embedding model using the **releaseModel** method. The sample code is as follows:
-   
-```ts
+
+   ```ts
    textEmbedding.releaseModel()
      .then(() => {
        console.info("Succeeded in releasing Model");
@@ -151,7 +153,7 @@ intelligence.getTextEmbeddingModel(textConfig)
      .catch((err:BusinessError) => {
        console.error("Failed to release Model and code is " + err.code);
      })
-```
+   ```
 
 ## How to Develop Image Vectorization
 
@@ -162,16 +164,16 @@ intelligence.getTextEmbeddingModel(textConfig)
    ```
 
 2. Obtain an image embedding model using the **getImageEmbeddingModel** method. The sample code is as follows:
-   
-```ts
+
+   ```ts
    let imageConfig:intelligence.ModelConfig = {
      version:intelligence.ModelVersion.BASIC_MODEL,
      isNpuAvailable:false,
      cachePath:"/data"
    }
    let imageEmbedding:intelligence.ImageEmbedding;
-   
-intelligence.getImageEmbeddingModel(imageConfig)
+
+   intelligence.getImageEmbeddingModel(imageConfig)
      .then((data:intelligence.ImageEmbedding) => {
        console.info("Succeeded in getting ImageModel");
        imageEmbedding = data;
@@ -179,11 +181,11 @@ intelligence.getImageEmbeddingModel(imageConfig)
      .catch((err:BusinessError) => {
        console.error("Failed to get ImageModel and code is " + err.code);
      })
-```
+   ```
 
 3. Load this image embedding model using the **loadModel** method. The sample code is as follows:
-   
-```ts
+
+   ```ts
    imageEmbedding.loadModel()
      .then(() => {
         console.info("Succeeded in loading Model");
@@ -191,11 +193,11 @@ intelligence.getImageEmbeddingModel(imageConfig)
      .catch((err:BusinessError) => {
         console.error("Failed to load Model and code is " + err.code);
      })
-```
+   ```
 
 4. Obtain the embedding vector of the given image using the **getEmbedding** method. The sample code is as follows:
-   
- ```ts
+
+    ```ts
     let image = "file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg";
     imageEmbedding.getEmbedding(image)
       .then((data:Array<number>) => {
@@ -204,11 +206,11 @@ intelligence.getImageEmbeddingModel(imageConfig)
       .catch((err:BusinessError) => {
         console.error("Failed to get Embedding and code is " + err.code);
       })
- ```
+    ```
 
 5. Release this image embedding model using the **releaseModel** method. The sample code is as follows:
-   
- ```ts
+
+    ```ts
     imageEmbedding.releaseModel()
       .then(() => {
         console.info("Succeeded in releasing Model");
@@ -216,4 +218,4 @@ intelligence.getImageEmbeddingModel(imageConfig)
       .catch((err:BusinessError) => {
         console.error("Failed to release Model and code is " + err.code);
       })
- ```
+    ```

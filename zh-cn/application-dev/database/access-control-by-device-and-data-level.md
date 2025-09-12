@@ -57,7 +57,7 @@
 
 ## 使用键值型数据库实现数据分级
 
-键值型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S3的数据库为例。
+键值型数据库，通过securityLevel参数设置数据库的安全等级，安全等级具体可见[SecurityLevel](../reference/apis-arkdata/js-apis-distributedKVStore.md#securitylevel)枚举。此处以创建安全等级为S3的数据库为例。
 
 具体接口及功能，可见[分布式键值数据库](../reference/apis-arkdata/js-apis-distributedKVStore.md)。
 > **说明**：
@@ -119,7 +119,7 @@ export default class EntryAbility extends UIAbility {
 
 ## 使用关系型数据库实现数据分级
 
-关系型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S3的数据库为例。
+关系型数据库，通过securityLevel参数设置数据库的安全等级，安全等级具体可见[SecurityLevel](../reference/apis-arkdata/arkts-apis-data-relationalStore-e.md#securitylevel)枚举。此处以创建安全等级为S3的数据库为例。
 
 具体接口及功能，可见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore.md)。
 

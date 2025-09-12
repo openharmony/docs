@@ -67,29 +67,29 @@
    | -------- | -------- | -------- | -------- |
    | forms | 表示应用的全部卡片配置信息。<br/>最多支持配置16个卡片，若超过16个，则保留配置的前16个。 | 数组 | 否 |
    | name | 表示卡片的名称，字符串最大长度为127字节。用于开发者区分不同的卡片。 | 字符串 | 否 |
-   | displayName | 表示卡片的展示名称。主要在卡片管理页面显示，对应卡片预览下[卡片管理页面](./formkit-overview.md#卡片使用场景)中的<!--RP3-->"ArkTSCard"<!--RP3End-->，用于展示卡片信息，建议能够体现卡片的核心功能或用途。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最小长度为1字节，最大长度为30字节。 | 字符串 | 否 |
-   | description | 表示卡片的描述。用于在卡片管理页面展示卡片功能描述，对应卡片预览下[卡片管理页面](./formkit-overview.md#卡片使用场景)中的<!--RP4-->"This is a ArkTS card game by canvas."<!--RP4End-->。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
-   | src | 表示卡片对应的UI代码的完整路径。当为ArkTS卡片时，完整路径需要包含卡片文件的后缀，如："./ets/widget/pages/WidgetCard.ets"。当为JS卡片时，完整路径无需包含卡片文件的后缀，如："./js/widget/pages/WidgetCard" | 字符串 | 否 |
+   | displayName | 表示卡片的展示名称。主要在卡片管理页面显示，对应卡片预览下[卡片管理页面](./formkit-overview.md#卡片常见使用步骤)中的<!--RP3-->"ArkTSCard"<!--RP3End-->，用于展示卡片信息，建议能够体现卡片的核心功能或用途。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最小长度为1字节，最大长度为30字节。 | 字符串 | 否 |
+   | description | 表示卡片的描述。用于在卡片管理页面展示卡片功能描述，对应卡片预览下[卡片管理页面](./formkit-overview.md#卡片常见使用步骤)中的<!--RP4-->"This is a ArkTS card game by canvas."<!--RP4End-->。支持字符串或字符串资源索引，建议使用字符串资源索引方式声明，以支持完整多语言能力。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
+   | src | 表示卡片对应的UI代码的完整路径。当为ArkTS卡片时，完整路径需要包含卡片文件的后缀，如："./ets/widget/pages/WidgetCard.ets"。当为JS卡片时，完整路径无需包含卡片文件的后缀，如："./js/widget/pages/WidgetCard"。 | 字符串 | 否 |
    | uiSyntax | 表示该卡片的类型，当前支持如下两种类型：<br/>-&nbsp;arkts：当前卡片为ArkTS卡片。<br/>-&nbsp;hml：当前卡片为JS卡片。 | 字符串 | 可缺省，缺省值为“hml”。 |
    | [window](#window标签) | 用于定义与显示窗口相关的配置。<br/>**说明：**<br/>该字段仅对JS卡片生效。 | 对象 | 可缺省，缺省值见表2。 |
    | isDefault | 表示该卡片是否为默认卡片，每个UIAbility有且只有一个默认卡片。<br/>-&nbsp;true：默认卡片。<br/>-&nbsp;false：非默认卡片。 | 布尔值 | 否 |
    | colorMode<sup>(deprecated)</sup> | 表示卡片的主题样式，取值范围如下：<br/>-&nbsp;auto：跟随系统的颜色模式值选取主题。<br/>-&nbsp;dark：深色主题。<br/>-&nbsp;light：浅色主题。<br/>**说明：**<br/>1.从API version 20开始，该接口废弃，卡片主题样式统一跟随系统的颜色模式。<br/>2.该字段仅对JS卡片生效。 | 字符串 | 可缺省，缺省值为“auto”。 |
    | supportDimensions | 表示卡片支持的外观规格，取值范围：<!--RP5--><!--RP5End--><br/>-&nbsp;1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>-&nbsp;2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>-&nbsp;2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>-&nbsp;2&nbsp;\*&nbsp;3：表示2行3列的六宫格。<br/>-&nbsp;3&nbsp;\*&nbsp;3：表示3行3列的九宫格。<br/>-&nbsp;4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。<br/>-&nbsp;6&nbsp;\*&nbsp;4：表示6行4列的二十四宫格。<br>**说明**：&nbsp;2&nbsp;\*&nbsp;3和&nbsp;3&nbsp;\*&nbsp;3仅支持手表设备<!--RP6--><!--RP6End-->。 | 字符串数组 | 否 |
-   | defaultDimension | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串 | 否 |
+   | defaultDimension | 表示卡片的默认尺寸，取值必须在该卡片supportDimensions配置的列表中。 | 字符串 | 否 |
    | updateEnabled | 表示卡片是否支持周期性刷新（包含定时刷新和定点刷新），取值范围：<br/>-&nbsp;true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，当两者同时配置时，定时刷新优先生效。<br/>-&nbsp;false：表示不支持周期性刷新。 | 布尔类型 | 否 |
-   | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。<br/>**说明：**<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 字符串 | 可缺省，缺省时不进行定点刷新。 |
-   | updateDuration | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>**说明：**<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为“0”。 |
-   | formConfigAbility | 表示卡片的配置跳转链接，采用URI格式。| 字符串 | 可缺省，缺省值为空。 |
+   | scheduledUpdateTime | 表示卡片的[定点刷新](./arkts-ui-widget-passive-refresh.md#卡片定点刷新)的时刻，采用24小时制，精确到分钟，例如："10:30"。<br/>**说明：**<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 字符串 | 可缺省，缺省时不进行定点刷新。 |
+   | updateDuration | 表示[卡片定时刷新](./arkts-ui-widget-passive-refresh.md#卡片定时刷新)的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>**说明：**<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为0。 |
+   | formConfigAbility | 表示桌面点击编辑后，需要拉起的ability路径，采用URI格式。| 字符串 | 可缺省，缺省值为空。 |
    | metadata | 表示卡片的自定义信息，参考[Metadata](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md)数组标签。 | 对象 | 可缺省，缺省值为空。 |
    | <!--DelRow-->dataProxyEnabled | 表示卡片是否支持[卡片代理刷新](./arkts-ui-widget-update-by-proxy.md)，取值范围：<br/>-&nbsp;true：表示支持代理刷新。<br/>-&nbsp;false：表示不支持代理刷新。<br/>设置为true时，[定时刷新和下次刷新](./arkts-ui-widget-passive-refresh.md#卡片定时刷新)不生效，但不影响[定点刷新](./arkts-ui-widget-passive-refresh.md#卡片定点刷新)。 | 布尔类型 | 可缺省，缺省值为false。 |
    | isDynamic | 表示此卡片是否为动态卡片（仅针对ArkTS卡片生效）。 <br/>-&nbsp;true：为[动态卡片](./arkts-form-overview.md#动态卡片) 。<br/>-&nbsp;false：为[静态卡片](./arkts-form-overview.md#静态卡片)。<br/>| 布尔类型 | 可缺省，缺省值为true。 |
-   | fontScaleFollowSystem | 表示卡片使用方设置此卡片的字体是否支持跟随系统变化。 <br/>-&nbsp;true：支持跟随系统字体大小变化 。<br/>-&nbsp;false：不支持跟随系统字体大小变化。<br/>| 布尔类型 | 可缺省，缺省值为true。 |
+   | fontScaleFollowSystem | 表示卡片使用方设置此卡片的字体是否支持跟随系统变化。 <br/>-&nbsp;true：支持跟随系统字体大小变化。<br/>-&nbsp;false：不支持跟随系统字体大小变化。<br/>| 布尔类型 | 可缺省，缺省值为true。 |
    | supportShapes | 表示卡片的显示形状，取值范围如下：<br/>-&nbsp;rect：表示矩形卡片。<br/>-&nbsp;circle：表示圆形卡片。| 字符串数组 | 可缺省，缺省值为“rect”。 |
-   | previewImages | 表示卡片预览图, 与配置项`supportDimensions`一一对应。| 字符串 | 可缺省，智能穿戴卡片必须配置，当前仅支持在智能穿戴上使用。 |
+   | previewImages | 表示卡片预览图, 与配置项`supportDimensions`一一对应。智能穿戴卡片必须配置，当前仅支持在智能穿戴上使用。| 字符串 | 可缺省。 |
    | <!--DelRow-->formVisibleNotify | 表示是否通知卡片提供方可见状态变化（仅对系统应用的卡片生效）。<br/>-&nbsp;true：通知卡片提供方可见状态变化。<br/>-&nbsp;false：不通知卡片提供方可见状态变化。 | 布尔类型 | 可缺省，缺省值为false。 |
    | <!--DelRow-->transparencyEnabled | 表示是否为透明卡片（仅对系统应用的ArkTS卡片生效）。 <br/>-&nbsp;true：表示是透明卡片。<br/>-&nbsp;false：表示不是透明卡片。<br/>| 布尔类型 | 可缺省，缺省值为false。 |
    |enableBlurBackground|表示卡片是否使用模糊背板。<br/>-&nbsp;true：开启模糊背板。<br/>-&nbsp;false：关闭模糊背板。|布尔类型|可缺省，缺省值为false。|
-   |renderingMode|表示卡片的渲染模式，取值范围如下：<br/>-&nbsp;autoColor：自动模式，呈现效果可以配置为全彩或单色<!--RP7--><!--RP7End-->。该模式下卡片中的颜色和图片允许卡片使用方修改，卡片添加至桌面或锁屏场景下可以配置为该模式。<br/>-&nbsp;fullColor：全彩模式<!--RP7--><!--RP7End-->。该模式下卡片中的颜色和图片不允许被卡片使用方修改，卡片添加至桌面场景下可以配置为该模式。<br/>-&nbsp;单色模式，通过透明度和模糊区分元素，不使用任何色相<!--RP7--><!--RP7End-->。该模式下卡片中的颜色和图片允许卡片使用方修改，卡片添加到锁屏场景下可以配置为该模式。	|字符串|可缺省，缺省值为“fullColor”。|
+   |renderingMode|表示卡片的渲染模式，取值范围如下：<br/>-&nbsp;autoColor：自动模式，呈现效果可以根据卡片使用方确定最终是全彩模式还是单色模式。<!--RP7--><!--RP7End-->。该模式下卡片中的颜色和图片允许卡片使用方修改，卡片配置了该模式就可以添加到桌面或锁屏上。<br/>-&nbsp;fullColor：全彩模式<!--RP7--><!--RP7End-->。该模式下卡片中的颜色和图片不允许被卡片使用方修改，卡片配置了该模式就可以添加到桌面上。<br/>-&nbsp;单色模式，通过透明度和模糊区分元素，不使用任何色相<!--RP7--><!--RP7End-->。该模式下卡片中的颜色和图片允许卡片使用方修改，卡片配置了该模式就可以添加到锁屏上<br/>**说明：**<br/>从API version 15开始，支持该字段。	|字符串|可缺省，缺省值为“fullColor”。|
    |multiScheduledUpdateTime|表示卡片的多定点刷新的时刻，作为单点刷新的一个附加参数，采用24小时制，精确到分钟，多个时间用英文逗号分隔，最多写24个时间。<br/>**说明：**<br/>multiScheduledUpdateTime需要配合scheduledUpdateTime使用。|字符串|可缺省，缺省时不进行多定点刷新。|
    |conditionUpdate|表示卡片的支持的条件刷新（仅对系统应用的ArkTS卡片生效）。取值范围如下：<br/>-&nbsp;network：表示支持网络刷新。|字符串|可缺省，缺省值为空字符串。|
    |[funInteractionParams](#funinteractionparams标签)| 趣味交互类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
@@ -99,7 +99,7 @@
 
 ### window标签
 
-此标签标识window对象的内部结构说明。
+此标签标识window对象的内部结构说明。只支持在JS卡片中使用。
 
    | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
    | -------- | -------- | -------- | -------- |
@@ -137,7 +137,7 @@
 
 | 名称                                    | 类型     | 必填 | 说明 |
 |---------------------------------------|--------|----|----------------------------|
-| abilityName                           | 字符串 | 是  | 场景动效 extensionAbility 名称。|
+| abilityName                           | 字符串 | 是  | 场景动效LiveFormExtensionAbility名称。|
 | <!--DelRow-->disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，缺省表示不禁用任何行为。 |
 
 <!--RP2-->

@@ -1,11 +1,17 @@
 # Interface (MediaSourceLoadingRequest)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 18.
 
-The MediaSourceLoadingRequest class a loading request object. Applications use this object to obtain the location of the requested resource and to interact with the player for data exchange.
+The MediaSourceLoadingRequest class defines a loading request object. Applications use this object to obtain the location of the requested resource and to interact with the player for data exchange.
 
 ## Modules to Import
 
@@ -36,8 +42,8 @@ Sends data to the player.
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| uuid | number | Yes | 	ID for the resource handle.|
-| offset | number | Yes | 	Offset of the current media data relative to the start of the resource.|
+| uuid | number | Yes | 	ID for the resource handle. The source is [SourceOpenCallback](arkts-apis-media-t.md#sourceopencallback18).|
+| offset | number | Yes | 	Offset of the current media data relative to the start of the resource. The value cannot be less than 0.|
 | buffer | ArrayBuffer | Yes | 	Media data sent to the player.<br>**Note**: Do not transmit irrelevant data, as it can affect normal data parsing and playback.|
 
 **Return value**
@@ -49,14 +55,14 @@ Sends data to the player.
 **Example**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
 let offset = 0; // Offset of the current media data relative to the start of the resource.
 let buf = new ArrayBuffer(0); // Data defined by the application and pushed to the player.
-let num = request.respondData(uuid, offset, buf);
+let num = request?.respondData(uuid, offset, buf);
 ```
 
 ## respondHeader<sup>18+</sup>
@@ -73,14 +79,14 @@ Sends response header information to the player. This API must be called before 
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| uuid | number | Yes | 	ID for the resource handle.|
+| uuid | number | Yes | 	ID for the resource handle. The source is [SourceOpenCallback](arkts-apis-media-t.md#sourceopencallback18).|
 | header | Record<string, string> | No | Header information in the HTTP response. The application can intersect the header fields with the fields supported by the underlying layer for parsing or directly pass in all corresponding header information.<br> - The following fields need to be parsed by the underlying player: Transfer-Encoding, Location, Content-Type, Content-Range, Content-Encode, Accept-Ranges, and content-length.|
 | redirectUrl | string | No | 	Redirect URL in the HTTP response.|
 
 **Example**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -95,7 +101,7 @@ let header:Record<string, string> = {
   'content-length' : 'xxx'
 };
 let request = requests.get(uuid);
-request.respondHeader(uuid, header);
+request?.respondHeader(uuid, header);
 ```
 
 ## finishLoading<sup>18+</sup>
@@ -112,17 +118,18 @@ Notifies the player of the current request status. After pushing all the data fo
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| uuid | number | Yes | 	ID for the resource handle.|
+| uuid | number | Yes | 	ID for the resource handle. The source is [SourceOpenCallback](arkts-apis-media-t.md#sourceopencallback18).|
 | state  | [LoadingRequestError](arkts-apis-media-e.md#loadingrequesterror18) | Yes | Request status.|
 
 **Example**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
+
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
 let loadingError = media.LoadingRequestError.LOADING_ERROR_SUCCESS;
-request.finishLoading(uuid, loadingError);
+request?.finishLoading(uuid, loadingError);
 ```

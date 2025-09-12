@@ -82,6 +82,8 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -R | 可选参数，调试时是否开启多线程错误检测。携带该参数代表开启，不携带代表关闭。<br>**说明：** 从API version 14开始，支持该参数。 |
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
+  | -N | 可选参数，使能启动阶段调试。        |
+  | -C | 可选参数，使能ASan调试。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
   | -W | 可选参数，调优命令。用于测量UIAbility从启动到切换至前台状态耗时。<br>**说明：** <br>&emsp; - 从API version 20开始支持，支持该参数。<br>&emsp; - 仅当显式启动UIAbility（必须携带-b和-a参数）时，该参数生效。<br>**正常情况的返回信息如下：** <br>&emsp; - StartMode：UIAbility启动模式，值：Cold（冷启动）/Hot（热启动）。<br>&emsp; - BundleName：目标应用bundleName。<br>&emsp; - AbilityName：目标应用abilityName。<br>&emsp; - ModuleName：目标应用moduleName，命令中带有"-m"参数时会打印moduleName，否则不打印。<br>&emsp; - TotalTime：<br>&emsp;&emsp;&emsp; 冷启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility完成首帧绘制的耗时，单位毫秒（ms）。<br>&emsp;&emsp;&emsp; 热启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility状态切换至前台的耗时，单位毫秒（ms）。<br>&emsp; - WaitTime：命令启动到命令执行结束的耗时，单位毫秒（ms）。<br>**异常情况的返回信息如下：**<br>&emsp; - "The wait option does not support starting implict" ：不支持隐式启动。 <br>&emsp; - "The wait option does not support starting non-uiability" ：不支持启动非UIAbility组件。   |
 
@@ -286,8 +288,15 @@ aa dump -a
 通过bundleName强制停止一个进程。
 
 ```bash
-aa force-stop <bundleName>
+aa force-stop <bundle-name> [-p pid] [-r kill-reason]
 ```
+
+  **强制停止进程命令参数列表**
+
+  | 参数 | 参数说明              |
+  | -------- |-------------------|
+  | -p | 指定pid，需要与-r配合使用，两者共同设置指定pid的进程退出原因。 |
+  | -r | 指定进程退出原因，需要与-p配合使用，两者共同设置指定pid的进程退出原因。 |
 
   **返回值**：
 

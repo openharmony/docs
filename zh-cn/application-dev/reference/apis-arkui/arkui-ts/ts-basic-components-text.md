@@ -1259,7 +1259,7 @@ Text组件的控制器。
 controller: TextController = new TextController()
 ```
 
-### closeSelectionMenu
+### closeSelectionMenu<sup>11+</sup>
 
 closeSelectionMenu(): void
 
@@ -1878,7 +1878,7 @@ struct TextExample7 {
 
 ### 示例8（文本绑定自定义菜单）
 
-从API version 11开始，该示例通过[bindSelectionMenu](#bindselectionmenu11)、[onTextSelectionChange](#ontextselectionchange11)、[closeSelectionMenu](#closeselectionmenu)接口实现了文本绑定自定义菜单的功能。
+从API version 11开始，该示例通过[bindSelectionMenu](#bindselectionmenu11)、[onTextSelectionChange](#ontextselectionchange11)、[closeSelectionMenu](#closeselectionmenu11)接口实现了文本绑定自定义菜单的功能。
 
 ```ts
 // xxx.ets

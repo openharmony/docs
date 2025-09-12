@@ -29,4 +29,4 @@
 
 | 名称 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-|freezeWhenInactive|boolean|是|配置自定义组件支持组件冻结。true：开启组件冻结，false：不开启组件冻结。|
+|freezeWhenInactive|boolean|是|配置自定义组件支持组件冻结。true：开启组件冻结，false：不开启组件冻结。当开发者未指定ComponentOptions时，freezeWhenInactive将使用false作为默认值。|

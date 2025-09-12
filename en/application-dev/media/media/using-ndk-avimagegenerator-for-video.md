@@ -1,11 +1,17 @@
 # Using AVImageGenerator to Obtain Video Frames (C/C++)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 You can use the AVImageGenerator to obtain the video frame at the specified time from the raw media asset.
 
 The full process of obtaining the video frame includes creating an AVImageGenerator instance, setting resources, obtaining the video frame, and releasing the instance.
 
 ## How to Develop
-Link the dynamic library in the CMake script.
+Link the dynamic libraries in the CMake script.
 ```
 target_link_libraries(entry PUBLIC libavimage_generator.so libace_napi.z.so)
 ```
@@ -15,7 +21,7 @@ To use [OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-im
 #include <multimedia/image_framework/image/pixelmap_native.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libpixelmap.so libpixelmap_ndk.z.so)
 ```
@@ -25,7 +31,7 @@ To use system logging, include the following header file:
 #include <hilog/log.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
@@ -36,7 +42,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 #include "multimedia/player_framework/avmetadata_extractor_base.h"
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_core.so)
 ```

@@ -18,7 +18,7 @@
 
 constructor()
 
-构造二维变换矩阵对象，默认值是单位矩阵。
+构造二维变换矩阵对象，默认值是属性全为0的矩阵。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -30,7 +30,7 @@ constructor()
 
 constructor(unit: LengthMetricsUnit)
 
-构造二维变换矩阵对象，默认值是单位矩阵，支持配置Matrix2D对象的单位模式。
+构造二维变换矩阵对象，默认值是属性全为0的矩阵，支持配置Matrix2D对象的单位模式。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -42,7 +42,7 @@ constructor(unit: LengthMetricsUnit)
 
 | 参数名 | 类型 | 必填 | 说明                              |
 | ------ | -------- | ---- | ------------------------------------- |
-| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是   | 用来配置Matrix2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT|
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是   | 用来配置Matrix2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>异常值NaN和Infinity按默认值处理。<br>默认值：DEFAULT|
 
 ## 属性
 
@@ -54,12 +54,12 @@ constructor(unit: LengthMetricsUnit)
 
 | 名称 | 类型 | 只读 | 可选   | 说明 |
 | ----- | ----- | --------------- | ------ | ------------------------ |
-| scaleX         | number | 否 | 是 | 水平缩放系数。           |
-| scaleY         | number | 否 | 是 | 垂直缩放系数。           |
-| rotateX       | number | 否 | 是 | 水平倾斜系数。           |
-| rotateY       | number | 否 | 是 | 垂直倾斜系数。           |
-| translateX | number | 否 | 是 | 水平平移距离。<br>默认单位：vp |
-| translateY | number | 否 | 是 | 垂直平移距离。<br>默认单位：vp |
+| scaleX         | number | 否 | 是 | 水平缩放系数，取值范围无限制。<br>异常值undefined按无效值处理，NaN和Infinity会导致Matrix2D异常。 |
+| scaleY         | number | 否 | 是 | 垂直缩放系数，取值范围无限制。<br>异常值undefined按无效值处理，NaN和Infinity会导致Matrix2D异常。 |
+| rotateX       | number | 否 | 是 | 水平倾斜系数，取值范围无限制。<br>异常值undefined按无效值处理，NaN和Infinity会导致Matrix2D异常。 |
+| rotateY       | number | 否 | 是 | 垂直倾斜系数，取值范围无限制。<br>异常值undefined按无效值处理，NaN和Infinity会导致Matrix2D异常。 |
+| translateX | number | 否 | 是 | 水平平移距离，取值范围无限制。<br>异常值undefined按无效值处理，NaN和Infinity会导致Matrix2D异常。 <br>默认单位：vp |
+| translateY | number | 否 | 是 | 垂直平移距离，取值范围无限制。<br>异常值undefined按无效值处理，NaN和Infinity会导致Matrix2D异常。 <br>默认单位：vp |
 
 >  **说明：**
 >  
@@ -227,7 +227,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| other | Matrix2D | 否 | 目标矩阵。<br>默认值：null |
+| other | Matrix2D | 否 | 目标矩阵。<br>异常值undefined和null按无效值处理。<br>默认值：null |
 
 **返回值：**
 
@@ -249,8 +249,8 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ---- | ------ | ---- | -------------------------------- |
-| rx   | number | 否   | 旋转点的水平方向坐标。<br>默认单位：vp |
-| ry   | number | 否   | 旋转点的垂直方向坐标。<br>默认单位：vp |
+| rx   | number | 否   | 旋转点的水平方向坐标，取值范围无限制。<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认单位：vp |
+| ry   | number | 否   | 旋转点的垂直方向坐标，取值范围无限制。<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认单位：vp |
 
 **返回值：**
 
@@ -313,9 +313,9 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| degree | number | 是  | 旋转角度。顺时针方向为正角度，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>默认单位：弧度|
-| rx     | number | 否  | 旋转点的水平方向坐标。<br>默认单位：vp<br>默认值：0    |
-| ry     | number | 否  | 旋转点的垂直方向坐标。<br>默认单位：vp<br>默认值：0    |
+| degree | number | 是  | 旋转角度，取值范围无限制。顺时针方向为正角度，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认单位：弧度|
+| rx     | number | 否  | 旋转点的水平方向坐标，取值范围无限制。<br>默认单位：vp<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认值：0    |
+| ry     | number | 否  | 旋转点的垂直方向坐标，取值范围无限制。<br>默认单位：vp<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认值：0    |
 
 **返回值：**
 
@@ -378,8 +378,8 @@ translate(tx?: number, ty?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                  |
 | ---- | ------ | ---- | ---------------------------- |
-| tx   | number | 否   | 水平方向平移距离。<br>默认单位：vp<br>默认值：0 |
-| ty   | number | 否   | 垂直方向平移距离。<br>默认单位：vp<br>默认值：0 |
+| tx   | number | 否   | 水平方向平移距离，取值范围无限制。<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认单位：vp<br>默认值：0 |
+| ty   | number | 否   | 垂直方向平移距离，取值范围无限制。<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认单位：vp<br>默认值：0 |
 
 **返回值：**
 
@@ -442,8 +442,8 @@ scale(sx?: number, sy?: number): Matrix2D
 
 | 参数 | 类型   | 必填 | 描述               |
 | ---- | ------ | ---- | ------------------ |
-| sx   | number | 否   | 水平缩放比例系数。<br>默认值：1.0 |
-| sy   | number | 否   | 垂直缩放比例系数。<br>默认值：1.0 |
+| sx   | number | 否   | 水平缩放比例系数，取值范围无限制。<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认值：1.0 |
+| sy   | number | 否   | 垂直缩放比例系数，取值范围无限制。<br>异常值undefined和null按无效值处理，NaN和Infinity会导致Matrix2D异常。<br>默认值：1.0 |
 
 **返回值：**
 

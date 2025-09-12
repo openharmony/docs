@@ -1,4 +1,10 @@
 # UTDs (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## When to Use
@@ -60,7 +66,7 @@ You can also customize UTDs for your application.
 
 Custom UTDs can inherit from existing UTDs. For example, a custom image type can use **com.company.x-image** as its identifier.
 
-The custom UTDs of a service can be used by other services after being registered with the system of the local host.
+The custom UTDs of a service can be used by other services after being registered with the device system.
 
 ### Working Principles
 
@@ -168,11 +174,9 @@ The following table describes the commonly used APIs, which are applicable to bo
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | UniformDataType                                              | Enumerates the UTDs, which are not provided here.|
-| belongsTo(type: string): boolean                             | Checks whether this data type belongs to the specified data type.      |
-| isLowerLevelType(type: string): boolean                      | Checks whether this data type is a lower-level type of the specified data type.|
-| isHigherLevelType(type: string): boolean                     | Checks whether this data type is a higher-level type of the specified data type.|
-| getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string | Obtains the UTD type ID based on the given file name extension and data type. If there are multiple UTD type IDs matched, the first one is returned.|
-| getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string | Obtains the UTD type ID based on the given MIME type and data type. If there are multiple UTD type IDs matched, the first one is returned.|
+| belongsTo(type: string): boolean                             | Checks whether a UTD belongs to the specified UTD. The value **true** means the UTD belongs to the specified UTD, and the value **false** means the opposite.     |
+| isLowerLevelType(type: string): boolean                      | Checks whether a UTD is a lower-level type of the specified UTD. The value **true** means the UTD is a lower-level type, and the value **false** means the opposite.|
+| isHigherLevelType(type: string): boolean                     | Checks whether a UTD is a higher-level type of the specified UTD. The value **true** means the UTD is a higher-level type, and the value **false** means the opposite.|
 | getUniformDataTypesByFilenameExtension(filenameExtension: string, belongsTo?: string): Array\<string> | Obtains the UTD type IDs based on the given file name extension and data type.|
 | getUniformDataTypesByMIMEType(mimeType: string, belongsTo?: string): Array\<string> | Obtains the UTD type IDs based on the given MIME type and data type.|
 
@@ -181,8 +185,8 @@ The following table describes the commonly used APIs, which are applicable to bo
 The following walks you through on how to obtain **belongingToTypes** of a media file.
 
 1. Import the **uniformTypeDescriptor** module.
-2. Obtain the UTD type ID based on the file name extension .mp3, and then obtain properties of the UTD.
-3. Obtain the UTD type ID based on **audio/mp3**, and then obtain properties of the UTD.
+2. Use **getUniformDataTypesByFilenameExtension()** to obtain the UTD type ID based on the file name extension .mp3, and then obtain properties of the specific UTD.
+3. Use **getUniformDataTypesByMIMEType()** to obtain the UTD type ID based on the MIME type **audio/mp3**, and then obtain properties of the specific UTD.
 4. Compare the UTDs obtained in the preceding steps to check whether they are the same.
 5. Check whether **general.mp3** belongs to **general.audio**.
 
@@ -190,46 +194,51 @@ The following walks you through on how to obtain **belongingToTypes** of a media
 // 1. Import the module.
 import { uniformTypeDescriptor } from '@kit.ArkData';
 
-try {
-  // 2. Obtain the UTD type ID (typeId) based on the file name extension .mp3, and then obtain properties of the UTD.
-  let fileExtention = '.mp3';
-  let typeId1 = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
-  let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
-  console.info('typeId:' + typeObj1.typeId);
-  console.info('belongingToTypes:' + typeObj1.belongingToTypes);
-  console.info('description:' + typeObj1.description);
-  console.info('referenceURL:' + typeObj1.referenceURL);
-  console.info('filenameExtensions:' + typeObj1.filenameExtensions);
-  console.info('mimeTypes:' + typeObj1.mimeTypes);
+function uniformTypeDescriptorTest() {
+  try {
+    // 2. Obtain the UTD type ID (typeId) based on the file name extension .mp3, and then obtain properties of the UTD.
+    let fileExtension = '.mp3';
+    let typeIds1 = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtension);
+    if (typeIds1.length == 0) {
+      return;
+    }
+    let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeIds1[0]);
+    console.info('typeId:' + typeObj1.typeId);
+    console.info('belongingToTypes:' + typeObj1.belongingToTypes);
+    console.info('description:' + typeObj1.description);
+    console.info('filenameExtensions:' + typeObj1.filenameExtensions);
+    console.info('mimeTypes:' + typeObj1.mimeTypes);
 
+    // 3. Obtain the UTD type ID based on audio/mp3, and then obtain properties of the UTD.
+    let mimeType = 'audio/mp3';
+    let typeIds2 = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mimeType);
+    if (typeIds2.length == 0) {
+      return;
+    }
+    let typeObj2 = uniformTypeDescriptor.getTypeDescriptor(typeIds2[0]);
+    console.info('typeId:' + typeObj2.typeId);
+    console.info('belongingToTypes:' + typeObj2.belongingToTypes);
+    console.info('description:' + typeObj2.description);
+    console.info('filenameExtensions:' + typeObj2.filenameExtensions);
+    console.info('mimeTypes:' + typeObj2.mimeTypes);
 
-  // 3. Obtain the UTD type ID based on audio/mp3, and then obtain properties of the UTD.
-  let mineType = 'audio/mp3';
-  let typeId2 = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
-  let typeObj2 = uniformTypeDescriptor.getTypeDescriptor(typeId2);
-  console.info('typeId:' + typeObj2.typeId);
-  console.info('belongingToTypes:' + typeObj2.belongingToTypes);
-  console.info('description:' + typeObj2.description);
-  console.info('filenameExtensions:' + typeObj2.filenameExtensions);
-  console.info('mimeTypes:' + typeObj2.mimeTypes);
+    // 4. Compare the two UTDs to check whether they are the same.
+    if (typeObj1 != null && typeObj2 != null) {
+      let ret = typeObj1.equals(typeObj2);
+      console.info('typeObj1 equals typeObj2, ret:' + ret);
+    }
 
-
-  // 4. Compare the two UTDs to check whether they are the same.
-  if (typeObj1 != null && typeObj2 != null) {
-    let ret = typeObj1.equals(typeObj2);
-    console.info('typeObj1 equals typeObj2, ret:' + ret);
+    // 5. Check whether general.mp3 belongs to general.audio.
+    if (typeObj1 != null) {
+      let ret = typeObj1.belongsTo('general.audio');
+      console.info('belongsTo, ret:' + ret);
+      let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
+      ret = mediaTypeObj.isHigherLevelType('general.audio'); // Check the relationship between them.
+      console.info('isHigherLevelType, ret:' + ret);
+    }
+  } catch (err) {
+    console.error('err message:' + err.message + ', err code:' + err.code);
   }
-
-  // 5. Check whether general.mp3 belongs to general.audio.
-  if (typeObj1 != null) {
-    let ret = typeObj1.belongsTo('general.audio');
-    console.info('belongsTo, ret:' + ret);
-    let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
-    ret = mediaTypeObj.isHigherLevelType('general.audio'); // Check the relationship between them.
-    console.info('isHigherLevelType, ret:' + ret);
-  }
-} catch (err) {
-  console.error('err message:' + err.message + ', err code:' + err.code);
 }
 ```
 
@@ -238,16 +247,16 @@ try {
 The following walks you through on how to obtain MIME types based on the file name extension .ts.
 
 1. Import the **uniformTypeDescriptor** module.
-2. Obtain the UTD type ID (**typeId**) based on the file name extension .ts.
-3. Obtain the MIME types based on the UTD type ID.
+2. Use **getUniformDataTypesByFilenameExtension()** to obtain the UTD type ID (**typeId**) based on the file name extension .ts.
+3. Use **getTypeDescriptor()** to obtain the MIME types based on the UTD type ID.
 
 ```ts
 // 1. Import the module.
 import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2. Obtain the UTD type ID based on the file name extension .ts.
-  let fileExtention = '.ts';
-  let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtention);
+  let fileExtension = '.ts';
+  let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtension);
   for (let typeId of typeIds) {
     // 3. Obtain the MIME types based on the UTD type ID.
     let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
@@ -263,16 +272,16 @@ try {
 The following walks you through on how to obtain the file name extensions based on the MIME type **text/plain**.
 
 1. Import the **uniformTypeDescriptor** module.
-2. Obtain the UTD type ID based on the MIME type **text/plain**.
-3. Obtain the MIME types based on the UTD type ID.
+2. Use **getUniformDataTypesByMIMEType()** to obtain the UTD type ID based on the MIME type **text/plain**.
+3. Use getTypeDescriptor() to obtain the MIME types based on the UTD type ID.
 
 ```ts
 // 1. Import the module.
 import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2. Obtain the UTD type ID based on the MIME type text/plain.
-  let mineType = 'text/plain';
-  let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mineType);
+  let mimeType = 'text/plain';
+  let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mimeType);
   for (let typeId of typeIds) {
     // 3. Obtain the MIME types based on the UTD type ID.
     let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);

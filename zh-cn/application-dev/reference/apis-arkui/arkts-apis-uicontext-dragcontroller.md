@@ -49,7 +49,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-class Tmp {
+class DragInfo {
   event: DragEvent | undefined = undefined;
   extraParams: string = '';
 }
@@ -80,7 +80,7 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               };
-              let eve: tmp = new tmp();
+              let eve: DragInfo = new DragInfo();
               this.getUIContext().getDragController().executeDrag(() => { this.DraggingBuilder() }, dragInfo, (err, eve) => {
                 if (eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -137,8 +137,8 @@ import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-class Tmp {
-  event: DragResult | undefined = undefined;
+class DragInfo {
+  event: DragEvent | undefined = undefined;
   extraParams: string = '';
 }
 
@@ -187,7 +187,7 @@ struct DragControllerPage {
                   builder: () => { this.DraggingBuilder() },
                   extraInfo: "DragItemInfoTest"
                 };
-                let eve: tmp = new tmp();
+                let eve: DragInfo = new DragInfo();
                 this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
                     if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -452,7 +452,7 @@ import { window, UIContext } from '@kit.ArkUI';
 
 cancelDataLoading(key: string): void
 
-当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
+当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。仅可在拖拽释放后调用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -561,7 +561,7 @@ struct NormalEts {
 
 enableDropDisallowedBadge(enabled: boolean): void
 
-当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。该接口暂不支持[UIExtension](../apis-arkui/js-apis-arkui-uiExtension.md)。
+当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。通常，当组件可以接收或处理拖拽数据，或当它返回DragBehavior.COPY向系统声明数据以复制方式处理时，拖拽对象会显示加号及数据编号的角标。如果返回DragBehavior.MOVE以向系统声明数据以剪切方式处理，拖拽对象将只显示数据编号的角标。当目标进行拖拽时，若系统决定或组件显式声明无法处理拖拽数据，可通过该方法检查是否应显示拖拽禁止角标。该接口暂不支持[UIExtension](../apis-arkui/js-apis-arkui-uiExtension.md)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

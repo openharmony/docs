@@ -4632,6 +4632,10 @@ HighResolutionPhotoSession extends Session, AutoExposure, Focus
 
 高像素拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置高像素拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
+> **说明：**
+>
+> 高像素拍照场景下，需要使用物理镜头，不可以使用逻辑镜头。
+
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void

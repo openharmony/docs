@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @tangye123456-->
-<!--SE: @YanSanzo-->
-<!--TSE: @tinygreyy-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 The **MovingPhotoView** component is used to play moving photos and control the playback status.
 
@@ -44,7 +45,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhoto | [MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md) | Yes  | MovingPhoto instance. For details, see [MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
-| imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | No  | AI options. You can set the image analyzer type or bind an image analyzer controller.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions12) | No  | AI options. You can set the image analyzer type or bind an image analyzer controller.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## Properties
 
@@ -296,7 +297,7 @@ A MovingPhotoViewController object can be used to control a **MovingPhotoView** 
 
 ### constructor
 
-constructor(): void
+constructor()
 
 Constructs a MovingPhotoViewController object.
 
@@ -306,7 +307,7 @@ Constructs a MovingPhotoViewController object.
 
 ### startPlayback
 
-startPlayback(): void
+startPlayback()
 
 Starts playback. You can call this API when a moving photo is loaded and is ready to play, or when playback is paused or has finished.
 
@@ -316,7 +317,7 @@ Starts playback. You can call this API when a moving photo is loaded and is read
 
 ### stopPlayback
 
-stopPlayback(): void
+stopPlayback()
 
 Stops playback. Once started again, the playback starts from the beginning.
 
@@ -326,7 +327,7 @@ Stops playback. Once started again, the playback starts from the beginning.
 
 ### refreshMovingPhoto<sup>18+</sup> 
 
-refreshMovingPhoto(): void
+refreshMovingPhoto()
 
 Forcibly refreshes the video and image resources loaded by the **MovingPhotoView** component. This API will interrupt the ongoing actions of the component. Exercise caution when using it.
 
@@ -572,4 +573,7 @@ struct Index {
 }
 ```
 ![AutomicEnergy](figures/AutomicEnergy.gif)
-<!--RPl--><!--RPlEnd-->
+
+<!--RP1--><!--RP1End-->
+
+<!--no_check-->

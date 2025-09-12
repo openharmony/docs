@@ -16,6 +16,8 @@
 
 constructor(unit?: LengthMetricsUnit)
 
+构造使用drawing接口进行绘制的Canvas画布对象，支持配置DrawingRenderingContext对象的单位模式。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -24,7 +26,7 @@ constructor(unit?: LengthMetricsUnit)
 
 | 参数名      | 类型 | 必填   | 说明 |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT <br/>异常值按默认值处理。|
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br/>异常值undefined、NaN和Infinity按默认值处理。<br>默认值：DEFAULT |
 
 ## size
 
@@ -150,7 +152,7 @@ struct CanvasExample {
 ```
 
 图1 绘制圆心为(200, 200)，半径为100的圆，填充色为RGBA(39, 135, 217, 255)
-  
+
   ![canvas_drawingRenderingContext](figures/canvas_drawingRenderingContext.png)
 
 图2 点击Clear按钮清空画布

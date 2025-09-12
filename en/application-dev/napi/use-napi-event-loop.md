@@ -1,18 +1,23 @@
 # Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## **Scenario**
 When calling asynchronous ArkTS APIs in the ArkTS running environment, you can use **napi_run_event_loop** to run an event loop and use **napi_stop_event_loop** to stop an event loop.
 
 ## Example
 If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to run the events in the asynchronous thread cyclically. The underlying asynchronous tasks in the event queue will be processed based on the event loop mode. Currently, Node-API provides two modes for running event loops: **napi_event_mode_nowait** and **napi_event_mode_default**.
-
-- If **napi_event_mode_nowait** is used, the current asynchronous thread will not be blocked while the system attempts to process a task in the underlying event queue. After the task is complete, the event loop stops. If there is no task in the event queue, the event loop stops immediately.
-- If **napi_event_mode_default** is used, the system blocks the current asynchronous thread and keeps trying to obtain tasks from the event queue and execute these tasks. If you do not want the current thread to be blocked, use **napi_stop_event_loop** to stop the event loop.
+If **napi_event_mode_nowait** is used, the current asynchronous thread will not be blocked while the system attempts to process a task in the underlying event queue. After the task is complete, the event loop stops. If there is no task in the event queue, the event loop stops immediately.
+If **napi_event_mode_default** is used, the system blocks the current asynchronous thread and keeps trying to obtain tasks from the event queue and execute these tasks. If you do not want the current thread to be blocked, use **napi_stop_event_loop** to stop the event loop.
 
 ### Sample Code
-- Register the module.
+- Register the modules.
     ```c++
-    // hello.cpp
+    // napi_init.cpp
     #include "napi/native_api.h"
     #include <napi/common.h>
     #include <pthread.h>
@@ -38,7 +43,7 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
             return nullptr;
         }
 
-        // 2. Load the custom module.
+        // 2. Load the custom modules.
         napi_value objectUtils;
         // 'com.example.myapplication' is the bundle name of the current application.
         ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
@@ -91,7 +96,7 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
         return nullptr;
     }
 
-    // Register the module.
+    // Register the modules.
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
@@ -118,12 +123,14 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
         napi_module_register(&nativeModule);
     }
     ```
+    <!-- @[napi_event_loop_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
 
 - Declare the APIs.
     ```ts
     // index.d.ts
     export const runEventLoop: (isDefault: boolean) => object;
     ```
+    <!-- @[napi_event_loop_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - Configure the compile settings.
 1. Configure the CMakeLists.txt file as follows:
@@ -141,7 +148,7 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
 
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
+    add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
 2. Add the following to the **build-profile.json5** file of the module.
@@ -158,6 +165,8 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
         }
     }
     ```
+    <!-- @[napi_event_loop_build](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/build-profile.json5) -->
+
 - ArkTS sample code
     ```ts
     // index.ets
@@ -165,6 +174,8 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
 
     testNapi.runEventLoop(true);
     ```
+    <!-- @[napi_event_loop_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
+
     ```ts
     // ets/pages/ObjectUtils.ets
     export function SetTimeout() : Promise<void> {
@@ -177,3 +188,4 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
         })
     }
     ```
+    <!-- @[napi_event_loop_utils](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/ObjectUtils.ets) -->

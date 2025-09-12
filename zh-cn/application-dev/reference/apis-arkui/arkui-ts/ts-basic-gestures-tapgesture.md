@@ -39,7 +39,7 @@ TapGesture(value?: TapGestureParameters)
 >
 >  为规范匿名对象的定义，API 12版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
-点击手势参数。继承自[BaseHandlerOptions](./ts-uigestureevent.md#basehandleroptions15)。
+点击手势参数。继承自[BaseHandlerOptions](./ts-gesturehandler.md#basehandleroptions15)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,7 +77,7 @@ onAction(event: (event: GestureEvent) => void)
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
 
-## EventLocationInfo<sup>20+</sup>对象说明
+## EventLocationInfo<sup>20+</sup>
 
 用于点击手势获取点击位置坐标。
 

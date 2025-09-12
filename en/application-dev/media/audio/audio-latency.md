@@ -1,4 +1,10 @@
 # Audio Latency Management
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 Audio latency is the time it takes from the moment a user clicks or triggers an action until the sound is emitted from the device.
 

@@ -92,6 +92,22 @@ getVerticalAxisValue(): number
 | ------- | --------------------------------- | 
 | number | 垂直轴值。<br>单位：vp |
 
+### getPinchAxisScaleValue<sup>21+</sup>
+
+getPinchAxisScaleValue(): number
+
+返回此次轴事件双指缩放的比例。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型              |说明       |
+| ------- | --------------------------------- | 
+| number | 双指缩放比例。 |
+
 ## 示例
 
 该示例中，对按钮设置轴事件，通过滚动鼠标滚轮可获取轴事件的相关参数。
@@ -113,7 +129,8 @@ struct AxisEventExample {
                 'AxisEvent:' + '\n  action:' + event.action + '\n  displayX:' + event.displayX + '\n  displayY:' +
                 event.displayY + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY + '\n  x:' + event.x +
                   '\n  y:' + event.y + '\n VerticalAxisValue:' + event.getVerticalAxisValue() +
-                  '\n HorizontalAxisValue:' + event.getHorizontalAxisValue()
+                  '\n HorizontalAxisValue:' + event.getHorizontalAxisValue() + '\n axisPinch:' + event.axisPinch +
+                  '\n PinchAxisScaleValue:' + event.getPinchAxisScaleValue();
             }
           })
       }.margin(20)

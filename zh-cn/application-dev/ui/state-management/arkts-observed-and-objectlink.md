@@ -20,7 +20,7 @@
 
 \@ObjectLink和\@Observed类装饰器用于在涉及嵌套对象或数组的场景中进行双向数据同步：
 
-- 使用new创建被\@Observed装饰的类，可以被观察到属性的变化。
+- 使用new创建被\@Observed装饰的类，可以观察到类中属性的变化。
 
 - 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
@@ -54,7 +54,7 @@ this.objLink= ...
 >
 > \@ObjectLink装饰的变量不能被赋值，如果要使用赋值操作，请使用[@Prop](arkts-prop.md)。
 >
-> - \@Prop装饰的变量和数据源的关系是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
+> - \@Prop装饰的变量和数据源的关系是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量在本地的修改将被覆盖。
 >
 > - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。
 
@@ -78,7 +78,7 @@ this.objLink= ...
 
 ### 观察变化
 
-\@Observed装饰的类，如果其属性为非简单类型，比如class、Object或者数组，也需要被\@Observed装饰，否则将观察不到其属性的变化。
+\@Observed装饰的类，如果其属性为非简单类型，比如class、Object或者数组，那么这些属性也需要被\@Observed装饰，否则将观察不到这些属性的变化。
 
 
 ```ts
@@ -120,7 +120,7 @@ this.parent.child.num = 5;
 
 - 其属性的数值的变化，其中属性是指Object.keys(observedObject)返回的所有属性，示例请参考[嵌套对象](#嵌套对象)。
 
-- 如果数据源是数组，则可以观察到数组item的替换，如果数据源是class，可观察到class的属性的变化，示例请参考[对象数组](#对象数组)。
+- 如果数据源是数组，则可以观察到数组项的替换，如果数据源是class，可观察到class的属性的变化，示例请参考[对象数组](#对象数组)。
 
 继承Date的class时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
 
@@ -196,7 +196,7 @@ struct Parent {
 
    b. 子组件中\@ObjectLink装饰的变量从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。这里的注册行为指的是，\@ObjectLink包装类会向\@Observed实例提供自身的引用，让\@Observed实例将其添加到依赖列表中，以便属性变化时能通知到它。
 
-2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+2. 属性更新：当\@Observed装饰的class属性改变时，会执行代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
 
 ## 限制条件
@@ -509,11 +509,11 @@ struct Index {
 
 ### 对象数组
 
-对象数组是一种常用的数据结构。以下示例展示了数组对象的用法。
+对象数组是一种常用的数据结构。以下示例展示了对象数组的用法。
 
 > **说明：**
 >
-> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
+> NextID是用来在[ForEach循环渲染](../rendering-control/arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，标识对应的组件。
 
 ```ts
 let NextID: number = 1;
@@ -628,7 +628,7 @@ class ObservedArray<T> extends Array<T> {
 }
 ```
 
-声明一个继承自Array的类ObservedArray\<T\>并使用new操作符创建ObservedArray\<string\>的实例。通过new操作符创建的ObservedArray的实例可以观察到属性变化。
+声明一个继承自Array的类ObservedArray\<T\>，并使用new操作符创建ObservedArray\<string\>的实例，该实例可以观察到属性变化。
 
 在下面的示例中，展示了如何利用\@Observed观察二维数组的变化。
 
@@ -1136,7 +1136,7 @@ struct Parent {
 
 在应用开发中，有很多嵌套对象场景，例如，开发者更新了某个属性，但UI没有进行对应的更新。
 
-每个装饰器都有自己可以观察的能力，并不是所有的改变都可以被观察到，只有可以被观察到的变化才会进行UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第一层的变化。
+每个装饰器都有观察能力，但并非所有的改变都可以被观察到，只有可以被观察到的变化才会触发UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第一层的变化。
 
 【反例】
 
@@ -1692,7 +1692,7 @@ struct Index {
 }
 ```
 
-上文的示例代码中在RenderClass的构造函数中使用定时器在1秒后修改了waitToRender的值，但是不会触发UI的刷新。此时点击按钮，强行刷新Text组件可以看到waitToRender的值已经被修改成了true。
+上文的示例代码中在RenderClass的构造函数中使用定时器在1秒后修改了waitToRender的值，但是不会触发UI的刷新。此时，点击按钮强行刷新Text组件，可以看到waitToRender的值已经被修改成了true。
 
 【正例】
 
@@ -1736,7 +1736,7 @@ struct Index {
 
 上文的示例代码将定时器修改移入到组件内，此时界面显示时会先显示“renderClass的值为：false”。待定时器触发时，renderClass的值改变，触发[@Watch](./arkts-watch.md)回调，此时界面刷新显示“renderClass的值为：true”，日志输出“renderClass的值被更改为：true”。
 
-因此，更推荐开发者在组件中对\@Observed装饰的类成员变量进行修改实现刷新。
+因此，更推荐开发者在组件中对\@Observed装饰的类成员变量进行修改，以实现刷新。
 
 ### \@ObjectLink数据源更新时机
 

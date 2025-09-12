@@ -37,6 +37,7 @@
 
 ```ts
 class PostData {
+  // 图片使用Resource资源，需用户自定义
   avatar: Resource = $r('app.media.flower');
   name: string = '';
   message: string = '';
@@ -49,6 +50,7 @@ struct Index {
   @State isExpand: boolean = false;
   @State @Watch('onItemClicked') selectedIndex: number = -1;
 
+  // 数组中图片均使用Resource资源，需用户自定义
   private allPostData: PostData[] = [
     { avatar: $r('app.media.flower'), name: 'Alice', message: '天气晴朗',
       images: [$r('app.media.spring'), $r('app.media.tree')] },
@@ -705,6 +707,7 @@ export struct PageOne {
       Stack() {
         Column({ space: 20 }) {
           Row({ space: 10 }) {
+            // 图片使用Resource资源，需用户自定义
             Image($r("app.media.avatar"))
               .size({ width: 50, height: 50 })
               .borderRadius(25)
@@ -1236,6 +1239,7 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @Builder
 function CardBuilder() {
+  // 图片使用Resource资源，需用户自定义
   Image($r("app.media.card"))
     .width('100%')
     .id('card')
@@ -1462,6 +1466,7 @@ struct Index {
         .width('100%')
         .fontSize(30)
         .padding(20)
+      // 图片使用Resource资源，需用户自定义
       Image($r("app.media.flower"))
         .opacity(this.opacityDegree)
         .width('90%')
@@ -1531,6 +1536,7 @@ struct Index {
           }
           else {
             // 抓取布局和占位用，实际不显示
+            // 图片使用Resource资源，需用户自定义
             Image($r("app.media.flower"))
               .visibility(Visibility.Hidden)
           }
@@ -1597,6 +1603,7 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @Builder
 function CardBuilder() {
+  // 图片使用Resource资源，需用户自定义
   Image($r("app.media.flower"))
     // 避免第一次加载图片时图片闪烁
     .syncLoad(true)
@@ -1868,6 +1875,7 @@ struct IfElseGeometryTransition {
   build() {
     Stack({ alignContent: Alignment.Center }) {
       if (this.isShow) {
+        // 图片使用Resource资源，需用户自定义
         Image($r('app.media.spring'))
           .autoResize(false)
           .clip(true)
@@ -1885,6 +1893,7 @@ struct IfElseGeometryTransition {
         // 套多层容器为了说明相对布局约束传递
         Column() {
           Column() {
+            // 图片使用Resource资源，需用户自定义
             Image($r('app.media.sky'))
               .size({ width: '100%', height: '100%' })
           }
@@ -1923,6 +1932,7 @@ struct IfElseGeometryTransition {
 
 ```ts
 class PostData {
+  // 图片使用Resource资源，需用户自定义
   avatar: Resource = $r('app.media.flower');
   name: string = '';
   message: string = '';
@@ -1936,6 +1946,7 @@ struct Index {
   @State selectedIndex: number = 0;
   @State alphaValue: number = 1;
 
+  // 数组中图片均使用Resource资源，需用户自定义
   private allPostData: PostData[] = [
     { avatar: $r('app.media.flower'), name: 'Alice', message: '天气晴朗',
       images: [$r('app.media.spring'), $r('app.media.tree')] },

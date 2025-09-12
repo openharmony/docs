@@ -1524,7 +1524,7 @@ async function example(mgr: userFileManager.UserFileManager) {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // 获取相册的uri。
     let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
     let album: userFileManager.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1535,7 +1535,7 @@ async function example(mgr: userFileManager.UserFileManager) {
     };
     let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // 获取第二个文件的uri。
     let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
       if (err == undefined) {
@@ -1600,9 +1600,13 @@ async function example(mgr: userFileManager.UserFileManager) {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // 获取相册的uri。
     let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
     let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    if (album === undefined) {
+      console.error('getPhotoIndexPromise albums is undefined');
+      return;
+    }
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     predicates.orderByAsc(userFileManager.ImageVideoKey.DATE_MODIFIED.toString());
     let fetchOptions: userFileManager.FetchOptions = {
@@ -1611,7 +1615,7 @@ async function example(mgr: userFileManager.UserFileManager) {
     };
     let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // 获取第二个文件的uri。
     let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
@@ -1732,15 +1736,15 @@ async function example(mgr: userFileManager.UserFileManager) {
   }
   let onCallback1 = (changeData: userFileManager.ChangeData) => {
       console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
-    //file had changed, do something
+    // 图像文件已更改，请执行操作。
   }
   let onCallback2 = (changeData: userFileManager.ChangeData) => {
       console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
-    //file had changed, do something
+    // 图像文件已更改，请执行操作。
   }
-  // 注册onCallback1监听
+  // 注册onCallback1监听。
   mgr.on(fileAsset.uri, false, onCallback1);
-  // 注册onCallback2监听
+  // 注册onCallback2监听。
   mgr.on(fileAsset.uri, false, onCallback2);
 
   fileAsset.favorite(true, (err) => {
@@ -1802,11 +1806,11 @@ async function example(mgr: userFileManager.UserFileManager) {
     console.info('onCallback2 on');
   }
   if (fileAsset.uri !== undefined) {
-    // 注册onCallback1监听
+    // 注册onCallback1监听。
     mgr.on(fileAsset.uri, false, onCallback1);
-    // 注册onCallback2监听
+    // 注册onCallback2监听。
     mgr.on(fileAsset.uri, false, onCallback2);
-    // 关闭onCallback1监听，onCallback2 继续监听
+    // 关闭onCallback1监听，onCallback2 继续监听。
     mgr.off(fileAsset.uri, onCallback1);  
   }
   fileAsset.favorite(true, (err) => {
@@ -1846,7 +1850,7 @@ async function example(mgr: userFileManager.UserFileManager) {
   let count = 0;
   mgr.on('imageChange', () => {
     count++;
-    // image file had changed, do something
+    // 图像文件已更改，请执行操作。
   });
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -1856,14 +1860,14 @@ async function example(mgr: userFileManager.UserFileManager) {
   } catch (err) {
     console.error('createPhotoAsset failed, message = ' + err);
   }
-  //sleep 1s
+  // 睡眠一秒。
   if (count > 0) {
     console.info('onDemo success');
   } else {
     console.error('onDemo fail');
   }
   mgr.off('imageChange', () => {
-    // stop listening success
+    // 停止监听成功。
   });
 }
 ```
@@ -1895,11 +1899,11 @@ async function example(mgr: userFileManager.UserFileManager) {
   let count = 0;
   mgr.on('imageChange', () => {
     count++;
-    // image file had changed, do something
+    // 图像文件已更改，请执行操作。
   });
 
   mgr.off('imageChange', () => {
-    // stop listening success
+    // 停止监听成功。
   });
 
   try {
@@ -1910,7 +1914,7 @@ async function example(mgr: userFileManager.UserFileManager) {
   } catch (err) {
     console.error('createPhotoAsset failed, message = ' + err);
   }
-  //sleep 1s
+  // 睡眠一秒。
   if (count == 0) {
     console.info('offDemo success');
   } else {
@@ -2812,6 +2816,11 @@ async function example(mgr: userFileManager.UserFileManager) {
     };
     let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
     let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    if (fileAsset === undefined) {
+      console.error('getExif fileAsset is undefined');
+      fetchResult.close();
+      return;
+    }
     console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
     let userCommentKey: string = 'UserComment';
     fileAsset.getExif((err, exifMessage) => {
@@ -4215,6 +4224,10 @@ async function example(mgr: userFileManager.UserFileManager) {
     predicates: predicates
   };
   const trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
+  if (trashAlbum === undefined) {
+    console.error('trashAlbum is undefined');
+    return;
+  }
   trashAlbum.getPhotoAssets(fetchOption, (err, fetchResult) => {
     if (fetchResult != undefined) {
       let count = fetchResult.getCount();
@@ -4416,8 +4429,16 @@ async function example(mgr: userFileManager.UserFileManager) {
     predicates: predicates
   };
   let trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
+  if (trashAlbum === undefined) {
+    console.error('privateAlbumRecoverDemoCallback trashAlbum is undefined');
+    return;
+  }
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await trashAlbum.getPhotoAssets(fetchOption);
   let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  if (fileAsset === undefined) {
+    console.error('privateAlbumRecoverDemoCallback fileAsset is undefined');
+    return;
+  }
   let recoverFileUri: string = fileAsset.uri;
   trashAlbum.recover(recoverFileUri, (err) => {
     if (err != undefined) {

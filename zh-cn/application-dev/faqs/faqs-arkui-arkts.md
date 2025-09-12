@@ -1,5 +1,11 @@
 # ArkTS语法使用常见问题
 
+<!--Kit: ArkUI-->	
+<!--Subsystem: ArkUI-->	
+<!--Owner: @zzq212050299;@zhangboren;@maorh-->	
+<!--Designer: @s10021109;@keerecles-->	
+<!--Tester: @TerryTsao-->	
+<!--Adviser: @zhang_yixin13-->
 
 ## ArkUI如何通过代码动态创建组件(API 9)
 
@@ -22,7 +28,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[渲染控制语法](../ui/state-management/arkts-rendering-control-overview.md)
+[渲染控制语法](../ui/rendering-control/arkts-rendering-control-overview.md)
 
 
 ## 使用\@Builder装饰器包含自定义组件的方法与普通方法的区别是什么(API 9)
@@ -411,8 +417,8 @@ listener.off('change', onPortrait) // 去注册回调
 ```
 new Date("2021-05-23");
 new Date("2020/2/29");
-new Date("2020-14-03");
-new Date("14-02-2021");
+new Date("2020-11-03");
+new Date("11-02-2021");
 ```
 
 其他格式字符串可使用new Date(year:number,month:number,day?:number,hour?:number,mintue?:number,second?:number,ms?:number)方法来获取Date对象。
@@ -444,10 +450,10 @@ new Date(yearValue, IndexOfMonth, dayValue, hours, minutes, seconds)
 参考如下代码实现，示例：
 
 ```
-stringToArray(str:string) {
-  var arr = [];
-  for(var i = 0,j = str.length;i<j;++i) {
- arr.push(str.charCodeAt(i))
+function stringToArray(testString : string): number[] {
+  let arr : number[] = [];
+  for(let i : number = 0, j : number = testString.length; i < j; ++i) {
+    arr.push(testString.charCodeAt(i));
   }
   return arr;
 }
@@ -674,38 +680,34 @@ worker：[启动一个Worker](../reference/apis-arkts/js-apis-worker.md)
 
 **示例代码**
 
-1.创建资源目录，并在资源目录中添加资源文件，以Tablet为例，在src/main/resources下创建tablet资源目录，在tablet目录下创建media资源文件夹
+1. 创建资源目录，并在资源目录中添加资源文件，以Tablet为例，在src/main/resources下创建tablet资源目录，在tablet目录下创建media资源文件夹。
 
-```
-├─base
-│  ├─element
-│  ├─media
-│  └─profile
-├─rawfile
-├─tablet
-│  ├─element
-│  └─media
-```
+   ```
+   ├─base
+   │  ├─element
+   │  ├─media
+   │  └─profile
+   ├─rawfile
+   ├─tablet
+   │  ├─element
+   │  └─media
+   ```
 
-2.在1中创建的media文件夹下添加设备类型为tablet时希望显示的图标文件，在UI界面进行引用
+2. 在1中创建的media文件夹下添加设备类型为tablet时希望显示的图标文件，在UI界面进行引用。
 
-```
-@Entry @Component struct Index { build() {
-   Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-     Text($r("app.string.my_string"))
-       .fontSize($r("app.float.my_float"))
-       .fontColor($r("app.color.my_color"))
-     Image($r("app.media.my_image"))
-       .width(100)
-       .height(100)
-   }
-   .width('100%')
-   .height('100%') } }
-```
-
-**参考链接**
-
-[资源使用](../key-features/multi-device-app-dev/resource-usage.md)
+   ```
+   @Entry @Component struct Index { build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Text($r("app.string.my_string"))
+          .fontSize($r("app.float.my_float"))
+          .fontColor($r("app.color.my_color"))
+        Image($r("app.media.my_image"))
+          .width(100)
+          .height(100)
+      }
+      .width('100%')
+      .height('100%') } }
+   ```
 
 
 ## 调用方法的时候，如何解决方法内部的this变成undefined(API 9)
