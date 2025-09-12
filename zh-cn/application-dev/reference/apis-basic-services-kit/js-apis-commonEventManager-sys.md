@@ -46,6 +46,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 1500003  | The common event sending frequency too high. |
+| 1500006  | Invalid userId. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -100,6 +101,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 1500003  | The common event sending frequency too high. |
+| 1500006  | Invalid userId. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
