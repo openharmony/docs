@@ -1195,7 +1195,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| DATA_TRANSFER           | 1    | 数据传输。<br/>**说明：**  应用需要更新进度，此时通知由普通通知更新为实况窗通知，如果进度长时间（超过10分钟）不更新，数据传输的长时任务会被取消。        |
+| DATA_TRANSFER           | 1    | 数据传输。<br/>**说明：** 应用需要更新进度，此时通知由普通通知更新为实况窗通知，如果进度长时间（超过10分钟）不更新，数据传输的长时任务会被取消。        |
 | AUDIO_PLAYBACK          | 2    | 音视频播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**说明：** 从API version 20开始，申请AUDIO_PLAYBACK类型长时任务但不接入AVSession时由长时任务发送通知，接入AVSession则由AVSession发送通知。<br/>对于API version 20之前的版本，必须接入AVSession，且长时任务不发送通知。                 |
 | AUDIO_RECORDING         | 3    | 录制。                    |
 | LOCATION                | 4    | 定位导航。                  |
