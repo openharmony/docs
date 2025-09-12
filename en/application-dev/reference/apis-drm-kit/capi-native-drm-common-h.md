@@ -1,5 +1,12 @@
 # native_drm_common.h
 
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
+
 ## Overview
 
 The file declares the DRM data types.
@@ -88,6 +95,8 @@ enum DRM_EventType
 **Description**
 
 Enumerates the types of events that can be subscribed to.
+
+**System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Since**: 11
 
