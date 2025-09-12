@@ -223,7 +223,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
   
   class ServiceExt extends ServiceExtensionAbility {
     onDisconnect(want: Want) {
-      console.info('onDisconnect, want: ${want.abilityName}');
+      console.info(`onDisconnect, want: ${want.abilityName}`);
     }
   }
   ```
@@ -235,7 +235,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
   
   class ServiceExt extends ServiceExtensionAbility {
     async onDisconnect(want: Want) {
-      console.info('onDisconnect, want: ${want.abilityName}');
+      console.info(`onDisconnect, want: ${want.abilityName}`);
       // 调用异步函数...
     }
   }
