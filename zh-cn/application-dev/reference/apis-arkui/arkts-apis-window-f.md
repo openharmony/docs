@@ -240,20 +240,22 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-      subWindow.showWindow().then(() => {
-        try {
-          window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
-            const errCode: number = err.code;
-            if (errCode) {
-              console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-              return;
-            }
-            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
-          });
-        } catch (exception) {
-          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+    windowStage.loadContent('pages/Index', (err) => {
+      windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+        subWindow.showWindow().then(() => {
+          try {
+            window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
+              const errCode: number = err.code;
+              if (errCode) {
+                console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+                return;
+              }
+              console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+            });
+          } catch (exception) {
+            console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+          }
+        });
       });
     });
   }
@@ -307,17 +309,19 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-      subWindow.showWindow().then(() => {
-        try {
-          window.getLastWindow(this.context).then((topWindow) => {
-            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-          });
-        } catch (exception) {
-          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+    windowStage.loadContent('pages/Index', (err) => {
+      windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+        subWindow.showWindow().then(() => {
+          try {
+            window.getLastWindow(this.context).then((topWindow) => {
+              console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (exception) {
+            console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+          }
+        });
       });
     });
   }
@@ -379,40 +383,42 @@ export default class EntryAbility extends UIAbility {
     let subWindowId: number = -1;
 
     try {
-      // 获取应用主窗及ID
-      windowStage.getMainWindow().then((data) => {
-        if (data == null) {
-          console.error('Failed to obtain the main window. Cause: The data is empty');
-          return;
-        }
-        mainWindow = data;
-        mainWindowId = mainWindow.getWindowProperties().id;
-        console.info('Succeeded in obtaining the main window');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-      });
-
-      // 创建或获取子窗及ID，此时子窗口获焦
-      windowStage.createSubWindow('testSubWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to obtain the sub window. Cause: The data is empty');
-          return;
-        }
-        subWindow = data;
-        subWindowId = subWindow.getWindowProperties().id;
-        subWindow.resize(500, 500);
-        subWindow.showWindow();
-
-        // 监听Window状态，确保已经就绪
-        subWindow.on("windowEvent", (windowEvent) => {
-          if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
-            // 切换焦点
-            window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
-              console.info('Succeeded in shifting app window focus');
-            }).catch((err: BusinessError) => {
-              console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
-            });
+      windowStage.loadContent('pages/Index', (err) => {
+        // 获取应用主窗及ID
+        windowStage.getMainWindow().then((data) => {
+          if (data == null) {
+            console.error('Failed to obtain the main window. Cause: The data is empty');
+            return;
           }
+          mainWindow = data;
+          mainWindowId = mainWindow.getWindowProperties().id;
+          console.info('Succeeded in obtaining the main window');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        });
+
+        // 创建或获取子窗及ID，此时子窗口获焦
+        windowStage.createSubWindow('testSubWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to obtain the sub window. Cause: The data is empty');
+            return;
+          }
+          subWindow = data;
+          subWindowId = subWindow.getWindowProperties().id;
+          subWindow.resize(500, 500);
+          subWindow.showWindow();
+
+          // 监听Window状态，确保已经就绪
+          subWindow.on("windowEvent", (windowEvent) => {
+            if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
+              // 切换焦点
+              window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
+                console.info('Succeeded in shifting app window focus');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            }
+          });
         });
       });
     } catch (exception) {
