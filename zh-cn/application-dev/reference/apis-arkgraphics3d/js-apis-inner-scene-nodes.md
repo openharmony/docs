@@ -367,8 +367,6 @@ function getNode(): void {
 ## Geometry
 几何节点类型，用于承载可渲染的网格数据，并支持可选的形变功能，继承自[Node](#node)。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -388,8 +386,6 @@ function getNode(): void {
 
 ## Light
 光源，继承自[Node](#node)。
-
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
