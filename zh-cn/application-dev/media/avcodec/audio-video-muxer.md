@@ -81,6 +81,10 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
    用户自定义的key必须以"com.openharmony."为开头。值类型可以为int32_t、float、string、uint8_t*。
 
+   > **说明：**
+   >
+   > 已定义的key必须在OH_AVMuxer_Start()前设置，用户自定义的key可以在OH_AVMuxer_Stop()前设置。
+
    ```c++
    OH_AVFormat *format = OH_AVFormat_Create(); // 用OH_AVFormat_Create创建format。
 
