@@ -2071,7 +2071,7 @@ const char* OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
 **描述**
 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。 
 
-可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询这个最大值。
+可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature)来查询这个最大值。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

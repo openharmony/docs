@@ -277,7 +277,7 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
 | -- | -- |
 | [OH_AVDemuxer](capi-avdemuxer-oh-avdemuxer.md) *demuxer | 指向OH_AVDemuxer实例的指针。 |
 | int64_t millisecond | 期望跳转位置对应的时间，单位为毫秒，该时间戳是相对文件开始的位置。 |
-| [OH_AVSeekMode](capi-native-avcodec-base-h.md#oh_avseekmode) mode | 跳转的模式。 |
+| [OH_AVSeekMode](_codec_base.md#oh_avseekmode) mode | 跳转的模式。 |
 
 **返回：**
 

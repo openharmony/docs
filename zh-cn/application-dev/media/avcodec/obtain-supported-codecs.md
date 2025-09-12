@@ -737,7 +737,7 @@ if (!isMatched) {
 
 ### 查询编解码特性支持情况并获取特性属性信息
 
-编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。具体请参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapabilityfeature-1)。
+编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。具体请参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapabilityfeature)。
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性。 |
