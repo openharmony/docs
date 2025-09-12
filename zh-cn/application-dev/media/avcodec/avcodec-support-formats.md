@@ -117,6 +117,7 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
    |                key                 |                       描述                    |
    | ---------------------------------- | :-------------------------------------------: |
    | OH_MD_KEY_CREATION_TIME            | 媒体文件创建时间的元数据，值类型为string         |
+   | OH_MD_KEY_COMMENT                  | 媒体文件注释的键，值类型为string                |
    | OH_MD_KEY_ENABLE_MOOV_FRONT        | 媒体文件moov元数据是否前置标志，值类型为int32_t  |
 
 配置选项key值说明：  
