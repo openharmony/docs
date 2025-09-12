@@ -23,7 +23,6 @@
 ## 约束和限制
 
 - **支持的系统**：OpenHarmony6.0及以后。
-- **支持的API版本**：API20及以后。
 
 ## 开发指导
 
@@ -49,17 +48,26 @@ target_link_libraries(sample PUBLIC libnative_avscreen_capture.so)
 #include <string>
 ```
 
-调用[OH_AVScreenCapture_SetCaptureArea()]({@link OH_AVScreenCapture_SetCaptureArea})接口传入希望录制的矩形区域。
+调用[OH_AVScreenCapture_SetCaptureArea()](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setcapturearea)接口传入希望录制的矩形区域。
 
 示例中的变量说明如下：
 
-- capture：指向[OH_AVScreenCapture]({@link OH_AVScreenCapture})实例的指针。
+- capture：指向[OH_AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture-oh-avscreencapture.md)实例的指针。
 - displayId：需要捕获区域所在的屏幕Id。
 - area：需要捕获区域的坐标和宽高。类型为OH_Rect，包括成员变量x、y、width、height。
   - x、y分别为矩形区域起点的横坐标、纵坐标位置。
   - width、height分别为矩形区域的宽度和长度。
   - 多个参数之间通过";"连接，所有参数均为整数。
   - 使用前请确保传入参数有效，并尽量避免坐标和宽高为负数。
+
+> **注意**
+> 
+> **录制区域限制**：
+> - 安全图层不支持录制。
+> - 不支持跨屏（一边在左边/一边在右边）录制。
+> **录制区域更改**：支持录制过程中，更新录制区域。
+> **设置失败的处理**：如果区域位置设置失败，系统将按照上一次的区域进行捕获。建议开发者在设置区域时进行错误检查和处理，以确保捕获区域的准确性。
+> **参数设置非负**：该接口设置的坐标和宽高不能为负数，捕获区域不能跨屏幕，区域位置设置失败后仍按照上一次的区域进行捕获。
 
     ```c++
     struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
@@ -89,12 +97,3 @@ target_link_libraries(sample PUBLIC libnative_avscreen_capture.so)
     // 开始录屏。
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
-    
-> **注意**
-> 
-> **录制区域限制**：
-> - 安全图层不支持录制。
-> - 不支持跨屏（一边在左边/一边在右边）录制。
-> **录制区域更改**：支持录制过程中，更新录制区域。
-> **设置失败的处理**：如果区域位置设置失败，系统将按照上一次的区域进行捕获。建议开发者在设置区域时进行错误检查和处理，以确保捕获区域的准确性。
-> **参数设置非负**：该接口设置的坐标和宽高不能为负数，捕获区域不能跨屏幕，区域位置设置失败后仍按照上一次的区域进行捕获。
