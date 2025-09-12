@@ -610,32 +610,26 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    try {
-      let windowClass = windowStage.getMainWindowSync();
-      let properties = windowClass.getWindowProperties();
-      window.getWindowsByCoordinate(properties.displayId).then((data) => {
-        console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
-        for (let window of data) {
-          // do something with window
-        }
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-      });
-      window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
-        console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
-        for (let window of data) {
-          // do something with window
-        }
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (exception) {
-      console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+try {
+  let displayId = 0;
+  window.getWindowsByCoordinate(displayId).then((data) => {
+    console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
+    for (let window of data) {
+      // do something with window
     }
-  }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
+  });
+  window.getWindowsByCoordinate(displayId, 2, 500, 500).then((data) => {
+    console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
+    for (let window of data) {
+      // do something with window
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -756,7 +750,7 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
 | 参数名 | 类型       | 必填                 | 说明                                                                              |
 | ------ | ---------- |--------------------|------------------------------------------------------------------------------------|
-| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕。如果指定的屏幕不存在，返回值为0，推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口所在屏幕id属性。                                                    |
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕。如果指定的屏幕不存在，返回值为0，推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口所在屏幕ID属性。                                                    |
 
 **返回值：**
 
