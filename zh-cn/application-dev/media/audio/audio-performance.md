@@ -59,7 +59,7 @@
 
 **使用DevEco Profiler**
 
-DevEco Profiler是一个帮助开发者更高效地进行性能问题的分析的场景化调优工具，它集成在DevEco Studio，可以在应用开发过程中
+DevEco Profiler是一个帮助开发者更高效地进行性能问题的分析的场景化调优工具，集成在DevEco Studio中，可以在应用开发过程中
 直接使用。工具的具体使用方式可参考指南：[DevEco Profiler性能调优概述](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-description)。
 
 DevEco Profiler主要用于对应用内运行流程进行分析和调优，指南中有详细的分析步骤说明，此文不再赘述。
