@@ -222,7 +222,7 @@ The input parameters and return value of the concurrent function used by the Tas
 
 ## Using instanceof with Sendable Objects in Child Threads Returns False
 
-When using the **instanceof** operator in a child thread, the application needs to mark the module exporting Sendable class A in the .ets file with the **use shared** directive to indicate that the module is a [shared module](../arkts-utils/arkts-sendable-module.md#shared-module).
+When using the **instanceof** operator in a child thread, the application needs to mark the module exporting Sendable class A in the .ets file with the **use shared** directive to indicate that the module is a [shared module](../arkts-utils/arkts-sendable-module.md).
 
 **Code Example**
 
@@ -355,7 +355,7 @@ The execution function (concurrent function) of a TaskPool task can only use loc
 
 **Solution**
 
-1. Custom Sendable class: [Sendable objects](arkts-sendable.md#overview-of-sendable-objects) can be shared across different threads. You can save the task execution results within these objects.
+1. Custom Sendable class: [Sendable objects](arkts-sendable.md) can be shared across different threads. You can save the task execution results within these objects.
 
 2. Returning results in **.then**: The execution result of a TaskPool task can be returned within **.then**. If the data to be saved is only used in the current thread, the execution result can be stored in a custom data structure within **.then**.
 

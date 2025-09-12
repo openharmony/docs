@@ -338,7 +338,7 @@ stack.push(4);
 
 // Method 1:
 while(!stack.isEmpty()) {
-  // 业务逻辑
+  // Service logic
   let item = stack.pop();
   console.log("value:" + item);
 }
