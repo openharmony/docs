@@ -613,7 +613,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let displayId = 0;
   window.getWindowsByCoordinate(displayId).then((data) => {
-    console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting windows. Data: ${data}`);
     for (let window of data) {
       // do something with window
     }
@@ -621,7 +621,7 @@ try {
     console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
   });
   window.getWindowsByCoordinate(displayId, 2, 500, 500).then((data) => {
-    console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting windows. Data: ${data}`);
     for (let window of data) {
       // do something with window
     }
