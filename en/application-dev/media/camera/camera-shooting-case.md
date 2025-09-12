@@ -2,14 +2,15 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete photo capture process to help you understand the complete API calling sequence.
 
-Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Photo Capture](camera-shooting.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Photo Capture](camera-shooting.md), and other related topics in [Camera Development (ArkTS)](camera-device-management.md).
 
 ## Development Process
 
@@ -17,7 +18,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 ![Photographing Development Process](figures/photographing-development-process.png)
 
-## Sample Code
+## Complete Sample Code
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -63,11 +64,14 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
 
 async function cameraShootingCase(context: Context, surfaceId: string): Promise<void> {
   // Create a CameraManager object.
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-  if (!cameraManager) {
-    console.error("camera.getCameraManager error");
+  try {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`camera.getCameraManager failed, err: ${err.code}`);
     return;
   }
+
   // Listen for camera status changes.
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
     if (err !== undefined && err.code !== 0) {
@@ -326,3 +330,4 @@ async function cameraShootingCase(context: Context, surfaceId: string): Promise<
   photoSession = undefined;
 }
 ```
+

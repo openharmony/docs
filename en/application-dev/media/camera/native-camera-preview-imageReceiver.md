@@ -2,16 +2,17 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-You can use the APIs in the **ImageReceiver** class to create a PreviewOutput instance and obtain real-time data of the preview stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
+You can use the APIs in **ImageReceiver** to create a PreviewOutput instance and obtain real-time data of the preview stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
 
 ## How to Develop
 
 Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
 
    ```c++
    // Include the NDK header files.
@@ -104,7 +105,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        // Obtain the row stride of the image.
        int32_t stride = 0;
        errCode = OH_ImageNative_GetRowStride(image, component, &stride);
-       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer stride: %{public}d.", stride);
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer stride：%{public}d.", stride);
        void* srcVir = nullptr;
        OH_NativeBuffer_Map(imageBuffer, &srcVir);
        uint8_t* srcBuffer = static_cast<uint8_t*>(srcVir);

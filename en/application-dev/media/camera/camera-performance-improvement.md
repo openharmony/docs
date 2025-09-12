@@ -2,10 +2,11 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether your underlying components support these capabilities before using the capabilities.
 
@@ -25,7 +26,7 @@ After optimization: Stream configuration does not depend on the Surface object. 
 
 ### Available APIs
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -70,7 +71,7 @@ In this way, the photo capture process is optimized, which fulfills the processi
 
 ### Available APIs
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -80,7 +81,7 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 > **NOTE**
 >
-> - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported) and [enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) must be called after [addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11) and [addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11) but before [commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11).
+> - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported) and [enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) must be called after [addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11) and [addInput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addinput11) but before [commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11).
 > - The **on** API takes effect after [enableQuickThumbnail(true)](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) is called.
 
 ### Development Example
@@ -141,7 +142,7 @@ Generally, the startup of the camera application is triggered when the user touc
 
 ### Available APIs
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |

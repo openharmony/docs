@@ -2,18 +2,19 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 Preview is the image you see after you start the camera application but before you take photos or record videos.
 
 ## How to Develop
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
-1. Import the camera module, which provides camera-related attributes and methods.
+1. Import the camera module, which provides camera-related properties and methods.
      
    ```ts
    import { camera } from '@kit.CameraKit';
@@ -56,7 +57,7 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
     }
     ```
 
-3. Use **previewProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call [createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput) to create a PreviewOutput object, with the first parameter set to the preview profile supported by the camera and the second parameter set to the surface ID obtained in step 2.
+3. Use **previewProfiles** in [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call [createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput) to create a PreviewOutput object, with the first parameter set to the preview profile supported by the camera and the second parameter set to the surface ID obtained in step 2.
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
@@ -148,11 +149,10 @@ During camera application development, you can listen for the preview output str
   }
   ```
 
-## Sample Code
+## Complete Sample Code
 
 ```ts
 import { camera } from '@kit.CameraKit';
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
@@ -160,8 +160,6 @@ import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  private imageReceiver: image.ImageReceiver | undefined = undefined;
-  private imageReceiverSurfaceId: string = '';
   private xComponentCtl: XComponentController = new XComponentController();
   private xComponentSurfaceId: string = '';
   @State imageWidth: number = 1920;
@@ -229,7 +227,7 @@ struct Index {
   }
 
 
-  // Initialize a camera.
+  // Initialize the camera.
   async initCamera(): Promise<void> {
     console.info(`initCamera previewOutput xComponentSurfaceId:${this.xComponentSurfaceId}`);
     try {

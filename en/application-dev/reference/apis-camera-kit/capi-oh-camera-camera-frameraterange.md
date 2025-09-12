@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -21,5 +22,5 @@ The struct describes the frame rate range.
 
 | Name| Description|
 | -- | -- |
-| uint32_t min | Minimum frame rate.|
-| uint32_t max | Maximum frame rate.|
+| uint32_t min | Minimum frame rate, in fps.|
+| uint32_t max | Maximum frame rate, in fps.|

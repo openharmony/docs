@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -135,7 +136,7 @@ Checks whether this camera is muted.
 
 | Type       | Description                                        |
 | ---------- | -------------------------------------------- |
-| boolean    | Check result. The value **true** means that the camera device is muted, and **false** means the opposite.|
+| boolean    | Check result for whether the camera device is muted. **true** if muted, **false** otherwise.|
 
 **Example**
 
@@ -576,7 +577,7 @@ Creates a Session instance with a given scene mode. This API returns the result 
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [T extends Session](arkts-apis-camera-Session.md)   | Session instance created. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
+| [T](arkts-apis-camera-Session.md)   | Session instance created. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -877,7 +878,7 @@ Subscribes to flashlight status change events. This API uses an asynchronous cal
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'torchStatusChange'**. The event can be listened for when a CameraManager instance is obtained. Currently, this event is triggered only in the following scenarios: The flashlight is turned on or turned off, or becomes unavailable or available.|
-| callback | AsyncCallback\<TorchStatusInfo> | Yes  | Callback used to return the flashlight status.              |
+| callback | AsyncCallback\<[TorchStatusInfo](arkts-apis-camera-i.md#torchstatusinfo11)> | Yes  | Callback used to return the flashlight status.              |
 
 **Example**
 
@@ -912,7 +913,7 @@ Unsubscribes from flashlight status change events. This API uses an asynchronous
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'torchStatusChange'**. The event can be listened for when a CameraManager instance is obtained.|
-| callback | AsyncCallback\<TorchStatusInfo> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[TorchStatusInfo](arkts-apis-camera-i.md#torchstatusinfo11)> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1007,15 +1008,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager,
+  cameraDeviceArray: Array<camera.CameraDevice>): Array<camera.CameraConcurrentInfo> {
+  let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
   try {
-    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
     cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // If the operation fails, an error code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
+  return cameraConcurrentInfos;
 }
 ```
 
