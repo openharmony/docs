@@ -26,9 +26,9 @@ import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称    | 类型                          | 可读 | 可写 | 说明                                                       |
+| 名称    | 类型                          | 只读 | 可选 | 说明                                                       |
 | ------- | ----------------------------- | ---- | ---- | ---------------------------------------------------------- |
-| context | DistributedExtensionContext | 是   | 否   | DistributedExtension的上下文环境，继承自ExtensionContext。 |
+| context | DistributedExtensionContext | 否   | 否   | DistributedExtension的上下文环境，继承自ExtensionContext。 |
 
 ### onCreate
 
