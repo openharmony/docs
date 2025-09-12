@@ -57,8 +57,7 @@ screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
     console.error(`Failed to get all screens. Code:${err.code},message is ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item=>
-  `{"id":${item.id},"parent":${item.parent}}`).join(',');
+  const dataInfo = data.map(item => `{"id":${item.id}, "parent":${item.parent}}`).join(',');
   console.info(`Succeeded in getting all screens. Data: ${dataInfo}`);
   if(data.length > 0 ）{
     screenClass = data[0];
@@ -102,8 +101,7 @@ promise.then((data: Array<screen.Screen>) => {
   if(data.length > 0){
   	screenClass = data[0];
   }
-  const dataInfo = data.map(item=>
-  `{"id":${item.id},"parent":${item.parent}}`).join(',');
+  const dataInfo = data.map(item => `{"id":${item.id}, "parent":${item.parent}}`).join(',');
   console.info(`Succeeded in getting all screens. Data: ${dataInfo}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get all screens. Code " ${err.code} , message : ${err.message}`);

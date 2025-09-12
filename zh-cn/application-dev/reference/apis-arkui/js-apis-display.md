@@ -426,8 +426,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item =>
-    `{"id":${item.id}, "name":${item.name}}`).join(',');
+  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 });
 ```
@@ -466,8 +465,7 @@ let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
 promise.then((data: Array<display.Display>) => {
   displayClass = data;
-  const dataInfo = data.map(item =>
-    `{"id":${item.id}, "name":${item.name}}`).join(',');
+  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
@@ -1452,8 +1450,7 @@ display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item =>
-    `{"id":${item.id}, "name":${item.name}}`).join(',');
+  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 });
 ```
@@ -1483,8 +1480,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
-  const dataInfo = data.map(item =>
-    `{"id":${item.id}, "name":${item.name}}`).join(',');
+  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
@@ -1654,11 +1650,11 @@ try {
   displayClass = display.getDefaultDisplaySync();
   let promise = displayClass.getAvailableArea();
   promise.then((data) => {
-    console.info(`Succeeded get the available area in this display. data: 
-    left : ${data.left},
-    top : ${data.top},
-    width : ${data.width},
-    height : ${data.height}`);
+    console.info(`Succeeded get the available area in this display. data: ` +
+      `left : ${data.left},` +
+      `top : ${data.top},` +
+      `width : ${data.width},` +
+      `height : ${data.height}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
   })
@@ -1702,11 +1698,11 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info(`Listening enabled. Data:  
-  left : ${data.left},
-  top : ${data.top},
-  width : ${data.width},
-  height : ${data.height}`);
+  console.info(`Listening enabled. Data: ` +
+    `left : ${data.left}, ` +
+    `top : ${data.top}, ` +
+    `width : ${data.width}, ` +
+    `height : ${data.height}`);
 };
 let displayClass: display.Display | null = null;
 try {
@@ -1753,11 +1749,11 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info(`Listening enabled. Data:  
-  left : ${data.left},
-  top : ${data.top},
-  width : ${data.width},
-  height : ${data.height}`);
+  console.info(`Listening enabled. Data: ` +
+    `left : ${data.left}, ` +
+    `top : ${data.top}, ` +
+    `width : ${data.width}, ` +
+    `height : ${data.height}`);
 };
 let displayClass: display.Display | null = null;
 try {
