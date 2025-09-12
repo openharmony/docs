@@ -528,6 +528,53 @@ static resource(value: Resource): LengthMetrics
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
 
+**示例：**
+
+使用LengthMetrics设置Row的padding和margin属性。
+```ts
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct SizeExample {
+  build() {
+    Column({ space: 10 }) {
+      Text('margin and padding:')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+      Row() {
+        Row() {
+          Row()
+            .size({ width: '100%', height: '100%' })
+            .backgroundColor(Color.Yellow)
+        }
+        .width(80)
+        .height(80)
+        .padding({
+          top: new LengthMetrics(20, LengthUnit.VP),
+          bottom: LengthMetrics.px(15),
+          start: LengthMetrics.vp(10),
+          end: LengthMetrics.fp(20)
+        })
+        .margin({
+          top: LengthMetrics.percent(0.1),
+          bottom: LengthMetrics.lpx(20),
+          start: LengthMetrics.resource($r('app.float.row_margin_start')),
+          end: LengthMetrics.vp(10)
+        })
+        .backgroundColor(Color.White)
+      }
+      .backgroundColor(Color.Blue)
+    }
+    .width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+![image](figures/lengthMetricsDemo.png)
+
+
 ## ColorMetrics<sup>12+</sup>
 
 用于混合颜色。
@@ -759,7 +806,8 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
   try {
     //在使用ColorMetrics的resourceColor和blendColor需要追加捕获异常处理
     //可能返回的arkui子系统错误码有401和180003
-    sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
+    sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#800000ff"));
+    console.info('current color is '+sourceColor.color+ ' r:'+sourceColor.red +' g:'+sourceColor.green+' b:'+sourceColor.blue+ ' a :'+sourceColor.alpha );
   } catch (error) {
     console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
     (error as BusinessError).message);
@@ -773,17 +821,38 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
 struct ColorMetricsSample {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Button("ColorMetrics")
+      Button("ColorMetrics blendColor")
         .width('80%')
         .align(Alignment.Center)
         .height(50)
-        .backgroundColor(getBlendColor(Color.Red).color)
+        .backgroundColor(getBlendColor(Color.Orange).color)
+        .margin(10)
+      Button("ColorMetrics numeric")
+        .width('80%')
+        .align(Alignment.Center)
+        .height(50)
+        .backgroundColor(ColorMetrics.numeric(0).color)
+        .margin(10)
+      Button("ColorMetrics rgba")
+        .width('80%')
+        .align(Alignment.Center)
+        .height(50)
+        .backgroundColor(ColorMetrics.rgba(0,0,255,255).color)
+        .margin(10)
+      Button("ColorMetrics colorWithSpace")
+        .width('80%')
+        .align(Alignment.Center)
+        .height(50)
+        .backgroundColor(ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0,0,255,255).color)
+        .margin(10)
     }
     .width('100%')
     .height('100%')
   }
 }
 ```
+![image](figures/colorMetricsDemo.png)
+
 ## Corners\<T><sup>12+</sup>
 
 用于设置四个角的圆角度数。
