@@ -334,7 +334,7 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 
 在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗和子窗的焦点转移。
 
-目标窗口需确保可获焦属性为true（见[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)）,并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功并执行完毕。
+目标窗口需确保可获焦属性为true（见[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)），并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功并执行完毕。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
