@@ -1,5 +1,12 @@
 # Class (Tool)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 > **说明：**
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -68,9 +75,6 @@ let color9: common2D.Color = drawing.Tool.makeColorFromResourceColor('rgba(255, 
 
 // Resource
 let color10: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('sys.color.ohos_id_color_secondary'));
-let color11: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.color.appColorTest'));
-let color12: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.string.appColorTest'));
-let color13: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.integer.appColorTest'));
 
 // Use color
 let brush = new drawing.Brush();

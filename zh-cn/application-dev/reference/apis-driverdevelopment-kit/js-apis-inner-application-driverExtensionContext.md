@@ -1,4 +1,10 @@
 # DriverExtensionContext
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 DriverExtensionContext模块是DriverExtensionAbility的上下文环境，继承自ExtensionContext。
 
@@ -32,7 +38,7 @@ import { common } from '@kit.AbilityKit';
 
 ## DriverExtensionContext.updateDriverState
 
-updateDriverState(): void;
+updateDriverState(): void
 
 驱动状态上报。预留接口，暂不提供具体功能。
 
@@ -41,6 +47,7 @@ updateDriverState(): void;
 **示例：**
 
   ```ts
+  // 当前代码实现依赖上一节代码实现
   if (context != null) {
     context.updateDriverState();
   }

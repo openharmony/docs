@@ -1,12 +1,18 @@
-# Working with Strings Using JSVM-API
+# Creating and Obtaining String Values Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-This topic walks you through on how to use JSVM-API to convert data between native strings and JavaScript (JS) strings.
+You can use the six string APIs of the JSVM-API to implement the interaction between the JSVM module and JavaScript character strings.
 
 ## Basic Concepts
 
-As the common data type in programming, string is a sequence of characters used to represent text. It can also be used to build user interface (UI) elements such as labels, buttons, and text boxes, process user input, and validate and format input data. Different encodings support different character sets and languages. Major encoding schemes include the following:
+As a common data type in programming, It is used to store and manipulate text data. It can be used to construct user interface elements, such as labels, buttons, and text boxes, process user input, and validate and format data. Different encodings support different character sets and languages. Major encoding schemes include the following:
 
 - ASCII<br>ASCII is one of the earliest character encoding schemes. It uses 7 bits to represent English letters, digits, and some basic symbols. It serves as the foundation for encoding schemes.
 - UTF-8<br>UTF-8 is a variable-length encoding scheme that can represent any Unicode character. It uses 8 bits per character and uses byte sequences of different lengths depending on the range of the character. UTF-8 is widely used for web content.
@@ -20,13 +26,13 @@ As the common data type in programming, string is a sequence of characters used 
 | OH_JSVM_GetValueStringUtf8       | Obtains the UTF8-encoded string from a JS string.|
 | OH_JSVM_CreateStringUtf8          | Creates a JS string object from a UTF8-encoded C string.|
 | OH_JSVM_GetValueStringUtf16      | Obtains the UTF16-encoded string from a JS string.|
-| OH_JSVM_CreateStringUtf16         | Creates a JS string from a UTF16-encoded C string.|
+| OH_JSVM_CreateStringUtf16         | Creates a JS string object based on a UTF16-encoded string.|
 | OH_JSVM_GetValueStringLatin1     | Obtains the ISO-8859-1-encoded string from a JS string.|
 | OH_JSVM_CreateStringLatin1        | Creates a JS string object from an ISO-8859-1-encoded C string. ISO-8859-1 is also referred to as Latin-1.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in string management.
+For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the interface.
 
 ### OH_JSVM_GetValueStringUtf8
 
@@ -49,6 +55,11 @@ static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     size_t length = 0;
     JSVM_Status status = OH_JSVM_GetValueStringUtf8(env, args[0], nullptr, 0, &length);
     char *buf = (char *)malloc(length + 1);
+    if (buf == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
+    memset(buf, 0, length + 1);
     status = OH_JSVM_GetValueStringUtf8(env, args[0], buf, length + 1, &length);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueStringUtf8 fail");
@@ -78,11 +89,12 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf8(data);
 )JS";
 ```
+<!-- @[oh_jsvm_get_value_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
 
-**Expected output**
-
-![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
-
+Expected result:
+```cpp
+JSVM GetValueStringUtf8 success: aaBC+-$%^Hello 123
+```
 **NOTE**<br>The call fails if the input parameter **arg** of **getValueStringUtf8()** is not of the string type.
 
 ### OH_JSVM_CreateStringUtf8
@@ -127,11 +139,12 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf8();
 )JS";
 ```
+<!-- @[oh_jsvm_create_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
 
-**Expected output**
-
-![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
-
+Expected result:
+```cpp
+JSVM CreateStringUtf8 success: Hello, World!, successes to create UTF-8 string!
+```
 ### OH_JSVM_GetValueStringUtf16
 
 Call **OH_JSVM_GetValueStringUtf16** to convert a JS string into a UTF-16-encoded string.
@@ -190,12 +203,13 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf16(data);
 )JS";
 ```
+<!-- @[oh_jsvm_get_value_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
 
-**Expected output**
-
-![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
-
-**NOTE**<br>The call fails if the input parameter **arg** of **getValueStringUtf16()** is not of the string type.
+Expected result:
+```cpp
+JSVM GetValueStringUtf16 success: ahello.
+```
+**Note**: The `arg` parameter of `getValueStringUtf16(arg)` must be a string. Otherwise, the API fails to be called.
 
 ### OH_JSVM_CreateStringUtf16
 
@@ -246,11 +260,12 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf16();
 )JS";
 ```
+<!-- @[oh_jsvm_create_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
 
-**Expected output**
-
-![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
-
+Expected result:
+```cpp
+JSVM CreateStringUtf16 success: Hello, World!, successes to create UTF-16 string!
+```
 ### OH_JSVM_GetValueStringLatin1
 
 Call **OH_JSVM_GetValueStringLatin1** to convert a JS string into an ISO-8859-1-encoded string.
@@ -272,7 +287,7 @@ static JSVM_Value GetValueStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     char buf[MAX_BUFFER_SIZE];
-    size_t length;
+    size_t length = 0;
     JSVM_Value jsvmRes = nullptr;
     JSVM_Status status = OH_JSVM_GetValueStringLatin1(env, args[0], buf, MAX_BUFFER_SIZE, &length);
     if (status != JSVM_OK) {
@@ -299,13 +314,13 @@ const char *srcCallNative = R"JS(
     let script = getValueStringLatin1(data);
 )JS";
 ```
+<!-- @[oh_jsvm_get_value_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result (ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are input, garbled characters will be displayed.):
 
-The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
 
-**NOTE**<br>The call fails if the input parameter **arg** of **getValueStringLatin1()** is not of the string type.
+**Note**: The `arg` input parameter must be of the string type. Otherwise, the interface fails to be called.
 
 ### OH_JSVM_CreateStringLatin1
 
@@ -333,7 +348,7 @@ static JSVM_Value CreateStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM CreateStringLatin1 fail");
     } else {
         char buf[MAX_BUFFER_SIZE];
-        size_t length;
+        size_t length = 0;
         OH_JSVM_GetValueStringLatin1(env, result, buf, MAX_BUFFER_SIZE, &length);
         OH_LOG_INFO(LOG_APP, "JSVM CreateStringLatin1 success: %{public}s", buf);
     }
@@ -353,8 +368,11 @@ const char *srcCallNative = R"JS(
     let script = createStringLatin1();
 )JS";
 ```
+<!-- @[oh_jsvm_create_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
+```cpp
+JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
+```
 
-![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)
 <!--no_check-->

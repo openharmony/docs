@@ -53,7 +53,7 @@ The following figure shows a notification carrying action buttons.
      ],
      actionType: wantAgent.OperationType.START_ABILITY,
      requestCode: 0,
-     wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+     actionFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    };
    ```
 
@@ -72,7 +72,7 @@ The following figure shows a notification carrying action buttons.
      ],
      actionType: wantAgent.OperationType.SEND_COMMON_EVENT,
      requestCode: 0,
-     wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
+     actionFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
    };
    ```
 
@@ -132,3 +132,9 @@ The following figure shows a notification carrying action buttons.
      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```
+<!--RP1-->
+
+## Sample Code
+
+  - [Custom Notification](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/README.md)
+<!--RP1End-->

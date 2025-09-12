@@ -1,5 +1,12 @@
 # ability_runtime_common.h
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 声明AbilityRuntime模块的错误码。
@@ -58,3 +65,6 @@ AbilityRuntime模块的错误码的枚举。
 | ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077 |  应用多实例已达到上限。<br>**起始版本：** 17 |
 | ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078 |  不支持应用多实例。<br>**起始版本：** 17 |
 | ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079 |  不允许设置APP_INSTANCE_KEY。<br>**起始版本：** 17 |
+| ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED = 16000081 |  获取应用信息失败。<br>**起始版本：** 21 |
+| ABILITY_RUNTIME_ERROR_CODE_START_TIMEOUT = 16000133 |  启动UIAbility超时。<br>**起始版本：** 21 |
+| ABILITY_RUNTIME_ERROR_CODE_MAIN_THREAD_NOT_SUPPORTED = 16000134 |  接口不允许在应用主线程调用。<br>**起始版本：** 21 |

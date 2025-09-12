@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @kangshihui-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 单行文本输入框组件。
 

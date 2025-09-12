@@ -1,5 +1,12 @@
 # nfctech (标准NFC-Tag Nfc 技术)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块主要用于采用不同Nfc技术的Tag的读写操作。
 
 > **说明：**
@@ -375,11 +382,10 @@ function nfcTechDemo() {
         isoDep.isExtendedApduSupported().then((response: boolean) => {
             console.info("isoDep isExtendedApduSupported Promise response: " + response);
         }).catch((err: BusinessError) => {
-            console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
+            console.error(`isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("isoDep isExtendedApduSupported Promise Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`isoDep isExtendedApduSupported Promise Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 
@@ -433,13 +439,13 @@ function nfcTechDemo() {
     try {
         isoDep.isExtendedApduSupported((err: BusinessError, response: boolean) => {
             if (err) {
-                console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}");
+                console.error(`isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}`);
             } else {
                 console.info("isoDep isExtendedApduSupported AsyncCallback response: " + response);
             }
         });
-    } catch (busiErr) {
-        console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${(businessError as Business).code}, " + "message: ${(businessError as Business).message}");
+    } catch (businessError) {
+        console.error(`isoDep isExtendedApduSupported AsyncCallback Code: ${(businessError as Business).code}, message: ${(businessError as Business).message}`);
     }
 }
 
@@ -615,8 +621,7 @@ function nfcTechDemo(){
             console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("ndef readNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, " +
-        "message: ${(businessError as BusinessError).message}");
+        console.error(`ndef readNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 
@@ -670,14 +675,13 @@ function nfcTechDemo() {
     try {
         ndefTag.readNdef((err : BusinessError, ndefmessage : tag.NdefMessage)=> {
             if (err) {
-                console.error("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
             }
         });
     } catch (businessError) {
-        console.error("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
-        " message: ${(businessError : BusinessError).message}");
+        console.error(`ndef readNdef AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 
@@ -743,11 +747,10 @@ function nfcTechDemo() {
         ndefTag.writeNdef(ndefMessage).then(() => {
             console.info("ndef writeNdef Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
+            console.error(`ndef writeNdef err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("ndef writeNdef Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndef writeNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -812,8 +815,7 @@ function nfcTechDemo() {
             }
         }); 
     } catch (businessError) {
-        console.error("ndef writeNdef AsyncCallback catch businessError Code: ${(businessError as Businsess).code}," +
-            " message: ${(businessError as Businsess).message}");
+        console.error(`ndef writeNdef AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -908,8 +910,7 @@ function nfcTechDemo() {
             console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("ndef setReadOnly Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndef setReadOnly Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -963,14 +964,13 @@ function nfcTechDemo() {
     try {
         ndefTag.setReadOnly((err : BusinessError)=> {
             if (err) {
-                console.error("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndef setReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("ndef setReadOnly AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndef setReadOnly AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1017,8 +1017,7 @@ try {
     let ndefTypeString : string = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
     console.info("ndef ndefTypeString: " + ndefTypeString);
 } catch (businessError) {
-    console.error("ndef getNdefTagTypeString catch businessError Code: ${(businessError as Businsess).code}, " +
-        "message: ${(businessError as Businsess).message}");
+    console.error(`ndef getNdefTagTypeString catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -1095,8 +1094,7 @@ function nfcTechDemo() {
             console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("mifareClassic authenticateSector Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic authenticateSector Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1154,14 +1152,13 @@ function nfcTechDemo() {
         let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // 必须是6个字节，将其更改为正确的key
         mifareClassic.authenticateSector(sectorIndex, key, true, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
+                console.error(`mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic authenticateSector AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic authenticateSector AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic authenticateSector AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1223,11 +1220,10 @@ function nfcTechDemo() {
         mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
             console.info("mifareClassic readSingleBlock Promise data: " + data);
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic readSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic readSingleBlock Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1289,8 +1285,7 @@ function nfcTechDemo() {
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic readSingleBlock AsyncCallback catch businessError Code: " + 
-        " ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic readSingleBlock AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1358,8 +1353,7 @@ function nfcTechDemo() {
             console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("mifareClassic writeSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, "
-        + "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic writeSingleBlock Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1418,15 +1412,13 @@ function nfcTechDemo() {
             0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; //必须是16个字节，将其更改为正确的data
         mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic writeSingleBlock AsyncCallback err Code:" +
-                "${err.code}, message: ${err.message}");
+                console.error(`mifareClassic writeSingleBlock AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic writeSingleBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic writeSingleBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1490,11 +1482,10 @@ function nfcTechDemo() {
         mifareClassic.incrementBlock(blockIndex, value).then(() => {
             console.info("mifareClassic incrementBlock Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic incrementBlock Promise catch Code: ${(businessError as Businsess).code}, " +
-           "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic incrementBlock Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1552,14 +1543,13 @@ function nfcTechDemo() {
         let value = 0x20; // 将其更改为正确的数据
         mifareClassic.incrementBlock(blockIndex, value, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic incrementBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic incrementBlock AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic incrementBlock AsyncCallback catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1626,8 +1616,7 @@ function nfcTechDemo() {
             console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
     } catch (businessError) {
-        console.error("mifareClassic decrementBlock Promise catch businessError: Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic decrementBlock Promise catch businessError: Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1692,8 +1681,7 @@ function nfcTechDemo() {
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic decrementBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-          "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic decrementBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1755,11 +1743,10 @@ function nfcTechDemo() {
         mifareClassic.transferToBlock(blockIndex).then(() => {
             console.info("mifareClassic transferToBlock Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic transferToBlock Promise catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic transferToBlock Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}");
     }
 }
 ```
@@ -1815,15 +1802,13 @@ function nfcTechDemo() {
         let blockIndex = 1; // 将其更改为正确的 index
         mifareClassic.transferToBlock(blockIndex, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}," +
-                    "message: ${err.message}");
+                console.error(`mifareClassic transferToBlock AsyncCallback errCode: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic transferToBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic transferToBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic transferToBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1885,11 +1870,10 @@ function nfcTechDemo() {
         mifareClassic.restoreFromBlock(blockIndex).then(() => {
             console.info("mifareClassic restoreFromBlock Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
+            console.error(`mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareClassic restoreFromBlock Promise catch businessError Code: ${(businessError as Businsess).code}," +
-            " message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic restoreFromBlock Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -1945,15 +1929,13 @@ function nfcTechDemo() {
         let blockIndex = 1; // 将其更改为正确的 index
         mifareClassic.restoreFromBlock(blockIndex, (err : BusinessError)=> {
             if (err) {
-                console.error("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}," +
-                    " message: ${err.message}");
+                console.error(`mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareClassic restoreFromBlock AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareClassic restoreFromBlock AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2028,8 +2010,7 @@ try {
     let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
     console.info("mifareClassic blockCnt: " + blockCnt);
 } catch (businessError) {
-    console.error("mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as Businsess).code}, " +
-        "message: ${(businessError as Businsess).message}");
+    console.error(`mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -2156,8 +2137,7 @@ try {
     let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
     console.info("mifareClassic blockIndex: " + blockIndex);
 } catch (businessError) {
-    console.error("mifareClassic getBlockIndex catch businessError Code: ${(businessError as Businsess).code}, " +
-        "message: ${(businessError as Businsess).message}");
+    console.error(`mifareClassic getBlockIndex catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -2204,8 +2184,7 @@ try {
     let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
     console.info("mifareClassic sectorIndex: " + sectorIndex);
 } catch (businessError) {
-    console.error("mifareClassic getSectorIndex catch businessError Code: ${(businessError as Businsess).code}, " +
-       "message: ${(businessError as Businsess).message}");
+    console.error(`mifareClassic getSectorIndex catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
 }
 ```
 
@@ -2277,11 +2256,10 @@ function nfcTechDemo() {
         mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
             console.info("mifareUltralight readMultiplePages Promise data = " + data);
         }).catch((err : BusinessError)=> {
-            console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareUltralight readMultiplePages Promise catch businessError" +
-            " Code: ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight readMultiplePages Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2337,14 +2315,13 @@ function nfcTechDemo() {
         let pageIndex = 1; // 将其更改为正确的 index
         mifareUltralight.readMultiplePages(pageIndex, (err : BusinessError, data : number[])=> {
             if (err) {
-                console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
+                console.log(`mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareUltralight readMultiplePages AsyncCallback data: " + data);
             }
         });
     } catch (businessError) {
-        console.error("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight readMultiplePages AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2408,11 +2385,10 @@ function nfcTechDemo() {
         mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
             console.info("mifareUltralight writeSinglePage Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("mifareUltralight writeSinglePage Promise catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight writeSinglePage Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2470,15 +2446,13 @@ function nfcTechDemo() {
         let rawData = [0x01, 0x02, 0x03, 0x04];  //必须是4个字节，将其更改为正确的data
         mifareUltralight.writeSinglePage(pageIndex, rawData, (err : BusinessError)=> {
         if (err) {
-                console.error("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}," +
-                    "message: ${err.message}");
+                console.error(`mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("mifareUltralight writeSinglePage AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`mifareUltralight writeSinglePage AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2580,11 +2554,10 @@ function nfcTechDemo() {
         ndefFormatable.format(ndefMessage).then(() => {
             console.info("ndefFormatable format Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
+            console.error(`defFormatable format Promise err Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("ndefFormatable format Promise catch businessError Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable format Promise catch businessError Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2606,12 +2579,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
-
-**返回值：**
-
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 回调函数。当NDEF消息写入标签成功时，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当NDEF消息写入标签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2648,14 +2616,13 @@ function nfcTechDemo() {
 
         ndefFormatable.format(ndefMessage, (err : BusinessError)=> {
             if (err) {
-                console.error("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
+                console.error(`ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndefFormatable format AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable format AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2721,11 +2688,10 @@ function nfcTechDemo() {
         ndefFormatable.formatReadOnly(ndefMessage).then(() => {
             console.info("ndefFormatable formatReadOnly Promise success.");
         }).catch((err : BusinessError)=> {
-            console.error("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
+            console.error(`ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}`);
         });
     } catch (businessError) {
-        console.error("ndefFormatable formatReadOnly Promise catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable formatReadOnly Promise catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```
@@ -2747,12 +2713,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。|
-
-**返回值：**
-
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 回调函数。当NDEF消息写入NDEF标签成功时，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当NDEF消息写入NDEF标签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2790,14 +2751,13 @@ function nfcTechDemo() {
 
         ndefFormatable.formatReadOnly(ndefMessage, (err : BusinessError)=> {
             if (err) {
-                console.error("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+                console.error(`ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}`);
             } else {
                 console.info("ndefFormatable formatReadOnly AsyncCallback success.");
             }
         });
     } catch (businessError) {
-        console.error("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
-            "message: ${(businessError as Businsess).message}");
+        console.error(`ndefFormatable formatReadOnly AsyncCallback catch Code: ${(businessError as BusinessError).code}, message: ${(businessError as BusinessError).message}`);
     }
 }
 ```

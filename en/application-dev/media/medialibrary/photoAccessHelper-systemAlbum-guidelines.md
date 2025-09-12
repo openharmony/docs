@@ -1,4 +1,10 @@
 # Managing System Albums
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The photoAccessHelper module provides APIs for managing system albums, including **Favorites**, **Videos**, and **Screenshots**.
 
@@ -32,7 +38,6 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-a
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
@@ -67,7 +72,6 @@ Example: Favorite an image.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -112,8 +116,6 @@ Example: Obtain an image from **Favorites**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -160,7 +162,6 @@ Example: Unfavorite an image.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -211,7 +212,6 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-a
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
@@ -246,7 +246,6 @@ Example: Obtain a video in **Videos**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -292,7 +291,6 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-a
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
@@ -327,7 +325,6 @@ Example: Obtain a media asset from **Screenshots**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

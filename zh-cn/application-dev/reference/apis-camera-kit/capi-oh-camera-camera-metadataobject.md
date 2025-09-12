@@ -1,4 +1,10 @@
 # Camera_MetadataObject
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 

@@ -1,9 +1,10 @@
 # 使用扩展的Node-API接口在异步线程中运行和停止事件循环
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 开发者在自己创建的ArkTS运行环境中调用异步的ArkTS接口时，可以通过使用Node-API中的扩展接口napi_run_event_loop和napi_stop_event_loop来运行和停止ArkTS实例中的事件循环。

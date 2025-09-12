@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 手势冲突是指多个手势识别器在同一组件或重叠区域同时识别时产生竞争，导致识别结果不符合预期。常见冲突场景包括：
 - 同一组件上的多手势（如按钮同时添加点击与长按手势）。
@@ -394,7 +395,7 @@
 
 这需要结合[onTouchTestDone](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ontouchtestdone20)接口来实现：
 
-完成触摸测试后，系统通过该接口回调返回所有手势识别器对象。应用可根据类型、组件标识或关联组件信息筛选识别器，并通过调用[preventBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#preventbegin20)接口主动禁用特定识别器。
+完成触摸测试后，系统通过该接口回调返回所有手势识别器对象。应用可根据类型、组件标识或关联组件信息筛选识别器，并通过调用[preventBegin](../reference/apis-arkui/arkui-ts/ts-gesture-common.md#preventbegin20)接口主动禁用特定识别器。
 
 根据手势类型进行禁用：
 

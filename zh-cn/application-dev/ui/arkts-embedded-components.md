@@ -1,4 +1,10 @@
 # 同应用进程嵌入式组件 (EmbeddedComponent)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 EmbeddedComponent组件允许当前页面嵌入同一应用内其他EmbeddedUIExtensionAbility供给的UI内容，这些UI运行在独立进程中，提供更高的安全性和稳定性。
 
@@ -173,13 +179,12 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = new LocalStorage();
-
-@Entry(storage)
+@Entry
 @Component
 struct Extension {
   @State message: string = 'EmbeddedUIExtensionAbility Index';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private localStorage: LocalStorage|undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined = this.localStorage.get<UIExtensionContentSession>('session');
 
   build() {
     Column() {

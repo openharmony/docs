@@ -883,7 +883,7 @@ The **marqueeOptions** settings take effect only when **textOverflow** is set to
 
 | Name| Type                                      | Mandatory| Description                                      |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18)> | Yes| Marquee settings, including the switch, step length, number of loops, and direction.|
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextMarqueeOptions](#textmarqueeoptions18)> | Yes| Marquee settings, including the switch, step length, number of loops, and direction.|
 
 ## TextSpanType<sup>11+</sup>
 

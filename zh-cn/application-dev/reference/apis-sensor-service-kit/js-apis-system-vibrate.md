@@ -1,4 +1,10 @@
 # @system.vibrator (振动)
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 vibrator模块提供控制马达振动的能力，主要包含灯的列表查询、打开灯、关闭灯等接口，振动器的列表查询、振动器的振动器效果查询、触发/关闭振动器等接口。
 
@@ -45,7 +51,7 @@ let vibrateOptions: VibrateOptions = {
     console.info('Succeed in vibrating');
   },
   fail: (data: string, code: number) => {
-    console.info(`Failed to vibrate. Data: ${data}, code: ${code}`);
+    console.error(`Failed to vibrate. Data: ${data}, code: ${code}`);
   },
   complete: () => {
     console.info('completed in vibrating');

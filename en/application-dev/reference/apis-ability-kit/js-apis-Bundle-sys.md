@@ -1,4 +1,10 @@
 # @ohos.bundle (Bundle) (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs for obtaining information about an application, including [bundle information](js-apis-bundle-BundleInfo.md), [application information](js-apis-bundle-ApplicationInfo.md), and [ability information](js-apis-bundle-AbilityInfo.md). It also provides APIs to obtain and set the application disabling state.
 
@@ -100,9 +106,9 @@ import bundle from '@ohos.bundle';
 
 bundle.getBundleInstaller((err, data) => {
   if (err.code == 0) {
-    console.error('getBundleInstaller failed.');
+    console.error('getBundleInstaller successfully.');
   } else {
-    console.info('getBundleInstaller successfully');
+    console.info('getBundleInstaller failed.');
   }
 });
 ```
@@ -221,7 +227,7 @@ This is a system API.
 | Name     | Type               | Mandatory| Description                            |
 | ---------- | ------------------- | ---- |--------------------------------|
 | bundleName | string              | Yes  | Bundle name.         |
-| isEnable   | boolean             | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable   | boolean             | Yes  | Whether to enable the application. **true** to enable, **false** otherwise.|
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.                         |
 
 **Example**
@@ -265,7 +271,7 @@ This is a system API.
 | Name    | Type   | Mandatory| Description                                           |
 | ---------- | ------- | ---- | ----------------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
-| isEnable   | boolean | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable   | boolean | Yes  | Whether to enable the application. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -313,7 +319,7 @@ This is a system API.
 | Name  | Type                                        | Mandatory| Description                                           |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
-| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable | boolean                                      | Yes  | Whether to enable the ability. **true** to enable, **false** otherwise.|
 | callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result.                   |
 
 ## bundle.setAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
@@ -341,7 +347,7 @@ This is a system API.
 | Name  | Type                                        | Mandatory| Description                                           |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
-| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable | boolean                                      | Yes  | Whether to enable the ability. **true** to enable, **false** otherwise.|
 
 **Return value**
 

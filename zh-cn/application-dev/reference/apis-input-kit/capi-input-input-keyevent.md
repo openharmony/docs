@@ -1,8 +1,15 @@
 # Input_KeyEvent
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
-要注入的按键事件。
+按键事件对象。
 
 **起始版本：** 12
 

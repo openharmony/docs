@@ -112,10 +112,6 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **装饰器类型：**\@Component
 
-
-**参数：**
-
-
 | 名称        | 类型                        | 必填 | 装饰器类型 | 说明                   |
 | ----------- | --------------------------- | ---- | ---------- | ---------------------- |
 | contentItem | [ContentItem](#contentitem) | 否   | \@Prop     | 定义左侧以及中间元素。 |

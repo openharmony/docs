@@ -1,4 +1,10 @@
 # Managing User Albums
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The photoAccessHelper module provides APIs for user album management, including creating or deleting a user album, adding images and videos to a user album, and deleting images and videos from a user album.
 
@@ -19,8 +25,8 @@ Use [MediaAlbumChangeRequest.createAlbumRequest](../../reference/apis-media-libr
 
 The album name must meet the following requirements:
 
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. \ / : * ? " ' ` < > | { } [ ]
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -39,7 +45,6 @@ Example: Create a user album.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
@@ -75,7 +80,6 @@ Example: Obtain the user album **albumName**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -103,10 +107,10 @@ To rename a user album, modify the **Album.albumName** attribute of the album.
 
 Use [FetchResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md) to obtain the user album to rename, use [MediaAlbumChangeRequest.setAlbumName](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md#setalbumname11) to set the new name, and then use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to apply the changes to the database.
 
-The new user album names must comply with the following requirements:
+The new user album names must meet the following requirements:
 
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. \ / : * ? " ' ` < > | { } [ ]
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -128,7 +132,6 @@ Example: Rename the user album **albumName**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -180,7 +183,6 @@ Example: Add an image to the user album **albumName**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -239,7 +241,6 @@ Example: Obtain an image in the user album **albumName**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -298,7 +299,6 @@ Example: Remove an image from the user album **albumName**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -356,7 +356,6 @@ Example: Delete the user album **albumName**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

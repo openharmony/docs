@@ -1,4 +1,10 @@
 # @ohos.multimedia.audioHaptic (音振协同)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 音振协同，表示在播放声音时，可同步发起振动。可用于来电通知、消息提醒等场景。
 
@@ -49,10 +55,10 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
-| 名称      | 类型            |必填   | 说明                              |
-| --------- | -------------- | ---- | --------------------------------- |
-| muteAudio   | boolean      | 否   | 是否将音频静音，true表示将音频静音，false表示正常播放声音。若不填该参数，则默认为false。 |
-| muteHaptics | boolean      | 否   | 是否禁止振动，true表示将禁止振动，false表示正常振动。若不填该参数，则默认为false。 |
+| 名称      | 类型            |只读  | 可选 | 说明                              |
+| --------- | -------------- | ---- |---| --------------------------------- |
+| muteAudio   | boolean      | 否   | 是 | 是否将音频静音，true表示将音频静音，false表示正常播放声音。若不填该参数，则默认为false。 |
+| muteHaptics | boolean      | 否   | 是 | 是否禁止振动，true表示将禁止振动，false表示正常振动。若不填该参数，则默认为false。 |
 
 ## AudioHapticFileDescriptor<sup>20+</sup>
 
@@ -115,7 +121,7 @@ let id = 0;
 audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
   console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
   id = value;
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to register source ${err}`);
 });
 ```
@@ -148,17 +154,18 @@ registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFi
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-const context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-const audioFile = await context.resourceManager.getRawFd('audioTest.ogg'); // 需要改成rawfile目录下的对应文件。
-const audioFd: audioHaptic.AudioHapticFileDescriptor = {
+let audioFile = context.resourceManager.getRawFdSync('audioTest.ogg'); // 需要改成rawfile目录下的对应文件。
+let audioFd: audioHaptic.AudioHapticFileDescriptor = {
   fd: audioFile.fd,
   offset: audioFile.offset,
   length: audioFile.length,
 };
 
-const hapticFile = await context.resourceManager.getRawFd('hapticTest.json'); // 需要改成rawfile目录下的对应文件。
-const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
+let hapticFile = context.resourceManager.getRawFdSync('hapticTest.json'); // 需要改成rawfile目录下的对应文件。
+let hapticFd: audioHaptic.AudioHapticFileDescriptor = {
   fd: hapticFile.fd,
   offset: hapticFile.offset,
   length: hapticFile.length,
@@ -166,10 +173,10 @@ const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
 let id = 0;
 
 audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
-  console.info(`Promise returned with registered source id ${value}.`);
+  console.info('Succeeded in doing registerSourceFromFd.');
   id = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to register source ${err}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to registerSourceFromFd. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -210,7 +217,7 @@ let id = 0; // 需要通过registerSource方法获取。
 
 audioHapticManagerInstance.unregisterSource(id).then(() => {
   console.info('Succeeded in doing unregisterSource.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to unregisterSource. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -338,7 +345,7 @@ let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undef
 audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
   audioHapticPlayerInstance = value;
   console.info('Succeeded in doing createPlayer.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to createPlayer. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -425,7 +432,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.start().then(() => {
   console.info(`Promise returned to indicate that start playing successfully.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to start playing. ${err}`);
 });
 ```
@@ -460,7 +467,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.stop().then(() => {
   console.info(`Promise returned to indicate that stop playing successfully.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to stop playing. ${err}`);
 });
 ```
@@ -494,7 +501,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to release the audio haptic player. ${err}`);
 });
 ```
@@ -540,7 +547,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.setVolume(0.5).then(() => {
   console.info('Promise returned to indicate that set volume successfully.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set volume. ${err}`);
 });
 ```
@@ -584,7 +591,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.setLoop(true).then(() => {
   console.info('Promise returned to indicate that set player loop successfully.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set player loop. ${err}`);
 });
 ```

@@ -1,5 +1,10 @@
 # 传感器开发指导(C/C++)
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 场景介绍
 
@@ -50,7 +55,7 @@
    ```json
    "requestPermissions": [
          {
-           "name": "ohos.permission.ACCELEROMETER",
+           "name": "ohos.permission.ACCELEROMETER"
          },
        ]
    ```
@@ -115,6 +120,9 @@
        if (ret != SENSOR_SUCCESS) {
            return;
        }
+       if (data == nullptr) {
+           return;
+       }
        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "sensorType:%{public}d, dataLen:%{public}d, accuracy:%{public}d", sensorType, length, accuracy);
        for (uint32_t i = 0; i < length; ++i) {
            OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "data[%{public}d]:%{public}f", i, data[i]);
@@ -174,11 +182,14 @@
                return nullptr;
            }
        }
-       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos sucessful");
+       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos successful");
        ret = OH_Sensor_DestroyInfos(sensors, count); // 销毁实例数组并回收内存。
        if (ret != SENSOR_SUCCESS) {
            return nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
 
@@ -225,6 +236,9 @@
            OH_Sensor_DestroySubscriber(g_user); // 销毁Sensor_Subscriber实例并回收内存。
            g_user = nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
    

@@ -1,4 +1,10 @@
 # Class (MediaAssetChangeRequest)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -185,7 +191,7 @@ Create an asset change request based on the file type and filename extension.
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
 | photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
 | extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
-| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | No  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | No  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.<br>The file name must not contain any invalid characters, which are:.. \ / : * ? " ' ` < > \| { } [ ]|
 
 **Return value**
 
@@ -242,7 +248,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | Yes  | Array of assets to delete.|
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | Yes  | Array of media assets to delete. The array can contain a maximum of 300 elements. <!--Del-->System applications are not subject to this limitation.<!--DelEnd--> |
 
 **Return value**
 
@@ -300,7 +306,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media assets to delete. The array can contain a maximum of 300 elements. <!--Del-->System applications are not subject to this limitation.<!--DelEnd--> |
 
 **Return value**
 
@@ -408,9 +414,9 @@ Sets the media asset title.
 | title | string | Yes  | Title to set.|
 
 The title must meet the following requirements:
-- It does not contain a file name extension.
-- The file name cannot exceed 255 characters.
-- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
+- It must not contain a file name extension.
+- The total length of the file name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **Error codes**
 
@@ -475,7 +481,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011 |  System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
+| 14000011 |  System inner fail.        |
 | 14000016 |  Operation Not Support.     |
 
 **Example**

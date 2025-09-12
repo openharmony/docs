@@ -1,4 +1,10 @@
 # 动画样式
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 组件支持通过style或css设置动态的旋转、平移及缩放效果。

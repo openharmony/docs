@@ -3,7 +3,7 @@
 
 ## Overview
 
-The OH_AVDataSource struct describes a user-defined data source.
+The struct describes a user-defined data source.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

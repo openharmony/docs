@@ -1,5 +1,12 @@
 # @ohos.i18n (国际化-I18n)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 本模块提供系统相关的或者增强的[国际化](../../internationalization/i18n-l10n.md)能力，包括区域管理、电话号码处理、日历等，相关接口为[ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/)标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化能力。
 
 >  **说明：**
@@ -19,6 +26,8 @@ import { i18n } from '@kit.LocalizationKit';
 
 ## System<sup>9+</sup>
 
+提供系统属性相关的能力，包括语言地区名称翻译、支持的语言地区列表获取和系统语言地区获取等。
+
 ### getDisplayCountry<sup>9+</sup>
 
 static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
@@ -33,7 +42,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | 是    | 国家地区，要求是合法的国家地区码。            |
+| country      | string  | 是    | 国家地区，要求是[合法的国家地区码](../../internationalization/i18n-locale-culture.md#实现原理)。            |
 | locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
@@ -82,7 +91,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | 是    | 语言，要求是合法的语言ID。            |
+| language     | string  | 是    | 语言，要求是[合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。            |
 | locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
@@ -152,7 +161,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID。 |
+| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。 |
 
 **返回值：**
 
@@ -200,8 +209,8 @@ static isSuggested(language: string, region?: string): boolean
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| language | string | 是    | 合法的语言ID，例如zh。 |
-| region   | string | 否    | 合法的地区ID，例如CN。<br>默认值：SIM卡国家地区。  |
+| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)，例如zh。 |
+| region   | string | 否    | [合法的国家地区码](../../internationalization/i18n-locale-culture.md#实现原理)，例如CN。<br>默认值：SIM卡国家地区。  |
 
 **返回值：**
 
@@ -240,7 +249,7 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统当前设置的语言。
+获取系统当前设置的语言。若要监听系统语言变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -263,7 +272,7 @@ static getSystemLanguage(): string
 
 static getSystemRegion(): string
 
-获取系统当前设置的国家地区。
+获取系统当前设置的国家地区。若要监听系统地区变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -280,9 +289,11 @@ static getSystemRegion(): string
   let systemRegion: string = i18n.System.getSystemRegion(); // 如果系统地区为中国，systemRegion = 'CN'
   ```
 
-### getSystemLocale<sup>9+</sup>
+### getSystemLocale<sup>(deprecated)</sup>
 
 static getSystemLocale(): string
+
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 获取系统当前设置的区域。
 
@@ -301,11 +312,33 @@ static getSystemLocale(): string
   let systemLocale: string = i18n.System.getSystemLocale(); // 如果系统语言为简体中文、地区为中国，systemLocale = 'zh-Hans-CN'
   ```
 
+### getSystemLocaleInstance<sup>20+</sup>
+
+static getSystemLocaleInstance(): Intl.Locale
+
+获取系统当前设置的区域对象。若要监听系统区域变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+| 类型     | 说明      |
+| ------ | ------- |
+| [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 系统区域对象。 |
+
+**示例：**
+  ```ts
+  import { i18n } from '@kit.LocalizationKit';
+
+  let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();
+  ```
+
 ### is24HourClock<sup>9+</sup>
 
 static is24HourClock(): boolean
 
-判断系统时制是否为24小时制。
+判断系统时制是否为24小时制。若要监听系统时制变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_time_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_TIME_CHANGED，具体可参考[用户偏好](../../internationalization/i18n-user-preferences.md#开发步骤)。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -381,7 +414,7 @@ static setAppPreferredLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID或'default'。 |
+| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)或'default'。 |
 
 **错误码：**
 
@@ -461,7 +494,7 @@ static getSimplifiedLanguage(language?: string): string
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| language | string | 否    | 合法的语言ID。默认值：系统语言。 |
+| language | string | 否    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。默认值：系统语言。 |
 
 **返回值：**
 
@@ -674,6 +707,8 @@ getCalendar(locale: string, type? : string): Calendar
 
 ## EntityRecognizer<sup>11+</sup>
 
+提供实体识别相关的能力，可以获取文本中实体的类型和起止位置。当前支持识别的实体包括电话号码和时间日期。
+
 ### constructor<sup>11+</sup>
 
 constructor(locale?: string)
@@ -774,6 +809,8 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 | end | number | 否    | 否    | 实体在输入字符串中的终止位置。 |
 
 ## Calendar<sup>8+</sup>
+
+提供历法相关的能力，包括历法名称获取和日期计算等。
 
 ### setTime<sup>8+</sup>
 
@@ -1218,6 +1255,7 @@ compareDays(date: Date): number
 
 ## PhoneNumberFormat<sup>8+</sup>
 
+提供电话号码相关的能力，包括电话号码有效性判断、格式化和归属地获取。
 
 ### constructor<sup>8+</sup>
 
@@ -1244,7 +1282,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 ### isValidNumber<sup>8+</sup>
 
-isValidNumber(number: string): boolean
+isValidNumber(phoneNumber: string): boolean
 
 判断电话号码是否为当前电话号码格式化对象中国家的有效号码。
 
@@ -1256,7 +1294,7 @@ isValidNumber(number: string): boolean
 
 | 参数名    | 类型     | 必填   | 说明        |
 | ------ | ------ | ---- | --------- |
-| number | string | 是    | 待判断的电话号码。 |
+| phoneNumber | string | 是    | 待判断的电话号码。 |
 
 **返回值：**
 
@@ -1273,7 +1311,7 @@ isValidNumber(number: string): boolean
 
 ### format<sup>8+</sup>
 
-format(number: string): string
+format(phoneNumber: string): string
 
 对电话号码进行格式化。
 
@@ -1288,7 +1326,7 @@ format(number: string): string
 
 | 参数名    | 类型     | 必填   | 说明         |
 | ------ | ------ | ---- | ---------- |
-| number | string | 是    | 待格式化的电话号码。 |
+| phoneNumber | string | 是    | 待格式化的电话号码。 |
 
 **返回值：**
 
@@ -1315,7 +1353,7 @@ format(number: string): string
 
 ### getLocationName<sup>9+</sup>
 
-getLocationName(number: string, locale: string): string
+getLocationName(phoneNumber: string, locale: string): string
 
 获取电话号码归属地。
 
@@ -1327,7 +1365,7 @@ getLocationName(number: string, locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | string | 是    | 电话号码。获取其他地区电话号码的归属地时，需要在电话号码前加00+国际区号。 |
+| phoneNumber | string | 是    | 电话号码。获取其他地区电话号码的归属地时，需要在电话号码前加00+国际区号。 |
 | locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。 |
 
 **返回值：**
@@ -1401,6 +1439,7 @@ getInstance(locale?: string): IndexUtil
 
 ## IndexUtil<sup>8+</sup>
 
+提供索引相关的能力，包括区域索引列表和文本索引值获取。
 
 ### getIndexList<sup>8+</sup>
 
@@ -1508,6 +1547,7 @@ getLineInstance(locale: string): BreakIterator
 
 ## BreakIterator<sup>8+</sup>
 
+提供文本换行相关的能力，包括可换行点的获取、移动和识别等。
 
 ### setLineBreakText<sup>8+</sup>
 
@@ -1777,6 +1817,8 @@ getTimeZone(zoneID?: string): TimeZone
   ```
 
 ## TimeZone
+
+提供时区相关的能力，包括时区名称翻译、偏移量获取和跳变规则获取等。
 
 ### getID
 
@@ -2075,6 +2117,7 @@ let dateFormat: string =
 
 ## ZoneRules<sup>20+</sup>
 
+提供查询时区跳变规则的能力。
 
 ### nextTransition<sup>20+</sup>
 
@@ -2113,6 +2156,7 @@ let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(d
 
 ## ZoneOffsetTransition<sup>20+</sup>
 
+提供解析时区跳变规则的能力。
 
 ### getMilliseconds<sup>20+</sup>
 
@@ -2201,6 +2245,7 @@ zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
 
 ## Transliterator<sup>9+</sup>
 
+提供文本音译相关的能力，包括音译支持范围获取和文本音译等。
 
 ### getAvailableIDs<sup>9+</sup>
 
@@ -2279,30 +2324,32 @@ transform(text: string): string
 **示例：**
   ```ts
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
-  let wordArray = ['中国', '德国', '美国', '法国']
+  let wordArray: string[] = ['中国', '德国', '美国', '法国']
   for (let i = 0; i < wordArray.length; i++) {
-    let transliterLatn =
-      transliterator.transform(wordArray[i]); // transliterLatn依次为：'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
+    let transliterateLatn: string =
+      transliterator.transform(wordArray[i]); // transliterateLatn依次为：'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
   }
 
   // 汉语音译去声调
-  let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let transliterAscii = transliter.transform('中国'); // transliterAscii = 'zhong guo'
+  transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+  let transliterateAscii: string = transliterator.transform('中国'); // transliterateAscii = 'zhong guo'
 
   // 汉语姓氏读音
-  let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let transliterNames = nameTransliter.transform('单老师'); // transliterNames = 'shàn lǎo shī'
-  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames = 'zhǎng sūn wú jì'
+  transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
+  let transliterateNames: string = transliterator.transform('单老师'); // transliterateNames = 'shàn lǎo shī'
+  transliterateNames = transliterator.transform('长孙无忌'); // transliterateNames = 'zhǎng sūn wú jì'
   ```
 
 
 ## Unicode<sup>9+</sup>
 
+提供字符属性相关的能力，包括判断字符是否为空格、数字和字母等。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### isDigit<sup>9+</sup>
 
-static isDigit(char: string): boolean
+static isDigit(ch: string): boolean
 
 判断输入的字符是否是数字。
 
@@ -2314,7 +2361,7 @@ static isDigit(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2330,7 +2377,7 @@ static isDigit(char: string): boolean
 
 ### isSpaceChar<sup>9+</sup>
 
-static isSpaceChar(char: string): boolean
+static isSpaceChar(ch: string): boolean
 
 判断输入的字符是否是空格符。
 
@@ -2342,7 +2389,7 @@ static isSpaceChar(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2358,7 +2405,7 @@ static isSpaceChar(char: string): boolean
 
 ### isWhitespace<sup>9+</sup>
 
-static isWhitespace(char: string): boolean
+static isWhitespace(ch: string): boolean
 
 判断输入的字符是否是空白符。
 
@@ -2370,7 +2417,7 @@ static isWhitespace(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2386,7 +2433,7 @@ static isWhitespace(char: string): boolean
 
 ### isRTL<sup>9+</sup>
 
-static isRTL(char: string): boolean
+static isRTL(ch: string): boolean
 
 判断输入的字符是否是从右到左语言的字符。
 
@@ -2398,7 +2445,7 @@ static isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2414,7 +2461,7 @@ static isRTL(char: string): boolean
 
 ### isIdeograph<sup>9+</sup>
 
-static isIdeograph(char: string): boolean
+static isIdeograph(ch: string): boolean
 
 判断输入的字符是否是表意文字。
 
@@ -2426,7 +2473,7 @@ static isIdeograph(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2442,7 +2489,7 @@ static isIdeograph(char: string): boolean
 
 ### isLetter<sup>9+</sup>
 
-static isLetter(char: string): boolean
+static isLetter(ch: string): boolean
 
 判断输入的字符是否是字母。
 
@@ -2454,7 +2501,7 @@ static isLetter(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2470,7 +2517,7 @@ static isLetter(char: string): boolean
 
 ### isLowerCase<sup>9+</sup>
 
-static isLowerCase(char: string): boolean
+static isLowerCase(ch: string): boolean
 
 判断输入的字符是否是小写字母。
 
@@ -2482,7 +2529,7 @@ static isLowerCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2498,7 +2545,7 @@ static isLowerCase(char: string): boolean
 
 ### isUpperCase<sup>9+</sup>
 
-static isUpperCase(char: string): boolean
+static isUpperCase(ch: string): boolean
 
 判断输入的字符是否是大写字母。
 
@@ -2510,7 +2557,7 @@ static isUpperCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2526,7 +2573,7 @@ static isUpperCase(char: string): boolean
 
 ### getType<sup>9+</sup>
 
-static getType(char: string): string
+static getType(ch: string): string
 
 获取输入的字符的一般类别值。
 
@@ -2538,7 +2585,7 @@ static getType(char: string): string
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2589,6 +2636,7 @@ static getType(char: string): string
 
 ## I18NUtil<sup>9+</sup>
 
+国际化工具类，提供单位转换、获取日期顺序、获取时段名称、区域匹配和路径本地化等能力。
 
 ### unitConvert<sup>9+</sup>
 
@@ -2860,7 +2908,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001   | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 
@@ -2933,6 +2981,7 @@ try {
 
 ## Normalizer<sup>10+</sup>
 
+提供文本标准化的能力。
 
 ### getInstance<sup>10+</sup>
 
@@ -3038,6 +3087,7 @@ normalize(text: string): string
 
 ## HolidayManager<sup>11+</sup>
 
+提供解析节假日数据的能力，包括节假日判断和指定年份节假日列表获取等。
 
 ### constructor<sup>11+</sup>
 
@@ -3227,7 +3277,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: Intl.Locale): SimpleD
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3318,7 +3368,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: Intl.Locale): Simpl
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3381,6 +3431,8 @@ try {
 ```
 
 ## SimpleDateTimeFormat<sup>18+</sup>
+
+提供时间日期格式化的能力。
 
 ### format<sup>18+</sup>
 
@@ -3457,7 +3509,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleN
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3521,6 +3573,8 @@ try {
 
 ## SimpleNumberFormat<sup>18+</sup>
 
+提供数字格式化的能力。
+
 ### format<sup>18+</sup>
 
 format(value: number): string
@@ -3559,9 +3613,13 @@ try {
 
 ## StyledNumberFormat<sup>18+</sup>
 
-### constructor<sup>18+</sup>
+提供富文本数字格式化的能力。
+
+### constructor<sup>(deprecated)</sup>
 
 constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
+
+> 从API version 18开始支持，从API version 20开始废弃，建议使用[constructor](#constructor20)替代。
 
 创建需要富文本显示的数字格式化的对象。
 
@@ -3611,6 +3669,57 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
   }
   ```
 
+### constructor<sup>20+</sup>
+
+constructor(numberFormat: Intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
+
+创建需要富文本显示的数字格式化的对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| numberFormat | [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) \| [SimpleNumberFormat](#simplenumberformat18) | 是   | 用于格式化数字的对象。  |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
+    let decimalTextStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
+    let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
+    let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
+
+    // 通过Intl.NumberFormat创建StyledNumberFormat对象
+    let numFmt: Intl.NumberFormat = new Intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
+    let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
+
+    // 通过SimpleNumberFormat创建StyledNumberFormat对象
+    let locale: Intl.Locale = new Intl.Locale('zh');
+    let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
+    let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.StyledNumberFormat failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 ### format<sup>18+</sup>
 
 format(value: number): StyledString
@@ -3636,7 +3745,6 @@ format(value: number): StyledString
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
 
   try {
     let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
@@ -3644,8 +3752,8 @@ format(value: number): StyledString
     let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
     let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
 
-    // 通过intl.NumberFormat创建StyledNumberFormat对象
-    let numFmt: intl.NumberFormat = new intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
+    // 通过Intl.NumberFormat创建StyledNumberFormat对象
+    let numFmt: Intl.NumberFormat = new Intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
     let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
       integer: integerTextStyle,
       decimal: decimalTextStyle,
@@ -3656,7 +3764,7 @@ format(value: number): StyledString
     let formattedNumber: StyledString = styledNumFmt.format(1234.5678);
 
     // 通过SimpleNumberFormat创建StyledNumberFormat对象
-    let locale: intl.Locale = new intl.Locale('zh');
+    let locale: Intl.Locale = new Intl.Locale('zh');
     let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
     let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
       integer: integerTextStyle,
@@ -3796,7 +3904,7 @@ getSystemRegion(): string
 
 getSystemLocale(): string
 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getSystemLocale](#getsystemlocale9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 获取系统区域ID。
 
@@ -4012,7 +4120,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 ### isDigit<sup>(deprecated)</sup>
 
-isDigit(char: string): boolean
+isDigit(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isDigit](#isdigit9)替代。
 
@@ -4024,7 +4132,7 @@ isDigit(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4035,7 +4143,7 @@ isDigit(char: string): boolean
 
 ### isSpaceChar<sup>(deprecated)</sup>
 
-isSpaceChar(char: string): boolean
+isSpaceChar(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isSpaceChar](#isspacechar9)替代。
 
@@ -4047,7 +4155,7 @@ isSpaceChar(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4058,7 +4166,7 @@ isSpaceChar(char: string): boolean
 
 ### isWhitespace<sup>(deprecated)</sup>
 
-isWhitespace(char: string): boolean
+isWhitespace(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isWhitespace](#iswhitespace9)替代。
 
@@ -4070,7 +4178,7 @@ isWhitespace(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4081,7 +4189,7 @@ isWhitespace(char: string): boolean
 
 ### isRTL<sup>(deprecated)</sup>
 
-isRTL(char: string): boolean
+isRTL(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isRTL](#isrtl9)替代。
 
@@ -4093,7 +4201,7 @@ isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4104,7 +4212,7 @@ isRTL(char: string): boolean
 
 ### isIdeograph<sup>(deprecated)</sup>
 
-isIdeograph(char: string): boolean
+isIdeograph(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isIdeograph](#isideograph9)替代。
 
@@ -4116,7 +4224,7 @@ isIdeograph(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4127,7 +4235,7 @@ isIdeograph(char: string): boolean
 
 ### isLetter<sup>(deprecated)</sup>
 
-isLetter(char: string): boolean
+isLetter(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isLetter](#isletter9)替代。
 
@@ -4139,7 +4247,7 @@ isLetter(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4150,7 +4258,7 @@ isLetter(char: string): boolean
 
 ### isLowerCase<sup>(deprecated)</sup>
 
-isLowerCase(char: string): boolean
+isLowerCase(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isLowerCase](#islowercase9)替代。
 
@@ -4162,7 +4270,7 @@ isLowerCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4173,7 +4281,7 @@ isLowerCase(char: string): boolean
 
 ### isUpperCase<sup>(deprecated)</sup>
 
-isUpperCase(char: string): boolean
+isUpperCase(ch: string): boolean
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[isUpperCase](#isuppercase9)替代。
 
@@ -4185,7 +4293,7 @@ isUpperCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4196,7 +4304,7 @@ isUpperCase(char: string): boolean
 
 ### getType<sup>(deprecated)</sup>
 
-getType(char: string): string
+getType(ch: string): string
 
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[getType](#gettype9)替代。
 
@@ -4208,7 +4316,7 @@ getType(char: string): string
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 

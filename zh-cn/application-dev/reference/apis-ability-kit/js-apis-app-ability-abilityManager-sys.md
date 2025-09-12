@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @duan-sizhao; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 AbilityManager模块提供获取、新增、修改Ability相关信息和运行状态信息的能力。
 
@@ -1008,6 +1009,8 @@ queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicS
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在Phone、Tablet和TV设备中可正常调用，在其他设备中返回801错误码。
 
 **参数**：
 

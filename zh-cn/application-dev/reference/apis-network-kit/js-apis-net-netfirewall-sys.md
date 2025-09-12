@@ -1,5 +1,12 @@
 # @ohos.net.netFirewall (网络防火墙)(系统接口)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 网络防火墙模块为应用程序提供查询防火墙能力。 通过配置防火墙策略，应用程序可以对机器进行防火墙策略管控，并提供防火墙拦截记录的查询。
 
 > **说明：**
@@ -17,7 +24,7 @@ import netfirewall from '@ohos.net.netFirewall';
 
 getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage\>
 
-按userId获取截获的记录，需要指定分页查询参数。
+按userId获取截获的记录，需要指定分页查询参数。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -54,7 +61,7 @@ getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<Inte
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let interceptRecordParam: netFirewall.RequestParam = {
@@ -78,16 +85,16 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 
 **系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
-| 名称       | 类型   | 必填 | 说明                |
-|------------| -------|------|-------------------- |
-| time       | number | 是   | 时间戳。            |
-| localIp    | string | 否   | 本地IP。            |
-| remoteIp   | string | 否   | 远端IP。            |
-| localPort  | number | 否   | 本地端口，默认值为0。          |
-| remotePort | number | 否   | 远端端口，默认值为0。          |
-| protocol   | number | 否   | 传输层协议，默认值为0。        |
-| appUid     | number | 否   | 应用程序或服务UID，默认值为0。 |
-| domain     | string | 否   | 域名。              |
+| 名称       | 类型   | 只读 |可选| 说明                |
+|------------| -------|------|---|-------------------- |
+| time       | number | 否   |否| 时间戳。            |
+| localIp    | string | 否   |是 |本地IP。            |
+| remoteIp   | string | 否   |是| 远端IP。            |
+| localPort  | number | 否   |是 |本地端口，默认值为0。          |
+| remotePort | number | 否   | 是|远端端口，默认值为0。          |
+| protocol   | number | 否   |是|传输层协议，默认值为0。        |
+| appUid     | number | 否   |是 |应用程序或服务UID，默认值为0。 |
+| domain     | string | 否   | 是|域名。              |
 
 ## InterceptedRecordPage
 
@@ -97,9 +104,9 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 
 **系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
-| 名称       | 类型                                            | 必填 | 说明       |
-|------------| ----------------------------------------------- |------|----------  |
-| page       | number                                          | 是   | 当前页码。 |
-| pageSize   | number                                          | 是   | 页面大小。 |
-| totalPage  | number                                          | 是   | 总页数。   |
-| data       | Array\<[InterceptedRecord](#interceptedrecord)> | 是   | 页面数据。 |
+| 名称       | 类型                                            | 只读 |可选| 说明       |
+|------------| ----------------------------------------------- |------|---|----------  |
+| page       | number                                          | 否   |否 |当前页码。 |
+| pageSize   | number                                          |   否  |否 |页面大小。 |
+| totalPage  | number                                          |  否   | 否|总页数。   |
+| data       | Array\<[InterceptedRecord](#interceptedrecord)> |  否   |否 |页面数据。 |

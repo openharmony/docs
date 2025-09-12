@@ -1,4 +1,10 @@
 # Playing Moving Photos with MovingPhotoView 
+<!--Kit: Media Library Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @tangye123456-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 The system provides the **MovingPhotoView** component, which can be used to play moving photos in social networking and gallery applications.
 
@@ -86,12 +92,6 @@ The restrictions on using the **MovingPhotoView** component are as follows:
             Button('stop')
               .onClick(() => {
                 this.controller.stopPlayback()
-              })
-              .margin(5)
-            // Button controlling whether to mute the playback.
-            Button('mute')
-              .onClick(() => {
-                this.isMuted = !this.isMuted
               })
               .margin(5)
           }

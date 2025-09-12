@@ -1,4 +1,10 @@
 # Stationary开发指导
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 
 ## 场景介绍
@@ -71,10 +77,11 @@
    ```ts
    import { stationary } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data=' + JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -87,9 +94,10 @@
    ```ts
    import { stationary } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+
    try {
       stationary.once('still', (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data=' + JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -102,9 +110,10 @@
    ```ts
    import { stationary } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data=' + JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;

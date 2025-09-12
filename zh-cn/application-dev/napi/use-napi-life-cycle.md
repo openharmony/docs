@@ -1,9 +1,10 @@
 # 使用Node-API接口进行生命周期相关开发
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -209,7 +210,7 @@ cpp部分代码
 // log.h用于C++中日志打印
 #include "hilog/log.h"
 #include "napi/native_api.h"
-// 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_create_reference函数之前，你需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
+// 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_add_finalizer函数之前，你需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
 napi_ref g_ref;
 
 void Finalizer(napi_env env, void *data, void *hint)

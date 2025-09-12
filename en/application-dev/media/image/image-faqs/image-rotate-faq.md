@@ -1,4 +1,10 @@
 # Obtaining the Rotation Angle of an Image
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Introduction to Image Rotation Angles
 

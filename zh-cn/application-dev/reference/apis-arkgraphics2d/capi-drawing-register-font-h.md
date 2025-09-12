@@ -1,5 +1,10 @@
 # drawing_register_font.h
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 ## 概述
 
 定义绘制模块中字体管理器相关的函数。
@@ -81,7 +86,7 @@ uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* f
 
 | 类型 | 说明 |
 | -- | -- |
-| uint32_t | 返回错误代码，0为成功，6为缓冲区大小为零，7为字体集合为空，9文件损坏。 |
+| uint32_t | 返回错误代码，0为成功，6为缓冲区大小为零，7为字体集合为空，9为文件损坏。 |
 
 ### OH_Drawing_UnregisterFont()
 

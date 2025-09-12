@@ -124,7 +124,7 @@ Enumerates the error codes.
 | SCAN_ERROR_NO_PERMISSION | Permission denied.|
 | SCAN_ERROR_INVALID_PARAMETER | Invalid parameter.|
 | SCAN_ERROR_GENERIC_FAILURE | Internal error.|
-| SCAN_ERROR_RPC_FAILURE | PRC communication error.|
+| SCAN_ERROR_RPC_FAILURE | RPC communication error.|
 | SCAN_ERROR_SERVER_FAILURE | Server error.|
 | SCAN_ERROR_UNSUPPORTED | Operation not supported.|
 | SCAN_ERROR_CANCELED | Operation canceled.|
@@ -240,7 +240,7 @@ int32_t OH_Scan_CloseScanner(const char* scannerId);
 
 **Description**
 
-Disconnects from a scanner.
+Disconnects from the scanner.
 
 **System capability**: ohos.permission.PRINT
 

@@ -1,4 +1,10 @@
 # Managing Media Assets
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Applications can call photoAccessHelper APIs to manage media assets (images and videos).
 
@@ -16,6 +22,10 @@ You can obtain media assets based on the specified conditions, such as the media
 
 Use [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) with the [FetchOptions](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-i.md#fetchoptions) object to specify the search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained, check whether the media assets exist in the database.
 
+> **NOTICE**
+>
+> When [PhotoAccessHelper.PhotoKeys.URI](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys) is used as the search criterion, only the [DataSharePredicates.equalTo](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) API is supported.
+
 To obtain the object at the specified position (for example, the first one, the last one, or the one with the specified index) in the result set, use [FetchResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md).
 
 **Prerequisites**
@@ -31,7 +41,6 @@ Example: Obtain the image **test.jpg**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -78,7 +87,6 @@ Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -126,7 +134,6 @@ Example: Create an image asset.
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
@@ -172,7 +179,6 @@ Example: Rename the first image in the obtained image assets.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -218,7 +224,6 @@ Example: Move the first file in the result set to the trash.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

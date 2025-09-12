@@ -1,8 +1,17 @@
 # oh_key_code.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
-按键设备的键码值。
+按键设备的键值。
+
+**引用文件：** <multimodalinput/oh_key_code.h>
 
 **库：** libohinput.so
 
@@ -18,7 +27,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Input_KeyCode](#input_keycode) | Input_KeyCode | 键码值。 |
+| [Input_KeyCode](#input_keycode) | Input_KeyCode | 键值。 |
 
 ## 枚举类型说明
 
@@ -30,7 +39,7 @@ enum Input_KeyCode
 
 **描述**
 
-键码值。
+键值。
 
 **起始版本：** 12
 

@@ -2,8 +2,9 @@
 <!--Kit: Data Protection Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @winnieHuYu-->
-<!--SE: @lucky-jinduo-->
-<!--TSE: @nacyli-->
+<!--Designer: @lucky-jinduo-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 数据防泄漏（DLP）是系统提供的系统级的数据防泄漏解决方案，提供跨设备的文件的权限管理、加密存储、授权访问等能力。
 
@@ -53,11 +54,13 @@ getDLPGatheringPolicy(): Promise&lt;GatheringPolicyType&gt;
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let res: dlpPermission.GatheringPolicyType = await dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略。
-  console.info('res', JSON.stringify(res));
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+async function ExampleFunction() {
+  try {
+    let res: dlpPermission.GatheringPolicyType = await dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略。
+    console.info('res', JSON.stringify(res));
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  }
 }
 ```
 
@@ -155,12 +158,16 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-  let res: dlpPermission.DLPSandboxInfo = await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱。
-  console.info('res', JSON.stringify(res));
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+async function ExampleFunction() {
+  try {
+    let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+    let res: dlpPermission.DLPSandboxInfo =
+      await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100,
+        uri); // 安装DLP沙箱。
+    console.info('res', JSON.stringify(res));
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  }
 }
 ```
 
@@ -262,13 +269,15 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-try {
-  let res = await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri);
-  console.info('res', JSON.stringify(res));
-  await dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  try {
+    let res = await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri);
+    console.info('res', JSON.stringify(res));
+    await dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  }
 }
 ```
 
@@ -311,19 +320,22 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-try {
-  let res = await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri) // 安装DLP沙箱。
-  console.info('res', JSON.stringify(res));
-  dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex, (err, res) => {
-    if (err !== undefined) {
-      console.error('uninstallDLPSandbox error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
-} catch (err) {
-  console.error('uninstallDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  try {
+    let res = await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100,
+      uri) // 安装DLP沙箱。
+    console.info('res', JSON.stringify(res));
+    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex, (err, res) => {
+      if (err !== undefined) {
+        console.error('uninstallDLPSandbox error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  } catch (err) {
+    console.error('uninstallDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
+  }
 }
 ```
 
@@ -427,9 +439,9 @@ try {
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpProperty | [DLPProperty](#dlpproperty) | 否 | 是 | 表示DLP文件授权相关信息。 |
+| dlpProperty | [DLPProperty](#dlpproperty) | 否 | 否 | 表示DLP文件授权相关信息。 |
 
 ### addDLPLinkFile
 
@@ -476,33 +488,35 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
-
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+    return;
   }
-}
+
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
+  }
 }
 ```
 
@@ -546,40 +560,41 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
-
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
-  dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
-    if (err !== undefined) {
-      console.error('addDLPLinkFile error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-    fileIo.closeSync(file);
-  });
-} catch (err) {
-  console.error('addDLPLinkFile error,', (err as BusinessError).code, (err as BusinessError).message);
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
   }
-}
+
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
+      if (err !== undefined) {
+        console.error('addDLPLinkFile error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+      fileIo.closeSync(file);
+    });
+  } catch (err) {
+    console.error('addDLPLinkFile error,', (err as BusinessError).code, (err as BusinessError).message);
+    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
+  }
 }
 ```
 
@@ -621,34 +636,35 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
-
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId) // 打开DLP文件。
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  dlpFile.stopFuseLink(); // 暂停link读写。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
   }
-}
+
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId) // 打开DLP文件。
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
+  }
 }
 ```
 
@@ -691,41 +707,42 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
-
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  dlpFile.stopFuseLink(async (err, res) => {
-    if (err !== undefined) {
-      console.error('stopFuseLink error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-    fileIo.closeSync(file);
-  });
-} catch (err) {
-  console.error('stopFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
   }
-}
+
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(async (err, res) => {
+      if (err !== undefined) {
+        console.error('stopFuseLink error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+      fileIo.closeSync(file);
+    });
+  } catch (err) {
+    console.error('stopFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
+    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
+  }
 }
 ```
 
@@ -767,33 +784,35 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  await dlpFile.stopFuseLink(); // 暂停link读写。
-  await dlpFile.resumeFuseLink(); // 恢复link读写。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    await dlpFile.stopFuseLink(); // 暂停link读写。
+    await dlpFile.resumeFuseLink(); // 恢复link读写。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -837,40 +856,42 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  await dlpFile.stopFuseLink(); // 暂停link读写。
-  dlpFile.resumeFuseLink(async (err, res) => {
-    if (err !== undefined) {
-      console.error('resumeFuseLink error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    await dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.resumeFuseLink(async (err, res) => {
+      if (err !== undefined) {
+        console.error('resumeFuseLink error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+      fileIo.closeSync(file);
+    });
+  } catch (err) {
+    console.error('resumeFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
     await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-    fileIo.closeSync(file);
-  });
-} catch (err) {
-  console.error('resumeFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -920,34 +941,36 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  await dlpFile.stopFuseLink(); // 暂停link读写。
-  await dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件。
-  await dlpFile.resumeFuseLink(); // 恢复link读写。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    await dlpFile.stopFuseLink(); // 暂停link读写。
+    await dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件。
+    await dlpFile.resumeFuseLink(); // 恢复link读写。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -992,41 +1015,43 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  await dlpFile.stopFuseLink(); // 暂停link读写。
-  dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件。
-    if (err !== undefined) {
-      console.error('replaceDLPLinkFile error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-      await dlpFile?.resumeFuseLink(); // 恢复link读写。
-    }
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    await dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件。
+      if (err !== undefined) {
+        console.error('replaceDLPLinkFile error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+        await dlpFile?.resumeFuseLink(); // 恢复link读写。
+      }
+      await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+      fileIo.closeSync(file);
+    });
+  } catch (err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
     await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-    fileIo.closeSync(file);
-  });
-} catch (err) {
-  console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -1076,32 +1101,34 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  await dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    await dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -1146,39 +1173,41 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
-  dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件。
-    if (err !== undefined) {
-      console.error('deleteDLPLinkFile error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件。
+      if (err !== undefined) {
+        console.error('deleteDLPLinkFile error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+      fileIo.closeSync(file);
+    });
+  } catch (err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
     await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-    fileIo.closeSync(file);
-  });
-} catch (err) {
-  console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -1234,36 +1263,38 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let destFile: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let destFile: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
-
-try {
-  file = fileIo.openSync(uri).fd;
-  destFile = fileIo.openSync('destUri').fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  await dlpFile.recoverDLPFile(destFile); // 还原DLP文件。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
   }
-  if (destFile) {
-    fileIo.closeSync(destFile);
+
+  try {
+    file = fileIo.openSync(uri).fd;
+    destFile = fileIo.openSync('destUri').fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    await dlpFile.recoverDLPFile(destFile); // 还原DLP文件。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
+    if (destFile) {
+      fileIo.closeSync(destFile);
+    }
   }
 }
 ```
@@ -1314,44 +1345,46 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let destFile: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let destFile: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
-
-try {
-  file = fileIo.openSync(uri).fd;
-  destFile = fileIo.openSync('destUri').fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  dlpFile.recoverDLPFile(destFile, async (err, res) => { // 还原DLP文件。
-    if (err !== undefined) {
-      console.error('recoverDLPFile error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-    fileIo.closeSync(file);
-    fileIo.closeSync(destFile);
-  });
-} catch (err) {
-  console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
-  await dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
   }
-  if (destFile) {
-    fileIo.closeSync(destFile);
+
+  try {
+    file = fileIo.openSync(uri).fd;
+    destFile = fileIo.openSync('destUri').fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    dlpFile.recoverDLPFile(destFile, async (err, res) => { // 还原DLP文件。
+      if (err !== undefined) {
+        console.error('recoverDLPFile error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+      fileIo.closeSync(file);
+      fileIo.closeSync(destFile);
+    });
+  } catch (err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    await dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
+    if (destFile) {
+      fileIo.closeSync(destFile);
+    }
   }
 }
 ```
@@ -1398,30 +1431,32 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -1469,36 +1504,38 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId);  // 打开DLP文件。
-  dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件。
-    if (err !== undefined) {
-      console.error('closeDLPFile error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+    dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件。
+      if (err !== undefined) {
+        console.error('closeDLPFile error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      fileIo.closeSync(file);
+    });
+  } catch (err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    if (file) {
+      fileIo.closeSync(file);
     }
-    fileIo.closeSync(file);
-  });
-} catch (err) {
-  console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
-  if (file) {
-    fileIo.closeSync(file);
   }
 }
 ```
@@ -1531,7 +1568,7 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1539,7 +1576,7 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
@@ -1553,34 +1590,36 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let dlpUri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt';
-let file: number | undefined = undefined;
-let dlp: number | undefined = undefined;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let dlpUri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt';
+  let file: number | undefined = undefined;
+  let dlp: number | undefined = undefined;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlp = fileIo.openSync(dlpUri).fd;
-  let dlpProperty: dlpPermission.DLPProperty = {
-    ownerAccount: 'zhangsan',
-    ownerAccountType: dlpPermission.AccountType.DOMAIN_ACCOUNT,
-    authUserList: [],
-    contactAccount: 'zhangsan',
-    offlineAccess: true,
-    ownerAccountID: 'xxxxxxx',
-    everyoneAccessList: []
-  };
-  dlpFile = await dlpPermission.generateDLPFile(file, dlp, dlpProperty); // 生成DLP文件。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-} finally {
-  dlpFile?.closeDLPFile(); // 关闭DLP对象。
-  if (file) {
-    fileIo.closeSync(file);
-  }
-  if (dlp) {
-    fileIo.closeSync(dlp);
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlp = fileIo.openSync(dlpUri).fd;
+    let dlpProperty: dlpPermission.DLPProperty = {
+      ownerAccount: 'zhangsan',
+      ownerAccountType: dlpPermission.AccountType.DOMAIN_ACCOUNT,
+      authUserList: [],
+      contactAccount: 'zhangsan',
+      offlineAccess: true,
+      ownerAccountID: 'xxxxxxx',
+      everyoneAccessList: []
+    };
+    dlpFile = await dlpPermission.generateDLPFile(file, dlp, dlpProperty); // 生成DLP文件。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+  } finally {
+    dlpFile?.closeDLPFile(); // 关闭DLP对象。
+    if (file) {
+      fileIo.closeSync(file);
+    }
+    if (dlp) {
+      fileIo.closeSync(dlp);
+    }
   }
 }
 ```
@@ -1608,7 +1647,7 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1616,7 +1655,7 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
@@ -1665,7 +1704,6 @@ try {
     fileIo.closeSync(dlp);
   }
 }
-}
 ```
 
 ## dlpPermission.openDLPFile<sup>11+</sup>
@@ -1695,7 +1733,7 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1703,14 +1741,14 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
 | 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 | 19100019 | The DLP file has expired. |
 | 19100020 | No network connection. |
 
@@ -1722,30 +1760,32 @@ import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
-let file: number | undefined = undefined;
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
-let appId = '';
-let bundleName = 'com.ohos.note';
-let userId = 100;
-let dlpFile: dlpPermission.DLPFile | undefined = undefined;
+async function ExampleFunction() {
+  let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
+  let file: number | undefined = undefined;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+  let appId = '';
+  let bundleName = 'com.ohos.note';
+  let userId = 100;
+  let dlpFile: dlpPermission.DLPFile | undefined = undefined;
 
-try{
-  let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
-  appId = data.signatureInfo.appId;
-} catch (err) {
-  console.error('error', err.code, err.message);
-}
+  try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    appId = data.signatureInfo.appId;
+  } catch (err) {
+    console.error('error', err.code, err.message);
+  }
 
-try {
-  file = fileIo.openSync(uri).fd;
-  dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
-} catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
-  dlpFile?.closeDLPFile(); // 关闭DLP对象。
-} finally {
-  if (file) {
-    fileIo.closeSync(file);
+  try {
+    file = fileIo.openSync(uri).fd;
+    dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
+    dlpFile?.closeDLPFile(); // 关闭DLP对象。
+  } finally {
+    if (file) {
+      fileIo.closeSync(file);
+    }
   }
 }
 ```
@@ -1772,7 +1812,7 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1780,14 +1820,14 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
 | 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 | 19100019 | The DLP file has expired. |
 | 19100020 | No network connection. |
 
@@ -1905,7 +1945,7 @@ async function ExampleFunction(plainFilePath: string, dlpFilePath: string) {
       enterprise: 'customProperty'
     };
     await dlpPermission.generateDlpFileForEnterprise(plaintextFd, dlpFd, dlpProperty, customProperty);
-    console.info('Successfully generate DLP file for enterprise.');    
+    console.info('Successfully generate DLP file for enterprise.');
   } catch(err) {
     console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   } finally {
@@ -1960,8 +2000,10 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
 
 **示例：**
 
@@ -2024,7 +2066,14 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
+| 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
 
 **示例：**
 
@@ -2109,12 +2158,12 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | 否 | 是 | 表示被授权用户账号。不超过255字节。 |
-| authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户账号类型。 |
-| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 |
-| permExpiryTime | number | 否 | 是 | 表示授权到期时间。 |
+| authAccount | string | 否 | 否 | 表示被授权用户账号。不超过255字节。 |
+| authAccountType | [AccountType](#accounttype) | 否 | 否 | 表示被授权用户账号类型。 |
+| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 否 | 表示被授予的权限。 |
+| permExpiryTime | number | 否 | 否 | 表示授权到期时间。 |
 
 ## CustomProperty<sup>20+</sup>
 
@@ -2136,17 +2185,17 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | 否 | 是 | 表示权限设置者账号。不超过255字节。 |
-| ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。不超过255字节。 |
-| ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者账号类型。 |
-| authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 |
-| contactAccount | string | 否 | 是 | 表示联系人账号。不超过255字节。 |
-| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
-| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
-| expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
-| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 否 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
+| ownerAccount | string | 否 | 否 | 表示权限设置者账号。不超过255字节。 |
+| ownerAccountID | string | 否 | 否 | 表示权限设置者账号的ID。不超过255字节。 |
+| ownerAccountType | [AccountType](#accounttype) | 否 | 否 | 表示权限设置者账号类型。 |
+| authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 是 | 表示授权用户列表，默认为空。 |
+| contactAccount | string | 否 | 否 | 表示联系人账号。不超过255字节。 |
+| offlineAccess | boolean | 否 | 否 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
+| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 是 | 表示授予所有人的权限，默认为空。 |
+| expireTime<sup>11+</sup> | number | 否 | 是 | 表示文件权限到期时间戳，默认为空。 |
+| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
 
 ## GatheringPolicyType
 

@@ -3,14 +3,15 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yylong-->
-<!--SE: @yylong-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
 列表是一种复杂的容器，当列表项达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能。它适合用于呈现同类数据类型或数据类型集，例如图片和文本。在列表中显示数据集合是许多应用程序中的常见要求（如通讯录、音乐列表、购物清单等）。
 
-使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../ui/state-management/arkts-rendering-control-overview.md)方式生成子组件。
+使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../ui/rendering-control/arkts-rendering-control-overview.md)方式生成子组件。
 
 在圆形屏幕设备上，推荐使用[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)。
 
@@ -257,9 +258,9 @@ List() {
 
 ## 迭代列表内容
 
-通常，应用通过数据集合动态地创建列表。使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
+通常，应用通过数据集合动态地创建列表。使用[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
 
-ArkTS通过[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单形式的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组，使用ForEach中嵌套ListItem的形式来代替多个平铺的、内容相似的ListItem，从而减少重复代码。
+ArkTS通过[ForEach](../ui/rendering-control/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单形式的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组，使用ForEach中嵌套ListItem的形式来代替多个平铺的、内容相似的ListItem，从而减少重复代码。
 
 
 ```ts
@@ -486,6 +487,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 ```ts
 import { util } from '@kit.ArkTS';
+
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -797,6 +799,7 @@ ListItem() {
    ```ts
    //ToDoListItem.ets
    import { ToDo } from './ToDo';
+
    @Component
    export struct ToDoListItem {
      @Link isEditMode: boolean;
@@ -939,6 +942,7 @@ ListItem() {
     ```ts
    // 结构参考
    import { util } from '@kit.ArkTS';
+
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -971,6 +975,7 @@ ListItem() {
     ```ts
     // 结构参考
     import { util } from '@kit.ArkTS';
+
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
@@ -997,9 +1002,9 @@ ListItem() {
 
 ## 长列表的处理
 
-[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。
+[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。
 
-关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
+关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
 当使用懒加载方式渲染列表时，为了更好的列表滚动体验，减少列表滑动时出现白块，List组件提供了cachedCount参数用于设置列表项缓存数，懒加载方式只会预加载List显示区域外cachedCount的内容，而非懒加载会全部加载。无论懒加载还是非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。
 
@@ -1037,6 +1042,7 @@ List() {
 
     ```ts
     import { curves } from '@kit.ArkUI';
+
     interface ItemInfo {
       index: number,
       name: string,
@@ -1181,7 +1187,7 @@ List() {
           .fillColor($r('sys.color.ohos_id_color_fourth'))
           .height(30)
           .width(30)
-          .rotate({ angle: !!itemGroup.children.length ? (this.expandedItems[itemGroup.index] ? 180 : 0) : 180 })
+          .rotate({ angle: !!itemGroup.children.length ? (this.expandedItems[itemGroup.index] ? 0 : 180) : 180 })
           .animation({ curve: curves.interpolatingSpring(0, 1, 228, 22) })
       }
       .width("100%")
@@ -1341,6 +1347,30 @@ List() {
        }
      }
      ```
+
+## 设置边缘滑动效果
+
+边缘滑动效果是指当用户滑动滚动组件至边缘后，继续滑动时触发的交互效果。当前List支持通过[edgeEffect](../reference/apis-arkui/arkui-ts/ts-container-list.md#edgeeffect)属性设置三种边缘滑动效果，分别为弹簧效果（即回弹效果）、阴影效果、无效果。具体效果说明请参见[EdgeEffect](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#edgeeffect)的枚举说明。
+
+当List组件的内容区大于等于一屏时，List的边缘滑动效果默认为回弹效果，如下图所示。
+
+  **图27** 边缘回弹效果
+
+![edge_effect_spring](figures/edge_effect_spring.gif)
+
+设置.edgeEffect(EdgeEffect.None)时，List无边缘滑动效果，如下图所示。
+
+  **图28** 无边缘滑动效果
+
+![edge_effect_none](figures/edge_effect_none.gif)
+
+从API version 18开始，List还支持只设置单边的边缘滑动效果，如设置.edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true, effectEdge: EffectEdge.START })来实现起始边有边缘回弹效果，末尾边无效果，如下图所示。
+
+  **图29** 单边边缘滑动效果
+
+![edge_effect_spring_start](figures/edge_effect_spring_start.gif)
+
+需要注意的是，当List组件的内容区小于一屏时，List默认无边缘滑动效果。若要启用边缘回弹效果，可以通过设置.edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })来实现。
 
 ## 相关实例
 

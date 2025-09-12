@@ -3,8 +3,9 @@
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
-<!--SE: @lanming-->
-<!--TSE: @PAFT-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 对应算法规格请查看[密钥派生算法规格：HKDF](crypto-key-derivation-overview.md#hkdf算法)。
 

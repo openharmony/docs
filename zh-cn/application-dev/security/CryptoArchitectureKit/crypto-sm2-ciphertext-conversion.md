@@ -3,8 +3,9 @@
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
-<!--SE: @lanming-->
-<!--TSE: @PAFT-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 当前支持的SM2密文格式为国密标准的ASN.1格式，其中各参数组合顺序为C1C3C2，具体参数含义请参考[转换SM2密文格式](crypto-asym-encrypt-decrypt-spec.md#转换sm2密文格式)。
 

@@ -1,9 +1,10 @@
 # 事件
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
-<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
-<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
-<!--TSE: @ghiker-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-events-hover.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
 
@@ -44,8 +45,8 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onAlert',
                 message: 'text',
@@ -91,7 +92,11 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
-即将离开刷新或关闭当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
+即将完成页面刷新或关闭当前页面时触发此回调。
+
+> **说明：**
+>
+> - 如果当前Web组件没有得到焦点，刷新或关闭当前页面时onBeforeUnload不会触发。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -99,7 +104,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](./arkts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | 是    | 即将离开刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](./arkts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | 是    | 即将完成页面刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -118,9 +123,9 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
-              console.log("event.isReload:" + event?.isReload ?? 'false');
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
+              console.info("event.isReload:" + event?.isReload ?? 'false');
               this.uiContext.showAlertDialog({
                 title: 'onBeforeUnload',
                 message: 'text',
@@ -199,8 +204,8 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onConfirm',
                 message: 'text',
@@ -335,9 +340,9 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
           .onPrompt((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
-              console.log("event.value:" + event.value);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
+              console.info("event.value:" + event.value);
               this.title = "来自" + event.url + "的消息";
               this.message = event.message;
               this.promptResult = event.value;
@@ -410,10 +415,10 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage());
-              console.log('getSourceId:' + event.message.getSourceId());
-              console.log('getLineNumber:' + event.message.getLineNumber());
-              console.log('getMessageLevel:' + event.message.getMessageLevel());
+              console.info('getMessage:' + event.message.getMessage());
+              console.info('getSourceId:' + event.message.getSourceId());
+              console.info('getLineNumber:' + event.message.getLineNumber());
+              console.info('getMessageLevel:' + event.message.getMessageLevel());
             }
             return false;
           })
@@ -430,7 +435,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
   <body>
   <script>
       function myFunction() {
-          console.log("onconsole printf");
+          console.info("onconsole printf");
       }
   </script>
   </body>
@@ -467,11 +472,11 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onDownloadStart((event) => {
             if (event) {
-              console.log('url:' + event.url)
-              console.log('userAgent:' + event.userAgent)
-              console.log('contentDisposition:' + event.contentDisposition)
-              console.log('contentLength:' + event.contentLength)
-              console.log('mimetype:' + event.mimetype)
+              console.info('url:' + event.url)
+              console.info('userAgent:' + event.userAgent)
+              console.info('contentDisposition:' + event.contentDisposition)
+              console.info('contentLength:' + event.contentLength)
+              console.info('mimetype:' + event.mimetype)
             }
           })
       }
@@ -509,17 +514,17 @@ onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
             if (event) {
-              console.log('getErrorInfo:' + event.error.getErrorInfo());
-              console.log('getErrorCode:' + event.error.getErrorCode());
-              console.log('url:' + event.request.getRequestUrl());
-              console.log('isMainFrame:' + event.request.isMainFrame());
-              console.log('isRedirect:' + event.request.isRedirect());
-              console.log('isRequestGesture:' + event.request.isRequestGesture());
-              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
+              console.info('getErrorInfo:' + event.error.getErrorInfo());
+              console.info('getErrorCode:' + event.error.getErrorCode());
+              console.info('url:' + event.request.getRequestUrl());
+              console.info('isMainFrame:' + event.request.isMainFrame());
+              console.info('isRedirect:' + event.request.isRedirect());
+              console.info('isRequestGesture:' + event.request.isRequestGesture());
+              console.info('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
               let result = event.request.getRequestHeader();
-              console.log('The request header result size is ' + result.length);
+              console.info('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
+                console.info('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
               }
             }
           })
@@ -532,7 +537,7 @@ onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
 onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
-网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。
+网页加载资源遇到的HTTP错误（响应码>=400）时触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -540,7 +545,7 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
 | 参数名      | 类型                                     | 必填   | 说明       |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback  | Callback\<[OnHttpErrorReceiveEvent](./arkts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | 是    | 网页收到加载资源加载HTTP错误时触发。 |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](./arkts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | 是    | 网页收到加载资源返回HTTP错误码时触发。 |
 
 **示例：**
 
@@ -558,24 +563,24 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl());
-              console.log('isMainFrame:' + event.request.isMainFrame());
-              console.log('isRedirect:' + event.request.isRedirect());
-              console.log('isRequestGesture:' + event.request.isRequestGesture());
-              console.log('getResponseData:' + event.response.getResponseData());
-              console.log('getResponseEncoding:' + event.response.getResponseEncoding());
-              console.log('getResponseMimeType:' + event.response.getResponseMimeType());
-              console.log('getResponseCode:' + event.response.getResponseCode());
-              console.log('getReasonMessage:' + event.response.getReasonMessage());
+              console.info('url:' + event.request.getRequestUrl());
+              console.info('isMainFrame:' + event.request.isMainFrame());
+              console.info('isRedirect:' + event.request.isRedirect());
+              console.info('isRequestGesture:' + event.request.isRequestGesture());
+              console.info('getResponseData:' + event.response.getResponseData());
+              console.info('getResponseEncoding:' + event.response.getResponseEncoding());
+              console.info('getResponseMimeType:' + event.response.getResponseMimeType());
+              console.info('getResponseCode:' + event.response.getResponseCode());
+              console.info('getReasonMessage:' + event.response.getReasonMessage());
               let result = event.request.getRequestHeader();
-              console.log('The request header result size is ' + result.length);
+              console.info('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+                console.info('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
               let resph = event.response.getResponseHeader();
-              console.log('The response header result size is ' + resph.length);
+              console.info('The response header result size is ' + resph.length);
               for (let i of resph) {
-                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+                console.info('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
             }
           })
@@ -614,7 +619,7 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -626,7 +631,7 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
-网页加载完成时触发该回调，且只在主frame触发。
+网页加载完成时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -652,7 +657,7 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -690,7 +695,7 @@ onLoadStarted(callback: Callback\<OnLoadStartedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadStarted((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -728,7 +733,7 @@ onLoadFinished(callback: Callback\<OnLoadFinishedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadFinished((event) => {
             if (event) {
-              console.log('url:' + event.url);
+              console.info('url:' + event.url);
             }
           })
       }
@@ -765,7 +770,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
             if (event) {
-              console.log('newProgress:' + event.newProgress);
+              console.info('newProgress:' + event.newProgress);
             }
           })
       }
@@ -777,7 +782,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-通知应用程序页面document标题已更改，如果加载的页面未设置<title\>元素 指定的标题，ArkWeb将基于URL生成标题并返回给应用程序。
+当页面文档标题`<title>`元素发生变更时，触发回调。若当前页面未显示设置标题，ArkWeb将在加载完成前基于页面的URL生成标题并返回给应用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -785,7 +790,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 | 参数名   | 类型   | 必填   | 说明          |
 | ----- | ------ | ---- | ------------- |
-| callback | Callback\<[OnTitleReceiveEvent](./arkts-basic-components-web-i.md#ontitlereceiveevent12)\> | 是    | 定义主应用程序文档标题更改时触发。 |
+| callback | Callback\<[OnTitleReceiveEvent](./arkts-basic-components-web-i.md#ontitlereceiveevent12)\> | 是    | 页面文档标题发生变更时触发 |
 
 **示例：**
 
@@ -803,8 +808,8 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
             if (event) {
-              console.log('title:' + event.title);
-              console.log('isRealTitle:' + event.isRealTitle);
+              console.info('title:' + event.title);
+              console.info('isRealTitle:' + event.isRealTitle);
             }
           })
       }
@@ -816,7 +821,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
-加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。
+导航完成时触发该回调，用于应用更新其访问的历史链接。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -824,7 +829,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 | 参数名         | 类型    | 必填   | 说明                                     |
 | ----------- | ------- | ---- | ---------------------------------------- |
-| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在网页刷新访问历史记录时触发。                |
+| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在导航完成时触发。                |
 
 **示例：**
 
@@ -842,7 +847,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
             if (event) {
-              console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
+              console.info('url:' + event.url + ' isReload:' + event.isRefreshed);
             }
           })
       }
@@ -886,7 +891,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
             if (event) {
-              console.log('reason:' + event.renderExitReason);
+              console.info('reason:' + event.renderExitReason);
             }
           })
       }
@@ -926,7 +931,7 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessNotResponding((data) => {
-            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+            console.info("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
               ", [process]=" + data.pid + ", [reason]=" + data.reason);
           })
       }
@@ -963,7 +968,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessResponding(() => {
-            console.log("onRenderProcessResponding again");
+            console.info("onRenderProcessResponding again");
           })
       }
     }
@@ -1003,7 +1008,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
        Column() {
          Web({ src: $rawfile('index.html'), controller: this.controller })
            .onShowFileSelector((event) => {
-             console.log('MyFileUploader onShowFileSelector invoked')
+             console.info('MyFileUploader onShowFileSelector invoked')
              const documentSelectOptions = new picker.DocumentSelectOptions();
              let uri: string | null = null;
              const documentViewPicker = new picker.DocumentViewPicker();
@@ -1034,7 +1039,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
 
      async selectFile(result: FileSelectorResult): Promise<void> {
        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -1097,11 +1102,11 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
            .onShowFileSelector((event) => {
              openCamera((result) => {
                if (event) {
-                 console.log('Title is ' + event.fileSelector.getTitle());
-                 console.log('Mode is ' + event.fileSelector.getMode());
-                 console.log('Accept types are ' + event.fileSelector.getAcceptType());
-                 console.log('Capture is ' + event.fileSelector.isCapture());
-                 console.log('Mime types are ' + event.fileSelector.getMimeTypes());
+                 console.info('Title is ' + event.fileSelector.getTitle());
+                 console.info('Mode is ' + event.fileSelector.getMode());
+                 console.info('Accept types are ' + event.fileSelector.getAcceptType());
+                 console.info('Capture is ' + event.fileSelector.isCapture());
+                 console.info('Mime types are ' + event.fileSelector.getMimeTypes());
                  event.result.handleFileList([result]);
                }
              }, this.getUIContext())
@@ -1156,7 +1161,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onResourceLoad((event) => {
-            console.log('onResourceLoad: ' + event.url);
+            console.info('onResourceLoad: ' + event.url);
           })
       }
     }
@@ -1167,7 +1172,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
-当前页面显示比例的变化时触发该回调。
+当页面显示比例发生变化时，触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1175,7 +1180,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScaleChangeEvent](./arkts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当前页面显示比例的变化时触发。 |
+| callback | Callback\<[OnScaleChangeEvent](./arkts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当页面显示比例发生变化时，触发该回调。 |
 
 **示例：**
 
@@ -1192,7 +1197,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
-            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
+            console.info('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           })
       }
     }
@@ -1240,7 +1245,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl());
+              console.info('url:' + event.request.getRequestUrl());
             }
             let head1: Header = {
               headerKey: "Connection",
@@ -1253,7 +1258,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
             // 将新元素追加到数组的末尾，并返回数组的新长度。
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
-            console.log('The response header result length is :' + length);
+            console.info('The response header result length is :' + length);
             const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
               this.responseWeb.setResponseHeader(this.heads);
               this.responseWeb.setResponseData(this.webData);
@@ -1264,7 +1269,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
               resolve("success");
             })
             promise.then(() => {
-              console.log("prepare response ready");
+              console.info("prepare response ready");
               this.responseWeb.setResponseIsReady(true);
             })
             this.responseWeb.setResponseIsReady(false);
@@ -1287,7 +1292,7 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnHttpAuthRequestEvent](./arkts-basic-components-web-i.md#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回ture表示http auth认证成功，返回false表示http auth认证失败。   |
+| callback | Callback\<[OnHttpAuthRequestEvent](./arkts-basic-components-web-i.md#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回true表示http auth认证成功，返回false表示http auth认证失败。   |
 
 **示例：**
 
@@ -1349,6 +1354,11 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 通知用户加载资源时发生SSL错误，只支持主资源。
 如果需要支持子资源，请使用[OnSslErrorEvent](./arkts-basic-components-web-events.md#onsslerrorevent12)接口。
 
+> **说明：**
+>
+> - 主资源：浏览器加载网页的入口文件，通常是HTML文档。  
+> - 子资源：主资源中引用的依赖文件，由主资源解析过程中遇到特定标签时触发加载。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -1366,7 +1376,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   
   function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
     if (!(certChainData instanceof Array)) {
-      console.log('failed, cert chain data type is not array');
+      console.info('failed, cert chain data type is not array');
       return;
     }
 
@@ -1379,8 +1389,8 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
         if (error) {
           console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
-          console.log('createX509Cert success');
-          console.log(ParseX509CertInfo(x509Cert));
+          console.info('createX509Cert success');
+          console.info(ParseX509CertInfo(x509Cert));
         }
       });
     }
@@ -1447,6 +1457,11 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用[isMainFrame](./arkts-basic-components-web-WebResourceRequest.md#ismainframe)字段进行区分。
 
+> **说明：**
+>
+> - 主资源：浏览器加载网页的入口文件，通常是HTML文档。  
+> - 子资源：主资源中引用的依赖文件，由主资源解析过程中遇到特定标签时触发加载。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -1464,7 +1479,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
   function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
     if (!(certChainData instanceof Array)) {
-      console.log('failed, cert chain data type is not array');
+      console.info('failed, cert chain data type is not array');
       return;
     }
 
@@ -1477,8 +1492,8 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
         if (error) {
           console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
-          console.log('createX509Cert success');
-          console.log(ParseX509CertInfo(x509Cert));
+          console.info('createX509Cert success');
+          console.info(ParseX509CertInfo(x509Cert));
         }
       });
     }
@@ -1513,12 +1528,12 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEvent((event: SslErrorEvent) => {
-            console.log("onSslErrorEvent url: " + event.url);
-            console.log("onSslErrorEvent error: " + event.error);
-            console.log("onSslErrorEvent originalUrl: " + event.originalUrl);
-            console.log("onSslErrorEvent referrer: " + event.referrer);
-            console.log("onSslErrorEvent isFatalError: " + event.isFatalError);
-            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame);
+            console.info("onSslErrorEvent url: " + event.url);
+            console.info("onSslErrorEvent error: " + event.error);
+            console.info("onSslErrorEvent originalUrl: " + event.originalUrl);
+            console.info("onSslErrorEvent referrer: " + event.referrer);
+            console.info("onSslErrorEvent isFatalError: " + event.isFatalError);
+            console.info("onSslErrorEvent isMainFrame: " + event.isMainFrame);
             LogCertInfo(event.certChainData);
             this.uiContext.showAlertDialog({
               title: 'onSslErrorEvent',
@@ -1562,193 +1577,232 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
   **示例：**
 
-  未对接证书管理的双向认证。
+安装私有凭证以实现双向认证。
 
-  ```ts
-  // xxx.ets API9
-  import { webview } from '@kit.ArkWeb';
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    uiContext: UIContext = this.getUIContext();
+@Entry
+@Component
+struct Index {
+  controller: WebviewController = new webview.WebviewController();
+  uiContext : UIContext = this.getUIContext();
+  context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+  uri: string = ''
 
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onClientAuthenticationRequest((event) => {
-            this.uiContext.showAlertDialog({
-              title: 'onClientAuthenticationRequest',
-              message: 'text',
-              primaryButton: {
-                value: 'confirm',
-                action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
-                }
-              },
-              secondaryButton: {
-                value: 'cancel',
-                action: () => {
-                  event.handler.cancel();
-                }
-              },
-              cancel: () => {
-                event.handler.ignore();
-              }
+  aboutToAppear(): void {
+    webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+  }
+
+  build() {
+    Column() {
+      Button("installPrivateCertificate").onClick(() => {
+        if (!this.context) {
+          return;
+        }
+
+        //注：badssl.com-client.p12需要替换为实际使用的证书文件
+        let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
+        certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
+          async (err: BusinessError, data: certificateManager.CMResult) => {
+            console.info(`installPrivateCertificate, uri==========${JSON.stringify(data.uri)}`)
+            if (!err && data.uri) {
+              this.uri = data.uri;
+            }
+          });
+      })
+      Button('加载需要客户端SSL证书的网站')
+        .onClick(() => {
+          this.controller.loadUrl("https://client.badssl.com")
+        })
+      Web({
+        src: "https://www.bing.com/",
+        controller: this.controller,
+      }).domStorageAccess(true)
+        .fileAccess(true)
+        .onPageBegin(event => {
+          console.info("extensions onpagebegin url " + event.url);
+        })
+        .onClientAuthenticationRequest((event) => {
+          console.info("onClientAuthenticationRequest ");
+          event.handler.confirm(this.uri);
+          return true;
+        })
+        .onSslErrorEventReceive(e => {
+          console.info(`onSslErrorEventReceive->${e.error.toString()}`);
+        })
+        .onErrorReceive((event) => {
+          if (event) {
+            this.getUIContext().getPromptAction().showToast({
+              message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+              alignment: Alignment.Center
             })
-          })
-      }
+            console.info('getErrorInfo:' + event.error.getErrorInfo());
+            console.info('getErrorCode:' + event.error.getErrorCode());
+            console.info('url:' + event.request.getRequestUrl());
+          }
+        })
+        .onTitleReceive(event  => {
+          console.info("title received " + event.title);
+        })
+
     }
   }
-  ```
+}
+```
 
-  对接证书管理的双向认证。
+对接证书管理，实现双向认证功能。
+  
+1. 构造 `GlobalContext` 单例对象。
+    ```ts
+    // GlobalContext.ets
+    export class GlobalContext {
+      private constructor() {}
+      private static instance: GlobalContext;
+      private _objects = new Map<string, Object>();
 
-  1. 构造单例对象GlobalContext。
+      public static getContext(): GlobalContext {
+        if (!GlobalContext.instance) {
+          GlobalContext.instance = new GlobalContext();
+        }
+        return GlobalContext.instance;
+      }
 
-     ```ts
-     // GlobalContext.ets
-     export class GlobalContext {
-       private constructor() {}
-       private static instance: GlobalContext;
-       private _objects = new Map<string, Object>();
+      getObject(value: string): Object | undefined {
+        return this._objects.get(value);
+      }
 
-       public static getContext(): GlobalContext {
-         if (!GlobalContext.instance) {
-           GlobalContext.instance = new GlobalContext();
-         }
-         return GlobalContext.instance;
-       }
+      setObject(key: string, objectClass: Object): void {
+        this._objects.set(key, objectClass);
+      }
+    }
+    ```
 
-       getObject(value: string): Object | undefined {
-         return this._objects.get(value);
-       }
+2. 构造 `CertManagerService` 对象以对接证书管理。
+<!--code_no_check-->
+    ```ts
+    // CertMgrService.ets
+    import { bundleManager, common, Want } from "@kit.AbilityKit";
+    import { BusinessError } from "@kit.BasicServicesKit";
+    import { GlobalContext } from './GlobalContext';
 
-       setObject(key: string, objectClass: Object): void {
-         this._objects.set(key, objectClass);
-       }
-     }
-     ```
+    export default class CertManagerService {
+      private static sInstance: CertManagerService;
+      private authUri = "";
+      private appUid = "";
 
+      public static getInstance(): CertManagerService {
+        if (CertManagerService.sInstance == null) {
+          CertManagerService.sInstance = new CertManagerService();
+        }
+        return CertManagerService.sInstance;
+      }
 
-  2. 实现双向认证。
+      async grantAppPm(): Promise<string> {
+        let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+        // 注：com.example.myapplication需要写实际应用名称
+        try {
+          const data = await bundleManager.getBundleInfoForSelf(bundleFlags)
+            .catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+              return null;
+            });
+          this.appUid = data?.appInfo?.uid?.toString() ?? '';
+          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+        } catch (err) {
+          let message = (err as BusinessError).message;
+          console.error('getBundleInfoForSelf failed: %{public}s', message);
+        }
 
-     ```ts
-     // xxx.ets API10
-     import { webview } from '@kit.ArkWeb';
-     import { common, Want, bundleManager } from '@kit.AbilityKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-     import { GlobalContext } from '../GlobalContext';
+        // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+        let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext;
+        await abilityContext.startAbilityForResult(
+          {
+            bundleName: "com.ohos.certmanager",
+            abilityName: "MainAbility",
+            uri: "requestAuthorize",
+            parameters: {
+              appUid: this.appUid, // 传入申请应用的appUid
+            }
+          } as Want)
+          .then((data: common.AbilityResult) => {
+            if (!data.resultCode && data.want) {
+              if (data.want.parameters) {
+                this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
+              }
+            }
+          })
+        return this.authUri;
+      }
+    }
+    ```
+3. 实现双向认证功能。
+<!--code_no_check-->
+    ```ts
+    import { webview } from '@kit.ArkWeb';
+    import CertManagerService from './CertMgrService';
+    import { promptAction } from '@kit.ArkUI';
 
-     let uri = "";
+    @Entry
+    @Component
+    struct Index {
+      controller: WebviewController = new webview.WebviewController();
+      certManager = CertManagerService.getInstance();
 
-     export default class CertManagerService {
-       private static sInstance: CertManagerService;
-       private authUri = "";
-       private appUid = "";
+      aboutToAppear(): void {
+        webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+      }
 
-       public static getInstance(): CertManagerService {
-         if (CertManagerService.sInstance == null) {
-           CertManagerService.sInstance = new CertManagerService();
-         }
-         return CertManagerService.sInstance;
-       }
+      build() {
+        Column() {
+          Button('加载需要客户端SSL证书的网站')
+            .onClick(() => {
+              this.controller.loadUrl("https://client.badssl.com")
+            })
+          Web({
+            src: "https://www.bing.com/",
+            controller: this.controller,
+          }).domStorageAccess(true)
+            .fileAccess(true)
+            .onPageBegin(event => {
+              console.info("extensions onpagebegin url " + event.url);
+            })
+            .onClientAuthenticationRequest((event) => {
+              console.info("onClientAuthenticationRequest ");
 
-       async grantAppPm(callback: (message: string) => void) {
-         let message = '';
-         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-         // 注：com.example.myapplication需要写实际应用名称
-         try {
-           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-            this.appUid = data.appInfo.uid.toString();
-           }).catch((err: BusinessError) => {
-             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-           });
-         } catch (err) {
-           let message = (err as BusinessError).message;
-           console.error('getBundleInfoForSelf failed: %{public}s', message);
-         }
+              this.certManager.grantAppPm().then(result => {
+                console.info(`grantAppPm, URI==========${result}`);
+                event.handler.confirm(result);
+              })
+              return true;
+            })
+            .onSslErrorEventReceive(e => {
+              console.info(`onSslErrorEventReceive->${e.error.toString()}`);
+            })
+            .onErrorReceive((event) => {
+              if (event) {
+                this.getUIContext().getPromptAction().showToast({
+                  message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+                  alignment: Alignment.Center
+                })
+                console.info('getErrorInfo:' + event.error.getErrorInfo());
+                console.info('getErrorCode:' + event.error.getErrorCode());
+                console.info('url:' + event.request.getRequestUrl());
+              }
+            })
+            .onTitleReceive(event  => {
+              console.info("title received " + event.title);
+            })
 
-         // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-         await abilityContext.startAbilityForResult(
-           {
-             bundleName: "com.ohos.certmanager",
-             abilityName: "MainAbility",
-             uri: "requestAuthorize",
-             parameters: {
-               appUid: this.appUid, // 传入申请应用的appUid
-             }
-           } as Want)
-           .then((data: common.AbilityResult) => {
-             if (!data.resultCode && data.want) {
-               if (data.want.parameters) {
-                 this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
-               }
-             }
-           })
-         message += "after grantAppPm authUri: " + this.authUri;
-         uri = this.authUri;
-         callback(message)
-       }
-     }
-
-     @Entry
-     @Component
-     struct WebComponent {
-       controller: webview.WebviewController = new webview.WebviewController();
-       @State message: string = 'Hello World' // message主要是调试观察使用
-       certManager = CertManagerService.getInstance();
-       uiContext: UIContext = this.getUIContext();
-
-       build() {
-         Row() {
-           Column() {
-             Row() {
-               // 第一步：需要先进行授权，获取到uri
-               Button('GrantApp')
-                 .onClick(() => {
-                   this.certManager.grantAppPm((data) => {
-                     this.message = data;
-                   });
-                 })
-               // 第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-               Button("ClientCertAuth")
-                 .onClick(() => {
-                   this.controller.loadUrl('https://www.example2.com'); // 支持双向认证的服务器网站
-                 })
-             }
-
-             Web({ src: 'https://www.example1.com', controller: this.controller })
-               .fileAccess(true)
-               .javaScriptAccess(true)
-               .domStorageAccess(true)
-               .onlineImageAccess(true)
-
-               .onClientAuthenticationRequest((event) => {
-                 this.uiContext.showAlertDialog({
-                   title: 'ClientAuth',
-                   message: 'Text',
-                   confirm: {
-                     value: 'Confirm',
-                     action: () => {
-                       event.handler.confirm(uri);
-                     }
-                   },
-                   cancel: () => {
-                     event.handler.cancel();
-                   }
-                 })
-               })
-           }
-         }
-         .width('100%')
-         .height('100%')
-       }
-     }
-     ```
+        }
+      }
+    }
+    ```
 
 ## onPermissionRequest<sup>9+</sup>
 
@@ -1998,8 +2052,8 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
-              console.info("x coord = " + event.param.x());
-              console.info("link url = " + event.param.getLinkUrl());
+              console.info(TAG + "x coord = " + event.param.x());
+              console.info(TAG + "link url = " + event.param.getLinkUrl());
               this.linkUrl = event.param.getLinkUrl();
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
@@ -2071,7 +2125,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuHide(() => {
-            console.log("onContextMenuHide callback");
+            console.info("onContextMenuHide callback");
           })
       }
     }
@@ -2098,7 +2152,7 @@ onScroll(callback: Callback\<OnScrollEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScrollEvent](./arkts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当滚动条滑动到指定位置时触发。 |
+| callback | Callback\<[OnScrollEvent](./arkts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当页面滑动到指定位置时触发。 |
 
 **示例：**
 
@@ -2127,7 +2181,7 @@ onScroll(callback: Callback\<OnScrollEvent\>)
 
 onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
-通知用户收到地理位置信息获取请求。
+通知用户收到地理位置信息获取请求，需配置"ohos.permission.LOCATION"、"ohos.permission.APPROXIMATELY_LOCATION"权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2142,12 +2196,33 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl, common } from '@kit.AbilityKit';
+
+  let atManager = abilityAccessCtrl.createAtManager();
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
     uiContext: UIContext = this.getUIContext();
+
+    // 组件的声明周期函数，创建组件实例后触发
+    aboutToAppear(): void {
+      let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+      if (!context) {
+        console.error("context is undefined");
+        return;
+      }
+      // 向用户请求位置权限
+      atManager.requestPermissionsFromUser(context, ["ohos.permission.LOCATION", "ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })  
+    }
 
     build() {
       Column() {
@@ -2161,11 +2236,13 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
                 confirm: {
                   value: 'onConfirm',
                   action: () => {
-                    event.geolocation.invoke(event.origin, true, true);
+                    // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
+                    event.geolocation.invoke(event.origin, true, false);
                   }
                 },
                 cancel: () => {
-                  event.geolocation.invoke(event.origin, false, true);
+                  // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
+                  event.geolocation.invoke(event.origin, false, false);
                 }
               })
             }
@@ -2186,7 +2263,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   var locationInfo=document.getElementById("locationInfo");
   function getLocation(){
     if (navigator.geolocation) {
-      <!-- 前端页面访问设备地理位置 -->
+      // 前端页面访问设备地理位置
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
@@ -2228,7 +2305,7 @@ onGeolocationHide(callback: () => void)
         Web({ src: 'www.example.com', controller: this.controller })
           .geolocationAccess(true)
           .onGeolocationHide(() => {
-            console.log("onGeolocationHide...");
+            console.info("onGeolocationHide...");
           })
       }
     }
@@ -2265,7 +2342,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenEnter((event) => {
-            console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            console.info("onFullScreenEnter videoWidth: " + event.videoWidth +
               ", videoHeight: " + event.videoHeight);
             // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
             this.handler = event.handler;
@@ -2305,7 +2382,7 @@ onFullScreenExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenExit(() => {
-            console.log("onFullScreenExit...")
+            console.info("onFullScreenExit...")
             if (this.handler) {
               this.handler.exitFullScreen();
             }
@@ -2459,7 +2536,7 @@ onActivateContent(callback: Callback\<void>)
           })
           .onActivateContent(() => {
             //该Web需要展示到前面，建议应用在这里进行tab或window切换的动作展示此web
-            console.log("NewWebViewComp onActivateContent")
+            console.info("NewWebViewComp onActivateContent")
           })
       }.height("50%")
     }
@@ -2547,7 +2624,7 @@ onWindowExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onWindowExit(() => {
-            console.log("onWindowExit...");
+            console.info("onWindowExit...");
           })
       }
     }
@@ -2584,7 +2661,7 @@ onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onSearchResultReceive(ret => {
             if (ret) {
-              console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              console.info("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
                 "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
             }
           })
@@ -2632,7 +2709,7 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
           })
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onDataResubmitted((event) => {
-            console.log('onDataResubmitted');
+            console.info('onDataResubmitted');
             event.handler.resend();
           })
       }
@@ -2686,7 +2763,7 @@ onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageVisible((event) => {
-            console.log('onPageVisible url:' + event.url);
+            console.info('onPageVisible url:' + event.url);
           })
       }
     }
@@ -2762,7 +2839,7 @@ onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
       Column() {
         Web({ src: 'www.baidu.com', controller: this.controller })
           .onTouchIconUrlReceived((event) => {
-            console.log('onTouchIconUrlReceived:' + JSON.stringify(event));
+            console.info('onTouchIconUrlReceived:' + JSON.stringify(event));
           })
       }
     }
@@ -2800,7 +2877,7 @@ onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFaviconReceived((event) => {
-            console.log('onFaviconReceived');
+            console.info('onFaviconReceived');
             this.icon = event.favicon;
           })
       }
@@ -2839,7 +2916,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onAudioStateChanged(event => {
             this.playing = event.playing;
-            console.debug('onAudioStateChanged playing: ' + this.playing);
+            console.info('onAudioStateChanged playing: ' + this.playing);
           })
       }
     }
@@ -2876,7 +2953,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
             if (event) {
-              console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+              console.info("onFirstContentfulPaint:" + "[navigationStartTick]:" +
               event.navigationStartTick + ", [firstContentfulPaintMs]:" +
               event.firstContentfulPaintMs);
             }
@@ -2952,7 +3029,7 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](./arkts-ba
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onLargestContentfulPaint((details) => {
-            console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+            console.info("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
               ", [largestImagePaintTime]=" + details.largestImagePaintTime +
               ", [largestTextPaintTime]=" + details.largestTextPaintTime +
               ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
@@ -2976,7 +3053,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：true。<br>传入undefined与null时为false。 |
+| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 导航触发时的回调包括iframe导航，在回调中可以选择允许或者取消此次导航。<br>返回值为boolean类型。返回true表示取消此次导航，false表示允许此次导航。<br>返回undefined或null时允许此次导航。 |
 
 **示例：**
 
@@ -2993,10 +3070,10 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadIntercept((event) => {
-            console.log('url:' + event.data.getRequestUrl());
-            console.log('isMainFrame:' + event.data.isMainFrame());
-            console.log('isRedirect:' + event.data.isRedirect());
-            console.log('isRequestGesture:' + event.data.isRequestGesture());
+            console.info('url:' + event.data.getRequestUrl());
+            console.info('isMainFrame:' + event.data.isMainFrame());
+            console.info('isRedirect:' + event.data.isRedirect());
+            console.info('isRequestGesture:' + event.data.isRequestGesture());
             return true;
           })
       }
@@ -3008,7 +3085,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 onRequestSelected(callback: () => void)
 
-当Web组件获得焦点时触发该回调。
+当Web组件获取焦点时触发回调。如果组件在未获焦状态下加载网页并成功获取焦点，将触发两次回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3016,7 +3093,7 @@ onRequestSelected(callback: () => void)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | () => void | 是 | 当网页获得焦点时触发的回调。 |
+| callback | () => void | 是 | 当网页获取焦点时触发的回调。 |
 
 **示例：**
 
@@ -3033,7 +3110,7 @@ onRequestSelected(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRequestSelected(() => {
-            console.log('onRequestSelected');
+            console.info('onRequestSelected');
           })
       }
     }
@@ -3190,7 +3267,7 @@ onControllerAttached(callback: () => void)
           .onControllerAttached(() => {
             try {
               let id = this.controller.getWebId();
-              console.log("id: " + id);
+              console.info("id: " + id);
             } catch (error) {
               let code = (error as BusinessError).code;
               let message = (error as BusinessError).message;
@@ -3241,7 +3318,7 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](./arkt
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onNavigationEntryCommitted((details) => {
-            console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
+            console.info("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
               ", [isSameDocument]=" + details.isSameDocument +
               ", [didReplaceEntry]=" + details.didReplaceEntry +
               ", [navigationType]=" + details.navigationType +
@@ -3295,7 +3372,7 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
           .onSafeBrowsingCheckResult((callback) => {
             let jsonData = JSON.stringify(callback);
             let json: OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData);
-            console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
+            console.info("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
           })
       }
     }
@@ -3442,16 +3519,16 @@ export default class EntryAbility extends UIAbility {
             if (event.status == NativeEmbedStatus.LEAVE_BFCACHE) {
               this.embedStatus = 'Leave BFCache';
             }
-            console.log("status = " + this.embedStatus);
-            console.log("surfaceId = " + event.surfaceId);
-            console.log("embedId = " + event.embedId);
+            console.info("status = " + this.embedStatus);
+            console.info("surfaceId = " + event.surfaceId);
+            console.info("embedId = " + event.embedId);
             if (event.info) {
-              console.log("id = " + event.info.id);
-              console.log("type = " + event.info.type);
-              console.log("src = " + event.info.src);
-              console.log("width = " + event.info.width);
-              console.log("height = " + event.info.height);
-              console.log("url = " + event.info.url);
+              console.info("id = " + event.info.id);
+              console.info("type = " + event.info.type);
+              console.info("src = " + event.info.src);
+              console.info("width = " + event.info.width);
+              console.info("height = " + event.info.height);
+              console.info("url = " + event.info.url);
             }
           })
       }
@@ -3605,13 +3682,13 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
                 if (event.result) {
                   event.result.setGestureEventResult(ret, true);
                 }
-                console.log("embedId = " + event.embedId);
-                console.log("touchType = " + this.eventType);
-                console.log("x = " + event.touchEvent.touches[0].x);
-                console.log("y = " + event.touchEvent.touches[0].y);
-                console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
-                console.log("width = " + event.touchEvent.target.area.width);
-                console.log("height = " + event.touchEvent.target.area.height);
+                console.info("embedId = " + event.embedId);
+                console.info("touchType = " + this.eventType);
+                console.info("x = " + event.touchEvent.touches[0].x);
+                console.info("y = " + event.touchEvent.touches[0].y);
+                console.info("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+                console.info("width = " + event.touchEvent.target.area.width);
+                console.info("height = " + event.touchEvent.target.area.height);
               }
             })
         }
@@ -3677,7 +3754,7 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
           })
         Web({ src: 'www.example.com', controller: this.controller })
           .onIntelligentTrackingPreventionResult((details) => {
-            console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
+            console.info("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
               ", [trackerHost]=" + details.trackerHost);
           })
       }
@@ -3689,13 +3766,13 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。
+当URL将要加载到当前Web中时触发该回调，让宿主应用程序有机会获得控制权，判断是否阻止Web加载URL。
 
-POST请求不会触发该回调。
-
-iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。调用loadUrl(String)主动触发的跳转不会触发该回调。
-
-不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
+> **说明：**
+>
+> - POST请求不会触发该回调。  
+> - iframe加载HTTP(s)协议或about:blank时不会触发该回调，而加载非HTTP(s)协议的跳转会触发；调用loadUrl(url: string)主动触发的跳转不会触发该回调。   
+> - 不要在回调中使用相同的URL调用loadUrl(url: string)方法，然后返回true。 这样会不必要地中止当前加载，并用相同的URL发起一次新的加载。 要继续加载当前请求URL的正确做法是直接返回false，而不是调用loadUrl(url: string)。 
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3703,7 +3780,7 @@ iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。 |
+| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。<br>返回值boolean。返回true表示中止加载URL，返回false表示继续在Web中加载URL |
 
 **示例：**
 
@@ -3901,7 +3978,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
           if (attributes) {
             if (attributes['data-keyboard'] == 'customKeyboard') {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
-              console.log('WebCustomKeyboard use custom keyboard')
+              console.info('WebCustomKeyboard use custom keyboard')
               option.useSystemKeyboard = false;
               // 设置自定义键盘builder
               option.customKeyboard = () => {
@@ -3985,7 +4062,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-当网页中同层标签（例如<embed\>标签或<embed\>标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
+当网页中同层标签（例如<embed\>标签或<object\>标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4096,8 +4173,8 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
               } else {
                 this.embedVisibility = 'Hidden';
               }
-              console.log("embedId = " + embed.embedId);
-              console.log("visibility = " + embed.visibility);
+              console.info("embedId = " + embed.embedId);
+              console.info("visibility = " + embed.visibility);
             })
         }
       }
@@ -4270,6 +4347,149 @@ onNativeEmbedMouseEvent(callback: MouseInfoCallback)
   </html>
   ```
 
+## onNativeEmbedObjectParamChange<sup>21+</sup>
+
+onNativeEmbedObjectParamChange(callback: OnNativeEmbedObjectParamChangeCallback)
+
+当同层渲染object标签内嵌param元素变化时触发此回调。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback       | [OnNativeEmbedObjectParamChangeCallback](./arkts-basic-components-web-t.md#onnativeembedobjectparamchangecallback21) | 是 | 增加、修改或删除同层渲染object标签内嵌param元素时触发此回调。 |
+
+**示例：**
+
+```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+  import { NodeController, BuilderNode, NodeRenderType, FrameNode, UIContext } from '@kit.ArkUI';
+
+  declare class Params {
+    text: string;
+    width: number;
+    height: number;
+  }
+
+  declare class NodeControllerParams {
+    surfaceId: string;
+    renderType: NodeRenderType;
+    width: number;
+    height: number;
+  }
+
+  class MyNodeController extends NodeController {
+    private rootNode: BuilderNode<[Params]> | undefined | null;
+    private surfaceId_: string = "";
+    private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_: number = 0;
+    private height_: number = 0;
+
+    setRenderOption(params: NodeControllerParams) {
+      this.surfaceId_ = params.surfaceId;
+      this.renderType_ = params.renderType;
+      this.width_ = params.width;
+      this.height_ = params.height;
+    }
+
+    makeNode(uiContext: UIContext): FrameNode | null {
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
+      this.rootNode.build(wrapBuilder(ButtonBuilder), { text: "myButton", width: this.width_, height: this.height_ });
+      return this.rootNode.getFrameNode();
+    }
+
+    postInputEvent(event: TouchEvent | MouseEvent | undefined): boolean {
+      return this.rootNode?.postInputEvent(event) as boolean;
+    }
+  }
+
+  @Component
+  struct ButtonComponent {
+    @Prop params: Params;
+    @State bkColor: Color = Color.Red;
+
+    build() {
+      Column() {
+        Button(this.params.text)
+          .height(50)
+          .width(200)
+          .border({ width: 2, color: Color.Red })
+          .backgroundColor(this.bkColor)
+
+      }
+      .width(this.params.width)
+      .height(this.params.height)
+    }
+  }
+
+  @Builder
+  function ButtonBuilder(params: Params) {
+    ButtonComponent({ params: params })
+      .backgroundColor(Color.Green)
+  }
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    private nodeController: MyNodeController = new MyNodeController();
+    uiContext: UIContext = this.getUIContext();
+
+    build() {
+      Column() {
+        Stack() {
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile('index.html'), controller: this.controller })
+            .enableNativeEmbedMode(true)
+            .registerNativeEmbedRule("object", "native")
+            .onNativeEmbedLifecycleChange((embed) => {
+              if (embed.status == NativeEmbedStatus.CREATE) {
+                this.nodeController.setRenderOption({
+                  surfaceId: embed.surfaceId as string,
+                  renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
+                  width: this.uiContext!.px2vp(embed.info?.width),
+                  height: this.uiContext!.px2vp(embed.info?.height)
+                });
+                this.nodeController.rebuild();
+              }
+            })
+            .onNativeEmbedObjectParamChange((event) => {
+              console.log("embed id: " + event.embedId);
+              let paramItems = event.paramItems;
+              for (let i = 0; i < paramItems.length; ++i) {
+                console.log("param info: " + JSON.stringify(paramItems[i]));
+              }
+            })
+        }
+      }
+    }
+  }
+  ```
+
+加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染测试</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <object id="nativeButton" type ="native/button" width="300" height="300" style="background-color:red">
+            <param id="param-1" name="name-1" value="value1"/>
+          </object>
+      </div>
+  </div>
+  </body>
+  </html>
+  ```
+
 ## onOverrideErrorPage<sup>20+</sup>
 
 onOverrideErrorPage(callback: OnOverrideErrorPageCallback)
@@ -4327,6 +4547,12 @@ onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => vo
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { handler: Function, error: object }) => void | 是 | 当网页检测到SSL错误时触发的回调。 |
+
 ## onFileSelectorShow<sup>(deprecated)</sup>
 
 onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
@@ -4338,6 +4564,13 @@ onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { callback: Function, fileSelector: object }) => void | 是 | 当触发文件选择器时需要执行的回调。 |
+
 
 ## onUrlLoadIntercept<sup>(deprecated)</sup>
 
@@ -4370,7 +4603,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
             if (event) {
-              console.log('onUrlLoadIntercept ' + event.data.toString());
+              console.info('onUrlLoadIntercept ' + event.data.toString());
             }
             return true
           })

@@ -1,4 +1,9 @@
 # Interface (ImagePacker)
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
@@ -44,7 +49,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -115,7 +120,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -352,7 +357,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -416,7 +421,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -476,7 +481,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -544,7 +549,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |

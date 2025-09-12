@@ -1,4 +1,10 @@
 # Interface (Window)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -241,11 +247,17 @@ promise.then(() => {
 
 moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
-移动窗口位置，使用callback异步回调。
+移动窗口位置，使用callback异步回调。调用成功即返回，但返回后无法立即获取最终生效结果。如需立即获取，请使用[moveWindowToAsync()](#movewindowtoasync12)。
 
-<!--RP4-->
-全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+> **说明：**
+>
+> - 不建议在除自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）外的其他窗口模式下使用。
+>
+> - 在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，窗口相对于屏幕移动；在非自由窗口状态下，窗口相对于父窗口移动。
+>
+> - 若需在非自由窗口状态下实现相对于屏幕的移动，请使用[moveWindowToGlobal()](#movewindowtoglobal15)。
+>
+> - 该方法对非自由窗口状态下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -292,11 +304,17 @@ try {
 
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[moveWindowToAsync()](#movewindowtoasync12)。
+移动窗口位置，使用Promise异步回调。调用成功即返回，但返回后无法立即获取最终生效结果。如需立即获取，请使用[moveWindowToAsync()](#movewindowtoasync12)。
 
-<!--RP4-->
-全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
-使用此接口，在2in1设备上窗口相对于屏幕移动，在其他设备上窗口相对于父窗口移动。若需要在非2in1设备上相对于屏幕进行移动，建议使用接口[moveWindowToGlobal()](#movewindowtoglobal15)。
+> **说明：**
+>
+> - 不建议在除自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）外的其他窗口模式下使用。
+>
+> - 在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，窗口相对于屏幕移动；在非自由窗口状态下，窗口相对于父窗口移动。
+>
+> - 若需在非自由窗口状态下实现相对于屏幕的移动，请使用[moveWindowToGlobal()](#movewindowtoglobal15)。
+>
+> - 该方法对非自由窗口状态下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -348,8 +366,13 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，窗口相对于屏幕移动；在非自由窗口状态下，窗口相对于父窗口移动。
+>
+> - 该方法对非自由窗口状态下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -405,8 +428,13 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，窗口相对于屏幕移动；在非自由窗口状态下，窗口相对于父窗口移动。
+>
+> - 该方法对非自由窗口状态下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -467,9 +495,12 @@ moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 
 基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下的主窗口无效。
 
-在非2in1设备下，子窗会跟随主窗移动。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -525,9 +556,11 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 
 基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-全屏模式窗口不支持该操作。
-
-在非2in1设备下，子窗会跟随主窗移动。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -588,9 +621,11 @@ moveWindowToGlobalDisplay(x: number, y: number): Promise&lt;void&gt;
 
 基于全局坐标系（扩展屏场景下，以主屏幕左上角为原点）移动窗口位置，使用Promise异步回调。
 
-全屏模式窗口不支持该操作。
-
-在非2in1设备，以及平板设备的非自由多窗模式下，子窗会跟随主窗移动。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -732,16 +767,17 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+窗口存在大小限制[WindowLimits](arkts-apis-window-i.md#windowlimits11)，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
-
-设置的宽度与高度受到此约束限制，规则：
+调用该接口设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -790,16 +826,17 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[resizeAsync()](#resizeasync12)。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+窗口存在大小限制[WindowLimits](arkts-apis-window-i.md#windowlimits11)，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
-
-设置的宽度与高度受到此约束限制，规则：
+调用该接口设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下的主窗口无效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -851,16 +888,17 @@ resizeAsync(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+窗口存在大小限制[WindowLimits](arkts-apis-window-i.md#windowlimits11)，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
-
-设置的宽度与高度受到此约束限制，规则：
+调用该接口设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
 若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
-全屏模式窗口不支持该操作。
+> **说明：**
+>
+> - 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING，WindowStatusType可通过[getWindowStatus()](#getwindowstatus12)获取）下支持该操作。
+>
+> - 该方法对非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下的主窗口无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -983,11 +1021,13 @@ try {
 
 setWindowContainerColor(activeColor: string, inactiveColor: string): void
 
-设置主窗口容器在焦点态和非焦点态时的背景色，仅支持2in1设备。在Stage模型下，该接口需在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)后使用。
+设置主窗口容器在焦点态和非焦点态时的背景色。在Stage模型下，该接口需在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)后使用。
 
 窗口容器背景色覆盖整个窗口区域，包括标题栏和内容区域。当同时使用该接口和[setWindowBackgroundColor()](#setwindowbackgroundcolor9)设置背景色时，内容区域显示窗口背景色，标题栏显示窗口容器背景色。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
 
@@ -1092,6 +1132,10 @@ try {
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+
+[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，当前窗口调用该接口获取到空的避让区。
+
+非自由窗口状态下，仅当子窗口的位置和大小与主窗口一致时，子窗口调用该接口才能计算避让区并返回，否则直接返回空的避让区。
 
 该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建悬浮窗、模态窗或WindowType窗口类型为系统窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled18)方法使能后，该接口对此类窗口亦生效。
 
@@ -1266,9 +1310,11 @@ try {
 
 setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolean): Promise&lt;void&gt;
 
-设置主窗口进入全屏模式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置主窗口进入全屏模式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1317,7 +1363,7 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           mainWindow = data;
-          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          console.info(`Succeeded in obtaining the main window. Data: ${JSON.stringify(data)}`);
           // 调用maximize接口，设置窗口进入全屏模式。
           mainWindow.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
           // 调用setTitleAndDockHoverShown接口，隐藏标题栏和dock栏。
@@ -1337,13 +1383,15 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。系统窗口调用不生效。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。系统窗口调用不生效。
 沉浸式布局生效时，布局不避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件可能产生与其重叠的情况。
 非沉浸式布局生效时，布局避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** API version 14之前，该接口在所有设备中可正常调用。从API version 14开始，该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1406,11 +1454,13 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-设置当前窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。仅主窗口和子窗口可调用。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
+设置当前窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。仅主窗口和子窗口可调用。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** API version 14之前，该接口在所有设备中可正常调用。从API version 14开始，该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1513,14 +1563,15 @@ try {
 
 setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
-设置窗口是否使能延迟抬升，仅主窗和子窗可设置。<br>
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置窗口是否使能延迟抬升，仅主窗和子窗可设置。<br>
 不调用此接口或传入false，主窗和子窗在鼠标左键按下时，默认立即抬升。<br>
 调用此接口使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起。
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力**：SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -2807,6 +2858,10 @@ try {
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 开启当前应用窗口系统规避区变化的监听。
+
+[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，触发避让区回调时，该接口直接回调空的避让区。
+
+非自由窗口状态下，触发避让区回调时，仅当子窗口的位置和大小与主窗口一致时，子窗口调用该接口才能计算避让区并返回，否则直接返回空的避让区。
 <!--RP7-->常见的触发避让区回调的场景如下：应用窗口在全屏模式、悬浮模式、分屏模式之间的切换；应用窗口旋转；多折叠设备在屏幕折叠态和展开态之间的切换；应用窗口在多设备之间的流转。<!--RP7End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -3504,7 +3559,7 @@ on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): v
 
 ```ts
 const callback = (eventType: window.ScreenshotEventType) => {
-  console.info(`screenshotAppEvent happened. Event: ${data}`);
+  console.info(`screenshotAppEvent happened. Event: ${eventType}`);
 }
 try {
   windowClass.on('screenshotAppEvent', callback);
@@ -4058,6 +4113,10 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 开启窗口模式变化的监听，当窗口windowStatus发生变化时进行通知（此时窗口属性可能还没有更新）。
 
+> **说明：**
+>
+> 在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，应用的[targetAPIVersion](../../quick-start/app-configuration-file.md#配置文件标签)设置小于14时，在窗口最大化状态（窗口铺满整个屏幕，2in1设备会有dock栏和状态栏，Tablet设备会有状态栏）时返回值对应为WindowStatusType::FULL_SCREEN。应用的[targetAPIVersion](../../quick-start/app-configuration-file.md#配置文件标签)设置大于等于14时，在窗口最大化状态（窗口铺满整个屏幕，2in1设备会有dock栏和状态栏，Tablet设备会有状态栏）时返回值对应为WindowStatusType::MAXIMIZE。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -4274,8 +4333,6 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 
 开启窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -4316,8 +4373,6 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
 关闭窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4393,7 +4448,7 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 ```ts
 try {
   windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
-      console.info(`Succeeded in enabling the listener for window rect changes. Data: ` + JSON.stringify(data));
+      console.info(`Succeeded in enabling the listener for window rect changes. Data: ${JSON.stringify(data)}`);
   });
 } catch (exception) {
   console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -4480,7 +4535,7 @@ const callback = (rectChangeOptions: window.RectChangeOptions) => {
 try {
   windowClass.on('rectChangeInGlobalDisplay', callback);
 } catch (exception) {
-  console.error(`Failed to disable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4623,15 +4678,15 @@ try {
 
 on(type: 'windowWillClose', callback: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
 
-开启主窗口或子窗口关闭事件的监听。此监听仅能通过系统提供的窗口标题栏关闭按键触发，其余关闭窗口的方式不触发回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于开启主窗口或子窗口关闭事件的监听。此监听仅能通过系统提供的窗口标题栏关闭按键触发，其余关闭窗口的方式不触发回调。
 
 该接口触发的回调函数是异步执行。子窗口的同步关闭事件监听参考[on('subWindowClose')](#onsubwindowclose12)方法。主窗口的同步关闭事件监听参考[on('windowStageClose')](arkts-apis-window-WindowStage.md#onwindowstageclose14)方法。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->  </br>
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -4684,13 +4739,13 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'windowWillClose', callback?: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
 
-关闭主窗口或子窗口关闭事件的监听。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> </br>
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于关闭主窗口或子窗口关闭事件的监听。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中不生效也不报错。
 
 **参数：**
 
@@ -5290,9 +5345,11 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 
-设置主窗口是否显示阴影，使用Promise异步回调，仅支持2in1设备。未调用该接口时，主窗口默认显示阴影。
+设置主窗口是否显示阴影，使用Promise异步回调。未调用该接口时，主窗口默认显示阴影。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
 
@@ -5362,10 +5419,13 @@ export default class EntryAbility extends UIAbility {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-允许应用主窗口设置屏幕亮度值，使用callback异步回调。
+允许应用主窗口设置当前窗口亮度值，使用callback异步回调。
 
-非2in1设备，窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度；
-2in1设备，窗口设置屏幕亮度和控制中心调整屏幕亮度的优先级相同，窗口设置屏幕亮度生效后，控制中心也可以调整系统屏幕亮度。
+当窗口退至后台的过程中，不建议同时调用此接口，否则会有时序问题。
+
+> **说明：**
+>- 针对非2in1设备，窗口设置当前窗口亮度生效时，控制中心不可以调整系统屏幕亮度。当接口入参为-1或当前窗口退至后台时，窗口亮度恢复为系统屏幕亮度，控制中心可以调整系统屏幕亮度。
+>- 针对2in1设备，在API version 14之前，窗口设置屏幕亮度生效时，控制中心和快捷键不可以调整系统屏幕亮度。当接口入参为-1或当前窗口退至后台时，窗口亮度恢复为系统屏幕亮度，控制中心和快捷键可以调整系统屏幕亮度。从API version 14开始，窗口亮度与系统屏幕亮度保持一致，可以通过本接口、控制中心或者快捷键设置系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5375,7 +5435,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明                                        |
 | ---------- | ------------------------- | -- |-------------------------------------------|
-| brightness | number                    | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
+| brightness | number                    | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示恢复成设置窗口亮度前的系统控制中心亮度。 |
 | callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
@@ -5429,10 +5489,13 @@ export default class EntryAbility extends UIAbility {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-允许应用主窗口设置屏幕亮度值，使用Promise异步回调。
+允许应用主窗口设置当前窗口亮度值，使用Promise异步回调。
 
-非2in1设备，窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度；
-2in1设备，窗口设置屏幕亮度和控制中心调整屏幕亮度的优先级相同，窗口设置屏幕亮度生效后，控制中心也可以调整系统屏幕亮度。
+当窗口退至后台的过程中，不建议同时调用此接口，否则会有时序问题。
+
+> **说明：**
+>- 针对非2in1设备，窗口设置当前窗口亮度生效时，控制中心不可以调整系统屏幕亮度。当接口入参为-1或当前窗口退至后台时，窗口亮度恢复为系统屏幕亮度，控制中心可以调整系统屏幕亮度。
+>- 针对2in1设备，在API version 14之前，窗口设置屏幕亮度生效时，控制中心和快捷键不可以调整系统屏幕亮度。当接口入参为-1或当前窗口退至后台时，窗口亮度恢复为系统屏幕亮度，控制中心和快捷键可以调整系统屏幕亮度。从API version 14开始，窗口亮度与系统屏幕亮度保持一致，可以通过本接口、控制中心或者快捷键设置系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5442,7 +5505,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                     |
 | ---------- | ------ | -- |----------------------------------------|
-| brightness | number | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
+| brightness | number | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示恢复成设置窗口亮度前的系统控制中心亮度。 |
 
 **返回值：**
 
@@ -5509,7 +5572,7 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----------- | ------------------------- | -- | ------------------------------------------------------- |
-| isFocusable | boolean                   | 是 | 窗口是否可获焦。true表示支持；false表示不支持。 |
+| isFocusable | boolean                   | 是 | 窗口是否可获焦。true表示支持；false表示不支持。设置为false时，该窗口不支持绑定输入法和接收键盘事件，如需处理输入逻辑，建议参考[不可获焦窗口中输入框与输入法交互指南](../../inputmethod/use-inputmethod-in-not-focusable-window.md)。|
 | callback    | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                               |
 
 **错误码：**
@@ -5556,7 +5619,7 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----------- | ------- | -- | -------------------------------------------------------- |
-| isFocusable | boolean | 是 | 窗口是否可获焦。true表示支持；false表示不支持。  |
+| isFocusable | boolean | 是 | 窗口是否可获焦。true表示支持；false表示不支持。设置为false时，该窗口不支持绑定输入法和接收键盘事件，如需处理输入逻辑，建议参考[不可获焦窗口中输入框与输入法交互指南](../../inputmethod/use-inputmethod-in-not-focusable-window.md)。|
 
 **返回值：**
 
@@ -6395,13 +6458,13 @@ promise.then(() => {
 ## maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-实现最大化功能。主窗口可调用此接口实现最大化功能；子窗口需在创建时设置子窗口参数maximizeSupported为true，再调用此接口可实现最大化功能。使用Promise异步回调。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于实现最大化功能。主窗口可调用此接口实现最大化功能；子窗口需在创建时设置子窗口参数maximizeSupported为true，再调用此接口可实现最大化功能。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -6555,13 +6618,13 @@ try {
 
 recover(): Promise&lt;void&gt;
 
-将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于将主窗口从全屏、最大化、分屏模式下还原为自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING），并恢复到进入该模式之前的大小和位置，已经是自由悬浮窗口模式不可再还原。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -6619,7 +6682,7 @@ restore(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -6764,7 +6827,7 @@ try {
 
 setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;WindowLimits&gt;
 
-该接口仅在自由窗口模式下生效，用于设置当前应用窗口的尺寸限制，使用Promise异步回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置当前应用窗口的尺寸限制，使用Promise异步回调。
 
 默认存在一个系统尺寸限制，系统尺寸限制由产品配置决定，不可修改。未调用setWindowLimits配置过WindowLimits时，使用[getWindowLimits](#getwindowlimits11)可获取系统限制。
 
@@ -6772,7 +6835,7 @@ setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;Win
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** API version 19之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 19开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
+**设备行为差异：** API version 19之前，该接口在2in1设备中可正常调用，在其他设备中返回801错误码。从API version 19开始，该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -6812,7 +6875,7 @@ try {
   };
   let promise = windowClass.setWindowLimits(windowLimits, true);
   promise.then((data) => {
-    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+    console.info(`Succeeded in changing the window limits. Cause: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window limits. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -6829,8 +6892,6 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 当异形窗口大小发生变化时，实际的显示内容为掩码大小和窗口大小的交集部分。
 
 该接口只在多个线程操作同一个窗口时可能返回错误码1300002。窗口被销毁场景下错误码返回401。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6974,13 +7035,13 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 getWindowDecorVisible(): boolean
 
-查询窗口标题栏是否可见。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于查询窗口标题栏是否可见。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -7016,11 +7077,11 @@ setWindowTitle(titleName: string): Promise&lt;void&gt;
 
 设置窗口标题，存在标题栏的窗口形态生效，若不存在标题栏则返回1300002错误码，使用Promise异步回调。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
-此接口仅支持2in1设备和平板设备。
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7065,13 +7126,13 @@ try {
 
 setWindowTitleMoveEnabled(enabled: boolean): void
 
-禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，当禁用标题栏默认移动窗口和双击最大化的功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，当禁用标题栏默认移动窗口和双击最大化的功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7313,13 +7374,13 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
-该接口仅在自由窗口模式下生效，用于设置装饰栏按钮样式，仅对主窗和子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置装饰栏按钮样式，仅对主窗和子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备类型中返回801错误码。从API version 18开始，该接口在2in1设备、tablet设备中可正常调用，在其他设备类型中返回801错误码。
+**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备中返回801错误码。从API version 18开始，该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7360,7 +7421,7 @@ export default class EntryAbility extends UIAbility {
           buttonBackgroundCornerRadius: 4
         };
         windowClass.setDecorButtonStyle(style);
-        console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+        console.info(`Succeeded in setting the style of button. Data: ${JSON.stringify(style)}`);
       });
     } catch (exception) {
       console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -7373,15 +7434,13 @@ export default class EntryAbility extends UIAbility {
 
 getDecorButtonStyle(): DecorButtonStyle
 
-获取装饰栏按钮样式，仅对主窗和子窗生效。
-
-<!--RP16-->
-此接口仅可在2in1设备下使用。
-<!--RP16End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于获取装饰栏按钮样式，仅对主窗和子窗生效。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** API version 18之前，该接口在2in1设备中可正常调用，在其他设备中返回801错误码。从API version 18开始，该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -7405,7 +7464,7 @@ getDecorButtonStyle(): DecorButtonStyle
 ```ts
 try {
   let decorButtonStyle = windowClass.getDecorButtonStyle();
-  console.info('Succeeded in getting the style of button. Data: ' + JSON.stringify(decorButtonStyle));
+  console.info(`Succeeded in getting the style of button. Data: ${JSON.stringify(decorButtonStyle)}`);
 } catch (exception) {
   console.error(`Failed to get the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -7512,6 +7571,10 @@ getWindowStatus(): WindowStatusType
 
 获取当前应用窗口的模式。
 
+> **说明：**
+>
+> 在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，应用的[targetAPIVersion](../../quick-start/app-configuration-file.md#配置文件标签)设置小于14时，在窗口最大化状态（窗口铺满整个屏幕，2in1设备会有dock栏和状态栏，Tablet设备会有状态栏）时返回值对应为WindowStatusType::FULL_SCREEN。应用的[targetAPIVersion](../../quick-start/app-configuration-file.md#配置文件标签)设置大于等于14时，在窗口最大化状态（窗口铺满整个屏幕，2in1设备会有dock栏和状态栏，Tablet设备会有状态栏）时返回值对应为WindowStatusType::MAXIMIZE。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -7570,7 +7633,7 @@ isFocused(): boolean
 ```ts
 try {
   let focus = windowClass.isFocused();
-  console.info('Succeeded in checking whether the window is focused. Data: ' + JSON.stringify(focus));
+  console.info(`Succeeded in checking whether the window is focused. Data: JSON.stringify(focus)`);
 } catch (exception) {
   console.error(`Failed to check whether the window is focused. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -7580,9 +7643,7 @@ try {
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
-创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -7590,12 +7651,14 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回undefined。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | 是   | 子窗口参数。decorEnabled为true时，子窗口为非[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)；decorEnabled为false时，子窗口为沉浸式布局。|
 
 **返回值：**
 
@@ -7628,7 +7691,7 @@ try {
   };
   let promise = windowClass.createSubWindowWithOptions('mySubWindow', options);
   promise.then((data) => {
-    console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in creating the subwindow. Data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -7647,9 +7710,9 @@ setParentWindow(windowId: number): Promise&lt;void&gt;
 
 如果该子窗口处于获焦状态，且新的父窗口的子窗口存在层级更高的模态子窗口，则焦点会转移给该模态子窗口。
 
-此接口仅可在2in1设备下使用。
-
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -7703,9 +7766,9 @@ getParentWindow(): Window
 
 获取子窗口的父窗口。
 
-此接口仅可在2in1设备下使用。
-
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -7733,7 +7796,7 @@ try {
   let windowClass: window.Window = window.findWindow("subWindow");
   let parentWindow: window.Window = windowClass.getParentWindow();
   let properties = parentWindow.getWindowProperties();
-  console.info('Succeeded in obtaining parent window properties. Property: ' + JSON.stringify(properties));
+  console.info(`Succeeded in obtaining parent window properties. Property: ${JSON.stringify(properties)}`);
 } catch (exception) {
   console.error(`Failed to get the parent window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -7743,13 +7806,13 @@ try {
 
 setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVisible: boolean, isCloseButtonVisible?: boolean): void
 
-设置主窗标题栏上的最大化、最小化、关闭按钮是否可见。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置主窗标题栏上的最大化、最小化、关闭按钮是否可见。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -7809,15 +7872,15 @@ export default class EntryAbility extends UIAbility {
 
 setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 
-应用主窗口调用，实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，应用主窗口调用，用于实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。
 
 应用可通过自定义快捷键实现主窗口的置顶和取消置顶。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **需要权限：** ohos.permission.WINDOW_TOPMOST
 
@@ -8410,7 +8473,7 @@ struct Index {
 
 startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
-指定鼠标在窗口内的位置并移动窗口，使用Promise异步回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于指定鼠标在窗口内的位置并移动窗口，使用Promise异步回调。
 
 在同应用内窗口分合后，且鼠标保持按下状态直接移动新窗口，如果此时鼠标快速移动，窗口移动时鼠标可能会在窗口外。可以使用本接口指定窗口移动时鼠标在窗口内的位置，先移动窗口到鼠标位置，再开始移动窗口。
 
@@ -8418,9 +8481,9 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
 在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为[TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype)（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -8520,11 +8583,11 @@ struct Index {
 
 stopMoving(): Promise&lt;void&gt;
 
-在窗口拖拽移动过程中，通过此接口来停止窗口移动，使用Promise异步回调。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于在窗口拖拽移动过程中，通过此接口来停止窗口移动，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -8712,9 +8775,11 @@ export default class EntryAbility extends UIAbility {
 
 setWindowShadowRadius(radius: number): void
 
-设置子窗或悬浮窗窗口边缘阴影的模糊半径，此接口仅支持在2in1设备或平板设备上使用。
+设置子窗或悬浮窗窗口边缘阴影的模糊半径。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
@@ -8810,11 +8875,11 @@ try{
 
 getWindowCornerRadius(): number
 
-获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius17)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius17)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
 
 **系统能力**：SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
@@ -8942,15 +9007,15 @@ try {
 
 setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 
-设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。使用Promise异步回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。使用Promise异步回调。
 
 通过监听父窗口大小位置变化，对子窗口调用[moveWindowTo()](#movewindowto9)等接口实现子窗口跟随父窗口布局时，此时子窗口默认不支持跨多个屏幕同时显示。
 
 对子窗口调用此接口后可以使能子窗口在跟随父窗口布局过程中跨多个屏幕同时显示。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常使用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
@@ -9081,7 +9146,7 @@ export default class EntryAbility extends UIAbility {
 
 setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor, offsetX?: number, offsetY?: number): Promise&lt;void&gt;
 
-设置一级子窗是否支持与主窗保持相对位置不变。使用Promise异步回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置一级子窗是否支持与主窗保持相对位置不变。使用Promise异步回调。
 
 该相对位置通过一级子窗与主窗之间锚点的偏移量表示，子窗和主窗使用的窗口锚点相同。
 
@@ -9093,9 +9158,9 @@ setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor
 
 该接口调用生效后，[setFollowParentWindowLayoutEnabled()](#setfollowparentwindowlayoutenabled17)接口调用不生效。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -9122,7 +9187,6 @@ setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor
 | 1300002  | This window state is abnormal.                                                                               |
 | 1300003  | This window manager service works abnormally.                                                                |
 | 1300004  | Unauthorized operation.                                                                                |
-| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range. |
 
 **示例：**
 
@@ -9161,17 +9225,17 @@ export default class EntryAbility extends UIAbility {
 
 setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: TransitionAnimation): Promise&lt;void&gt;
 
-给特定场景下的窗口增加转场动画。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)模式下生效，用于给特定场景下的窗口增加转场动画。
 
 当前只支持在应用主窗下使用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
@@ -9245,17 +9309,17 @@ export default class EntryAbility extends UIAbility {
 
 getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAnimation | undefined
 
-获取特定场景下的窗口转场动画配置。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)模式下生效，用于获取特定场景下的窗口转场动画配置。
 
 当前只支持在应用主窗下使用。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
@@ -9601,6 +9665,8 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** API version 14之前，该接口在所有设备中可正常调用。从API version 14开始，该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -10026,6 +10092,10 @@ getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7), callb
 
 获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
+[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，当前窗口调用该接口获取到空的避让区。
+
+非自由窗口状态下，仅当子窗口的位置和大小与主窗口一致时，子窗口调用该接口才能计算避让区并返回，否则直接返回空的避让区。
+
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
@@ -10060,6 +10130,10 @@ windowClass.getAvoidArea(type, (err: BusinessError, data) => {
 getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7)): Promise&lt;[AvoidArea](arkts-apis-window-i.md#avoidarea7)&gt;
 
 获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+
+[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，当前窗口调用该接口获取到空的避让区。
+
+非自由窗口状态下，仅当子窗口的位置和大小与主窗口一致时，子窗口调用该接口才能计算避让区并返回，否则直接返回空的避让区。
 
 > **说明：**
 >
@@ -11041,7 +11115,7 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型                      | 必填 | 说明                                    |
 | ---------- | ------------------------- | ---- |---------------------------------------|
-| brightness | number                    | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
+| brightness | number                    | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示恢复成设置窗口亮度前的系统控制中心亮度。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                 |
 
 
@@ -11079,7 +11153,7 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明                                       |
 | ---------- | ------ | ---- |------------------------------------------|
-| brightness | number | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
+| brightness | number | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示恢复成设置窗口亮度前的系统控制中心亮度。 |
 
 **返回值：**
 
@@ -11189,7 +11263,7 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                      | 必填 | 说明                         |
 | ----------- | ------------------------- | ---- | ---------------------------- |
-| isFocusable | boolean                   | 是   | 点击时是否支持切换焦点窗口。true表示支持；false表示不支持。 |
+| isFocusable | boolean                   | 是   | 点击时是否支持切换焦点窗口。true表示支持；false表示不支持。设置为false时，该窗口不支持绑定输入法和接收键盘事件，如需处理输入逻辑，建议参考[不可获焦窗口中输入框与输入法交互指南](../../inputmethod/use-inputmethod-in-not-focusable-window.md)。|
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                   |
 
 
@@ -11225,7 +11299,7 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型    | 必填 | 说明                         |
 | ----------- | ------- | ---- | ---------------------------- |
-| isFocusable | boolean | 是   | 点击时是否支持切换焦点窗口。true表示支持；false表示不支持。 |
+| isFocusable | boolean | 是   | 点击时是否支持切换焦点窗口。true表示支持；false表示不支持。设置为false时，该窗口不支持绑定输入法和接收键盘事件，如需处理输入逻辑，建议参考[不可获焦窗口中输入框与输入法交互指南](../../inputmethod/use-inputmethod-in-not-focusable-window.md)。|
 
 **返回值：**
 

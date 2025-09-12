@@ -1,12 +1,16 @@
 # NodeController
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 NodeController用于实现自定义节点的创建、显示、更新等操作的管理，并负责将自定义节点挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)上。
 
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
-> 当前不支持在预览器中使用NodeController。
 
 ## 导入模块
 
@@ -63,7 +67,7 @@ aboutToAppear?(): void
 
 aboutToDisappear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)卸载消失时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)销毁时触发此回调。
 
 > **说明：**
 >
@@ -253,19 +257,19 @@ class MyNodeController extends NodeController {
   }
 
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width + " height : " + size.height)
+    console.info("aboutToResize width : " + size.width + " height : " + size.height)
   }
 
   aboutToAppear() {
-    console.log("aboutToAppear")
+    console.info("aboutToAppear")
   }
 
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.info("aboutToDisappear");
   }
 
   onTouchEvent(event:TouchEvent) {
-    console.log("onTouchEvent");
+    console.info("onTouchEvent");
   }
 }
 
@@ -293,7 +297,7 @@ struct Index {
 并通过onWillBind、onWillUnbind、onBind、onUnbind接口，实现了NodeContainer节点绑定和解绑前后的生命周期回调功能。
 
 ```ts
-import { NodeController, BuilderNode, Size, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 class Params {
   text: string = "this is a text"
 }
@@ -322,27 +326,27 @@ class MyNodeController extends NodeController {
   }
 
   onAttach(): void {
-    console.log("myButton on attach");
+    console.info("myButton on attach");
   }
 
   onDetach(): void {
-    console.log("myButton on detach");
+    console.info("myButton on detach");
   }
 
   onWillBind(containerId: number): void{
-    console.log("myButton on WillBind" + containerId);
+    console.info("myButton on WillBind" + containerId);
   }
 
   onWillUnbind(containerId: number): void{
-    console.log("myButton on WillUnbind" + containerId);
+    console.info("myButton on WillUnbind" + containerId);
   }
 
   onBind(containerId: number): void {
-    console.log("myButton on bind: " + containerId);
+    console.info("myButton on bind: " + containerId);
   }
 
   onUnbind(containerId: number): void {
-    console.log("myButton on unbind: " + containerId);
+    console.info("myButton on unbind: " + containerId);
   }
 }
 

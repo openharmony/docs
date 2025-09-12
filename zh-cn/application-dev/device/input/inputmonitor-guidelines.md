@@ -17,14 +17,14 @@ import { inputMonitor } from '@kit.InputKit';
 | 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
 | on(type: 'mouse', receiver: Callback&lt;MouseEvent&gt;): void |监听鼠标事件。 |
-| on(type: 'touch', receiver: TouchEventReceiver): void | 监听触屏事件。 |
+| on(type: 'touch', receiver: TouchEventReceiver): void | 监听触屏输入事件。 |
 | on(type: 'pinch', receiver: TouchEventReceiver): void | 监听捏合事件。 |
 | on(type: 'threeFingersSwipe', receiver: Callback&lt;ThreeFingersSwipe&gt;): void | 监听三指上划事件。 |
 | on(type: 'threeFingersTap', receiver: Callback&lt;ThreeFingersSwipe&gt;): void | 监听三指清点事件。 |
 | on(type: 'fourFingersSwipe', receiver: Callback&lt;FourFingersSwipe&gt;): void | 监听四指滑动事件。 |
 | on(type: 'rotate', fingers: number, receiver: Callback&lt;Rotate&gt;): void | 监听旋转事件。 |
 | off(type: 'mouse', receiver: Callback&lt;MouseEvent&gt;): void |取消监听鼠标事件。 |
-| off(type: 'touch', receiver: TouchEventReceiver): void | 取消监听触屏事件。 |
+| off(type: 'touch', receiver: TouchEventReceiver): void | 取消监听触屏输入事件。 |
 | off(type: 'pinch', receiver: TouchEventReceiver): void | 取消监听捏合事件。 |
 | off(type: 'threeFingersSwipe', receiver: Callback&lt;ThreeFingersSwipe&gt;): void | 取消监听三指上划事件。 |
 | off(type: 'threeFingersTap', receiver: Callback&lt;ThreeFingersSwipe&gt;): void | 取消监听三指清点事件。 |

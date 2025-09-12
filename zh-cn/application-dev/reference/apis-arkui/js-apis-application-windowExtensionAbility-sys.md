@@ -1,9 +1,17 @@
 # @ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @chbchb12-->
+<!--Designer: @stupidb-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示的内容可作为一个控件（AbilityComponent）内容展示在其他应用窗口中。
 
 > **说明：**
 >
+> - 从API version 21开始废弃，推荐使用[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
+> 
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口为系统接口。
@@ -20,15 +28,19 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称      | 类型 | 可读 | 可写 | 说明                      |
+| 名称      | 类型 | 只读 | 可选 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 是   | 否   | 上下文。      |
+| context<sup>(deprecated)</sup>  | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 否   | 否   | 上下文。<br>- **说明：** 从API version 9开始支持，从API version 21开始，该接口废弃，推荐使用[UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#属性)。<br/>      |
 
-## WindowExtensionAbility.onConnect
+## WindowExtensionAbility.onConnect<sup>(deprecated)</sup>
 
 onConnect(want: Want): void
 
 当窗口扩展组件第一次连接ability时回调。
+
+> **说明：**
+>
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionAbility.onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -51,11 +63,15 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionAbility.onDisconnect
+## WindowExtensionAbility.onDisconnect<sup>(deprecated)</sup>
 
 onDisconnect(want: Want): void
 
 当所有连接到窗口扩展组件的ability断开连接时回调。
+
+> **说明：**
+>
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionAbility.onDestroy](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#ondestroy)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -79,11 +95,15 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionAbility.onWindowReady
+## WindowExtensionAbility.onWindowReady<sup>(deprecated)</sup>
 
 onWindowReady(window: window.Window): void
 
 当窗口被创建时回调。
+
+> **说明：**
+>
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionAbility.onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

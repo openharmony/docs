@@ -1,5 +1,10 @@
 # Sensor
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 概述
 
@@ -535,6 +540,10 @@ int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *att
    static napi_value DestroySubscriptionAttribute(napi_env env, napi_callback_info info) {
        // 创建Sensor_SubscriptionAttribute实例。
        Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       if (attr == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriptionAttribute failed");
+           return nullptr;
+       }
        // 销毁Sensor_SubscriptionAttribute实例：在实际应用中，创建的实例会被用于后续操作，在不再使用时销毁。
        int32_t ret = OH_Sensor_DestroySubscriptionAttribute(attr);
        if (ret != SENSOR_SUCCESS) {
@@ -939,7 +948,7 @@ SENSOR_TYPE_ACCELEROMETER:data[0]、data[1]、data[2]分别表示设备x、y、z
 
 SENSOR_TYPE_GYROSCOPE:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s；
 
-SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，in lux；
+SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，单位lux；
 
 SENSOR_TYPE_MAGNETIC_FIELD:data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉； 
 

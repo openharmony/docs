@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @woodenarow-->
-<!--SE: @woodenarow; @xuelei3-->
-<!--TSE: @chenwan188; @logic42-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 **数据集（ValuesBucket）** 是开发者向数据库插入的数据集合，数据集以键值对的形式进行传输。
 

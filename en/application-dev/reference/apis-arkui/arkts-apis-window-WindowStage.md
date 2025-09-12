@@ -1,20 +1,32 @@
 # Interface (WindowStage)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-## WindowStage<sup>9+</sup>
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The initial APIs of this interface are supported since API version 9.
 
 Implements a window manager, which manages each basic window unit, that is, [Window](arkts-apis-window-Window.md) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) to create a WindowStage instance.
 
-### getMainWindow<sup>9+</sup>
+## Modules to Import
+
+```ts
+import { window } from '@kit.ArkUI';
+```
+
+## getMainWindow<sup>9+</sup>
 
 getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
-Obtains the main window of this window stage. This API uses an asynchronous callback to return the result.
+Obtains the main window of this WindowStage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -63,11 +75,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getMainWindow<sup>9+</sup>
+## getMainWindow<sup>9+</sup>
 
 getMainWindow(): Promise&lt;Window&gt;
 
-Obtains the main window of this window stage. This API uses a promise to return the result.
+Obtains the main window of this WindowStage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -114,11 +126,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getMainWindowSync<sup>9+</sup>
+## getMainWindowSync<sup>9+</sup>
 
 getMainWindowSync(): Window
 
-Obtains the main window of this window stage.
+Obtains the main window of this WindowStage.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -161,11 +173,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### createSubWindow<sup>9+</sup>
+## createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a child window for this window stage. This API uses an asynchronous callback to return the result.
+Creates a child window for this WindowStage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -215,7 +227,7 @@ export default class EntryAbility extends UIAbility {
           console.info('Failed to load the content. Cause: windowClass is null');
         }
         else {
-          (windowClass as window.Window).resize(500, 1000);
+          windowClass.resize(500, 1000);
         }
       });
     } catch (exception) {
@@ -225,11 +237,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### createSubWindow<sup>9+</sup>
+## createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string): Promise&lt;Window&gt;
 
-Creates a child window for this window stage. This API uses a promise to return the result.
+Creates a child window for this WindowStage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -286,11 +298,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### createSubWindowWithOptions<sup>11+</sup>
+## createSubWindowWithOptions<sup>11+</sup>
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
-Creates a child window for this window stage. This API uses a promise to return the result.
+Creates a child window for this WindowStage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -354,11 +366,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getSubWindow<sup>9+</sup>
+## getSubWindow<sup>9+</sup>
 
 getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
-Obtains all the child windows of this window stage. This API uses an asynchronous callback to return the result.
+Obtains all the child windows of this WindowStage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -406,11 +418,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getSubWindow<sup>9+</sup>
+## getSubWindow<sup>9+</sup>
 
 getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
-Obtains all the child windows of this window stage. This API uses a promise to return the result.
+Obtains all the child windows of this WindowStage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -456,11 +468,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it.
+Loads the content of a page, with its path in the current project specified, to the main window of this WindowStage, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it. The execution context of the current UI may be unclear. Therefore, you are advised not to perform UI-related operations within the callback.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -516,11 +528,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it.
+Loads the content of a page, with its path in the current project specified, to the main window of this WindowStage, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it. The execution context of the current UI may be unclear. Therefore, you are advised not to perform UI-related operations within the callback.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -580,11 +592,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads the content of a page, with its path in the current project specified, to the main window of this window stage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it.
+Loads the content of a page, with its path in the current project specified, to the main window of this WindowStage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it. The execution context of the current UI may be unclear. Therefore, you are advised not to perform UI-related operations within the callback.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -636,11 +648,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window stage, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this WindowStage, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it. The execution context of the current UI may be unclear. Therefore, you are advised not to perform UI-related operations within the callback.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -720,11 +732,11 @@ export struct Index {
 }
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window stage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this WindowStage. This API uses an asynchronous callback to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it. The execution context of the current UI may be unclear. Therefore, you are advised not to perform UI-related operations within the callback.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -799,11 +811,11 @@ export struct Index {
 }
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
-loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
+loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window stage, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this WindowStage, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result. You are advised to call this API during UIAbility startup. If called repeatedly, this API will destroy the existing page content (UIContent) before loading the new content. Exercise caution when using it. The execution context of the current UI may be unclear. Therefore, you are advised not to perform UI-related operations within the callback.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -816,7 +828,13 @@ Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page
 | Name | Type        | Mandatory| Description                                                        |
 | ------- | ------------ | ---- | ------------------------------------------------------------ |
 | name    | string       | Yes  | Name of the named route page.                                            |
-| storage | LocalStorage | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -880,11 +898,11 @@ export struct Index {
 }
 ```
 
-### on('windowStageEvent')<sup>9+</sup>
+## on('windowStageEvent')<sup>9+</sup>
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
 
-Subscribes to the window stage lifecycle change event.
+Subscribes to the WindowStage lifecycle change event.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -896,8 +914,8 @@ Subscribes to the window stage lifecycle change event.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the window stage lifecycle change event.|
-| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | Yes  | Callback used to return the window stage lifecycle state.               |
+| eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the WindowStage lifecycle change event.|
+| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | Yes  | Callback used to return the WindowStage lifecycle state.               |
 
 **Error codes**
 
@@ -932,11 +950,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### off('windowStageEvent')<sup>9+</sup>
+## off('windowStageEvent')<sup>9+</sup>
 
 off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
 
-Unsubscribes from the window stage lifecycle change event.
+Unsubscribes from the WindowStage lifecycle change event.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -948,8 +966,8 @@ Unsubscribes from the window stage lifecycle change event.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the window stage lifecycle change event.|
-| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | No  | Callback used to return the window stage lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
+| eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the WindowStage lifecycle change event.|
+| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | No  | Callback used to return the WindowStage lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
 
 **Error codes**
 
@@ -991,11 +1009,144 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### on('windowStageClose')<sup>14+</sup>
+## on('windowStageLifecycleEvent')<sup>20+</sup>
+
+on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLifecycleEventType&gt;): void
+
+Subscribes to the WindowStage lifecycle change event.
+
+> **NOTE**
+>
+>  Comparison with [on('windowStageEvent')](#onwindowstageevent9):
+>
+> 1. **on('windowStageEvent')** does not ensure the sequence of state transitions. It is not suitable for cases where the order of states matters. In such cases, use this API instead.
+>
+> 2. This API does not support listening for focus gain/loss states of the WindowStage. For such requirements, use [on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10).
+>
+> 3. For details about system mechanisms and lifecycle transitions, see [Main Window Lifecycle](../../windowmanager/window-overview.md#main-window-lifecycle).
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageLifecycleEvent'**, indicating the WindowStage lifecycle change event.|
+| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | Yes  | Callback used to return the WindowStage lifecycle state.               |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    const callback = (data: window.WindowStageLifecycleEventType) => {
+      console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+        JSON.stringify(data));
+      // Process services based on the event status.
+      if (data === window.WindowStageLifecycleEventType.SHOWN) {
+        console.info('current window stage event is SHOWN');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.RESUMED) {
+        console.info('current window stage event is RESUMED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.PAUSED) {
+        console.info('current window stage event is PAUSED');
+        // ...
+      } else if (data === window.WindowStageLifecycleEventType.HIDDEN) {
+        console.info('current window stage event is HIDDEN');
+        // ...
+      }
+      // ...
+    }
+    try {
+      windowStage.on('windowStageLifecycleEvent', callback);
+    } catch (exception) {
+      console.error(`Failed to enable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+## off('windowStageLifecycleEvent')<sup>20+</sup>
+
+off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLifecycleEventType&gt;): void
+
+Unsubscribes from the WindowStage lifecycle change event.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageLifecycleEvent'**, indicating the WindowStage lifecycle change event.|
+| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | No  | Callback used to return the WindowStage lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    const callback = (windowStageLifecycleEvent: window.WindowStageLifecycleEventType) => {
+      // ...
+    }
+    try {
+      windowStage.on('windowStageLifecycleEvent', callback);
+    } catch (exception) {
+      console.error(`Failed to enable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+    try {
+      windowStage.off('windowStageLifecycleEvent', callback);
+      // Unregister all the callbacks that have been registered through on().
+      windowStage.off('windowStageLifecycleEvent');
+    } catch (exception) {
+      console.error(`Failed to disable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+## on('windowStageClose')<sup>14+</sup>
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
-Subscribes to the click event on the close button in the three-button navigation bar of the main window. This event is triggered when the close button in the three-button navigation bar of the main window is clicked. The registered lifecycle callback function [UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onpreparetoterminate10) is not executed.
+Subscribes to the click event on the close button in the three-button navigation bar of the main window. This API works only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode. This event is triggered when the close button in the three-button navigation bar of the main window is clicked. The registered lifecycle callback function [UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onpreparetoterminate10) is not executed.
 
 If the event is subscribed to multiple times, only the most recently subscribed-to event takes effect.
 
@@ -1003,20 +1154,20 @@ The callback function in this API is executed synchronously. For asynchronous cl
 
 If there is an existing event subscribed to by calling [on('windowWillClose')](arkts-apis-window-Window.md#onwindowwillclose15), only the [on('windowWillClose')](arkts-apis-window-Window.md#onwindowwillclose15) API will be responded to.
 
-<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
-
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
+
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageClose'**, indicating that the close button in the three-button navigation bar of the main window is clicked|
-| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the upper right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window.|
+| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the upper-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window.|
 
 **Error codes**
 
@@ -1052,13 +1203,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### off('windowStageClose')<sup>14+</sup>
+## off('windowStageClose')<sup>14+</sup>
 
 off(eventType: 'windowStageClose', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from the event indicating that the main window is closed.
-
-<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
+Unsubscribes from the event indicating that the main window is closed. This API works only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1066,12 +1215,14 @@ Unsubscribes from the event indicating that the main window is closed.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
+
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageClose'**, indicating that the close button in the three-button navigation bar of the main window is clicked.|
-| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the upper right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the upper-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -1110,7 +1261,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setDefaultDensityEnabled<sup>12+</sup>
+## setDefaultDensityEnabled<sup>12+</sup>
 
 setDefaultDensityEnabled(enabled: boolean): void
 
@@ -1130,7 +1281,7 @@ When the default density is not used, if [setCustomDensity()](#setcustomdensity1
 
 | Name          | Type   | Mandatory| Description                        |
 | ---------------- | ------- | ---- | ---------------------------- |
-| enabled | boolean | Yes  | Whether to enable the system's default density. The value **true** means to enable the system's default density, and **false** means the opposite. When the system's default density is enabled, the window layout does not change with the system display size.|
+| enabled | boolean | Yes  | Whether to enable the system's default density. **true** to enable, **false** otherwise. When the system's default density is enabled, the window layout does not change with the system display size.|
 
 **Error codes**
 
@@ -1173,11 +1324,15 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setCustomDensity<sup>15+</sup>
+## setCustomDensity<sup>15+</sup>
 
 setCustomDensity(density: number): void
 
-Allows the main window of the application to customize its display size scale factor. Child windows and system windows will follow the main window's setting. If both this API and [setDefaultDensityEnabled(true)](#setdefaultdensityenabled12) are called to set a display size scale factor, the setting from the last called API will be applied.
+Allows the main window of the application to customize its display size scale factor.
+
+Existing child windows and system windows do not immediately re-layout to match the main window's new scale factor. They will re-layout to reflect this change only when their layout information (such as position, size, and system scale size) changes.
+
+If both this API and [setDefaultDensityEnabled(true)](#setdefaultdensityenabled12) are called, the setting from the last called API will be applied.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1189,7 +1344,7 @@ Allows the main window of the application to customize its display size scale fa
 
 | Name          | Type   | Mandatory| Description                        |
 | ---------------- | ------- | ---- | ---------------------------- |
-| density | number | Yes  | Custom display size scale factor. The value is a floating point number in the range [0.5, 4.0] or is set to **-1.0**. The value **4.0** indicates the largest permissible display size scale factor for the window, and **-1.0** means that the window uses the system's default display size scale factor.|
+| density | number | Yes  | Custom display size scale factor. The value is a floating-point number in the range [0.5, 4.0] or is set to **-1.0**. The value **4.0** indicates the largest permissible display size scale factor for the window, and **-1.0** means that the window uses the system's default display size scale factor.|
 
 **Error codes**
 
@@ -1222,15 +1377,64 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setWindowModal<sup>14+</sup>
+## setCustomDensity<sup>20+</sup>
+
+setCustomDensity(density: number, applyToSubWindow?: boolean): void
+
+Allows the main window of the application to customize its display size scale factor and control when child windows and system windows re-layout to match the main window.
+
+If both this API and [setDefaultDensityEnabled(true)](#setdefaultdensityenabled12) are called, the setting from the last called API will be applied.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name          | Type   | Mandatory| Description                        |
+| ---------------- | ------- | ---- | ---------------------------- |
+| density | number | Yes  | Custom display size scale factor. The value is a floating-point number in the range [0.5, 4.0] or is set to **-1.0**. The value **4.0** indicates the largest permissible display size scale factor for the window, and **-1.0** means that the window uses the system's default display size scale factor.|
+| applyToSubWindow | boolean | No  | Whether existing child windows and system windows should immediately re-layout to match the main window's new scale factor. If this parameter is set to **true**, they will immediately re-layout to match the main window's new scale factor. If this parameter is set to **false**, they will re-layout to reflect this change only when their layout information (such as position, size, and system scale size) changes. The default value is **false**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      windowStage.setCustomDensity(2.0);
+      windowStage.setCustomDensity(3.0, true);
+      windowStage.setCustomDensity(-1.0, false);
+    } catch (exception) {
+      console.error(`Failed to set custom density. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+## setWindowModal<sup>14+</sup>
 
 setWindowModal(isModal: boolean): Promise&lt;void&gt;
 
-Enables the modal property of the main window. This API uses a promise to return the result.
+Enables the modal property of the main window. This API uses a promise to return the result. It works only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode.
 
 This API must be called by the main window and the setting takes effect for the main window. After the modal property of the main window is enabled, other main windows in the same application process and their child windows do not respond to user interactions until the main window is closed or the main window's modal property is disabled.
-
-<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1238,11 +1442,13 @@ This API must be called by the main window and the setting takes effect for the 
 
 **System capability**: SystemCapability.Window.SessionManager
 
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
+
 **Parameters**
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| isModal | boolean | Yes  | Whether to enable the modal property of the main window. The value **true** means to enable the modal property, and **false** means the opposite.|
+| isModal | boolean | Yes  | Whether to enable the modal property of the main window. **true** to enable, **false** otherwise.|
 
 
 **Return value**
@@ -1288,7 +1494,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### removeStartingWindow<sup>14+</sup>
+## removeStartingWindow<sup>14+</sup>
 
 removeStartingWindow(): Promise&lt;void&gt;
 
@@ -1343,11 +1549,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setWindowRectAutoSave<sup>14+</sup>
+## setWindowRectAutoSave<sup>14+</sup>
 
 setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
-Enables or disables the auto-save feature for the size of the last closed main window. This API uses a promise to return the result. It takes effect only on 2-in-1 devices.
+Enables or disables the auto-save feature for the size of the last closed main window. This API uses a promise to return the result.
 
 When the auto-save feature is enabled, within the same UIAbility, the size of the last closed main window is remembered. When this main window is restarted, it will open at the remembered size according to the rules.
 
@@ -1372,11 +1578,13 @@ The following table describes the memory rules:
 
 **System capability**: SystemCapability.Window.SessionManager
 
+**Device behavior differences**: This API can be properly called on 2-in-1 devices. If it is called on other device types, error code 801 is returned.
+
 **Parameters**
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enabled | boolean | Yes  | Whether to enable the auto-save feature. The value **true** means to enable it, and **false** means to disable it.|
+| enabled | boolean | Yes  | Whether to enable the auto-save feature. **true** to enable, **false** otherwise.|
 
 
 **Return value**
@@ -1421,11 +1629,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowRectAutoSave<sup>17+</sup>
+## setWindowRectAutoSave<sup>17+</sup>
 
 setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
-Enables or disables the auto-save feature for the size of the main window. This API uses a promise to return the result. It takes effect only on 2-in-1 devices.
+Enables or disables the auto-save feature for the size of the main window. This API uses a promise to return the result.
 
 Within the same UIAbility, you can remember the size of the last closed main window, or you can remember the size of each main window individually. The individual auto-save feature for each main window size is only available when the UIAbility launch mode is set to **specified** and the **isSaveBySpecifiedFlag** parameter is set to **true**.
 
@@ -1447,12 +1655,14 @@ The following table describes the memory rules:
 
 **System capability**: SystemCapability.Window.SessionManager
 
+**Device behavior differences**: This API can be properly called on 2-in-1 devices. If it is called on other device types, error code 801 is returned.
+
 **Parameters**
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enabled | boolean | Yes  | Whether to enable the auto-save feature. The value **true** means to enable it, and **false** means to disable it.|
-| isSaveBySpecifiedFlag | boolean | Yes  | Whether to enable the individual auto-save feature when the UIAbility launch mode is set to **specified**. The value **true** means to enable it, and **false** means to disable it.|
+| enabled | boolean | Yes  | Whether to enable the auto-save feature. **true** to enable, **false** otherwise.|
+| isSaveBySpecifiedFlag | boolean | Yes  | Whether to enable the individual auto-save feature when the UIAbility launch mode is set to **specified**. **true** to enable, **false** otherwise.|
 
 
 **Return value**
@@ -1497,11 +1707,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### isWindowRectAutoSave<sup>14+</sup>
+## isWindowRectAutoSave<sup>14+</sup>
 
 isWindowRectAutoSave(): Promise&lt;boolean&gt;
 
-Checks whether the auto-save feature is enabled for the main window's size. This API uses a promise to return the result. It takes effect only on 2-in-1 devices.
+Checks whether the auto-save feature is enabled for the main window's size. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1509,11 +1719,13 @@ Checks whether the auto-save feature is enabled for the main window's size. This
 
 **System capability**: SystemCapability.Window.SessionManager
 
+**Device behavior differences**: This API can be properly called on 2-in-1 devices. If it is called on other device types, error code 801 is returned.
+
 **Return value**
 
 | Type| Description|
 | ---------------------- | ------------------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the auto-save feature is enabled, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -1523,7 +1735,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | ------- | ------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager services works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -1550,19 +1762,19 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSupportedWindowModes<sup>15+</sup>
+## setSupportedWindowModes<sup>15+</sup>
 
 setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>): Promise&lt;void&gt;
 
-Sets the supported window modes of the main window. This API uses a promise to return the result.
-
-<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
+Sets the supported window modes of the main window. This API uses a promise to return the result. It works only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode.
 
 **Model restriction**: This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
@@ -1616,17 +1828,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSupportedWindowModes<sup>20+</sup>
+## setSupportedWindowModes<sup>20+</sup>
 
 setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>, grayOutMaximizeButton: boolean): Promise&lt;void&gt;
 
-Sets the supported window modes for the main window and optionally disables the maximize button. This API uses a promise to return the result.
-
-<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
+Sets the supported window modes for the main window and optionally disables the maximize button. This API uses a promise to return the result. It takes effect only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode.
 
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 

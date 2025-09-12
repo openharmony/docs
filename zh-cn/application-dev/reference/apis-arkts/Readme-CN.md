@@ -1,7 +1,29 @@
 # ArkTS（方舟编程语言）
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025; @xliu-huanwei-->
+<!--Designer: @weng-changcheng; @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 - ArkTS API<!--arkts-arkts-->
-  - [@arkts.collections (ArkTS容器集)](js-apis-arkts-collections.md)
+  - @arkts.collections (ArkTS容器集)<!--js-apis-arkts-collections-->
+    - [模块描述](arkts-apis-arkts-collections.md)
+    - [Class (Array)](arkts-apis-arkts-collections-Array.md)
+    - [Class (Map)](arkts-apis-arkts-collections-Map.md)
+    - [Class (Set)](arkts-apis-arkts-collections-Set.md)
+    - [Class (ArrayBuffer)](arkts-apis-arkts-collections-ArrayBuffer.md)
+    - [Class (Int8Array)](arkts-apis-arkts-collections-Int8Array.md)
+    - [Class (Uint8Array)](arkts-apis-arkts-collections-Uint8Array.md)
+    - [Class (Int16Array)](arkts-apis-arkts-collections-Int16Array.md)
+    - [Class (Uint16Array)](arkts-apis-arkts-collections-Uint16Array.md)
+    - [Class (Int32Array)](arkts-apis-arkts-collections-Int32Array.md)
+    - [Class (Uint32Array)](arkts-apis-arkts-collections-Uint32Array.md)
+    - [Class (Uint8ClampedArray)](arkts-apis-arkts-collections-Uint8ClampedArray.md)
+    - [Class (Float32Array)](arkts-apis-arkts-collections-Float32Array.md)
+    - [Class (BitVector)](arkts-apis-arkts-collections-BitVector.md)
+    - [Interface (ConcatArray)](arkts-apis-arkts-collections-ConcatArray.md)
+    - [Types](arkts-apis-arkts-collections-Types.md)
   - [@arkts.lang (ArkTS语言基础能力)](js-apis-arkts-lang.md)
   - [@arkts.math.Decimal (高精度数学库Decimal)](js-apis-arkts-decimal.md)
   - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
@@ -12,7 +34,7 @@
     - [SendableLruCache<K, V>](arkts-apis-arkts-utils-SendableLruCache.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
-  - [@ohos.fastbuffer (线性容器FastBuffer)](js-apis-fastbuffer.md)
+  - [@ohos.fastbuffer (FastBuffer)](js-apis-fastbuffer.md)
   - [@ohos.process (获取进程相关的信息)](js-apis-process.md)
   - [@ohos.taskpool (启动任务池)](js-apis-taskpool.md)
   - [@ohos.uri (URI字符串解析)](js-apis-uri.md)
@@ -44,3 +66,4 @@
   - [语言基础类库错误码](errorcode-utils.md)
   - [Typescript Compiler错误码](errorcode-tsc.md)
   - [编译工具链错误码](errorcode-ets-loader.md)
+  - [Es2abc编译器错误码](errorcode-es2abc.md)

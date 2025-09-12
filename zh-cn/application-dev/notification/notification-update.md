@@ -1,5 +1,12 @@
 # 更新通知
 
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
+
 更新已发布的通知。主要用于上传下载进度更新、IM会话消息更新等场景。
 
 ## 接口说明

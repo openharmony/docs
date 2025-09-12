@@ -1,5 +1,12 @@
 # @ohos.net.vpnExtension (VPN 增强管理)（系统接口）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 三方VPN管理模块，支持三方VPN的启动和停止功能。
 三方VPN是指由第三方提供的VPN服务，它们通常提供更多的功能和更广泛的网络连接选项，包括更多的安全和隐私功能，以及更全面的定制选项。
 
@@ -18,7 +25,7 @@ import { vpnExtension } from '@kit.NetworkKit';
 
 setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
-设置设备的启用/禁用always on VPN模式。
+设置设备的启用/禁用always on VPN模式。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -74,7 +81,7 @@ vpnExtension.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
 
 isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
-获取always on VPN开关状态。
+获取always on VPN开关状态。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -173,6 +180,6 @@ let want: Want = {
 };
 
 let result: boolean = vpnExtension.updateVpnAuthorizedState(want.bundleName);
-console.log("Result: "+ result);
+console.info("Result: "+ result);
 ```
 

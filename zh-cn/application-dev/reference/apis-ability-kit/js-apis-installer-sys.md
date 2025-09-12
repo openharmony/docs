@@ -1,4 +1,10 @@
 # @ohos.bundle.installer (installer模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 > **说明：**
 >
@@ -965,7 +971,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -983,7 +989,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 ```ts
 import { installer } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -1027,7 +1033,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1045,7 +1051,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 ```ts
 import { installer } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -1664,7 +1670,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 
 | 类型            | 说明                                   |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1674,7 +1680,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.INSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 17700001 | The specified bundleName cannot be found. |
+| 17700001 | The specified hostBundleName cannot be found or the bundle is not installed by the specified user. |
 | 17700004 | The userId is invalid. |
 | 17700010 | Failed to install the plugin because the plugin fails to be parsed. |
 | 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
@@ -1743,7 +1749,7 @@ uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: 
 
 | 类型            | 说明                                   |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1753,8 +1759,8 @@ uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: 
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.UNINSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 17700001 | The specified bundleName cannot be found. |
-| 17700004 | The userId is invalid. |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The user id is invalid. |
 | 17700092 | Failed to uninstall the plugin because the specified plugin is not found. |
 
 **示例：**

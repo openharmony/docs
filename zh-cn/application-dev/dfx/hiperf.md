@@ -1,10 +1,16 @@
 # hiperf
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @leiguangyu-->
+<!--Designer: @Maplestroy-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
-hiperf是一款集成多种性能分析功能的命令行工具，支持Windows和Linux系统，可用于分析系统性能瓶颈、定位软件热点及优化代码效率，支持采集和统计程序运行时的性能数据。
+hiperf是一款集成多种性能分析功能的命令行工具，可用于分析系统性能瓶颈、定位软件热点及优化代码效率，支持采集和统计程序运行时的性能数据。
 
 
-开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)或[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host/releases)等图形前端工具直接采集函数调用栈和进行性能分析。若需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以使用 hiperf 命令行工具进行单独设置。采样数据 perf.data 文件可以使用 SmartPerf 工具打开并以可视化的界面进行展示，SmartPerf的操作可参考[使用说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)；也可以通过[火焰图脚本](https://gitee.com/openharmony/developtools_hiperf/tree/master/script)对文件进行解析并转换为直观的图形，展示程序运行时的函数调用关系和资源消耗情况，火焰图脚本的使用可参考[使用说明](https://gitee.com/openharmony/developtools_hiperf/blob/master/README_zh.md#%E8%84%9A%E6%9C%AC)。
+开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-time)或[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_hiperf.md)等图形前端工具采集函数的调用栈，获取调用栈上各层函数的执行时间，通过泳道图等方式查看调用链信息进而进行性能分析。若需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以单独使用 hiperf 命令行工具。采样数据 perf.data 文件可以使用SmartPerf工具打开并以可视化的火焰图进行展示。
 
 
 本文档详细说明了hiperf命令行工具的使用方法，帮助开发者借助该工具进行详细的性能分析。
@@ -14,7 +20,7 @@ hiperf是一款集成多种性能分析功能的命令行工具，支持Windows�
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
-- 确保设备已连接，并执行hdc shell。
+- 确保设备已连接，然后执行hdc shell。
 
 
 ## 命令行说明
@@ -258,7 +264,7 @@ Supported events for hardware:
 
 ## record命令
 
-采集指定进程或指定应用的性能数据，包括CPU周期、指令数、函数调用等信息，并且将采样数据保存到指定的文件中（默认为/data/local/tmp/perf.data）。
+采集指定进程或指定应用的性能数据，包括CPU周期、指令数、函数调用等信息，并且将采样数据保存到指定的文件中。
 
 **record命令参数说明**
 
@@ -287,13 +293,13 @@ Supported events for hardware:
 | --disable-unwind | 回栈模式被设置为dwarf时，设置此选项后调用栈将不会在录制后展开。 | 
 | --disable-callstack-expand | 回栈模式被设置为dwarf时，设置此选项后会用缓存的线程栈来对调用栈进行合并。 | 
 | --enable-debuginfo-symbolic | -s fp/dwarf被设置时，elf在.gnu_debugdata段的符号会被解析，默认不解析。 | 
-| --clockid | 设置采集时钟类型，支 monotonic和monotonic_raw，部分事件支持boottime、realtime和 clock_tai时钟类型。 | 
+| --clockid | 设置采集时钟类型，支持monotonic和monotonic_raw，部分事件支持boottime、realtime和clock_tai时钟类型。 | 
 | --symbol-dir | 符号表文件路径，用于采集过程中进行符号化操作。 | 
 | -m | mmap页数量，取值范围：2 - 1024，默认1024。 | 
 | --app | 采集的应用程序名，以逗号隔开。应用程序必须是启动状态，应用程序未启动时会等待20s，20s内应用程序未启动，命令会自动结束。该参数不能和-a一起使用。 | 
 | --chkms | 设置查询的间隔时间，单位为ms。取值范围：1 - 200，默认10。 | 
 | --data-limit | 输出数据达到指定大小停止采集，默认无限制。 | 
-| -o | 设置输出文件路径，现支持用户将输出文件路径设定为"/data/local/tmp/"目录，并允许用户自定义文件名称。 | 
+| -o | 设置输出文件路径，默认路径以设备上运行 hiperf record -h/--help 时显示的 -o 参数说明为准，并允许用户自定义文件名称。 | 
 | -z | 以.gz的压缩文件形式输出。 | 
 | --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，采集操作将结束。 | 
 | --verbose | 输出更详细的报告。 | 
@@ -315,7 +321,7 @@ Supported events for hardware:
 Usage: hiperf record [options] [command [command-args]]
 ```
 
-对指定的pid为267的进程采样10秒，并且使用dwarf回栈。
+对指定的pid为267的进程采样10秒，并使用dwarf回栈。
 
 ```
 $ hiperf record -p 267 -d 10 -s dwarf
@@ -348,7 +354,7 @@ $ hiperf record -p 267 -d 10 -s dwarf
 | --verbose | 输出详细的信息。 | 
 | --dumpoptions | 展示当前列表里所有选项的详细信息。 | 
 | --control [command] | 采集操作启停控制参数。命令包括prepare/start/stop。该参数不能和-d一起使用。<br/>**说明**：从API version 20开始，支持该参数。 | 
-| -o | 设置输出文件路径，现支持用户将输出文件路径设定为"/data/local/tmp/"目录，并允许用户自定义文件名称。该参数必须和--control prepare一起使用，不能和--control一起使用。<br/>**说明**：从API version 20开始，支持该参数。 | 
+| -o | 设置输出文件路径，默认路径以设备上运行 hiperf stat -h/--help 时显示的 -o 参数说明为准，并允许用户自定义文件名称。该参数必须和--control prepare一起使用，不能和--control一起使用。<br/>**说明**：从API version 20开始，支持该参数。 | 
 | -a | 统计整机的性能数据。 |
 
 **命令行示例**：

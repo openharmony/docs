@@ -1,4 +1,10 @@
 # @ohos.file.PhotoPickerComponent (PhotoPickerComponent)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda-->
+<!--Designer: @guxinggang-->
+<!--Tester: @wangbeibei-->
+<!--Adviser: @zengyawen-->
 
 You can embed the **PhotoPickerComponent** in your application's layout to let users pick images or videos without requiring extra permissions. Once the users have made their selection, your application gets read-only access to the chosen images or videos.
 
@@ -15,9 +21,8 @@ Once embedded, users can directly select images or videos within the **PhotoPick
 ```ts
 import {
   PhotoPickerComponent, PickerController, PickerOptions,
-  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
-  MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
+  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, ItemType, ClickType,
+  MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
   ItemsDeletedCallback, ExceedMaxSelectedCallback, CurrentAlbumDeletedCallback
 } from '@ohos.file.PhotoPickerComponent';
 ```
@@ -40,6 +45,7 @@ PhotoPickerComponent({
   onSelectedItemsDeleted?: ItemsDeletedCallback,
   onExceedMaxSelected?: ExceedMaxSelectedCallback,
   onCurrentAlbumDeleted?: CurrentAlbumDeletedCallback,
+  onVideoPlayStateChanged?: videoPlayStateChangedCallback,
   pickerController: PickerController
 })
 
@@ -51,33 +57,29 @@ Allows the application to access images or videos in the user directory without 
 
 **Decorator**: @Component
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
 
-| Name                     | Type                                                                              | Mandatory | Decorator Description     | Description                                                                                                                                                                                                                                                                                                                                                           |
+| Name                     | Type                                                                              | Mandatory | Decorator Type     | Description                                                                                                                                                                                                                                                                                                                                                           |
 |-------------------------|----------------------------------------------------------------------------------|-----|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pickerOptions           | [PickerOptions](#pickeroptions)                                                  | No  | - | Configuration of Picker.                                                                                                                                                                                                                                                                                                                                                    |
-| onSelect                | (uri: string) => void                                                            | No  | - | Callback to be invoked when an image is selected by using **PhotoPickerComponent**. This callback returns the URI of the image selected to the application.                                                                                                                                                                                                                                                                                                                           |
-| onDeselect              | (uri: string) => void                                                            | No  | - | Callback to be invoked when an image is deselected by using **PhotoPickerComponent**. This callback returns the URI of the image deselected to the application.                                                                                                                                                                                                                                                                                                                     |
-| onItemClicked           | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean | No  | - | Callback to be invoked when an item in a **PhotoPickerComponent** is clicked.<br>For an image (thumbnail item), if **true** is returned, the image is selected. Otherwise, the image is not selected and the URI is not granted with the permission. For a camera item, if **true** is returned, the system camera is started. Otherwise, the camera is not started and the application handles the request.                                                                                                                                                                                                                                           |
-| onEnterPhotoBrowser     | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | No  | - | Callback to be invoked when the photo browser page is displayed. The callback returns photo browser information to the application.                                                                                                                                                                                                                                                                                                                                    |
-| onExitPhotoBrowser      | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | No  | - | Callback to be invoked when the photo browser page exits. The callback returns photo browser information to the application.                                                                                                                                                                                                                                                                                                                                      |
-| onPickerControllerReady | () => void                                                                       | No  | - | Callback to be invoked when **pickerController** is available.<br>The **PickerController** APIs can be called only after this callback is invoked.                                                                                                                                                                                                                                                                                              |
-| onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | No  | - | Callback to be invoked when the photo browser page is swiped left or right. The callback returns photo browser information to the application. The setting takes effect only in multi-selection mode.                                                                                                                                                                                                                                                                                                                                    |
-| onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | No  | - | Callback to be invoked when the selected items are deleted. This callback returns information about the deleted items to the application.                                                                                                                                                                                                                                                                                                                             |
-| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSelectedCallback](#exceedmaxselectedcallback13)                          | No  | - | Callback to be invoked when the number of selected media assets exceeds the limit (maximum number of selected images, selected videos, or selected items).<br>- If the number of selected images reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).PHOTO_MAX_COUNT.<br>- If the number of selected videos reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).VIDEO_MAX_COUNT.<br>- If the number of selected media assets reaches the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).TOTAL_MAX_COUNT.|
-| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | No  | - | Callback to be invoked when the current album is deleted.<br>The album is specified by **currentAlbumUri** in pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri).<br>To refresh the grid page to display the default album after the current album is deleted, you can set the title bar name to the default album name, for example, **Photos and videos**, **Photos**, or **Videos**, and call pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '') with an empty string.                                 |
-| onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | No  | - | Callback to be invoked when the video playback state on a photo browser page changes.                                 |
-| pickerController        | [PickerController](#pickercontroller)                                            | No  | @ObjectLink | Instance used to send data to the **PhotoPickerComponent**.                                                                                                                                                                                                                                                                                                                            |
+| pickerOptions           | [PickerOptions](#pickeroptions)                                                  | No  | - | Picker configuration parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                                                    |
+| onSelect                | (uri: string) => void                                                            | No  | - | Callback to be invoked when an image is selected by using **PhotoPickerComponent**. This callback returns the URI of the image selected to the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                           |
+| onDeselect              | (uri: string) => void                                                            | No  | - | Callback to be invoked when an image is deselected by using **PhotoPickerComponent**. This callback returns the URI of the image deselected to the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                     |
+| onItemClicked           | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean | No  | - | Callback to be invoked when an item in a **PhotoPickerComponent** is clicked.<br>For an image (thumbnail item), if **true** is returned, the image is selected. Otherwise, the image is not selected and the URI is not granted with the permission. For a camera item, if **true** is returned, the system camera is started. Otherwise, the camera is not started and the application handles the request.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                           |
+| onEnterPhotoBrowser     | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | No  | - | Callback to be invoked when the photo browser page is displayed. The callback returns photo browser information to the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                                    |
+| onExitPhotoBrowser      | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | No  | - | Callback to be invoked when the photo browser page exits. The callback returns photo browser information to the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                                      |
+| onPickerControllerReady | () => void                                                                       | No  | - | Callback to be invoked when **pickerController** is available.<br>The **PickerController** APIs can be called only after this callback is invoked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                              |
+| onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | No  | - | Callback to be invoked when the photo browser page is swiped left or right. The callback returns photo browser information to the application. The setting takes effect only in multi-selection mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                                    |
+| onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | No  | - | Callback to be invoked when the selected items are deleted. This callback returns information about the deleted items to the application.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                                                                                                                                                                                                                                                                                                                             |
+| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSelectedCallback](#exceedmaxselectedcallback13)                          | No  | - | Callback to be invoked when the number of selected media assets exceeds the limit (maximum number of selected images, selected videos, or selected items).<br>- If the number of selected images reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).PHOTO_MAX_COUNT.<br>- If the number of selected videos reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).VIDEO_MAX_COUNT.<br>- If the number of selected media assets reaches the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).TOTAL_MAX_COUNT.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | No  | - | Callback to be invoked when the current album is deleted.<br>The album is specified by **currentAlbumUri** in pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri).<br>To refresh the grid page to display the default album after the current album is deleted, you can set the title bar name to the default album name, for example, **Photos and videos**, **Photos**, or **Videos**, and call pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '') with an empty string.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                                 |
+| onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | No  | - | Callback to be invoked when the video playback state on a photo browser page changes.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                 |
+| pickerController        | [PickerController](#pickercontroller)                                            | No  | @ObjectLink | Instance used to send data to the **PhotoPickerComponent**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                            |
 
 ## PickerOptions
 
-Describes the configuration of a Picker. It inherits from [BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions12).
-
- 
+Describes the configuration of a Picker. It inherits from [BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions10).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -85,7 +87,7 @@ Describes the configuration of a Picker. It inherits from [BaseSelectOptions](ar
 |---------------------------------|-----------------------------------------|-----|--------------------------------------------------------------------------|
 | checkBoxColor                   | string                                  | No  | Background color of the check box. The value is an 8-digit hexadecimal color code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                  |
 | backgroundColor                 | string                                  | No  | Background color of the Picker grid page. The value is an 8-digit hexadecimal color code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                            |
-| isRepeatSelectSupported         | boolean                                 | No  | Whether to support repeat selection of a single image. The value **true** means that a single image can be repeatedly selected. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                  |
+| isRepeatSelectSupported         | boolean                                 | No  | Whether a single image can be repeatedly selected. The value **true** means that a single image can be repeatedly selected. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                  |
 | checkboxTextColor               | string                                  | No  | Text color in the check box. The value is an 8-digit hexadecimal color code. (This capability is not supported currently.)<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                       |
 | photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | No  | Background color of the photo browser page. The options are **AUTO**, **LIGHT**, and **DARK**. The default value is **AUTO**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                       |
 | maxSelectedReminderMode         | [ReminderMode](#remindermode)           | No  | Mode of the reminder when the number of selected items reaches the maximum. The options are **NONE**, **TOAST**, and **MASK**. The default value **TOAST**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                        |
@@ -94,11 +96,13 @@ Describes the configuration of a Picker. It inherits from [BaseSelectOptions](ar
 | maxPhotoSelectNumber            | number                                  | No  | Maximum number of images that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                          |
 | maxVideoSelectNumber            | number                                  | No  | Maximum number of videos that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                          |
 | isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | No  | Whether sliding selection (selecting multiple items by sliding finger across the screen) is supported. The value **true** means that sliding selection is supported. By default, it is not supported. This parameter is not available for repeat selection.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                                           |
-| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper left corner of the component. The default value is [0, 0].<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper-left corner of the component. The default value is [0, 0].<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a grid page.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a photo browser page.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | No  | Single-line display mode of a grid page. In single-line mode, the component does not provide functions for viewing a larger image. The component does not support callbacks related to large images, and the PickerController does not support APIs related to large images, making API calls ineffective.<br>**Atomic service API**: This API can be used in atomic services since API version 20.     |  
 | uiComponentColorMode<sup>20+</sup>             | [PickerColorMode](#pickercolormode)                                                | No  | Picker color mode. Dark/Light color mode (excluding the background color) of other components on the Picker grid page, including the search box, camera entry, safety tips for using Gallery, and recommendation bubble. This property is usually used together with **backgroundColor**. The default value is **PickerColorMode.AUTO**, which follows the system's dark/light color mode.<br>When setting this property, avoid using **PickerColorMode.LIGHT** with a dark backgroundColor, as it may make components or text hard to see. Avoid using **PickerColorMode.DARK** with a light backgroundColor for the same reason.<br>**Atomic service API**: This API can be used in atomic services since API version 20. |
+| gridStartOffset<sup>20+</sup>    | number                              | No  | Space between the top of the component and the first row of the grid thumbnail. The default value is **0**, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| gridEndOffset<sup>20+</sup>    | number                              | No  | Space between the bottom of the component and the last row of the grid thumbnail. The default value is **0**, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## ItemsDeletedCallback<sup>13+</sup>
 
@@ -151,6 +155,12 @@ Callback to be invoked when the video playback state on a photo browser page cha
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name| Type                           | Mandatory| Description                                          |
+| -------- |-------------------------------| -------- |----------------------------------------------|
+| state | [VideoPlayerState](#videoplayerstate14) | Yes| Enumerates the video playback states.|
 
 ## PickerController
 
@@ -254,7 +264,7 @@ Replaces the image selected by the user in the **PhotoPickerComponent** with the
 | Name        | Type                    |     Mandatory    | Description               |
 |-------------|----------------------------| -------------- |-------------------|
 | originalUri     | string  | Yes| URI of the original image, which will be replaced.|
-| newUri  | boolean   | Yes| URI of the new image. The new image is temporarily stored in the application sandbox path. Therefore, this URI specifies a directory in the application sandbox path.     |
+| newUri  | string   | Yes| URI of the new image. The new image is temporarily stored in the application sandbox path. Therefore, this URI specifies a directory in the application sandbox path.     |
 | callback   | AsyncCallback&lt;void&gt;   | Yes| Callback invoked when image replacement is complete.     |
 
 ### saveTrustedPhotoAssets<sup>15+</sup>
@@ -291,7 +301,7 @@ Represents basic image and video information.
 | width    | number                | No  | Width of the image or video, in pixels. This parameter is mandatory when **itemType** is **THUMBNAIL**. Otherwise, it is left empty.      |
 | height   | number                | No  | Height of the image or video, in pixels. This parameter is mandatory when **itemType** is **THUMBNAIL**. Otherwise, it is left empty.      |
 | size     | number                | No  | Size of the image or video, in bytes. This parameter is mandatory when **itemType** is **THUMBNAIL**. Otherwise, it is left empty.    |
-| duration   | number                | No  | Video duration, in ms. This parameter is mandatory when **itemType** is **THUMBNAIL**. Otherwise, it is left empty.<br>The value **-1** indicates an image.|
+| duration   | number                | No  | Video duration, in ms. This parameter is mandatory when **itemType** is **THUMBNAIL**. Otherwise, it is left empty. The value **-1** indicates an image.|
 
 ## ItemInfo
 
@@ -398,7 +408,9 @@ Enumerates the click operation types.
 
 ## PickerOrientation
 
-Enumerates the sliding preview directions of the Picker grid page. (This capability is not supported currently.)
+Enumerates the sliding preview directions of the Picker grid page.
+
+This capability can be configured since API version 20. If this capability is set since API version 12 to 19, the setting does not take effect and the default direction (vertical) is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -517,7 +529,7 @@ Enumerates the video playback states.
 | PAUSED | 1   | Video playback is paused.|
 | STOPPED | 2   | Video playback is stopped.|
 | SEEK_START | 3   | Started dragging the progress bar.|
-| SEEK_FINSH | 4   | Finished dragging the progress bar.|
+| SEEK_FINISH | 4   | Finished dragging the progress bar.|
 
 ## ItemDisplayRatio<sup>20+</sup>
 
@@ -544,14 +556,8 @@ import {
   BaseItemInfo,
   ItemInfo,
   PhotoBrowserInfo,
-  AnimatorParams,
-  MaxSelected,
   ItemType,
   ClickType,
-  PickerOrientation,
-  SelectMode,
-  PickerColorMode,
-  ReminderMode,
   MaxCountType,
   PhotoBrowserRange,
   PhotoBrowserUIElement,
@@ -561,14 +567,16 @@ import {
   videoPlayStateChangedCallback,
   VideoPlayerState
 } from '@ohos.file.PhotoPickerComponent';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct PickerDemo {
   pickerOptions: PickerOptions = new PickerOptions();
   @State pickerController: PickerController = new PickerController();
-  @State selectUris: Array<string> = new Array<string>();
+  @State selectUris: string[] = [];
   @State currentUri: string = '';
   @State isBrowserShow: boolean = false;
   private selectedItemsDeletedCallback: ItemsDeletedCallback =
@@ -578,6 +586,8 @@ struct PickerDemo {
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
   private videoPlayStateChangedCallback: videoPlayStateChangedCallback =
     (state: VideoPlayerState) => this.videoPlayStateChanged(state);
+  private thumbnail: PixelMap[] = [];
+  private assets: photoAccessHelper.PhotoAsset[] = [];
 
   aboutToAppear() {
     this.pickerOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -708,9 +718,9 @@ struct PickerDemo {
         // Simulate the selection bar at the bottom of the application.
         if (this.isBrowserShow) {
           Row() {
-            ForEach(this.selectUris, (uri: string) => {
-              if (uri === this.currentUri) {
-                Image(uri)
+            ForEach(this.assets, async (asset: photoAccessHelper.PhotoAsset, index) => {
+              if (asset.uri === this.currentUri) {
+                Image(this.thumbnail[index])
                   .height('10%')
                   .width('10%')
                   .onClick(() => {
@@ -718,16 +728,33 @@ struct PickerDemo {
                   .borderWidth(1)
                   .borderColor('red')
               } else {
-                Image(uri).height('10%').width('10%').onClick(() => {
+                Image(this.thumbnail[index]).height('10%').width('10%').onClick(() => {
                   this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
-                  this.pickerController.setPhotoBrowserItem(uri, PhotoBrowserRange.ALL);
+                  this.pickerController.setPhotoBrowserItem(asset.uri, PhotoBrowserRange.ALL);
                 })
               }
             }, (uri: string) => JSON.stringify(uri))
           }
         } else {
-          Button('Preview').width('33%').height('5%').onClick(() => {
+          Button('Preview').width('33%').height('5%').onClick(async () => {
             if (this.selectUris.length > 0) {
+              this.thumbnail = [];
+              this.assets = [];
+              for (let selectUri of this.selectUris) {
+                let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo(photoAccessHelper.PhotoKeys.URI, selectUri);
+                let fetchOptions: photoAccessHelper.FetchOptions = {
+                  fetchColumns: [],
+                  predicates: predicates
+                };
+                let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                let photoHelper = photoAccessHelper.getPhotoAccessHelper(context);
+                let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+                  await photoHelper.getAssets(fetchOptions);
+                let asset = await fetchResult.getFirstObject()
+                this.assets.push(asset);
+                this.thumbnail.push(await asset.getThumbnail())
+              }
               this.pickerController.setPhotoBrowserItem(this.selectUris[0], PhotoBrowserRange.SELECTED_ONLY);
             }
           })

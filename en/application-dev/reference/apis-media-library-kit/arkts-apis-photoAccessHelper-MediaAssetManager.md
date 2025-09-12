@@ -1,4 +1,10 @@
 # Class (MediaAssetManager)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -51,7 +57,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
+| 14000011       | System inner fail.        |
 
 **Example**
 
@@ -128,7 +134,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
+| 14000011       | System inner fail.        |
 
 **Example**
 
@@ -269,7 +275,7 @@ Requests a video and saves it to the specified sandbox directory.
 | asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | Yes  | Image to request.|
 | requestOptions  | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                  | Yes  | Options for requesting the video asset.|
 | fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'**.|
-| dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;boolean&gt; | Yes  | Media asset handler. When the requested video is written to the specified directory, a callback is triggered.|
+| dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;boolean&gt; | Yes  | Media asset handler. When the requested video is written to the specified directory, a callback is triggered.<br>If the video is successfully written, **true** is returned. Otherwise, **false** is returned.|
 
 **Return value**
 
@@ -286,7 +292,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 801<sup>15+</sup>   | Capability not supported.       |
-| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
+| 14000011       | System inner fail.        |
 
 **Example**
 

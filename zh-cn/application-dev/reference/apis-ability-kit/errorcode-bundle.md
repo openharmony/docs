@@ -1,4 +1,10 @@
 # 包管理子系统通用错误码
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 > **说明：**
 >
@@ -10,7 +16,7 @@
 The specified bundle name is not found.
 
 **错误描述**<br/>
-调用查询等接口时，传入的bundleName不存在。
+指定的bundleName不存在。
 
 **可能原因**<br/>
 
@@ -19,7 +25,11 @@ The specified bundle name is not found.
 
 **处理步骤**<br/>
 1. 检查bundleName拼写是否正确。
-2. 确认对应的应用是否安装。
+2. 可以使用[查询应用信息命令（dump）](../../tools/bm-tool.md#查询应用信息命令dump)查看应用是否安装。查看输出的打印信息，应用未安装时，该命令执行会报错。
+```
+# 需要将com.xxx.demo替换为实际查询的bundleName
+hdc shell bm dump -n com.xxx.demo
+```
 
 ## 17700002 指定的moduleName不存在
 
@@ -27,7 +37,7 @@ The specified bundle name is not found.
 The specified module name is not found.
 
 **错误描述**<br/>
-调用查询或者免安装相关接口时，传入的moduleName不存在。
+指定的moduleName不存在。
 
 **可能原因**<br/>
 1. 输入的moduleName有误。
@@ -35,7 +45,11 @@ The specified module name is not found.
 
 **处理步骤**<br/>
 1. 检查moduleName拼写是否正确。
-2. 确认对应的应用是否安装该模块。
+2. 可以使用[查询应用信息命令（dump）](../../tools/bm-tool.md#查询应用信息命令dump)查看对应的模块是否安装。查看输出的打印信息中hapModuleNames字段对应的列表是否存在该moduleName，不存在则说明应用未安装该模块。
+```
+# 需要将com.xxx.demo替换为实际查询的bundleName
+hdc shell bm dump -n com.xxx.demo
+```
 
 ## 17700003 指定的abilityName不存在
 
@@ -43,7 +57,7 @@ The specified module name is not found.
 The specified ability name is not found.
 
 **错误描述**<br/>
-调用查询等接口时，传入的abilityName不存在。
+指定的abilityName不存在。
 
 **可能原因**<br/>
 1. 输入的abilityName有误。
@@ -51,7 +65,11 @@ The specified ability name is not found.
 
 **处理步骤**<br/>
 1. 检查abilityName拼写是否正确。
-2. 确认对应的应用是否存在该abilityName对应的ability。
+2. 可以使用[查询应用信息命令（dump）](../../tools/bm-tool.md#查询应用信息命令dump)查看对应的应用是否存在这个abilityName。查看输出的打印信息中hapModuleInfos字段对应的abilityInfos下是否包含name等于该abilityName，不包含则说明该abilityName不存在。
+```
+# 需要将com.xxx.demo替换为实际查询的bundleName
+hdc shell bm dump -n com.xxx.demo
+```
 
 ## 17700004 指定的用户不存在
 
@@ -214,13 +232,11 @@ Failed to install the HAP since the version of the HAP to install is too early.
 **处理步骤**<br/>
 确认新安装的应用版本号是否不低于已安装的同应用版本号。
 
-1. 已安装应用版本号查询，依赖[hdc工具](../../dfx/hdc.md#环境准备)。
+1. 已安装应用版本号查询，依赖[hdc工具](../../dfx/hdc.md#环境准备)。执行命令行后会输出已安装应用的版本号versionCode，如果输出多个versionCode，选择大于0的。如果该命令无打印值输出，表示应用未安装。
 ```
-// 取dump出来的最后一个字段
-hdc shell bm dump -n com.xxx.demo |grep versionCode
+# 需要将com.xxx.demo替换为查询的bundleName
+hdc shell "bm dump -n com.xxx.demo |grep versionCode"
 ```
-
-![示例图](figures/installed_hap_verisonCode.PNG)
 
 2. 新安装的应用查看版本，HAP或者HSP用DevEco Studio打开，查看里面module.json文件中的versionCode字段配置。
 
@@ -265,12 +281,15 @@ The specified uid is invalid.
 调用bundleManager模块中的[getBundleNameByUid接口](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid14)时，指定的uid无效。
 
 **可能原因**<br/>
-1. 传入的uid拼写有误。
-2. 传入的uid在系统中不存在。
+传入的uid对应的应用不存在。
 
 **处理步骤**<br/>
-1. 检查uid的拼写。
-2. 检查系统中是否存在该uid。
+检查系统中是否存在对应的应用uid值。可以使用[查询应用信息命令（dump）](../../tools/bm-tool.md#查询应用信息命令dump)查看已安装应用的uid。执行命令行后会输出对应已安装应用的uid，如果输出多个uid，选择大于0的。如果该命令无打印值输出，表示应用未安装。
+```
+# 需要将com.xxx.demo替换为实际查询的bundleName
+hdc shell "bm dump -n com.xxx.demo |grep uid"
+```
+
 <!--Del-->
 ## 17700022 输入的待解析源文件无效
 
@@ -313,12 +332,16 @@ Failed to get the profile because the specified profile is not found in the HAP.
 **可能原因**<br/>
 1. 输入的metadata name在配置文件中不存在。
 2. 配置文件的内容不是json格式。
+<!--Del-->
 3. 查询的配置文件类型不存在。
+<!--DelEnd-->
 
 **处理步骤**<br/>
 1. 确认要查询的ability或者extensionAbility中的metadata name是否存在。
 2. 确认指定查询的profile文件的内容是否为json格式。
+<!--Del-->
 3. 确认应用中是否存在与查询的profileType类型相符的配置文件。
+<!--DelEnd-->
 <!--Del-->
 ## 17700025 输入的type无效
 
@@ -406,7 +429,7 @@ The specified bundle does not support clearing of cache files.
 1. 确认指定的应用是否为系统应用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看isSystemApp是否为true。
 2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看userDataClearable是否为true。
 
-## 17700031 Overlay特性校验失败导致HAP安装失败
+## 17700031 Overlay特征校验失败导致HAP安装失败
 
 **错误信息**<br/>
 Failed to install the HAP because the overlay check of the HAP failed.
@@ -563,7 +586,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **错误描述**<br/>
-安装应用时，企业设备管理不允许安装。[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。
+安装应用时，[企业设备管理](../../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)不允许安装。[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。
 
 **可能原因**<br/>
 企业设备管理不允许安装该应用。
@@ -620,7 +643,7 @@ Failed to install the HAP because the isolationMode configured is not supported.
 Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**<br/>
-卸载应用时，企业设备管理不允许卸载。
+卸载应用时，[企业设备管理](../../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)不允许卸载。
 
 **可能原因**<br/>
 企业设备管理不允许安装该应用。
@@ -673,19 +696,19 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 **处理步骤**<br/>
 检查要安装的hap或hsp是否属于当前应用。
 
-## 17700050 企业设备校验失败
+## 17700050 企业MDM应用/普通企业应用不允许安装
 **错误信息**<br/>
 Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **错误描述**<br/>
-安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。
+当前设备禁止安装企业MDM应用或普通企业应用。
 
 **可能原因**<br/>
-安装设备不是企业设备。
+当前设备不允许安装[Profile签名文件](../../security/app-provision-structure.md)>中如下两种类型的应用：enterprise_mdm（企业MDM应用）、enterprise_normal（普通企业应用）。
+Profile签名文件类型的取值及含义请参考[ApplicationInfo.appDistributionType](../../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)。
 
 **处理步骤**<br/>
-1. 检查安装设备是否为企业设备。
-2. 检查设备参数const.bms.allowenterprisebundle是否为true。
+更换Profile签名文件中的类型。
 
 ## 17700051 应用自升级时调用方的签名证书profile文件中的类型不是企业mdm
 **错误信息**<br/>
@@ -767,7 +790,7 @@ The scheme of the specified link is not in the querySchemes.
 未在querySchemes字段下配置指定link的scheme。
 
 **处理步骤**<br/>
-检查是否在querySchemes字段下配置了相应的URL scheme。
+检查是否在querySchemes字段下配置了相应的URL scheme，可以参考[使用canOpenLink判断应用是否可访问](../../application-models/canopenlink.md)。
 <!--Del-->
 ## 17700057 指定的应用不是预置应用
 
@@ -898,19 +921,21 @@ Failed to uninstall the HAP because uninstalling the native package failed.
 
 **处理步骤**<br/>检查是否存在进程占用相应native软件包。
 
-## 17700069 多开模式非分身的应用，不能创建分身实例
+## 17700069 应用不支持创建分身
 
 **错误信息**<br/>
 The app does not support the creation of an appClone instance.
 
 **错误描述**<br/>
-多开模式非分身的应用，不能创建分身实例。
+应用不支持创建分身。
 
 **可能原因**<br/>
-没有配置分身模式，或者多开模式配置为其他模式。
+1. 未配置分身模式。
+2. 企业安全策略不允许设置分身。
 
 **处理步骤**<br/>
-1. 检查更新应用是否支持分身。
+1. 检查应用是否配置了分身模式。详见[创建应用分身](../../quick-start/app-clone.md)。
+2. 检查企业设备是否设置了不支持创建分身的企业安全策略，可以通过打开设备->设置>系统->应用分身，查看应用是否支持创建分身。
 
 ## 17700070 指定的快捷方式id不合法
 
@@ -945,13 +970,13 @@ It is not allowed to install the enterprise bundle.
 The launch want is not found.
 
 **错误描述**<br/>
-Launch Want不存在。
+调用[bundleManager.getLaunchWant](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetlaunchwant13)接口时，应用的启动组件Want信息不存在。
 
 **可能原因**<br/>
-应用没有Ability，或者没有entities配置为entity.system.home和actions配置为ohos.want.action.home的Ability。
+应用没有entities配置包含“entity.system.home”和actions配置包含“ohos.want.action.home”的UIAbility。
 
 **处理步骤**<br/>
-应用需要有entities配置为entity.system.home并且actions配置为ohos.want.action.home的Ability。
+应用需要有entities配置包含“entity.system.home”并且actions配置包含“ohos.want.action.home”的UIAbility。
 
 <!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
@@ -1138,7 +1163,7 @@ System error occurred during copy execution.
 ## 17700087 当前设备不支持安装插件
 
 **错误信息**<br/>
-Failed to install the plugin because the current device does not support plugin. 
+Failed to install the plugin because the current device does not support plugins. 
 
 **错误描述**<br/>
 当前设备不支持插件能力。
@@ -1177,11 +1202,11 @@ Failed to install the plugin because the plugin id fails to be parsed.
 插件应用签名文件中的pluginDistributionIDs配置不符合规范。
 
 **处理步骤**<br/>
-参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+参考如下格式，重新配置插件[profile文件](../../security/app-provision-structure.md)中的"app-services-capabilities"字段。
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
-        "pluginDistributionIDs":"value-1|value-2|···"
+        "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
 ```
@@ -1199,12 +1224,19 @@ Failed to install the plugin because the plugin id fails to be verified.
 插件与应用的pluginDistributionIDs之间没有共同值。
 
 **处理步骤**<br/>
-重新配置应用或者插件[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的pluginDistributionIDs。
+重新配置应用或者插件[profile文件](../../security/app-provision-structure.md)中的pluginDistributionIDs。配置格式如下：
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+```
 
 ## 17700091 插件与主体同包名
 
 **错误信息**<br/>
-Failed to install the plugin because the plugin name is same as host bundle name.
+Failed to install the plugin because the plugin name is the same as the host bundle name.
 
 **错误描述**<br/>
 插件的包名与应用的包名一致，不符合插件与应用之间异包名的规格，安装插件失败。
@@ -1233,7 +1265,7 @@ Failed to uninstall the plugin because the specified plugin is not found.
 
 ## 17700101 包管理服务异常
 **错误信息**<br/>
-Bundle manager service is excepted.
+Bundle manager service exception.
 
 **错误描述**<br/>
 包管理服务异常。

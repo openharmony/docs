@@ -1,12 +1,19 @@
 # Camera Kit（相机服务）
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 - [Camera Kit简介](camera-overview.md)
 - [申请相机开发的权限](camera-preparation.md)
-- 开发相机应用(ArkTS)<!--camera-dev-arkts-->
-  - [通过系统相机拍照和录像(CameraPicker)](camera-picker.md)
+- 开发相机应用必选能力(ArkTS)<!--camera-dev-arkts-mandatory-->
   - [相机管理(ArkTS)](camera-device-management.md)
   - [设备输入(ArkTS)](camera-device-input.md)
   - [会话管理(ArkTS)](camera-session-management.md)
+- 开发相机应用基础能力(ArkTS)<!--camera-dev-arkts-->
+  - [通过系统相机拍照和录像(CameraPicker)](camera-picker.md)
   - [预览(ArkTS)](camera-preview.md)
   - [双路预览(ArkTS)](camera-dual-channel-preview.md)
   - [拍照(ArkTS)](camera-shooting.md)
@@ -22,17 +29,19 @@
   - [相机基础动效(ArkTS)](camera-animation.md)
   - [在Worker线程中使用相机(ArkTS)](camera-worker.md)
   - [相机启动恢复实践(ArkTS)](camera-background-recovery.md)
-  - [自动切换摄像头实践(ArkTS)](camera_auto_switch.md)
+  - [自动切换摄像头实践(ArkTS)](camera-auto-switch.md)
+  - [白平衡设置(ArkTS)](camera-whitebalance.md)
   <!--Del-->
   - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
   - [高性能拍照实践(仅对系统应用开放)(ArkTS)](camera-deferred-photo-case.md)
   - [深度信息(仅对系统应用开放)(ArkTS)](camera-depth-data.md)
   - [性能提升实践(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
   <!--DelEnd-->
-- 开发相机应用(C/C++)<!--camera-dev-native-->
+- 开发相机应用必选能力(C/C++)<!--camera-dev-native-mandatory-->
   - [相机管理(C/C++)](native-camera-device-management.md)
   - [设备输入(C/C++)](native-camera-device-input.md)
   - [会话管理(C/C++)](native-camera-session-management.md)
+- 开发相机应用基础能力(C/C++)<!--camera-dev-native-->
   - [预览(C/C++)](native-camera-preview.md)
   - [预览流二次处理(C/C++)](native-camera-preview-imageReceiver.md)
   - [拍照(C/C++)](native-camera-shooting.md)

@@ -1,4 +1,10 @@
 # 使用剪贴板进行复制粘贴
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--Designer: @guo867-->
+<!--Tester: @maxiaorong-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -63,7 +69,7 @@ export default class EntryAbility extends UIAbility {
       // 从剪贴板数据中获取对应条目信息
       for (let i = 0; i < recordCount; i++) {
         let record = outputData.getRecord(i).toPlainText();
-        console.log('Get data success, record:' + record);
+        console.info('Get data success, record:' + record);
       }
     }).catch((error: BusinessError) => {
       // 处理异常场景
@@ -105,7 +111,7 @@ let data = new unifiedDataChannel.UnifiedData();
 data.addRecord(record);
 
 // 向系统剪贴板中存入一条PlainText数据
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setUnifiedData(data).then((data: void) => {
     console.info('Succeeded in setting UnifiedData.');
     // 存入成功，处理正常场景

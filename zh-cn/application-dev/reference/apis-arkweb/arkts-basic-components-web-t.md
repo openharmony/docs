@@ -1,9 +1,10 @@
 # Types
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
-<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
-<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
-<!--TSE: @ghiker-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -244,7 +245,7 @@ onOverrideErrorPage的回调函数，网页加载失败时触发。
 
 **参数：**
 
-| 名称             | 类型      | 必填   | 说明                                       |
+| 参数名             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | errorPageEvent | [OnErrorReceiveEvent](./arkts-basic-components-web-i.md#onerrorreceiveevent12) | 是 | 网页加载遇到错误时返回的相关信息。      |
 
@@ -271,3 +272,21 @@ type MouseInfoCallback = (event: NativeEmbedMouseInfo) => void
 **示例：**
 
 完整示例代码参考[onNativeEmbedMouseEvent](./arkts-basic-components-web-events.md#onnativeembedmouseevent20)。
+
+## OnNativeEmbedObjectParamChangeCallback<sup>21+<sup>
+
+type OnNativeEmbedObjectParamChangeCallback = (event: NativeEmbedParamDataInfo) => void
+
+增加、修改或删除同层渲染object标签内嵌param元素时触发此回调。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| event | [NativeEmbedParamDataInfo](./arkts-basic-components-web-i.md#nativeembedparamdatainfo21) | 是 | object标签内嵌param元素的详细变化信息。 |
+
+**示例：**
+
+完整示例代码参考[onNativeEmbedObjectParamChange](./arkts-basic-components-web-events.md#onnativeembedobjectparamchange21)。

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 焦点轴事件是指在与游戏手柄交互时，通过十字按键或者操作杆上报的轴事件，此轴事件通过获得焦点的组件分发并回调给应用。若组件默认可获焦，如Button，则不需要额外设置属性。若组件在默认情况下不可获焦，如Text和Image，可以通过将focusable属性设置为true来启用焦点轴事件。
 
@@ -15,7 +16,7 @@
 
 onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
-绑定该方法的组件获焦后，游戏手柄上的摇杆、十字键等的操作会触发该回调。
+给组件绑定焦点轴事件回调。绑定该方法的组件获焦后，游戏手柄上的摇杆、十字键等的操作会触发该回调。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -25,7 +26,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | Callback\<[FocusAxisEvent](#focusaxisevent对象说明)> | 是   | 获得FocusAxisEvent对象。 |
+| event  | Callback\<[FocusAxisEvent](#focusaxisevent对象说明)> | 是   | 焦点轴事件回调。 |
 
 **返回值：**
 
@@ -35,7 +36,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 ## FocusAxisEvent对象说明
 
-焦点轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+焦点轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

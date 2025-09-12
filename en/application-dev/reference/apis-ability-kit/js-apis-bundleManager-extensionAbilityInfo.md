@@ -1,4 +1,10 @@
 # ExtensionAbilityInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module defines the ExtensionAbility information. An application can obtain its own ExtensionAbility information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
@@ -26,12 +32,12 @@ import { bundleManager } from '@kit.AbilityKit';
 | labelId              | number                                                       | Yes  | No  | ID of the ExtensionAbility label.                      |
 | descriptionId        | number                                                       | Yes  | No  | ID of the ExtensionAbility description.                      |
 | iconId               | number                                                       | Yes  | No  | ID of the ExtensionAbility icon.                      |
-| exported            | boolean                                                      | Yes  | No  | Whether the ExtensionAbility can be called by other applications. The value **true** means that the ExtensionAbility can be called by other applications, and **false** means the opposite.        |
+| exported            | boolean                                                      | Yes  | No  | Whether the ExtensionAbility can be called by other applications. **true** if the ExtensionAbility can be called by other applications, **false** otherwise.        |
 | extensionAbilityType | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | Yes  | No  | Type of the ExtensionAbility.                              |
 | permissions          | Array\<string>                                               | Yes  | No  | Permissions required for other bundles to call the ExtensionAbility.|
 | applicationInfo      | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)  | Yes  | No  | Application information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**, and **GET_BUNDLE_INFO_WITH_APPLICATION** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
 | metadata             | Array\<[Metadata](js-apis-bundleManager-metadata.md)>        | Yes  | No  | Metadata of the ExtensionAbility. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**, and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
-| enabled              | boolean                                                      | Yes  | No  | Whether the ExtensionAbility is enabled. The value **true** means that the ExtensionAbility is enabled, and **false** means the opposite.                          |
+| enabled              | boolean                                                      | Yes  | No  | Whether the ExtensionAbility is enabled. **true** if enabled, **false** otherwise.                          |
 | readPermission       | string                                                       | Yes  | No  | Permission required for reading data from the ExtensionAbility.                |
 | writePermission      | string                                                       | Yes  | No  | Permission required for writing data to the ExtensionAbility.                |
 | extensionAbilityTypeName<sup>11+</sup>      | string                                 | Yes  | No  | Type of the ExtensionAbility. For details about available values, see [the type field under the extensionabilities tag](../../quick-start/module-configuration-file.md#extensionabilities).                |

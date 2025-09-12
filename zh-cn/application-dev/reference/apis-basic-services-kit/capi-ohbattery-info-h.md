@@ -1,5 +1,12 @@
 # ohbattery_info.h
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 概述
 
 声明电池API以获取当前电池容量和电源类型的信息，定义电池相应常见事件。
@@ -51,11 +58,11 @@ enum BatteryInfo_BatteryPluggedType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| PLUGGED_TYPE_NONE | 电源已拔下。 |
-| PLUGGED_TYPE_AC | 电源是交流充电。 |
-| PLUGGED_TYPE_USB | 电源是USB DC充电。 |
-| PLUGGED_TYPE_WIRELESS | 电源为无线充电。 |
-| PLUGGED_TYPE_BUTT | 预留枚举 |
+| PLUGGED_TYPE_NONE = 0 | 电源已拔下。 |
+| PLUGGED_TYPE_AC = 1 | 电源是交流充电。 |
+| PLUGGED_TYPE_USB = 2 | 电源是USB DC充电。 |
+| PLUGGED_TYPE_WIRELESS = 3 | 电源为无线充电。 |
+| PLUGGED_TYPE_BUTT = 4 | 预留枚举 |
 
 
 ## 函数说明

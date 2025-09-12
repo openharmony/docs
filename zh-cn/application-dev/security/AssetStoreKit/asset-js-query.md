@@ -3,8 +3,9 @@
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @JeremyXu-->
-<!--SE: @skye_you-->
-<!--TSE: @nacyli-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 ## 接口介绍
 
@@ -13,7 +14,7 @@
 在查询关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
 >**注意：**
 >
->下表中名称包含“DATA_LABEL”的关键资产属性用于存储业务自定义信息，内容不会被加密，请勿存放个人数据。
+>下表中“ALIAS”和名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放敏感个人数据。
 
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
@@ -75,22 +76,21 @@ function arrayToString(arr: Uint8Array): string {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);  // 此处表示需要返回关键资产的所有信息，即属性+明文
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了关键资产别名，最多查询到一条满足条件的关键资产。
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL); // 此处表示需要返回关键资产的所有信息，即属性+明文。
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the secret.
+      // 解析secret。
       let secret: Uint8Array = res[i].get(asset.Tag.SECRET) as Uint8Array;
-      // parse uint8array to string
+      // 将Uint8Array转为string类型。
       let secretStr: string = arrayToString(secret);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to query Asset. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -109,20 +109,20 @@ function stringToArray(str: string): Uint8Array {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));       // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回关键资产属性，不包含关键资产明文
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了关键资产别名，最多查询到一条满足条件的关键资产。
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回关键资产属性，不包含关键资产明文。
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
+      // 解析属性。
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+      console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to query Asset. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -141,22 +141,21 @@ function stringToArray(str: string): Uint8Array {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回关键资产属性，不包含关键资产明文
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回关键资产属性，不包含关键资产明文。
 query.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
-query.set(asset.Tag.RETURN_OFFSET, 5); // 此处表示查询结果的偏移量，即从满足条件的第5条关键资产开始返回
-query.set(asset.Tag.RETURN_LIMIT, 10); // 此处表示查询10条满足条件的关键资产
-query.set(asset.Tag.RETURN_ORDERED_BY, asset.Tag.DATA_LABEL_NORMAL_1); // 此处查询结果以DATA_LABEL_NORMAL_1属性内容排序
+query.set(asset.Tag.RETURN_LIMIT, 10); // 此处表示查询10条满足条件的关键资产。
+query.set(asset.Tag.RETURN_ORDERED_BY, asset.Tag.DATA_LABEL_NORMAL_1); // 此处查询结果以DATA_LABEL_NORMAL_1属性内容排序。
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
+      // 解析属性。
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+      console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to query Asset. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

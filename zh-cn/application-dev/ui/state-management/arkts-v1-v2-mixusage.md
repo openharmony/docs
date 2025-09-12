@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
@@ -18,8 +19,8 @@
 
 ## 校验规则
 在API version 19以前，状态管理V1V2的混用规则可以总结为：
-1. V1装饰器不能和@ObserveV2一起使用。
-2. V2装饰器不能和@Observed一起使用。
+1. V1装饰器不能和[@ObserveV2](./arkts-new-observedV2-and-trace.md)一起使用。
+2. V2装饰器不能和[@Observed](./arkts-observed-and-objectlink.md)一起使用。
 3. V1->V2只能传简单类型，不允许传复杂类型，包括built-in类型Array、Map、Set、Date。
 4. V2->V1可以传简单类型和普通class，不允许传built-in类型Array、Map、Set、Date。
 
@@ -56,7 +57,7 @@ static makeV1Observed\<T extends object\>(source: T): T
 - makeV1Observed不会递归执行，仅会将第一层包装成V1的状态变量。
 
 **限制条件**
-- 不支持[collections类型](../../reference/apis-arkts/js-apis-arkts-collections.md)和[\@Sendable](../../arkts-utils/arkts-sendable.md)装饰的class。
+- 不支持[collections类型](../../reference/apis-arkts/arkts-apis-arkts-collections.md)和[\@Sendable](../../arkts-utils/arkts-sendable.md)装饰的class。
 - 不支持非object类型。
 - 不支持undefined、null。
 - 不支持\@ObservedV2、[makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)的返回值和V2装饰器装饰的built-in类型的变量（Array、Map、Set和Date）。
@@ -467,7 +468,7 @@ struct CompV1 {
         // 触发刷新
         this.observedClass.name += 'a';
       })
-      // 使用非@Track的变量在V2中不会崩溃，但不触发刷新
+      // 使用非@Track的变量在V2中不会崩溃，但不响应更新
       Text(`count: ${this.observedClass.count}`).onClick(() => {
         this.observedClass.count++;
       })
@@ -540,7 +541,7 @@ struct ArrayCompV2 {
 ```
 **不推荐写法**
 
-在下面的例子中，没有调用enableV2Compatibility和makeV1Observed，则有V1和V2双重代理和刷新不一致的问题。
+在下面的例子中，没有调用enableV2Compatibility和makeV1Observed，则有V1和V2双重代理的问题。
 ```ts
 @Entry
 @Component
@@ -550,7 +551,7 @@ struct ArrayCompV1 {
   build() {
     Column() {
       Text(`V1 ${this.arr[0]}`).onClick(() => {
-        // V1代理，可触发ArrayCompV1的刷新，但无法触发ArrayCompV2的刷新
+        // V1代理，可触发ArrayCompV1的刷新并通知ArrayCompV2更新@Param的值
         this.arr[0]++;
       })
       // 传递给ArrayCompV2，被再次包装V2的代理

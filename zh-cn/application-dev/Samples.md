@@ -20,7 +20,7 @@
 
 3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
 ##### 基本原理
-示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](ui/state-management/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
+示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](ui/rendering-control/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
 将组件库分成四大类：  
 组件模块：  
 1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  
@@ -714,7 +714,7 @@ Preferences.flush()保存并刷新文件内容。
 - [@ohos.multimodalInput.keyCode (键值)](reference/apis-input-kit/js-apis-keycode.md)
 - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis-input-kit/js-apis-keyevent.md)
 - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis-input-kit/js-apis-mouseevent.md)
-- [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
+- [@ohos.multimodalInput.pointer (鼠标光标)](reference/apis-input-kit/js-apis-pointer.md)
 - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
 
 ##### 使用
@@ -5460,7 +5460,7 @@ return formInfo.FormState.READY }。
 - [@ohos.multimodalInput.keyCode (键值)](reference/apis-input-kit/js-apis-keycode.md)
 - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis-input-kit/js-apis-keyevent.md)
 - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis-input-kit/js-apis-mouseevent.md)
-- [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
+- [@ohos.multimodalInput.pointer (鼠标光标)](reference/apis-input-kit/js-apis-pointer.md)
 - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
 
 ##### 使用
@@ -5493,7 +5493,7 @@ return formInfo.FormState.READY }。
 
 14.输入按键事件：进入输入按键事件管理页面，显示由外部设备如软键盘输入触发的消息。
 
-15.鼠标指针：进入鼠标管理页面，实现鼠标状态、鼠标指针信息、设置鼠标速度和显示样式，启动鼠标事件监听时，可以查看鼠标在界面上操作的详细信息。
+15.鼠标光标：进入鼠标管理页面，实现鼠标状态、鼠标光标信息、设置鼠标速度和显示样式，启动鼠标事件监听时，可以查看鼠标在界面上操作的详细信息。
 
 ##### 基本原理
 
@@ -5526,9 +5526,9 @@ return formInfo.FormState.READY }。
 
 11.输入设备：使用[@ohos.multimodalInput.inputDevice](reference/apis-input-kit/js-apis-inputdevice.md) 获取输入设备列表，并显示输入设备信息，实现设备的热插拔监听。
 
-12.输入事件：使用[@ohos.multimodalInput.inputMonitor](reference/apis-input-kit/js-apis-inputmonitor-sys.md)开启监听全局触屏事件，当触发触屏事件时显示触屏详情，使用[@ohos.multimodalInput.inputEventClient](reference/apis-input-kit/js-apis-inputeventclient-sys.md)模拟返回按键进行按键注入，实现返回功能，在column组件中添加[@ohos.multimodalInput.touchEvent](reference/apis-input-kit/js-apis-touchevent.md)触摸事件，模拟按键被按下效果。
+12.输入事件：使用[@ohos.multimodalInput.inputMonitor](reference/apis-input-kit/js-apis-inputmonitor-sys.md)开启监听全局触屏输入事件，当触发触屏输入事件时显示触屏详情，使用[@ohos.multimodalInput.inputEventClient](reference/apis-input-kit/js-apis-inputeventclient-sys.md)模拟返回按键进行按键注入，实现返回功能，在column组件中添加[@ohos.multimodalInput.touchEvent](reference/apis-input-kit/js-apis-touchevent.md)触摸事件，模拟按键被按下效果。
 
-13.鼠标指针：使用[@ohos.multimodalInput.mouseEvent](reference/apis-input-kit/js-apis-mouseevent.md)监听鼠标事件，并显示鼠标操作回调信息，使用[@ohos.multimodalInput.pointer](reference/apis-input-kit/js-apis-pointer.md)实现鼠标指针的显示或隐藏状态，设置鼠标移动速度和显示样式。
+13.鼠标光标：使用[@ohos.multimodalInput.mouseEvent](reference/apis-input-kit/js-apis-mouseevent.md)监听鼠标事件，并显示鼠标操作回调信息，使用[@ohos.multimodalInput.pointer](reference/apis-input-kit/js-apis-pointer.md)实现鼠标光标的显示或隐藏状态，设置鼠标移动速度和显示样式。
 
 14.输入按键事件：使用 [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis-input-kit/js-apis-keyevent.md)监听按键输入的信息。
 
@@ -5602,7 +5602,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[鼠标指针](reference/apis-input-kit/js-apis-pointer.md)，展示了多模输入鼠标外设的五种场景：鼠标样式资源切换、设置鼠标大小及颜色、设置鼠标动画光标样式、通过switch开关切换鼠标滚轮在非激活悬停窗口的滚动操作使能状态、通过switch开关切换鼠标主次键等功能。
+本示例使用[鼠标光标](reference/apis-input-kit/js-apis-pointer.md)，展示了多模输入鼠标外设的五种场景：鼠标样式资源切换、设置鼠标大小及颜色、设置鼠标动画光标样式、通过switch开关切换鼠标滚轮在非激活悬停窗口的滚动操作使能状态、通过switch开关切换鼠标主次键等功能。
 
 ##### 使用
 
@@ -5612,11 +5612,11 @@ return formInfo.FormState.READY }。
 
 3.点击当悬停在非活动窗口上方时对其进行滚动右侧switch开关，可以切换鼠标滚轮在非激活悬停窗口的滚动操作使能状态。
 
-4.鼠标指针大小中的滑动条可以设置鼠标指针大小。
+4.鼠标光标大小中的滑动条可以设置鼠标光标大小。
 
-5.点击鼠标指针颜色中的单选框，可以设置鼠标颜色。
+5.点击鼠标光标颜色中的单选框，可以设置鼠标颜色。
 
-6.点击鼠标指针动画样式中的静态或动态单选框，可以设置鼠标静态或动画光标样式。
+6.点击鼠标光标动画样式中的静态或动态单选框，可以设置鼠标静态或动画光标样式。
 
 ##### 基本原理
 

@@ -2,12 +2,13 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @katabanga-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
-在应用开发中，UI的更新需要随着数据状态的变化进行实时同步，而这种同步往往决定了应用程序的性能和用户体验。为了解决数据与UI同步的复杂性，ArkUI采用了Model-View-ViewModel（MVVM）架构模式。MVVM将应用分为Model、View和ViewModel三个核心部分，实现数据、视图与逻辑的分离。通过这种模式，UI可以随着状态的变化自动更新，无需手动处理，从而更加高效地管理数据和视图的绑定与更新。
+在应用开发中，UI的更新需要随着数据状态的变化进行实时同步，而这种同步往往决定了应用程序的性能和用户体验。为了解决数据与UI同步的复杂性，ArkUI采用了Model-View-ViewModel（MVVM）架构模式。MVVM将应用分为Model、View和ViewModel三个核心部分，实现数据、视图与逻辑的分离。通过这种模式，UI可以随着状态的变化自动更新，无需手动处理，从而高效管理数据和视图的绑定与更新。
 
 - Model：存储和管理应用数据及业务逻辑，不直接与用户界面交互。通常从后端接口获取数据，是应用程序的数据基础，确保数据的一致性和完整性。
 - View：负责用户界面展示数据并与用户交互，不包含任何业务逻辑。它通过绑定ViewModel层提供的数据来动态更新UI。
@@ -46,9 +47,9 @@ struct TodoList {
 
 ### 添加\@Local，实现对组件内部状态观测
 
-完成静态待办列表展示后，为了让用户能够更改任务的完成状态，需要使待办事项能够响应交互并动态更新显示。为此，引入\@Local装饰器管理组件内部的状态。被\@Local装饰的变量发生变化时，会触发绑定的UI组件刷新。
+完成静态待办列表展示后，为了让用户能够更改任务的完成状态，需要使待办事项能够响应交互并动态更新显示。为此，引入\@Local装饰器管理组件内部的状态。被\@Local装饰的变量发生变化时，触发绑定的UI组件刷新。
 
-在示例2中，新增@Local装饰的isFinish属性代表任务是否完成。两个图标finished.png和unfinished.png用于展示任务完成或未完成的状态。点击待办事项时，isFinish状态切换，从而更新图标和文本删除线的效果。
+在示例2中，新增\@Local装饰的isFinish属性代表任务是否完成。两个图标finished.png和unfinished.png用于展示任务完成或未完成的状态。点击待办事项时，isFinish状态切换，更新图标和文本删除线的效果。
 
 **示例2**
 
@@ -66,7 +67,7 @@ struct TodoList {
         .fontSize(40)
         .margin({ bottom: 10 })
       Row() {
-        // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+        // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
         Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -96,7 +97,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -127,7 +128,7 @@ struct TodoList {
 
 实现任务名称动态设置后，任务列表内容固定。为了实现任务列表的动态扩展，需要增加任务项的添加和删除功能。为此，引入\@Event装饰器，用于子组件向父组件输出数据。
 
-在示例4中，每个TaskItem增加了删除按钮，同时任务列表底部增加了添加新任务的功能。点击子组件TaskItem的“删除”按钮时，deleteTask事件会被触发并传递给父组件TodoList，父组件响应并移除任务。通过使用\@Param和\@Event，子组件不仅能接收父组件的数据，还能够将事件传递回父组件，实现数据的双向同步。
+在示例4中，每个TaskItem增加了删除按钮，同时任务列表底部增加了添加新任务的功能。点击子组件TaskItem的“删除”按钮时，deleteTask事件会被触发并传递给父组件TodoList，父组件响应并移除任务。通过使用\@Param和\@Event，子组件不仅能接收父组件的数据，还能将事件传递回父组件，实现数据双向同步。
 
 **示例4**
 
@@ -142,7 +143,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -195,7 +196,7 @@ Repeat支持两种场景：懒加载场景和非懒加载场景。
 - 懒加载场景适用于大量数据的场景，在滚动类容器中按需加载组件，极大节省内存和提升渲染效率。
 - 非懒加载场景适用于数据量较小的场景，一次性渲染所有组件，并在数据变化时仅更新需要变化的部分，避免整体重新渲染。
 
-在示例5中，由于任务量较少，使用Repeat非懒加载场景。新建一个任务数组tasks，并使用Repeat方法迭代数组中的每一项，动态生成并复用TaskItem组件。在任务增删时，这种方式能高效复用已有组件，避免重复渲染，从而提高界面响应速度和性能。这种机制有效地提高了代码的复用性和渲染效率。
+在示例5中，由于任务量较少，使用Repeat非懒加载场景。新建任务数组tasks，并使用Repeat方法迭代数组中的每一项，动态生成并复用TaskItem组件。任务增删时，这种方式能高效复用已有组件，避免重复渲染，提高界面响应速度和性能。这种机制有效地提高了代码的复用性和渲染效率。
 
 **示例5**
 
@@ -210,7 +211,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -285,7 +286,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -349,7 +350,7 @@ struct TodoList {
 
 ### 添加\@Monitor，\@Computed，实现监听状态变量和计算属性
 
-在当前任务列表功能基础上，为了提升体验，可以增加一些额外的功能，如任务状态变化的监听和未完成任务数量的动态计算。为此，引入\@Monitor和\@Computed装饰器。\@Monitor用于深度监听状态变量，在属性变化时触发自定义回调方法。\@Computed用于装饰getter方法，检测被计算的属性变化。在被计算的值变化时，仅会计算一次，减少重复计算开销。
+在当前任务列表功能基础上，为了提升体验，可以增加一些额外的功能，如任务状态变化的监听和未完成任务数量的动态计算。为此，引入\@Monitor和\@Computed装饰器。\@Monitor用于深度监听状态变量，在属性变化时触发自定义回调方法。\@Computed用于装饰getter方法，检测被计算的属性变化。被计算的值变化时，仅计算一次，减少重复计算开销。
 
 在示例7中，使用\@Monitor装饰器深度监听TaskItem中task的isFinish属性。当任务完成状态变化时，触发onTasksFinished回调，记录任务完成状态的变化。同时，新增对todolist中未完成任务数量的记录。使用\@Computed装饰器定义tasksUnfinished，每当任务状态变化时自动重新计算。通过这两个装饰器，实现了状态变量的深度监听和高效的计算属性。
 
@@ -380,7 +381,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -450,7 +451,7 @@ struct TodoList {
 
 ### 添加AppStorageV2，实现应用全局UI状态存储
 
-随着待办事项功能的增强，应用可能涉及多个页面或功能模块，此时需要在这些页面之间共享全局状态。例如：在待办事项应用中，新增一个设置页面与主界面联动。为实现跨页面的状态共享，引入AppStorageV2，用于在多个UIAbility实例之间存储和共享应用的全局状态。
+随着待办事项功能的增强，应用涉及多个页面或功能模块时，需要在这些页面之间共享全局状态。例如：在待办事项应用中，新增一个设置页面与主界面联动。为实现跨页面的状态共享，引入AppStorageV2，用于在多个UIAbility实例之间存储和共享应用的全局状态。
 
 在这个示例中，新增了一个Ability，SettingAbility，用于加载设置页面SettingPage。SettingPage包含了一个Setting类，其中的showCompletedTask属性用于控制是否显示已完成的任务。用户可以通过一个开关切换该选项。两个Ability通过AppStorageV2共享设置数据，键为 "Setting"，对应的数据为Setting类。第一次通过connect连接Setting时，如果不存在存储的数据，会创建一个默认showCompletedTask为trueSetting实例。后续用户在设置页面修改设置后，主页面会根据这一设置更新任务列表的显示。通过AppStorageV2，实现了跨Ability、跨页面的数据共享。
 
@@ -485,7 +486,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -542,8 +543,8 @@ struct TodoList {
         Button('设置')
           .onClick(() => {
             let wantInfo: Want = {
-              deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+              deviceId: '', // deviceId为空表示本设备。
+              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -565,7 +566,7 @@ struct TodoList {
 ```
 
 ```ts
-// SettingAbility的SettingPage页面代码
+// SettingAbility的SettingPage页面代码。
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -603,7 +604,7 @@ struct SettingPage {
 
 ### 添加PersistenceV2，实现持久化UI状态存储
 
-为了保证用户在重新打开应用时仍然能够看到之前的任务状态，可以引入持久化存储方案。使用PersistenceV2能够将数据持久化保存在设备磁盘上。与AppStorageV2的运行时内存不同，PersistenceV2能确保即使应用关闭后再启动，数据依然保持不变。
+为了确保用户重新打开应用时能看到之前的任务状态，建议使用PersistenceV2进行数据持久化存储。PersistenceV2可将数据保存在设备磁盘上，与AppStorageV2的运行时内存相比，它能确保数据在应用关闭后再次启动时保持不变。
 
 在示例9中，创建了一个TaskList类，用于通过PersistenceV2持久化存储所有任务信息，键为"TaskList"，数据对应TaskList类。第一次通过connect连接TaskList时，如果没有数据，会创建一个默认tasks数组为空的新TaskList实例。在aboutToAppear生命周期函数中，连接到PersistenceV2的TaskList，若无存储任务数据，会从本地文件defaultTasks.json中加载任务并存储到PersistenceV2中。此后，每个任务的完成状态都会同步到PersistenceV2中。这样，即使应用关闭后再次打开，所有任务数据依旧保持不变，实现了持久化的应用状态存储功能。
 
@@ -619,14 +620,14 @@ import util from '@ohos.util';
 
 @ObservedV2
 class Task {
-  // 未实现构造函数，因为@Type当前不支持带参数的构造函数
+  // 未实现构造函数，因为@Type当前不支持带参数的构造函数。
   @Trace taskName: string = 'Todo';
   @Trace isFinish: boolean = false;
 }
 
 @ObservedV2
 class TaskList {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
+  // 对于复杂对象需要@Type修饰，确保序列化成功。
   @Type(Task)
   @Trace tasks: Task[] = [];
 
@@ -659,7 +660,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -675,7 +676,7 @@ struct TaskItem {
 @Entry
 @ComponentV2
 struct TodoList {
-  @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
+  @Local taskList: TaskList = new TaskList([]);
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -719,8 +720,8 @@ struct TodoList {
         Button('设置')
           .onClick(() => {
             let wantInfo: Want = {
-              deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+              deviceId: '', // deviceId为空表示本设备。
+              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -756,9 +757,9 @@ JSON文件存放在src/main/resources/rawfile/defaultTasks.json路径下。
 
 ### 添加\@Builder，实现自定义构建函数
 
-随着应用功能逐步扩展，代码中的某些UI元素开始重复，这不仅增加了代码量，也让维护变得复杂。为了解决这一问题，可以使用\@Builder装饰器，将重复的UI组件抽象成独立的构建方法，便于复用和代码的模块化。
+随着应用功能逐步扩展，代码中的某些UI元素开始重复，不仅增加了代码量，也让维护变得复杂。为解决此问题，建议使用\@Builder装饰器，将重复的UI组件抽象为独立的构建方法，便于复用和代码模块化。
 
-在示例10中，使用\@Builder定义了ActionButton方法，统一管理按钮的文字、样式和点击事件，使代码更简洁、结构更清晰，提升了代码的可维护性。在此基础上，调整了待办事项界面的布局和样式，例如组件的间距、颜色和大小，使UI界面更美观，最终呈现一个功能完善、界面简洁的待办事项应用。
+在示例10中，通过使用\@Builder定义的ActionButton方法，实现了按钮文字、样式和点击事件的统一管理，提高了代码的简洁性和可维护性。同时优化了界面组件的布局和样式，包括间距、颜色和尺寸等视觉元素，最终呈现出一个功能完善且界面简洁美观的待办事项应用。
 
 **示例10**
 
@@ -772,7 +773,7 @@ import util from '@ohos.util';
 
 @ObservedV2
 class Task {
-  // 未实现构造函数，因为@Type当前不支持带参数的构造函数
+  // 未实现构造函数，因为@Type当前不支持带参数的构造函数。
   @Trace taskName: string = 'Todo';
   @Trace isFinish: boolean = false;
 }
@@ -785,7 +786,7 @@ class Task {
 
 @ObservedV2
 class TaskList {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
+  // 对于复杂对象需要@Type修饰，确保序列化成功。
   @Type(Task)
   @Trace tasks: Task[] = [];
 
@@ -818,7 +819,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -881,8 +882,8 @@ struct TodoList {
         ActionButton('全部未完成', (): void => this.finishAll(false))
         ActionButton('设置', (): void => {
           let wantInfo: Want = {
-            deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+            deviceId: '', // deviceId为空表示本设备。
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -1099,7 +1100,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -1162,8 +1163,8 @@ export default struct BottomView {
         ActionButton('全部未完成', (): void => this.taskList.finishAll(false))
         ActionButton('设置', (): void => {
           let wantInfo: Want = {
-            deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+            deviceId: '', // deviceId为空表示本设备。
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -1274,7 +1275,7 @@ struct SettingPage {
 
 ## 总结
 
-本教程通过待办事项应用示例，引入状态管理V2装饰器，通过代码重构实现MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。合理地使用Model、View和ViewModel，可以帮助开发者更好地理解MVVM模式，并能将其灵活应用到自己项目的开发中，从而提高开发效率和代码质量，实现高效的数据与UI同步，简化开发流程。
+本指南通过待办事项应用示例，引入状态管理V2装饰器，并通过代码重构实现MVVM架构。最终将数据、业务逻辑和视图展示分层处理，使得代码结构更加清晰且易于维护。开发者通过正确应用Model、View和ViewModel分层结构，能够更好地理解和应用MVVM模式，进而在实际项目中提升开发效率、保证代码质量，并优化数据与UI的同步机制，简化整体开发流程。
 
 ## 代码示例
 [完整源码](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)

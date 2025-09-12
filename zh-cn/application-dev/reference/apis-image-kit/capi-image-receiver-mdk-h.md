@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -13,7 +14,7 @@
 
 **引用文件：** <multimedia/image_framework/image_receiver_mdk.h>
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 10
 
@@ -49,7 +50,7 @@
 ### OH_Image_Receiver_On_Callback()
 
 ```
-typedef void (*OH_Image_Receiver_On_Callback)()
+typedef void (*OH_Image_Receiver_On_Callback)(void)
 ```
 
 **描述**

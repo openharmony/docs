@@ -1,5 +1,11 @@
 # User Authentication Error Codes
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -48,7 +54,7 @@ The authentication operation has been canceled.
 
 **Solution**
 
-Initiate the authentication again.
+Initiate authentication again.
 
 ## 12500004 Authentication Timed Out
 
@@ -62,7 +68,7 @@ The authentication is not complete within the specified time.
 
 **Solution**
 
-Initiate the authentication again.
+Initiate authentication again.
 
 ## 12500005 Unsupported Authentication Type
 
@@ -108,6 +114,24 @@ Another authentication is initiated when the current authentication has not been
 
 Initiate authentication again later.
 
+## 12500008 Parameter Verification Failed
+
+**Error Message**
+
+The parameter is out of range.
+
+**Description**
+
+Parameter verification failed.
+
+**Possible Causes**
+
+Parameter error.
+
+**Solution**
+
+Check the API parameters and initiate the request again.
+
 ## 12500009 Authentication Locked
 
 **Error Message**
@@ -130,8 +154,7 @@ The type of credential has not been enrolled.
 
 **Possible Causes**
 
-The **authType** parameter set in **getAvailableStatus** of the **userAuth** module is **FACE**, but no facial credential is enrolled in the device.
-**start()** is called to initiate facial authentication, but no facial credential is enrolled in the device.
+The **authType** parameter set in **getAvailableStatus** of the **userAuth** module is **FACE**, but no facial credential is enrolled in the device. **start()** is called to initiate facial authentication, but no facial credential is enrolled in the device.
 
 **Solution**
 
@@ -149,7 +172,7 @@ The authentication is canceled by the user, who tapped the authentication widget
 
 **Solution**
 
-Initiate the authentication again.
+Initiate authentication again.
 
 ## 12500013 Password Expired
 
@@ -194,7 +217,26 @@ The authentication token has expired. The interval between the time when the Aut
 
 Initiate authentication again and issue a valid token.
 
-## 12700001 FaceAuth Service Unavailable
+## 12500017 Authentication Result Reuse Failed
+
+**Error Message**
+
+Failed to reuse authtication result.
+
+**Description**
+
+Failed to reuse the identity authentication result.
+
+**Possible Causes**
+
+1. The authentication type does not match the specified type.
+2. The authentication result has expired (the maximum reuse duration is 5 minutes).
+
+**Solution**
+
+Initiate an authentication request to obtain a valid authentication token with the use's manual authentication.
+
+## 12700001 Facial Authentication Service Unavailable
 
 **Error Message**
 
@@ -202,7 +244,7 @@ The service is unavailable.
 
 **Possible Causes**
 
-1. The facial authentication service is not started when **setSurfaceId()** of the **userAuth** module is called.
+1. The facial authentication service is not started when **setSurfaceId()** of the **faceAuth** module is called.
 2. The proxy client fails to write data over IPC.
 3. The stub server fails to parse data over IPC.
 4. An error occurs when the facial authentication driver is invoked.

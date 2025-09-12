@@ -1,5 +1,11 @@
 # Application Event Logging Error Codes
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--SE: @junjie_shi-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -8,7 +14,7 @@
 
 **Error Message**
 
-Function disabled.
+Function disabled. Possible caused by the param disable in ConfigOption is true.
 
 **Description**
 
@@ -24,7 +30,7 @@ The application event logging function is disabled.
 Invoke the **configure** API to enable the application event logging function.
 
    ```ts
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+   import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
    hiAppEvent.configure({
        disable: false
@@ -34,7 +40,7 @@ Invoke the **configure** API to enable the application event logging function.
 ## 11101001 Invalid Event Domain Name
 **Error Message**
 
-Invalid event domain.
+Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **Description**
 
@@ -57,7 +63,7 @@ Specify a valid event domain name.
 
 **Error Message**
 
-Invalid event name.
+Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **Description**
 
@@ -80,7 +86,7 @@ Specify a valid event name.
 
 **Error Message**
 
-Invalid number of event parameters.
+Invalid number of event parameters. Possible caused by the number of parameters is over 32.
 
 **Description**
 
@@ -118,7 +124,7 @@ Specify an event parameter value with a valid length.
 
 **Error Message**
 
-Invalid event parameter name.
+Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **Description**
 
@@ -177,7 +183,7 @@ Specify a valid number of custom event parameters.
 
 **Error Message**
 
-Invalid watcher name.
+Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **Description**
 
@@ -199,7 +205,7 @@ Specify a valid watcher name.
 
 **Error Message**
 
-Invalid filtering event domain.
+Invalid filtering event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **Description**
 
@@ -221,7 +227,7 @@ Specify a valid filtering event domain name.
 
 **Error Message**
 
-Invalid row value.
+Invalid row value. Possible caused by the row value is less than zero.
 
 **Description**
 
@@ -239,7 +245,7 @@ Specify a valid event number.
 
 **Error Message**
 
-Invalid size value.
+Invalid size value. Possible caused by the size value is less than zero.
 
 **Description**
 
@@ -257,7 +263,7 @@ Specify a valid event size.
 
 **Error Message**
 
-Invalid timeout value.
+Invalid timeout value. Possible caused by the timeout value is less than zero.
 
 **Description**
 
@@ -275,7 +281,7 @@ Specify a valid timeout value.
 
 **Error Message**
 
-Invalid max storage quota value.
+Invalid max storage quota value. Possible caused by incorrectly formatted.
 
 **Description**
 
@@ -296,7 +302,7 @@ Specify a valid maximum storage quota.
 
 **Error Message**
 
-Invalid size value.
+Invalid size value. Possible caused by the size value is less than or equal to zero.
 
 **Description**
 
@@ -309,3 +315,22 @@ The specified event package size is a negative number.
 **Solution**
 
 Specify a valid event package size.
+
+## 11105001 Invalid Parameter Value
+
+**Error Message**
+
+Invalid parameter value. Possible causes: 1. Incorrect parameter length; 2. Incorrect parameter format.
+
+**Description**
+
+When the **hiAppEvent** API is called to set the input parameter, the system ignores the setting because the input parameter value is invalid.
+
+**Possible Causes**
+
+- The length of the input parameter does not meet the requirements.
+- The format of the input parameter does not meet the specifications.
+
+**Solution**
+
+Input a parameter value that meets the specifications.

@@ -1,11 +1,17 @@
 # Interface (Zoom)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 11开始支持。
 
-Zoom extends [ZoomQuery](arkts-apis-camera-ZoomQuery.md)
+Zoom 继承自 [ZoomQuery](arkts-apis-camera-ZoomQuery.md)。
 
 变焦类，对设备变焦操作。
 
@@ -117,8 +123,8 @@ setSmoothZoom(targetRatio: number, mode?: SmoothZoomMode): void
 
 | 参数名       | 类型            | 必填 | 说明               |
 | ------------ | -------------- | ---- | ----------------- |
-| targetRatio  | number         | 是   | 目标值。      |
-| mode         | [SmoothZoomMode](arkts-apis-camera-e.md#smoothzoommode11) | 否   | 模式。      |
+| targetRatio  | number         | 是   | 目标值。通过[getZoomRatioRange](arkts-apis-camera-ZoomQuery.md#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。      |
+| mode         | [SmoothZoomMode](arkts-apis-camera-e.md#smoothzoommode11) | 否   | 平滑变焦模式。默认为0。     |
 
 **示例：**
 

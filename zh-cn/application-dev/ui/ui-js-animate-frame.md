@@ -1,4 +1,10 @@
 # 动画帧
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 ## 请求动画帧
 

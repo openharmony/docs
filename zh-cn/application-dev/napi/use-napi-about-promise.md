@@ -1,9 +1,10 @@
 # 使用Node-API接口处理异步操作
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 

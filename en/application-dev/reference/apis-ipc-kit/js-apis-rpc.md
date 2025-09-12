@@ -1,8 +1,13 @@
 # @ohos.rpc (RPC)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 The **RPC** module implements communication between processes, including inter-process communication (IPC) on a single device and remote procedure call (RPC) between processes on difference devices. IPC is implemented based on the Binder driver, and RPC is based on the DSoftBus driver.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -943,7 +948,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeFloat(val: number): void
 
-Writes a float value to this **MessageSequence** object.
+Writes a double value to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -951,7 +956,7 @@ Writes a float value to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description |
   | ------ | ------ | ---- | ----- |
-  | val    | number | Yes  | Float value to write.|
+  | val    | number | Yes  | Double value to write.|
 
 **Error codes**
 
@@ -982,7 +987,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloat(): number
 
-Reads the float value from this **MessageSequence** object.
+Reads the double value from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -990,7 +995,7 @@ Reads the float value from this **MessageSequence** object.
 
   | Type  | Description        |
   | ------ | ------------ |
-  | number | Float value read.|
+  | number | Double value read.|
 
 **Error codes**
 
@@ -2018,7 +2023,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeFloatArray(floatArray: number[]): void
 
-Writes a float array to this **MessageSequence** object.
+Writes a double array to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2026,7 +2031,7 @@ Writes a float array to this **MessageSequence** object.
 
   | Name    | Type    | Mandatory| Description                                                                                                                   |
   | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | floatArray | number[] | Yes  | Float array to write. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
+  | floatArray | number[] | Yes  | Double array to write. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Error codes**
 
@@ -2057,7 +2062,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloatArray(dataIn: number[]): void
 
-Reads the float array from this **MessageSequence** object.
+Reads the double array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2065,7 +2070,7 @@ Reads the float array from this **MessageSequence** object.
 
   | Name| Type    | Mandatory| Description                                                                                                                   |
   | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | dataIn | number[] | Yes  | Float array to read. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
+  | dataIn | number[] | Yes  | Double array to read. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Error codes**
 
@@ -2104,7 +2109,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloatArray(): number[]
 
-Reads the float array from this **MessageSequence** object.
+Reads the double array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2112,7 +2117,7 @@ Reads the float array from this **MessageSequence** object.
 
   | Type    | Description          |
   | -------- | -------------- |
-  | number[] | Float array read.|
+  | number[] | Double array read.|
 
 **Error codes**
 
@@ -2737,7 +2742,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -2817,7 +2822,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeParcelableArray(parcelableArray: Parcelable[]): void
 
-Writes a **Parcelable** array to this **MessageSequence** object.
+Writes the **Parcelable** array to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2942,7 +2947,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
-Writes an array of **IRemoteObject** objects to this **MessageSequence** object.
+Writes an **IRemoteObject** array to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3440,9 +3445,9 @@ writeRawData(rawData: number[], size: number): void
 
 Writes raw data to this **MessageSequence** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 11. Use [writeRawDataBuffer](#writerawdatabuffer11) instead.
+> This API is deprecated since API version 11. Use [writeRawDataBuffer](#writerawdatabuffer11) instead.
 >
 > This API cannot be called for multiple times in one parcel communication.
 > When the data volume is large (greater than 32 KB), the shared memory is used to transmit data. In this case, pay attention to the SELinux configuration.
@@ -3488,7 +3493,7 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 Writes raw data to this **MessageSequence** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > This API cannot be called for multiple times in one parcel communication.
 > When the data volume is large (greater than 32 KB), the shared memory is used to transmit data. In this case, pay attention to the SELinux configuration.
@@ -3539,9 +3544,9 @@ readRawData(size: number): number[]
 
 Reads raw data from this **MessageSequence** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 11. Use [readRawDataBuffer](#readrawdatabuffer11) instead.
+> This API is deprecated since API version 11. Use [readRawDataBuffer](#readrawdatabuffer11) instead.
 
 
 **System capability**: SystemCapability.Communication.IPC.Core
@@ -3766,9 +3771,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [MessageSequence](#messagesequence9) instead.
+> This API is deprecated since API version 9. Use [MessageSequence](#messagesequence9) instead.
 
 ### create
 
@@ -4472,7 +4477,7 @@ Reads the long int value from this **MessageParcel** object.
 
 writeFloat(val: number): boolean
 
-Writes a float value to this **MessageParcel** object.
+Writes a double value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4480,7 +4485,7 @@ Writes a float value to this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description            |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Float value to write.|
+  | val    | number | Yes  | Double value to write.|
 
 **Return value**
 
@@ -4502,7 +4507,7 @@ Writes a float value to this **MessageParcel** object.
 
 readFloat(): number
 
-Reads the float value from this **MessageParcel** object.
+Reads the double value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4510,7 +4515,7 @@ Reads the float value from this **MessageParcel** object.
 
   | Type  | Description        |
   | ------ | ------------ |
-  | number | Float value read.|
+  | number | Double value read.|
 
 **Example**
 
@@ -5184,7 +5189,7 @@ Reads the long array from this **MessageParcel** object.
 
 writeFloatArray(floatArray: number[]): boolean
 
-Writes a float array to this **MessageParcel** object.
+Writes a double array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5192,7 +5197,7 @@ Writes a float array to this **MessageParcel** object.
 
   | Name| Type| Mandatory| Description |
   | ---------- | -------- | ---- | --- |
-  | floatArray | number[] | Yes  | Float array to write. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
+  | floatArray | number[] | Yes  | Double array to write. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Return value**
 
@@ -5214,7 +5219,7 @@ Writes a float array to this **MessageParcel** object.
 
 readFloatArray(dataIn: number[]): void
 
-Reads the float array from this **MessageParcel** object.
+Reads the double array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5222,7 +5227,7 @@ Reads the float array from this **MessageParcel** object.
 
   | Name| Type    | Mandatory| Description  |
   | ------ | -------- | ---- | ------ |
-  | dataIn | number[] | Yes  | Float array to read. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
+  | dataIn | number[] | Yes  | Double array to read. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Example**
 
@@ -5240,7 +5245,7 @@ Reads the float array from this **MessageParcel** object.
 
 readFloatArray(): number[]
 
-Reads the float array from this **MessageParcel** object.
+Reads the double array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5248,7 +5253,7 @@ Reads the float array from this **MessageParcel** object.
 
   | Type    | Description          |
   | -------- | -------------- |
-  | number[] | Float array read.|
+  | number[] | Double array read.|
 
 **Example**
 
@@ -5644,7 +5649,7 @@ Reads the exception information from this **MessageParcel** object.
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -5718,7 +5723,7 @@ Reads the exception information from this **MessageParcel** object.
 
 writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
-Writes a sequenceable array to this **MessageParcel** object.
+Writes a **Sequenceable** array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5726,7 +5731,7 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 | Name           | Type                                     | Mandatory| Description                      |
 | ----------------- | ----------------------------------------- | ---- | -------------------------- |
-| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | **SequenceableArray** to write.|
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | **Sequenceable** array to write.|
 
 **Return value**
 
@@ -5770,7 +5775,7 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
-Reads the sequenceable array from this **MessageParcel** object.
+Reads the **Sequenceable** array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5778,7 +5783,7 @@ Reads the sequenceable array from this **MessageParcel** object.
 
 | Name           | Type                                     | Mandatory| Description                      |
 | ----------------- | ----------------------------------------- | ---- | -------------------------- |
-| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | **SequenceableArray** to read.|
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | **Sequenceable** array to read.|
 
 **Example**
 
@@ -5818,7 +5823,7 @@ Reads the sequenceable array from this **MessageParcel** object.
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 
-Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
+Writes an **IRemoteObject** array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5826,7 +5831,7 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
   | Name     | Type           | Mandatory| Description |
   | ----------- | --------------- | ---- | ----- |
-  | objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
+  | objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to write.|
 
 **Return value**
 
@@ -6368,9 +6373,9 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 Writes objects of classes to a **MessageParcel** and reads them from the **MessageParcel** during IPC.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [Parcelable](#parcelable9) instead.
+> This API is deprecated since API version 9. Use [Parcelable](#parcelable9) instead.
 
 ### marshalling
 
@@ -6507,7 +6512,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -6603,9 +6608,9 @@ Defines the response to the request.
 
 Defines the response to the request.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [RequestResult](#requestresult9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [RequestResult](#requestresult9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6652,11 +6657,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-Queries the string of the interface descriptor.
+Obtains the string of the interface descriptor.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9) instead.
+> This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6678,7 +6683,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > This API is deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
@@ -6736,7 +6741,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
@@ -6789,9 +6794,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-1) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6836,9 +6841,9 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Adds a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9) instead.
+> This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6859,7 +6864,7 @@ Adds a callback for receiving death notifications of the remote object. This met
 
 unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Unregisters the callback used to receive death notifications of the remote object.
+Unregisters from the callback used to receive death notifications of the remote object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6886,7 +6891,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Removes the callback used to receive death notifications of the remote object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9) instead.
 
@@ -6933,9 +6938,9 @@ getInterfaceDescriptor(): string
 
 Obtains the interface descriptor (which is a string) of this object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9) instead.
+> This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6982,9 +6987,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
+> This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7005,7 +7010,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7102,7 +7107,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7178,9 +7183,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7201,7 +7206,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7305,9 +7310,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-3) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-3) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7352,7 +7357,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7414,9 +7419,9 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 Obtains the **LocalInterface** object of an interface token.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-1) instead.
+> This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7434,7 +7439,7 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7509,7 +7514,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7576,9 +7581,9 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Adds a callback for receiving the death notifications of the remote object, including the death notifications of the remote proxy.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9-1) instead.
+> This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7597,7 +7602,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7655,7 +7660,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Unregisters the callback used to receive death notifications of the remote object.
+Unregisters from the callback used to receive death notifications of the remote object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7677,7 +7682,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7745,9 +7750,9 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Removes the callback used to receive death notifications of the remote object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9-1) instead.
+> This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7766,7 +7771,7 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7846,7 +7851,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7907,9 +7912,9 @@ getInterfaceDescriptor(): string
 
 Obtains the interface descriptor of this proxy object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-1) instead.
+> This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7921,7 +7926,7 @@ Obtains the interface descriptor of this proxy object.
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -7986,7 +7991,7 @@ Checks whether the **RemoteObject** is dead.
 
 **Example**
 
->**NOTE**<br/>
+>**NOTE**
 >
 >In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -8510,9 +8515,9 @@ static flushCommands(object: IRemoteObject): number
 
 Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. You are advised to call this API before performing any sensitive operation.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [flushCmdBuffer](#flushcmdbuffer9) instead.
+> This API is deprecated since API version 9. Use [flushCmdBuffer](#flushcmdbuffer9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8628,9 +8633,9 @@ static setCallingIdentity(identity: string): boolean
 
 Sets the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [restoreCallingIdentity](#restorecallingidentity9) instead.
+> This API is deprecated since API version 9. Use [restoreCallingIdentity](#restorecallingidentity9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8695,9 +8700,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
+> This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8833,9 +8838,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8938,9 +8943,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-5) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-5) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8958,7 +8963,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean | Promise\<boolean>
 
-> **NOTE**<br/>
+> **NOTE**
 >
 >* You are advised to overload **onRemoteMessageRequest** preferentially, which implements synchronous and asynchronous message processing.
 >* If both **onRemoteRequest()** and **onRemoteMessageRequest()** are overloaded, only the onRemoteMessageRequest() takes effect.
@@ -9102,9 +9107,9 @@ onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options
 
 Called to return a response to **sendRequest()**. The server processes the request and returns a response in this function.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [onRemoteMessageRequest](#onremotemessagerequest9) instead.
+> This API is deprecated since API version 9. Use [onRemoteMessageRequest](#onremotemessagerequest9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9286,9 +9291,9 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 Checks whether the remote object corresponding to the specified interface token exists.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-2) instead.
+> This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-2) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9400,9 +9405,9 @@ getInterfaceDescriptor(): string
 
 Obtains the interface descriptor.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-2) instead.
+> This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-2) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9508,9 +9513,9 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 Binds an interface descriptor to an **IRemoteBroker** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is deprecated since API version 9. Use [modifyLocalInterface](#modifylocalinterface9) instead.
+> This API is deprecated since API version 9. Use [modifyLocalInterface](#modifylocalinterface9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9621,9 +9626,9 @@ static createAshmem(name: string, size: number): Ashmem
 
 Creates an **Ashmem** object with the specified name and size. This API is a static method.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9702,9 +9707,9 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 Creates an **Ashmem** object by copying the file descriptor of an existing **Ashmem** object. The two **Ashmem** objects point to the same shared memory region.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9-1) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9737,7 +9742,7 @@ closeAshmem(): void
 
 Closes this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > Before closing the **Ashmem** object, you need to remove the address mapping.
 
@@ -9834,9 +9839,9 @@ mapAshmem(mapType: number): boolean
 
 Creates the shared file mapping on the virtual address space of this process. The size of the mapping region is specified by this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapTypedAshmem](#maptypedashmem9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [mapTypedAshmem](#maptypedashmem9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9900,9 +9905,9 @@ mapReadAndWriteAshmem(): boolean
 
 Maps the shared file to the readable and writable virtual address space of the process.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadWriteAshmem](#mapreadwriteashmem9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [mapReadWriteAshmem](#mapreadwriteashmem9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9960,9 +9965,9 @@ mapReadOnlyAshmem(): boolean
 
 Maps the shared file to the read-only virtual address space of the process.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadonlyAshmem](#mapreadonlyashmem9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [mapReadonlyAshmem](#mapreadonlyashmem9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -10027,9 +10032,9 @@ setProtection(protectionType: number): boolean
 
 Sets the protection level of the memory region to which the shared file is mapped.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [setProtectionType](#setprotectiontype9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [setProtectionType](#setprotectiontype9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -10061,7 +10066,7 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
 Writes data to the shared file associated with this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
@@ -10113,9 +10118,9 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 Writes data to the shared file associated with this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [writeDataToAshmem](#writedatatoashmem11) instead.
+> This API is supported since API version 9 and deprecated since API version 11. Use [writeDataToAshmem](#writedatatoashmem11) instead.
 > 
 > Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
@@ -10162,9 +10167,9 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 Writes data to the shared file associated with this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [writeDataToAshmem](#writedatatoashmem11) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [writeDataToAshmem](#writedatatoashmem11) instead.
 > 
 > Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
@@ -10203,7 +10208,7 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
 Reads data from the shared file associated with this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
@@ -10269,9 +10274,9 @@ readAshmem(size: number, offset: number): number[]
 
 Reads data from the shared file associated with this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [readDataFromAshmem](#readdatafromashmem11) instead.
+> This API is supported since API version 9 and deprecated since API version 11. Use [readDataFromAshmem](#readdatafromashmem11) instead.
 > 
 > Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
@@ -10326,9 +10331,9 @@ readFromAshmem(size: number, offset: number): number[]
 
 Reads data from the shared file associated with this **Ashmem** object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
 > 
 > Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 

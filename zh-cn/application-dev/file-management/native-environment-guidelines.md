@@ -1,4 +1,10 @@
 # 获取用户目录环境(C/C++)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 ## 场景介绍
 

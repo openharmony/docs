@@ -1,4 +1,10 @@
 # 编译错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhangboren-->
+<!--Designer: @zhangboren-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 >
@@ -409,7 +415,7 @@ The property \'xxx\' in the custom component \'yyy\' is missing (mandatory to sp
 
 ## 10905317 装饰器变量初始化校验异常
 **错误信息**<br>
-The property \'xxx\' in the custom component \'yyy\' cannot be initialized here (fobidden to specify).
+The property \'xxx\' in the custom component \'yyy\' cannot be initialized here (forbidden to specify).
 
 **错误描述**<br>
 @StorageProp、@StorageLink、@Consume等装饰器装饰的变量不能在父组件调用子组件时初始化。
@@ -851,7 +857,7 @@ A class decorated by \'@Observed\' cannot inherit from a class decorated by \'@O
 
 ## 10905225 @ObservedV2类继承@Observed类校验异常
 **错误信息**<br>
-A class decorated by \'@ObservedV2\' cannot inherit from a class decoraated by \'@Observed\'.
+A class decorated by \'@ObservedV2\' cannot inherit from a class decorated by \'@Observed\'.
 
 **错误描述**<br>
 因为当前类被\'@ObservedV2\'装饰，所以它不能继承被\'@Observed\'装饰的类。
@@ -1047,7 +1053,7 @@ The type of the \'xxx\' property can not be a class decorated with \'@ObservedV2
 ## 10905122 @Concurrent装饰器使用校验异常 
 **错误信息**<br>  
 \'@Concurrent\' can not be used on \'xxx\' function declaration.
- 
+
 **错误描述**<br>
 @Concurrent不能装饰特定函数。
 

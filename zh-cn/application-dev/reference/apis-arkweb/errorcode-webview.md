@@ -1,9 +1,10 @@
 # Webview错误码
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
-<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
-<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
-<!--TSE: @ghiker-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -159,11 +160,11 @@ Failed to post messages through the port.
 
 **错误信息**
 
-Invalid origin.
+Invalid origin.The origin format must follow defined in RFC 6454.
 
 **错误描述**
 
-输入参数origin错误。
+输入参数origin错误。origin格式必须遵循RFC 6454中定义的格式。
 
 **可能原因**
 

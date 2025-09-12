@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @houguobiao-->
-<!--SE: @houguobiao-->
-<!--TSE: @lxl007-->
+<!--Designer: @houguobiao-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 单选框，提供相应的用户交互选择项。
 
@@ -233,7 +234,7 @@ type OnRadioChangeCallback = (isChecked: boolean) => void
 
 ## RadioConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -306,6 +307,7 @@ struct RadioExample {
 struct RadioExample {
   @Builder 
   indicatorBuilder() {
+    // $r('app.media.star')需要替换为开发者所需的图像资源文件。
     Image($r("app.media.star"))
   }
   build() {

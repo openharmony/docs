@@ -1,4 +1,11 @@
 # Component3D
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzhao0-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
+
 3D渲染组件，可以加载3D模型资源并做自定义渲染，通常用于3D动效场景。
 
 >  **说明：**
@@ -40,14 +47,16 @@ Component3D组件配置选项。
 
 ## ModelType枚举说明
 
+渲染合成模式类型枚举，用于指定3D场景的渲染输出方式。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称    | 值   | 说明                     |
 | ------- | ---- | ------------------------ |
-| TEXTURE | 0    | 使用GPU合成显示3D场景。  |
-| SURFACE | 1    | 使用专有硬件显示3D场景。 |
+| TEXTURE | 0 | 使用GPU合成显示3D场景。 |
+| SURFACE | 1 | 使用专有硬件显示3D场景。 |
 
 ## Scene<sup>12+</sup>
 
@@ -114,7 +123,7 @@ shader(uri: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                         |
 | ------ | -------------------------------------- | ---- | ---------------------------- |
-| uri    | [ResourceStr](ts-types.md#resourcestr) | 是   | 自定义渲染的shader文件资源。 |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | 是   | 自定义渲染的shader文件资源。详细`.shader`文件格式请参考[.shader资源文件格式要求](../../../graphics3d/arkgraphics3D-shader-resource.md)。 |
 
 ### shaderImageTexture
 

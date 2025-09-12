@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -35,7 +36,7 @@ FFRT: Function Flow Runtime，一种并发编程框架，旨在简化并发编�
 
 FFRT编程模型允许开发者通过任务及其依赖关系描述的方式进行应用开发，其主要特性包括`Task-Based`、`Queue-Enabled`和`Graph-Driven`。
 
-#### Task-Based特性
+**Task-Based特性**
 
 `Task-Based`指在Function Flow编程模型中开发者以任务方式来组织应用程序表达，运行时以任务粒度执行调度。
 
@@ -49,7 +50,7 @@ FFRT编程模型中的任务包含以下主要特征：
 >
 > 任务颗粒度影响应用执行性能，颗粒度过小增加调度开销，颗粒度过大降低并行度。FFRT编程模型中任务的目标颗粒度最小为100us量级，开发者应注意合理控制任务颗粒度。
 
-#### Queue-Enabled特性
+**Queue-Enabled特性**
 
 `Queue-Enabled`指在Function Flow编程模型中开发者可以利用任务队列来约束任务的执行顺序和并发度。任务队列包括串行队列和并发队列，两者具有不同的使用场景：
 
@@ -59,7 +60,7 @@ FFRT编程模型中的任务包含以下主要特征：
 
 `Queue-Enabled`特性为开发者提供了灵活的任务调度方式，开发者可以根据具体需求选择合适的任务执行策略，从而优化应用程序的性能。
 
-#### Graph-Driven特性
+**Graph-Driven特性**
 
 `Graph-Driven`指Function Flow编程模型中开发者可以通过构建任务依赖图，来管理任务之间的依赖关系，实现复杂任务流的高效调度。
 

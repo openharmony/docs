@@ -1,5 +1,12 @@
 # AVCodec Kit（音视频编解码服务）
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran; @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee; @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 - [AVCodec Kit简介](avcodec-kit-intro.md)
 - [AVCodec支持的格式](avcodec-support-formats.md)
 - 音视频编解码<!--audio-video-codec-->
@@ -11,6 +18,7 @@
   - [视频编码](video-encoding.md)
   - [视频编码同步模式](synchronous-video-encoding.md)
   - [时域可分层视频编码](video-encoding-temporal-scalability.md)
+  - [B帧视频编码](video-encoding-b-frame.md)
   - [典型场景的视频编码配置](video-encoding-configuration-typical-scenarios.md)
   - [ROI视频编码](video-encoding-ROI.md)
   - [视频解码](video-decoding.md)

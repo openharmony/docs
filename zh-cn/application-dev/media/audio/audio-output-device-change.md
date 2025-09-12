@@ -1,4 +1,10 @@
 # 响应音频流输出设备变更
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 开发者可以了解音频流输出设备变更信息，并完成相应适配，确保应用在设备发生变更时的用户体验。
 

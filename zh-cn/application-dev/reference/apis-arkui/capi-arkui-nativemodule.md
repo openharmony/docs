@@ -1,4 +1,10 @@
 # ArkUI_NativeModule
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -8,9 +14,9 @@
 
 提供ArkUI在Native侧的注册手势回调的能力。更多详细介绍请参考[绑定手势事件](../../ui/ndk-bind-gesture-events.md)。
 
-提供ArkUI在Native侧动画回调的能力。更多详细介绍请参考[使用动画](../../ui/ndk-use-animation.md)。
+提供ArkUI在Native侧使用动画回调的能力。更多详细介绍请参考[使用动画](../../ui/ndk-use-animation.md)。
 
-提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。更多详细介绍请参考[接入ArkTS页面](../../ui/ndk-access-the-arkts-page.md)。
+提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作、属性设置、事件监听等。更多详细介绍请参考[接入ArkTS页面](../../ui/ndk-access-the-arkts-page.md)。
 
 **起始版本：** 12
 
@@ -28,5 +34,6 @@
 | [native_key_event.h](capi-native-key-event-h.md) | 提供NativeKeyEvent相关接口定义。 |
 | [native_node.h](capi-native-node-h.md) | 提供NativeNode接口的类型定义。 |
 | [native_node_napi.h](capi-native-node-napi-h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。 |
+| [native_render.h](capi-native-render-h.md) | 提供Native侧的RenderNode的类型定义和操作RenderNode节点的能力。 |
 | [native_type.h](capi-native-type-h.md) | 提供NativeModule公共的类型定义。 |
 | [styled_string.h](capi-styled-string-h.md) | 提供ArkUI在Native侧的属性字符串能力。 |

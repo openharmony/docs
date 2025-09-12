@@ -1,9 +1,10 @@
 # 使用JSVM-API判断给定的两个JS value是否严格相等
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 

@@ -1,12 +1,26 @@
 # @ohos.app.ability.abilityLifecycleCallback (UIAbility Lifecycle Callback Listener)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy; @xuzhihao666-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-The AbilityLifecycleCallback module defines the callbacks to receive lifecycle changes of [ApplicationContext](js-apis-inner-application-applicationContext.md).
+The lifecycle of a [UIAbility](js-apis-app-ability-uiAbility.md) dynamically changes from creation to destruction. The AbilityLifecycleCallback module provides the capability to listen for these lifecycle changes, which can be used for scenarios such as tracking the runtime duration of each UIAbility and performing data loading decoupled from the service logic of UIAbility.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
+>
+> The APIs provided by this module can listen for lifecycle changes of the UIAbility within the same process.
+
+## How to Use
+
+1. An application creates an AbilityLifecycleCallback object and calls [ApplicationContext.on('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextonabilitylifecycle) to register a listener to listen for UIAbility lifecycle changes.
+2. When the UIAbility lifecycle changes, the application receives a notification indicating the UIAbility lifecycle change through the registered AbilityLifecycleCallback object.
+3. When the application does not need to listen for the UIAbility lifecycle changes, the application can unregister the listener by calling [ApplicationContext.off('abilityLifecycle')](js-apis-inner-application-applicationContext.md#applicationcontextoffabilitylifecycle).
 
 ## Modules to Import
 
@@ -14,11 +28,13 @@ The AbilityLifecycleCallback module defines the callbacks to receive lifecycle c
 import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 ```
 
-## AbilityLifecycleCallback.onAbilityCreate
+## AbilityLifecycleCallback
+
+### onAbilityCreate
 
 onAbilityCreate(ability: UIAbility): void
 
-Called when an ability is created.
+Called after the [onCreate](js-apis-app-ability-uiAbility.md#oncreate) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -28,17 +44,17 @@ Called when an ability is created.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageCreate
+### onWindowStageCreate
 
 onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called when the window stage of an ability is created.
+Called after the [onWindowStageCreate](js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -48,18 +64,18 @@ Called when the window stage of an ability is created.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageActive
+### onWindowStageActive
 
 onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called when the window stage of an ability gains focus.
+Called when the main window of the UIAbility gains focus.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -69,18 +85,18 @@ Called when the window stage of an ability gains focus.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageInactive
+### onWindowStageInactive
 
 onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called when the window stage of an ability loses focus.
+Called when the main window of the UIAbility loses focus.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -90,18 +106,18 @@ Called when the window stage of an ability loses focus.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageDestroy
+### onWindowStageDestroy
 
 onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called when the window stage of an ability is destroyed.
+Called after the [onWindowStageDestroy](js-apis-app-ability-uiAbility.md#onwindowstagedestroy) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -111,18 +127,18 @@ Called when the window stage of an ability is destroyed.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityDestroy
+### onAbilityDestroy
 
 onAbilityDestroy(ability: UIAbility): void
 
-Called when an ability is destroyed.
+Called after the [onDestroy](js-apis-app-ability-uiAbility.md#ondestroy) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -132,17 +148,17 @@ Called when an ability is destroyed.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityForeground
+### onAbilityForeground
 
 onAbilityForeground(ability: UIAbility): void
 
-Called when an ability is switched from the background to the foreground.
+Called after the [onForeground](js-apis-app-ability-uiAbility.md#onforeground) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -152,17 +168,17 @@ Called when an ability is switched from the background to the foreground.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityBackground
+### onAbilityBackground
 
 onAbilityBackground(ability: UIAbility): void
 
-Called when an ability is switched from the foreground to the background.
+Called after the [onBackground](js-apis-app-ability-uiAbility.md#onbackground) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -172,17 +188,17 @@ Called when an ability is switched from the foreground to the background.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityContinue
+### onAbilityContinue
 
 onAbilityContinue(ability: UIAbility): void
 
-Called when an ability is continued on another device.
+Called after the [onContinue](js-apis-app-ability-uiAbility.md#oncontinue) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -192,17 +208,17 @@ Called when an ability is continued on another device.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityWillCreate<sup>12+</sup>
+### onAbilityWillCreate<sup>12+</sup>
 
 onAbilityWillCreate?(ability: UIAbility): void
 
-Called before the [onCreate](js-apis-app-ability-uiAbility.md#oncreate) callback of a UIAbility is triggered.
+Called before the [onCreate](js-apis-app-ability-uiAbility.md#oncreate) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -212,17 +228,17 @@ Called before the [onCreate](js-apis-app-ability-uiAbility.md#oncreate) callback
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageWillCreate<sup>12+</sup>
+### onWindowStageWillCreate<sup>12+</sup>
 
 onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called before the [onWindowStageCreate](js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of a UIAbility is triggered.
+Called before the [onWindowStageCreate](js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -232,18 +248,18 @@ Called before the [onWindowStageCreate](js-apis-app-ability-uiAbility.md#onwindo
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageWillDestroy<sup>12+</sup>
+### onWindowStageWillDestroy<sup>12+</sup>
 
 onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called before the [onWindowStageDestroy](js-apis-app-ability-uiAbility.md#onwindowstagedestroy) callback of a UIAbility is triggered.
+Called before the [onWindowStageDestroy](js-apis-app-ability-uiAbility.md#onwindowstagedestroy) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -253,18 +269,18 @@ Called before the [onWindowStageDestroy](js-apis-app-ability-uiAbility.md#onwind
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityWillForeground<sup>12+</sup>
+### onAbilityWillForeground<sup>12+</sup>
 
 onAbilityWillForeground?(ability: UIAbility): void
 
-Called before the [onForeground](js-apis-app-ability-uiAbility.md#onforeground) callback of a UIAbility is triggered.
+Called before the [onForeground](js-apis-app-ability-uiAbility.md#onforeground) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -274,17 +290,17 @@ Called before the [onForeground](js-apis-app-ability-uiAbility.md#onforeground) 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityWillDestroy<sup>12+</sup>
+### onAbilityWillDestroy<sup>12+</sup>
 
 onAbilityWillDestroy?(ability: UIAbility): void
 
-Called before the [onDestroy](js-apis-app-ability-uiAbility.md#ondestroy) callback of a UIAbility is triggered.
+Called before the [onDestroy](js-apis-app-ability-uiAbility.md#ondestroy) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -294,17 +310,17 @@ Called before the [onDestroy](js-apis-app-ability-uiAbility.md#ondestroy) callba
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityWillBackground<sup>12+</sup>
+### onAbilityWillBackground<sup>12+</sup>
 
 onAbilityWillBackground?(ability: UIAbility): void
 
-Called before the [onBackground](js-apis-app-ability-uiAbility.md#onbackground) callback of a UIAbility is triggered.
+Called before the [onBackground](js-apis-app-ability-uiAbility.md#onbackground) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -314,17 +330,17 @@ Called before the [onBackground](js-apis-app-ability-uiAbility.md#onbackground) 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWillNewWant<sup>12+</sup>
+### onWillNewWant<sup>12+</sup>
 
 onWillNewWant?(ability: UIAbility): void
 
-Called before the [onNewWant](js-apis-app-ability-uiAbility.md#onnewwant) callback of a UIAbility is triggered.
+Called before the [onNewWant](js-apis-app-ability-uiAbility.md#onnewwant) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -334,17 +350,17 @@ Called before the [onNewWant](js-apis-app-ability-uiAbility.md#onnewwant) callba
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onNewWant<sup>12+</sup>
+### onNewWant<sup>12+</sup>
 
 onNewWant?(ability: UIAbility): void
 
-Called after the [onNewWant](js-apis-app-ability-uiAbility.md#onnewwant) callback of a UIAbility is triggered.
+Called after the [onNewWant](js-apis-app-ability-uiAbility.md#onnewwant) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -354,17 +370,17 @@ Called after the [onNewWant](js-apis-app-ability-uiAbility.md#onnewwant) callbac
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityWillContinue<sup>12+</sup>
+### onAbilityWillContinue<sup>12+</sup>
 
 onAbilityWillContinue?(ability: UIAbility): void
 
-Called before the [onContinue](js-apis-app-ability-uiAbility.md#oncontinue) callback of a UIAbility is triggered.
+Called before the [onContinue](js-apis-app-ability-uiAbility.md#oncontinue) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -374,17 +390,17 @@ Called before the [onContinue](js-apis-app-ability-uiAbility.md#oncontinue) call
 
   | Name| Type| Mandatory| Description|
   | ------ | ------ | ------ | ------ |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageWillRestore<sup>12+</sup>
+### onWindowStageWillRestore<sup>12+</sup>
 
 onWindowStageWillRestore?(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called before the [onWindowStageRestore](js-apis-app-ability-uiAbility.md#onwindowstagerestore) callback of a UIAbility is triggered.
+Called before the [onWindowStageRestore](js-apis-app-ability-uiAbility.md#onwindowstagerestore) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -394,18 +410,18 @@ Called before the [onWindowStageRestore](js-apis-app-ability-uiAbility.md#onwind
 
   | Name| Type| Mandatory| Description|
   | ------ | ------ | ------ | ------ |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onWindowStageRestore<sup>12+</sup>
+### onWindowStageRestore<sup>12+</sup>
 
 onWindowStageRestore?(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called after the [onWindowStageRestore](js-apis-app-ability-uiAbility.md#onwindowstagerestore) callback of a UIAbility is triggered.
+Called after the [onWindowStageRestore](js-apis-app-ability-uiAbility.md#onwindowstagerestore) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -415,18 +431,18 @@ Called after the [onWindowStageRestore](js-apis-app-ability-uiAbility.md#onwindo
 
   | Name| Type| Mandatory| Description|
   | ------ | ------ | ------ | ------ |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| WindowStage object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | Yes| Main window manager of the UIAbility associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilityWillSaveState<sup>12+</sup>
+### onAbilityWillSaveState<sup>12+</sup>
 
 onAbilityWillSaveState?(ability: UIAbility): void
 
-Called before the [onSaveState](js-apis-app-ability-uiAbility.md#onsavestate) callback of a UIAbility is triggered.
+Called before the [onSaveState](js-apis-app-ability-uiAbility.md#onsavestate) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -436,17 +452,17 @@ Called before the [onSaveState](js-apis-app-ability-uiAbility.md#onsavestate) ca
 
   | Name| Type| Mandatory| Description|
   | ------ | ------ | ------ | ------ |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## AbilityLifecycleCallback.onAbilitySaveState<sup>12+</sup>
+### onAbilitySaveState<sup>12+</sup>
 
 onAbilitySaveState?(ability: UIAbility): void
 
-Called after the [onSaveState](js-apis-app-ability-uiAbility.md#onsavestate) callback of a UIAbility is triggered.
+Called after the [onSaveState](js-apis-app-ability-uiAbility.md#onsavestate) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -456,162 +472,207 @@ Called after the [onSaveState](js-apis-app-ability-uiAbility.md#onsavestate) cal
 
   | Name| Type| Mandatory| Description|
   | ------ | ------ | ------ | ------ |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| Ability object.|
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| UIAbility object associated with the callback event.|
 
 **Example**
 
-See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
+For details, see [AbilityLifecycleCallback Usage Example](#abilitylifecyclecallback-usage-example).
 
-## Usage of AbilityLifecycleCallback
+### AbilityLifecycleCallback Usage Example
 
-**Example**
-GlobalContext.ts
-Global context
+This example demonstrates some use cases of the lifecycle listener mechanism.
+1. Register the listener when the [AbilityStage](../../application-models/abilitystage.md) is created.
+2. Unregister the listener when the [AbilityStage](../../application-models/abilitystage.md) is destroyed.
+3. Load resources when the corresponding UIAbility is created, and release resources when it is destroyed.
+4. Log events and send notifications when the UIAbility is created, destroyed, or switched between the foreground and background.
+
 ```ts
-// Construct a singleton object.
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
+// Use AbilityLifecycleCallback to listen for the lifecycle of the UIAbility in the MyStage.ets file.
+import { AbilityLifecycleCallback, AbilityStage, application, UIAbility } from "@kit.AbilityKit";
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { JSON } from "@kit.ArkTS";
+import { window } from "@kit.ArkUI";
+import { BusinessError } from "@kit.BasicServicesKit";
 
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
+const DOMAIN = 0x0000;
+const TAG = 'testTag';
 
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+function loadContent() {
+  // Load data.
 }
-```
 
-MyFirstAbility.ts
-First ability of the application
-```ts
-import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
+function releaseContent() {
+  // Release data.
+}
 
-// Import GlobalContext. Use the actual path declared.
-import { GlobalContext } from '../GlobalContext';
+function recordAbilityEvent(abilityName: string) {
+  // Perform event tracking.
+}
 
-// Declare the ability lifecycle callbacks. A listener can be registered in applicationContext only after all the callbacks are configured.
+function publishEvent() {
+  // Publish notifications externally.
+}
+
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
-  onAbilityCreate(ability){
-    console.log('AbilityLifecycleCallback onAbilityCreate.');
+  onAbilityCreate(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'onAbilityCreate: ' + ability.context.abilityInfo.name);
+    // Log UIAbility events.
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    // Load resources and publish notifications externally when the entry UIAbility is created.
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      loadContent();
+      publishEvent();
+    }
   },
-  onWindowStageCreate(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageCreate.');
+  onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageCreate.');
   },
-  onWindowStageActive(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageActive.');
+  onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageActive.');
   },
-  onWindowStageInactive(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageInactive.');
+  onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageInactive.');
   },
-  onWindowStageDestroy(ability, windowStage){
-    console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+  onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageDestroy.');
   },
-  onAbilityDestroy(ability){
-    console.log('AbilityLifecycleCallback onAbilityDestroy.');
+  onAbilityDestroy(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'onAbilityDestroy: ' + ability.context.abilityInfo.name);
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    // Release resources when the entry UIAbility is destroyed.
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      releaseContent();
+      publishEvent();
+    }
   },
-  onAbilityForeground(ability){
-    console.log('AbilityLifecycleCallback onAbilityForeground.');
+  onAbilityForeground(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityForeground.');
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      publishEvent();
+    }
   },
-  onAbilityBackground(ability){
-    console.log('AbilityLifecycleCallback onAbilityBackground.');
+  onAbilityBackground(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityBackground.');
+    recordAbilityEvent(ability.context.abilityInfo.name);
+    if (ability.context.abilityInfo.name === 'EntryAbility') {
+      publishEvent();
+    }
   },
-  onAbilityContinue(ability){
-    console.log('AbilityLifecycleCallback onAbilityContinue.');
+  onAbilityContinue(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityContinue.');
   },
-  onNewWant(ability) {
-    console.log('AbilityLifecycleCallback onNewWant');
+  onNewWant(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onNewWant');
   },
-  onWillNewWant(ability) {
-    console.log('AbilityLifecycleCallback onWillNewWant');
+  onWillNewWant(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWillNewWant');
   },
-  onAbilityWillCreate(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillCreate');
+  onAbilityWillCreate(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillCreate');
   },
-  onWindowStageWillCreate(ability, windowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageWillCreate');
+  onWindowStageWillCreate(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillCreate');
   },
-  onWindowStageWillDestroy(ability, windowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageWillDestroy');
+  onWindowStageWillDestroy(ability: UIAbility, windowStage: window.WindowStage) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillDestroy');
   },
-  onAbilityWillDestroy(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillDestroy');
+  onAbilityWillDestroy(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillDestroy');
   },
-  onAbilityWillForeground(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillForeground');
+  onAbilityWillForeground(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillForeground');
   },
-  onAbilityWillBackground(ability) {
-    console.log('AbilityLifecycleCallback onAbilityWillBackground');
+  onAbilityWillBackground(ability: UIAbility) {
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillBackground');
   },
   onAbilityWillContinue(ability: UIAbility) {
-    console.log('AbilityLifecycleCallback onAbilityWillContinue.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillContinue.');
   },
   onWindowStageWillRestore(ability: UIAbility, windowStage: window.WindowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageWillRestore.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillRestore.');
   },
   onWindowStageRestore(ability: UIAbility, windowStage: window.WindowStage) {
-    console.log('AbilityLifecycleCallback onWindowStageRestore.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageRestore.');
   },
   onAbilityWillSaveState(ability: UIAbility) {
-    console.log('AbilityLifecycleCallback onAbilityWillSaveState.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillSaveState.');
   },
   onAbilitySaveState(ability: UIAbility) {
-    console.log('AbilityLifecycleCallback onAbilitySaveState.');
+    hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilitySaveState.');
   }
 };
 
-export default class MyFirstAbility extends UIAbility {
-  onCreate() {
-    console.log('MyAbilityStage onCreate');
-    // 1. Obtain applicationContext through the context property.
-    let applicationContext = this.context.getApplicationContext();
-    // 2. Register the listener for the ability lifecycle changes through the applicationContext object.
+let lifecycleId = -1; // Save the listener ID.
+
+export default class MyStage extends AbilityStage {
+  onCreate(): void {
+    hilog.info(DOMAIN, TAG, 'AbilityStage onCreate')
+
+    // Register the UIAbility lifecycle listener during AbilityStage creation and save the listener ID.
     try {
-      let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-      GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
-      console.log(`registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
-    } catch (paramError) {
-      console.error(`error: ${paramError.code}, ${paramError.message}`);
+      let applicationContext = application.getApplicationContext();
+      lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    } catch (e) {
+      hilog.error(DOMAIN, TAG, `register abilityLifecycle failed: ${JSON.stringify(e)}`);
     }
+  }
+
+  onDestroy(): void {
+    // Unregister the UIAbility lifecycle listener when the AbilityStage is destroyed.
+    let applicationContext = application.getApplicationContext();
+    applicationContext.off('abilityLifecycle', lifecycleId).catch((e: BusinessError) => {
+      hilog.error(DOMAIN, TAG, `unregister abilityLifecycle failed: ${JSON.stringify(e)}`);
+    });
   }
 }
 ```
 
-MySecondAbility.ts
-Second ability of the application
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+// Demonstrate the entry UIAbility in EntryAbility.ets.
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
-// Import GlobalContext. Use the actual path declared.
-import { GlobalContext } from '../GlobalContext';
-import { BusinessError } from '@ohos.base';
+const DOMAIN = 0x0000;
+const TAG = 'testTag';
 
-export default class MySecondAbility extends UIAbility {
-  onDestroy() {
-    let applicationContext = this.context.getApplicationContext();
-    let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
-    try {
-    // 3. Deregister the listener for the ability lifecycle changes through the applicationContext object.
-      applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
-        if (error && error.code !== 0) {
-          console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
-        } else {
-          console.log('unregisterAbilityLifecycleCallback success.');
-        }
-      });
-    } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
-    }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(DOMAIN, TAG, 'EntryAbility onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(DOMAIN, TAG, 'EntryAbility onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Create the main window.
+    hilog.info(DOMAIN, TAG, 'EntryAbility onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(DOMAIN, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      hilog.info(DOMAIN, TAG, 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Destroy the main window.
+    hilog.info(DOMAIN, TAG, 'EntryAbility onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Switch the UIAbility to the foreground.
+    hilog.info(DOMAIN, TAG, 'EntryAbility onForeground');
+  }
+
+  onBackground(): void {
+    // Switch the UIAbility to the background.
+    hilog.info(DOMAIN, TAG, 'EntryAbility  onBackground');
   }
 }
 ```

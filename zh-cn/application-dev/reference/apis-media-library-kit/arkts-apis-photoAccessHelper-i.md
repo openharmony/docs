@@ -1,4 +1,10 @@
 # Interfaces (其他)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -8,7 +14,11 @@
 
 媒体变更请求，资产变更请求和相册变更请求的父类型。
 
-**注意**：媒体变更请求必须在调用[applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)后才会生效。
+> **注意**：
+>
+> 媒体变更请求必须在调用[applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)后才会生效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -20,13 +30,12 @@ title参数的规格如下：
 
 - 不应包含扩展名。
 - 文件名字符串长度为1~255。
-- 文件名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title                  | string                          | 否  | 图片或者视频的标题。  |
+| title                  | string                          | 否  | 图片或者视频的标题。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | subtype<sup>12+</sup>  | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | 否  | 图片或者视频的文件子类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## FetchOptions
@@ -35,10 +44,10 @@ title参数的规格如下：
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可选 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](arkts-apis-photoAccessHelper-PhotoAsset.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| fetchColumns           | Array&lt;string&gt; | 否   | 否   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](arkts-apis-photoAccessHelper-PhotoAsset.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 否   | 否   | 谓词查询，显示过滤条件。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## RequestOptions<sup>11+</sup>
 
@@ -58,11 +67,11 @@ title参数的规格如下：
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                        | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype) | 是   | 否   | ChangeData的通知类型。                                       |
-| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype)的所有uri，可以是PhotoAsset或Album。 |
-| extraUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。                           |
+| type    | [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype) | 否   | 否   | ChangeData的通知类型。                                       |
+| uris    | Array&lt;string&gt;         | 否   | 否   | 相同[NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype)的所有uri，可以是PhotoAsset或Album。 |
+| extraUris | Array&lt;string&gt;         | 否   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。                           |
 
 ## TextContextInfo<sup>12+</sup>
 
@@ -116,7 +125,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | 否  | 图片或者视频的标题，不传入时由系统生成。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]|
+| title | string | 否  | 图片或者视频的标题，不传入时由系统生成。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现的非法英文字符，包括：. \ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
 | photoType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 是  | 创建的文件类型[PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | 否  | 图片或者视频的文件子类型[PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12)，当前仅支持DEFAULT。|

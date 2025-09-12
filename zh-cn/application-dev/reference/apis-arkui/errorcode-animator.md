@@ -1,4 +1,10 @@
 # 动画错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -8,7 +14,7 @@
 
 **错误信息**
 
-Internal error.
+The specified page is not found or the object property list is not obtained.
 
 **错误描述**
 

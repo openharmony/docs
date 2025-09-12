@@ -1,9 +1,10 @@
 # Worker同步调用宿主线程的接口
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 如果一个接口已在宿主线程中实现，Worker可以通过以下方式调用该接口。
 

@@ -1,4 +1,9 @@
 # Using ImagePacker to Encode Pictures
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 Image encoding refers to the process of encoding a picture into an image in different formats (only in JPEG and HEIF currently) for subsequent processing, such as storage and transmission.
 

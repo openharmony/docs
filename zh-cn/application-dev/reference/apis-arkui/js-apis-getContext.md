@@ -1,6 +1,12 @@
 # getContext
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
-如果需要在页面中获得当前Ability的Context，可调用getContext接口获取当前页面关联的UIAbilityContext或ExtensionContext。
+如果需要在页面中获得当前Ability的Context，可调用getContext接口获取当前页面关联的[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)或[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
 > **说明：**
 > - 该接口从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getHostContext](arkts-apis-uicontext-uicontext.md#gethostcontext12)替代。
@@ -22,6 +28,8 @@ getContext(component?: Object):Context
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：** 
 
 | 参数名 | 类型          | 必填 | 说明                             |
@@ -29,6 +37,20 @@ getContext(component?: Object):Context
 | component  | Object | 否   | 当前自定义组件的实例。未传入component或传入的参数类型非法，则返回默认上下文。默认上下文是指通过追溯当前方法的调用链所跟踪到的Context。在异步调用的回调方法中使用该接口，或者该接口的起始调用不在当前页面，将可能导致无法跟踪到该实例的Context，则会返回undefined。             |
 
 **返回值：**
+
+| 类型 | 说明                             |
+| ------ | ------------------------------- |
+| [Context](#context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+
+## Context
+
+type Context = Context
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |

@@ -1,4 +1,10 @@
 # @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
@@ -481,7 +487,7 @@ getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promi
 
 | 类型                                                         | 说明                             |
 | ------------------------------------------------------------ | -------------------------------- |
-| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise对象，返回ApplicationInfo。 |
+| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise对象。返回ApplicationInfo。 |
 
 **错误码：**
 
@@ -646,7 +652,7 @@ getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInf
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise对象，返回Array\<BundleInfo>。 |
+| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise对象。返回Array\<BundleInfo>。 |
 
 **错误码：**
 
@@ -1913,7 +1919,7 @@ cleanAllBundleCache(): Promise\<void>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2022,7 +2028,7 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
 
 **错误码：**
 
@@ -2081,7 +2087,7 @@ cleanBundleCacheFiles(bundleName: string, appIndex: number): Promise\<void>
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
 
 **错误码：**
 
@@ -3844,7 +3850,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+以同步方法根据给定的bundleName、bundleFlags获取调用方所在用户下的BundleInfo。
 
 获取调用方自身的信息时不需要权限。
 
@@ -5130,7 +5136,7 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<string>> | 以Promise方式返回接口运行结果及扩展资源对应的moduleNames。 |
+| Promise\<Array\<string>> | Promise对象，返回接口运行结果及扩展资源对应的moduleNames。 |
 
 **错误码：**
 
@@ -5189,7 +5195,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5255,7 +5261,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5317,7 +5323,7 @@ disableDynamicIcon(bundleName: string): Promise\<void>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5379,7 +5385,7 @@ disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5438,7 +5444,7 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<string> | 以Promise方式返回接口运行结果及动态图标对应的moduleName。 |
+| Promise\<string> | Promise对象。返回接口运行结果及动态图标对应的moduleName。 |
 
 **错误码：**
 
@@ -5492,7 +5498,7 @@ getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<AppCloneIdentity> | 以Promise方式返回\<AppCloneIdentity>。 |
+| Promise\<AppCloneIdentity> | Promise对象。返回\<AppCloneIdentity>。 |
 
 **错误码：**
 
@@ -5528,7 +5534,8 @@ try {
 
 getAppCloneIdentityBySandboxDataDir(sandboxDataDir: string): AppCloneIdentity
 
-根据应用的沙箱目录获取应用的身份信息，包括应用包名和分身索引信息。
+根据应用的沙箱目录名称获取应用的身份信息，包括应用包名和分身索引信息。
+
 
 **系统接口：** 此接口为系统接口。
 
@@ -5538,7 +5545,7 @@ getAppCloneIdentityBySandboxDataDir(sandboxDataDir: string): AppCloneIdentity
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-| sandboxDataDir | string |  是  |     表示[应用的沙箱目录](../../file-management/app-sandbox-directory.md)。      |
+| sandboxDataDir | string |  是  |     表示[应用的沙箱目录](../../file-management/app-sandbox-directory.md)名称。 <br>**说明：**<br> 参数不校验合法性，如果入参sandboxDataDir不符合分身应用或元服务的目录名称格式，则sandboxDataDir将作为返回信息中的AppCloneIdentity.bundleName返回，此时AppCloneIdentity.appIndex为0。 <br> 1.分身应用目录名称格式要求：`+clone-{appIndex}+{bundleName}`，appIndex和bundleName是变量，对应分身索引和应用包名，例如： `+clone-1+com.example.myapplication`。<br> 2.元服务目录名称格式格式要求：`+auid-{uid}+{bundleName}`，uid和bundleName是变量，对应应用程序的UID和应用包名，例如： `+auid-20000000+com.example.myapplication`。   |
 
 **返回值：**
 
@@ -5601,7 +5608,7 @@ getSandboxDataDir(bundleName: string, appIndex: number): string
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
 | bundleName | string |  是  |   表示要查询的应用包名。当前用户下有此应用或者分身才可查询，否则返回错误码17700001。   |
-| appIndex | number |  是  |   表示分身索引。取值范围0~5，取值为0表示主应用。   |
+| appIndex | number |  是  |   表示应用索引。取值范围0~5，取值为0表示主应用，取值1~5表示分身应用的索引。   |
 
 **返回值：**
 
@@ -5665,7 +5672,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<BundleInfo> | 以Promise方式返回应用包信息。 |
+| Promise\<BundleInfo> | Promise对象。返回应用包信息。 |
 
 **错误码：**
 
@@ -5729,7 +5736,7 @@ getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: numbe
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<BundleInfo>> | 以Promise方式返回应用包信息列表。 |
+| Promise\<Array\<BundleInfo>> | Promise对象。返回应用包信息列表。 |
 
 **错误码：**
 
@@ -5844,7 +5851,7 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 
 | 类型       | 说明                 |
 | ---------- | -------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5910,7 +5917,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5966,7 +5973,7 @@ deleteAbc(abcPath: string): Promise\<void>
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

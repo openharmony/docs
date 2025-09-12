@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @hanchen45; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 autoFillManager模块为应用提供账号、密码、地址、电话号码等用户信息的自动填充能力。
 
@@ -26,7 +27,7 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 当保存请求完成时所触发的回调接口。
 
-## AutoSaveCallback.onSuccess
+### onSuccess
 
 onSuccess(): void
 
@@ -38,9 +39,9 @@ onSuccess(): void
 
 **示例：**
 
-参见[AutoSaveCallback.onFailure](#autosavecallback.onfailure)。
+参见[AutoSaveCallback.onFailure](#onfailure)。
 
-## AutoSaveCallback.onFailure
+### onFailure
 
 onFailure(): void
 

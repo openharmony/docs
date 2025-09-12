@@ -1,4 +1,10 @@
 # Interface (PixelMap)
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -11,7 +17,7 @@
 
 在调用PixelMap的方法前，需要先通过[image.createPixelMap](arkts-apis-image-f.md#imagecreatepixelmap8)构建一个PixelMap对象。
 
-开发原子化服务请通过[ImageSoure](arkts-apis-image-ImageSource.md)构建PixelMap对象。
+开发原子化服务请通过[ImageSource](arkts-apis-image-ImageSource.md)构建PixelMap对象。
 
 ## 导入模块
 
@@ -56,7 +62,6 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
@@ -93,7 +98,6 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
@@ -103,7 +107,7 @@ async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
         console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
         return;
       } else {
-        console.info('Succeeded in reading image pixel data.');  //符合条件则进入。
+        console.info('Succeeded in reading image pixel data.');  // 符合条件则进入。
       }
     })
   }
@@ -140,11 +144,9 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
-
-async function ReadPixelsToBufferSync(pixelMap : image.PixelMap) {
-  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+function ReadPixelsToBufferSync(pixelMap : image.PixelMap) {
+  const bufferSize = pixelMap.getPixelBytesNumber();
+  const readBuffer = new ArrayBuffer(bufferSize);
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBufferSync(readBuffer);
   }
@@ -185,7 +187,6 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
@@ -196,7 +197,8 @@ async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
-      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
+      console.info('Succeeded in reading the image data in the area.'); // 符合条件则进入。
+      console.info('RGBA data is ', new Uint8Array(area.pixels));
     }).catch((error: BusinessError) => {
       console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
     })
@@ -212,7 +214,8 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
-      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
+      console.info('Succeeded in reading the image data in the area.'); // 符合条件则进入。
+      console.info('YUV data is ', new Uint8Array(area.pixels));
     }).catch((error: BusinessError) => {
       console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
     })
@@ -249,7 +252,6 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
@@ -265,6 +267,7 @@ async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
         return;
       } else {
         console.info('Succeeded in reading pixelmap from the specified area.');
+        console.info('RGBA data is ', new Uint8Array(area.pixels));
       }
     })
   }
@@ -284,6 +287,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
         return;
       } else {
         console.info('Succeeded in reading pixelmap from the specified area.');
+        console.info('YUV data is ', new Uint8Array(area.pixels));
       }
     })
   }
@@ -318,9 +322,7 @@ readPixelsSync(area: PositionArea): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function ReadPixelsSync(pixelMap : image.PixelMap) {
+function ReadPixelsSync(pixelMap : image.PixelMap) {
   const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -368,7 +370,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WritePixelsRGBA() {
+async function WritePixelsRGBA(pixelMap:image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
@@ -388,11 +390,11 @@ async function WritePixelsRGBA() {
   }
 }
 
-async function WritePixelsYUV() {
+async function WritePixelsYUV(pixelMap:image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
-    stride: 8,
+    stride: 8, // PixelMap为yuv格式时，writePixels函数不使用该变量。
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
@@ -439,7 +441,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WritePixelsRGBA() {
+async function WritePixelsRGBA(pixelMap:image.PixelMap) {
   const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
     stride: 8,
@@ -461,10 +463,10 @@ async function WritePixelsRGBA() {
   }
 }
 
-async function WritePixelsYUV() {
+async function WritePixelsYUV(pixelMap:image.PixelMap) {
   const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
-    stride: 8,
+    stride: 8, // PixelMap为yuv格式时，writePixels函数不使用该变量。
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
@@ -514,9 +516,7 @@ writePixelsSync(area: PositionArea): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function WritePixelsSync() {
+function WritePixelsSync(pixelMap:image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -562,7 +562,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WriteBufferToPixels() {
+async function WriteBufferToPixels(pixelMap:image.PixelMap) {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -602,8 +602,8 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WriteBufferToPixels() {
-  const color: ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
+async function WriteBufferToPixels(pixelMap:image.PixelMap) {
+  const color: ArrayBuffer = new ArrayBuffer(96);  // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -649,10 +649,8 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function WriteBufferToPixelsSync() {
-  const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
+function WriteBufferToPixelsSync(pixelMap:image.PixelMap) {
+  const color : ArrayBuffer = new ArrayBuffer(96);  // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr : Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -687,11 +685,11 @@ getImageInfo(): Promise\<ImageInfo>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function GetImageInfo() {
+async function GetImageInfo(pixelMap: image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
       if (imageInfo != undefined) {
-        console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
+        console.info(`Succeeded in obtaining the image pixel map information ${imageInfo.size.height}`);
       }
     }).catch((error: BusinessError) => {
       console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
@@ -723,14 +721,14 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function GetImageInfo() {
+function GetImageInfoSync(pixelMap : image.PixelMap){
   if (pixelMap != undefined) {
     pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
       if (error) {
         console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
         return;
       } else {
-        console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
+        console.info(`Succeeded in obtaining the image pixel map information ${imageInfo.size.height}`);
       }
     })
   }
@@ -766,9 +764,7 @@ getImageInfoSync(): ImageInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function GetImageInfoSync() {
+function GetImageInfoSync(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
     return imageInfo;
@@ -798,7 +794,9 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```ts
-let rowCount: number = pixelMap.getBytesNumberPerRow();
+function GetBytesNumberPerRow(pixelMap: image.PixelMap) {
+  let rowCount: number = pixelMap.getBytesNumberPerRow();
+}
 ```
 
 ## getPixelBytesNumber<sup>7+</sup>
@@ -822,7 +820,9 @@ getPixelBytesNumber(): number
 **示例：**
 
 ```ts
-let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
+function GetPixelBytesNumber(pixelMap: image.PixelMap) {
+  let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
+}
 ```
 
 ## getDensity<sup>9+</sup>
@@ -846,7 +846,9 @@ getDensity():number
 **示例：**
 
 ```ts
-let getDensity: number = pixelMap.getDensity();
+function GetDensity(pixelMap: image.PixelMap) {
+  let getDensity: number = pixelMap.getDensity();
+}
 ```
 
 ## opacity<sup>9+</sup>
@@ -873,7 +875,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Opacity() {
+async function Opacity(pixelMap:image.PixelMap) {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate, (err: BusinessError) => {
@@ -917,7 +919,7 @@ opacity(rate: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Opacity() {
+async function Opacity(pixelMap:image.PixelMap) {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate).then(() => {
@@ -957,9 +959,7 @@ opacitySync(rate: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function OpacitySync() {
+function OpacitySync(pixelMap:image.PixelMap) {
   let rate : number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacitySync(rate);
@@ -990,7 +990,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function CreateAlphaPixelmap() {
+async function CreateAlphaPixelmap(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
       console.info('Succeeded in creating alpha pixelmap.');
@@ -1024,7 +1024,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function CreateAlphaPixelmap() {
+async function CreateAlphaPixelmap(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
       if (alphaPixelMap == undefined) {
@@ -1066,9 +1066,7 @@ createAlphaPixelmapSync(): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreateAlphaPixelmapSync() {
+function CreateAlphaPixelmapSync(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
     return pixelmap;
@@ -1107,7 +1105,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Scale() {
+async function Scale(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1158,7 +1156,7 @@ scale(x: number, y: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Scale() {
+async function Scale(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1166,7 +1164,6 @@ async function Scale() {
       console.info('Succeeded in scaling pixelmap.');
     }).catch((err: BusinessError) => {
       console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
-
     })
   }
 }
@@ -1206,9 +1203,7 @@ scaleSync(x: number, y: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function ScaleSync() {
+function ScaleSync(pixelMap: image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1262,7 +1257,7 @@ scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Scale() {
+function ScaleSync(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1270,7 +1265,6 @@ async function Scale() {
       console.info('Succeeded in scaling pixelmap.');
     }).catch((err: BusinessError) => {
       console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
-
     })
   }
 }
@@ -1311,9 +1305,7 @@ scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function ScaleSync() {
+function ScaleSync(pixelMap: image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1358,7 +1350,7 @@ createScaledPixelMap(x: number, y: number, level?: AntiAliasingLevel): Promise\<
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function CreateScaledPixelMap() {
+async function CreateScaledPixelMap(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1405,9 +1397,7 @@ createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): Pixel
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreateScaledPixelMapSync() {
+function CreateScaledPixelMapSync(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1447,7 +1437,7 @@ clone(): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Clone(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.clone().then((clonePixelMap: image.PixelMap) => {
       console.info('Succeeded clone pixelmap.');
@@ -1489,10 +1479,10 @@ cloneSync(): PixelMap
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo(pixelMap: image.PixelMap) {
+function CloneSync(pixelMap: image.PixelMap) {
   if (pixelMap != undefined) {
     try {
-      let clonedPixelMap = pixelMap.cloneSync();
+      let clonedPixelMap:image.PixelMap = pixelMap.cloneSync();
     } catch(e) {
       let error = e as BusinessError;
       console.error(`clone pixelmap error. code is ${error.code}, message is ${error.message}`);
@@ -1528,7 +1518,7 @@ translate后的图片尺寸改变为：width+X ，height+Y，建议translate后�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Translate() {
+async function Translate(pixelMap:image.PixelMap) {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -1576,7 +1566,7 @@ translate后的图片尺寸改变为：width+X ，height+Y，建议translate后�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Translate() {
+async function Translate(pixelMap:image.PixelMap) {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -1620,9 +1610,7 @@ translate后的图片尺寸改变为：width+X ，height+Y，建议translate后�
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function TranslateSync() {
+function TranslateSync(pixelMap:image.PixelMap) {
   let translateX : number = 50.0;
   let translateY : number = 10.0;
   if (pixelMap != undefined) {
@@ -1660,7 +1648,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Rotate() {
+async function Rotate(pixelMap:image.PixelMap) {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle, (err: BusinessError) => {
@@ -1709,7 +1697,7 @@ rotate(angle: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Rotate() {
+async function Rotate(pixelMap:image.PixelMap) {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle).then(() => {
@@ -1754,9 +1742,7 @@ rotateSync(angle: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function RotateSync() {
+function RotateSync(pixelMap: image.PixelMap) {
   let angle : number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotateSync(angle);
@@ -1789,7 +1775,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Flip() {
+async function Flip(pixelMap:image.PixelMap) {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -1835,7 +1821,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Flip() {
+async function Flip(pixelMap:image.PixelMap) {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -1879,7 +1865,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function FlipSync() {
+function FlipSync(pixelMap:image.PixelMap) {
   let horizontal : boolean = true;
   let vertical : boolean = false;
   if (pixelMap != undefined) {
@@ -1912,7 +1898,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Crop() {
+async function Crop(pixelMap:image.PixelMap) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.crop(region, (err: BusinessError) => {
@@ -1956,7 +1942,7 @@ crop(region: Region): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Crop() {
+async function Crop(pixelMap:image.PixelMap) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.crop(region).then(() => {
@@ -1999,7 +1985,7 @@ cropSync(region: Region): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function CropSync() {
+function CropSync(pixelMap:image.PixelMap) {
   let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.cropSync(region);
@@ -2034,7 +2020,9 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 **示例：**
 
 ```ts
-async function GetColorSpace() {
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function GetColorSpace(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     let csm = pixelMap.getColorSpace();
   }
@@ -2068,7 +2056,8 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-async function SetColorSpace() {
+
+function SetColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -2109,18 +2098,24 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ApplyColorSpace() {
+function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
-    pixelMap.applyColorSpace(targetColorSpace, (error: BusinessError) => {
-      if (error) {
-        console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
-        return;
-      } else {
-        console.info('Succeeded in applying color space for pixelmap object.');
-      }
-    })
+    try {
+      pixelMap.applyColorSpace(targetColorSpace, (error: BusinessError) => {
+        if (error) {
+          console.error(`ApplyColorSpace failed. code is ${error.code}, message is ${error.message}`);
+          return;
+        } else {
+          console.info("Succeeded ApplyColorSpace.");
+        }
+      });
+    } catch (error) {
+      console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
+      return;
+    }
+    console.info('Succeeded in applying color space for pixelmap object.');
   }
 }
 ```
@@ -2162,15 +2157,16 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ApplyColorSpace() {
+function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
-    pixelMap.applyColorSpace(targetColorSpace).then(() => {
+      pixelMap.applyColorSpace(targetColorSpace).then(() => {
       console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
-    })
+      return;
+    });
   }
 }
 ```
@@ -2199,32 +2195,28 @@ toSdr(): Promise\<void>
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-import { image } from '@kit.ImageKit';
-import { resourceManager } from '@kit.LocalizationKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let img = context.resourceManager.getMediaContentSync($r('app.media.hdr').id);
-let imageSource = image.createImageSource(img.buffer.slice(0));
-let decodingOptions: image.DecodingOptions = {
-  desiredDynamicRange: image.DecodingDynamicRange.AUTO
-};
-let pixelmap = imageSource.createPixelMapSync(decodingOptions);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-  pixelmap.toSdr().then(() => {
-    let imageInfo = pixelmap.getImageInfoSync();
-    console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
-  });
-} else {
-  console.error('Failed to create pixelMap.');
+async function ToSdr(context: Context) {
+  // 此处'app.media.startIcon'需要替换为本地hdr图片。
+  let img = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id);
+  let imageSource = image.createImageSource(img.buffer.slice(0));
+  let decodingOptions: image.DecodingOptions = {
+    desiredDynamicRange: image.DecodingDynamicRange.AUTO
+  };
+  let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+    pixelmap.toSdr().then(() => {
+      let imageInfo = pixelmap.getImageInfoSync();
+      console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
+    });
+  } else {
+    console.error('Failed to create pixelMap.');
+  }
 }
 ```
 
@@ -2261,33 +2253,28 @@ getMetadata(key: HdrMetadataKey): HdrMetadataValue
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { image } from '@kit.ImageKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'app.media.test'需要替换为本地hdr图片。
-let img = context.resourceManager.getMediaContentSync($r('app.media.test').id);
-let imageSource = image.createImageSource(img.buffer.slice(0));
-let decodingOptions: image.DecodingOptions = {
-  desiredDynamicRange: image.DecodingDynamicRange.AUTO
-};
-let pixelmap = imageSource.createPixelMapSync(decodingOptions);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-  try {
-    let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
-    console.info("getmetadata:" + JSON.stringify(staticMetadata));
-  } catch (e) {
-    console.error('pixelmap create failed' + e);
+async function GetMetadata(context: Context) {
+  // 此处'app.media.startIcon'需要替换为本地hdr图片。
+  let img = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id);
+  let imageSource = image.createImageSource(img.buffer.slice(0));
+  let decodingOptions: image.DecodingOptions = {
+    desiredDynamicRange: image.DecodingDynamicRange.AUTO
+  };
+  let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+    try {
+      let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
+      console.info(`getMetadata:${staticMetadata}`);
+    } catch (e) {
+      console.error('pixelmap create failed' + e);
+    }
+  } else {
+    console.error('Failed to create pixelMap.');
   }
-} else {
-  console.error('Failed to create pixelMap.');
 }
+
 ```
 
 ## setMetadata<sup>12+</sup>
@@ -2325,7 +2312,6 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let staticMetadata: image.HdrStaticMetadata = {
@@ -2349,7 +2335,6 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 }).catch((error: BusinessError) => {
   console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
 })
-
 ```
 
 ## setTransferDetached<sup>12+<sup>
@@ -2377,10 +2362,8 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import image from '@ohos.multimedia.image';
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 // 子线程方法。
@@ -2450,7 +2433,6 @@ marshalling(sequence: rpc.MessageSequence): void
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
@@ -2468,7 +2450,7 @@ class MySequence implements rpc.Parcelable {
       pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
         this.pixel_map = pixelMap;
         pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+          console.info(`unmarshalling information h: ${imageInfo.size.height} w: ${imageInfo.size.width}`);
         })
       })
     });
@@ -2488,7 +2470,7 @@ async function Marshalling() {
     alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
-  image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+  await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
@@ -2497,7 +2479,7 @@ async function Marshalling() {
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -2537,7 +2519,6 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
@@ -2555,7 +2536,7 @@ class MySequence implements rpc.Parcelable {
       pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
         this.pixel_map = pixelMap;
         pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+          console.info(`unmarshalling information h: ${imageInfo.size.height} w: ${imageInfo.size.width}`);
         })
       })
     });
@@ -2575,7 +2556,7 @@ async function Unmarshalling() {
     alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
-  image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+  await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
@@ -2584,7 +2565,7 @@ async function Unmarshalling() {
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
+    // 反序列化rpc获取到data。
     let ret : MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -2616,9 +2597,9 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Release() {
+async function Release(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
-    pixelMap.release().then(() => {
+    await pixelMap.release().then(() => {
       console.info('Succeeded in releasing pixelmap object.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
@@ -2652,7 +2633,7 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Release() {
+async function Release(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.release((err: BusinessError) => {
       if (err) {
@@ -2708,16 +2689,18 @@ YUV和RGB类型互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if (pixelMap != undefined) {
-  // 设置目标像素格式为NV12。
-  let targetPixelFormat = image.PixelMapFormat.NV12;
-  pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
-    // pixelMap转换成NV12格式成功。
-    console.info('PixelMapFormat convert Succeeded');
-  }).catch((error: BusinessError) => {
-    // pixelMap转换成NV12格式失败。
-    console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);
-  })
+async function ConvertPixelFormat(pixelMap: image.PixelMap) {
+  if (pixelMap != undefined) {
+    // 设置目标像素格式为NV12。
+    let targetPixelFormat = image.PixelMapFormat.NV12;
+    pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
+      // pixelMap转换成NV12格式成功。
+      console.info('PixelMapFormat convert Succeeded');
+    }).catch((error: BusinessError) => {
+      // pixelMap转换成NV12格式失败。
+      console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -2733,7 +2716,7 @@ setMemoryNameSync(name: string): void
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的piexelmap设置，支持1-31位长度。 |
+| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的pixelmap设置。DMA内存设置名字长度取值范围为[1, 255]，ASHMEM内存设置名字长度取值范围为[1, 244]，单位字节。 |
 
 **错误码：**
 
@@ -2748,9 +2731,9 @@ setMemoryNameSync(name: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-async function SetMemoryNameSync() {
+function SetMemoryNameSync(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     try {
       pixelMap.setMemoryNameSync("PixelMapName Test");

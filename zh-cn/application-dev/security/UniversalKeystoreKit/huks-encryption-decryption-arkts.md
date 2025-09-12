@@ -3,16 +3,17 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
-以AES 128、RSA 2048和SM2为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-encryption-decryption-overview.md#支持的算法)。
+以AES128、RSA2048和SM2为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-encryption-decryption-overview.md#支持的算法)。
 
 ## 开发步骤
 
 **生成密钥**
 
-1. 指定密钥别名。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化密钥属性集。
 
@@ -71,14 +72,16 @@
  * 以下以AES/CBC/PKCS7的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle: number;
 let plainText = '123456';
-let IV = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
+let IV = cryptoFramework.createRandom().generateRandomSync(12).data;
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -127,7 +130,7 @@ function GetAesEncryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
@@ -150,124 +153,131 @@ function GetAesDecryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
 
 async function GenerateAesKey() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetAesGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(aesKeyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate AES Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate AES Key failed, ${JSON.stringify(error)}`);
+    .then(() => {
+      console.info(`promise: generate AES Key success`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate AES Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function EncryptData() {
   /*
-  * 模拟加密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟加密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待加密的数据
-  */
+   * 2. 获取待加密的数据
+   */
   /*
-  * 3. 获取加密算法参数配置
-  */
+   * 3. 获取加密算法参数配置
+   */
   let encryptProperties = GetAesEncryptProperties();
   let options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(aesKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptData failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取加密后的密文
-  */
+   * 5. 调用finishSession获取加密后的密文
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       cipherData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: encrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DecryptData() {
   /*
-  * 模拟解密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟解密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待解密的密文
-  */
+   * 2. 获取待解密的密文
+   */
   /*
-  * 3. 获取解密算法参数配置
-  */
+   * 3. 获取解密算法参数配置
+   */
   let decryptOptions = GetAesDecryptProperties()
   let options: huks.HuksOptions = {
     properties: decryptOptions,
     inData: cipherData
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(aesKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init DecryptData failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init DecryptData failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取解密后的数据
-  */
+   * 5. 调用finishSession获取解密后的数据
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: Error) => {
-      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: decrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DeleteKey() {
   /*
-  * 模拟删除密钥场景
-  * 1. 获取密钥别名
-  */
+   * 模拟删除密钥场景
+   * 1. 获取密钥别名
+   */
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
   /*
-  * 2. 调用deleteKeyItem删除密钥
-  */
+   * 2. 调用deleteKeyItem删除密钥
+   */
   await huks.deleteKeyItem(aesKeyAlias, emptyOptions)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: delete data success`);
-    }).catch((error: Error) => {
-      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: delete data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
+}
+
+async function TestEncryptDecrypt() {
+  await GenerateAesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 
@@ -278,15 +288,17 @@ async function DeleteKey() {
  * 以下以AES/GCM/NoPadding的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 let AAD = '1234567890123456';
-let NONCE = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
+let NONCE = cryptoFramework.createRandom().generateRandomSync(12).data;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -335,7 +347,7 @@ function GetAesGcmEncryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_GCM
   }, {
     tag: huks.HuksTag.HUKS_TAG_NONCE,
-    value: StringToUint8Array(NONCE)
+    value: NONCE
   }, {
     tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
     value: StringToUint8Array(AAD)
@@ -343,12 +355,11 @@ function GetAesGcmEncryptProperties() {
   return properties;
 }
 
-function GetAesGcmDecryptProperties(cipherData:Uint8Array) {
-  let properties: Array<huks.HuksParam> = [
-    {
-      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-      value: huks.HuksKeyAlg.HUKS_ALG_AES
-    }, {
+function GetAesGcmDecryptProperties(cipherData: Uint8Array) {
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
   }, {
@@ -362,130 +373,137 @@ function GetAesGcmDecryptProperties(cipherData:Uint8Array) {
     value: huks.HuksCipherMode.HUKS_MODE_GCM
   }, {
     tag: huks.HuksTag.HUKS_TAG_NONCE,
-    value: StringToUint8Array(NONCE)
+    value: NONCE
   }, {
     tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
     value: StringToUint8Array(AAD)
   }, {
     tag: huks.HuksTag.HUKS_TAG_AE_TAG,
-    value: cipherData.slice(cipherData.length-16)
+    value: cipherData.slice(cipherData.length - 16)
   }];
   return properties;
 }
 
 async function GenerateAesKey() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetAesGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(aesKeyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate AES Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate AES Key failed, ${JSON.stringify(error)}`);
+    .then(() => {
+      console.info(`promise: generate AES Key success`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate AES Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function EncryptData() {
   /*
-  * 模拟加密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟加密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待加密的数据
-  */
+   * 2. 获取待加密的数据
+   */
   /*
-  * 3. 获取加密算法参数配置
-  */
+   * 3. 获取加密算法参数配置
+   */
   let encryptProperties = GetAesGcmEncryptProperties();
   let options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(aesKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptDataGcm failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptDataGcm failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取加密后的密文
-  */
+   * 5. 调用finishSession获取加密后的密文
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       cipherData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: encrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DecryptData() {
   /*
-  * 模拟解密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟解密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待解密的密文
-  */
+   * 2. 获取待解密的密文
+   */
   /*
-  * 3. 获取解密算法参数配置
-  */
+   * 3. 获取解密算法参数配置
+   */
   let decryptOptions = GetAesGcmDecryptProperties(cipherData)
   let options: huks.HuksOptions = {
     properties: decryptOptions,
-    inData: cipherData.slice(0, cipherData.length-16)
+    inData: cipherData.slice(0, cipherData.length - 16)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(aesKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init DecryptDataGcm failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init DecryptDataGcm failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取解密后的数据
-  */
+   * 5. 调用finishSession获取解密后的数据
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: Error) => {
-      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: decrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DeleteKey() {
   /*
-  * 模拟删除密钥场景
-  * 1. 获取密钥别名
-  */
+   * 模拟删除密钥场景
+   * 1. 获取密钥别名
+   */
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
   /*
-  * 2. 调用deleteKeyItem删除密钥
-  */
+   * 2. 调用deleteKeyItem删除密钥
+   */
   await huks.deleteKeyItem(aesKeyAlias, emptyOptions)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: delete data success`);
-    }).catch((error: Error) => {
-      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: delete data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
+}
+
+async function TestEncryptDecrypt() {
+  await GenerateAesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 
@@ -496,13 +514,14 @@ async function DeleteKey() {
  * 以下以RSA/ECB/PKCS1_V1_5模式的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let rsaKeyAlias = 'test_rsaKeyAlias';
 let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -581,117 +600,125 @@ function GetRsaDecryptProperties() {
 
 async function GenerateRsaKey() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetRsaGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(rsaKeyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate RSA Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate RSA Key failed, ${JSON.stringify(error)}`);
+    .then(() => {
+      console.info(`promise: generate RSA Key success`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate RSA Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function EncryptData() {
   /*
-  * 模拟加密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟加密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待加密的数据
-  */
+   * 2. 获取待加密的数据
+   */
   /*
-  * 3. 获取加密算法参数配置
-  */
+   * 3. 获取加密算法参数配置
+   */
   let encryptProperties = GetRsaEncryptProperties();
   let options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(rsaKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptDataRsa failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptDataRsa failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取加密后的密文
-  */
+   * 5. 调用finishSession获取加密后的密文
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       cipherData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: encrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DecryptData() {
   /*
-  * 模拟解密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟解密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待解密的密文
-  */
+   * 2. 获取待解密的密文
+   */
   /*
-  * 3. 获取解密算法参数配置
-  */
+   * 3. 获取解密算法参数配置
+   */
   let decryptOptions = GetRsaDecryptProperties()
   let options: huks.HuksOptions = {
     properties: decryptOptions,
     inData: cipherData
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(rsaKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init DecryptDataRsa failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init DecryptDataRsa failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取解密后的数据
-  */
+   * 5. 调用finishSession获取解密后的数据
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: Error) => {
-      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: decrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DeleteKey() {
   /*
-  * 模拟删除密钥场景
-  * 1. 获取密钥别名
-  */
+   * 模拟删除密钥场景
+   * 1. 获取密钥别名
+   */
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
   /*
-  * 2. 调用deleteKeyItem删除密钥
-  */
+   * 2. 调用deleteKeyItem删除密钥
+   */
   await huks.deleteKeyItem(rsaKeyAlias, emptyOptions)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: delete data success`);
-    }).catch((error: Error) => {
-      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: delete data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
+}
+
+async function TestEncryptDecrypt()
+{
+  await GenerateRsaKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 
@@ -702,13 +729,14 @@ async function DeleteKey() {
  * 以下以RSA/ECB/OAEP/SHA256模式的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let rsaKeyAlias = 'test_rsaKeyAlias';
 let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -787,117 +815,124 @@ function GetRsaDecryptProperties() {
 
 async function GenerateRsaKey() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetRsaGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(rsaKeyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate RSA Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate RSA Key failed, ${JSON.stringify(error)}`);
+    .then(() => {
+      console.info(`promise: generate RSA Key success`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate RSA Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function EncryptData() {
   /*
-  * 模拟加密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟加密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待加密的数据
-  */
+   * 2. 获取待加密的数据
+   */
   /*
-  * 3. 获取加密算法参数配置
-  */
+   * 3. 获取加密算法参数配置
+   */
   let encryptProperties = GetRsaEncryptProperties();
   let options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(rsaKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptDataRsa failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptDataRsa failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取加密后的密文
-  */
+   * 5. 调用finishSession获取加密后的密文
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       cipherData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: encrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DecryptData() {
   /*
-  * 模拟解密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟解密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待解密的密文
-  */
+   * 2. 获取待解密的密文
+   */
   /*
-  * 3. 获取解密算法参数配置
-  */
+   * 3. 获取解密算法参数配置
+   */
   let decryptOptions = GetRsaDecryptProperties()
   let options: huks.HuksOptions = {
     properties: decryptOptions,
     inData: cipherData
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(rsaKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init DecryptDataRsa failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init DecryptDataRsa failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取解密后的数据
-  */
+   * 5. 调用finishSession获取解密后的数据
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: Error) => {
-      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: decrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DeleteKey() {
   /*
-  * 模拟删除密钥场景
-  * 1. 获取密钥别名
-  */
+   * 模拟删除密钥场景
+   * 1. 获取密钥别名
+   */
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
   /*
-  * 2. 调用deleteKeyItem删除密钥
-  */
+   * 2. 调用deleteKeyItem删除密钥
+   */
   await huks.deleteKeyItem(rsaKeyAlias, emptyOptions)
     .then((data) => {
       console.info(`promise: delete data success`);
-    }).catch((error: Error) => {
-      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: delete data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
+}
+
+async function TestEncryptDecrypt() {
+  await GenerateRsaKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 
@@ -908,13 +943,14 @@ async function DeleteKey() {
  * 以下以SM2模式的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let sm2KeyAlias = 'test_sm2KeyAlias';
 let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -981,117 +1017,124 @@ function GetSm2DecryptProperties() {
 
 async function GenerateSm2Key() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetSm2GenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(sm2KeyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate SM2 Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate SM2 Key failed, ${JSON.stringify(error)}`);
+    .then(() => {
+      console.info(`promise: generate SM2 Key success`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate SM2 Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function EncryptDataSm2() {
   /*
-  * 模拟加密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟加密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待加密的数据
-  */
+   * 2. 获取待加密的数据
+   */
   /*
-  * 3. 获取加密算法参数配置
-  */
+   * 3. 获取加密算法参数配置
+   */
   let encryptProperties = GetSm2EncryptProperties();
   let options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(sm2KeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptDataSm2 failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptDataSm2 failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取加密后的密文
-  */
+   * 5. 调用finishSession获取加密后的密文
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       cipherData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: encrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DecryptDataSm2() {
   /*
-  * 模拟解密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟解密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待解密的密文
-  */
+   * 2. 获取待解密的密文
+   */
   /*
-  * 3. 获取解密算法参数配置
-  */
+   * 3. 获取解密算法参数配置
+   */
   let decryptOptions = GetSm2DecryptProperties()
   let options: huks.HuksOptions = {
     properties: decryptOptions,
     inData: cipherData
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(sm2KeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init DecryptDataSm2 failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init DecryptDataSm2 failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取解密后的数据
-  */
+   * 5. 调用finishSession获取解密后的数据
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: Error) => {
-      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: decrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DeleteKey() {
   /*
-  * 模拟删除密钥场景
-  * 1. 获取密钥别名
-  */
+   * 模拟删除密钥场景
+   * 1. 获取密钥别名
+   */
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
   /*
-  * 2. 调用deleteKeyItem删除密钥
-  */
+   * 2. 调用deleteKeyItem删除密钥
+   */
   await huks.deleteKeyItem(sm2KeyAlias, emptyOptions)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: delete data success`);
-    }).catch((error: Error) => {
-      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: delete data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
+}
+
+async function TestEncryptDecrypt() {
+  await GenerateSm2Key();
+  await EncryptDataSm2();
+  await DecryptDataSm2();
+  await DeleteKey();
 }
 ```
 
@@ -1103,14 +1146,16 @@ async function DeleteKey() {
  * 以下以DES/CBC/NoPadding的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let desKeyAlias = 'test_desKeyAlias';
 let handle: number;
 let plainText = '12345678';
-let IV = '12345678'; // 此处为样例代码，实际使用需采用随机值。
+let IV = cryptoFramework.createRandom().generateRandomSync(8).data
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -1159,7 +1204,7 @@ function GetDesEncryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
@@ -1182,124 +1227,131 @@ function GetDesDecryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
 
 async function GenerateDesKey() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetDesGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(desKeyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate DES Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate DES Key failed, ${JSON.stringify(error)}`);
+    .then(() => {
+      console.info(`promise: generate DES Key success`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate DES Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function EncryptData() {
   /*
-  * 模拟加密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟加密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待加密的数据
-  */
+   * 2. 获取待加密的数据
+   */
   /*
-  * 3. 获取加密算法参数配置
-  */
+   * 3. 获取加密算法参数配置
+   */
   let encryptProperties = GetDesEncryptProperties();
   let options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(desKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptData failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取加密后的密文
-  */
+   * 5. 调用finishSession获取加密后的密文
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       cipherData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: encrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DecryptData() {
   /*
-  * 模拟解密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟解密场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待解密的密文
-  */
+   * 2. 获取待解密的密文
+   */
   /*
-  * 3. 获取解密算法参数配置
-  */
+   * 3. 获取解密算法参数配置
+   */
   let decryptOptions = GetDesDecryptProperties()
   let options: huks.HuksOptions = {
     properties: decryptOptions,
     inData: cipherData
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(desKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init DecryptData failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init DecryptData failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取解密后的数据
-  */
+   * 5. 调用finishSession获取解密后的数据
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: Error) => {
-      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: decrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function DeleteKey() {
   /*
-  * 模拟删除密钥场景
-  * 1. 获取密钥别名
-  */
+   * 模拟删除密钥场景
+   * 1. 获取密钥别名
+   */
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
   /*
-  * 2. 调用deleteKeyItem删除密钥
-  */
+   * 2. 调用deleteKeyItem删除密钥
+   */
   await huks.deleteKeyItem(desKeyAlias, emptyOptions)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: delete data success`);
-    }).catch((error: Error) => {
-      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: delete data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
+}
+
+async function TestEncryptDecrypt() {
+  await GenerateDesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 <!--DelEnd-->

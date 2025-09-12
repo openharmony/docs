@@ -1,9 +1,10 @@
 # ArkWeb_ComponentAPI
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
-<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
-<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
-<!--TSE: @ghiker-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -30,7 +31,7 @@ Component相关的Native API结构体。
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [void (\*onControllerAttached)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#oncontrollerattached) | 当Controller成功绑定到Web组件时触发该回调。                  |
 | [void (\*onPageBegin)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#onpagebegin) | 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。 |
-| [void (\*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#onpageend) | 网页加载完成时触发该回调，且只在主frame触发。                |
+| [void (\*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#onpageend) | 网页加载完成时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。   |
 | [void (\*onDestroy)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#ondestroy) | 当前Web组件销毁时触发该回调。                                |
 
 ## 成员函数说明
@@ -79,7 +80,7 @@ void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void*
 
 **描述：**
 
-网页加载完成时触发该回调，且只在主frame触发。
+网页加载完成时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
 **参数：**
 

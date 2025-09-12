@@ -1,4 +1,10 @@
 # Module Description
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -12,7 +18,7 @@ This subsystem offers the following audio and video services:
 
 - Audio and video recording ([AVRecorder](arkts-apis-media-AVRecorder.md)<sup>9+</sup>)
 
-- Video Transcoding ([AVTranscoder](arkts-apis-media-AVTranscoder.md)<sup>12+</sup>)
+- Video transcoding ([AVTranscoder](arkts-apis-media-AVTranscoder.md)<sup>12+</sup>)
 
 - Obtaining audio and video metadata ([AVMetadataExtractor](arkts-apis-media-AVMetadataExtractor.md)<sup>11+</sup>)
 

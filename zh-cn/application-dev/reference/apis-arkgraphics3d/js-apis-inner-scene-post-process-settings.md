@@ -1,4 +1,11 @@
 # ScenePostProcessSettings
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
+
 本模块提供3D图形中的色调映射等图像后处理方法。
 
 > **说明：** 
@@ -22,7 +29,6 @@ import { ToneMappingType, ToneMappingSettings, BloomSettings, PostProcessSetting
 
 ## ToneMappingSettings
 色调映射设置接口。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -33,7 +39,6 @@ import { ToneMappingType, ToneMappingSettings, BloomSettings, PostProcessSetting
 
 ## BloomSettings<sup>18+</sup>
 泛光设置接口。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 

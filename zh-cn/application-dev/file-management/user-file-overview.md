@@ -1,4 +1,10 @@
 # 用户文件概述
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 用户文件：登录到该终端设备的用户所拥有的文件，包括用户私有的[图片、视频](../media/medialibrary/photoAccessHelper-overview.md)、音频、文档等。
 
@@ -25,8 +31,6 @@
   - 其他文件（统称为文档类文件）
     以普通文件的形式存储在系统中，该类文件既包括普通的文本文件、压缩文件等，又包括以普通文件形式存储的图片/视频、音频文件，该类文件通常是以目录树的形式对外展示。
 
-- 多用户共享的文件：用户可以通过将文件放在共享文件区，实现多个用户之间文件的共享访问。
-  共享文件区的文件，也是以普通文件的形式存储在系统中，以目录树的形式对外展示。
 
 ### 外置存储
 

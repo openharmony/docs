@@ -1,4 +1,10 @@
 # 相机启动恢复实践(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 当前示例提供完整的相机应用从后台切换至前台启动恢复的流程介绍，方便开发者了解完整的接口调用顺序。
 
@@ -7,7 +13,7 @@
 - 当相机应用从后台切换至前台时，相机状态回调会返回相机不可用状态，表示当前相机设备被打开，处于忙碌状态。
 - 相机应用从后台切换至前台时，需要重启相机设备的预览流、拍照流以及相机会话管理。
 
-在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[相机管理](camera-device-management.md)、[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)等单个操作。 
+在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-device-management.md)的具体章节，了解[相机管理](camera-device-management.md)、[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)等单个操作。 
 
 ## 开发流程
 
@@ -35,7 +41,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
    
    async function initCamera(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
       console.info('onForeGround recovery begin.');
-      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+      let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
       if (!cameraManager) {
         console.error("camera.getCameraManager error");
         return;
@@ -102,15 +108,17 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 
       let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
       if (!previewProfilesArray) {
-        console.error("createOutput previewProfilesArray == null || undefined");
+        console.error("createOutput previewProfilesArray is null!");
+        return;
       }
 
       let photoProfilesArray: Array<camera.Profile> = cameraOutputCap.photoProfiles;
       if (!photoProfilesArray) {
-        console.error("createOutput photoProfilesArray == null || undefined");
+        console.error("createOutput photoProfilesArray is null!");
+        return;
       }
 
-      // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface。
+      // 创建预览输出流,其中参数surfaceId参考上文XComponent组件，预览流为XComponent组件提供的surface。
       let previewOutput: camera.PreviewOutput | undefined = undefined;
       try {
         previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);

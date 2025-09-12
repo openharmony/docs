@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -150,7 +151,10 @@ UI输入事件类型定义。
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 | Mouse event. |
+| ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0 | 未知。 |
+| ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1 | 触摸事件。 |
+| ARKUI_UIINPUTEVENT_TYPE_AXIS = 2 | 轴事件。 |
+| ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 | 鼠标事件。|
 | ARKUI_UIINPUTEVENT_TYPE_KEY = 4 | 按键事件。<br>**起始版本：** 20 |
 
 ### anonymous1
@@ -416,7 +420,7 @@ int32_t OH_ArkUI_UIInputEvent_GetAction(const ArkUI_UIInputEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回当前UI输入事件的操作类型，如果参数异常则返回0。 |
+| int32_t | 返回当前UI输入事件的操作类型，如果参数异常则返回-1。 |
 
 ### OH_ArkUI_UIInputEvent_GetSourceType()
 
@@ -427,7 +431,7 @@ int32_t OH_ArkUI_UIInputEvent_GetSourceType(const ArkUI_UIInputEvent* event)
 **描述：**
 
 
-获取UI输入事件的触发源类型。输入源为产生输入事件的真实物理设备，如触摸屏，鼠标等，由UI_INPUT_EVENT_SOURCE_TYPE_XXX定义，而输入工具为操作输入源设备来产生事件的工具，如手指、触控笔。在某些情况下两者可能容易发生混淆，比如当用户在操作鼠标时，鼠标既是输入源，也是输入工具。
+获取UI输入事件的触发源类型。输入源为产生输入事件的真实物理设备，如触摸屏，鼠标等，由UI_INPUT_EVENT_SOURCE_TYPE_XXX定义，而输入工具为操作输入源设备来产生事件的工具，如手指、触控笔。在某些情况下两者可能容易发生混淆，比如当用户在操作鼠标时，鼠标既是输入源，也是输入工具。对于按键事件，并不支持获取输入源类型，返回unkown。
 
 **起始版本：** 12
 
@@ -453,7 +457,7 @@ int32_t OH_ArkUI_UIInputEvent_GetToolType(const ArkUI_UIInputEvent* event)
 **描述：**
 
 
-获取UI输入事件的工具类型。输入工具为操作输入源设备来产生事件的操作方，如手指、触控笔，他们自身不真实产生事件，但可以驱动输入源设备不断产生事件。返回的类型由UI_INPUT_EVENT_TOOL_TYPE_XXX枚举值定义。
+获取UI输入事件的工具类型。输入工具为操作输入源设备来产生事件的操作方，如手指、触控笔，他们自身不真实产生事件，但可以驱动输入源设备不断产生事件。返回的类型由UI_INPUT_EVENT_TOOL_TYPE_XXX枚举值定义。对于按键事件，并不支持获取输入工具类型，返回unkown。
 
 **起始版本：** 12
 
@@ -1171,7 +1175,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand(const ArkUI_UIInputEvent *event
 **描述：**
 
 
-获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。该值并非在按下时就能实时获取，在系统完成结果推断之前，皆默认返回NONE，因此请不要过度依赖该接口返回的结果。
 
 **起始版本：** 15
 
@@ -1198,7 +1202,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex(const ArkUI_UIInputEvent
 **描述：**
 
 
-获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。该值并非在按下时就能实时获取，在系统完成结果推断之前，皆默认返回NONE，因此请不要过度依赖该接口返回的结果。
 
 **起始版本：** 15
 
@@ -2453,7 +2457,7 @@ int32_t OH_ArkUI_PointerEvent_DestroyClonedEvent(const ArkUI_UIInputEvent* event
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT。 |
+| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回[ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
 
 ### OH_ArkUI_PointerEvent_SetClonedEventLocalPosition()
 
@@ -2481,7 +2485,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPosition(const ArkUI_UIInputEve
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT。 |
+| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回[ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
 
 ### OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex()
 
@@ -2510,7 +2514,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex(const ArkUI_UII
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT。 |
+| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回[ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
 
 ### OH_ArkUI_PointerEvent_SetClonedEventActionType()
 
@@ -2537,7 +2541,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventActionType(const ArkUI_UIInputEvent*
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT。 |
+| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回[ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
 
 ### OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId()
 
@@ -2564,7 +2568,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId(const ArkUI_UIInputE
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT。 |
+| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回[ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
 
 ### OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex()
 
@@ -2592,7 +2596,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(const ArkUI_UIInputE
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT。 |
+| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回[ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
 
 ### OH_ArkUI_PointerEvent_PostClonedEvent()
 
@@ -2619,7 +2623,7 @@ int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT。<br>         如果组件状态异常，则返回[ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL](capi-native-type-h.md#arkui_errorcode)。<br>         如果未命中可响应事件的组件，则返回[ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
+| int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode)。<br>         如果输入的事件指针不是克隆事件指针，则返回[ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT](capi-native-type-h.md#arkui_errorcode)。<br>         如果组件状态异常，则返回[ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL](capi-native-type-h.md#arkui_errorcode)。<br>         如果未命中可响应事件的组件，则返回[ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT](capi-native-type-h.md#arkui_errorcode)。 |
 
 ### OH_ArkUI_UIInputEvent_GetLatestStatus()
 

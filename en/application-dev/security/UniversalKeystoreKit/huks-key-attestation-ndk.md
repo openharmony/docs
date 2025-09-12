@@ -1,25 +1,33 @@
 # Non-anonymous Key Attestation (C/C++)
 
-The caller must have the [ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key) permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Requesting Permissions](../AccessToken/determine-application-mode.md).
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
+The caller must have the [ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key) permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Using Permissions](../AccessToken/determine-application-mode.md).
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
-2. Initialize the parameter set: Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset) to construct **paramSet**, and set [OH_HUKS_TAG_ALGORITHM](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg), [OH_HUKS_TAG_KEY_SIZE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize), and [OH_HUKS_TAG_PURPOSE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose) to specify the algorithm, key size, and key purpose, respectively.
+2. Initialize the parameter set: Construct **paramSet** via [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_buildparamset), and specify the algorithm, key size, and key usage attributes via [OH_HUKS_TAG_ALGORITHM](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keyalg), [OH_HUKS_TAG_KEY_SIZE](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keysize), and [OH_HUKS_TAG_PURPOSE](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keypurpose).
 
-3. Generate an asymmetric key. For details, see [Key Generation](huks-key-generation-overview.md).
+3. Generate an asymmetric key. For details, see [Key Generation](huks-key-generation-ndk.md).
 
-4. Use [OH_Huks_AttestKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_attestkeyitem) with the key alias and parameter set to perform key attestation.
+4. Use [OH_Huks_AttestKeyItem](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_attestkeyitem) with the key alias and parameter set to perform key attestation.
 
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
@@ -76,7 +84,7 @@ int32_t ConstructDataToCertChain(struct OH_Huks_CertChain *certChain)
         certChain->certs[i].data = (uint8_t *)malloc(certChain->certs[i].size);
         if (certChain->certs[i].data == nullptr) {
             FreeCertChain(certChain, i);
-            return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
+            return OH_HUKS_ERR_CODE_INTERNAL_ERROR;
         }
     }
     return 0;
@@ -122,7 +130,10 @@ static napi_value AttestKey(napi_env env, napi_callback_info info)
             break;
         }
         
-        (void)ConstructDataToCertChain(&certChain);
+        ohResult.errorCode = ConstructDataToCertChain(&certChain);
+        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
+            break;
+        }
         /* 3. Attest the key. */
         ohResult = OH_Huks_AttestKeyItem(&genAlias, attestParamSet, &certChain);
     } while (0);

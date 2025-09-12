@@ -1,4 +1,10 @@
 # Interface (AudioRoutingManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -35,12 +41,12 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
   if (err) {
-    console.error(`Failed to obtain the device list. ${err}`);
-    return;
+    console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting devices, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
   }
-  console.info('Callback invoked to indicate that the device list is obtained.');
 });
 ```
 
@@ -67,8 +73,12 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```ts
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
-  console.info('Promise returned to indicate that the device list is obtained.');
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in getting devices, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -107,11 +117,11 @@ getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
-  console.info(`Indicate that the device list is obtained ${data}`);
+  let audioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+  console.info(`Succeeded in getting devices, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtain the device list. ${error}`);
+  console.error(`Failed to get devices. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -366,10 +376,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
-  console.info(`Indicate that the device list is obtained ${data}`);
+  console.info('Succeeded in doing getAvailableDevices.');
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtain the device list. ${error}`);
+   console.error(`Failed to getAvailableDevices. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -612,7 +622,6 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 
 **示例：**
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
@@ -620,11 +629,11 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 0 // 音频渲染器标志。
 };
 
-audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
   if (err) {
-    console.error(`Failed to getPreferOutputDeviceForRendererInfo. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to get prefer output device for renderer info. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`device descriptor: ${desc}`);
+    console.info(`Succeeded in getting prefer output device for renderer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
   }
 });
 ```
@@ -661,7 +670,6 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
@@ -669,10 +677,10 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 0 // 音频渲染器标志。
 };
 
-audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in getting prefer output device for renderer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to getPreferOutputDeviceForRendererInfo. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get prefer output device for renderer info. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -707,7 +715,6 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
@@ -716,11 +723,11 @@ let rendererInfo: audio.AudioRendererInfo = {
 };
 
 try {
-  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo);
-  console.info(`device descriptor: ${desc}`);
+  let audioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo);
+  console.info(`Succeeded in getting prefer output device for renderer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Result ERROR: ${error}`);
+  console.error(`Failed to get prefer output device for renderer info. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -752,15 +759,13 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
-
 let rendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
   rendererFlags: 0 // 音频渲染器标志。
 };
 
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 });
 ```
 
@@ -791,12 +796,10 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 **示例：**
 
 ```ts
-// 取消该事件的所有监听。
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
-
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
-let preferOutputDeviceChangeForRendererInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+// 当订阅了多个该事件的监听时，可通过 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo'); 取消该事件的所有监听。
+let preferOutputDeviceChangeForRendererInfoCallback = (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on or off function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 };
 let rendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
@@ -835,7 +838,6 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 **示例：**
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
@@ -843,11 +845,11 @@ let capturerInfo: audio.AudioCapturerInfo = {
   capturerFlags: 0 // 音频采集器标志。
 };
 
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
   if (err) {
-    console.error(`Result ERROR: ${err}`);
+    console.error(`Failed to get preferred input device for capturer info. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`device descriptor: ${desc}`);
+    console.info(`Succeeded in getting preferred input device for capturer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
   }
 });
 ```
@@ -885,7 +887,6 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
@@ -893,10 +894,10 @@ let capturerInfo: audio.AudioCapturerInfo = {
   capturerFlags: 0 // 音频采集器标志。
 };
 
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in getting preferred input device for capturer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 }).catch((err: BusinessError) => {
-  console.error(`Result ERROR: ${err}`);
+  console.error(`Failed to get preferred input device for capturer info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -932,7 +933,6 @@ getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): Aud
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
@@ -941,11 +941,11 @@ let capturerInfo: audio.AudioCapturerInfo = {
 };
 
 try {
-  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceForCapturerInfoSync(capturerInfo);
-  console.info(`device descriptor: ${desc}`);
+  let audioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceForCapturerInfoSync(capturerInfo);
+  console.info(`Succeeded in getting preferred input device for capturer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Result ERROR: ${error}`);
+  console.error(`Failed to get preferred input device for capturer info. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -977,15 +977,13 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
-
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
   capturerFlags: 0 // 音频采集器标志。
 };
 
-audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 });
 ```
 
@@ -1016,12 +1014,10 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 **示例：**
 
 ```ts
-// 取消该事件的所有监听。
-audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
-
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
-let preferredInputDeviceChangeForCapturerInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+// 当订阅了多个该事件的监听时，可通过 audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo'); 取消该事件的所有监听。
+let preferredInputDeviceChangeForCapturerInfoCallback = (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on or off function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 };
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。

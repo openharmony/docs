@@ -3,10 +3,11 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
-程序访问控制提供程序的权限管理能力，包括鉴权、授权等。
+程序访问控制提供应用程序的权限校验和管理能力。
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -21,7 +22,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 
 createAtManager(): AtManager
 
-访问控制管理：获取访问控制模块对象。
+访问控制管理：创建程序访问控制管理的实例对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -32,7 +33,7 @@ createAtManager(): AtManager
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AtManager](#atmanager) | 获取访问控制模块的实例。 |
+| [AtManager](#atmanager) | 获取程序访问控制模块的实例。 |
 
 **示例：**
 
@@ -59,7 +60,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验的目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| permissionName | [Permissions](../../security/AccessToken/app-permissions.md) | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
@@ -69,7 +70,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -83,11 +84,11 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
+  console.info(`checkAccessToken success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`checkAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`checkAccessToken fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -106,7 +107,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| permissionName | [Permissions](../../security/AccessToken/app-permissions.md) | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
@@ -116,7 +117,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -129,21 +130,21 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
-console.log(`data->${JSON.stringify(data)}`);
+console.info(`Result: ${data}`);
 ```
 
 ### on<sup>18+</sup>
 
 on(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void
 
-订阅自身指定权限列表的权限状态变更事件。
+订阅本应用的指定权限列表的权限授权状态变化事件。当本应用对应权限的授权状态发生变化时，触发对应回调函数的执行。
 
-允许为指定权限列表订阅多个callback。
+- 多次调用本订阅接口时，如果订阅的权限列表相同，callback不同，允许订阅成功。
 
-不允许存在交集权限列表订阅相同callback。
+- 多次调用本订阅接口时，如果订阅的权限列表间有相同的子集，callback相同时，订阅失败。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -154,12 +155,12 @@ on(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;, 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'selfPermissionStateChange'，自身权限状态变更事件。  |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，如果为空，则表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
+| permissionList | Array&lt;[Permissions](../../security/AccessToken/app-permissions.md)&gt;   | 是   | 订阅的权限名列表，如果为空，则表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | 是 | 订阅指定权限名状态变更事件的回调。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -178,10 +179,10 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let permissionList: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
 try {
     atManager.on('selfPermissionStateChange', permissionList, (data: abilityAccessCtrl.PermissionStateChangeInfo) => {
-        console.log('receive permission state change, data:' + JSON.stringify(data));
+        console.info(`receive permission state change, result: ${data}`);
     });
 } catch(err) {
-    console.error(`catch err->${JSON.stringify(err)}`);
+    console.error(`Code: ${err.code}, message: ${err.message}`);
 }
 ```
 ### off<sup>18+</sup>
@@ -201,12 +202,12 @@ off(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;,
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string         | 是   | 订阅事件类型，固定为'selfPermissionStateChange'，权限状态变更事件。  |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 取消订阅的权限名列表，为空时表示取消订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
-| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
+| permissionList | Array&lt;[Permissions](../../security/AccessToken/app-permissions.md)&gt;   | 是   | 取消订阅的权限名列表，为空时表示取消订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | 否 | 取消订阅指定tokenID与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -225,7 +226,7 @@ let permissionList: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATIO
 try {
     atManager.off('selfPermissionStateChange', permissionList);
 } catch(err) {
-    console.error(`catch err->${JSON.stringify(err)}`);
+    console.error(`Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -233,13 +234,13 @@ try {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;): void
 
-用于<!--RP1-->UIAbility<!--RP1End-->拉起弹框请求用户授权。使用callback异步回调。
+用于<!--RP1-->[UIAbility](js-apis-app-ability-uiAbility.md#uiability)<!--RP1End-->拉起弹框请求[用户授权](../../security/AccessToken/request-user-authorization.md)。使用callback异步回调。
 
 如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限，或是调用[requestPermissionOnSetting](#requestpermissiononsetting12)，拉起权限设置弹框，引导用户授权。
 
-> **说明：**
->
-> 仅支持<!--RP1-->UIAbility<!--RP1End-->。
+<!--RP3-->
+![requestPermissionsFromUser](figures/requestPermissionsFromUser.png)
+<!--RP3End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -252,12 +253,12 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | 是 | 请求权限的<!--RP1-->UIAbility<!--RP1End-->的Context。 |
-| permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| permissionList | Array&lt;[Permissions](../../security/AccessToken/app-permissions.md)&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 | requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -277,12 +278,12 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
   if (err) {
-    console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+    console.error(`requestPermissionsFromUser fail, code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info('data:' + JSON.stringify(data));
-    console.info('data permissions:' + data.permissions);
-    console.info('data authResults:' + data.authResults);
-    console.info('data dialogShownResults:' + data.dialogShownResults);
+    console.info(`requestPermissionsFromUser success, result: ${data}`);
+    console.info('requestPermissionsFromUser data permissions:' + data.permissions);
+    console.info('requestPermissionsFromUser data authResults:' + data.authResults);
+    console.info('requestPermissionsFromUser data dialogShownResults:' + data.dialogShownResults);
   }
 });
 ```
@@ -291,13 +292,9 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: 
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;): Promise&lt;PermissionRequestResult&gt;
 
-用于<!--RP1-->UIAbility<!--RP1End-->拉起弹框请求用户授权。使用promise异步回调。
+用于<!--RP1-->[UIAbility](js-apis-app-ability-uiAbility.md#uiability)<!--RP1End-->拉起弹框请求[用户授权](../../security/AccessToken/request-user-authorization.md)。使用promise异步回调。
 
 如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限，或是调用[requestPermissionOnSetting](#requestpermissiononsetting12)，拉起权限设置弹框，引导用户授权。
-
-> **说明：**
->
-> 仅支持<!--RP1-->UIAbility<!--RP1End-->。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -310,7 +307,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | 是 | 请求权限的<!--RP1-->UIAbility<!--RP1End-->的Context。 |
-| permissionList | Array&lt;Permissions&gt; | 是 | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| permissionList | Array&lt;[Permissions](../../security/AccessToken/app-permissions.md)&gt; | 是 | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
@@ -320,7 +317,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -339,12 +336,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
-  console.info('data:' + JSON.stringify(data));
-  console.info('data permissions:' + data.permissions);
-  console.info('data authResults:' + data.authResults);
-  console.info('data dialogShownResults:' + data.dialogShownResults);
+  console.info(`requestPermissionsFromUser success, result: ${data}`);
+  console.info('requestPermissionsFromUser data permissions:' + data.permissions);
+  console.info('requestPermissionsFromUser data authResults:' + data.authResults);
+  console.info('requestPermissionsFromUser data dialogShownResults:' + data.dialogShownResults);
 }).catch((err: BusinessError) => {
-  console.error('data:' + JSON.stringify(err));
+  console.error(`requestPermissionsFromUser fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -352,13 +349,13 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((
 
 requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permissions&gt;): Promise&lt;Array&lt;GrantStatus&gt;&gt;
 
-用于UIAbility/UIExtensionAbility二次拉起权限设置弹框。
+用于[UIAbility](js-apis-app-ability-uiAbility.md#uiability)/[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md#uiextensionability)二次拉起权限设置弹框。
 
 在调用此接口前，应用需要先调用[requestPermissionsFromUser](#requestpermissionsfromuser9)，如果用户在首次弹窗授权时已授权，调用当前接口将无法拉起弹窗。
 
-> **说明：**
->
-> 仅支持UIAbility/UIExtensionAbility。
+<!--RP4-->
+![requestPermissionOnSetting](figures/requestPermissionOnSetting.png)
+<!--RP4End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -371,7 +368,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | 是 | 请求权限的UIAbility/UIExtensionAbility的Context。 |
-| permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限组列表](../../security/AccessToken/app-permission-group-list.md)中查询。 |
+| permissionList | Array&lt;[Permissions](../../security/AccessToken/app-permissions.md)&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限组列表](../../security/AccessToken/app-permission-group-list.md)中查询。 |
 
 **返回值：**
 
@@ -381,7 +378,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -390,6 +387,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | 12100010 | The request already exists. |
 | 12100011 | All permissions in the permission list have been granted. |
 | 12100012 | The permission list contains the permission that has not been revoked by the user. |
+| 12100014 | Unexpected permission. You cannot request this type of permission from users via a pop-up window. |
 
 **示例：**
 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
@@ -401,9 +399,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionOnSetting(context, ['ohos.permission.CAMERA']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
-  console.info('data:' + JSON.stringify(data));
+  console.info(`requestPermissionOnSetting success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error('data:' + JSON.stringify(err));
+  console.error(`requestPermissionOnSetting fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -415,9 +413,9 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 在某些情况下，如果录音、拍照等功能被禁用，应用可拉起此弹框请求用户同意开启对应功能。如果当前全局开关的状态为开启，则不拉起弹框。
 
-> **说明：**
->
-> 仅支持UIAbility/UIExtensionAbility。
+<!--RP5-->
+![requestGlobalSwitch](figures/requestGlobalSwitch.png)
+<!--RP5End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -440,7 +438,7 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -459,9 +457,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then((data: Boolean) => {
-  console.info('data:' + JSON.stringify(data));
+  console.info(`requestGlobalSwitch success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error('data:' + JSON.stringify(err));
+  console.error(`requestGlobalSwitch fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -479,7 +477,7 @@ getSelfPermissionStatus(permissionName: Permissions): PermissionStatus
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| permissionName | [Permissions](../../security/AccessToken/app-permissions.md) | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
@@ -505,9 +503,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
   let data: abilityAccessCtrl.PermissionStatus = atManager.getSelfPermissionStatus('ohos.permission.CAMERA');
-  console.info(`data->${JSON.stringify(data)}`);
+  console.info(`getSelfPermissionStatus success, result: ${data}`);
 } catch(err) {
-  console.error(`catch err->${JSON.stringify(err)}`);
+  console.error(`getSelfPermissionStatus fail, code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -524,7 +522,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| permissionName | [Permissions](../../security/AccessToken/app-permissions.md) | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
@@ -534,7 +532,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[访问控制错误码](errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -547,12 +545,12 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 try {
   let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-  console.log(`data->${JSON.stringify(data)}`);
+  console.info(`verifyAccessTokenSync success, result: ${data}`);
 } catch(err) {
-  console.error(`catch err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessTokenSync fail, code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -573,7 +571,7 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验的目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| permissionName | [Permissions](../../security/AccessToken/app-permissions.md) | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
@@ -588,12 +586,12 @@ import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
+  console.info(`verifyAccessToken success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessToken fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -629,11 +627,11 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
+  console.info(`verifyAccessToken success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessToken fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -687,9 +685,9 @@ atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSION
 
 | 名称           | 类型                       | 只读 | 可选 | 说明                |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
-| change         | [PermissionStateChangeType](#permissionstatechangetype18) | 是   | 否   | 权限授权状态变化类型。        |
-| tokenID        | number                    | 是   | 否   | 被订阅的应用身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions                    | 是   | 否   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| change         | [PermissionStateChangeType](#permissionstatechangetype18) | 否   | 否   | 权限授权状态变化类型。        |
+| tokenID        | number                    | 否   | 否   | 被订阅的应用身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| permissionName | [Permissions](../../security/AccessToken/app-permissions.md)                    | 否   | 否   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 ## PermissionRequestResult<sup>10+</sup>
 

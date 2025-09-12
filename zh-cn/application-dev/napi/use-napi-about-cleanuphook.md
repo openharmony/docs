@@ -1,9 +1,10 @@
 # 使用Node-API接口注册和使用环境清理钩子
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -161,7 +162,7 @@ parent.onmessage = (message) => {
   hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
   // 发送消息到主线程
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
-}
+};
 ```
 <!-- @[connect_with_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/ets/workers/worker.ts) -->
 

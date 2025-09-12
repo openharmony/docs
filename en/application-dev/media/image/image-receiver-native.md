@@ -1,4 +1,9 @@
 # Image Receiving
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances.
 

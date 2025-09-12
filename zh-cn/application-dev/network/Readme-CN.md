@@ -1,8 +1,15 @@
 # Network Kit（网络服务）<!--network-kit-->
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 - [Network Kit简介](net-mgmt-overview.md)
 
-- [术语](terminology.md)
+- [术语](network-terminology.md)
 
 - 访问网络<!--network-kit-data-transmission-->
     - [使用HTTP访问网络](http-request.md)
@@ -19,6 +26,7 @@
 - 管理网络<!--network-kit-network-management-->
     - [统计网络流量消耗](net-statistics.md)
     - [使用网络防火墙](net-netfirewall.md)
+    - [扩展认证](net-eap.md)
   
     <!--Del-->
     - [网络共享（仅对系统应用开放）](net-sharing.md)

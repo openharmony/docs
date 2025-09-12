@@ -2,11 +2,13 @@
 <!--Kit: Data Protection Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @winnieHuYu-->
-<!--SE: @lucky-jinduo-->
-<!--TSE: @nacyli-->
+<!--Designer: @lucky-jinduo-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 - ArkTS API<!--data-protection-arkts-->
   - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)
+  - [@ohos.security.identifySensitiveContent (识别敏感内容)](js-apis-identifySensitiveContent.md)
   <!--Del-->
   - [@ohos.dlpPermission (数据防泄漏)(系统接口)](js-apis-dlppermission-sys.md)
   <!--DelEnd-->

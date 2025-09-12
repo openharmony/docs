@@ -1,4 +1,10 @@
 # 废弃的Interface (AudioRecorder, deprecated)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -44,8 +50,8 @@ prepare(config: AudioRecorderConfig): void
 ```ts
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
-  audioEncodeBitRate : 22050,
-  audioSampleRate : 22050,
+  audioEncodeBitRate : 64000,
+  audioSampleRate : 44100,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://1',       // 文件需先由调用者创建，并给予适当的权限。
@@ -206,8 +212,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();  // 创建一个音频录制实例。
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
-  audioEncodeBitRate : 22050,
-  audioSampleRate : 22050,
+  audioEncodeBitRate : 64000,
+  audioSampleRate : 44100,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://xx',  // 文件需先由调用者创建，并给予适当的权限。

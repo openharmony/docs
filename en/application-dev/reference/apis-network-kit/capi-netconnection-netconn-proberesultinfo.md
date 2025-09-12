@@ -17,4 +17,4 @@ Defines the probe result.
 | Name| Description|
 | -- | -- |
 | uint8_t lossRate |Packet loss rate, in percentage. The value **100** indicates 100% packet loss, and the value **50** indicates 50% packet loss.|
-| uint32_t rtt[NETCONN_MAX_RTT_NUM] | Delay information, including the minimum, average, maximum, and standard deviations.|
+| uint32_t rtt[[NETCONN_MAX_RTT_NUM]](capi-net-connection-type-h.md#macros)| Delay information, including the minimum, average, maximum, and standard deviations.|

@@ -3,8 +3,9 @@
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @JeremyXu-->
-<!--SE: @skye_you-->
-<!--TSE: @nacyli-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 ## 接口介绍
 
@@ -14,7 +15,7 @@
 
 >**注意：**
 >
->下表中名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+>下表中“ASSET_TAG_ALIAS”和名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放敏感个人数据。
 
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                             |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
@@ -56,19 +57,18 @@
 
    #include "asset/asset_api.h"
 
-   void RemoveAsset() {
-      static const char *ALIAS = "demo_alias";
-      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+   static napi_value RemoveAsset(napi_env env, napi_callback_info info) 
+   {
+       static const char *ALIAS = "demo_alias";
+       Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
 
-      Asset_Attr attr[] = {
-         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产
-      };
+       Asset_Attr attr[] = {
+           {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产。
+       };
 
-      int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
-      if (ret == ASSET_SUCCESS) {
-         // Asset removed successfully.
-      } else {
-         // Failed to remove Asset.
-      }
+       int32_t removeResult = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
+       napi_value ret;
+       napi_create_int32(env, removeResult, &ret);
+       return ret;
    }
    ```

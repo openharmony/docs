@@ -11,14 +11,12 @@ import { formBindingData, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage = new LocalStorage();
-const TAG: string = 'Index';
-const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry(storage)
 @Component
 struct Index {
-  @StorageLink('formId') formId: number = 0;
-  @StorageLink('formData') formData: Object | string = {};
+  @StorageLink('formId') formId: string = '';
+  @StorageLink('formData') formData: Object | string = '';
 
   build() {
     Column() {
@@ -28,13 +26,13 @@ struct Index {
           //...
         }
         .onClick(() => {
-          console.info(DOMAIN_NUMBER, TAG, `click to check updateForm, formId: ${this.formId}`);
+          console.info(`click to check updateForm, formId: ${this.formId}`);
           const formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(this.formData);
           // formId is the ID of the widget to be updated.
           formProvider.updateForm(this.formId, formInfo).then(() => {
-            console.info(DOMAIN_NUMBER, TAG, 'updateForm success.');
+            console.info('updateForm success.');
           }).catch((error: BusinessError) => {
-            console.error(DOMAIN_NUMBER, TAG, `updateForm fail, code: ${error?.code}, message: ${error?.message}`);
+            console.error(`updateForm fail, code: ${error?.code}, message: ${error?.message}`);
           })
         })
         .margin(5)
@@ -56,8 +54,6 @@ import { formHost } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage = new LocalStorage();
-const TAG: string = 'Index';
-const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry(storage)
 @Component
@@ -72,12 +68,12 @@ struct Index {
           //...
         }
         .onClick(() => {
-          console.info(DOMAIN_NUMBER, TAG, `click to check requestForm, formId: ${this.formId}`);
+          console.info(`click to check requestForm, formId: ${this.formId}`);
           // formId is the ID of the widget to be updated.
           formHost.requestForm(this.formId.toString()).then(() => {
-            console.info(DOMAIN_NUMBER, TAG, 'requestForm success.');
+            console.info('requestForm success.');
           }).catch((error: BusinessError) => {
-            console.error(DOMAIN_NUMBER, TAG, `requestForm fail, code: ${error?.code}, message: ${error?.message}`);
+            console.error(`requestForm fail, code: ${error?.code}, message: ${error?.message}`);
           })
         })
         .margin(5)

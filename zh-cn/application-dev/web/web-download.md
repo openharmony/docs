@@ -1,9 +1,10 @@
 # 使用Web组件的下载能力
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 当需要通过Web页面进行文件下载时，可以通过此方式调用Web接口。
 
@@ -12,6 +13,8 @@
 通过[setDownloadDelegate()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setdownloaddelegate11)向Web组件注册一个DownloadDelegate来监听页面触发的下载任务。资源由Web组件来下载，Web组件会通过DownloadDelegate将下载的进度通知给应用。
 
 下面的示例中，在应用的rawfile中创建index.html以及download.html。应用启动后会创建一个Web组件并加载index.html，点击setDownloadDelegate按钮向Web组件注册一个DownloadDelegate，点击页面里的下载按钮的时候会触发一个下载任务，在DownloadDelegate中可以监听到下载的进度。
+
+默认路径在应用沙箱的web目录内，用户无法查看。如果希望用户能够查看，需要将下载路径修改到有访问权限的目录，比如Download目录，请参考[使用Web组件发起一个下载任务](#使用web组件发起一个下载任务)。
 
 ```ts
 // xxx.ets
@@ -116,6 +119,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
+              // 如果传入一个不存在的路径，则会下载到默认/data/storage/el2/base/cache/web/目录。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
@@ -267,6 +271,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
+              // 如果传入一个不存在的路径，则会下载到默认/data/storage/el2/base/cache/web/目录。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {

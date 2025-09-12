@@ -1,6 +1,11 @@
 # @ohos.multimedia.cameraPicker (Camera Picker)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
-The cameraPicker module provides APIs for an application to use the system camera to take photos or record videos, depending on the media type specified by the application. The application must call these APIs within a UIAbility. Otherwise, the camera picker cannot be started.
+The module provides APIs for an application to use the system camera to take photos or record videos, depending on the media type specified by the application. The application must call these APIs within a UIAbility. Otherwise, the camera picker cannot be started.
 
 > **NOTE**
 >
@@ -24,7 +29,7 @@ Starts the camera picker and enters the corresponding mode based on the media ty
 
 **Parameters**
 
-| Name         | Type                                             | Mandatory| Description                          |
+| Name         | Type                                           | Mandatory| Description                         |
 | -------------- |-------------------------------------------------| ---- | ---------------------------- |
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                  |
 | mediaTypes     | Array\<[PickerMediaType](#pickermediatype)\>    | Yes  | Media type.                   |
@@ -80,11 +85,11 @@ Defines the configuration information about the camera picker.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Type                              | Mandatory  | Description        |
-| -------------- | --------------------------------- | ----- | ------------ |
-| cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | Yes   | Camera position.  |
-| saveUri        | string                            | No   | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
-| videoDuration  | number                            | No   | Maximum video duration, in seconds.|
+| Name          | Type                              | Read-Only| Optional| Description        |
+| -------------- | --------------------------------- | ----- | ----- | ------------ |
+| cameraPosition       | [camera.CameraPosition](arkts-apis-camera-e.md#cameraposition) | No  | No  | Camera position.  |
+| saveUri        | string                            | No  | Yes  | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| videoDuration  | number                            | No  | Yes  | Maximum video duration, in seconds.|
 
 
 ## PickerResult
@@ -95,8 +100,8 @@ Defines the processing result of the camera picker.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Type                               | Mandatory | Description                           |
-| -------------- | ---------------------------------- | ----- | -------------------------------- |
-| resultCode     | number                             | Yes   | Result code. The value **0** means that the processing is successful, and **-1** means that the processing fails.|
-| resultUri      | string                             | Yes   | URI of the result. If **saveUri** is empty, **resultUri** is a public media path. If **saveUri** is not empty and the application has the write permission on the URI, the value of **resultUri** is the same as that of **saveUri**. If **saveUri** is not empty and the application does not have the write permission on the URI, **resultUri** cannot be obtained.|
-| mediaType      | [PickerMediaType](#pickermediatype)| Yes   | Media type.                 |
+| Name          | Type                               | Read-Only| Optional| Description                           |
+| -------------- | ---------------------------------- | ----- | ----- | -------------------------------- |
+| resultCode     | number                             | No  | No  | Result code. The value **0** means that the processing is successful, and **-1** means that the processing fails.|
+| resultUri      | string                             | No  | No  | URI of the result. If **saveUri** is empty, **resultUri** is a public media path. If **saveUri** is not empty and the application has the write permission on the URI, the value of **resultUri** is the same as that of **saveUri**. If **saveUri** is not empty and the application does not have the write permission on the URI, **resultUri** cannot be obtained.|
+| mediaType      | [PickerMediaType](#pickermediatype)| No  | No  | Media type.                 |

@@ -1,4 +1,10 @@
 # DataAbility Permission Control
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 The DataAbility uses permission control to determine whether an ability can access the data service it provides. There are static and dynamic permission controls.

@@ -1,12 +1,19 @@
 # Encryption and Decryption with an AES Symmetric Key (ECB Mode) (ArkTS)
 
-For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
+For details, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
 
 **Encryption**
 
 1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
    
-   In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
+   For details about how to generate an AES symmetric key, see the following example. To learn more, see [Symmetric Key Generation and Conversion Specifications: AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly.md). There may be differences between the input parameters in the reference documents and those in the following example.
 
 2. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|ECB|PKCS7'** to create a **Cipher** instance for encryption. The key type is **AES128**, block cipher mode is **ECB**, and the padding mode is **PKCS7**.
 

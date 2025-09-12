@@ -1,5 +1,11 @@
 # 启动应用内的UIAbility组件
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @altay-->
+<!--Designer: @altay-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，包括应用内的其他UIAbility、或者其他应用的UIAbility（例如启动三方支付UIAbility）。
 
@@ -583,7 +589,7 @@ export default class EntryAbility extends UIAbility {
         }
         ```
 
-    5. 在[module.json5配置文件](../quick-start/module-configuration-file.md#modulejson5配置文件)中配置routerMap路由映射。
+    5. 在[module.json5配置文件](../quick-start/module-configuration-file.md#routermap标签)中配置routerMap路由映射。
 
         ```ts
         // module.json5

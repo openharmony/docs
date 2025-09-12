@@ -2,8 +2,9 @@
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
 <!--Owner: @huanleima-->
-<!--SE: @liuzuming-->
-<!--TSE: @lpw_work-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供包管理能力，包括添加包安装允许名单、获取包安装允许名单、移除包安装允许名单等。
 
@@ -13,7 +14,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.bundleManager](js-apis-enterprise-bundleManager.md)。
 
@@ -34,6 +35,8 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -90,6 +93,8 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -145,6 +150,8 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -206,6 +213,8 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -260,6 +269,8 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -316,6 +327,8 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -377,6 +390,8 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -428,6 +443,8 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -481,6 +498,8 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -539,6 +558,8 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -593,6 +614,8 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -649,6 +672,8 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -710,6 +735,8 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -764,6 +791,8 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: numb
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -820,6 +849,8 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -881,6 +912,8 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -932,6 +965,8 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -985,6 +1020,8 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1043,6 +1080,8 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1097,6 +1136,8 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1153,6 +1194,8 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1214,6 +1257,8 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1268,6 +1313,8 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1324,6 +1371,8 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1385,6 +1434,8 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1436,6 +1487,8 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1489,6 +1542,8 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1547,6 +1602,8 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1599,6 +1656,8 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1654,6 +1713,8 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1707,6 +1768,8 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1763,6 +1826,8 @@ install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1818,6 +1883,8 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, c
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

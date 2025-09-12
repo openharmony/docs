@@ -1,4 +1,10 @@
 # Establishing a Data Channel Between the Application and the Frontend Page (C/C++)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 The native **PostWebMessage** is provided to implement communication between the frontend page and the application, which reduces unnecessary switching to the ArkTS environment and allows messages and callbacks to be reported in non-UI threads to avoid UI blocking. Currently, only the string and buffer can be sent.
 
@@ -75,7 +81,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
 
   window.addEventListener('message', function (event) {
       if (event.data == 'init_web_messageport') {
-          const port = event.ports.at(0); // 1. Save the port sent from the application.
+          const port = event.ports[0]; // 1. Save the port sent from the application.
           if (port) {
               console.log("hwd In html got message");
               h5Port = port;
@@ -207,8 +213,8 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       testNapi.nativeWebInit(this.webTag);
     }
 
-    aboutToDisAppear() {
-      console.error("aboutToDisAppear")
+    aboutToDisappear() {
+      console.error("aboutToDisappear");
     }
 
     build() {
@@ -545,7 +551,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_WebMessageAPI success");
 
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit end");
-
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -571,6 +577,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postWebMessage ArkWeb_ErrorCode:%{public}d", code);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk createWebMessagePorts end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -603,6 +610,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       webMessage->destroyWebMessage(&message);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postMessage end, web message port size:%{public}d",
                   web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -653,6 +661,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       for (int i = 0; i < numThreads; ++i) {
           threads[i].detach();
       }
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -686,6 +695,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       webMessagePort->setMessageEventHandler(g_web_message_port_arr[1], webTagValue, WebMessagePortCallback, NULL);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
   static napi_value postNoneMessage(napi_env env, napi_callback_info info) {
@@ -716,6 +726,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       webMessage->destroyWebMessage(&message);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postMessage end, web message port size:%{public}d",
                   web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -747,6 +758,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       webMessage->destroyWebMessage(&message1);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk postMessage end, web message port size:%{public}d",
                   web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -772,6 +784,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       webMessagePort->setMessageEventHandler(g_web_message_port_arr[1], webTagValue, WebMessagePortCallback, NULL);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -798,6 +811,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
       controller->refresh(webTagValue);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -823,6 +837,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       controller->destroyWebMessagePorts(&g_web_message_port_arr, web_message_port_size);
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 
@@ -846,6 +861,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
 
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
                   "ndk SetMessageEventHandler end, web message port size:%{public}d", web_message_port_size);
+      delete[] webTagValue;
       return nullptr;
   }
 

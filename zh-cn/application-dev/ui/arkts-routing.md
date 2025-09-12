@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)这几个方面，介绍如何通过Router模块实现页面路由。
@@ -467,7 +468,7 @@ onBackClick() {
 import { router } from '@kit.ArkUI';
 ```
 
-在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10)命名：
+在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给[@Entry](../ui/state-management/arkts-create-custom-components.md#entry)修饰的自定义组件EntryOptions命名：
 
 ```ts
 // library/src/main/ets/pages/Index.ets
@@ -490,6 +491,17 @@ export struct MyComponent {
 ```
 
 配置成功后需要在跳转的页面中引入命名路由的页面：
+
+>**说明：**
+>
+>使用命名路由方式跳转时，需要在当前应用包的oh-package.json5文件中配置依赖。例如：
+>
+>```ts
+>"dependencies": {
+>    "@ohos/library": "file:../library",
+>    // ...
+> }
+>```
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -528,17 +540,6 @@ struct Index {
   }
 }
 ```
-
->**说明：**
->
->使用命名路由方式跳转时，需要在当前应用包的oh-package.json5文件中配置依赖。例如：
->
->```ts
->"dependencies": {
->    "@ohos/library": "file:../library",
->    ...
-> }
->```
 
 ## 相关实例
 

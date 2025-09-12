@@ -1,6 +1,6 @@
 # @ohos.animation.windowAnimationManager (Window Animation Management) (System API)
 
-The **WindowAnimationManager** module provides APIs to listen for application start/exit events and window minimization/maximization events and associate animations with these events.
+The WindowAnimationManager module provides APIs to listen for application start/exit events and window minimization/maximization events and associate animations with these events.
 
 >  **NOTE**
 >
@@ -26,9 +26,9 @@ Before using other APIs of **windowAnimationManager**, you must call this API to
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| controller | [WindowAnimationController](#windowanimationcontroller) | Yes | Window animation controller to set.|
+| controller | [WindowAnimationController](#windowanimationcontroller) | Yes| Window animation controller to set.|
 
 **Example**
 
@@ -82,10 +82,10 @@ Minimizes the window that displays the animation. This API uses an asynchronous 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| windowTarget | [WindowAnimationTarget](#windowanimationtarget) | Yes | Target window to minimize.|
-| callback | AsyncCallback&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | Yes | Callback used to return the result. If the target window is minimized, **err** is **undefined** and **data** is the **WindowAnimationFinishedCallback** obtained; otherwise, **err.code** is **-1** and **data** is **undefined**.|
+| windowTarget | [WindowAnimationTarget](#windowanimationtarget) | Yes| Target window to minimize.|
+| callback | AsyncCallback&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | Yes| Callback used to return the result. If the target window is minimized, **err** is **undefined** and **data** is the **WindowAnimationFinishedCallback** obtained; otherwise, **err.code** is **-1** and **data** is **undefined**.|
 
 **Example**
 
@@ -161,15 +161,15 @@ Minimizes the window that displays the animation. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| windowTarget | [WindowAnimationTarget](#windowanimationtarget) | Yes | Target window to display the animation.|
+| windowTarget | [WindowAnimationTarget](#windowanimationtarget) | Yes| Target window to display the animation.|
 
 **Return value**
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| Promise&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | Promise used to return a call when the animation is finished. |
+| Promise&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | Promise used to return a call when the animation is finished.|
 
 
 **Example**
@@ -227,7 +227,7 @@ promise.then((data: windowAnimationManager.WindowAnimationFinishedCallback) => {
 
 ## WindowAnimationController
 
-Implements the window animation controller. When creating a **WindowAnimationController** object, you must implement all callbacks in the object.
+Implements the window animation controller. When creating a WindowAnimationController object, you must implement all callbacks in the object.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -239,10 +239,10 @@ Called when an application is started from the home screen.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name              | Type                                                        | Mandatory | Description              |
+| Name              | Type                                                        | Mandatory| Description              |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | Yes  | Target window to display the animation.    |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished. |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished.|
 
 **Example**
 
@@ -256,10 +256,10 @@ Called when an application is started from the recent task list.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name              | Type                                                        | Mandatory | Description              |
+| Name              | Type                                                        | Mandatory| Description              |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | Yes  | Target window to display the animation.    |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished. |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished.|
 
 **Example**
 
@@ -273,10 +273,10 @@ Called when an application is started from a place other than the home screen an
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name              | Type                                                        | Mandatory | Description              |
+| Name              | Type                                                        | Mandatory| Description              |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | Yes  | Target window to display the animation.    |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished. |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished.|
 
 **Example**
 
@@ -290,11 +290,11 @@ Called during application transition.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name              | Type                           | Mandatory | Description            |
+| Name              | Type                           | Mandatory| Description            |
 | -------------------- | ------------------------------- | ---- | ---------------- |
-| fromWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | Yes  | Window that displays the animation before the transition. |
-| toWindowTarget       | [WindowAnimationTarget](#windowanimationtarget) | Yes  | Window that displays the animation after the transition. |
-| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished. |
+| fromWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | Yes  | Window that displays the animation before the transition.|
+| toWindowTarget       | [WindowAnimationTarget](#windowanimationtarget) | Yes  | Window that displays the animation after the transition.|
+| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished.|
 
 **Example**
 
@@ -308,10 +308,10 @@ Called when a window is minimized.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name              | Type                           | Mandatory | Description            |
+| Name              | Type                           | Mandatory| Description            |
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | minimizingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | Yes  | Target window to display the animation.   |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished. |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished.|
 
 **Example**
 
@@ -325,10 +325,10 @@ Called when a window is closed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name              | Type                           | Mandatory | Description            |
+| Name              | Type                           | Mandatory| Description            |
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | closingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | Yes  | Target window to display the animation.   |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished. |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished.|
 
 **Example**
 
@@ -342,9 +342,9 @@ Called when the screen is unlocked.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name        | Type                                                        | Mandatory | Description              |
+| Name        | Type                                                        | Mandatory| Description              |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------ |
-| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished. |
+| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | Yes  | Callback invoked when the animation is finished.|
 
 **Example**
 
@@ -358,10 +358,10 @@ Called when the window that displays the animation is updated.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name              | Type                           | Mandatory | Description            |
+| Name              | Type                           | Mandatory| Description            |
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | fullScreenWindowTarget | [WindowAnimationTarget](#windowanimationtarget) | Yes  | Target window in full-screen mode.|
-| floatingWindowTargets| Array&lt;[WindowAnimationTarget](#windowanimationtarget)&gt; | Yes  | Target window in the form of a floating window. |
+| floatingWindowTargets| Array&lt;[WindowAnimationTarget](#windowanimationtarget)&gt; | Yes  | Target window in the form of a floating window.|
 
 **Example**
 
@@ -387,22 +387,22 @@ Defines a window to display animation.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type    | Mandatory | Description |
+| Name     | Type    | Mandatory| Description|
 | ------- | ------ | ------ | ----------------------- |
-| bundleName  | string | Yes |Bundle name corresponding to the target window. |
-| abilityName | string | Yes |Ability name corresponding to the target window. |
-| windowBounds | [RRect](#rrect) | Yes |Actual size of the target window. |
-| missionId  | number | Yes |Mission ID, which is used to match an ability when there are multiple missions.|
+| bundleName  | string | Yes|Bundle name corresponding to the target window.|
+| abilityName | string | Yes|Ability name corresponding to the target window.|
+| windowBounds | [RRect](#rrect) | Yes|Actual size of the target window.|
+| missionId  | number | Yes|Mission ID, which is used to match an ability when there are multiple missions.|
 
 ## RRect
 Describes a rounded rectangle.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type    | Mandatory | Description |
+| Name     | Type    | Mandatory| Description|
 | ------- | ------ | ------|----------------------- |
-| left  | number | Yes |Horizontal coordinate of the upper left corner of the target window relative to the screen. |
-| top | number | Yes |Vertical coordinate of the upper left corner of the target window relative to the screen. |
-| width | number | Yes |Width of the target window. |
-| height | number | Yes |Height of the target window. |
-| radius | number | Yes |Radius of the rounded corner of the target window. |
+| left  | number | Yes|X coordinate of the upper-left corner of the target window relative to the screen.|
+| top | number | Yes|Y coordinate of the upper-left corner of the target window relative to the screen.|
+| width | number | Yes|Width of the target window.|
+| height | number | Yes|Height of the target window.|
+| radius | number | Yes|Radius of the rounded corner of the target window.|

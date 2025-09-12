@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 根据权限的开放范围和授权方式不同，申请对应权限的方式也不同。
 

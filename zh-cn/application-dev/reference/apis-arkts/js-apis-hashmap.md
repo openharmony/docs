@@ -1,9 +1,10 @@
 # @ohos.util.HashMap (非线性容器HashMap)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 HashMap底层采用数组、链表和红黑树实现，支持高效查询、插入和删除。HashMap存储内容基于key-value的键值对映射，不允许重复的key，且一个key只能对应一个value。
 
@@ -20,6 +21,8 @@ HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 容器类使用静态语言实现，限制了存储位置和属性，不支持自定义属性和方法。
 
 
 ## 导入模块

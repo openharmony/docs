@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
-<!--SE: @liyi0309-->
-<!--TSE: @lxl007-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 按钮组件，可快速创建不同样式的按钮。
 
@@ -356,10 +357,10 @@ maxFontScale(scale: number | Resource)
 >  - 按钮文本通过[fontSize](#fontsize)、[fontColor](#fontcolor)、[fontStyle](#fontstyle8)、[fontFamily](#fontfamily8)、[fontWeight](#fontweight)进行设置。
 >  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)为透明色。
 >  - 在不设置borderRadius时，圆角矩形按钮的圆角大小保持默认值不变。圆角大小不会随按钮高度变化而变化，和controlSize属性有关，controlSize为NORMAL时圆角大小20vp，controlSize为SMALL时圆角大小14vp。
+>  - 设置Button的[border](ts-universal-attributes-border.md#border)时，会有默认的[borderRadius](ts-universal-attributes-border.md#borderradius)值。如果同时使用`border`和`borderRadius`，需将`borderRadius`放在`border`之后，以确保`borderRadius`不会被`border`中的默认`radius`覆盖。
+按钮中文本的显示样式。
 
 ## LabelStyle<sup>10+</sup>对象说明
-
-按钮中文本的显示样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -368,7 +369,7 @@ maxFontScale(scale: number | Resource)
 | 名称                 | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 是   | 设置label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。<br>默认值：TextOverflow.Ellipsis |
-| maxLines             | number                                                       | 否   | 是   | 设置label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
+| maxLines             | number                                                       | 否   | 是   | 设置label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1<br/>**说明：** <br/>设置小于等于0的值时，按默认值处理。 |
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 是   | 设置label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。<br/>**说明：**  <br/>minFontSize小于或等于0时，自适应字号不生效。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 是   | 设置label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 是   | 设置label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
@@ -422,7 +423,7 @@ maxFontScale(scale: number | Resource)
 
 ## ButtonConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -559,7 +560,7 @@ struct SwipeGestureExample {
 @Entry
 @Component
 struct buttonTestDemo {
-  @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
+  @State txt: string = 'overflowTextOverLengthTextOverflow.Clip';
   @State widthShortSize: number = 205;
 
   build() {

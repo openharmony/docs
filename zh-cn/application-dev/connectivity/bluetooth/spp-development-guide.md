@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 简介
 本指南主要提供了基于串口通信协议（Serial Port Profile，SPP）实现设备间连接和传输数据的开发指导。当两个设备间进行SPP通信交互时，依据设备功能的不同，可区分为客户端与服务端，本指南将分别介绍客户端与服务端的实现方法。
@@ -288,6 +289,10 @@ class SppClientManager {
   // 发送数据
   public sendData() {
     console.info('sendData ' + this.clientNumber);
+    if (this.clientNumber == -1) {
+      console.error('invalid clientNumber');
+      return;
+    }
     let arrayBuffer = new ArrayBuffer(2);
     let data = new Uint8Array(arrayBuffer);
     data[0] = 3;
@@ -309,6 +314,10 @@ class SppClientManager {
   public readData() {
     try {
       // 发起订阅
+      if (this.clientNumber == -1) {
+        console.error('invalid clientNumber');
+        return;
+      }
       socket.on('sppRead', this.clientNumber, this.read);
     } catch (err) {
       console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -318,6 +327,10 @@ class SppClientManager {
   // 断开连接
   public stopConnect() {
     console.info('closeSppClient ' + this.clientNumber);
+    if (this.clientNumber == -1) {
+      console.error('invalid clientNumber');
+      return;
+    }
     try {
       // 取消接收数据订阅
       socket.off('sppRead', this.clientNumber, this.read);
@@ -371,6 +384,10 @@ class SppServerManager {
   // 监听连接请求，等待连接
   public accept() {
     console.info('accept ' + this.serverNumber);
+    if (this.serverNumber == -1) {
+      console.error('invalid serverNumber');
+      return;
+    }
     socket.sppAccept(this.serverNumber, (err, num: number) => {
       if (err) {
         console.error('accept errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -384,6 +401,10 @@ class SppServerManager {
   // 发送数据
   public sendData() {
     console.info('sendData serverNumber: ' + this.serverNumber + ' clientNumber: ' + this.clientNumber);
+    if (this.clientNumber == -1) {
+      console.error('invalid clientNumber');
+      return;
+    }
     let arrayBuffer = new ArrayBuffer(2);
     let data = new Uint8Array(arrayBuffer);
     data[0] = 9;
@@ -405,6 +426,10 @@ class SppServerManager {
   public readData() {
     try {
       // 发起订阅
+      if (this.clientNumber == -1) {
+        console.error('invalid clientNumber');
+        return;
+      }
       socket.on('sppRead', this.clientNumber, this.read);
     } catch (err) {
       console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -416,6 +441,10 @@ class SppServerManager {
     console.info('stopConnect');
     try {
       // 取消订阅
+      if (this.clientNumber == -1) {
+        console.error('invalid clientNumber');
+        return;
+      }
       socket.off('sppRead', this.clientNumber, this.read);
     } catch (err) {
       console.error('off sppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -433,6 +462,10 @@ class SppServerManager {
     console.info('closeSppServer');
     try {
       // 若应用不再需要此能力，则主动删除
+      if (this.serverNumber == -1) {
+        console.error('invalid serverNumber');
+        return;
+      }
       socket.sppCloseServerSocket(this.serverNumber);
     } catch (err) {
       console.error('sppCloseServerSocket errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

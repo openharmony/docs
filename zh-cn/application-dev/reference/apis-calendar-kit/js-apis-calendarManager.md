@@ -1,5 +1,12 @@
 # @ohos.calendarManager (日程管理能力)
 
+<!--Kit: Calendar Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @qq_42718467-->
+<!--Designer: @huangxinwei-->
+<!--Tester: @z30055209-->
+<!--Adviser: @ge-yafang-->
+
 本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。
 
 - 日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。
@@ -1197,6 +1204,8 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 
 查询当前日历下所有日程，使用callback异步回调。
 
+默认查询字段：id、type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。
+
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
@@ -1308,7 +1317,7 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 | 参数名      | 类型                        | 必填 | 说明       |
 | ----------- | --------------------------- | ---- | ---------- |
 | eventFilter | [EventFilter](#eventfilter) | 否   | 查询条件。 |
-| eventKey    | (keyof [Event](#event))[]   | 否   | 查询字段。 |
+| eventKey    | (keyof [Event](#event))[]   | 否   | 查询字段。不填时，默认查询字段为：id、type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。|
 
 **返回值**：
 
@@ -1524,7 +1533,7 @@ queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyo
 | start  | number | 是    | 日程开始时间，类型为13位时间戳。    |
 | end    | number | 是    | 日程结束时间，类型为13位时间戳。    |
 | ids    | number[] | 否    | 需要查询的日程id数组，可为空数组或undefined，id>0。    |
-| eventKey    | (keyof [Event](#event))[]   | 否    | 所有查询日程的字段。 |
+| eventKey    | (keyof [Event](#event))[]   | 否    | 所有查询日程的字段。不填时，默认查询字段为：id、title、startTime、endTime、instanceStartTime、instanceEndTime、isAllDay、description、timeZone、location、service。|
 
 **返回值**：
 
@@ -1914,7 +1923,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称        | 类型                        | 只读 | 可选 | 说明                                  |
 | ----------- | --------------------------- | ---- |----|-------------------------------------|
 | type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                               |
-| uri         | string                      | 否   | 否  | 服务的uri，格式为Deeplink类型。可以跳转到三方应用相应界面。长度限制为0~5000字符。 |
+| uri         | string                      | 否   | 否  | 服务的uri，格式为DeepLink类型。可以跳转到三方应用相应界面。长度限制为0~5000字符。 |
 | description | string                      | 否   | 是  | 服务辅助描述。长度限制为0~5000字符，不填时，默认为空字符串。                 |
 
 ## ServiceType

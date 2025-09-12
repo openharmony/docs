@@ -1,4 +1,10 @@
 # @ohos.app.ability.appManager (应用管理)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
@@ -742,7 +748,7 @@ isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 查询的应用包名。 |
-| appCloneIndex | number | 否 | 分身应用索引。 |
+| appCloneIndex | number | 否 | 分身应用索引。 取值范围：0~1000。取值为0时表示主应用；取值大于0时表示指定分身应用。|
 
 **返回值：**
 

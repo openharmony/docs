@@ -1,5 +1,12 @@
 # 使用HiChecker检测问题（ArkTS）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @lu-tao-->
+<!--Designer: @martin-duan-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 HiChecker可以作为应用开发阶段使用的检测能力，用于检测代码运行过程中部分易忽略的问题，如应用线程出现耗时调用、应用进程中元能力资源泄露等问题。开发者可以通过日志记录或进程crash等形式查看具体问题并进行修改，提升应用的使用体验。

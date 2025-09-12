@@ -1,4 +1,10 @@
 # Media Error Codes
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -196,7 +202,7 @@ Try another server address.
 
 **Error Message**
 
-Connection time out.
+Connection timeout.
 
 **Description**
 
@@ -215,7 +221,7 @@ The network is abnormal.
 
 **Error Message**
 
-NetWork abnormal.
+Network abnormal.
 
 **Description**
 
@@ -233,7 +239,7 @@ Destroy this instance and re-create it. If the re-creation fails, stop related o
 
 **Error Message**
 
-NetWork unavailable.
+Network unavailable.
 
 **Description**
 
@@ -366,7 +372,7 @@ The certificate is not carried, is invalid, or has expired.
 
 **Error Message**
 
-Unsupportted request.
+Unsupported request.
 
 **Description**
 
@@ -385,7 +391,7 @@ The client request parameter is incorrect or exceeds the processing capability.
 
 **Error Message**
 
-seek continuous is unsupported.
+Seek continuous is unsupported.
 
 **Description**
 
@@ -403,7 +409,7 @@ The media source or device does not support the seek operation in SEEK_CONTINUOU
 
 **Error Message**
 
-super resolution not supported.
+Super resolution not supported.
 
 **Description**
 
@@ -421,7 +427,7 @@ Do not call super resolution related APIs for the media source on the current de
 
 **Error Message**
 
-super resolution not enabled.
+Super resolution not enabled.
 
 **Description**
 

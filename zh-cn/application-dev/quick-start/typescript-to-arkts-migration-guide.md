@@ -1,10 +1,11 @@
 # 从TypeScript到ArkTS的适配规则
 
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
+<!--Subsystem: ArkCompiler-->
 <!--Owner: @husenlin-->
-<!--SE: @qyhuo32-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
 
 ArkTS规范约束了TypeScript（简称TS）中影响开发正确性或增加运行时开销的特性。本文罗列了ArkTS中限制的TS特性，并提供重构代码的建议。ArkTS保留了TS大部分语法特性，未在本文中约束的TS特性，ArkTS完全支持。例如，ArkTS支持自定义装饰器，语法与TS一致。按本文约束进行代码重构后，代码仍为合法有效的TS代码。
 
@@ -59,18 +60,23 @@ function addTen(x: number): number {
 ```typescript
 // 不支持：
 let res: any = some_api_function('hello', 'world');
-// `res`是什么？错误代码的数字？字符串？对象？
-// 该如何处理它？
 // 支持：
 class CallResult {
-  public succeeded(): boolean { ... }
-  public errorMessage(): string { ... }
+  public succeeded(): boolean {
+    return false;
+  }
+  public errorMessage(): string {
+    return '123';
+  }
+}
+function some_api_function(param1: string, param2: string): CallResult {
+  return new CallResult();
 }
 
 let res: CallResult = some_api_function('hello', 'world');
 if (!res.succeeded()) {
-  console.info('Call failed: ' + res.errorMessage());
-}
+  console.info('Call failed: ' + res.errorMessage());   
+}  
 ```
 
 `any`类型在TypeScript中并不常见，仅约1%的TypeScript代码库使用。代码检查工具（例如ESLint）也制定了一系列规则来禁止使用`any`。因此，虽然禁止`any`将导致代码重构，但重构量很小，有助于整体性能提升。
@@ -526,10 +532,6 @@ class C {
   }
 }
 ```
-
-**说明**
-
-当前尚不支持静态块的语法。支持该语法后，在.ets文件中使用静态块需遵循此约束。
 
 ### 不支持index signature
 
@@ -1294,8 +1296,8 @@ const Rectangle = class {
     this.width = width;
   }
 
-  height
-  width
+  height;
+  width;
 }
 
 const rectangle = new Rectangle(0.0, 0.0);
@@ -1304,17 +1306,17 @@ const rectangle = new Rectangle(0.0, 0.0);
 **ArkTS**
 
 ```typescript
-class Rectangle {
-  constructor(height: number, width: number) {
-    this.height = height;
-    this.width = width;
+class testRectangle {
+  constructor(testHeight: number, testWidth: number) {
+    this.testHeight = testHeight;
+    this.testWidth = testWidth;
   }
 
-  height: number
-  width: number
+  testHeight: number;
+  testWidth: number;
 }
 
-const rectangle = new Rectangle(0.0, 0.0);
+const rectangle = new testRectangle(0.0, 0.0);
 ```
 
 ### 类不允许`implements`
@@ -1462,9 +1464,6 @@ function createShape(): Shape {
 }
 
 let c2 = createShape() as Circle;
-
-// 运行时抛出ClassCastException异常：
-let c3 = createShape() as Square;
 
 // 创建Number对象，获得预期结果：
 let e2 = (new Number(5.0)) instanceof Number; // true
@@ -2124,7 +2123,7 @@ function* counter(start: number, end: number) {
 }
 
 for (let num of counter(1, 5)) {
-  console.info(num);
+  console.info(num.toString());
 }
 ```
 
@@ -2182,8 +2181,8 @@ function doStuff(arg: Foo | Bar) {
   }
 }
 
-doStuff({ foo: 123, common: '123' });
-doStuff({ bar: 123, common: '123' });
+doStuff({ foo: '123', common: '123' });
+doStuff({ bar: '123', common: '123' });
 ```
 
 **ArkTS**
@@ -2397,29 +2396,29 @@ ArkTS不支持类和接口的声明合并。
 
 ```typescript
 interface Document {
-  createElement(tagName: any): Element
+  createElement(tagName: any): number;
 }
 
 interface Document {
-  createElement(tagName: string): HTMLElement
+  createElement(tagName: string): boolean;
 }
 
 interface Document {
-  createElement(tagName: number): HTMLDivElement
-  createElement(tagName: boolean): HTMLSpanElement
-  createElement(tagName: string, value: number): HTMLCanvasElement
+  createElement(tagName: number): number;
+  createElement(tagName: boolean): boolean;
+  createElement(tagName: string, value: number): string;
 }
 ```
 
 **ArkTS**
-
+ 
 ```typescript
 interface Document {
-  createElement(tagName: number): HTMLDivElement
-  createElement(tagName: boolean): HTMLSpanElement
-  createElement(tagName: string, value: number): HTMLCanvasElement
-  createElement(tagName: string): HTMLElement
-  createElement(tagName: Object): Element
+  createElement(tagName: number): number;
+  createElement(tagName: boolean): boolean;
+  createElement(tagName: string, value: number): number;
+  createElement(tagName: string): string;
+  createElement(tagName: Object): object;
 }
 ```
 
@@ -2901,7 +2900,7 @@ class C {
     console.info(this.p);
   }
   q(r: string) {
-    return this.p == r;
+    return this.p === r;
   }
 }
 ```
@@ -3299,7 +3298,7 @@ function f() {
   e5.prop;               // API18以前，编译时错误：不能访问ESObject类型变量的属性；API18以后，OK，支持点操作符访问
 
   let e6: ESObject = foo(); // OK，显式标注ESObject类型
-  let e7 = e6;              // OK，使用ESObject类型赋值
+  let e7: ESObject = e6;    // OK，使用ESObject类型赋值
   bar(e7);                  // OK，ESObject类型变量传给跨语言调用的函数
 }
 ```

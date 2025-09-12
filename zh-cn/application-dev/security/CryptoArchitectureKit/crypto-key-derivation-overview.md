@@ -3,8 +3,9 @@
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
-<!--SE: @lanming-->
-<!--TSE: @PAFT-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 密钥派生函数（key derivation function）是指使用伪随机函数从秘密值中导出一个或多个密钥。密钥派生函数可用于将密钥扩展到更长的密钥或获得所需格式的密钥。
 

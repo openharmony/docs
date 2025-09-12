@@ -1,4 +1,10 @@
 # @ohos.data.dataSharePredicates (DataShare Predicates) (System API)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 You can use **DataSharePredicates** to specify conditions for [updating](js-apis-data-dataShare-sys.md#update), [deleting](js-apis-data-dataShare-sys.md#delete), and [querying](js-apis-data-dataShare-sys.md#query) data when **DataShare** is used to manage data.
 

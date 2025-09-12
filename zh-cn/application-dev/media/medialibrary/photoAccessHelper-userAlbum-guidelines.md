@@ -1,4 +1,10 @@
 # 用户相册资源使用指导
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 photoAccessHelper提供用户相册相关的接口，支持创建和删除相册，以及添加和删除相册中的图片和视频资源。
 
@@ -37,7 +43,6 @@ photoAccessHelper提供用户相册相关的接口，支持创建和删除相册
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
@@ -73,7 +78,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -128,7 +132,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -180,7 +183,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -239,7 +241,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -282,7 +283,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以往相册名为'albumName'的用户相册中移除一张图片为例。
+下面以从相册名为'albumName'的用户相册中移除一张图片为例。
 
 **开发步骤**
 
@@ -298,7 +299,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -318,9 +318,19 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    if (album === undefined) {
+      console.error('album is undefined');
+      albumFetchResult.close();
+      return;
+    }
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     let photoFetchResult = await album.getAssets(photoFetchOptions);
     let photoAsset = await photoFetchResult.getFirstObject();
+    if (photoAsset === undefined) {
+      console.error('photoAsset is undefined');
+      photoFetchResult.close();
+      return;
+    }
     console.info('album getAssets successfully, albumName: ' + photoAsset.displayName);
     let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
     albumChangeRequest.removeAssets([photoAsset]);
@@ -356,7 +366,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

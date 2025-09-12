@@ -3,8 +3,9 @@
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @zhuguodong8-->
-<!--SE: @zhuguodong8; @jjfeing-->
-<!--TSE: @principal87-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## 基本概念
 
@@ -69,10 +70,10 @@ MindSpore Lite AI模型部署流程是：
 获取到模型转换工具之后，还需要将转换工具需要的动态链接库加入环境变量LD_LIBRARY_PATH。
 
 ```bash
-export LD_LIBRARY_PATH=${PACKAGE_ROOT_PATH}/tools/converter/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${PACKAGE_PATH}/tools/converter/lib:${LD_LIBRARY_PATH}
 ```
 
-其中，${PACKAGE_ROOT_PATH}对应为编译或下载得到的MindSpore Lite发布件解压后的路径。
+其中，${PACKAGE_PATH}对应为编译或下载得到的MindSpore Lite发布件解压后的路径。
 
 
 ## 参数说明

@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @jcwen-->
-<!--SE: @junathuawei1; @zph000-->
-<!--TSE: @lj_liujing; @yippo; @logic42-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 设备、应用交互的核心在于数据的互通，高效的数据互通基础是共识。为了降低应用/业务数据交互成本，促进数据生态建设，统一数据管理框架（UDMF）提供了标准化数据定义作为统一的OpenHarmony数据语言，用于构建跨应用、跨设备的统一数据标准与交互共识。
 

@@ -1,4 +1,10 @@
 # Distributed KV Store Error Codes
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @ding_dong_dong-->
+<!--Designer: @dboy190; @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >

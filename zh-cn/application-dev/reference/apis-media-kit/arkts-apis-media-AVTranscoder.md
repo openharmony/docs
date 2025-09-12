@@ -1,4 +1,10 @@
 # Interface (AVTranscoder)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -46,7 +52,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -60,21 +66,26 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-// 配置参数以实际硬件设备支持的范围为准。
-let avTranscoderConfig: media.AVTranscoderConfig = {
-  audioBitrate : 200000,
-  audioCodec : media.CodecMimeType.AUDIO_AAC,
-  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-  videoBitrate : 3000000,
-  videoCodec : media.CodecMimeType.VIDEO_AVC,
-};
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  // 配置参数以实际硬件设备支持的范围为准。
+  let avTranscoderConfig: media.AVTranscoderConfig = {
+    audioBitrate : 200000,
+    audioCodec : media.CodecMimeType.AUDIO_AAC,
+    fileFormat : media.ContainerFormatType.CFT_MPEG_4,
+    videoBitrate : 3000000,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
+  };
 
-avTranscoder.prepare(avTranscoderConfig).then(() => {
-  console.info('prepare success');
-}).catch((err: BusinessError) => {
-  console.error('prepare failed and catch error is ' + err.message);
-});
+  avTranscoder.prepare(avTranscoderConfig).then(() => {
+    console.info('prepare success');
+  }).catch((err: BusinessError) => {
+    console.error('prepare failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## start<sup>12+</sup>
@@ -107,12 +118,17 @@ start(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.start().then(() => {
-  console.info('start AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('start AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.start().then(() => {
+    console.info('start AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('start AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## pause<sup>12+</sup>
@@ -145,12 +161,17 @@ pause(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.pause().then(() => {
-  console.info('pause AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('pause AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.pause().then(() => {
+    console.info('pause AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('pause AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## resume<sup>12+</sup>
@@ -183,12 +204,17 @@ resume(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.resume().then(() => {
-  console.info('resume AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('resume AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.resume().then(() => {
+    console.info('resume AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('resume AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## cancel<sup>12+</sup>
@@ -221,12 +247,17 @@ cancel(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.cancel().then(() => {
-  console.info('cancel AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('cancel AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.cancel().then(() => {
+    console.info('cancel AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('cancel AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## release<sup>12+</sup>
@@ -258,12 +289,17 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.release().then(() => {
-  console.info('release AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('release AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.release().then(() => {
+    console.info('release AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('release AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## on('progressUpdate')<sup>12+</sup>
@@ -284,9 +320,15 @@ on(type: 'progressUpdate', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-avTranscoder.on('progressUpdate', (progress: number) => {
-  console.info('avTranscoder progressUpdate = ' + progress);
-});
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.on('progressUpdate', (progress: number) => {
+    console.info('avTranscoder progressUpdate = ' + progress);
+  });
+}
 ```
 
 ## off('progressUpdate')<sup>12+</sup>
@@ -307,7 +349,13 @@ off(type:'progressUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avTranscoder.off('progressUpdate');
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.off('progressUpdate');
+}
 ```
 
 ## on('error')<sup>12+</sup>
@@ -329,7 +377,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -346,10 +394,15 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.on('error', (err: BusinessError) => {
-  console.info('case avTranscoder.on(error) called, errMessage is ' + err.message);
-});
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.on('error', (err: BusinessError) => {
+    console.info('case avTranscoder.on(error) called, errMessage is ' + err.message);
+  });
+}
 ```
 
 ## off('error')<sup>12+</sup>
@@ -370,7 +423,13 @@ off(type:'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-avTranscoder.off('error');
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.off('error');
+}
 ```
 
 ## on('complete')<sup>12+</sup>
@@ -393,13 +452,22 @@ on(type: 'complete', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-avTranscoder.on('complete', async () => {
-  console.info('avTranscoder complete');
-  // 开发者须在此监听转码完成事件
-  // 须等待avTranscoder.release()之后，再对转码后的文件进行转发、上传、转存等处理
-  await avTranscoder.release();
-  avTranscoder = undefined;
-});
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  let avTranscoder: media.AVTranscoder | undefined = undefined;
+  // 创建转码实例。
+  avTranscoder = await media.createAVTranscoder();
+  avTranscoder.on('complete', async () => {
+    console.info('avTranscoder complete');
+    if (avTranscoder != undefined) {
+      // 开发者须在此监听转码完成事件。
+      // 须等待avTranscoder.release()释放转码实例之后，再对转码后的文件进行转发、上传、转存等处理。
+      await avTranscoder.release();
+      avTranscoder = undefined;
+    }
+  });
+}
 ```
 
 ## off('complete')<sup>12+</sup>
@@ -420,5 +488,11 @@ off(type:'complete', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
-avTranscoder.off('complete');
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // 创建转码实例。
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.off('complete');
+}
 ```

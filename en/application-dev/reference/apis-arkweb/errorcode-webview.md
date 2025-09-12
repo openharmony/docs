@@ -1,4 +1,10 @@
 # Webview Error Codes
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -154,11 +160,11 @@ The local or remote port is closed.
 
 **Error Message**
 
-Invalid origin.
+Invalid origin.The origin format must follow defined in RFC 6454.
 
 **Description**
 
-This error code is reported when the input parameter **origin** is invalid.
+This error code is reported when the input parameter **origin** is invalid. The origin value must in the format defined in RFC 6454.
 
 **Possible Causes**
 

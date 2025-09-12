@@ -1,4 +1,10 @@
 # @ohos.multimedia.audio (音频管理)(系统接口)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。
 
@@ -494,7 +500,7 @@ kvpairs = {
 
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set the audio extra parameters ${err}`);
 });
 ```
@@ -540,7 +546,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let subKeys: Array<String> = ['key_example'];
 audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
   console.info(`Promise returned to indicate that the value of the audio extra parameters is obtained ${value}.`);
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get the audio extra parameters ${err}`);
 });
 ```
@@ -605,7 +611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set the audio scene mode ${err}`);
 });
 ```
@@ -678,7 +684,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.disableSafeMediaVolume().then(() => {
   console.info('disableSafeMediaVolume success.');
-}).catch ((err: BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
 });
 ```
@@ -688,7 +694,7 @@ audioManager.disableSafeMediaVolume().then(() => {
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](arkts-apis-audio-AudioVolumeManager.md#onvolumechange9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](arkts-apis-audio-AudioVolumeManager.md#onvolumechangedeprecated)替代。
 
 监听系统音量变化事件（当系统音量发生变化时触发）。使用callback异步回调。
 
@@ -1263,7 +1269,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated)获取。 |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调函数。当设置指定流的音量成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -1299,7 +1305,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated)获取。 |
 
 **返回值：**
 
@@ -1334,7 +1340,7 @@ setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): P
 | 参数名     | 类型                                | 必填 | 说明                                   |
 | ---------- | ----------------------------------- | ---- |--------------------------------------|
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                               |
-| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated)获取。 |
 | flags      | number                              | 是   | 是否需要显示系统音量条，0为不需要显示，1为需要显示。 |
 
 **返回值：**

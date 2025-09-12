@@ -1,4 +1,10 @@
 # 使用合适的音频流类型
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 [音频流](audio-kit-intro.md#音频流介绍)类型是定义音频数据播放和录制方式的关键属性。对于播放流，其类型由[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)确定；对于录制流，则由[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)决定。音频流类型对音量控制、音频焦点管理以及输入/输出设备的选择具有决定性影响。
 
@@ -29,20 +35,20 @@
 
 下表中列举常用的录制音频流类型，由[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)定义。
 
-| 音频流使用类型（StreamUsage） | 适用场景 |
+| 音频流使用类型（SourceType） | 适用场景 |
 | ---------- | ---------- |
 | SOURCE_TYPE_MIC | 适用于普通录音。|
-| SOURCE_TYPE_RECOGNITION<sup>9+</sup> | 适用于语音识别。 |
+| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup> | 适用于语音识别。 |
 | SOURCE_TYPE_PLAYBACK_CAPTURE | （API12已废弃）适用于录制其他应用送到系统中播放的原始音频数据。<br>AudioKit不再提供内录接口，请通过[录屏接口AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION | 适用于VoIP语音通话。 |
 | SOURCE_TYPE_VOICE_MESSAGE | 适用于录制语音短消息。 |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup> | 适用于相机录像。 |
-| SOURCE_TYPE_UNPROCESSD<sup>14+</sup> | 适用于获取麦克风采集到的纯净音频数据（系统不做任何算法处理）。 |
+| SOURCE_TYPE_UNPROCESSED<sup>14+</sup> | 适用于获取麦克风采集到的纯净音频数据（系统不做任何算法处理）。 |
 | SOURCE_TYPE_LIVE<sup>20+</sup> | 适用于直播，在支持平台上会提供系统回声消除能力。 |
 
 ## 流类型对音频业务的影响
 
-不同的流类型会影响用户在控制音量时的体验，以及系统在调整音频焦点和选择输入/输出设备时的表现。此外，系统还会根据录制流类型对采集到的音频数据配置对应的优化处理策略，因此录制流类型的选择会影响到录制的音频效果。例如：如果在VOIP通话场景下使用了SOURCE_TYPE_MIC而不是SOURCE_TYPE_VOICE_COMMUNICATION类型，可能会使降噪、环境音消除等优化策略不生效，造成VOIP通话体验不佳。建议开发者根据业务场景选择合适的音频流类型。
+不同的流类型会影响用户在控制音量时的体验，以及系统在调整音频焦点和选择输入/输出设备时的表现。此外，系统还会根据录制流类型对采集到的音频数据配置对应的优化处理策略，因此录制流类型的选择会影响到录制的音频效果。例如：如果在VoIP通话场景下使用了SOURCE_TYPE_MIC而不是SOURCE_TYPE_VOICE_COMMUNICATION类型，可能会使降噪、环境音消除等优化策略不生效，造成VoIP通话体验不佳。建议开发者根据业务场景选择合适的音频流类型。
 
 ### 音量控制
 

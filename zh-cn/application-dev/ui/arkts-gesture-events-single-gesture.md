@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 ## 点击事件（onClick）
 
@@ -74,7 +75,7 @@ TapGesture(value?:{count?:number, fingers?:number})
 点击手势支持单次点击和多次点击，拥有两个可选参数：
 
 
-- count：声明该点击手势识别的连续点击次数。默认值为1，若设置小于1的非法值会被转化为默认值。如果配置多次点击，上一次抬起和下一次按下的超时时间为300毫秒。
+- count：声明该点击手势识别的连续点击次数。默认值为1，非法值（即小于1的值）将被转化为默认值。当配置多次点击时，上一次抬起和下一次按下的超时时间为300毫秒。
 
 - fingers：用于声明触发点击的手指数量，最小值为1，最大值为10，默认值为1。当配置多指时，若第一根手指按下300毫秒内未有足够的手指数按下则手势识别失败。
     以在Text组件上绑定双击手势（count值为2的点击手势）为例：
@@ -184,7 +185,7 @@ PanGesture(value?:{ fingers?:number, direction?:PanDirection, distance?:number})
 
 - fingers：用于声明触发拖动手势所需要的最少手指数量，最小值为1，最大值为10，默认值为1。
 
-- direction：用于声明触发拖动的手势方向，此枚举值支持逻辑与（&amp;）和逻辑或（|）运算。默认值为Pandirection.All。
+- direction：用于声明触发拖动的手势方向，此枚举值支持逻辑与（&amp;）和逻辑或（|）运算。默认值为PanDirection.All。
 
 - distance：用于声明触发拖动的最小拖动识别距离，单位为vp，默认值为5。
 

@@ -1,4 +1,10 @@
 # @ohos.bundle.bundleResourceManager (bundleResourceManager模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供应用资源数据查询能力，支持[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)和[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)等信息的查询。
 
@@ -80,8 +86,8 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
@@ -134,8 +140,8 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
@@ -180,8 +186,8 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(resourceFlag, (err, data) => {
@@ -235,8 +241,8 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(resourceFlag).then(data=> {
@@ -283,8 +289,8 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag, (err, data) => {
@@ -337,8 +343,8 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)): Promi
 **示例：**
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag).then(data=> {
@@ -396,8 +402,8 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;
@@ -452,8 +458,8 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;
@@ -491,7 +497,7 @@ getExtensionAbilityResourceInfo(bundleName: string, extensionAbilityType: bundle
 
 | 类型                                                        | 说明                                  |
 | ----------------------------------------------------------- | ------------------------------------- |
-| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的配置入口图标和名称信息。|
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的扩展组件资源，包含图标和名称等信息。|
 
 **错误码：**
 

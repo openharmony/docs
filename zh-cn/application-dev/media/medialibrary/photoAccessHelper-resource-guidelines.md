@@ -1,4 +1,10 @@
 # 媒体资源使用指导
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 应用可以通过photoAccessHelper的接口，对媒体资源（图片、视频）进行相关操作。
 
@@ -15,6 +21,9 @@
 
 应用通过调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1)获取媒体资源，并传入[FetchOptions](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-i.md#fetchoptions)对象指定检索条件。如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现获取资源为空的情况，请确认文件是否已预置，数据库中是否存在该文件的数据。
 
+> **注意：**
+> 使用[PhotoAccessHelper.PhotoKeys.URI](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys)做查询条件时，仅支持使用[DataSharePredicates.equalTo](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)的方式。
+
 如果只想获取某个位置的对象（如第一个、最后一个、指定索引等），可以通过[FetchResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md)中的接口获取。
 
 **前提条件**
@@ -30,7 +39,6 @@
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -77,7 +85,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -125,7 +132,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
@@ -173,7 +179,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -219,7 +224,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

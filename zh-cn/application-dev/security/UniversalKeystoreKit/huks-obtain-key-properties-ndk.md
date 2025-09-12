@@ -3,8 +3,9 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定密钥属性前，需要确保已在HUKS中生成或导入持久化存储的密钥。
 >**说明：**

@@ -1,4 +1,10 @@
 # Interfaces (Others)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -10,7 +16,9 @@ Media change request, which is the parent class of the asset change request and 
 
 > **NOTE**
 >
-> The media change request takes effect only after [applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) is called.
+> **MediaChangeRequest** takes effect only after [applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) is called.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -20,15 +28,14 @@ Options for creating an image or video asset.
 
 The title must meet the following requirements:
 
-- It does not contain a file name extension.
-- The file name cannot exceed 255 characters.
-- It does not contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- It must not contain a file name extension.
+- The total length of the file name must be between 1 and 255 characters.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title                  | string                          | No | Title of the image or video. |
+| title                  | string                          | No | Title of the image or video.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | subtype<sup>12+</sup>  | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | No | Subtype of the image or video file.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## FetchOptions
@@ -37,10 +44,10 @@ Defines the retrieval options.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name                  | Type               | Readable| Writable| Description                                             |
+| Name                  | Type               | Read-Only| Optional| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](arkts-apis-photoAccessHelper-PhotoAsset.md#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| fetchColumns           | Array&lt;string&gt; | No  | No  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](arkts-apis-photoAccessHelper-PhotoAsset.md#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | No  | No  | Predicates that specify the fetch criteria.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## RequestOptions<sup>11+</sup>
 
@@ -60,11 +67,11 @@ Defines the return value of the listener callback.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name   | Type                       | Readable| Writable| Description                                                        |
+| Name   | Type                       | Read-Only| Optional| Description                                                        |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype) | Yes  | No  | Notification type.                                      |
-| uris    | Array&lt;string&gt;         | Yes  | No  | All URIs with the same [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype), which can be **PhotoAsset** or **Album**.|
-| extraUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.                          |
+| type    | [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype) | No  | No  | Notification type.                                      |
+| uris    | Array&lt;string&gt;         | No  | No  | All URIs with the same [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype), which can be **PhotoAsset** or **Album**.|
+| extraUris | Array&lt;string&gt;         | No  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.                          |
 
 ## TextContextInfo<sup>12+</sup>
 
@@ -118,7 +125,7 @@ Represents the configuration for saving a media asset (image or video) to the me
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | No | Title of the image or video. If this parameter is not passed, the system generates a title. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]|
+| title | string | No | Title of the image or video. If this parameter is not passed, the system generates a title. The title must meet the following requirements:<br>- It must not contain a file name extension.<br>- The total length of the file name, which is in the format of title+file name extension, must be between 1 and 255 characters.<br>- It must not contain any invalid characters, which are:\ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
 | photoType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**. See [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype).|
 | subtype | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported. See [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12).|
@@ -143,10 +150,10 @@ Describes the detailed change data of a media asset.
 
 | Name    | Type               | Read-Only| Optional| Description |
 | ---- | ------- | ---- |  ---- | ----- |
-| assetBeforeChange | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | No| No| Data of the media asset before change. If the asset is added, **assetBeforeChange** is null.|
-| assetAfterChange  | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | No| No | Data of the media asset after change. If the asset is deleted, **assetAfterChange** is null.|
-| isContentChanged  |boolean  | No| No| Whether the content of the media asset changes. The value **true** means that the content changes, and **false** means the opposite. |
-| isDeleted         |boolean  | No| No| Whether the media asset is deleted. The value **true** means that the asset is deleted, and **false** means the opposite. |
+| assetBeforeChange | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | No| No| Data of the media asset before change. In the case of asset addition, **assetBeforeChange** is null.|
+| assetAfterChange  | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | No| No | Data of the media asset after change. In the case of asset deletion, **assetAfterChange** is null.|
+| isContentChanged  |boolean  | No| No| Whether the content of the media asset is changed. **true** if changed, **false** otherwise. |
+| isDeleted         |boolean  | No| No| Whether the media asset is deleted. **true** if deleted, **false** otherwise. |
 
 ## PhotoAssetChangeInfos<sup>20+</sup>
 
@@ -158,7 +165,7 @@ Describes the notification information about the change of a media asset.
 | ---- | ------- | ---- |  ---- | ----- |
 | type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | No| No| Type of the media asset change.|
 | assetChangeDatas | [PhotoAssetChangeData](#photoassetchangedata20)[] \| null | No|  No| Array of changed media assets. If all media assets need to be queried again, **assetChangeDatas** is null. |
-| isForRecheck    | boolean  | No| No| Whether the application should query all media assets again. The value **true** means that the application should query all assets again, and **false** means the opposite.<br>**NOTE**: In special cases or abnormal notification scenarios, **isForRecheck** will be **true**. In this case, the application should query all assets again. |
+| isForRecheck    | boolean  | No| No| Whether the application should query all media assets again. **true** if the application should query all assets again, **false** otherwise.<br>**NOTE**: In special cases or abnormal notification scenarios, **isForRecheck** will be **true**. In this case, the application should query all assets again. |
 
 ## AlbumChangeInfo<sup>20+</sup>
 
@@ -186,7 +193,7 @@ Describes the detailed change data of an album.
 | Name                  | Type               | Read-Only| Optional| Description               |
 | ---- | ------- | ---- |  ---- | ----- |
 | albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20) \| null | No| No| Data of the album before change. If an album is added, **albumBeforeChange** is null.|
-| albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) \| null | No| No | Data of the album after change. If the album is deleted, **albumAfterChange** is null.|
+| albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) \| null | No| No | Data of the album after change. In the case of album deletion, **albumAfterChange** is null.|
 
 ## AlbumChangeInfos<sup>20+</sup>
 
@@ -198,4 +205,4 @@ Describes the notification information about the change of an album.
 | ---- | ------- | ---- |  ---- | ----- |
 | type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | No| No| Type of the album change.|
 | albumChangeDatas   | [AlbumChangeData](#albumchangedata20)[] \| null | No| No| Array of changed albums. If all albums need to be queried again, **albumChangeDatas** is null. |
-| isForRecheck          | boolean  | No| No| Whether the application should query all albums again. The value **true** means that the application should query all albums again, and **false** means the opposite.<br>**NOTE**: In special cases or abnormal notification scenarios, **isForRecheck** will be **true**. In this case, the application should query all albums again. |
+| isForRecheck          | boolean  | No| No| Whether the application should query all albums again. **true** if the application should query all albums again, **false** otherwise.<br>**NOTE**: In special cases or abnormal notification scenarios, **isForRecheck** will be **true**. In this case, the application should query all albums again. |

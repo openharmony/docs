@@ -1,5 +1,10 @@
 # vibrator.h
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 概述
 
@@ -64,7 +69,7 @@ int32_t OHOS::Sensors::OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attr
 
 | 名称 | 描述 |
 | -------- | -------- |
-| duration | 振动时长，单位：毫秒。  |
+| duration | 振动时长，单位：毫秒。取值范围是（0,1800000]区间的所有整数  |
 | attribute | 振动属性，请参考 [Vibrator_Attribute](_vibrator.md#vibrator_attribute)。 |
 
 **返回**：

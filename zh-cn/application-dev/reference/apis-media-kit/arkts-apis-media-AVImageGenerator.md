@@ -1,4 +1,10 @@
 # Interface (AVImageGenerator)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -19,9 +25,9 @@ import { media } from '@kit.MediaKit';
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-| 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称                                                | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVImageGenerator 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频缩略图数据获取异常。 |
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | 否   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移：0，字节长度：100。其文件描述为AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> 将资源句柄（fd）传递给AVImageGenerator实例之后，不允许通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个AVPlayer/AVMetadataExtractor/AVImageGenerator/AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频缩略图数据获取异常。 |
 
 ## fetchFrameByTime<sup>12+</sup>
 
@@ -54,6 +60,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -122,6 +129,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -240,6 +248,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -287,6 +296,7 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 

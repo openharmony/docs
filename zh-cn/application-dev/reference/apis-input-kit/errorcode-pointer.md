@@ -1,4 +1,11 @@
-# 鼠标指针错误码
+# 鼠标光标错误码
+
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 > **说明：**
 >

@@ -1,4 +1,10 @@
 # 出现/消失转场
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 [transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)是基础的组件转场接口，用于实现一个组件出现或者消失时的动画效果。可以通过[TransitionEffect对象](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明)的组合使用，定义出各式效果。
@@ -32,9 +38,9 @@
        // 添加旋转转场效果，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 1.2)
        .combine(TransitionEffect.rotate({ angle: 90 }))
        // 添加平移转场效果，动画参数会跟随其之上带animation的TransitionEffect，也就是springMotion(0.6, 1.2)
-       .combine(TransitionEffect.translate({ x: 150, y: 150 })
+       .combine(TransitionEffect.translate({ x: 150, y: 150 }))
        // 添加move转场效果，并指定了springMotion曲线
-       .combine(TransitionEffect.move(TransitionEdge.END)).animation({curve: curves.springMotion()}))
+       .combine(TransitionEffect.move(TransitionEdge.END)).animation({curve: curves.springMotion()})
        // 添加非对称的转场效果，由于这里没有设置animation，会跟随上面的TransitionEffect的animation效果，也就是springMotion
        .combine(TransitionEffect.asymmetric(TransitionEffect.scale({ x: 0, y: 0 }), TransitionEffect.rotate({ angle: 90 })));
    ```

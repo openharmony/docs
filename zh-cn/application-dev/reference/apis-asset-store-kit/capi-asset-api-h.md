@@ -3,8 +3,9 @@
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @JeremyXu-->
-<!--SE: @skye_you-->
-<!--TSE: @nacyli-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -28,7 +29,7 @@
 | -- | -- |
 | [int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)](#oh_asset_add) | 新增一条关键资产。<br>如果要设置[Asset_Tag](capi-asset-type-h.md#asset_tag).ASSET_TAG_IS_PERSISTENT属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。 |
 | [int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt)](#oh_asset_remove) | 删除符合条件的一条或多条关键资产。 |
-| [int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,const Asset_Attr *attributesToUpdate, uint32_t updateCnt)](#oh_asset_update) | 更新符合条件的一条关键资产。 |
+| [int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt, const Asset_Attr *attributesToUpdate, uint32_t updateCnt)](#oh_asset_update) | 更新符合条件的一条关键资产。 |
 | [int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob *challenge)](#oh_asset_prequery) | 查询的预处理，用于需要用户认证的关键资产。 |
 | [int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultSet *resultSet)](#oh_asset_query) | 查询一条或多条符合条件的关键资产。 |
 | [int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt)](#oh_asset_postquery) | 查询的后置处理，用于需要用户认证的关键资产。 |
@@ -140,7 +141,7 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
 | -- | -- |
 | const [Asset_Attr](capi-assettype-asset-attr.md) *query | 关键资产的查询条件。 |
 | uint32_t queryCnt | 关键资产查询条件的个数。 |
-| [Asset_Blob](capi-assettype-asset-blob.md) *challenge | 挑战值，在后续调用OH_Asset_Query时使用。 |
+| [Asset_Blob](capi-assettype-asset-blob.md) *challenge | 挑战值，在后续调用[OH_Asset_Query](#oh_asset_query)时使用。 |
 
 **返回：**
 
@@ -192,7 +193,7 @@ int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Attr](capi-assettype-asset-attr.md) *handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。 |
+| const [Asset_Attr](capi-assettype-asset-attr.md) *handle | 待处理的查询句柄，当前包含[OH_Asset_PreQuery](#oh_asset_prequery)执行成功返回的挑战值。 |
 | uint32_t handleCnt | 句柄属性集合中元素的个数。 |
 
 **返回：**
@@ -245,7 +246,7 @@ Asset_Attr *OH_Asset_ParseAttr(const Asset_Result *result, Asset_Tag tag)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Asset_Result](capi-assettype-asset-result.md) *result | 从OH_Asset_Query中获取的查询结果。 |
+| const [Asset_Result](capi-assettype-asset-result.md) *result | 从[OH_Asset_Query](#oh_asset_query)中获取的查询结果。 |
 | [Asset_Tag](capi-asset-type-h.md#asset_tag) tag | 待获取的属性标签。 |
 
 **返回：**
@@ -271,7 +272,7 @@ void OH_Asset_FreeBlob(Asset_Blob *blob)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Asset_Blob](capi-assettype-asset-blob.md) *blob | 从OH_Asset_PreQuery获取的挑战值。 |
+| [Asset_Blob](capi-assettype-asset-blob.md) *blob | 从[OH_Asset_PreQuery](#oh_asset_prequery)获取的挑战值。 |
 
 ### OH_Asset_FreeResultSet()
 
@@ -290,6 +291,6 @@ void OH_Asset_FreeResultSet(Asset_ResultSet *resultSet)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Asset_ResultSet](capi-assettype-asset-resultset.md) *resultSet | 从OH_Asset_Query得到的查询结果列表。 |
+| [Asset_ResultSet](capi-assettype-asset-resultset.md) *resultSet | 从[OH_Asset_Query](#oh_asset_query)得到的查询结果列表。 |
 
 

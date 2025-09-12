@@ -1,8 +1,15 @@
 # VPN错误码
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **说明：**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码](../errorcode-universal.md)说明文档。
 
 ## 2203001 VPN创建失败
 
@@ -59,3 +66,39 @@ tcp链路建立失败。
 **处理步骤**
 
 检查socket链路是否建立成功。
+
+## 19900001 无效参数
+
+**错误信息**
+
+Invalid parameter value.
+
+**错误描述**
+
+无效参数。
+
+**可能原因**
+
+参数类型或数量错误。
+
+**处理步骤**
+
+请检查参数数量和类型。
+
+## 19900002 系统内部错误
+
+**错误信息**
+
+System internal error.
+
+**错误描述**
+
+VPN系统内部错误。
+
+**可能原因**
+
+空指针、内存分配异常、IPC通信异常等。
+
+**处理步骤**
+
+检查VPN系统服务是否正常。

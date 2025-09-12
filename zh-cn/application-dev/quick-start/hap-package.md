@@ -1,4 +1,10 @@
 # HAP
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包是由代码、资源、第三方库、配置文件等打包生成的模块包，其主要分为两种类型：entry和feature。
 
@@ -20,7 +26,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - 多HAP场景下，App Pack包中同一设备类型的所有HAP中最多只能包含一个Entry类型的HAP，也可以不包含；Feature类型的HAP可以包含一个或者多个，也可以不包含。
 
-- 多HAP场景下，同一应用中的所有HAP的配置文件中的bundleName、versionCode、versionName、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，同一设备类型的所有HAP对应的moduleName标签必须唯一。HAP打包生成App Pack包时，会对上述参数配置进行校验。
+- 多HAP场景下，在安装或更新时，存在一致性校验，详情参考[应用安装与更新一致性校验](multi_module_installation_update_consistency_verification.md)。使用打包工具进行打包成APP时，也会进行合法性校验，详情请参考[打包工具](../../application-dev/tools/packing-tool.md#app打包指令)。
 
 - 多HAP场景下，同一应用的所有HAP、HSP的签名证书要保持一致。上架应用市场是以App Pack形式上架，应用市场分发时会将所有HAP从App Pack中拆分出来，同时对所有HAP进行重签名，以保证签名证书的一致性。在调试阶段，开发者通过命令行或DevEco Studio将HAP安装到设备上时，要保证所有HAP签名证书一致，否则会出现安装失败的问题，签名操作请参考[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
@@ -50,7 +56,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations)。
 
-- **方法二：** 使用[hdc工具](../dfx/hdc.md#环境准备)进行调试。
+- **方法二：** 使用[hdc工具](../dfx/hdc.md)进行调试。
 
    在调试前，需要先安装或更新HAP，此处有两种方式：
 
@@ -86,7 +92,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
       uninstall bundle successfully.
       ```
 
-   完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md)。
+   完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md#进入调试模式命令attach)。
 
 <!--RP4-->
 <!--RP4End-->

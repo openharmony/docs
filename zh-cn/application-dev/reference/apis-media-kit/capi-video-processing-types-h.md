@@ -1,8 +1,16 @@
 # video_processing_types.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 视频处理类型定义。
+
+**引用文件：** <multimedia/video_processing_engine/video_processing_types.h>
 
 **库：** libvideo_processing.so
 
@@ -20,6 +28,8 @@
 | -- | -- | -- |
 | [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md) | VideoProcessing_ColorSpaceInfo | 视频颜色空间信息数据结构。 |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md) | OH_VideoProcessing | 定义视频处理对象。<br>定义一个OH_VideoProcessing空指针，调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建视频处理实例，该指针在创建实例之前必须为空。用户可以对不同的处理类型创建不同的视频处理实例。 |
+| [NativeWindow](capi-videoprocessing-nativewindow.md) | OHNativeWindow | 定义NativeWindow对象。 |
+| [OH_AVFormat](capi-videoprocessing-oh-avformat.md) | OH_AVFormat | 定义OH_AVFormat对象。 |
 | [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md) | VideoProcessing_Callback | 视频处理回调对象类型。<br>定义一个VideoProcessing_Callback空指针，调用[OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create)来创建一个回调对象。创建之前该指针必须为空。通过调用[OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback)来向视频处理实例注册回调对象。 |
 
 ### 枚举
@@ -35,8 +45,8 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [typedef void (\*OH_VideoProcessingCallback_OnError)(OH_VideoProcessing* videoProcessor,VideoProcessing_ErrorCode error, void* userData)](#oh_videoprocessingcallback_onerror) | OH_VideoProcessingCallback_OnError | 视频处理过程中报告错误的回调函数指针。 |
-| [typedef void (\*OH_VideoProcessingCallback_OnState)(OH_VideoProcessing* videoProcessor, VideoProcessing_State state,void* userData)](#oh_videoprocessingcallback_onstate) | OH_VideoProcessingCallback_OnState | 报告视频处理状态的回调函数指针。<br>[OH_VideoProcessing_Start](capi-video-processing-h.md#oh_videoprocessing_start)成功调用之后状态会变为[VideoProcessing_State](#videoprocessing_state).VIDEO_PROCESSING_STATE_RUNNING。调用[OH_VideoProcessing_Stop](capi-video-processing-h.md#oh_videoprocessing_stop)，所有的缓存buffer处理完成后，状态会变为[VideoProcessing_State](#videoprocessing_state).VIDEO_PROCESSING_STATE_STOPPED。 |
-| [typedef void (\*OH_VideoProcessingCallback_OnNewOutputBuffer)(OH_VideoProcessing* videoProcessor, uint32_t index,void* userData)](#oh_videoprocessingcallback_onnewoutputbuffer) | OH_VideoProcessingCallback_OnNewOutputBuffer | 报告输出buffer已填充好数据的回调函数指针。<br>每个新输出buffer填充好数据之后该buffer的索引就会报告给用户。调用[OH_VideoProcessing_RenderOutputBuffer](capi-video-processing-h.md#oh_videoprocessing_renderoutputbuffer)根据索引来处理渲染并输出该buffer。如果未注册该函数，则输出buffer填充好数据后不会报告用户，而是直接进行处理渲染并输出。 |
+| [typedef void (\*OH_VideoProcessingCallback_OnState)(OH_VideoProcessing* videoProcessor, VideoProcessing_State state, void* userData)](#oh_videoprocessingcallback_onstate) | OH_VideoProcessingCallback_OnState | 报告视频处理状态的回调函数指针。<br>[OH_VideoProcessing_Start](capi-video-processing-h.md#oh_videoprocessing_start)成功调用之后状态会变为[VideoProcessing_State](#videoprocessing_state).VIDEO_PROCESSING_STATE_RUNNING。调用[OH_VideoProcessing_Stop](capi-video-processing-h.md#oh_videoprocessing_stop)，所有的缓存buffer处理完成后，状态会变为[VideoProcessing_State](#videoprocessing_state).VIDEO_PROCESSING_STATE_STOPPED。 |
+| [typedef void (\*OH_VideoProcessingCallback_OnNewOutputBuffer)(OH_VideoProcessing* videoProcessor, uint32_t index, void* userData)](#oh_videoprocessingcallback_onnewoutputbuffer) | OH_VideoProcessingCallback_OnNewOutputBuffer | 报告输出buffer已填充好数据的回调函数指针。<br>每个新输出buffer填充好数据之后该buffer的索引就会报告给用户。调用[OH_VideoProcessing_RenderOutputBuffer](capi-video-processing-h.md#oh_videoprocessing_renderoutputbuffer)根据索引来处理渲染并输出该buffer。如果未注册该函数，则输出buffer填充好数据后不会报告用户，而是直接进行处理渲染并输出。 |
 
 ### 变量
 

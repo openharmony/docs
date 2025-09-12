@@ -1,4 +1,10 @@
 # @ohos.pasteboard (剪贴板)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--Designer: @guo867-->
+<!--Tester: @maxiaorong-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供管理系统剪贴板的能力，支持系统复制、粘贴功能。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 
@@ -200,7 +206,7 @@ getSystemPasteboard(): SystemPasteboard
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 ```
 
 ## ShareOption<sup>9+</sup>
@@ -473,12 +479,12 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- |-------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 否 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。 |
+| additions<sup>7+</sup> | {[key:string]:object} | 否 | 否 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty， 默认为空。|
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
-| tag<sup>7+</sup> | string | 否 | 是 | 用户自定义标签。 |
+| tag<sup>7+</sup> | string | 否 | 否 | 用户自定义标签，默认为空。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
-| localOnly<sup>7+</sup> | boolean | 否 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
+| localOnly<sup>7+</sup> | boolean | 否 | 否 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 否 | 指示剪贴板数据可以粘贴到的范围，默认值为CROSSDEVICE。 |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -516,7 +522,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 | 名称     | 类型   | 只读 | 可选 | 说明                                                       |
 | -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
-| progress | number | 是   | 否   | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
+| progress | number | 否   | 否   | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
 
 ## ProgressListener<sup>15+</sup>
 
@@ -528,6 +534,8 @@ type ProgressListener = (progress: ProgressInfo) => void
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
+**参数：**
+
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | progress | [ProgressInfo](#progressinfo15) | 是   | 定义进度上报的数据结构，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时才会上报此信息。 |
@@ -538,7 +546,7 @@ type ProgressListener = (progress: ProgressInfo) => void
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-### cancel
+### cancel<sup>15+</sup>
 
 cancel(): void
 
@@ -568,11 +576,11 @@ struct PasteboardTest {
         	  await systemPasteboard.setData(pasteData);
               let signal = new pasteboard.ProgressSignal;
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
+    		    console.info('progressListener success, progress:' + progress.progress);
                 signal.cancel();
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
                 destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
@@ -602,11 +610,11 @@ struct PasteboardTest {
 
 | 名称                | 类型                                          | 必填 | 说明                                                         |
 | ------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| destUri             | string                                        | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
+| destUri             | string                                        | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理，默认为空。 |
 | fileConflictOptions | [FileConflictOptions](#fileconflictoptions15) | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
 | progressIndicator   | [ProgressIndicator](#progressindicator15)     | 是   | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
-| progressListener    | [ProgressListener](#progresslistener15)       | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
-| progressSignal      | [ProgressSignal](#progresssignal15)           | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。 |
+| progressListener    | [ProgressListener](#progresslistener15)       | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度，默认为空。 |
+| progressSignal      | [ProgressSignal](#progresssignal15)           | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义，默认为空。 |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -620,13 +628,13 @@ struct PasteboardTest {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
-| want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
-| mimeType<sup>7+</sup> | string | 是 | 否 | 默认数据类型。 |
-| plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
-| uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 否 | PixelMap内容。 |
-| data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
+| htmlText<sup>7+</sup> | string | 否 | 否 | HTML内容。 |
+| want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | Want内容。 |
+| mimeType<sup>7+</sup> | string | 否 | 否 | 默认数据类型。 |
+| plainText<sup>7+</sup> | string | 否 | 否 | 纯文本内容。 |
+| uri<sup>7+</sup> | string | 否 | 否 | URI内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | PixelMap内容。 |
+| data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 否 | 否 | 自定义数据内容。 |
 
 ### toPlainText<sup>9+</sup>
 
@@ -878,7 +886,7 @@ getPrimaryText(): string
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
     let text: string = pasteData.getPrimaryText();
 }).catch((err: BusinessError) => {
@@ -907,7 +915,7 @@ getPrimaryHtml(): string
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
     let htmlText: string = pasteData.getPrimaryHtml();
 }).catch((err: BusinessError) => {
@@ -937,7 +945,7 @@ getPrimaryWant(): Want
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
     let want: Want = pasteData.getPrimaryWant();
 }).catch((err: BusinessError) => {
@@ -966,7 +974,7 @@ getPrimaryUri(): string
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
     let uri: string = pasteData.getPrimaryUri();
 }).catch((err: BusinessError) => {
@@ -1183,7 +1191,7 @@ pasteData.setProperty(prop);
     prop.shareOption = pasteboard.ShareOption.INAPP;
     prop.localOnly = false;
     pasteData.setProperty(prop);
-    let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+    const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 
     await systemPasteboard.setData(pasteData).then(async () => {
         console.info('Succeeded in setting PasteData.');
@@ -1407,14 +1415,14 @@ pasteStart(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
         return;
     }
     pasteData.pasteStart();
-    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    console.info(`using data: ${pasteData.getPrimaryText()}`);
     pasteData.pasteComplete();
 });
 ```
@@ -1432,14 +1440,14 @@ pasteComplete(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
         return;
     }
     pasteData.pasteStart();
-    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    console.info(`using data: ${pasteData.getPrimaryText()}`);
     pasteData.pasteComplete();
 });
 ```
@@ -1701,7 +1709,7 @@ let isReplace: boolean = pasteData.replaceRecordAt(0, record);
 在调用SystemPasteboard的接口前，需要先通过[getSystemPasteboard](#pasteboardgetsystempasteboard)获取系统剪贴板。
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 ```
 
 ### on('update')<sup>7+</sup>
@@ -1730,7 +1738,7 @@ on(type: 'update', callback: () =&gt;void): void
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 let listener = () => {
     console.info('The system pasteboard has changed.');
 };
@@ -1763,7 +1771,7 @@ off(type: 'update', callback?: () =&gt;void): void
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 let listener = () => {
     console.info('The system pasteboard has changed.');
 };
@@ -1797,7 +1805,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData((err, data) => {
     if (err) {
         console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
@@ -1828,7 +1836,7 @@ clearData(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data: void) => {
     console.info('Succeeded in clearing the pasteboard.');
 }).catch((err: BusinessError) => {
@@ -1867,7 +1875,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
         console.error('Failed to set PasteData. Cause: ' + err.message);
@@ -1915,7 +1923,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData).then((data: void) => {
     console.info('Succeeded in setting PasteData.');
 }).catch((err: BusinessError) => {
@@ -1929,7 +1937,7 @@ getData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1956,7 +1964,7 @@ getData(callback: AsyncCallback&lt;PasteData&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
@@ -1972,7 +1980,7 @@ getData(): Promise&lt;PasteData&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1998,7 +2006,7 @@ getData(): Promise&lt;PasteData&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
     let text: string = pasteData.getPrimaryText();
 }).catch((err: BusinessError) => {
@@ -2035,7 +2043,7 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err: BusinessError, data: boolean) => {
     if (err) {
         console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -2066,7 +2074,7 @@ hasData(): Promise&lt;boolean&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data: boolean) => {
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err: BusinessError) => {
@@ -2102,7 +2110,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clear((err, data) => {
     if (err) {
         console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
@@ -2134,7 +2142,7 @@ clear(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clear().then((data) => {
     console.info('Succeeded in clearing the PasteData.');
 }).catch((err: BusinessError) => {
@@ -2172,7 +2180,7 @@ getPasteData(callback: AsyncCallback&lt;PasteData&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData((err: BusinessError, pasteData: pasteboard.PasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
@@ -2204,7 +2212,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData().then((pasteData: pasteboard.PasteData) => {
     let text: string = pasteData.getPrimaryText();
 }).catch((err: BusinessError) => {
@@ -2242,7 +2250,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData((err: BusinessError, data: boolean) => {
     if (err) {
         console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -2274,7 +2282,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData().then((data: boolean) => {
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err: BusinessError) => {
@@ -2312,7 +2320,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setPasteData(pasteData, (err, data) => {
     if (err) {
         console.error('Failed to set PasteData. Cause: ' + err.message);
@@ -2350,7 +2358,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setPasteData(pasteData).then((data: void) => {
     console.info('Succeeded in setting PasteData.');
 }).catch((err: BusinessError) => {
@@ -2384,7 +2392,7 @@ isRemoteData(): boolean
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result: boolean = systemPasteboard.isRemoteData();
     console.info(`Succeeded in checking the RemoteData. Result: ${result}`);
@@ -2420,7 +2428,7 @@ getDataSource(): string
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result: string = systemPasteboard.getDataSource();
     console.info(`Succeeded in getting DataSource. Result: ${result}`);
@@ -2463,7 +2471,7 @@ hasDataType(mimeType: string): boolean
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
     console.info(`Succeeded in checking the DataType. Result: ${result}`);
@@ -2493,7 +2501,7 @@ clearDataSync(): void
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     systemPasteboard.clearDataSync();
     console.info('Succeeded in clearing the pasteboard.');
@@ -2508,7 +2516,7 @@ getDataSync(): PasteData
 
 读取系统剪贴板内容, 此接口为同步接口。
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2532,7 +2540,7 @@ getDataSync(): PasteData
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result: pasteboard.PasteData = systemPasteboard.getDataSync();
     console.info('Succeeded in getting PasteData.');
@@ -2570,7 +2578,7 @@ setDataSync(data: PasteData): void
 
 ```ts
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     systemPasteboard.setDataSync(pasteData);
     console.info('Succeeded in setting PasteData.');
@@ -2606,7 +2614,7 @@ hasDataSync(): boolean
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result: boolean = systemPasteboard.hasDataSync();
     console.info(`Succeeded in checking the PasteData. Result: ${result}`);
@@ -2621,7 +2629,7 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2648,7 +2656,7 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getUnifiedData().then((data) => {
     let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
     for (let j = 0; j < records.length; j++) {
@@ -2668,7 +2676,7 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 
 读取系统剪贴板内容, 此接口为同步接口。
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2694,7 +2702,7 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSync();
     console.info('Succeeded in getting UnifiedData.');
@@ -2750,7 +2758,7 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 let data = new unifiedDataChannel.UnifiedData();
 data.addRecord(record);
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setUnifiedData(data).then((data: void) => {
     console.info('Succeeded in setting UnifiedData.');
 }).catch((err: BusinessError) => {
@@ -2798,7 +2806,7 @@ plainText.textContent = 'delayTextContent';
 plainText.abstract = 'delayTextContent';
 plainTextData.addRecord(plainText);
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     systemPasteboard.setUnifiedDataSync(plainTextData);
     console.info('Succeeded in setting UnifiedData.');
@@ -2836,14 +2844,11 @@ setAppShareOptions(shareOptions: ShareOption): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
   console.info('Set app share options success.');
-} catch (err) {
-  let error: BusinessError = err as BusinessError;
+} catch (error) {
   console.error(`Set app share options failed, errorCode: ${error.code}, errorMessage: ${error.message}.`);
 }
 ```
@@ -2869,14 +2874,11 @@ removeAppShareOptions(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.removeAppShareOptions();
   console.info('Remove app share options success.');
-} catch (err) {
-  let error: BusinessError = err as BusinessError;
+} catch (error) {
   console.error(`Remove app share options failed, errorCode: ${error.code}, errorMessage: ${error.message}.`);
 }
 ```
@@ -2925,7 +2927,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 ```ts
 import { pasteboard } from '@kit.BasicServicesKit'
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 let patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
 
 systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
@@ -2964,7 +2966,7 @@ getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
 ```ts
 import { pasteboard, BusinessError } from '@kit.BasicServicesKit'
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getMimeTypes().then((data: Array<String>) => {
     console.info('Succeeded in getting mimeTypes. mimeTypes: ' + data.sort().join(','));
 }).catch((err: BusinessError) => {
@@ -2978,7 +2980,7 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
 获取剪贴板的内容和进度，使用Promise异步回调，不支持对文件夹的拷贝。
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -3029,12 +3031,12 @@ struct PasteboardTest {
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
               let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
+    		    console.info('progressListener success, progress:' + progress.progress);
               };
-              let dstPath: string = '/data/storage/el2/base/files/';
-              let dstUri : string = fileUri.getUriFromPath(dstPath);
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: dstUri,
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
                 progressListener: progressListenerInfo,
@@ -3079,7 +3081,7 @@ getChangeCount(): number
 ```ts
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result : number = systemPasteboard.getChangeCount();
     console.info(`Succeeded in getting the ChangeCount. Result: ${result}`);

@@ -1,4 +1,10 @@
 # Interface (AudioRoutingManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -35,12 +41,12 @@ Obtains the audio devices with a specific flag. This API uses an asynchronous ca
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
   if (err) {
-    console.error(`Failed to obtain the device list. ${err}`);
-    return;
+    console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting devices, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
   }
-  console.info('Callback invoked to indicate that the device list is obtained.');
 });
 ```
 
@@ -67,8 +73,12 @@ Obtains the audio devices with a specific flag. This API uses a promise to retur
 **Example**
 
 ```ts
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
-  console.info('Promise returned to indicate that the device list is obtained.');
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in getting devices, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -107,11 +117,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
-  console.info(`Indicate that the device list is obtained ${data}`);
+  let audioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+  console.info(`Succeeded in getting devices, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtain the device list. ${error}`);
+  console.error(`Failed to get devices. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -127,7 +137,7 @@ Checks whether the current device supports microphone blocking detection. This A
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the current device supports microphone blocking detection, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result, indicating the support for microphone blocking detection. **true** if supported, **false** otherwise.|
 
 **Example**
 
@@ -313,7 +323,7 @@ You are advised to use the [AVCastPicker component](../../media/avsession/using-
 | Name    | Type                                 | Mandatory| Description                     |
 | ---------- | ------------------------------------- | ---- |-------------------------|
 | deviceType | [CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9) | Yes  | Audio device flag.                |
-| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.|
+| active     | boolean                               | Yes  | Active state to set. **true** to set the device to the active state, **false** otherwise.|
 | callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -366,10 +376,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
-  console.info(`Indicate that the device list is obtained ${data}`);
+  console.info('Succeeded in doing getAvailableDevices.');
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtain the device list. ${error}`);
+   console.error(`Failed to getAvailableDevices. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -469,7 +479,7 @@ You are advised to use the [AVCastPicker component](../../media/avsession/using-
 | Name    | Type                                                  | Mandatory| Description              |
 | ---------- | ----------------------------------------------------- | ---- | ------------------ |
 | deviceType | [CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9)  | Yes  | Active audio device type.|
-| active     | boolean                                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
+| active     | boolean                                               | Yes  | Active state to set. **true** to set the device to the active state, **false** otherwise.    |
 
 **Return value**
 
@@ -532,7 +542,7 @@ Checks whether a communication device is active. This API uses a promise to retu
 
 | Type                  | Description                            |
 | ---------------------- | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the device is active, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result, indicating whether the device is active. **true** if active, **false** otherwise.|
 
 **Example**
 
@@ -560,7 +570,7 @@ Checks whether a communication device is active. This API returns the result syn
 
 | Type                  | Description                            |
 | ---------------------- | ------------------------------- |
-| boolean | Check result. The value **true** means that the device is active, and **false** means the opposite.|
+| boolean | Check result for whether the device is active. **true** if active, **false** otherwise.|
 
 **Error codes**
 
@@ -612,7 +622,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
@@ -620,15 +629,13 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 0 // AudioRenderer flag.
 };
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info(`device descriptor: ${desc}`);
-    }
-  });
-}
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  if (err) {
+    console.error(`Failed to get prefer output device for renderer info. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting prefer output device for renderer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
+  }
+});
 ```
 
 ## getPreferOutputDeviceForRendererInfo<sup>10+</sup>
@@ -663,7 +670,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
@@ -671,13 +677,11 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 0 // AudioRenderer flag.
 };
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
-    console.info(`device descriptor: ${desc}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Result ERROR: ${err}`);
-  })
-}
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in getting prefer output device for renderer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get prefer output device for renderer info. Code: ${err.code}, message: ${err.message}`);
+})
 ```
 
 ## getPreferredOutputDeviceForRendererInfoSync<sup>10+</sup>
@@ -711,7 +715,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
@@ -720,11 +723,11 @@ let rendererInfo: audio.AudioRendererInfo = {
 };
 
 try {
-  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo);
-  console.info(`device descriptor: ${desc}`);
+  let audioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo);
+  console.info(`Succeeded in getting prefer output device for renderer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Result ERROR: ${error}`);
+  console.error(`Failed to get prefer output device for renderer info. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -756,15 +759,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { audio } from '@kit.AudioKit';
-
 let rendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
   rendererFlags: 0 // AudioRenderer flag.
 };
 
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 });
 ```
 
@@ -795,12 +796,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Cancel all subscriptions to the event.
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
-
 // For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
-let preferOutputDeviceChangeForRendererInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+// If multiple subscriptions are made to the same event, you can call audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo'); to cancel all of them.
+let preferOutputDeviceChangeForRendererInfoCallback = (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on or off function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 };
 let rendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
@@ -839,7 +838,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
@@ -847,11 +845,11 @@ let capturerInfo: audio.AudioCapturerInfo = {
   capturerFlags: 0 // AudioCapturer flag.
 };
 
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
   if (err) {
-    console.error(`Result ERROR: ${err}`);
+    console.error(`Failed to get preferred input device for capturer info. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`device descriptor: ${desc}`);
+    console.info(`Succeeded in getting preferred input device for capturer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
   }
 });
 ```
@@ -889,7 +887,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
@@ -897,10 +894,10 @@ let capturerInfo: audio.AudioCapturerInfo = {
   capturerFlags: 0 // AudioCapturer flag.
 };
 
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in getting preferred input device for capturer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 }).catch((err: BusinessError) => {
-  console.error(`Result ERROR: ${err}`);
+  console.error(`Failed to get preferred input device for capturer info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -936,7 +933,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
@@ -945,11 +941,11 @@ let capturerInfo: audio.AudioCapturerInfo = {
 };
 
 try {
-  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceForCapturerInfoSync(capturerInfo);
-  console.info(`device descriptor: ${desc}`);
+  let audioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceForCapturerInfoSync(capturerInfo);
+  console.info(`Succeeded in getting preferred input device for capturer info, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Result ERROR: ${error}`);
+  console.error(`Failed to get preferred input device for capturer info. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -981,15 +977,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { audio } from '@kit.AudioKit';
-
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
   capturerFlags: 0 // AudioCapturer flag.
 };
 
-audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 });
 ```
 
@@ -1020,12 +1014,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Cancel all subscriptions to the event.
-audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
-
 // For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
-let preferredInputDeviceChangeForCapturerInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
-  console.info(`device descriptor: ${desc}`);
+// If multiple subscriptions are made to the same event, you can call audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo'); to cancel all of them.
+let preferredInputDeviceChangeForCapturerInfoCallback = (audioDeviceDescriptors: audio.AudioDeviceDescriptors) => {
+  console.info(`Succeeded in using on or off function, AudioDeviceDescriptors: ${JSON.stringify(audioDeviceDescriptors)}.`);
 };
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.

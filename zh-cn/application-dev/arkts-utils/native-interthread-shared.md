@@ -1,9 +1,10 @@
 # C++线程间数据共享场景
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 在C++层进行多线程并发计算时，需要在每个C++线程上创建ArkTS执行环境，直接调用API。这样可以避免在非UI主线程回调时等待UI主线程的API调用结果。同时，还需要在C++线程之间共享和操作Sendable对象。
 

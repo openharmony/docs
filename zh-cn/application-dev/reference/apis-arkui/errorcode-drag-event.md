@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -49,7 +50,7 @@ NA
 
 **错误信息**
 
-Data error.
+Operation not allowed for current phase.
 
 **错误描述**
 
@@ -67,7 +68,7 @@ NA
 
 **错误信息**
 
-操作失败。
+Operation failed.
 
 **错误描述**
 

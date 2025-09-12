@@ -1,4 +1,10 @@
 # @ohos.data.relationalStore (RDB Store) (System API)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 ArkTS supports the following basic data types: number, string, binary data, and boolean. The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
@@ -257,7 +263,7 @@ const valueBucket3: ValuesBucket = {
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -393,7 +399,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: Number) => {
+  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -631,10 +637,10 @@ predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }, (err) => {
     if (err) {
-      console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+      console.error(`cloudSync failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info('Cloud sync succeeded');
@@ -643,8 +649,6 @@ if (store != undefined) {
 ```
 **Example 2**: Download the specified asset.
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 let asset: relationalStore.Asset = {
   name: "name",
@@ -659,10 +663,10 @@ predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWra
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }, (err) => {
     if (err) {
-      console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+      console.error(`cloud sync failed, code is ${err.code}, message is ${err.message}`);
       return;
     }
     console.info('cloud sync succeeded');
@@ -721,11 +725,11 @@ predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }).then(() => {
     console.info('cloud sync succeeded');
   }).catch((err: BusinessError) => {
-    console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+    console.error(`cloud sync failed, code is ${err.code}, message is ${err.message}`);
   });
 };
 ```
@@ -747,7 +751,7 @@ predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWra
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
+    console.info(`progress: ${progressDetail.schedule}`);
   }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
@@ -1001,7 +1005,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
+  (store as relationalStore.RdbStore).lockCloudContainer().then((time: number) => {
     console.info('lockCloudContainer succeeded time:' + time);
   }).catch((err: BusinessError) => {
     console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
@@ -1138,7 +1142,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | The capability is not supported because the database is not a vector DB. |
 | 14800011  | Failed to open the database because it is corrupted. |
-| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800013  | ResultSet is empty or column index is out of bounds. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |

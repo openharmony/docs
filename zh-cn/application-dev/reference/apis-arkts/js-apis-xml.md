@@ -1,9 +1,10 @@
 # @ohos.xml (XML解析与生成)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供XML生成和解析的接口。
 
@@ -151,7 +152,7 @@ console.info(result); // <d/>
 
 setDeclaration(): void
 
-添加带有编码的文件声明。
+添加文件声明。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -989,6 +990,7 @@ parseXml(option: ParseOptions): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
+具体使用场景可参照[解析XML标签和标签值](../../arkts-utils/xml-parsing.md#解析xml标签和标签值)和[解析XML属性和属性值](../../arkts-utils/xml-parsing.md#解析xml属性和属性值)
 
 ```ts
 import { xml, util } from '@kit.ArkTS';
@@ -1053,8 +1055,8 @@ let strXml =
     '<title>Happy</title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
 let str = '';
 function func(name: string, value: string) {
   str = name + value;
@@ -1140,8 +1142,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getColumnNumber() + ' ';
@@ -1184,8 +1186,8 @@ let strXml =
     '<title>Happy</title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getDepth() + ' ';
@@ -1220,8 +1222,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Work</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getLineNumber() + ' ';
@@ -1256,8 +1258,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getName() + ' ';
@@ -1295,8 +1297,8 @@ let strXml =
     '<h:title>Happy</h:title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getNamespace() + ' ';
@@ -1334,8 +1336,8 @@ let strXml =
     '<h:title>Happy</h:title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getPrefix() + ' ';
@@ -1370,8 +1372,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getText() + ' ';
@@ -1396,7 +1398,7 @@ isEmptyElementTag(): boolean
 
 | 类型    | 说明                         |
 | ------- | ---------------------------- |
-| boolean | 返回true，当前元素为空元素。 |
+| boolean | 返回true，表示当前元素为空元素。返回false，表示当前元素为非空元素。 |
 
 **示例：**
 
@@ -1409,8 +1411,8 @@ let strXml =
     '<title/>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.isEmptyElementTag() + ' ';
@@ -1435,7 +1437,7 @@ isWhitespace(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 返回true，表示当前文本事件仅包含空格字符。 |
+| boolean | 返回true，表示当前文本事件仅包含空格字符。返回false，表示当前文本事件包含非空格字符。 |
 
 **示例：**
 
@@ -1448,8 +1450,8 @@ let strXml =
     '<title> </title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.isWhitespace() + ' ';
@@ -1482,8 +1484,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note importance="high" logged="true"/>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getAttributeCount() + ' ';

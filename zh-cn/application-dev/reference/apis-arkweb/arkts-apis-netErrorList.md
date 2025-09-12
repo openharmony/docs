@@ -1,9 +1,10 @@
 # @ohos.web.netErrorList (ArkWeb网络协议栈错误列表)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ArkWeb的网络协议栈错误列表。
 

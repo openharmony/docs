@@ -1,4 +1,12 @@
 # 管理通知渠道
+
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
+
 系统支持多种通知渠道，不同通知渠道对应的通知提醒方式不同，可以根据应用的实际场景选择适合的通知渠道，并对通知渠道进行管理（支持创建、查询、删除等操作）。
 
 ## 通知渠道类型说明

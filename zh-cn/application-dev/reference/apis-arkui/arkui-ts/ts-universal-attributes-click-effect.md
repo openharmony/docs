@@ -1,4 +1,10 @@
 # 点击回弹效果
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 设置组件点击时的回弹效果。
 
@@ -51,6 +57,8 @@ clickEffect(effect: Optional\<ClickEffect | null>): T
 | T | 返回当前组件。 |
 
 ## ClickEffect对象说明
+
+定义点击效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

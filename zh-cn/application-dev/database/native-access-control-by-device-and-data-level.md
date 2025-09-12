@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
-<!--SE: @widecode; @htt1997-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
@@ -20,7 +21,7 @@
 
 ### 数据安全标签
 
-按照数据分类分级规范要求，可将数据分为S1、S2、S3、S4四个安全等级。
+按照数据分类分级规范要求，可将数据分为S1、S2、S3、S4四个安全等级，安全等级具体可见[OH_Rdb_SecurityLevel](../reference/apis-arkdata/capi-relational-store-h.md#oh_rdb_securitylevel)枚举。
 
   | 风险等级 | 风险标准 | 定义 | 样例 | 
 | -------- | -------- | -------- | -------- |

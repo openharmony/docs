@@ -1,6 +1,14 @@
 # @ohos.request (上传下载)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 request模块给应用提供上传下载文件、后台代理传输的基础功能。
+
+- request暂不支持在Extension中调用。
 
 > **说明：**
 >
@@ -22,11 +30,11 @@ import { request } from '@kit.BasicServicesKit';
 >
 > **网络类型**：下载支持自定义网络类型，可以在[DownloadConfig](#downloadconfig)中通过networkType配置成以下网络类型。<br/>
 >
-> **下载任务错误码**：下载[on('fail')<sup>7+</sup>](#onfail7)事件callback的错误参数、[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的failedReason字段取值。<br/>
+> **下载任务错误码**：下载[on('fail')](#onfail7)事件callback的错误参数、[getTaskInfo](#gettaskinfo9)返回值的failedReason字段取值。<br/>
 >
-> **下载任务暂停原因**：下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的pausedReason字段取值。<br/>
+> **下载任务暂停原因**：下载相关[getTaskInfo](#gettaskinfo9)返回值的pausedReason字段取值。<br/>
 >
-> **下载任务状态码**：下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的status字段取值。
+> **下载任务状态码**：下载相关[getTaskInfo](#gettaskinfo9)返回值的status字段取值。
 
 | 名称 | 参数类型 | 数值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -66,11 +74,15 @@ import { request } from '@kit.BasicServicesKit';
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
-创建并启动一个上传任务，使用Promise异步回调，支持HTTP协议。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的成功信息或错误信息。
+创建并启动一个上传任务，使用Promise异步回调，支持HTTP协议。通过[on('complete'|'fail')](#oncomplete--fail9)可获取任务上传时的成功信息或错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Upload
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -123,20 +135,20 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   }
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 
 ## request.uploadFile<sup>9+</sup>
 
 uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
-创建并启动一个上传任务，使用callback异步回调，支持HTTP协议。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的成功信息或错误信息。
+创建并启动一个上传任务，使用callback异步回调，支持HTTP协议。通过[on('complete'|'fail')](#oncomplete--fail9)可获取任务上传时的成功信息或错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Upload
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -185,10 +197,6 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   }
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ## request.upload<sup>(deprecated)</sup>
 
 upload(config: UploadConfig): Promise&lt;UploadTask&gt;
@@ -197,13 +205,13 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-> **说明：**
->
-> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Upload
+
+> **说明：**
+>
+> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.uploadFile](#requestuploadfile9)替代。
 
 **参数：**
 
@@ -228,8 +236,8 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 **示例：**
 
   ```js
-  let uploadTask;
-  let uploadConfig = {
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
@@ -238,7 +246,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   };
   request.upload(uploadConfig).then((data) => {
     uploadTask = data;
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
   })
   ```
@@ -252,13 +260,13 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-> **说明：**
->
-> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Upload
+
+> **说明：**
+>
+> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.uploadFile](#requestuploadfile9)替代。
 
 **参数：**
 
@@ -278,8 +286,8 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 **示例：**
 
   ```js
-  let uploadTask;
-  let uploadConfig = {
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
@@ -297,7 +305,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 ## UploadTask
 
-上传任务，使用下列方法前，需要先获取UploadTask对象，promise形式通过[request.uploadFile<sup>9+</sup>](#requestuploadfile9)获取，callback形式通过[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)获取。
+上传任务，使用下列方法前，需要先获取UploadTask对象，promise形式通过[request.uploadFile](#requestuploadfile9)获取，callback形式通过[request.uploadFile](#requestuploadfile9-1)获取。
 
 
 
@@ -307,17 +315,17 @@ on(type: 'progress', callback: (uploadedSize: number, totalSize: number) =&gt; v
 
 订阅上传任务进度事件，使用callback异步回调。
 
+**系统能力**：SystemCapability.MiscServices.Upload
+
 > **说明：**
 >
 > 应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
-
-**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示上传的进度信息，任务进度有进展时触发该事件。 |
+| type | string | 是 | 订阅的事件类型。取值为'progress'，表示上传的进度信息，任务进度有进展时触发该事件。 |
 | callback | function | 是 | 上传任务进度的回调函数，返回已上传文件大小和上传文件总大小。 |
 
   回调函数的参数：
@@ -601,6 +609,10 @@ delete(): Promise&lt;boolean&gt;
 
 **系统能力**：SystemCapability.MiscServices.Upload
 
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
+
 **返回值：**
 
   | 类型 | 说明 |
@@ -626,10 +638,6 @@ delete(): Promise&lt;boolean&gt;
   });
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
 
 ### delete<sup>9+</sup>
 
@@ -640,6 +648,10 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Upload
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **参数：**
 
@@ -668,10 +680,6 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   });
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
 
 ### remove<sup>(deprecated)</sup>
 
@@ -679,13 +687,13 @@ remove(): Promise&lt;boolean&gt;
 
 移除上传的任务，使用Promise异步回调。
 
-> **说明：**
->
-> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Upload
+
+> **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete](#delete9)替代。
 
 **返回值：**
 
@@ -706,7 +714,7 @@ remove(): Promise&lt;boolean&gt;
   ```js
   uploadTask.remove().then((result) => {
     console.info('Succeeded in removing the upload task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -718,13 +726,13 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 移除上传的任务，使用callback异步回调。
 
-> **说明：**
->
-> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-1)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Upload
+
+> **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete](#delete9-1)替代。
 
 **参数：**
 
@@ -750,8 +758,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
     }
     if (result) {
       console.info('Succeeded in removing the upload task.');
-    } else {
-      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
     }
   });
   ```
@@ -759,11 +765,11 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## UploadConfig<sup>6+</sup>
 上传任务的配置信息。
 
-**系统能力**：SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Upload
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#添加网络配置)功能。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#http拦截)功能。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 |  HTTP请求方法：POST、PUT，缺省为POST。使用POST新增资源，使用PUT修改资源。 |
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
@@ -773,14 +779,14 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
-上传任务的任务信息，是[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
+上传任务的任务信息，是[on('complete' | 'fail')](#oncomplete--fail9)和[off('complete' | 'fail')](#offcomplete--fail9)接口的回调参数。
 
-**系统能力**：SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Upload
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                        |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
 | path | string | 是 | 文件路径。                                         |
-| responseCode | number | 是 | 上传任务返回码。返回0表示上传任务成功，返回其它值表示上传任务失败，具体请参见message参数中的上传任务结果描述信息。<br/>此处推荐使用[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
+| responseCode | number | 是 | 上传任务返回码。返回0表示上传任务成功，返回其它值表示上传任务失败，具体请参见message参数中的上传任务结果描述信息。<br/>此处推荐使用[request.agent.create](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
 | message | string | 是 | 上传任务结果描述信息。                           |
 
 其中，responseCode包含的返回码值如下。
@@ -802,9 +808,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | 20  | 其他错误，请检查参数是否正确、检查网络状况是否允许，或重试任务。        |
 
 ## File
-[UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
+[UploadConfig](#uploadconfig6)中的文件列表。
 
-**系统能力**：SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Download
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -815,9 +821,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 ## RequestData
-[UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
+[UploadConfig](#uploadconfig6)中的表单数据。
 
-**系统能力**：SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Download
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -828,11 +834,15 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
-创建并启动一个下载任务，使用Promise异步回调，支持HTTP协议。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可以获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可以获取任务下载时的错误信息。
+创建并启动一个下载任务，使用Promise异步回调，支持HTTP协议。通过[on('complete'|'pause'|'remove')](#oncompletepauseremove7)可以获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')](#onfail7)可以获取任务下载时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -879,20 +889,20 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
   }
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 
 ## request.downloadFile<sup>9+</sup>
 
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void
 
-创建并启动一个下载任务，使用callback异步回调，支持HTTP协议。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
+创建并启动一个下载任务，使用callback异步回调，支持HTTP协议。通过[on('complete'|'pause'|'remove')](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')](#onfail7)可获取任务下载时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -932,16 +942,11 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      let downloadTask: request.DownloadTask = data;
     });
   } catch (err) {
     console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
   }
   ```
-
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## request.download<sup>(deprecated)</sup>
 
@@ -949,15 +954,15 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 创建并启动一个下载任务，使用Promise异步回调。
 
-> **说明：**
->
-> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)替代。
-
 **模型约束**：此接口仅可在FA模型下使用。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.downloadFile](#requestdownloadfile9)替代。
 
 **参数：**
 
@@ -982,11 +987,11 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 **示例：**
 
   ```js
-  let downloadTask;
+  let downloadTask: request.DownloadTask;
   // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
   })
   ```
@@ -998,15 +1003,15 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 创建并启动一个下载任务，使用callback异步回调。
 
-> **说明：**
->
-> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)替代。
-
 **模型约束**：此接口仅可在FA模型下使用。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API version 6 开始支持，从API version 9 开始废弃，建议使用[request.downloadFile](#requestdownloadfile9-1)替代。
 
 **参数：**
 
@@ -1026,7 +1031,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 **示例：**
 
   ```js
-  let downloadTask;
+  let downloadTask: request.DownloadTask;
   // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
@@ -1040,7 +1045,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 ## DownloadTask
 
-下载任务，使用下列方法前，需要先获取DownloadTask对象，promise形式通过[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)获取，callback形式通过[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)获取。
+下载任务，使用下列方法前，需要先获取DownloadTask对象，promise形式通过[request.downloadFile](#requestdownloadfile9)获取，callback形式通过[request.downloadFile](#requestdownloadfile9-1)获取。
 
 
 ### on('progress')
@@ -1049,11 +1054,11 @@ on(type: 'progress', callback: (receivedSize: number, totalSize: number) =&gt; v
 
 订阅下载任务进度事件，使用callback异步回调。
 
+**系统能力**：SystemCapability.MiscServices.Download
+
 > **说明：**
 >
 > 应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
-
-**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -1430,6 +1435,10 @@ delete(): Promise&lt;boolean&gt;
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+  
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **返回值：**
 
@@ -1456,8 +1465,7 @@ delete(): Promise&lt;boolean&gt;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-      let downloadTask: request.DownloadTask = data;
-      downloadTask.delete().then((result: boolean) => {
+      data.delete().then((result: boolean) => {
         console.info('Succeeded in removing the download task.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1470,11 +1478,6 @@ delete(): Promise&lt;boolean&gt;
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### delete<sup>9+</sup>
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
@@ -1484,6 +1487,10 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **参数：**
 
@@ -1498,6 +1505,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | The permissions check fails. |
+
 
 **示例：**
   <!--code_no_check-->
@@ -1526,11 +1534,6 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### getTaskInfo<sup>9+</sup>
 
 getTaskInfo(): Promise&lt;DownloadInfo&gt;
@@ -1540,6 +1543,10 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **返回值：**
 
@@ -1554,6 +1561,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | The permissions check fails. |
+
 
 **示例：**
   <!--code_no_check-->
@@ -1580,11 +1588,6 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
   } 
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### getTaskInfo<sup>9+</sup>
 
 getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
@@ -1594,6 +1597,10 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **参数：**
 
@@ -1636,11 +1643,6 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### getTaskMimeType<sup>9+</sup>
 
 getTaskMimeType(): Promise&lt;string&gt;
@@ -1650,6 +1652,10 @@ getTaskMimeType(): Promise&lt;string&gt;
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **返回值：**
 
@@ -1690,11 +1696,6 @@ getTaskMimeType(): Promise&lt;string&gt;
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### getTaskMimeType<sup>9+</sup>
 
 getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void
@@ -1704,6 +1705,10 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **参数：**
 
@@ -1746,11 +1751,6 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### suspend<sup>9+</sup>
 
 suspend(): Promise&lt;boolean&gt;
@@ -1760,6 +1760,10 @@ suspend(): Promise&lt;boolean&gt;
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **返回值：**
 
@@ -1800,11 +1804,6 @@ suspend(): Promise&lt;boolean&gt;
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### suspend<sup>9+</sup>
 
 suspend(callback: AsyncCallback&lt;boolean&gt;): void
@@ -1814,6 +1813,10 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **参数：**
 
@@ -1856,11 +1859,6 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### restore<sup>9+</sup>
 
 restore(): Promise&lt;boolean&gt;
@@ -1870,6 +1868,10 @@ restore(): Promise&lt;boolean&gt;
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **返回值：**
 
@@ -1910,11 +1912,6 @@ restore(): Promise&lt;boolean&gt;
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### restore<sup>9+</sup>
 
 restore(callback: AsyncCallback&lt;boolean&gt;): void
@@ -1924,6 +1921,10 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 **参数：**
 
@@ -1966,24 +1967,19 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
   }
   ```
 
-> **说明：**
->
-> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
-
-
 ### remove<sup>(deprecated)</sup>
 
 remove(): Promise&lt;boolean&gt;
 
 移除下载的任务，使用Promise异步回调。
 
-> **说明：**
->
-> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-2)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete](#delete9-2)替代。
 
 **返回值：**
 
@@ -2004,7 +2000,7 @@ remove(): Promise&lt;boolean&gt;
   ```js
   downloadTask.remove().then((result) => {
     console.info('Succeeded in removing the download task.');
-  }).catch ((err) => {
+  }).catch ((err: BusinessError) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2016,13 +2012,13 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 移除下载的任务，使用callback异步回调。
 
-> **说明：**
->
-> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-3)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete](#delete9-3)替代。
 
 **参数：**
 
@@ -2057,13 +2053,13 @@ query(): Promise&lt;DownloadInfo&gt;
 
 查询下载任务，返回下载任务的信息，使用Promise异步回调。
 
-> **说明：**
->
-> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo](#gettaskinfo9)替代。
 
 **返回值：**
 
@@ -2084,7 +2080,7 @@ query(): Promise&lt;DownloadInfo&gt;
   ```js
   downloadTask.query().then((downloadInfo) => {    
     console.info('Succeeded in querying the download task.')
-  }) .catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2096,13 +2092,13 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 查询下载任务，返回下载任务的信息，使用callback异步回调。
 
-> **说明：**
->
-> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9-1)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo](#gettaskinfo9-1)替代。
 
 **参数：**
 
@@ -2137,13 +2133,13 @@ queryMimeType(): Promise&lt;string&gt;
 
 查询下载任务的MimeType，使用Promise异步回调。
 
-> **说明：**
->
-> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType](#gettaskmimetype9)替代。
 
 **返回值：**
 
@@ -2164,7 +2160,7 @@ queryMimeType(): Promise&lt;string&gt;
   ```js
   downloadTask.queryMimeType().then((data) => {    
     console.info('Succeeded in querying the download MimeType.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2176,13 +2172,13 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void
 
 查询下载的任务的MimeType，使用callback异步回调。
 
-> **说明：**
->
-> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType](#gettaskmimetype9-1)替代。
 
 **参数：**
 
@@ -2217,13 +2213,13 @@ pause(): Promise&lt;void&gt;
 
 暂停下载正在运行中的任务，使用Promise异步回调。
 
-> **说明：**
->
-> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[suspend<sup>9+</sup>](#suspend9)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[suspend](#suspend9)替代。
 
 **返回值：**
 
@@ -2244,7 +2240,7 @@ pause(): Promise&lt;void&gt;
   ```js
   downloadTask.pause().then((result) => {    
     console.info('Succeeded in pausing the download task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2254,15 +2250,15 @@ pause(): Promise&lt;void&gt;
 
 pause(callback: AsyncCallback&lt;void&gt;): void
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[suspend<sup>9+</sup>](#suspend9-1)替代。
-
 暂停下载正在运行中的任务，使用callback异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[suspend](#suspend9-1)替代。
 
 **参数：**
 
@@ -2297,13 +2293,13 @@ resume(): Promise&lt;void&gt;
 
 重新启动被暂停的下载任务，使用Promise异步回调。
 
-> **说明：**
->
-> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore<sup>9+</sup>](#restore9)替代。
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore](#restore9)替代。
 
 **返回值：**
 
@@ -2324,7 +2320,7 @@ resume(): Promise&lt;void&gt;
   ```js
   downloadTask.resume().then((result) => {
     console.info('Succeeded in resuming the download task.')
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2334,15 +2330,15 @@ resume(): Promise&lt;void&gt;
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
-> **说明：**
->
-> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore<sup>9+</sup>](#restore9-1)替代。
-
 重新启动被暂停的下载任务，使用callback异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.MiscServices.Download
+
+> **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore](#restore9-1)替代。
 
 **参数：**
 
@@ -2378,7 +2374,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#添加网络配置)功能。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#http拦截)功能。 |
 | header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。|
 | enableMetered | boolean | 否 | 表示设置是否允许在按流量计费的连接下下载任务的配置信息。true表示允许，false表示不允许。默认值为false。<br/>**说明：** Wi-Fi为非计费网络，数据流量为计费网络。 |
 | enableRoaming | boolean | 否 | 表示设置是否允许在漫游网络中下载任务的配置信息。true表示允许，false表示不允许。默认值为false。|
@@ -2390,7 +2386,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## DownloadInfo<sup>7+</sup>
-下载任务信息，[getTaskInfo<sup>9+</sup>](#gettaskinfo9)接口的回调参数。
+下载任务信息，[getTaskInfo](#gettaskinfo9)接口的回调参数。
 
 **系统能力**：SystemCapability.MiscServices.Download
 
@@ -2464,7 +2460,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 值 | 说明        |
 | -------- | ------- |-----------|
-| COMPLETE | 'ohos.request.event.COMPLETE' | 表示自定义系统事件完成。在任务结束后会触发该事件，根据任务的成功或失败，事件的code返回0x40或者0x41。 |
+| COMPLETE | ohos.request.event.COMPLETE | 表示自定义系统事件完成。在任务结束后会触发该事件，根据任务的成功或失败，事件的code返回0x40或者0x41。 |
 
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。
@@ -2474,7 +2470,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | path | string | 是 | 文件路径。<br/>- 相对路径，位于调用方的缓存路径下。<br/>例如："./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>- internal协议路径，支持"internal://"及其子路径。internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。<br/>例如："internal://cache/path/to/file.txt"。<br/>- 应用沙箱目录，只支持到base及其子目录下。<br/>例如："/data/storage/el1/base/path/to/file.txt"。<br/>- file协议路径，必须匹配应用包名，只支持到base及其子目录下。<br/>例如："file://com.example.test/data/storage/el2/base/file.txt"。<br/>- 用户公共文件，仅支持上传任务。<br/>例如："file://media/Photo/path/to/file.img"。仅支持前台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimetype，通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API Version 18 开始废弃，建议使用contentType替代。 |
+| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimeType，通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API version 18 开始废弃，建议使用contentType替代。 |
 | contentType<sup>18+</sup> | string | 否 | 文件内容类型，默认值为文件名后缀。该选项会被填写到HTTP表单指定的Content-Type字段中。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | extras | object | 否 | 文件信息的附加内容，该参数不会体现在HTTP请求中。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2501,11 +2497,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>- UPLOAD表示上传任务。<br/>- DOWNLOAD表示下载任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#添加网络配置)功能。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#http拦截)功能。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | mode | [Mode](#mode10) | 否 | 任务模式，默认为后台任务。从API version 20开始，下载到用户文件场景必须为request.agent.Mode.FOREGROUND。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。<br/>从API version 20开始，下载到用户文件场景必须为true。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。<br/>从API version 20开始，下载到用户文件场景必须为true。<br/>设置为 `true` 时，不建议创建多个任务同时往同一个文件下载内容，会导致文件内容混乱。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | method | string | 否 | 上传或下载HTTP的标准方法，包括GET、POST和PUT，不区分大小写。<br/>- 上传时，使用PUT或POST，默认值为PUT。<br/>- 下载时，使用GET或POST，默认值为GET。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>- 上传请求，默认的Content-Type为"multipart/form-data"。<br/>- 下载请求，默认的Content-Type为"application/json"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | - 下载时，data为字符串类型，通常情况下使用json格式（object将被转换为json文本），默认为空。<br/>- 上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;。从API version 15开始，创建单个任务可以上传最多100个文件。默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2572,6 +2568,10 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
+> **说明：**
+>
+> API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能会导致握手超时，进而引发TIMEOUT错误。
+
 | 名称 | 值 | 说明                                                                             |
 | -------- | -------- |--------------------------------------------------------------------------------|
 | OTHERS | 0xFF | 表示其他故障。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                        |
@@ -2585,10 +2585,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | SSL<sup>12+</sup> | 0x70 | 表示SSL连接错误，例如：证书错误、证书校验失败错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | REDIRECT<sup>12+</sup> | 0x80 | 表示重定向错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
 | LOW_SPEED<sup>20+</sup>  | 0x90 | 表示任务速度过低。                    |
-
-> **说明：**
->
-> API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能会导致握手超时，进而引发TIMEOUT错误。
 
 ## Filter<sup>10+</sup>
 过滤条件。
@@ -2611,8 +2607,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | saveas | string | 否 | 保存下载文件的路径。 |
-| url | string | 否 | 任务的url。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)进行查询。 |
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)进行查询。 |
+| url | string | 否 | 任务的url。<br/>- 通过[request.agent.show](#requestagentshow10-1)、[request.agent.touch](#requestagenttouch10-1)进行查询。 |
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。<br/>- 通过[request.agent.show](#requestagentshow10-1)、[request.agent.touch](#requestagenttouch10-1)进行查询。 |
 | tid | string | 是 | 任务id。 |
 | title | string | 是 | 任务标题。 |
 | description | string | 是 | 任务描述。 |
@@ -2622,7 +2618,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。<br/>- false：代表仅完成或失败的通知。<br/>- true，发出每个进度已完成或失败的通知。 |
-| ctime | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search<sup>10+</sup>](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。|
+| ctime | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。|
 | mtime | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。|
 | retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。<br/>- true：是 <br/>- false：否 |
 | tries | number | 是 | 任务的尝试次数。 |
@@ -2692,7 +2688,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ## Timeout<sup>20+</sup>
 
-任务的超时配置。
+任务的超时配置。任务处于等待状态的时间不参与计算，上传下载任务会存在以下任务等待的原因:[WaitingReason<sup>20+</sup>](#waitingreason20)。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
@@ -2703,7 +2699,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## Task<sup>10+</sup> 
-上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
+上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create](#requestagentcreate10-1)获取，callback形式通过[request.agent.create](#requestagentcreate10)获取。
 
 ### 属性
 包括任务id和任务的配置信息。
@@ -2712,14 +2708,14 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
+> **说明：**
+>
+> Task对象及其挂载回调函数会在调用remove方法后释放并被系统自动回收。
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | tid | string | 是 | 任务id，由系统自动生成且唯一。 |
 | config | [Config](#config10) | 是 | 任务的配置信息。 |
-
-> **说明：**
->
-> Task对象及其挂载回调函数会在调用remove方法后释放并被系统自动回收。
 
 ### on('progress')<sup>10+</sup>
 
@@ -2730,6 +2726,10 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -2801,10 +2801,6 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### on('completed')<sup>10+</sup>
 
 on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void): void
@@ -2814,6 +2810,10 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -2885,19 +2885,19 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### on('failed')<sup>10+</sup>
 
 on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-订阅任务失败事件，使用callback异步回调。可通过调用[request.agent.show<sup>10+</sup>](#requestagentshow10-1)查看错误原因。
+订阅任务失败事件，使用callback异步回调。可通过调用[request.agent.show](#requestagentshow10-1)查看错误原因。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -2969,10 +2969,6 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### on('pause')<sup>11+</sup>
 
 on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): void
@@ -2980,6 +2976,10 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
 订阅任务暂停事件，使用callback异步回调。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3024,7 +3024,7 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
-    method: "PUT",
+    method: "POST",
     data: attachments,
     saveas: "./",
     network: request.agent.Network.CELLULAR,
@@ -3042,20 +3042,19 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### on('resume')<sup>11+</sup>
 
@@ -3064,6 +3063,10 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
 订阅任务恢复事件，使用callback异步回调。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3126,22 +3129,24 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### on('remove')<sup>11+</sup>
 
@@ -3150,6 +3155,10 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
 订阅任务移除事件，使用callback异步回调。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3212,20 +3221,19 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### on('response')<sup>12+</sup>
 
@@ -3236,6 +3244,10 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3301,10 +3313,6 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### on('faultOccur')<sup>20+</sup>
 
 on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
@@ -3312,6 +3320,10 @@ on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
 订阅任务失败原因，使用callback形式返回结果。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3377,10 +3389,6 @@ on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### on('wait')<sup>20+</sup>
 
 on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
@@ -3388,6 +3396,10 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
 订阅任务等待原因，使用callback形式返回结果。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3453,10 +3465,6 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('progress')<sup>10+</sup>
 
 off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3466,6 +3474,10 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3546,10 +3558,6 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('completed')<sup>10+</sup>
 
 off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3559,6 +3567,10 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3639,10 +3651,6 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('failed')<sup>10+</sup>
 
 off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3652,6 +3660,10 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3731,10 +3743,6 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('pause')<sup>11+</sup>
 
 off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3742,6 +3750,10 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
 取消订阅任务暂停事件。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3821,10 +3833,6 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('resume')<sup>11+</sup>
 
 off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3832,6 +3840,10 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
 取消订阅任务恢复事件。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -3911,10 +3923,6 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('remove')<sup>11+</sup>
 
 off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3922,6 +3930,10 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
 取消订阅任务移除事件。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -4001,10 +4013,6 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('response')<sup>12+</sup>
 
 off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
@@ -4014,6 +4022,10 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -4087,10 +4099,6 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('faultOccur')<sup>20+</sup>
 
 off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
@@ -4099,6 +4107,10 @@ off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
 
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -4172,10 +4184,6 @@ off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### off('wait')<sup>20+</sup>
 
 off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
@@ -4184,6 +4192,10 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
 
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -4257,10 +4269,6 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### start<sup>10+</sup>
 
 start(callback: AsyncCallback&lt;void&gt;): void
@@ -4275,6 +4283,10 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -4336,10 +4348,6 @@ start(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### start<sup>10+</sup>
 
 start(): Promise&lt;void&gt;
@@ -4354,6 +4362,10 @@ start(): Promise&lt;void&gt;
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **返回值：** 
 
@@ -4413,10 +4425,6 @@ start(): Promise&lt;void&gt;
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ### pause<sup>10+</sup>
 
 pause(callback: AsyncCallback&lt;void&gt;): void
@@ -4470,9 +4478,12 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4539,9 +4550,12 @@ pause(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -4609,11 +4623,17 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4683,11 +4703,17 @@ resume(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -4754,9 +4780,12 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4826,9 +4855,12 @@ stop(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    // 等待1秒再执行下一步操作，以防异步乱序
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -4907,12 +4939,16 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数。当创建上传或下载任务成功，err为undefined，data为获取到的Task对象；否则为错误对象。 |
 
 **错误码：**
@@ -4977,10 +5013,6 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   });
   ```
 
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ## request.agent.create<sup>10+</sup>
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
@@ -4993,6 +5025,10 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 **参数：**
 
@@ -5066,10 +5102,6 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## request.agent.getTask<sup>11+</sup>
 
@@ -5501,7 +5533,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
 createGroup(config: GroupConfig): Promise\<string\>
 
-根据[GroupConfig<sup>15+</sup>](#groupconfig15)分组条件创建分组，并返回分组id。使用Promise异步回调。
+根据[GroupConfig](#groupconfig15)分组条件创建分组，并返回分组id。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 

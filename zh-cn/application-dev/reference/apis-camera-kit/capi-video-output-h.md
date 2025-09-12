@@ -1,4 +1,10 @@
 # video_output.h
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -39,11 +45,11 @@
 | [Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)](#oh_videooutput_deleteprofile) | - | 删除视频配置文件实例。 |
 | [ Camera_ErrorCode OH_VideoOutput_IsMirrorSupported(Camera_VideoOutput* videoOutput, bool* isSupported)](#oh_videooutput_ismirrorsupported) | - | 判断当前视频输出是否支持镜像。 |
 | [ Camera_ErrorCode OH_VideoOutput_EnableMirror(Camera_VideoOutput* videoOutput, bool mirrorMode)](#oh_videooutput_enablemirror) | - | 打开/关闭当前视频输出镜像功能。 |
-| [ Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutput, int deviceDegree,Camera_ImageRotation* imageRotation)](#oh_videooutput_getvideorotation) | - | 获取当前视频输出应当设置的旋转角度。 |
-| [Camera_ErrorCode OH_VideoOutput_GetSupportedFrameRates(Camera_VideoOutput* videoOutput,Camera_FrameRateRange** frameRateRange, uint32_t* size)](#oh_videooutput_getsupportedframerates) | - | 获取支持的视频输出帧率列表。 |
-| [Camera_ErrorCode OH_VideoOutput_DeleteFrameRates(Camera_VideoOutput* videoOutput,Camera_FrameRateRange* frameRateRange)](#oh_videooutput_deleteframerates) | - | 删除帧率列表。 |
+| [ Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutput, int deviceDegree, Camera_ImageRotation* imageRotation)](#oh_videooutput_getvideorotation) | - | 获取当前视频输出应当设置的旋转角度。 |
+| [Camera_ErrorCode OH_VideoOutput_GetSupportedFrameRates(Camera_VideoOutput* videoOutput, Camera_FrameRateRange** frameRateRange, uint32_t* size)](#oh_videooutput_getsupportedframerates) | - | 获取支持的视频输出帧率列表。 |
+| [Camera_ErrorCode OH_VideoOutput_DeleteFrameRates(Camera_VideoOutput* videoOutput, Camera_FrameRateRange* frameRateRange)](#oh_videooutput_deleteframerates) | - | 删除帧率列表。 |
 | [Camera_ErrorCode OH_VideoOutput_SetFrameRate(Camera_VideoOutput* videoOutput,int32_t minFps, int32_t maxFps)](#oh_videooutput_setframerate) | - | 设置视频输出帧率。 |
-| [Camera_ErrorCode OH_VideoOutput_GetActiveFrameRate(Camera_VideoOutput* videoOutput,Camera_FrameRateRange* frameRateRange)](#oh_videooutput_getactiveframerate) | - | 获取当前视频输出帧率。 |
+| [Camera_ErrorCode OH_VideoOutput_GetActiveFrameRate(Camera_VideoOutput* videoOutput, Camera_FrameRateRange* frameRateRange)](#oh_videooutput_getactiveframerate) | - | 获取当前视频输出帧率。 |
 
 ## 函数说明
 
@@ -306,7 +312,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
-| bool* isSupported | 当前视频输出是否支持镜像。 |
+| bool* isSupported | 当前视频输出是否支持镜像。true表示当前视频输出支持镜像，false表示不支持。 |
 
 **返回：**
 
@@ -332,7 +338,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
-| bool mirrorMode | TRUE表示打开镜像功能，FALSE表示关闭镜像功能。 |
+| bool mirrorMode | 设备是否开启镜像功能。true表示打开镜像功能，false表示关闭镜像功能。 |
 
 **返回：**
 

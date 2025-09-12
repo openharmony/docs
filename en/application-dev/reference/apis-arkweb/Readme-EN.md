@@ -1,4 +1,10 @@
 # ArkWeb API Reference
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @ctqctq99-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 - ArkTS API<!--arkweb-arkts-->
   - @ohos.web.webview (Webview)<!--js-apis-webview-->
@@ -13,6 +19,7 @@
     - [Class (NativeMediaPlayerSurfaceInfo)](arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md)
     - [Class (PdfData)](arkts-apis-webview-PdfData.md)
     - [Class (ProxyConfig)](arkts-apis-webview-ProxyConfig.md)
+    - [Class (PrefetchOptions)](arkts-apis-webview-PrefetchOptions.md)
     - [Class (ProxyController)](arkts-apis-webview-ProxyController.md)
     - [Class (ProxyRule)](arkts-apis-webview-ProxyRule.md)
     - [Class (WebviewController)](arkts-apis-webview-WebviewController.md)
@@ -78,6 +85,7 @@
     - [native_interface_arkweb.h](capi-native-interface-arkweb-h.md)
   - Structs<!--arkweb-struct-->
     - [ArkWeb_AnyNativeAPI](capi-web-arkweb-anynativeapi.md)
+    - [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md)
     - [ArkWeb_SchemeHandler_](capi-web-arkweb-schemehandler.md)
     - [ArkWeb_ResourceHandler_](capi-web-arkweb-resourcehandler.md)
     - [ArkWeb_Response_](capi-web-arkweb-response.md)

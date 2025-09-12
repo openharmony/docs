@@ -1,4 +1,11 @@
 # SceneResource
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
+
 本模块提供3D图形中常用的基本资源类型。
 
 > **说明：** 
@@ -52,11 +59,13 @@ destroy(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function destroy() : void {
+function destroy(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      // 创建shader资源，路径和文件名可根据项目实际资源自定义
       let sceneResourceParameter: SceneResourceParameters = { name: "shaderResource",
         uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") };
       let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
@@ -72,13 +81,11 @@ function destroy() : void {
 ## Shader
 着色器，继承自[SceneResource](#sceneresource-1)。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| inputs | Record<string, number \| Vec2 \| Vec3 \| Vec4 \| Image> | 是 | 否 | 着色器输入。 |
+| inputs | Record<string, number \| [Vec2](js-apis-inner-scene-types.md#vec2) \| [Vec3](js-apis-inner-scene-types.md#vec3) \| [Vec4](js-apis-inner-scene-types.md#vec4) \| Image> | 是 | 否 | 着色器输入。 |
 
 ## MaterialType
 场景中物体材质类型枚举，定义材质的渲染方式。
@@ -104,8 +111,6 @@ function destroy() : void {
 ## Blend<sup>20+</sup>
 用于控制材质的透明效果。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -114,8 +119,6 @@ function destroy() : void {
 
 ## RenderSort<sup>20+</sup>
 定义材质物体的渲染顺序，控制不同物体在渲染管线中的绘制先后。
-
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -126,8 +129,6 @@ function destroy() : void {
 
 ## Material
 材质类型，继承自[SceneResource](#sceneresource-1)。
-
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -143,8 +144,6 @@ function destroy() : void {
 ## MaterialProperty<sup>20+</sup>
 材质属性接口，用于定义材质所使用的纹理、属性因子及纹理采样器信息。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -155,7 +154,6 @@ function destroy() : void {
 
 ## MetallicRoughnessMaterial<sup>20+</sup>
 用于实现真实感外观的材质资源。采用基于物理渲染（PBR）的金属-粗糙度模型，通过调节金属度和粗糙度参数，可模拟金属、塑料等不同材质的表面光照与反射效果，继承自[Material](#material)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -174,7 +172,6 @@ function destroy() : void {
 
 ## ShaderMaterial
 着色器材质，继承自[Material](#material)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -207,8 +204,6 @@ function destroy() : void {
 ## Sampler<sup>20+</sup>
 采样器接口，用于定义纹理贴图采样时的过滤方式。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -221,7 +216,6 @@ function destroy() : void {
 
 ## SubMesh
 子网格类型。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -234,8 +228,6 @@ function destroy() : void {
 ## Morpher<sup>20+</sup>
 用于控制3D模型的形变，通过调整不同形变目标的权重，实现模型的动态变形效果。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -244,7 +236,6 @@ function destroy() : void {
 
 ## Mesh
 网格类型，继承自[SceneResource](#sceneresource-1)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -261,6 +252,7 @@ function destroy() : void {
 
 ## Animation
 动画类型，继承自[SceneResource](#sceneresource-1)。
+
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -290,10 +282,11 @@ onFinished(callback: Callback\<void>): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function onFinished() : void {
+function onFinished(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 注册回调函数
       anim.onFinished(()=>{
@@ -323,10 +316,11 @@ onStarted(callback: Callback\<void>): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function onStarted() : void {
+function onStarted(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 注册回调函数
       anim.onStarted(()=>{
@@ -349,10 +343,11 @@ pause(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function pause() : void {
+function pause(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 暂停动画
       anim.pause();
@@ -373,10 +368,11 @@ restart(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function restart() : void {
+function restart(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 重启动画
       anim.restart();
@@ -402,10 +398,11 @@ seek(position: number): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function seek() : void {
+function seek(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 指定动画的播放进度到10%
       anim.seek(0.1);
@@ -426,10 +423,11 @@ start(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function start() : void {
+function start(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 开始动画
       anim.start();
@@ -450,10 +448,11 @@ stop(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function stop() : void {
+function stop(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 停止播放动画，并将动画的进度设置到未开始状态
       anim.stop();
@@ -473,10 +472,11 @@ finish(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function finish() : void {
+function finish(): void {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 直接跳转到动画的最后，并将动画的进度设置到已结束状态。
       anim.finish();
@@ -499,7 +499,6 @@ function finish() : void {
 
 ## Environment
 环境类型，继承自[SceneResource](#sceneresource-1)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -515,7 +514,6 @@ function finish() : void {
 
 ## Image
 图片类型，继承自[SceneResource](#sceneresource-1)。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 

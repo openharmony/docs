@@ -1,4 +1,10 @@
 # Interface (PhotoOutput)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -26,7 +32,7 @@ capture(callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当以默认设置触发拍照成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -57,7 +63,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(): Promise\<void\>
 
-以默认设置触发一次拍照，通过Promise获取结果。
+以默认设置触发一次拍照。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -67,7 +73,7 @@ capture(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -150,7 +156,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(setting: PhotoCaptureSetting): Promise\<void\>
 
-以指定参数触发一次拍照，通过Promise获取结果。
+以指定参数触发一次拍照。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -166,7 +172,7 @@ capture(setting: PhotoCaptureSetting): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -229,6 +235,7 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { camera } from '@kit.CameraKit';
 
 function callback(err: BusinessError, photo: camera.Photo): void {
   if (err !== undefined && err.code !== 0) {
@@ -628,7 +635,7 @@ setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 ```ts
 function setMovingPhotoVideoCodecTypes(photoOutput: camera.PhotoOutput, videoCodecType: camera.VideoCodecType): void {
-   photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
+  photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
 }
 ```
 
@@ -905,7 +912,7 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'estimatedCaptureDuration'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
-| callback | AsyncCallback\<number> | 是   | 回调函数，用于获取预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。                                 |
+| callback | AsyncCallback\<number> | 是   | 回调函数，用于获取预估的单次拍照底层出sensor采集帧时间，单位：毫秒。如果上报-1，代表没有预估时间。                                 |
 
 **示例：**
 
@@ -1070,7 +1077,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | 是   | 设备旋转角度 |
+| deviceDegree | number | 是   | 设备旋转角度，单位度，取值范围：[0, 360]。<br>若入参超过该范围，则取入参除以360的余数。 |
 
 **返回值：**
 
@@ -1090,6 +1097,8 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : number): camera.ImageRotation {
   let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
@@ -1168,5 +1177,100 @@ off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 ```ts
 function unregisterPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('captureStart');
+}
+```
+
+## isPhotoQualityPrioritizationSupported<sup>21+</sup>
+
+isPhotoQualityPrioritizationSupported(quality: PhotoQualityPrioritization): boolean
+
+检查是否支持指定的拍照画质优先策略。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| ----------- | ---------------------- | ---- | ------------------------------------------ |
+| quality | [PhotoQualityPrioritization](arkts-apis-camera-e.md#photoqualityprioritization21) | 是  | 要检查的拍照画质优先策略。 |
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 是否支持指定的拍照画质优先策略。true表示支持，false表示不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID      | 错误信息     |
+| ------------- | --------------- |
+| 7400201 |  Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import camera from '@ohos.multimedia.camera';
+let photoOutput: camera.PhotoOutput;
+
+function isPhotoQualityPrioritizationSupported(quality: camera.PhotoQualityPrioritization): boolean {
+  let isSupported: boolean = false;
+  try {
+    isSupported = photoOutput.isPhotoQualityPrioritizationSupported(quality);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The isPhotoQualityPrioritizationSupported call failed. error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+## setPhotoQualityPrioritization<sup>21+</sup>
+
+setPhotoQualityPrioritization(quality: PhotoQualityPrioritization): void
+
+设置拍照画质优先策略。
+
+进行设置之前，需要先检查：
+
+1. 设备是否支持指定的拍照画质优先策略，可使用方法[isPhotoQualityPrioritizationSupported](#isphotoqualityprioritizationsupported21)。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| quality  | [PhotoQualityPrioritization](arkts-apis-camera-e.md#photoqualityprioritization21) | 是  | 要设置的拍照画质优先策略。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+| -------- |----------------------------------------------- |
+| 7400102  | Operation not allowed. |
+| 7400201  | Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import camera from '@ohos.multimedia.camera';
+let photoOutput: camera.PhotoOutput;
+
+function setPhotoQualityPrioritization(quality: camera.PhotoQualityPrioritization): void {
+  try {
+    photoOutput.setPhotoQualityPrioritization(quality);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setPhotoQualityPrioritization call failed. error code: ${err.code}`);
+  }
 }
 ```

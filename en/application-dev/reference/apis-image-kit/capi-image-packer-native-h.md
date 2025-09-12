@@ -1,8 +1,13 @@
 # image_packer_native.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_packer_native.h** file declares the APIs for image encoding.
+The file declares the APIs for image encoding.
 
 **Library**: libimage_packer.so
 

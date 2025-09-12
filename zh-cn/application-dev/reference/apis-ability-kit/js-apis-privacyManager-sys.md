@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 本模块主要提供权限使用记录等隐私管理接口。
 
@@ -39,7 +40,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | permissionName | Permissions | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
-| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | 否   | 添加权限使用记录可选参数，默认值NORMAL_TYPE，从API version 12开始支持。 |
+| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | 否   | 添加权限使用记录可选参数，默认值为NORMAL_TYPE，从API version 12开始支持。 |
 
 **返回值：**
 
@@ -68,20 +69,20 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
-  console.log('addPermissionUsedRecord success');
+  console.info('addPermissionUsedRecord success');
 }).catch((err: BusinessError) => {
-  console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  console.error(`addPermissionUsedRecord fail, code: ${err.code}, message: ${err.message}`);
 });
 // with options param
 let options: privacyManager.AddPermissionUsedRecordOptions = {
   usedType: privacyManager.PermissionUsedType.PICKER_TYPE
 };
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
-  console.log('addPermissionUsedRecord success');
+  console.info('addPermissionUsedRecord success');
 }).catch((err: BusinessError) => {
-  console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  console.error(`addPermissionUsedRecord fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -127,12 +128,12 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
   if (err) {
-    console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+    console.error(`addPermissionUsedRecord fail, code: ${err.code}, message: ${err.message}`);
   } else {
-    console.log('addPermissionUsedRecord success');
+    console.info('addPermissionUsedRecord success');
   }
 });
 ```
@@ -192,9 +193,9 @@ let request: privacyManager.PermissionUsedRequest = {
 };
 
 privacyManager.getPermissionUsedRecord(request).then((data) => {
-  console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+  console.info(`getPermissionUsedRecord success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedRecord fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -249,9 +250,9 @@ let request: privacyManager.PermissionUsedRequest = {
 
 privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
   if (err) {
-    console.error(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+    console.error(`getPermissionUsedRecord fail, code: ${err.code}, message: ${err.message}`);
   } else {
-    console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+    console.info(`getPermissionUsedRecord success, result: ${data}`);
   }
 });
 ```
@@ -299,9 +300,9 @@ import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 privacyManager.setPermissionUsedRecordToggleStatus(true).then(() => {
-  console.log('setPermissionUsedRecordToggleStatus success');
+  console.info('setPermissionUsedRecordToggleStatus success');
 }).catch((err: BusinessError) => {
-  console.error(`setPermissionUsedRecordToggleStatus fail, err->${JSON.stringify(err)}`);
+  console.error(`setPermissionUsedRecordToggleStatus fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -338,14 +339,14 @@ import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 privacyManager.getPermissionUsedRecordToggleStatus().then((res) => {
-  console.log('getPermissionUsedRecordToggleStatus success');
+  console.info('getPermissionUsedRecordToggleStatus success');
   if (res == true) {
-    console.log('get status is TRUE');
+    console.info('get status is TRUE');
   } else {
-    console.log('get status is FALSE');
+    console.info('get status is FALSE');
   }
 }).catch((err: BusinessError) => {
-  console.error(`getPermissionUsedRecordToggleStatus fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedRecordToggleStatus fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -396,11 +397,11 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-  console.log('startUsingPermission success');
+  console.info('startUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`startUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -458,33 +459,33 @@ import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { rpc } from '@kit.IPCKit'
 
-let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 也可以通过bundleManager.getBundleInfoForSelfSync获取accessTokenId
+let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 可以通过getApplicationInfo获取accessTokenId。
 let pid: number = rpc.IPCSkeleton.getCallingPid();
 let usedType: privacyManager.PermissionUsedType = privacyManager.PermissionUsedType.PICKER_TYPE;
 
 // without pid and usedType
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-  console.log('startUsingPermission success');
+  console.info('startUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`startUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 // with pid
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', pid).then(() => {
-  console.log('startUsingPermission success');
+  console.info('startUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`startUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 // with usedType
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', -1, usedType).then(() => {
-  console.log('startUsingPermission success');
+  console.info('startUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`startUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 // with pid and usedType
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', pid, usedType).then(() => {
-  console.log('startUsingPermission success');
+  console.info('startUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`startUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -530,12 +531,12 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
   if (err) {
-    console.error(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`startUsingPermission fail, code: ${err.code}, message: ${err.message}`);
   } else {
-    console.log('startUsingPermission success');
+    console.info('startUsingPermission success');
   }
 });
 ```
@@ -585,11 +586,11 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-  console.log('stopUsingPermission success');
+  console.info('stopUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`stopUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -642,21 +643,21 @@ import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { rpc } from '@kit.IPCKit'
 
-let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 也可以通过bundleManager.getBundleInfoForSelfSync获取accessTokenId
+let tokenID: number = rpc.IPCSkeleton.getCallingTokenId(); // 也可以通过getApplicationInfo获取accessTokenId。
 let pid: number = rpc.IPCSkeleton.getCallingPid();
 
 // without pid
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-  console.log('stopUsingPermission success');
+  console.info('stopUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`stopUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 
 // with pid
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', pid).then(() => {
-  console.log('stopUsingPermission success');
+  console.info('stopUsingPermission success');
 }).catch((err: BusinessError) => {
-  console.error(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`stopUsingPermission fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -700,12 +701,12 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 import { privacyManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId。
 privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
   if (err) {
-    console.error(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`stopUsingPermission fail, code: ${err.code}, message: ${err.message}`);
   } else {
-    console.log('stopUsingPermission success');
+    console.info('stopUsingPermission success');
   }
 });
 ```
@@ -756,10 +757,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let permissionList: Array<Permissions> = [];
 try {
     privacyManager.on('activeStateChange', permissionList, (data: privacyManager.ActiveChangeResponse) => {
-        console.debug('receive permission state change, data:' + JSON.stringify(data));
+        console.debug(`receive permission state change, data: + ${data}`);
     });
 } catch(err) {
-    console.error(`catch err->${JSON.stringify(err)}`);
+    console.error(`Catch errcode: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -769,7 +770,7 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 
 取消订阅指定权限列表的权限使用状态变更事件。
 
-取消订阅不传callback时，批量删除permissionList下面的所有callback。
+取消订阅时，若不传入callback，则批量删除permissionList下的所有callback。
 
 **需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
 
@@ -806,13 +807,13 @@ let permissionList: Array<Permissions> = [];
 try {
     privacyManager.off('activeStateChange', permissionList);
 } catch(err) {
-    console.error(`catch err->${JSON.stringify(err)}`);
+    console.error(`Catch errcode: ${err.code}, message: ${err.message}`);
 }
 ```
 
 ## privacyManager.getPermissionUsedTypeInfos<sup>12+</sup>
 
-getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
+getPermissionUsedTypeInfos(tokenId?: number | null, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
 
 查询设备上指定应用访问敏感权限时的信息（包括敏感权限名称、敏感权限访问方式）。
 
@@ -824,7 +825,7 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenId            | number                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。   |
+| tokenId            | number \| null                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。从API20，新增支持null类型。   |
 | permissionName     | Permissions           | 否   | 被访问的敏感权限名称，为空时标识查询所有敏感权限的访问类型信息。   |
 
 **返回值：**
@@ -841,7 +842,6 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 | -------- | -------- |
 | 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
 | 202 | Not system app. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12100001 | Invalid parameter. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
 | 12100003 | The input permissionName does not exist. |
@@ -852,37 +852,37 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 import { privacyManager, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId
+let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId。
 let permissionName: Permissions = 'ohos.permission.CAMERA';
 // without any param
 privacyManager.getPermissionUsedTypeInfos().then(() => {
-  console.log('getPermissionUsedTypeInfos success');
+  console.info('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, code: ${err.code}, message: ${err.message}`);
 });
 // only tokenId
 privacyManager.getPermissionUsedTypeInfos(tokenId).then(() => {
-  console.log('getPermissionUsedTypeInfos success');
+  console.info('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, code: ${err.code}, message: ${err.message}`);
 });
 // only permissionName
 privacyManager.getPermissionUsedTypeInfos(null, permissionName).then(() => {
-  console.log('getPermissionUsedTypeInfos success');
+  console.info('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, code: ${err.code}, message: ${err.message}`);
 });
 // tokenId and permissionName
 privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
-  console.log('getPermissionUsedTypeInfos success');
+  console.info('getPermissionUsedTypeInfos success');
 }).catch((err: BusinessError) => {
-  console.error(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionUsedTypeInfos fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
 ## PermissionUsageFlag
 
-使用记录的查询方式的枚举。
+表示使用记录的查询方式的枚举。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -948,8 +948,8 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | lastAccessTime | number         | 否    | 否    | 最后一次访问时间，单位：ms。 |
 | lastRejectTime | number         | 否    | 否    | 最后一次拒绝时间，单位：ms。 |
 | lastAccessDuration | number         | 否    | 否    | 最后一次访问时长，单位：ms。 |
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条记录。                                 |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条记录。                                 |
 
 ## UsedRecordDetail
 
@@ -986,12 +986,12 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| callingTokenId<sup>18+</sup> | number   | 否   | 是   | 接口调用方的应用身份标识，activeStatus是INACTIVE时该值无效。 |
+| callingTokenId<sup>18+</sup> | number   | 否   | 是   | 接口调用方的应用身份标识，当activeStatus为INACTIVE时该值无效。 |
 | tokenId        | number                 | 否   | 否   | 被订阅的应用身份标识。    |
 | permissionName | Permissions            | 否   | 否   | 权限使用状态发生变化的权限名。 |
 | deviceId       | string                 | 否   | 否   | 设备号。                 |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 否   | 否   | 权限使用状态变化类型。        |
-| usedType<sup>18+</sup> | [PermissionUsedType](#permissionusedtype12) | 否   | 是   | 敏感权限使用类型，activeStatus是INACTIVE时该值无效。 |
+| usedType<sup>18+</sup> | [PermissionUsedType](#permissionusedtype12) | 否   | 是   | 敏感权限使用类型，当activeStatus为INACTIVE时该值无效。 |
 
 ## PermissionUsedType<sup>12+</sup>
 
@@ -1001,8 +1001,8 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称                    | 值 | 说明              |
 | ----------------------- | -- | ---------------- |
-| NORMAL_TYPE             | 0  | 表示通过弹窗授权或设置授权的方式来使用敏感权限。   |
-| PICKER_TYPE             | 1  | 表示通过某个PICKER服务来使用敏感权限，此方式未授予权限。 |
+| NORMAL_TYPE             | 0  | 表示通过弹窗授权或设置授权来使用敏感权限。   |
+| PICKER_TYPE             | 1  | 表示通过某个PICKER服务来使用敏感权限，但此方式未授予权限。 |
 | SECURITY_COMPONENT_TYPE | 2  | 表示通过安全控件授权的方式来使用敏感权限。 |
 
 ## PermissionUsedTypeInfo<sup>12+</sup>

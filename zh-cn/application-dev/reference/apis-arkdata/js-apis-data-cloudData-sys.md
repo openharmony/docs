@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @lvcong_oh-->
-<!--SE: @lvcong_oh-->
-<!--TSE: @ltttjs; @logic42-->
+<!--Designer: @lvcong_oh-->
+<!--Tester: @ltttjs; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 端云服务提供端云协同、端云共享和端云策略。
 

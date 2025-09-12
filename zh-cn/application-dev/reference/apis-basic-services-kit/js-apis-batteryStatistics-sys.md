@@ -1,5 +1,12 @@
 # @ohos.batteryStatistics (耗电统计)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 该模块提供软硬件耗电统计信息的查询接口。
 
 > **说明：**
@@ -273,9 +280,9 @@ try {
 
 | 名称  | 类型                                | 只读 | 可选 | 说明                   |
 | ----- | ----------------------------------- | ---- | ---- | ---------------------- |
-| uid   | number                              | 是   | 否   | 耗电信息相关的UID。    |
-| type  | [ConsumptionType](#consumptiontype) | 是   | 否   | 耗电信息相关的类型。   |
-| power | number                              | 是   | 否   | 耗电的值，单位毫安时。 |
+| uid   | number                              | 否   | 否   | 耗电信息相关的UID。    |
+| type  | [ConsumptionType](#consumptiontype) | 否   | 否   | 耗电信息相关的类型。   |
+| power | number                              | 否   | 否   | 耗电的值，单位毫安时。 |
 
 ## ConsumptionType
 

@@ -1,5 +1,12 @@
 # advertisement (广告内容)
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
+
 本模块提供返回广告的能力。
 
 > **说明：**<br/>

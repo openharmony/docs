@@ -1,4 +1,12 @@
 # 空间音频管理
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
+
+从API 18开始，支持空间音频管理。
 
 空间音频是一种能够将传统的立体声体验扩展到三维空间的音频技术，在单声道、立体声、环绕声基础上，增加高度感知，营造全方位的听音体验的音频技术。空间音频为用户提供沉浸的、有互动的、有空间感的“声”临其境的音频体验。
 
@@ -27,15 +35,9 @@ Audio Vivid是基于AI技术的音频编解码标准，由世界超高清视频�
 
   ```ts
   import { audio } from '@kit.AudioKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  const deviceDescriptors: audio.AudioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
-  for (let i = 0; i < deviceDescriptors.length; i++) {
-    console.info('deviceDescriptor deviceRole: ${deviceDescriptors[i].deviceRole}');
-    console.info('deviceDescriptor deviceType: ${deviceDescriptors[i].deviceType}');
-    console.info('deviceDescriptor name: ${deviceDescriptors[i].name}');
-    console.info('deviceDescriptor spatializationSupported: ${deviceDescriptors[i].spatializationSupported}');
-  }
+  let deviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+  console.info(`Succeeded in getting devices, AudioDeviceDescriptors: ${JSON.stringify(deviceDescriptors)}.`);
   ```
 
 ### 查询当前发声设备的空间音频渲染效果开关状态
@@ -48,8 +50,8 @@ Audio Vivid是基于AI技术的音频编解码标准，由世界超高清视频�
   ```ts
   import { audio } from '@kit.AudioKit';
 
-  let isSpatializationEnabledForCurrentDevice: boolean = audioSpatializationManager.isSpatializationEnabledForCurrentDevice();
-  console.info(`AudioSpatializationManager isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+  let isSpatializationEnabledForCurrentDevice = audioSpatializationManager.isSpatializationEnabledForCurrentDevice();
+  console.info(`Succeeded in using isSpatializationEnabledForCurrentDevice function, IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`);
   ```
 
 **订阅当前发声设备空间音频渲染效果的开关状态变化事件**
@@ -62,7 +64,7 @@ Audio Vivid是基于AI技术的音频编解码标准，由世界超高清视频�
   import { audio } from '@kit.AudioKit';
 
   audioSpatializationManager.on('spatializationEnabledChangeForCurrentDevice', (isSpatializationEnabledForCurrentDevice: boolean) => {
-    console.info(`isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+    console.info(`Succeeded in using on function, IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`);
   });
   ```
 

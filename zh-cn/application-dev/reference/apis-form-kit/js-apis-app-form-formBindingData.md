@@ -1,5 +1,11 @@
 # @ohos.app.form.formBindingData (卡片数据绑定类)
 
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 卡片数据绑定模块提供卡片数据绑定的能力。包括FormBindingData对象的创建、相关信息的描述。
 
 > **说明：**
@@ -56,7 +62,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 | 参数名 | 类型           | 必填 | 说明                                                         |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object\|string | 否   | 卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。其中图片数据以'formImages'作为标识，内容为图片标识与图片文件描述符的键值对{'formImages': {'key1': fd1, 'key2': fd2}}。<br>**说明：** 在[卡片刷新](../../form/arkts-ui-widget-interaction-overview.md)过程中，卡片UI通过@LocalStorageProp接收卡片数据时，FormBindingData对象会序列化，即卡片数据会转换成string类型。从API version 20开始，图片文件数量上限为20张，所有图片总内存大小不超过10MB，超出限制的图片会显示异常，API version 19及之前的版本，图片文件数量上限为5张，每张限制内存2MB。 |
+| obj    | Object\|string | 否   | 卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。其中图片数据以'formImages'作为标识，内容为图片标识与图片文件描述符的键值对{'formImages': {'key1': fd1, 'key2': fd2}}。<br>**说明：** 在[卡片刷新](../../form/arkts-ui-widget-interaction-overview.md)过程中，卡片UI通过@LocalStorageProp接收卡片数据时，FormBindingData对象会序列化，即卡片数据会转换成string类型。从API version 20开始，如果卡片刷新的数据通过共享内存更新，刷新数据总大小不超过10MB，刷新图片数量不超过20张，API version 19及之前的版本，图片文件数量上限为5张，每张限制内存2MB，超出限制的图片会显示异常。 |
 
 
 **返回值：**
@@ -78,24 +84,35 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 ```ts
 import { formBindingData } from '@kit.FormKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
-
-try {
-  let file = fileIo.openSync('/path/to/form.png');
-  let formImagesParam: Record<string, number> = {
-    'image': file.fd
-  };
-  let createFormBindingDataParam: Record<string, string | Object> = {
-    'name': '21°',
-    'imgSrc': 'image',
-    'formImages': formImagesParam
-  };
-
-  formBindingData.createFormBindingData(createFormBindingDataParam);
-} catch (error) {
-  let code = (error as BusinessError).code;
-  let message = (error as BusinessError).message;
-  console.error(`catch error, code: ${code}, message: ${message}`);
+import { common } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  content = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  pathDir: string = this.content.filesDir;
+  createFormBindingData() {
+    try {
+      let filePath = this.pathDir + "/form.png";
+      let file = fileIo.openSync(filePath);
+      let formImagesParam: Record<string, number> = {
+        'image': file.fd
+      };
+      let createFormBindingDataParam: Record<string, string | Record<string, number>> = {
+        'name': '21°',
+        'imgSrc': 'image',
+        'formImages': formImagesParam
+      };
+      formBindingData.createFormBindingData(createFormBindingDataParam);
+    } catch (error) {
+      console.error(`catch error, error: ${JSON.stringify(error)}`);
+    }
+  }
+  build() {
+    Button('createFormBindingData')
+      .onClick((event: ClickEvent)=>{
+        this.createFormBindingData();
+      })
+  }
 }
 ```

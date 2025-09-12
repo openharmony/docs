@@ -1,4 +1,10 @@
 # ToolBarV2
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @ybhou1993-->
+<!--Adviser: @HelloCrease-->
 
 工具栏用于展示针对当前界面内容的操作选项，在界面底部显示。底部最多显示5个入口，超过则收纳入“更多”子项中，在最右侧显示。<br />
 该组件基于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../ui/state-management/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制工具栏的数据和状态，实现更高效的用户界面刷新。<br>
@@ -6,8 +12,7 @@
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 
-> - 该组件不支持在Wearable设备上使用。
+>
 
 ## 导入模块
 
@@ -32,11 +37,13 @@ ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifi
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称                   | 类型                                                               | 必填 | 装饰器类型               | 说明                                                           |
 | -------------------- | ---------------------------------------------------------------- | -- |---------------------|--------------------------------------------------------------|
 | toolBarList          | [ToolBarV2Item](#toolbarv2item)\[]                               | 是  | @Param<br/>@Require | 工具栏列表。                                                       |
 | activatedIndex       | number                                                           | 否  | @Param              | 激活态的子项。<br ></div>默认值：-1，即无工具栏子项为激活态。<br />取值范围：[-1,4]。      |
-| dividerModifier<sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否  | @Param              | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br />默认不生效。                         |
+| dividerModifier<sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否  | @Param              | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br />默认不生效。                         |
 | toolBarModifier<sup> | [ToolBarV2Modifier](#toolbarv2modifier)                          | 否  | @Param              | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br />默认不生效。 |
 
 ## ToolBarV2Item
@@ -48,17 +55,19 @@ ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifi
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ### 属性
 
-| 名称                           | 类型                                              | 必填 | 装饰器类型  | 说明                                                                                                                                                                                                        |
-| ---------------------------- | ----------------------------------------------- | -- | :----- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| content                      | [ToolBarV2ItemText](#toolbarv2itemtext)         | 是  | @Trace | 工具栏子项的文本。                                                                                                                                                                                                 |
-| action                       | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | @Trace | 工具栏子项点击事件。 <br ></div>默认无点击事件。                                                                                                                                                                                  |
-| icon                         | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | @Trace | 工具栏子项的图标。<br ></div>默认不显示图标。                                                                                                                                                                                    |
-| state                        | [ToolBarV2ItemState](#toolbarv2itemstate)       | 否  | @Trace | 工具栏子项的状态。<br />默认为ENABLE。<br />                                                                                                                                                                           |
-| accessibilityText     | [ResourceStr](ts-types.md#resourcestr)          | 否  | @Trace | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br ></div>默认值为当前项content属性内容。             |
-| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)          | 否  | @Trace | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br />默认值：“单指双击即可执行”。              |
-| accessibilityLevel  | string                                          | 否  | @Trace | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br ></div>支持的值为：<br />"auto"：当前组件会转换"yes"。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"。<br /> |
+| 名称                           | 类型                                              | 必填 | 装饰器类型  | 说明                                                                                                                                                                                                                  |
+| ---------------------------- | ----------------------------------------------- | -- | :----- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| content                      | [ToolBarV2ItemText](#toolbarv2itemtext)         | 是  | @Trace | 工具栏子项的文本。                                                                                                                                                                                                           |
+| action                       | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | @Trace | 工具栏子项点击事件。 <br ></div>默认无点击事件。                                                                                                                                                                                      |
+| icon                         | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | @Trace | 工具栏子项的图标。<br ></div>默认不显示图标。                                                                                                                                                                                        |
+| state                        | [ToolBarV2ItemState](#toolbarv2itemstate)       | 否  | @Trace | 工具栏子项的状态。<br />默认为ToolBarV2ItemState.ENABLE。<br />                                                                                                                                                                           |
+| accessibilityText     | [ResourceStr](ts-types.md#resourcestr)          | 否  | @Trace | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br ></div>默认值为当前项content属性内容。                                           |
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)          | 否  | @Trace | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br />默认值：“单指双击即可执行”。                        |
+| accessibilityLevel  | string                                          | 否  | @Trace | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br ></div>支持的值为：<br />"auto"：当前组件会转换"yes"。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"<br /> |
 
 ### constructor
 
@@ -70,7 +79,11 @@ ToolBarV2Item的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                            | 必填 | 说明       |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+**参数：**
+
+| 参数名       | 类型                                            | 必填 | 说明       |
 | :------ |:----------------------------------------------| :- | :------- |
 | options | [ToolBarV2ItemOptions](#toolbarv2itemoptions) | 是  | 工具栏子项信息。 |
 
@@ -82,15 +95,17 @@ ToolBarV2Item的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 类型                                              | 必填 | 说明                                                                                                                                                                                                             |
-|:-------------------------| :---------------------------------------------- | :- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| content                  | [ToolBarV2ItemText](#toolbarv2itemtext)         | 是  | 工具栏子项的文本。                                                                                                                                                                                                      |
-| action                   | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | 工具栏子项点击事件。<br />默认无点击事件。                                                                                                                                                                                       |
-| icon                     | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | 工具栏子项的图标。<br />默认不显示图标。                                                                                                                                                                                        |
-| state                    | [ToolBarV2ItemState](#toolbarv2itemstate)       | 否  | 工具栏子项的状态。<br />默认为ENABLE。<br />                                                                                                                                                                                |
-| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)          | 否  | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br />默认值为当前项content属性内容。<br />                                     |
-| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)          | 否  | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br />默认值为“单指双击即可执行”。                   |
-| accessibilityLevel       | string                                          | 否  | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br ></div>支持的值为：<br />"auto"：当前组件会转换"yes"。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"。<br /> |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称                       | 类型                                              | 只读 | 可选 | 说明                                                                                                                                                                                                                  |
+|:-------------------------| :---------------------------------------------- |:---|:---|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| content                  | [ToolBarV2ItemText](#toolbarv2itemtext)         | 否  | 否  | 工具栏子项的文本。                                                                                                                                                                                                           |
+| action                   | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | 是  | 工具栏子项点击事件。<br />默认无点击事件。                                                                                                                                                                                            |
+| icon                     | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | 是  | 工具栏子项的图标。<br />默认不显示图标。                                                                                                                                                                                             |
+| state                    | [ToolBarV2ItemState](#toolbarv2itemstate)       | 否  | 是  | 工具栏子项的状态。<br />默认为ToolBarV2ItemState.ENABLE。<br />                                                                                                                                                                  |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)          | 否  | 是  | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br />默认值为当前项content属性内容。<br />                                          |
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)          | 否  | 是  | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br />默认值为“单指双击即可执行”。                        |
+| accessibilityLevel       | string                                          | 否  | 是  | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br ></div>支持的值为：<br />"auto"：当前组件会转换"yes"。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"<br /> |
 
 ## ToolBarV2ItemAction
 
@@ -101,6 +116,8 @@ type ToolBarV2ItemAction = (index: number) => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -118,13 +135,15 @@ type ToolBarV2ItemAction = (index: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ### 属性
 
-| 名称                  | 类型                                                          | 必填 | 装饰器类型  | 说明                                                       |
-|:--------------------|:------------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
-| text                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | @Trace | 工具栏子项的文本。                                                |
-| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')。       |
-| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项在激活态下文本的颜色。<br></div>默认值：$r('sys.color.font_emphasize')。 |
+| 名称                  | 类型                                                          | 只读 | 可选 | 装饰器类型  | 说明                                                       |
+|:--------------------|:------------------------------------------------------------|:---|:---| :----- |:---------------------------------------------------------|
+| text                | [ResourceStr](ts-types.md#resourcestr)                      | 否  | 否  | @Trace | 工具栏子项的文本。                                                |
+| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | @Trace | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')       |
+| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | @Trace | 工具栏子项在激活态下文本的颜色。<br></div>默认值：$r('sys.color.font_emphasize') |
 
 ### constructor
 
@@ -136,7 +155,11 @@ ToolBarV2ItemText的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                                    | 必填 | 说明         |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明         |
 | :------ |:------------------------------------------------------| :- | :--------- |
 | options | [ToolBarV2ItemTextOptions](#toolbarv2itemtextoptions) | 是  | 工具栏子项文本信息。 |
 
@@ -148,11 +171,13 @@ ToolBarV2ItemText的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                  | 类型                                                          | 必填 | 说明                                                       |
-| :------------------ |:------------------------------------------------------------| :- |:---------------------------------------------------------|
-| text                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | 工具栏子项的文本。                                                |
-| color          | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')。       |
-| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项在激活态下文本的颜色。<br/>默认值：$r('sys.color.font_emphasize')。 |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称                  | 类型                                                          | 只读 | 可选 | 说明                                                       |
+| :------------------ |:------------------------------------------------------------|:---|:---|:---------------------------------------------------------|
+| text                | [ResourceStr](ts-types.md#resourcestr)                      | 否  | 否  | 工具栏子项的文本。                                                |
+| color          | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')       |
+| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | 工具栏子项在激活态下文本的颜色。<br/>默认值：$r('sys.color.font_emphasize') |
 
 ## ToolBarV2ItemImage
 
@@ -164,13 +189,15 @@ ToolBarV2ItemText的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ### 属性
 
-| 名称                 | 类型                                                          | 必填 | 装饰器类型  | 说明                                                       |
-|:-------------------|:------------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
-| src                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | @Trace | 工具栏子项的图标。                                                |
-| color              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
-| activatedColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
+| 名称                 | 类型                                                          | 只读 | 可选 | 装饰器类型  | 说明                                                       |
+|:-------------------|:------------------------------------------------------------|:---|:---| :----- |:---------------------------------------------------------|
+| src                | [ResourceStr](ts-types.md#resourcestr)                      | 否  | 否  | @Trace | 工具栏子项的图标。                                                |
+| color              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | @Trace | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')       |
+| activatedColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | @Trace | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize') |
 
 ### constructor
 
@@ -182,7 +209,11 @@ ToolBarV2ItemImage的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                                    | 必填 | 说明         |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明         |
 | :------ | :------------------------------------------------------ | :- | :--------- |
 | options | [ToolBarV2ItemImageOptions](#toolbarv2itemimageoptions) | 是  | 工具栏子项图标信息。 |
 
@@ -194,11 +225,13 @@ ToolBarV2ItemImage的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                  | 类型                                                          | 必填 | 说明                                                       |
-|:--------------------|:------------------------------------------------------------| :- |:---------------------------------------------------------|
-| src                 | [ResourceStr](ts-types.md#resourcestr)                      | 是  | 工具栏子项的图标。                                                |
-| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
-| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称                  | 类型                                                          | 只读 | 可选 | 说明                                                       |
+|:--------------------|:------------------------------------------------------------|:---|:---|:---------------------------------------------------------|
+| src                 | [ResourceStr](ts-types.md#resourcestr)                      | 否  | 否  | 工具栏子项的图标。                                                |
+| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')       |
+| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 是  | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize') |
 
 ## ToolBarV2ItemIconType
 
@@ -210,10 +243,12 @@ type ToolBarV2ItemIconType = ToolBarV2ItemImage | ToolBarV2SymbolGlyph
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                   | 说明            |
-| :------------------- | :------------ |
-| ToolBarV2ItemImage   | 用于定义普通图标。     |
-| ToolBarV2SymbolGlyph | 用于定义Symbol图标。 |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 类型                                            | 说明            |
+|:----------------------------------------------| :------------ |
+| [ToolBarV2ItemImage](#toolbarv2itemimage)     | 用于定义普通图标。     |
+| [ToolBarV2SymbolGlyph](#toolbarv2symbolglyph) | 用于定义Symbol图标。 |
 
 ## ToolBarV2Modifier
 
@@ -222,6 +257,8 @@ ToolBarV2Modifier提供设置工具栏高度(height)、背景色(backgroundColor
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### backgroundColor
 
@@ -233,11 +270,14 @@ backgroundColor(backgroundColor: ColorMetrics): ToolBarV2Modifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名             | 类型                                                          | 必填 | 说明                                                                |
 | --------------- |-------------------------------------------------------------| -- | ----------------------------------------------------------------- |
 | backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 是  | 工具栏背景色。<br />默认背景色为\$r('sys.color.ohos\_id\_color\_toolbar\_bg')。 |
+
 **返回值：**
 
 | 类型                                      | 说明                                      |
@@ -253,6 +293,8 @@ padding(padding: LengthMetrics): ToolBarV2Modifier
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -274,6 +316,8 @@ height(height: LengthMetrics): ToolBarV2Modifier
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -297,6 +341,8 @@ stateEffect(stateEffect: boolean): ToolBarV2Modifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名         | 类型      | 必填 | 说明                                                     |
@@ -317,6 +363,8 @@ stateEffect(stateEffect: boolean): ToolBarV2Modifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称       | 值 | 说明              |
 | -------- | - | --------------- |
 | ENABLE   | 1 | 工具栏子项为正常可点击状态。  |
@@ -333,12 +381,14 @@ ToolBarV2SymbolGlyph定义Symbol图标的属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ### 属性
 
-| 名称        | 类型                                                                   | 必填 | 装饰器类型  | 说明                                                                                   |
-| :-------- | :------------------------------------------------------------------- | :- | :----- | :----------------------------------------------------------------------------------- |
-| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是  | @Trace | 工具栏symbol图标普通态样式。   |
-| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | @Trace | 工具栏symbol图标激活态样式。<br />默认值：fontColor：\$r('sys.color.icon\_emphasize')，fontSize：24vp。 |
+| 名称        | 类型                                                                   | 只读 | 可选 | 装饰器类型  | 说明                                                                                   |
+| :-------- | :------------------------------------------------------------------- |:---|:---| :----- | :----------------------------------------------------------------------------------- |
+| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否  | 否  | @Trace | 工具栏symbol图标普通态样式。   |
+| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否  | 是  | @Trace | 工具栏symbol图标激活态样式。<br />默认值：fontColor：\$r('sys.color.icon\_emphasize')，fontSize：24vp。 |
 
 ### constructor
 
@@ -349,6 +399,10 @@ ToolBarV2SymbolGlyph的构造函数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+**参数：**
 
 | 参数名     | 类型                                                        | 必填 | 说明          |
 | :------ | :---------------------------------------------------------- | :- | :---------- |
@@ -362,10 +416,12 @@ ToolBarV2SymbolGlyphOptions定义图标的属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称        | 类型                                                                   | 必填 | 说明                                                                                   |
 | --------- | -------------------------------------------------------------------- | -- | ------------------------------------------------------------------------------------ |
-| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是  | 工具栏symbol图标普通态样式。   |
-| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | 工具栏symbol图标激活态样式。<br />默认值：fontColor：\$r('sys.color.icon\_emphasize')，fontSize：24vp。 |
+| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 是  | 工具栏symbol图标普通态样式。   |
+| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否  | 工具栏symbol图标激活态样式。<br />默认值：fontColor：\$r('sys.color.icon\_emphasize')，fontSize：24vp。 |
 
 ## 示例
 

@@ -1,6 +1,12 @@
 # 录像实践(C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的录像流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、录像）的介绍请参考[相机开发指导(Native)](camera-preparation.md)的具体章节。
 
@@ -41,7 +47,6 @@
 3. cpp侧导入NDK接口，并根据传入的SurfaceId进行录像。
     ```c++
     #include "hilog/log.h"
-    #include "ndk_camera.h"
     #include <cmath>
 
     bool IsAspectRatioEqual(float videoAspectRatio, float previewAspectRatio)
@@ -152,7 +157,7 @@
 
         // 获取相机列表。
         ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        if (cameras == nullptr || size <= 0 || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
             return;
         }
@@ -162,6 +167,11 @@
             OH_LOG_ERROR(LOG_APP, "cameraPosition  =  %{public}d ", cameras[index].cameraPosition);  // 获取相机位置。
             OH_LOG_ERROR(LOG_APP, "cameraType  =  %{public}d ", cameras[index].cameraType);          // 获取相机类型。
             OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // 获取相机连接类型。
+        }
+
+        if (size < cameraDeviceIndex + 1) {
+            OH_LOG_ERROR(LOG_APP, "cameraDeviceIndex is invalid.");
+            return;
         }
 
         // 获取相机设备支持的输出流能力。
@@ -177,7 +187,7 @@
             return;
         }
         previewProfile = cameraOutputCapability->previewProfiles[0];
-        OH_LOG_INFO(LOG_APP, "previewProfile width: %{public}, height: %{public}.", previewProfile->size.width,
+        OH_LOG_INFO(LOG_APP, "previewProfile width: %{public}d, height: %{public}d.", previewProfile->size.width,
             previewProfile->size.height);
         if (cameraOutputCapability->photoProfiles == nullptr) {
             OH_LOG_ERROR(LOG_APP, "photoProfiles == null");
@@ -197,7 +207,7 @@
             // 默认筛选CAMERA_FORMAT_YUV_420_SP的profile。
             if (isEqual && videoProfiles[index]->format == Camera_Format::CAMERA_FORMAT_YUV_420_SP) {
                 videoProfile = videoProfiles[index];
-                OH_LOG_INFO(LOG_APP, "videoProfile width: %{public}, height: %{public}.", videoProfile->size.width,
+                OH_LOG_INFO(LOG_APP, "videoProfile width: %{public}d, height: %{public}d.", videoProfile->size.width,
                     videoProfile->size.height);
                 break;
             }

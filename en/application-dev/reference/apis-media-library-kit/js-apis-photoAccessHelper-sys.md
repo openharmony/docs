@@ -1,4 +1,10 @@
 # @ohos.file.photoAccessHelper (Album Management) (System API)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
 
@@ -76,10 +82,10 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -136,10 +142,10 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name. This API uses a promise to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -200,10 +206,10 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -264,10 +270,10 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -333,8 +339,8 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - Duplicate album names are not allowed.
 
 > **NOTE**
@@ -394,8 +400,8 @@ createAlbum(name: string): Promise&lt;Album&gt;
 Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - Duplicate album names are not allowed.
 
 > **NOTE**
@@ -642,11 +648,20 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
   };
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
     async (err, fetchResult) => {
+      if (err !== undefined) {
+        console.error(`getHiddenAlbumsViewCallback failed with error: ${err.code}, ${err.message}`);
+        return;
+      }
       if (fetchResult === undefined) {
         console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
         return;
       }
       let album = await fetchResult.getFirstObject();
+      if (album === undefined) {
+        console.error('getHiddenAlbumsViewCallback album is undefined');
+        fetchResult.close();
+        return;
+      }
       console.info('getHiddenAlbumsViewCallback successfully, album name: ' + album.albumName);
       fetchResult.close();
   });
@@ -699,6 +714,11 @@ async function getSysHiddenAlbum(phAccessHelper: photoAccessHelper.PhotoAccessHe
       return;
     }
     let hiddenAlbum: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    if (hiddenAlbum === undefined) {
+      console.error('getSysHiddenAlbumCallback hiddenAlbum is undefined');
+      fetchResult.close();
+      return;
+    }
     console.info('getSysHiddenAlbumCallback successfully, albumUri: ' + hiddenAlbum.albumUri);
     fetchResult.close();
   });
@@ -713,6 +733,11 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
       return;
     }
     let albums: Array<photoAccessHelper.Album> = await fetchResult.getAllObjects();
+    if (albums === undefined) {
+      console.error('getHiddenAlbumsViewCallback albums is undefined');
+      fetchResult.close();
+      return;
+    }
     console.info('getHiddenAlbumsViewCallback successfully, albums size: ' + albums.length);
 
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -723,6 +748,10 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
     for (let i = 0; i < albums.length; i++) {
       // Obtain hidden files in the album.
       albums[i].getAssets(fetchOption, (err, assetFetchResult) => {
+        if (assetFetchResult === undefined) {
+          console.error('getHiddenAlbumsViewCallback assetFetchResult is undefined');
+          return;
+        }
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       });
     }
@@ -1373,7 +1402,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 createAssetsForApp(bundleName: string, appName: string, tokenId: number, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
-Creates media assets for an application with the specified token ID. The returned URIs has been granted with the permission for writing the media assets (images or videos).
+Creates media assets for an application with the specified token ID. The returned URIs have been granted with the permission for writing the media assets (images or videos).
 
 **System API**: This is a system API.
 
@@ -1460,7 +1489,7 @@ Grants an application the permission to access a URI. This API uses a promise to
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the permission is granted to the application. The value **1** means the application already has the permission. The value **-1** means the permission fails to be granted.|
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means that the permission is granted to the application. The value **1** means that the application already has the permission. The value **-1** means that the permission fails to be granted.|
 
 **Error codes**
 
@@ -1520,7 +1549,7 @@ Grants an application the permission to access multiple URIs. This API uses a pr
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the operation is successful; the value **-1** means the opposite.|
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means that the permission is granted to the application. The value **-1** means that the permission fails to be granted.|
 
 **Error codes**
 
@@ -1562,7 +1591,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
 
-Cancels the permission for accessing an URI from an application. This API uses a promise to return the result.
+Cancels the permission for accessing a URI from an application. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1971,7 +2000,7 @@ Creates assets with a temporary permission. This API uses a promise to return th
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
+| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -2346,7 +2375,7 @@ Creates assets for the current application or other applications in the specifie
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | source  | [PhotoCreationSource](#photocreationsource18)         | Yes  | Application information provided to create assets on behalf of the application.                                    |
 | albumUri  | string             | Yes  | URI of the album.                                    |
-| isAuthorized  |  boolean              | Yes  | Whether to authorize other applications. The value **true** means that the permission is authorized, and **false** means the opposite.                                    |
+| isAuthorized  |  boolean              | Yes  | Whether to authorize other applications. **true** to authorize, **false** otherwise.                                    |
 | PhotoCreationConfigs| Array\<[PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12)> | Yes| Configuration for creating (saving) the media assets in the media library.|
 
 **Return value**
@@ -2539,7 +2568,7 @@ Registers a listener for the **'trashedPhotoChange'** event to monitor media ass
 | Name  | Type                  | Mandatory| Description     |
 |-----------|-------------------------|-----------|-----------------|
 | type | string | Yes  | Event type. The value is fixed at **'trashedPhotoChange'**. After the registration is complete, any change to the trashed media assets is returned through the callback.|
-| callback  | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | Yes  | Callback used to return the trashed media asset information after change, which is [PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20).<br>**NOTE**: You can register multiple listeners using this API, and you can call [off('hiddenPhotoChange')](#offhiddenphotochange20) to unregister all listeners or a specific one.|
+| callback  | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | Yes  | Callback used to return the trashed media asset information after change, which is [PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20).<br>**NOTE**: You can register multiple listeners using this API, and you can call [off('trashedPhotoChange')](#offtrashedphotochange20) to unregister all listeners or a specific one.|
 
 **Error codes**
 
@@ -3244,7 +3273,7 @@ Favorites or unfavorites this file. This API uses an asynchronous callback to re
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| favoriteState | boolean                   | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+| favoriteState | boolean                   | Yes   | Whether to favorite the file asset. **true** to favorite, **false** otherwise.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Error codes**
@@ -3307,7 +3336,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| favoriteState | boolean | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+| favoriteState | boolean | Yes   | Whether to favorite the file asset. **true** to favorite, **false** otherwise.|
 
 **Return value**
 
@@ -3376,7 +3405,7 @@ Private files are stored in the private album. After obtaining private files fro
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| hiddenState | boolean                   | Yes   | Whether to set a file to hidden state. The value **true** means to hide the file; the value **false** means the opposite.|
+| hiddenState | boolean                   | Yes   | Whether to set a file to hidden state. **true** to hide, **false** otherwise.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Error codes**
@@ -3441,7 +3470,7 @@ Private files are stored in the private album. After obtaining private files fro
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| hiddenState | boolean | Yes   | Whether to set a file to hidden state. The value **true** means to hide the file; the value **false** means the opposite.|
+| hiddenState | boolean | Yes   | Whether to set a file to hidden state. **true** to hide, **false** otherwise.|
 
 **Return value**
 
@@ -3785,7 +3814,7 @@ The pending state can be removed only through **setPending(false)**. You can use
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| pendingState | boolean | Yes   | Whether to set the file to pending state. The value **true** means to set the file to pending state, and the value **false** means to remove the pending state.|
+| pendingState | boolean | Yes   | Whether to set the file to pending state. **true** to pend, **false** otherwise.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Error codes**
@@ -3848,7 +3877,7 @@ The pending state can be removed only through **setPending(false)**. You can use
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| pendingState | boolean | Yes   | Whether to set the file to pending state. The value **true** means to set the file to pending state, and the value **false** means to remove the pending state.|
+| pendingState | boolean | Yes   | Whether to set the file to pending state. **true** to pend, **false** otherwise.|
 
 **Return value**
 
@@ -3902,7 +3931,7 @@ Checks whether this image or video asset is edited. This API uses an asynchronou
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means that the image or video asset is edited, and **false** means the opposite. The default value is **false**.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result indicating whether the image or video asset is edited. **true** if edited, **false** otherwise. The default value is **false**.|
 
 **Error codes**
 
@@ -3965,7 +3994,7 @@ Checks whether this image or video asset is edited. This API uses a promise to r
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the image or video asset is edited, and **false** means the opposite. The default value is **false**.|
+|Promise&lt;boolean&gt; | Promise used to return the result indicating whether the image or video asset is edited. **true** if edited, **false** otherwise. The default value is **false**.|
 
 
 **Error codes**
@@ -4221,7 +4250,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
-    console.info('requsetSourceCallbackDemo')
+    console.info('requestSourceCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -4237,7 +4266,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
       }
     });
   } catch (err) {
-    console.error(`requsetSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
+    console.error(`requestSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4280,7 +4309,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
-    console.info('requsetSourcePromiseDemo')
+    console.info('requestSourcePromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -4291,7 +4320,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let fd = await photoAsset.requestSource();
     console.info('Source fd is ' + fd);
   } catch (err) {
-    console.error(`requsetSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
+    console.error(`requestSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4908,7 +4937,7 @@ Describes the information about a shared media asset.
 | dateYear | string | No| No| Year when the media asset was created.<br>**System API**: This is a system API.|
 | dateMonth | string | No| No| Month when the media asset was created.<br>**System API**: This is a system API.|
 | dateDay | string | No| No| Time when the media asset was created.<br>**System API**: This is a system API.|
-| pending | boolean | No| No| Whether the media asset is in a pending state. The value **true** means the media asset is in a pending state<br>**System API**: This is a system API.|
+| pending | boolean | No| No| Whether the media asset is in a pending state. **true** if pending.<br>**System API**: This is a system API.|
 | dateAddedMs | number | No| No| Time elapsed after the media asset was added.<br>**System API**: This is a system API.|
 | dateTrashedMs | number | No| No| Time elapsed since the media asset was trashed.<br>**System API**: This is a system API.|
 | subtype | [PhotoSubtype](#photosubtype) | No| No| Subtype of the media asset.<br>**System API**: This is a system API.|
@@ -5486,10 +5515,10 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 
 Creates an asset change request with the specified file name.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -5557,7 +5586,7 @@ Favorites or unfavorites this file.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| favoriteState | boolean | Yes   | Operation to perform. The value **true** means to favorite the file, and **false** means the opposite.|
+| favoriteState | boolean | Yes   | Whether to favorite the file. **true** to favorite, **false** otherwise.|
 
 **Error codes**
 
@@ -5610,7 +5639,7 @@ Hides this file.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| hiddenState | boolean  | Yes   | Whether to hide the file. The value **true** means to hide the file; the value **false** means the opposite.|
+| hiddenState | boolean  | Yes   | Whether to hide the file. **true** to hide, **false** otherwise.|
 
 **Error codes**
 
@@ -5884,7 +5913,7 @@ Sets the Key for the Ultra Snapshot feature, which allows the camera to take pho
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| cameraShotKey | string | Yes  | Key for the Ultra Snapshot feature. This parameter is available only for the system camera, and the key value is defined by the system camera.|
+| cameraShotKey | string | Yes  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)|
 
 **Error codes**
 
@@ -5979,7 +6008,7 @@ Sets the watermark type supported by photos.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| watermarkType | [WatermarkType](#watermarktype14) | Yes  | Watermark type to set. |
+| watermarkType | [WatermarkType](#watermarktype14) | Yes  | Watermark type to set.<br>Note: **WatermarkType.DEFAULT** cannot be passed.|
 
 **Error codes**
 
@@ -6020,7 +6049,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>): Promise&lt;void&gt;
 
-Permanently deletes photos or videos in batches. This API uses a promise to return the result.
+Permanently deletes images or videos in batches. This API uses a promise to return the result.
 
 **NOTE**: This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
@@ -6035,7 +6064,7 @@ Permanently deletes photos or videos in batches. This API uses a promise to retu
 | Name | Type            | Mandatory  | Description   |
 | ---- | -------------- | ---- | ----- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes   | Context of the ability instance.|
-| assets | Array\<[PhotoAsset](#photoasset)>| Yes   | Array of images or videos to be permanently deleted.|
+| assets | Array\<[PhotoAsset](#photoasset)>| Yes   | Array of images or videos to be permanently deleted. The array can contain a maximum of 500 elements.|
 
 **Return value**
 
@@ -6098,7 +6127,7 @@ Permanently deletes images or video assets in batches by URI. This API uses a pr
 | Name | Type            | Mandatory  | Description   |
 | ---- | -------------- | ---- | ----- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes   | Context of the ability instance.|
-| assetUris | Array&lt;String&gt; | Yes   | Array of URIs of the images or videos to be permanently deleted.|
+| assetUris | Array&lt;String&gt; | Yes   | Array of URIs of the images or videos to be permanently deleted. The array can contain a maximum of 500 elements.|
 
 **Return value**
 
@@ -6215,7 +6244,7 @@ Favorites or unfavorites this file.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| favoriteState | boolean | Yes   | Operation to perform. The value **true** means to favorite the file, and **false** means the opposite.|
+| favoriteState | boolean | Yes   | Whether to favorite the file. **true** to favorite, **false** otherwise.|
 
 **Error codes**
 
@@ -6268,7 +6297,7 @@ Hides this file.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| hiddenState | boolean  | Yes   | Whether to hide the file. The value **true** means to hide the file; the value **false** means the opposite.|
+| hiddenState | boolean  | Yes   | Whether to hide the file. **true** to hide, **false** otherwise.|
 
 **Error codes**
 
@@ -6374,7 +6403,7 @@ Sets whether this asset is displayed in the **Recent** list.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isRencentShow | boolean | Yes  | Whether this asset is displayed in the **Recent** list. The value **true** means this asset is displayed in the **Recent** list, and **false** means the opposite.|
+| isRencentShow | boolean | Yes  | Whether this asset is displayed in the **Recent** list. **true** if displayed, **false** otherwise.|
 
 **Error codes**
 
@@ -6425,9 +6454,9 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 
 Creates a MediaAlbumChangeRequest instance.
 
-The album name must comply with the following specifications:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+The album name must meet the following requirements:
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -6584,7 +6613,7 @@ async function example(context: Context, albumUri: string) {
     await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbumsWithUri(context, [albumUri]);
     console.info('deleteAlbums successfully');
   } catch (err) {
-    console.error('deleteAlbumsWithUriDemo failed with error: ${err.code}, ${err.message}');
+    console.error(`deleteAlbumsWithUriDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -6666,7 +6695,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a phAccessHelper instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -7621,8 +7650,8 @@ Sets the subtitle for this **Highlights** album instance.
 
 The subtitle must meet the following requirements:
 
-- The subtitle string contains 0 to 255 characters.
-- The subtitle cannot contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
+- The total length of the subtitle must be between 0 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - The subtitle is case-insensitive.
 
 **System API**: This is a system API.
@@ -7869,6 +7898,127 @@ async function example(context: Context) {
     console.info(`setOrderPosition ${indexes}`);
   } catch (err) {
     console.error(`setOrderPosition error: ${err}`);
+  }
+}
+```
+
+## MediaHighlightAlbumChangeRequest<sup>21+</sup> 
+
+Provides APIs for managing the media album change request. It inherits from [MediaAnalysisAlbumChangeRequest](#mediaanalysisalbumchangerequest18).
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>21+</sup> 
+
+constructor(album: Album)
+
+A constructor used to create a **Highlights** album instance.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| album | [Album](#album) | Yes  | Provides APIs for managing the **Highlights** album, which is an automatically generated collection of memorable photos or videos.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Library Error Codes](errcode-medialibrary.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 23800151 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example(context: Context) {
+  console.info('MediaHighlightAlbumChangeRequest constructorDemo');
+  let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  let albumFetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: new dataSharePredicates.DataSharePredicates()
+  };
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
+    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+  if (albumFetchResult.getCount() === 0) {
+    console.error('No album');
+    return;
+  }
+  let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+  albumFetchResult.close();
+  let changeRequest: photoAccessHelper.MediaHighlightAlbumChangeRequest =
+    new photoAccessHelper.MediaHighlightAlbumChangeRequest(highlightAlbum);
+}
+```
+
+### setHighlightAttribute<sup>21+</sup> 
+
+setHighlightAttribute(attribute: HighlightAlbumChangeAttribute, value: string): void
+
+Sets the specified attribute value in the highlights album.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| attribute | [HighlightAlbumChangeAttribute](#highlightalbumchangeattribute21) | Yes  | Attribute to set.|
+| value       | string   | Yes   | Value to set for the attribute.<br>When **attribute** is **IS\_VIEWED** or **IS\_FAVORITE**, the value must be **0** or **1**. When **attribute** is **NOTIFICATION\_TIME**, the value must be 8 bytes long.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Library Error Codes](errcode-medialibrary.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 23800151 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example(context: Context) {
+  try {
+    console.info('setHighlightAttribute');
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error('No album');
+      return;
+    }
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    let highlightAlbumChangeAttribute: photoAccessHelper.HighlightAlbumChangeAttribute =
+      photoAccessHelper.HighlightAlbumChangeAttribute.IS_VIEWED;
+    let value: string = "1";
+    let changeRequest: photoAccessHelper.MediaHighlightAlbumChangeRequest =
+      new photoAccessHelper.MediaHighlightAlbumChangeRequest(highlightAlbum);
+    changeRequest.setHighlightAttribute(highlightAlbumChangeAttribute, value);
+    await helper.applyChanges(changeRequest);
+    console.info(`setHighlightAttribute end`);
+  } catch (err) {
+    console.error(`setHighlightAttribute error: ${err}`);
   }
 }
 ```
@@ -8148,7 +8298,7 @@ Submits cloud enhancement tasks.
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
 | photoAssets | Array<[PhotoAsset](#photoasset)> | Yes  | [PhotoAsset](#photoasset) to enhance.|
-| hasCloudWatermark | boolean | Yes  | Whether to add a cloud watermark to the enhanced image. The value **true** means to add the watermark, and **false** means the opposite.|
+| hasCloudWatermark | boolean | Yes  | Whether to add a cloud watermark to the enhanced image. **true** to add, **false** otherwise.|
 | triggerMode | number | No  | Trigger mode of the cloud enhancement task.<br>**- 0**: manually triggered.<br>**- 1**: automatically triggered.<br>The default value is **0**.|
 
 **Return value**
@@ -8934,7 +9084,7 @@ Checks whether the video of the moving photo is ready. This API uses a promise t
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** is returned if the video of the moving photo is ready, and **false** is returned otherwise.|
+| Promise&lt;boolean&gt; | Promise used to return the result. **true** if the video of the moving photo is ready, **false** otherwise.|
 
 **Error codes**
 
@@ -8948,7 +9098,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](./js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper).
+For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -9034,10 +9184,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example(context: Context) {
+async function example(context: Context) {
   console.info('getCustomRecordManagerInstance');
   try {
-    let context = getContext(this);
     let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   } catch(err) {
     console.error(`getCustomRecordManagerInstance failed with error: ${err.code}, ${err.message}`);
@@ -9082,9 +9231,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('createCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let crArray:Array<photoAccessHelper.PhotoAssetCustomRecord> = [
     {fileId:1,shareCount:1,lcdJumpCount:1}
@@ -9111,7 +9259,7 @@ Obtains custom user behavior recordings based on retrieval options. This API use
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | --- |
-| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes| Retrieval options.|
+| optionCheck | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | Yes| Retrieval options.|
 
 **Return value**
 
@@ -9135,9 +9283,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('getCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('file_id', 1);
@@ -9191,9 +9338,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('setCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let UpdateArray: Array<photoAccessHelper.PhotoAssetCustomRecord> = [
     {fileId:1,shareCount:2,lcdJumpCount:3},
@@ -9221,7 +9367,7 @@ Removes custom user behavior recordings based on retrieval options. This API use
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | --- |
-| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes| Retrieval options.|
+| optionCheck | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | Yes| Retrieval options.|
 
 **Return value**
 
@@ -9245,9 +9391,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('removeCustomRecords');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('file_id', 1);
@@ -9298,9 +9443,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('addShareCount');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let ids: Array<number> = [1, 2];
   crManager.addShareCount(ids).then((failIds) => {
@@ -9346,9 +9490,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async example() {
+async function example(context: Context) {
   console.info('addLcdJumpCount');
-  let context = getContext(this);
   let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
   let ids: Array<number> = [1, 2];
   crManager.addLcdJumpCount(ids).then((failIds) => {
@@ -9412,7 +9555,7 @@ Enumerate the album subtypes.
 | HIDDEN                            | 1027       | Hidden album. **System API**: This is a system API.        |
 | TRASH                             | 1028       | Trash. **System API**: This is a system API.         |
 | SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. **System API**: This is a system API.     |
-| CAMERA                            | 1030       | Album for photos and videos taken by the camera. **System API**: This is a system API.|
+| CAMERA                            | 1030       | Album for images and videos taken by the camera. **System API**: This is a system API.|
 | SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. **System API**: This is a system API.        |
 | CLASSIFY<sup>11+</sup>            | 4097       | Classified album. **System API**: This is a system API.        |
 | GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. **System API**: This is a system API.        |
@@ -9457,11 +9600,12 @@ Defines the key information about an image or video file.
 | DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | Date when the file was deleted. The value is the number of milliseconds elapsed since the Epoch time. **System API**: This is a system API.<br>**NOTE**: The photos queried cannot be sorted based on this field.|
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | Effect of the moving photo. **System API**: This is a system API.|
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | Cloud enhancement identifier. **System API**: This is a system API.|
-| SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | Editable watermark identifier. **System API**: This is a system API.|
+| SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | Watermark type to set. **System API**: This is a system API.|
 | IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | Specifies whether automatic cloud enhancement is supported. **System API**: This is a system API.|
 | OWNER_ALBUM_ID<sup>18+</sup>  | 'owner_album_id' | ID of the album to which the photo belongs. **System API**: This is a system API.|
 | IS_RECENT_SHOW<sup>18+</sup>  | 'is_recent_show' | Whether the asset is displayed in the **Recent** list. **System API**: This is a system API.|
 | SUM_SIZE<sup>19+</sup>  | 'sum(size)' | Total size of files. When **SUM_SIZE** is filled in **fetchColumns**, only the first asset is obtained, and the property includes the total size of all assets. **System API**: This is a system API.|
+| EXIF_ROTATE<sup>20+</sup>  | 'exif_rotate' | Rotational angle of the file. **System API**: This is a system API.|
 
 ## AlbumKeys
 
@@ -9581,7 +9725,7 @@ Defines the Gallery widget information.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId             |string               |Yes| Widget ID, which is provided when a widget is created in Gallery.|
-|assetUris          |Array&lt;string&gt;  |Yes| URIs of the images or albums bound to the widget. This parameter is mandatory when a widget is created or updated and is optional when a widget is removed. |
+|assetUris          |Array&lt;string&gt;  |Yes| URIs of the images or albums bound to the widget.<br>This parameter cannot be empty when creating or updating a widget.<br>If you attempt to create or update a widget with more than 500 URIs in **assetUris**, only the first 500 URIs are registered for listening. Any URIs beyond the first 500 are not registered. <br>When deleting a widget, this parameter can be omitted. |
 
 ## ResourceType<sup>11+</sup>
 
@@ -9665,6 +9809,7 @@ Enumerates the types of the highlights album information.
 | :------------ | :- | :------- |
 | COVER\_INFO   | 0  | Cover information.   |
 | PLAY\_INFO    | 1  | Music information.   |
+| ALBUM\_INFO<sup>21+</sup>    | 2  | Album information.   |
 
 ## HighlightUserActionType<sup>12+</sup>
 
@@ -9686,6 +9831,20 @@ Enumerates the user behavior types of the highlights album.
 | RENDER\_VIEWED\_DURATION      | 101  | Time used to play the pictures in a highlights album.  |
 | ART\_LAYOUT\_VIEWED\_TIMES    | 102  | Number of times that a highlights album is viewed.  |
 | ART\_LAYOUT\_VIEWED\_DURATION | 103  | Time used to view a highlights album.   |
+
+## HighlightAlbumChangeAttribute<sup>21+</sup>
+
+Enumerates the attributes of a highlights album.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name           | Value | Description      |
+| :------------ | :- | :------- |
+| IS\_VIEWED   | 0  | Whether the highlights album has been viewed.   |
+| NOTIFICATION\_TIME    | 1  | Time when the application sends a highlight notification.   |
+| IS\_FAVORITE    | 2  | Whether the highlights album is marked as a favorite.   |
 
 ## ThumbnailVisibility<sup>14+</sup>
 
@@ -9963,13 +10122,16 @@ Describes the information about a media asset.
 | ---- | ------- | ---- |  ---- | ----- |
 | fileId | number  | No| No| ID of the media asset.<br>**System API**: This is a system API. |
 | dateDay | string  | No| No| Date when the media asset was created.<br>**System API**: This is a system API. |
-| isFavorite | boolean  | No| No| Whether the media asset is marked as a favorite. The value **true** means that the asset marked as a favorite, and **false** means the opposite.<br>**System API**: This is a system API. |
-| isHidden | boolean  | No| No| Whether the media asset is hidden. The value **true** means that the asset is hidden, and **false** means the opposite.<br>**System API**: This is a system API. |
+| isFavorite | boolean  | No| No| Whether the media asset is marked as a favorite. **true** if marked, **false** otherwise.<br>**System API**: This is a system API. |
+| isHidden | boolean  | No| No| Whether the media asset is hidden. **true** if hidden, **false** otherwise.<br>**System API**: This is a system API. |
 | strongAssociation | [StrongAssociationType](#strongassociationtype20)  | No| No| Strong association type of the media asset.<br>**System API**: This is a system API. |
 | thumbnailVisible | [ThumbnailVisibility](#thumbnailvisibility14)  | No| No| Accessibility status of the thumbnail.<br>**System API**: This is a system API. |
 | dateTrashedMs |number  |No| No| Unix timestamp when the media asset was deleted, in milliseconds.<br>**System API**: This is a system API. |
 | dateAddedMs | number  | No| No| Unix timestamp when the media asset was created, in milliseconds.<br>**System API**: This is a system API. |
 | dateTakenMs | number  | No| No| Unix timestamp when the media asset was captured, in milliseconds.<br>**System API**: This is a system API. |
+| position | [PositionType](arkts-apis-photoAccessHelper-e.md#positiontype16)  | No| Yes| Position of the media asset.<br>**System API**: This is a system API. |
+| displayName | string  | No| Yes| Display name of the media asset.<br>**System API**: This is a system API. |
+| size | number  | No| Yes| File size of the media asset, in bytes. The size of a moving photo includes the total size of the image and video.<br>**System API**: This is a system API. |
 
 ## PhotoAssetChangeData<sup>20+</sup>
 
@@ -9992,10 +10154,12 @@ Describes the information about an album.
 | ---- | ------- | ---- |  ---- | ----- |
 | hiddenCount | number  | No| No| Number of hidden assets in the album.<br>**System API**: This is a system API.|
 | hiddenCoverUri | string  | No| No| URI of the hidden cover asset in the album.<br>**System API**: This is a system API.|
-| isCoverChanged | boolean  | No| No| Whether the file content of the album cover has changed. The value **true** means that the file content of the album cover has changed, and **false** means the opposite.<br>**System API**: This is a system API.|
-| isHiddenCoverChanged | boolean  | No| No| Whether the file content of the hidden album cover has changed. The value **true** means that the file content of the hidden album cover has changed, and **false** means the opposite.<br>**System API**: This is a system API.|
+| isCoverChanged | boolean  | No| No| Whether the file content of the album cover has changed. **true** if changed, **false** otherwise.<br>**System API**: This is a system API.|
+| isHiddenCoverChanged | boolean  | No| No| Whether the file content of the hidden album cover has changed. **true** if changed, **false** otherwise.<br>**System API**: This is a system API.|
 | coverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | No| Yes| Information of the album cover asset.<br>**System API**: This is a system API.|
 | hiddenCoverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | No| Yes| Information of the hidden album cover asset.<br>**System API**: This is a system API.|
+| orderSection | number  | No| Yes| Section that defines the order of the album, specifying where the album is displayed in the Gallery.<br>**System API**: This is a system API.|
+| albumOrder | number  | No| Yes| Sorting value of the album.<br>**System API**: This is a system API.|
 
 ## AlbumChangeData<sup>20+</sup>
 

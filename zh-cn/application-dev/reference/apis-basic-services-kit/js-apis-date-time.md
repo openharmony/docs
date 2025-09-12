@@ -1,4 +1,10 @@
 # @ohos.systemDateTime (系统时间、时区)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Time-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块主要由系统时间和系统时区功能组成。开发者可以设置、获取系统时间及系统时区。
 
@@ -469,7 +475,7 @@ getTime(isNanoseconds?: boolean): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let time = systemDateTime.getTime(true)
+  let time: number = systemDateTime.getTime(true)
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to get time. message: ${error.message}, code: ${error.code}`);
@@ -511,7 +517,7 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
+  let time: number = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
@@ -690,7 +696,7 @@ getTimezoneSync(): string
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let timezone = systemDateTime.getTimezoneSync();
+  let timezone: string = systemDateTime.getTimezoneSync();
 } catch(e) {
   let error = e as BusinessError;
   console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
@@ -734,3 +740,38 @@ try {
 | Pacific/Wake                   | 12                    |
 | America/New_York               | -4                    |
 | Asia/Tashkent                  | 5                     |
+
+## systemDateTime.getAutoTimeStatus<sup>21+</sup>
+
+getAutoTimeStatus(): boolean
+
+获取自动设置时间开关状态，使用同步方式。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值：**
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| boolean | 返回自动设置时间开关状态。<br/>- true：表示自动设置时间开关状态为打开。 <br/>- false：表示自动设置时间开关状态为关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000001    | Network connection error or OS error. Possible causes: 1.System memory is insufficient; 2.Calls the underlying system interface failed.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let status: boolean = systemDateTime.getAutoTimeStatus();
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to get autotime status. message: ${error.message}, code: ${error.code}`);
+}
+```

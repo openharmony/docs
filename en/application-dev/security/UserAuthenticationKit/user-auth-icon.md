@@ -1,9 +1,15 @@
 # Using userAuthIcon
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 **userAuthIcon** provides built-in authentication icons for easy embedding with your application's UI. With **userAuthIcon**, you can:
 
 1. Easily integrate the facial authentication and fingerprint authentication icons into your applications.
-2. Customize the color and size of the icons. The icon style cannot be changed.
+2. Customize the colors and sizes of the icons.
 3. Start the facial or fingerprint authentication pop-up component once the icon is tapped.
 
 **userAuthIcon** supports the following types of authentication:

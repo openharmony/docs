@@ -1,5 +1,12 @@
 # 使用LPP播放器播放音视频 (C/C++)
 
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @Saber_e-->
+<!--Designer: @yangde_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 使用LPP（low power player）播放器可以实现从媒体源到渲染的音视频通路能力。本指南通过播放本地视频的示例，讲解如何使用LowPowerPlayer播放音视频。
 
 播放流程包含：创建解封装器、创建播放器、设置回调监听函数、配置播放参数、播放控制（播放/暂停/继续/倍速/音量/停止/重置）、销毁播放器实例。
@@ -19,7 +26,7 @@
 
 - 当应用在执行过程中，可能出现系统内部异常。如网络异常、内存不足、媒体服务死亡不可用等，建议通过 [OH_LowPowerAudioSinkCallback_SetErrorListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_seterrorlistener)或[OH_LowPowerVideoSinkCallback_SetErrorListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_seterrorlistener)对应接口设置错误监听回调函数，根据不同错误类型和错误信息，做出相应处理，避免出现播放异常。
 
-- 在播放过程中，播放器需要的数据要通过 [OH_AVDemuxer_ReadSampleBuffer](../../reference/apis-avcodec-kit/_a_v_demuxer.md#oh_avdemuxer_readsamplebuffer)接口获取指定轨道的buffer，并通过 [OH_AVSamplesBuffer_AppendOneBuffer](../../reference/apis-media-kit/capi-lowpower-avsink-base-h.md#oh_avsamplesbuffer_appendonebuffer)进行多个buffer的封装，然后再通过 [OH_LowPowerAudioSink_ReturnSamples](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_returnsamples)或[OH_LowPowerVideoSink_ReturnSamples](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_returnsamples)通知播放器进行消费，当播放器需要数据时，会触发通过 [OH_LowPowerAudioSinkCallback_SetDataNeededListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_setdataneededlistener)或[OH_LowPowerVideoSinkCallback_SetDataNeededListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_setdataneededlistener)接口注册的回调函数。
+- 在播放过程中，播放器需要的数据要通过 [OH_AVDemuxer_ReadSampleBuffer](../../reference/apis-avcodec-kit/capi-native-avdemuxer-h.md#oh_avdemuxer_readsamplebuffer)接口获取指定轨道的buffer，并通过 [OH_AVSamplesBuffer_AppendOneBuffer](../../reference/apis-media-kit/capi-lowpower-avsink-base-h.md#oh_avsamplesbuffer_appendonebuffer)进行多个buffer的封装，然后再通过 [OH_LowPowerAudioSink_ReturnSamples](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_returnsamples)或[OH_LowPowerVideoSink_ReturnSamples](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_returnsamples)通知播放器进行消费，当播放器需要数据时，会触发通过 [OH_LowPowerAudioSinkCallback_SetDataNeededListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_setdataneededlistener)或[OH_LowPowerVideoSinkCallback_SetDataNeededListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_setdataneededlistener)接口注册的回调函数。
 
 - 需要注意函数的调用时机。根据`状态示意图`和`详细的接口文档`进行合理调用。在程序执行完成后，调用`OH_***_Create`方法的同时必须调用对应的`OH_***_Destroy`方法，进行资源释放。
 
@@ -75,7 +82,7 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 
 1.  创建播放器。
 
-     根据实际情况，应用可使用自研解封装或可通过[OH_AVSource_CreateWithDataSource()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithdatasource)/[OH_AVSource_CreateWithFD()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithfd)/[OH_AVSource_CreateWithURI()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithuri)来创建[OH_AVSource](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource) ，通过`OH_AVSource`调用[OH_AVDemuxer_CreateWithSource()](../../reference/apis-avcodec-kit/_a_v_demuxer.md#oh_avdemuxer_createwithsource)，创建解封装器，获取视频的元信息。
+     根据实际情况，应用可使用自研解封装或可通过[OH_AVSource_CreateWithDataSource()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithdatasource)/[OH_AVSource_CreateWithFD()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithfd)/[OH_AVSource_CreateWithURI()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithuri)来创建[OH_AVSource](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource) ，通过`OH_AVSource`调用[OH_AVDemuxer_CreateWithSource()](../../reference/apis-avcodec-kit/capi-native-avdemuxer-h.md#oh_avdemuxer_createwithsource)，创建解封装器，获取视频的元信息。
 
     ```
     source_ = OH_AVSource_CreateWithFD(info.inputFd, info.inputFileOffset, info.inputFileSize);

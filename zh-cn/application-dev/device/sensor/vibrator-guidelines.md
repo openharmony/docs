@@ -1,5 +1,10 @@
 # 振动开发指导(ArkTS)
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 场景介绍
 
@@ -303,10 +308,11 @@ Json文件共包含3个属性。
                  } catch (err) {
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 } finally {
+                   vibrator.stopVibration();
+                   this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                  }
                }
-               // 关闭文件资源描述符
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')

@@ -3,8 +3,9 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 多用户并发进行密钥操作时，为了实现密钥数据隔离和访问控制，HUKS提供了额外的可以指定用户进行密钥操作的接口。
 

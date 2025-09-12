@@ -1,4 +1,10 @@
 # Troubleshooting White Screen Issues on Web Pages
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 There are many reasons for white screen issues on web pages. This topic describes how to troubleshoot common white screen issues.
 
@@ -21,7 +27,7 @@ If the network or file access permission is not added for the application, or th
   ]
   ```
 * The following table lists attributes used to enable related permissions.
-    | Attribute  | Description |                       
+    | Name  | Description |                       
     | ----   | -------------------------------- |
     | [domStorageAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#domstorageaccess) | Sets whether to enable the local storage. If this permission is not enabled, local storage cannot be used to store data, any code that calls local storage will become invalid, and functionalities that depend on local storage will be abnormal.|
     | [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) | Sets whether to enable the file read/write functionality. If the file read/write functionality is not enabled, the file-dependent modules will crash.| 
@@ -68,9 +74,9 @@ If the network or file access permission is not added for the application, or th
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
         .onControllerAttached(() => {
-          console.log("onControllerAttached");
+          console.info("onControllerAttached");
           try {
-            let userAgent = this.controller.getUserAgent() + this.  customUserAgent;
+            let userAgent = this.controller.getUserAgent() + this.customUserAgent;
             this.controller.setCustomUserAgent(userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -83,7 +89,7 @@ If the network or file access permission is not added for the application, or th
 ## Debugging Pages by Using DevTools
 If a white screen issue persists after the network and permission configurations are correctly configured, use DevTools to debug the frontend page and listen for the web-related error reporting APIs to locate the error type.
 
-1. Check the error information on the console to locate the resource loading failure. If resource loading fails, page elements may be missing, the layout may be disordered, and images and animations may become invalid. In severe cases, the rendering process may break down and the white screen issue may occur. As shown in the following figure, check the following items in sequence:<br>
+1. Check the error information on the console to locate the resource loading failure. If resource loading fails, page elements may be missing, the layout may be disordered, and images and animations may become invalid. In severe cases, the rendering process may break down and the white screen issue may occur. As shown in the figure, check the following items in sequence:<br>
   (1) Whether the elements are complete and whether the HTML elements and structure are correct.<br> (2) Whether there are errors reported on the console.<br>(3) Whether the resource loading time is long.<br>
    ![web-white-devtools](figures/web-white-devtools.PNG)
 
@@ -182,7 +188,7 @@ If a white screen issue persists after the network and permission configurations
 
     Method 2
 
-    Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for allowing cross-origin access to the local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list should be any of the following directories:
+    Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for allowing cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list should be any of the following directories:
 
     1. The application file directory and its subdirectories, which can be obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), such as:
 
@@ -193,6 +199,17 @@ If a white screen issue persists after the network and permission configurations
 
     * /data/storage/el1/bundle/entry/resource/resfile
     * /data/storage/el1/bundle/entry/resource/resfile/example
+
+    3. Since API version 21, the application cache directory is obtained through [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context). Example subdirectories are as follows:
+
+    * /data/storage/el2/base/cache
+    * /data/storage/el2/base/haps/entry/cache/example
+    * The **cache/web** directory is not allowed. If it is included, an exception with the code **401** will be thrown. If the **cache** directory is set, **cache/web** cannot be accessed.
+
+    4. Since API version 21, the application temporary directory is obtained through [Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context). Example subdirectories are as follows:
+
+    * /data/storage/el2/base/temp
+    * /data/storage/el2/base/haps/entry/temp/example
 
     If a path is not any of the preceding paths, an error code 401 is reported and the path list fails to be set. If the path list is empty, the access scope of the file protocol complies with the [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) rule. The following is an example:
 
@@ -245,8 +262,8 @@ If a white screen issue persists after the network and permission configurations
           // Use the file protocol to access the local JS file through XMLHttpRequest.
   			  var xmlHttpReq = new XMLHttpRequest();
   			  xmlHttpReq.onreadystatechange = function(){
-  			      console.log("readyState:" + xmlHttpReq.readyState);
-  			      console.log("status:" + xmlHttpReq.status);
+  			      console.info("readyState:" + xmlHttpReq.readyState);
+  			      console.info("status:" + xmlHttpReq.status);
   				  if(xmlHttpReq.readyState == 4){
   				      if (xmlHttpReq.status == 200) {
                     // If the path list is set on eTS, resources can be obtained.
@@ -283,22 +300,21 @@ If a white screen issue persists after the network and permission configurations
     body.appendChild(element);
     ```
 
-3. Check whether error reporting APIs, such as **onErrorReceive**, **onHttpErrorReceive**, **onSslErrorEvent**, **onHttpAuthRequest**, and **onClientAuthenticationRequest**, are called. Rectify the fault based on the returned error code and [List of ArkWeb Network Protocol Stack Errors](../reference/apis-arkweb/arkts-apis-netErrorList.md).
+3. Check whether error reporting APIs, such as **onErrorReceive**, **onHttpErrorReceive**, **onSslErrorEvent**, **onHttpAuthRequest**, and **onClientAuthenticationRequest**, are called. Rectify the fault based on the returned error code and [The List of ArkWeb Network Protocol Stack Errors](../reference/apis-arkweb/arkts-apis-netErrorList.md).
 
-    | Event  | Description |                       
+    | Name  | Description |                       
     | ----   | -------------------------------- |
     | [onErrorReceive](../reference/apis-arkweb/arkts-basic-components-web-events.md#onerrorreceive) | Called when resources fail to be loaded. For example, 302 (**UNKNOWN_URL_SCHEME**) is reported when a scheme that is not supported by the kernel is accessed.|
     | [onHttpErrorReceive](../reference/apis-arkweb/arkts-basic-components-web-events.md#onhttperrorreceive) | Called when the server returns an HTTP error code, which requires joint commissioning with the server.| 
     | [onHttpAuthRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#onhttpauthrequest9) | Called when the server returns 407, indicating that the device needs to provide the user name and password for authentication. If the processing is incorrect, the loading may be abnormal and a white screen may occur.| 
     | [onClientAuthenticationRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#onclientauthenticationrequest9) | Called when the server requests a certificate from the device. If the request is not processed correctly, the page loading will be abnormal.| 
-    | [onSslErrorEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#onsslerrorevent12) | Called when the certificate is incorrect. The application needs to locate the fault based on the certificate error information.| 
+    | [onSslErrorEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#onsslerrorevent12) | Called when the certificate is incorrect. The application needs to locate the fault based on the certificate error information.  | 
 
 
 ## Resolving White Screen Issues Caused by Complex Layout and Rendering Modes
 If a page uses a complex layout or rendering mode, pay attention to its application scenarios and constraints. Improper use of the layout or rendering mode may cause layout disorder or white screen.
 The **Web** component provides two rendering modes, which can be adapted to different container sizes as required. For details, see [Rendering Modes of the Web Component](web-render-mode.md). Pay attention to the following points:
 - In asynchronous rendering mode (renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).ASYNC_RENDER), the width and height of a **Web** component cannot exceed 7,680 px (physical pixels). Otherwise, a white screen is displayed.
-- In synchronous rendering mode (renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).SYNC_RENDER), the width and height of a **Web** component cannot exceed 500,000 px (physical pixels). Otherwise, a white screen is displayed.
 
 The **Web** component provides the capability of adapting to the page layout. For details, see [Fitting In the Page Content Layout](web-fit-content.md). Pay attention to the following restrictions when using the capability:
 - Set the synchronous rendering mode through **webSetting({renderingMode: WebRenderingMode.SYNCHRONOUS})**.
@@ -341,7 +357,7 @@ To avoid white screen issues, you can handle the compatibility issue as follows:
 * If a white screen is displayed due to the **tel:** or **mailto:** protocol invoked by the HTML5 page, intercept the protocol and invoke the system dialing capability through **onInterceptRequest**.
    ```c
    .onInterceptRequest((event) => {
-       if (event.request.url.startWith('tel:')) {
+       if (event.request.url.startsWith('tel:')) {
            // Invoke the system dialing capability.
            call.makeCall({ phoneNumber: '123456' });
            return { responseCode: 404 }; // Prevent the default behavior.
@@ -350,7 +366,7 @@ To avoid white screen issues, you can handle the compatibility issue as follows:
    })
    ```
 ## Monitoring Memory and Lifecycle
-If the memory usage reaches the threshold, the rendering process will be terminated, causing a white screen. Similarly, a white screen will occur if the rendering process fails to start or is abnormally terminated. You can check the cause in logs. For example, check whether the **Web** component is correctly bound to the **WebController** or whether the white screen occurs because the **Web** component is released too early. Check the information related to the render process in the log, for example, whether a memory leak causes insufficient rendering memory. The keyword **MEMORY_PRESSURE_LEVEL_CRITICAL** indicates that the memory usage has reached the threshold. In this case, the web page may encounter exceptions such as black screen, artifacts, or flicker. You need to check whether a memory leak occurs and whether the render process is successfully started or exits abnormally.
+If the memory usage reaches the threshold, the rendering process will be terminated, causing a white screen. Similarly, a white screen will occur if the rendering process fails to start or is abnormally terminated. You can check the cause in logs. For example, check whether the **Web** component is correctly bound to the **WebController** or whether the white screen occurs because the **Web** component is released too early. Check the information related to the render process in the log, for example, whether a memory leak causes insufficient rendering memory. The keyword **MEMORY_PRESSURE_LEVEL_CRITICAL** indicates that the memory usage has reached the threshold. In this case, the web page may encounter exceptions such as black screen, artifacts, or flicker. You need to check whether a memory leak occurs, and whether the render process starts successfully or exits abnormally.
 
 The following table lists log keywords and the corresponding descriptions.
 

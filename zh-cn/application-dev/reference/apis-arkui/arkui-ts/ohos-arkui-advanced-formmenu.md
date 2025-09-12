@@ -1,5 +1,10 @@
 # FormMenu
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 本组件封装了一个“添加至桌面”菜单，用于实现应用内长按组件生成“添加至桌面”菜单，点击该菜单，触发卡片添加至桌面操作。通过桌面访问该应用快捷卡片，可以直接访问该组件功能。在应用使用过程中，该组件作为留存和复访入口，可吸引用户将功能快捷添加到桌面。
 
 本组件支持应用内长按菜单快捷添加卡片到桌面：
@@ -114,7 +119,7 @@ struct Index {
           bundleName: 'com.example.myapplication', // 包名
           abilityName: 'EntryFormAbility', // 模块ability名称
           parameters: {
-            'ohos.extra.param.key.form_dimension': 2, // 卡片尺寸，1代表1*2卡片，2代表2*2卡片，3代表2*4卡片，4代表4*4卡片，7代表6*4卡片，6代表1*1卡片
+            'ohos.extra.param.key.form_dimension': 2, // 卡片尺寸，1代表1*2卡片，2代表2*2卡片，3代表2*4卡片，4代表4*4卡片，7代表6*4卡片
             'ohos.extra.param.key.form_name': 'widget', // 卡片名称
             'ohos.extra.param.key.module_name': 'entry' // 卡片所属的模块名称
           },

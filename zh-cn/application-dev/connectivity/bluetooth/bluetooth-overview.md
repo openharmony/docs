@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 蓝牙技术是一种无线通信技术，可以在短距离内传输数据，该技术规范由蓝牙技术联盟（Bluetooth Special Interest Group, SIG）制定。可以用于连接手机、耳机、音箱、键盘、鼠标、打印机等各种设备。目前蓝牙有两种常见的技术分类：传统蓝牙（BR/EDR）和低功耗蓝牙（BLE）。

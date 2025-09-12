@@ -1,8 +1,13 @@
 # Certificate Extension Development
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 This topic walks you through on how to create a certificate extension (**CertExtension**) object, obtain the certificate extension information based on an object identifier (OID), and check whether the certificate is a CA certificate.
-
 
 ## How to Develop
 
@@ -11,10 +16,10 @@ This topic walks you through on how to create a certificate extension (**CertExt
    import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. Use [cert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertextension10) to create a **CertExtension** object.
+2. Use [cert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertextension10) to create a **CertExtension** instance.
 
-3. Use [CertExtension.getEntry](../../reference/apis-device-certificate-kit/js-apis-cert.md#getentry10) to obtain the certificate extension of the specified OID.
-   
+3. Use [CertExtension.getEntry](../../reference/apis-device-certificate-kit/js-apis-cert.md#getentry10) to obtain the certificate extension of the specified OID.   
+
 4. Use [CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10) to check whether the certificate is a CA certificate.
 
 ```ts
@@ -22,7 +27,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
-// Certificate extension data. The following is only an example.
+// Certificate extension data. The following is only an example. The value needs to be assigned based on the specific service.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,

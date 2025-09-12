@@ -1,5 +1,10 @@
 # Multimedia Development
-
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## How do I obtain the frame data of a camera when using the XComponent to display the preview output stream of the camera? (API version 9)
 
@@ -36,7 +41,7 @@ Create a dual-channel preview to obtain the frame data.
 
 **Solution**
 
-1. Use the **\@ohos.multimedia.camera** module to obtain the physical camera information.
+1. Use the \@ohos.multimedia.camera module to obtain the physical camera information.
 
    ```
    let cameraManager = await camera.getCameraManager(context);
@@ -116,7 +121,7 @@ Applicable to: stage model
 
 **Solution**
 
-1. Configure the permissions **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** in the **module.json5** file.
+1. Configure the permissions ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA in the **module.json5** file.
 
    Example:
 
@@ -181,7 +186,7 @@ Enumerates the camera statuses.
 
 **References**
 
-[CameraStatus](../reference/apis-camera-kit/js-apis-camera.md#oncamerastatus)
+[CameraStatus](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#oncamerastatus)
 
 ## Does SoundPool support audio in WMV format? Which formats are supported? (API version 10)
 
@@ -201,7 +206,7 @@ You can call **ImageReceiver.readLatestImage** to obtain the preview image of th
 
 **References**
 
-[readLatestImage](../reference/apis-image-kit/js-apis-image.md#readlatestimage9)
+[readLatestImage](../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md#readlatestimage9)
 
 ## How do I listen for recordings? (API version 10)
 
@@ -211,7 +216,7 @@ Audio-related listening of the system is implemented in **AudioStreamManager**. 
 
 **References**
 
-[onaudiocapturerchange](../reference/apis-audio-kit/js-apis-audio.md#onaudiocapturerchange9)
+[onaudiocapturerchange](../reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md#onaudiocapturerchange9)
 
 ## In which audio processing scenarios are 3A algorithms (AEC, ANC, and AGC) embedded? If they are embedded, is there any API related to audio 3A processing? How do I call them? Are independent switches provided for the 3A algorithms? Does the system support 3A in recording scenarios? If not, what is the solution? For example, how do I ensure the sound quality of audio recording when playing music? (API version 10)
 
@@ -221,17 +226,17 @@ The embedded 3A processing is automatically enabled for the audio stream with th
 
 **References**
 
-[AudioCapturer](../reference/apis-audio-kit/js-apis-audio.md#audiocapturer8)
+[AudioCapturer](../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md)
 
 ## How do I implement low latency audio recording?(API 11)
 
 **Solution**
 
-To implement low latency audio recording, use the C APIs provided by the **AudioCapturer** class of the **OHAudio** module. For details, see [Using OHAudio for Audio Recording (C/C++)](../media/audio/using-ohaudio-for-recording.md).
+To implement low latency audio recording, use the C APIs provided by the **AudioCapturer** class of the OHAudio module. For details, see [Using OHAudio for Audio Recording (C/C++)](../media/audio/using-ohaudio-for-recording.md).
 
 **References**
 
-[ohaudio](../reference/apis-audio-kit/_o_h_audio.md)
+[OHAudio](../reference/apis-audio-kit/capi-ohaudio.md)
 
 ## How do I implement real-time video stream transmission? How do I implement live broadcast? (API version 10)
 
@@ -252,7 +257,8 @@ To continue background playback, the application must request a continuous task 
 
 **References**
 
-[Accessing AVSession](../media/avsession/avsession-access-scene.md)
+- [Continuous Task](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+- [Accessing AVSession](../media/avsession/avsession-access-scene.md)
 
 ## Why can't a third-party application create albums? (API version 10)
 
@@ -277,5 +283,5 @@ For lossy compression images, the target image size depends on the original imag
 
 **References**
 
-- [scale](../reference/apis-image-kit/js-apis-image.md#scale9)
-- [packing](../reference/apis-image-kit/js-apis-image.md#packing)
+- [scale](../reference/apis-image-kit/arkts-apis-image-PixelMap.md#scale9)
+- [packing](../reference/apis-image-kit/arkts-apis-image-ImagePacker.md#packing13)

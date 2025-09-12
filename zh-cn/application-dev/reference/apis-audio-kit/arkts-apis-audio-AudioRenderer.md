@@ -1,4 +1,10 @@
 # Interface (AudioRenderer)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -50,11 +56,12 @@ getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
-  console.info('Renderer GetRendererInfo:');
-  console.info(`Renderer content: ${rendererInfo.content}`);
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`);
+audioRenderer.getRendererInfo((err: BusinessError, audioRendererInfo: audio.AudioRendererInfo) => {
+  if (err) {
+    console.error(`Failed to get renderer info. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
+  }
 });
 ```
 
@@ -77,13 +84,10 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
-  console.info('Renderer GetRendererInfo:');
-  console.info(`Renderer content: ${rendererInfo.content}`);
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
+audioRenderer.getRendererInfo().then((audioRendererInfo: audio.AudioRendererInfo) => {
+  console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${err}`);
+  console.error(`Failed to get renderer info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -107,13 +111,11 @@ getRendererInfoSync(): AudioRendererInfo
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let rendererInfo: audio.AudioRendererInfo = audioRenderer.getRendererInfoSync();
-  console.info(`Renderer content: ${rendererInfo.content}`);
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
+  let audioRendererInfo = audioRenderer.getRendererInfoSync();
+  console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${error}`);
+  console.error(`Failed to get renderer info. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -755,7 +757,7 @@ getAudioTime(): Promise\<number>
 
 **返回值：**
 
-| 类型             | 描述                    |
+| 类型             | 说明                    |
 | ---------------- | ----------------------- |
 | Promise\<number> | Promise对象，返回时间戳。 |
 
@@ -781,7 +783,7 @@ getAudioTimeSync(): number
 
 **返回值：**
 
-| 类型             | 描述                    |
+| 类型             | 说明                    |
 | ---------------- | ----------------------- |
 | number | 返回时间戳。 |
 
@@ -815,7 +817,7 @@ getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
 **返回值：**
 
-| 类型                                                    | 描述                    |
+| 类型                                                    | 说明                    |
 |-------------------------------------------------------| ----------------------- |
 | Promise\<[AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
 
@@ -849,7 +851,7 @@ getAudioTimestampInfoSync(): AudioTimestampInfo
 
 **返回值：**
 
-| 类型             | 描述                    |
+| 类型             | 说明                    |
 | ---------------- | ----------------------- |
 | [AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
 

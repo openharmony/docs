@@ -1,12 +1,19 @@
 # Swiper高性能开发指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 背景
 
 在应用开发中，[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
 
 - 如果该页面使用了@Component 装饰的自定义组件，那么自定义组件的 build 函数会被执行并创建内部的 UI 组件；
 
-- 如果使用了[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
+- 如果使用了[LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
 
 - 在 UI 组件构建完成后，会对 UI 组件进行布局测算和绘制。
 
@@ -41,7 +48,7 @@ Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性
  Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 true 时，预加载的结果如下：\
  ![loop=true](figures/swiper_loop_true.png)
 
-- Swiper 组件的子组件使用[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
+- Swiper 组件的子组件使用[LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
 
 **示例**
 
@@ -169,7 +176,7 @@ Swiper 子组件页面代码如下：
 在子组件首次构建（生命周期执行到[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)）时，先判断 dataSource 中该 index 的数据是否有数据，若无数据则先进行资源加载，再构建节点。若有数据，则直接构建节点即可。
 
 ```TypeScript
-import image from '@ohos.multimedia.image';
+import { image } from "@kit.ImageKit";
 import { MyDataSource } from './Index';
 
 @Component
@@ -215,9 +222,9 @@ export struct PhotoItem { //Swiper的子组件
 
 Swiper 主页面的代码如下：
 ```TypeScript
-import Curves from '@ohos.curves';
+import { curves } from "@kit.ArkUI";
 import { PhotoItem } from './PhotoItem';
-import image from '@ohos.multimedia.image';
+import { image } from "@kit.ImageKit";
 
 interface MyObject {
   description: string,
@@ -277,7 +284,7 @@ struct Index {
       })
     }
     .cachedCount(this.cacheCount)
-    .curve(Curves.interpolatingSpring(0, 1, 228, 30))
+    .curve(curves.interpolatingSpring(0, 1, 228, 30))
     .index(this.currentIndex)
     .indicator(true)
     .loop(false)
@@ -309,7 +316,6 @@ struct Index {
     .height('100%')
   }
 }
-
 ```
 
 ## 总结

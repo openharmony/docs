@@ -1,4 +1,10 @@
 # 浮层
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 设置组件的浮层。
 
@@ -10,7 +16,7 @@
 
 overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptions ): T
 
-在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。浮层的定位同样基于当前组件进行计算。浮层不通过组件树进行渲染，部分接口（例如[getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyiddeprecated)）不支持获取浮层中的组件。
+在当前组件上，增加遮罩文本或者叠加自定义组件以及[ComponentContent](#componentcontent12)作为该组件的浮层。浮层的定位同样基于当前组件进行计算。浮层不通过组件树进行渲染，部分接口（例如[getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyiddeprecated)）不支持获取浮层中的组件。
 
 >**说明：**
 >
@@ -26,7 +32,7 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](../js-apis-arkui-ComponentContent.md)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。通过CustomBuilder设置浮层时，浮层中的内容会在页面刷新时销毁并重新创建，存在一定的性能损耗，页面频繁刷新的场景推荐使用ComponentContent方式设置浮层。 |
+| value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](#componentcontent12)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。通过CustomBuilder设置浮层时，浮层中的内容会在页面刷新时销毁并重新创建，存在一定的性能损耗，页面频繁刷新的场景推荐使用ComponentContent方式设置浮层。 |
 | options | [OverlayOptions](#overlayoptions12) | 否   | 浮层的定位。<br/>**说明：**<br/>API version 12之前，options: <br/>{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} |
 
 **返回值：**
@@ -37,16 +43,24 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 >  **说明：**
 >
->  overlay节点不支持onAppear和onDisappear等和节点挂载/卸载相关的事件。
+>  overlay节点不支持[onAppear](./ts-universal-events-show-hide.md#onappear)和[onDisAppear](./ts-universal-events-show-hide.md#ondisappear)等和节点挂载/卸载相关的事件。
 
 ## OverlayOptions<sup>12+</sup>
+
+>  **说明：**
+>
+>  为规范匿名对象的定义，API 12版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                  | 类型                                       | 只读 | 可选  | 说明                                                |
 | --------------------- | -------------------------------------------| --- | -------| --------------------------------------------------- |
-| align   | [Alignment](ts-appendix-enums.md#alignment) | 否  | 是      |设置浮层相对于组件的方位。<br/>默认值：TopStart         |
-| offset  | [OverlayOffset](#overlayoffset12)          | 否  | 是     |设置浮层基于自身左上角的偏移量。浮层默认处于组件左上角。 |
+| align<sup>7+</sup>   | [Alignment](ts-appendix-enums.md#alignment) | 否  | 是      |设置浮层相对于组件的方位。<br/>默认值：TopStart<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| offset<sup>7+</sup>  | [OverlayOffset](#overlayoffset12)          | 否  | 是     |设置浮层基于自身左上角的偏移量。浮层默认处于组件左上角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 > 
@@ -54,10 +68,34 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 ## OverlayOffset<sup>12+</sup>
 
+>  **说明：**
+>
+>  为规范匿名对象的定义，API 12版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 类型                                                      | 只读 | 可选  | 说明                                                |
 | ------- | ---------------------------------------------------------| ---- | ------| --------------------------------------------------- |
-| x       | number                                                   | 否   | 是    | 横向偏移量。<br />单位：vp                               |
-| y       | number                                                   | 否   | 是    | 纵向偏移量。<br />单位：vp                               |
+| x<sup>7+</sup>        | number                                                   | 否   | 是    | 横向偏移量。<br />单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+| y<sup>7+</sup>        | number                                                   | 否   | 是    | 纵向偏移量。<br />单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+
+## ComponentContent<sup>12+</sup>
+
+type ComponentContent\<T \= Object\> = ComponentContent\<T\>
+
+组件内容的实体封装。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型|说明 |
+| ----- | ----------------- |
+| [ComponentContent](../js-apis-arkui-ComponentContent.md) | 组件内容的实体封装。|
 
 ## 示例
 

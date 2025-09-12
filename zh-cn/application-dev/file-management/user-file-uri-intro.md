@@ -1,4 +1,10 @@
 # 用户文件URI介绍
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 用户文件URI是文件的唯一标识，在对用户文件进行访问与修改等操作时往往都会使用到URI，不建议开发者解析URI中的片段用于业务代码开发，不同类型的URI使用方式将在下文详细介绍。
 
@@ -183,7 +189,7 @@ let uris: Array<string> = [];
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
 // 调用PhotoViewPicker.select选择图片
-async function photoPickerGetUri(context: common.UIAbilityContext) {
+async function photoPickerGetUri() {
   try {  
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -201,7 +207,7 @@ async function photoPickerGetUri(context: common.UIAbilityContext) {
   }
 }
 
-async function uriGetAssets() {
+async function uriGetAssets(context: common.UIAbilityContext) {
 try {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

@@ -1,4 +1,10 @@
 # Interface (CameraManager)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -366,7 +372,7 @@ createPhotoOutput(profile?: Profile): PhotoOutput
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- |----| ----------------------------------- |
-| profile  | [Profile](arkts-apis-camera-i.md#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用[preconfig](arkts-apis-camera-PhotoSession.md#preconfig12)进行预配置，传入profile参数会覆盖preconfig的预配置参数。|
+| profile  | [Profile](arkts-apis-camera-i.md#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API 12开始，如果使用[preconfig](arkts-apis-camera-PhotoSession.md#preconfig12)进行预配置，传入profile参数会覆盖preconfig的预配置参数。|
 
 **返回值：**
 
@@ -571,7 +577,7 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [T extends Session](arkts-apis-camera-Session.md)   | Session实例。接口调用失败会返回相应的错误码，错误码类型为[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| [T](arkts-apis-camera-Session.md)   | Session实例。接口调用失败会返回相应的错误码，错误码类型为[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -872,7 +878,7 @@ on(type: 'torchStatusChange', callback: AsyncCallback\<TorchStatusInfo\>): void
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'torchStatusChange'。cameraManager对象获取成功后可监听。目前只支持手电筒打开，手电筒关闭，手电筒不可用，手电筒恢复可用会触发该事件并返回对应信息。 |
-| callback | AsyncCallback\<TorchStatusInfo> | 是   | 回调函数，用于获取手电筒状态变化信息。               |
+| callback | AsyncCallback\<[TorchStatusInfo](arkts-apis-camera-i.md#torchstatusinfo11)> | 是   | 回调函数，用于获取手电筒状态变化信息。               |
 
 **示例：**
 
@@ -907,7 +913,7 @@ off(type: 'torchStatusChange', callback?: AsyncCallback\<TorchStatusInfo\>): voi
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'torchStatusChange'。cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<TorchStatusInfo> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[TorchStatusInfo](arkts-apis-camera-i.md#torchstatusinfo11)> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -942,7 +948,7 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -990,7 +996,7 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1002,15 +1008,17 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager,
+  cameraDeviceArray: Array<camera.CameraDevice>): Array<camera.CameraConcurrentInfo> {
+  let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
   try {
-    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
     cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
     console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
+  return cameraConcurrentInfos;
 }
 ```
 

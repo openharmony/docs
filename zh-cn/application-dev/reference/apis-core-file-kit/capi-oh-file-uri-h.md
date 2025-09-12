@@ -1,8 +1,16 @@
 # oh_file_uri.h
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
 提供uri和路径path之间的相互转换，目录uri获取，以及uri的有效性校验的方法。
+
+**引用文件：** <filemanagement/fileuri/oh_file_uri.h>
 
 **库：** libohfileuri.so
 

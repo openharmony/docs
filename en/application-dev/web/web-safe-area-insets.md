@@ -1,4 +1,10 @@
 # Calculating and Adjusting Safe Area Insets
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @KeeGitee-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 In earlier versions, the screen of most devices is rectangular, and the application UI can be completely displayed. With the popularization of irregular screens such as bezel-less screen and notch screens, rounded corners, cameras, or system navigation bars may appear on the edge of the screen. As a result, some parts of the screen are obscured.
 
@@ -10,7 +16,7 @@ The **Web** component provides the W3C CSS capability for calculating and adjust
 
 ## Enabling the Immersive Mode for the Web Component
 
-**Web** components are displayed in the safe area by default. After the immersive mode is enabled, the web page is extended to the status bar and navigation bar to maximize the visible area of the screen, enhance visual continuity, and improve user experience. You can enable the immersive mode of **Web** components in the following ways:
+**Web** components are displayed in the safe area by default. After <!--RP1-->the immersive mode<!--RP1End--> is enabled, the web page is extended to the status bar and navigation bar to maximize the visible area of the screen, enhance visual continuity, and improve user experience. You can enable the immersive mode of **Web** components in the following ways:
 
 - Use [setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9) to set the application window to full screen. When the window is displayed in full screen, the **Web** component can be displayed in non-safe areas.
 
@@ -70,9 +76,9 @@ The **Web** component provides the W3C CSS capability for calculating and adjust
   }
   ```
 
-## Setting the Web Page Layout in a Viewport
+## Setting the Web Page Layout in the Viewport
 
-Use **viewport-fit**, which is an attribute of the **\<meta name="viewport">** tag, to set the layout of a web page in a viewport as follows:
+Use **viewport-fit**, which is an attribute of the **\<meta name="viewport">** tag, to set the layout of a web page in the viewport. The setting method is as follows:
 
 ```html
 <meta name='viewport' content='viewport-fit=cover'>
@@ -90,7 +96,7 @@ As shown in Table 1, the default value of **viewport-fit** is **auto**, which ha
 
 > **NOTE**
 > 
-> Currently, the **Web** component does not support the feature of restricting the web page content to the safe area when the immersive mode is enabled. Therefore, the value **contain** of **viewport-fit** has the same effect as **cover**, that is, the web page content completely fills the **Web** component area.
+> Currently, the **Web** component does not support the feature of restricting the web page content to the safe area when the immersive mode is enabled. Therefore, the value **contain** of **viewport-fit** has the same effect as **cover**, that is, the web page content fills the **Web** component area.
 
 ## Avoidance Adaptation of Web Page Elements
 

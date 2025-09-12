@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Hu_ZeQi-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 swiper为滑动容器，提供切换显示子组件的能力。具体用法请参考[swiper](../reference/apis-arkui/arkui-js/js-components-container-swiper.md)。

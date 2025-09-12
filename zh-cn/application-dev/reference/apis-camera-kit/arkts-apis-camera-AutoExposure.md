@@ -1,11 +1,17 @@
 # Interface (AutoExposure)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 11开始支持。
 
-AutoExposure extends [AutoExposureQuery](arkts-apis-camera-AutoExposureQuery.md)
+AutoExposure 继承自 [AutoExposureQuery](arkts-apis-camera-AutoExposureQuery.md)。
 
 自动曝光类，对设备自动曝光（AE）操作。
 
@@ -20,6 +26,10 @@ import { camera } from '@kit.CameraKit';
 getExposureMode(): ExposureMode
 
 获取当前曝光模式。
+
+> **说明：**
+>
+> 若未通过[setExposureMode](arkts-apis-camera-AutoExposure.md#setexposuremode11)接口进行设置，直接调用该接口查询当前曝光模式，会返回无效值。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -199,7 +209,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填 | 说明                                                                                                                                                                                            |
 | -------- | -------------------------------| ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| exposureBias   | number                   | 是   | 曝光补偿，[getExposureBiasRange](arkts-apis-camera-AutoExposureQuery.md#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。<br>曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。<br>接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| exposureBias   | number                   | 是   | 曝光补偿，[getExposureBiasRange](arkts-apis-camera-AutoExposureQuery.md#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。<br>曝光补偿存在步长，由于设备差异，步长也存在差异。例如步长为0.5，则设置1.2时，获取到实际生效曝光补偿为1.0。<br>接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 

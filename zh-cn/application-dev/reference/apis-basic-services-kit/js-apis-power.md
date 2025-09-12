@@ -1,5 +1,12 @@
 # @ohos.power (系统电源管理)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 该模块主要提供重启、关机、查询屏幕状态等接口。开发者可以使用该模块的接口获取设备的活动状态、电源模式、亮灭屏状态等。
 > **说明：**
 >
@@ -181,3 +188,14 @@ power.isScreenOn()
 | MODE_PERFORMANCE        | 602  | 表示性能模式。         |
 | MODE_EXTREME_POWER_SAVE | 603  | 表示超级省电模式。     |
 | MODE_CUSTOM_POWER_SAVE<sup>20+</sup>  | 650  | 表示自定义省电模式。     |
+
+## PowerKeyFilteringStrategy<sup>21+</sup>
+
+表示电源键过滤策略。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+| 名称                    | 值   | 说明                   |
+| ----------------------- | ---- | ---------------------- |
+| DISABLE_LONG_PRESS_FILTERING | 0  | 表示不使能电源键过滤策略，默认值。 |
+| LONG_PRESS_FILTERING_ONCE | 1  | 表示仅过滤当前电源键长按事件，下一次不过滤。 |

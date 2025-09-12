@@ -1,4 +1,10 @@
 # @ohos.bundle.bundleManager (bundleManager模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供应用信息的查询能力，支持应用包信息[BundleInfo](js-apis-bundleManager-bundleInfo.md)、应用程序信息[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)、UIAbility组件信息[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、ExtensionAbility组件信息[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
@@ -25,7 +31,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。单独使用不生效，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | 用于获取包含extensionAbility的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability 和permission的信息。单独使用不生效，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | 用于获取applicationInfo、moduleInfo、abilityInfo和extensionAbilityInfo中包含的metadata。单独使用不生效，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | 用于获取applicationInfo、moduleInfo、abilityInfo和extensionAbilityInfo中包含的metadata。单独使用不生效，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY配合使用，其中：<br/>-&nbsp;获取applicationInfo中包含的metadata，需要与GET_BUNDLE_INFO_WITH_APPLICATION一起使用。<br/>-&nbsp;获取moduleInfo中包含的metadata，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>-&nbsp;获取abilityInfo中包含的metadata，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY一起使用。<br/>-&nbsp;获取extensionAbilityInfo中包含的metadata，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。单独使用不生效，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -68,7 +74,6 @@ import { bundleManager } from '@kit.AbilityKit';
 | DISTRIBUTED<sup>20+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)：为企业普通应用提供后台服务能力。 |
 | LIVE_FORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)：互动卡片相关扩展能力，提供互动卡片创建、销毁的生命周期回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-|<!--DelRow--> SELECTION<sup>20+</sup> | 31 | [SelectionExtensionAbility](../apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)：划词相关扩展能力，提供连接和断开回调。 |
 | UNSPECIFIED      | 255 | 不指定类型<!--Del-->，配合[queryExtensionAbilityInfo接口](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo)可以查询所有类型的ExtensionAbility<!--DelEnd-->。 |
 <!--RP2--><!--RP2End-->
 
@@ -130,6 +135,8 @@ import { bundleManager } from '@kit.AbilityKit';
 ## DisplayOrientation
 
 标识该Ability的显示模式。仅适用于page类型的Ability。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1154,7 +1161,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+以同步方法根据给定的bundleName、bundleFlags获取调用方所在用户下的BundleInfo。
 
 获取调用方自身的信息时不需要权限。
 
@@ -1374,7 +1381,7 @@ getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<[AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14)> | 以Promise方式返回\<AppCloneIdentity>。 |
+| Promise\<[AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14)> | Promise对象，返回\<AppCloneIdentity>。 |
 
 **错误码：**
 
@@ -1468,6 +1475,8 @@ getAbilityInfo(uri: string, abilityFlags: number): Promise\<Array\<AbilityInfo>>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
+**设备行为差异：** 该接口仅在PC/2in1设备中可正常调用，在其他设备中返回201错误码。
+
 **参数：**
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
@@ -1479,7 +1488,7 @@ getAbilityInfo(uri: string, abilityFlags: number): Promise\<Array\<AbilityInfo>>
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 返回获取到的Ability信息数组。 |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回获取到的Ability信息数组。 |
 
 **错误码：**
 
@@ -1510,6 +1519,32 @@ try {
     let message = (err as BusinessError).message;
     console.error('getAbilityInfo failed. Cause: ' + message);
 }
+```
+
+## bundleManager.cleanBundleCacheFilesForSelf<sup>21+</sup>
+
+cleanBundleCacheFilesForSelf(): Promise\<void>
+
+清理应用自身的缓存，使用Promise异步回调。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+
+bundleManager.cleanBundleCacheFilesForSelf().then(() => {
+    console.info('cleanBundleCacheFilesForSelf complete.');
+});
 ```
 
 ## ApplicationInfo

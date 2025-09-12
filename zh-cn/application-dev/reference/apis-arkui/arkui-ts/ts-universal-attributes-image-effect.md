@@ -1,4 +1,10 @@
 # 图像效果
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 设置组件的模糊、阴影、球面效果以及设置图片的图像效果。
 
@@ -482,7 +488,7 @@ colorBlend(value: Color | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                           |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色字符串。 |
+| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色字符串。取值可为string类型，如'0x000000'，'rgba(0,0,0,1)'。 |
 
 **返回值：**
 
@@ -506,7 +512,7 @@ colorBlend(color: Optional\<Color | string | Resource>): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color  | Optional\<[Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。<br/>当color的值为undefined时，恢复为无颜色叠加的效果。 |
+| color  | Optional\<[Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。取值可为string类型，如'0x000000'，'rgba(0,0,0,1)'。<br/>当color的值为undefined时，恢复为无颜色叠加的效果。 |
 
 **返回值：**
 
@@ -608,7 +614,7 @@ renderGroup(isGroup: Optional\<boolean>): T
 | ------ | ------------------------ |
 | T | 返回当前组件。 |
 
-## blendMode<sup>11+</sup> 
+## blendMode<sup>11+</sup>
 
 blendMode(value: BlendMode, type?: BlendApplyType): T
 
@@ -625,7 +631,7 @@ blendMode(value: BlendMode, type?: BlendApplyType): T
 | 参数名 | 类型                                | 必填 | 说明                                                         |
 | ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlendMode](#blendmode11枚举说明)   | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>**说明：**<br/>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
-| type   | [BlendApplyType](#blendapplytype11枚举说明) | 否   | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)，[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)，[brightness](#brightness)等需要截屏的接口无法截取到正确的画面。 |
+| type   | [BlendApplyType](#blendapplytype11枚举说明) | 否   | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)、[brightness](#brightness)、[blur](#blur)等需要截屏的接口无法截取到正确的画面。 |
 
 **返回值：**
 
@@ -650,7 +656,7 @@ blendMode(mode: Optional\<BlendMode>, type?: BlendApplyType): T
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | mode | Optional\<[BlendMode](#blendmode11枚举说明)> | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>当mode的值为undefined时，恢复为内容不进行混合的效果。<br/>**说明：**<br/>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
-| type   | [BlendApplyType](#blendapplytype11枚举说明)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)，[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)，[brightness](#brightness)等需要截屏的接口无法截取到正确的画面。|
+| type   | [BlendApplyType](#blendapplytype11枚举说明)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)、[brightness](#brightness)、[blur](#blur)等需要截屏的接口无法截取到正确的画面。|
 
 **返回值：**
 
@@ -861,12 +867,12 @@ pixelStretchEffect(options: Optional\<PixelStretchEffectOptions>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明             |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](ts-types.md#length) | 否    | 组件图像左边沿像素扩展距离。 |
-| right  | [Length](ts-types.md#length) | 否    | 组件图像右边沿像素扩展距离。 |
-| top    | [Length](ts-types.md#length) | 否    | 组件图像上边沿像素扩展距离。 |
-| bottom | [Length](ts-types.md#length) | 否    | 组件图像下边沿像素扩展距离。 |
+| 名称     | 类型                | 只读   | 可选   | 说明             |
+| ------ | ----------------- | ---- | ---- | -------------- |
+| left   | [Length](ts-types.md#length) | 否    | 是    | 组件图像左边沿像素扩展距离。 |
+| right  | [Length](ts-types.md#length) | 否    | 是    | 组件图像右边沿像素扩展距离。 |
+| top    | [Length](ts-types.md#length) | 否    | 是    | 组件图像上边沿像素扩展距离。 |
+| bottom | [Length](ts-types.md#length) | 否    | 是    | 组件图像下边沿像素扩展距离。 |
 
 ## systemBarEffect<sup>12+</sup>
 
@@ -954,7 +960,7 @@ systemBarEffect(): T
 | DST_OUT         | 9 |  r = d * (1 - sa)，只显示目标像素中与源像素不重叠的部分。                |
 | SRC_ATOP        | 10 |  r = s * da + d * (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。                 |
 | DST_ATOP        | 11 |  r = d * sa + s * (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。                 |
-| XOR             | 12 |  r = s * (1 - da) + d * (1 - sa)，只显示源像素与目标像素不重叠的部分。                     |
+| XOR             | 12 |  r = s * (1 - da) + d * (1 - sa)，在源像素和目标像素重叠的地方不显示像素，不重叠的地方显示源像素和目标像素。                     |
 | PLUS            | 13 |  r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。                     |
 | MODULATE        | 14 |  r = s * d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。                          |
 | SCREEN          | 15 |  r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。                    |
@@ -981,7 +987,7 @@ systemBarEffect(): T
 
 | 名称          | 类型                                                        | 只读 | 可选  | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ----- | ----- |------------------------------------------------------------ |
-| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | 否 | 否    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
+| fractionStops | [FractionStop](#fractionstop12)[]                          | 否 | 否    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
 | direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 否 | 否    | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
 
 ## FractionStop<sup>12+</sup>
@@ -994,7 +1000,7 @@ type FractionStop = [ number, number ]
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围       | 说明                                                       |
+| 类型      | 说明                                                       |
 | ------------- | ---------------------------------------------------------- |
 | number        |   分数,值1表示不透明，0表示完全透明。<br/>取值范围：[0,1]      |
 | number        |   停止位置,值1表示区域结束位置，0表示区域开始位置。<br/> 取值范围:[0,1] |
@@ -1007,12 +1013,12 @@ type FractionStop = [ number, number ]
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            |  类型  | 必填  | 说明                                       |
-| -------------- | ------ | ----- | ------------------------------------------ |
-| low            | number | 是    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0,1]                 |
-| high           | number | 是    | 背景颜色灰度值小于阈值区间时的取值。  <br/>取值范围：[0,1]            |
-| threshold      | number | 是    | 灰度阈值。    <br/>取值范围：[0,1]                              |
-| thresholdRange | number | 是    | 阈值范围。<br/>取值范围：[0,1]<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
+| 名称            |  类型  | 只读  | 可选  | 说明                                       |
+| -------------- | ------ | ----- | ----- | ------------------------------------------ |
+| low            | number | 否    | 否    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0, 1]                 |
+| high           | number | 否    | 否    | 背景颜色灰度值小于阈值区间时的取值。  <br/>取值范围：[0, 1]            |
+| threshold      | number | 否    | 否    | 灰度阈值。    <br/>取值范围：[0, 1]                            |
+| thresholdRange | number | 否    | 否    | 阈值范围。<br/>取值范围：[0, 1]<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
 ## BackgroundImageOptions<sup>18+</sup>
 
@@ -1028,10 +1034,10 @@ type FractionStop = [ number, number ]
 >
 >  背景图片的同步加载可能会带来潜在性能问题，详情可见[Image](ts-basic-components-image.md#image-1)中说明。
 
-| 名称            |  类型                                           | 必填  | 说明                                                     |
-| -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
-| syncLoad       | boolean                                         | 否    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，fasle表示异步加载图片，true表示同步加载图片。      |
-| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
+| 名称            |  类型                                           | 只读  | 可选  | 说明                                                     |
+| -------------- | ------------------------------------------------| ----- | ----- | --------------------------------------------------------|
+| syncLoad       | boolean                                         | 否    | 是    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。      |
+| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 是    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
 
 ## freeze<sup>12+</sup>
 
@@ -1090,6 +1096,7 @@ struct ImageEffectsExample {
     Column({ space: 5 }) {
       // 添加阴影效果，图片效果不变
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
@@ -1102,6 +1109,7 @@ struct ImageEffectsExample {
 
       // 添加内部阴影效果
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
@@ -1115,39 +1123,52 @@ struct ImageEffectsExample {
 
       // 灰度效果0~1，越接近1，灰度越明显
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).grayscale(0.3)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).grayscale(0.8)
 
       // 高光效果，1为正常图片，<1变暗，>1亮度增大
       Text('brightness').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).brightness(1.2)
 
       // 饱和度，原图为1
       Text('saturate').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).saturate(2.0)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).saturate(0.7)
 
       // 对比度，1为原图，>1值越大越清晰，<1值越小越模糊
       Text('contrast').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).contrast(2.0)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).contrast(0.8)
 
       // 图像反转比例
       Text('invert').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).invert(0.2)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).invert(0.8)
 
       // 叠色添加
       Text('colorBlend').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).colorBlend(Color.Green)
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).colorBlend(Color.Blue)
 
       // 深褐色
       Text('sepia').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).sepia(0.8)
 
       // 色相旋转
       Text('hueRotate').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      // $r("app.media.image")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.image')).width('90%').height(30).hueRotate(90)
     }.width('100%').margin({ top: 5 })
   }
@@ -1272,6 +1293,7 @@ struct Index {
     }
     .height('100%')
     .width('100%')
+    // $r("app.media.image")需要替换为开发者所需的图像资源文件。
     .backgroundImage($r('app.media.image'))
     .backgroundImageSize(ImageSize.Cover)
   }
@@ -1295,6 +1317,8 @@ struct Index {
     Stack() {
       Column()
       Stack() {
+        // $r("app.media.r")需要替换为开发者所需的图像资源文件。
+        // 该示例中图片为从左到右，颜色由浅到深。
         Image($r('app.media.r')).width('100%')
         Column() {
           Column().width("100%").height(30).invert({
@@ -1539,6 +1563,7 @@ struct Index {
   build() {
     Column() {
       Stack() {
+        // $r("app.media.testImage")需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImage')).width('100%').height('100%')
         Column()
           .width(150)

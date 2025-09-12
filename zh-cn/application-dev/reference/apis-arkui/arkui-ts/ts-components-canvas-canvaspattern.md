@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sd-wu-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 一个Object对象，使用[createPattern](ts-canvasrenderingcontext2d.md#createpattern)方法创建，通过指定图像和重复方式创建图片填充的模板。
 
@@ -29,7 +30,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名      | 类型  | 必填 | 说明   |
 | --------- | -------------- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否  | 转换矩阵。<br>默认值：null |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否  | 转换矩阵。<br>异常值undefined和null按无效值处理。<br>默认值：null |
 
 ## 示例
 

@@ -1,4 +1,10 @@
 # Accelerating Web Page Access
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 When the web page loads slowly, you can use the capabilities of pre-connection, preloading, and prefetching POST requests to accelerate the access to the web page.
 For details about how to optimize the web page loading performance, see [Performance Optimization for Web Page Loading](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-web-develop-optimization#section128761465256).
@@ -108,7 +114,7 @@ struct WebComponent {
     Column() {
       Web({ src: "https://www.example.com/", controller: this.webviewController })
         .onAppear(() => {
-          // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
+          // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit.
           webview.WebviewController.prefetchResource(
             {
               url: "https://www.example1.com/post?e=f&g=h",
@@ -147,7 +153,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onPageEnd(() => {
-          // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
+          // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit.
           webview.WebviewController.prefetchResource(
             {
               url: "https://www.example1.com/post?e=f&g=h",
@@ -178,7 +184,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
-    // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
+    // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit.
     webview.WebviewController.prefetchResource(
       {
         url: "https://www.example1.com/post?e=f&g=h",
@@ -315,7 +321,7 @@ You are advised to use this function together with dynamic components, use offli
 
    async function readRawFile(path: string, context: UIContext) {
      try {
-       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);
      } catch (err) {
        return new Uint8Array(0);
      }

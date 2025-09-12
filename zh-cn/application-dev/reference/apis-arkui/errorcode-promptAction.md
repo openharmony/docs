@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
-<!--SE: @liyi0309-->
-<!--TSE: @lxl007-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -32,6 +33,10 @@ NA
 **错误信息**
 
 The ComponentContent is incorrect.
+
+> **说明：**
+>
+> 当接口是[openCustomDialog](arkts-apis-uicontext-promptaction.md#opencustomdialog12)、[openCustomDialogWithController](arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18)、[closeCustomDialog](arkts-apis-uicontext-promptaction.md#closecustomdialog12)和[updateCustomDialog](arkts-apis-uicontext-promptaction.md#updatecustomdialog12)时，返回的错误信息为Dialog content error. The ComponentContent is incorrect.
 
 **错误描述**
 
@@ -68,6 +73,10 @@ NA
 **错误信息**
 
 The ComponentContent cannot be found.
+
+> **说明：**
+>
+> 当接口是[closeCustomDialog](arkts-apis-uicontext-promptaction.md#closecustomdialog12)和[updateCustomDialog](arkts-apis-uicontext-promptaction.md#updatecustomdialog12)时，返回的错误信息为Dialog content not found. The ComponentContent cannot be found.
 
 **错误描述**
 

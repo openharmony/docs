@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 ArkUI框架提供了丰富的接口，用于处理用户通过不同外设生成的基础输入事件，同时提供了高级接口封装，以响应用户归一化的交互行为，如手势、拖拽、焦点等。
 

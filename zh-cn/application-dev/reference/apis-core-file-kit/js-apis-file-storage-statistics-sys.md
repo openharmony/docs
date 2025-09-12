@@ -1,4 +1,10 @@
 # @ohos.file.storageStatistics (应用空间统计)(系统接口)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块提供空间查询相关的常用功能：包括对内外卡的空间查询、对应用分类数据统计的查询、对应用数据的查询等。
 
@@ -55,7 +61,12 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
       console.info("getTotalSizeOfVolume successfully:" + number);
@@ -104,7 +115,12 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {
@@ -161,7 +177,12 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
       console.info("getFreeSizeOfVolume successfully:" + number);
@@ -210,7 +231,12 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
   ```ts
   import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
+
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    if (volumes == null || volumes.length <= 0) {
+      console.error("volumes is null or length is invalid");
+      return;
+    }
     let uuid: string = volumes[0].uuid;
     storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {

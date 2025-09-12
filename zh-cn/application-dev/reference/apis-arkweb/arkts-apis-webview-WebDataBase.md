@@ -1,9 +1,10 @@
 # Class (WebDataBase)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @yuzhouhang1-->
-<!--SE: @ctqctq99-->
-<!--TSE: @ghiker-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件数据库管理对象。
 
@@ -46,7 +47,7 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -73,7 +74,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.username_password = webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
-            console.log('num: ' + this.username_password.length);
+            console.info('num: ' + this.username_password.length);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -103,7 +104,7 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |

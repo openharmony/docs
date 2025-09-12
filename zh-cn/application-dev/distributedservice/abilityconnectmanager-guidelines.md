@@ -1,9 +1,15 @@
 # UIAbility与UIAbility连接开发指南
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @hobbycao-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @w_Machine_cc-->
 
 
 ## 简介
 
-应用跨设备连接管理可以通过分布式操作系统，将用户拥有的多个设备整合为一个整体，实现设备与设备之间的能力互助，为用户提供比单设备更加高效的沉浸式体验。<!--Del-->例如通过手表相机应用拉起手机的相机功能并实现实时画面预览和遥控拍照。<!--DelEnd-->
+从API version 18开始，新增应用跨设备协同进行数据传输的能力。应用跨设备连接管理可以通过分布式操作系统，将用户拥有的多个设备整合为一个整体，实现设备与设备之间的能力互助，为用户提供比单设备更加高效的沉浸式体验。<!--Del-->例如通过手表相机应用拉起手机的相机功能并实现实时画面预览和遥控拍照。<!--DelEnd-->
 
 
 ### 能力范围
@@ -299,10 +305,10 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   });
 ```
 <!--RP1End-->  
-
+<!--Del-->
 **发送数据**
-
-**1.发送消息**
+<!--DelEnd-->
+**<!--Del-->1.<!--DelEnd-->发送消息**
 
 应用连接成功后，开发者可在设备A或者设备B上调用sendMessage()方法给对端应用发送文本信息。
 

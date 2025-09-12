@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 自定义字体可以是从项目中的字体文件中加载的字体，字体格式支持ttf和otf。
 

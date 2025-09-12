@@ -1,4 +1,10 @@
 # Interface (PhotoAsset)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -92,7 +98,7 @@ set(member: string, value: string): void
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
 | member | string | 是    | 成员参数名称例如：[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE。字符串长度为1~255。 |
-| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
+| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现的非法英文字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
 
 **错误码：**
 
@@ -244,6 +250,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  if (photoAsset === undefined) {
+    console.error('commitModifyPromise photoAsset is undefined');
+    return;
+  }
   let title: string = photoAccessHelper.PhotoKeys.TITLE.toString();
   let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
   console.info('photoAsset get photoAssetTitle = ', photoAssetTitle);
@@ -482,16 +492,20 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
   let size: image.Size = { width: 720, height: 720 };
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  let asset = await fetchResult.getFirstObject();
-  console.info('asset displayName = ', asset.displayName);
-  asset.getThumbnail(size, (err, pixelMap) => {
-    if (err === undefined) {
-      console.info('getThumbnail successful ' + pixelMap);
-    } else {
-      console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
-    }
-  });
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    console.info('asset displayName = ', asset.displayName);
+    asset.getThumbnail(size, (err, pixelMap) => {
+      if (err === undefined) {
+        console.info('getThumbnail successful ' + pixelMap);
+      } else {
+        console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
+      }
+    });
+  } catch (error) {
+    console.error(`Error fetching assets: ${error.message}`);
+  }
 }
 ```
 
@@ -572,7 +586,7 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | 是    | 克隆后资产的标题。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
+| title| string | 是    | 克隆后资产的标题。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现的非法英文字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
 
 **返回值：**
 
@@ -649,7 +663,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
+| 14000011       | System inner fail.        |
 
 **示例：**
 
@@ -712,7 +726,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
+| 14000011       | System inner fail.        |
 
 **示例：**
 
@@ -732,6 +746,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     };
     let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+    if (photoAsset === undefined) {
+      console.error('photoAsset is undefined');
+      return;
+    }
     let fd: number = await photoAsset.getReadOnlyFd();
     if (fd !== undefined) {
       console.info('File fd' + fd);

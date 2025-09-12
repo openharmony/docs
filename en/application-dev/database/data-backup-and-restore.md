@@ -1,4 +1,10 @@
-# Database Backup and Restore (ArkTS)
+# Database Backup and Restoration (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997; @dboy190-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## When to Use
 
@@ -61,6 +67,10 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
              }
              console.info('Succeeded in getting KVStore.');
              kvStore = store;
+             if (kvStore !== undefined) {
+               // Perform subsequent operations.
+               // ...
+             }
            });
          } catch (e) {
            let error = e as BusinessError;
@@ -69,12 +79,6 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
        } catch (e) {
          let error = e as BusinessError;
          console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-       }
-
-       if (kvStore !== undefined) {
-         kvStore = kvStore as distributedKVStore.SingleKVStore;
-         // Perform subsequent operations.
-         //...
        }
      }
    }

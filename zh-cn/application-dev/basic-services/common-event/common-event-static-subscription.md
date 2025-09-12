@@ -1,4 +1,10 @@
 # 静态订阅公共事件（仅对系统应用开放）
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -131,7 +137,7 @@
    | **属性名称** | **含义**                                                     | **数据类型** | **是否可缺省**   |
    | ------------ | ------------------------------------------------------------ | ------------ | ---------------- |
    | event        | 标识静态订阅事件需要过滤的事件名，与事件列表进行匹配，否则配置无效。 | 字符串       | 该标签不可缺省。 |
-   | conditions   | 标识当前事件的过滤条件，从[发布者CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md#commoneventpublishdata)中进行过滤。 | 对象         | 该标签不可缺省。 |
+   | conditions   | 标识当前事件的过滤条件，从[发布者CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)中进行过滤。 | 对象         | 该标签不可缺省。 |
 
    conditions标签标识静态订阅过滤事件需要的条件配置，标签值为对象类型，包含code、data、parameters三个子标签。
 
@@ -169,5 +175,5 @@
 
 针对StaticSubscriberExtensionAbility开发，可参考如下实例：
 
-- [静态订阅（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
+- [静态订阅（仅对系统应用开放）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
 

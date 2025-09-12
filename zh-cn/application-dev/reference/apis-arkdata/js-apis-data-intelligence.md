@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @my-2024-->
-<!--SE: @cuile44; @fysun17; @AnruiWang; @xd_94; @pancodax-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @cuile44; @fysun17; @AnruiWang-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 智慧数据平台（ArkData Intelligence Platform，AIP）提供端侧数据智慧化构建，使应用数据向量化，通过嵌入模型将非结构化的文本、图像等多模态数据，转换成具有语义的向量。
 

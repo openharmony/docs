@@ -1,6 +1,13 @@
 # UIAbilityContext (System API)
 
-UIAbilityContext provides the context environment for a [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. It inherits from [Context](js-apis-inner-application-context.md) and provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+UIAbilityContext provides the context environment for a [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. It inherits from [Context](js-apis-inner-application-context.md) and provides UIAbility-related configuration and APIs for operating UIAbility and ServiceExtensionAbility components. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -395,6 +402,12 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
@@ -553,6 +566,12 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
@@ -691,6 +710,12 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -840,6 +865,12 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
@@ -897,7 +928,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 Connects this ability to a ServiceExtensionAbility, with the account ID specified. This API can be called only by the main thread.
 
-Currently, this API takes effect only on mobile phones and tablets.
+Currently, this API takes effect only on phones and tablets.
 
 > **NOTE**
 >
@@ -1197,6 +1228,12 @@ Starts an ability with want, the account ID, and start options specified. This A
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
@@ -1304,17 +1341,25 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onForeground() {
     let imagePixelMap: image.PixelMap;
-    let color = new ArrayBuffer(0);
+    let color = new ArrayBuffer(4 * 6 * 4); // Create an ArrayBuffer object to store image pixels. The size of the object is (height * width * 4) bytes.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+      bufferArr[i] = 255;
+      bufferArr[i+1] = 0;
+      bufferArr[i+2] = 122;
+      bufferArr[i+3] = 255;
+    }
     image.createPixelMap(color, {
-      size: {
-        height: 100,
-        width: 100
-      }
+      editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }
     }).then((data) => {
       imagePixelMap = data;
       this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
-        console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-      })
+        if (err.code) {
+          console.error(`setMissionIcon failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('setMissionIcon succeed');
+      });
     }).catch((err: BusinessError) => {
       console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
     });
@@ -1343,7 +1388,7 @@ Sets an icon for this ability in the mission. The maximum size of the icon is 60
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1365,12 +1410,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onForeground() {
     let imagePixelMap: image.PixelMap;
-    let color = new ArrayBuffer(0);
+    let color = new ArrayBuffer(4 * 6 * 4); // Create an ArrayBuffer object to store image pixels. The size of the object is (height * width * 4) bytes.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+      bufferArr[i] = 255;
+      bufferArr[i+1] = 0;
+      bufferArr[i+2] = 122;
+      bufferArr[i+3] = 255;
+    }
     image.createPixelMap(color, {
-      size: {
-        height: 100,
-        width: 100
-      }
+      editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }
     }).then((data) => {
       imagePixelMap = data;
       this.context.setMissionIcon(imagePixelMap)
@@ -1378,7 +1427,7 @@ export default class EntryAbility extends UIAbility {
           console.info('setMissionIcon succeed');
         })
         .catch((err: BusinessError) => {
-          console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+          console.error(`setMissionIcon failed, code is ${err.code}, message is ${err.message}`);
         });
     }).catch((err: BusinessError) => {
       console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
@@ -1395,7 +1444,15 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> - For a successful launch in cross-device scenarios, the caller and target must be the same application and the application must have the ohos.permission.DISTRIBUTED_DATASYNC permission.
+>
+> - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the ohos.permission.START_INVISIBLE_ABILITY permission.
+>
+> - If the specified ability has multiple instances, the caller must have the ohos.permission.START_RECENT_ABILITY permission (available only for system applications) to start the latest instance.
+>
+> - If the caller is running in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required (available only for system applications).
+
+For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1479,7 +1536,15 @@ Starts an ability with the start options specified. If the ability has multiple 
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> - For a successful launch in cross-device scenarios, the caller and target must be the same application and the application must have the ohos.permission.DISTRIBUTED_DATASYNC permission.
+>
+> - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the ohos.permission.START_INVISIBLE_ABILITY permission.
+>
+> - If the specified ability has multiple instances, the caller must have the ohos.permission.START_RECENT_ABILITY permission (available only for system applications) to start the latest instance.
+>
+> - If the caller is running in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required (available only for system applications).
+
+For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1566,7 +1631,15 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> - For a successful launch in cross-device scenarios, the caller and target must be the same application and the application must have the ohos.permission.DISTRIBUTED_DATASYNC permission.
+>
+> - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the ohos.permission.START_INVISIBLE_ABILITY permission.
+>
+> - If the specified ability has multiple instances, the caller must have the ohos.permission.START_RECENT_ABILITY permission (available only for system applications) to start the latest instance.
+>
+> - If the caller is running in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required (available only for system applications).
+
+For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1578,6 +1651,12 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1927,7 +2006,7 @@ Starts an ability with the caller information specified. The caller information 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2017,7 +2096,7 @@ Before starting the UIExtensionAbility, ensure that the foreground application h
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 

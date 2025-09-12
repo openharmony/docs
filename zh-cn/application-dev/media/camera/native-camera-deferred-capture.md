@@ -1,4 +1,10 @@
 # 分段式拍照(C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 分段式拍照是相机的最重要功能之一，相机输出低质量图用作快速显示，提升用户感知拍照速度，同时使用高质量图保证最后的成图质量达到系统相机的水平，既满足了后处理算法的需求，又不阻塞前台的拍照速度，构筑相机性能竞争力，提升了用户的体验。
 
@@ -16,8 +22,8 @@
    #include <cstdint>
    #include <cstdlib>
    #include <cstring>
-   #include <string.h>
    #include <memory>
+   #include <mutex>
    #include "hilog/log.h"
    #include "napi/native_api.h"
    #include <ohcamera/camera.h>
@@ -85,6 +91,7 @@
    
    // 方式二：调用媒体库接口请求图像资源。
    // 图像源准备就绪时调用。
+   std::mutex g_mediaAssetMutex;
    OH_MediaAsset* g_mediaAsset_;
    void OnImageDataPrepared(MediaLibrary_ErrorCode result, MediaLibrary_RequestId requestId,
                             MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type,
@@ -121,9 +128,10 @@
        auto buffer = std::make_unique<uint8_t[]>(bufferSize);
        imageErr = OH_ImagePackerNative_PackToDataFromPixelmap(imagePacker, options, pixelmapNative, buffer.get(), &bufferSize);
        OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: packToData ret code:%{public}u outsize:%{public}zu", imageErr, bufferSize);
+       std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
        if (g_mediaAsset_ == nullptr) {
-           OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
-           return;
+         OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
+         return;
        }
        // 调用媒体库接口通过buffer存图。
        OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
@@ -172,6 +180,7 @@
        // 处理方式一：调用媒体库接口落盘图片，先保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片。
        // mediaLibSavePhoto(mediaAsset);
        // 处理方式二：调用媒体库接口请求图像资源，获取一阶段图或二阶段图buffer，业务处理后通过buffer存图。
+       std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
        g_mediaAsset_ = mediaAsset;
        mediaLibRequestBuffer(mediaAsset);
    }

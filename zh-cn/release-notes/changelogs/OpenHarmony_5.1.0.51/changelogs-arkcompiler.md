@@ -32,10 +32,10 @@ API 11
 
 | 接口                          | 影响                                                          |
 | ------------------------------- | --------------------------------------------------------------- |
-| OH\_JSVM\_CompileWasmModule   | 无 JIT 权限会返回 JIT\_MODE\_EXPECTED 状态码                      |
-| OH\_JSVM\_CompileWasmFunction | 无 JIT 权限会返回 JIT\_MODE\_EXPECTED 状态码                      |
-| OH\_JSVM\_CreateWasmCache     | 无 JIT 权限会返回 JIT\_MODE\_EXPECTED 状态码                      |
-| OH\_JSVM\_RunScript           | 无 JIT 权限执行含wasm的脚本会失败，在特定场景下存在性能差异 |
+| OH_JSVM_CompileWasmModule   | 无 JIT 权限会返回 JIT_MODE_EXPECTED 状态码，并打印一行日志提示开发者                      |
+| OH_JSVM_CompileWasmFunction | 无 JIT 权限会返回 JIT_MODE_EXPECTED 状态码，并打印一行日志提示开发者                      |
+| OH_JSVM_CreateWasmCache     | 无 JIT 权限会返回 JIT_MODE_EXPECTED 状态码，并打印一行日志提示开发者                      |
+| OH_JSVM_RunScript           | 无 JIT 权限执行含wasm的脚本会失败，在特定场景下存在性能差异，并打印一行日志提示开发者 |
 
 **适配指导**
 

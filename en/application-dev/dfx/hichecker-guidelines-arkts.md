@@ -1,5 +1,12 @@
 # Using HiChecker (ArkTS)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @lu-tao-->
+<!--Designer: @martin-duan-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## Overview
 
 HiChecker is provided to check issues that may be easily ignored during application development. Such issues include time-consuming thread calling and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
@@ -11,26 +18,31 @@ HiChecker is provided to check issues that may be easily ignored during applicat
 ## Working Principles
 
 1. The application calls HiChecker APIs to add, remove, query, and modify rules. 
+
 2. When a time-consuming call or ability resource leakage occurs, HiChecker reports an event based on the rule triggered.
 
 ## Constraints
 
 - Currently, the alarm rules support only logs (default) and application crashes. 
+
 - HiChecker supports stack unwinding in C but not in JavaScript. 
 
 ## Available APIs
 
-The check APIs are provided by the HiChecker module. For details about the APIs, see [HiChecker](../reference/apis-performance-analysis-kit/js-apis-hichecker.md).
+The check APIs are provided by the HiChecker module. For details about the APIs, see [@ohos.hichecker (HiChecker)](../reference/apis-performance-analysis-kit/js-apis-hichecker.md).
 
 | API| Description|
 | -------- | -------- |
-| hichecker.addCheckRule(rule: bigint) | Adds a rule.|
-| hichecker.removeCheckRule(rule: bigint) | Removes a rule.|
-| hichecker.containsCheckRule(rule: bigint) | Queries a rule.|
+| hichecker.addCheckRule(rule: bigint): void | Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.|
+| hichecker.removeCheckRule(rule: bigint): void | Removes one or more rules. The removed rules will become ineffective.|
+| hichecker.containsCheckRule(rule: bigint): boolean | Checks whether the specified rule exists in the collection of added rules.|
+| hichecker.getRule(): bigint | Obtains a collection of thread, process, and alarm rules that have been added.|
 
 ## How to Develop
 
-After the application startup execution page is loaded, the check starts. After the service is complete, the check stops.
+After the application startup execution page is loaded, the check starts. After the service is complete, the check stops. When starting a check, you can configure different alarm rules and check rules as required. Currently, the check rules support the check of time-consuming function calls, ability leaks, and ArkUI performance. You can configure the behavior triggered by the detected problem through the alarm rule. Currently, the logging and application exit are supported.
+
+To detect time-consuming function calls and record them in logs, perform the following steps:
 
 1. Create an ArkTS application project. In the **Project** window, click **entry > src > main > ets > entryability** to open the **EntryAbility.ets** file. After the page is loaded, call the HiChecker to add check rules. The sample code is as follows:
 
@@ -86,15 +98,8 @@ After the application startup execution page is loaded, the check starts. After 
      }
    }
    ```
-   
-2. Run the following commands in sequence in the shell:
 
-   ```shell
-   hdc shell
-   hilog|grep -i hichecker
-   ```
-
-   After the HAP is installed, the check begins. If the following call stack information is displayed in the shell window, the check is successful (The call stack triggers the check rule).
+2. Install and run the HAP. Use the Log plug-in of DevEco Studio to filter logs containing the keyword **HICHECKER** or run the **hdc shell "hilog | grep HICHECKER"** command. If the following call stack information is displayed, the check is successful (the call stack is the one that triggers the check rule).
 
    ```shell
    08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: StackTrace:

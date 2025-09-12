@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 本模块提供应用账号信息的添加、删除、修改和查询基础能力，并支持应用间鉴权和分布式数据同步功能。
 
@@ -41,7 +42,7 @@ createAppAccountManager(): AppAccountManager
 
 ## AppAccountManager
 
-应用账号管理器类。
+应用账号管理器，可用于管理应用自身的账号信息。
 
 ### createAccount<sup>9+</sup>
 
@@ -60,6 +61,8 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -76,13 +79,14 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
   try {
     appAccountManager.createAccount('WangWu', (err: BusinessError) => { 
       if (err) {
-        console.error('createAccount code: ' + JSON.stringify(err));
+        console.error(`createAccount code: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('createAccount successful.');
+        console.info('createAccount successful.');
       }
     });
   } catch (err) {
-    console.error('createAccount err: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`createAccount err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -103,6 +107,8 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -125,13 +131,13 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
   try {
     appAccountManager.createAccount('LiSi', options, (err: BusinessError) => {
       if (err) {
-        console.error('createAccount failed, error: ' + JSON.stringify(err));
+        console.error(`createAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('createAccount successfully');
+        console.info('createAccount successfully');
       }
     });
   } catch(err) {
-    console.error('createAccount exception: ' + JSON.stringify(err));
+    console.error(`createAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -158,6 +164,8 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -178,12 +186,12 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
   }
   try {
     appAccountManager.createAccount('LiSi', options).then(() => {
-      console.log('createAccount successfully');
+      console.info('createAccount successfully');
     }).catch((err: BusinessError) => {
-      console.error('createAccount failed, error: ' + JSON.stringify(err));
+      console.error(`createAccount failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch(err) {
-    console.error('createAccount exception: ' + JSON.stringify(err));
+    console.error(`createAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -203,6 +211,8 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，返回创建结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -226,8 +236,8 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -238,9 +248,9 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
-        console.error('startAbility err: ' + JSON.stringify(err));
+        console.error(`startAbility err: code is ${err.code}, message is ${err.message}`);
       })
     }
 
@@ -251,7 +261,8 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
           onRequestRedirected: this.onRequestRedirectedCallback
         });
       } catch (err) {
-        console.error('createAccountImplicitly exception: ' + JSON.stringify(err));
+        const err = err as BusinessError;
+        console.error(`createAccountImplicitly exception: code is ${err.code}, message is ${err.message}`);
       }
     }
     build() {}
@@ -276,6 +287,8 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -298,8 +311,8 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -310,9 +323,9 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
-        console.error('startAbility err: ' + JSON.stringify(err));
+        console.error(`startAbility err: code is ${err.code}, message is ${err.message}`);
       })
     }
 
@@ -327,7 +340,8 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
           onRequestRedirected: this.onRequestRedirectedCallback
         });
       } catch (err) {
-        console.error('createAccountImplicitly exception: ' + JSON.stringify(err));
+        const err = err as BusinessError;
+        console.error(`createAccountImplicitly exception: code is ${err.code}, message is ${err.message}`);
       }
     }
     build() {}
@@ -351,6 +365,8 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -366,13 +382,13 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
   try {
     appAccountManager.removeAccount('ZhaoLiu', (err: BusinessError) => {
       if (err) {
-        console.error('removeAccount failed, error: ' + JSON.stringify(err));
+        console.error(`removeAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('removeAccount successfully');
+        console.info('removeAccount successfully');
       }
    });
   } catch(err) {
-    console.error('removeAccount exception: ' + JSON.stringify(err));
+    console.error(`removeAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -398,6 +414,8 @@ removeAccount(name: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -412,12 +430,13 @@ removeAccount(name: string): Promise&lt;void&gt;
 
   try {
     appAccountManager.removeAccount('Lisi').then(() => {
-      console.log('removeAccount successfully');
+      console.info('removeAccount successfully');
     }).catch((err: BusinessError) => {
-      console.error('removeAccount failed, error: ' + JSON.stringify(err));
+      console.error(`removeAccount failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('removeAccount exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`removeAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -440,6 +459,8 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -456,13 +477,14 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err: BusinessError) => {
       if (err) {
-        console.error('setAppAccess failed: ' + JSON.stringify(err));
+        console.error(`setAppAccess failed: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setAppAccess successfully');
+        console.info('setAppAccess successfully');
       }
     });
   } catch (err) {
-    console.error('setAppAccess exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -490,6 +512,8 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -505,12 +529,13 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
-      console.log('setAppAccess successfully');
+      console.info('setAppAccess successfully');
     }).catch((err: BusinessError) => {
-      console.error('setAppAccess failed: ' + JSON.stringify(err));
+      console.error(`setAppAccess failed: code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('setAppAccess exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -532,6 +557,8 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -548,13 +575,14 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo',
       (err: BusinessError, isAccessible: boolean) => {
         if (err) {
-          console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
+          console.error(`checkAppAccess failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('checkAppAccess successfully');
+          console.info('checkAppAccess successfully');
         }
       });
   } catch (err) {
-    console.error('checkAppAccess exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -581,6 +609,8 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -595,12 +625,13 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
   try {
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible: boolean) => {
-      console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
+      console.info('checkAppAccess successfully, isAccessible: ' + isAccessible);
     }).catch((err: BusinessError) => {
-      console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
+      console.error(`checkAppAccess failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('checkAppAccess exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -624,6 +655,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 201 | Permission denied.|
@@ -639,10 +672,11 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
   
   try {
       appAccountManager.setDataSyncEnabled('ZhangSan', true, (err: BusinessError) => { 
-          console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
+          console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
       });
   } catch (err) {
-      console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
+      const err = err as BusinessError;
+      console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -671,6 +705,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 201 | Permission denied.|
@@ -686,12 +722,13 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
   try {
       appAccountManager.setDataSyncEnabled('ZhangSan', true).then(() => { 
-          console.log('setDataSyncEnabled Success');
+          console.info('setDataSyncEnabled Success');
       }).catch((err: BusinessError) => {
-          console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
+          console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
       });
   } catch (err) {
-      console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
+      const err = err as BusinessError;
+      console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -714,6 +751,8 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 201 | Permission denied.|
@@ -730,13 +769,14 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan', (err: BusinessError, isEnabled: boolean) => {
       if (err) {
-        console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
+        console.error(`checkDataSyncEnabled failed, err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
+        console.info('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
-    console.error('checkDataSyncEnabled err: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -764,6 +804,8 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 201 | Permission denied.|
@@ -779,12 +821,13 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled: boolean) => {
-        console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
+        console.info('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
-      console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
+      console.error(`checkDataSyncEnabled failed, err: code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('checkDataSyncEnabled err: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -807,6 +850,8 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -822,13 +867,14 @@ setCredential(name: string, credentialType: string, credential: string,callback:
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err: BusinessError) => {
       if (err) {
-        console.error('setCredential failed, error: ' + JSON.stringify(err));
+        console.error(`setCredential failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setCredential successfully');
+        console.info('setCredential successfully');
       }
     });
   } catch (err) {
-    console.error('setCredential exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -856,6 +902,8 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -870,12 +918,13 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
-      console.log('setCredential successfully');
+      console.info('setCredential successfully');
     }).catch((err: BusinessError) => {
-      console.error('setCredential failed, error: ' + JSON.stringify(err));
+      console.error(`setCredential failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('setCredential exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -897,6 +946,8 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -913,13 +964,14 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
   try {
       appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err: BusinessError, result: string) => { 
         if (err) {
-          console.error('getCredential failed, error: ' + JSON.stringify(err));
+          console.error(`getCredential failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('getCredential successfully, result: ' + result);
+          console.info('getCredential successfully, result: ' + result);
         }
       });
   } catch (err) {
-      console.error('getCredential err: ' + JSON.stringify(err));
+      const err = err as BusinessError;
+      console.error(`getCredential err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -946,6 +998,8 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -961,12 +1015,13 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
   try {
     appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential: string) => {
-        console.log('getCredential successfully, credential: ' + credential);
+        console.info('getCredential successfully, credential: ' + credential);
     }).catch((err: BusinessError) => {
-        console.error('getCredential failed, error: ' + JSON.stringify(err));
+        console.error(`getCredential failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getCredential exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -989,6 +1044,8 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1005,13 +1062,14 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12', (err: BusinessError) => {
       if (err) {
-        console.error('setCustomData failed, error: ' + JSON.stringify(err));
+        console.error(`setCustomData failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setCustomData successfully');
+        console.info('setCustomData successfully');
       }
     });
   } catch (err) {
-    console.error('setCustomData exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1039,6 +1097,8 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1054,12 +1114,13 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
-      console.log('setCustomData successfully');
+      console.info('setCustomData successfully');
     }).catch((err: BusinessError) => {
-      console.error('setCustomData failed, error: ' + JSON.stringify(err));
+      console.error(`setCustomData failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('setCustomData exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1081,6 +1142,8 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1099,11 +1162,12 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
       if (err) {
         console.error('getCustomData failed, error: ' + err);
       } else {
-        console.log('getCustomData successfully, data: ' + data);
+        console.info('getCustomData successfully, data: ' + data);
       }
     });
   } catch (err) {
-    console.error('getCustomData exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1130,6 +1194,8 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1145,18 +1211,19 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
   try {
     appAccountManager.getCustomData('ZhangSan', 'age').then((data: string) => {
-      console.log('getCustomData successfully, data: ' + data);
+      console.info('getCustomData successfully, data: ' + data);
     }).catch((err: BusinessError) => {
-      console.error('getCustomData failed, error: ' + JSON.stringify(err));
+      console.error(`getCustomData failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getCustomData exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
 ### getCustomDataSync<sup>9+</sup>
 
-getCustomDataSync(name: string, key: string): string;
+getCustomDataSync(name: string, key: string): string
 
 根据指定键名获取特定应用账号的自定义数据。使用同步方式返回结果。
 
@@ -1177,6 +1244,8 @@ getCustomDataSync(name: string, key: string): string;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1192,7 +1261,8 @@ getCustomDataSync(name: string, key: string): string;
       let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
       console.info('getCustomDataSync successfully, value: ' + value);
   } catch (err) {
-    console.error('getCustomDataSync failed, error: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getCustomDataSync failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1212,6 +1282,8 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1225,13 +1297,14 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
   try {
     appAccountManager.getAllAccounts((err: BusinessError, data: appAccount.AppAccountInfo[]) => {
       if (err) {
-        console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
+        console.error(`getAllAccounts failed, code is ${err.code}, message is ${err.message}`);
       } else {
         console.debug('getAllAccounts successfully');
       }
     });
   } catch (err) {
-      console.error('getAllAccounts exception: ' + JSON.stringify(err));
+      const err = err as BusinessError;
+      console.error(`getAllAccounts exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1251,6 +1324,8 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
@@ -1264,10 +1339,11 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
     appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
       console.debug('getAllAccounts successfully');
     }).catch((err: BusinessError) => {
-      console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
+      console.error(`getAllAccounts failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getAllAccounts exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAllAccounts exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1288,6 +1364,8 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1303,13 +1381,14 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
     appAccountManager.getAccountsByOwner('com.example.accountjsdemo2',
       (err: BusinessError, data: appAccount.AppAccountInfo[]) => {
         if (err) {
-          console.error('getAccountsByOwner failed, error:' + JSON.stringify(err));
+          console.error(`getAccountsByOwner failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
         }
       });
   } catch (err) {
-    console.error('getAccountsByOwner exception:' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAccountsByOwner exception:code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1335,6 +1414,8 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1351,10 +1432,11 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
       data: appAccount.AppAccountInfo[]) => {
       console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.error('getAccountsByOwner failed, error: ' + JSON.stringify(err));
+      console.error(`getAccountsByOwner failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getAccountsByOwner exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAccountsByOwner exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1376,6 +1458,8 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1386,12 +1470,12 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
   ```ts
   function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
-  	console.log('receive change data:' + JSON.stringify(data));
+    console.info('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
+    appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
   } catch(err) {
-  	console.error('on accountChange failed, error:' + JSON.stringify(err));
+    console.error(`on accountChange failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1412,6 +1496,8 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1422,18 +1508,18 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 
   ```ts
   function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
-  	console.log('receive change data:' + JSON.stringify(data));
+    console.info('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
+    appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
   } catch(err) {
-  	console.error('on accountChange failed, error:' + JSON.stringify(err));
+    console.error(`on accountChange failed, code is ${err.code}, message is ${err.message}`);
   }
   try{
-  	appAccountManager.off('accountChange', changeOnCallback);
+    appAccountManager.off('accountChange', changeOnCallback);
   }
   catch(err){
-  	console.error('off accountChange failed, error:' + JSON.stringify(err));
+    console.error(`off accountChange failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1455,6 +1541,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 | callback | [AuthCallback](#authcallback9) | 是    | 回调对象，返回鉴权结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1478,8 +1566,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('authResult: ' + JSON.stringify(authResult));
+      console.info('resultCode: ' + code);
+      console.info('authResult: ' + JSON.stringify(authResult));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -1490,9 +1578,9 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
-        console.error('startAbility err: ' + JSON.stringify(err));
+        console.error(`startAbility err: code is ${err.code}, message is ${err.message}`);
       })
     }
 
@@ -1503,7 +1591,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
           onRequestRedirected: this.onRequestRedirectedCallback
         });
       } catch (err) {
-        console.error('auth exception: ' + JSON.stringify(err));
+        const err = err as BusinessError;
+        console.error(`auth exception: code is ${err.code}, message is ${err.message}`);
       }
     }
     build() {}
@@ -1530,6 +1619,8 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1552,8 +1643,8 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('authResult: ' + JSON.stringify(authResult));
+      console.info('resultCode: ' + code);
+      console.info('authResult: ' + JSON.stringify(authResult));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -1564,9 +1655,9 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
-        console.error('startAbility err: ' + JSON.stringify(err));
+        console.error(`startAbility err: code is ${err.code}, message is ${err.message}`);
       })
     }
 
@@ -1580,7 +1671,8 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
           onRequestRedirected: this.onRequestRedirectedCallback
         });
       } catch (err) {
-        console.error('auth exception: ' + JSON.stringify(err));
+        const err = err as BusinessError;
+        console.error(`auth exception: code is ${err.code}, message is ${err.message}`);
       }
     }
     build() {}
@@ -1606,6 +1698,8 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1623,13 +1717,14 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
       (err: BusinessError, token: string) => {
         if (err) {
-          console.error('getAuthToken failed, error: ' + JSON.stringify(err));
+          console.error(`getAuthToken failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('getAuthToken successfully, token: ' + token);
+          console.info('getAuthToken successfully, token: ' + token);
         }
       });
   } catch (err) {
-      console.error('getAuthToken exception: ' + JSON.stringify(err));
+      const err = err as BusinessError;
+      console.error(`getAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1657,6 +1752,8 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1672,12 +1769,13 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
   
   try {
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token: string) => {
-      console.log('getAuthToken successfully, token: ' + token);
+      console.info('getAuthToken successfully, token: ' + token);
     }).catch((err: BusinessError) => {
-      console.error('getAuthToken failed, error: ' + JSON.stringify(err));
+      console.error(`getAuthToken failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-      console.error('getAuthToken exception: ' + JSON.stringify(err));
+      const err = err as BusinessError;
+      console.error(`getAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1700,6 +1798,8 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1716,13 +1816,14 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       if (err) {
-        console.error('setAuthToken failed, error: ' + JSON.stringify(err));
+        console.error(`setAuthToken failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setAuthToken successfully');
+        console.info('setAuthToken successfully');
       }
     });
   } catch (err) {
-    console.error('setAuthToken exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1750,6 +1851,8 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1765,12 +1868,13 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
   
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
-        console.log('setAuthToken successfully');
+        console.info('setAuthToken successfully');
     }).catch((err: BusinessError) => {
-        console.error('setAuthToken failed, error: ' + JSON.stringify(err));
+        console.error(`setAuthToken failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('setAuthToken exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1794,6 +1898,8 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1811,13 +1917,14 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
       (err: BusinessError) => {
         if (err) {
-          console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
+          console.error(`deleteAuthToken failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('deleteAuthToken successfully');
+          console.info('deleteAuthToken successfully');
         }
       });
   } catch (err) {
-    console.error('deleteAuthToken exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`deleteAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1846,6 +1953,8 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1861,12 +1970,13 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
   
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
-      console.log('deleteAuthToken successfully');
+      console.info('deleteAuthToken successfully');
     }).catch((err: BusinessError) => {
-      console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
+      console.error(`deleteAuthToken failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('deleteAuthToken exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`deleteAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1890,6 +2000,8 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1908,13 +2020,14 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
       (err: BusinessError) => {
         if (err) {
-          console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+          console.error(`setAuthTokenVisibility failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('setAuthTokenVisibility successfully');
+          console.info('setAuthTokenVisibility successfully');
         }
       });
   } catch (err) {
-      console.error('setAuthTokenVisibility exception: ' + JSON.stringify(err));
+      const err = err as BusinessError;
+      console.error(`setAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1943,6 +2056,8 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1959,12 +2074,13 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
   
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
-      console.log('setAuthTokenVisibility successfully');
+      console.info('setAuthTokenVisibility successfully');
     }).catch((err: BusinessError) => {
-      console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+      console.error(`setAuthTokenVisibility failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('setAuthTokenVisibility exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1987,6 +2103,8 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2004,13 +2122,14 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
       (err: BusinessError, isVisible: boolean) => {
         if (err) {
-          console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+          console.error(`checkAuthTokenVisibility failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
+          console.info('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
         }
       });
   } catch (err) {
-    console.error('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2038,6 +2157,8 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2054,12 +2175,13 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
   try {
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
       isVisible: boolean) => {
-      console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
+      console.info('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
     }).catch((err: BusinessError) => {
-      console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+      console.error(`checkAuthTokenVisibility failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2081,6 +2203,8 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2097,13 +2221,14 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo',
       (err: BusinessError, tokenArr: appAccount.AuthTokenInfo[]) => {
         if (err) {
-          console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+          console.error(`getAllAuthTokens failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
+          console.info('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
         }
       });
   } catch (err) {
-    console.error('getAllAuthTokens exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAllAuthTokens exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2130,6 +2255,8 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2145,12 +2272,13 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
   try {
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((
       tokenArr: appAccount.AuthTokenInfo[]) => {
-      console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
+      console.info('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
     }).catch((err: BusinessError) => {
-      console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+      console.error(`getAllAuthTokens failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getAllAuthTokens exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAllAuthTokens exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2172,6 +2300,8 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2188,13 +2318,14 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData', (err: BusinessError, authList: string[]) => {
       if (err) {
-        console.error('getAuthList failed, error: ' + JSON.stringify(err));
+        console.error(`getAuthList failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getAuthList successfully, authList: ' + authList);
+        console.info('getAuthList successfully, authList: ' + authList);
       }
     });
   } catch (err) {
-    console.error('getAuthList exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAuthList exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2221,6 +2352,8 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2236,12 +2369,13 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
   
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList: string[]) => {
-        console.log('getAuthList successfully, authList: ' + authList);
+        console.info('getAuthList successfully, authList: ' + authList);
     }).catch((err: BusinessError) => {
-        console.error('getAuthList failed, error: ' + JSON.stringify(err));
+        console.error(`getAuthList failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('getAuthList exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`getAuthList exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2262,6 +2396,8 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2281,7 +2417,7 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
       try {
         appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: appAccount.AuthCallback) => {
           if (err != null) {
-              console.error('getAuthCallback err: ' + JSON.stringify(err));
+              console.error(`getAuthCallback err: code is ${err.code}, message is ${err.message}`);
               return;
           }
           let result: appAccount.AuthResult = {
@@ -2297,7 +2433,8 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
           callback.onResult(0, result);
         });
       } catch (err) {
-          console.error('getAuthCallback exception: ' + JSON.stringify(err));
+          const err = err as BusinessError;
+          console.error(`getAuthCallback exception: code is ${err.code}, message is ${err.message}`);
       }
     }
   }
@@ -2324,6 +2461,8 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 | Promise&lt;[AuthCallback](#authcallback9)&gt; | Promise对象，返回鉴权会话的认证器回调对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -2355,10 +2494,11 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
         };
         callback.onResult(0, result);
         }).catch((err: BusinessError) => {
-          console.error('getAuthCallback err: ' + JSON.stringify(err));
+          console.error(`getAuthCallback err: code is ${err.code}, message is ${err.message}`);
         });
       } catch (err) {
-        console.error('getAuthCallback exception: ' + JSON.stringify(err));
+        const err = err as BusinessError;
+        console.error(`getAuthCallback exception: code is ${err.code}, message is ${err.message}`);
       }
     }
   }
@@ -2381,6 +2521,8 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2397,13 +2539,14 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo',
       (err: BusinessError, info: appAccount.AuthenticatorInfo) => {
         if (err) {
-          console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+          console.error(`queryAuthenticatorInfo failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+          console.info('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
         }
       });
   } catch (err) {
-    console.error('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`queryAuthenticatorInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2429,6 +2572,8 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2444,12 +2589,13 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
   try {
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((
       info: appAccount.AuthenticatorInfo) => { 
-      console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+      console.info('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
     }).catch((err: BusinessError) => {
-      console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+      console.error(`queryAuthenticatorInfo failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`queryAuthenticatorInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2472,6 +2618,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2492,13 +2640,14 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
     appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels,
       (err: BusinessError, hasAllLabels: boolean) => {
         if (err) {
-          console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
+          console.error(`checkAccountLabels failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
+          console.info('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
         }
       });
   } catch (err) {
-    console.error('checkAccountLabels exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkAccountLabels exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2526,6 +2675,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2545,12 +2696,13 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
   try {
     appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((
       hasAllLabels: boolean) => {
-      console.log('checkAccountLabels successfully: ' + hasAllLabels);
+      console.info('checkAccountLabels successfully: ' + hasAllLabels);
     }).catch((err: BusinessError) => {
-      console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
+      console.error(`checkAccountLabels failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('checkAccountLabels exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`checkAccountLabels exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2572,6 +2724,8 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2588,13 +2742,14 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err: BusinessError) => {
       if (err) {
-        console.error('deleteCredential failed, error: ' + JSON.stringify(err));
+        console.error(`deleteCredential failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('deleteCredential successfully');
+        console.info('deleteCredential successfully');
       }
     });
   } catch (err) {
-    console.error('deleteCredential exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`deleteCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2621,6 +2776,8 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2636,12 +2793,13 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
   
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
-      console.log('deleteCredential successfully');
+      console.info('deleteCredential successfully');
     }).catch((err: BusinessError) => {
-      console.error('deleteCredential failed, error: ' + JSON.stringify(err));
+      console.error(`deleteCredential failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('deleteCredential exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`deleteCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2661,6 +2819,8 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 | callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当根据选项选择请求方可访问的账号列表时，err为null，data为可访问的账号信息对象；否则为错误对象。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -2683,13 +2843,14 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
     appAccountManager.selectAccountsByOptions(options,
       (err: BusinessError, accountArr: appAccount.AppAccountInfo[]) => {
         if (err) {
-          console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+          console.error(`selectAccountsByOptions failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
+          console.info('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
         }
       });
   } catch (err) {
-    console.error('selectAccountsByOptions exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`selectAccountsByOptions exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2711,9 +2872,11 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise对象，返回调用方可访问的账号列表。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回调用方可访问的账号列表。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -2733,12 +2896,13 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
   };
   try {
     appAccountManager.selectAccountsByOptions(options).then((accountArr: appAccount.AppAccountInfo[]) => {
-      console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
+      console.info('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
-      console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+      console.error(`selectAccountsByOptions failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error('selectAccountsByOptions exception: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`selectAccountsByOptions exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2760,6 +2924,8 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2778,15 +2944,16 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
   try {
       appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
           onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-              console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
-              console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
+              console.info('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+              console.info('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
           onRequestRedirected: (request: Want) => {
-              console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
+              console.info('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
           }
       });
   } catch (err) {
-      console.error('verifyCredential err: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`verifyCredential err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2808,6 +2975,8 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 | callback | [AuthCallback](#authcallback9)   | 是    | 回调函数，返回验证结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2831,15 +3000,16 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
   try {
     appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
       onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-        console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
-        console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
+        console.info('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.info('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request: Want) => {
-        console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
+        console.info('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.error('verifyCredential err: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`verifyCredential err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2860,6 +3030,8 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2877,15 +3049,16 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
       onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
-        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
+        console.info('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.info('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request: Want) => {
-        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
+        console.info('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.error('setAuthenticatorProperties err: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setAuthenticatorProperties err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -2907,6 +3080,8 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2927,15 +3102,16 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
       onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
-        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
+        console.info('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.info('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request: Want) => {
-        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
+        console.info('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.error('setAuthenticatorProperties err: ' + JSON.stringify(err));
+    const err = err as BusinessError;
+    console.error(`setAuthenticatorProperties err: code is ${err.code}, message is ${err.message}`);
   } 
 
   ```
@@ -2966,7 +3142,7 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
-      console.error('addAccount err: ' + JSON.stringify(err));
+      console.error(`addAccount err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -2996,7 +3172,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
-    console.error('addAccount err: ' + JSON.stringify(err));
+    console.error(`addAccount err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3030,9 +3206,9 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
-    console.log('addAccount Success');
+    console.info('addAccount Success');
   }).catch((err: BusinessError) => {
-    console.error('addAccount err: ' + JSON.stringify(err));
+    console.error(`addAccount err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3069,8 +3245,8 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result: Record<string, Object>): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -3081,9 +3257,9 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
-        console.error('startAbility err: ' + JSON.stringify(err));
+        console.error(`startAbility err: code is ${err.code}, message is ${err.message}`);
       })
     }
 
@@ -3122,7 +3298,7 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
-      console.error('deleteAccount err: ' + JSON.stringify(err));
+      console.error(`deleteAccount err: code is ${err.code}, message is ${err.message}`);
    });
   ```
 
@@ -3156,9 +3332,9 @@ deleteAccount(name: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
-        console.log('deleteAccount Success');
+        console.info('deleteAccount Success');
    }).catch((err: BusinessError) => {
-      console.error('deleteAccount err: ' + JSON.stringify(err));
+      console.error(`deleteAccount err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 ### disableAppAccess<sup>(deprecated)</sup>
@@ -3187,7 +3363,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
   import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
-      console.error('disableAppAccess err: ' + JSON.stringify(err));
+      console.error(`disableAppAccess err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3222,9 +3398,9 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
-      console.log('disableAppAccess Success');
+      console.info('disableAppAccess Success');
   }).catch((err: BusinessError) => {
-      console.error('disableAppAccess err: ' + JSON.stringify(err));
+      console.error(`disableAppAccess err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3255,9 +3431,9 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => {
       if (err) {
-        console.error('enableAppAccess err: ' + JSON.stringify(err));
+        console.error(`enableAppAccess err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('enableAppAccess successful.');
+        console.info('enableAppAccess successful.');
       }
    });
   ```
@@ -3293,9 +3469,9 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
-       console.log('enableAppAccess Success');
+       console.info('enableAppAccess Success');
   }).catch((err: BusinessError) => {
-      console.error('enableAppAccess err: ' + JSON.stringify(err));
+      console.error(`enableAppAccess err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3327,9 +3503,9 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
     if (err) {
-      console.error('checkAppAccountSyncEnable code: ' + JSON.stringify(err));
+      console.error(`checkAppAccountSyncEnable code: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('checkAppAccountSyncEnable result: ' + result);
+      console.info('checkAppAccountSyncEnable result: ' + result);
     }
   });
   ```
@@ -3366,9 +3542,9 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
-      console.log('checkAppAccountSyncEnable, result: ' + data);
+      console.info('checkAppAccountSyncEnable, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.error('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
+      console.error(`checkAppAccountSyncEnable err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3400,9 +3576,9 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
     if (err) {
-      console.error('setAccountCredential err: ' + JSON.stringify(err));
+      console.error(`setAccountCredential err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('setAccountCredential successful.');
+      console.info('setAccountCredential successful.');
     }
   });
   ```
@@ -3439,9 +3615,9 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
-      console.log('setAccountCredential Success');
+      console.info('setAccountCredential Success');
   }).catch((err: BusinessError) => {
-      console.error('setAccountCredential err: ' + JSON.stringify(err));
+      console.error(`setAccountCredential err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3473,9 +3649,9 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
     if (err) {
-      console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error(`setAccountExtraInfo err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('setAccountExtraInfo successful.');
+      console.info('setAccountExtraInfo successful.');
     }
   });
   ```
@@ -3512,9 +3688,9 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
-      console.log('setAccountExtraInfo Success');
+      console.info('setAccountExtraInfo Success');
   }).catch((err: BusinessError) => {
-      console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error(`setAccountExtraInfo err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3547,9 +3723,9 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
   
   appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => {
     if (err) {
-      console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+      console.error(`setAppAccountSyncEnable err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('setAppAccountSyncEnable successful.');
+      console.info('setAppAccountSyncEnable successful.');
     }
   });
   ```
@@ -3587,9 +3763,9 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAppAccountSyncEnable('ZhangSan', true).then(() => { 
-      console.log('setAppAccountSyncEnable Success');
+      console.info('setAppAccountSyncEnable Success');
   }).catch((err: BusinessError) => {
-      console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+      console.error(`setAppAccountSyncEnable err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3622,9 +3798,9 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => {
     if (err) {
-      console.error('setAssociatedData err: ' + JSON.stringify(err));
+      console.error(`setAssociatedData err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('setAssociatedData successful.');
+      console.info('setAssociatedData successful.');
     }
   });
   ```
@@ -3662,9 +3838,9 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
-      console.log('setAssociatedData Success');
+      console.info('setAssociatedData Success');
   }).catch((err: BusinessError) => {
-      console.error('setAssociatedData err: ' + JSON.stringify(err));
+      console.error(`setAssociatedData err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3694,8 +3870,8 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: appAccount.AppAccountInfo[])=>{
-  	console.debug('getAllAccessibleAccounts err: ' + JSON.stringify(err));
-  	console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
+    console.debug(`getAllAccessibleAccounts err: code is ${err.code}, message is ${err.message}`);
+    console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
   });
   ```
 
@@ -3725,9 +3901,9 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAllAccessibleAccounts().then((data: appAccount.AppAccountInfo[]) => { 
-       console.log('getAllAccessibleAccounts: ' + data);
+       console.info('getAllAccessibleAccounts: ' + data);
   }).catch((err: BusinessError) => {
-      console.error('getAllAccessibleAccounts err: ' + JSON.stringify(err));
+      console.error(`getAllAccessibleAccounts err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3759,8 +3935,8 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
   
   const selfBundle = 'com.example.actsgetallaaccounts';
   appAccountManager.getAllAccounts(selfBundle, (err: BusinessError, data: appAccount.AppAccountInfo[])=>{
-  	console.debug('getAllAccounts err: ' + JSON.stringify(err));
-  	console.debug('getAllAccounts data:' + JSON.stringify(data));
+    console.debug(`getAllAccounts err: code is ${err.code}, message is ${err.message}`);
+    console.debug('getAllAccounts data:' + JSON.stringify(data));
   });
   ```
 
@@ -3797,9 +3973,9 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
   
   const selfBundle = 'com.example.actsgetallaaccounts';
   appAccountManager.getAllAccounts(selfBundle).then((data: appAccount.AppAccountInfo[]) => { 
-       console.log('getAllAccounts: ' + data);
+       console.info('getAllAccounts: ' + data);
   }).catch((err: BusinessError) => {
-      console.error('getAllAccounts err: ' + JSON.stringify(err));
+      console.error(`getAllAccounts err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3830,9 +4006,9 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
     if (err) {
-      console.error('getAccountCredential err: ' + JSON.stringify(err));
+      console.error(`getAccountCredential err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('getAccountCredential result: ' + result);
+      console.info('getAccountCredential result: ' + result);
     }
   });
   ```
@@ -3868,9 +4044,9 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
-      console.log('getAccountCredential, result: ' + data);
+      console.info('getAccountCredential, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.error('getAccountCredential err: ' + JSON.stringify(err));
+      console.error(`getAccountCredential err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3900,9 +4076,9 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
   
   appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
     if (err) {
-      console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error(`getAccountExtraInfo err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('getAccountExtraInfo result: ' + result);
+      console.info('getAccountExtraInfo result: ' + result);
     }
   });
   ```
@@ -3937,9 +4113,9 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
-      console.log('getAccountExtraInfo, result: ' + data);
+      console.info('getAccountExtraInfo, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error(`getAccountExtraInfo err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -3970,9 +4146,9 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
     if (err) {
-      console.error('getAssociatedData err: ' + JSON.stringify(err));
+      console.error(`getAssociatedData err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('getAssociatedData result: ' + result);
+      console.info('getAssociatedData result: ' + result);
     }
   });
   ```
@@ -4008,9 +4184,9 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
-       console.log('getAssociatedData: ' + data);
+       console.info('getAssociatedData: ' + data);
   }).catch((err: BusinessError) => {
-      console.error('getAssociatedData err: ' + JSON.stringify(err));
+      console.error(`getAssociatedData err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4038,13 +4214,13 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
   ```ts
   function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
-  	console.debug('receive change data:' + JSON.stringify(data));
+    console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
+    appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
   }
   catch(err){
-  	console.error('on accountOnOffDemo err:' + JSON.stringify(err));
+    console.error(`on accountOnOffDemo code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4071,16 +4247,16 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
   ```ts
   function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
-  	console.debug('receive change data: ' + JSON.stringify(data));
-  	appAccountManager.off('change', () => {
-  		console.debug('off finish');
-  	})
+    console.debug('receive change data: ' + JSON.stringify(data));
+    appAccountManager.off('change', () => {
+        console.debug('off finish');
+    })
   }
   try{
-  	appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
+    appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
   }
   catch(err){
-  	console.error('on accountOnOffDemo err: ' + JSON.stringify(err));
+    console.error(`on accountOnOffDemo err: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -4118,8 +4294,8 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result: Record<string, Object>): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -4130,9 +4306,9 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
-        console.error('startAbility err: ' + JSON.stringify(err));
+        console.error(`startAbility err: code is ${err.code}, message is ${err.message}`);
       })
     }
 
@@ -4175,9 +4351,9 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
     (err: BusinessError, data: string) => {
       if (err) {
-        console.error('getOAuthToken err: ' + JSON.stringify(err));
+        console.error(`getOAuthToken err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getOAuthToken token: ' + data);
+        console.info('getOAuthToken token: ' + data);
       }
     });
   ```
@@ -4214,9 +4390,9 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
-       console.log('getOAuthToken token: ' + data);
+       console.info('getOAuthToken token: ' + data);
   }).catch((err: BusinessError) => {
-      console.error('getOAuthToken err: ' + JSON.stringify(err));
+      console.error(`getOAuthToken err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4248,9 +4424,9 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
     if (err) {
-      console.error('setOAuthToken err: ' + JSON.stringify(err));
+      console.error(`setOAuthToken err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('setOAuthToken successful.');
+      console.info('setOAuthToken successful.');
     }
   });
   ```
@@ -4287,9 +4463,9 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
-      console.log('setOAuthToken successfully');
+      console.info('setOAuthToken successfully');
   }).catch((err: BusinessError) => {
-      console.error('setOAuthToken err: ' + JSON.stringify(err));
+      console.error(`setOAuthToken err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4323,9 +4499,9 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
     (err: BusinessError) => {
       if (err) {
-        console.error('deleteOAuthToken err: ' + JSON.stringify(err));
+        console.error(`deleteOAuthToken err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('deleteOAuthToken successful.');
+        console.info('deleteOAuthToken successful.');
       }
     });
   ```
@@ -4363,9 +4539,9 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
-       console.log('deleteOAuthToken successfully');
+       console.info('deleteOAuthToken successfully');
   }).catch((err: BusinessError) => {
-      console.error('deleteOAuthToken err: ' + JSON.stringify(err));
+      console.error(`deleteOAuthToken err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4399,9 +4575,9 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
     (err: BusinessError) => {
       if (err) {
-        console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+        console.error(`setOAuthTokenVisibility err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('setOAuthTokenVisibility successful.');
+        console.info('setOAuthTokenVisibility successful.');
       }
     });
   ```
@@ -4439,9 +4615,9 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
-      console.log('setOAuthTokenVisibility successfully');
+      console.info('setOAuthTokenVisibility successfully');
   }).catch((err: BusinessError) => {
-      console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+      console.error(`setOAuthTokenVisibility err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4474,9 +4650,9 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
     (err: BusinessError, data: boolean) => {
       if (err) {
-        console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+        console.error(`checkOAuthTokenVisibility err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('checkOAuthTokenVisibility isVisible: ' + data);
+        console.info('checkOAuthTokenVisibility isVisible: ' + data);
       }
     });
   ```
@@ -4514,9 +4690,9 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
     data: boolean) => {
-    console.log('checkOAuthTokenVisibility isVisible: ' + data);
+    console.info('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err: BusinessError) => {
-    console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+    console.error(`checkOAuthTokenVisibility err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4548,9 +4724,9 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
     (err: BusinessError, data: appAccount.OAuthTokenInfo[]) => {
       if (err) {
-        console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
+        console.error(`getAllOAuthTokens err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+        console.info('getAllOAuthTokens data: ' + JSON.stringify(data));
       }
     });
   ```
@@ -4587,9 +4763,9 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
     data: appAccount.OAuthTokenInfo[]) => {
-    console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+    console.info('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
+    console.error(`getAllOAuthTokens err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4620,9 +4796,9 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
     if (err) {
-      console.error('getOAuthList err: ' + JSON.stringify(err));
+      console.error(`getOAuthList err: code is ${err.code}, message is ${err.message}`);
     } else {
-      console.log('getOAuthList data: ' + JSON.stringify(data));
+      console.info('getOAuthList data: ' + JSON.stringify(data));
     }
   });
   ```
@@ -4658,9 +4834,9 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
-       console.log('getOAuthList data: ' + JSON.stringify(data));
+       console.info('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-      console.error('getOAuthList err: ' + JSON.stringify(err));
+      console.error(`getOAuthList err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4695,7 +4871,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
       appAccountManager.getAuthenticatorCallback(sessionId,
           (err: BusinessError, callback: appAccount.AuthenticatorCallback) => {
           if (err.code != appAccount.ResultCode.SUCCESS) {
-              console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
+              console.error(`getAuthenticatorCallback err: code is ${err.code}, message is ${err.message}`);
               return;
           }
           callback.onResult(appAccount.ResultCode.SUCCESS, {
@@ -4751,7 +4927,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
           token: 'xxxxxx'}
         );
       }).catch((err: BusinessError) => {
-        console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
+        console.error(`getAuthenticatorCallback err: code is ${err.code}, message is ${err.message}`);
       });
     }
   }
@@ -4784,9 +4960,9 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
     (err: BusinessError, data: appAccount.AuthenticatorInfo) => {
       if (err) {
-        console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
+        console.error(`getAuthenticatorInfo err: code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
+        console.info('getAuthenticatorInfo data: ' + JSON.stringify(data));
       }
     });
   ```
@@ -4822,9 +4998,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
     data: appAccount.AuthenticatorInfo) => { 
-    console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
+    console.info('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
+    console.error(`getAuthenticatorInfo err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -4832,24 +5008,24 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示应用账号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称   | 类型     | 必填   | 说明          |
-| ----- | ------ | ---- | ----------- |
-| owner | string | 是    | 应用账号所有者的包名。 |
-| name  | string | 是    | 应用账号的名称。    |
+| 名称   | 类型     | 只读  | 可选   | 说明          |
+| ----- | ------ | ---- | ---- | ----------- |
+| owner | string | 否 | 否    | 应用账号所有者的包名。 |
+| name  | string | 否 | 否    | 应用账号的名称。    |
 
 ## AuthTokenInfo<sup>9+</sup>
 
 表示Auth令牌信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称               | 类型            | 必填  | 说明              |
-| -------------------- | -------------- | ----- | ---------------- |
-| authType<sup>9+</sup>             | string         | 是    | 令牌的鉴权类型。   |
-| token<sup>9+</sup>                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的账号信息，默认为空。|
+| 名称               | 类型            | 只读  | 可选   | 说明              |
+| -------------------- | -------------- | -----| ----- | ---------------- |
+| authType<sup>9+</sup>             | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token<sup>9+</sup>                | string         | 否 | 否    | 令牌的取值。       |
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -4859,98 +5035,99 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 >
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[AuthTokenInfo](#authtokeninfo9)替代。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称               | 类型            | 必填  | 说明              |
-| -------------------- | -------------- | ----- | ---------------- |
-| authType             | string         | 是    | 令牌的鉴权类型。   |
-| token                | string         | 是    | 令牌的取值。       |
+| 名称               | 类型            | 只读  | 可选   | 说明              |
+| -------------------- | -------------- | ----- | ----- | ---------------- |
+| authType             | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token                | string         | 否 | 否    | 令牌的取值。       |
 
 ## AuthenticatorInfo<sup>8+</sup>
 
 表示OAuth认证器信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| owner   | string | 是    | 认证器的所有者的包名。 |
-| iconId  | number | 是    | 认证器的图标标识。  |
-| labelId | number | 是    | 认证器的标签标识。  |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| owner   | string | 否 | 否    | 认证器的所有者的包名。 |
+| iconId  | number | 否 | 否    | 认证器的图标标识。  |
+| labelId | number | 否 | 否    | 认证器的标签标识。  |
 
 ## AuthResult<sup>9+</sup>
 
 表示认证结果信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的账号信息，默认为空。 |
-| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息，默认为空。  |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| account   | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。 |
+| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否 | 是    | 令牌信息，默认为空。  |
 
 ## CreateAccountOptions<sup>9+</sup>
 
 表示创建账号的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| customData   | Record<string, string> | 否    | 自定义数据，默认为空。 |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| customData   | Record<string, string> | 否 | 是    | 自定义数据，默认为空。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
 表示隐式创建账号的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称     | 类型     | 必填   | 说明         |
-| ------- | ------ | ---- | ---------- |
-| requiredLabels   | Array&lt;string&gt; | 否    | 所需的标签，默认为空。 |
-| authType   | string | 否    | 鉴权类型，默认为空。 |
-| parameters   | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
+| 名称     | 类型     | 只读  | 可选   | 说明         |
+| ------- | ------ | ---- | ---- | ---------- |
+| requiredLabels   | Array&lt;string&gt; | 否 | 是    | 所需的标签，默认为空。 |
+| authType   | string | 否 | 是    | 鉴权类型，默认为空。 |
+| parameters   | Record<string, Object> | 否 | 是    | 自定义参数对象，默认为空。 |
+
 ## SelectAccountsOptions<sup>9+</sup>
 
 表示用于选择账号的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称          | 类型                         | 必填  | 说明                |
-| --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的账号数组，默认为空。     |
-| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的账号所有者数组，默认为空。 |
-| requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识，默认为空。  |
+| 名称          | 类型                         | 只读  | 可选   | 说明                |
+| --------------- | --------------------------- | ----- | ----- | ------------------- |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否 | 是    | 允许的账号数组，默认为空。     |
+| allowedOwners   | Array&lt;string&gt;         | 否 | 是    | 允许的账号所有者数组，默认为空。 |
+| requiredLabels  | Array&lt;string&gt;         | 否 | 是    | 认证器的标签标识，默认为空。  |
 
 ## VerifyCredentialOptions<sup>9+</sup>
 
 表示用于验证凭据的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称          | 类型                   | 必填  | 说明           |
-| -------------- | ---------------------- | ----- | -------------- |
-| credentialType | string                 | 否    | 凭据类型，默认为空。      |
-| credential     | string                 | 否    | 凭据取值，默认为空。      |
-| parameters     | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
+| 名称          | 类型                   | 只读  | 可选   | 说明           |
+| -------------- | ---------------------- | ----- | ----- | -------------- |
+| credentialType | string                 | 否 | 是    | 凭据类型，默认为空。      |
+| credential     | string                 | 否 | 是    | 凭据取值，默认为空。      |
+| parameters     | Record<string, Object> | 否 | 是    | 自定义参数对象，默认为空。 |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
 
 表示用于设置属性的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
-| 名称     | 类型                    | 必填  | 说明           |
-| ---------- | ---------------------- | ----- | -------------- |
-| properties | Record<string, Object> | 否    | 属性对象，默认为空。      |
-| parameters | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
+| 名称     | 类型                    | 只读  | 可选   | 说明           |
+| ---------- | ---------------------- | ----- | ----- | -------------- |
+| properties | Record<string, Object> | 否 | 是    | 属性对象，默认为空。      |
+| parameters | Record<string, Object> | 否 | 是    | 自定义参数对象，默认为空。 |
 
 ## Constants<sup>8+</sup>
 
 表示常量的枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称                            | 值                    | 说明                   |
 | -------------------------------- | ---------------------- | ----------------------- |
@@ -4979,7 +5156,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 > **说明：**<br/>
 > 从API version 8开始支持，从API version 9开始废弃。相关信息建议查看[错误码文档](errorcode-account.md)替代。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称                                  | 值   | 说明           |
 | ----------------------------------- | ----- | ------------ |
@@ -5042,7 +5219,7 @@ onResult: (code: number, result?: AuthResult) =&gt; void
       };
       callback.onResult(appAccount.ResultCode.SUCCESS, result);
   }).catch((err: BusinessError) => {
-      console.error('getAuthCallback err: ' + JSON.stringify(err));
+      console.error(`getAuthCallback err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -5112,7 +5289,7 @@ onRequestContinued?: () =&gt; void
       callback.onRequestContinued();
     }
   }).catch((err: BusinessError) => {
-    console.error('getAuthCallback err: ' + JSON.stringify(err));
+    console.error(`getAuthCallback err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -5124,11 +5301,15 @@ OAuth认证器回调接口。
 >
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[AuthCallback](#authcallback9)替代。
 
-### onResult<sup>8+</sup>
+### onResult<sup>(deprecated)</sup>
 
 onResult: (code: number, result: {[key: string]: any;}) =&gt; void
 
 通知请求结果。
+
+> **说明：** 
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onResult](#onresult9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5154,15 +5335,19 @@ onResult: (code: number, result: {[key: string]: any;}) =&gt; void
         token: 'xxxxxx'}
       );
   }).catch((err: BusinessError) => {
-      console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
+      console.error(`getAuthenticatorCallback err: code is ${err.code}, message is ${err.message}`);
   });
   ```
 
-### onRequestRedirected<sup>8+</sup>
+### onRequestRedirected<sup>(deprecated)</sup>
 
 onRequestRedirected: (request: Want) =&gt; void
 
 通知请求被跳转。
+
+> **说明：** 
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onRequestRedirected](#onrequestredirected9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5293,6 +5478,10 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | 是    | 验证凭据的可选项。            |
 | callback  | [AuthCallback](#authcallback9)    | 是    | 认证器回调，用于返回验证结果。 |
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
+
 ### setProperties<sup>9+</sup>
 
 setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
@@ -5307,6 +5496,10 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 | ---------------- | --------------------- | ---- | --------------- |
 | options   | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的可选项。            |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回设置结果。 |
+
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 ### checkAccountLabels<sup>9+</sup>
 
@@ -5324,6 +5517,10 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 | labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回检查结果。 |
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
+
 ### checkAccountRemovable<sup>9+</sup>
 
 checkAccountRemovable(name: string, callback: AuthCallback): void
@@ -5339,6 +5536,10 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 | name      | string                | 是    | 应用账号的名称。              |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回判断结果。 |
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
+
 ### getRemoteObject<sup>9+</sup>
 
 getRemoteObject(): rpc.RemoteObject;
@@ -5351,7 +5552,11 @@ getRemoteObject(): rpc.RemoteObject;
 
 | 类型             | 说明                                                   |
 | ---------------- | ----------------------------------------------------- |
-| rpc.RemoteObject | 认证器Authenticator的远程对象。用于跨进程通信。          |
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 认证器Authenticator的远程对象。用于跨进程通信。          |
+
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 **示例：**
 

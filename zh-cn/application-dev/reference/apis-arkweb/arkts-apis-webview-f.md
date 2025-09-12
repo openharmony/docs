@@ -1,9 +1,10 @@
 # Functions
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -36,7 +37,7 @@ once(type: string, callback: Callback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -49,7 +50,7 @@ once(type: string, callback: Callback\<void\>): void
 import { webview } from '@kit.ArkWeb';
 
 webview.once("webInited", () => {
-  console.log("configCookieSync");
+  console.info("configCookieSync");
   webview.WebCookieManager.configCookieSync("https://www.example.com", "a=b");
 })
 

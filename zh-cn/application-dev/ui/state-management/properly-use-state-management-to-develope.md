@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 由于对状态管理当前的特性并不了解，许多开发者在使用状态管理进行开发时会遇到UI不刷新、刷新性能差的情况。对此，本篇将从两个方向，对一共五个典型场景进行分析，同时提供相应的正例和反例，帮助开发者学习如何合理使用状态管理进行开发。
 
@@ -1090,7 +1091,7 @@ ChildList类型在定义的时候使用了@Observed进行装饰，所以用new�
 
 ### 减少使用LazyForEach的重建机制刷新UI
 
-开发过程中通常会将[LazyForEach](arkts-rendering-control-lazyforeach.md)和状态变量结合起来使用。
+开发过程中通常会将[LazyForEach](../rendering-control/arkts-rendering-control-lazyforeach.md)和状态变量结合起来使用。
 
 ```typescript
 class BasicDataSource implements IDataSource {
@@ -1377,7 +1378,7 @@ struct ChildComponent {
 
 ### 在ForEach中使用自定义组件搭配对象数组
 
-开发过程中经常会使用对象数组和[ForEach](arkts-rendering-control-foreach.md)结合起来使用，但是写法不当的话会出现UI不刷新的情况。
+开发过程中经常会使用对象数组和[ForEach](../rendering-control/arkts-rendering-control-foreach.md)结合起来使用，但是写法不当的话会出现UI不刷新的情况。
 
 ```typescript
 @Observed

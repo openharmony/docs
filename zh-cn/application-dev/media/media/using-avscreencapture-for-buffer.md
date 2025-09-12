@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zzs_911-->
-<!--SE: @stupig001-->
-<!--TSE: @xdlinc-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 屏幕录制支持开发者获取屏幕数据，可用于屏幕录制、会议共享、直播等场景。通过录屏取码流方式获取的流数据可根据场景，进行不同的处理。例如：
 - 对接NativeImage作为消费者端，提供Surface关联OpenGL外部纹理，具体使用请参考[NativeImage开发指导](../../graphics/native-image-guidelines.md)。
@@ -46,10 +47,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     #include <multimedia/player_framework/native_avscreen_capture.h>
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <multimedia/player_framework/native_avbuffer.h>
     #include <native_buffer/native_buffer.h>
-    #include <fcntl.h>
-    #include "string"
-    #include "unistd.h"
+    #include <vector>
     ```
 
 2. 判断当前是否存在未结束的录屏服务实例，若存在，则先停止并释放资源。
@@ -65,8 +65,6 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数，音频信息和视频信息的具体参数配置可参考[详细说明](#详细说明)。
 
     ```c++
-    OH_AVScreenCaptureConfig config;
-
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
         .innerCapInfo = innerCapInfo,
@@ -108,7 +106,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
 
 7. 设置此次录屏的可配置策略。（可选）
 
-   7.1 设置屏幕录制隐私窗口屏蔽模式。（可选）
+    7.1 设置屏幕录制隐私窗口屏蔽模式。（可选）
 
         value值设为0，表示全屏屏蔽模式。value值设为1，表示窗口屏蔽模式。默认为全屏屏蔽模式。
 
@@ -119,9 +117,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
         OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
         ```
 
-   7.2 设置屏幕录屏自动跟随旋转配置。（可选）
+    7.2 （可选）（API 20起支持）设置屏幕录屏自动跟随旋转配置。
 
-       设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，确保输出画面及时跟随旋转。设置后在旋转通知后，无需再手动调用OH_AVScreenCapture_ResizeCanvas接口。
+        设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，确保输出画面及时跟随旋转。设置后在旋转通知后，无需再手动调用OH_AVScreenCapture_ResizeCanvas接口。
 
         ```c++
         OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
@@ -179,9 +177,14 @@ config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
 config_.videoInfo.videoCapInfo.displayId = 0;
 
 // (可选)若有期望录制的窗口，可传入单个窗口Id。
-vector<int32_t> missionIds = {61}; // 表示弹出的Picker默认选中61号窗口。
-config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+int32_t* missionIds = new int32_t[]{61}; // 表示弹出的Picker默认选中61号窗口。
+int32_t missionIdsLen = 1;
+config_.videoInfo.videoCapInfo.missionIDs = missionIds;
+config_.videoInfo.videoCapInfo.missionIDsLen = missionIdsLen;
+
+// 在config_使用完成后，对申请的内存进行释放
+delete[] config_.videoInfo.videoCapInfo.missionIDs;
+config_.videoInfo.videoCapInfo.missionIDs = nullptr;
 ```
 
 另外，PC/2in1设备录屏窗口选择界面兼容以下几种模式的录屏：
@@ -200,9 +203,14 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     config_.videoInfo.videoCapInfo.displayId = 0;
 
     // 传入多个窗口Id。
-    vector<int32_t> missionIds = {60，61}; // 表示期望同时录制60、61号窗口。
-    config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-    config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+    int32_t* missionIds = new int32_t[]{60, 61}; // 表示期望同时录制60、61号窗口。
+    int32_t missionIdsLen = 2;
+    config_.videoInfo.videoCapInfo.missionIDs = missionIds;
+    config_.videoInfo.videoCapInfo.missionIDsLen = missionIdsLen;
+
+    // 在config_使用完成后，对申请的内存进行释放
+    delete[] config_.videoInfo.videoCapInfo.missionIDs;
+    config_.videoInfo.videoCapInfo.missionIDs = nullptr;
     ```
 
 2. OH_CAPTURE_SPECIFIED_SCREEN模式。
@@ -451,9 +459,8 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <multimedia/player_framework/native_avbuffer.h>
 #include <native_buffer/native_buffer.h>
-#include <fcntl.h>
-#include "string"
-#include "unistd.h"
+#include <vector>
+
 // 错误事件发生回调函数OnError()。
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)capture;
@@ -589,8 +596,8 @@ void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectio
     int* selectType = new int;
     uint64_t* displayId = new uint64_t;
     // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
-    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
-    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+    OH_AVSCREEN_CAPTURE_ErrCode errorSelectType = OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+    OH_AVSCREEN_CAPTURE_ErrCode errorDisplayId = OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
 }
 
 struct OH_AVScreenCapture *capture;
@@ -605,8 +612,8 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     // 获取数组长度。
     uint32_t array_length;
     napi_get_array_length(env, args[0], &array_length);
-    // 读初窗口id。
-    for (int32_t i = 0; i < array_length; i++) {
+    // 读出窗口id。
+    for (uint32_t i = 0; i < array_length; i++) {
         napi_value temp;
         napi_get_element(env, args[0], i, &temp);
         uint32_t tempValue;

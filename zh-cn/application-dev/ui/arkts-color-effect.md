@@ -1,4 +1,10 @@
 # 色彩
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 ## 色彩
@@ -70,7 +76,7 @@ struct LinearGradientDemo {
           repeating: true, // 在当前组件内0.3到1.0区域内重复0到0.3区域的颜色渐变效果
           colors: [
             [0xf56c6c, 0.0],
-            [0xE6A23C, .3],
+            [0xE6A23C, 0.3],
           ]
         })
       }
@@ -87,7 +93,7 @@ struct LinearGradientDemo {
         .linearGradient({
           colors: [
             [0xf56c6c, 0.0], // repeating默认为false，此时组件内只有0到0.3区域内存在颜色渐变效果
-            [0xE6A23C, .3],
+            [0xE6A23C, 0.3],
           ]
         })
       }
@@ -157,8 +163,8 @@ struct SweepGradientDemo {
           colors: [
           // 当前组件中，因为角度渐变中心是组件的左上角，所以从颜色断点1到颜色断点3的角度范围，恰好可以覆盖整个组件
             [0xf56c6c, 0], // 颜色断点1的颜色和比重，对应角度为0*360°=0°
-            [0xffffff, 0.125], // 色断点2的颜色和比重，对应角度为0.125*360°=45°
-            [0x409EFF, 0.25]// 色断点3的颜色和比重，对应角度为0.25*360°=90°
+            [0xffffff, 0.125], // 颜色断点2的颜色和比重，对应角度为0.125*360°=45°
+            [0x409EFF, 0.25]// 颜色断点3的颜色和比重，对应角度为0.25*360°=90°
           ]
         })
       }

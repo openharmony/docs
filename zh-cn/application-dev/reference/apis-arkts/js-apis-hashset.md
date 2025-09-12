@@ -1,9 +1,10 @@
 # @ohos.util.HashSet (非线性容器HashSet)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 HashSet基于[HashMap](js-apis-hashmap.md)实现。在HashSet中，仅处理value对象。
 
@@ -17,6 +18,8 @@ HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据按Hash值排
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 容器类使用静态语言实现，限制了存储位置和属性，不支持自定义属性和方法。
 
 
 ## 导入模块
@@ -46,7 +49,8 @@ hashSet.add(2);
 hashSet.add(3);
 hashSet.add(4);
 hashSet.add(5);
-let res = hashSet.length;  // result =  5
+let res = hashSet.length;
+console.info("length:", res);  // length: 5
 ```
 
 ### constructor

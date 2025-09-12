@@ -1,4 +1,10 @@
 # Resolving Cross-Origin Resource Access
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Background
 
@@ -100,7 +106,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - Method 2
 
-  Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list should be any of the following directories:
+  Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for allowing cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list should be any of the following directories:
 
   1. The application file directory and its subdirectories, which can be obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), such as:
 
@@ -111,6 +117,17 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
   * /data/storage/el1/bundle/entry/resource/resfile
   * /data/storage/el1/bundle/entry/resource/resfile/example
+
+  3. Since API version 21, the application cache directory is obtained through [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context). Example subdirectories are as follows:
+
+  * /data/storage/el2/base/cache
+  * /data/storage/el2/base/haps/entry/cache/example
+  * The **cache/web** directory is not allowed. If it is included, an exception with the code **401** will be thrown. If the **cache** directory is set, **cache/web** cannot be accessed.
+
+  4. Since API version 21, the application temporary directory is obtained through [Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context). Example subdirectories are as follows:
+
+  * /data/storage/el2/base/temp
+  * /data/storage/el2/base/haps/entry/temp/example
 
   If a path is not any of the preceding paths, an error code 401 is reported and the path list fails to be set. If the path list is empty, the access scope of the file protocol complies with the [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) rule. The following is an example:
 

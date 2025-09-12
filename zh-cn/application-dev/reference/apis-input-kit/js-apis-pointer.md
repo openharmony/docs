@@ -1,6 +1,13 @@
-# @ohos.multimodalInput.pointer (鼠标指针)
+# @ohos.multimodalInput.pointer (鼠标光标)
 
-本模块提供鼠标指针管理能力，包括查询、设置鼠标指针属性。
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
+本模块提供鼠标光标管理能力，包括查询、设置鼠标光标属性。
 
 > **说明**：
 >
@@ -16,7 +23,7 @@ import { pointer } from '@kit.InputKit';
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标指针显示或者隐藏，使用Callback异步回调。
+设置鼠标光标显示或者隐藏，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -24,7 +31,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+| visible  | boolean                   | 是    | 鼠标光标是否显示。true表示显示，false表示不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **错误码**：
@@ -69,7 +76,7 @@ struct Index {
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
-设置鼠标指针显示或者隐藏，使用Promise异步回调。
+设置鼠标光标显示或者隐藏，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -77,7 +84,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+| visible | boolean | 是    | 鼠标光标是否显示。true表示显示，false表示不显示。 |
 
 **返回值**：
 
@@ -123,7 +130,7 @@ struct Index {
 
 setPointerVisibleSync(visible: boolean): void
 
-设置鼠标指针的显示或隐藏，使用同步方式。
+设置鼠标光标的显示或隐藏状态，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -131,7 +138,7 @@ setPointerVisibleSync(visible: boolean): void
 
 | 参数名      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+| visible | boolean | 是    | 鼠标光标是否显示。true表示显示，false表示不显示。 |
 
 **错误码**：
 
@@ -169,7 +176,7 @@ struct Index {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取鼠标指针显示状态，使用callback异步回调。
+获取鼠标光标显示状态，使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -177,7 +184,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，返回鼠标指针状态，true为显示，false为隐藏。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，返回鼠标光标状态，true为显示，false为隐藏。 |
 
 **错误码**：
 
@@ -220,7 +227,7 @@ struct Index {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-获取鼠标指针显示状态，使用Promise异步回调。
+获取鼠标光标显示状态，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -228,7 +235,7 @@ isPointerVisible(): Promise&lt;boolean&gt;
 
 | 类型                     | 说明                  |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回鼠标指针状态查询结果。true代表显示状态，false代表隐藏状态。 |
+| Promise&lt;boolean&gt; | Promise对象，返回鼠标光标状态查询结果。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 
@@ -259,7 +266,7 @@ struct Index {
 
 isPointerVisibleSync(): boolean
 
-使用同步方式获取鼠标指针显示或者隐藏。
+获取鼠标光标的显示或隐藏状态，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -267,7 +274,7 @@ isPointerVisibleSync(): boolean
 
 | 类型                     | 说明                  |
 | ---------------------- | ------------------- |
-| boolean | 返回鼠标指针显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
+| boolean | 返回鼠标光标显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 
@@ -738,6 +745,7 @@ struct Index {
 | LOADING<sup>10+</sup> | 42 | 正在载入动画光标 |![Loading.png](./figures/Loading.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | RUNNING<sup>10+</sup> | 43 | 后台运行中动画光标 |![Running.png](./figures/Running.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | MIDDLE_BTN_EAST_WEST<sup>18+</sup>          | 44   | 向东西滚动 |![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
+| SCREENRECORDER_CURSOR<sup>20+</sup>         | 48   | 录屏光标  |![ScreenRecorder_Cursor.png](./figures/ScreenRecorder_Cursor.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
@@ -789,9 +797,9 @@ struct Index {
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
               const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
               let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
                 window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
                   let windowId = win.getWindowProperties().id;
                   try {
@@ -881,9 +889,9 @@ struct Index {
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
               const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
               let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
                 window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
                   let windowId = win.getWindowProperties().id;
                   try {
@@ -946,9 +954,9 @@ struct Index {
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
               const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
               let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
                 window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
                   let windowId = win.getWindowProperties().id;
                   try {

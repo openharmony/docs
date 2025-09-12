@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sd-wu-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -36,6 +37,7 @@ export default {
     var offscreen = new OffscreenCanvas(360, 500);
     var offCanvas2 = offscreen.getContext("2d");
     var img = new Image();
+    // 'common/images/flower.jpg'需要替换为开发者所需的图像资源文件
     img.src = 'common/images/flower.jpg';
     offCanvas2.drawImage(img, 0, 0, 100, 100);
     offCanvas2.filter = 'blur(5px)';
@@ -133,7 +135,7 @@ canvas {
 // xxx.js
 export default {
   data: {
-    textValue: 0
+    textValue: false
   },
   onShow(){
     var canvas = this.$refs.canvas.getContext('2d');
@@ -207,7 +209,7 @@ canvas {
 // xxx.js
 export default {
   data: {
-    textValue: 0
+    textValue: false
   },
   onShow(){
     var canvas = this.$refs.canvas.getContext('2d');

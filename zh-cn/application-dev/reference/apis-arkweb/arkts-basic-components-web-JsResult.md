@@ -1,9 +1,10 @@
 # Class (JsResult)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件返回的弹窗确认或弹窗取消功能对象。示例代码参考[onAlert事件](./arkts-basic-components-web-events.md#onalert)。
 

@@ -1,4 +1,10 @@
 # Using AudioRenderer for Audio Playback
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike the [AVPlayer](../media/using-avplayer-for-playback.md), the AudioRenderer can perform data preprocessing before audio input. Therefore, the AudioRenderer is more suitable if you have extensive audio development experience and want to implement more flexible playback features.
 
@@ -220,7 +226,7 @@ If the input audio sampling rate configured by AudioRenderer is different from t
 
 To minimize power consumption from resampling, it is best to use input audio with a sampling rate that matches the output sampling rate of the device. A sampling rate of 48 kHz is highly recommended.
 
-### Sample Code
+### Complete Sample Code
 
 Refer to the sample code below to render an audio file using AudioRenderer.
 
@@ -238,7 +244,7 @@ class Options {
 }
 
 let bufferSize: number = 0;
-let renderModel: audio.AudioRenderer | undefined = undefined;
+let audioRenderer: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
   channels: audio.AudioChannel.CHANNEL_2, // Channel.
@@ -253,47 +259,50 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 };
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let path = context.cacheDir;
-// Ensure that the resource exists in the path.
-let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let writeDataCallback = (buffer: ArrayBuffer) => {
-  let options: Options = {
-    offset: bufferSize,
-    length: buffer.byteLength
-  };
+let file: fs.File;
+let writeDataCallback: audio.AudioRendererWriteDataCallback;
 
-  try {
-    let bufferLength = fs.readSync(file.fd, buffer, options);
-    bufferSize += buffer.byteLength;
-    // If the data passed in the current callback is less than one frame, the blank areas must be filled with silent data to avoid playback noise.
-    if (bufferLength < buffer.byteLength) {
+async function initArguments(context: common.UIAbilityContext) {
+  let path = context.cacheDir;
+  // Ensure that the resource exists in the path.
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
+  file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  writeDataCallback = (buffer: ArrayBuffer) => {
+    let options: Options = {
+      offset: bufferSize,
+      length: buffer.byteLength
+    };
+
+    try {
+      let bufferLength = fs.readSync(file.fd, buffer, options);
+      bufferSize += buffer.byteLength;
+      // If the data passed in the current callback is less than one frame, the blank areas must be filled with silent data to avoid playback noise.
+      if (bufferLength < buffer.byteLength) {
         let view = new DataView(buffer);
         for (let i = bufferLength; i < buffer.byteLength; i++) {
-            // For blank areas, silent data should be used. When using the SAMPLE_FORMAT_U8 audio sampling format, 0x7F represents silent data. For other sampling formats, 0 is used as silent data.
-            view.setUint8(i, 0);
+          // For blank areas, silent data should be used. When using the SAMPLE_FORMAT_U8 audio sampling format, 0x7F represents silent data. For other sampling formats, 0 is used as silent data.
+          view.setUint8(i, 0);
         }
+      }
+      // This function does not return a callback result in API version 11, but does so in API version 12 and later versions.
+      // If you do not want to play a certain buffer, return audio.AudioDataCallbackResult.INVALID.
+      return audio.AudioDataCallbackResult.VALID;
+    } catch (error) {
+      console.error('Error reading file:', error);
+      // This function does not return a callback result in API version 11, but does so in API version 12 and later versions.
+      return audio.AudioDataCallbackResult.INVALID;
     }
-    // This function does not return a callback result in API version 11, but does so in API version 12 and later versions.
-    // If you do not want to play a certain buffer, return audio.AudioDataCallbackResult.INVALID.
-    return audio.AudioDataCallbackResult.VALID;
-  } catch (error) {
-    console.error('Error reading file:', error);
-    // This function does not return a callback result in API version 11, but does so in API version 12 and later versions.
-    return audio.AudioDataCallbackResult.INVALID;
-  }
-};
+  };
+}
 
 // Create an AudioRenderer instance, and set the events to listen for.
-function init() {
+async function init() {
   audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // Create an AudioRenderer instance.
     if (!err) {
       console.info(`${TAG}: creating AudioRenderer success`);
-      renderModel = renderer;
-      if (renderModel !== undefined) {
-        (renderModel as audio.AudioRenderer).on('writeData', writeDataCallback);
+      audioRenderer = renderer;
+      if (audioRenderer !== undefined) {
+        audioRenderer.on('writeData', writeDataCallback);
       }
     } else {
       console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
@@ -302,15 +311,15 @@ function init() {
 }
 
 // Start audio rendering.
-function start() {
-  if (renderModel !== undefined) {
+async function start() {
+  if (audioRenderer !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf((renderModel as audio.AudioRenderer).state.valueOf()) === -1) { // Rendering can be started only when the AudioRenderer is in the prepared, paused, or stopped state.
+    if (stateGroup.indexOf(audioRenderer.state.valueOf()) === -1) { // Rendering can be started only when the AudioRenderer is in the prepared, paused, or stopped state.
       console.error(TAG + 'start failed');
       return;
     }
     // Start rendering.
-    (renderModel as audio.AudioRenderer).start((err: BusinessError) => {
+    audioRenderer.start((err: BusinessError) => {
       if (err) {
         console.error('Renderer start failed.');
       } else {
@@ -321,15 +330,15 @@ function start() {
 }
 
 // Pause the rendering.
-function pause() {
-  if (renderModel !== undefined) {
+async function pause() {
+  if (audioRenderer !== undefined) {
     // Rendering can be paused only when the AudioRenderer is in the running state.
-    if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING) {
+    if (audioRenderer.state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
     // Pause the rendering.
-    (renderModel as audio.AudioRenderer).pause((err: BusinessError) => {
+    audioRenderer.pause((err: BusinessError) => {
       if (err) {
         console.error('Renderer pause failed.');
       } else {
@@ -341,14 +350,14 @@ function pause() {
 
 // Stop rendering.
 async function stop() {
-  if (renderModel !== undefined) {
+  if (audioRenderer !== undefined) {
     // Rendering can be stopped only when the AudioRenderer is in the running or paused state.
-    if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING && (renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_PAUSED) {
+    if (audioRenderer.state.valueOf() !== audio.AudioState.STATE_RUNNING && audioRenderer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
     }
     // Stop rendering.
-    (renderModel as audio.AudioRenderer).stop((err: BusinessError) => {
+    audioRenderer.stop((err: BusinessError) => {
       if (err) {
         console.error('Renderer stop failed.');
       } else {
@@ -361,20 +370,104 @@ async function stop() {
 
 // Release the instance.
 async function release() {
-  if (renderModel !== undefined) {
+  if (audioRenderer !== undefined) {
     // The AudioRenderer can be released only when it is not in the released state.
-    if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
+    if (audioRenderer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
     }
     // Release the resources.
-    (renderModel as audio.AudioRenderer).release((err: BusinessError) => {
+    audioRenderer.release((err: BusinessError) => {
       if (err) {
         console.error('Renderer release failed.');
       } else {
         console.info('Renderer release success.');
       }
     });
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Scroll() {
+      Column() {
+        Row() {
+          Column() {
+            Text('Initialize').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            initArguments(context);
+            init();
+          });
+
+          Column() {
+            Text('Start playback').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            start();
+          });
+        }
+
+        Row() {
+          Column() {
+            Text('Pause playback').fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_effect_manager_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            pause();
+          });
+
+          Column() {
+            Text('Stop playback').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            stop();
+          });
+        }
+
+        Row() {
+          Column() {
+            Text('Release resources').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_volume_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            release();
+          });
+        }
+        .padding(12)
+      }
+      .height('100%')
+      .width('100%')
+      .backgroundColor('#F1F3F5');
+    }
   }
 }
 ```

@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @ding_dong_dong-->
-<!--SE: @dboy190; @houpengtao1-->
-<!--TSE: @logic42-->
+<!--Designer: @dboy190; @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、端端同步等操作。
 
@@ -31,10 +32,10 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称     | 类型              | 必填 | 说明                                                         |
-| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context    | BaseContext           | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。<br>从API version 10开始，context的参数类型为[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)。 |
-| bundleName | string                | 是   | 调用方的包名。                                               |
+| 名称     | 类型              | 只读 | 可选 | 说明                                                         |
+| ---------- | ---------------|----- | ---- | ------------------------------------------------------------ |
+| context    | BaseContext    | 否   | 否   |应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。<br>从API version 10开始，context的参数类型为[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)。 |
+| bundleName | string          | 否   | 否   | 调用方的包名。                                               |
 
 ## Constants
 
@@ -72,10 +73,10 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型   |必填  | 说明                    |
-| ----- | -------   |-----|------------------------ |
-| type | [ValueType](#valuetype) | 是|值类型。   |
-| value | Uint8Array \| string \| number \| boolean| 是|值。   |
+| 名称  | 类型   | 只读 | 可选 | 说明                    |
+| ----- | -------|-----|-----|------------------------ |
+| type | [ValueType](#valuetype) | 否    | 否   |值类型。   |
+| value | Uint8Array \| string \| number \| boolean| 否    | 否   |值。   |
 
 ## Entry
 
@@ -83,10 +84,10 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型        | 必填 | 说明     |
-| ----- | --------------- | ---- | -------- |
-| key   | string          | 是   | 键值。   |
-| value | [Value](#value) | 是   | 值对象。 |
+| 名称  | 类型        | 只读 | 可选 | 说明     |
+| ----- | ---------- |-- | ---- | -------- |
+| key   | string          | 否    | 否   | 键值。   |
+| value | [Value](#value) | 否    | 否   | 值对象。 |
 
 ## ChangeNotification
 
@@ -94,12 +95,12 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称          | 类型          | 必填       | 说明                     |
-| ------------- | ----------------- | ---- | ------------------------ |
-| insertEntries | [Entry](#entry)[] | 是   | 数据添加记录。           |
-| updateEntries | [Entry](#entry)[] | 是   | 数据更新记录。           |
-| deleteEntries | [Entry](#entry)[] | 是    | 数据删除记录。           |
-| deviceId      | string            | 是    | 设备ID，此处为设备UUID。 |
+| 名称          | 类型          | 只读 | 可选       | 说明                     |
+| ------------- | ----------------- |---- | ---- | ------------------------ |
+| insertEntries | [Entry](#entry)[] | 否    | 否   | 数据添加记录。           |
+| updateEntries | [Entry](#entry)[] | 否    | 否   | 数据更新记录。           |
+| deleteEntries | [Entry](#entry)[] | 否    | 否    | 数据删除记录。           |
+| deviceId      | string            | 否    | 否    | 设备ID，此处为设备UUID。 |
 
 ## SyncMode
 
@@ -157,15 +158,15 @@ import { distributedKVStore } from '@kit.ArkData';
 
 用于提供创建数据库的配置信息。
 
-| 名称          | 类型                        | 必填 | 说明                                                         |
-| --------------- | -------------- | ---- | -------------------------|
-| createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认为true，即创建。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| encrypt         | boolean                         | 否   | 设置数据库文件是否加密，默认为false，即不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| backup          | boolean                         | 否   | 设置数据库文件是否备份，默认为true，即备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| autoSync        | boolean                         | 否   | 设置数据库是否支持跨设备自动同步。默认为false，即只支持手动同步。配置为true，<!--RP1-->即只支持在[跨设备Call调用实现的多端协同](../../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)中生效，其他场景无法生效。<!--RP1End--><br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
-| kvStoreType     | [KVStoreType](#kvstoretype)     | 否   | 设置要创建的数据库类型，默认为DEVICE_COLLABORATION，即多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| securityLevel   | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| schema          | [Schema](#schema)               | 否   | 设置定义存储在数据库中的值，默认为undefined，即不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| 名称          | 类型                        | 只读 | 可选 | 说明                                                         |
+| --------------- | -------------- | ---- | ----| -------------------------|
+| createIfMissing | boolean                         | 否    | 是  | 当数据库文件不存在时是否创建数据库，true为创建，false为不创建，默认为true。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| encrypt         | boolean                         | 否    | 是   | 设置数据库文件是否加密，true为加密，false为不加密，默认为false。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| backup          | boolean                         | 否    | 是   | 设置数据库文件是否备份，true为备份，false为不备份，默认为true。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| autoSync        | boolean                         | 否    | 是   | 设置数据库是否支持跨设备自动同步。默认为false，即只支持手动同步。配置为true，<!--RP1-->即只支持在[跨设备Call调用实现的多端协同](../../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)中生效，其他场景无法生效。<!--RP1End--><br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
+| kvStoreType     | [KVStoreType](#kvstoretype)     | 否    | 是   | 设置要创建的数据库类型，默认为DEVICE_COLLABORATION，即多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel   | [SecurityLevel](#securitylevel) | 否    | 否   | 设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| schema          | [Schema](#schema)               | 否    | 是   | 设置定义存储在数据库中的值，默认为undefined，即不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 ## Schema
 
@@ -237,7 +238,7 @@ constructor(name: string)
 
 | 参数名 | 类型 | 必填 | 说明            |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | 是   | FieldNode的值，不能为空。 |
+| name   | string   | 是   | FieldNode的值，不能为空，且不大于64个字符。|
 
 **错误码：**
 
@@ -334,6 +335,7 @@ import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
+let appId: string = 'com.example.datamanagertest';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -341,7 +343,7 @@ export default class EntryAbility extends UIAbility {
     let context = this.context;
     const kvManagerConfig: distributedKVStore.KVManagerConfig = {
       context: context,
-      bundleName: 'com.example.datamanagertest'
+      bundleName: appId
     }
     try {
       kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -366,10 +368,11 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
+let appId: string = 'com.example.datamanagertest';
 let context = featureAbility.getContext();
 const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
-  bundleName: 'com.example.datamanagertest'
+  bundleName: appId
 }
 try {
   kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -563,13 +566,16 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
-      if (err != undefined) {
-        console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in closing KVStore');
-    });
+    if (kvManager != undefined) {
+      // appId为createKVManager中的appId
+      kvManager.closeKVStore(appId, 'storeId', (err: BusinessError)=> {
+        if (err != undefined) {
+          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing KVStore');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -628,11 +634,14 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.closeKVStore('appId', 'storeId').then(() => {
-      console.info('Succeeded in closing KVStore');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvManager != undefined) {
+      // appId为createKVManager中的appId
+      kvManager.closeKVStore(appId, 'storeId').then(() => {
+        console.info('Succeeded in closing KVStore');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
   });
@@ -684,7 +693,7 @@ const options: distributedKVStore.Options = {
   securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
-  kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
+  kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -693,13 +702,16 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError) => {
-      if (err != undefined) {
-        console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info(`Succeeded in deleting KVStore`);
-    });
+    if (kvManager != undefined) {
+      // appId为createKVManager中的appId
+      kvManager.deleteKVStore(appId, 'storeId', (err: BusinessError) => {
+        if (err != undefined) {
+          console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info(`Succeeded in deleting KVStore`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -759,11 +771,14 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.deleteKVStore('appId', 'storeId').then(() => {
-      console.info('Succeeded in deleting KVStore');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvManager != undefined) {
+      // appId为createKVManager中的appId
+      kvManager.deleteKVStore(appId, 'storeId').then(() => {
+        console.info('Succeeded in deleting KVStore');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
   });
@@ -802,7 +817,8 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvManager.getAllKVStoreId('appId', (err: BusinessError, data: string[]) => {
+  // appId为createKVManager中的appId
+  kvManager.getAllKVStoreId(appId, (err: BusinessError, data: string[]) => {
     if (err != undefined) {
       console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
       return;
@@ -850,8 +866,9 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // appId为createKVManager中的appId
   console.info('GetAllKVStoreId');
-  kvManager.getAllKVStoreId('appId').then((data: string[]) => {
+  kvManager.getAllKVStoreId(appId).then((data: string[]) => {
     console.info('Succeeded in getting AllKVStoreId');
     console.info(`GetAllKVStoreId size = ${data.length}`);
   }).catch((err: BusinessError) => {
@@ -3326,7 +3343,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;Uint8Array \| string \| boolean \| number&gt; |Promise对象。返回获取查询的值。|
+|Promise&lt;boolean \| string \| number \| Uint8Array&gt; |Promise对象。返回获取查询的值。|
 
 **错误码：**
 
@@ -4924,7 +4941,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名                | 类型                  | 必填 | 说明                                         |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | 是   | 表示一个延时时间，以毫秒为单位。 |
+| defaultAllowedDelayMs | number                    | 是   | 表示一个延时时间，单位为毫秒（ms），取值范围为0或[100, 86400000]。|
 | callback              | AsyncCallback&lt;void&gt; | 是   | 回调函数。设置成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -4971,7 +4988,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 | 参数名                | 类型 | 必填 | 说明                                         |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | 是   | 表示一个延时时间，以毫秒为单位。 |
+| defaultAllowedDelayMs | number   | 是   | 表示一个延时时间，单位为毫秒（ms），取值范围为0或[100, 86400000]。|
 
 **返回值：**
 
@@ -5109,8 +5126,8 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | 参数名    | 类型              | 必填 | 说明                                           |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
-| mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件。                      |
+| mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。设置delayMs后，调用sync接口时延时时间为delayMs。未设置时以[setSyncParam](#setsyncparam)设置的时长为准。|
 
 **错误码：**
@@ -5546,7 +5563,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 类型                                                     | 说明                            |
 | -------------------------------------------------------- | ------------------------------- |
-| Promise&lt;Uint8Array \| string \| boolean \| number&gt; | Promise对象。返回获取查询的值。 |
+| Promise&lt;boolean \| string \| number \| Uint8Array&gt; | Promise对象。返回获取查询的值。 |
 
 **错误码：**
 
@@ -7044,6 +7061,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -7121,6 +7139,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**

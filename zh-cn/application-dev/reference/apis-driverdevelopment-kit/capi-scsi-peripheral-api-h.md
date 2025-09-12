@@ -1,4 +1,10 @@
 # scsi_peripheral_api.h
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## 概述
 
@@ -414,7 +420,7 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
 
 | 参数项                                                                                           | 描述                                                                                                                                                                                |
 |-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [ScsiPeripheral_DeviceMemMap](capi-scsiperipheralddk-scsiperipheral-devicememmap.md) *devMmap | 待销毁的由[OH_ScsiPeripheral_CreateDeviceMemMa](#oh_scsiperipheral_createdevicememmap)创建的缓冲区，详情参见[ScsiPeripheral_DeviceMemMap](capi-scsiperipheralddk-scsiperipheral-devicememmap.md)。 |
+| [ScsiPeripheral_DeviceMemMap](capi-scsiperipheralddk-scsiperipheral-devicememmap.md) *devMmap | 待销毁的由[OH_ScsiPeripheral_CreateDeviceMemMap](#oh_scsiperipheral_createdevicememmap)创建的缓冲区，详情参见[ScsiPeripheral_DeviceMemMap](capi-scsiperipheralddk-scsiperipheral-devicememmap.md)。 |
 
 **返回：**
 

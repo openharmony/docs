@@ -1,4 +1,10 @@
 # 管理应用窗口（FA模型）
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 基本概念
 
@@ -7,7 +13,7 @@
 
 > **说明：**
 >
-> 当前沉浸式界面开发仅支持window级别的配置，暂不支持Page级别的配置。若有Page级别切换的需要，可以在页面生命周期开始，例如onPageShow中设置沉浸模式，然后在页面退出，例如onPageHide中恢复默认设置来实现。
+> 当前沉浸式界面开发仅支持窗口级别的配置，暂不支持Page级别的配置。若有Page级别切换的需要，可以在页面生命周期开始，例如onPageShow中设置沉浸模式，然后在页面退出，例如onPageHide中恢复默认设置来实现。
 
 ## 场景介绍
 
@@ -29,7 +35,7 @@
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口。<br/>-`config`：创建窗口时的参数。               |
 | window静态方法 | findWindow(name: string): Window                             | 查找`name`所对应的窗口。                                     |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。<br>其中path为要加载到窗口中的页面内容的路径，在FA模型下该路径需添加到工程的config.json文件中。                                 |
-| Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。                                               |
+| Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。                                               |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
 | Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | 设置窗口布局是否为全屏布局。                                 |
@@ -55,6 +61,9 @@
 1. 创建/获取子窗口对象。
 
    - 可以通过`window.createWindow`接口创建子窗口。
+   非[自由窗口](../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../windowmanager/window-terminology.md#沉浸式布局)。
+
+   自由窗口状态下，子窗口参数[decorEnabled](../reference/apis-arkui/arkts-apis-window-i.md#configuration9)为false时，子窗口创建后为沉浸式布局；子窗口参数decorEnabled为true，子窗口创建后为非沉浸式布局。
    - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
 
    ```ts

@@ -1,4 +1,10 @@
 # 特效绘制合并
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 用于对背景模糊等特效进行绘制合并。
 

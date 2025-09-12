@@ -3,8 +3,9 @@
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
-<!--SE: @lanming-->
-<!--TSE: @PAFT-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 以RSA和SM2为例，随机生成非对称密钥对（KeyPair），并获得二进制数据。
 

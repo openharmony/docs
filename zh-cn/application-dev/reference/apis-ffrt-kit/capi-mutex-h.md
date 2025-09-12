@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -34,6 +35,7 @@
 | [FFRT_C_API int ffrt_mutex_lock(ffrt_mutex_t* mutex)](#ffrt_mutex_lock) | 获取mutex。 |
 | [FFRT_C_API int ffrt_mutex_unlock(ffrt_mutex_t* mutex)](#ffrt_mutex_unlock) | 释放mutex。 |
 | [FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex)](#ffrt_mutex_trylock) | 尝试获取mutex。 |
+| [FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex)](#ffrt_mutex_destroy) | 销毁mutex。 |
 
 ## 函数说明
 
@@ -239,5 +241,30 @@ FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex)
 | 类型 | 说明 |
 | -- | -- |
 | FFRT_C_API int | 获取mutex成功返回ffrt_success，<br>          获取mutex失败返回ffrt_error_inval或ffrt_error_busy。 |
+
+### ffrt_mutex_destroy()
+
+```
+FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex)
+```
+
+**描述**
+
+销毁mutex。
+
+**起始版本：** 10
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ffrt_mutex_t](capi-ffrt-ffrt-mutex-t.md)* mutex | mutex指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| FFRT_C_API int | 销毁mutex成功返回ffrt_success，<br>销毁mutex失败返回ffrt_error_inval。 |
 
 

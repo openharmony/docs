@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -34,6 +35,7 @@ The **mutex.h** file declares the mutex APIs in C.
 | [FFRT_C_API int ffrt_mutex_lock(ffrt_mutex_t* mutex)](#ffrt_mutex_lock) | Locks a mutex.|
 | [FFRT_C_API int ffrt_mutex_unlock(ffrt_mutex_t* mutex)](#ffrt_mutex_unlock) | Unlocks a mutex.|
 | [FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex)](#ffrt_mutex_trylock) | Attempts to lock a mutex.|
+| [FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex)](#ffrt_mutex_destroy) | Destroys a mutex.|
 
 ## Function Description
 
@@ -239,3 +241,28 @@ Attempts to lock a mutex.
 | Type| Description|
 | -- | -- |
 | FFRT_C_API int | Returns **ffrt_success** if the mutex is locked;<br>          returns **ffrt_error_inval** or **ffrt_error_busy** otherwise.|
+
+### ffrt_mutex_destroy()
+
+```
+FFRT_C_API int ffrt_mutex_destroy(ffrt_mutex_t* mutex)
+```
+
+**Description**
+
+Destroys a mutex.
+
+**Since**: 10
+
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [ffrt_mutex_t](capi-ffrt-ffrt-mutex-t.md)* mutex | Pointer to the mutex.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| FFRT_C_API int | Returns **ffrt_success** if the mutex is destroyed successfully;<br>returns **ffrt_error_inval** otherwise.|

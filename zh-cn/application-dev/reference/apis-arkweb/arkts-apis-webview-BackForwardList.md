@@ -1,9 +1,10 @@
 # Interface (BackForwardList)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 当前Webview的历史信息列表。
 
@@ -52,7 +53,7 @@ getItemAtIndex(index: number): HistoryItem
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -79,7 +80,7 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
-            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            console.info("HistoryItem: " + JSON.stringify(historyItem));
             this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

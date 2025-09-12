@@ -1,5 +1,10 @@
 # 栅格布局
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 栅格布局容器根节点，使用grid-row与grid-col进行栅格布局。具体请参考[Grid-container](../reference/apis-arkui/arkui-js/js-components-grid-container.md)。
 
@@ -113,7 +118,7 @@ export default {
 
 创建grid-container组件并添加grid-row，在grid-row组件内添加grid-col组件形成布局。
 
-
+<!--code_no_check-->
 ```html
 <!-- index.hml -->
 <div class="container">
@@ -174,7 +179,7 @@ text{
 
 ## 场景示例
 
-本场景中循环输出list中的内容，创建出网格布局。进行下拉操时触发refresh（刷新页面）方法，这时会向list数组中添加一条数据并设置setTimeout（延迟触发），达到刷新请求数据的效果。
+本场景中循环输出list中的内容，创建出网格布局。进行下拉操作时触发refresh（刷新页面）方法，这时会向list数组中添加一条数据并设置setTimeout（延迟触发），达到刷新请求数据的效果。
 
 
 ```html

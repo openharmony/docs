@@ -1,5 +1,11 @@
 # 字块绘制（ArkTS）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 

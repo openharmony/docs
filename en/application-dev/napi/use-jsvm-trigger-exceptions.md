@@ -1,16 +1,21 @@
 # Customizing Exception Handling Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-JSVM-API provides APIs for handling JSVM exceptions. You can use these APIs to register callbacks with a JSVM. When an exception occurs on the JSVM, the registered callback will be triggered.
-With these APIs, you can customize the handling of critical errors in the JS engine, streamlining error and exception handling during runtime.
+JSVM-API provides APIs for handling JSVM exceptions. You can use these APIs to register callback functions with the JSVM. When the JSVM triggers an exception, the registered callback function is called.
+These APIs provide customized processing of JS engine errors to help developers manage runtime errors and exceptions.
 
 ## Basic Concepts
 
-JSVM-API provides APIs for handling the following errors: 
-- Out-of-memory (OOM) error: You can use JSVM-API to register an OOM handler with a JSVM. When the JSVM encounters insufficient memory, the system will throw an OOM error and call the registered OOM error handler to perform cleanup or logging operations.
-- Fatal error: You can use JSVM-API to register a fatal error handler with a JSVM. When the JSVM encounters a fatal error, for example, an unrecoverable error while running JS code, the system will throw a fatal error and call the registered handler to output additional log information or report the error instead of allowing the application to crash.
-- Promise rejection without a catch handler: You can use JSVM-API to register a promise rejection handler with a JSVM. When a promise in JS is rejected without being caught by a catch handler, the system will throw a Promise Reject error and call the registered handler to handle the promise rejection.
+JSVM-API provides APIs for handling the following errors: <br>Out-of-memory (OOM) error: You can use JSVM-API to register an OOM handler with a JSVM. When the JSVM encounters insufficient memory, the system will throw an OOM error and call the registered OOM error handler to perform cleanup or logging operations.
+When a fatal error occurs in the JavaScript engine, for example, an unrecoverable error occurs during JavaScript code execution, the system throws a fatal error and calls the preset processing function. In this processing function, additional logs can be output or errors can be reported to prevent the program from crashing.
+Promise rejection without a catch handler: You can use JSVM-API to register a promise rejection handler with a JSVM. When a promise in JS is rejected without being caught by a catch handler, the system will throw a Promise Reject error and call the registered handler to handle the promise rejection.
 
 ## Available APIs
 
@@ -27,7 +32,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 ### OH_JSVM_SetHandlerForOOMError
 Call **OH_JSVM_SetHandlerForOOMError** to set a function for handling the OOM error. If this API is called multiple times, only the last setting takes effect. If **NULL** is passed in for the function to set in this API, the previously set handler will be canceled.
 
-#### CPP Code
+CPP code:
 
 ```cpp
 #include <csetjmp>
@@ -63,9 +68,9 @@ static JSVM_Value TriggerOOMError(JSVM_Env env, JSVM_CallbackInfo info)
         }
     }
     if (oomHandlerFinished) {
-      OH_LOG_INFO(LOG_APP, "JSVM Trigger OOM-Error: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger OOM Error: success");
     } else {
-      OH_LOG_ERROR(LOG_APP, "JSVM Trigger OOM-Error: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger OOM Error: failed");
     }
     // Cancel the OOM error handler.
     JSVM_CALL(OH_JSVM_SetHandlerForOOMError(vm, NULL));
@@ -83,17 +88,19 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerOOMError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-#### JS Example
-
+JS Example
+```cpp
 const char *srcCallNative = R"JS(triggerOOMError();)JS";
+```
+**Execution result**
 
-#### Execution Result
-
-The following information is displayed in the log:<br>JSVM Trigger OOM-Error: success
-
+Log output when the screen is clicked once:
+```cpp
+JSVM Trigger OOM Error: success
+```
 ### OH_JSVM_SetHandlerForFatalError
 Call **OH_JSVM_SetHandlerForFatalError** to set a function for handling the fatal error. If this API is called multiple times, only the last setting takes effect. If **NULL** is passed in for the function to set in this API, the previously set handler will be canceled.
-#### CPP Code
+CPP code:
 
 ```cpp
 #include <csetjmp>
@@ -128,9 +135,9 @@ static JSVM_Value TriggerFatalError(JSVM_Env env, JSVM_CallbackInfo info)
         }
     }
     if (fatalHandlerFinished) {
-      OH_LOG_INFO(LOG_APP, "JSVM Trigger Fatal-Error: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger Fatal Error: success");
     } else {
-      OH_LOG_ERROR(LOG_APP, "JSVM Trigger Fatal-Error: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger Fatal Error: failed");
     }
     // Cancel the fatal error handler.
     JSVM_CALL(OH_JSVM_SetHandlerForFatalError(vm, NULL));
@@ -148,24 +155,26 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerFatalError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-#### JS Example
-
+JS Example
+```cpp
 const char* srcCallNative = R"JS(triggerFatalError())JS";
+```
+**Execution result:**
 
-#### Execution Result
-
-The following information is displayed in the log:<br>JSVM Trigger Fatal-Error: success
-
+Log output when the screen is clicked once:
+```cpp
+JSVM Trigger Fatal Error: success
+```
 ### OH_JSVM_SetHandlerForPromiseReject
 Call **OH_JSVM_SetHandlerForPromiseReject** to set the function for handling promise rejection. If this API is called multiple times, only the last setting takes effect. If **NULL** is passed in for the function to set in this API, the previously set handler will be canceled.
-#### CPP Code
+CPP code:
 
 ```cpp
 static bool promiseRejectHandlerFinished = false;
 
 void OnPromiseReject(JSVM_Env env, JSVM_PromiseRejectEvent rejectEvent, JSVM_Value rejectInfo)
 {
-    bool result;
+    bool result = false;
     OH_JSVM_IsObject(env, rejectInfo, &result);
     JSVM_Value promise;
     JSVM_Value key1;
@@ -179,7 +188,7 @@ void OnPromiseReject(JSVM_Env env, JSVM_PromiseRejectEvent rejectEvent, JSVM_Val
     OH_JSVM_GetProperty(env, rejectInfo, key2, &value);
     JSVM_Value js_number;
     OH_JSVM_CoerceToNumber(env, value, &js_number);
-    double res;
+    double res = 0;
     OH_JSVM_GetValueDouble(env, js_number, &res);
     if (res == 42 && isPromise) {
         promiseRejectHandlerFinished = true;
@@ -200,11 +209,11 @@ static JSVM_Value TriggerPromiseReject(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CompileScript(env, strVal, nullptr, 0, false, nullptr, &script);
     JSVM_Value result;
     JSVM_Status status = OH_JSVM_RunScript(env, script, &result);
-    
+
     if (promiseRejectHandlerFinished) {
-      OH_LOG_INFO(LOG_APP, "JSVM Trigger PromiseReject: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger Promise Reject: success");
     } else {
-      OH_LOG_ERROR(LOG_APP, "JSVM Trigger PromiseReject: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger Promise Reject: failed");
     }
     // Cancel the Promise-Reject handler.
     JSVM_CALL(OH_JSVM_SetHandlerForPromiseReject(vm, NULL));
@@ -222,10 +231,13 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerPromiseReject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-#### JS Example
-
+JS Example
+```cpp
 const char* srcCallNative = R"JS(triggerPromiseReject())JS";
+```
+**Execution result:**
 
-#### Execution Result
-
-The following information is displayed in the log: <br>JSVM Trigger PromiseReject: success
+Log output when the screen is clicked once:
+```cpp
+JSVM Trigger Promise Reject: success
+```

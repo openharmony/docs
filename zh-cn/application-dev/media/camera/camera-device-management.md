@@ -1,4 +1,10 @@
 # 相机管理(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 在开发一个相机应用前，需要先通过调用相机接口来创建一个独立的相机设备。
 
@@ -19,8 +25,15 @@
    Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   function getCameraManager(context: common.BaseContext): camera.CameraManager {
-     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+   function getCameraManager(context: common.BaseContext): camera.CameraManager | undefined {
+     let cameraManager: camera.CameraManager;
+     try {
+       cameraManager = camera.getCameraManager(context);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`getCameraManager error, errCode: ${err.code}`);
+       return undefined;
+     }
      return cameraManager;
    }
    ```
@@ -29,7 +42,7 @@
    >
    > 如果获取对象失败，说明相机可能被占用或无法使用。如果被占用，须等到相机被释放后才能重新获取。
 
-3. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)类中的[getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)方法，获取当前设备支持的相机列表，列表中存储了设备支持的所有相机ID。若列表不为空，则说明列表中的每个ID都支持独立创建相机对象；否则，说明当前设备无可用相机，不可继续后续操作。
+3. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)中的[getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)方法，获取当前设备支持的相机列表，列表中存储了设备支持的所有相机ID。若列表不为空，则说明列表中的每个ID都支持独立创建相机对象；否则，说明当前设备无可用相机，不可继续后续操作。
 
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {

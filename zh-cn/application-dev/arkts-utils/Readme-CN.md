@@ -1,4 +1,10 @@
 # ArkTS（方舟编程语言）
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @flyingwolf-->
+<!--Designer: @flyingwolf-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 - [ArkTS简介](arkts-overview.md)
 - ArkTS基础类库<!--arkts-utils-->
@@ -22,9 +28,9 @@
         - [TaskPool简介](taskpool-introduction.md)
         - [Worker简介](worker-introduction.md)
         - [TaskPool与Worker对比 (TaskPool和Worker)](taskpool-vs-worker.md)
-    - 并发线程间通信<!--interthead-communication-->
+    - 并发线程间通信<!--interthread-communication-->
         - [ArkTS线程间通信概述](interthread-communication-overview.md)
-        - 线程间通信对象<!--interthead-communication-object-->
+        - 线程间通信对象<!--interthread-communication-object-->
             - [线程间通信对象概述](serializable-overview.md)
             - [普通对象](normal-object.md)
             - [ArrayBuffer对象](arraybuffer-object.md)
@@ -40,7 +46,7 @@
                 - [共享模块](arkts-sendable-module.md)
                 - [Sendable对象冻结](sendable-freeze.md)
                 - [Sendable使用场景](sendable-guide.md)
-        - 线程间通信场景<!--interthead-communication-guide-->
+        - 线程间通信场景<!--interthread-communication-guide-->
             - [使用TaskPool执行独立的耗时任务](independent-time-consuming-task.md)
             - [使用TaskPool执行多个耗时任务](multi-time-consuming-tasks.md)
             - [TaskPool任务与宿主线程通信](taskpool-communicates-with-mainthread.md)

@@ -1,4 +1,10 @@
 # MenuItemGroup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 该组件用来展示菜单MenuItem的分组。
 
@@ -25,6 +31,8 @@ MenuItemGroup(value?: MenuItemGroupOptions)
 | value  | [MenuItemGroupOptions](#menuitemgroupoptions对象说明) | 否   | 包含设置MenuItemGroup的标题和尾部显示信息。 |
 
 ## MenuItemGroupOptions对象说明
+
+菜单MenuItem分组的标题和尾部信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

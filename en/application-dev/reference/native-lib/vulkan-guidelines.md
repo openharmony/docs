@@ -1,22 +1,29 @@
 # Vulkan Development
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @andrew1993-->
+<!--Designer: @ext4FAT1-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 ## When to Use
 
-Vulkan is a set of graphics APIs for 2D and 3D rendering. To start with, you need to create a **VkSurfaceKHR** instance, which works with the **OHNativeWindow** module to implement buffer recycling.
+Vulkan is a set of graphics APIs for 2D and 3D rendering. To start with, you need to create a VkSurfaceKHR instance, which works with the OHNativeWindow module to implement buffer recycling.
 
-A **VkSurfaceKHR** instance is obtained through an **OHNativeWindow**, which is obtained from the **XComponent**. Therefore, the **OHNativeWindow** module must be used together with the **XComponent** and **NativeWindow** modules.
+A VkSurfaceKHR instance is obtained through an OHNativeWindow, which is obtained from the **XComponent**. Therefore, the OHNativeWindow module must be used together with the **XComponent** and NativeWindow modules.
 
 ## Available APIs
 
 | API                                                      | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| vkCreateSurfaceOHOS (VkInstance instance, const VkSurfaceCreateInfoOHOS\* pCreateInfo, const VkAllocationCallbacks\* pAllocator, VkSurfaceKHR\* pSurface) | Creates a **VkSurfaceKHR** instance.|
+| vkCreateSurfaceOHOS (VkInstance instance, const VkSurfaceCreateInfoOHOS\* pCreateInfo, const VkAllocationCallbacks\* pAllocator, VkSurfaceKHR\* pSurface) | Creates a VkSurfaceKHR instance.|
 
 For details about the APIs, see [Vulkan](vulkan.md).
 
 ## How to Develop
 
-The following steps illustrate how to create a **VkSurfaceKHR** instance.
+The following steps illustrate how to create a VkSurfaceKHR instance.
 
 To use the extended APIs, define the macro **VK_USE_PLATFORM_OHOS** in the **CMakeLists.txt** file.
 
@@ -72,9 +79,9 @@ libvulkan.so
    vkCreateInstance(&instanceCreateInfo, nullptr, &instance);
    ```
 
-2. Obtain an **OHNativeWindow** instance.
+2. Obtain an OHNativeWindow instance.
 
-   The **OHNativeWindow** instance is obtained from the **XComponent**. For details about how to use the **XComponent**, see [Custom Rendering (XComponent)](../../ui/napi-xcomponent-guidelines.md).
+   The OHNativeWindow instance is obtained from the **XComponent**. For details about how to use the **XComponent**, see [Custom Rendering (XComponent)](../../ui/napi-xcomponent-guidelines.md).
 
    1. Add an **XComponent** to **ets/pages/Index.ets**.
 
@@ -89,7 +96,7 @@ libvulkan.so
       .height(360)
       ```
 
-   2. Obtain an **OHNativeWindow** instance from the **XComponent**.
+   2. Obtain an OHNativeWindow instance from the **XComponent**.
 
       ```c++
       // Callback function of the XComponent triggered when a surface is created.
@@ -123,7 +130,7 @@ libvulkan.so
       }
       ```
 
-3. Create a **VkSurfaceKHR** instance.
+3. Create a VkSurfaceKHR instance.
 
    ```c++
    VkSurfaceKHR surface = VK_NULL_HANDLE;

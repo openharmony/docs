@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @lvcong_oh-->
-<!--SE: @hollokin; @yuchaozhng-->
-<!--TSE: @lj_liujing; @yippo; @logic42-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -401,7 +402,7 @@ export default class EntryAbility extends UIAbility {
  示例代码如下：
 
 ```ts
-import { AbilityConstant, Caller, common, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, Caller, UIAbility, Want } from '@kit.AbilityKit';
 import { distributedDataObject } from '@kit.ArkData';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';

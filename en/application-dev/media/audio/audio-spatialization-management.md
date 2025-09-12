@@ -1,4 +1,10 @@
 # Spatial Audio Management (for System Applications Only)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 Spatial audio management includes querying, setting, and listening for spatial audio status and capabilities.
 

@@ -3,8 +3,9 @@
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @zhuguodong8-->
-<!--SE: @zhuguodong8; @jjfeing-->
-<!--TSE: @principal87-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景说明
 
@@ -605,24 +606,24 @@
    # AudioFile.h
    set(CMAKE_CXX_STANDARD 17)
    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   set(NATIVERENDER_PATH ${CMAKE_CURRENT_SOURCE_DIR})
    
    if(DEFINED PACKAGE_FIND_FILE)
        include(${PACKAGE_FIND_FILE})
    endif()
    
-   include_directories(${NATIVERENDER_ROOT_PATH}
-                       ${NATIVERENDER_ROOT_PATH}/include)
+   include_directories(${NATIVERENDER_PATH}
+                       ${NATIVERENDER_PATH}/include)
    
    # libsamplerate
-   set(LIBSAMPLERATE_DIR ${NATIVERENDER_ROOT_PATH}/third_party/libsamplerate)
+   set(LIBSAMPLERATE_DIR ${NATIVERENDER_PATH}/third_party/libsamplerate)
    include_directories(${LIBSAMPLERATE_DIR}/include)
    add_subdirectory(${LIBSAMPLERATE_DIR})
    
-   include_directories(${NATIVERENDER_ROOT_PATH}/third_party/opencc/include/opencc)
+   include_directories(${NATIVERENDER_PATH}/third_party/opencc/include/opencc)
    # src
    aux_source_directory(src SRC_DIR)
-   include_directories(${NATIVERENDER_ROOT_PATH}/src)
+   include_directories(${NATIVERENDER_PATH}/src)
    
    include_directories(${CMAKE_SOURCE_DIR}/third_party)
    

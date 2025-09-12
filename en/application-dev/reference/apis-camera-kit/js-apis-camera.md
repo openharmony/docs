@@ -1,6 +1,11 @@
 # @ohos.multimedia.camera (Camera Management)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
-The Camera module provides a set of easy-to-use camera service APIs. With these APIs, you can create camera applications that access and control camera hardware to achieve basic functions like previewing, taking photos, and recording videos. In addition, you can combine these APIs to perform advanced operations, such as controlling the flash, exposure time, and focus.
+The module provides a set of easy-to-use camera service APIs. With these APIs, you can create camera applications that access and control camera hardware to achieve basic functions like previewing, taking photos, and recording videos. In addition, you can combine these APIs to perform advanced operations, such as controlling the flash, exposure time, and focus.
 
 > **NOTE**
 >
@@ -16,7 +21,9 @@ import { camera } from '@kit.CameraKit';
 
 getCameraManager(context: Context): CameraManager
 
-Obtains a **CameraManager** instance. This API returns the result synchronously.
+Obtains a CameraManager instance. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -24,13 +31,13 @@ Obtains a **CameraManager** instance. This API returns the result synchronously.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)      | Yes  | Application context.                  |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)      | Yes  | Application context.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [CameraManager](#cameramanager)           | **CameraManager** instance obtained.                  |
+| [CameraManager](#cameramanager)           | CameraManager instance obtained.                  |
 
 **Error codes**
 
@@ -61,7 +68,9 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 ## CameraDevice
 
-Defines the camera device information.
+Describes the camera device information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -94,6 +103,8 @@ Enumerates the camera positions.
 
 Enumerates the camera types.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                    | Value  | Description           |
@@ -108,6 +119,8 @@ Enumerates the camera types.
 
 Enumerates the camera connection types.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                         | Value  | Description          |
@@ -120,6 +133,8 @@ Enumerates the camera connection types.
 
 Enumerates the remote camera types.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                         | Value      | Description     |
@@ -131,6 +146,8 @@ Enumerates the remote camera types.
 ## CameraStatus
 
 Enumerates the camera statuses.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -145,6 +162,8 @@ Enumerates the camera statuses.
 
 Enumerates the fold states available for a fordable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                      | Value  | Description           |
@@ -157,6 +176,8 @@ Enumerates the fold states available for a fordable device.
 
 Describes the camera status information.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type                          |    Read-only  |     Optional    | Description      |
@@ -168,6 +189,8 @@ Describes the camera status information.
 
 Describes the fold state information about a foldable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type                          |    Read-only  |     Optional    | Description      |
@@ -177,7 +200,9 @@ Describes the fold state information about a foldable device.
 
 ## Profile
 
-Defines the camera profile.
+Describes the camera profile.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -188,7 +213,9 @@ Defines the camera profile.
 
 ## FrameRateRange
 
-Defines the frame rate range.
+Describes the frame rate range.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -199,7 +226,9 @@ Defines the frame rate range.
 
 ## VideoProfile
 
-Defines the video configuration information. It inherits from [Profile](#profile).
+Describes the video configuration information. It inherits from [Profile](#profile).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -209,7 +238,9 @@ Defines the video configuration information. It inherits from [Profile](#profile
 
 ## CameraOutputCapability
 
-Defines the camera output capability.
+Describes the camera output capability.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -224,6 +255,8 @@ Defines the camera output capability.
 
 Enumerates the camera scene modes.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                        | Value      | Description                                         |
@@ -237,6 +270,8 @@ Enumerates the camera scene modes.
 Enumerates the camera error codes,
 
 which are returned when an API call is incorrect or the **on()** API is used to listen for the error status.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -256,13 +291,15 @@ which are returned when an API call is incorrect or the **on()** API is used to 
 
 ## CameraManager
 
-Implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](#cameragetcameramanager) to obtain a **CameraManager** instance.
+Implements camera management. Before calling any API in CameraManager, you must use [getCameraManager](#cameragetcameramanager) to obtain a CameraManager instance.
 
 ### getSupportedCameras
 
 getSupportedCameras(): Array\<CameraDevice\>
 
 Obtains the supported camera devices. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -295,13 +332,15 @@ getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>
 
 Obtains the scene modes supported by a camera device. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name        | Type                                                           | Mandatory| Description                     |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | Yes| **CameraDevice** instance, which is obtained through [getSupportedCameras](#getsupportedcameras). An error code is returned if the input parameter is invalid.      |
+| camera | [CameraDevice](#cameradevice)                              | Yes| CameraDevice instance, which is obtained through [getSupportedCameras](#getsupportedcameras). An error code is returned if the input parameter is invalid.      |
 
 **Return value**
 
@@ -342,7 +381,7 @@ Obtains the output capability supported by a camera device. This API returns the
 
 | Name        | Type                                                           | Mandatory| Description                     |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | Yes| **CameraDevice** instance, which is obtained through [getSupportedCameras](#getsupportedcameras). An error code is returned if the input parameter is invalid.     |
+| camera | [CameraDevice](#cameradevice)                              | Yes| CameraDevice instance, which is obtained through [getSupportedCameras](#getsupportedcameras). An error code is returned if the input parameter is invalid.     |
 
 **Return value**
 
@@ -365,13 +404,15 @@ getSupportedOutputCapability(camera: CameraDevice, mode: SceneMode): CameraOutpu
 
 Obtains the output capability supported by a camera device in a given scene mode. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name        | Type                                                           | Mandatory| Description                     |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | Yes| **CameraDevice** instance, which is obtained through [getSupportedCameras](#getsupportedcameras).      |
+| camera | [CameraDevice](#cameradevice)                              | Yes| CameraDevice instance, which is obtained through [getSupportedCameras](#getsupportedcameras).      |
 | mode | [SceneMode](#scenemode11)                              | Yes| Scene mode, which is obtained through [getSupportedSceneModes](#getsupportedscenemodes11).      |
 
 **Return value**
@@ -395,6 +436,8 @@ isCameraMuted(): boolean
 
 Checks whether this camera is muted.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -416,9 +459,13 @@ function isCameraMuted(cameraManager: camera.CameraManager): boolean {
 
 createCameraInput(camera: CameraDevice): CameraInput
 
-Creates a **CameraInput** instance with the specified **CameraDevice** instance. This API returns the result synchronously.
+Creates a CameraInput instance with the specified CameraDevice instance. This API returns the result synchronously.
+
+Before calling this API, call [getSupportedCameras](#getsupportedcameras) to obtain the list of supported camera devices, select the camera device that meets the requirements based on the actual usage scenario, and then create the CameraInput instance.
 
 **Required permissions**: ohos.permission.CAMERA
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -426,13 +473,13 @@ Creates a **CameraInput** instance with the specified **CameraDevice** instance.
 
 | Name    | Type                                        | Mandatory| Description                                              |
 | -------- | ------------------------------------------- | ---- |--------------------------------------------------|
-| camera  | [CameraDevice](#cameradevice)         | Yes  | **CameraDevice** instance, which is obtained through [getSupportedCameras](#getsupportedcameras).|
+| camera  | [CameraDevice](#cameradevice)         | Yes  | CameraDevice instance, which is obtained through [getSupportedCameras](#getsupportedcameras).|
 
 **Return value**
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [CameraInput](#camerainput)    | **CameraInput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [CameraInput](#camerainput)    | CameraInput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -466,9 +513,13 @@ function createCameraInput(camera: camera.CameraDevice, cameraManager: camera.Ca
 
 createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
-Creates a **CameraInput** instance with the specified camera position and type. This API returns the result synchronously.
+Creates a CameraInput instance with the specified camera position and type. This API returns the result synchronously.
+
+Before calling this API, specify the camera position and type based on the usage scenario. For example, open the front camera for the selfie feature
 
 **Required permissions**: ohos.permission.CAMERA
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -483,7 +534,7 @@ Creates a **CameraInput** instance with the specified camera position and type. 
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [CameraInput](#camerainput)    | **CameraInput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [CameraInput](#camerainput)    | CameraInput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -519,7 +570,9 @@ function createCameraInput(camera: camera.CameraDevice, cameraManager: camera.Ca
 
 createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 
-Creates a **PreviewOutput** instance. This API returns the result synchronously.
+Creates a PreviewOutput instance. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -528,13 +581,13 @@ Creates a **PreviewOutput** instance. This API returns the result synchronously.
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](#profile)                             | Yes  | Supported preview profile, which is obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
-| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
+| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md).|
 
 **Return value**
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [PreviewOutput](#previewoutput)    | **PreviewOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [PreviewOutput](#previewoutput)    | PreviewOutput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -568,7 +621,9 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 
 createPreviewOutput(surfaceId: string): PreviewOutput
 
-Creates a **PreviewOutput** instance without configuration. This API returns the result synchronously. It must be used together with [preconfig](#preconfig12).
+Creates a PreviewOutput instance without configuration. This API returns the result synchronously. It must be used together with [preconfig](#preconfig12).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -576,13 +631,13 @@ Creates a **PreviewOutput** instance without configuration. This API returns the
 
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
+| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md).|
 
 **Return value**
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [PreviewOutput](#previewoutput)    | **PreviewOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [PreviewOutput](#previewoutput)    | PreviewOutput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -615,7 +670,7 @@ function createPreviewOutput(cameraManager: camera.CameraManager, surfaceId: str
 
 createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 
-Creates a **PhotoOutput** instance. This API returns the result synchronously.
+Creates a PhotoOutput instance. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -628,13 +683,13 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 | Name    | Type                                        | Mandatory| Description                                 |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
 | profile  | [Profile](#profile)                         | Yes  | Supported photo profile, which is obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
-| surfaceId| string            | Yes  | Surface ID, which is obtained from [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
+| surfaceId| string            | Yes  | Surface ID, which is obtained from [ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md).|
 
 **Return value**
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [PhotoOutput](#photooutput)   | **PhotoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [PhotoOutput](#photooutput)   | PhotoOutput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -665,7 +720,9 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 createPhotoOutput(profile?: Profile): PhotoOutput
 
-Creates a **PhotoOutput** instance. This API returns the result synchronously.
+Creates a PhotoOutput instance. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -679,7 +736,7 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [PhotoOutput](#photooutput)   | **PhotoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [PhotoOutput](#photooutput)   | PhotoOutput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -713,7 +770,9 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 
-Creates a **VideoOutput** instance. This API returns the result synchronously.
+Creates a VideoOutput instance. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -728,7 +787,7 @@ Creates a **VideoOutput** instance. This API returns the result synchronously.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [VideoOutput](#videooutput)   | **VideoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [VideoOutput](#videooutput)   | VideoOutput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -762,7 +821,9 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 createVideoOutput(surfaceId: string): VideoOutput
 
-Creates a **VideoOutput** instance without configuration. This API returns the result synchronously. It must be used together with [preconfig](#preconfig12-1).
+Creates a VideoOutput instance without configuration. This API returns the result synchronously. It must be used together with [preconfig](#preconfig12-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -776,7 +837,7 @@ Creates a **VideoOutput** instance without configuration. This API returns the r
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [VideoOutput](#videooutput)   | **VideoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [VideoOutput](#videooutput)   | VideoOutput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -809,7 +870,9 @@ function createVideoOutput(cameraManager: camera.CameraManager, surfaceId: strin
 
 createMetadataOutput(metadataObjectTypes: Array\<MetadataObjectType\>): MetadataOutput
 
-Creates a **MetadataOutput** instance. This API returns the result synchronously.
+Creates a MetadataOutput instance. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -823,7 +886,7 @@ Creates a **MetadataOutput** instance. This API returns the result synchronously
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [MetadataOutput](#metadataoutput)   | **MetadataOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [MetadataOutput](#metadataoutput)   | MetadataOutput instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -856,7 +919,7 @@ function createMetadataOutput(cameraManager: camera.CameraManager, cameraOutputC
 
 createCaptureSession(): CaptureSession
 
-Creates a **CaptureSession** instance. This API returns the result synchronously.
+Creates a CaptureSession instance. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -868,7 +931,7 @@ Creates a **CaptureSession** instance. This API returns the result synchronously
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [CaptureSession](#capturesessiondeprecated)   | **CaptureSession** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [CaptureSession](#capturesessiondeprecated)   | CaptureSession instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -900,7 +963,9 @@ function createCaptureSession(cameraManager: camera.CameraManager): camera.Captu
 
 createSession\<T extends Session\>(mode: SceneMode): T
 
-Creates a **Session** instance with a given scene mode. This API returns the result synchronously.
+Creates a Session instance with a given scene mode. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -914,16 +979,16 @@ Creates a **Session** instance with a given scene mode. This API returns the res
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [T extends Session](#session11)   | **Session** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [T extends Session](#session11)   | Session instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message                                                                                                                                          |
-| --------------- |------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
-| 7400201                | Camera service fatal error.                                                                                                                    |
+| ID  | Error Message                                                                                                                                          |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 7400101 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
+| 7400201 | Camera service fatal error.                                                                                                                    |
 
 **Example**
 
@@ -953,13 +1018,15 @@ Subscribes to camera status events. This API uses an asynchronous callback to re
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
-| type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the corresponding information is returned only when the camera device is enabled or disabled.|
+| type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a CameraManager instance is obtained. This event is triggered and the corresponding information is returned only when the camera device is enabled or disabled.|
 | callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.|                 |
 
 **Example**
@@ -987,13 +1054,15 @@ off(type: 'cameraStatus', callback?: AsyncCallback\<CameraStatusInfo\>): void
 
 Unsubscribes from camera status events. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
-| type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a **CameraManager** instance is obtained.|
+| type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a CameraManager instance is obtained.|
 | callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -1013,6 +1082,8 @@ Subscribes to fold status change events of the foldable device. This API uses an
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1048,6 +1119,8 @@ off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
 
 Unsubscribes from fold state change events of the foldable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -1071,13 +1144,15 @@ isTorchSupported(): boolean
 
 Checks whether the camera device supports the flashlight.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the camera device supports the flashlight, and **false** means the opposite.|
+| boolean    | Check result for the support of the flashlight. **true** if supported, **false** otherwise.|
 
 **Example**
 
@@ -1094,6 +1169,8 @@ isTorchModeSupported(mode: TorchMode): boolean
 
 Checks whether a flashlight mode is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -1106,7 +1183,7 @@ Checks whether a flashlight mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the flashlight mode is supported, and **false** means the opposite.|
+| boolean    | Check result for the support of the flashlight mode. **true** if supported, **false** otherwise.|
 
 **Example**
 
@@ -1122,6 +1199,8 @@ function isTorchModeSupported(cameraManager: camera.CameraManager, torchMode: ca
 getTorchMode(): TorchMode
 
 Obtains the flashlight mode of this camera device.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1146,6 +1225,8 @@ function getTorchMode(cameraManager: camera.CameraManager): camera.TorchMode | u
 setTorchMode(mode: TorchMode): void
 
 Sets the flashlight mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1190,13 +1271,15 @@ Subscribes to flashlight status change events. This API uses an asynchronous cal
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | Yes  | Event type. The value is fixed at **'torchStatusChange'**. The event can be listened for when a **CameraManager** instance is obtained. Currently, this event is triggered only in the following scenarios: The flashlight is turned on or turned off, or becomes unavailable or available.|
+| type     | string          | Yes  | Event type. The value is fixed at **'torchStatusChange'**. The event can be listened for when a CameraManager instance is obtained. Currently, this event is triggered only in the following scenarios: The flashlight is turned on or turned off, or becomes unavailable or available.|
 | callback | AsyncCallback\<TorchStatusInfo> | Yes  | Callback used to return the flashlight status.              |
 
 **Example**
@@ -1223,13 +1306,15 @@ off(type: 'torchStatusChange', callback?: AsyncCallback\<TorchStatusInfo\>): voi
 
 Unsubscribes from flashlight status change events. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | Yes  | Event type. The value is fixed at **'torchStatusChange'**. The event can be listened for when a **CameraManager** instance is obtained.|
+| type     | string          | Yes  | Event type. The value is fixed at **'torchStatusChange'**. The event can be listened for when a CameraManager instance is obtained.|
 | callback | AsyncCallback\<TorchStatusInfo> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -1245,6 +1330,8 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 Obtains the specified camera based on the camera position and type.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1292,19 +1379,21 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 Obtains the concurrency information of the specified cameras. If the return value is an empty array, concurrency is not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| cameras | Array\<[CameraDevice](#cameradevice)\>  | Yes  | Array of **CameraDevice** objects.|
+| cameras | Array\<[CameraDevice](#cameradevice)\>  | Yes  | Array of CameraDevice objects. You are advised to use the front and rear cameras obtained by calling [getCameraDevice](#getcameradevice18).|
 
 **Return value**
 
 | Type            | Description                    |
 | -----------------| ------------------------ |
-|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  Array of concurrency information obtained, where each **CameraDevice** object has its own corresponding concurrency information.     |
+|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  Array of concurrency information corresponding to the provided CameraDevice objects, with a one-to-one mapping.     |
 
 **Error codes**
 
@@ -1335,6 +1424,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 Enumerates the flashlight modes.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                         | Value  | Description          |
@@ -1345,19 +1436,23 @@ Enumerates the flashlight modes.
 
 ## TorchStatusInfo<sup>11+</sup>
 
-Defines the flashlight status information.
+Describes the flashlight status information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name             | Type      | Read-only| Optional| Description       |
 | ---------------- | ---------- | ---- | ---- | ----------- |
-| isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available. The value **true** means that the flashlight is available, and **false** means the opposite.|
-| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated. The value **true** means that the flashlight is activated, and **false** means the opposite.|
+| isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available. **true** if available, **false** otherwise.|
+| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated. **true** if activated, **false** otherwise.|
 | torchLevel       | number     | Yes  | No  | Flashlight brightness level. The value range is [0, 1]. A larger value indicates a greater luminance. |
 
 ## Size
 
-Defines the output capability.
+Describes the output capability.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1368,7 +1463,9 @@ Defines the output capability.
 
 ## Point
 
-Defines the point coordinates, which are used for focus and exposure configuration.
+Describes the point coordinates, which are used for focus and exposure configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1380,6 +1477,8 @@ Defines the point coordinates, which are used for focus and exposure configurati
 ## CameraFormat
 
 Enumerates the camera output formats.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1396,16 +1495,20 @@ Enumerates the camera output formats.
 
 Enumerates the video codec types.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Value   | Description         |
 |------|------|-------------|
-| AVC  | 0    | AVC. |
+| AVC  | 0    | AVC.|
 | HEVC | 1 | HEVC.|
 
 ## CameraConcurrentType<sup>18+</sup>
 
 Enumerates the camera concurrency types.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1418,26 +1521,30 @@ Enumerates the camera concurrency types.
 
 Describes the camera's concurrency information.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type   | Read-only| Optional | Description        |
 | ------ | ------ | ---- |-----| ------------ |
-| device              | [CameraDevice](#cameradevice)   | No  | No  | Concurrent camera device.|
-| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | No  | No  | Concurrency type.|
-| modes               | Array\<[SceneMode](#scenemode11) \>              | No  | No  | Scene mode.|
-| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | No  | No  | Output capabilities of the camera.|
+| device              | [CameraDevice](#cameradevice)   | Yes  | No  | Concurrent camera device.|
+| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | Yes  | No  | Concurrency type.|
+| modes               | Array\<[SceneMode](#scenemode11) \>              | Yes  | No  | Scene mode.|
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | Yes  | No  | Output capabilities of the camera.|
 
 ## CameraInput
 
 Defines the camera input object.
 
-Provides camera device information used in [Session](#session11).
+It provides camera device information used in [Session](#session11).
 
 ### open
 
 open(callback: AsyncCallback\<void\>): void
 
 Opens this camera device. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1479,6 +1586,8 @@ open(): Promise\<void\>
 
 Opens this camera device. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -1518,13 +1627,15 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 Opens this camera device and obtains the handle to the camera in secure mode.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type                 | Mandatory| Description                                                                     |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | Yes  | Whether to open the camera device in secure mode. The value **true** means to open the camera device in secure mode, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| isSecureEnabled | boolean | Yes  | Whether to open the camera device in secure mode. **true** to open in secure mode, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Return value**
 
@@ -1561,6 +1672,8 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 open(type: CameraConcurrentType): Promise\<void\>
 
 Opens the camera with the specified concurrency type.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1607,6 +1720,8 @@ close(callback: AsyncCallback\<void\>\): void
 
 Closes this camera device. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -1645,6 +1760,8 @@ close(): Promise\<void\>
 
 Closes this camera device. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -1679,11 +1796,13 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
 
 on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 
-Subscribes to **CameraInput** error events. This API uses an asynchronous callback to return the result.
+Subscribes to CameraInput error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1691,7 +1810,7 @@ Subscribes to **CameraInput** error events. This API uses an asynchronous callba
 
 | Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera device. For example, if the camera device is unavailable or a conflict occurs, the error information is returned.|
+| type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a CameraInput instance is created. This event is triggered and the result is returned when an error occurs on the camera device. For example, if the camera device is unavailable or a conflict occurs, the error information is returned.|
 | camera   | [CameraDevice](#cameradevice)    | Yes  | Camera device.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
@@ -1713,7 +1832,9 @@ function registerCameraInputError(cameraInput: camera.CameraInput, camera: camer
 
 off(type: 'error', camera: CameraDevice, callback?: ErrorCallback): void
 
-Unsubscribes from **CameraInput** error events.
+Unsubscribes from CameraInput error events.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1721,7 +1842,7 @@ Unsubscribes from **CameraInput** error events.
 
 | Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera device. For example, if the camera device is unavailable or a conflict occurs, the error information is returned.|
+| type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a CameraInput instance is created. This event is triggered and the result is returned when an error occurs on the camera device. For example, if the camera device is unavailable or a conflict occurs, the error information is returned.|
 | camera   | [CameraDevice](#cameradevice)    | Yes  | Camera device.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
@@ -1742,6 +1863,8 @@ Implements output information used in [Session](#session11). It is the base clas
 release(callback: AsyncCallback\<void\>): void
 
 Releases output resources. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1790,6 +1913,8 @@ function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
 release(): Promise\<void\>
 
 Releases output resources. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1991,13 +2116,15 @@ Subscribes to preview frame start events. This API uses an asynchronous callback
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                    |
 | -------- | -------------------- | ---- | --------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure for the first time.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a previewOutput instance is created. This event is triggered and returned when the bottom layer starts exposure for the first time.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. The preview starts as long as this event is returned.                   |
 
 **Example**
@@ -2024,13 +2151,15 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 
 Unsubscribes from preview frame start events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                    |
 | -------- | -------------------- | ---- | --------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **previewOutput** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a previewOutput instance is created.|
 | callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -2051,13 +2180,15 @@ Subscribes to preview frame end events. This API uses an asynchronous callback t
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the last frame of preview ends.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a previewOutput instance is created. This event is triggered and returned when the last frame of preview ends.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. The preview ends as long as this event is returned.               |
 
 **Example**
@@ -2084,13 +2215,15 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 
 Unsubscribes from preview frame end events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **previewOutput** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a previewOutput instance is created.|
 | callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -2105,11 +2238,13 @@ function unregisterPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): v
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **PreviewOutput** error events. This API uses an asynchronous callback to return the result.
+Subscribes to PreviewOutput error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2117,7 +2252,7 @@ Subscribes to **PreviewOutput** error events. This API uses an asynchronous call
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a preview-related API such as [Session.start](#start11-1) or [CameraOutput.release](#release-1).|
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a previewOutput instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a preview-related API such as [Session.start](#start11-1) or [CameraOutput.release](#release-1).|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
 **Example**
@@ -2138,7 +2273,9 @@ function registerPreviewOutputError(previewOutput: camera.PreviewOutput): void {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **PreviewOutput** error events.
+Unsubscribes from PreviewOutput error events.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2146,7 +2283,7 @@ Unsubscribes from **PreviewOutput** error events.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created.|
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a previewOutput instance is created.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -2162,6 +2299,8 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
  getSupportedFrameRates(): Array\<FrameRateRange\>
 
 Obtains the supported frame rates.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2188,6 +2327,8 @@ Sets a frame rate range for preview streams. The range must be within the suppor
 > **NOTE**
 >
 > This API is valid only in [PhotoSession](#photosession11) or [VideoSession](#videosession11) mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2223,6 +2364,8 @@ Obtains the configured frame rate range.
 
 This API is valid only after [setFrameRate](#setframerate12) is called to set a frame rate range for preview streams.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -2245,6 +2388,8 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 getActiveProfile(): Profile
 
 Obtains the profile that takes effect currently.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2287,6 +2432,8 @@ Obtains the preview rotation degree.
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
 - Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2333,6 +2480,8 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 
 Sets the preview rotation degree.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -2369,6 +2518,8 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 
 Enumerates the image rotation angles.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name         | Value  | Description          |
@@ -2380,7 +2531,9 @@ Enumerates the image rotation angles.
 
 ## Location
 
-Defines the geolocation information.
+Describes the geolocation information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2394,6 +2547,8 @@ Defines the geolocation information.
 
 Enumerates the image quality levels.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                 | Value  | Description        |
@@ -2405,7 +2560,9 @@ Enumerates the image quality levels.
 
 ## PhotoCaptureSetting
 
-Defines the settings for taking an image.
+Describes the settings for taking an image.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2418,21 +2575,25 @@ Defines the settings for taking an image.
 
 ## Photo<sup>11+</sup>
 
-Defines a higher-resolution image object.
+Defines a full-quality image object.
 
-### Attributes
+### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| main<sup>11+</sup> | [image.Image](../apis-image-kit/js-apis-image.md#image9) |        Yes      | Higher-resolution image.|
+| main<sup>11+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md) |        Yes      | Full-quality image.|
 
 ### release<sup>11+</sup>
 
 release(): Promise\<void\>
 
 Releases output resources. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2459,6 +2620,8 @@ Implements output information used in a photo session. It inherits from [CameraO
 capture(callback: AsyncCallback\<void\>): void
 
 Captures a photo with the default photo capture parameters. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2499,6 +2662,8 @@ capture(): Promise\<void\>
 
 Captures a photo with the default photo capture parameters. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -2535,6 +2700,8 @@ function capture(photoOutput: camera.PhotoOutput): void {
 capture(setting: PhotoCaptureSetting, callback: AsyncCallback\<void\>): void
 
 Captures a photo with the specified photo capture parameters. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2587,6 +2754,8 @@ function capture(photoOutput: camera.PhotoOutput): void {
 capture(setting: PhotoCaptureSetting): Promise\<void\>
 
 Captures a photo with the specified photo capture parameters. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2647,13 +2816,15 @@ Subscribes to events indicating available high-resolution images. This API uses 
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | Yes  | Event type. The value is fixed at **'photoAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string     | Yes  | Event type. The value is fixed at **'photoAvailable'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[Photo](#photo11)\> | Yes  | Callback used to return the high-resolution image.|
 
 **Example**
@@ -2681,13 +2852,15 @@ off(type: 'photoAvailable', callback?: AsyncCallback\<Photo\>): void
 
 Unsubscribes from events indicating available high-resolution images.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'photoAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'photoAvailable'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[Photo](#photo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -2719,13 +2892,15 @@ Subscribes to capture start events. This API uses an asynchronous callback to re
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | Yes  | Event type. The value is fixed at **'captureStartWithInfo'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string     | Yes  | Event type. The value is fixed at **'captureStartWithInfo'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | Yes  | Callback used to return the capture ID.|
 
 **Example**
@@ -2752,13 +2927,15 @@ off(type: 'captureStartWithInfo', callback?: AsyncCallback\<CaptureStartInfo\>):
 
 Unsubscribes from capture start events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'captureStartWithInfo'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'captureStartWithInfo'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -2777,13 +2954,15 @@ isMovingPhotoSupported(): boolean
 
 Checks whether taking moving photos is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that taking moving photos is supported, and **false** means the opposite.|
+| boolean | Check result for the support of taking moving photos. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -2819,13 +2998,15 @@ Enables or disables the feature of taking moving photos.
 
 **Required permissions:** ohos.permission.MICROPHONE
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| enabled  | boolean                | Yes  | Whether to enable the feature of taking moving photos. The value **true** means to enable the feature, and **false** means the opposite.    |
+| enabled  | boolean                | Yes  | Whether to enable the feature of taking moving photos. **true** to enable, **false** otherwise.    |
 
 **Error codes**
 
@@ -2863,13 +3044,15 @@ Subscribes to photo asset available events. This API uses an asynchronous callba
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
 
 **Example**
@@ -2898,13 +3081,15 @@ off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.Pho
 
 Unsubscribes from photo asset available events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type     | Mandatory | Description                                                                        |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
-| type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.                        |
+| type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a photoOutput instance is created.                        |
 | callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | No  | Callback used for unsubscription. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -2921,13 +3106,15 @@ isMirrorSupported(): boolean
 
 Checks whether mirror photography is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that mirror photography is supported, and **false** means the opposite.|
+| boolean | Check result for the support of mirror photography. **true** if supported, **false** otherwise.|
 
 **Example**
 
@@ -2946,13 +3133,15 @@ Enables dynamic photo capture.
 
 Before calling this API, check whether dynamic photo capture is supported by calling [isMovingPhotoSupported](#ismovingphotosupported12) and whether mirroring is supported by calling [isMirrorSupported](#ismirrorsupported).
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                   | Mandatory| Description                       |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | Yes  | Whether to enable or disable dynamic photo capture. The value **true** means to enable dynamic photo capture, and **false** means to disable it.|
+| enabled | boolean                | Yes  | Whether to enable or disable dynamic photo capture. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -2987,6 +3176,8 @@ getSupportedMovingPhotoVideoCodecTypes(): Array\<VideoCodecType\>
 
 Obtains the supported video codec types of moving photos.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -3017,6 +3208,8 @@ function getSupportedMovingPhotoVideoCodecType(photoOutput: camera.PhotoOutput):
 setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 Sets a video codec type for moving photos.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3059,7 +3252,7 @@ Subscribes to capture start events. This API uses an asynchronous callback to re
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure each time a photo is taken.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a photoOutput instance is created. This event is triggered and returned when the bottom layer starts exposure each time a photo is taken.|
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the capture ID.           |
 
 **Example**
@@ -3097,7 +3290,7 @@ Unsubscribes from capture start events.
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<number\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3114,13 +3307,15 @@ on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
 
 Subscribes to frame shutter events. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result. A new photo capture request can be delivered as long as this event is returned.            |
 
 **Example**
@@ -3148,13 +3343,15 @@ off(type: 'frameShutter', callback?: AsyncCallback\<FrameShutterInfo\>): void
 
 Unsubscribes from frame shutter events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3175,13 +3372,15 @@ Subscribes to capture end events. This API uses an asynchronous callback to retu
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type          | Mandatory| Description                                      |
 | -------- | --------------- | ---- | ---------------------------------------- |
-| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photo capture is complete.|
+| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a photoOutput instance is created. This event is triggered and the corresponding information is returned when the photo capture is complete.|
 | callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                 |
 
 **Example**
@@ -3209,13 +3408,15 @@ off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
 
 Unsubscribes from capture end events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type          | Mandatory| Description                                      |
 | -------- | --------------- | ---- | ---------------------------------------- |
-| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3236,13 +3437,15 @@ Subscribes to frame shutter end events. This API uses an asynchronous callback t
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'frameShutterEnd'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'frameShutterEnd'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | Yes  | Callback used to return the result. It is invoked when the frame shutter ends.  |
 
 **Example**
@@ -3269,13 +3472,15 @@ off(type: 'frameShutterEnd', callback?: AsyncCallback\<FrameShutterEndInfo\>): v
 
 Unsubscribes from frame shutter end events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'frameShutterEnd'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'frameShutterEnd'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3296,13 +3501,15 @@ Subscribes to capture ready events. This API uses an asynchronous callback to re
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                | Yes  | Event type. The value is fixed at **'captureReady'**. The event can be listened for when a **photoOutput** instance is created. The event is triggered and the corresponding information is returned when it is ready to take the next photo.|
+| type     | string                | Yes  | Event type. The value is fixed at **'captureReady'**. The event can be listened for when a photoOutput instance is created. The event is triggered and the corresponding information is returned when it is ready to take the next photo.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                |
 
 **Example**
@@ -3329,13 +3536,15 @@ off(type: 'captureReady', callback?: AsyncCallback\<void\>): void
 
 Unsubscribes from capture ready events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                               | Yes  | Event type. The value is fixed at **'captureReady'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                                               | Yes  | Event type. The value is fixed at **'captureReady'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[CaptureReadyInfo](#captureendinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3356,13 +3565,15 @@ Subscribes to estimated capture duration events. This API uses an asynchronous c
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photo capture is complete.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a photoOutput instance is created. This event is triggered and the corresponding information is returned when the photo capture is complete.|
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the estimated duration when the sensor captures frames at the bottom layer in a single capture. If **–1** is reported, there is no estimated duration.                                |
 
 **Example**
@@ -3389,13 +3600,15 @@ off(type: 'estimatedCaptureDuration', callback?: AsyncCallback\<number\>): void
 
 Unsubscribes from estimated capture duration events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                  | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<number\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3410,11 +3623,13 @@ function unregisterPhotoOutputEstimatedCaptureDuration(photoOutput: camera.Photo
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **PhotoOutput** error events. This API uses an asynchronous callback to return the result.
+Subscribes to PhotoOutput error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3422,7 +3637,7 @@ Subscribes to **PhotoOutput** error events. This API uses an asynchronous callba
 
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
-| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photo-related API.|
+| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a photoOutput instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photo-related API.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
 
 **Example**
@@ -3443,7 +3658,9 @@ function registerPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **PhotoOutput** error events.
+Unsubscribes from PhotoOutput error events.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3451,7 +3668,7 @@ Unsubscribes from **PhotoOutput** error events.
 
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
-| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a photoOutput instance is created.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3467,6 +3684,8 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 getActiveProfile(): Profile
 
 Obtains the profile that takes effect currently.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3508,6 +3727,8 @@ Obtains the photo rotation degree.
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
 - Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3551,18 +3772,22 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 
 ## FrameShutterInfo
 
-Defines the frame shutter information.
+Describes the frame shutter information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name      | Type  | Read-only| Optional| Description       |
 | --------- | ------ | ---- | ---- | ---------- |
-| captureId | number | No  | No  | ID of this capture action. |
+| captureId | number | No  | No  | ID of this capture action.|
 | timestamp | number | No  | No  | Timestamp when the frame shutter event is triggered.|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
 Describes the frame shutter end information during capture.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3572,7 +3797,9 @@ Describes the frame shutter end information during capture.
 
 ## CaptureStartInfo<sup>11+</sup>
 
-Defines the capture start information.
+Describes the capture start information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3583,25 +3810,29 @@ Defines the capture start information.
 
 ## CaptureEndInfo
 
-Defines the capture end information.
+Describes the capture end information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name      | Type   | Read-only| Optional| Description      |
 | ---------- | ------ | ---- | ---- | ---------|
 | captureId  | number | No  | No  | ID of this capture action.|
-| frameCount | number | No  | No  | Number of frames captured.   |
+| frameCount | number | No  | No  | Number of frames captured.|
 
 ## AutoDeviceSwitchStatus<sup>13+</sup>
 
 Describes the information about the automatic camera switch status.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name      | Type     | Read-only| Optional| Description                     |
 | ---------- |---------| ---- | ---- |-------------------------|
-| isDeviceSwitched  | boolean | No  | No  | Whether the camera is automatically switched. The value **true** means that the camera is automatically switched, and **false** means the opposite.      |
-| isDeviceCapabilityChanged | boolean  | No  | No  | Whether the camera capability is changed after the camera is automatically switched. The value **true** means that the camera capability is changed, and **false** means the opposite.|
+| isDeviceSwitched  | boolean | No  | No  | Whether the camera is automatically switched. **true** if auto-switched, **false** otherwise.      |
+| isDeviceCapabilityChanged | boolean  | No  | No  | Whether the camera capability is changed after the camera is automatically switched. **true** if changed, **false** otherwise.|
 
 ## VideoOutput
 
@@ -3612,6 +3843,8 @@ Implements output information used in a video session. It inherits from [CameraO
 start(callback: AsyncCallback\<void\>): void
 
 Starts video recording. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3652,6 +3885,8 @@ start(): Promise\<void\>
 
 Starts video recording. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -3689,6 +3924,8 @@ stop(callback: AsyncCallback\<void\>): void
 
 Stops video recording. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -3718,6 +3955,8 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
 stop(): Promise\<void\>
 
 Stops video recording. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3751,13 +3990,15 @@ Subscribes to video recording start events. This API uses an asynchronous callba
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ----------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **videoOutput** instance is created. The event is triggered and the corresponding information is returned when the bottom layer starts exposure for the first time.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a videoOutput instance is created. The event is triggered and the corresponding information is returned when the bottom layer starts exposure for the first time.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  The recording starts as long as this event is returned.                    |
 
 **Example**
@@ -3788,13 +4029,15 @@ Unsubscribes from video recording start events.
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ----------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **videoOutput** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a videoOutput instance is created.|
 | callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3812,13 +4055,15 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 Subscribes to video recording stop events. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ------------------------------------------ |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and returned when the last frame of recording is complete.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a videoOutput instance is created. This event is triggered and returned when the last frame of recording is complete.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. The recording ends as long as this event is returned.                     |
 
 **Example**
@@ -3845,13 +4090,15 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 
 Unsubscribes from video recording stop events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ------------------------------------------ |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **videoOutput** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a videoOutput instance is created.|
 | callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3866,11 +4113,13 @@ function unregisterVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **VideoOutput** error events. This API uses an asynchronous callback to return the result.
+Subscribes to VideoOutput error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3878,7 +4127,7 @@ Subscribes to **VideoOutput** error events. This API uses an asynchronous callba
 
 | Name    | Type      | Mandatory| Description                                   |
 | -------- | ----------- | ---- | -------------------------------------- |
-| type     | string      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a recording-related API such as [start](#start-1) or [CameraOutput.release](#release-1).|
+| type     | string      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a videoOutput instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a recording-related API such as [start](#start-1) or [CameraOutput.release](#release-1).|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
 
 **Example**
@@ -3899,7 +4148,9 @@ function registerVideoOutputError(videoOutput: camera.VideoOutput): void {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **VideoOutput** error events.
+Unsubscribes from VideoOutput error events.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3907,7 +4158,7 @@ Unsubscribes from **VideoOutput** error events.
 
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
-| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a photoOutput instance is created.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -3923,6 +4174,8 @@ function unregisterVideoOutputError(videoOutput: camera.VideoOutput): void {
 getSupportedFrameRates(): Array\<FrameRateRange\>
 
 Obtains the supported frame rates.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3950,6 +4203,8 @@ Sets a frame rate range for video streams. The range must be within the supporte
 > **NOTE**
 >
 > This API is valid only in [PhotoSession](#photosession11) or [VideoSession](#videosession11) mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3985,6 +4240,8 @@ Obtains the configured frame rate range.
 
 This API is valid only after [setFrameRate](#setframerate12-1) is called to set a frame rate range for video streams.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -4007,6 +4264,8 @@ function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRa
 getActiveProfile(): VideoProfile
 
 Obtains the profile that takes effect currently.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4045,13 +4304,15 @@ isMirrorSupported(): boolean
 
 Checks whether mirror recording is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
 | Type           | Description                             |
 | -------------- |---------------------------------|
-| boolean | Check result. The value **true** means that mirror recording is supported, and **false** means the opposite.|
+| boolean | Check result for the support of mirror recording. **true** if supported, **false** otherwise.|
 
 **Example**
 
@@ -4071,13 +4332,15 @@ Enables or disables mirror recording.
 
 - After enabling or disabling mirror recording, call [getVideoRotation](#getvideorotation12) and [updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12) to update the rotation angle.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type                   | Mandatory| Description                       |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | Yes  | Whether to enable mirror recording. The value **true** means to enable it, and **false** means to diable it.|
+| enabled | boolean                | Yes  | Whether to enable mirror recording. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -4115,6 +4378,8 @@ Obtains the video rotation degree.
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
 - Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4194,6 +4459,8 @@ start(callback: AsyncCallback\<void\>): void
 
 Starts to output metadata. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -4233,6 +4500,8 @@ start(): Promise\<void\>
 
 Starts to output metadata. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -4270,6 +4539,8 @@ stop(callback: AsyncCallback\<void\>): void
 
 Stops outputting metadata. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -4299,6 +4570,8 @@ function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
 stop(): Promise\<void\>
 
 Stops outputting metadata. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4332,13 +4605,15 @@ Subscribes to events indicating available metadata objects. This API uses an asy
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type        | Mandatory| Description                                 |
 | -------- | -------------- | ---- | ------------------------------------ |
-| type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding metadata is returned when valid metadata is detected.|
+| type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a metadataOutput instance is created. This event is triggered and the corresponding metadata is returned when valid metadata is detected.|
 | callback | AsyncCallback\<Array\<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the metadata.|
 
 **Example**
@@ -4365,13 +4640,15 @@ off(type: 'metadataObjectsAvailable', callback?: AsyncCallback\<Array\<MetadataO
 
 Unsubscribes from events indicating available metadata objects.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name     | Type        | Mandatory| Description                                 |
 | -------- | -------------- | ---- | ------------------------------------ |
-| type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a **metadataOutput** instance is created.|
+| type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a metadataOutput instance is created.|
 | callback | AsyncCallback\<Array\<[MetadataObject](#metadataobject)\>\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -4392,13 +4669,15 @@ Subscribes to metadata error events. This API uses an asynchronous callback to r
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type        | Mandatory| Description                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
-| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a metadata-related API such as [start](#start-3) or [CameraOutput.release](#release-1).|
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a metadataOutput instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a metadata-related API such as [start](#start-3) or [CameraOutput.release](#release-1).|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
 
 **Example**
@@ -4421,13 +4700,15 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from metadata error events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name    | Type        | Mandatory| Description                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
-| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created.|
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a metadataOutput instance is created.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -4442,15 +4723,19 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 Enumerates the metadata object types.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                      | Value  | Description             |
 | ------------------------- | ---- | ----------------- |
-| FACE_DETECTION            | 0    | Metadata object used for face detection.<br> The detection point must be in the coordinate system (0-1), where the upper left corner is (0, 0) and the lower right corner is (1, 1).<br> The coordinate system is based on the horizontal device direction with the device's charging port on the right.<br>If the layout of a preview screen of an application is based on the vertical direction with the charging port on the lower side,<br>the layout width and height are (w, h) and the return point is (x, y), then the coordinate point after conversion is (1-y, x).|
+| FACE_DETECTION            | 0    | Metadata object used for face detection.<br>The detection point must be in the coordinate system (0-1), where the upper left corner is (0, 0) and the lower right corner is (1, 1).<br>The coordinate system is based on the horizontal device direction with the device's charging port on the right.<br>If the layout of a preview screen of an application is based on the vertical direction with the charging port on the lower side,<br>the layout width and height are (w, h) and the return point is (x, y), then the coordinate point after conversion is (1-y, x).|
 
 ## Rect
 
-Defines a rectangle.
+Describes a rectangle.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4463,7 +4748,9 @@ Defines a rectangle.
 
 ## MetadataObject
 
-Implements camera metadata, which is the data source of [CameraInput](#camerainput). The metadata is obtained through metadataOutput.on('metadataObjectsAvailable').
+Describes the camera metadata, which is the data source of [CameraInput](#camerainput). The metadata is obtained through metadataOutput.on('metadataObjectsAvailable').
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4476,6 +4763,8 @@ Implements camera metadata, which is the data source of [CameraInput](#camerainp
 ## FlashMode
 
 Enumerates the flash modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4490,6 +4779,8 @@ Enumerates the flash modes.
 
 Enumerates the exposure modes.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                          | Value  | Description        |
@@ -4501,6 +4792,8 @@ Enumerates the exposure modes.
 ## FocusMode
 
 Enumerates the focus modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4515,6 +4808,8 @@ Enumerates the focus modes.
 
 Enumerates the focus states.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                  | Value  | Description      |
@@ -4526,6 +4821,8 @@ Enumerates the focus states.
 ## VideoStabilizationMode
 
 Enumerates the video stabilization modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4546,6 +4843,8 @@ Implements a session, which saves all [CameraInput](#camerainput) and [CameraOut
 beginConfig(): void
 
 Starts configuration for the session.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4579,6 +4878,8 @@ function beginConfig(session: camera.Session): void {
 commitConfig(callback: AsyncCallback\<void\>): void
 
 Commits the configuration for this session. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4619,6 +4920,8 @@ commitConfig(): Promise\<void\>
 
 Commits the configuration for this session. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -4655,7 +4958,9 @@ function commitConfig(session: camera.Session): void {
 
 canAddInput(cameraInput: CameraInput): boolean
 
-Determines whether a **CameraInput** instance can be added to this session. This API must be called after [beginConfig](#beginconfig11) and before [commitConfig](#commitconfig11-1).
+Checks whether a CameraInput instance can be added to this session. This API must be called after [beginConfig](#beginconfig11) and before [commitConfig](#commitconfig11-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4663,13 +4968,13 @@ Determines whether a **CameraInput** instance can be added to this session. This
 
 | Name       | Type                         | Mandatory| Description                    |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add. The API does not take effect if the input parameter is invalid (for example, the value is out of range, null, or undefined).|
+| cameraInput | [CameraInput](#camerainput) | Yes  | CameraInput instance to add. The API does not take effect if the input parameter is invalid (for example, the value is out of range, null, or undefined).|
 
 **Return value**
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| boolean | Check result. The value **true** means that the **CameraInput** instance can be added, and **false** means the opposite.|
+| boolean | Check result for adding the CameraInput instance. **true** if it can be added, **false** otherwise.|
 
 **Example**
 
@@ -4688,13 +4993,15 @@ addInput(cameraInput: CameraInput): void
 
 Adds a [CameraInput](#camerainput) instance to this session.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name       | Type                         | Mandatory| Description                    |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
+| cameraInput | [CameraInput](#camerainput) | Yes  | CameraInput instance to add.|
 
 **Error codes**
 
@@ -4728,13 +5035,15 @@ removeInput(cameraInput: CameraInput): void
 
 Removes a [CameraInput](#camerainput) instance from this session. This API must be called after [beginConfig](#beginconfig11) and before [commitConfig](#commitconfig11-1).
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name       | Type                         | Mandatory| Description                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to remove.|
+| cameraInput | [CameraInput](#camerainput) | Yes  | CameraInput instance to remove.|
 
 **Error codes**
 
@@ -4766,7 +5075,9 @@ function removeInput(session: camera.Session, cameraInput: camera.CameraInput): 
 
 canAddOutput(cameraOutput: CameraOutput): boolean
 
-Determines whether a **CameraOutput** instance can be added to this session. This API must be called after [addInput](#addinput11) and before [commitConfig](#commitconfig11-1).
+Determines whether a CameraOutput instance can be added to this session. This API must be called after [addInput](#addinput11) and before [commitConfig](#commitconfig11-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4774,13 +5085,13 @@ Determines whether a **CameraOutput** instance can be added to this session. Thi
 
 | Name       | Type                         | Mandatory| Description                    |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add. The API does not take effect if the input parameter is invalid (for example, the value is out of range, null, or undefined).|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | CameraOutput instance to add. The API does not take effect if the input parameter is invalid (for example, the value is out of range, null, or undefined).|
 
 **Return value**
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| boolean | Check result. The value **true** means that the **CameraOutput** instance can be added, and **false** means the opposite.|
+| boolean | Check result for adding the CameraOutput instance. **true** if it can be added, **false** otherwise.|
 
 **Example**
 
@@ -4799,13 +5110,15 @@ addOutput(cameraOutput: CameraOutput): void
 
 Adds a [CameraOutput](#cameraoutput) instance to this session.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | CameraOutput instance to add.|
 
 **Error codes**
 
@@ -4839,13 +5152,15 @@ removeOutput(cameraOutput: CameraOutput): void
 
 Removes a [CameraOutput](#cameraoutput) instance from this session.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to remove.|
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | CameraOutput instance to remove.|
 
 **Error codes**
 
@@ -4878,6 +5193,8 @@ function removeOutput(session: camera.Session, previewOutput: camera.PreviewOutp
 start(callback: AsyncCallback\<void\>): void
 
 Starts this session. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4919,6 +5236,8 @@ start(): Promise\<void\>
 
 Starts this session. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -4956,6 +5275,8 @@ function startCaptureSession(session: camera.Session): void {
 stop(callback: AsyncCallback\<void\>): void
 
 Stops this session. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4995,6 +5316,8 @@ stop(): Promise\<void\>
 
 Stops this session. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -5030,6 +5353,8 @@ function stopCaptureSession(session: camera.Session): void {
 release(callback: AsyncCallback\<void\>): void
 
 Releases this session. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5069,6 +5394,8 @@ release(): Promise\<void\>
 
 Releases this session. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -5101,9 +5428,9 @@ function releaseCaptureSession(session: camera.Session): void {
 
 ## Flash<sup>11+</sup>
 
-Flash extends [FlashQuery](#flashquery12)
+Flash extends [FlashQuery](#flashquery12).
 
-Provides APIs related to the flash.
+It provides APIs related to the flash.
 
 ### setFlashMode<sup>11+</sup>
 
@@ -5115,6 +5442,8 @@ Before the setting, do the following checks:
 
 1. Use [hasFlash](#hasflash11) to check whether the camera device has flash.
 2. Use [isFlashModeSupported](#isflashmodesupported11) to check whether the camera device supports the flash mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5153,6 +5482,8 @@ function setFlashMode(photoSession: camera.PhotoSession): void {
 getFlashMode(): FlashMode
 
 Obtains the flash mode in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5198,13 +5529,15 @@ hasFlash(): boolean
 
 Checks whether the camera device has flash. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the camera device has flash, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for whether the camera device has flash. **true** if it has flash, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5238,6 +5571,8 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 Checks whether a flash mode is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -5250,7 +5585,7 @@ Checks whether a flash mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the flash mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the flash mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5280,15 +5615,17 @@ function isFlashModeSupported(photoSession: camera.PhotoSession): boolean {
 
 ## AutoExposure<sup>11+</sup>
 
-AutoExposure extends [AutoExposureQuery](#autoexposurequery12)
+AutoExposure extends [AutoExposureQuery](#autoexposurequery12).
 
-Provides APIs related to auto exposure.
+It provides APIs related to auto exposure.
 
 ### getExposureMode<sup>11+</sup>
 
 getExposureMode(): ExposureMode
 
 Obtains the exposure mode in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5330,6 +5667,8 @@ setExposureMode(aeMode: ExposureMode): void
 
 Sets an exposure mode. Before the setting, call [isExposureModeSupported](#isexposuremodesupported11) to check whether the target exposure mode is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -5369,6 +5708,8 @@ getMeteringPoint(): Point
 
 Obtains the metering point of the camera device.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -5381,9 +5722,9 @@ Obtains the metering point of the camera device.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| ID  | Error Message       |
+|---------| --------------- |
+| 7400103 |  Session not config.                                   |
 
 **Example**
 
@@ -5412,6 +5753,7 @@ Sets the metering point, which is the center point of the metering rectangle.
 The metering point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.
 
 The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5446,46 +5788,6 @@ function setMeteringPoint(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### getExposureBiasRange<sup>11+</sup>
-
-getExposureBiasRange(): Array\<number\>
-
-Obtains the exposure compensation values of the camera device.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type       | Description                         |
-| ---------- | ----------------------------- |
-| Array\<number\>   | Array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400103                |  Session not config.   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getExposureBiasRange(photoSession: camera.PhotoSession): Array<number> {
-  let biasRangeArray: Array<number> = [];
-  try {
-    biasRangeArray = photoSession.getExposureBiasRange();
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The getExposureBiasRange call failed. error code: ${err.code}`);
-  }
-  return biasRangeArray;
-}
-```
-
 ### setExposureBias<sup>11+</sup>
 
 setExposureBias(exposureBias: number): void
@@ -5493,6 +5795,8 @@ setExposureBias(exposureBias: number): void
 Sets an exposure compensation value (EV).
 
 Before the setting, you are advised to use [getExposureBiasRange](#getexposurebiasrange11) to obtain the supported values.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5535,6 +5839,8 @@ function setExposureBias(photoSession: camera.PhotoSession, biasRangeArray: Arra
 getExposureValue(): number
 
 Obtains the exposure value in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5581,6 +5887,8 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 Checks whether an exposure mode is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -5593,7 +5901,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the exposure mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the exposure mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5626,6 +5934,8 @@ function isExposureModeSupported(photoSession: camera.PhotoSession): boolean {
 getExposureBiasRange(): Array\<number\>
 
 Obtains the exposure compensation values of the camera device.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5675,6 +5985,8 @@ Sets a focus mode.
 
 Before the setting, call [isFocusModeSupported](#isfocusmodesupported11) to check whether the focus mode is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -5712,6 +6024,8 @@ function setFocusMode(photoSession: camera.PhotoSession): void {
 getFocusMode(): FocusMode
 
 Obtains the focus mode in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5755,6 +6069,8 @@ Sets the focal point. The focal point must be in the coordinate system (0-1), wh
 
 The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -5793,6 +6109,8 @@ function setFocusPoint(photoSession: camera.PhotoSession): void {
 getFocusPoint(): Point
 
 Obtains the focal point in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5833,6 +6151,8 @@ function getFocusPoint(photoSession: camera.PhotoSession): camera.Point | undefi
 getFocalLength(): number
 
 Obtains the focal length in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5879,6 +6199,8 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 Checks whether a focus mode is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -5891,7 +6213,7 @@ Checks whether a focus mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the focus mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the focus mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5919,9 +6241,82 @@ function isFocusModeSupported(photoSession: camera.PhotoSession): boolean {
 }
 ```
 
+## MacroQuery<sup>19+</sup>
+
+Provides the API to check the support for macro photography.
+
+### isMacroSupported<sup>19+</sup>
+
+isMacroSupported(): boolean
+
+Checks whether macro photography is supported in the current state. This API must be called after [commitConfig](#commitconfig11-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+|   boolean  | Check result for the support of macro photography. **true** if supported, **false** otherwise.|
+
+**Example**
+
+```ts
+function isMacroSupported(photoSession: camera.PhotoSession): boolean {
+  let isSupported: boolean = photoSession.isMacroSupported();
+  return isSupported;
+}
+```
+
+## Macro<sup>19+</sup>
+
+Macro extends [MacroQuery](#macroquery19).
+
+It provides the API to enable macro photography.
+
+### enableMacro<sup>19+</sup>
+
+enableMacro(enabled: boolean): void
+
+Enables or disables macro photography. This API can be called only when macro photography is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                 |
+| -------- | -------------------- | ---- | -------------------- |
+| enabled | boolean | Yes  | Whether to enable macro photography. **true** to enable, **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID   | Error Message                    |
+|----------|--------------------------|
+| 7400102  | Operation not allowed.   |
+| 7400103  | Session not config.      |
+
+**Example**
+
+```ts
+function enableMacro(photoSession: camera.PhotoSession): void {
+  let isSupported: boolean = photoSession.isMacroSupported();
+  if (isSupported) {
+    photoSession.enableMacro(true);
+  }
+}
+```
+
 ## SmoothZoomMode<sup>11+</sup>
 
 Enumerates the smooth zoom modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5931,7 +6326,9 @@ Enumerates the smooth zoom modes.
 
 ## SmoothZoomInfo<sup>11+</sup>
 
-Defines the smooth zoom information.
+Describes the smooth zoom information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5941,15 +6338,17 @@ Defines the smooth zoom information.
 
 ## Zoom<sup>11+</sup>
 
-Zoom extends [ZoomQuery](#zoomquery12)
+Zoom extends [ZoomQuery](#zoomquery12).
 
-Provides APIs related to zoom operations.
+It provides APIs related to zoom operations.
 
 ### setZoomRatio<sup>11+</sup>
 
 setZoomRatio(zoomRatio: number): void
 
 Sets a zoom ratio, with a maximum precision of two decimal places.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5993,6 +6392,8 @@ getZoomRatio(): number
 
 Obtains the zoom ratio in use.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -6035,6 +6436,8 @@ setSmoothZoom(targetRatio: number, mode?: SmoothZoomMode): void
 
 Sets smooth zoom.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -6063,6 +6466,8 @@ Provides APIs to query the zoom feature of a device camera, including the API to
 getZoomRatioRange(): Array\<number\>
 
 Obtains the supported zoom ratio range.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6100,9 +6505,9 @@ function getZoomRatioRange(photoSession: camera.PhotoSession): Array<number> {
 
 ## Stabilization<sup>11+</sup>
 
-Stabilization extends [StabilizationQuery](#stabilizationquery12)
+Stabilization extends [StabilizationQuery](#stabilizationquery12).
 
-Provides APIs to set video stabilization.
+It provides APIs to set video stabilization.
 
  > **NOTE**
  >
@@ -6114,6 +6519,8 @@ Provides APIs to set video stabilization.
 getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 Obtains the video stabilization mode in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6154,6 +6561,8 @@ function getActiveVideoStabilizationMode(videoSession: camera.VideoSession): cam
 setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 Sets a video stabilization mode. Before the setting, call [isVideoStabilizationModeSupported](#isvideostabilizationmodesupported11) to check whether the target video stabilization mode is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6197,6 +6606,8 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 Checks whether a video stabilization mode is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -6209,7 +6620,7 @@ Checks whether a video stabilization mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the video stabilization mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6243,7 +6654,7 @@ Implements a capture session, which saves all [CameraInput](#camerainput) and [C
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](#photosession11) and [VideoSession](#videosession11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](#photosession11) and [VideoSession](#videosession11) instead.
 
 ### beginConfig<sup>(deprecated)</sup>
 
@@ -6253,7 +6664,7 @@ Starts configuration for the session.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.beginConfig](#beginconfig11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.beginConfig](#beginconfig11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6289,7 +6700,7 @@ Commits the configuration for this session. This API uses an asynchronous callba
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.commitConfig](#commitconfig11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.commitConfig](#commitconfig11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6332,7 +6743,7 @@ Commits the configuration for this session. This API uses a promise to return th
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.commitConfig](#commitconfig11-1) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.commitConfig](#commitconfig11-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6374,7 +6785,7 @@ Adds a [CameraInput](#camerainput) instance to this session.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.addInput](#addinput11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.addInput](#addinput11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6382,7 +6793,7 @@ Adds a [CameraInput](#camerainput) instance to this session.
 
 | Name       | Type                         | Mandatory| Description                    |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
+| cameraInput | [CameraInput](#camerainput) | Yes  | CameraInput instance to add.|
 
 **Error codes**
 
@@ -6417,7 +6828,7 @@ Removes a [CameraInput](#camerainput) instance from this session.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.removeInput](#removeinput11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.removeInput](#removeinput11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6425,7 +6836,7 @@ Removes a [CameraInput](#camerainput) instance from this session.
 
 | Name       | Type                         | Mandatory| Description                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to remove.|
+| cameraInput | [CameraInput](#camerainput) | Yes  | CameraInput instance to remove.|
 
 **Error codes**
 
@@ -6460,7 +6871,7 @@ Adds a [CameraOutput](#cameraoutput) instance to this session.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.addOutput](#addoutput11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.addOutput](#addoutput11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6468,7 +6879,7 @@ Adds a [CameraOutput](#cameraoutput) instance to this session.
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | CameraOutput instance to add.|
 
 **Error codes**
 
@@ -6503,7 +6914,7 @@ Removes a [CameraOutput](#cameraoutput) instance from this session.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.removeOutput](#removeoutput11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.removeOutput](#removeoutput11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6511,7 +6922,7 @@ Removes a [CameraOutput](#cameraoutput) instance from this session.
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to remove.|
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | CameraOutput instance to remove.|
 
 **Error codes**
 
@@ -6546,7 +6957,7 @@ Starts this session. This API uses an asynchronous callback to return the result
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.start](#start11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.start](#start11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6589,7 +7000,7 @@ Starts this session. This API uses a promise to return the result.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.start](#start11-1) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.start](#start11-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6630,7 +7041,7 @@ Stops this session. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.stop](#stop11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.stop](#stop11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6672,7 +7083,7 @@ Stops this session. This API uses a promise to return the result.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.stop](#stop11-1) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.stop](#stop11-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6712,7 +7123,7 @@ Releases this session. This API uses an asynchronous callback to return the resu
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.release](#release11-1) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.release](#release11-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6754,7 +7165,7 @@ Releases this session. This API uses a promise to return the result.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.release](#release11-2) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Session.release](#release11-2) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6794,7 +7205,7 @@ Checks whether the camera device has flash.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.hasFlash](#hasflash11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.hasFlash](#hasflash11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6802,7 +7213,7 @@ Checks whether the camera device has flash.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the camera device has flash, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for whether the camera device has flash. **true** if it has flash, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6838,7 +7249,7 @@ Checks whether a flash mode is supported.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.isFlashModeSupported](#isflashmodesupported11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.isFlashModeSupported](#isflashmodesupported11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6852,7 +7263,7 @@ Checks whether a flash mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the flash mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the flash mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6893,7 +7304,7 @@ Before the setting, do the following checks:
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.setFlashMode](#setflashmode11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.setFlashMode](#setflashmode11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6935,7 +7346,7 @@ Obtains the flash mode in use.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.getFlashMode](#getflashmode11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Flash.getFlashMode](#getflashmode11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6979,7 +7390,7 @@ Checks whether an exposure mode is supported.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.isExposureModeSupported](#isexposuremodesupported11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.isExposureModeSupported](#isexposuremodesupported11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -6993,7 +7404,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the exposure mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the exposure mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7029,7 +7440,7 @@ Obtains the exposure mode in use.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getExposureMode](#getexposuremode11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getExposureMode](#getexposuremode11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7115,7 +7526,7 @@ Obtains the metering point of the camera device.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getMeteringPoint](#getmeteringpoint11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getMeteringPoint](#getmeteringpoint11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7163,7 +7574,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setMeteringPoint](#setmeteringpoint11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setMeteringPoint](#setmeteringpoint11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7206,7 +7617,7 @@ Obtains the exposure compensation values of the camera device.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getExposureBiasRange](#getexposurebiasrange11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getExposureBiasRange](#getexposurebiasrange11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7252,7 +7663,7 @@ Before the setting, you are advised to use [getExposureBiasRange](#getexposurebi
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setExposureBias](#setexposurebias11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setExposureBias](#setexposurebias11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7297,7 +7708,7 @@ Obtains the exposure value in use.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getExposureValue](#getexposurevalue11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.getExposureValue](#getexposurevalue11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7342,7 +7753,7 @@ Checks whether a focus mode is supported.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Focus.isFocusModeSupported](#isfocusmodesupported11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Focus.isFocusModeSupported](#isfocusmodesupported11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7356,7 +7767,7 @@ Checks whether a focus mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the focus mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the focus mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7394,7 +7805,7 @@ Before the setting, call [isFocusModeSupported](#isfocusmodesupporteddeprecated)
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Focus.setFocusMode](#setfocusmode11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Focus.setFocusMode](#setfocusmode11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7436,7 +7847,7 @@ Obtains the focus mode in use.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Focus.getFocusMode](#getfocusmode11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Focus.getFocusMode](#getfocusmode11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7763,7 +8174,7 @@ Checks whether a video stabilization mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the video stabilization mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7945,7 +8356,7 @@ function unregisterFocusStateChange(captureSession: camera.CaptureSession): void
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **CaptureSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to CaptureSession error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -7980,7 +8391,7 @@ function registerCaptureSessionError(captureSession: camera.CaptureSession): voi
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **CaptureSession** error events. This API uses a callback to return the result.
+Unsubscribes from CaptureSession error events. This API uses a callback to return the result.
 
 > **NOTE**
 >
@@ -8012,6 +8423,8 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
 Obtains the supported color spaces.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
@@ -8034,9 +8447,9 @@ function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpace
 ```
 ## ColorManagement<sup>12+</sup>
 
-ColorManagement extends [ColorManagementQuery](#colormanagementquery12)
+ColorManagement extends [ColorManagementQuery](#colormanagementquery12).
 
-Implements color space management. It inherits from [ColorManagementQuery](#colormanagementquery12).
+It implements color space management. It inherits from [ColorManagementQuery](#colormanagementquery12).
 
 ### setColorSpace<sup>12+</sup>
 
@@ -8044,7 +8457,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 Sets a color space. Before the setting, call [getSupportedColorSpaces](#getsupportedcolorspaces12) to obtain the supported color spaces.
 
-P3 and HDR Imaging  
+**P3 and HDR Imaging**  
 
 An application can deliver different color space parameters to declare its support for P3 and HDR.
 
@@ -8065,8 +8478,10 @@ For details about how to enable the HDR effect and set the color space in differ
 
 | SDR/HRD Photo Capture       | ColorSpace |
 |--------------------|------------|
-| SDR (Default)       | SRGB       |
+| SDR(Default)       | SRGB       |
 | HDR                | DISPLAY_P3 |
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8074,7 +8489,7 @@ For details about how to enable the HDR effect and set the color space in differ
 
 | Name        | Type                | Mandatory| Description                     |
 | ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | Yes| Color space, which can be obtained through [getSupportedColorSpaces](#getsupportedcolorspaces12).  |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | Yes| Color space, which is obtained by calling [getSupportedColorSpaces](#getsupportedcolorspaces12).  |
 
 **Error codes**
 
@@ -8111,6 +8526,8 @@ function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpa
 getActiveColorSpace(): colorSpaceManager.ColorSpace
 
 Obtains the color space in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8156,13 +8573,15 @@ isAutoDeviceSwitchSupported(): boolean
 
 Checks whether the device supports automatic camera switch.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
 | Type                                            | Description         |
 | ----------------------------------------------- |-------------|
-| boolean               | Check result. The value **true** means that the device supports automatic camera switch, and **false** means the opposite.|
+| boolean               | Check result for the support of automatic camera switch. **true** if supported, **false** otherwise.|
 
 **Example**
 
@@ -8178,9 +8597,9 @@ function isAutoDeviceSwitchSupported(session: camera.PhotoSession): boolean {
 
 ## AutoDeviceSwitch<sup>13+</sup>
 
-AutoDeviceSwitch extends [AutoDeviceSwitchQuery](#autodeviceswitchquery13)
+AutoDeviceSwitch extends [AutoDeviceSwitchQuery](#autodeviceswitchquery13).
 
-A class that is used to enable or disable automatic camera switch. This class inherits from [AutoDeviceSwitchQuery](#autodeviceswitchquery13).
+It is a class used to enable or disable automatic camera switch. This class inherits from [AutoDeviceSwitchQuery](#autodeviceswitchquery13).
 
 It is recommended that the system completes input device switch, session configuration, and parameter connection during automatic camera switch. If the system detects that the zoom ranges of the two cameras are different, it notifies the application through the **isDeviceCapabilityChanged** field in [AutoDeviceSwitchStatus](#autodeviceswitchstatus13). The application needs to process the UX change by itself. For example, if the zoom range is different, the application needs to call [getZoomRatioRange](#getzoomratiorange11) to obtain data and update the UX. Therefore, this class is more applicable to a simplified UX exchange scenario.
 
@@ -8194,24 +8613,26 @@ Enables or disables automatic camera switch. You can use [isAutoDeviceSwitchSupp
 >
 > This API is used only for foldable devices with multiple front cameras. In different fold states, the system can automatically switch to an available front camera. It does not enable automatic switching between front and rear cameras.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
 | Name        | Type | Mandatory| Description |
 | ----------- |---------------------- |---| -------------------------- |
-| enabled | boolean  | Yes| Whether to enable automatic camera switch. The value **true** means to enable automatic camera switch, and **false** means the opposite.  |
+| enabled | boolean  | Yes| Whether to enable automatic camera switch. **true** to enable, **false** otherwise.  |
 
 **Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
 | ID  | Error Message                                                                                                                                      |
-|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
-| 7400102  | Operation not allowed.                                                                                                                         |
-| 7400103  | Session not config.                                                                                                                            |
-| 7400201  | Camera service fatal error.                                                                                                                    |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 7400101 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
+| 7400102 | Operation not allowed.                                                                                                                         |
+| 7400103 | Session not config.                                                                                                                            |
+| 7400201 | Camera service fatal error.                                                                                                                    |
 
 **Example**
 
@@ -8232,6 +8653,8 @@ function enableAutoDeviceSwitch(session: camera.PhotoSession, isEnable: boolean)
 
 Enumerates the preconfigured resolution types.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                     | Value| Description        |
@@ -8245,6 +8668,8 @@ Enumerates the preconfigured resolution types.
 
 Enumerates the preconfigured aspect ratios.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                      | Value| Description     |
@@ -8255,9 +8680,9 @@ Enumerates the preconfigured aspect ratios.
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
+PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13), and [Macro](#macro19).
 
-Implements a photo session, which provides operations on the flash, exposure, focus, zoom, and color space.
+It implements a photo session, which provides operations on the flash, exposure, focus, zoom, color space, and macro mode.
 
 > **NOTE**
 >
@@ -8268,6 +8693,8 @@ Implements a photo session, which provides operations on the flash, exposure, fo
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 Checks whether this session supports a preconfigured resolution.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8313,6 +8740,8 @@ preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 
 Preconfigures this session.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8349,11 +8778,13 @@ function testPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **PhotoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to PhotoSession error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8382,7 +8813,9 @@ function registerSessionError(photoSession: camera.PhotoSession): void {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **PhotoSession** error events. This API uses a callback to return the result.
+Unsubscribes from PhotoSession error events. This API uses a callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8410,6 +8843,8 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8444,6 +8879,8 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
 Unsubscribes from focus state change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8470,6 +8907,8 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8504,6 +8943,8 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 
 Unsubscribes from smooth zoom state change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8530,6 +8971,8 @@ Subscribes to automatic camera switch status change events. This API uses an asy
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8564,6 +9007,8 @@ off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSw
 
 Unsubscribes from automatic camera switch status change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8585,6 +9030,8 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 
 Enumerates the priority levels for video recording quality.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name         | Value | Description      |
@@ -8594,9 +9041,9 @@ Enumerates the priority levels for video recording quality.
 
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
+VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13), and [Macro](#macro19).
 
-Implements a video session, which provides operations on the flash, exposure, focus, zoom, video stabilization, and color space.
+It implements a video session, which provides operations on the flash, exposure, focus, zoom, video stabilization, color space, and macro mode.
 
 > **NOTE**
 >
@@ -8607,6 +9054,8 @@ Implements a video session, which provides operations on the flash, exposure, fo
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 Checks whether this session supports a preconfigured resolution.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8652,6 +9101,8 @@ preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 
 Preconfigures this session.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8688,11 +9139,13 @@ function testPreconfig(videoSession: camera.VideoSession, preconfigType: camera.
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **VideoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to VideoSession error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8721,7 +9174,9 @@ function registerSessionError(videoSession: camera.VideoSession): void {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **VideoSession** error events. This API uses a callback to return the result.
+Unsubscribes from VideoSession error events. This API uses a callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8749,6 +9204,8 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8783,6 +9240,8 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
 Unsubscribes from focus state change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8809,6 +9268,8 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8843,6 +9304,8 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 
 Unsubscribes from smooth zoom state change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8869,6 +9332,8 @@ Subscribes to automatic camera switch status change events. This API uses an asy
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8903,6 +9368,8 @@ off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSw
 
 Unsubscribes from automatic camera switch status change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -8929,6 +9396,8 @@ Sets the priority level for video recording quality.
 > **NOTE**
 >
 > The default value is **HIGH_QUALITY**. Switching to **POWER_BALANCE** will compromise video recording quality to achieve lower power usage. The extent of power conservation achieved varies depending on the platform.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8965,9 +9434,9 @@ function setQualityPrioritization(videoSession: camera.VideoSession): void {
 
 ## SecureSession<sup>12+</sup>
 
-SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11)
+SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), and [Zoom](#zoom11).
 
-Implements a secure session, which provides operations on the flash, exposure, focus, and zoom.
+It implements a secure session, which provides operations on the flash, exposure, focus, and zoom.
 
 > **NOTE**
 >
@@ -8980,6 +9449,8 @@ Implements a secure session, which provides operations on the flash, exposure, f
 addSecureOutput(previewOutput: PreviewOutput): void
 
 Marks a [PreviewOutput](#previewoutput) stream as secure output.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -9017,11 +9488,13 @@ function addSecureOutput(session: camera.SecureSession, previewOutput: camera.Pr
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **SecureSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to SecureSession error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -9050,7 +9523,9 @@ function registerSessionError(secureSession: camera.SecureSession): void {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **SecureSession** error events.
+Unsubscribes from SecureSession error events.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -9078,6 +9553,8 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 > **NOTE**
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -9112,6 +9589,8 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
 Unsubscribes from focus state change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -9126,5 +9605,292 @@ Unsubscribes from focus state change events.
 ```ts
 function unregisterFocusStateChange(secureSession: camera.SecureSession): void {
   secureSession.off('focusStateChange');
+}
+```
+
+## WhiteBalanceMode<sup>20+</sup>
+
+Enumerates the white balance modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name            | Value| Description        |
+|----------------|---| ----------- |
+| AUTO           | 0 | Automatic.|
+| CLOUDY         | 1 | Cloudy.|
+| INCANDESCENT   | 2 | Incandescent light.|
+| FLUORESCENT    | 3 | Fluorescence light.|
+| DAYLIGHT     	 | 4 | Daylight.|
+| MANUAL         | 5 | Manual.|
+
+## WhiteBalanceQuery<sup>20+</sup>
+
+Provides APIs to check whether a white balance mode is supported and obtain the white balance mode range supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+### isWhiteBalanceModeSupported<sup>20+</sup>
+
+isWhiteBalanceModeSupported(mode: WhiteBalanceMode): boolean
+
+Checks whether a white balance mode is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                                     | Mandatory | Description                          |
+| -------- |-----------------------------------------| ---- | ----------------------------- |
+| mode   | [WhiteBalanceMode](#whitebalancemode20) | Yes  | White balance mode.                     |
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean    | Check result for the support of the white balance mode. **true** if supported, **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config, only throw in session usage.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isWhiteBalanceModeSupported(session: camera.PhotoSession | camera.VideoSession): boolean {
+  let status: boolean = false;
+  try {
+	let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
+    status = session.isWhiteBalanceModeSupported(mode);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The isWhiteBalanceModeSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### getWhiteBalanceRange<sup>20+</sup>
+
+getWhiteBalanceRange(): Array\<number\>
+
+Obtains the range of white balance values in manual white balance mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| Array\<number\>   | Range of white balance values, for example, [2800, ...,10000], in units of K (Kelvin). The actual value depends on the bottom-layer capability.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config, only throw in session usage.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getWhiteBalanceRange(session: camera.PhotoSession | camera.VideoSession): Array<number> {
+  let range: Array<number> = [];
+  try {
+    range = session.getWhiteBalanceRange();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getWhiteBalanceRange call failed. error code: ${err.code}`);
+  }
+  return range;
+}
+```
+
+## WhiteBalance<sup>20+</sup>
+
+WhiteBalance extends [WhiteBalanceQuery](#whitebalancequery20).
+
+It provides APIs to process white balance, including obtaining and setting the white balance mode and white balance value.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+### setWhiteBalanceMode<sup>20+</sup>
+
+setWhiteBalanceMode(mode: WhiteBalanceMode): void
+
+Sets a white balance mode. Before setting the white balance mode, run [isWhiteBalanceModeSupported](#iswhitebalancemodesupported20) to check whether the device supports the specified white balance mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                                     | Mandatory| Description                   |
+| -------- |-----------------------------------------| ---- | ----------------------- |
+| mode   | [WhiteBalanceMode](#whitebalancemode20) | Yes  | White balance mode.               |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setWhiteBalanceMode(session: camera.PhotoSession | camera.VideoSession): void {
+  try {
+    session.setWhiteBalanceMode(camera.WhiteBalanceMode.DAYLIGHT);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setWhiteBalanceMode call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getWhiteBalanceMode<sup>20+</sup>
+
+getWhiteBalanceMode(): WhiteBalanceMode
+
+Obtains the white balance mode in use.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                     | Description                         |
+|-----------------------------------------| ----------------------------- |
+| [WhiteBalanceMode](#whitebalancemode20) | White balance mode in use.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getWhiteBalanceMode(session: camera.PhotoSession | camera.VideoSession): camera.WhiteBalanceMode | undefined {
+  let whiteBalanceMode: camera.WhiteBalanceMode | undefined = undefined;
+  try {
+    whiteBalanceMode = session.getWhiteBalanceMode();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getWhiteBalanceMode call failed. error code: ${err.code}`);
+  }
+  return whiteBalanceMode;
+}
+```
+
+### setWhiteBalance<sup>20+</sup>
+setWhiteBalance(whiteBalance: number): void
+
+Sets a white balance value.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                    | Mandatory| Description                |
+| -------- | ----------------------- | ---- | ------------------- |
+| whiteBalance | number | Yes  | White balance value.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setWhiteBalance(session: camera.PhotoSession | camera.VideoSession): void {
+  try {
+    let whiteBalance: number = 1000;
+    session.setWhiteBalance(whiteBalance);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setWhiteBalance call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getWhiteBalance<sup>20+</sup>
+
+getWhiteBalance(): number
+
+Obtains the current white balance value.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| number    | White balance value.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getWhiteBalance(session: camera.PhotoSession | camera.VideoSession): number {
+  let whiteBalance: number = 0;
+  try {
+    whiteBalance = session.getWhiteBalance();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getWhiteBalance call failed. error code: ${err.code}`);
+  }
+  return whiteBalance;
 }
 ```

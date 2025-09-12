@@ -1,4 +1,10 @@
 # Interfaces (其他)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -19,7 +25,7 @@
 | cameraType                      | [CameraType](arkts-apis-camera-e.md#cameratype)           | 是   | 否  | 相机类型。    |
 | connectionType                  | [ConnectionType](arkts-apis-camera-e.md#connectiontype)   | 是   | 否  | 相机连接类型。 |
 | cameraOrientation<sup>12+</sup> | number                              | 是   | 否  | 相机安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°，单位：度。 |
-| hostDeviceName<sup>15+</sup>    | string                              | 是   | 否  | 远端设备名称。 |
+| hostDeviceName<sup>15+</sup>    | string                              | 是   | 否  | 远端设备名称。若当前无远端设备，返回为空。 |
 | hostDeviceType<sup>15+</sup>    | [HostDeviceType](arkts-apis-camera-e.md#hostdevicetype15) | 是   | 否  | 远端设备类型。 |
 
 ## CameraStatusInfo
@@ -71,8 +77,8 @@
 
 | 名称      | 类型                          | 只读 | 可选 | 说明            |
 | -------- | ----------------------------- |----- |---| -------------- |
-| min      | number                        |  是  | 否 | 最小帧率。      |
-| max      | number                        |  是  | 否 | 最大帧率。      |
+| min      | number                        |  是  | 否 | 最小帧率，单位：fps。      |
+| max      | number                        |  是  | 否 | 最大帧率，单位：fps。      |
 
 ## VideoProfile
 
@@ -117,7 +123,7 @@
 
 ## Size
 
-输出能力查询。
+尺寸参数。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -150,11 +156,11 @@
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型    | 只读 | 可选  | 说明         |
-| ------ | ------ | ---- |-----| ------------ |
-| device              | [CameraDevice](arkts-apis-camera-i.md#cameradevice)   | 否   | 否   | 相机并发设备。 |
-| type                | [CameraConcurrentType](arkts-apis-camera-e.md#cameraconcurrenttype18)  | 否   | 否   | 镜头并发类型。 |
-| modes               | Array\<[SceneMode](arkts-apis-camera-e.md#scenemode11) \>              | 否   | 否   | 相机支持的模式。 |
-| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 否   | 否   | 相机对应模式的输出能力集。 |
+| ------ | ------ |----|-----| ------------ |
+| device              | [CameraDevice](arkts-apis-camera-i.md#cameradevice)   | 是  | 否   | 相机并发设备。 |
+| type                | [CameraConcurrentType](arkts-apis-camera-e.md#cameraconcurrenttype18)  | 是  | 否   | 镜头并发类型。 |
+| modes               | Array\<[SceneMode](arkts-apis-camera-e.md#scenemode11) \>              | 是  | 否   | 相机支持的模式。 |
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 是  | 否   | 相机对应模式的输出能力集。 |
 
 ## Location
 
@@ -166,9 +172,9 @@
 
 | 名称          | 类型   | 只读 | 可选  |说明         |
 | ------------ | ------ | ---- |-----|------------ |
-| latitude     | number |  否  | 否   |纬度(度)。    |
-| longitude    | number |  否  | 否   |经度(度)。    |
-| altitude     | number |  否  | 否   |海拔(米)。    |
+| latitude     | number |  否  | 否   |纬度（度）。取值范围：[-90, 90]。    |
+| longitude    | number |  否  | 否   |经度（度）。取值范围：[-180, 180]。    |
+| altitude     | number |  否  | 否   |海拔（米）。    |
 
 ## PhotoCaptureSetting
 
@@ -180,10 +186,10 @@
 
 | 名称      | 类型                            | 只读 | 可选 | 说明                                                                   |
 | -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量(默认低)。                                                           |
-| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
-| location | [Location](#location)           | 否   | 是   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
-| mirror   | boolean                         | 否   | 是   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。 |
+| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量（默认低）。                                                           |
+| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度（默认0度，顺时针旋转）。                                                  |
+| location | [Location](#location)           | 否   | 是   | 图片地理位置信息（默认以设备硬件信息为准）。                                               |
+| mirror   | boolean                         | 否   | 是   | 镜像使能开关（默认关）。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。true表示使能，false表示不使能。 |
 
 ## FrameShutterInfo
 
@@ -196,7 +202,7 @@
 | 名称       | 类型   | 只读 | 可选 | 说明        |
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | 否   | 否   | 拍照的ID。|
-| timestamp | number | 否   | 否   | 快门时间戳。|
+| timestamp | number | 否   | 否   | 快门时间戳，单位毫秒。|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -251,7 +257,7 @@
 
 ## Rect
 
-矩形定义。
+矩形定义，返回的检测点坐标系以设备充电口在右侧时的横向设备方向为基准。该坐标系左上角为（0，0），右下角为（1，1），其中（topLeftX，topLeftY）表示矩形区域的左上角坐标，width和height分别表示矩形区域的宽和高。因此在实际使用中根据业务诉求需要裁剪或者选择人脸区域时，必须将矩形区域的x坐标和y坐标分别乘以实际相机输出流的宽和高，即可得到裁剪后的人脸矩形区域。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -275,7 +281,7 @@
 | 名称         | 类型                                        | 只读 | 可选 |说明                |
 | ----------- | ------------------------------------------- | ---- | ---- | ----------------- |
 | type        | [MetadataObjectType](arkts-apis-camera-e.md#metadataobjecttype)   |  是  |  否  | metadata 类型。    |
-| timestamp   | number                                      |  是  |  否  | 当前时间戳（毫秒）。|
+| timestamp   | number                                      |  是  |  否  | 当前时间戳，单位毫秒。|
 | boundingBox | [Rect](#rect)                               |  是  |  否  | metadata 区域框。  |
 
 ## SmoothZoomInfo<sup>11+</sup>

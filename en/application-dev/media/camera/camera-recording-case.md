@@ -1,4 +1,9 @@
 # Video Recording Practices (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
@@ -258,6 +263,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   } catch (error) {
     let err = error as BusinessError;
     console.error(`videoSession commitConfig error: ${err}`);
+    return;
   }
 
   // Start the session.

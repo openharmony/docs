@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了获取状态管理框架代理前的原始对象，开发者可以使用[getTarget接口](../../reference/apis-arkui/js-apis-StateManagement.md#gettarget)。
 
@@ -93,7 +94,7 @@ let observedClass: ObservedClass = new ObservedClass(); // 被代理
 let nonObservedClass: NonObservedClass = new NonObservedClass(); // 不被代理
 ```
 
-【2】状态变量装饰器装饰的复杂类型对象。使用\@State、\@Prop等状态变量装饰器装饰Class、Map、Set、Date、Array时，会添加代理。若该对象已经是代理对象，则不会重复创建代理。
+【2】状态变量装饰器装饰的复杂类型对象。使用\@State、[\@Prop](./arkts-prop.md)等状态变量装饰器装饰Class、Map、Set、Date、Array时，会添加代理。若该对象已经是代理对象，则不会重复创建代理。
 
 ```ts
 @Observed

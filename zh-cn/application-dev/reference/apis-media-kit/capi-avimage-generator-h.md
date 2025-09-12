@@ -1,8 +1,16 @@
 # avimage_generator.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 定义AVImageGenerator接口。使用其C API从视频资源中获取指定时间点视频帧。
+
+**引用文件：** <multimedia/player_framework/avimage_generator.h>
 
 **库：** libavimage_generator.so
 
@@ -25,8 +33,8 @@
 | 名称 | 描述 |
 | -- | -- |
 | [OH_AVImageGenerator* OH_AVImageGenerator_Create(void)](#oh_avimagegenerator_create) | 创建OH_AVImageGenerator实例，用于生成指定时间点视频帧。 |
-| [OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,int32_t fd, int64_t offset, int64_t size)](#oh_avimagegenerator_setfdsource) | 通过媒体文件描述设置数据源。 |
-| [OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator,int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap)](#oh_avimagegenerator_fetchframebytime) | 从视频资源中获取指定时间点视频帧。<br>此函数必须在[OH_AVImageGenerator_SetFDSource](#oh_avimagegenerator_setfdsource)之后调用。 |
+| [OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator, int32_t fd, int64_t offset, int64_t size)](#oh_avimagegenerator_setfdsource) | 通过媒体文件描述设置数据源。 |
+| [OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator, int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap)](#oh_avimagegenerator_fetchframebytime) | 从视频资源中获取指定时间点视频帧。<br>此函数必须在[OH_AVImageGenerator_SetFDSource](#oh_avimagegenerator_setfdsource)之后调用。 |
 | [OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)](#oh_avimagegenerator_release) | 释放用于OH_AVImageGenerator的资源以及销毁OH_AVImageGenerator实例。 |
 
 ## 函数说明
@@ -105,7 +113,7 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
 | [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
 | int64_t timeUs | 需要获取的视频帧在视频中的时间点，单位为微秒（μs）。 |
 | [OH_AVImageGenerator_QueryOptions](capi-avimage-generator-base-h.md#oh_avimagegenerator_queryoptions) options | 关于给定时间Us和视频帧之间关系的时间选项。 |
-| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md** pixelMap | 获取的视频帧对象。 |
+| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md)** pixelMap | 获取的视频帧对象。 |
 
 **返回：**
 

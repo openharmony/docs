@@ -1,5 +1,12 @@
 # @ohos.net.ethernet (以太网连接管理)（系统接口）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS，代理等信息。
 
 > **说明：**
@@ -66,7 +73,7 @@ ethernet.setIfaceConfig("eth0", config, (error: BusinessError) => {
   if (error) {
     console.error("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
-    console.log("setIfaceConfig callback ok");
+    console.info("setIfaceConfig callback ok");
   }
 });
 ```
@@ -129,7 +136,7 @@ let config: ethernet.InterfaceConfiguration = {
 const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 
 setConfigPromise.then(() => {
-  console.log("setIfaceConfig promise ok");
+  console.info("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
   console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
@@ -176,12 +183,12 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.Interface
   if (error) {
     console.error("getIfaceConfig  callback error = " + JSON.stringify(error));
   } else {
-    console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
-    console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
-    console.log("getIfaceConfig callback route = " + JSON.stringify(value.route));
-    console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
-    console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
-    console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
+    console.info("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
+    console.info("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
+    console.info("getIfaceConfig callback route = " + JSON.stringify(value.route));
+    console.info("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
+    console.info("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
+    console.info("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
   }
 });
 ```
@@ -229,12 +236,12 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
-  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
-  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
-  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
-  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
-  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
-  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.info("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.info("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.info("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.info("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.info("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.info("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
   console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
@@ -281,7 +288,7 @@ ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
     console.error("whether2Activate callback error = " + JSON.stringify(error));
   } else {
-    console.log("whether2Activate callback = " + JSON.stringify(value));
+    console.info("whether2Activate callback = " + JSON.stringify(value));
   }
 });
 ```
@@ -329,7 +336,7 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0").then((data: number) => {
-  console.log("isIfaceActive promise = " + JSON.stringify(data));
+  console.info("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
@@ -372,9 +379,9 @@ ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
     console.error("getAllActiveIfaces callback error = " + JSON.stringify(error));
   } else {
-    console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
+    console.info("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
     for (let i = 0; i < value.length; i++) {
-      console.log("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
+      console.info("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
     }
   }
 });
@@ -414,9 +421,9 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces().then((data: string[]) => {
-  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  console.info("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
+    console.info("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
   console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
@@ -456,7 +463,7 @@ on(type: 'interfaceStateChange', callback: Callback\<InterfaceStateInfo>): void
 import { ethernet } from '@kit.NetworkKit';
 
 ethernet.on('interfaceStateChange', (data: object) => {
-  console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
+  console.info('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
 ```
 

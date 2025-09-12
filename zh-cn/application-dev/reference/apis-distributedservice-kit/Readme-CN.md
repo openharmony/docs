@@ -1,4 +1,10 @@
 # Distributed Service Kit（分布式管理服务）
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @hobbycao;@huangkai71-->
+<!--Designer: @gsxiaowen;@lee_jet520-->
+<!--Tester: @hanjiawei;@Ytt-test-->
+<!--Adviser: @w_Machine_cc-->
 
 - ArkTS API<!--distributed-service-arkts-->
   
@@ -6,7 +12,7 @@
   - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](js-apis-distributed-abilityConnectionManager.md)
   - [@ohos.application.DistributedExtensionAbility (协同Extension)](js-apis-distributedExtensionAbility.md)
   - [@ohos.distributedsched.linkEnhance (增强连接)](js-apis-link-enhance.md)
-  - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](js-api-proxyChannelManager.md)
+  - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](js-apis-proxyChannelManager.md)
   
   <!--Del-->
   
@@ -27,7 +33,7 @@
   - [键鼠穿越管理错误码](errorcode-devicestatus.md)
   
   <!--DelEnd-->
-  - [连接增强错误码](errorcode_linkEnhance.md)
+  - [增强连接错误码](errorcode-link-enhance.md)
   - [代理通道管理错误码](errorcode_proxyChannelManager.md)
 - C API<!--distributed-service-c-->
   - 模块<!--distributed-service-moudle-->

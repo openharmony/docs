@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @carnivore233-->
-<!--SE: @pssea-->
-<!--TSE: @mateng_Holtens-->
+<!--Designer: @pssea-->
+<!--Tester: @mateng_Holtens-->
+<!--Adviser: @HelloCrease-->
 
 支持图文混排和文本交互式编辑的组件。
 
@@ -36,7 +37,7 @@
 
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
-| onDoubleClick<sup>14+</sup> | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户双击事件。<br/>双击完成时回调事件。|
+| onDoubleClick<sup>14+</sup> | Callback\<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-common.md#gestureevent对象说明)为用户双击事件。<br/>双击完成时回调事件。|
 
 ## RichEditorChangeValue<sup>12+</sup>
 
@@ -46,12 +47,12 @@
 
 | 名称 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 否 | 组件内容变化的原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common-sys.md#textchangereason20) | 否 | 组件内容变化的原因。 |
 
 ## 示例
 
 ### 示例1（获取组件内容变化原因）
-可以通过onWillChange接口返回的changeReason获取组件内容变化的原因。
+从API version 20开始，该示例通过onWillChange接口返回的changeReason获取组件内容变化的原因。
 
 ```ts
 @Entry
@@ -76,7 +77,7 @@ struct RichEditorExample {
 ```
 
 ### 示例2（设置自定义布局拖拽背板及拖拽投影配置）
-通过使用addBuilderSpan，可以在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
+从API version 18开始，该示例通过使用addBuilderSpan接口中的[dragBackgroundColor](#richeditorbuilderspanoptions11)和[isDragShadowNeeded](#richeditorbuilderspanoptions11)在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
 
 ```ts
 // xxx.ets

@@ -1,6 +1,12 @@
 # @ohos.app.appstartup.StartupConfig (启动框架配置信息)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-本模块提供启动任务的配置接口。
+本模块提供[应用启动框架](../../application-models/app-startup.md)配置信息的定义。
 
 > **说明：**
 >
@@ -15,6 +21,8 @@ import { StartupConfig } from '@kit.AbilityKit';
 ```
 
 ## StartupConfig
+
+用于配置任务超时时间和启动框架的监听器。详细使用方法可参考[设置启动参数](../../application-models/app-startup.md#设置启动参数)章节。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 

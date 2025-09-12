@@ -1,8 +1,13 @@
 # picture_native.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **picture_native.h** file declares the APIs for obtaining picture data and information.
+The file declares the APIs for obtaining picture data and information.
 
 **Library**: libpicture.so
 

@@ -1,6 +1,14 @@
 # Application- or Component-Level Configuration (FA Model)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
 
 During application development, you must configure tags to identify an application, such as the bundle name and application icon. This topic describes some key tags.
+
 
 ## Configuring the Bundle Name
 
@@ -18,13 +26,15 @@ The application icon and application label are used to identify an application, 
 
 The entry icon and entry label are displayed on the device's home screen after an application is installed. The entry icon is specific to a PageAbility. Only one entry icon and entry label can be configured for an application. If there are multiple entry abilities, only the entry icon and entry label configured for the mainAbility in the entry HAP take effect. After you touch the entry icon, the corresponding PageAbility page is displayed. Example scenarios are as follows:
 * Applications displayed on the device's home screen
-* Applications displayed in Recents
+* Applications displayed in the recent task list
 
 ### Configuring the Application Icon and Application Label
 The FA model does not support direct configuration of application icons and application labels. Instead, the icon and label of a PageAbility that meet the rules are used as the application icon and application label. If multiple PageAbilities address this condition, the icon and label of the first candidate PageAbility is used as the application icon and application label.
 
 ### Configuring the Entry Icon and Entry Label
-#### Configuration Methods
+
+1. Configuration Methods
+
 In the FA model, the entry icon and entry label are the values of **icon** and **label** configured for a PageAbility.
 
 For details about the configuration rules, see [PageAbility Component](pageability-configuration.md). Configure the following fields under **abilities** in the **config.json** file:
@@ -68,7 +78,9 @@ In the **skills** attribute of the PageAbility, if the **actions** value contain
   }
 }
 ```
-#### Control Rules
+
+2. Control Rules
+
 The system strictly controls applications without icons to prevent malicious applications from deliberately configuring no icon to block uninstall attempts.
 
 To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> The rules for displaying the entry icon and entry label are as follows:

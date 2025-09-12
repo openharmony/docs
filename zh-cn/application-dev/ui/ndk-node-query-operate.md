@@ -1,6 +1,14 @@
 # 查询和操作自定义节点
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 NDK提供一系列节点查询、遍历、操作能力，通过使用以下接口，开发者可以高效地访问和操控节点。
+
+以下场景基于[接入ArkTS页面](ndk-access-the-arkts-page.md)章节，创建前置工程。
 
 ## 查询节点uniqueId及通过uniqueId获取节点信息
 
@@ -35,7 +43,7 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         ArkUI_NodeHandle Test_Column;
         auto ec = OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(idl->id, &Test_Column);
         if (ec == 0) {
-            OH_LOG_Print(LOG_APP, LOG_WARN, LOG_PRINT_DOMAIN, "Manager","GetNodeHandleByUniqueId success");
+            OH_LOG_Print(LOG_APP, LOG_WARN, 0xFF00, "Manager","GetNodeHandleByUniqueId success");
         }
     }
 });
@@ -309,6 +317,10 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         nodeAPI->setAttribute(column, NODE_ID, &column_id);
         
         // 创建Row
+        ArkUI_NumberValue text_height[] = {50};
+        ArkUI_AttributeItem text_item1 = {text_height, sizeof(text_height) / sizeof(ArkUI_NumberValue)};
+        ArkUI_NumberValue margin[] = {10};
+        ArkUI_AttributeItem item_margin = {margin, sizeof(margin) / sizeof(ArkUI_NumberValue)};
         ArkUI_NodeHandle row0 = nodeAPI->createNode(ARKUI_NODE_ROW);
         ArkUI_NumberValue width_value[] = {{.f32=330}};
         ArkUI_AttributeItem width_item = {width_value, sizeof(width_value) / sizeof(ArkUI_NumberValue)};
@@ -463,6 +475,181 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
 
 ![moveToNativeDemo](figures/moveToNativeDemo.gif)
 
+## 在当前即时帧触发节点属性更新
+
+从API version 21开始，使用[OH_ArkUI_NativeModule_InvalidateAttributes](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nativemodule_invalidateattributes)接口，在当前帧即时触发节点属性更新，避免组件切换过程中出现闪烁。
+
+1. ArkTS侧接入Native组件。
+    ```ts
+    // index.ets
+    @Component
+    struct ImageContent {
+      private nodeContent: NodeContent = new NodeContent();
+    
+      aboutToAppear() {
+        // 通过C-API创建节点，并添加到管理器nodeContent上
+        testNapi.createNativeNode(this.nodeContent);
+      }
+      build() {
+        Column() {
+          // 显示nodeContent管理器里存放的Native侧的组件
+          ContentSlot(this.nodeContent)
+        }
+      }
+    }
+    
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+      @State showParent: boolean = true;
+      build() {
+        Row() {
+          Column() {
+             Button("切换").onClick(()=>{
+                 this.showParent = !this.showParent;
+             }).margin(20)
+            if(this.showParent) {
+              ImageContent()
+            } else {
+              ImageContent()
+            }
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```
+
+2. 新建`Attribute_util .h`用于设置组件属性。
+    ```c++
+    //
+    // Created on 2025/8/14.
+    //
+    // Node APIs are not fully supported. To solve the compilation error of the interface cannot be found,
+    // please include "napi/native_api.h".
+    
+    #ifndef MYAPPLICATION_ATTRIBUTE_UTIL_H
+    #define MYAPPLICATION_ATTRIBUTE_UTIL_H
+    #include <arkui/native_node.h>
+    #include <cstdint>
+    #include <string>
+    class AttributeUtil {
+    public:
+        ArkUI_NativeNodeAPI_1 *api_;
+        ArkUI_NodeHandle node_;
+        AttributeUtil(ArkUI_NodeHandle node, ArkUI_NativeNodeAPI_1 *api) {
+            this->node_ = node;
+            api_ = api;
+        }
+        int32_t width(float width) {
+            ArkUI_NumberValue NODE_WIDTH_value[] = {width};
+            ArkUI_AttributeItem NODE_WIDTH_Item = {NODE_WIDTH_value, 1};
+            return api_->setAttribute(node_, NODE_WIDTH, &NODE_WIDTH_Item);
+        }
+        int32_t height(float height) {
+            ArkUI_NumberValue NODE_HEIGHT_value[] = {height};
+            ArkUI_AttributeItem NODE_HEIGHT_Item = {NODE_HEIGHT_value, 1};
+            return api_->setAttribute(node_, NODE_HEIGHT, &NODE_HEIGHT_Item);
+        }
+         int32_t imageSrc(std::string src) {
+             ArkUI_AttributeItem NODE_IAMGE_SRC_VALUE = {.string = src.c_str()};
+            return api_->setAttribute(node_, NODE_IMAGE_SRC , &NODE_IAMGE_SRC_VALUE);
+        }
+        int32_t imageSyncLoad() {
+                ArkUI_NumberValue NODE_TRANSLATE_ITEM_VALUE[] = {{.i32 = 1}};
+              ArkUI_AttributeItem NODE_BORDER_WIDTH_ITEM = {NODE_TRANSLATE_ITEM_VALUE, 1};
+            return api_->setAttribute(node_, NODE_IMAGE_SYNC_LOAD , &NODE_BORDER_WIDTH_ITEM);
+        }
+    };
+    #endif // MYAPPLICATION_ATTRIBUTE_UTIL_H
+    ```
+
+3. 在`nai_init.cpp`中，挂载Native节点。
+    ```c
+    #include "attribute_util.h"
+    #include "napi/native_api.h"
+    #include <arkui/native_interface.h>
+    #include <arkui/native_node.h>
+    #include <arkui/native_node_napi.h>
+    #include <hilog/log.h>
+    #include <js_native_api.h>
+    #include <js_native_api_types.h>
+    
+    static napi_value Add(napi_env env, napi_callback_info info) {
+        size_t argc = 2;
+        napi_value args[2] = {nullptr};
+    
+        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+        napi_valuetype valuetype0;
+        napi_typeof(env, args[0], &valuetype0);
+    
+        napi_valuetype valuetype1;
+        napi_typeof(env, args[1], &valuetype1);
+    
+        double value0;
+        napi_get_value_double(env, args[0], &value0);
+    
+        double value1;
+        napi_get_value_double(env, args[1], &value1);
+    
+        napi_value sum;
+        napi_create_double(env, value0 + value1, &sum);
+    
+        return sum;
+    }
+    
+    static ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
+    
+    static napi_value NAPI_Global_createNativeNode(napi_env env, napi_callback_info info) {
+        size_t argc = 1;
+        napi_value args[1] = {nullptr};
+        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+        ArkUI_NodeContentHandle contentHandle;
+        OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+        // 创建Image组件
+        auto imageNode = nodeAPI->createNode(ARKUI_NODE_IMAGE);
+        AttributeUtil imageNodeAttr(imageNode, nodeAPI);
+        // 设置image组件属性
+        imageNodeAttr.imageSrc("/pages/common/startIcon.png");
+        imageNodeAttr.imageSyncLoad();
+        imageNodeAttr.width(100);
+        imageNodeAttr.height(100);
+        // 在当前即时帧触发节点属性更新
+        OH_ArkUI_NativeModule_InvalidateAttributes(imageNode);
+        // 挂载image组件到组件树
+        OH_ArkUI_NodeContent_AddNode(contentHandle, imageNode);
+        return nullptr;
+    }
+    EXTERN_C_START
+    static napi_value Init(napi_env env, napi_value exports) {
+        napi_property_descriptor desc[] = {
+            {"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"createNativeNode", nullptr, NAPI_Global_createNativeNode, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+        return exports;
+    }
+    EXTERN_C_END
+    
+    static napi_module demoModule = {
+        .nm_version = 1,
+        .nm_flags = 0,
+        .nm_filename = nullptr,
+        .nm_register_func = Init,
+        .nm_modname = "entry",
+        .nm_priv = ((void *)0),
+        .reserved = {0},
+    };
+    extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+    ```
+
+4. 运行程序，点击按钮，切换图片正常展示。
+
+![moveToNativeDemo](figures/OH_ArkUI_NativeModule_InvalidateAttributes_test.png)
+
 ## 用不同的展开模式获取对应下标的子节点
 
 NDK支持通过不同的展开方式获取目标节点下的有效节点信息。例如，在LazyForEach场景下，可以处理存在多个子节点的情况。
@@ -597,7 +784,7 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
               Text(item)
                 .fontSize(20)
                 .onAppear(() => {
-                  console.log(TEST_TAG + " node appear: " + item)
+                  console.info(TEST_TAG + " node appear: " + item)
                 })
                 .backgroundColor(Color.Pink)
                 .margin({
@@ -641,43 +828,43 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
 
       // 获取不展开场景下第一个活跃节点的下标
       getFirstChildIndexWithoutExpand() {
-        console.log(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
+        console.info(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
       }
 
       // 获取不展开场景下最后一个活跃节点的下标
       getLastChildIndexWithoutExpand() {
-        console.log(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
+        console.info(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
       }
 
       // 用不展开的方式获取节点
       getChildWithNotExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
-        console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N9") {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
+        console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N9") {
+          console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
         } else {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
+          console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
         }
       }
       
       // 以展开的方式获取节点
       getChildWithExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
-        console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N3") {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
+        console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N3") {
+          console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
         } else {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
+          console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
         }
       }
       
       getChildWithLazyExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.LAZY_EXPAND);
-        console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N3") {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
+        console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N3") {
+          console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
         } else {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
+          console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
         }
       }
     }
@@ -747,8 +934,8 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
     uint32_t index1 = 0;
     OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(childNode, &index1);
     ArkUI_NodeHandle child = nullptr;
-    auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, child, 0);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "firstChildIndex - lastChildIndex == %{public}d -- %{public}d, -- getResult= %{public}d",
+    auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, &child, 0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "firstChildIndex - lastChildIndex == %{public}d -- %{public}d, -- getResult= %{public}d",
         index, index1, result);
     ```
 

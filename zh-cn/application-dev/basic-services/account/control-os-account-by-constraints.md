@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 账号管理模块提供了基于角色的访问控制机制，用户可以为系统账号设置约束，以限制目标账号的行为。
 
@@ -46,9 +47,9 @@
    ```ts
    try {
      accountManager.setOsAccountConstraints(localId, constraint, true);
-     console.log('setOsAccountConstraints successfully');
+     console.info('setOsAccountConstraints successfully');
    } catch (err) {
-     console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+     console.error(`setOsAccountConstraints failed, error: code is ${err.code}, message is ${err.message}`);
    }
    ```
 

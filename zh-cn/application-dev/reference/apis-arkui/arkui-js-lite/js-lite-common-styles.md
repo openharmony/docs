@@ -1,4 +1,10 @@
 # 通用样式
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 组件普遍支持的可以在style或css中设置组件外观样式。

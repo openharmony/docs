@@ -1,5 +1,12 @@
 #  @ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 通过本模块接口，可以设置快捷键拉起Ability的延迟时间，如设置长按快捷键3s后再截屏等。
 
 > **说明：**
@@ -86,7 +93,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数          | 说明          |
+| 类型          | 说明          |
 | ------------- | ------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
@@ -138,7 +145,6 @@ struct Index {
 | RETOUCH              | 3 | 滑动事件。           |
 | CLICK                | 4 | 点击事件。           |
 
-
 ## FingerprintEvent<sup>12+</sup>
 
 按键事件的类型和相对按键的偏移位置。
@@ -147,6 +153,6 @@ struct Index {
 
 | 名称      | 类型                                       |只读   | 可选  |说明                    |
 | --------  | ------------------------                  |-------|------ |--------               |
-| action    | [FingerprintAction](#fingerprintaction12)   | 否    |  否   |按键事件类型。           |
+| action    | [FingerprintAction](#fingerprintaction12)   | 否    |  否   |按键事件类型的枚举。           |
 | distanceX | number                                    | 否    |  否   |相对于光标位置的x轴偏移量（正数表示向右移动，负数表示向左移动）。 |
 | distanceY | number                                    | 否    |  否   |相对于光标位置的y轴偏移量（正数表示向上移动，负数表示向下移动）。 |

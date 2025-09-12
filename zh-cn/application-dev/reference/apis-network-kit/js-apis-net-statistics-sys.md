@@ -1,5 +1,12 @@
 # @ohos.net.statistics (流量管理)（系统接口）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 流量管理模块，支持基于网卡/UID 的实时流量统计和历史流量统计查询能力。
 
 > **说明：**
@@ -17,7 +24,7 @@ import { statistics } from '@kit.NetworkKit';
 
 on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
-订阅流量改变事件通知。
+订阅流量改变事件通知。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -54,7 +61,7 @@ class IFace {
   uid?: number = 0
 }
 statistics.on('netStatsChange', (data: IFace) => {
-  console.log('on netStatsChange' + JSON.stringify(data));
+  console.info('on netStatsChange' + JSON.stringify(data));
 });
 ```
 
@@ -62,7 +69,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void
 
-取消订阅流量改变事件通知。
+取消订阅流量改变事件通知。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -99,7 +106,7 @@ class IFace {
   uid?: number = 0
 }
 let callback: (data: IFace) => void = (data: IFace) => {
-    console.log("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
+    console.info("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
 }
 statistics.on('netStatsChange', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -150,19 +157,19 @@ let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
   statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
     console.error(JSON.stringify(error));
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -213,19 +220,19 @@ import { statistics } from '@kit.NetworkKit';
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
   statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -285,19 +292,19 @@ statistics.getTrafficStatsByUid(
   uidInfo,
   (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
     console.error(JSON.stringify(error));
-    console.log(
+    console.info(
       "getTrafficStatsByUid bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -358,10 +365,10 @@ let uidInfo: statistics.UidInfo = {
 }
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-  console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-  console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-  console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
+  console.info("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.info("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.info("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.info("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
 })
 ```
 
@@ -490,11 +497,11 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型   | 必填 | 说明                              |
-| --------- | ------ | ---- | --------------------------------- |
-| iface     | string | 是   | 查询的网卡名。                    |
-| startTime | number | 是   | 查询的开始时间(时间戳;单位：秒)。 |
-| endTime   | number | 是   | 查询的结束时间(时间戳;单位：秒)。 |
+| 名称      | 类型   | 只读 |可选 |说明                              |
+| --------- | ------ | ---- |---| --------------------------------- |
+| iface     | string | 否   |否 |查询的网卡名。                    |
+| startTime | number | 否   |否 |查询的开始时间(时间戳;单位：秒)。 |
+| endTime   | number | 否  | 否|查询的结束时间(时间戳;单位：秒)。 |
 
 ## UidInfo<sup>10+</sup>
 
@@ -504,10 +511,10 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型                                  | 必填 | 说明                        |
-| --------- | ------------------------------------- | ---- | -------------------------- |
-| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | 是   | 需查询的网卡和时间参数信息。 |
-| uid       | number                                | 是   | 需查询的应用 uid。          |
+| 名称      | 类型                                  | 只读 |可选| 说明                        |
+| --------- | ------------------------------------- | ---- |---| -------------------------- |
+| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | 否   |否 |需查询的网卡和时间参数信息。 |
+| uid       | number                                | 否   |否 |需查询的应用 uid。          |
 
 ## NetStatsInfo<sup>10+</sup>
 
@@ -517,12 +524,12 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型   | 必填 | 说明                      |
-| --------- | ------ | ---- | ------------------------ |
-| rxBytes   | number | 是   | 流量下行数据(单位:字节)。 |
-| txBytes   | number | 是   | 流量上行数据(单位:字节)。 |
-| rxPackets | number | 是   | 流量下行包个数。          |
-| txPackets | number | 是   | 流量上行包个数。          |
+| 名称      | 类型   | 只读 |可选| 说明                      |
+| --------- | ------ | ---- |---| ------------------------ |
+| rxBytes   | number | 否   |否 |流量下行数据(单位:字节)。 |
+| txBytes   | number | 否   |否 |流量上行数据(单位:字节)。 |
+| rxPackets | number | 否   |否 |流量下行包个数。          |
+| txPackets | number | 否   |否 |流量上行包个数。          |
 
 ## NetStatsChangeInfo<sup>11+</sup>
 
@@ -532,10 +539,10 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型   | 必填 | 说明       |
-| --------- | ------ | ---- | --------- |
-| iface     | string | 是   | 网卡名称。 |
-| uid       | number | 否   | 应用UID。  |
+| 名称      | 类型   | 只读 |可选| 说明       |
+| --------- | ------ | ---- |---|--------- |
+| iface     | string | 否   |否| 网卡名称。 |
+| uid       | number | 否   |是 |应用UID。  |
 
 ## NetworkInfo<sup>12+</sup>
 
@@ -545,12 +552,12 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称        | 类型                                                   | 必填 | 说明           |
-|-----------|------------------------------------------------------|----|--------------|
-| type      | [NetBearType](js-apis-net-connection.md#netbeartype) | 是  | 网络类型。        |
-| startTime | number                                               | 是  | 开始时间戳(单位:秒)。 |
-| endTime   | number                                               | 是  | 结束时间戳(单位:秒)。 |
-| simId     | number                                               | 否  | SIM 卡 ID。    |
+| 名称        | 类型                                                   | 只读 |可选| 说明           |
+|-----------|------------------------------------------------------|----|---|--------------|
+| type      | [NetBearType](js-apis-net-connection.md#netbeartype) | 否  | 否|网络类型。        |
+| startTime | number                                               | 否  |否| 开始时间戳(单位:秒)。 |
+| endTime   | number                                               | 否  |否 |结束时间戳(单位:秒)。 |
+| simId     | number                                               | 否  | 是|SIM 卡 ID。    |
 
 ## UidNetStatsInfo<sup>12+</sup>
 
@@ -560,9 +567,9 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称        | 类型                                            | 必填 | 说明           |
-|-----------|-----------------------------------------------|----|--------------|
-| undefined | [uid:number]: [NetStatsInfo](#netstatsinfo10) | 是  | 所有应用的历史流量信息。 |
+| 名称        | 类型                                            | 只读 |可选| 说明           |
+|-----------|-----------------------------------------------|----|---|--------------|
+| undefined | [uid:number]: [NetStatsInfo](#netstatsinfo10) | 否  |否 |所有应用的历史流量信息。 |
 
 ## NetStatsInfoSequence<sup>12+</sup>
 
@@ -572,8 +579,8 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称        | 类型                              | 必填 | 说明           |
-|-----------|---------------------------------|----|--------------|
-| startTime | number                          | 是  | 开始时间戳(单位:秒)。 |
-| endTime   | number                          | 是  | 结束时间戳(单位:秒)。 |
-| info      | [NetStatsInfo](#netstatsinfo10) | 是  | 获取的应用历史流量信息。 |
+| 名称        | 类型                              | 只读 | 可选|说明           |
+|-----------|---------------------------------|----|---|--------------|
+| startTime | number                          | 否  |否 |开始时间戳(单位:秒)。 |
+| endTime   | number                          | 否  |否 |结束时间戳(单位:秒)。 |
+| info      | [NetStatsInfo](#netstatsinfo10) | 否  |否 |获取的应用历史流量信息。 |

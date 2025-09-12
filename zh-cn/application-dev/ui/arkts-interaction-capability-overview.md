@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 ArkUI框架提供了丰富的交互功能，支持直接处理基础输入事件，以及由这些事件驱动的手势系统，同时支持拖拽、焦点切换等复杂交互。
 
@@ -43,7 +44,7 @@ ArkUI框架提供了丰富的交互功能，支持直接处理基础输入事件
 
 如果希望两个手势非此即彼，则可以考虑使用互斥手势，如果希望两个手势互不影响，则可以考虑使用并行手势，请参考[组合手势](arkts-gesture-events-combined-gestures.md)；
 
-如果希望在用户按下时，才动态决定哪些手势能够参与处理，请参考[手势拦截](arkts-gesture-events-gesture-judge.md)。
+如果希望在用户按下时，才动态决定哪些手势能够参与处理，请参考[手势冲突处理](arkts-gesture-events-gesture-judge.md)。
 
 
 ## 统一拖拽

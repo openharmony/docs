@@ -1,6 +1,13 @@
 # @ohos.app.ability.autoFillManager (Auto-Fill Framework)
 
-The autoFillManager module provides APIs for saving accounts and passwords.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+The autoFillManager module provides auto-fill capabilities for user information such as accounts, passwords, addresses, and phone numbers.
 
 Unlike the system's auto-save feature that triggers during page transitions, this feature requires manual activation by the user. For example, the user must input their account and password on a website and click the **Save** button to initiate the saving process.
 
@@ -99,17 +106,16 @@ If the current widget does not support widget switching, you can call this API t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | [UIContext](../apis-arkui/js-apis-arkui-UIContext.md) | Yes| UI context in which the auto-save operation will be performed.|
-| callback | [AutoSaveCallback](#autosavecallback)  | No| Callback used for the auto-save request.|
+| context | [UIContext](../apis-arkui/arkts-apis-uicontext-uicontext.md) | Yes| UI context in which the auto-save operation will be performed.|
+| callback | [AutoSaveCallback](#autosavecallback)  | No| Implements callbacks triggered when auto-save is complete.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | The parameter check failed. Possible causes: 1. Get instance id failed; 2. Parse instance id failed; 3. The second parameter is not of type callback. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -130,13 +136,13 @@ export default class EntryAbility extends UIAbility {
     };
     let storage = new LocalStorage(localStorageData);
     windowStage.loadContent('pages/Index', storage, (err, data) => {
-      if (err.code) {
+      if (err && err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
       // Obtain the main window.
       windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
-        let errCode: number = err.code;
+        let errCode: number = err?.code;
         if (errCode) {
           console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
           return;

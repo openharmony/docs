@@ -1,5 +1,10 @@
 # UI开发（ArkTS声明式开发范式）概述
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 基于ArkTS的声明式开发范式的方舟开发框架是一套开发极简、高性能、支持跨设备的UI开发框架，提供了构建应用UI所必需的能力，主要包括：
 
@@ -18,7 +23,7 @@
 
 - **页面路由和组件导航**
 
-  应用可能包含多个页面，可通过页面路由实现页面间的跳转。一个页面内可能存在组件间的导航如典型的分栏，可通过导航组件实现组件间的导航。
+  开发者可以将应用的用户界面设计为多个功能页面[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)，页面通过栈结构管理，并通过导航容器[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)完成页面间的调度管理如跳转、回退等操作，以实现应用内的功能解耦。
 
 - **图形**
 
@@ -82,7 +87,7 @@
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](state-management/arkts-state-management-overview.md)<br>- [渲染控制](state-management/arkts-rendering-control-overview.md) |
+| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](state-management/arkts-state-management-overview.md)<br>- [渲染控制](rendering-control/arkts-rendering-control-overview.md) |
 | 设置组件导航和页面路由 | 介绍了如何设置组件间的导航以及页面路由。 | -&nbsp;[组件导航（推荐）](arkts-navigation-navigation.md)<br/>-&nbsp;[页面路由](arkts-routing.md) |
 | 组件布局   | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md) |
 | 列表与网格 | 介绍了几种列表与网格组件的使用方法。 | -&nbsp;[列表与网格](arkts-list-grid-development-overview.md) |

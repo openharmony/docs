@@ -1,5 +1,11 @@
 # Application Access Control
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 - [Access Control Overview](access-token-overview.md)
 - Application Permission Management<!--app-permission-mgmt-->
   - [Application Permission Management Overview](app-permission-mgmt-overview.md)
@@ -10,7 +16,7 @@
     - [Requesting User Authorization for the Second Time](request-user-authorization-second.md)
     - [Requesting One-Time User Authorization](one-time-authorization.md)
     <!--Del-->
-    - [Requesting Restricted Permissions](declare-permissions-in-acl.md)
+    - [Declaring Permissions](declare-permissions-in-acl.md)
     <!--DelEnd-->
   - [Application Permissions](app-permissions.md)
     - [Open system_grant Permissions](permissions-for-all.md)
@@ -18,7 +24,7 @@
     - [Restricted Permissions](restricted-permissions.md)
     <!--Del-->
     - [system_grant Permissions Available for System Applications via ACL](permissions-for-system-apps.md)
-    - [system_grant Non-ACL Permissions for System Applications](permissions-for-system-apps-no-acl.md)
+    - [system_grant Permissions for System Applications That Cannot Be Requested via ACL](permissions-for-system-apps-no-acl.md)
     - [user_grant Permissions for System Applications](permissions-for-system-apps-user.md)
     <!--DelEnd-->
     - [Permissions for Enterprise Applications](permissions-for-enterprise-apps.md)

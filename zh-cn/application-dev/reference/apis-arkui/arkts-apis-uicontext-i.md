@@ -1,4 +1,10 @@
 # Interfaces (其他)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92; @liyi0903; @mayaolll-->
+<!--Designer: @piggyguy; @liyi0903; @jiangdayuan-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -27,10 +33,10 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 | Router信息。 |
-| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 | NavDestination信息。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- |-------- | -------- |
+| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 |是 | Router信息。 |
+| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 |是| NavDestination信息。 |
 
 ## OverlayManagerOptions<sup>15+</sup>
 
@@ -38,10 +44,10 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称             | 类型                | 必填     | 说明                     |
-| --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| enableBackPressedEvent<sup>19+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，true表示可以通过侧滑关闭，false表示不可以通过侧滑关闭，默认值为false。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| 名称             | 类型                | 只读 | 可选   | 说明                     |
+| --------------- | ---------------------- | ------------ | --------------------- | --------------------- |
+| renderRootOverlay   | boolean | 否 | 是 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| enableBackPressedEvent<sup>19+</sup>   | boolean | 否 | 是 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，true表示可以通过侧滑关闭，false表示不可以通过侧滑关闭，默认值为false。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 ## GestureTriggerInfo<sup>20+</sup>
 
@@ -53,8 +59,8 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 | 名称   | 类型   | 必填       |说明       |
 | ------ | ---- | ---------- |---------- |
-| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)   |是       |手势事件对象。 |
-| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-common.md#gestureevent对象说明)   |是       |手势事件对象。 |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
 | currentPhase  | [GestureActionPhase](arkts-apis-uicontext-e.md#gestureactionphase20) |是      | 手势动作回调阶段。|
 | node  | [FrameNode](js-apis-arkui-frameNode.md) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
 

@@ -1,4 +1,10 @@
 # DataAbilityHelper
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 可以通过[acquireDataAbilityHelper](js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7)接口获取DataAbilityHelper对象。
 
@@ -393,7 +399,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => {
+DAHelper.normalizeUri('dataability:///com.example.DataAbility').then((data) => {
     console.info(`normalizeUri data: ${JSON.stringify(data)}`);
 });
 ```
@@ -466,7 +472,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-DAHelper.denormalizeUri('dataability:///com.example.DataAbility',).then((data) => {
+DAHelper.denormalizeUri('dataability:///com.example.DataAbility').then((data) => {
     console.info(`denormalizeUri data: ${JSON.stringify(data)}`);
 });
 ```

@@ -1,5 +1,11 @@
 # Introduction to User Authentication Kit
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 User Authentication Kit provides user authentication based on the lock screen password, facial characteristics, and fingerprints enrolled on a device.
 
 It offers system-level user authentication functionality, including a built-in user authentication widget **userAuthIcon** that delivers unified user authentication experience across devices with diversified authentication modes (facial, fingerprint, and password authentication).
@@ -56,13 +62,13 @@ The following figure shows the architecture of the user authentication framework
 
 The user authentication framework consists of the following:
 
-- Unified user authentication APIs: mask differences between authentication factors, making it easier for implementing authentication capabilities.
+1. Unified user authentication APIs: mask differences between authentication factors, making it easier for implementing authentication capabilities.
 
-- Unified user authentication framework: consists of authentication SAs and drivers, responsible for scheduling various authentication capabilities and the user authentication widget to complete user authentication requests initiated by services through the unified user authentication APIs.
+2. Unified user authentication framework: consists of authentication SAs and drivers, responsible for scheduling various authentication capabilities and the user authentication widget to complete user authentication requests initiated by services through the unified user authentication APIs.
 
-- User authentication widget: provides interactive authentication interfaces for different authentication modes to ensure consistent user authentication experience.
+3. User authentication widget: provides interactive authentication interfaces for different authentication modes to ensure consistent user authentication experience.
 
-- Authentication capabilities: enable identity verification based on lock screen passwords, facial characteristics, and fingerprints under the scheduling of the unified user authentication framework.
+4. Authentication capabilities: enable identity verification based on lock screen passwords, facial characteristics, and fingerprints under the scheduling of the unified user authentication framework.
 
 If the user authentication is successful, the unified user authentication framework issues an AuthToken in the trusted execution environment (TEE) of the device.
 

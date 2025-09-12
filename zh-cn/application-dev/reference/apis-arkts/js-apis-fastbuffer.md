@@ -1,9 +1,10 @@
 # @ohos.fastbuffer (FastBuffer)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 FastBuffer对象是更高效的Buffer容器，用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
@@ -14,6 +15,9 @@ FastBuffer通过from构造时，仅支持FastBuffer、Uint8Array、string、Arra
 > **说明：**
 >
 > 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 容器类使用静态语言实现，限制了存储位置和属性，不支持自定义属性和方法。
+
 
 ## 导入模块
 
@@ -610,7 +614,7 @@ compare(target: FastBuffer | Uint8Array, targetStart?: number, targetEnd?: numbe
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回比较结果。<br>-1：当前排列在目标前；<br>0：当前与目标相同；<br>1：当前排列在目标后。 |
+| -1 \| 0 \| 1 | 返回比较结果。<br>-1：当前排列在目标前；<br>0：当前与目标相同；<br>1：当前排列在目标后。 |
 
 **错误码：**
 

@@ -1,4 +1,10 @@
 # 高性能拍照(仅对系统应用开放)(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 高性能拍照是相机的重要功能之一，优化了拍照响应时延，提升用户体验。高性能拍照又名分段式拍照，应用下发拍照请求后，**第一阶段**系统会很快返回给应用一张**缩略图**，应用需将该图片及相关信息存入媒体库；**第二阶段**子服务会根据系统压力及定制化场景进行调度，将后处理好的**原图**回传给媒体库。
 
@@ -30,23 +36,29 @@
 
 2. 确定拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
-   function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
-     let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
-     }
-     let photoOutput: camera.PhotoOutput | undefined = undefined;
-     try {
-       photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${err}`);
-     }
-     return photoOutput;
+   function getPhotoOutput(cameraManager: camera.CameraManager,
+    cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+    let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
+    if (photoProfilesArray === null || photoProfilesArray === undefined) {
+      console.error("createOutput photoProfilesArray is null!");
+      return undefined;
+    }
+    let photoOutput: camera.PhotoOutput | undefined = undefined;
+    try {
+      if (photoProfilesArray.length > 0) {
+        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+      } else {
+        console.log("the length of photoProfilesArray<=0!");
+        return undefined;
+      }
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`Failed to createPhotoOutput. error: ${err}`);
+    }
+    return photoOutput;
    }
    ```
 
@@ -100,7 +112,7 @@
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // 获取缩略图 pixelMap。
+       // 获取缩略图pixelMap。
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
@@ -119,7 +131,7 @@
    ```ts
    async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context) {    
      try {
-       // 创建 photoAsset。
+       // 创建photoAsset。
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
        let photoAsset = await accessHelper.createAsset(testFileName);

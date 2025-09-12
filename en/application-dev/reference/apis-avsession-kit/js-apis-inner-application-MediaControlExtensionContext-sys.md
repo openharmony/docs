@@ -1,6 +1,6 @@
 # MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control) (System API)
 
-**MediaControlExtensionContext**, inherited from [UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md), provides the context environment for [MediaControlExtensionAbility](js-apis-app-ability-MediaControlExtensionAbility-sys.md). It provides MediaControlExtensionAbility-related configuration and APIs for operating the MediaControlExtensionAbility. For example, you can use the APIs to start a MediaControlExtensionAbility.
+MediaControlExtensionContext provides the context environment for [MediaControlExtensionAbility](js-apis-app-ability-MediaControlExtensionAbility-sys.md). It inherits from [UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md) and provides MediaControlExtensionAbility-related configuration and APIs for operating the MediaControlExtensionAbility. For example, you can use the APIs to start a MediaControlExtensionAbility.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 

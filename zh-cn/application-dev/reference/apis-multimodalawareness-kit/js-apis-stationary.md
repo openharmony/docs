@@ -1,4 +1,10 @@
 # @ohos.stationary (设备状态感知框架)
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 设备状态感知框架提供设备状态感知能力，包括绝对静止和相对静止。
 
@@ -20,9 +26,9 @@ import { stationary } from '@kit.MultimodalAwarenessKit';
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| state | [ActivityState](#activitystate) | 是 | 否 | 设备状态变化返回值。 |
+| state | [ActivityState](#activitystate) | 否 | 否 | 设备状态变化返回值。 |
 
 ## ActivityType
 
@@ -82,7 +88,7 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 ```ts
 let reportLatencyNs = 1000000000;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-    console.log('data='+ JSON.stringify(data));
+    console.info('data=' + JSON.stringify(data));
 })
 ```
 
@@ -105,7 +111,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 ```ts
 stationary.once('still', (data) => {
-    console.log("data="+ JSON.stringify(data));
+    console.info('data=' + JSON.stringify(data));
 })
 ```
 

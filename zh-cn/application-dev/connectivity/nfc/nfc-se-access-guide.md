@@ -1,5 +1,12 @@
 # 安全单元访问开发指南
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+<!--Adviser: @zhang_yixin13-->
+
 ## 简介
 电子设备上可能存在一个或多个安全单元（SecureElement，简称SE），比如有eSE(Embedded SE)和SIM卡。安全单元的访问控制，通过GPAC（GlobalPlatform Access Control）规范实现。
 
@@ -28,7 +35,12 @@
 2. 判断设备是否支持安全单元能力。
 3. 访问安全单元，实现数据的读取或写入。
 4. 释放通道资源。
-   
+
+> **注意：**
+>
+> - 从API version 9之后的应用开发新增支持Stage模型，作为目前主推并长期演进的模型。
+> - 由于SE的安全级别较高，必须将构建模式设置为release进行打包，否则应用将无法正常运行。
+
 ```ts
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';

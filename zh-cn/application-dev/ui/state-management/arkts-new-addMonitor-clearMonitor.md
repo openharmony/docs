@@ -1,4 +1,10 @@
 # addMonitor/clearMonitor接口：动态添加/取消监听
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了动态添加或删除状态管理V2的状态变量的监听函数，开发者可以使用[addMonitor](../../reference/apis-arkui/js-apis-StateManagement.md#addmonitor20)或[clearMonitor](../../reference/apis-arkui/js-apis-StateManagement.md#clearmonitor20)。
 
@@ -233,7 +239,7 @@ struct Page {
       })
       Button('clear name monitors').onClick(() => {
         // step5：删除name添加的监听方法。因为name无任何监听回调，删除失败
-        // 打印告警日志：FIX THIS APPLICATION ERROR: cannot clear path age for onChange1 because it was never registered with addMonitor
+        // 打印错误日志：FIX THIS APPLICATION ERROR: cannot clear path name for current target User because no Monitor function for this path was registered
         UIUtils.clearMonitor(this.user, 'name');
       })
     }
@@ -242,7 +248,7 @@ struct Page {
 ```
 
 ## 限制条件
-- addMonitor/clearMonitor仅支持对\@ComponentV2和\@ObservedV2装饰（至少有一个\@Trace、\@Monitor或[\@Computed](./arkts-new-Computed.md)装饰的属性）的实例添加/取消回调，否则会有运行时报错，错误码为130000。
+- addMonitor/clearMonitor仅支持对\@ComponentV2和\@ObservedV2装饰（至少有一个\@Trace装饰的变量）的实例添加/取消回调，否则会有运行时报错，错误码为130000。
 下面为addMonitor的例子，clearMonitor同理。
   ```ts
   import { UIUtils } from '@kit.ArkUI';
@@ -704,6 +710,7 @@ struct Page {
 ```
 message change from not initialized to initialized
 message change from initialized to Index aboutToAppear
+message change from Index aboutToAppear to Index click to change message
 ```
 
 ```ts

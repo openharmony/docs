@@ -1,4 +1,10 @@
 # Class (AdsBlockManager)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements an **AdsBlockManager** instance to set custom ad blocking configurations in the **Web** components and disable the ad blocking feature for specific websites. Each application's **Web** components share an **AdsBlockManager** instance.
 

@@ -1,4 +1,10 @@
-# @ohos.multimodalawareness.motion (动作感知)
+# @ohos.multimodalAwareness.motion (动作感知)
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块，提供对用户行为、动作的感知能力，包括用户的手势、动作等。
 
@@ -41,9 +47,11 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 ## motion.on('operatingHandChanged')
 
-on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;): void;
+on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;): void
 
 订阅触控操作手感知事件。
+
+此功能如果设备不支持，将返回801错误码。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
@@ -58,7 +66,7 @@ on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -73,12 +81,12 @@ on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;):
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-callback(data:motion.OperatingHandStatus) {
-    console.info('callback success' + data);
+let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
+    console.info('callback succeeded' + data);
 };
 
 try {
-    motion.on('operatingHandChanged', this.callback);  
+    motion.on('operatingHandChanged', callback);  
     console.info("on succeeded");
 } catch (err) {
     let error = err as BusinessError;
@@ -88,7 +96,7 @@ try {
 
 ## motion.off('operatingHandChanged')
 
-off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void;
+off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void
 
 取消订阅触控操作手感知事件。
 
@@ -105,7 +113,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -131,7 +139,7 @@ try {
 
 ## motion.getRecentOperatingHandStatus()
 
-getRecentOperatingHandStatus(): OperatingHandStatus;
+getRecentOperatingHandStatus(): OperatingHandStatus
 
 获取最新触控操作手状态。
 
@@ -147,7 +155,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -162,7 +170,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-    console.info('get success' + data);
+    console.info('get succeeded' + data);
 } catch (err) {
     let error = err as BusinessError;
     console.error("Failed get and err code is " + error.code);
@@ -171,7 +179,7 @@ try {
 
 ## motion.on('holdingHandChanged') <sup>20+</sup>
 
-on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): void;
+on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): void
 
 订阅握持手状态变化感知事件。
 
@@ -188,7 +196,7 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 
 **错误码**
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -202,8 +210,8 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 ```typescript
 import { BusinessError } from '@kit.BasicServicesKit';
 
-callback(data: motion.HoldingHandStatus) {
-  console.info('callback success: ' + data);
+let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
+  console.info('callback succeeded: ' + data);
 };
 
 try {
@@ -217,7 +225,7 @@ try {
 
 ## motion.off('holdingHandChanged') <sup>20+</sup>
 
-off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): void;
+off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): void
 
 取消订阅握持手状态变化感知事件。
 
@@ -234,7 +242,7 @@ off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): v
 
 **错误码**
 
-以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、同应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
 
@@ -80,7 +81,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -92,7 +93,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 })
   .then(() => {
     console.error(`pushUrl finish`);
@@ -150,7 +151,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -162,7 +163,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -227,7 +228,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -239,7 +240,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 }, router.RouterMode.Standard)
   .then(() => {
     console.error(`pushUrl finish`);
@@ -298,7 +299,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -310,7 +311,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -366,7 +367,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -376,7 +377,7 @@ class routerParams {
 
 router.replaceUrl({
   url: 'pages/detail',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 })
   .then(() => {
     console.error(`replaceUrl finish`);
@@ -425,7 +426,7 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -435,7 +436,7 @@ class routerParams {
 
 router.replaceUrl({
   url: 'pages/detail',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 }, (err) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -493,7 +494,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class routerParams {
+class RouterParams {
   data1:string;
 
   constructor(str:string) {
@@ -503,7 +504,7 @@ class routerParams {
 
 router.replaceUrl({
   url: 'pages/detail',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 }, router.RouterMode.Standard)
   .then(() => {
     console.error(`replaceUrl finish`);
@@ -553,7 +554,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -563,7 +564,7 @@ class routerParams {
 
 router.replaceUrl({
   url: 'pages/detail',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -628,7 +629,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -640,7 +641,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 })
   .then(() => {
     console.error(`pushNamedRoute finish`);
@@ -700,7 +701,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -712,7 +713,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -777,7 +778,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -789,7 +790,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 }, router.RouterMode.Standard)
   .then(() => {
     console.error(`pushNamedRoute finish`);
@@ -848,7 +849,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -860,7 +861,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -916,7 +917,7 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -926,7 +927,7 @@ class routerParams {
 
 router.replaceNamedRoute({
   name: 'myPage',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 })
   .then(() => {
     console.error(`replaceNamedRoute finish`);
@@ -975,7 +976,7 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -985,7 +986,7 @@ class routerParams {
 
 router.replaceNamedRoute({
   name: 'myPage',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 }, (err) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -1043,7 +1044,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -1053,7 +1054,7 @@ class routerParams {
 
 router.replaceNamedRoute({
   name: 'myPage',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 }, router.RouterMode.Standard)
   .then(() => {
     console.error(`replaceNamedRoute finish`);
@@ -1103,7 +1104,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 **示例：**
 
 ```ts
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -1113,7 +1114,7 @@ class routerParams {
 
 router.replaceNamedRoute({
   name: 'myPage',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -1231,7 +1232,7 @@ getLength(): string
 
 ```ts
 let size = this.getUIContext().getRouter().getLength();
-console.log('pages stack size = ' + size);
+console.info('pages stack size = ' + size);
 ```
 
 ## router.getState<sup>(deprecated)</sup>
@@ -1260,9 +1261,9 @@ getState(): RouterState
 
 ```ts
 let page = this.getUIContext().getRouter().getState();
-console.log('current index = ' + page.index);
-console.log('current name = ' + page.name);
-console.log('current path = ' + page.path);
+console.info('current index = ' + page.index);
+console.info('current name = ' + page.name);
+console.info('current path = ' + page.path);
 ```
 
 ## router.getStateByIndex<sup>(deprecated)</sup>
@@ -1298,10 +1299,10 @@ getStateByIndex(index: number): RouterState | undefined
 ```ts
 let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
-  console.log('index = ' + options.index);
-  console.log('name = ' + options.name);
-  console.log('path = ' + options.path);
-  console.log('params = ' + options.params);
+  console.info('index = ' + options.index);
+  console.info('name = ' + options.name);
+  console.info('path = ' + options.path);
+  console.info(`params = ${JSON.stringify(options.params)}`);
 }
 ```
 ## router.getStateByUrl<sup>(deprecated)</sup>
@@ -1337,10 +1338,10 @@ getStateByUrl(url: string): Array&lt;RouterState&gt;
 ```ts
 let options: Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
-  console.log('index = ' + options[i].index);
-  console.log('name = ' + options[i].name);
-  console.log('path = ' + options[i].path);
-  console.log('params = ' + options[i].params);
+  console.info('index = ' + options[i].index);
+  console.info('name = ' + options[i].name);
+  console.info('path = ' + options[i].path);
+  console.info('params = ' + options[i].params);
 }
 ```
 
@@ -1446,6 +1447,8 @@ getParams(): Object
 > 从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getRouter](arkts-apis-uicontext-uicontext.md#getrouter)获取[Router](arkts-apis-uicontext-router.md)实例，再通过此实例调用替代方法[getParams](arkts-apis-uicontext-router.md#getparams)。
 >
 > 从API version 10开始，可以通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getRouter](arkts-apis-uicontext-uicontext.md#getrouter)方法获取当前UI上下文关联的[Router](arkts-apis-uicontext-router.md)对象。
+>
+> getParams只获取当前页面的参数，并不会清除页面关联的参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1455,7 +1458,7 @@ getParams(): Object
 
 | 类型   | 说明                               |
 | ------ | ---------------------------------- |
-| object | 发起跳转的页面往当前页传入的参数。 |
+| Object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
 
@@ -1472,7 +1475,7 @@ this.getUIContext().getRouter().getParams();
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页，首页默认为页面跳转配置项src数组的第一个数据项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数只能传递可序列化的参数，不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true。当为true时，表示可恢复，当为false时，表示不可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
 
   > **说明：**
@@ -1554,7 +1557,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   text: string;
   data: innerParams;
 
@@ -1570,7 +1573,7 @@ struct Index {
   async routePage() {
     let options: router.RouterOptions = {
       url: 'pages/second',
-      params: new routerParams('这是第一页的值', [12, 45, 78])
+      params: new RouterParams('这是第一页的值', [12, 45, 78])
     }
     // 建议使用this.getUIContext().getRouter().pushUrl()
     this.getUIContext().getRouter().pushUrl(options)
@@ -1616,7 +1619,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   text: string;
   data: innerParams;
 
@@ -1631,8 +1634,8 @@ class routerParams {
 struct Second {
   private content: string = "这是第二页";
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
-  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
+  @State text: string = (this.getUIContext().getRouter().getParams() as RouterParams).text;
+  @State data: object = (this.getUIContext().getRouter().getParams() as RouterParams).data;
   @State secondData: string = '';
 
   build() {
@@ -1685,7 +1688,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   data1: string;
   data2: innerParams;
 
@@ -1697,7 +1700,7 @@ class routerParams {
 
 router.push({
   url: 'pages/routerpage2',
-  params: new routerParams('message', [123, 456, 789])
+  params: new RouterParams('message', [123, 456, 789])
 });
 ```
 
@@ -1720,7 +1723,7 @@ replace(options: RouterOptions): void
 **示例：**
 
 ```ts
-class routerParams {
+class RouterParams {
   data1: string;
 
   constructor(str: string) {
@@ -1730,7 +1733,7 @@ class routerParams {
 
 router.replace({
   url: 'pages/detail',
-  params: new routerParams('message')
+  params: new RouterParams('message')
 });
 ```
 

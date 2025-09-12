@@ -1,5 +1,12 @@
 # @ohos.settings (设置数据项名称)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @YingCong-->
+<!--Designer: @Kun_Wu-->
+<!--Tester: @dyx118186878-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块提供访问设置数据项的能力。
 
 > **说明：**
@@ -51,7 +58,7 @@ import { settings } from '@kit.BasicServicesKit';
 
 | 名称                          | 类型   | 可读 | 可写 | 说明                                                                                                                   |
 | ----------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------------------|
-| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。                                                                                      |
+| FONT_SCALE                    | string | 是   | 是   | （domainName为USER_PROPERTY）字体的比例因子，值为固定浮点数。标准档位取值为1，其他档位包括0.85、1.15、1.3、1.45。关怀模式下，额外提供1.75、2、3.2档位。                                                                                     |
 | SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。取值范围:0到255。                                                                                                     |
 | AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>- 值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整。<br/>- 值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。         |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。                                                                                 |
@@ -666,6 +673,8 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
+**参数**：
+
 | 参数名   | 类型                   | 必填 | 说明                                                                                                                                                                                                                                               |
 | -------- | ---------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。                                                                                                       |
@@ -699,6 +708,8 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
+
+**设备行为差异**：该接口在Phone、PC/2in1、Tablet设备中可正常调用，在其他设备调用不生效。
 
 **参数**：
 

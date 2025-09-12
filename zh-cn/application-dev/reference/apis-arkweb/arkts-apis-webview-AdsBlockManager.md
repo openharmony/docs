@@ -1,9 +1,10 @@
 # Class (AdsBlockManager)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通过AdsBlockManager可以向Web组件中设置自定义的广告过滤配置、关闭特定网站的广告过滤功能，其中每个应用中的所有Web组件都共享一个AdsBlockManager实例。
 
@@ -40,7 +41,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
-| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。<br>默认值：false。 |
+| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
 
 **错误码：**
 
@@ -48,7 +49,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -121,7 +122,7 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -203,7 +204,7 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -275,7 +276,7 @@ static clearAdsBlockDisallowedList(): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -354,7 +355,7 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -439,7 +440,7 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -511,7 +512,7 @@ static clearAdsBlockAllowedList(): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |

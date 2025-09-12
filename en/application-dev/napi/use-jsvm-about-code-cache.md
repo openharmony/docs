@@ -1,4 +1,10 @@
 # Accelerating Compilation Using a Code Cache
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction to Code Cache
 
@@ -105,8 +111,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call C++ code from JS.
 const char* srcCallNative = R"JS(globalThis.UseCodeCache())JS";
 ```
+<!-- @[jsvm_code_cache](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/aboutcodecache/src/main/cpp/hello.cpp) -->
 
-**Expected Result**
+The expected output is as follows:
 ```
 first run result: 98304
 second run result: 98304
@@ -115,7 +122,8 @@ cache rejected: 0
 
 ## Precautions
 
-In the preceding code, a code cache is used for compilation. In **OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script)**, the **cacheRejected** parameter is passed in to obtain whether the code cache is rejected in the compilation process. This status includes several situations:
+In the preceding code, a code cache is used for compilation. In **OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script)**,
+the **cacheRejected** parameter is passed in to obtain whether the code cache is rejected in the compilation process. This status includes several situations:
 
 - Code cache verification failed
 - Code cache verification successful

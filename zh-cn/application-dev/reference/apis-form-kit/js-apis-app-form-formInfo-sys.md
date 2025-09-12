@@ -1,4 +1,10 @@
 # @ohos.app.form.formInfo (formInfo)(系统接口)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 formInfo模块提供了卡片信息和状态等相关类型和枚举。
 
@@ -24,6 +30,8 @@ import { formInfo } from '@kit.FormKit';
 | previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。 |
 | renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。|
+| resizable<sup>20+</sup> | boolean  | 是    | 否     | 表示是否可以拖拽卡片调整大小。调整值必须在该卡片或者同groupId卡片的supportDimensions配置列表中。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| groupId<sup>20+</sup> | string     | 是    | 否     | 表示一组卡片的共同id。多张卡片的groupId相同且resizable为true时，多张卡片的supportDimensions配置共享。例如，卡片A和B的groupId相同且resizable均为true，则卡片A可以调整为卡片A和B的supportDimensions配置中的任意尺寸。<br>推荐多张卡片功能相同且需要调整卡片尺寸时配置。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 
 ##  FormParam
@@ -59,17 +67,10 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formId  | string               | 是    | 否     | 卡片标识。                   |
-| bundleName<sup>10+</sup>  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
 | hostBundleName  | string               | 是    | 否     | 使用方卡片所属包的Bundle名称。                   |
 | visibilityType  | [VisibilityType](js-apis-app-form-formInfo.md#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
-| moduleName<sup>10+</sup>  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
-| abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
-| formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
-| dimension | number               | 是    | 否     | 卡片规格。   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 | formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 

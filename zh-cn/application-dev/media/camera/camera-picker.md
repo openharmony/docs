@@ -1,4 +1,10 @@
 # 通过系统相机拍照和录像(CameraPicker)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 应用可调用CameraPicker拍摄照片或录制视频，无需申请相机权限。
 CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确认按钮后，调用CameraPicker的应用获取对应的照片或者视频。
@@ -31,7 +37,12 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
      let pathDir = context.filesDir;
      let fileName = `${new Date().getTime()}`;
      let filePath = pathDir + `/${fileName}.tmp`;
-     fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
+     try {
+       fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`create picker profile failed. error code: ${err.code}`);
+     }
      
      let uri = fileUri.getUriFromPath(filePath);
      let pickerProfile: picker.PickerProfile = {
@@ -41,11 +52,13 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
      return pickerProfile;
    }
    ```
+   fileIo接口调用方法请参考：[createRandomAccessFileSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fscreaterandomaccessfilesync10)和[getUriFromPath](../../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)。
 
 3. 调用picker拍摄接口获取拍摄的结果。
    ```ts
    async function getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
      let result: picker.PickerResult =
+       // 调用picker方法拉起系统相机，获取拍摄的图片或视频。
        await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
          pickerProfile);
      console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);

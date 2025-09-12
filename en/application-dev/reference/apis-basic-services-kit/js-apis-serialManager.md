@@ -1,5 +1,12 @@
 # @ohos.usbManager.serial (Serial Port Management)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 This module provides the serial port management functions, including enabling and disabling the serial port of the device, writing and reading data, setting and obtaining the configuration parameters of the serial port, and managing permissions.
 
 > **NOTE**
@@ -159,7 +166,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation permission');
@@ -219,7 +226,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -292,7 +299,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -309,6 +316,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // Obtain the serial port configuration.
@@ -372,7 +380,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -389,6 +397,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // Set the serial port configuration.
@@ -463,7 +472,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -548,7 +557,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -634,7 +643,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -719,7 +728,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -795,7 +804,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
@@ -812,6 +821,7 @@ try {
   console.info('open usbSerial success, portId: ' + portId);
 } catch (error) {
   console.error('open usbSerial error, ' + JSON.stringify(error));
+  return;
 }
 
 // Close the serial port device.
@@ -871,7 +881,7 @@ let portId: number = portList[0].portId;
 
 // Check whether the device can be accessed by the application.
 if (!serialManager.hasSerialRight(portId)) {
-  await serialManager.requestSerialRight(portId).then(result => {
+  serialManager.requestSerialRight(portId).then(result => {
     if (!result) {
       // If the application does not have the access permission and is not granted by the user, the application exits.
       console.info('user is not granted the operation  permission');
