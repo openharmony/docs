@@ -54,7 +54,7 @@ onReceiveEvent(event: CommonEventData): void
 
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
         onReceiveEvent(event: commonEventManager.CommonEventData) {
-            console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+            console.info(`onReceiveEvent, event: ${JSON.stringify(event)}`);
         }
     }
   ```
