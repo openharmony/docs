@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Before using the camera application for preview, photo capture, video recording, and metadata management, you must create a camera session.
 
@@ -13,7 +14,7 @@ You can implement the following functions in the session:
 
   Configuring an input stream is to add a device input, which means that the user selects a camera for photo capture. Configuring an output stream is to select a data output mode. For example, to implement photo capture, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **XComponent**, and that of the photo stream is saved to the Gallery application through the ImageReceiver API.
 
-- Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../../reference/apis-camera-kit/capi-oh-camera.md).
+- Perform more operations on the camera device. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../../reference/apis-camera-kit/capi-oh-camera.md).
 
 - Control session switching. The application can switch the camera mode by removing and adding output streams. For example, to switch from photo capture to video recording, the application must remove the photo output stream and add the video output stream.
 
@@ -50,6 +51,10 @@ After the session configuration is complete, the application must commit the con
    Camera_CaptureSession* CreateCaptureSession(Camera_Manager* cameraManager)
    {
        Camera_CaptureSession* captureSession = nullptr;
+       if (cameraManager == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "cameraManager is nullptr.");
+           return captureSession;
+       }
        Camera_ErrorCode ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
        if (captureSession == nullptr || ret != CAMERA_OK) {
            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
@@ -156,16 +161,16 @@ After the session configuration is complete, the application must commit the con
        // Release the photoOutput instance.
        ret = OH_PhotoOutput_Release(photoOutput);
        if (ret == CAMERA_OK) {
-           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_RemovePhotoOutput success ");
+           OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Release success ");
        } else {
-           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RemovePhotoOutput failed. %d ", ret);
+           OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Release failed. %d ", ret);
        }
        // Add the video output stream to the session.
        ret = OH_CaptureSession_AddVideoOutput(captureSession, videoOutput);
        if (ret == CAMERA_OK) {
-           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_RemovePhotoOutput success ");
+           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_AddVideoOutput success ");
        } else {
-           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RemovePhotoOutput failed. %d ", ret);
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddVideoOutput failed. %d ", ret);
            return ret;
        }
        // Commit the session configuration.

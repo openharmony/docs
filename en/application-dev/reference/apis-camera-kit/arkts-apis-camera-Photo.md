@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -24,9 +25,9 @@ import { camera } from '@kit.CameraKit';
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name  | Type                           |     Mandatory    | Description      |
-| ------ | ----------------------------- | -------------- | ---------- |
-| main<sup>11+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md) |        Yes      | Full-quality image.|
+| Name  | Type                          |   Read-Only   |   Optional  | Description      |
+| ------ | ----------------------------- | --------  |  ------ | ---------- |
+| main<sup>11+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md) |    No  |    No   | Full-quality image.|
 
 ## release<sup>11+</sup>
 
