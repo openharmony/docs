@@ -426,8 +426,8 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item=>
-  `{"id":${item.id},"name":${item.name}}`).join(',');
+  const dataInfo = data.map(item =>
+    `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 });
 ```
@@ -466,8 +466,8 @@ let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
 promise.then((data: Array<display.Display>) => {
   displayClass = data;
-  const dataInfo = data.map(item=>
-  `{"id":${item.id},"name":${item.name}}`).join(',');
+  const dataInfo = data.map(item =>
+    `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
@@ -1452,8 +1452,8 @@ display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item=>
-  `{"id":${item.id},"name":${item.name}}`).join(',');
+  const dataInfo = data.map(item =>
+    `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 });
 ```
@@ -1483,8 +1483,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
-  const dataInfo = data.map(item=>
-  `{"id":${item.id},"name":${item.name}}`).join(',');
+  const dataInfo = data.map(item =>
+    `{"id":${item.id}, "name":${item.name}}`).join(',');
   console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
@@ -1564,11 +1564,11 @@ displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
   }
   if(data.boundingRects && data.boundingRects.length > 0)
   {
-    console.info(`Succeeded in getting cutoutInfo. data: 
-    left : ${data.boundingRects[0].left},
-    top : ${data.boundingRects[0].top},
-    width : ${data.boundingRects[0].width},
-    height : ${data.boundingRects[0].height}`);
+    console.info(`Succeeded in getting cutoutInfo. data: ` +
+      `left : ${data.boundingRects[0].left}, ` +
+      `top : ${data.boundingRects[0].top}, ` +
+      `width : ${data.boundingRects[0].width}, ` +
+      `height : ${data.boundingRects[0].height}`);
   }
 });
 ```
@@ -1606,11 +1606,11 @@ let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
   if(data.boundingRects && data.boundingRects.length > 0)
     {
-      console.info(`Succeeded in getting cutoutInfo. data: 
-      left : ${data.boundingRects[0].left},
-      top : ${data.boundingRects[0].top},
-      width : ${data.boundingRects[0].width},
-      height : ${data.boundingRects[0].height}`);
+      console.info(`Succeeded in getting cutoutInfo. data: ` +
+        `left : ${data.boundingRects[0].left}, ` +
+        `top : ${data.boundingRects[0].top}, ` +
+        `width : ${data.boundingRects[0].width}, ` +
+        `height : ${data.boundingRects[0].height}`);
     }
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
