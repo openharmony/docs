@@ -1,4 +1,10 @@
 # 压力管控(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 从API version 20开始，相机框架提供对系统压力等级的监听。
 
