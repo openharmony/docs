@@ -404,7 +404,7 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 ```ts
 observer.on('callStateChange', (data: observer.CallStateInfo) => {
-    console.log("on callStateChange, data:" + JSON.stringify(data));
+    console.info("on callStateChange, data:" + JSON.stringify(data));
 });
 ```
 
@@ -444,7 +444,7 @@ let options: observer.ObserverOptions = {
     slotId: 0
 }
 observer.on('callStateChange', options, (data: observer.CallStateInfo) => {
-    console.log("on callStateChange, data:" + JSON.stringify(data));
+    console.info("on callStateChange, data:" + JSON.stringify(data));
 });
 ```
 
@@ -484,7 +484,7 @@ off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 
 ```ts
 let callback: (data: observer.CallStateInfo) => void = (data: observer.CallStateInfo) => {
-    console.log("on callStateChange, data:" + JSON.stringify(data));
+    console.info("on callStateChange, data:" + JSON.stringify(data));
 }
 observer.on('callStateChange', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -507,7 +507,7 @@ on(type: 'callStateChangeEx', callback: Callback\<TelCallState\>, options?: Obse
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | string                                        | 是   | 通话状态变化事件，参数固定为'callStateChangeEx'。                |
 | callback | Callback\<[TelCallState](js-apis-call.md#telcallstate)\> | 是   | 以callback形式异步返回结果。<br/>应用可获取到TelCallState。<br/> |
-| options  | ObserverOptions                              | 否 | 电话相关事件订阅参数可选项。                |
+| options  | [ObserverOptions](#observeroptions11)                              | 否 | 电话相关事件订阅参数可选项。                |
 
 **错误码：**
 
@@ -526,7 +526,7 @@ on(type: 'callStateChangeEx', callback: Callback\<TelCallState\>, options?: Obse
 import { call } from '@kit.TelephonyKit';
 
 let callback: (data: call.TelCallState) => void = (data: call.TelCallState) => {
-    console.log("on callStateChangeEx, data:" + JSON.stringify(data));
+    console.info("on callStateChangeEx, data:" + JSON.stringify(data));
 }
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -571,7 +571,7 @@ off(type: 'callStateChangeEx', callback?: Callback\<TelCallState\>): void
 
 ```ts
 let callback: (data: call.TelCallState) => void = (data: call.TelCallState) => {
-    console.log("on callStateChangeEx, data:" + JSON.stringify(data));
+    console.info("on callStateChangeEx, data:" + JSON.stringify(data));
 }
 observer.on('callStateChangeEx', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
