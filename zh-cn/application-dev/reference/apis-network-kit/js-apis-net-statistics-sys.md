@@ -24,7 +24,7 @@ import { statistics } from '@kit.NetworkKit';
 
 on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
-订阅流量改变事件通知。
+订阅流量改变事件通知。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -61,7 +61,7 @@ class IFace {
   uid?: number = 0
 }
 statistics.on('netStatsChange', (data: IFace) => {
-  console.log('on netStatsChange' + JSON.stringify(data));
+  console.info('on netStatsChange' + JSON.stringify(data));
 });
 ```
 
@@ -69,7 +69,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void
 
-取消订阅流量改变事件通知。
+取消订阅流量改变事件通知。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -106,7 +106,7 @@ class IFace {
   uid?: number = 0
 }
 let callback: (data: IFace) => void = (data: IFace) => {
-    console.log("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
+    console.info("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
 }
 statistics.on('netStatsChange', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -157,19 +157,19 @@ let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
   statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
     console.error(JSON.stringify(error));
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -220,19 +220,19 @@ import { statistics } from '@kit.NetworkKit';
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
   statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -292,19 +292,19 @@ statistics.getTrafficStatsByUid(
   uidInfo,
   (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
     console.error(JSON.stringify(error));
-    console.log(
+    console.info(
       "getTrafficStatsByUid bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -365,10 +365,10 @@ let uidInfo: statistics.UidInfo = {
 }
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-  console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-  console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-  console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
+  console.info("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.info("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.info("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.info("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
 })
 ```
 
