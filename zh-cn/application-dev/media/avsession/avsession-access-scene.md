@@ -117,8 +117,8 @@ struct Index {
             });
           } catch (err) {
             if (err) {
-              console.error(`AVSession create Error: ${JSON.stringify(err)}`);
-            } 
+              console.error(`AVSession create Error: Code: ${err.code}, message: ${err.message}`);
+            }
           }
         })
     }
@@ -725,7 +725,7 @@ struct Index {
             });
           } catch (err) {
             if (err) {
-              console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+              console.error(`AVSession create Error: Code: ${err.code}, message: ${err.message}`);
             }
           }
         })

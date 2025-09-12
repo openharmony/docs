@@ -36,7 +36,7 @@
                 // 通话开始时创建voice_call类型的avsession。
                 let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'voiptest', 'voice_call');
                 } catch (err) {
-                  console.error(`avsession create :  Error: ${JSON.stringify(err)}`);
+                  console.error(`AVSession create :  Error: Code: ${err.code}, message: ${err.message}`);
                 }
               })
           }
@@ -92,7 +92,7 @@
       try {
         this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOptions);
       } catch (err) {
-        console.error(`audioRender create :  Error: ${JSON.stringify(err)}`);
+        console.error(`audioRender create :  Error: Code: ${err.code}, message: ${err.message}`);
       }
 
       this.audioRenderer?.start((err: BusinessError) => {

@@ -67,7 +67,7 @@
                   console.info(`session create done : sessionId : ${session.sessionId}`);
                 } catch (err) {
                   if (err) {
-                    console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+                    console.error(`AVSession create Error: Code: ${err.code}, message: ${err.message}`);
                   }
                 }
               })
@@ -421,7 +421,7 @@
                 });
               } catch (err) {
                 if (err) {
-                  console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+                  console.error(`AVSession create Error: Code: ${err.code}, message: ${err.message}`);
                 }
               }
             })
@@ -466,7 +466,7 @@
                   });
                 } catch (err) {
                   if (err) {
-                    console.error(`AVSession create or getController Error: ${JSON.stringify(err)}`);
+                    console.error(`AVSession create or getController Error: Code: ${err.code}, message: ${err.message}`);
                   }
                 }
               })
