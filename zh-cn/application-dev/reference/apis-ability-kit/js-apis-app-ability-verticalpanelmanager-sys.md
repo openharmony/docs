@@ -7,7 +7,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-本模块提供垂域面板管理能力，当前仅提供启动垂域面板选择器接口。
+本模块提供垂域面板管理能力，当前仅支持启动垂域应用面板选择器。
 
 > **说明：**
 >
@@ -25,7 +25,7 @@ import { verticalPanelManager } from '@kit.AbilityKit';
 
 startVerticalPanel(context: common.UIAbilityContext, wantParam: Record\<string, Object>, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback): Promise\<void>
 
-用于拉起垂域面板，并配合在垂域面板上拉起应用时，自动展示分屏效果的场景。其中，分屏对象为源应用（[sourceAppInfo](#panelconfig)）和目标应用（面板上选择的应用）。目前仅面向系统应用开放。使用Promise异步回调。仅支持处于前台的应用调用。
+当应用处于前台时，开发者可以通过接口拉起垂域应用面板，来选择需要拉起的目标应用。使用Promise异步回调。源应用（[sourceAppInfo](#panelconfig)）作为使用入口应用，通过中间方（拉起方应用）拉起调用该接口，并进行导航面板的选择，选择目标应用且目标应用拉起成功后，源应用与目标应用将自动呈现分屏效果。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -35,10 +35,10 @@ startVerticalPanel(context: common.UIAbilityContext, wantParam: Record\<string, 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- |  -------- |
-| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 调用方应用的上下文。 |
-| wantParam | Record<string, Object> | 是 | 表示启动UIExtensionAbility组件时传递的参数。 |
-| panelConfig | [PanelConfig](#panelconfig) | 是 | 面板配置参数。 |
-| panelStartCallback | [PanelStartCallback](#panelstartcallback) | 是 | 拉起面板执行结果的回调。 |
+| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 拉起方应用的上下文。 |
+| wantParam | Record<string, Object> | 是 | 表示启动[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)组件时传递的参数。 |
+| panelConfig | [PanelConfig](#panelconfig) | 是 | 垂域应用面板配置参数。 |
+| panelStartCallback | [PanelStartCallback](#panelstartcallback) | 是 | 拉起垂域应用面板执行结果的回调。 |
 
 **返回值：**
 
@@ -85,7 +85,7 @@ struct Index {
     .width('100%');
   }
 
-  // 构造参数，调用startVerticalPanel，拉起垂域面板
+  // 构造参数，调用startVerticalPanel，拉起垂域应用面板
   callStartVerticalPanelNapi() {
     // Param[0] UIAbilityContext
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -137,18 +137,18 @@ struct Index {
 
 ## PanelConfig
 
-垂域面板的配置。
+垂域应用面板的配置。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [VerticalType](#verticaltype) | 否 | 否 | 垂域面板的类型。 |
-| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括bundleName、moduleName、abilityName、windowId和screenMode。在垂域面板中，选择并拉起目标应用时，源应用与目标应用自动形成分屏。 |
+| type | [VerticalType](#verticaltype) | 否 | 否 | 垂域应用面板的类型。 |
+| sourceAppInfo | Record<string, string> | 否 | 否 | 表示源应用的相关信息，包括bundleName、moduleName、abilityName、windowId和screenMode。在垂域应用面板中，选择并拉起目标应用时，源应用与目标应用自动形成分屏。 |
 
 ## VerticalType 
 
-提供拉起垂域面板选择器类型的枚举。
+提供拉起垂域应用面板选择器类型的枚举。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -156,11 +156,11 @@ struct Index {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NAVIGATION | 'navigation' | 指示导航的类型。wantParam参数内容，可参考[拉起导航类应用（startAbilityByType）](../../application-models/start-navigation-apps.md)扩展面板参数说明。 |
+| NAVIGATION | 'navigation' | 表示导航类应用。wantParam参数内容，可参考[拉起导航类应用（startAbilityByType）](../../application-models/start-navigation-apps.md)扩展面板参数说明。 |
 
 ## PanelStartCallback
 
-开启垂域面板的回调。
+开启垂域应用面板的回调。
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
@@ -168,8 +168,8 @@ struct Index {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| onError | [OnErrorFn](#onerrorfn) | 否 | 否 | 拉起垂域面板执行失败的回调。 |
-| onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 拉起垂域面板终止时的回调。 |
+| onError | [OnErrorFn](#onerrorfn) | 否 | 否 | 拉起垂域应用面板执行失败的回调。 |
+| onResult |  [OnResultFn](#onresultfn) | 否 | 是 | 拉起垂域应用面板终止时的回调。 |
 
 ## OnErrorFn
 
@@ -235,8 +235,8 @@ let callback: verticalPanelManager.PanelStartCallback = {
 
 | 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 常量字符串bundleName，可以作为[sourceAppInfo](#panelconfig)的key值。 |
-| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 常量字符串moduleName，可以作为[sourceAppInfo](#panelconfig)的key值。 |
-| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 常量字符串abilityName，可以作为[sourceAppInfo](#panelconfig)的key值。 |
-| SOURCE_APP_WINDOW_ID | string | 'windowId' | 常量字符串windowId，可以作为[sourceAppInfo](#panelconfig)的key值。 |
-| SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 常量字符串screenMode，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 常量字符串bundleName，表示源应用的包名，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 常量字符串moduleName，表示源应用的模块名，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 常量字符串abilityName，表示源应用的能力名，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_WINDOW_ID | string | 'windowId' | 常量字符串windowId，表示源应用的窗口Id，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 常量字符串screenMode，表示源应用的屏幕模式，当前只在值为'1'的分屏模式下能正常拉起垂类面板。可以作为[sourceAppInfo](#panelconfig)的key值。 |
