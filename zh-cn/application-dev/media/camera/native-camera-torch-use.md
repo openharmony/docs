@@ -46,14 +46,18 @@
    {
        // 判断设备是否支持手电筒模式。
        bool isTorchSupported = false;
+       if (cameraManager == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "cameraManager is nullptr.");
+           return isTorchSupported;
+       }
        Camera_ErrorCode ret = OH_CameraManager_IsTorchSupported(cameraManager, &isTorchSupported);
-       if (cameraManager == nullptr || ret != CAMERA_OK) {
-            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_IsTorchSupported failed.");
+       if (ret != CAMERA_OK) {
+           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_IsTorchSupported failed.");
        }
        if (isTorchSupported) {
-            OH_LOG_INFO(LOG_APP, "isTorchSupported success.");
+           OH_LOG_INFO(LOG_APP, "isTorchSupported success.");
        } else {
-            OH_LOG_ERROR(LOG_APP, "isTorchSupported failed.");
+           OH_LOG_ERROR(LOG_APP, "isTorchSupported failed.");
        }
        return isTorchSupported;
    }
@@ -67,7 +71,7 @@
    {
        bool torchModeSupported = false;
        Camera_ErrorCode ret = OH_CameraManager_IsTorchSupportedByTorchMode(cameraManager, torchMode, &torchModeSupported);
-       if (cameraManager == nullptr || ret != CAMERA_OK) {
+       if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_IsTorchSupported failed.");
        }
        if (torchModeSupported) {
