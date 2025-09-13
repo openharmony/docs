@@ -1,6 +1,12 @@
 # Overview of ArkGuard for Bytecode Obfuscation
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @oatuwwutao; @Valkisop_-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-ArkGuard offers basic bytecode obfuscation capabilities, transforming function names, class names, file names, and other identifiers into short, meaningless names, making it more difficult to infer the purpose of the code through inspection. In addition, the shortened names in the obfuscated bytecode sometimes help reduce the package size.
+Since API version 20, ArkGuard provides the basic bytecode obfuscation capability to convert function names, class names, and file names in code into short and meaningless names, making it more difficult to infer the purpose of the code by reading the code. In addition, the shortened names in the obfuscated bytecode sometimes help reduce the package size.
 
 This section describes how to use ArkGuard. It aims to assist you in efficiently applying obfuscation to your bytecode, thereby increasing its complexity and making reverse engineering more challenging.
 

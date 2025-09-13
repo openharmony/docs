@@ -1,4 +1,10 @@
 # GC
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @dwhuawei-->
+<!--Designer: @yingguofeng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 Garbage Collection (GC) is a process that identifies and reclaims memory no longer in use by a program. It aims to free up unused memory space. Modern programming languages implement two primary types of GC algorithms: reference counting and tracing GC.
 
@@ -11,7 +17,7 @@ Garbage Collection (GC) is a process that identifies and reclaims memory no long
 When object A is referenced by object B, A's reference count increases by 1. Conversely, when the reference is removed, A's reference count decreases by 1. When A's reference count reaches 0, object A is reclaimed.
 
 - Pros: Reference counting is simple to implement and allows for immediate memory reclamation, avoiding a dedicated Stop The World (STW) phase where the application is paused.
-- Cons: The extra counting step during object manipulation increases the overhead of memory allocation and assignment, affecting performance. More seriously, there is a risk of memory leaks caused by circular references.
+- Cons: The extra counting step during object manipulation increases the overhead of memory allocation and assignment, affecting performance. There is a risk of memory leaks caused by circular references.
 ```
 class Parent {
   constructor() {
@@ -34,35 +40,34 @@ function main() {
   child.parent = parent;
 }
 ```
-In the code above, the **parent** object holds a reference to the **child** object, incrementing the reference count of **parent**. Simultaneously, the **child** object is also held by the **parent** object, incrementing the reference count of **child**. This creates a circular reference, preventing both **parent** and **child** from being released until the **main** function ends, thereby causing a memory leak.
+In the code above, the **parent** object holds a reference to the **child** object, incrementing the reference count of **parent**. Simultaneously, the **child** object is also held by the **parent** object, incrementing the reference count of **child**. This forms a circular reference. As a result, the **parent** and **child** objects cannot be released until the main function ends, causing a memory leak.
 #### Tracking GC
 
 ![image](./figures/tracing-gc.png)
 
-Root objects include stack objects and global objects that are guaranteed to be alive at a given moment during program execution. Objects referenced by root objects are also considered alive. By traversing these references, all live objects can be identified. As illustrated in the diagram, starting from the root objects, objects and their fields are traversed. Objects that are reachable are marked in blue, indicating they are live; the remaining unreachable objects are marked in yellow, indicating they are garbage.
+Root objects include stack objects and global objects that are guaranteed to be alive at a given moment during program execution. All objects (reachable objects) that can be accessed through reference chains starting from root objects are alive. By traversing these references, all live objects can be identified. As illustrated in the diagram, starting from the root objects, objects that are reachable are marked in blue, indicating they are live; the remaining unreachable objects are marked in yellow, indicating they are garbage.
+
 - Pros: Tracing GC solves the circular reference problem and does not incur additional overhead during memory allocation and assignment.
-- Cons: Tracing GC is more complex than reference counting and introduces a brief STW phase. Additionally, GC can be delayed, leading to floating garbage.
+- Cons: Tracing GC is more complex than reference counting and introduces a brief STW phase. Moreover, GC can be delayed, leading to floating garbage.
 
 Both reference counting and object tracing algorithms have their pros and cons. Given the memory leak issues associated with reference counting, ArkTS Runtime opts for a GC design based on object tracing (tracing GC).
 
 ### Types of Tracing GC
 
-Tracing GC algorithms identify garbage by traversing the object graph. Based on the collection method, tracing GC can be categorized into three basic types: mark-sweep, mark-copy, and mark-compact. In the diagrams below, blue indicates live objects, whereas yellow indicates garbage.
+Tracing GC algorithms identify garbage by traversing objects. Based on the collection method, tracing GC can be categorized into three basic types: mark-sweep, mark-copy, and mark-compact. In the diagrams below, blue indicates live objects, whereas yellow indicates garbage.
 
 #### Mark-Sweep Collection
 
 ![image](./figures/mark-clearn.png)
-
-After traversing the object graph, the algorithm erases the contents of unreachable objects and places them in a free queue for future allocations. 
-
+  
+After traversing the object graph, the algorithm erases the contents of unreachable objects and places them in a free queue for future allocations.
 This approach is highly efficient as it does not move objects. However, since the memory addresses of the reclaimed objects are not contiguous, it can lead to memory fragmentation, which in turn reduces allocation efficiency. In extreme cases, even with a large amount of free memory, it may not be possible to allocate space for larger objects. 
 
 #### Mark-Copy Collection
 
 ![image](./figures/mark-copy.png)
 
-During the traversal of the object graph, reachable objects are copied to a new memory space. Once the traversal is complete, the old memory space is reclaimed in one go. 
-
+During the traversal of the object graph, reachable objects are copied to a new memory space. After the traversal is complete, the old memory space is reclaimed. 
 This approach eliminates memory fragmentation and completes the GC process in a single traversal, making it efficient. However, it requires reserving half of the memory space to ensure all live objects can be copied, resulting in lower space utilization.
 
 #### Mark-Compact Collection
@@ -70,16 +75,15 @@ This approach eliminates memory fragmentation and completes the GC process in a 
 ![image](./figures/mark-shuffle.png)
 
 After the traversal, live objects (blue) are copied to the beginning of the current space (or a designated area), and the copied objects are reclaimed and placed in the free list.
-
-This approach addresses memory fragmentation without wasting half of the memory space, though it incurs higher performance overhead when compared with mark-copy collection.
-
+- Pros: This method solves the problem of a large number of memory fragments caused by mark-sweep collection and avoids the waste of half of the memory space caused by mark-copy collection.
+- Cons: Compared with mark-copy collection, mark-compact collection has higher performance overhead.
 ### HPP GC
 
-High Performance Partial Garbage Collection (HPP GC) is designed for high performance in partial GC, leveraging generational models, hybrid algorithms, and optimized GC processes. In terms of algorithms, HPP GC uses different collection approaches based on different object regions.
+High Performance Partial Garbage Collection (HPP GC) is designed for high performance in partial GC, leveraging generational models, hybrid algorithms, and optimized GC processes. HPP GC uses different collection methods for different object areas.
 
 #### Generational Model
 
-ArkTS Runtime uses a traditional generational model, categorizing objects based on their lifetimes. Given that most newly allocated objects are short-lived and collected during the first GC cycle, whereas objects surviving multiple GC cycles are likely to remain alive, ArkTS Runtime divides objects into young and old generations, allocating them to separate spaces.
+ArkTS Runtime uses a traditional generational model, categorizing objects based on their lifetimes. Most newly allocated objects are reclaimed after one GC cycle, while most objects that survive multiple GC cycles continue to exist. ArkTS Runtime divides objects into young and old generations and allocates them to separate spaces.
 
 ![image](./figures/generational-model.png)
 
@@ -87,12 +91,12 @@ Newly allocated objects are placed in the **from** space of Young Space. After s
 
 #### Hybrid Algorithm
 
-HPP GC employs a hybrid algorithm combining mark-copy, mark-compact, and mark-sweep, tailored to the characteristics of young and old generation objects.
+HPP GC employs a hybrid algorithm combining mark-copy, mark-compact, and mark-sweep, tailored to the characteristics of young and old generation objects. 
 
 - Mark-copy for young generation
 Given the short lifetimes, small size, and frequent collection of young generation objects, ArkTS Runtime uses the mark-copy algorithm to efficiently reclaim memory for these objects.
 - Mark-compact + mark-sweep for old generation
-Based on the characteristics of old generation objects, a heuristic collection set (CSet) algorithm is used. The fundamental idea behind this algorithm is to collect the sizes of live objects in each region during the marking phase. During the collection phase, ArkTS Runtime uses mark-compact for regions with fewer live objects and lower collection costs, but mark-sweep for the remaining regions.
+Based on the characteristics of old generation objects, a heuristic collection set (CSet) algorithm is used. This algorithm collects the sizes of live objects in each region during the marking phase. During the collection phase, ArkTS Runtime uses mark-compact for regions with fewer live objects and lower collection costs, but mark-sweep for the remaining regions.
 
 The collection policies are as follows:
 
@@ -114,7 +118,7 @@ HPP GC introduces extensive concurrency and parallelism optimizations to minimiz
 
 ![image](./figures/gc-heap-space.png)
 
-- Semi Space: space for storing young generation, that is, newly created objects with low survival rates. The copying algorithm is used to reclaim memory.
+- Young Space: space for storing young generation, that is, newly created objects with low survival rates. The copying algorithm is used to reclaim memory.
 - Old Space: space for storing old generation, that is, objects that survive multiple GC cycles. Multiple algorithms are used for memory reclamation.
 - Huge Object Space: dedicated regions for storing large objects.
 - Read Only Space: space for storing read-only data at runtime.
@@ -122,7 +126,9 @@ HPP GC introduces extensive concurrency and parallelism optimizations to minimiz
 - Snapshot Space: space for storing heap snapshots.
 - Machine Code Space: space for storing machine codes.
 
-Each space is managed in regions, which are the units requested from the memory allocator.
+> **NOTE**
+>
+> Each space is managed in regions, which are the units requested from the memory allocator.
 
 ### Parameters
 
@@ -131,9 +137,7 @@ Each space is managed in regions, which are the units requested from the memory 
 > Parameters not marked as configurable are system-defined and cannot be adjusted by developers.
 
 Based on the total heap size ranges (64 MB to 128 MB, 128 MB to 256 MB, or greater than 256 MB), the system sets different sizes for the following parameters. If a parameter has a single value in the range, it remains constant regardless of the total heap size. The default total heap size for mobile phones is greater than 256 MB.
-
 You can use related APIs to query memory information by referring to [HiDebug API Reference](../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
-
 #### Heap Size Parameters
 
 | Name| Value or Value Range| Description|
@@ -146,7 +150,7 @@ You can use related APIs to query memory information by referring to [HiDebug AP
 
 #### Worker Thread Heap Limit
 
-| Name| Value| Description|
+| Name| Value or Value Range| Description|
 | --- | --- | --- |
 | HeapSize  | 768 MB | Heap size for worker threads.|
 
@@ -156,27 +160,27 @@ The heap contains two Semi Spaces for copying.
 | --- | --- | --- |
 | semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space. The value varies according to the total heap size.|
 | semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering concurrent marking in Semi Space for the first time.|
-| semiSpaceStepOvershootSize| 2 MB | Maximum overshoot size of Semi Space.|
+| semiSpaceStepOvershootSize| 2 MB| Maximum overshoot size of Semi Space.|
 
 #### Parameters of Old Space and Huge Object Space
 Both spaces are initialized to the remaining unallocated heap size. By default, the upper limit of OldSpaceSize of the main thread on mobile phones approaches 350 MB.
 
 | Name| Value or Value Range| Description|
 | --- | --- | --- |
-| oldSpaceOvershootSize | 4 MB/8 MB/8 MB | Maximum overshoot size of Old Space.|
+| oldSpaceOvershootSize | 4MB/8MB | Maximum overshoot size of Old Space.|
 
 #### Parameters of Other Spaces
 
 | Name| Value or Value Range| Description|
 | --- | --- | --- |
-| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space.|
+| defaultReadOnlySpaceSize | 256KB | Default size of Read Only Space.|
 | defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | Default size of Non-Movable Space.|
-| defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | Default size of Snapshot Space.|
-| defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | Default size of Machine Code Space.|
+| defaultSnapshotSpaceSize | 512KB/4MB | Default size of Snapshot Space.|
+| defaultMachineCodeSpaceSize | 2MB/8MB | Default size of Machine Code Space.|
 
 #### Interpreter Stack Size
 
-| Name| Value or Value Range| Description|
+| Name| Value| Description|
 | --- | --- | --- |
 | maxStackSize | 128 KB| Maximum size of the interpreter stack.|
 
@@ -184,19 +188,19 @@ Both spaces are initialized to the remaining unallocated heap size. By default, 
 
 | Name| Value| Description|
 | --- | --- | --- |
-| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**.|
+| gcThreadNum | 7 | Number of GC threads. The default value is 7. It can be set using `gc-thread-num`.|
 | MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool.|
 | MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool.|
 
-Note: The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is negative, the number of threads in the initialized thread pool is half of the number of CPU cores.
+The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is negative, the number of threads in the initialized thread pool is half of the number of CPU cores.
 
 #### Other Parameters
 
 | Name| Value| Description|
 | --- | --- | --- |
-| minAllocLimitGrowingStep | 2 M/4 M/8 M| Minimum growth step of **oldSpace**, **heapObject**, and **globalNative** when the heap size is recalculated.|
-| minGrowingStep | 4 M/8 M/16 M| Minimum growth step of **oldSpace**.|
-| longPauseTime | 40 ms| Threshold for identifying long GC pauses, which trigger detailed GC log printing for analysis. It can be set using **gc-long-paused-time**.|
+| minAllocLimitGrowingStep | 2MB/4MB/8MB | Minimum growth step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated.|
+| minGrowingStep | 4MB/8MB/16MB | Minimum growth step of **oldSpace**.|
+| longPauseTime | 40 ms| Threshold for identifying long GC pauses, which trigger detailed GC log printing for analysis. It can be set using `gc-long-paused-time`.|
 
 ## GC Process
 
@@ -220,10 +224,10 @@ Note: The thread pool is used to execute concurrent tasks in the GC process. Dur
 
 #### Full GC
 
-- **When to trigger**: Full GC is not triggered based on the memory threshold. After the application transitions to the background, full GC is triggered if the predicted reclaimable object size exceeds 2 MB. You can also trigger full GC using the DumpHeapSnapshot and AllocationTracker tools or calling native interfaces and ArkTS interfaces.
+- **When to trigger**: Full GC is not triggered based on the memory threshold. After the application transitions to the background, full GC is triggered if the predicted reclaimable object size exceeds 2 MB. You can also trigger full GC using the DumpHeapSnapshot and AllocationTracker tools or calling native APIs and ArkTS APIs.
 - **Description**: fully compacts both young and old generations, maximizing memory reclamation in performance-insensitive scenarios.
 - **Scenario**: background
-- **Log keywords**: [ CompressGC ]
+- **Log keywords**: `[ CompressGC ]`
 
 Subsequent Smart GC or IDLE GC selections are made from the above three types of GC.
 
@@ -238,15 +242,15 @@ Subsequent Smart GC or IDLE GC selections are made from the above three types of
 
 #### Native Binding Size Triggering
 
-- Functions: **GlobalNativeSizeLargerThanLimit**
-- Restriction parameters: **globalSpaceNativeLimit**
+- Functions: `GlobalNativeSizeLargerThanLimit`
+- Restriction parameters: `globalSpaceNativeLimit`
 - Description: It affects the decision for performing full marking and concurrent marking.
 
 #### Background Switch Triggering
 
-- Functions: **ChangeGCParams**
+- Functions: `ChangeGCParams`
 - Description: Full GC is triggered after the application switches to the background.
-- Log keywords: **app is inBackground**, **app is not inBackground**, and
+- Log keywords: `app is inBackground`, `app is not inBackground`, and
   **GCReason::SWITCH_BACKGROUND**
 
 ### Execution Strategies
@@ -267,17 +271,17 @@ Subsequent Smart GC or IDLE GC selections are made from the above three types of
 
 - Function: **AdjustOldSpaceLimit**
 - Description: adjusts the Old Space threshold based on the minimum growth step and average survival rate.
-- Log keyword: **AdjustOldSpaceLimit**
+- Log keyword: `AdjustOldSpaceLimit`
 
-#### Adjusting Old Space/Global Space Thresholds and Growth Factors After Subsequent Old GCs
+#### Adjusting Old Space and Global Space Thresholds and Growth Factors After Subsequent Old GCs
 
-- Function: **RecomputeLimits**
+- Function: `RecomputeLimits`
 - Description: recalculates and adjusts **newOldSpaceLimit**, **newGlobalSpaceLimit**, **globalSpaceNativeLimit**, and growth factors based on current GC statistics.
-- Log keyword: **RecomputeLimits**
+- Log keyword: `RecomputeLimits`
 
-#### CSet Selection Strategies for Partial GC
+#### CSet Selection Strategies for Partial Old GC
 
-- Function: **OldSpace::SelectCSet()**
+- Function: `OldSpace::SelectCSet()`
 - Description: selects regions with fewer live objects and lower collection costs for partial GC.
 - Typical Logs
     - Select CSet failure: number is too few
@@ -312,9 +316,9 @@ In performance-sensitive scenarios, the GC trigger threshold of the thread is te
 - Page transitions via clicks
 - Jumbo frame
 
-Currently, this feature is managed by the system, and third-party applications do not have APIs to directly call this feature.
+This feature is managed by the system, and third-party applications do not have APIs to directly call this feature.
 
-Log keyword: **SmartGC**
+Log keyword: `SmartGC`
 
 #### Interaction Process
 
@@ -339,7 +343,7 @@ hdc shell reboot
 
 ### Typical Logs
 
-The following logs represent a complete GC execution, with variations based on the type of GC. You can search for the keyword [gc] in the exported log file to view GC-related logs. You can also check for the keyword ArkCompiler to view more comprehensive VM-related logs.
+The following logs represent a complete GC execution, with variations based on the type of GC. You can search for the keyword `[gc]` in the exported log file to view GC logs. You can also check for the keyword `ArkCompiler` to view more comprehensive VM logs.
 
 ```
 // Pre-GC object size (region size) -> Post-GC object size (region size), total duration (+concurrentMark duration), GC trigger reason.
@@ -400,19 +404,19 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ## GC Developer Debugging Interfaces
 
 > **NOTE**
-> 
+>
 > The following interfaces are for debugging purposes only and are not official SDK interfaces. They should not be used in production applications.
 
 ### ArkTools.hintGC()
 
 - Invocation: **ArkTools.hintGC()**
 - Type: ArkTS interface
-- Description: triggers the VM to assess whether a full GC should be executed. Full GC is initiated if the expected memory survival rate is below a threshold. It will not trigger in sensitive scenarios.
+- After the call, the VM assesses whether a full GC should be executed. Full GC is initiated if the expected memory survival rate is below a threshold in the background scenarios. It will not trigger in sensitive scenarios.
 - Use case: developers prompting the system to perform GC.
-- Log keywords: There is no direct log. Only external trigger (**GCReason::TRIGGER_BY_JS**) can be found.
+- Log keywords: There is no direct log. Only external trigger (`GCReason::TRIGGER_BY_JS`) can be found.
 
 
-Usage example:
+**Usage example:**
 
 ```ts
 // Declare the interface first.
@@ -431,7 +435,7 @@ struct Index {
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
       Button("Trigger Hint GC").onClick((event: ClickEvent) => {
-          ArkTools.hintGC(); // Call the method directly.
+          ArkTools.hintGC();  // Call the method directly.
       })
     }
     .width('100%')
@@ -445,16 +449,16 @@ struct Index {
 
 ### GC Stability Issues
 
-Most GC stability issues are caused by two types of exceptions: invalid multithreading operations leading to object exceptions, and memory corruption issues leading to pointer exceptions. These issues typically manifest as address access exceptions in the GC task stack.
+GC stability issues are caused by two types of exceptions: object exceptions caused by invalid multithreading operations and pointer exceptions caused by memory access errors. These issues typically manifest as address access exceptions in the GC task stack.
 
-To identify GC tasks, look for thread names and methods within the stack. The OS_GC_Thread thread primarily handles GC tasks and PGO-related tasks (collection tasks); keywords like GCTask in the stack can be used to identify GC tasks. When GC tasks report crashes with address exceptions, you should first investigate invalid multithreading and memory corruption issues.
+To identify GC tasks, look for thread names and methods within the stack. The `OS_GC_Thread` thread primarily handles GC tasks and PGO-related tasks (collection tasks); keywords like `GCTask` in the stack can be used to identify GC tasks. When GC tasks report crashes with address exceptions, you should first investigate invalid multithreading and memory access issues.
 
 - For details about how to check for invalid multithreading operations, see [ArkCompiler Runtime Detection](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-multi-thread-check).
 - For details about how to detect memory corruption, see [HWASan: Detecting Memory Errors](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hwasan).
 
 The following examples list only some scenarios. The actual reported address exceptions can vary widely and are not detailed here.
 
-Typical stack information about object exceptions:
+Common stack information about object exceptions:
 
 0xffff000000000048 is an object exception offset error.
 
@@ -473,7 +477,7 @@ Tid:6490, Name:OS_GC_Thread
 #08 pc 000000000064f718 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
 #09 pc 00000000001ba6b8 /system/lib/ld-musl-aarch64.so.1(start+236)(8102fa8a64ba5e1e9f2257469d3fb251)
 ```
-Typical stack information about pointer exceptions:
+Common stack information about pointer exceptions:
 
 0x000056c2fffc0008 indicates that the pointer is abnormal and the pointer mapping is incorrect.
 

@@ -1,4 +1,10 @@
 # CPU Intensive Task Development (TaskPool and Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 CPU intensive tasks are those that require significant computational resources and can run for extended periods. If executed in the UI main thread, these tasks can block other events. Examples include image processing, video encoding, and data analysis.
@@ -16,13 +22,13 @@ The following examples illustrate how to handle image histogram processing using
 
 1. Implement the logic of image processing.
 
-2. Segment the data, and schedule related tasks using a TaskGroup.
-
+2. Segment the data, and schedule related tasks using a task group.
    Create a [task group](../reference/apis-arkts/js-apis-taskpool.md#taskgroup10), call [addTask()](../reference/apis-arkts/js-apis-taskpool.md#addtask10) to add tasks, and call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute10) to execute the tasks in the task group, specifying [high priority](../reference/apis-arkts/js-apis-taskpool.md#priority). After all the tasks in the group are complete, the histogram processing result is returned collectively.
 
 3. Aggregate and process the result arrays.
 
 ```ts
+// Index.ets
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
@@ -45,6 +51,7 @@ function histogramStatistic(pixelBuffer: ArrayBuffer): void {
 
   taskpool.execute(group, taskpool.Priority.HIGH).then((ret: Object) => {
     // Step 3: Aggregate and process the result arrays.
+    console.info('execute group success');
   })
 }
 
@@ -70,7 +77,7 @@ struct Index {
   }
 }
 ```
-<!-- @[process_image_histogram](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
+<!-- @[process_image_histogram](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
 
 
 ## Using Worker for Time-Consuming Data Analysis
@@ -81,56 +88,44 @@ This example demonstrates training a simple housing price prediction model using
 
    ![newWorker](figures/newWorker.png)
 
-2. In the host thread, call [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) of **ThreadWorker** to create a Worker object.
+2. In the host thread, call the [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) method of **ThreadWorker** to create a Worker object, register the [onmessage()](../reference/apis-arkts/js-apis-worker.md#properties-1) callback to receive messages from the Worker thread, and call the [postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9) method to send messages to the Worker thread.
+  For example, the host thread sends training and prediction messages to the Worker thread and receive responses.
 
     ```ts
     // Index.ets
-    import { worker } from '@kit.ArkTS';
+    import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
-    ```
 
-3. In the host thread, call [onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9) to receive messages from the Worker thread, and call [postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9) to send messages to the Worker thread.
-
-   For example, the host thread sends training and prediction messages to the Worker thread and receive responses.
-
-    ```ts
-    // Index.ets
     let done = false;
 
     // Receive results from the Worker thread.
-    workerInstance.onmessage = (() => {
+    workerInstance.onmessage = (event: MessageEvents) => {
       console.info('MyWorker.ets onmessage');
       if (!done) {
         workerInstance.postMessage({ 'type': 1, 'value': 0 });
         done = true;
       }
-    })
+    }
 
-    workerInstance.onAllErrors = (() => {
+    workerInstance.onAllErrors = (err: ErrorEvent) => {
       // Receive error messages from the Worker thread.
-    })
+    }
 
     // Send a training message to the Worker thread.
     workerInstance.postMessage({ 'type': 0 });
     ```
-    <!-- @[call_worker_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
+    <!-- @[call_worker_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
 
-4. Bind the Worker object in the **MyWorker.ets** file. The calling thread is the Worker thread.
-
-   ```ts
-   // MyWorker.ets
-   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
-
-   let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-   ```
-
-5. In the Worker thread, call [onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9-1) to receive messages sent by the host thread, and call [postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2) to send messages to the host thread.
-
+3. Bind the Worker object in the **MyWorker.ets** file. The calling thread is the Worker thread. In the Worker thread, register the [onmessage()](../reference/apis-arkts/js-apis-worker.md#properties-2) callback to receive messages sent by the host thread, and call [postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2) to send messages to the host thread.
     For example, define the prediction model and training process in the Worker thread and interact with the host thread.
 
     ```ts
     // MyWorker.ets
+    import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
     // Define the training model and results.
     let result: Array<number>;
     // Define the prediction function.
@@ -163,11 +158,11 @@ This example demonstrates training a simple housing price prediction model using
      }
     }
     ```
-    <!-- @[interact_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
+    <!-- @[interact_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
 
-6. After the task is completed, destroy the Worker thread. The Worker thread can be destroyed by itself or the host thread.
+4. After the task is completed, destroy the Worker thread. The Worker thread can be destroyed by the host thread or by itself.
 
-    After the Worker thread is destroyed, call [onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9) in the host thread to define the logic for handling the destruction.
+    After the Worker thread is destroyed, call [onexit()](../reference/apis-arkts/js-apis-worker.md#properties-1) in the host thread to define the logic for handling the destruction.
 
     ```ts
     // Index.ets
@@ -192,4 +187,4 @@ This example demonstrates training a simple housing price prediction model using
     // Destroy the Worker thread.
     workerPort.close();
     ```
-    <!-- @[after_destroy_callback](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
+    <!-- @[after_destroy_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->

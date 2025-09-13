@@ -1,45 +1,51 @@
 # Common Issues with ArkGuard in Source Code Obfuscation
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zju-wyx-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## Troubleshooting Functional Issues
 
 ### Procedure
-1. Configure the **-disable-obfuscation** option in the **obfuscation-rules.txt** file to disable obfuscation, and check whether the issue is caused by obfuscation.
-2. If the issue is related to obfuscation, review the documentation for the following options and understand when to configure trustlists to avoid issues: The following briefly describes the four retention options that are enabled by default. For details about the four retention options, see the complete description of the corresponding options. 
+1. Configure the `-disable-obfuscation` option in the `obfuscation-rules.txt` file to disable obfuscation, and check whether the issue is caused by obfuscation.
+2. If the issue is related to obfuscation, review the documentation to understand the capabilities of obfuscation rules and understand when to configure trustlists to avoid issues. The following describes the four options that are enabled by default. For details, see the description of each option.
     1. [-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation): obfuscates top-level scope names.
 
     2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation): obfuscates property names. Use [-keep-property-name](source-obfuscation.md#-keep-property-name) to configure a trustlist for property names used in network calls, JSON field, dynamic accesses, and so library interfaces.
 
-    3. [-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation): obfuscates exported names. Generally, it is used together with **-enable-toplevel-obfuscation** and **-enable-property-obfuscation**. Use [-keep-global-name](source-obfuscation.md#-keep-global-name) to configure a trustlist for exported/imported interfaces.
+    3. [-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation): obfuscates imported or exported names. Generally, this option is used together with `-enable-toplevel-obfuscation` and `-enable-property-obfuscation`. You need to use [-keep-global-name](source-obfuscation.md#-keep-global-name) to configure a trustlist for exported or imported names in scenarios where external APIs of the module cannot be obfuscated.
 
     4. [-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation): obfuscates file names. Use [-keep-file-name](source-obfuscation.md#-keep-file-name) to configure a trustlist for file paths and names in dynamically import or runtime loading scenarios.
-3. If your issue matches any cases listed below, apply the suggested solutions.
+3. If your issue matches any typical cases listed below, apply the suggested solutions.
 4. If the issue is not covered, use a positive approach to identify the problem (remove specific configuration items if the corresponding functionality is not needed).
 5. Analyze runtime crashes as follows:
-    1. Open the application runtime logs or click the **Crash** dialog box in DevEco Studio to find the crash stack.
-
-    2. The line numbers in the crash stack match the [compiled product](source-obfuscation-guide.md#viewing-obfuscation-effects), and method names might be obfuscated. Therefore, you are advised to check the compiled product based on the crash stack, analyze the names that cannot be obfuscated, and add them to the trustlist.
+    1. Open the application runtime logs or click the** Crash** dialog box in DevEco Studio to find the crash stack.
+    2. The line numbers in the exception stack match the [compiled product](source-obfuscation-guide.md#viewing-obfuscation-effects), and method names might be obfuscated. Therefore, you are advised to check the compiled product based on the exception stack, analyze the names that cannot be obfuscated, and add them to the trustlist.
 6. Analyze functional exceptions (for example, white screens) as follows:
     1. Opening the application runtime logs: Select HiLog and search for logs directly related to the exceptions.
 
     2. Locating the problematic code segment: Identify the specific code block causing the exceptions through log analysis.
 
-    3. Enhancing log output: Add log records for data fields in the suspected code segment.
+    3. Enhancing log output: Add log printing in the suspected code to check whether the data is normal.
 
     4. Analyzing and identifying critical fields: Determine if the data exception is caused by obfuscation through the enhanced log output.
 
     5. Configuring a trustlist for critical fields: Add fields that directly affect application functionality after obfuscation to the trustlist.
 
-#### Troubleshooting Unexpected Obfuscation Behavior
+### Troubleshooting Unexpected Obfuscation Behavior
 If unexpected obfuscation behavior occurs, check whether certain obfuscation options are configured for the dependent local modules or third-party libraries.
 
 Example:
-
-If **-compact** is not configured for the current module, but the code in the obfuscated intermediate product is compressed into a single line, perform the following steps:
+If `-compact` is not configured for the current module, but the code in the obfuscated intermediate product is compressed into a single line, perform the following steps:
 
 1. Check the **dependencies** field in the **oh-package.json5** file of the current module to identify dependencies.
 2. Search for **-compact** in the obfuscation configuration file of the dependent modules or third-party libraries.
     * Search for **-compact** in the **consumer-rules.txt** file in the local libraries.
     * Search for **-compact** in all **obfuscation.txt** files in the project-level **oh_modules** directory.
+
+From API version 18 onwards, the obfuscation options in the `obfuscation.txt` file of third-party libraries are not merged in the main module by default. The retained options are still valid.
 
 > **NOTE**
 > 
@@ -50,31 +56,301 @@ If **-compact** is not configured for the current module, but the code in the ob
 > -remove-log  
 > -compact
 
-## Property Obfuscation Issues
+## Typical Error Cases and Solutions
 
-### Database Field Errors When Property Name Obfuscation is Enabled
+### "Error message: Cannot read property xxx of undefined"
 
 **Symptom**
 
-The error message is "table Account has no column named a23 in 'INSET INTO Account(a23)'."
+The obfuscation rule configuration is as follows:
+
+```
+-enable-property-obfuscation
+```
+
+The sample code is as follows:
+
+```ts
+// Example JSON file structure (test.json):
+/*
+{
+  "jsonObj": {
+    "jsonProperty": "value"
+  }
+}
+*/
+
+// Before obfuscation:
+import jsonData from "./testjson";
+
+let jsonProp = jsonData.jsonObj.jsonProperty;
+
+// After obfuscation:
+import jsonData from "./test.json";
+
+let jsonProp = jsonData.i.j;
+```
 
 **Possible Causes**
 
-The SQL statement uses database field names that are obfuscated, whereas the database expects the original names.
+After property obfuscation is enabled, the source code will be obfuscated, but the JSON file will not. When the property is accessed using `jsonData.i` in the source code, the property name has been obfuscated, and the corresponding field does not exist in the JSON data. As a result, the obtained value is `undefined`.
 
 **Solution**
 
-Use the **-keep-property-name** option to add the database fields to the trustlist.
+Add the fields used in JSON files to the property trustlist. Example:
+
+```
+-keep-property-name
+jsonObj
+jsonProperty
+```
+
+### "Error message: is not callable"
+
+**Scenario 1: Exported Method in Namespace with Mismatched Obfuscation**
+
+**Symptom**
+
+The obfuscation rule configuration is as follows:
+
+```
+-enable-toplevel-obfuscation
+-enable-export-obfuscation
+```
+
+The sample code is as follows:
+
+```ts
+// Before obfuscation:
+// export.ts
+export namespace NS {
+  export function foo() {}
+}
+
+// import.ts
+import { NS } from './export';
+
+NS.foo();
+```
+
+```ts
+// After obfuscation:
+// export.ts
+export namespace i {
+  export function j() {}
+}
+
+// import.ts
+import { i } from './export';
+
+i.foo();
+```
+
+**Possible Causes**
+
+**foo** in the namespace is an export element and is considered as a property when being called by `NS.foo`. Because the `-enable-property-obfuscation` option is not configured, the property name is not obfuscated during the call.
+
+**Solution**
+
+Solution 1: Configure the `-enable-property-obfuscation` option.
+
+Solution 2: Use the `-keep-global-name` option to configure the methods exported from the namespace to the trustlist. Example:
+
+```
+-keep-global-name
+foo
+```
+
+**Scenario 2: Dynamic Import of a Class with Mismatched Obfuscation**
+
+**Symptom**
+
+The obfuscation rule configuration is as follows:
+
+```
+-enable-toplevel-obfuscation
+-enable-export-obfuscation
+```
+
+The sample code is as follows:
+
+```ts
+// Before obfuscation:
+// utils.ts
+export function addNum(a: number, b: number): number {
+  return a + b;
+}
+
+// main.ts
+async function loadAndUseAdd() {
+  try {
+    const mathUtils = await import('./utils');
+    const result = mathUtils.addNum(2, 3);
+  } catch (error) {
+    console.error('Failure reason:', error);
+  }
+}
+
+loadAndUseAdd();
+```
+
+```ts
+// After obfuscation:
+// utils.ts
+export function c1(d1: number, e1: number): number {
+    return d1 + e1;
+}
+
+// main.ts
+async function i() {
+    try {
+        const a1 = await import("@normalized:N&&&entry/src/main/ets/pages/utils&");
+        const b1 = a1.addNum(2, 3);
+    }
+    catch (z) {
+        console.error('Failure reason:', z);
+    }
+}
+i();
+```
+
+**Possible Causes**
+
+The **addNum** function is in the top-level scope when it is defined, but is considered as a property when it is accessed through `.addNum`. Because the `-enable-property-obfuscation` option is not configured, the property name is not obfuscated during the call.
+
+**Solution**
+
+Solution 1: Configure the **-enable-property-obfuscation** option.
+
+Solution 2: Use `-keep-global-name` to configure **add** to the trustlist. Example:
+
+```txt
+-keep-global-name
+addNum
+```
+
+**Scenario 3: Crash Caused by Calling Methods in SO Library**
+
+**Symptom**
+
+The obfuscation rule configuration is as follows:
+
+```
+-enable-property-obfuscation
+-enable-export-obfuscation
+```
+
+The sample code is as follows:
+
+```ts
+// src/main/cpp/types/libentry/Index.d.ts
+export const addNum: (a: number, b: number) => number;
+```
+
+```ts
+// example.ets
+// Before obfuscation:
+import testNapi from 'libentry.so';
+
+testNapi.addNum();
+```
+
+```ts
+// example.ets
+// After obfuscation:
+import testNapi from "@normalized:Y&&&libentry.so&";
+
+testNapi.m();
+```
+
+**Possible Causes**
+
+The obfuscation tool only supports obfuscation of `js/ts/ets` code. Methods in the SO library are defined at the C++ level, so they remain unobfuscated where they are defined. However, when these methods are called from other places, the calling code gets obfuscated.
+
+**Solution**
+
+Add the methods exported from the SO library to the property trustlist. Example:
+
+```txt
+-keep-property-name
+addNum
+```
+
+### Error Message: 'module1/file1' does not provide an export name 'x', which is imported by 'module2/file2'
+
+**Symptom**
+
+The obfuscation rule configuration for the main module and HSP module is as follows:
+
+```
+-enable-toplevel-obfuscation
+-enable-export-obfuscation
+```
+
+The sample code is as follows:
+
+```ts
+// Before obfuscation:
+// HSP module
+export function addNum() {}
+
+// Entry module
+import { addNum } from 'hsp';
+
+addNum();
+```
+
+```ts
+// After obfuscation:
+// HSP module
+export function b() {}
+
+// Entry module
+import { n } from '@normalized:N&myhsp&&myhsp/Index&';
+
+n();
+```
+
+**Possible Causes**
+
+When both `-enable-toplevel-obfuscation` and `-enable-export-obfuscation` are configured, the obfuscation of the main module and called module is as follows:
+
+| Main Module| Dependent Module| Imported/Exported Name Obfuscation|
+| ------- | ------- | ----------------------------|
+| HAP/HSP | HSP     | The HSP and main module are independently compiled, resulting in inconsistent obfuscated names. Both need trustlist configurations.|
+| HAP/HSP | Local HAR| The local HAR is compiled together with the main module, resulting in consistent obfuscated names.|
+| HAP/HSP | Third-party library | Exported names and their properties in third-party libraries are collected into the trustlist, so they are not obfuscated during import/export.|
+
+HAP and HSP modules are compiled independently. As a result, the import and export names are different after obfuscation, and an error is reported when HAP references methods of HSP.
+
+**Solution**
+
+Configure the methods exported by the HSP module under `-keep-global-name`, and make corresponding configurations in both the `consumer-rules.txt` and `obfuscation-rules.txt` files of the HSP. Example:
+
+```txt
+// consumer-rules.txt
+-keep-global-name
+addNum
+
+// obfuscation-rules.txt
+-keep-global-name
+addNum
+```
+
+## Exception Without Crash Information After App Launch
 
 ### Properties Obfuscated When Record<string, Object> Is Used as an Object Type
 
 **Symptom**
 
-When **Record<string, Object>** is used as an object type, properties like **linkSource** are obfuscated, causing the error. Example:
+When `Record<string, Object>` is used as an object type, properties like `linkSource` are obfuscated, causing the error.
 
-```
+The sample code is as follows:
+
+```ts
 // Before obfuscation:
 import { Want } from '@kit.AbilityKit';
+
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
   uri: 'maps://',
@@ -84,9 +360,10 @@ let petalMapWant: Want = {
 }
 ```
 
-```
+```ts
 // After obfuscation:
 import type Want from "@ohos:app.ability.Want";
+
 let petalMapWant: Want = {
     bundleName: 'com.example.myapplication',
     uri: 'maps://',
@@ -98,7 +375,7 @@ let petalMapWant: Want = {
 
 **Possible Causes**
 
-In this example, the object's properties need to be passed to the system to load a specific page, so the property names should not be obfuscated. The type **Record<string, Object>** is a generic definition for an object with string keys and does not describe the internal structure or property types in detail. Therefore, the obfuscation tool cannot identify which properties should not be obfuscated, leading to the obfuscation of internal property names like **linkSource**.
+The type `Record<string, Object>` is a generic definition for an object with string keys and does not describe the internal properties in detail. Therefore, the obfuscation tool cannot identify which properties should not be obfuscated. As a result, after `linkSource` is obfuscated, an exception occurs.
 
 **Solution**
 
@@ -113,7 +390,7 @@ linkSource
 
 **Symptom**
 
-The following obfuscation configuration is used:
+The obfuscation rule configuration is as follows:
 
 ```
 -enable-property-obfuscation
@@ -121,9 +398,11 @@ The following obfuscation configuration is used:
 ./file1.ts
 ```
 
-**file2.ts** imports an interface from **file1.ts**, and the interface contains object-type properties. As a result, these properties are retained in **file1.ts** but obfuscated in **file2.ts**, leading to function exceptions. Example:
+Import an API of `file1.ts` to `file2.ts`. The API contains an object property, which is retained in `file1.ts` but obfuscated in `file2.ts`. As a result, an exception occurs during invoking.
 
-```
+The sample code is as follows:
+
+```ts
 // Before obfuscation:
 // file1.ts
 export interface MyInfo {
@@ -135,6 +414,7 @@ export interface MyInfo {
 
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -143,11 +423,19 @@ const person: MyInfo = {
 }
 ```
 
-```
+```ts
 // After obfuscation:
-// The code of file1.ts is retained.
+// file1.ts
+export interface MyInfo {
+  age: number;
+  address: {
+    city1: string;
+  }
+}
+
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -158,13 +446,13 @@ const person: MyInfo = {
 
 **Possible Causes**
 
-The **-keep** option retains the code in the **file1.ts** file, but properties within exported types (for example, **address**) are not automatically added to the trustlist. Therefore, these properties are obfuscated when being used in other files.
+The `-keep` option retains the code in the `file1.ts` file, but properties within exported types (for example, **address**) are not automatically added to the property trustlist. Therefore, the properties are obfuscated when being used in other files.
 
 **Solution**
 
-Solution 1: Define the property type using **interface** and export it. This will automatically add the property to the trustlist. Example:
+Solution 1: Define the property type using `interface` and export it. This will automatically add the property to the trustlist. Example:
 
-```
+```ts
 // file1.ts
 export interface AddressType {
   city1: string;
@@ -186,150 +474,43 @@ city1
 
 **Symptom**
 
-```
+```ts
 // Before obfuscation:
-person["age"] = 22;
-```
-
-```
-// After obfuscation:
-person["b"] = 22;
-```
-
-**Possible Causes**
-
-A dependent module may have enabled string property name obfuscation, affecting the main module.
-
-**Solution**
-
-Solution 1: Check whether any dependent modules have enabled string property name obfuscation. If yes, disable it. For details, see [Troubleshooting Unexpected Obfuscation Behavior](source-obfuscation-questions.md#troubleshooting-unexpected-obfuscation-behavior). 
-
-Solution 2: If the problematic module cannot be identified, add the string literal property names to the trustlist directly.
-
-## Inconsistent Imported/Exported Names
-
-### Dynamic Import of a Class with Mismatched Obfuscation
-
-**Symptom**
-
-When **-enable-property-obfuscation** is not configured, dynamically importing a class results in the class being obfuscated during its definition, but not during the call, causing the error.
-
-```
-// Before obfuscation:
-// file1.ts
-export class Test1 {}
-// file2.ts
-let mytest = (await import('./file1')).Test1;
-```
-
-```
-// After obfuscation:
-// file1.ts
-export class w1 {}
-// file2.ts
-let mytest = (await import('./file1')).Test1;
-```
-
-**Possible Causes**
-
-The exported class **Test1** is a top-level domain name. When being dynamically used, it is a property. Because the **-enable-property-obfuscation** option is not configured, the class name is confused, but the property name is not.
-
-**Solution**
-
-Use **-keep-global-name** to add **Test1** to the trustlist.
-
-### Exported Method in Namespace with Mismatched Obfuscation
-
-**Symptom**
-
-When **-enable-property-obfuscation** is not configured, the definition of the method in the namespace is obfuscated, but not obfuscated during the call, causing the error.
-
-```
-// Before obfuscation:
-//file1.ts
-export namespace ns1 {
-  export class person1 {}
+const person = {
+  myAge: 18
 }
-//file2.ts
-import {ns1} from './file1';
-let person1 = new ns1.person1();
+person["myAge"] = 20;
 ```
 
-```
+```ts
 // After obfuscation:
-//file1.ts
-export namespace a3 {
-  export class b2 {}
+const person = {
+  myAge: 18
 }
-//file2.ts
-import {a3} from './file1';
-let person1 = new a3.person1();
+person["m"] = 20;
 ```
 
 **Possible Causes**
 
-**person1** in the namespace is an exported element. When being called through **ns1.person1**, it is a property. Because the **-enable-property-obfuscation** option is not configured, the property name is not obfuscated during the call.
+`-enable-string-property-obfuscation` is configured in the `consumer-rules.txt` file of other modules on which the main module depends. The main module combines this option, resulting in the obfuscation of string literal property names.
 
 **Solution**
 
-Solution 1: Configure the **-enable-property-obfuscation** option.
-Solution 2: Use the **-keep-global-name** option to add the methods exported from the namespace to the trustlist.
+Since API version 18, the obfuscation rules of third-party libraries are not affected by the main module by default. If the API version is earlier than 18, you can use either of the following solutions:
 
-## Inter-Module Dependency Issues
+Solution 1: Check whether the `-enable-string-property-obfuscation` option is configured in the `obfuscation.txt` file of the remote HAR. If it is configured, the main module will be affected. In this case, you need to disable it. For details, see [Troubleshooting Unexpected Obfuscation Behavior](source-obfuscation-questions.md#troubleshooting-unexpected-obfuscation-behavior).
+Solution 2: If the project is complex and the remote HAR that contains the obfuscation option cannot be found, you can add the property name to the trustlist.
 
-### Incorrect Obfuscation of HSP Module Exports
+### Exception Caused by Obfuscated Database Fields
 
 **Symptom**
 
-The exported interfaces of an HSP module are incorrectly obfuscated in the main module.
-
-```
-// Before obfuscation:
-import { MyHspClass } from "myhsp";
-new MyHspClass().myHspMethod();
-```
-
-```
-// After obfuscation:
-import { t } from "@normalized:N&myhsp&&myhsp/Index&";
-new t().a1();
-```
+The error information in the hilog file is as follows: `table Account has no column named a23 in 'INSERT INTO Account(a23)'`
 
 **Possible Causes**
 
-When **-enable-export-obfuscation** and **-enable-toplevel-obfuscation** are configured, the following scenarios apply to method name obfuscation when the main module calls methods from other modules:
-
-| Main Module| Dependent Module| Imported/Exported Name Obfuscation|
-| ------- | ------- | ----------------------------|
-| HAP/HSP | HSP     | The HSP and main module are independently compiled, resulting in inconsistent obfuscated names. Both need trustlist configurations.|
-| HAP/HSP | Local HAR| The local HAR is compiled together with the main module, resulting in consistent obfuscated names.|
-| HAP/HSP | Third-party library | Exported names and their properties in third-party libraries are collected into the trustlist, so they are not obfuscated during import/export.|
+The SQL statement uses obfuscated field names, whereas the database expects the original names.
 
 **Solution**
 
-To enable other modules to correctly call the methods of the HSP module, add a trustlist. Since both the main module and the HSP module need consistent trustlist configurations, follow these steps:
-
-1. Add the trustlist to the obfuscation configuration file (for example, **hsp-white-list.txt**) of the HSP module.
-2. In the obfuscation configuration of other modules that depend on the HSP module, include this configuration file via the **files** field.
-This ensures consistent trustlist configurations and avoids redundant maintenance. The configuration method is shown in the figure below.
-
-![obfuscation-config](figures/obfuscation-config.png)
-
-### Singleton Function Exceptions and Interface Call Failures in HAP and HSP with a Shared Local Source Code HAR
-
-**Symptom**
-
-* If file name obfuscation is enabled, the following issue may occur:
-  * Singleton function exceptions: The reason is that the HAP and HSP modules execute independent build and obfuscation processes. The same file names in the shared local source code HAR may be obfuscated differently in the HAP and HSP packages.
-  * Interface call failures: The reason is that the HAP and HSP modules execute independent build and obfuscation processes. Different file names in the shared local source code HAR may be obfuscated to the same name in the HAP and HSP packages.
-* If **-enable-export-obfuscation** and **-enable-toplevel-obfuscation** are configured, the interface loading failures may occur at runtime.
-
-**Possible Causes**
-
-The HAP and HSP modules execute independent build and obfuscation processes, resulting in different obfuscated names for the interfaces exposed by the shared local source code HAR.
-
-**Solution**
-
-Solution 1: Change the shared local source code HAR to a [bytecode HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415). This prevents the HAR from being re-obfuscated when being depended upon.
-
-Solution 2: Build the shared local source code HAR in [release mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410). This ensures that file names and exported interfaces are not obfuscated when the HAR is depended upon.
+Use the `-keep-property-name` option to add the database fields to the trustlist.

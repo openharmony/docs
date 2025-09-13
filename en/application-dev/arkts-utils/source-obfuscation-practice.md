@@ -1,8 +1,14 @@
 # Package-specific Source Code Obfuscation Recommendations
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zju-wyx-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-Different package types serve various purposes and have distinct build processes. This requires you to consider different aspects when applying obfuscation. This topic provides tailored recommendations for three types of packages: [HAP](../quick-start/hap-package.md), [HAR](../quick-start/har-package.md), and [HSP](../quick-start/in-app-hsp.md), aiming to help you effectively implement obfuscation.
+Different package types serve distinct purposes and have unique build processes, which means you need to consider different factors when applying obfuscation. This topic offers tailored recommendations for three package types: [HAP](../quick-start/hap-package.md), [HAR](../quick-start/har-package.md), and [HSP](../quick-start/in-app-hsp.md), aiming to help you implement obfuscation effectively.
 
-To better understand the obfuscation behavior across different package types, you should familiarize yourself with the principles of obfuscation and the process of enabling it. You are also recommended to read [Application Package Structure in Stage Model](../quick-start/application-package-structure-stage.md) to grasp the differences between package types.
+To better understand how obfuscation works with different package types, you are advised to first gain a thorough understanding of [obfuscation principles](./source-obfuscation.md) and the [obfuscation enabling process](./source-obfuscation-guide.md#how-to-use) before configuring settings for specific package types. You are also advised to read [Application Package Structure in Stage Model](../quick-start/application-package-structure-stage.md) to familiarize yourself with the differences between package types.
 
 ## Recommended Obfuscation Options
 
@@ -18,7 +24,7 @@ After the option configuration, you must configure the corresponding trustlists 
 - For new applications, you are advised to configure these options from the start and gradually add trustlist configurations as needed during development.
 - For existing applications, configure these options one by one in the suggested order. Compare the obfuscation products to understand the impact of each option, and refer to [Obfuscation Configuration Guidelines](source-obfuscation-guide.md#obfuscation-configuration-guidelines) for troubleshooting.
 
-Once the application functions correctly, you can enable additional features like code compression (**-compact**) and log removal (**-remove-log**) to prepare the release package.
+Once the application is functioning correctly, you can enable additional features such as code compression (`-compact`) and log removal (`-remove-log`) to enhance the code obfuscation effect and prepare the release package.
 
 ## HAP Package Obfuscation Recommendations
 
@@ -30,7 +36,7 @@ Once the application functions correctly, you can enable additional features lik
     - When your HAP depends on a released source code HAR package, its code in the project-level **oh_modules** directory is obfuscated together with your HAP. The original and obfuscated names in this code will appear in the **obfuscation/nameCache.json** file of the HAP.
     - When your HAP depends on a released bytecode HAR package or HSP package, only the binary bytecode and declaration files are used for compilation. Since ArkGuard supports only source code obfuscation, these files are not obfuscated. (This also maintains the consistency between the interfaces in the declaration file and those in the binary file.) However, if third-party libraries lack proper interface declarations or trustlist configurations in **consumer-rules**, their interfaces may be accidentally obfuscated. You should manually configure trustlists to ensure runtime correctness.
 
-4. To ensure the correctness of the interaction with third-party libraries in the release state, ArkGuard automatically collects exported names and related properties from dependent modules in **oh_modules** and adds them to a trustlist. Since you can reference files from any path within the dependent modules, this collection includes exported names from both entry files (such as **Index.ets**) and all files of the third-party libraries in **oh_modules**.
+4. To ensure correct interaction with third-party libraries in the release state, ArkGuard automatically adds the export names and related properties of remote HARs in the project-level `oh_modules` directory to a trustlist. Since you can reference files from any path within the dependent modules, this collection includes exported names from both entry files (such as `Index.ets`) and all files in `oh_modules`.
 
 5. For local source code HAR packages and local HSP packages, ArkGuard does not automatically collect exported names in all files and add them to a trustlist.
 
@@ -45,7 +51,7 @@ Once the application functions correctly, you can enable additional features lik
     | [Integrated HSP package](#integrated-hsp-package)| Binary bytecode and declaration files| No| Yes| Yes|
 
 6. Identify the [scenarios that require trustlist configurations](source-obfuscation.md#retention-options), and configure a trustlist in **obfuscation-rules.txt**.
-7. Build and verify the HAP package. If issues arise, review the trustlist configurations.
+7. Build and verify the HAP. If issues arise, check whether the trustlist is complete.
 8. Once the HAP functions correctly, you can release the package.
 
 ## HAR Package Obfuscation Recommendations
@@ -61,6 +67,12 @@ Once the application functions correctly, you can enable additional features lik
 ### Local Source Code HAR Package
 
 As unreleased static packages, local source code HAR packages are compiled and obfuscated together with the main module (such as HAP), rather than independently. Therefore, follow the [HAP Package Obfuscation Recommendations](#hap-package-obfuscation-recommendations).
+
+Since local source code HAR packages are obfuscated together with the main module, when multiple HAPs or HSPs depend on the same local source HAR, the obfuscation results of that local source HAR may differ across modules. When `useNormalizedOHMUrl` is enabled (specifically, by setting the `useNormalizedOHMUrl` field under the `strictMode` property to **true** in the project-level `build-profile.json5` file), only one instance of the HAR is loaded at runtime. This prevents HAPs and HSPs from locating their corresponding HAR, leading to errors where the HAR's methods cannot be found when called.
+
+Solution:
+1. [Use obfuscation for code hardening](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-build-obfuscation#section19439175917123) to select the scenario where the HAR exposes external APIs and add the generated trustlist to the `consumer-rules.txt` file of the HAR.
+2. Change the shared local source code `HAR` to a [bytecode HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415), separately compile the `HAR`, and then depend on the `HAR`.
 
 ### Released Source Code HAR Package
 
@@ -88,20 +100,21 @@ The obfuscation adaptation process for bytecode HAR packages is similar to that 
 
 1. Familiarize yourself with the [three types of obfuscation configuration files](source-obfuscation-guide.md#obfuscation-configuration-files) and the [obfuscation rule merging strategies](source-obfuscation.md#obfuscation-rule-merging-strategies). Understand the precautions provided in [HAP Package Obfuscation Recommendations](#hap-package-obfuscation-recommendations) to ensure that your HSP functions correctly when it is used by HAP packages.
 2. HSP packages are built independently and are built only once. Therefore, focus on the obfuscation effects within the module and ensure proper interface calls from other modules.
-3. Due to the transitivity of consumer configurations, avoid enabling obfuscation directly in your HSP. Instead, use **-keep-global-name** and **-keep-property-name** to add specific names to a trustlist and minimize impact on dependent modules.
+3. Due to the transitivity of consumer configurations, avoid enabling obfuscation directly in your HSP. Instead, use `-keep-global-name` and `-keep-property-name` to add specific names to a trustlist and minimize impact on dependent modules.
 
 ### Local Source Code HSP Package
 
-1. Clearly define external interfaces and properties that your source code HSP package provides, and configure these names in **obfuscation-rules.txt** and **consumer-rules.txt**.
+1. Clearly define external APIs and properties that your source code HSP provides, and configure these names in **obfuscation-rules.txt** and **consumer-rules.txt**.
 2. Follow the [HAP Package Obfuscation Recommendations](#hap-package-obfuscation-recommendations) to ensure the obfuscation effects within the module.
-3. Build and verify the HSP package together with the main module to ensure all interfaces provided by the HSP package work correctly.
+3. Build and verify the HSP together with the main module to ensure all APIs provided by the HSP work correctly.
 
 ### Integrated HSP Package
 
-1. Clearly define external interfaces and properties that your integrated HSP package provides, and configure these names in **obfuscation-rules.txt**. There is no need to configure **consumer-rules.txt**, because the .tgz file contains both HAR and HSP packages, and the exported interfaces and properties defined in the declaration files of the HAR package are automatically collected into the trustlist.
+1. Clearly define external interfaces and properties that your integrated HSP package provides, and configure these names in **obfuscation-rules.txt**. There is no need to configure **consumer-rules.txt** because the .tgz file contains both HAR and HSP, and the exported APIs and properties defined in the declaration files of the HAR are automatically collected into the trustlist.
 2. Follow the [HAP Package Obfuscation Recommendations](#hap-package-obfuscation-recommendations) to ensure the obfuscation effects within the module.
 3. Ensure that the interfaces that your integrated HSP package provides can be called correctly by dependent modules, especially when obfuscation is enabled.
 
 > **NOTE**
 >
-> The **obfuscation.txt** file for integrated HSP packages is generated based on the current module's **consumer-rules.txt**, excluding the **consumer-rules.txt** or **obfuscation.txt** file of dependent modules.
+> The `obfuscation.txt` file for integrated HSPs is generated based on the current module's `consumer-rules.txt`, and does not include the `consumer-rules.txt` or `obfuscation.txt` files from dependent modules.
+To ensure proper internal obfuscation of integrated HSPs, you can follow the HAP obfuscation recommendations. After an integrated HSP is released, it is necessary to verify that the APIs can be called properly when obfuscation is enabled.

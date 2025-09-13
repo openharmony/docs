@@ -1,6 +1,13 @@
 # Overview of ArkGuard for Source Code Obfuscation
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zju-wyx-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-ArkGuard is a tool designed for source code obfuscation. It converts variable names, function names, class names, and file names into short, meaningless identifiers, making it more difficult to infer the purpose of the code through inspection. In addition, the shortened names in the obfuscated source code sometimes help reduce the package size. 
+ArkGuard is a source code obfuscation tool that converts variable, function, class, and file names into short, meaningless identifiers. This makes it harder to deduce code purposes through inspection. Additionally, the shortened names in obfuscated code help reduce package size.
+
 
 This section describes how to use ArkGuard for source code obfuscation. It aims to assist you in efficiently applying obfuscation to your source code, thereby increasing its complexity and making reverse engineering more challenging.
 

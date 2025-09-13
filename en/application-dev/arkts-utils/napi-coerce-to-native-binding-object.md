@@ -1,4 +1,10 @@
 # Multithreaded Operations with Custom Native Transferable Objects
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 In ArkTS application development, there are numerous scenarios that require binding ArkTS objects with native objects. ArkTS objects write data into native objects, which then transfer the data to the destination. A common example is writing data from an ArkTS object into a C++ database.
 
@@ -385,6 +391,7 @@ Native Transferable objects support two distinct modes: shared mode and transfer
 
    In shared mode, the original ArkTS object retains access to the native object after cross-thread transfer. The following is an example:
    ```ts
+   // Index.ets
    import testNapi from 'libentry.so';
    import { taskpool } from '@kit.ArkTS';
    
