@@ -27,7 +27,7 @@
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
       - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
-      - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](autofillextensionablility-guide.md)
+      - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](autofillextensionability-guide.md)
       - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](uiserviceextension.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
@@ -141,7 +141,7 @@
   - [FA模型访问Stage模型DataShareExtensionAbility](access-datashareextensionability-from-fa.md)
   - [Stage模型启动FA模型PageAbility](start-pageability-from-stage.md)
   - [Stage模型绑定FA模型ServiceAbility](bind-serviceability-from-stage.md)
-- FA模型切换Stage模型指导<!--fa-to-stage-switc-->
+- FA模型切换Stage模型指导<!--fa-to-stage-switch-->
   - [模型切换概述](model-switch-overview.md)
   - 配置文件切换<!--configuration-file-switch-->
     - [配置文件的差异](configuration-file-diff.md)
