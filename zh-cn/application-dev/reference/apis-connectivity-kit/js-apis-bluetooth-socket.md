@@ -540,9 +540,9 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
 
-该接口不可与[socket.on('sppRead')](#socketonsppread)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)或者socket.sppReadAsync其中一个接口；
-该接口与[socket.on('sppRead')](#socketonsppread)使用方式不同，需要业务循环使用读取数据；
-该接口为异步接口，需要等异步回调结果返回后才能下一次调用；
+- 该接口不可与[socket.on('sppRead')](#socketonsppread)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)或者socket.sppReadAsync其中一个接口；
+- 该接口通过Promise异步返回读取的数据，需在连接成功后的回调中循环调用，具体循环方式根据业务需要来实现；若不及时调用可能会丢失spp接收的数据，导致不可预知的错误；
+- 该接口为异步接口，需要等异步回调结果返回后才能下一次调用；
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -572,11 +572,11 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { socket } from '@kit.ConnectivityKit'
 
-let clientNumber = 1; // 入参clientNumber由sppAccept或sppConnect接口获取。
-let flag = 1;
-
+// 入参clientNumber由sppAccept或sppConnect接口获取。
 async function readAsync(clientNumber: number) {
+  let flag = 1;
   try {
     while (flag) { // 该接口需业务循环调用读取，具体循环形式按业务需要来实现，这里只是示例
       let buffer = await socket.sppReadAsync(clientNumber); // 使用await确保顺序读取
@@ -587,7 +587,6 @@ async function readAsync(clientNumber: number) {
       }
     }
   } catch (err) {
-    flag = 0;
     console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     socket.sppCloseClientSocket(clientNumber); // 发生错误时关闭连接
   }
