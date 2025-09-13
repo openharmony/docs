@@ -10101,6 +10101,40 @@ static getActiveWebEngineVersion(): ArkWebEngineVersion
 
 请参考[setActiveWebEngineVersion](#setactivewebengineversion20)。
 
+## isActiveWebEngineEvergreen<sup>21+</sup>
+
+static isActiveWebEngineEvergreen(): boolean
+
+判断当前系统是否正在使用常青内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------ | ------ |
+| boolean | 表示是否正在使用常青内核。正在使用返回true，否则返回false。 |
+
+**示例：**
+
+本示例以EntryAbility为例，实现了在Ability创建阶段判断应用是否正在使用常青内核的功能。
+
+```ts
+// xxx.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    if (webview.WebviewController.isActiveWebEngineEvergreen()) {
+      console.log("Active Web Engine is Evergreen")
+    }
+    console.log("EntryAbility onCreate done")
+  }
+}
+```
+
 ## setAutoPreconnect<sup>21+</sup>
 
 static setAutoPreconnect(enabled: boolean): void
