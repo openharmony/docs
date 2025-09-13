@@ -54,9 +54,9 @@ CounterOptions定义Counter类型及样式。
 | ----------- | ---------- | ---- | ------------------------------- |
 | type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto |
-| numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型Counter的式样。 |
-| inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 普通数字内联调节型Counter的式样。 |
-| dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型Counter的式样。 |
+| numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型Counter的式样。<br>默认值：显示计数器为0的列表型或紧凑型Counter。 |
+| inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 普通数字内联调节型Counter的式样。<br>默认值：显示计数器为0的普通数字内联调节型Counter。 |
+| dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型Counter的式样。<br>默认值：显示0001/01/01的日期型内联型Counter。 |
 
 选择不同的Counter类型，需要选择对应的Counter样式。
 
@@ -92,10 +92,10 @@ CommonOptions定义了Counter的共通属性和事件。
 
 | 名称            | 类型                      | 必填 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| focusable       | boolean                   | 否   | 设置Counter是否可获焦。<br/>**说明：** <br/>该属性对列表型和紧凑型Counter生效。<br/>默认值：true。 <br/>true：Counter可获焦；false：Counter不可获焦。 |
+| focusable       | boolean                   | 否   | 设置Counter是否可获焦。<br/>**说明：** <br/>该属性对列表型和紧凑型Counter生效。<br/>默认值：true<br/>true：Counter可获焦；false：Counter不可获焦。 |
 | step            | number                    | 否   | 设置Counter的步长。<br/>取值范围：大于等于1的整数。<br/>默认值：1 |
-| onHoverIncrease | (isHover: boolean) => void | 否   | 鼠标进入或退出Counter组件的增加按钮时触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true，退出时为false。 |
-| onHoverDecrease | (isHover: boolean) => void | 否   | 鼠标进入或退出Counter组件的减小按钮时触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，进入时为true，离开时为false。 |
+| onHoverIncrease | (isHover: boolean) => void | 否   | 鼠标进入或退出Counter组件的增加按钮时触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true，退出时为false。<br>默认值：不触发鼠标进入或退出Counter组件的增加按钮时的回调。 |
+| onHoverDecrease | (isHover: boolean) => void | 否   | 鼠标进入或退出Counter组件的减小按钮时触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，进入时为true，离开时为false。<br>默认值：不触发鼠标进入或退出Counter组件的减小按钮时的回调。 |
 
 ## InlineStyleOptions
 
@@ -109,11 +109,11 @@ InlineStyleOptions定义了数值内联型Counter的属性和事件。
 
 | 名称      | 类型                   | 必填 | 说明                                                   |
 | --------- | ---------------------- | ---- | ------------------------------------------------------ |
-| value     | number                 | 否   | 设置Counter的初始值。<br/>默认值：0 |
-| min       | number                 | 否   | 设置Counter的最小值。<br/>默认值：0     |
-| max       | number                 | 否   | 设置Counter的最大值。<br/>默认值：999 |
-| textWidth | number                 | 否   | 设置数值文本的宽度。<br/>默认值：0<br/>取值范围：[0, +∞)<br/>单位：vp |
-| onChange  | (value: number) => void | 否   | 数值改变时，返回当前值。<br/>value：当前显示的数值。 |
+| value     | number                 | 否   | 设置Counter的初始值。<br/>默认值：0<br>取值范围：[0, 999] |
+| min       | number                 | 否   | 设置Counter的最小值。<br/>默认值：0<br>取值范围：(-∞, +∞) |
+| max       | number                 | 否   | 设置Counter的最大值。<br/>默认值：999<br>取值范围：(-∞, +∞) |
+| textWidth | number                 | 否   | 设置数值文本的宽度。<br/>默认值：自适应文本宽度。<br/>取值范围：[0, +∞)<br/>单位：vp |
+| onChange  | (value: number) => void | 否   | 数值改变时，返回当前值。<br/>value：当前显示的数值。<br>默认值：数值改变时，不返回值。 |
 
 ## NumberStyleOptions
 
@@ -125,13 +125,13 @@ NumberStyleOptions定义了列表型和紧凑型Counter的属性和事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                   | 必填 | 说明                                            |
-| --------------- | -------------------------------------- | ---- | ----------------------------------------------- |
-| label           | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置Counter的说明文本。                         |
-| onFocusIncrease | () => void                             | 否   | 当前Counter组件的增加按钮获取焦点时触发的回调。 |
-| onFocusDecrease | () => void                             | 否   | 当前Counter组件的减小按钮获取焦点时触发的回调。 |
-| onBlurIncrease  | () => void                             | 否   | 当前Counter组件的增加按钮失去焦点时触发的回调。 |
-| onBlurDecrease  | () => void                             | 否   | 当前Counter组件的减小按钮失去焦点时触发的回调。 |
+| 名称            | 类型                                   | 必填 | 说明                                                         |
+| --------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| label           | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置Counter的说明文本。<br>默认值：' '                       |
+| onFocusIncrease | () => void                             | 否   | 当前Counter组件的增加按钮获取焦点时触发的回调。<br>默认值：不触发增加按钮获取焦点时的回调。 |
+| onFocusDecrease | () => void                             | 否   | 当前Counter组件的减小按钮获取焦点时触发的回调。<br>默认值：不触发减少按钮获取焦点时的回调。 |
+| onBlurIncrease  | () => void                             | 否   | 当前Counter组件的增加按钮失去焦点时触发的回调。<br>默认值：不触发增加按钮失去焦点时的回调。 |
+| onBlurDecrease  | () => void                             | 否   | 当前Counter组件的减小按钮失去焦点时触发的回调。<br>默认值：不触发减少按钮失去焦点时的回调。 |
 
 ## DateStyleOptions
 
