@@ -7,7 +7,7 @@
 <!--Adviser: @huipeizi-->
 
 
-  | FA模型接口 | Stage模型接口对应d.ts文件 | Stage模型对应接口 | 
+  | [FA模型](ability-terminology.md#fa模型)接口 | [Stage模型](ability-terminology.md#stage模型)接口对应d.ts文件 | Stage模型对应接口 | 
 | -------- | -------- | -------- |
 | update?(uri:&nbsp;string,&nbsp;valueBucket:&nbsp;rdb.ValuesBucket,&nbsp;predicates:&nbsp;dataAbility.DataAbilityPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void; | \@ohos.application.DataShareExtensionAbility.d.ts | [update?(uri:&nbsp;string,&nbsp;predicates:&nbsp;dataSharePredicates.DataSharePredicates,&nbsp;valueBucket:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#update) |
 | query?(uri:&nbsp;string,&nbsp;columns:&nbsp;Array&lt;string&gt;,&nbsp;predicates:&nbsp;dataAbility.DataAbilityPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void; | \@ohos.application.DataShareExtensionAbility.d.ts | [query?(uri:&nbsp;string,&nbsp;predicates:&nbsp;dataSharePredicates.DataSharePredicates,&nbsp;columns:&nbsp;Array&lt;string&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;Object&gt;):&nbsp;void;](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#query) |
