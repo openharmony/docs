@@ -28,7 +28,7 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
+> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果没有进行页面加载，直接调用该接口，界面会一直显示启动界面。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -63,26 +63,26 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       console.info('Succeeded in loading the content.');
-    })
-    try {
-      windowStage.getMainWindow((err: BusinessError, data) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        data.showWindow((err: BusinessError) => {
-          const errCode: number = err.code;
+      try {
+        windowStage.getMainWindow((err: BusinessError, data) => {
+          let errCode: number = err.code;
           if (errCode) {
-            console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
             return;
           }
-          console.info('Succeeded in showing the window.');
+          data.showWindow((err: BusinessError) => {
+            const errCode: number = err.code;
+            if (errCode) {
+              console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in showing the window.');
+          });
         });
-      });
-    } catch (exception) {
-      console.error(`Failed to get main window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+      } catch (exception) {
+        console.error(`Failed to get main window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    })
   }
 }
 ```
@@ -95,7 +95,7 @@ showWindow(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
+> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果没有进行页面加载，直接调用该接口，界面会一直显示启动界面。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -130,28 +130,28 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       console.info('Succeeded in loading the content.');
+      try {
+        windowStage.getMainWindow((err: BusinessError, data) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          try {
+            let promise = data.showWindow();
+            promise.then(() => {
+              console.info('Succeeded in showing the window.');
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (exception) {
+            console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+          }
+        });
+      } catch (exception) {
+        console.error(`Failed to get main window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     })
-    try {
-      windowStage.getMainWindow((err: BusinessError, data) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        try {
-          let promise = data.showWindow();
-          promise.then(() => {
-            console.info('Succeeded in showing the window.');
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
-          });
-        } catch (exception) {
-          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-      });
-    } catch (exception) {
-      console.error(`Failed to get main window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
   }
 }
 ```
@@ -164,7 +164,7 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
+> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果没有进行页面加载，直接调用该接口，界面会一直显示启动界面。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -210,30 +210,30 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       console.info('Succeeded in loading the content.');
+      // 创建子窗
+      try {
+        windowStage.createSubWindow('subWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to create the sub window. Cause: The data is empty');
+            return;
+          }
+          let options: window.ShowWindowOptions = {
+            focusOnShow: false
+          };
+          try {
+            data.showWindow(options).then(() => {
+              console.info('Succeeded in showing window');
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (exception) {
+            console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+          }
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     })
-    // 创建子窗
-    try {
-      windowStage.createSubWindow('subWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to create the sub window. Cause: The data is empty');
-          return;
-        }
-        let options: window.ShowWindowOptions = {
-          focusOnShow: false
-        };
-        try {
-          data.showWindow(options).then(() => {
-            console.info('Succeeded in showing window');
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
-          });
-        } catch (exception) {
-          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-      });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
   }
 }
 ```
