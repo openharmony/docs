@@ -4648,6 +4648,8 @@
           - [@ohos.hilog (HiLog日志打印)](reference/apis-performance-analysis-kit/js-apis-hilog.md)
           - [@ohos.hiTraceChain (分布式跟踪)](reference/apis-performance-analysis-kit/js-apis-hitracechain.md)
           - [@ohos.hiTraceMeter (性能打点)](reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)
+          - [@ohos.hiviewdfx.FaultLogExtensionAbility (故障延迟通知)](reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md)
+          - [@ohos.hiviewdfx.FaultLogExtensionContext (故障延迟通知上下文)](reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionContext.md)
           - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)
           - [@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)
           <!--Del-->
