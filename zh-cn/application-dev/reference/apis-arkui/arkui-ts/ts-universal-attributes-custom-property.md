@@ -27,7 +27,7 @@ customProperty(name: string, value: Optional\<Object>): T
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name  | string | 是   | 自定义属性的名称。 |
-| value  | Optional\<Object> | 是   | 自定义属性的值。 |
+| value  | [Optional](#optionalt12)\<Object> | 是   | 自定义属性的值。 |
 
 **返回值：**
 
@@ -54,7 +54,7 @@ type Optional\<T> = T | undefined
 
 ## 示例
 
-在Column组件上设置自定义属性，并在其对应的FrameNode上获取所设置的自定义属性。
+在[Column](ts-container-column.md)组件上设置自定义属性，并在其对应的[FrameNode](../js-apis-arkui-frameNode.md#framenode-1)上获取所设置的自定义属性。
 
 ```ts
 // xxx.ets
@@ -67,6 +67,7 @@ struct CustomPropertyExample {
     Column() {
       Text('text')
       Button('print').onClick(() => {
+        // 获取Column对应的frameNode节点并查询设置的自定义属性
         const uiContext: UIContext = this.getUIContext();
         if (uiContext) {
           const node: FrameNode | null = uiContext.getFrameNodeById("Test_Column") || null;
@@ -81,6 +82,7 @@ struct CustomPropertyExample {
       })
     }
     .id('Test_Column')
+    // 设置Column组件的自定义属性
     .customProperty('customProperty1', {
       'number': 10,
       'string': 'this is a string',
@@ -91,7 +93,7 @@ struct CustomPropertyExample {
       }
     })
     .customProperty('customProperty2', {})
-    .customProperty('customProperty2', undefined)
+    .customProperty('customProperty3', undefined)
     .width('100%')
     .height('100%')
   }
