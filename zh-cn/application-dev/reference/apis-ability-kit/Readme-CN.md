@@ -86,7 +86,7 @@
     - [@ohos.app.ability.ConfigurationConstant (环境变量相关的常量定义)](js-apis-app-ability-configurationConstant.md)
     - [@ohos.app.ability.continueManager (跨端迁移)](js-apis-app-ability-continueManager.md)
     - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](js-apis-app-ability-dataUriUtils.md)
-    - [@ohos.app.ability.dialogRequest (模态弹框模块)](js-apis-app-ability-dialogRequest.md)
+    - [@ohos.app.ability.dialogRequest (dialogRequest模块)](js-apis-app-ability-dialogRequest.md)
     - [@ohos.app.ability.errorManager (错误管理模块)](js-apis-app-ability-errorManager.md)
     - [@ohos.app.ability.kioskManager (Kiosk管理模块)](js-apis-app-ability-kioskManager.md)
     - [@ohos.app.ability.Want (Want)](js-apis-app-ability-want.md)

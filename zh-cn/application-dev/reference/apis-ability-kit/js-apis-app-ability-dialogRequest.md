@@ -1,13 +1,12 @@
-# @ohos.app.ability.dialogRequest (模态弹框模块)
+# @ohos.app.ability.dialogRequest (dialogRequest模块)
 
-dialogRequest模块提供了处理模态弹框的能力，包括获取RequestInfo（用于绑定模态弹框）、获取RequestCallback（用于设置结果）。
+dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo（用于绑定模态弹框）、获取RequestCallback（用于设置结果）。
 模态弹框是指一个系统弹框，该弹框会拦截弹框之下的页面的鼠标、键盘、触屏等事件。销毁该弹框后，才能对页面进行操作。
 
 > **说明：**
 >
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->  - 本模块[WindowRect](#windowrect10)接口、[ResultCode](#resultcode)错误码及[RequestResult](#requestresult)属性被普通开发者使用。模块下其他接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则可以使用本模块的接口获取请求方的RequestInfo、RequestCallback并返回请求结果，其他场景使用这些接口，均无法获取返回值。
->  - ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-models/extensionability-overview.md)组件，这类组件由系统提供，通常用于提供指定场景后台服务能力，不支持开发者自定义。ServiceExtensionAbility可以被其他组件连接，并根据调用者的请求信息在后台处理相关事务。
+>  - 本模块接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则可以使用本模块的接口获取请求方的RequestInfo、RequestCallback并返回请求结果。
 
 ## 导入模块
 
@@ -21,9 +20,9 @@ getRequestInfo(want: Want): RequestInfo
 
 > **说明：**
 >
-> 该接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则能从Want中获取请求方的RequestInfo。其他场景使用该接口，均无法获取返回值。
+>  该接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则能从Want中获取请求方的RequestInfo。其他场景使用该接口，均无法获取返回值。
 
-该接口用于从开发者传入的Want中获取RequestInfo。
+从Want中获取请求方的RequestInfo。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -37,7 +36,7 @@ getRequestInfo(want: Want): RequestInfo
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| [RequestInfo](#requestinfo) | 请求方RequestInfo，作为[bindDialogTarget()](../apis-arkui/js-apis-window-sys.md#binddialogtarget9)的入参绑定模态窗口。 |
+| [RequestInfo](#requestinfo) | 请求方RequestInfo，用于绑定模态窗口。 |
 
 **错误码**：
 
@@ -67,11 +66,11 @@ export default class EntryAbility extends UIAbility {
 
 getRequestCallback(want: Want): RequestCallback
 
-该接口用于从开发者传入的Want中获取RequestCallback。
+从Want中获取请求方的RequestCallback。
 
 > **说明：**
 >
-> 该接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则能从Want中获取请求方的RequestCallback。其他场景使用该接口，均无法获取返回值。
+>  该接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则能从Want中获取请求方的RequestCallback。其他场景使用该接口，均无法获取返回值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -113,7 +112,7 @@ export default class EntryAbility extends UIAbility {
 
 ## WindowRect<sup>10+</sup>
 
-表示模态弹框的窗口大小位置属性。
+表示模态弹框的属性。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -136,7 +135,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称      | 类型       | 只读 | 可选   | 说明     |
 | ------------ | --------| ------ | ----- | ----------------- |
-| windowRect<sup>10+</sup>   | [WindowRect](#windowrect10)    | 否 | 是  | 表示模态弹框的窗口大小位置属性。          |
+| windowRect<sup>10+</sup>   | [WindowRect](#windowrect10)    | 否 | 是  | 表示模态弹框的位置属性。          |
 
 **示例：**
 
@@ -178,11 +177,11 @@ export default class EntryAbility extends UIAbility {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | 否 | 否 | 表示结果码。 |
-| want<sup>10+</sup> | [Want](js-apis-app-ability-want.md)  | 否 | 是 | 表示请求方传入的Want类型信息，如ability名称，包名等。 |
+| want<sup>10+</sup> | [Want](js-apis-app-ability-want.md)  | 否 | 是 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
-用于设置模态弹框请求结果的回调属性。
+用于设置模态弹框请求结果的callback接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -190,7 +189,7 @@ export default class EntryAbility extends UIAbility {
 
 setRequestResult(result: RequestResult): void
 
-设置请求结果。
+设置请求结果
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
