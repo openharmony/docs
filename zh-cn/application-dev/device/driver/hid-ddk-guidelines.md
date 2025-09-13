@@ -90,8 +90,8 @@ libhid.z.so
 
     ```c++
     // 构建HID设备属性
-    std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT}; //需要引入vector头文件
-    std::string deviceName = "keyboard";
+    std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT}; // 需要引入头文件 #include <vector>
+    std::string deviceName = "keyboard"; // 需要引入头文件 #include <string>
     Hid_Device hidDevice = {
         .deviceName = deviceName.c_str(), 
         .vendorId = 0x6006, 
@@ -184,7 +184,7 @@ libhid.z.so
     OH_Hid_Open(deviceId, interfaceIndex2, &devFeature);
     ```
 
-3. 向HID设备写入/发送报告（HID设备与主机之间交换的数据包）。
+3. 向HID设备写入/发送报告（HID设备与主机之间交换的数据包）（可选）。
     - 当报告类型为HID_OUTPUT_REPORT（输出报告）时，支持如下两种写入/发送方式。
         - 使用 **hid_ddk_api.h** 的 **OH_Hid_Write** 向HID设备写入一个输出报告。
 
@@ -221,7 +221,7 @@ libhid.z.so
         int32_t ret = OH_Hid_SendReport(devFeature, HID_FEATURE_REPORT, data2, sizeof(data2));
         ```
 
-4. 从HID设备读取报告。
+4. 从HID设备读取报告（可选）。
     - 当报告类型为HID_INPUT_REPORT（输入报告）时，支持如下三种读取方式。
         - 使用 **hid_ddk_api.h** 的 **OH_Hid_Read** 或者 **OH_Hid_ReadTimeout** 以阻塞模式从HID设备读取一个输入报告。
 
@@ -243,7 +243,7 @@ libhid.z.so
             int32_t ret = OH_Hid_SetNonBlocking(dev, 1);
 
             // 本示例执行时，设备可能没有数据，因此需要等待用户输入
-            sleep(1);
+            sleep(1); // 需引入头文件 #include <unistd.h>
             uint8_t data5[9] = {0};
             uint32_t bytesRead = 0;
             // 从HID设备读取报告
@@ -272,7 +272,7 @@ libhid.z.so
         int32_t ret = OH_Hid_GetReport(devFeature, HID_FEATURE_REPORT, data7, sizeof(data7));
         ```
 
-5. 获取设备原始信息、原始名称、物理地址、原始唯一标识符。
+5. 获取设备原始信息、原始名称、物理地址、原始唯一标识符（可选）。
 
     使用 **hid_ddk_api.h** 的 **OH_Hid_GetRawInfo** 获取HID设备原始信息，使用 **OH_Hid_GetRawName** 获取HID设备原始名称，使用 **OH_Hid_GetPhysicalAddress** 获取HID设备物理地址，使用 **OH_Hid_GetRawUniqueId** 获取HID设备原始唯一标识符。这些信息可被上层应用引用，例如在界面中展示设备信息等。
 
@@ -290,7 +290,7 @@ libhid.z.so
     ret = OH_Hid_GetRawUniqueId(dev, uniqueIdData, sizeof(uniqueIdData));
     ```
 
-6. 获取报告描述符。
+6. 获取报告描述符（可选）。
 
     使用 **hid_ddk_api.h** 的 **OH_Hid_GetReportDescriptor** 获取HID设备报告描述符。
 
