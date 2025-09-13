@@ -532,7 +532,7 @@ static resource(value: Resource): LengthMetrics
 
 使用LengthMetrics设置Row的padding和margin属性。
 ```ts
-import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -547,7 +547,7 @@ struct SizeExample {
         Row() {
           Row()
             .size({ width: '100%', height: '100%' })
-            .backgroundColor(Color.Yellow)
+            .backgroundColor('#ffd5d5d5')
         }
         .width(80)
         .height(80)
@@ -565,7 +565,7 @@ struct SizeExample {
         })
         .backgroundColor(Color.White)
       }
-      .backgroundColor(Color.Blue)
+      .backgroundColor("#ff2787d9")
     }
     .width('100%')
     .margin({ top: 5 })
@@ -620,7 +620,7 @@ static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetr
 | red   | number | 是   | 颜色的R分量（红色），值是0~255的整数。 |
 | green | number | 是   | 颜色的G分量（绿色），值是0~255的整数。 |
 | blue  | number | 是   | 颜色的B分量（蓝色），值是0~255的整数。 |
-| alpha | number | 否   | 颜色的A分量（透明度），值是0.0~1.0的浮点数，默认值为1.0，不透明。|
+| alpha | number | 否   | 颜色的A分量（透明度），值是0.0~1.0的浮点数，默认值为1.0，不透明。<br/> **说明：** alpha小于0为全透明，大于0为不透明。|
 
 **返回值：**
 
@@ -689,7 +689,7 @@ static resourceColor(color: ResourceColor): ColorMetrics
 
 blendColor(overlayColor: ColorMetrics): ColorMetrics
 
-颜色混合。
+在当前颜色的上方叠加上一层指定的颜色（overlayColor），并返回混合后的新颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -699,15 +699,21 @@ blendColor(overlayColor: ColorMetrics): ColorMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| overlayColor | [ColorMetrics](#colormetrics12) | 是 | 叠加颜色的 ColorMetrics 类的实例。 |
+| overlayColor | [ColorMetrics](#colormetrics12) | 是 | 要叠加在上方的颜色对象。alpha属性决定叠加强度。1.0表示完全覆盖，0.0表示完全透明，混合结果为原色。 |
 
 **返回值：**
 
 | 类型          | 说明             |
 | ------------- | ---------------- |
-| [ColorMetrics](#colormetrics12) | 混合后的ColorMetrics 类的实例。 |
+| [ColorMetrics](#colormetrics12) |  新的颜色对象，其red、green、blue和alpha通道均为当前颜色与叠加颜色混合后的结果值。 |
 
-**错误码**：
+**混合公式：**
+
+混合后透明度为完全不透明，rgb按照以下公式计算：
+
+result_rgb = overlay_rgb*(overlay_alpha) + (1 - overlay_alpha) * base_rgb
+
+**错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -806,7 +812,8 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
   try {
     //在使用ColorMetrics的resourceColor和blendColor需要追加捕获异常处理
     //可能返回的arkui子系统错误码有401和180003
-    sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#800000ff"));
+    // 61 157 180
+    sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#083d9db4"));
     console.info('current color is '+sourceColor.color+ ' r:'+sourceColor.red +' g:'+sourceColor.green+' b:'+sourceColor.blue+ ' a :'+sourceColor.alpha );
   } catch (error) {
     console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
@@ -825,25 +832,25 @@ struct ColorMetricsSample {
         .width('80%')
         .align(Alignment.Center)
         .height(50)
-        .backgroundColor(getBlendColor(Color.Orange).color)
+        .backgroundColor(getBlendColor("#ff3d9db4").color)
         .margin(10)
       Button("ColorMetrics numeric")
         .width('80%')
         .align(Alignment.Center)
         .height(50)
-        .backgroundColor(ColorMetrics.numeric(0).color)
+        .backgroundColor(ColorMetrics.numeric(0xff707070).color)
         .margin(10)
       Button("ColorMetrics rgba")
         .width('80%')
         .align(Alignment.Center)
         .height(50)
-        .backgroundColor(ColorMetrics.rgba(0,0,255,255).color)
+        .backgroundColor(ColorMetrics.rgba(0,74,175,255).color)
         .margin(10)
       Button("ColorMetrics colorWithSpace")
         .width('80%')
         .align(Alignment.Center)
         .height(50)
-        .backgroundColor(ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0,0,255,255).color)
+        .backgroundColor(ColorMetrics.colorWithSpace(ColorSpace.SRGB,  0.4392, 0.4392, 0.4392).color)
         .margin(10)
     }
     .width('100%')
@@ -961,9 +968,9 @@ type Rect = common2D.Rect
 
 | 名称            | 类型    | 只读 | 可选 | 说明                                                |
 | --------------- | ------ | ---- | ---- | -------------------------------------------------- |
-| fillColor       | number | 否   | 否   | 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。   |
-| strokeColor     | number | 否   | 否   | 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。   |
-| strokeWidth     | number | 否   | 否   | 遮罩的边框宽度，单位为px。默认值为0。                  |
+| fillColor       | number | 否   | 否   | 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。<br/> **说明：** fillColor只有透明度通道生效其他通道不生效。  |
+| strokeColor     | number | 否   | 否   | 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。 <br/>   **说明：** strokeColor只有透明度通道生效其他通道不生效。           |
+| strokeWidth     | number | 否   | 否   | 遮罩的边框宽度，单位为px。默认值为0。   |
 
 ### constructor<sup>12+</sup>
 
