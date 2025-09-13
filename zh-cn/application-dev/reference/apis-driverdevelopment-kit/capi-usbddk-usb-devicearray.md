@@ -10,7 +10,7 @@
 
 设备ID清单，用于存放OH_Usb_GetDevices接口获取到的设备ID列表和设备数量。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：** [UsbDDK](capi-usbddk.md)
 
