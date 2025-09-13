@@ -153,17 +153,17 @@ isBatteryConfigSupported(sceneName: string): boolean
   console.info("The result is: " + result);
   ```
 
-## 属性
+## 常量
 
 描述电池信息。
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-| 名称      | 类型        | 只读 | 可选 |  说明     |
-| --------------- | ------------------- | ---- | ---- | ---------------------|
-| estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 否   | 表示当前设备充满电的预估时间，单位毫秒。此接口为系统接口。          |
-| totalEnergy<sup>9+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的总容量，单位毫安时。此接口为系统接口。   |
-| remainingEnergy<sup>9+</sup>              | number                                         | 是   | 否   | 表示当前设备电池的剩余容量，单位毫安时。此接口为系统接口。 |
+| 名称      | 类型        | 只读 |  说明     |
+| --------------- | ------------------- | ---- | ---------------------|
+| estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 表示当前设备充满电的预估时间，单位毫秒。此接口为系统接口。          |
+| totalEnergy<sup>9+</sup>                  | number                                         | 是   | 表示当前设备电池的总容量，单位毫安时。此接口为系统接口。   |
+| remainingEnergy<sup>9+</sup>              | number                                         | 是   | 表示当前设备电池的剩余容量，单位毫安时。此接口为系统接口。 |
 
 **示例**：
   ```ts
