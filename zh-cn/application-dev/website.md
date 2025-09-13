@@ -724,6 +724,7 @@
           - [UI相关应用崩溃常见问题](ui/arkts-stability-crash-issues.md)
           - [UI相关应用无响应常见问题](ui/arkts-stability-freeze-issues.md)
         - [UI显示异常调试](ui/arkts-layout-debug.md)
+        - [UI上下文异常调试](ui/arkts-wrong-uicontext-debug.md)
         - [UI预览](ui/ui-ide-previewer.md)
         - [UI调优](ui/ui-inspector-profiler.md)
         - [UI高性能开发](ui/ui-performance-overview.md)
