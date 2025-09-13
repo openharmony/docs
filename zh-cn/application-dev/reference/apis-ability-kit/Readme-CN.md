@@ -25,6 +25,7 @@
     - [@ohos.app.ability.common (Ability公共模块)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](js-apis-app-ability-completionHandler.md)
     - [@ohos.app.ability.CompletionHandlerForAtomicService (打开原子化服务结果的操作类)](js-apis-app-ability-CompletionHandlerForAtomicService.md)
+    - [@ohos.app.ability.CompletionHandlerForAbilityStartCallback (拉起应用结果回调的操作类)](js-apis-app-ability-CompletionHandlerForAbilityStartCallback.md)
     - [@ohos.app.ability.contextConstant (Context相关常量)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
     - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](js-apis-app-ability-embeddedUIExtensionAbility.md)
