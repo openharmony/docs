@@ -1,4 +1,10 @@
 # Downloading Files
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 To download files on the web page, you can use the following method to invoke the web APIs.
 
@@ -7,6 +13,8 @@ To download files on the web page, you can use the following method to invoke th
 Call [setDownloadDelegate()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setdownloaddelegate11) to register a **DownloadDelegate** object with the **Web** component to listen for downloads initiated from pages. While the **Web** component downloads resources as requested, it notifies the application of the download progress through the **DownloadDelegate** object.
 
 In the following example, the **index.html** and **download.html** files are added to the **rawfile** folder of the application. After the application is started, a **Web** component is created and the **index.html** file is loaded. After **setDownloadDelegate** is clicked, a **DownloadDelegate** object is registered with the **Web** component. This **DownloadDelegate** object listens for any downloads initiated by clicking the download button on the page.
+
+By default, the download path is in the web directory of the application sandbox and cannot be viewed by users. If users need to view it, change the download path to a directory with access permission, for example, the **Download** directory. For details, see [Initiating a Download Task](#initiating-a-download-task).
 
 ```ts
 // xxx.ets
@@ -111,6 +119,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // Pass in a download path and start the download.
+              // If the path is invalid, the file will be downloaded to the default directory at /data/storage/el2/base/cache/web/.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
@@ -262,6 +271,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // Pass in a download path and start the download.
+              // If the path is invalid, the file will be downloaded to the default directory at /data/storage/el2/base/cache/web/.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {

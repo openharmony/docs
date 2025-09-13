@@ -1,4 +1,10 @@
 # Class (WebDownloadManager)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **WebDownloadManager** class. You can use the APIs of this class to resume failed download tasks.
 
@@ -51,21 +57,21 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
             webview.WebDownloadManager.setDownloadDelegate(this.delegate);
@@ -162,21 +168,21 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
             webview.WebDownloadManager.setDownloadDelegate(this.delegate);

@@ -53,6 +53,7 @@
   - [Enabling Immersive Full-Screen Video Playback](web_full_screen.md)
 - Processing Web Page Content<!--web-process-page-content-->
   - [Printing Frontend Pages](web-print.md)
+  - [Saving a Frontend Page as a PDF File](web-createpdf.md)
   - [Previewing PDF Files](web-pdf-preview.md)
   - [Calculating and Adjusting Safe Area Insets](web-safe-area-insets.md)
   - [Using Web Menus](web_menu.md)

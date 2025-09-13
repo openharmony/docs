@@ -1,4 +1,10 @@
 # Class (PdfData)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhang-yinglie-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements the output data stream class of **createPdf()**.
 

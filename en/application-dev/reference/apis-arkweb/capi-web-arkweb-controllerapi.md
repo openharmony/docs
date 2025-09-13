@@ -1,8 +1,14 @@
 # ArkWeb_ControllerAPI
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 
-Defines a native controller API. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Defines a native controller API. Before calling this API, you are advised to use [ARKWEB_MEMBER_MISSING](capi-arkweb-type-h.md#macros) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
 **Since**: 12
 
@@ -33,6 +39,7 @@ Defines a native controller API. Before calling the API, you are advised to use 
 | [ArkWeb_ErrorCode (\*postWebMessage)(const char* webTag, const char* name, ArkWeb_WebMessagePortPtr* webMessagePorts, size_t size, const char* url)](#postwebmessage) | Sends a message port to the HTML page.|
 | [const char* (\*getLastJavascriptProxyCallingFrameUrl)()](#getlastjavascriptproxycallingframeurl) | Obtains the URL of the last frame that calls **JavaScriptProxy**. This function is invoked on the thread invoked by **JavaScriptProxy**. You can use **registerJavaScriptProxy** or **JavaScriptProxy** to inject a JavaScript object to a window object. This API can be used to obtain the URL of the last frame calls the injected object. You need to save the URL obtained from the invoked function.<br>**Since**: 14|
 | [void (\*registerJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObjectWithResult* proxyObject,const char* permission)](#registerjavascriptproxyex) | Injects a JavaScript object with the window. Synchronous APIs of this object can then be invoked in the window. The synchronization method of this object can contain return values.<br>**Since**: 18|
+| [void (\*registerAsyncJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObject* proxyObject,const char* permission)](#registerasyncjavascriptproxyex) | Injects a JavaScript object with the window. Asynchronous APIs of this object can then be invoked in the window.<br>**Since**: 18|
 
 ## Member Function Description
 
@@ -46,6 +53,13 @@ void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascr
 
 Injects a JavaScript script.
 
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| const char* webTag | Name of the **Web** component.                  |
+|const ArkWeb_JavaScriptObject* javascriptObject  | JavaScript object to inject.          |
+
 ### registerJavaScriptProxy()
 
 ```
@@ -55,6 +69,13 @@ void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* pr
 **Description**
 
 Injects a JavaScript object with the window. Synchronous APIs of this object can then be invoked in the window.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| const char* webTag | Name of the **Web** component.                  |
+| const ArkWeb_ProxyObject* proxyObject  | Object to be registered.         |
 
 ### deleteJavaScriptRegister()
 
@@ -66,6 +87,12 @@ void (*deleteJavaScriptRegister)(const char* webTag, const char* objName)
 
 Deletes a specific application JavaScript object that is registered with the window using **registerJavaScriptProxy**.
 
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| const char* webTag | Name of the **Web** component.                  |
+| const char* objName  | Name of the JavaScript object.         |
 
 ### refresh()
 
@@ -77,6 +104,12 @@ void (*refresh)(const char* webTag)
 
 Refreshes the web page. The page stack is cleared during the refresh. As a result, the current page cannot be navigated forward or backward.
 
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| const char* webTag | Name of the **Web** component.                  |
+
 ### registerAsyncJavaScriptProxy()
 
 ```
@@ -86,6 +119,13 @@ void (*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObjec
 **Description**
 
 Injects a JavaScript object with the window. Asynchronous APIs of this object can then be invoked in the window.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| const char* webTag | Name of the **Web** component.                  |
+| const ArkWeb_ProxyObject* proxyObject  | Object to be registered.      |
 
 ### createWebMessagePorts()
 
@@ -205,10 +245,8 @@ Injects a JavaScript object with the window. Asynchronous APIs of this object ca
 
 **Parameters**
 
-**Parameters**
-
 | Name| Description| 
 | -------- | -------- |
-| webTag | Name of the **Web** component. | 
-| proxyObject | Object to be registered. | 
-| permission |  A JSON string used to configure the object and method levels of the JSBridge permission. This value is empty by default.| 
+| const char* webTag | Name of the **Web** component. | 
+| const ArkWeb_ProxyObject* proxyObject | Object to be registered. | 
+| const char* permission |  A JSON string used to configure the object and method levels of the JSBridge permission. This value is empty by default.| 

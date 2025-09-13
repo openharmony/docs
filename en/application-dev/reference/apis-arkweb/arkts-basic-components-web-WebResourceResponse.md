@@ -1,4 +1,10 @@
 # Class (WebResourceResponse)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements the **WebResourceResponse** object. For details about the sample code, see [onHttpErrorReceive](./arkts-basic-components-web-events.md#onhttperrorreceive).
 
@@ -114,11 +120,7 @@ Obtains the data in the resource response. Multiple data types are supported.
 
 |Type|Description|
 |---|---|
-|string|String in HTML format.|
-|number|Handle to the file.|
-|ArrayBuffer|Binary data.|
-|[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)|Resource referenced by **$rawfile()**.|
-|undefined|No available data.|
+|string \| number \| ArrayBuffer \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) \| undefined | An HTML string when the type is string; a file descriptor when the type is number; binary data when the type is ArrayBuffer; a **$rawfile** resource when the type is resource; or **undefined** if no data is available.|
 
 ## getResponseIsReady<sup>13+</sup>
 
@@ -230,4 +232,4 @@ Sets whether the resource response data is ready.
 
 | Name  | Type   | Mandatory | Description         |
 | ------- | ------- | ---- | ------------- |
-| IsReady | boolean | Yes  | Whether the resource response data is ready.<br>The value **true** indicates that the resource response data is ready, and **false** indicates the opposite. Default value: **true**.|
+| IsReady | boolean | Yes  | Whether the resource response data is ready.<br>The value **true** indicates that the resource response data is ready, and **false** indicates the opposite.<br>If the data is provided asynchronously, this parameter must be explicitly set to **false**. If this parameter is set to an invalid value, for example, **null** or **undefined**, or is not set, the data is considered ready.|

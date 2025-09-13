@@ -1,4 +1,10 @@
 # Interface (NativeMediaPlayerBridge)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhangyao75477-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
  
  
@@ -24,10 +30,10 @@ Updates the surface position information.
 
 | Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| x | number | Yes| X coordinate of the surface relative to the **Web** component.|
-| y | number | Yes| Y coordinate of the surface relative to the **Web** component.|
-| width  | number | Yes| Width of the surface.|
-| height | number | Yes| Height of the surface.|
+|x|number| Yes|X coordinate of the surface relative to the **Web** component.|
+|y|number| Yes|Y coordinate of the surface relative to the **Web** component.|
+|width|number| Yes|Width of the surface.<br>Unit: pixel|
+|height|number| Yes|Height of the surface.<br>Unit: pixel|
 
 **Example**
 

@@ -1,8 +1,14 @@
 # Previewing PDF Files
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @Yuan_ss-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
-The **Web** component provides the capability of previewing PDF files on web pages. An application can load a PDF file using the [src](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions) parameter and [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) API of the **Web** component. Based on the source, PDF files are classified into online PDF files, PDF files in the application sandbox, and local PDF files.
+The **Web** component allows users to preview PDF files on web pages. An application can use the [src](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions) parameter and [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) API of the **Web** component to load PDF files, including network PDF files, PDF files in the application sandbox, and local PDF files.
 
-To obtain online PDF files, configure the network access permission in the **module.json5** file. For details, see [Declare Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
+To obtain network documents, you need to configure the network access permission in the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
 
   ```
   "requestPermissions":[
@@ -12,8 +18,9 @@ To obtain online PDF files, configure the network access permission in the **mod
     ]
   ```
 
+## Loading Different PDF Files
 
-In the following example, the online PDF file **www.example.com/test.pdf** is specified to be loaded by default when the **Web** component is created. Replace the example address with an accessible address in practice.
+In the following example, the network PDF file **https://www.example.com/test.pdf** is specified as the default PDF file to be loaded when the **Web** component is created. Replace it with an actual accessible address.
 
 ```ts
 // xxx.ets
@@ -46,7 +53,7 @@ The PDF preview page uses **window.localStorage** to record the expansion status
   Web().domStorageAccess(true)
   ```
 
-Specify the PDF file to be loaded by default when the **Web** component is created. When the default PDF file is loaded, if you want to change the PDF file displayed on the **Web** component, you can call the [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) API to load the specified PDF file. The value of the first parameter **src** of the [Web component](../reference/apis-arkweb/arkts-basic-components-web.md) cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl).
+When creating a **Web** component, specify the PDF file to be loaded by default. When the default PDF file is loaded, if you want to change the PDF file displayed on the **Web** component, call the [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) API to load the specified PDF file. The value of the first parameter **src** of the [Web component](../reference/apis-arkweb/arkts-basic-components-web.md) cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl).
 
 There are three scenarios for loading and previewing PDF files:
 - Preview and load an online PDF file.
@@ -79,7 +86,7 @@ There are three scenarios for loading and previewing PDF files:
     .domStorageAccess(true)
   ```
 
-In addition, you can set PDF file preview parameters to control the page status when the page is opened.
+## Controlling the PDF File Preview Page Status
 
 Currently, the following parameters are supported:
 
@@ -93,9 +100,9 @@ Currently, the following parameters are supported:
 | pdfbackgroundcolor=color 	| Specifies the background color of a PDF file. The value of **color** is a six-digit hexadecimal number in RGB format. The value ranges from 000000 to ffffff. For example, **ffffff** indicates white.|
 
 
-URL Examples: 
+URL Examples:
 ```
-https://example.com/test.pdf#Chapter6  
+https://example.com/test.pdf#nameddest=Chapter6  
 https://example.com/test.pdf#page=3  
 https://example.com/test.pdf#zoom=50  
 https://example.com/test.pdf#page=3&zoom=200,250,100  
@@ -103,4 +110,37 @@ https://example.com/test.pdf#toolbar=0
 https://example.com/test.pdf#navpanes=0  
 https://example.com/test.pdf#pdfbackgroundcolor=ffffff
 ```
+
+## Using the PDF File Preview Callback
+
+Since API version 20, PDF file preview supports the loading success/failure callback and the callback that triggered when the page scrolls to the bottom.
+
+In the following example, the network PDF file **https://www.example.com/test.pdf** is specified as the default PDF file to be loaded when the **Web** component is created. Replace it with an actual accessible address.
+
+- **onPdfLoadEvent** is triggered when the loading succeeds or fails.
+  ```ts
+  Web({ 
+    src: 'https://www.example.com/test.pdf',
+    controller: this.controller 
+  })
+    .onPdfLoadEvent(
+      (eventInfo: OnPdfLoadEvent) => {
+        console.info(`Load event callback called. url: ${eventInfo.url}, result: ${eventInfo.result}.`)
+      }
+    )
+  ```
+
+- **onPdfScrollAtBottom** is triggered when the user scrolls to the bottom.
+  ```ts
+  Web({ 
+    src: 'https://www.example.com/test.pdf',
+    controller: this.controller 
+  })
+    .onPdfScrollAtBottom(
+      (eventInfo: OnPdfScrollEvent) => {
+        console.info(`Scroll at bottom callback called. url: ${eventInfo.url}.`)
+      }
+    ) 
+  ```
+
 <!--RP1--><!--RP1End-->

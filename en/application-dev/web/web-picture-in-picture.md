@@ -1,7 +1,13 @@
 # Enabling Picture-in-Picture
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @gzweioh-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 The web component supports the picture-in-picture (PiP) feature. An application can use the Picture-in-Picture API of the W3C standard to create a floating window on a web page to play videos. In this way, users can continue to watch videos in the PiP window when browsing other web pages or interacting with other applications. 
 
-To use online video resources, you need to set the network permission in the configuration file. For details about how to add permissions, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
+To use online video resources, you need to set the network permission in the configuration file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
 
 ```json
 // src/main/module.json5
@@ -15,6 +21,7 @@ To use online video resources, you need to set the network permission in the con
 ## Constraints
 1. H.264/H.265/HLS videos can be played in the PiP window. 
 2. The size of the PiP window is adjusted based on the system capability. For details, see the system features and capabilities in the design guide.
+3. Since OpenHarmony6.0, the **Web** component supports the PiP feature.
 
 ## Entering Picture-in-Picture
 
@@ -95,15 +102,13 @@ The following is an example of entering and exiting the PiP mode:
 
   ```ts
   // xxx.ets
-  import {webview} from '@kit.ArkWeb';
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct Index {
-    @State videoSrc: Resource = $rawfile('PictureInPicture.html')
-
-
-    controller: webview.WebviewController = new webview.WebviewController()
+    @State videoSrc: Resource = $rawfile('PictureInPicture.html');
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -116,7 +121,7 @@ The following is an example of entering and exiting the PiP mode:
 * Code of the HTML page:
 
   ```html
-  <!-- picture-in-picture.html -->
+  <!-- PictureInPicture.html -->
   <!DOCTYPE html>
   <html lang="en">
   <head>
