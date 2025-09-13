@@ -9,7 +9,7 @@
 
 ShareExtensionAbility继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，为开发者提供接入分享详情页能力。
 
-开发者通过实现ShareExtensionAbility，可作为一个选项出现在系统分享面板的分享方式区域。以分享文本为例，用户选中文本并分享后，系统将拉起目标应用。目标应用接收并解析分享数据，展示文本分享页面。
+开发者通过实现ShareExtensionAbility，可具备接收分享数据的能力，在系统分享面板中作为一个可选项出现。以分享文本为例，用户选中文本并选择分享后，系统会自动检测所有已声明此能力的应用，并将其列在分享面板中。当用户选择该应用时，系统会将其拉起，并由其接收、解析分享的文本数据，最终展示出相应的分享界面。
 
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
