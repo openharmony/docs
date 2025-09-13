@@ -150,7 +150,7 @@ try {
 
 findWindow(name: string): Window
 
-查找name所对应的窗口。
+查找指定名称对应的窗口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -166,7 +166,7 @@ findWindow(name: string): Window
 
 | 类型 | 说明 |
 | ----------------- | ------------------- |
-| [Window](arkts-apis-window-Window.md) | 当前查找的窗口对象。 |
+| [Window](arkts-apis-window-Window.md) | 当前查找的窗口对象。如果查找指定名称对应的窗口不存在，则返回对象为空。 |
 
 **错误码：**
 
