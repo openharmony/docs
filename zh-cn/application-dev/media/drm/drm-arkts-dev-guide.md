@@ -215,7 +215,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 
 15. （可选）调用[getOfflineMediaKeyIds](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#getofflinemediakeyids)获取离线媒体密钥标识列表，调用[getOfflineMediaKeyStatus](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#getofflinemediakeystatus)获取离线媒体密钥状态，调用[clearOfflineMediaKeys](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#clearofflinemediakeys)删除离线媒体密钥。
 
-    媒体密钥标识用于对离线媒体密钥的管理媒体密钥标识用于对离线媒体密钥的管理。
+    媒体密钥标识用于对离线媒体密钥的管理。
 
     ```ts
     let offlineMediaKeyIds: Uint8Array[] = mediaKeySystem.getOfflineMediaKeyIds();
