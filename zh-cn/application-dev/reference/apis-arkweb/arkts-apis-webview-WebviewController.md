@@ -10284,13 +10284,13 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
-import bussiness_error from '@ohos.base'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  
+
   build() {
     Column() {
       Button('setSiteIsolationMode')
@@ -10298,8 +10298,8 @@ struct WebComponent {
           try{
             webview.WebviewController.setSiteIsolationMode(webview.SiteIsolationMode.PARTIAL);
           } catch (error) {
-            let e : bussiness_error.BusinessError = error as bussiness_error.BusinessError;
-            console.error('ErrorCode: ${e.code}, Message: ${e.message}');
+            let e : business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code}, Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
