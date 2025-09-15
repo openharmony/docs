@@ -29,7 +29,7 @@
 
 ## 开发指导
 
-详细的API说明参考[AVDemuxer](../../reference/apis-avcodec-kit/capi-avdemuxer.md)和[AVSource](../../reference/apis-avcodec-kit/_a_v_source.md)
+详细的API说明参考[AVDemuxer](../../reference/apis-avcodec-kit/capi-avdemuxer.md)和[AVSource](../../reference/apis-avcodec-kit/capi-avsource.md)
 
 > **说明**
 >
