@@ -588,7 +588,6 @@ struct Parent {
 ### \@Builder函数联合V2装饰器
 
 由[@ObservedV2](./arkts-new-observedV2-and-trace.md)和[@Trace](./arkts-new-observedV2-and-trace.md)装饰的类对象实例具备深度观测属性变化的能力。在`@ComponentV2`装饰的自定义组件中，当调用全局Builder或局部Builder且使用值传递的方式传递参数时，修改`@Trace`装饰的对象属性可以触发UI刷新。
-
 ```ts
 @ObservedV2
 class Info {
