@@ -10290,11 +10290,11 @@ import { webview } from '@kit.ArkWeb';
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
 
-  aboutToAppear() {
+  build() {
     Column() {
       Button('setSiteIsolationMode')
         .onClick(() => {
-          webview.WebviewController.setSiteIsolationMode(web_webview.SiteIsolationMode.PARTIAL);          
+          webview.WebviewController.setSiteIsolationMode(webview.SiteIsolationMode.PARTIAL);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
