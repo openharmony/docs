@@ -62,9 +62,9 @@ context
 
 可以考虑如下两种方式获取资源文件：
 
-1. 使用$r或者$rawfile访问。适合静态访问，程序运行时不改变资源路径。
+1. 使用`$r`或者`$rawfile`访问。适合静态访问，程序运行时不改变资源路径。
 
-2. 使用ResourceManage访问。适合动态访问，程序运行时可动态改变资源路径。
+2. 使用ResourceManager访问。适合动态访问，程序运行时可动态改变资源路径。
 
 **参考链接**
 
@@ -97,14 +97,14 @@ getPluralString接口只支持英文系统，不支持中文。
 
 **解决措施**
 
-通过$r('app.type.name')的形式来引用，type代表资源类型，如color，string，media等，name代表资源命名。
+通过`$r('app.type.name')`的形式来引用，type代表资源类型，如color，string，media等，name代表资源命名。
 
 
 ## Resource类型如何转为String(API 9)
 
 **解决措施**
 
-Resource为string支持限定词目录使用this.context.resourceManager.getStringSync($r('app.string.test').id)，可以同步转换，不支持$r('app.string.test', 2)方式。
+Resource为string支持限定词目录使用`this.context.resourceManager.getStringSync($r('app.string.test').id)`，可以同步转换，不支持`$r('app.string.test', 2)`方式。
 
 **参考链接**
 
@@ -113,14 +113,14 @@ Resource为string支持限定词目录使用this.context.resourceManager.getStri
 
 ## form_config.json文件中是否可以使用$引用常量(API 9)
 
-form_config.json文件中不支持使用$引用常量。
+form_config.json文件中不支持使用`$`引用常量。
 
 
 ## ArkTS如何解析xml文件(API 9)
 
 **解决措施**
 
-1. 在rawfile目录下创建如下xml文件**。**
+1. 在rawfile目录下创建如下xml文件。
 
    ```
    <?xml version="1.0" encoding="utf-8"?>
