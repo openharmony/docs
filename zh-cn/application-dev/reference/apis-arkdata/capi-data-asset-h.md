@@ -463,7 +463,7 @@ Data_Asset *OH_Data_Asset_CreateOne(void)
 
 **描述**
 
-创造一个[Data_Asset](capi-rdb-data-asset.md)类型实例。
+创建一个[Data_Asset](capi-rdb-data-asset.md)类型实例。
 
 **起始版本：** 11
 
@@ -505,7 +505,7 @@ Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count)
 
 **描述**
 
-创造指定数量的[Data_Asset](capi-rdb-data-asset.md)类型实例。
+创建指定数量的[Data_Asset](capi-rdb-data-asset.md)类型实例。
 
 **起始版本：** 11
 

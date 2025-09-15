@@ -201,7 +201,7 @@
      }
 
      // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
-     // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
+     // 当前数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
      if (storeVersion === 1) {
        try {
          // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
