@@ -40,9 +40,9 @@
 
 随着系统的演进发展，先后提供了两种应用模型：
 
-- FA（Feature Ability）模型：从API 7开始支持的模型，已经不再主推。
+- [FA（Feature Ability）模型](ability-terminology.md#fa模型)：从API 7开始支持的模型，已经不再主推。
 
-- Stage模型：从API 9开始新增的模型，是目前主推且会长期演进的模型。在该模型中，由于提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称这种应用模型为Stage模型。
+- [Stage模型](ability-terminology.md#stage模型)：从API 9开始新增的模型，是目前主推且会长期演进的模型。在该模型中，由于提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称这种应用模型为Stage模型。
 
 
 ## 通过对比认识FA模型与Stage模型
