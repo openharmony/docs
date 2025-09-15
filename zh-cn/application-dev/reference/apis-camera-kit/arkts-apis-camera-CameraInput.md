@@ -335,3 +335,93 @@ function unregisterCameraInputError(cameraInput: camera.CameraInput, camera: cam
   cameraInput.off('error', camera);
 }
 ```
+
+## isPhysicalCameraOrientationVariable<sup>21+</sup>
+
+isPhysicalCameraOrientationVariable(): boolean
+
+查询不同折叠状态下相机物理镜头角度是否可变。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                                         |
+| ---------- | -------------------------------------------- |
+| boolean    | 查询不同折叠状态下相机物理镜头角度是否可变。true表示可变，false表示不可变。 |
+
+**示例：**
+
+```ts
+function isPhysicalCameraOrientationVariable(cameraInput: camera.CameraInput): boolean {
+  let isVariable: boolean = cameraInput.isPhysicalCameraOrientationVariable();
+  return isVariable;
+}
+```
+
+## getPhysicalCameraOrientation<sup>21+</sup>
+
+getPhysicalCameraOrientation(): number
+
+获取当前折叠状态下的物理镜头角度。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                                         |
+| ---------- | -------------------------------------------- |
+| number    | 返回当前折叠状态下的物理镜头角度。 |
+
+**示例：**
+
+```ts
+function getPhysicalCameraOrientation(cameraInput: camera.CameraInput): number {
+  let physicalCameraOrientation: number = cameraInput.getPhysicalCameraOrientation();
+  return physicalCameraOrientation;
+}
+```
+
+## usePhysicalCameraOrientation<sup>21+</sup>
+
+usePhysicalCameraOrientation(isUsed: boolean): void
+
+选择是否使用物理镜头角度。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                         | 必填 | 说明                                               |
+| -------- | ------------------------------------------- | ---- |--------------------------------------------------|
+| isUsed  | boolean         | 是   | 选择是否使用物理镜头角度。true表示使用，false表示不使用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                      |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400201 | Camera service fatal error.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function usePhysicalCameraOrientation(cameraInput: camera.CameraInput, isUsed: boolean): void {
+  try {
+    cameraInput.usePhysicalCameraOrientation(isUsed);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The usePhysicalCameraOrientation call failed. error code: ${err.code}`);
+  }
+}
+```
