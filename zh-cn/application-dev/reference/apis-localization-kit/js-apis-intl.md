@@ -76,7 +76,7 @@ constructor()
 
 constructor(locale: string, options?: LocaleOptions)
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale)替代。
 
 创建区域对象。
 
@@ -105,7 +105,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 toString(): string
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/toString)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/toString)替代。
 
 获取区域对象的字符串。
 
@@ -132,7 +132,7 @@ toString(): string
 
 maximize(): Locale
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.maximize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/maximize)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.maximize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/maximize)替代。
 
 最大化区域信息，补齐区域对象中缺少的脚本、国家地区信息。
 
@@ -168,7 +168,7 @@ maximize(): Locale
 
 minimize(): Locale
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.minimize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/minimize)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.minimize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/minimize)替代。
 
 最小化区域信息，移除区域对象中的脚本、国家地区信息。
 
@@ -201,7 +201,7 @@ minimize(): Locale
 
 ## LocaleOptions<sup>(deprecated)</sup>
 
-> 从API version 8开始支持，从API version 20开始废弃，以calendar为例，建议使用[Intl.Locale.prototype.calendar()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/calendar)替代。
+> 从API version 6开始支持，从API version 20开始废弃，以calendar为例，建议使用[Intl.Locale.prototype.calendar()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/calendar)替代。
 
 区域初始化选项。从API version 9开始，LocaleOptions属性由必填改为可选。
 
@@ -225,6 +225,14 @@ minimize(): Locale
 >  - calendar：不同取值的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
 
 ## DateTimeFormat<sup>(deprecated)</sup>
+
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)替代。
+
+提供日期格式化的能力。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -250,7 +258,7 @@ let formatter: intl.DateTimeFormat = new intl.DateTimeFormat();
 
 constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)替代。
 
 创建时间、日期格式化对象。
 
@@ -280,7 +288,7 @@ formatter = new intl.DateTimeFormat(['ban', 'zh'], { dateStyle: 'full', timeStyl
 
 format(date: Date): string
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat.prototype.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat.prototype.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format)替代。
 
 对时间、日期进行格式化。
 
@@ -318,7 +326,7 @@ formattedDate = formatter.format(date); // formattedDate "Friday, 17 December 20
 
 formatRange(startDate: Date, endDate: Date): string
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat.prototype.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRange)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat.prototype.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRange)替代。
 
 对时间段、日期段进行格式化。
 
@@ -354,7 +362,7 @@ let formattedDateRange: string = formatter.formatRange(startDate, endDate); // f
 
 resolvedOptions(): DateTimeOptions
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions)替代。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用[Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions)替代。
 
 获取创建时间、日期格式化对象时设置的配置项。
 
@@ -382,7 +390,7 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 
 ## DateTimeOptions<sup>(deprecated)</sup>
 
-> 从API version 8开始支持，从API version 20开始废弃，建议使用Intl.DateTimeFormatOptions和Intl.ResolvedDateTimeFormatOptions替代。用法参考[Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)和[Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions)。
+> 从API version 6开始支持，从API version 20开始废弃，建议使用Intl.DateTimeFormatOptions和Intl.ResolvedDateTimeFormatOptions替代。用法参考[Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)和[Intl.DateTimeFormat.prototype.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions)。
 
 时间、日期格式化时可设置的配置项。从API version 9开始，DateTimeOptions的属性由必填改为可选。
 
@@ -417,6 +425,10 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 ## NumberFormat
 
 提供数字格式化的能力。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
 
 ### constructor<sup>8+</sup>
 
@@ -556,6 +568,8 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 
 创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称                       | 类型      | 只读   | 可选   |  说明                                       |
@@ -586,6 +600,10 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 ## Collator<sup>8+</sup>
 
 提供字符串排序的能力。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
 
 ### constructor<sup>8+</sup>
 
@@ -709,6 +727,14 @@ resolvedOptions(): CollatorOptions
 
 ## PluralRules<sup>(deprecated)</sup>
 
+> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules)替代。
+
+提供获取单复数类型的能力。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
 ### constructor<sup>(deprecated)</sup>
 
 constructor()
@@ -793,6 +819,8 @@ select(n: number): string
 
 ## PluralRulesOptions<sup>(deprecated)</sup>
 
+> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.PluralRulesOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules)替代。
+
 创建单复数对象时可设置的配置项。从API version 9开始，PluralRulesOptions的属性由必填改为可选。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
@@ -811,6 +839,14 @@ select(n: number): string
 
 
 ## RelativeTimeFormat<sup>(deprecated)</sup>
+
+> 从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat)替代。
+
+提供相对时间格式化的能力。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
 
 ### constructor<sup>(deprecated)</sup>
 
