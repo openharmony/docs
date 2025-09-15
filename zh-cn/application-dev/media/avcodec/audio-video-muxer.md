@@ -77,9 +77,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 4. 添加文件级数据。
 
-   已定义的key详见[AVCodec支持的格式](avcodec-support-formats.md#媒体数据封装)。
+   文件级数据已定义的key详见[AVCodec支持的格式](avcodec-support-formats.md#媒体数据封装)。
 
-   用户自定义的key必须以"com.openharmony."为开头。值类型可以为int32_t、float、string、uint8_t*。
+   用户自定义的key必须以"com.openharmony."为开头。值类型可以为int32_t、float、string，从API20开始增加支持uint8_t*。
 
    > **说明：**
    >
@@ -89,9 +89,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat *format = OH_AVFormat_Create(); // 用OH_AVFormat_Create创建format。
 
    // 设置已定义的key。
-   OH_AVFormat_SetStringValue(format, OH_MD_KEY_CREATION_TIME, "2024-12-28T00:00:00:000000Z"); // 设置创建时间（使用ISO 8601标准的时间格式且为UTC时间）。
-   OH_AVFormat_SetStringValue(format, OH_MD_KEY_COMMENT, "comment test"); // 设置评论。值类型为string。
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_MOOV_FRONT, 1); // 设置moov元数据是否前置。默认值为0，设置1代表前置。
+   OH_AVFormat_SetStringValue(format, OH_MD_KEY_CREATION_TIME, "2024-12-28T00:00:00:000000Z"); // 从API14开始支持设置创建时间（使用ISO 8601标准的时间格式且为UTC时间）。
+   OH_AVFormat_SetStringValue(format, OH_MD_KEY_COMMENT, "comment test"); // 从API20开始支持设置评论。值类型为string。
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_MOOV_FRONT, 1); // 从API20开始支持设置moov元数据是否前置。默认值为0，设置1代表前置。
 
    // 设置用户自定义key（需要com.openharmony.开头）。
    OH_AVFormat_SetIntValue(format, "com.openharmony.testInt", 1024); // 值类型为int32_t。

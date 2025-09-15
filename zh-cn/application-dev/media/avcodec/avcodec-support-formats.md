@@ -116,9 +116,13 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
 文件级数据已定义的key如下所示：
    |                key                 |                       描述                    |
    | ---------------------------------- | :-------------------------------------------: |
-   | OH_MD_KEY_CREATION_TIME            | 媒体文件创建时间的元数据，值类型为string。        |
-   | OH_MD_KEY_COMMENT                  | 媒体文件注释的键，值类型为string。               |
-   | OH_MD_KEY_ENABLE_MOOV_FRONT        | 媒体文件moov元数据是否前置标志，值类型为int32_t。 |
+   | OH_MD_KEY_CREATION_TIME            | 媒体文件创建时间的元数据，值类型为string。（API14开始支持）        |
+   | OH_MD_KEY_COMMENT                  | 媒体文件注释的键，值类型为string。（API20开始支持）               |
+   | OH_MD_KEY_ENABLE_MOOV_FRONT        | 媒体文件moov元数据是否前置标志，值类型为int32_t。（API20开始支持） |
+
+> **说明：**
+>
+> 用户自定义的key必须以"com.openharmony."为开头。值类型可以为int32_t、float、string，从API20开始增加支持uint8_t*。
 
 配置选项key值说明：  
 
