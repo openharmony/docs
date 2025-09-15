@@ -160,8 +160,6 @@ canAddInput(cameraInput: CameraInput): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function canAddInput(session: camera.Session, cameraInput: camera.CameraInput): void {
   let canAdd: boolean = session.canAddInput(cameraInput);
   console.info(`The input canAddInput: ${canAdd}`);
@@ -277,8 +275,6 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function canAddOutput(session: camera.Session, cameraOutput: camera.CameraOutput): void {
   let canAdd: boolean = session.canAddOutput(cameraOutput);
   console.info(`This addOutput can add: ${canAdd}`);

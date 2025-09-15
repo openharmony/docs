@@ -52,7 +52,7 @@
       if (photoProfilesArray.length > 0) {
           photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
       } else {
-          console.log("the length of photoProfilesArray<=0!");
+          console.error("the length of photoProfilesArray<=0!");
           return undefined;
       }
      } catch (error) {
