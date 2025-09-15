@@ -1126,7 +1126,7 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
         if (err) {
           console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("delete success, code: " + code);
+        console.info("delete success, code: " + code);
       });
     }
   } catch (err) {
@@ -2303,7 +2303,7 @@ async function UnregisterObserver03() {
       // 期待收不到任何事件
       const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2628,7 +2628,7 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
     try {
     if (fileAccessHelper != undefined) {
         let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
-        console.log("moveFile success, fileUri: " + JSON.stringify(fileUri));
+        console.info("moveFile success, fileUri: " + JSON.stringify(fileUri));
     }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -2686,7 +2686,7 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
         if (err) {
           console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("moveFile success, fileUri: " + JSON.stringify(fileUri));
+        console.info("moveFile success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {
