@@ -278,7 +278,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.getMainWindow((err, data) =>
       {
         if (err.code) {
-          console.error('Failed to abtain the main window. Cause:' + err.message);
+          console.error('Failed to obtain the main window. Cause:' + err.message);
           return;
         }
         let windowClass: window.Window = data;
