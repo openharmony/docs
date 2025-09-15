@@ -34,7 +34,7 @@
         if (depthProfilesArray.length > 0) {
           depthDataOutput = cameraManager.createDepthDataOutput(depthProfilesArray[0]);
         } else {
-          console.log("the length of depthProfilesArray<=0!");
+          console.error("the length of depthProfilesArray<=0!");
           return undefined;
         }
       } catch (error) {

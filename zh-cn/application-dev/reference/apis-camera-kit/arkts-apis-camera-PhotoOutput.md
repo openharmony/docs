@@ -1214,7 +1214,7 @@ isPhotoQualityPrioritizationSupported(quality: PhotoQualityPrioritization): bool
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import camera from '@ohos.multimedia.camera';
+import camera from '@kit.CameraKit';
 let photoOutput: camera.PhotoOutput;
 
 function isPhotoQualityPrioritizationSupported(quality: camera.PhotoQualityPrioritization): boolean {
@@ -1262,7 +1262,7 @@ setPhotoQualityPrioritization(quality: PhotoQualityPrioritization): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import camera from '@ohos.multimedia.camera';
+import camera from '@kit.CameraKit';
 let photoOutput: camera.PhotoOutput;
 
 function setPhotoQualityPrioritization(quality: camera.PhotoQualityPrioritization): void {
