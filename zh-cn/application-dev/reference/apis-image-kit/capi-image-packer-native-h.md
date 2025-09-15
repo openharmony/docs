@@ -389,7 +389,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
 
 创建OH_PackingOptionsForSequence结构体的指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -414,7 +414,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForS
 
 设置编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -440,7 +440,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
 
 获取编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -466,7 +466,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
 
 设定编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -493,7 +493,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
 
 获取编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -520,7 +520,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
 
 设定编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -547,7 +547,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
 
 获取编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -574,7 +574,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSe
 
 设定编码时图片循环播放次数，取值范围为[0，65535]，0表示无限循环；若无此字段，则表示不循环播放。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -600,7 +600,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
 
 获取编码时图片循环播放次数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -626,7 +626,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 
 释放OH_PackingOptionsForSequence指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -763,7 +763,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
 
 将Pixelmap序列编码为数据。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
@@ -877,7 +877,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 
 将一个Pixelmap序列编码到文件中。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 **参数：**
