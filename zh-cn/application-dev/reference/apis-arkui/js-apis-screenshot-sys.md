@@ -115,7 +115,7 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
 };
 screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
   if (err) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    console.error(`Failed to save screenshot. Code: ${err.code} , messgae : ${err.message}`);
     return;
   }
   console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
@@ -159,7 +159,7 @@ import { image } from '@kit.ImageKit';
 
 screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
   if (err) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    console.error(`Failed to save screenshot. Code: ${err.code} , message : ${err.message}`);
     return;
   }
   console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
@@ -225,13 +225,14 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
 try {
   let promise = screenshot.save(screenshotOptions);
   promise.then((pixelMap: image.PixelMap) => {
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    let pixelNumber = pixelMap.getPixelBytesNumber();
+    console.info(`Succeeded in saving screenshot. Pixel bytes number: ${pixelNumber}`);
     pixelMap.release(); // PixelMap使用完后及时释放内存
   }).catch((err: BusinessError) => {
-    console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    console.error(`Failed to save screenshot. Code: ${err.code} , messgae : ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to save screenshot. Code: ${exception.code} , message : ${exception.message}`);
 };
 ```
 
@@ -295,9 +296,9 @@ try {
       pixelMap.release();
     }
   }).catch((err: BusinessError) => {
-    console.error('Failed to save SDR and HDR screenshot. Code: ' + JSON.stringify(err));
+    console.error(`Failed to save SDR and HDR screenshot. Code: ${err.code} , message : ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to save SDR and HDR screenshot. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to save SDR and HDR screenshot. Code: ${exception.code} , message : ${exception.message}`);
 };
 ```
