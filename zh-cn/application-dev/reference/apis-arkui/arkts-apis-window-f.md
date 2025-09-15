@@ -870,8 +870,8 @@ setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: Co
 
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
-| moduleName     | string                        | 是   | 需要设置的UIAbility所属模块名，moduleName的长度范围为0-200，仅支持设置当前同一应用包名内的模块。模块名由开发者在[module.json5配置文件](../../quick-start/module-configuration-file.md#配置文件标签)中指定，相关信息具体可见[AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md#abilityinfo)。 |
-| abilityName     | string                        | 是   | 需要设置的UIAbility名字，abilityName的长度范围为0-200，仅支持设置当前同一应用包名内的abilityName。UIAbility名由开发者在[module.json5配置文件abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的name字段指定，相关信息具体可见[AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md#abilityinfo)。 |
+| moduleName     | string                        | 是   | 需要设置的UIAbility所属模块名，moduleName的长度范围为0-200字节，仅支持设置当前同一应用包名内的模块。模块名由开发者在[module.json5配置文件](../../quick-start/module-configuration-file.md#配置文件标签)中的name字段指定。 |
+| abilityName     | string                        | 是   | 需要设置的UIAbility名字，abilityName的长度范围为0-200字节，仅支持设置当前同一应用包名内的abilityName。UIAbility名由开发者在[module.json5配置文件abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的name字段指定。 |
 | color | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置的启动页背景色。                       |
 
 **返回值：**
