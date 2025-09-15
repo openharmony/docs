@@ -110,7 +110,7 @@ HiLog:
 
 ### Page switch history
 
-从API 20起，使用Page switch history段记录页面切换的历史，故障日日志最多记录最新的10条历史轨迹。单条记录的格式如下：
+从API 20起，使用Page switch history段记录页面切换的历史，故障日志最多记录最新的10条历史轨迹。单条记录的格式如下：
 ```text
   14:08:30:327 /ets/pages/Index:JsError
        ^             ^            ^
