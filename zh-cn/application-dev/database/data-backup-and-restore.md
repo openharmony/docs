@@ -8,9 +8,7 @@
 
 ## 场景介绍
 
-当应用在处理一项重要的操作，显然是不能被打断的。例如：写入多个表关联的事务。此时，每个表的写入都是单独的，但是表与表之间的事务关联性不能被分割。
-
-如果操作的过程中出现问题，开发者可以使用恢复功能，将数据库恢复到之前的状态，重新对数据库进行操作。
+如果操作或存储的过程中出现问题，开发者可以使用恢复功能，将数据库恢复到之前的状态，重新对数据库进行操作。
 
 在数据库被篡改、删除、或者设备断电场景下，数据库可能会因为数据丢失、数据损坏、脏数据等而不可用，可以通过数据库的备份恢复能力将数据库恢复至可用状态。
 
@@ -112,7 +110,7 @@
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
-         console.info('Succeeded in backuping data.');
+         console.info('Succeeded in backing up data.');
        }
      });
    } catch (e) {
@@ -395,7 +393,7 @@ export default class EntryAbility extends UIAbility {
          store = await relationalStore.getRdbStore(context, STORE_CONFIG);
          // 调用restore接口恢复数据
          await store.restore("Backup.db");
-         console.log("Restore from back success.")
+         console.log("Restore from backup success.")
        } catch (e) {
          const err = e as BusinessError;
          console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
