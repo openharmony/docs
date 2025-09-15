@@ -18,7 +18,7 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 - 新增支持互动卡片。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/form/arkts-ui-liveform-overview.md)）
 
-- 新增支持Kiosk模式。Kiosk模式是一种特殊的设备锁定模式，可以确保设备界面只服务于特定的交互场景。（[指南](https://gitcode.com/RayShih/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)）
+- 新增支持Kiosk模式。Kiosk模式是一种特殊的设备锁定模式，可以确保设备界面只服务于特定的交互场景。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)）
 
 - 应用启动框架支持在feature类型的HAP中配置，以及支持添加任务匹配规则。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/application-models/app-startup.md#%E6%94%AF%E6%8C%81%E7%9A%84%E8%8C%83%E5%9B%B4)）
 
@@ -103,7 +103,7 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 ### 分布式软总线
 
-新开放底层连接能力接口，实现连接能力提升。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/distributedservice/linnkEnhance_development-guide.md)）
+新开放底层连接能力接口，实现连接能力提升。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/distributedservice/linkEnhance_development-guide.md)）
 
 
 ### 分布式服务
