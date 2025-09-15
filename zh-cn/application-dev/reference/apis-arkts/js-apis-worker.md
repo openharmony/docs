@@ -1180,8 +1180,6 @@ callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: nu
 
 Worker线程调用宿主线程上注册的对象的指定方法，此调用对Worker线程同步，对宿主线程异步，返回值通过数据拷贝传递。
 
-
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
