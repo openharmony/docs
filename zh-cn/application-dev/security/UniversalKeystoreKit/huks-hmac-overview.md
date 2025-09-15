@@ -7,7 +7,7 @@
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
 
-MAC（Message Authentication Code）提供了一种在不可靠介质上检验传输或存储信息完整性的方法，HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code），是一种基于Hash函数和密钥进行消息认证的方法。HMAC可以与任何加密哈希函数（例如MD5、SHA-1等）结合使用，HUKS支持了HMAC结合主流的摘要算法进行使用。
+MAC（Message Authentication Code）提供了一种在不可靠介质上检验传输或存储信息完整性的方法，HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code），是一种基于Hash函数和密钥进行消息认证的方法。HMAC可以与任何加密哈希函数（例如SHA256、SM3等）结合使用，HUKS支持了HMAC结合主流的摘要算法进行使用。
 
 ## 支持的算法
 
@@ -19,7 +19,7 @@ MAC（Message Authentication Code）提供了一种在不可靠介质上检验�
 <!--DelEnd-->
 | 摘要算法 | 支持的密钥长度 | API级别 | <!--DelCol4-->是否必选规格 |
 | -------- | -------- | -------- | -------- |
-| <!--DelRow-->MD5、SHA1、SHA224 | 8 - 1024 | 8+ | 否 |
+| <!--DelRow-->SHA1、SHA224 | 8 - 1024 | 8+ | 否 |
 | SHA256 | 192 - 1024 | 8+ | 是 |
 | SHA384、SHA512 | 256 - 1024 | 8+ | 是 |
-| SM3 | 8 - 4096 | 8+ | 是 |
+| SM3 | <!--RP1-->8 - 4096<!--RP1End--> | 8+ | 是 |
