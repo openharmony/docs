@@ -1,4 +1,10 @@
 # Class (NativeMediaPlayerSurfaceInfo)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhangyao75477-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **NativeMediaPlayerSurfaceInfo** object to provide the surface information used for same-layer rendering [when the application takes over the media playback of the web page](./arkts-basic-components-web-attributes.md#enablenativemediaplayer12).
 
@@ -14,7 +20,7 @@ Implements a **NativeMediaPlayerSurfaceInfo** object to provide the surface info
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| id<sup>12+</sup> | string | Yes| Surface ID, which is the **psurfaceid** of the native image used for rendering at the same layer.<br>For details, see [NativeEmbedDataInfo](./arkts-basic-components-web-i.md#nativeembeddatainfo11).|
-| rect<sup>12+</sup> | [RectEvent](./arkts-apis-webview-i.md#rectevent12) | Yes| Position of the surface.|
+| Name| Type| Read-Only| Optional | Description|
+|------|------|------|------|------|
+| id<sup>12+</sup> | string | No| No| Surface ID, which is the **psurfaceid** of the native image used for rendering at the same layer.<br>For details, see [NativeEmbedDataInfo](./arkts-basic-components-web-i.md#nativeembeddatainfo11).|
+| rect<sup>12+</sup> | [RectEvent](./arkts-apis-webview-i.md#rectevent12) | No| No| Position of the surface.|

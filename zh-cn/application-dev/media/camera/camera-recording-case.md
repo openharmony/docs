@@ -45,7 +45,7 @@ const resources: RecordingResources = {};
 
 async function releaseResources(): Promise<void> {
   const releaseSteps = [
-    // 停止录像。
+  // 停止录像。
     async () => await resources.avRecorder?.stop().catch((e: BusinessError) => console.error('停止录像失败:', e)),
     // 停止视频输出。
     async () => await resources.videoOutput?.stop().catch((e: BusinessError) => console.error('停止视频输出失败:', e)),
@@ -143,7 +143,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   // videoProfile的宽高需要与AVRecorderProfile的宽高保持一致，并且需要使用AVRecorderProfile所支持的宽高。
   // 示例代码默认选择第一个videoProfile，实际开发需根据所需筛选videoProfile。
   const videoProfile: camera.VideoProfile = cameraOutputCap.videoProfiles[0];
-  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // 本地沙箱路径。
+  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // 本地沙箱路径。
   try {
     resources.file = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   } catch (error) {
@@ -175,15 +175,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoOrientation: '0', // 合理值0、90、180、270，非合理值prepare接口将报错。
     location: { latitude: 30, longitude: 130 }
   }
-  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // 本地沙箱路径。
-  let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
     url: `fd://${resources.file.fd.toString()}`, // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45--file:///data/media/01.mp4
     rotation: 0, // 合理值0、90、180、270，非合理值prepare接口将报错。
-    location: { latitude: 30, longitude: 130 }
+    metadata: avMetadata
   };
 
   try {
@@ -297,23 +295,6 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to open cameraInput. error: ${err}`);
   }
 
-  // 向会话中添加相机输入流。
-  try {
-    videoSession.addInput(cameraInput);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`Failed to add cameraInput. error: ${err}`);
-  }
-
-  // 创建预览输出流，预览流为XComponent组件提供的surface。
-  let previewOutput: camera.PreviewOutput | undefined = undefined;
-  let previewProfile = previewProfilesArray.find((previewProfile: camera.Profile) => {
-    return Math.abs((previewProfile.size.width / previewProfile.size.height) - (videoProfile.size.width / videoProfile.size.height)) < Number.EPSILON;
-  }); // 筛选与录像分辨率宽高比一致的预览分辨率。
-  if (previewProfile === undefined) {
-    return;
-  }
-
   // 创建会话。
   try {
     resources.videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
@@ -358,11 +339,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   // 停止当前会话。
-  await videoSession.stop();
+  await resources.videoSession.stop();
 
   // 关闭文件。
   try {
-    fs.closeSync(file);
+    fs.closeSync(resources.file);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`closeSync failed, error: ${err}`);
@@ -370,11 +351,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
 
   // 释放相机输入流。
-  await cameraInput.close();
+  await resources.cameraInput.close();
 
   // 释放预览输出流。
   try {
-    await previewOutput.release();
+    await resources.previewOutput.release();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`release previewOutput failed, error: ${err.code}`);
@@ -383,7 +364,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // 释放录像输出流。
   try {
-    await videoOutput.release();
+    await resources.videoOutput.release();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`release videoOutput failed, error: ${err.code}`);
@@ -391,13 +372,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // 释放会话。
   try {
-    await videoSession.release();
+    await resources.videoSession.release();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`release videoSession failed, error: ${err.code}`);
   }
-  
+
   // 会话置空。
-  videoSession = undefined;
+  resources.videoSession = undefined;
 }
 ```

@@ -236,8 +236,8 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 **示例：**
 
   ```js
-  let uploadTask;
-  let uploadConfig = {
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
@@ -246,7 +246,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   };
   request.upload(uploadConfig).then((data) => {
     uploadTask = data;
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
   })
   ```
@@ -286,8 +286,8 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 **示例：**
 
   ```js
-  let uploadTask;
-  let uploadConfig = {
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
@@ -987,11 +987,11 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 **示例：**
 
   ```js
-  let downloadTask;
+  let downloadTask: request.DownloadTask;
   // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
   })
   ```
@@ -1031,7 +1031,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 **示例：**
 
   ```js
-  let downloadTask;
+  let downloadTask: request.DownloadTask;
   // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
@@ -2080,7 +2080,7 @@ query(): Promise&lt;DownloadInfo&gt;
   ```js
   downloadTask.query().then((downloadInfo) => {    
     console.info('Succeeded in querying the download task.')
-  }) .catch((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```

@@ -12,13 +12,13 @@ For details about the APIs, see [Sensor](../../reference/apis-sensor-service-kit
 
 | Name| Description                             |
 | -------- |---------------------------------|
-| sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;, options?: Options): void | Enables listening for data changes of the specified type of sensor.                   |
+| sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;, options?: Options): void | Subscribes to data changes of a type of sensor.                   |
 | sensor.on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): void | Enables listening for sensor status changes.|
-| sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Enables one-time listening for sensor data changes.                   |
-| sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Disables listening for data changes of the specified type of sensor.                    |
+| sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.                   |
+| sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.                    |
 | sensor.off(sensorId, sensorInfoParam?: SensorInfoParam, callback?:AsyncCallback&lt;void&gt;): void | Disables listening for data changes of the specified type of sensor based on the given sensor parameters.            |
 | sensor.off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): void | Disables listening for sensor status changes.             |
-| sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| Obtains information about all sensors on the device.                 |
+| sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| Obtains information about all sensors on the device. This API uses an asynchronous callback to return the result.                 |
 
 
 ## How to Develop
@@ -32,7 +32,7 @@ The acceleration sensor is used as an example.
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Obtain information about all sensors on the device.
+2. Obtain the list of all sensors on the device. If a sensor cannot be found, the sensor does not exist or is unavailable on the device. If you subscribe to events specific to this sensor, an exception will be thrown, and you need to implement the service logic to handle this exception.
 
     ```ts    
     sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
@@ -55,7 +55,7 @@ The acceleration sensor is used as an example.
     ```ts
     try {
       const deviceId = 1;
-      // The deviceId parameter is optional. By default, it is set to the ID of the local device.
+      // The deviceId parameter is optional. The default value is the ID of the local device.
       const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
       console.log(`sensorList length: ${sensorList.length}`);
       console.log(`sensorList: ${JSON.stringify(sensorList)}`);
@@ -67,7 +67,7 @@ The acceleration sensor is used as an example.
 
 3. Check whether the corresponding permission has been configured. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
-4. Enable listening for sensor status changes. You can call **on()** or **once()** to listen for sensor data changes.
+4. Register a listener. You can call **on()** or **once()** to listen for sensor data changes.
 
    The **on()** API is used to continuously listen for data changes of the sensor. The sensor reporting interval is set to 100000000 ns.
 
@@ -102,7 +102,7 @@ The acceleration sensor is used as an example.
 
     ![](figures/002.png)
 
-   The **once()** API is used to perform one-time listening for sensor data changes.
+   The **once()** API is used to listen for only one data change of the sensor.
 
    ```ts
    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
@@ -112,7 +112,7 @@ The acceleration sensor is used as an example.
 
    ![](figures/003.png)
 
-5. Disable listening for sensor status changes.
+5. Cancel continuous listening.
 
     Note that disabling listening without a prior subscription is an abnormal behavior and requires exception handling.
     ```ts
@@ -137,6 +137,6 @@ The acceleration sensor is used as an example.
 
     Disable listening for sensor status changes.
     ```ts
-    // Before performing this operation, ensure that listening for sensor status changes has been enabled.
+    // Before disabling event listening, make that listening has been enabled by using on('sensorStatusChange',...). This API does not work if listening has not been enabled.
     sensor.off('sensorStatusChange');
     ```

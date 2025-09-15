@@ -43,7 +43,7 @@ getAccountManager(): AccountManager
 
 表示系统账号类型的枚举。
 
-**系统能力：** SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
@@ -2984,7 +2984,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;
 
 ### getOsAccountDomainInfo<sup>15+</sup>
 
-getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
+getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;
 
 获取指定系统账号关联的域账号信息。
 

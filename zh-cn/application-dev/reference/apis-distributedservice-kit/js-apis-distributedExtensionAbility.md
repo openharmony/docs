@@ -71,7 +71,7 @@ onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateR
 
 | 参数名    | 类型   | 必填 | 说明                                                                                                                                   |
 | --------- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| wantParam | Record <string, Object> | 是   | want相关参数，仅支持key值取"ohos.extra.param.key.supportCollaborateIndex"。通过该key值可以可以获取到调用方传输的数据并进行相应的处理。 |
+| wantParam | Record <string, Object> | 是   | want相关参数，仅支持key值取"ohos.extra.param.key.supportCollaborateIndex"。通过该key值可以获取到调用方传输的数据并进行相应的处理。 |
 
 **返回值：**
 

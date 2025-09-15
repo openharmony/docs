@@ -59,7 +59,7 @@ WebGL的全称为Web Graphics Library（网页图形库），主要用于交互�
 | GLsizeiptr | long long          | 用来表示指针的特殊类型，通常用于指定缓冲区对象的大小。         |
 | GLubyte    | octet              | 八位（一个字节）2的补码表示的无符号整数。                 |
 | GLushort   | unsigned short     | 16位2的补码表示的无符号整数。                          |
-| GLuint    | unsigned short     | 32位2的补码表示的有符号整数。                        |
+| GLuint    | unsigned long     | 32位2的补码表示的无符号整数。                        |
 | GLfloat   | unrestricted float | 32位的IEEE标准的浮点数。                             |
 | GLclampf   | unrestricted float | 限值32位IEEE浮点数。                                      |
 

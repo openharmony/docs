@@ -423,61 +423,61 @@ zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang18
 
 
 [开发-Arkweb]
-zh-cn/application-dev/web/arkweb-ndk-jsbridge.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/arkweb-ndk-page-data-channel.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-adsblock.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-app-page-data-channel.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-cookie-and-data-storage-mgmt.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-cross-origin.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-debugging-with-devtools.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-default-userAgent.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-download.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-in-app-frontend-page-function-invoking.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-in-page-app-function-invoking.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-incognito-mode.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-intelligent-tracking-prevention.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-page-loading-with-web-components.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-predictor.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-redirection-and-browsing-history-mgmt.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-resource-interception-request-mgmt.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-scheme-handler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/web-set-back-forward-cache.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/web/app-takeovers-web-media.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/web/web-clipboard.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-component-migrate.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/web/web-component-overview.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/web/web-content-scrolling.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-crashpad.md @hjoksky @glzt2l @HelloCrease @StringChen
-zh-cn/application-dev/web/web-createpdf.md @handyohos @glzt2l @HelloCrease @zhang-yinglie
-zh-cn/application-dev/web/web-data-detector.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-dialog.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-docking-softkeyboard.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/web/web-event-sequence.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/web/web-file-upload.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-fit-content.md @LongLie @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/web/web-focus.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-geolocation-permission.md @handyohos @glzt2l @HelloCrease @zhang-yinglie
-zh-cn/application-dev/web/web-gesture.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-nested-scrolling.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-offline-mode.md @qianlf @glzt2l @HelloCrease @xzc_astile
-zh-cn/application-dev/web/web-open-in-new-window.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/web/web-pdf-preview.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/web/web-picture-in-picture.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/web/web-print.md @handyohos @glzt2l @HelloCrease @zhang-yinglie
-zh-cn/application-dev/web/web-render-mode.md @LongLie @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/web/web-router-flash-optimization.md @defeng20201 @glzt2l @HelloCrease @LXinJie1
-zh-cn/application-dev/web/web-rtc.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/web/web-safe-area-insets.md @LongLie @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/web/web-same-layer.md @LongLie @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/web/web-scale-zoom.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web-secure-shield-mode.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/web/web-sensor.md @handyohos @glzt2l @HelloCrease @zhang-yinglie
-zh-cn/application-dev/web/web-set-dark-mode.md @LongLie @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/web/web-white-screen.md @LongLie @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/web/web_component_process.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/web/web_drag.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/web/web_full_screen.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/web/web_menu.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/arkweb-ndk-jsbridge.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/arkweb-ndk-page-data-channel.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-adsblock.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-app-page-data-channel.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-cookie-and-data-storage-mgmt.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-cross-origin.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-debugging-with-devtools.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-default-userAgent.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-download.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-in-app-frontend-page-function-invoking.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-in-page-app-function-invoking.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-incognito-mode.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-intelligent-tracking-prevention.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-page-loading-with-web-components.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-predictor.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-redirection-and-browsing-history-mgmt.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-resource-interception-request-mgmt.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-scheme-handler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/web-set-back-forward-cache.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/web/app-takeovers-web-media.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/web/web-clipboard.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-component-migrate.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/web/web-component-overview.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web-content-scrolling.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-crashpad.md @hjoksky @glzt2l @HelloShuo @StringChen
+zh-cn/application-dev/web/web-createpdf.md @handyohos @glzt2l @HelloShuo @zhang-yinglie
+zh-cn/application-dev/web/web-data-detector.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-dialog.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-docking-softkeyboard.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/web/web-event-sequence.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/web/web-file-upload.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-fit-content.md @LongLie @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web-focus.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-geolocation-permission.md @handyohos @glzt2l @HelloShuo @zhang-yinglie
+zh-cn/application-dev/web/web-gesture.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-nested-scrolling.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-offline-mode.md @qianlf @glzt2l @HelloShuo @xzc_astile
+zh-cn/application-dev/web/web-open-in-new-window.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/web/web-pdf-preview.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/web/web-picture-in-picture.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/web/web-print.md @handyohos @glzt2l @HelloShuo @zhang-yinglie
+zh-cn/application-dev/web/web-render-mode.md @LongLie @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web-router-flash-optimization.md @defeng20201 @glzt2l @HelloShuo @LXinJie1
+zh-cn/application-dev/web/web-rtc.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/web/web-safe-area-insets.md @LongLie @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web-same-layer.md @LongLie @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web-scale-zoom.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web-secure-shield-mode.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/web/web-sensor.md @handyohos @glzt2l @HelloShuo @zhang-yinglie
+zh-cn/application-dev/web/web-set-dark-mode.md @LongLie @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web-white-screen.md @LongLie @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web_component_process.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/web/web_drag.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/web/web_full_screen.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/web/web_menu.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
 
 [开发-Background Tasks Kit]
 zh-cn/application-dev/task-management/ @Brilliantry_Rui @zhouben25  @fenglili18
@@ -1029,6 +1029,7 @@ zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-measureutils.md	
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-mediaquery.md	@lanshouren	@liuli0427	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-promptaction.md	@houguobiao	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-uicontext.md	@xiang-shouxing	@sally__	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext.md	@xiang-shouxing	@sally__	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-uiobserver.md	@xiang-shouxing	@fredyuan912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/capi-arkui-accessibility-arkui-accessibilityactionarguments.md	@lmleon	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/capi-arkui-accessibility-arkui-accessibilityelementinfo.md	@lmleon	@fredyuan0912	@HelloCrease
@@ -1402,6 +1403,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancem
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md	@piggyguy	@songyanhong	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-settings.md	@piggyguy	@songyanhong	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-image-common.md	@weixin_52725220	@xiong0104	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-image-svg2-capabilities.md	@weixin_52725220	@xiong0104	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md	@CCFFWW	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-media-components-video-sys.md	@sunbees	@liuli0427	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-media-components-video.md	@sunbees	@liuli0427	@HelloCrease
@@ -1543,98 +1545,98 @@ zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @acha
 
 
 [API参考-ArkWeb]
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-e.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-f.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md @handyohos @glzt2l @HelloCrease @zhang-yinglie
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-i.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-MediaSourceInfo.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-PdfData.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-t.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDataBase.md @handyohos @glzt2l @HelloCrease @yjone
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebStorage.md @handyohos @glzt2l @HelloCrease @yjone
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebviewController.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ControllerHandler.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-e.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-EventResult.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorParam.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorResult.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FullScreenExitHandler.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-i.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-JsGeolocation.md @handyohos @glzt2l @HelloCrease @zhang-yinglie
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-JsResult.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-PermissionRequest.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ScreenCaptureHandler.md @qiu-gongkai @glzt2l @HelloCrease @d0ub1eh
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-t.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebContextMenuParam.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebController.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebKeyboardController.md @zhufenghao @glzt2l @HelloCrease @jerrywangxmu
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-interface-h.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-type-h.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/capi-native-interface-arkweb-h.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-anynativeapi.md @libing23232323 @glzt2l @HelloCrease @zhu-sheng-le
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-componentapi.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-controllerapi.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/capi-web.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @ctqctq99 @glzt2l @HelloCrease @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-netErrorList.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-AdsBlockManager.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheOptions.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheSupportedFeatures.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardList.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-JsMessageExt.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyConfig.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyController.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyRule.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadDelegate.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebHttpBodyStream.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebMessageExt.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebMessagePort.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebResourceHandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerRequest.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerResponse.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ClientAuthenticationHandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ConsoleMessage.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-DataResubmissionHandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-HttpAuthHandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-SslErrorHandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebCookie.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceError.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceRequest.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceResponse.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-error-code-h.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-net-error-list-h.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-scheme-handler-h.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-cookiemanagerapi.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-httpbodystream.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptbridgedata.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptobject.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptvalue8h.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptvalueapi.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxymethod.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxymethodwithresult.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxyobject.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxyobjectwithresult.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-requestheaderlist.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-resourcehandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-resourcerequest.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-response.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-schemehandler.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessage8h.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageapi.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageport8h.md @aohui @glzt2l @HelloCrease
-zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md @aohui @glzt2l @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-e.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-f.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md @handyohos @glzt2l @HelloShuo @zhang-yinglie
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-i.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-MediaSourceInfo.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-PdfData.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-t.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDataBase.md @handyohos @glzt2l @HelloShuo @yjone
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebStorage.md @handyohos @glzt2l @HelloShuo @yjone
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebviewController.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ControllerHandler.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-e.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-EventResult.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorParam.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorResult.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FullScreenExitHandler.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-i.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-JsGeolocation.md @handyohos @glzt2l @HelloShuo @zhang-yinglie
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-JsResult.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-PermissionRequest.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ScreenCaptureHandler.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-t.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebContextMenuParam.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebController.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebKeyboardController.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-interface-h.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-type-h.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-native-interface-arkweb-h.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-anynativeapi.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-componentapi.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-controllerapi.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-web.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-netErrorList.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-AdsBlockManager.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheOptions.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheSupportedFeatures.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardList.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-JsMessageExt.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyConfig.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyController.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyRule.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadDelegate.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebHttpBodyStream.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebMessageExt.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebMessagePort.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebResourceHandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerRequest.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerResponse.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ClientAuthenticationHandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ConsoleMessage.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-DataResubmissionHandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-HttpAuthHandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-SslErrorHandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebCookie.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceError.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceRequest.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceResponse.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-error-code-h.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-net-error-list-h.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-scheme-handler-h.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-cookiemanagerapi.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-httpbodystream.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptbridgedata.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptobject.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptvalue8h.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptvalueapi.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxymethod.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxymethodwithresult.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxyobject.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxyobjectwithresult.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-requestheaderlist.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-resourcehandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-resourcerequest.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-response.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-schemehandler.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessage8h.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageapi.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageport8h.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md @aohui @glzt2l @HelloShuo
 
 
 [API参考-Background Tasks Kit]

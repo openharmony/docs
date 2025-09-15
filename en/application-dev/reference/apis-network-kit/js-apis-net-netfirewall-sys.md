@@ -1,6 +1,13 @@
 # @ohos.net.netFirewall (Network Firewall) (System API)
 
-The **netFirewall** module implements the firewall query functionality. It allows applications to query firewall interception records of the device.
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
+The **netFirewall** module implements the firewall query functionality. It allows applications to query firewall interception records.
 
 > **NOTE**
 >
@@ -15,9 +22,9 @@ import netfirewall from '@ohos.net.netFirewall';
 
 ## netFirewall.getInterceptedRecords
 
-getInterceptedRecords(userId: number, requestParam: RequestParam): Promise<\InterceptedRecordPage>
+getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage\>
 
-Obtains interception records based on the specified user ID. You need to specify the pagination query parameter when calling this API.
+Obtains interception records based on the specified user ID. You need to specify the pagination query parameter when calling this API. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -54,7 +61,7 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let interceptRecordParam: netFirewall.RequestParam = {
@@ -78,16 +85,16 @@ Defines an interception record.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Name      | Type  | Mandatory| Description               |
-|------------| -------|------|-------------------- |
-| time       | number | Yes  | Timestamp.           |
-| localIp    | string | No  | Local IP address.           |
-| remoteIp   | string | No  | Remote IP address.           |
-| localPort  | number | No  | Local port.         |
-| remotePort | number | No  | Remote port.         |
-| protocol   | number | No  | Transport layer protocol.       |
-| appUid     | number | No  | Application or service UID.|
-| domain     | string | No  | Domain name.             |
+| Name      | Type  | Read-only|Optional| Description               |
+|------------| -------|------|---|-------------------- |
+| time       | number | No  |No| Timestamp.           |
+| localIp    | string | No  |Yes|Local IP address.           |
+| remoteIp   | string | No  |Yes| Remote IP address.           |
+| localPort  | number | No  |Yes|Local port. The default value is **0**.         |
+| remotePort | number | No  | Yes|Remote port. The default value is **0**.         |
+| protocol   | number | No  |Yes|Transport layer protocol. The default value is **0**.       |
+| appUid     | number | No  |Yes|Application or service UID. The default value is **0**.|
+| domain     | string | No  | Yes|Domain name.             |
 
 ## InterceptedRecordPage
 
@@ -97,9 +104,9 @@ Defines the pagination structure for interception records.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Name      | Type                                           | Mandatory| Description      |
-|------------| ----------------------------------------------- |------|----------  |
-| page       | number                                          | Yes  | Current page.|
-| pageSize   | number                                          | Yes  | Page size.|
-| totalPage  | number                                          | Yes  | Total number of pages.  |
-| data       | Array\<[InterceptedRecord](#interceptedrecord)> | Yes  | Page data.|
+| Name      | Type                                           | Read-only|Optional| Description      |
+|------------| ----------------------------------------------- |------|---|----------  |
+| page       | number                                          | No  |No|Current page.|
+| pageSize   | number                                          |   No |No|Page size.|
+| totalPage  | number                                          |  No  | No|Total number of pages.  |
+| data       | Array\<[InterceptedRecord](#interceptedrecord)> |  No  |No|Page data.|

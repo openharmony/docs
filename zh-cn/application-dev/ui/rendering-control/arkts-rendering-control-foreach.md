@@ -834,7 +834,7 @@ struct Parent {
 }
 ```
 
-对比自定义`keyGenerator`函数和使用默认键值生成函数两种情况下的内存占用。自定义`keyGenerator`函数，这个示例代码的内存占用降低了约70MB。  
+对比自定义`keyGenerator`函数和使用默认键值生成函数两种情况下的内存占用（通过DevEco->Profiler->Realtime Monitor工具，可以获取相关进程的内存数据）。自定义`keyGenerator`函数，这个示例代码的内存占用降低了约70MB。  
 
 **图14** 使用默认键值生成函数下的内存占用  
 ![ForEach-StateVarNoRender](figures/ForEach-default-keyGenerator.PNG)

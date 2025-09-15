@@ -1,4 +1,10 @@
 # Overview of Concurrency in Time-Consuming Tasks
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 Time-consuming tasks are those that take a long time to complete. If executed in the UI main thread, they can cause application lag, frame drops, and slow response times. Typical examples include CPU intensive tasks, I/O intensive tasks, and synchronous tasks.

@@ -2,16 +2,18 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 - [Introduction to Camera Kit](camera-overview.md)
 - [Requesting Camera Development Permissions](camera-preparation.md)
-- Developing Camera Applications (ArkTS)<!--camera-dev-arkts-->
-  - [Using the System Camera to Take Photos and Record Videos (CameraPicker)](camera-picker.md)
+- Mandatory Capabilities for Camera Application Development (ArkTS)<!--camera-dev-arkts-mandatory-->
   - [Camera Device Management (ArkTS)](camera-device-management.md)
   - [Device Input Management (ArkTS)](camera-device-input.md)
   - [Camera Session Management (ArkTS)](camera-session-management.md)
+- Fundamental Capabilities for Camera Application Development (ArkTS)<!--camera-dev-arkts-->
+  - [Using the System Camera to Take Photos and Record Videos (CameraPicker)](camera-picker.md)
   - [Preview (ArkTS)](camera-preview.md)
   - [Dual-Channel Preview (ArkTS)](camera-dual-channel-preview.md)
   - [Photo Capture (ArkTS)](camera-shooting.md)
@@ -28,16 +30,18 @@
   - [Using the Camera in the Worker Thread (ArkTS)](camera-worker.md)
   - [Practices for Camera Recovery from the Background (ArkTS)](camera-background-recovery.md)
   - [Practices for Automatic Camera Switching (ArkTS)](camera-auto-switch.md)
+  - [White Balance Settings (ArkTS)](camera-whitebalance.md)
   <!--Del-->
   - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo.md)
   - [Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo-case.md)
   - [Depth Data (for System Applications Only) (ArkTS)](camera-depth-data.md)
   - [Performance Optimization Practices (for System Applications Only) (ArkTS)](camera-performance-improvement.md)
   <!--DelEnd-->
-- Developing Camera Applications (C/C++)<!--camera-dev-native-->
+- Mandatory Capabilities for Camera Application Development (C/C++)<!--camera-dev-native-mandatory-->
   - [Camera Device Management (C/C++)](native-camera-device-management.md)
   - [Device Input Management (C/C++)](native-camera-device-input.md)
   - [Camera Session Management (C/C++)](native-camera-session-management.md)
+- Fundamental Capabilities for Camera Application Development (C/C++)<!--camera-dev-native-->
   - [Preview (C/C++)](native-camera-preview.md)
   - [Secondary Processing of Preview Streams (C/C++)](native-camera-preview-imageReceiver.md)
   - [Photo Capture (C/C++)](native-camera-shooting.md)

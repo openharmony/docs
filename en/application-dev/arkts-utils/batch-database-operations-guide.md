@@ -1,4 +1,10 @@
 # Batch Database Operations
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 ## Using TaskPool for Frequent Database Operations
 
@@ -8,7 +14,7 @@ By leveraging the TaskPool capabilities provided by ArkTS, database operations c
 
 1. Create multiple tasks to support various database operations such as creation, insertion, querying, and clearing.
 
-2. The UI main thread calls these tasks to perform database operations such as adding, deleting, modifying, and querying data.
+2. The UI main thread initiates a database operation request and performs operations such as adding, deleting, modifying, and querying the data in the child thread.
 
 ```ts
 // Index.ets
@@ -16,25 +22,31 @@ import { relationalStore, ValuesBucket } from '@kit.ArkData';
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
-async function create(context: Context) {
+async function create(context: Context): Promise<boolean> {
   const CONFIG: relationalStore.StoreConfig = {
     name: "Store.db",
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // The default database file path is context.databaseDir + rdb + StoreConfig.name.
-  let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-  console.info(`Create Store.db successfully!`);
+  try {
+    // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
+    let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
+    console.info('Create Store.db successfully!');
 
-  // Create a table.
-  const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
-    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-    "name TEXT NOT NULL, " +
-    "age INTEGER, " +
-    "salary REAL, " +
-    "blobType BLOB)";
-  await store.executeSql(CREATE_TABLE_SQL);
-  console.info(`Create table test successfully!`);
+    // Create a table.
+    const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+      "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+      "name TEXT NOT NULL, " +
+      "age INTEGER, " +
+      "salary REAL, " +
+      "blobType BLOB)";
+    await store.executeSql(CREATE_TABLE_SQL);
+    console.info('Create table test successfully!');
+    return true;
+  } catch (err)  {
+    console.error(`Create db failed, code: ${err.code}, message: ${err.message}`);
+    return false;
+  }
 }
 
 @Concurrent
@@ -44,9 +56,9 @@ async function insert(context: Context, valueBucketArray: Array<relationalStore.
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+  // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
   let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-  console.info(`Create Store.db successfully!`);
+  console.info('Create Store.db successfully!');
 
   // Insert data.
   await store.batchInsert("test", valueBucketArray as Object as Array<relationalStore.ValuesBucket>);
@@ -59,34 +71,35 @@ async function query(context: Context): Promise<Array<relationalStore.ValuesBuck
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+  // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
   let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-  console.info(`Create Store.db successfully!`);
+  console.info('Create Store.db successfully!');
 
-  // Obtain the result set.
+  // Obtain the predicate used for query.
   let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-  let resultSet = await store.query(predicates); // Query all data.
+  // Query all data.
+  let resultSet = await store.query(predicates);
   console.info(`Query data successfully! row count:${resultSet.rowCount}`);
   let index = 0;
-  let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount)
-  resultSet.goToFirstRow()
+  let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount);
+  resultSet.goToFirstRow();
   do {
-    result[index++] = resultSet.getRow()
+    result[index++] = resultSet.getRow();
   } while (resultSet.goToNextRow());
   resultSet.close();
-  return result
+  return result;
 }
 
 @Concurrent
-async function clear(context: Context) {
+async function deleteStore(context: Context) {
   const CONFIG: relationalStore.StoreConfig = {
     name: "Store.db",
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+  // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
   await relationalStore.deleteRdbStore(context, CONFIG);
-  console.info(`Delete Store.db successfully!`);
+  console.info('Delete Store.db successfully!');
 }
 
 @Entry
@@ -108,29 +121,33 @@ struct Index {
           let context : Context = this.getUIContext().getHostContext() as Context;
 
           // Prepare data.
-          const count = 5
+          const count = 5;
           let valueBucketArray = new Array<relationalStore.ValuesBucket>(count);
           for (let i = 0; i < count; i++) {
-            let v : relationalStore.ValuesBucket = {
+            let value: relationalStore.ValuesBucket = {
               id: i,
               name: "zhangsan" + i,
               age: 20,
               salary: 5000 + 50 * i
             };
-            valueBucketArray[i] = v;
+            valueBucketArray[i] = value;
           }
-          await taskpool.execute(create, context)
-          await taskpool.execute(insert, context, valueBucketArray)
-          let index = 0
-          let ret = await taskpool.execute(query, context) as Array<relationalStore.ValuesBucket>
-          for (let v of ret) {
-            console.info(`Row[${index}].id = ${v.id}`)
-            console.info(`Row[${index}].name = ${v.name}`)
-            console.info(`Row[${index}].age = ${v.age}`)
-            console.info(`Row[${index}].salary = ${v.salary}`)
-            index++
+          let ret = await taskpool.execute(create, context);
+          if (!ret) {
+            console.error("Create db failed.");
+            return;
           }
-          await taskpool.execute(clear, context)
+          await taskpool.execute(insert, context, valueBucketArray);
+          let index = 0;
+          let resultSet = await taskpool.execute(query, context) as Array<relationalStore.ValuesBucket>;
+          for (let value of resultSet) {
+            console.info(`Row[${index}].id = ${value.id}`);
+            console.info(`Row[${index}].name = ${value.name}`);
+            console.info(`Row[${index}].age = ${value.age}`);
+            console.info(`Row[${index}].salary = ${value.salary}`);
+            index++;
+          }
+          await taskpool.execute(deleteStore, context);
         })
     }
     .height('100%')
@@ -138,7 +155,7 @@ struct Index {
   }
 }
 ```
-<!-- @[taskpool_frequently_operate_database](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingSendable.ets) -->
+<!-- @[taskpool_frequently_operate_database](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingSendable.ets) -->
 
 ## Using Sendable for Large-Scale Database Operations
 
@@ -149,10 +166,10 @@ When handling large volumes of database data, cross-thread data transfer may sti
    ```ts
    // SharedValuesBucket.ets
    export interface IValueBucket {
-     id: number
-     name: string
-     age: number
-     salary: number
+     id: number;
+     name: string;
+     age: number;
+     salary: number;
    }
    
    @Sendable
@@ -162,17 +179,17 @@ When handling large volumes of database data, cross-thread data transfer may sti
      age: number = 0
      salary: number = 0
    
-     constructor(v: IValueBucket) {
-       this.id = v.id;
-       this.name = v.name;
-       this.age = v.age;
-       this.salary = v.salary
+     constructor(value: IValueBucket) {
+       this.id = value.id;
+       this.name = value.name;
+       this.age = value.age;
+       this.salary = value.salary
      }
    }
    ```
-   <!-- @[define_data_format](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SharedValuesBucket.ets) -->
+   <!-- @[define_data_format](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SharedValuesBucket.ets) -->
 
-2. Initiate from the UI main thread and perform Create, Read, Update, Delete (CRUD) operations in the background thread.
+2. The UI main thread initiates a database operation request and performs operations such as adding, deleting, modifying, and querying the data in the child thread.
 
    ```ts
    // Index.ets
@@ -181,25 +198,31 @@ When handling large volumes of database data, cross-thread data transfer may sti
    import { IValueBucket, SharedValuesBucket } from './SharedValuesBucket';
    
    @Concurrent
-   async function create(context: Context) {
+   async function create(context: Context): Promise<boolean> {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
-   
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
-     let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
-   
-     // Create a table.
-     const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
-       "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-       "name TEXT NOT NULL, " +
-       "age INTEGER, " +
-       "salary REAL, " +
-       "blobType BLOB)";
-     await store.executeSql(CREATE_TABLE_SQL);
-     console.info(`Create table test successfully!`);
+
+     try {
+       // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
+       let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
+       console.info('Create Store.db successfully!');
+
+       // Create a table.
+       const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+         "name TEXT NOT NULL, " +
+         "age INTEGER, " +
+         "salary REAL, " +
+         "blobType BLOB)";
+       await store.executeSql(CREATE_TABLE_SQL);
+       console.info('Create table test successfully!');
+       return true;
+     } catch (err) {
+       console.error(`Create db failed, code: ${err.code}, message: ${err.message}`);
+       return false;
+     }
    }
    
    @Concurrent
@@ -209,9 +232,9 @@ When handling large volumes of database data, cross-thread data transfer may sti
        securityLevel: relationalStore.SecurityLevel.S1,
      };
    
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+     // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
    
      // Insert data.
      await store.batchInsert("test", valueBucketArray as Object as Array<ValuesBucket>);
@@ -224,40 +247,41 @@ When handling large volumes of database data, cross-thread data transfer may sti
        securityLevel: relationalStore.SecurityLevel.S1,
      };
    
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+     // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
    
-     // Obtain the result set.
+     // Obtain the predicate used for query.
      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-     let resultSet = await store.query(predicates); // Query all data.
+     // Query all data.
+     let resultSet = await store.query(predicates);
      console.info(`Query data successfully! row count:${resultSet.rowCount}`);
      let index = 0;
-     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined)
-     resultSet.goToFirstRow()
+     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined);
+     resultSet.goToFirstRow();
      do {
-       let v: IValueBucket = {
+       let value: IValueBucket = {
          id: resultSet.getLong(resultSet.getColumnIndex("id")),
          name: resultSet.getString(resultSet.getColumnIndex("name")),
          age: resultSet.getLong(resultSet.getColumnIndex("age")),
          salary: resultSet.getLong(resultSet.getColumnIndex("salary"))
        };
-       result[index++] = new SharedValuesBucket(v)
+       result[index++] = new SharedValuesBucket(value);
      } while (resultSet.goToNextRow());
      resultSet.close();
-     return result
+     return result;
    }
    
    @Concurrent
-   async function clear(context: Context) {
+   async function deleteStore(context: Context) {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
    
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+     // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
      await relationalStore.deleteRdbStore(context, CONFIG);
-     console.info(`Delete Store.db successfully!`);
+     console.info('Delete Store.db successfully!');
    }
    
    @Entry
@@ -279,30 +303,34 @@ When handling large volumes of database data, cross-thread data transfer may sti
              let context : Context = this.getUIContext().getHostContext() as Context;
    
              // Prepare data.
-             const count = 5
+             const count = 5;
              let valueBucketArray = collections.Array.create<SharedValuesBucket | undefined>(count, undefined);
              for (let i = 0; i < count; i++) {
-               let v: IValueBucket = {
+               let value: IValueBucket = {
                  id: i,
                  name: "zhangsan" + i,
                  age: 20,
                  salary: 5000 + 50 * i
                };
-               valueBucketArray[i] = new SharedValuesBucket(v);
+               valueBucketArray[i] = new SharedValuesBucket(value);
              }
-             await taskpool.execute(create, context)
-             await taskpool.execute(insert, context, valueBucketArray)
-             let index = 0
-             let ret: collections.Array<SharedValuesBucket> =
-               await taskpool.execute(query, context) as collections.Array<SharedValuesBucket>
-             for (let v of ret.values()) {
-               console.info(`Row[${index}].id = ${v.id}`)
-               console.info(`Row[${index}].name = ${v.name}`)
-               console.info(`Row[${index}].age = ${v.age}`)
-               console.info(`Row[${index}].salary = ${v.salary}`)
-               index++
+             let ret = await taskpool.execute(create, context);
+             if (!ret) {
+               console.error("Create db failed.");
+               return;
              }
-             await taskpool.execute(clear, context)
+             await taskpool.execute(insert, context, valueBucketArray);
+             let index = 0;
+             let resultSet: collections.Array<SharedValuesBucket> =
+               await taskpool.execute(query, context) as collections.Array<SharedValuesBucket>;
+             for (let value of resultSet.values()) {
+               console.info(`Row[${index}].id = ${value.id}`);
+               console.info(`Row[${index}].name = ${value.name}`);
+               console.info(`Row[${index}].age = ${value.age}`);
+               console.info(`Row[${index}].salary = ${value.salary}`);
+               index++;
+             }
+             await taskpool.execute(deleteStore, context);
            })
        }
        .height('100%')
@@ -310,7 +338,7 @@ When handling large volumes of database data, cross-thread data transfer may sti
      }
    }
    ```
-   <!-- @[operate_child_thread_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingTaskPool.ets) -->
+   <!-- @[operate_child_thread_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingTaskPool.ets) -->
 
 ## Using Sendable for Large-Scale Database Operations with Complex Class Instances
 
@@ -336,11 +364,11 @@ For complex regular class instances, you can first wrap the relevant database da
      age: number = 0;
      salary: number = 0;
    
-     constructor(v: IValueBucket) {
-       this.id = v.id;
-       this.name = v.name;
-       this.age = v.age;
-       this.salary = v.salary;
+     constructor(value: IValueBucket) {
+       this.id = value.id;
+       this.name = value.name;
+       this.age = value.age;
+       this.salary = value.salary;
      }
    }
    ```
@@ -374,7 +402,7 @@ For complex regular class instances, you can first wrap the relevant database da
    }
    ```
 
-3. Initiate from the UI main thread and perform Create, Read, Update, Delete (CRUD) operations in the background thread.
+3. The UI main thread initiates a database operation request and performs operations such as adding, deleting, modifying, and querying the data in the child thread.
 
    ```ts
    // Index.ets
@@ -384,25 +412,31 @@ For complex regular class instances, you can first wrap the relevant database da
    import { Material } from './Material';
 
    @Concurrent
-   async function create(context: Context) {
+   async function create(context: Context): Promise<boolean> {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
-     let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     try {
+       // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
+       let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
+       console.info('Create Store.db successfully!');
 
-     // Create a table.
-     const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
-       "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-       "name TEXT NOT NULL, " +
-       "age INTEGER, " +
-       "salary REAL, " +
-       "blobType BLOB)";
-     await store.executeSql(CREATE_TABLE_SQL);
-     console.info(`Create table test successfully!`);
+       // Create a table.
+       const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+         "name TEXT NOT NULL, " +
+         "age INTEGER, " +
+         "salary REAL, " +
+         "blobType BLOB)";
+       await store.executeSql(CREATE_TABLE_SQL);
+       console.info('Create table test successfully!');
+       return true;
+     } catch (err) {
+       console.error(`Create db failed, code: ${err.code}, message: ${err.message}`);
+       return false;
+     }
    }
 
    @Concurrent
@@ -412,9 +446,9 @@ For complex regular class instances, you can first wrap the relevant database da
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+     // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
 
      // Insert data.
      await store.batchInsert("test", valueBucketArray as Object as Array<ValuesBucket>);
@@ -427,54 +461,55 @@ For complex regular class instances, you can first wrap the relevant database da
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+     // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
 
-     // Obtain the result set.
+     // Obtain the predicate used for query.
      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-     let resultSet = await store.query(predicates); // Query all data.
+     // Query all data.
+     let resultSet = await store.query(predicates);
      console.info(`Query data successfully! row count:${resultSet.rowCount}`);
      let index = 0;
-     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined)
-     resultSet.goToFirstRow()
+     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined);
+     resultSet.goToFirstRow();
      do {
-       let v: IValueBucket = {
+       let value: IValueBucket = {
          id: resultSet.getLong(resultSet.getColumnIndex("id")),
          name: resultSet.getString(resultSet.getColumnIndex("name")),
          age: resultSet.getLong(resultSet.getColumnIndex("age")),
          salary: resultSet.getLong(resultSet.getColumnIndex("salary"))
        };
-       result[index++] = new SharedValuesBucket(v)
+       result[index++] = new SharedValuesBucket(value);
      } while (resultSet.goToNextRow());
      resultSet.close();
-     return result
+     return result;
    }
 
    @Concurrent
-   async function clear(context: Context) {
+   async function deleteStore(context: Context) {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // The default database file path is context.databaseDir + rdb + StoreConfig.name.
+     // The default database file path is context.databaseDir + "/rdb/" + StoreConfig.name.
      await relationalStore.deleteRdbStore(context, CONFIG);
-     console.info(`Delete Store.db successfully!`);
+     console.info('Delete Store.db successfully!');
    }
 
    function initMaterial() : Material {
      // Prepare data.
-     const count = 5
+     const count = 5;
      let valueBucketArray = collections.Array.create<SharedValuesBucket | undefined>(count, undefined);
      for (let i = 0; i < count; i++) {
-       let v: IValueBucket = {
+       let value: IValueBucket = {
          id: i,
          name: "zhangsan" + i,
          age: 20,
          salary: 5000 + 50 * i
        };
-       valueBucketArray[i] = new SharedValuesBucket(v);
+       valueBucketArray[i] = new SharedValuesBucket(value);
      }
      let material = new Material(1, "test", valueBucketArray);
      return material;
@@ -498,20 +533,24 @@ For complex regular class instances, you can first wrap the relevant database da
            .onClick(async () => {
              let context : Context = this.getUIContext().getHostContext() as Context;
              let material = initMaterial();
-             await taskpool.execute(create, context);
+             let ret = await taskpool.execute(create, context);
+             if (!ret) {
+               console.error("Create db failed.");
+               return;
+             }
              await taskpool.execute(insert, context, material.getBuckets());
              let index = 0;
-             let ret: collections.Array<SharedValuesBucket> =
+             let resultSet: collections.Array<SharedValuesBucket> =
                await taskpool.execute(query, context) as collections.Array<SharedValuesBucket>;
-             material.setBuckets(ret);
-             for (let v of ret.values()) {
-               console.info(`Row[${index}].id = ${v.id}`);
-               console.info(`Row[${index}].name = ${v.name}`);
-               console.info(`Row[${index}].age = ${v.age}`);
-               console.info(`Row[${index}].salary = ${v.salary}`);
+             material.setBuckets(resultSet);
+             for (let value of resultSet.values()) {
+               console.info(`Row[${index}].id = ${value.id}`);
+               console.info(`Row[${index}].name = ${value.name}`);
+               console.info(`Row[${index}].age = ${value.age}`);
+               console.info(`Row[${index}].salary = ${value.salary}`);
                index++;
              }
-             await taskpool.execute(clear, context);
+             await taskpool.execute(deleteStore, context);
            })
        }
        .height('100%')

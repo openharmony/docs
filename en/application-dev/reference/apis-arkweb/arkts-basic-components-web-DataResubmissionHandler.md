@@ -1,4 +1,10 @@
 # Class (DataResubmissionHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements the **DataResubmissionHandler** object for resubmitting or canceling the web form data.
 
@@ -41,7 +47,7 @@ Resends the web form data.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onDataResubmitted((event) => {
-            console.log('onDataResubmitted');
+            console.info('onDataResubmitted');
             event.handler.resend();
           })
       }
@@ -72,7 +78,7 @@ Cancels the resending of web form data.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onDataResubmitted((event) => {
-            console.log('onDataResubmitted');
+            console.info('onDataResubmitted');
             event.handler.cancel();
           })
       }

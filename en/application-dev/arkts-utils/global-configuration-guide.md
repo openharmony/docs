@@ -1,6 +1,12 @@
 # Global Configuration
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-In cases where a process-wide singleton is necessary, for example, for maintaining data consistency across multiple concurrent instances for global configuration services, a shared module can be used.
+In cases where a process-wide singleton is necessary, for example, for maintaining data consistency across multiple concurrent instances for global configuration services, a [shared module](arkts-sendable-module.md) can be used.
 
 The following example illustrates the service logic where downloads are permitted only when Wi-Fi is enabled and the user is logged in. The implementation involves the following steps:
 
@@ -15,40 +21,40 @@ The following example illustrates the service logic where downloads are permitte
    
    @Sendable
    class Config {
-     lock: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock
+     lock: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
      isLogin: boolean = false;
      loginUser?: string;
-     wifiOn: boolean = false
+     wifiOn: boolean = false;
    
      async login(user: string) {
        return this.lock.lockAsync(() => {
          this.isLogin = true;
-         this.loginUser = user
+         this.loginUser = user;
        }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE)
      }
    
      async logout(user?: string) {
        return this.lock.lockAsync(() => {
-         this.isLogin = false
-         this.loginUser = ""
+         this.isLogin = false;
+         this.loginUser = "";
        }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE)
      }
    
      async getIsLogin(): Promise<boolean> {
        return this.lock.lockAsync(() => {
-         return this.isLogin
+         return this.isLogin;
        }, ArkTSUtils.locks.AsyncLockMode.SHARED)
      }
    
      async getUser(): Promise<string> {
        return this.lock.lockAsync(() => {
-         return this.loginUser!
+         return this.loginUser!;
        }, ArkTSUtils.locks.AsyncLockMode.SHARED)
      }
    
      async setWifiState(state: boolean) {
        return this.lock.lockAsync(() => {
-         this.wifiOn = state
+         this.wifiOn = state;
        }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE)
      }
    
@@ -59,27 +65,28 @@ The following example illustrates the service logic where downloads are permitte
      }
    }
    
-   export let config = new Config()
+   export let config = new Config();
    ```
-   <!-- @[global_config](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Config.ets) -->
+   <!-- @[global_config](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Config.ets) -->
 
 2. Enable both the UI main thread and child threads to access the global configuration.
 
    ```ts
-   import { config } from './Config'
+   // Index.ets
+   import { config } from './Config';
    import { taskpool } from '@kit.ArkTS';
    
    @Concurrent
    async function download() {
      if (!await config.isWifiOn()) {
-       console.info("wifi is off")
+       console.info("wifi is off");
        return false;
      }
      if (!await config.getIsLogin()) {
-       console.info("not login")
+       console.info("not login");
        return false;
      }
-     console.info(`User[${await config.getUser()}] start download ...`)
+     console.info(`User[${await config.getUser()}] start download ...`);
      return true;
    }
    
@@ -120,8 +127,8 @@ The following example illustrates the service logic where downloads are permitte
              })
              .onClick(async () => {
                if (!await config.getIsLogin() && this.input) {
-                 this.message = "login: " + this.input
-                 config.login(this.input)
+                 this.message = "login: " + this.input;
+                 config.login(this.input);
                }
              })
              .backgroundColor(0xcccccc)
@@ -134,8 +141,8 @@ The following example illustrates the service logic where downloads are permitte
              })
              .onClick(async () => {
                if (await config.getIsLogin()) {
-                 this.message = "not login"
-                 config.logout()
+                 this.message = "not login";
+                 config.logout();
                }
              })
              .backgroundColor(0xcccccc)
@@ -148,7 +155,7 @@ The following example illustrates the service logic where downloads are permitte
              })
            Toggle({ type: ToggleType.Switch })
              .onChange(async (isOn: boolean) => {
-               await config.setWifiState(isOn)
+               await config.setWifiState(isOn);
                this.wifiState = isOn ? "wifi on" : "wifi off";
              })
            Text("download")
@@ -159,7 +166,7 @@ The following example illustrates the service logic where downloads are permitte
                middle: { anchor: '__container__', align: HorizontalAlign.Center }
              })
              .onClick(async () => {
-               let ret = await taskpool.execute(download)
+               let ret = await taskpool.execute(download);
                this.downloadResult = ret ? "download success" : "download fail";
              })
            Text(this.downloadResult)
@@ -176,4 +183,4 @@ The following example illustrates the service logic where downloads are permitte
      }
    }
    ```
-   <!-- @[access_global_config](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/GlobalConfigurationGuide.ets) -->
+   <!-- @[access_global_config](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/GlobalConfigurationGuide.ets) -->

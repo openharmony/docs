@@ -1,4 +1,10 @@
 # Class (BackForwardCacheOptions)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **BackForwardCacheOptions** object to set back-forward cache options of the **Web** component.
 
@@ -14,10 +20,10 @@ Implements a **BackForwardCacheOptions** object to set back-forward cache option
 
 ## Attributes
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| size<sup>12+</sup> | number | Yes| The maximum number of pages that can be cached in a **Web** component.<br>The default value is **1**, and the maximum value is **50**.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>The **Web** component reclaims the cache for memory pressure.|
-| timeToLive<sup>12+</sup> | number | Yes| The time that a **Web** component allows a page to stay in the back-forward cache.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>Default value: **600**<br>Unit: second|
+| Name| Type| Read-Only| Optional| Description|
+|------|------|------|------|------|
+| size<sup>12+</sup> | number | No| No| The maximum number of pages that can be cached in a **Web** component.<br>The default value is **1**, and the maximum value is **50**.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>The **Web** component reclaims the cache for memory pressure.|
+| timeToLive<sup>12+</sup> | number | No| No| The time that a **Web** component allows a page to stay in the back-forward cache.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>Default value: **600**<br>Unit: second|
 
 ## constructor<sup>12+</sup>
 

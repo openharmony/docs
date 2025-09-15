@@ -1,8 +1,35 @@
 # WebSocket Error Codes
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+## 200 Connection Failure
+
+**Error Message**
+
+Websocket connect failed.
+
+**Description**
+
+This error code is reported if the WebSocket connection fails.
+
+**Possible Causes**
+
+1. The server rejects the client connection, the protocol is incorrect, the handshake fails, or the certificate verification fails.
+
+2. No status code is returned when the client or server is disconnected.
+
+**Solution**
+
+Check whether the protocol is valid and whether the certificate verification is successful. If no, reconnect the client and server.
 
 ## 2302001 WebSocket URL Error
 
@@ -45,6 +72,42 @@ The WebSocket connection already exists.
 **Possible Causes**
 
 The WebSocket connection has been established.
+
+## 2302004 Listening Failed on the Specified NIC
+
+**Error Message**
+
+Can't listen to the given NIC.
+
+**Description**
+
+This error code is reported if the WebSocketServer failed to perform listening on the specified NIC.
+
+**Possible Causes**
+
+The IP address in the WebSocketServer server configuration file is invalid.
+
+**Solution**
+
+Check whether the network connection is normal and whether the IP address is valid.
+
+## 2302005 Listening Failed on the Specified Port
+
+**Error Message**
+
+Can't listen to the given Port.
+
+**Description**
+
+This error code is reported if the WebSocketServer failed to perform listening on the specified port.
+
+**Possible Causes**
+
+The port number in the WebSocketServer server configuration file is invalid.
+
+**Solution**
+
+Check whether the port number is valid.
 
 ## 2302998 Domain Access Denied
 
