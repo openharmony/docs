@@ -8217,7 +8217,6 @@ setRelationship(relationship: string): Promise&lt;void&gt;
 | relative | 亲戚 | Relative   |
 | other | 其他 | Other   |
 
-注：支持设置为空字符串，功能为取消当前设置的人物关系
 
 **返回值：**
 
