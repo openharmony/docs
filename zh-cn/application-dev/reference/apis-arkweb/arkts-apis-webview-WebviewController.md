@@ -9523,7 +9523,7 @@ avoidVisibleViewportBottom(avoidHeight: number): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| avoidHeight   | number   | 是   | 设置Web网页可视视口底部避让高度。<br>默认值：0<br>单位：vp<br>合法取值范围：0~Web组件高度<br>非法值设置行为：超出合法取值范围时取边界值。 |
+| avoidHeight   | number   | 是   | 设置Web网页可视视口底部避让高度。<br>单位：vp<br>合法取值范围：0~Web组件高度<br>非法值设置行为：小于0取值为0，大于Web组件高度取值为Web组件高度。 |
 
 **错误码：**
 
