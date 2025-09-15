@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import volumemanager from "@ohos.file.volumeManager";
+import  { volumemanager } from '@kit.CoreFileKit';
 ```
 
 ## volumemanager.getAllVolumes
