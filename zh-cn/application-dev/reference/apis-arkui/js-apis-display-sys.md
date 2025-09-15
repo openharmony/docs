@@ -160,11 +160,13 @@ try {
 ## display.setFoldDisplayMode<sup>10+</sup>
 setFoldDisplayMode(mode: FoldDisplayMode): void
 
-更改可折叠设备的显示模式，不适用于2in1设备。
+更改可折叠设备的显示模式。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备上调用不生效不报错，在其他设备中可正常调用。
 
 **参数：**
 
