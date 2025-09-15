@@ -229,7 +229,7 @@ struct Index {
           this.storageLink += 1;
         })
 
-      // @StorageProp与AppStorage建立单向联系，更改数据不会同步AppStoragekey为'propA'的值
+      // @StorageProp与AppStorage建立单向联系，更改数据不会同步回AppStorage中key为'propA'的值
       // 但能被AppStorage的set/setorCreate更新值
       Text(`storageProp ${this.storageProp}`)
         .onClick(() => {
