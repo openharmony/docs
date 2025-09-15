@@ -43,7 +43,7 @@ getAccountManager(): AccountManager
 
 表示系统账号类型的枚举。
 
-**系统能力：** SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
