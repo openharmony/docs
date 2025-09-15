@@ -685,7 +685,7 @@ try {
 
 getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
-获取当前屏幕的可见主窗口（未退至后台的主窗口，对应生命周期枚举值[SHOWN|ACTIVE|INACTIVE|RESUMED](arkts-apis-window-e.md#windowstageeventtype9)）信息。使用Promise异步回调。
+获取当前屏幕的可见主窗口（未退至后台的主窗口，对应生命周期枚举值[SHOWN|ACTIVE|INACTIVE|RESUMED|PAUSED](arkts-apis-window-e.md#windowstageeventtype9)）信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
