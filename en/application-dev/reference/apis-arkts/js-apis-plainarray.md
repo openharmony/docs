@@ -1,4 +1,10 @@
 # @ohos.util.PlainArray (Nonlinear Container PlainArray) 
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 PlainArray stores key-value (KV) pairs. Each key must be unique, be of the number type, and have only one value.
 
@@ -14,6 +20,8 @@ This topic uses the following to identify the use of generics:
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -31,7 +39,7 @@ import { PlainArray } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a PlainArray.|
 
@@ -57,7 +65,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 ```
 
 
@@ -88,8 +96,9 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-const plainArray: PlainArray<string> = new PlainArray();
+const plainArray = new PlainArray<string>();
 let result = plainArray.isEmpty();
+console.info("result = ", result); // result =  true
 ```
 
 
@@ -105,7 +114,7 @@ Checks whether PlainArray has the specified key.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -127,9 +136,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 let result = plainArray.has(1);
+console.info("result = ", result); // result = true
 ```
 
 
@@ -145,7 +155,7 @@ Obtains the value of the specified key in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -167,10 +177,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
+console.info("result:", result);  // result: squirrel
 ```
 
 
@@ -186,7 +197,7 @@ Obtains the index of the element with the specified key in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -208,10 +219,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
+console.info("result = ", result); // result = 1
 ```
 
 
@@ -227,7 +239,7 @@ Obtains the index of the first occurrence of an element with the specified value
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the target element.|
 
@@ -248,10 +260,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
+console.info("result:", result);  // result: 0
 ```
 
 
@@ -267,7 +280,7 @@ Obtains the key of the element at the specified position in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -289,10 +302,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
+console.info("result = ", result); // result = 2
 ```
 
 ### getValueAt
@@ -307,7 +321,7 @@ Obtains the value of an element at the specified position in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -330,10 +344,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getValueAt(1);
+console.info("result:", result);  // result: sparrow
 ```
 
 ### clone
@@ -363,10 +378,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
+console.info("result:", newPlainArray.get(1));  // result: squirrel
 ```
 
 
@@ -382,7 +398,7 @@ Adds an element to this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Key of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | value | T | Yes| Value of the target element.|
@@ -399,8 +415,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
+console.info("result:", plainArray.get(1));  // result: squirrel
 ```
 
 
@@ -416,7 +433,7 @@ Removes a key-value pair with the specified key.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -438,10 +455,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.remove(2);
+console.info("result:", result);  // result: sparrow
 ```
 
 
@@ -457,7 +475,7 @@ Removes an element at the specified position from this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
@@ -479,10 +497,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeAt(1);
+console.info("result:", result);  // result: sparrow
 ```
 
 
@@ -498,7 +517,7 @@ Removes elements within the specified range.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Start position of the elements to remove. The value must be less than or equal to int32_max, that is, 2147483647.|
 | size | number | Yes| Number of elements to remove. The value must be less than or equal to int32_max, that is, 2147483647.|
@@ -522,10 +541,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
+console.info("result:", result);  // result: 1
 ```
 
 
@@ -541,7 +561,7 @@ Sets a value for an element at the specified position in this PlainArray.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | value | T | Yes| Value of the target element.|
@@ -559,10 +579,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string | number> = new PlainArray();
+let plainArray = new PlainArray<string | number>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
+let result = plainArray.getValueAt(1);
+console.info("result:", result);  // result: 3546
 ```
 
 
@@ -593,10 +615,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
+console.info("result:", result);  // result: 1:squirrel,2:sparrow
 ```
 
 
@@ -621,10 +644,12 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
+let result = plainArray.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -632,7 +657,7 @@ plainArray.clear();
 
 forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this PlainArray and obtain their indexes.
+Uses a callback to traverse each element in the **PlainArray** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -640,16 +665,16 @@ Uses a callback to traverse the elements in this PlainArray and obtain their ind
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the PlainArray.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn parameters
-| Name| Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| index | number | No| Position index of the element that is currently traversed.|
 | PlainArray | PlainArray&lt;T&gt;| No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
@@ -664,21 +689,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.forEach((value: string, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+plainArray.forEach((value: string, index: number) => {
+  console.info("value:" + value, "index:" + index);
 });
+// value:squirrel index:1
+// value:sparrow index:2
 ```
+
 ```ts
 // You are not advised to use the add, remove, or removeAt APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let plainArray: PlainArray<string> = new PlainArray();
-for(let i = 0;i < 10;i++) {
+let plainArray = new PlainArray<string>();
+for(let i = 0; i < 10; i++) {
   plainArray.add(i,"123");
 }
 
-for(let i = 0;i < 10;i++) {
+for(let i = 0; i < 10; i++) {
   plainArray.remove(i);
 }
 ```
@@ -710,26 +738,24 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 
-let iter = plainArray[Symbol.iterator]();
-let temp: IteratorResult<Object[]> = iter.next();
-while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
-  temp = iter.next();
+for (let item of plainArray) {
+  console.info("value:" + item[1], "index:" + item[0]);
 }
+// value:squirrel index:1
+// value:sparrow index:2
 ```
 ```ts
 // You are not advised to use the add, remove, or removeAt APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let plainArray: PlainArray<string> = new PlainArray();
-for(let i = 0;i < 10;i++) {
+let plainArray = new PlainArray<string>();
+for(let i = 0; i < 10; i++) {
   plainArray.add(i,"123");
 }
 
-for(let i = 0;i < 10;i++) {
+for(let i = 0; i < 10; i++) {
   plainArray.remove(i);
 }
 ```

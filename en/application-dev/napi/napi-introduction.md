@@ -1,4 +1,10 @@
 # Node-API Overview
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## When to Use
 
@@ -10,9 +16,9 @@ Unless otherwise specified, Node-API in this document refers to OpenHarmony Node
 >
 > For details about the differences between OpenHarmony Node-API and Node.js 12.x LTS Node-API, see [Node-API](../reference/native-lib/napi.md).
 
-Generally, ArkTS/JS is used for OpenHarmony application development. However, in compute-intensive scenarios, such as games and physical simulations, the existing C/C++ libraries are required to meet the requirements for performance and efficiency. Node-API encapsulates I/O, CPU-intensive, and OS underlying capabilities and exposes these capabilities in the form of ArkTS/JS interfaces to implement interaction between ArkTS/JS and C/C++ code. Node-API provides the following benefits:
+Generally, ArkTS/JS is used for OpenHarmony application development. However, in compute-intensive scenarios, such as games and physical simulations, the existing C/C++ libraries are required to meet the requirements for performance and efficiency. Node-API specifications encapsulate I/O, CPU-intensive, and OS underlying capabilities, expose C interfaces, and use the registration mechanism of C/C++ modules, you can mount attributes and methods to ArkTS/JS objects to implement the interaction between ArkTS/JS and C/C++. Node-API provides the following benefits:
 
-- The system can open rich module functions of the framework layer to upper-layer applications through the ArkTS/JS APIs.
+- The system can expose the rich module functions of the framework layer to the ArkTS/JS interface through the module registration mechanism of Node-API, and open the C/C++ capabilities to the ArkTS/JS layer of the application.
 
 - You can encapsulate core capabilities in C/C++ and use them with ArkTS/JS APIs to improve the execution efficiency of your application.
 

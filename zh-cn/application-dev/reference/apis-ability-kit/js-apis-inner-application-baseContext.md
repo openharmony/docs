@@ -1,5 +1,12 @@
 # BaseContext
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 BaseContext抽象类用于表示继承的子类Context是Stage模型还是FA模型，是所有Context类型的父类。
 
 > **说明：**
@@ -20,7 +27,7 @@ import { common } from '@kit.AbilityKit';
 
 | 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| stageMode | boolean | 否    | 否    | 表示是否Stage模型。<br>true：Stage模型。<br>false：FA模型。 |
+| stageMode | boolean | 否    | 否    | 表示是否Stage模型。<br>true：[Stage模型](../../application-models/ability-terminology.md#stage模型)。<br>false：[FA模型](../../application-models/ability-terminology.md#fa模型)。 |
 
 **示例：**
 

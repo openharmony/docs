@@ -29,13 +29,13 @@ import { audio } from '@kit.AudioKit';
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
-| 名称            | 类型                                     | 必填 | 说明                                                         |
-| --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | 否  | 设置循环次数。<br>当loop≥0时，实际播放次数为loop+1。<br> 当loop＜0时，表示一直循环。<br>默认值：0，表示仅播放一次。                   |
-| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](../apis-audio-kit/arkts-apis-audio-e.md#audiorendererrate8)。默认值：0。 |
-| leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。默认值：1.0。                                    |
-| rightVolume | number  | 否  | 设置右声道音量，设置范围（0.0~1.0）。（当前不支持左右分别设置，将以左声道音量为准）。默认值：1.0。 |
-| priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级，设置范围为大于等于0的整数。默认值：0。      |
+| 名称            | 类型                                     | 只读 | 可选 | 说明                                                         |
+| --------------- | ---------------------------------------- | ---- | ---- |------------------------------------------------------------ |
+| loop | number   | 否 | 是  | 设置循环次数。<br>当loop≥0时，实际播放次数为loop+1。<br> 当loop＜0时，表示一直循环。<br>默认值：0，表示仅播放一次。                   |
+| rate | number    | 否 | 是  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](../apis-audio-kit/arkts-apis-audio-e.md#audiorendererrate8)。默认值：0。 |
+| leftVolume  | number | 否 | 是  | 设置左声道音量，设置范围（0.0, 1.0）。默认值：1.0。                                    |
+| rightVolume | number  | 否 | 是  | 设置右声道音量，设置范围（0.0, 1.0）。（当前不支持左右分别设置，将以左声道音量为准）。默认值：1.0。 |
+| priority  | number  | 否 | 是  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级，设置范围为大于等于0的整数。默认值：0。      |
 
 ## ErrorType<sup>20+</sup>
 
@@ -169,7 +169,7 @@ load(uri: string): Promise\<number>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<number> | 以Promise方式异步加载音频池资源，返回资源的id，有效值大于0。 |
+| Promise\<number> | Promise对象，返回资源的id，有效值大于0。 |
 
 **错误码：**
 
@@ -219,7 +219,6 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
   }
 });
-
 ```
 
 ### load
@@ -295,7 +294,6 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
   }
 });
-
 ```
 
 **示例2：**
@@ -333,7 +331,6 @@ function create(context: Context) {
     }
   });
 }
-
 ```
 
 ### load
@@ -361,7 +358,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<number> | 以Promise方式获取返回的soundID，有效值大于0。 |
+| Promise\<number> | Promise对象，返回soundID，有效值大于0。 |
 
 **错误码：**
 
@@ -448,14 +445,13 @@ function create(context: Context) {
     }
   });
 }
-
 ```
 
 ### play
 
 play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>): void
 
-播放音频资源。使用callback方式异步获取音频流streamID。
+播放音频资源，获取音频流streamID。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -516,14 +512,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### play
 
 play(soundID: number, callback: AsyncCallback\<number>): void
 
-使用默认参数播放音频资源。使用callback方式异步获取音频流streamID。
+使用默认参数播放音频资源，获取音频流streamID。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -576,14 +571,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### play
 
 play(soundID: number, params?: PlayParameters): Promise\<number>
 
-播放音频资源。使用Promise方式异步获取音频流streamID。
+播放音频资源，获取音频流streamID。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -598,7 +592,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<number> | 以Promise方式获取返回的音频流ID，有效值大于0。 |
+| Promise\<number> | Promise对象，返回音频流ID，有效值大于0。 |
 
 **错误码：**
 
@@ -648,14 +642,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### stop
 
 stop(streamID: number, callback: AsyncCallback\<void>): void
 
-停止播放音频资源。使用callback方式异步获取返回值。
+停止播放音频资源。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -714,7 +707,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 stop(streamID: number): Promise\<void>
 
-停止streamID对应的音频播放。使用Promise方式异步获取返回值。
+停止streamID对应的音频播放。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -728,7 +721,7 @@ stop(streamID: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 以Promise方式返回，无返回值。 |
+| Promise\<void> | Promise方式返回，无返回结果。 |
 
 **错误码：**
 
@@ -775,7 +768,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
-设置循环模式。使用callback方式异步获取返回值。
+设置循环模式。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -836,7 +829,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 setLoop(streamID: number, loop: number): Promise\<void>
 
-设置循环模式。使用Promise方式异步获取返回值。
+设置循环模式。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -851,7 +844,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步音频池setLoop方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -893,14 +886,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### setPriority
 
 setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>): void
 
-设置音频流播放的优先级。使用callback方式异步获取返回值。
+设置音频流播放的优先级。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -954,14 +946,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### setPriority
 
 setPriority(streamID: number, priority: number): Promise\<void>
 
-设置音频流优先级。使用Promise方式异步获取返回值。
+设置音频流优先级。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -976,7 +967,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步音频池setPriority的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1019,14 +1010,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### setRate
 
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
-设置音频流播放速率。使用callback方式异步获取返回值。
+设置音频流播放速率。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1080,14 +1070,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     })
   }
 });
-
 ```
 
 ### setRate
 
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
-设置音频流的播放速率。使用Promise方式异步获取返回值。
+设置音频流的播放速率。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1102,7 +1091,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步音频池setRate方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1151,7 +1140,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: AsyncCallback\<void>): void
 
-设置音频流播放音量。使用callback方式异步获取返回值。
+设置音频流播放音量。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1206,14 +1195,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     })
   }
 });
-
 ```
 
 ### setVolume
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<void>
 
-设置音频流的播放音量。使用Promise方式异步获取返回值。
+设置音频流的播放音量。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1229,7 +1217,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步音频池setVolume方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1271,14 +1259,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### unload
 
 unload(soundID: number, callback: AsyncCallback\<void>): void
 
-卸载音频资源。使用callback方式异步获取返回值。
+卸载音频资源。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1330,14 +1317,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     })
   }
 });
-
 ```
 
 ### unload
 
 unload(soundID: number): Promise\<void>
 
-卸载音频资源。使用Promise方式异步获取返回值。
+卸载音频资源。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1351,7 +1337,7 @@ unload(soundID: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步音频池unload方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1393,14 +1379,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     });
   }
 });
-
 ```
 
 ### release
 
 release(callback: AsyncCallback\<void>): void
 
-释放音频池实例。使用callback方式异步获取返回值。
+释放音频池实例。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1447,15 +1432,13 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     })
   }
 });
-
-
 ```
 
 ### release
 
 release(): Promise\<void>
 
-释放音频池实例。使用Promise方式异步获取返回值。
+释放音频池实例。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1463,7 +1446,7 @@ release(): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步音频池release方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1795,7 +1778,6 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     })
   }
 });
-
 ```
 
 ### off('error')
@@ -1881,7 +1863,6 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     })
   }
 });
-
 ```
 
 ### off('errorOccurred')<sup>20+</sup>

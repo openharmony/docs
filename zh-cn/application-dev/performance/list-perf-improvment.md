@@ -76,7 +76,7 @@ LazyForEach实现了按需加载，针对列表数据量大、列表组件复杂
 
 - 如果使用LazyForEach懒加载，建议在使用LazyForEach进行组件复用的key生成器函数里，不要使用stringify。
 
-限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)。
+限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)。
 
 LazyForEach懒加载API提供了cachedCount属性，用于配置可缓存列表项数量。除默认加载界面可视部分外，还可以加载屏幕可视区外指定数量（cachedCount）的缓存数据，详见下面“缓存列表项”章节。
 

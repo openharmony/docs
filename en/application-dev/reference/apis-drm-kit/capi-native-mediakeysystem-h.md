@@ -1,5 +1,12 @@
 # native_mediakeysystem.h
 
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
+
 ## Overview
 
 The file declares the MediaKeySystem APIs.
@@ -22,28 +29,28 @@ The APIs can be used to check whether a specific DRM is supported, create a medi
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
-| [typedef  Drm_ErrCode (\*MediaKeySystem_Callback)(DRM_EventType eventType, uint8_t *info,int32_t infoLen, char *extra)](#mediakeysystem_callback) | MediaKeySystem_Callback | Defines the callback used to listen for media key system events. No MediaKeySystem instance is returned. This callback applies to the scenario where a single MediaKeySystem instance is used.|
-| [typedef Drm_ErrCode (\*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,uint8_t *info, int32_t infoLen, char *extra)](#oh_mediakeysystem_callback) | OH_MediaKeySystem_Callback | Defines the callback used to listen for media key system events. A MediaKeySystem instance is returned. This callback applies to the scenario where multiple MediaKeySystem instances are used.|
+| [typedef  Drm_ErrCode (\*MediaKeySystem_Callback)(DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)](#mediakeysystem_callback) | MediaKeySystem_Callback | Defines the callback used to listen for media key system events. No MediaKeySystem instance is returned. This callback applies to the scenario where a single MediaKeySystem instance is used.|
+| [typedef Drm_ErrCode (\*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)](#oh_mediakeysystem_callback) | OH_MediaKeySystem_Callback | Defines the callback used to listen for media key system events. A MediaKeySystem instance is returned. This callback applies to the scenario where multiple MediaKeySystem instances are used.|
 | [Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_MediaKeySystem_Callback callback)](#oh_mediakeysystem_setcallback) | - | Sets a media key system event callback.|
 | [Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *infos, uint32_t *count)](#oh_mediakeysystem_getmediakeysystems) | - | Obtains the name and ID list of the DRM solutions supported by the device.|
 | [bool OH_MediaKeySystem_IsSupported(const char *name)](#oh_mediakeysystem_issupported) | - | Checks whether the device supports the specified DRM solution.|
 | [bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType)](#oh_mediakeysystem_issupported2) | - | Checks whether the device supports the combination of the DRM solution and MIME type.|
-| [bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType,DRM_ContentProtectionLevel contentProtectionLevel)](#oh_mediakeysystem_issupported3) | - | Checks whether the device supports the combination of the DRM solution, MIME type, and content protection level.|
+| [bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType, DRM_ContentProtectionLevel contentProtectionLevel)](#oh_mediakeysystem_issupported3) | - | Checks whether the device supports the combination of the DRM solution, MIME type, and content protection level.|
 | [Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKeySystem)](#oh_mediakeysystem_create) | - | Creates a MediaKeySystem instance.|
-| [Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySystem,const char *configName, const char *value)](#oh_mediakeysystem_setconfigurationstring) | - | Sets a configuration item in the form of a string.|
-| [Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySystem,const char *configName, char *value, int32_t valueLen)](#oh_mediakeysystem_getconfigurationstring) | - | Obtains the value of a configuration item in the form of a string.|
-| [Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKeySystem,const char *configName, uint8_t *value, int32_t valueLen)](#oh_mediakeysystem_setconfigurationbytearray) | - | Sets a configuration item in the form of an array.|
-| [Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray(MediaKeySystem *mediaKeySystem,const char *configName, uint8_t *value, int32_t *valueLen)](#oh_mediakeysystem_getconfigurationbytearray) | - | Obtains the value of a configuration item in the form of an array.|
+| [Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySystem, const char *configName, const char *value)](#oh_mediakeysystem_setconfigurationstring) | - | Sets a configuration item in the form of a string.|
+| [Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySystem, const char *configName, char *value, int32_t valueLen)](#oh_mediakeysystem_getconfigurationstring) | - | Obtains the value of a configuration item in the form of a string.|
+| [Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKeySystem, const char *configName, uint8_t *value, int32_t valueLen)](#oh_mediakeysystem_setconfigurationbytearray) | - | Sets a configuration item in the form of an array.|
+| [Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray(MediaKeySystem *mediaKeySystem, const char *configName, uint8_t *value, int32_t *valueLen)](#oh_mediakeysystem_getconfigurationbytearray) | - | Obtains the value of a configuration item in the form of an array.|
 | [Drm_ErrCode OH_MediaKeySystem_GetStatistics(MediaKeySystem *mediaKeySystem, DRM_Statistics *statistics)](#oh_mediakeysystem_getstatistics) | - | Obtains the statistics information about a media key system.|
-| [Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel(MediaKeySystem *mediaKeySystem,DRM_ContentProtectionLevel *contentProtectionLevel)](#oh_mediakeysystem_getmaxcontentprotectionlevel) | - | Obtains the maximum content protection level supported by the device.|
-| [Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback(MediaKeySystem *mediaKeySystem,MediaKeySystem_Callback callback)](#oh_mediakeysystem_setmediakeysystemcallback) | - | Sets a media key system event callback.|
-| [Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySystem,DRM_ContentProtectionLevel *level, MediaKeySession **mediaKeySession)](#oh_mediakeysystem_createmediakeysession) | - | Creates a MediaKeySession instance.|
-| [Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeySystem, uint8_t *request,int32_t *requestLen, char *defaultUrl, int32_t defaultUrlLen)](#oh_mediakeysystem_generatekeysystemrequest) | - | Generates a provision request.|
-| [Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse(MediaKeySystem *mediaKeySystem,uint8_t *response, int32_t responseLen)](#oh_mediakeysystem_processkeysystemresponse) | - | Processes a provision response.|
-| [Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds(MediaKeySystem *mediaKeySystem,DRM_OfflineMediakeyIdArray *offlineMediaKeyIds)](#oh_mediakeysystem_getofflinemediakeyids) | - | Obtains the list of offline media key IDs, which are used to manage offline media keys.|
-| [Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus(MediaKeySystem *mediaKeySystem,uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, DRM_OfflineMediaKeyStatus *status)](#oh_mediakeysystem_getofflinemediakeystatus) | - | Obtains the status of an offline media key.|
-| [Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys(MediaKeySystem *mediaKeySystem,uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)](#oh_mediakeysystem_clearofflinemediakeys) | - | Clears offline media keys by ID.|
-| [Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySystem,DRM_CertificateStatus *certStatus)](#oh_mediakeysystem_getcertificatestatus) | - | Obtains the status of a DRM certificate.|
+| [Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel(MediaKeySystem *mediaKeySystem, DRM_ContentProtectionLevel *contentProtectionLevel)](#oh_mediakeysystem_getmaxcontentprotectionlevel) | - | Obtains the maximum content protection level supported by the device.|
+| [Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback(MediaKeySystem *mediaKeySystem, MediaKeySystem_Callback callback)](#oh_mediakeysystem_setmediakeysystemcallback) | - | Sets a media key system event callback.|
+| [Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySystem, DRM_ContentProtectionLevel *level, MediaKeySession **mediaKeySession)](#oh_mediakeysystem_createmediakeysession) | - | Creates a MediaKeySession instance.|
+| [Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeySystem, uint8_t *request, int32_t *requestLen, char *defaultUrl, int32_t defaultUrlLen)](#oh_mediakeysystem_generatekeysystemrequest) | - | Generates a provision request.|
+| [Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse(MediaKeySystem *mediaKeySystem, uint8_t *response, int32_t responseLen)](#oh_mediakeysystem_processkeysystemresponse) | - | Processes a provision response.|
+| [Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds(MediaKeySystem *mediaKeySystem, DRM_OfflineMediakeyIdArray *offlineMediaKeyIds)](#oh_mediakeysystem_getofflinemediakeyids) | - | Obtains the list of offline media key IDs, which are used to manage offline media keys.|
+| [Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus(MediaKeySystem *mediaKeySystem, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, DRM_OfflineMediaKeyStatus *status)](#oh_mediakeysystem_getofflinemediakeystatus) | - | Obtains the status of an offline media key.|
+| [Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys(MediaKeySystem *mediaKeySystem, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)](#oh_mediakeysystem_clearofflinemediakeys) | - | Clears offline media keys by ID.|
+| [Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySystem, DRM_CertificateStatus *certStatus)](#oh_mediakeysystem_getcertificatestatus) | - | Obtains the status of a DRM certificate.|
 | [Drm_ErrCode OH_MediaKeySystem_Destroy(MediaKeySystem *mediaKeySystem)](#oh_mediakeysystem_destroy) | - | Destroys a MediaKeySystem instance.|
 
 ## Function Description

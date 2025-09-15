@@ -1,4 +1,10 @@
 # Distributed Audio Playback (for System Applications Only)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 Distributed audio playback enables an application to continue audio playback on another device in the same network.
 

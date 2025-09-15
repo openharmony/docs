@@ -2,22 +2,24 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-You can use the APIs in the **ImageReceiver** class to create a PreviewOutput instance and obtain real-time data of the preview stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
+You can use the APIs in **ImageReceiver** to create a PreviewOutput instance and obtain real-time data of the preview stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
 
 ## How to Develop
 
 Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
 
    ```c++
    // Include the NDK header files.
    #include <cstdlib>
    #include <hilog/log.h>
    #include <memory>
+   #include <new>
    #include <multimedia/image_framework/image/image_native.h>
    #include <multimedia/image_framework/image/image_receiver_native.h>
    #include "ohcamera/camera.h"
@@ -51,19 +53,37 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        // Capture exceptions and check whether the instance is null. This example shows only the API call process.
        // Set image parameters.
        Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
+       if (errCode != IMAGE_SUCCESS || options == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverOptions_Create call failed");
+           return;
+       }
        Image_Size imgSize;
        imgSize.width = 1080; // Width of the created preview stream.
        imgSize.height = 1080; // Height of the created preview stream.
        int32_t capacity = 8; // Maximum number of images in BufferQueue. The recommended value is 8.
        errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverOptions_SetSize call failed");
+       }
        errCode = OH_ImageReceiverOptions_SetCapacity(options, capacity);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverOptions_SetCapacity call failed");
+       }
        // Create an OH_ImageReceiverNative instance.
        OH_ImageReceiverNative* receiver = nullptr;
        errCode = OH_ImageReceiverNative_Create(options, &receiver);
+       if (errCode != IMAGE_SUCCESS || receiver == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverNative_Create call failed");
+           return;
+       }
        // Obtain the Surface ID of the OH_ImageReceiverNative instance.
        uint64_t receiverSurfaceID = 0;
        errCode = OH_ImageReceiverNative_GetReceivingSurfaceId(receiver, &receiverSurfaceID);
-       OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}lu", receiverSurfaceID);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverNative_GetReceivingSurfaceId call failed");
+       } else {
+           OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}lu", receiverSurfaceID);
+       }
    }
    ```
 
@@ -78,35 +98,82 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
 
    // Image callback. For details, see Media/Image Kit.
    static void OnCallback(OH_ImageReceiverNative* receiver) {
+       if (receiver == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "receiver is nullptr.");
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
        // Capture exceptions and check whether the instance is null. This example shows only the API call process.
        OH_ImageNative* image = nullptr;
        // Obtain the image from the bufferQueue.
        Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
+       if (errCode != IMAGE_SUCCESS || image == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverNative_ReadNextImage call failed.");
+           return;
+       }
        // Read the image width and height.
        Image_Size size;
        errCode = OH_ImageNative_GetImageSize(image, &size);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetImageSize call failed.");
+           OH_ImageNative_Release(image);
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OH_ImageNative_GetImageSize errCode:%{public}d width:%{public}d height:%{public}d", errCode,
            size.width, size.height);
 
        // Obtain the image's component type.
        size_t typeSize = 0;
-       OH_ImageNative_GetComponentTypes(image, nullptr, &typeSize);
-       uint32_t* types = new uint32_t[typeSize];
-       OH_ImageNative_GetComponentTypes(image, &types, &typeSize);
+       uint32_t* types = new (std::nothrow) uint32_t[typeSize];
+       if (!types) {
+           OH_LOG_ERROR(LOG_APP, "Failed to allocate memory");
+           OH_ImageNative_Release(image);
+           return;
+       }
+       errCode =  OH_ImageNative_GetComponentTypes(image, &types, &typeSize);
+       if (errCode != IMAGE_SUCCESS || typeSize == 0) {
+           OH_LOG_ERROR(LOG_APP, "typeSize is 0");
+           OH_ImageNative_Release(image);
+           delete[] types;
+           return;
+       }
        uint32_t component = types[0];
        // Obtain the image buffer.
        OH_NativeBuffer* imageBuffer = nullptr;
        errCode = OH_ImageNative_GetByteBuffer(image, component, &imageBuffer);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetByteBuffer call failed.");
+           OH_ImageNative_Release(image);
+           delete[] types;
+           return;
+       }
        size_t bufferSize = 0;
        errCode = OH_ImageNative_GetBufferSize(image, component, &bufferSize);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetBufferSize call failed.");
+           OH_ImageNative_Release(image);
+           delete[] types;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer component: %{public}d size:%{public}zu", component, bufferSize);
        // Obtain the row stride of the image.
        int32_t stride = 0;
        errCode = OH_ImageNative_GetRowStride(image, component, &stride);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetRowStride call failed.");
+           OH_ImageNative_Release(image);
+           delete[] types;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer stride: %{public}d.", stride);
        void* srcVir = nullptr;
-       OH_NativeBuffer_Map(imageBuffer, &srcVir);
+       int32_t retCode = OH_NativeBuffer_Map(imageBuffer, &srcVir);
+       if (retCode != 0) {
+           OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Map call failed.");
+           OH_ImageNative_Release(image);
+           delete[] types;
+           return;
+       }
        uint8_t* srcBuffer = static_cast<uint8_t*>(srcVir);
        // Check whether the row stride is the same as the width of the preview stream. If they are different, consider the impact of the stride on buffer reading.
        if (stride == size.width) {
@@ -125,8 +192,14 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
            // Process the buffer by calling the API that does not support stride.
        }
        // Release resources.
-       OH_NativeBuffer_Unmap(imageBuffer); // Release the buffer to ensure that the bufferQueue is rotated properly.
+       retCode = OH_NativeBuffer_Unmap(imageBuffer); // Release the buffer to ensure that the bufferQueue is rotated properly.
+       if (retCode != 0) {
+           OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Unmap call failed.");
+       }
        errCode = OH_ImageNative_Release(image);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_Release call failed.");
+       }
 	   delete[] types;
    }
    

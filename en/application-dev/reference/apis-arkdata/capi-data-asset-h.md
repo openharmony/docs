@@ -1,4 +1,10 @@
 # data_asset.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -47,7 +53,7 @@ Defines data asset structs.<br>Asset is a data struct used in data management. Y
 | [int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size)](#oh_data_asset_getsize) | Obtains the space occupied by an asset.|
 | [int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status)](#oh_data_asset_getstatus) | Obtains the status of a data asset.|
 | [Data_Asset *OH_Data_Asset_CreateOne(void)](#oh_data_asset_createone) | Creates a [Data_Asset](capi-rdb-data-asset.md) instance.|
-| [int OH_Data_Asset_DestroyOne(Data_Asset *asset)](#oh_data_asset_destroyone) | Destroys an [Data_Asset](capi-rdb-data-asset.md) object and reclaims the memory occupied by the object.|
+| [int OH_Data_Asset_DestroyOne(Data_Asset *asset)](#oh_data_asset_destroyone) | Destroys a [Data_Asset](capi-rdb-data-asset.md) object and reclaims the memory occupied by the object.|
 | [Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count)](#oh_data_asset_createmultiple) | Creates a specified number of [Data_Asset](capi-rdb-data-asset.md) instances.|
 | [int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count)](#oh_data_asset_destroymultiple) | Destroys multiple [Data_Asset](capi-rdb-data-asset.md) objects and reclaims the memory occupied by the objects.|
 
@@ -122,7 +128,7 @@ Sets the absolute path (URI) of an asset in the system.
 | Name| Description|
 | -- | -- |
 | [Data_Asset](capi-rdb-data-asset.md) *asset | Pointer to the [Data_Asset](capi-rdb-data-asset.md) instance.|
-| uri |  Pointer to the URI to set.|
+| const char *uri |  Pointer to the URI to set.|
 
 **Returns**
 
@@ -359,7 +365,7 @@ Obtains the creation time of a data asset.
 | Name| Description|
 | -- | -- |
 | [Data_Asset](capi-rdb-data-asset.md) *asset | Pointer to the [Data_Asset](capi-rdb-data-asset.md) instance.|
-| int64_t *createTime | Ponter to the creation time obtained, in int64_t format.|
+| int64_t *createTime | Pointer to the creation time obtained, in int64_t format.|
 
 **Returns**
 
@@ -475,10 +481,9 @@ int OH_Data_Asset_DestroyOne(Data_Asset *asset)
 
 **Description**
 
-Destroys an [Data_Asset](capi-rdb-data-asset.md) object and reclaims the memory occupied by the object.
+Destroys a [Data_Asset](capi-rdb-data-asset.md) object and reclaims the memory occupied by the object.
 
 **Since**: 11
-
 
 **Parameters**
 

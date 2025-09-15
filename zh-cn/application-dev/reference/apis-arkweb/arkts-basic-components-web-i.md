@@ -47,7 +47,7 @@ Web媒体策略的配置。
 | 名称         | 类型           | 只读 | 可选   | 说明           |
 | ----------- | -------------- | --- | ------|--------------- |
 | script      | string         | 否  |  否    | 需要注入、执行的JavaScript脚本。 |
-| scriptRules | Array\<string> | 否  |  否    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以"://"结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
+| scriptRules | Array\<string> | 否  |  否    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以`://`结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
 
 ## NestedScrollOptionsExt<sup>14+</sup>
 
@@ -109,6 +109,8 @@ Web媒体策略的配置。
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 是     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 是     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
 | previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 是     | 自定义选择预览菜单选项。 |
+| onMenuShow<sup>21+</sup> | Callback\<void\> | 否     | 是     | 自定义选择菜单显示时回调。 |
+| onMenuHide<sup>21+</sup> | Callback\<void\> | 否     | 是     | 自定义选择菜单隐藏时回调。 |
 
 ## PreviewMenuOptions<sup>20+</sup>
 
@@ -629,6 +631,19 @@ Web组件进入全屏回调事件的详情。
 | params<sup>12+</sup>            | Map<string, string> | 否    | 是 | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
 | position<sup>12+</sup>          | Position            | 否    | 是 | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
+## NativeEmbedParamItem<sup>21+</sup>
+
+提供同层渲染object标签内嵌param元素的详细信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                | 类型                                  | 只读 | 可选 | 说明                        |
+|-------------------| ------------------------------------ | ---- | ---- |---------------------------|
+| status     | [NativeEmbedParamStatus](./arkts-basic-components-web-e.md#nativeembedparamstatus21)             | 否    | 否    | param元素的状态变化类型。 |
+| id                | string                              | 否    | 否 | param元素的id信息。             |
+| name              | string                              | 否    | 是 | param元素的参数名称。           |
+| value             | string                              | 否    | 是 | param元素的参数值。          |
+
 ## IntelligentTrackingPreventionDetails<sup>12+</sup>
 
 提供智能防跟踪拦截的详细信息。
@@ -677,7 +692,7 @@ Web组件进入全屏回调事件的详情。
 
 ## LargestContentfulPaint<sup>12+</sup>
 
-提供网页绘制页面主要内容的详细信息。
+提供网页绘制页面最大内容的详细信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -726,6 +741,18 @@ Web组件进入全屏回调事件的详情。
 | embedId     | string   | 否    | 是    | 同层标签的唯一id。 |
 | mouseEvent  | [MouseEvent](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 否    | 是    | 鼠标/触摸板点击/长按信息。 |
 | result     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 是   | 通知Web组件鼠标事件的消费结果。 |
+
+## NativeEmbedParamDataInfo<sup>21+</sup>
+
+提供同层渲染object标签内嵌param元素变化时同层标签的详细信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型                                  | 只读 | 可选   | 说明                    |
+| -----------     | ------------------------------------ | ---- | ---- | --------------------- |
+| embedId | string                              | 否 | 否    | 同层标签的唯一id。  |
+| objectAttributeId      | string             | 否    | 是 | 同层标签的id信息。             |
+| paramItems  | Array\<[NativeEmbedParamItem](./arkts-basic-components-web-i.md#nativeembedparamitem21)\>   | 否 | 是    | 发生变化的param元素的详细信息，包括每一个param元素的状态变化类型、id、参数名称和参数值。       |
 
 ## OnLoadStartedEvent<sup>20+</sup>
 

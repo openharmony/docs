@@ -81,24 +81,22 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
 }
 
 async function cameraShootingCase(context: Context, surfaceId: string): Promise<void> {
-  // 创建CameraManager对象。
   try {
+    // 创建CameraManager对象。
     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`camera.getCameraManager failed, err: ${err.code}`);
-    return;
-  }
-
-  // 监听相机状态变化。
-  cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    if (err !== undefined && err.code !== 0) {
-      console.error('cameraStatus with errorCode = ' + err.code);
+    if (!cameraManager) {
+      console.error("camera.getCameraManager error");
       return;
     }
-    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.info(`status: ${cameraStatusInfo.status}`);
-  });
+    // 监听相机状态变化。
+    cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+      if (err !== undefined && err.code !== 0) {
+        console.error('cameraStatus with errorCode = ' + err.code);
+        return;
+      }
+      console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+      console.info(`status: ${cameraStatusInfo.status}`);
+    });
 
     // 获取相机列表。
     let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
@@ -286,19 +284,19 @@ async function cameraShootingCase(context: Context, surfaceId: string): Promise<
 
 async function releaseResources(): Promise<void> {
   // 停止当前会话。
-  await resources.photoSession?.stop().catch((e: BusinessError) => {console.error('Failed to stop session: ', e)});
+  await resources.photoSession?.stop().catch((e: BusinessError) => {console.error('停止会话失败:', e)});
 
   // 释放相机输入流。
-  await resources.cameraInput?.close().catch((e: BusinessError) => {console.error('Failed to close the camera: ', e)});
+  await resources.cameraInput?.close().catch((e: BusinessError) => {console.error('关闭相机失败:', e)});
 
   // 释放预览输出流。
-  await resources.previewOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the preview stream: ', e)});
+  await resources.previewOutput?.release().catch((e: BusinessError) => {console.error('停止预览流失败:', e)});
 
   // 释放拍照输出流。
-  await resources.photoOutput?.release().catch((e: BusinessError) => {console.error('Stop Photo Stream Failure: ', e)});
+  await resources.photoOutput?.release().catch((e: BusinessError) => {console.error('停止拍照流失败:', e)});
 
   // 释放会话。
-  await resources.photoSession?.release().catch((e: BusinessError) => {console.error('Failed to release session: ', e)});
+  await resources.photoSession?.release().catch((e: BusinessError) => {console.error('释放会话失败:', e)});
 }
 ```
 

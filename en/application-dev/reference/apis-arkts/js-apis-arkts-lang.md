@@ -1,4 +1,10 @@
 # @arkts.lang (ArkTS Base Capability)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 The module provides the basic type definition of ArkTS. Currently, the **ISendable** interface is provided.
 
@@ -20,6 +26,8 @@ Parent type of all sendable types except null and undefined. It does not have an
 An **ISendable** object is an instance of the Object type in ArkTS.
 
 **ISendable** is mainly used when you want to customize the sendable data structure. Container types in the ArkTS common library implicitly inherit and implement **ISendable**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 

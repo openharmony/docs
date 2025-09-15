@@ -1,8 +1,14 @@
 # Using the Ad Blocking Feature
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ArkWeb provides the ad blocking feature for applications, supporting default EasyList rules pushed by the cloud and custom rule files set by applications through APIs. It can intercept the advertisement resource download at the network layer or inject CSS rules into the web page to hide specific advertisement elements.
 
-The current configuration file uses EasyList.
+The current configuration file format uses [EasyList](https://easylist-downloads.adblockplus.org/easylist.txt).
 
 ## Common EasyList Rules
 
@@ -210,7 +216,7 @@ struct WebComponent {
 ```
 
 Note that the **DisallowedList** and **AllowedList** of the **AdsBlockManager** are not persisted. Therefore, the lists are reset to empty when the application is restarted.
-If the ad blocking feature of the **Web** component is not enabled through [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12), the preceding APIs do not take effect in the **Web** component.
+If the ad blocking feature of the **Web** component is not enabled through [enableAdsBlock()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#enableadsblock12), the preceding APIs do not take effect in the **Web** component.
 
 ### Collecting Ad Blocking Information
 When ad blocking is enabled on the **Web** component, if any ad is blocked on the accessed web page, the [onAdsBlocked()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#onadsblocked12) callback of the **Web** component notifies the application. You can collect blocking information and statistics as needed.

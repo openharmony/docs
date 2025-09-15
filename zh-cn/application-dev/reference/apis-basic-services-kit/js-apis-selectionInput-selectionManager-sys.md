@@ -1,5 +1,12 @@
 # @ohos.selectionInput.selectionManager (划词管理)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: SelectionInput-->
+<!--Owner: @no86-->
+<!--Designer: @mmwwbb-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @fang-jinxu-->
+
 本模块提供划词管理能力，包括创建窗口、显示窗口、移动窗口、隐藏窗口、销毁窗口、监听鼠标划词事件、获取选中文本等。
 
 > **说明：**

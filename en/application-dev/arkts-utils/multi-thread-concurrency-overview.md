@@ -1,17 +1,23 @@
 # Overview of Multithreaded Concurrency
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-Multithreaded concurrency refers to the execution of multiple threads simultaneously within a single program, enhancing performance and resource utilization through parallel or alternating task execution. In the development of ArkTS applications, there are many service scenarios that require multithreaded concurrency. These scenarios can be categorized into three main types. For more details, [Multithreaded Development Practice Cases](batch-database-operations-guide.md).
+Multithreaded concurrency refers to the execution of multiple threads simultaneously within a single program, enhancing performance and resource utilization through parallel or alternating task execution. In ArkTS application development, multithreaded concurrency applies to multiple service scenarios. The common service scenarios are classified into the following three types. For more details, see [Multithreaded Development Practice Cases](batch-database-operations-guide.md).
 
-- Service logic that involves heavy computation or multiple I/O read/write operations, which require extended execution time, such as image/video encoding and decoding, compression/decompression, and database operations.
+- Service logic that involves heavy computation or frequent I/O read/write operations, which require extended execution time, such as image/video encoding and decoding, file compression and decompression, and database operations.
 
 - Service logic that includes listening for or periodically collecting data, which requires continuous operation over extended periods, such as periodically collecting sensor data.
 
-- Service logic that follows the main thread's lifecycle or is bound to the main thread, such as in gaming platforms.
+- Service logic that follows the main thread's lifecycle or is bound to the main thread, such as in gaming scenarios.
 
 
 Concurrency models are used to implement concurrent tasks in different usage scenarios. Common concurrency models include those based on shared memory and those based on message communication.
 
-The actor model is a typical example of a concurrency model based on message communication. It allows developers to avoid the complexity of dealing with locks and offers high concurrency, making it widely used.
+The actor model is a typical concurrency model based on message communication. It allows developers to avoid the complexity of dealing with locks and offers high concurrency, making it widely used.
 
 Currently, ArkTS provides two concurrency capabilities: TaskPool and Worker, both of which are implemented based on the actor model.
 
@@ -25,9 +31,9 @@ Actor model: In this model, each thread is an independent actor, which has its o
 
 Different from the shared memory concurrency model, the actor model provides independent memory space for each thread. As such, it avoids memory preemption and enhances development efficiency.
 
-In the actor model, tasks and task results are transmitted through the inter-thread communication.
+In the actor model, tasks and task results are transmitted through message transfer.
 
-This topic uses the classic producer-consumer problem as an example to illustrate the differences between these two models in solving specific problems.
+This section uses the classic producer-consumer pattern as an example to analyze the differences between these two models in solving the problem.
 
 ### Shared Memory Model
 
@@ -42,6 +48,7 @@ To prevent problems like dirty reads and writes caused by simultaneous access, o
 class Queue {
   // ...
   push(value: number) {
+    // ...
   }
 
   empty(): boolean {
@@ -53,6 +60,7 @@ class Queue {
     // ...
     return value;
   }
+  // ...
 }
 
 class Mutex {
@@ -63,7 +71,9 @@ class Mutex {
   }
 
   unlock() {
+    // ...
   }
+  // ...
 }
 
 class BufferQueue {
@@ -127,7 +137,7 @@ function Main(): void {
   let producer: Producer = new Producer();
   let threadNum: number = 10;
   for (let i = 0; i < threadNum; i++) {
-    // The following pseudocode simulates the startup of multiple threads to execute production tasks.
+    // Simulate the startup of multiple threads to execute a production task.
     // let thread = new Thread();
     // thread.run(producer.run());
     // consumer.run();
@@ -196,7 +206,7 @@ struct Index {
   }
 }
 ```
-<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[actor_model](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 You can also wait until all the producer's tasks are complete, and then pass the results to the UI thread through serialization. After the UI thread receives the results, the consumer can handle them all together.
 
@@ -212,7 +222,7 @@ async function produce(): Promise<number> {
 }
 
 class Consumer {
-  public consume(value: Object) {
+  public consume(value: number) {
     // Add consumption logic here.
     console.info('consuming value: ' + value);
   }
@@ -257,3 +267,25 @@ struct Index {
 ## TaskPool and Worker
 
 ArkTS provides two concurrency capabilities for you to choose from: TaskPool and Worker. For details about their operation mechanisms and precautions, see [TaskPool](taskpool-introduction.md) and [Worker](worker-introduction.md). For details about their differences in the implementation features and use cases, see [Comparison Between TaskPool and Worker](taskpool-vs-worker.md).
+
+## Concurrency Precautions
+
+- Avoid UI operations in concurrent threads.
+
+  UI operations must be performed in the main thread. Performing UI operations in concurrent threads may cause UI exceptions or crashes.
+
+- Data transmission must support serialization and deserialization.
+
+  When data is transferred between concurrent tasks, objects must be serializable (such as basic types and common objects). Functions, cyclic references, and special objects (such as Promise and Error) cannot be transferred. Promises in the fulfilled or rejected state can be transferred because their results are serializable.
+
+- Properly control the concurrency granularity.
+
+  Frequent creation and destruction of concurrent tasks (such as Worker and Task) incur additional performance overhead. It is recommended that you reuse them or utilize the task pool mechanism.
+
+- Be aware of memory leak risks.
+
+  Avoid holding strong references to external objects in concurrent tasks to prevent memory leaks.
+
+- Concurrent tasks must be independent.
+
+  Concurrent tasks should minimize dependencies on external states to reduce race conditions and synchronization overhead. A race condition occurs when multiple threads or tasks access and modify shared data simultaneously. The execution result depends on the task scheduling sequence, which may lead to data inconsistency or unexpected behavior.

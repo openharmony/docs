@@ -1129,8 +1129,8 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ---- | ------ | ---- | ---- |------------------------------------------------------------|
-| deviceId    | number | 否   | 是   | 设备的ID：默认值为-1，控制的为本地设备，其它设备Id需使用[getEffectInfoSync](#vibratorgeteffectinfosync19)查询。 |
-| vibratorId    | number | 否   | 是   | 马达ID：默认值为-1，控制的是该设备的全部马达，其它马达Id需使用[getEffectInfoSync](#vibratorgeteffectinfosync19)查询。     |
+| deviceId    | number | 否   | 是   | 设备的ID：默认值为-1，表示本地设备，API19以后设备ID可以使用[getVibratorInfoSync](#vibratorgetvibratorinfosync19)或设备上下线接口[on](#vibratoron19)查询。 |
+| vibratorId    | number | 否   | 是   | 马达ID：默认值为0，控制的是该设备的全部马达，API19以后马达ID可以使用[getVibratorInfoSync](#vibratorgetvibratorinfosync19)设备上下线接口[on](#vibratoron19)查询。     |
 
 
 
@@ -1214,8 +1214,8 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| time     | number                                | 是   | 长期振动的起始时间。单位ms，取值范围(0,1800000)区间内所有整数。 |
-| duration | number                                | 是   | 长期振动的持续时间。单位ms，取值范围(0,5000]区间内所有整数。 |
+| time     | number                                | 是   | 长振事件的起始时间。单位ms，取值范围[0,1800000]区间内所有整数。 |
+| duration | number                                | 是   | 长振事件的持续时间。单位ms，取值范围(0,5000]区间内所有整数。 |
 | options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。                                     |
 
 **返回值**：
@@ -1280,7 +1280,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 | 参数名  | 类型                                | 必填 | 说明                                                         |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| time    | number                              | 是   | 长期振动的起始时间。单位ms，取值范围(0,1800000)区间内所有整数。 |
+| time    | number                              | 是   | 短振事件的起始时间。单位ms，取值范围[0,1800000]区间内所有整数。 |
 | options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。                                     |
 
 **返回值**：
@@ -1571,7 +1571,7 @@ build(): VibratorPattern;
 | 名称                   | 类型             | 必填 | 说明                                                         |
 | ---------------------- | ---------------- | ---- | ------------------------------------------------------------ |
 | id                     | number           | 否   | 马达ID， 默认值为0。                                         |
-| deviceId<sup>19+</sup> | number           | 否   | 设备ID，默认值为-1，控制的为本地设备，其它设备Id需使用[getEffectInfoSync](#vibratorgeteffectinfosync19)查询。 <br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |
+| deviceId<sup>19+</sup> | number           | 否   | 设备ID，默认值为-1，表示本地设备，API19以后设备ID可以使用[getVibratorInfoSync](#vibratorgetvibratorinfosync19)或设备上下线接口[on](#vibratoron19)查询。 <br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |
 | usage                  | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
 
 ## Usage<sup>9+</sup>

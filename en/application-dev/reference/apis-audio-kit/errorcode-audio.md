@@ -1,4 +1,10 @@
 # Audio Error Codes
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -61,7 +67,6 @@ The operation is not supported in the current state of the object, for example, 
 1. Check whether this operation is supported in the current state.
 2. Transition the object to the correct state before performing the operation.
 
-<!--Del-->
 ## 6800104 Unsupported Parameter Value
 
 **Error Message**
@@ -80,7 +85,6 @@ The value of the input parameter is not within the range supported.
 
 1. Check the enums or other input parameters supported by the API.
 2. Use a supported value.
-<!--DelEnd-->
 
 ## 6800105 Processing Timeout
 

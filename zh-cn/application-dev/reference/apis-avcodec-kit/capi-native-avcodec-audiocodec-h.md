@@ -132,7 +132,7 @@ OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 
 **返回：**
 

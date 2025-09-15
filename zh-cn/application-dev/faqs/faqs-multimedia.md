@@ -21,7 +21,7 @@
    ```
    // 获取PreviewOutput(预览输出类)实例
    const surfaceId = globalThis.mxXComponentController.getXComponentSurfaceId();
-   this.mPreviewOutput = await Camera.createPreviewOutput(surfaceId) ;
+   this.mPreviewOutput = await Camera.createPreviewOutput(surfaceId);
    ```
 
 2. 使用imageReceiver来监听图像信息。
@@ -32,8 +32,8 @@
    const fullHeight = this.mFullScreenSize.height;
    const imageReceiver = await image.createImageReceiver(fullWidth, fullHeight, 
      formatImage, capacityImage);
-   const photoSurfaceId = await imageReceiver.getReceivingSurfaceld();
-   this.mPreviewOutputDouble = await Camera.createPreviewOutput (photoSurfaceId)
+   const photoSurfaceId = await imageReceiver.getReceivingSurfaceId();
+   this.mPreviewOutputDouble = await Camera.createPreviewOutput(photoSurfaceId);
    ```
 
 

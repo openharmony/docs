@@ -7,9 +7,9 @@
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
-为应用提供多种以供调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
+为应用提供多种调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
-> **说明：**
+> **说明**：
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -27,13 +27,13 @@ getNativeHeapSize(): bigint
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                                         |
 | ------ |--------------------------------------------|
 | bigint | 内存分配器统计的进程持有的普通块所占用内存的大小（含分配器元数据），单位为Byte。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -49,14 +49,14 @@ getNativeHeapAllocatedSize(): bigint
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
 | bigint | 返回内存分配器统计的进程持有的已使用的普通块所占用内存大小，单位为Byte。 |
 
 
-**示例：**
+**示例**：
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
@@ -71,13 +71,13 @@ getNativeHeapFreeSize(): bigint
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                            |
 | ------ | ----------------------------- |
 | bigint | 返回内存分配器统计的进程持有的空闲的普通块所占用内存大小，单位为Byte。 |
 
-**示例：**
+**示例**：
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
@@ -90,19 +90,19 @@ getPss(): bigint
 
 获取应用进程实际使用的物理内存大小。接口实现方式：读取/proc/{pid}/smaps_rollup节点中的Pss与SwapPss值并求和。
 
-> **注意：**
+> **注意**：
 > 
 > 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
 | bigint | 返回应用进程实际使用的物理内存大小，单位为KB。 |
 
-**示例：**
+**示例**：
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
@@ -113,17 +113,17 @@ let pss: bigint = hidebug.getPss();
 
 getVss(): bigint
 
-获取应用进程虚拟耗用内存大小。接口实现方式：读取/proc/{pid}/statm节点中的size值（内存页数），vss = size * 页大小（4K/页）。
+获取应用进程占用的虚拟内存大小。接口实现方式：读取/proc/{pid}/statm节点中的size值（内存页数），vss = size * 页大小（4KB/页）。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                                     |
 | ------ | ---------------------------------------- |
-| bigint | 返回应用进程虚拟耗用内存大小，单位为KB。 |
+| bigint | 返回应用进程占用的虚拟内存大小，单位为KB。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -137,20 +137,20 @@ getSharedDirty(): bigint
 
 获取进程的共享脏内存大小。接口实现方式：读取/proc/{pid}/smaps_rollup节点中的Shared_Dirty值。
 
-> **注意：**
+> **注意**：
 > 
 > 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | bigint | 返回进程的共享脏内存大小，单位为KB。 |
 
 
-**示例：**
+**示例**：
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
@@ -163,19 +163,19 @@ getPrivateDirty(): bigint
 
 获取进程的私有脏内存大小。读取/proc/{pid}/smaps_rollup中的Private_Dirty值。
 
-> **注意：**
+> **注意**：
 >
 > 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | bigint | 返回进程的私有脏内存大小，单位为KB。 |
 
-**示例：**
+**示例**：
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
@@ -188,22 +188,20 @@ getCpuUsage(): number
 
 获取进程的CPU使用率。
 
-如占用率为50%，则返回0.5。
-
-> **注意：**
+> **注意**：
 >
 > 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 获取进程的CPU使用率。 |
+| number | 获取进程的CPU使用率。如占用率为50%，则返回0.5。 |
 
 
-**示例：**
+**示例**：
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
@@ -220,7 +218,7 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- |----------------------------|
@@ -228,16 +226,16 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>): void
 | fd | number | 是   | 文件描述符，接口会向该fd写入数据。         |
 | args | Array&lt;string&gt; | 是   | 系统服务的dump接口参数列表。string长度的最大值为254。 |
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)与[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array.  |
 | 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
-**示例：**
+**示例**：
 
 <!--code_no_check-->
 ```ts
@@ -271,13 +269,13 @@ startJsCpuProfiling(filename: string): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型   | 必填 | 说明                                               |
 | -------- | ------ | ---- |--------------------------------------------------|
 | filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。string长度的最大值为128。 |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -285,7 +283,7 @@ startJsCpuProfiling(filename: string): void
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed,Parameter type error.                        |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -308,7 +306,7 @@ stopJsCpuProfiling(): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -327,21 +325,21 @@ try {
 
 dumpJsHeapData(filename: string): void
 
-虚拟机堆导出。
+虚拟机堆数据转储。
 
-> **注意：**
+> **注意**：
 >
 > 由于虚拟机堆导出极其耗时，且该接口为同步接口，建议不要在上架版本中调用该接口，以避免应用冻屏，影响用户体验。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型   | 必填 | 说明                                            |
 | -------- | ------ | ---- | ----------------------------------------------- |
-| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。string长度的最大值为128。 |
+| filename | string | 是   | 用户自定义的虚拟机堆数据转储输出的文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。string长度的最大值为128。 |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -349,7 +347,7 @@ dumpJsHeapData(filename: string): void
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed, Parameter type error.                      |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -366,7 +364,7 @@ try {
 
 startProfiling(filename: string): void
 
-> **说明：**
+> **说明**：
 > 
 > 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
@@ -374,13 +372,13 @@ startProfiling(filename: string): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。string长度的最大值为128。|
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -396,7 +394,7 @@ hidebug.stopProfiling();
 
 stopProfiling(): void
 
-> **说明：**
+> **说明**：
 > 
 > 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
 
@@ -404,7 +402,7 @@ stopProfiling(): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -420,21 +418,21 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename: string): void
 
-> **说明：**
+> **说明**：
 > 
 > 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
 
-虚拟机堆导出，生成`filename.heapsnapshot`文件。
+虚拟机堆数据转储，生成`filename.heapsnapshot`文件。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- |---------------------------------------------------------|
 | filename | string | 是   | 用户自定义的虚拟机堆转储文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。string长度的最大值为128。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -450,13 +448,13 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型         | 说明                                    |
 | -------------| --------------------------------------- |
 | [VMMemoryInfo](#vmmemoryinfo12) | 返回VM内存信息。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -480,7 +478,7 @@ getAppVMObjectUsed(): bigint
 |--------|------------------------------|
 | bigint | 当前虚拟机中ArkTS对象所占用的内存大小，单位为KB。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -494,21 +492,19 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 获取应用线程CPU使用情况。
 
-> **注意：**
+> **注意**：
 >
 > 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型             | 说明                                                        |
 | -----------------| ------------------------------------------------------------|
 | [ThreadCpuUsage](#threadcpuusage12)[] | 返回当前应用进程下所有ThreadCpuUsage数组。 |
 
-
-
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -539,7 +535,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型     | 必填 | 说明                                 |
 | -------- | ------   | ---- |------------------------------------|
@@ -547,15 +543,15 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 | flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)。        |
 | limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB。 |
 
-**返回值：**
+**返回值**：
 
 | 类型             | 说明            |
 | -----------------|---------------|
-| string           | 返回trace文件名路径。 |
+| string           | 返回trace文件名路径（接口返回真实物理路径，若应用内需要访问，请参考[应用沙箱路径和真实物理路径的对应关系](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)进行路径转换）。 |
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)与[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -564,7 +560,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 | 11400103 | No write permission on the file.                                |
 | 11400104 | Abnormal trace status.                                 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -595,7 +591,7 @@ stopAppTraceCapture(): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
 
@@ -604,7 +600,7 @@ stopAppTraceCapture(): void
 | 11400104 | The status of the trace is abnormal.                                |
 | 11400105 | No capture trace running.                                       |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -632,13 +628,13 @@ getAppMemoryLimit(): MemoryLimit
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
 | [MemoryLimit](#memorylimit12) | 应用程序进程内存限制。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -652,21 +648,19 @@ getSystemCpuUsage(): number
 
 获取系统的CPU资源占用情况。
 
-例如，当系统资源CPU占用为50%时，将返回0.5。
-
-> **注意：**
+> **注意**：
 >
 > 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型     | 说明          |
 |--------|-------------|
-| number | 系统CPU资源占用情况。|
+| number | 系统CPU资源占用情况。如占用率为50%，则返回0.5。 |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[HiDebug-CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)。
 
@@ -674,7 +668,7 @@ getSystemCpuUsage(): number
 | ------- |-------------------------------------------------|
 | 11400104 | The status of the system CPU usage is abnormal. |
 
-**示例：**
+**示例**：
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -694,7 +688,7 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean): void
 
 主要应用场景在于构造内存泄漏故障，参见[订阅资源泄漏事件（ArkTS）](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md)、[订阅资源泄漏事件（C/C++）](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md)。
 
-> **注意：**
+> **注意**：
 >
 > 当设置的开发者选项开关打开并重启设备后，此功能有效。
 
@@ -702,7 +696,7 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型   | 必填 | 说明                                                                                                                                                                      |
 | -------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -710,16 +704,16 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean): void
 | value | number |  是  | 对应泄漏资源类型的最大值，范围：<br/>- pss_memory类型：`[1024, 4 * 1024 * 1024]`（单位：KB）<br/>- js_heap类型：`[85, 95]`（分配给JS堆内存上限的85%~95%）<br/>- fd类型：`[10, 10000]`<br/>- thread类型：`[1, 1000]` |
 | enableDebugLog | boolean |  是  | 是否启用外部调试日志。外部调试日志请仅在灰度版本（正式版本发布之前，先向一小部分用户推出的测试版本）中启用，因为收集调试日志会占用大量的cpu资源和内存资源，可能会引起应用流畅性问题。<br/>true：启用外部调试日志。<br/>false：禁用外部调试日志。                                     |
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)与[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
 | 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error.  |
 | 11400104 | Set limit failed due to remote exception. |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -743,17 +737,17 @@ getAppNativeMemInfo(): NativeMemInfo
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-> **注意：**
+> **注意**：
 >
 > 由于读取/proc/{pid}/smaps_rollup耗时较长，推荐使用异步接口[hidebug.getAppNativeMemInfoAsync](#hidebuggetappnativememinfoasync20)，以避免应用丢帧或卡顿。
 
-**返回值：**
+**返回值**：
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -772,13 +766,13 @@ getAppNativeMemInfoAsync(): Promise&lt;NativeMemInfo&gt;
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型                                               | 说明                    |
 |--------------------------------------------------| --------------------- |
 | Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | promise对象，返回应用进程内存信息。 |
 
-**示例：**
+**示例**：
 
 ```ts
 hidebug.getAppNativeMemInfoAsync().then((nativeMemInfo: hidebug.NativeMemInfo)=>{
@@ -794,7 +788,7 @@ getAppNativeMemInfoWithCache(forceRefresh?: boolean): NativeMemInfo
 
 获取应用进程内存信息。与`getAppNativeMemInfo`接口相比，该接口使用了缓存机制，以提高性能。缓存的有效期为5分钟。
 
-> **注意：**
+> **注意**：
 >
 > 由于读取 `/proc/{pid}/smaps_rollup` 比较耗时，建议不在主线程中使用该接口。可以通过 `@ohos.taskpool` 或 `@ohos.worker` 开启异步线程，以避免应用卡顿。
 
@@ -806,13 +800,13 @@ getAppNativeMemInfoWithCache(forceRefresh?: boolean): NativeMemInfo
 |-------------------------|---------|----|--------------------------------------------------------------------------------------------------------|
 | forceRefresh         | boolean | 否  | 是否需要无视缓存有效性，强制更新缓存值。默认值：false。</br>true：直接获取当前内存数据并更新缓存值。</br>false：缓存有效时，直接返回缓存值，缓存失效时获取当前内存数据并更新缓存值。 |
 
-**返回值：**
+**返回值**：
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例：**
+**示例**：
 
 ```ts
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfoWithCache();
@@ -829,13 +823,13 @@ getSystemMemInfo(): SystemMemInfo
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
 | [SystemMemInfo](#systemmeminfo12) | 系统内存信息。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -854,13 +848,13 @@ getVMRuntimeStats(): GcStats
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型                    | 说明       |
 |-----------------------|----------|
 | [GcStats](#gcstats12) | 系统GC统计信息。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -881,33 +875,27 @@ getVMRuntimeStat(item: string): number
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型   | 必填 | 说明          |
 | -------- | ------ | ---- |-------------|
-| item | string | 是   | 需要获取GC信息的类型，详见输入参数与返回值说明。 |
+| item | string | 是   | 所需统计信息的类型。可获取的统计信息类型如下：<br/>"ark.gc.gc-count"：当前线程的GC次数。<br/>"ark.gc.gc-time"：当前线程触发的GC总耗时，以ms为单位。<br/>"ark.gc.gc-bytes-allocated"：当前线程Ark虚拟机已分配的内存大小，以B为单位。<br/>"ark.gc.gc-bytes-freed"：当前线程GC成功回收的内存，以B为单位。<br/> "ark.gc.fullgc-longtime-count "：当前线程超长fullGC次数。 |
 
-**返回值：**
+**返回值**：
 
 | 类型     | 说明                        |
 |--------|---------------------------|
 | number | 系统GC统计信息，根据传入的参数，返回相应的信息。 |
 
-| 输入参数                         | 返回值说明          |
-|------------------------------|----------------|
-| ark.gc.gc-count | 当前线程的GC次数。     |
-| ark.gc.gc-time | 当前线程触发的GC总耗时，以ms为单位。 |
-| ark.gc.gc-bytes-allocated | 当前线程Ark虚拟机已分配的内存大小，以B为单位。|
-| ark.gc.gc-bytes-freed | 当前线程GC成功回收的内存，以B为单位。 |
-| ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。 |
+**错误码**：
 
-**错误码：**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                                                       |
 | ------- |------------------------------------------------------------------------------------------------------------|
 | 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -941,7 +929,7 @@ try {
 
 VM内存信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称               | 类型    | 只读 | 可选 | 说明                                |
 | -------------------| ------- | ---|----| ---------------------------------- |
@@ -953,7 +941,7 @@ VM内存信息。
 
 线程的CPU使用情况。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称               | 类型    | 只读 | 可选 | 说明                                |
 | -------------------| ------- |----|----| ----------------------------------- |
@@ -964,11 +952,11 @@ VM内存信息。
 
 支持trace使用场景的标签，用户可通过[hitrace](../../dfx/hitrace.md)抓取指定标签的trace内容。
 
-> **注意：**
+> **注意**：
 >
 > 以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称                     | 类型    | 只读  | 说明                                         |
 | -------------------------| ------- |-----|--------------------------------------------|
@@ -1050,21 +1038,11 @@ type GcStats = Record&lt;string, number&gt;
 
 描述用于存储GC统计信息的键值对。该类型不支持多线程操作，如果应用中存在多线程同时访问，需加锁保护。
 
-**系统能力**： SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 类型      | 说明                          |
 | -----------| ---------------------------- |
-| Record&lt;string, number&gt;     | 用于存储GC统计信息的键值对。     |
-
-GcStats包含以下键值信息：
-
-| 参数名                     | 类型   | 说明                      |
-|-------------------------| ------ |------------------------- |
-| ark.gc.gc-count         | number |  当前线程的GC次数。|
-| ark.gc.gc-time          | number |  当前线程触发的GC总耗时，以ms为单位。 |
-| ark.gc.gc-bytes-allocated | number | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
-| ark.gc.gc-bytes-freed   | number | 当前线程GC成功回收的内存，以B为单位。|
-| ark.gc.fullgc-longtime-count | number |  当前线程超长fullGC次数。 |
+| Record&lt;string, number&gt;     | 用于存储GC统计信息的键值对。包含以下键值信息：<br/>"ark.gc.gc-count"：当前线程的GC次数。<br/>"ark.gc.gc-time"：当前线程触发的GC总耗时，以ms为单位。<br/>"ark.gc.gc-bytes-allocated"：当前线程Ark虚拟机已分配的内存大小，以B为单位。<br/>"ark.gc.gc-bytes-freed"：当前线程GC成功回收的内存，以B为单位。<br/> "ark.gc.fullgc-longtime-count "：当前线程超长fullGC次数。    |
 
 ## JsRawHeapTrimLevel<sup>20+</sup>
 
@@ -1089,13 +1067,13 @@ isDebugState(): boolean
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型  | 说明                                                   |
 | ------ |------------------------------------------------------|
 | boolean | 应用进程的Ark层或Native层是否处于调试状态。true：处于调试状态。false：未处于调试状态。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1113,13 +1091,13 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型                    | 说明                         |
 |-----------------------|----------------------------|
 | Promise&lt;number&gt; | promise对象，返回应用显存总大小，单位为KB。 |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
 
@@ -1127,7 +1105,7 @@ getGraphicsMemory(): Promise&lt;number&gt;
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
@@ -1146,7 +1124,7 @@ getGraphicsMemorySync(): number
 
 使用同步方式获取应用显存总大小（gl + graph）。
 
-> **注意：**
+> **注意**：
 >
 > 由于该接口涉及多次跨进程通信，其耗时可能达到秒级。为了避免引入性能问题，建议不要在主线程调用该接口，推荐使用异步接口`getGraphicsMemory`。
 
@@ -1154,13 +1132,13 @@ getGraphicsMemorySync(): number
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**：
 
 | 类型  | 说明             |
 | ------ |----------------|
 | number | 应用显存总大小，单位为KB。 |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
 
@@ -1168,7 +1146,7 @@ getGraphicsMemorySync(): number
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1191,19 +1169,19 @@ getGraphicsMemorySummary(interval?: number): Promise&lt;GraphicsMemorySummary&gt
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名 | 类型        | 必填 | 说明                                                                                                          |
 | ------ | --------- |---|-------------------------------------------------------------------------------------------------------------|
 | interval  | number | 否 | 显存数据缓存值有效时间，单位为秒。默认值：300。取值范围为[2-3600]。若传入值超出取值范围时，将使用默认值。<br/>当显存数据缓存值存在时间超过该值时，获取最新显存数据并更新缓存值；否则，直接获取缓存值。 |
 
-**返回值：**
+**返回值**：
 
 | 类型                                                               | 说明                  |
 |------------------------------------------------------------------|---------------------|
 | Promise&lt;[GraphicsMemorySummary](#graphicsmemorysummary21)&gt; | promise对象，返回应用显存数据。 |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
 
@@ -1211,7 +1189,7 @@ getGraphicsMemorySummary(interval?: number): Promise&lt;GraphicsMemorySummary&gt
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1230,7 +1208,7 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 
 为当前线程转储虚拟机的原始堆快照，并生成的rawheap文件，该文件可通过[rawheap-translator工具](../../tools/rawheap-translator.md)将所生成文件转化为heapsnapshot文件进行解析。生成的文件路径使用Promise进行异步回调。
 
-> **注意：**
+> **注意**：
 >
 > 系统通过该接口转存快照会消耗大量资源，因此严格限制了调用频率和次数。处理完生成的文件后，请立即删除。
 > 建议仅在应用的灰度版本中使用。在正式版本中不推荐使用，避免影响应用流畅性。
@@ -1245,13 +1223,13 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 |-------------------------|---------|----|---------------------------------------------|
 | needGC         | boolean | 否  | 转储堆快照前是否需要GC。true：需要GC。false：不需GC。默认值：true。 |
 
-**返回值：**
+**返回值**：
 
 | 类型  | 说明                                                                                                   |
 | ------ |------------------------------------------------------------------------------------------------------|
 | Promise&lt;string&gt; | Promise对象，返回生成的快照文件路径（[应用沙箱内路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)）。 |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
 
@@ -1266,7 +1244,7 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 | 11400112 | Repeated data dump. |
 | 11400113 | Failed to create dump file. |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1310,7 +1288,7 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 |----------| ----------------------------------------------------------------- |
 | 11400114 | The number of GWP-ASAN applications of this device overflowed after last boot. |
 
-**示例：**：
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1349,7 +1327,7 @@ disableGwpAsanGrayscale(): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**示例：**：
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1370,7 +1348,7 @@ getGwpAsanGrayscaleState(): number
 |-----------|-------------|
 | number    |获取当前GWP-ASan剩余使能天数。若当前未使能，返回值0。|
 
-**示例：**：
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1385,7 +1363,7 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 
 设置当前进程转储虚拟机原始堆快照的裁剪级别。使用该接口并传入参数TRIM_LEVEL_2，可以有效减少堆快照的文件大小。
 
-> **注意：**
+> **注意**：
 >
 > 默认裁剪级别是TRIM_LEVEL_1。如果设置了TRIM_LEVEL_2裁剪，需使用API version 20之后的[rawheap-translator](../../tools/rawheap-translator.md)工具才能将.rawheap文件转换为.heapsnapshot文件，否则可能导致转换失败。
 >
@@ -1393,17 +1371,16 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
+**参数**：
 
 | 参数名 | 类型                                        | 必填 | 说明                   |
 | ------ | ------------------------------------------- | ---- | ---------------------- |
 | level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | 是   | 转储堆快照的裁剪级别，默认为TRIM_LEVEL_1。 |
 
-**示例：**
+**示例**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 hidebug.setJsRawHeapTrimLevel(hidebug.JsRawHeapTrimLevel.TRIM_LEVEL_2);
 ```

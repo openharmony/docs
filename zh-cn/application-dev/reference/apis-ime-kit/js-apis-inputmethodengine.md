@@ -1127,7 +1127,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 | 参数名    | 类型  | 必填  | 说明  |
 | -------- | ---- | ---- | ----- |
 | type     | string | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
-| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-x为光标上端的的x坐标值，y为光标上端的y坐标值，height为光标的高度值。 |
+| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>- x为光标上端的x坐标值，y为光标上端的y坐标值，height为光标的高度值。 |
 
 **示例：**
 
@@ -2332,6 +2332,58 @@ panel.setKeepScreenOn(true).then(() => {
   console.info(`setKeepScreenOn success.`);
 }).catch((error: BusinessError) => {
   console.error(`setKeepScreenOn failed, code: ${error.code}, message: ${error.message}`);
+})
+```
+### getSystemPanelCurrentInsets<sup>21+</sup>
+
+getSystemPanelCurrentInsets(displayId: number): Promise\<SystemPanelInsets>
+
+获取指定屏幕当前状态（例如：折叠或展开）下，当前输入法键盘状态（例如：悬浮或固定）下输入法软键盘相对系统面板的偏移区域。使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| displayId | number | 是   | 输入法键盘所在屏幕的displayId,可通过[getDisplayId](#getdisplayid15)获取 |
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise\<[SystemPanelInsets](#systempanelinsets21)> | Promise对象。输入法键盘与系统面板的偏移区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. Possible causes: 1. Current panel's type is not SOFT_KEYBOARD.  2. Panel's flag is not FLG_FIXED or FLG_FLOATING. |
+| 12800022 | invalid displayId. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
+let panelConfig: inputMethodEngine.PanelInfo = {
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
+}
+// 以下逻辑需要在输入法InputMethodExtensionAbility中执行，this.context是InputMethodExtensionAbility的上下文
+inputMethodAbility.createPanel(this.context, panelConfig).then( (panel: inputMethodEngine.Panel) =>{
+  panel.getDisplayId().then((displayId: number) => {
+    panel.getSystemPanelCurrentInsets(displayId).then((insets: inputMethodEngine.SystemPanelInsets) => {
+      console.info(`getSystemPanelCurrentInsets success, insets is { left: ${insets.left}, right: ${insets.right}, bottom: ${insets.bottom} }`);
+    }).catch((error: BusinessError) => {
+      console.error(`getSystemPanelCurrentInsets failed, code: ${error.code}, message: ${error.message}`);
+    })
+  });
 })
 ```
 
@@ -4551,10 +4603,10 @@ console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| top    | number | 是   | 否   | 键盘区域的上边界到面板区域上边界的距离，单位为px，该参数为整数。 |
-| bottom | number | 是   | 否   | 键盘区域的下边界到面板区域下边界的距离，单位为px，该参数为整数。 |
-| left   | number | 是   | 否   | 键盘区域的左边界到面板区域左边界的距离，单位为px，该参数为整数。 |
-| right  | number | 是   | 否   | 键盘区域的右边界到面板区域右边界的距离，单位为px，该参数为整数。 |
+| top    | number | 否  | 否   | 键盘区域的上边界到面板区域上边界的距离，单位为px，该参数为整数。 |
+| bottom | number | 否   | 否   | 键盘区域的下边界到面板区域下边界的距离，单位为px，该参数为整数。 |
+| left   | number | 否   | 否   | 键盘区域的左边界到面板区域左边界的距离，单位为px，该参数为整数。 |
+| right  | number | 否   | 否   | 键盘区域的右边界到面板区域右边界的距离，单位为px，该参数为整数。 |
 
 ## AttachOptions<sup>19+</sup>
 
@@ -4625,6 +4677,18 @@ console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
 | ------ | ------------------------------------ | ---- | ---- | -------------- |
 | gradientHeight   | number                      | 否   | 否   | 渐变高度，不能超过屏幕高度的15%。|
 | gradientMode | [GradientMode](#gradientmode20) | 否   | 否   | 渐变模式。 |
+
+## SystemPanelInsets<sup>21+</sup>
+
+输入法软键盘相对系统面板的偏移区域。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| bottom | number | 是   | 否   | 键盘区域的下边界到系统面板区域下边界的距离，单位为px，该参数为整数。 |
+| left   | number | 是   | 否   | 键盘区域的左边界到系统面板区域左边界的距离，单位为px，该参数为整数。 |
+| right  | number | 是   | 否   | 键盘区域的右边界到系统面板区域右边界的距离，单位为px，该参数为整数。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 

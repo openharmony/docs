@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -22,7 +23,7 @@ Enumerates the camera positions.
 | CAMERA_POSITION_UNSPECIFIED | 0    | A camera that does not have a fixed orientation relative to the device screen.                                                       |
 | CAMERA_POSITION_BACK        | 1    | Rear camera.                                                          |
 | CAMERA_POSITION_FRONT       | 2    | Front camera.                                                          |
-| CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | Folded camera.<br>This API is supported since API version 11 and deprecated since API version 12.|
+| CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | Folded camera.<br> This API is supported since API version 11 and deprecated since API version 12.|
 
 ## CameraType
 
@@ -34,9 +35,9 @@ Enumerates the camera types.
 
 | Name                    | Value  | Description           |
 | ----------------------- | ---- | -------------- |
-| CAMERA_TYPE_DEFAULT     | 0    | Unspecified camera type. |
+| CAMERA_TYPE_DEFAULT     | 0    | Default camera type. |
 | CAMERA_TYPE_WIDE_ANGLE  | 1    | Wide camera.      |
-| CAMERA_TYPE_ULTRA_WIDE  | 2    | Ultra wide camera.    |
+| CAMERA_TYPE_ULTRA_WIDE  | 2    | Ultra-wide camera.    |
 | CAMERA_TYPE_TELEPHOTO   | 3    | Telephoto camera.      |
 | CAMERA_TYPE_TRUE_DEPTH  | 4    | Camera with depth of field information.|
 
@@ -160,7 +161,7 @@ Enumerates the camera output formats.
 | Name                    | Value       | Description        |
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888 image.       |
-| CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP image.     |
+| CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP image, which corresponds to the NV21 image.     |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG image.           |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010 image.     |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010 image.     |
@@ -231,7 +232,7 @@ Enumerates the metadata object types.
 
 | Name                      | Value  | Description             |
 | ------------------------- | ---- | ----------------- |
-| FACE_DETECTION            | 0    | Metadata object used for face detection.<br>The detection point must be in the coordinate system (0-1), where the upper left corner is (0, 0) and the lower right corner is (1, 1).<br>The coordinate system is based on the horizontal device direction with the device's charging port on the right.<br>If the layout of a preview screen of an application is based on the vertical direction with the charging port on the lower side,<br>the layout width and height are (w, h) and the return point is (x, y), then the coordinate point after conversion is (1-y, x).|
+| FACE_DETECTION            | 0    | Metadata object used for face detection.|
 
 ## FlashMode
 
@@ -407,3 +408,16 @@ Enumerates the effect types supported by the camera controller.
 |-----------|---|---------|
 | BEAUTY    | 0 | Beauty effect.  |
 | PORTRAIT  | 1 | Portrait blur effect.|
+
+## PhotoQualityPrioritization<sup>21+</sup>
+
+Enumerates the photo quality prioritization strategies.
+
+**Atomic service API**: This API can be used in atomic services since API version 21.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name        | Value    | Description   |
+|--------------|-------|---------|
+| HIGH_QUALITY | 0     | Focuses on image quality, which may increase the time required for capturing photos to ensure high-quality output.|
+| SPEED        | 1     | Focuses on performance, trading off image quality for faster capture times.|

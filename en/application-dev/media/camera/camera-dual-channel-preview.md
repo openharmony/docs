@@ -2,10 +2,11 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 Dual-channel preview means that an application can use two preview streams at the same time. One preview stream is used for display on the screen, and the other is used for other operations such as image processing, so as to improve the processing efficiency.
 
@@ -13,7 +14,7 @@ The camera application controls the camera device to implement basic operations 
 
 To implement dual-channel preview (there are two preview streams instead of one preview stream plus one photo stream), you must create a previewOutput object through the surface of an ImageReceiver object. Other processes are the same as those of the photo stream and preview stream.
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 ## Constraints
 
@@ -51,14 +52,21 @@ The figure below shows the recommended API calling process of the dual-channel p
     async function initImageReceiver():Promise<void>{
       // Create an ImageReceiver object.
       let size: image.Size = { width: imageWidth, height: imageHeight };
-      let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      let imageReceiver: image.ImageReceiver | undefined;
+      try {
+        imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      }  catch (error) {
+        let err = error as BusinessError;
+        console.error(`Init image receiver failed. error code: ${err.code}`);
+        return;
+      }
       // Obtain the surface ID for the first preview stream.
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${imageReceiverSurfaceId}`);
     }
     ```
 3. Obtain the image or PixelMap formats of the preview stream received by ImageReceiver. For details about the image format, see the **format** parameter in [Image](../../reference/apis-image-kit/arkts-apis-image-Image.md). For details about the [PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) format, see [PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7).
-    
+
     ```ts
     // Mappings between image formats and PixelMap formats.
     let formatToPixelMapFormatMap = new Map<number, image.PixelMapFormat>([
@@ -84,7 +92,6 @@ The figure below shows the recommended API calling process of the dual-channel p
     > - Due to the variability across different devices, you must obtain the preview profiles supported by the current device by calling [getSupportedOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11) before creating a preview output stream. Then based on actual service requirements, select a suitable preview profile that meets the required [CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat) and [Size](../../reference/apis-camera-kit/arkts-apis-camera-i.md#size).
     > - The actual format of the preview stream image data received by ImageReceiver is determined by the **format** parameter in the preview profile that you select based on service requirements when creating the preview output stream. For details, see [Enabling a Preview Stream to Obtain Data](camera-dual-channel-preview.md#enabling-a-preview-stream-to-obtain-data).
 
-
     ```ts
     function onImageArrival(receiver: image.ImageReceiver): void {
       // Subscribe to the imageArrival event.
@@ -108,11 +115,13 @@ The figure below shows the recommended API calling process of the dual-channel p
               let imageFormat = nextImage.format; // Obtain the image format.
               let pixelMapFormat = formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
               let mSize = pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
-              console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+              console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
+              // If PixelMap is required, refer to the following logic.
               // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.
               // The value of stride is the same as that of width.
+              let pixelMap : image.PixelMap;
               if (stride == width) {
-                let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
+                pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                   size: { height: height, width: width },
                   srcPixelFormat: pixelMapFormat,
                 })
@@ -124,13 +133,29 @@ The figure below shows the recommended API calling process of the dual-channel p
                   const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                   dstArr.set(srcBuf, j * width)
                 }
-                let pixelMap = await image.createPixelMap(dstArr.buffer, {
+                pixelMap = await image.createPixelMap(dstArr.buffer, {
                   size: { height: height, width: width },
                   srcPixelFormat: pixelMapFormat,
                 })
               }
+              // Release the resource when the pixelMap is not in use.
+              if (pixelMap != undefined) {
+                await pixelMap.release().then(() => {
+                  console.info('Succeeded in releasing pixelMap object.');
+                }).catch((error: BusinessError) => {
+                  console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
+                })
+              }
             } else {
               console.error('byteBuffer is null');
+            }
+            // Release the resource when the pixelMap is not in use.
+            if (pixelMap != undefined) {
+              await pixelMap.release().then(() => {
+                console.info('Succeeded in releasing pixelMap object.');
+              }).catch((error: BusinessError) => {
+                console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
+              })
             }
             // Release the resource when the buffer is not in use.
             // If an asynchronous operation is performed on the buffer, call nextImage.release() to release the resource after the asynchronous operation is complete.
@@ -141,42 +166,41 @@ The figure below shows the recommended API calling process of the dual-channel p
     }
     ```
 
-    The following methods are available for parsing the image buffer data by using [image.Component](../../reference/apis-image-kit/arkts-apis-image-i.md#component9).
+The following methods are available for parsing the image buffer data by using [image.Component](../../reference/apis-image-kit/arkts-apis-image-i.md#component9).
 
-    > **NOTE**
-    > Check whether the width of the image is the same as **rowStride**. If they are different, perform the following operations:
+> **NOTE**
+>
+> Check whether the width of the image is the same as **rowStride**. If they are different, perform the following operations:
 
-    Method 1: Remove the stride data from **imgComponent.byteBuffer**, obtain a new buffer by means of copy, and process the buffer by calling the API that does not support stride.
+Method 1: Remove the stride data from **imgComponent.byteBuffer**, obtain a new buffer by means of copy, and process the buffer by calling the API that does not support stride.
 
-    ```ts
-    // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.
-    const dstBufferSize = width * height * mSize;
-    const dstArr = new Uint8Array(dstBufferSize);
-    // Read the buffer data line by line.
-    for (let j = 0; j < height * mSize; j++) {
-      // Copy the first width bytes of each line of data in imgComponent.byteBuffer to dstArr.
-      const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width);
-      dstArr.set(srcBuf, j * width);
-    }
-    let pixelMap = await image.createPixelMap(dstArr.buffer, {
-      size: { height: height, width: width }, srcPixelFormat: pixelMapFormat
+```ts
+// The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.
+const dstBufferSize = width * height * mSize;
+const dstArr = new Uint8Array(dstBufferSize);
+// Read the buffer data line by line.
+for (let j = 0; j < height * mSize; j++) {
+  // Copy the first width bytes of each line of data in imgComponent.byteBuffer to dstArr.
+  const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width);
+  dstArr.set(srcBuf, j * width);
+}
+let pixelMap = await image.createPixelMap(dstArr.buffer, {
+  size: { height: height, width: width }, srcPixelFormat: pixelMapFormat
 
-    });
-    ```
+});
+```
 
-    Method 2: Create a PixelMap based on the value of stride * height, and call **cropSync** of the PixelMap to crop redundant pixels.
+Method 2: Create a PixelMap based on the value of stride * height, and call **cropSync** of the PixelMap to crop redundant pixels.
 
-    ```ts
-    // Create a PixelMap, with width set to the value of stride.
-    let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
-      size:{height: height, width: stride}, srcPixelFormat: pixelMapFormat});
-    // Crop extra pixels.
-    pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
-    ```
+```ts
+// Create a PixelMap, with width set to the value of stride.
+let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
+  size:{height: height, width: stride}, srcPixelFormat: pixelMapFormat});
+// Crop extra pixels.
+pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
+```
 
-    Method 3: Pass **imgComponent.byteBuffer** and **stride** to the API that supports stride.
-
-
+Method 3: Pass **imgComponent.byteBuffer** and **stride** to the API that supports stride.
 
 ### Second Preview Stream Used for Image Display
 
@@ -209,8 +233,6 @@ struct example {
 }
 ```
 
-
-
 ### Enabling a Preview Stream to Obtain Data
 
 Create two preview outputs with two surface IDs, add the outputs to a camera session, and start the camera session to obtain the preview stream data.
@@ -218,32 +240,44 @@ Create two preview outputs with two surface IDs, add the outputs to a camera ses
 ```ts
 function createDualPreviewOutput(cameraManager: camera.CameraManager, previewProfile: camera.Profile,
   session: camera.Session, imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
-  // Create the first preview output by using imageReceiverSurfaceId.
-  let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
-  if (!previewOutput1) {
-  console.error('createPreviewOutput1 error');
+  try {
+    // Create the first preview output by using imageReceiverSurfaceId.
+    let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
+    if (!previewOutput1) {
+      console.error('createPreviewOutput1 error');
+      return;
+    }
+    // Create the second preview output by using xComponentSurfaceId.
+    let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
+    if (!previewOutput2) {
+      console.error('createPreviewOutput2 error');
+      return;
+    }
+    // Add the output of the first preview stream.
+    session.addOutput(previewOutput1);
+    // Add the output of the second preview stream.
+    session.addOutput(previewOutput2);
+  } catch (error) {
+    console.error('createDualPreviewOutput  call failed');
   }
-  // Create the second preview output by using xComponentSurfaceId.
-  let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
-  if (!previewOutput2) {
-  console.error('createPreviewOutput2 error');
-  }
-  // Add the output of the first preview stream.
-  session.addOutput(previewOutput1);
-  // Add the output of the second preview stream.
-  session.addOutput(previewOutput2);
 }
 ```
 
- 
-
-## Sample
+## Complete Sample Code
 
 ```ts
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+
+interface CameraResources {
+  videoOutput?: camera.VideoOutput;
+  cameraInput?: camera.CameraInput;
+  previewOutput1?: camera.PreviewOutput;
+  previewOutput2?: camera.PreviewOutput;
+  session?: camera.VideoSession;
+}
 
 @Entry
 @Component
@@ -255,25 +289,30 @@ struct Index {
   @State imageWidth: number = 1920;
   @State imageHeight: number = 1080;
   private cameraManager: camera.CameraManager | undefined = undefined;
-  private cameras: Array<camera.CameraDevice> | Array<camera.CameraDevice> = [];
-  private cameraInput: camera.CameraInput | undefined = undefined;
-  private previewOutput1: camera.PreviewOutput | undefined = undefined;
-  private previewOutput2: camera.PreviewOutput | undefined = undefined;
-  private session: camera.VideoSession | undefined = undefined;
+  private cameras: Array<camera.CameraDevice> | undefined = [];
   private uiContext: UIContext = this.getUIContext();
   private context: Context | undefined = this.uiContext.getHostContext();
   private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // For details about how to request permissions, see the instructions provided at the beginning of this topic.
   @State isShow: boolean = false;
+  private cameraResources: CameraResources = {};
 
   async requestPermissionsFn(): Promise<void> {
     let atManager = abilityAccessCtrl.createAtManager();
     if (this.context) {
       let res = await atManager.requestPermissionsFromUser(this.context, [this.cameraPermission]);
-      for (let i =0; i < res.permissions.length; i++) {
-        if (this.cameraPermission.toString() === res.permissions[i] && res.authResults[i] === 0) {
+      if (!res || !res.permissions || res.permissions.length === 0) {
+        console.error('requestPermissionsFromUser interface call fails');
+        return;
+      }
+      if (res.permissions.length !== res.authResults.length) {
+        console.error('Authentication result mismatch');
+        return;
+      }
+      res.permissions.forEach((value: string, index: number, permissions: string[]) => {
+        if (this.cameraPermission.toString() === value && res.authResults[index] === 0) {
           this.isShow = true;
         }
-      }
+      })
     }
   }
 
@@ -303,7 +342,13 @@ struct Index {
     if (!this.imageReceiver) {
       // Create an ImageReceiver object.
       let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
-      this.imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      try {
+        this.imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error(`Init image receiver failed. error code: ${err.code}`);
+        return;
+      }
       // Obtain the surface ID for the first preview stream.
       this.imageReceiverSurfaceId = await this.imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${this.imageReceiverSurfaceId}`);
@@ -354,11 +399,12 @@ struct Index {
             let imageFormat = nextImage.format; // Obtain the image format.
             let pixelMapFormat = this.formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
             let mSize =  this.pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
-            console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
-            // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.The NV21 format is used as an example.
+            console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
+            // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream. The NV21 format is used as an example.
             // The value of stride is the same as that of width.
+            let pixelMap: image.PixelMap;
             if (stride == width) {
-              let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
+              pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                 size: { height: height, width: width },
                 srcPixelFormat: pixelMapFormat,
               })
@@ -370,13 +416,29 @@ struct Index {
                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                 dstArr.set(srcBuf, j * width)
               }
-              let pixelMap = await image.createPixelMap(dstArr.buffer, {
+              pixelMap = await image.createPixelMap(dstArr.buffer, {
                 size: { height: height, width: width },
                 srcPixelFormat: pixelMapFormat,
               })
             }
+            // Release the resource when the pixelMap is not in use.
+            if (pixelMap != undefined) {
+              await pixelMap.release().then(() => {
+                console.info('Succeeded in releasing pixelMap object.');
+              }).catch((error: BusinessError) => {
+                console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
+              })
+            }
           } else {
             console.error('byteBuffer is null');
+          }
+          // Release the resource when the pixelMap is not in use.
+          if (pixelMap != undefined) {
+            await pixelMap.release().then(() => {
+              console.info('Succeeded in releasing pixelMap object.');
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
+            })
           }
           // Release the resource when the buffer is not in use.
           // If an asynchronous operation is performed on the buffer, call nextImage.release() to release the resource after the asynchronous operation is complete.
@@ -417,27 +479,30 @@ struct Index {
       // Obtain a camera manager instance.
       this.cameraManager = camera.getCameraManager(this.context);
       if (!this.cameraManager) {
-        console.error('initCamera getCameraManager');
+        console.error('getCameraManager call failed');
+        return;
       }
       // Obtain the list of cameras supported by the device.
       this.cameras = this.cameraManager.getSupportedCameras();
-      if (!this.cameras) {
-        console.error('initCamera getSupportedCameras');
+      if (!this.cameras || this.cameras.length === 0) {
+        console.error('getSupportedCameras call failed');
+        return;
       }
       // Select a camera device and create a CameraInput object.
-      this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
-      if (!this.cameraInput) {
-        console.error('initCamera createCameraInput');
+      this.cameraResources.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
+      if (!this.cameraResources.cameraInput) {
+        console.error('createCameraInput call failed');
+        return;
       }
       // Open the camera.
-      await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${err}`);
-      })
+      await this.cameraResources.cameraInput.open();
       // Obtain the profile supported by the camera device.
       let capability: camera.CameraOutputCapability =
         this.cameraManager.getSupportedOutputCapability(this.cameras[0], camera.SceneMode.NORMAL_VIDEO);
       if (!capability) {
-        console.error('initCamera getSupportedOutputCapability');
+        console.error('getSupportedOutputCapability call failed');
+        this.releaseCamera();
+        return;
       }
       let minRatioDiff : number = 0.1;
       let surfaceRatio : number = this.imageWidth / this.imageHeight; // The closest aspect ratio to 16:9.
@@ -458,34 +523,42 @@ struct Index {
       this.imageHeight = previewProfile.size.height; // Update the height of the XComponent.
       console.info(`initCamera imageWidth:${this.imageWidth} imageHeight:${this.imageHeight}`);
       // Create the first preview output by using imageReceiverSurfaceId.
-      this.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
-      if (!this.previewOutput1) {
+      this.cameraResources.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
+      if (!this.cameraResources.previewOutput1) {
         console.error('initCamera createPreviewOutput1');
+        this.releaseCamera();
+        return;
       }
       // Create the second preview output by using xComponentSurfaceId.
-      this.previewOutput2 = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
-      if (!this.previewOutput2) {
+      this.cameraResources.previewOutput2 = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
+      if (!this.cameraResources.previewOutput2) {
         console.error('initCamera createPreviewOutput2');
+        this.releaseCamera();
+        return;
       }
       // Create a camera session in recording mode.
-      this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
-      if (!this.session) {
-        console.error('initCamera createSession');
+      let session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO)
+      if (!session) {
+        console.error('session is null');
+        this.releaseCamera();
+        return;
       }
+      this.cameraResources.session = session as camera.VideoSession;
       // Start configuration for the session.
-      this.session.beginConfig();
+      this.cameraResources.session.beginConfig();
       // Add a camera input.
-      this.session.addInput(this.cameraInput);
+      this.cameraResources.session.addInput(this.cameraResources.cameraInput);
       // Add the output of the first preview stream.
-      this.session.addOutput(this.previewOutput1);
+      this.cameraResources.session.addOutput(this.cameraResources.previewOutput1);
       // Add the output of the second preview stream.
-      this.session.addOutput(this.previewOutput2);
+      this.cameraResources.session.addOutput(this.cameraResources.previewOutput2);
       // Commit the session configuration.
-      await this.session.commitConfig();
+      await this.cameraResources.session.commitConfig();
       // Start the configured input and output streams.
-      await this.session.start();
+      await this.cameraResources.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      this.releaseCamera();
     }
   }
 
@@ -494,17 +567,33 @@ struct Index {
     console.info('releaseCamera E');
     try {
       // Stop the session.
-      await this.session?.stop();
-      // Release the camera input stream.
-      await this.cameraInput?.close();
-      // Release the preview output stream.
-      await this.previewOutput1?.release();
-      // Release the photo output stream.
-      await this.previewOutput2?.release();
-      // Release the session.
-      await this.session?.release();
+      await this.cameraResources.session?.stop();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`session.stop call failed, error: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the camera input stream.
+      await this.cameraResources.cameraInput?.close();
+    } catch (error) {
+      console.error(`camera close fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the preview output stream.
+      await this.cameraResources.previewOutput1?.release();
+    } catch (error) {
+      console.error(`previewOutput1 release fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the photo output stream.
+      await this.cameraResources.previewOutput2?.release();
+    } catch (error) {
+      console.error(`previewOutput2 release fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the session.
+      await this.cameraResources.session?.release();
+    } catch (error) {
+      console.error(`session release fail: ${JSON.stringify(error)}`);
     }
   }
 }

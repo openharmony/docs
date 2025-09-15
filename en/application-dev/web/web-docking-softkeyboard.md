@@ -1,9 +1,15 @@
 # Docking to the Soft Keyboard
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--Designer: @libing23232323-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 By docking the **Web** component to the soft keyboard, you can manage the display and interaction of the soft keyboard in your application, and can also customize its features to suit your specific needs. The main scenarios are as follows:
 
 - Bringing up the system soft keyboard to enter text: When a user taps a text box on a web page, the default soft keyboard is displayed at the bottom of the screen. The user can enter text using the soft keyboard, and the entered content is displayed in the text box.
-- Customizing the **Enter** key type of the system soft keyboard: You can set different types of **Enter** keys on the soft keyboard. For example, **Confirm**, **Next**, and **Submit**.
+- Customizing the **Enter** key type of the system soft keyboard: You can set different **Enter** keys. For example, **Confirm**, **Next**, and **Submit**.
 - Specifying the soft keyboard avoidance mode: On a mobile device, the input method is usually fixed at the lower part of the screen. The application can set different soft keyboard avoidance modes for web pages. For example, relocating, resizing, or no avoidance.
 - Defining a custom soft keyboard: On a mobile device, you can use a self-drawing soft keyboard to replace the system soft keyboard.
 

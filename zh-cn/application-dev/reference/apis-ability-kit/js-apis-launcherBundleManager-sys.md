@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 ```
 
 
@@ -25,7 +25,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback\<Array\<LauncherAbilityInfo\>\>) : void
 
-查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
+查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)，使用callback异步回调。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -39,7 +39,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
 | userId     | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。|
-| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | 是 | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当函数调用成功，err为null，data为bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。否则为错误对象。 |
 
 **错误码：**
 
@@ -57,7 +57,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -80,7 +80,7 @@ try {
 
 getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<LauncherAbilityInfo\>\>
 
-查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
+查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)，使用Promise异步回调。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -99,7 +99,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<Lau
 
 | 类型                          | 说明                                               |
 | ----------------------------- | -------------------------------------------------- |
-| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise对象。返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
 
 **错误码：**
 
@@ -117,7 +117,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<Lau
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -138,7 +138,7 @@ try {
 
 getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<LauncherAbilityInfo\>\>) : void
 
-查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
+查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)，使用callback异步回调。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -151,7 +151,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<Launch
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
 | userId | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
-| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | 是 | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。 |
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当函数调用成功，err为null，data为指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。否则为错误对象。 |
 
 **错误码：**
 
@@ -168,7 +168,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<Launch
 示例：
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -190,7 +190,7 @@ try {
 
 getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<LauncherAbilityInfo\>\>
 
-查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
+查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)，使用Promise异步回调。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -208,7 +208,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<LauncherAbilityInfo\
 
 | 类型                          | 说明                                                   |
 | ----------------------------- | ------------------------------------------------------ |
-| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。 |
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise对象。返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。 |
 
 **错误码：**
 
@@ -225,7 +225,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<LauncherAbilityInfo\
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -246,7 +246,7 @@ try {
 
 getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<ShortcutInfo\>\>) : void
 
-查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
+查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)，使用callback异步回调。
 
 获取调用方自身的信息时不需要权限。
 
@@ -261,7 +261,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<ShortcutInfo
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| callback | AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\> | 是 | callback形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
+| callback | AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\> | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当函数调用成功，err为null，data为当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)信息。否则为错误对象。|
 
 **错误码：**
 
@@ -278,7 +278,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<ShortcutInfo
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -301,7 +301,7 @@ try {
 
 getShortcutInfo(bundleName : string) : Promise\<Array\<ShortcutInfo\>\>
 
-查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
+查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)，使用Promise异步回调。
 
 获取调用方自身的信息时不需要权限。
 
@@ -321,7 +321,7 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<ShortcutInfo\>\>
 
 | 类型                   | 说明                                            |
 | ---------------------- | ----------------------------------------------- |
-| Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\> | Promise形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
+| Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\> | Promise对象。返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
 
 **错误码：**
 
@@ -338,7 +338,7 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<ShortcutInfo\>\>
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -396,7 +396,7 @@ getShortcutInfoSync(bundleName : string) : Array\<ShortcutInfo\>
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -452,7 +452,7 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<ShortcutInfo\>
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -469,7 +469,7 @@ try {
 
 startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void\>
 
-拉起指定[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)中的ability。
+拉起指定[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)中的ability，使用Promise异步回调。
 
 **需要权限：** ohos.permission.START_SHORTCUT
 
@@ -488,7 +488,7 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -505,7 +505,7 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 **示例：**
 
 ```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { launcherBundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -559,7 +559,7 @@ startShortcutWithReason(shortcutInfo: ShortcutInfo, startReason: string, options
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

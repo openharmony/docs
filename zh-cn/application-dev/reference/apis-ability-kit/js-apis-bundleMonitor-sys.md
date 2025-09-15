@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
+import { bundleMonitor } from '@kit.AbilityKit';
 ```
 
 ## BundleChangedInfo
@@ -50,7 +50,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 
-注册监听应用的安装、卸载、更新。
+注册监听应用的安装、卸载、更新，使用callback异步回调。
 >**说明:**
 >
 >该方法需要与[bundleMonitor.off](#bundlemonitoroff)配合使用，在组件、页面、应用的生命周期结束时，使用[bundleMonitor.off](#bundlemonitoroff)注销对应用的安装、卸载、更新等事件的监听。
@@ -66,7 +66,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 | 参数名                       | 类型     | 必填 | 说明               |
 | ---------------------------- | -------- | ---- | ------------------ |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注册监听的事件类型。 |
-| callback | callback\<BundleChangedInfo>| 是   | 注册监听的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。 |
+| callback | callback\<BundleChangedInfo>| 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#callback)，当回调成功时，err为null，data为应用变更信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -81,7 +81,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 **示例：**
 
 ```ts
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
+import { bundleMonitor } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let callbackFun = (bundleChangeInfo: bundleMonitor.BundleChangedInfo) => {
   console.info(`bundleName : ${bundleChangeInfo.bundleName} userId : ${bundleChangeInfo.userId}`);
@@ -99,7 +99,7 @@ try {
 
 off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 
-注销监听应用的安装，卸载，更新。
+注销监听应用的安装，卸载，更新，使用callback异步回调。
 
 **需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 
@@ -112,7 +112,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注销监听的事件类型。                                         |
-| callback | callback\<BundleChangedInfo>| 否   | 注销监听的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，参数不传时，默认值：注销当前事件的所有callback。 |
+| callback | callback\<BundleChangedInfo>| 否   | [回调函数](../apis-basic-services-kit/js-apis-base.md#callback)，当回调成功时，err为null，data为应用变更信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -127,7 +127,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 **示例：**
 
 ```ts
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
+import { bundleMonitor } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 // 该方法变量需要和bundleMonitor.on方法是同一个，才能移除对应监听的方法，否则注销监听无效

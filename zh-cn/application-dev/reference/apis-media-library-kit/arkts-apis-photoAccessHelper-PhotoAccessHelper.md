@@ -1013,7 +1013,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   console.info('requestPhotoUrisReadPermissionDemo.');
 
   try {
-    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     // 获取需要进行授权的图片/视频uri。
     let srcFileUris: Array<string> = [
       'file://fileUriDemo1' // 实际场景请使用真实的uri。

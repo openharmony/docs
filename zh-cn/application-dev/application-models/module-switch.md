@@ -1,7 +1,13 @@
 # module的切换
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-从FA模型切换到Stage模型时，开发者需要将config.json文件module标签下的配置迁移到module.json5配置文件module标签下，具体差异见下列表格。
+从[FA模型](ability-terminology.md#fa模型)切换到[Stage模型](ability-terminology.md#stage模型)时，开发者需要将config.json文件module标签下的配置迁移到module.json5配置文件module标签下，具体差异见下列表格。
 
 **表1** FA模型module标签与Stage模型module标签差异对比
 

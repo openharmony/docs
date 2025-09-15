@@ -17,7 +17,7 @@
 ## 导入模块
 
 ``` ts
-import appControl from '@ohos.bundle.appControl';
+import { appControl } from '@kit.AbilityKit';
 ```
 
 ## appControl.setDisposedStatus
@@ -60,9 +60,9 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { appControl } from '@kit.AbilityKit';
 
 let appId = "com.example.myapplication_xxxxx";
 let want:Want = {bundleName: 'com.example.myapplication'};
@@ -116,9 +116,9 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let appId = "com.example.myapplication_xxxxx";
 let want: Want = {bundleName: 'com.example.myapplication'};
@@ -173,9 +173,9 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let appId: string = "com.example.myapplication_xxxxx";
 let want: Want = {bundleName: 'com.example.myapplication'};
@@ -227,8 +227,8 @@ getDisposedStatus(appId: string): Promise\<Want>;
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let appId = "com.example.myapplication_xxxxx";
 
@@ -280,8 +280,8 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let appId = "com.example.myapplication_xxxxx";
 
@@ -339,9 +339,9 @@ getDisposedStatusSync(appId: string): Want;
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let appId: string = "com.example.myapplication_xxxxx";
 let want: Want;
@@ -393,8 +393,8 @@ deleteDisposedStatus(appId: string): Promise\<void>
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let appId = "com.example.myapplication_xxxxx";
 
@@ -446,8 +446,8 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let appId = "com.example.myapplication_xxxxx";
 try {
@@ -499,8 +499,8 @@ deleteDisposedStatusSync(appId: string, appIndex:? number) : void
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let appId: string = "com.example.myapplication_xxxxx";
 
@@ -520,8 +520,8 @@ appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = 'com.example.myapplication';
 let appId: string;
@@ -584,9 +584,9 @@ getDisposedRule(appId: string, appIndex:? number): DisposedRule
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let appId = "com.example.myapplication_xxxxx";
 
@@ -635,10 +635,10 @@ setDisposedRule(appId: string, rule: DisposedRule, appIndex:? number): void
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import bundleManager from '@ohos.bundle.bundleManager';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
 
 let appId = "com.example.myapplication_xxxxx";
 let want: Want = {
@@ -794,9 +794,9 @@ setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, app
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let appIdentifier = "com.example.myapplication_xxxxx";
 let want: Want = {
@@ -859,8 +859,8 @@ getUninstallDisposedRule(appIdentifier: string, appIndex:? number): UninstallDis
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let appIdentifier = "com.example.myapplication_xxxxx";
 
@@ -908,8 +908,8 @@ deleteUninstallDisposedRule(appIdentifier: string, appIndex:? number): void
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
+import { appControl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let appIdentifier = "com.example.myapplication_xxxxx";
 

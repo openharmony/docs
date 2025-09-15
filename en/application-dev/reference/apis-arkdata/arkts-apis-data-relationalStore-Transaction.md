@@ -1,4 +1,10 @@
 # Interface (Transaction)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 > 
@@ -25,22 +31,25 @@ import { window } from '@kit.ArkUI';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
-class EntryAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
   async onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
-      name: "RdbTest.db",
+      name: 'RdbTest.db',
       securityLevel: relationalStore.SecurityLevel.S3
     };
 
-    await relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+    try {
+      const rdbStore = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
       store = rdbStore;
       console.info('Get RdbStore successfully.');
-    }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    });
+    }
 
     if (store != undefined) {
-      (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+      await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT, ASSETDATA ASSET, ASSETSDATA ASSETS, FLOATARRAY floatvector(128))');
+      store.createTransaction().then(async (transaction: relationalStore.Transaction) => {
         console.info(`createTransaction success`);
         // Perform subsequent operations after the transaction instance is successfully obtained.
       }).catch((err: BusinessError) => {
@@ -90,28 +99,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3]);
-
 if (store != undefined) {
-  const valueBucket: relationalStore.ValuesBucket = {
-    'NAME': value1,
-    'AGE': value2,
-    'SALARY': value3,
-    'CODES': value4
-  };
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.execute("DELETE FROM TEST WHERE age = ? OR age = ?", ["18", "20"]).then(() => {
-      transaction.commit();
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      await transaction.execute('CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER, salary REAL)');
+      await transaction.commit();
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -149,16 +151,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.execute("DELETE FROM TEST WHERE age = ? OR age = ?", ["18", "20"]).then(() => {
-      transaction.commit();
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      await transaction.execute('DELETE FROM TEST WHERE age = ? OR age = ?', ['18', '20']);
+      await transaction.commit();
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -209,43 +215,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-
-// You can use either of the following:
 const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
-};
-const valueBucket2: relationalStore.ValuesBucket = {
-  NAME: value1,
-  AGE: value2,
-  SALARY: value3,
-  CODES: value4
-};
-const valueBucket3: relationalStore.ValuesBucket = {
-  "NAME": value1,
-  "AGE": value2,
-  "SALARY": value3,
-  "CODES": value4
+  NAME: 'Lisa',
+  AGE: 18,
+  SALARY: 100.5,
+  CODES: new Uint8Array([1, 2, 3, 4, 5])
 };
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
-      transaction.commit();
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      const rowId = await transaction.insert('EMPLOYEE', valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+      await transaction.commit();
       console.info(`Insert is successful, rowId = ${rowId}`);
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -296,44 +288,36 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = 'Lisa';
+let value6 = 18;
+let value7 = 100.5;
+let value8 = new Uint8Array([1, 2, 3, 4, 5]);
 
-// You can use either of the following:
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
-};
 const valueBucket2: relationalStore.ValuesBucket = {
-  NAME: value1,
-  AGE: value2,
-  SALARY: value3,
-  CODES: value4
+  NAME: value5,
+  AGE: value6,
+  SALARY: value7,
+  CODES: value8
 };
-const valueBucket3: relationalStore.ValuesBucket = {
-  "NAME": value1,
-  "AGE": value2,
-  "SALARY": value3,
-  "CODES": value4
-};
-
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let rowId: number = (transaction as relationalStore.Transaction).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-      transaction.commit();
+      let rowId: number = transaction.insertSync(
+        'EMPLOYEE',
+        valueBucket2,
+        relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+      );
+      await transaction.commit();
       console.info(`Insert is successful, rowId = ${rowId}`);
     } catch (e) {
-      transaction.rollback();
+      await transaction.rollback();
       console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -341,7 +325,7 @@ if (store != undefined) {
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-Inserts a batch of data into a table. This API uses a promise to return the result.
+Batch inserts data into a table. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -383,51 +367,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
-};
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8
-};
 const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12
+  NAME: 'Lisa',
+  AGE: 18,
+  SALARY: 100.5,
+  CODES: new Uint8Array([1, 2, 3, 4, 5])
+};
+const valueBucket4: relationalStore.ValuesBucket = {
+  NAME: 'Jack',
+  AGE: 19,
+  SALARY: 101.5,
+  CODES: new Uint8Array([6, 7, 8, 9, 10])
+};
+const valueBucket5: relationalStore.ValuesBucket = {
+  NAME: 'Tom',
+  AGE: 20,
+  SALARY: 102.5,
+  CODES: new Uint8Array([11, 12, 13, 14, 15])
 };
 
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets = new Array(valueBucket3, valueBucket4, valueBucket5);
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.batchInsert("EMPLOYEE", valueBuckets).then((insertNum: number) => {
-      transaction.commit();
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      const insertNum = await transaction.batchInsert('EMPLOYEE', valueBuckets);
+      await transaction.commit();
       console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -435,7 +410,7 @@ if (store != undefined) {
 
 batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;): number
 
-Inserts a batch of data into a table. This API returns the result synchronously.
+Batch inserts data into a table. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -477,52 +452,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
+const valueBucket6: relationalStore.ValuesBucket = {
+  NAME: 'Lisa',
+  AGE: 18,
+  SALARY: 100.5,
+  CODES: new Uint8Array([1, 2, 3, 4, 5])
 };
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8
+const valueBucket7: relationalStore.ValuesBucket = {
+  NAME: 'Jack',
+  AGE: 19,
+  SALARY: 101.5,
+  CODES: new Uint8Array([6, 7, 8, 9, 10])
 };
-const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12
+const valueBucket8: relationalStore.ValuesBucket = {
+  NAME: 'Tom',
+  AGE: 20,
+  SALARY: 102.5,
+  CODES: new Uint8Array([11, 12, 13, 14, 15])
 };
 
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets2 = new Array(valueBucket6, valueBucket7, valueBucket8);
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let insertNum: number = (transaction as relationalStore.Transaction).batchInsertSync("EMPLOYEE", valueBuckets);
-      transaction.commit();
+      let insertNum: number = (transaction as relationalStore.Transaction).batchInsertSync('EMPLOYEE', valueBuckets2);
+      await transaction.commit();
       console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-    } catch (e) {
-      transaction.rollback();
-      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -530,7 +495,7 @@ if (store != undefined) {
 
 batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
 
-Inserts a batch of data into a table. This API uses a promise to return the result.
+Batch inserts data into a table with conflict resolutions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -576,51 +541,47 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
+const valueBucket9: relationalStore.ValuesBucket = {
+  NAME: 'Lisa',
+  AGE: 18,
+  SALARY: 100.5,
+  CODES: new Uint8Array([1, 2, 3, 4, 5])
 };
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8
+const valueBucketA: relationalStore.ValuesBucket = {
+  NAME: 'Jack',
+  AGE: 19,
+  SALARY: 101.5,
+  CODES: new Uint8Array([6, 7, 8, 9, 10])
 };
-const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12
+const valueBucketB: relationalStore.ValuesBucket = {
+  NAME: 'Tom',
+  AGE: 20,
+  SALARY: 102.5,
+  CODES: new Uint8Array([11, 12, 13, 14, 15])
 };
 
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets3 = new Array(valueBucket9, valueBucketA, valueBucketB);
+
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
-      transaction.commit();
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      const insertNum = await transaction.batchInsertWithConflictResolution(
+        'EMPLOYEE',
+        valueBuckets3,
+        relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+      );
+      await transaction.commit();
       console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -628,7 +589,7 @@ if (store != undefined) {
 
 batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
 
-Inserts a batch of data into a table with conflict resolutions. This API returns the result synchronously.
+Batch inserts data into a table with conflict resolutions. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -674,52 +635,46 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
+const valueBucketC: relationalStore.ValuesBucket = {
+  NAME: 'Lisa',
+  AGE: 18,
+  SALARY: 100.5,
+  CODES: new Uint8Array([1, 2, 3, 4, 5])
 };
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8
+const valueBucketD: relationalStore.ValuesBucket = {
+  NAME: 'Jack',
+  AGE: 19,
+  SALARY: 101.5,
+  CODES: new Uint8Array([6, 7, 8, 9, 10])
 };
-const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12
+const valueBucketE: relationalStore.ValuesBucket = {
+  NAME: 'Tom',
+  AGE: 20,
+  SALARY: 102.5,
+  CODES: new Uint8Array([11, 12, 13, 14, 15])
 };
 
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets4 = new Array(valueBucketC, valueBucketD, valueBucketE);
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let insertNum: number = (transaction as relationalStore.Transaction).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-      transaction.commit();
+      const insertNum = transaction.batchInsertWithConflictResolutionSync(
+        'EMPLOYEE',
+        valueBuckets4,
+        relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+      );
+      await transaction.commit();
       console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-    } catch (e) {
-      transaction.rollback();
-      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -770,46 +725,31 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Rose";
-let value2 = 22;
-let value3 = 200.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-
-// You can use either of the following:
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
+const valueBucketF: relationalStore.ValuesBucket = {
+  NAME: 'Rose',
+  AGE: 22,
+  SALARY: 200.5,
+  CODES: new Uint8Array([1, 2, 3, 4, 5])
 };
-const valueBucket2: relationalStore.ValuesBucket = {
-  NAME: value1,
-  AGE: value2,
-  SALARY: value3,
-  CODES: value4
-};
-const valueBucket3: relationalStore.ValuesBucket = {
-  "NAME": value1,
-  "AGE": value2,
-  "SALARY": value3,
-  "CODES": value4
-};
-
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-predicates.equalTo("NAME", "Lisa");
+predicates.equalTo('NAME', 'Lisa');
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
-      transaction.commit();
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      const rows = await transaction.update(valueBucketF, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+      await transaction.commit();
       console.info(`Updated row count: ${rows}`);
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`Updated failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -860,47 +800,31 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let value1 = "Rose";
-let value2 = 22;
-let value3 = 200.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-
-// You can use either of the following:
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4
+const valueBucketG: relationalStore.ValuesBucket = {
+  NAME: 'Rose',
+  AGE: 22,
+  SALARY: 200.5,
+  CODES: new Uint8Array([1, 2, 3, 4, 5])
 };
-const valueBucket2: relationalStore.ValuesBucket = {
-  NAME: value1,
-  AGE: value2,
-  SALARY: value3,
-  CODES: value4
-};
-const valueBucket3: relationalStore.ValuesBucket = {
-  "NAME": value1,
-  "AGE": value2,
-  "SALARY": value3,
-  "CODES": value4
-};
-
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Lisa");
+let predicates1 = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates1.equalTo('NAME', 'Lisa');
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let rows: Number = (transaction as relationalStore.Transaction).updateSync(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-      transaction.commit();
+      let rows = transaction.updateSync(valueBucketG, predicates1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+      await transaction.commit();
       console.info(`Updated row count: ${rows}`);
-    } catch (e) {
-      transaction.rollback();
-      console.error(`Updated failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -949,21 +873,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Lisa");
+let predicates2 = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates2.equalTo('NAME', 'Lisa');
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.delete(predicates).then((rows: Number) => {
-      transaction.commit();
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      const rows = await transaction.delete(predicates2);
+      await transaction.commit();
       console.info(`Delete rows: ${rows}`);
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`Delete failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -1012,22 +940,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Lisa");
-
+let predicates3 = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates3.equalTo('NAME', 'Lisa');
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let rows: Number = (transaction as relationalStore.Transaction).deleteSync(predicates);
-      transaction.commit();
+      let rows = transaction.deleteSync(predicates3);
+      await transaction.commit();
       console.info(`Delete rows: ${rows}`);
-    } catch (e) {
-      transaction.rollback();
-      console.error(`Delete failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -1073,31 +1003,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose");
+let predicates4 = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates4.equalTo('NAME', 'Rose');
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      const resultSet = await transaction.query(predicates4, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
       while (resultSet.goToNextRow()) {
-        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        const id = resultSet.getLong(resultSet.getColumnIndex('ID'));
+        const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
+        const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
       }
       // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
       resultSet.close();
-      transaction.commit();
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`Query failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+      await transaction.commit();
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -1143,32 +1077,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose");
+let predicates5 = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates5.equalTo('NAME', 'Rose');
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+      let resultSet = transaction.querySync(predicates5, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
       while (resultSet.goToNextRow()) {
-        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        const id = resultSet.getLong(resultSet.getColumnIndex('ID'));
+        const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
+        const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
       }
       // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
       resultSet.close();
-      transaction.commit();
-    } catch (e) {
-      transaction.rollback();
-      console.error(`Query failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+      await transaction.commit();
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -1215,27 +1152,31 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      const resultSet = await transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
       while (resultSet.goToNextRow()) {
-        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        const id = resultSet.getLong(resultSet.getColumnIndex('ID'));
+        const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
+        const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
       }
       // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
       resultSet.close();
-      transaction.commit();
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`Query failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+      await transaction.commit();
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -1282,28 +1223,31 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
+      let resultSet = transaction.querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
       while (resultSet.goToNextRow()) {
-        const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-        const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-        const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-        const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+        const id = resultSet.getLong(resultSet.getColumnIndex('ID'));
+        const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
+        const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
+        const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
       }
       // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
       resultSet.close();
-      transaction.commit();
-    } catch (e) {
-      transaction.rollback();
-      console.error(`Query failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+      await transaction.commit();
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -1360,20 +1304,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-// Delete all data from the table.
 if (store != undefined) {
-  const SQL_DELETE_TABLE = 'DELETE FROM test';
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.execute(SQL_DELETE_TABLE).then((data) => {
-      transaction.commit();
+  try {
+    const transaction = await store.createTransaction();
+    try {
+      // Delete all data from the table.
+      const SQL_DELETE_TABLE = 'DELETE FROM EMPLOYEE';
+      const data = await transaction.execute(SQL_DELETE_TABLE);
+      await transaction.commit();
       console.info(`delete result: ${data}`);
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`delete failed, code is ${e.code}, message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```
 
@@ -1432,18 +1380,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 // Delete all data from the table.
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    const SQL_DELETE_TABLE = 'DELETE FROM test';
+  try {
+    const transaction = await store.createTransaction();
     try {
-      let data = (transaction as relationalStore.Transaction).executeSync(SQL_DELETE_TABLE);
-      transaction.commit();
+      const SQL_DELETE_TABLE = 'DELETE FROM EMPLOYEE';
+      let data = transaction.executeSync(SQL_DELETE_TABLE);
+      await transaction.commit();
       console.info(`delete result: ${data}`);
-    } catch (e) {
-      transaction.rollback();
-      console.error(`delete failed, code is ${e.code}, message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
+    } catch (error) {
+      const err = error as BusinessError;
+      await transaction.rollback();
+      console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
+    }
+  } catch (error) {
+    const err = error as BusinessError;
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+  }
 }
 ```

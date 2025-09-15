@@ -1,7 +1,14 @@
 # Stage模型绑定FA模型ServiceAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-本小节介绍Stage模型的两种应用组件如何绑定FA模型ServiceAbility组件。
+
+本小节介绍[Stage模型](ability-terminology.md#stage模型)的两种应用组件如何绑定[FA模型](ability-terminology.md#fa模型)ServiceAbility组件。
 
 
 ## UIAbility关联访问ServiceAbility

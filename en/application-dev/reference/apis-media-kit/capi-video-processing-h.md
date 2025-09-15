@@ -1,10 +1,18 @@
 # video_processing.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the video processing functions.
 
 It provides video processing capabilities, including color space conversion, metadata generation, and video scaling.
+
+**File to include**: <multimedia/video_processing_engine/video_processing.h>
 
 **Library**: libvideo_processing.so
 
@@ -22,14 +30,14 @@ It provides video processing capabilities, including color space conversion, met
 | -- | -- |
 | [VideoProcessing_ErrorCode OH_VideoProcessing_InitializeEnvironment(void)](#oh_videoprocessing_initializeenvironment) | Initializes the global video processing environment.<br>This function is optional.<br>It is called only once when the main process is started to initialize the global video processing environment. This reduces the duration for running [OH_VideoProcessing_Create](#oh_videoprocessing_create).|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_DeinitializeEnvironment(void)](#oh_videoprocessing_deinitializeenvironment) | Releases the global video processing environment.<br>Before calling this API, you must call [OH_VideoProcessing_InitializeEnvironment](#oh_videoprocessing_initializeenvironment) to initialize the environment.<br>Generally, this function is called when the main process is about to exit.<br>Do not call this function when a video processing instance is running.|
-| [bool OH_VideoProcessing_IsColorSpaceConversionSupported(const VideoProcessing_ColorSpaceInfo* sourceVideoInfo,const VideoProcessing_ColorSpaceInfo* destinationVideoInfo)](#oh_videoprocessing_iscolorspaceconversionsupported) | Checks whether color space conversion is supported during video processing.|
+| [bool OH_VideoProcessing_IsColorSpaceConversionSupported(const VideoProcessing_ColorSpaceInfo* sourceVideoInfo, const VideoProcessing_ColorSpaceInfo* destinationVideoInfo)](#oh_videoprocessing_iscolorspaceconversionsupported) | Checks whether color space conversion is supported during video processing.|
 | [bool OH_VideoProcessing_IsMetadataGenerationSupported(const VideoProcessing_ColorSpaceInfo* sourceVideoInfo)](#oh_videoprocessing_ismetadatagenerationsupported) | Checks whether metadata generation is supported during video processing.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_Create(OH_VideoProcessing** videoProcessor, int type)](#oh_videoprocessing_create) | Creates a video processing instance.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_Destroy(OH_VideoProcessing* videoProcessor)](#oh_videoprocessing_destroy) | Destroys a video processing instance.<br>Before destroying the instance, call [OH_VideoProcessing_Stop](#oh_videoprocessing_stop) to stop it.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_RegisterCallback(OH_VideoProcessing* videoProcessor,const VideoProcessing_Callback* callback, void* userData)](#oh_videoprocessing_registercallback) | Registers a callback for video processing.<br>The callback function should be registered before video processing starts. During video processing, it cannot be registered.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_SetSurface(OH_VideoProcessing* videoProcessor,const OHNativeWindow* window)](#oh_videoprocessing_setsurface) | Sets an output surface for video processing.<br>An output surface must be set before video processing starts.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* videoProcessor, OHNativeWindow** window)](#oh_videoprocessing_getsurface) | Obtains a surface for video processing.<br>An input surface must be created before video processing starts, it must be destroyed by calling [OH_NativeWindow_DestroyNativeWindow](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_destroynativewindow) when it is no longer needed.|
-| [VideoProcessing_ErrorCode OH_VideoProcessing_SetParameter(OH_VideoProcessing* videoProcessor,const OH_AVFormat* parameter)](#oh_videoprocessing_setparameter) | Sets video processing parameters.|
+| [VideoProcessing_ErrorCode OH_VideoProcessing_SetParameter(OH_VideoProcessing* videoProcessor, const OH_AVFormat* parameter)](#oh_videoprocessing_setparameter) | Sets video processing parameters.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_GetParameter(OH_VideoProcessing* videoProcessor, OH_AVFormat* parameter)](#oh_videoprocessing_getparameter) | Obtains video processing parameters.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_Start(OH_VideoProcessing* videoProcessor)](#oh_videoprocessing_start) | Starts video processing.<br>After video processing starts, the callback [OH_VideoProcessingCallback_OnState](capi-video-processing-types-h.md#oh_videoprocessingcallback_onstate) reports the [VIDEO_PROCESSING_STATE_RUNNING](capi-video-processing-types-h.md#videoprocessing_state) state.|
 | [VideoProcessing_ErrorCode OH_VideoProcessing_Stop(OH_VideoProcessing* videoProcessor)](#oh_videoprocessing_stop) | Stops video processing.<br>After video processing stops, the callback [OH_VideoProcessingCallback_OnState](capi-video-processing-types-h.md#oh_videoprocessingcallback_onstate) reports the [VIDEO_PROCESSING_STATE_STOPPED](capi-video-processing-types-h.md#videoprocessing_state) state.|
@@ -116,7 +124,7 @@ Checks whether color space conversion is supported during video processing.
 
 | Type| Description|
 | -- | -- |
-| bool | Check result. The value **true** means that color space conversion is supported, and **false** means the opposite.|
+| bool | Check result for the support of color space conversion. **true** if supported, **false** otherwise.|
 
 ### OH_VideoProcessing_IsMetadataGenerationSupported()
 
@@ -141,7 +149,7 @@ Checks whether metadata generation is supported during video processing.
 
 | Type| Description|
 | -- | -- |
-| bool | Check result. The value **true** means that metadata generation is supported; **false** means the opposite.|
+| bool | Check result for the support of metadata generation. **true** if supported, **false** otherwise.|
 
 ### OH_VideoProcessing_Create()
 
@@ -245,7 +253,7 @@ An output surface must be set before video processing starts.
 | Parameter| Description|
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
-| const [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)* window | Pointer to the output surface.|
+| const [OHNativeWindow](capi-videoprocessing-nativewindow.md)* window | Pointer to the output surface.|
 
 **Returns**
 
@@ -273,7 +281,7 @@ An input surface must be created before video processing starts, and it must be 
 | Parameter| Description|
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)** window | Double pointer to the input surface. For example, the input surface pointer can point to an output surface of the video decoder.|
+| [OHNativeWindow](capi-videoprocessing-nativewindow.md)** window | Double pointer to the input surface. For example, the input surface pointer can point to an output surface of the video decoder.|
 
 **Returns**
 
@@ -299,7 +307,7 @@ Sets video processing parameters.
 | Parameter| Description|
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
-| const [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | Pointer to the video processing parameter instance.|
+| const [OH_AVFormat](capi-videoprocessing-oh-avformat.md)* parameter | Pointer to the video processing parameter instance.|
 
 **Returns**
 
@@ -325,7 +333,7 @@ Obtains video processing parameters.
 | Parameter| Description|
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | Pointer to the video processing instance.|
-| [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | Pointer to the video processing parameter instance.|
+| [OH_AVFormat](capi-videoprocessing-oh-avformat.md)* parameter | Pointer to the video processing parameter instance.|
 
 **Returns**
 
@@ -542,4 +550,5 @@ Binds the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](capi-
 | Type| Description|
 | -- | -- |
 | [VideoProcessing_ErrorCode](capi-video-processing-types-h.md#videoprocessing_errorcode) | **VIDEO_PROCESSING_SUCCESS**: The binding is successful.<br> **VIDEO_PROCESSING_ERROR_INVALID_PARAMETER**: **callback** is null.|
+
 <!--no_check-->

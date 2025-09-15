@@ -1027,25 +1027,25 @@ struct Index {
   build() { 
     Column() {
         Text(this.message)
-          .onClick(()=>{
+          .onClick(() => {
             let currentAVSession: avSession.AVSession | undefined = undefined;
             let tag = "createNewSession";
             let context: Context = this.getUIContext().getHostContext() as Context;
 
             avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-            if (err) {
+              if (err) {
                 console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-            } else {
+              } else {
                 currentAVSession = data;
-            }
+                if (currentAVSession !== undefined) {
+                  (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
+                      console.info('setExtras successfully');
+                  }).catch((err: BusinessError) => {
+                      console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+                  })
+                }
+              }
             });
-            if (currentAVSession !== undefined) {
-            (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
-                console.info('setExtras successfully');
-            }).catch((err: BusinessError) => {
-                console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-            })
-            }
           })
       }
     .width('100%')
@@ -1151,7 +1151,7 @@ sendCustomData(data: Record\<string, Object>): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
 **示例：**
@@ -1233,15 +1233,21 @@ struct Index {
     Column() {
       Text(this.message)
         .onClick(async ()=>{
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
-          let avsessionController: avSession.AVSessionController;
-          currentAVSession.getController().then(async (avcontroller: avSession.AVSessionController) => {
-            avsessionController = avcontroller;
-            console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
-          }).catch((err: BusinessError) => {
-            console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-          });
+          try {
+            let context: Context = this.getUIContext().getHostContext() as Context;
+            let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+            let avSessionController: avSession.AVSessionController;
+            currentAVSession.getController().then((avController: avSession.AVSessionController) => {
+              avsessionController = avController;
+              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+            }).catch((err: BusinessError) => {
+              console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (err) {
+            if (err) {
+              console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+            }
+          }
         })
     }
     .width('100%')
@@ -3436,7 +3442,7 @@ on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
 **示例：**
@@ -3470,7 +3476,7 @@ off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): vo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
 **示例：**

@@ -1,5 +1,12 @@
 # Introduction to ArkTS
 
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @fanglou-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
+
 ArkTS is the official high-level language for OpenHarmony application development.
 
 Built on the [TypeScript](https://www.typescriptlang.org/) (TS) ecosystem, ArkTS extends its functionality while maintaining the basic style of TS. It enhances static check and analysis during development through standardized definitions, improving code robustness and achieving better program execution stability and performance. For details about the differences compared with standard TS, see [TypeScript to ArkTS Cookbook](../quick-start/typescript-to-arkts-migration-guide.md). ArkTS also supports efficient interoperability with TS/JavaScript (JS).

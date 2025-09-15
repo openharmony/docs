@@ -30,6 +30,8 @@
   - [在Worker线程中使用相机(ArkTS)](camera-worker.md)
   - [相机启动恢复实践(ArkTS)](camera-background-recovery.md)
   - [自动切换摄像头实践(ArkTS)](camera-auto-switch.md)
+  - [白平衡设置(ArkTS)](camera-whitebalance.md)
+  - [压力管控(ArkTS)](camera-system-pressure.md)
   <!--Del-->
   - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
   - [高性能拍照实践(仅对系统应用开放)(ArkTS)](camera-deferred-photo-case.md)
@@ -50,3 +52,4 @@
   - [录像实践(C/C++)](native-camera-recording-case.md)
   - [元数据(C/C++)](native-camera-metadata.md)
   - [手电筒使用(C/C++)](native-camera-torch-use.md)
+  - [压力管控(C/C++)](native-camera-system-pressure.md)

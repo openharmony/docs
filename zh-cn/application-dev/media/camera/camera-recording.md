@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 相机应用可通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
 
@@ -132,17 +132,25 @@
 
 4. 开始录像。
 
+   > **说明：**
+   >
+   >  - 在设置预览流帧率时，需要先通过[getActiveFrameRate](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#getactiveframerate12)查询当前录像流的帧率。
+   >
+   > - 当录像流已设置过范围帧率时，预览流帧率必须设置与其相同的范围帧率。
+   >
+   > - 当录像流已设置过固定帧率时，预览流帧率要设置成录像帧率的约数，且必须也为固定帧率。
+
    先通过videoOutput的[start](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#start-1)方法启动录像输出流，再通过avRecorder的[start](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#start9)方法开始录像。
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
     try {
-      videoOutput.start();
+      await videoOutput.start();
     } catch (error) {
       let err = error as BusinessError;
       console.error(`start videoOutput failed, error: ${err.code}`);
     }
-    await avRecorder.start(async (err: BusinessError) => {
+    avRecorder.start(async (err: BusinessError) => {
     if (err) {
       console.error(`Failed to start the video output ${err.message}`);
       return;
@@ -158,14 +166,14 @@
 
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     await avRecorder.stop((err: BusinessError) => {
+     avRecorder.stop((err: BusinessError) => {
      if (err) {
        console.error(`Failed to stop the video output ${err.message}`);
        return;
      }
      console.info('Callback invoked to indicate the video output stop success.');
      });
-     videoOutput.stop();
+     await videoOutput.stop();
    }
    ```
 

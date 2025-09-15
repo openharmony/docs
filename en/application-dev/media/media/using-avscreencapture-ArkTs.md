@@ -1,4 +1,10 @@
 # Using AVScreenCaptureRecorder to Record Screens and Save Them to Files (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 Screen capture is mainly used to record the main screen.
 
@@ -33,6 +39,7 @@ After an AVScreenCaptureRecorder instance is created, different APIs can be call
 1. Add the header files.
 
     ```javascript
+    import { common } from '@kit.AbilityKit';
     import media from '@ohos.multimedia.media';
     import fs from '@ohos.file.fs';
     ```
@@ -94,7 +101,7 @@ After an AVScreenCaptureRecorder instance is created, different APIs can be call
         }
     })
     this.screenCapture.on('error', (err) => {
-        console.error("Handle exceptions.");
+        console.error(`Handle exceptions, code is ${err.code}, message is ${err.message}.`);
     })
     ```
 
@@ -109,10 +116,12 @@ After an AVScreenCaptureRecorder instance is created, different APIs can be call
     If **displayId** is set to the extended display ID of a 2-in-1 device, a dialog box for screen capture selection can be opened. Users can select the screen to capture in the dialog box, and the recorded content will match the user's choices.
 
     ```javascript
-    public getFileFd(): number {
-      let filesDir = '/data/storage/el2/base/haps';
-      let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      return file.fd;
+    const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let filePath: string = context.filesDir + '/screenCapture.mp4';
+    let captureFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    if (!captureFile) {
+      console.error("Handle exceptions.");
+      return;
     }
 
     captureConfig: media.AVScreenCaptureRecordConfig = {
@@ -120,7 +129,7 @@ After an AVScreenCaptureRecorder instance is created, different APIs can be call
         frameWidth: 768,
         frameHeight: 1280,
         // Create, read, and write a file descriptor by referring to the sample code in Accessing Application Files.
-        fd: this.getFileFd(),
+        fd: captureFile.fd,
         // Optional parameters and their default values
         videoBitrate: 10000000,
         audioSampleRate: 48000,
@@ -141,7 +150,7 @@ After an AVScreenCaptureRecorder instance is created, different APIs can be call
 
     ```javascript
     let windowIDs = [57, 86];
-    await screenCapture.skipPrivacyMode(windowIDs);
+    await this.screenCapture.skipPrivacyMode(windowIDs);
     ```
 
 7. Call **startRecording()** to start screen capture and listen for state changes using the callback function.
@@ -166,46 +175,55 @@ After an AVScreenCaptureRecorder instance is created, different APIs can be call
     await this.screenCapture.release();
     ```
 
-## Development Example
+## Complete Sample Code
 
 Refer to the sample code below to implement captured file storage using **AVScreenCaptureRecorder**.
 
 ```javascript
+import { common } from '@kit.AbilityKit';
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
-  captureConfig: media.AVScreenCaptureRecordConfig = {
-    // Set the width and height as required.
-    frameWidth: 768,
-    frameHeight: 1280,
-    // Create, read, and write a file descriptor by referring to the sample code in Accessing Application Files.
-    fd: this.getFileFd(),
-    // Optional parameters and their default values
-    videoBitrate: 10000000,
-    audioSampleRate: 48000,
-    audioChannelCount: 2,
-    audioBitrate: 96000,
-    displayId: 0,
-    preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
-  };
+  private captureFile: fs.File | undefined = undefined;
+  private captureConfig: media.AVScreenCaptureRecordConfig | undefined = undefined;
 
-  public getFileFd(): number {
-    let filesDir = '/data/storage/el2/base/haps';
-    let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    return file.fd;
+  private openFile(): void {
+    const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const path: string = context.filesDir + '/screenCapture.mp4'; // File sandbox path. The file name extension must match the container format.
+    this.captureFile = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   }
 
-  // Call startRecording to start screen capture. To stop screen capture, click the stop button in the screen capture capsule.
-  public async startRecording() {
-    this.screenCapture = await media.createAVScreenCaptureRecorder();
-    if (this.screenCapture != undefined) {
-      // success.
-    } else {
-      // failed.
-        return;
+  private closeFile(): void {
+    if (!this.captureFile) {
+      return;
     }
+    fs.closeSync(this.captureFile);
+  }
+
+  private setConfig(): void {
+    if (!this.captureFile) {
+      return;
+    }
+    this.captureConfig = {
+        // Set the width and height as required.
+        frameWidth: 768,
+        frameHeight: 1280,
+        // Create, read, and write a file descriptor by referring to the sample code in Accessing Application Files.
+        fd: this.captureFile.fd,
+        // Optional parameters and their default values
+        videoBitrate: 10000000,
+        audioSampleRate: 48000,
+        audioChannelCount: 2,
+        audioBitrate: 96000,
+        displayId: 0,
+        preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
+      };
+  }
+
+  // Register the screenCapture callback function.
+  private registerScreenCaptureCallback(): void {
     this.screenCapture?.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
       switch (infoType) {
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_STARTED:
@@ -251,10 +269,32 @@ export class AVScreenCaptureDemo {
       }
     })
     this.screenCapture?.on('error', (err) => {
-      console.error("Handle exceptions.");
+      console.error(`Handle exceptions, code is ${err.code}, message is ${err.message}.`);
     })
+  }
+
+  // Unregister the screenCapture callback function.
+  private unRegisterScreenCaptureCallback(): void {
+    this.screenCapture?.off('stateChange');
+    this.screenCapture?.off('error');
+  }
+
+  // Call startRecording to start screen capture. To stop screen capture, click the stop button in the screen capture capsule.
+  async startRecording(): Promise<void> {
+    this.screenCapture = await media.createAVScreenCaptureRecorder();
+    if (!this.screenCapture) {
+      // failed.
+      return;
+    }
+    this.openFile();
+    if (!this.captureFile) {
+      console.error("Handle exceptions.");
+      return;
+    }
+    this.setConfig();
     await this.screenCapture?.init(this.captureConfig);
 
+    this.registerScreenCaptureCallback();
     // Exempt privacy windows.
     let windowIDs = [57, 86];
     await this.screenCapture?.skipPrivacyMode(windowIDs);
@@ -263,17 +303,20 @@ export class AVScreenCaptureDemo {
   }
 
   // Proactively call stopRecording to stop screen capture.
-  public async stopRecording() {
-    if (this.screenCapture == undefined) {
+  async stopRecording(): Promise<void> {
+    if (!this.screenCapture) {
       // Error.
+      this.closeFile();
       return;
     }
-    await this.screenCapture?.stopRecording();
 
+    await this.screenCapture?.stopRecording();
+    this.unRegisterScreenCaptureCallback();
     // Call release() to release the instance.
     await this.screenCapture?.release();
 
-    // Call fs.close (fd); to close the FD of the created screen capture file.
+    // Close the created screen recording file.
+    this.closeFile();
   }
 }
 ```

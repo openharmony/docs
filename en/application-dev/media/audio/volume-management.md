@@ -1,4 +1,10 @@
 # Volume Management
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 This module provides capabilities for managing playback volume, covering system volume, application volume, and audio stream volume.
 
@@ -32,7 +38,7 @@ OpenHarmony achieves precise volume control for applications through the coordin
 
 ## System Volume
 
-The API for managing system volume is provided by AudioVolumeManager. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
+The API for managing the system volume is provided by AudioVolumeManager. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
 
 Currently, AudioVolumeManager can be used to obtain volume information and listen for volume changes. It cannot be used to adjust the system volume. If you want to adjust the system volume, follow the instructions provided in [Adjusting the System Volume Using the Volume Panel](#adjusting-the-system-volume-using-the-volume-panel).
 
@@ -45,7 +51,7 @@ let audioVolumeManager = audioManager.getVolumeManager();
 
 ### Obtaining Volume Information
 
-The API for managing system volume is provided by AudioVolumeManager. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
+The API for managing the system volume is provided by AudioVolumeManager. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
 
 ```ts
 import { audio } from '@kit.AudioKit';
@@ -63,13 +69,13 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the volume of a stream.
-audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
+audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 
 // Obtain the minimum volume of a stream.
-audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
+audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 
 // Obtain the maximum volume of a stream.
-audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
+audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 ```
 
 ### Listening for System Volume Changes
@@ -100,7 +106,7 @@ To achieve this, you can use the ArkTS component **AVVolumePanel** in your appli
 
 ## Application Volume
 
-The API for managing application volume is provided by AudioVolumeManager. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
+The API for managing the application volume is provided by AudioVolumeManager. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
 
 When [volume mode](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiovolumemode19) is set to **APP_INDIVIDUAL**, you can set and query the application volume by calling the APIs in the following sample.
 
@@ -130,9 +136,6 @@ let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
 };
 audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
 audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
-
-// Cancel all subscriptions to the event.
-audioVolumeManager.off('appVolumeChange');
 ```
 
 <!--Del-->
@@ -174,9 +177,6 @@ let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
 };
 audioVolumeManager.on('appVolumeChangeForUid', uid, appVolumeChangeForUidCallback);
 audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
-
-// Cancel all subscriptions to the event.
-audioVolumeManager.off('appVolumeChangeForUid');
 ```
 <!--DelEnd-->
 
@@ -213,7 +213,8 @@ try {
 }
 ```
 
-### Listening for Active Stream Changes
+<!--Del-->
+### Listening for Active Stream Changes (for System Applications Only)
 
 You can set an event to listen for active stream changes.
 
@@ -230,5 +231,4 @@ audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback)
 // Cancel all subscriptions to the event.
 audioVolumeManager.off('activeVolumeTypeChange');
 ```
-
-<!--no_check-->
+<!--DelEnd-->

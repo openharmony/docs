@@ -21,7 +21,7 @@
 在分析性能问题的过程中，应当先通过CPU Profiler工具确实的发现性能瓶颈点，再针对性的进行优化。
 
 ### 惰性加载优先
-推迟非可视区域的资源消耗可有效的加快应用启动和页面的切换速度。ArkUI提供了[LazyForEach](state-management/arkts-rendering-control-lazyforeach.md)组件来支持应用方便的进行数据的懒加载。
+推迟非可视区域的资源消耗可有效的加快应用启动和页面的切换速度。ArkUI提供了[LazyForEach](rendering-control/arkts-rendering-control-lazyforeach.md)组件来支持应用方便的进行数据的懒加载。
 
 ### 布局计算简化
 应用开发中的UI布局是用户与应用程序交互的关键部分。不合理的布局越多，视图的创建、布局、渲染等流程所需的时间就越长。因此，减少嵌套层次或者使用高性能布局节点，可以减少丢帧卡顿。可以参考这些<!--RP4-->[布局技巧](../performance/reduce-view-nesting-levels.md)来优化布局性能<!--RP4End-->。

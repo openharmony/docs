@@ -1,10 +1,16 @@
 # @ohos.util.Deque (Linear Container Deque)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Double-Ended Queue (Deque) is a data structure implemented based on a circular queue. It supports insertion and deletion of elements at both ends. It follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). Deque can dynamically adjust the capacity based on project requirements. It doubles the capacity each time.
 
 Queue allows element removal at the front and insertion at the rear. Compared with [Queue](js-apis-queue.md), which only allows element deletion at the front and insertion at the back, Deque permits insertion and deletion at both ends.
 
-Both [Vector](js-apis-vector.md) and Deque support insertion and deletion at the ends, but Deque does not support insertion in the middle. Deque is more efficient than a Vector for inserting and deleting elements at the front, whereas a Vector excels in element access efficiency.
+Both [ArrayList](js-apis-arraylist.md) and Deque support insertion and deletion at the ends, but Deque does not support insertion in the middle. Deque is more efficient than an ArrayList for inserting and deleting elements at the front, whereas an ArrayList excels in element access efficiency.
 
 **Recommended use case**: Use **Deque** when you need to frequently insert or remove elements at both the ends of a container.
 
@@ -14,6 +20,8 @@ This topic uses the following to identify the use of generics:
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -55,7 +63,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let deque: Deque<string | number | boolean | Object> = new Deque();
+let deque = new Deque<string | number | boolean | Object>();
 ```
 
 ### insertFront
@@ -89,7 +97,8 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
+
+let deque = new Deque<string | number | boolean | Array<number> | C1>();
 deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
@@ -97,6 +106,7 @@ deque.insertFront(b);
 let c: C1 = {name : "Dylan", age : "13"};
 deque.insertFront(c);
 deque.insertFront(false);
+console.info("result:", deque[0]);  // result: false
 ```
 
 ### insertEnd
@@ -131,7 +141,7 @@ class C1 {
   age: string = ""
 }
 
-let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
+let deque = new Deque<string | number | boolean | Array<number> | C1>();
 deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
@@ -139,6 +149,7 @@ deque.insertEnd(b);
 let c: C1 = {name : "Dylan", age : "13"};
 deque.insertEnd(c);
 deque.insertEnd(false);
+console.info("result:", deque[0]);  // result: a
 ```
 
 ### has
@@ -174,9 +185,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let deque: Deque<string> = new Deque();
+let deque = new Deque<string>();
 deque.insertFront("squirrel");
 let result = deque.has("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 ### popFirst
@@ -206,13 +218,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
+console.info("result:", result);  // result: 4
 ```
 
 ### popLast
@@ -242,13 +255,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
-deque.insertEnd(4);
+deque.insertEnd(6);
 deque.insertFront(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popLast();
+console.info("result:", result);  // result: 6
 ```
 
 ### forEach
@@ -256,7 +270,7 @@ let result = deque.popLast();
 forEach(callbackFn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this Deque and obtain their indexes.
+Uses a callback to traverse each element in the **Deque** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -289,14 +303,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
+deque.insertEnd(3);
+deque.insertFront(1);
 deque.insertEnd(4);
-deque.insertFront(5);
-deque.insertEnd(4);
-deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> | undefined):void => {
-  console.log("value:" + value, "index:" + index);
+deque.forEach((value: number, index: number): void => {
+  console.info("value:" + value, "index:" + index);
 });
+/*
+Output: value:1 index:0
+        value:2 index:1
+        value:3 index:2
+        value:4 index:3
+*/
 ```
 
 ### getFirst
@@ -326,12 +346,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertEnd(2);
 deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getFirst();
+console.info("result:", result);  // result: 4
 ```
 
 ### getLast
@@ -361,12 +382,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getLast();
+console.info("result:", result);  // result: 2
 ```
 
 ### [Symbol.iterator]
@@ -395,23 +417,34 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 **Example**
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
 
 // Method 1:
-let nums: Array<number> = Array.from(deque);
-for (let item of nums) {
-  console.log("value:" + item);
+for (let item of deque) {
+  console.info("value:" + item);
 }
+/*
+Output: 4
+        5
+        4
+        2
+*/
 
 // Method 2:
 let iter = deque[Symbol.iterator]();
 let temp:IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
+/*
+Output: 4
+        5
+        4
+        2
+*/
 ```

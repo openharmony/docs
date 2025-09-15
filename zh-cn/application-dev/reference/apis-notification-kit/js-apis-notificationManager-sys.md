@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供通知管理的能力，包括发布、取消发布通知，创建、获取、移除通知渠道，获取通知的使能状态、角标使能状态，获取通知的相关信息等。
 
@@ -5135,11 +5135,11 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口**：此接口为系统接口。
 
-| 名称  | 类型                                  | 必填 | 说明                   |
-| ----- | ------------------------------------- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 免打扰设置的时间类型。 |
-| begin | Date                                  | 是   | 免打扰设置的起点时间。 |
-| end   | Date                                  | 是   | 免打扰设置的终点时间。 |
+| 名称  | 类型                                   | 只读 | 可选 | 说明                  |
+| ----- | ------------------------------------- | ---- | ---- | -------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype) | 否   |  否  | 免打扰设置的时间类型。 |
+| begin | Date                                  | 否   |  否  | 免打扰设置的起点时间。 |
+| end   | Date                                  | 否   |  否  | 免打扰设置的终点时间。 |
 
 ## DoNotDisturbType
 

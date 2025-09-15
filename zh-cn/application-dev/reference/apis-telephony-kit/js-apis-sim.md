@@ -1479,6 +1479,159 @@ promise.then((data: number) => {
 });
 ```
 
+## sim.getSimLabel<sup>20+</sup>
+
+getSimLabel(slotId: number, callback: AsyncCallback\<SimLabel\>): void
+
+查看卡槽ID和SIM卡的对应关系：- 卡槽1对应SIM卡1或SIM卡2- 卡槽2对应SIM卡2或ESIMX
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                     |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| callback | AsyncCallback\<[SimLabel](#simlabel20)\> | 是   | 回调函数。获取SIM卡标签信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[电话子系统错误码](errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001 | Invalid parameter value.                 |
+| 8300002  | Operation failed. Cannot connect to service.                      |
+| 8300003 | System internal error.                               |
+| 8300999  |Unknown error code.|
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+async function exampleGetSimLabel(slotId) {
+    try {
+        const simLabel = await getSimLabel(slotId);
+        console.info(`SIM卡标签: ${simLabel}`);
+    } catch (err) {
+        console.error(`获取SIM卡标签失败: ${err.code} - ${err.message}`);
+    }
+}
+```
+
+## sim.getSimLabel<sup>20+</sup>
+
+getSimLabel(slotId: number): Promise\<SimLabel\>
+
+获取SIM卡的标签信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+
+| 参数名   | 类型                     | 必填 | 说明                                     |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise\<[SimLabel](#simlabel20) \>| 回调函数。获取SIM卡标签信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[电话子系统错误码](errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001 | Invalid parameter value.                 |
+| 8300002  | Operation failed. Cannot connect to service.                      |
+| 8300003 | System internal error.                               |
+| 8300999  |Unknown error code.|
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+async getSimLabel(slotId: number): Promise<sim.SimLabel|null> {
+    try {
+      const simLabel: sim.SimLabel =
+        await sim.getSimLabel(slotId);
+      return simLabel;
+    } catch (err) {
+      this.handleError(this.getSimLabel.name, err);
+      return null;
+    }
+  }
+```
+
+## sim.getSimLabelSync<sup>20+</sup>
+
+getSimLabelSync(slotId: number): SimLabel
+
+通过传入SIM卡槽的ID，获取对应的SIM卡标签。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                     |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| [SimLabel](#simlabel20) | SIM卡标签。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+function exampleGetSimLabelSync() {
+    try {
+        const slotId = 0; 
+        const simLabel = getSimLabelSync(slotId);
+        console.info(`SIM卡标签: ${simLabel}`);
+    } catch (err) {
+        console.error(`获取SIM卡标签失败: ${err.message}`);
+    }
+}
+```
+
+## SimType<sup>20+</sup>
+
+SIM卡类型的枚举。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称                | 值 |  说明                                                       |
+| --------------------- | ----| ---------------------------------------------------------- |
+| PSIM     | 0   |实体SIM卡。                      |
+| ESIM | 1   |电子SIM卡。      |
+
+
+## SimLabel<sup>20+</sup>
+
+SIM卡标签。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称         | 类型 | 只读| 可选  | 说明                                                       |
+| ---------------------|----|---- | ----| --------------------------------------------------- |
+|  simType   |  [SimType](#simtype20)  | 否  | 否|表示SIM卡类型的枚举。                      |
+| index |  number   |  否  |否 | SIM卡的唯一标识索引值。      |
 
 ## SimState
 

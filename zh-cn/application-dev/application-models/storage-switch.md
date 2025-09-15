@@ -1,7 +1,13 @@
 # Storage接口切换
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-  | FA模型接口 | Stage模型接口对应d.ts文件 | Stage模型对应接口 | 
+  | [FA模型](ability-terminology.md#fa模型)接口 | [Stage模型](ability-terminology.md#stage模型)接口对应d.ts文件 | Stage模型对应接口 | 
 | -------- | -------- | -------- |
 | GetStorageOptions | Stage模型无对应接口 | Storage接口功能使用Preferences接口来代替，接口入参已经重新设计 | 
 | SetStorageOptions | Stage模型无对应接口 | Storage接口功能使用Preferences接口来代替，接口入参已经重新设计 | 

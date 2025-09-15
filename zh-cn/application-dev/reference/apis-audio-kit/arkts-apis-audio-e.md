@@ -285,7 +285,7 @@
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup> | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10开始废弃，建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话（该流类型起播时，会触发开启3A算法）。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -297,7 +297,7 @@
 | STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物（包括听书、相声、评书）、听新闻、播客等。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话（该流类型起播时，会触发开启3A算法）。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## AudioState<sup>8+</sup>
 
@@ -486,7 +486,7 @@
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture <br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。  |
-| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源（单独启动录制不会开启3A算法，需同时使用[STREAM_USAGE_VOICE_COMMUNICATION](#streamusage)或[STREAM_USAGE_VIDEO_COMMUNICATION](#streamusage)类型的AudioRender起播才会触发开启3A算法）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |

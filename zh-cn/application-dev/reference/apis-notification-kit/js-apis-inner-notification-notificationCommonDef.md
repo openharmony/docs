@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 描述BundleOption信息，即指定应用的包信息。
 

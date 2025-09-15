@@ -2945,7 +2945,7 @@ getOsAccountName(): Promise&lt;string&gt;
 
 ### getForegroundOsAccountLocalId<sup>15+</sup>
 
-getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
+getForegroundOsAccountLocalId(): Promise&lt;number&gt;
 
 获取前台系统账号的ID。
 
@@ -2984,7 +2984,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
 ### getOsAccountDomainInfo<sup>15+</sup>
 
-getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
+getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;
 
 获取指定系统账号关联的域账号信息。
 

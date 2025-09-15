@@ -361,11 +361,6 @@ Web组件的销毁模式，当Web组件销毁时，销毁模式会影响Web内�
 
 ArkWeb内核版本，请参考[M114内核在OpenHarmony6.0系统上的适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)。
 
-| **内核类型** | **英文** | **说明** |
-| ----------- | -------- | -------- |
-| 常青内核     | EVERGREEN WebCore | 当前系统的最新Web内核，系统基于此内核进行完整的功能实现，推荐应用使用。|
-| 遗留内核     | LEGACY WebCore    | 复用上一版本的内核，只做安全补丁及舆情问题修复，仅作为兼容性回滚使用，且遗留内核的支持有时间限制。 |
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称          | 值 | 说明                                      |
@@ -373,3 +368,22 @@ ArkWeb内核版本，请参考[M114内核在OpenHarmony6.0系统上的适配指�
 | SYSTEM_DEFAULT   | 0     | 系统默认内核，OpenHarmony 6.0版本默认为M132。|
 | M114             | 1     | OpenHarmony 6.0版本的遗留内核。开发者可选择此遗留内核，若系统版本上不存在此内核则设置无效。|
 | M132             | 2     | OpenHarmony 6.0版本的常青内核，M132为此版本的默认内核。若系统版本上不存在此内核则设置无效。|
+| ARKWEB_EVERGREEN<sup>21+</sup> | 99999 | 常青内核，系统的最新内核。开发者可选择在每个系统版本上都使用最新的内核，OpenHarmony 6.0及之后所有系统版本都生效。 |
+
+>**表1** 常青内核与遗留内核含义说明
+>| **内核类型** | **英文** | **说明** |
+>| ----------- | -------- | -------- |
+>| 常青内核     | EVERGREEN WebCore | 当前系统的最新Web内核，系统基于此内核进行完整的功能实现，推荐应用使用。|
+>| 遗留内核     | LEGACY WebCore    | 复用上一版本的内核，只做安全补丁及舆情问题修复，仅作为兼容性回滚使用，且遗留内核的支持有时间限制。 |
+
+
+## SiteIsolationMode<sup>21+</sup>
+
+站点隔离机制将不同源的网站隔离在不同的Render进程中，减少跨域攻击面。例如，PC上原有进程模型是每一个Tab对应一个Render进程，站点隔离打开后，让不同源的Iframe运行在独立的Render进程中。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| PARTIAL | 0 | 部分站点隔离，即在同一个Render进程内加载新站点。 |
+| STRICT  | 1 | 严格站点隔离，跨站点的Iframe将切换到新的渲染进程。 |

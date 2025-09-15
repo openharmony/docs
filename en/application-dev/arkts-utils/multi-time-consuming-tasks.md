@@ -1,4 +1,10 @@
 # Using TaskPool for Multiple Time-Consuming Tasks
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 When multiple tasks are executed simultaneously, the execution time and the time to return data may vary due to differences in task complexity. If the host thread requires data from all tasks once they are completed, this can be achieved using [TaskGroup](../reference/apis-arkts/js-apis-taskpool.md#taskgroup10).
 
@@ -20,7 +26,7 @@ This example uses image loading of multiple tasks to illustrate the process.
      }
    }
    ```
-   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
+   <!-- @[implement_child_thread_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // IndependentTask.ets
@@ -33,7 +39,7 @@ This example uses image loading of multiple tasks to illustrate the process.
      // Add six IconItem data records.
      for (let index = 0; index < count; index++) {
        const numStart: number = index * 6;
-       // Use six images in the loop.
+       // This loop uses six predefined images (for example, startIcon, background, and foreground).
        iconItemSourceList.push(new IconItemSource('$media:startIcon', `item${numStart + 1}`));
        iconItemSourceList.push(new IconItemSource('$media:background', `item${numStart + 2}`));
        iconItemSourceList.push(new IconItemSource('$media:foreground', `item${numStart + 3}`));
@@ -45,29 +51,50 @@ This example uses image loading of multiple tasks to illustrate the process.
      return iconItemSourceList;
    }
    ```
-   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
+   <!-- @[implement_child_thread_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTask.ets) -->
 
 2. Add the tasks to a task group and execute them collectively. When all the tasks in the task group finish executing, their results are placed in an array and sent back to the host thread. In this way, the host thread can access the combined results of all tasks at once, rather than receiving results individually as each task completes.
 
    ```ts
-   // MultiTask.ets
+   // Index.ets
    import { taskpool } from '@kit.ArkTS';
    import { IconItemSource } from './IconItemSource';
    import { loadPicture } from './IndependentTask';
-    
-   let iconItemSourceList: IconItemSource[][];
-    
-   let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
-   taskGroup.addTask(new taskpool.Task(loadPicture, 30));
-   taskGroup.addTask(new taskpool.Task(loadPicture, 20));
-   taskGroup.addTask(new taskpool.Task(loadPicture, 10));
-   taskpool.execute(taskGroup).then((ret: object) => {
-     let tmpLength = (ret as IconItemSource[][]).length
-     for (let i = 0; i < tmpLength; i++) {
-       for (let j = 0; j < ret[i].length; j++) {
-         iconItemSourceList.push(ret[i][j]);
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+   
+     build() {
+       Row() {
+         Column() {
+           Text(this.message)
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(() => {
+               let iconItemSourceList: IconItemSource[][] = [];
+   
+               let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
+               taskGroup.addTask(new taskpool.Task(loadPicture, 30));
+               taskGroup.addTask(new taskpool.Task(loadPicture, 20));
+               taskGroup.addTask(new taskpool.Task(loadPicture, 10));
+               taskpool.execute(taskGroup).then((ret: object) => {
+                 let tmpLength = (ret as IconItemSource[][]).length;
+                 for (let i = 0; i < tmpLength; i++) {
+                   for (let j = 0; j < ret[i].length; j++) {
+                     iconItemSourceList.push(ret[i][j]);
+                   }
+                 }
+                 // The length of iconItemSourceList is 360
+                 console.info("The length of iconItemSourceList is " + iconItemSourceList.length);
+               })
+             })
+         }
+         .width('100%')
        }
+       .height('100%')
      }
-   })
+   }
    ```
-   <!-- @[execute_task_group](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/MultiTask.ets) -->
+   <!-- @[execute_task_group](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/MultiTask.ets) -->

@@ -465,6 +465,7 @@ prelaunch(): void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { camera } from '@kit.CameraKit';
 
 function preLaunch(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -1065,15 +1066,16 @@ isDepthFusionEnabled(): boolean
 **示例：**
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
-function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): boolean {
+  let isEnable: boolean = false;
   try {
-    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    isEnable = DepthFusion.isDepthFusionEnabled();
     console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
   };
+  return isEnable;
 }
 ```
 
@@ -1925,6 +1927,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
     AppStorage.setOrCreate('proxyThumbnail', thumbnail);
   });
@@ -2031,6 +2037,7 @@ enableQuickThumbnail(enabled: boolean): void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { camera } from '@kit.CameraKit';
 
 async function enableQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -2085,6 +2092,7 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { camera } from '@kit.CameraKit';
 
 function callback(err: BusinessError, pixelMap: image.PixelMap): void {
   if (err || pixelMap === undefined) {
@@ -2092,7 +2100,7 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       return;
   }
   // 显示或保存pixelMap。
-  // do something.
+  // 执行操作。
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
@@ -4624,6 +4632,10 @@ HighResolutionPhotoSession extends Session, AutoExposure, Focus
 
 高像素拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置高像素拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
+> **说明：**
+>
+> 高像素拍照场景下，需要使用物理镜头，不可以使用逻辑镜头。
+
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -5772,10 +5784,8 @@ getFocusAssist(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
-  let isFocusAssistOpened: boolean;
+  let isFocusAssistOpened: boolean = false;
   try {
     isFocusAssistOpened = professionalPhotoSession.getFocusAssist();
   } catch (error) {

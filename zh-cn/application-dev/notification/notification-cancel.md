@@ -1,5 +1,12 @@
 # 取消通知
 
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
+
 用户收到通知提醒后，点击通知并拉起应用到前台时，应用可以选择取消某条通知或所有通知。
 
 例如，用户收到某个好友的IM消息，点击通知进入应用查看消息后，应用可以取消相关通知提醒。

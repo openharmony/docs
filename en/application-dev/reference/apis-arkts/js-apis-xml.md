@@ -1,4 +1,10 @@
 # @ohos.xml (XML Parsing and Generation)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 The xml module provides APIs for generating and parsing XML files.
 
@@ -98,7 +104,7 @@ thatSer.setAttributes("importance", "high");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <note importance="high"/>
+console.info(result); // <note importance="high"/>
 ```
 
 ### addEmptyElement
@@ -139,14 +145,14 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <d/>
+console.info(result); // <d/>
 ```
 
 ### setDeclaration
 
 setDeclaration(): void
 
-Sets a file declaration with encoding.
+Sets a file declaration.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -162,7 +168,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <?xml version="1.0" encoding="utf-8"?>
 ```
 
@@ -208,7 +214,7 @@ thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <note>Happy</note>
 ```
 
@@ -238,7 +244,7 @@ thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <note>Happy</note>
 ```
 
@@ -283,7 +289,7 @@ thatSer.startElement("note");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
@@ -321,7 +327,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <!--Hello, World!-->
+console.info(result); // <!--Hello, World!-->
 ```
 
 ### setCDATA
@@ -362,7 +368,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <![CDATA[root SYSTEM]]>
+console.info(result); // <![CDATA[root SYSTEM]]>
 ```
 
 ### setText
@@ -402,7 +408,7 @@ thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <note importance="high">Happy</note>
+console.info(result); // <note importance="high">Happy</note>
 ```
 
 ### setDocType
@@ -439,12 +445,12 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
+console.info(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 ## XmlDynamicSerializer<sup>20+</sup>
 
-The **XmlDynamicSerializer** class is used to generate XML strings. It is recommended when the length of the XML content cannot be determined in advance.
+The **XmlDynamicSerializer** class is used to dynamically generate XML strings. It is recommended when the length of the XML content cannot be determined in advance.
 
 > **NOTE**
 >
@@ -984,6 +990,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
+For details, see [Parsing XML Tags and Values](../../arkts-utils/xml-parsing.md#parsing-xml-tags-and-values) and [Parsing XML Attributes and Values](../../arkts-utils/xml-parsing.md#parsing-xml-attributes-and-values).
 
 ```ts
 import { xml, util } from '@kit.ArkTS';
@@ -998,7 +1005,7 @@ let uint8 = textEncoder.encodeInto(strxml);
 
 function func(key: xml.EventType, value: xml.ParseInfo) {
   if (key == xml.EventType.CDSECT) {
-    console.log(JSON.stringify(value.getText()));
+    console.info(JSON.stringify(value.getText()));
   }
   return true;
 }
@@ -1048,12 +1055,12 @@ let strXml =
     '<title>Happy</title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
 let str = '';
 function func(name: string, value: string) {
   str = name + value;
-  console.log(str);
+  console.info(str);
   return true;
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func}
@@ -1068,22 +1075,44 @@ that.parse(options);
 // note
 ```
 
+## AttributeWithTagCb<sup>20+</sup>
+
+type AttributeWithTagCb = (tagName: string, key: string, value: string) => boolean
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  |  Type | Mandatory|  Description  |
+| ------- | -------| ---- | ------ |
+| tagName | string | Yes  | Tag name.|
+| key     | string | Yes  | Attribute name.|
+| value   | string | Yes  | Attribute value.|
+
+**Return value**
+
+| Type   | Description                                                                      |
+| ------- | ------------------------------------------------------------------------- |
+| boolean | A Boolean value that indicates whether to continue parsing the tag name, attribute name, and attribute value. The value **true** indicates that the parsing continues, and the value **false** indicates that the parsing stops.|
+
 ## ParseOptions
 
 Defines the XML parsing options.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
 
 | Name                          | Type                                                        | Mandatory| Description                                   |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | No  | Whether to parse the document type. The value **true** means to parse the document type, and **false** means the opposite. The default value is **false**.|
-| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. If the namespace is ignored, it will not be parsed. The value **true** means to ignore the namespace, and **false** means the opposite. The default value is **false**.|
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Start tag, tag value, and end tag of parsing. The default value is **undefined**, indicating no parsing.|
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Parsing attribute and attribute value. The default value is **undefined**, indicating no parsing.|
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Parsing element's [EventType](#eventtype) and [ParseInfo](#parseinfo). The default value is **undefined**, indicating no parsing.|
+| supportDoctype                 | boolean                                                      | No  | Whether to parse the document type. The value **true** means to parse the document type, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. If the namespace is ignored, it will not be parsed. The value **true** means to ignore the namespace, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Start tag, tag value, and end tag of parsing. The default value is **undefined**, indicating no parsing.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Parsing attribute and attribute value. The default value is **undefined**, indicating no parsing.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Parsing element's [EventType](#eventtype) and [ParseInfo](#parseinfo). The default value is **undefined**, indicating no parsing.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| attributeWithTagCallbackFunction<sup>20+</sup> | [AttributeWithTagCb](#attributewithtagcb20) | No| Tag name, attribute name, and attribute value of parsing. The default value is **undefined**, indicating that no parsing is performed.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## ParseInfo
 
@@ -1113,16 +1142,16 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getColumnNumber() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
 
@@ -1157,16 +1186,16 @@ let strXml =
     '<title>Happy</title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getDepth() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:0 key:2 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
 ```
 
@@ -1193,16 +1222,16 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Work</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getLineNumber() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:1 value:1
 ```
 
@@ -1229,16 +1258,16 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getName() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value:note key:4 value: key:3 value:note key:1 value:
 ```
 ### getNamespace
@@ -1268,16 +1297,16 @@ let strXml =
     '<h:title>Happy</h:title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getNamespace() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value: key:2 value:http://www.w3.org key:4 value: key:3 value:http://www.w3.org key:3 value: key:1 value:
 ```
 ### getPrefix
@@ -1307,16 +1336,16 @@ let strXml =
     '<h:title>Happy</h:title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getPrefix() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value: key:2 value:h key:4 value: key:3 value:h key:3 value: key:1 value:
 ```
 
@@ -1343,16 +1372,16 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getText() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value: key:4 value:Happy key:3 value: key:1 value:
 ```
 ### isEmptyElementTag
@@ -1369,7 +1398,7 @@ Checks whether the current element is empty.
 
 | Type   | Description                        |
 | ------- | ---------------------------- |
-| boolean | Check result. The value **true** is returned if the element is empty; otherwise, **false** is returned.|
+| boolean | If **true** is returned, the current element is empty. If **false** is returned, the current element is not empty.|
 
 **Example**
 
@@ -1382,16 +1411,16 @@ let strXml =
     '<title/>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.isEmptyElementTag() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:false key:2 value:false key:2 value:true key:3 value:false key:3 value:false key:1 value:false
 ```
 ### isWhitespace
@@ -1421,16 +1450,16 @@ let strXml =
     '<title> </title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.isWhitespace() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:true key:2 value:false key:2 value:true key:10 value:true key:3 value:true key:3 value:true key:1 value:true
 ```
 ### getAttributeCount
@@ -1455,16 +1484,16 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note importance="high" logged="true"/>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getAttributeCount() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:0 key:2 value:2 key:3 value:2 key:1 value:0
 ```
 

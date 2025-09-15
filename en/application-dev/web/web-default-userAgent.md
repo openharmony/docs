@@ -1,4 +1,10 @@
 # Developing User-Agent
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 <!--RP1-->
 User-Agent (UA) is a special string that contains key information such as the device type, operating system, and version. In web development, UA is used by the server to identify the source device of the request and its features, so that the server can provide custom content and services. If UAs cannot be correctly identified on a page, multiple exceptions may occur. For example, a page layout optimized for a mobile device may be displayed in disorder on a desktop device, and vice versa. In addition, some browser functionalities or CSS attributes are supported only in specific browser versions. If a page cannot successfully identify the UA, rendering problems or logic errors may occur.
 
@@ -107,7 +113,7 @@ struct WebComponent {
 
 Since API version 20, you can use the [setAppCustomUserAgent()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setappcustomuseragent20) API to set an application-level custom user agent or use the [setUserAgentForHosts()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setuseragentforhosts20) API to set an application-level custom user agent for a specific website. The custom user agent overwrites the system user agent and takes effect for all **Web** components in the application.
 
-You are advised to call the **setAppCustomUserAgent** and **setUserAgentForHosts** methods to set **User-Agent** before creating a **Web** component, and then create a **Web** component with a specified **src** or use **loadUrl** to load a specific page.
+It is recommended that you call the static API [getDefaultUserAgent](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getdefaultuseragent14) to obtain the default **User-Agent** string, then call **setAppCustomUserAgent** and **setUserAgentForHosts** to set the **User-Agent**, and then create a **Web** component with the specified **src** or load a specific page using **loadUrl**.
 
 ```ts
 // xxx.ets
@@ -123,7 +129,8 @@ struct WebComponent {
     try {
       webview.WebviewController.initializeWebEngine();
       let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-      let appUA = " appUA";
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setAppCustomUserAgent(appUA);
       webview.WebviewController.setUserAgentForHosts(
         appUA,
         [
@@ -203,7 +210,7 @@ OpenHarmony devices can be identified based on the OS name, OS version, and devi
 
    ```ts
    const matches = navigator.userAgent.match(/OpenHarmony (\d+\.?\d*)/);  
-   matches?.length && Number(matches[1]) >= 5;  
+   matches?.length && Number(matches[1]) > 0;  
    ```
 
 3. Identification based on the device type
@@ -224,4 +231,8 @@ OpenHarmony devices can be identified based on the OS name, OS version, and devi
 ### How do I simulate the User-Agent of OpenHarmony for frontend debugging?
 
 In Windows, macOS, and Linux, you can use the **User-Agent** rewriting capability provided by DevTools to simulate the OpenHarmony **User-Agent** in Chrome, Edge, and Firefox.
+
+### How do I customize the User-Agent in OpenHarmony to implement HTML5 compatibility?
+
+OpenHarmony provides the [setCustomUserAgent](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setcustomuseragent10) API to customize the **User-Agent**. To adapt to the UA identifier detection (such as Mobile and Android) that mobile HTML5 pages usually depend on and ensure that the default UA information is not overwritten, you are advised to perform the following operations: First, obtain the default **User-Agent** string through the [setCustomUserAgent()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setcustomuseragent10) API. Then, append the custom identifier field required for HTML5 compatibility to the end of the string. Finally, call the **setCustomUserAgent** API to set the complete UA string.
 <!--RP1End-->

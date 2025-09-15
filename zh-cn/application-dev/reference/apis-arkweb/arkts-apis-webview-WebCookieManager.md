@@ -55,7 +55,7 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -108,7 +108,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -173,7 +173,7 @@ static fetchCookie(url: string): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -237,7 +237,7 @@ static fetchCookie(url: string, incognito: boolean): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -306,7 +306,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -362,7 +362,7 @@ static configCookieSync(url: string, value: string, incognito: boolean, includeH
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -417,7 +417,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -480,7 +480,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -547,7 +547,7 @@ static configCookie(url: string, value: string, incognito: boolean, includeHttpO
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -649,7 +649,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -703,7 +703,7 @@ static saveCookieAsync(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -759,7 +759,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -847,7 +847,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1016,7 +1016,7 @@ static clearAllCookies(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1070,7 +1070,7 @@ static clearAllCookies(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1094,7 +1094,7 @@ struct WebComponent {
         .onClick(() => {
           webview.WebCookieManager.clearAllCookies()
             .then(() => {
-              console.log("clearAllCookies success!");
+              console.info("clearAllCookies success!");
             })
             .catch((error: BusinessError) => {
               console.error("error: " + error);
@@ -1153,7 +1153,7 @@ static clearSessionCookie(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1207,7 +1207,7 @@ static clearSessionCookie(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1273,7 +1273,7 @@ static getCookie(url: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -1330,7 +1330,7 @@ static setCookie(url: string, value: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |

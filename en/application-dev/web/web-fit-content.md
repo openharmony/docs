@@ -1,19 +1,29 @@
 # Fitting In the Page Content Layout
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 When **layoutMode(WebLayoutMode.FIT_CONTENT)** is used, the size of the **Web** component can automatically fit in the page content.
 
 ## When to Use
 
-This mode is applicable to the scenario where the **Web** component needs to be expanded based on the web page height and scrolls with other system components. For example:
+This mode is applicable to the scenario where the **Web** component needs to be expanded based on the web page height and scrolls with other system components. The following are examples:
 
 - Long articles. In this scenario, there are other system components at the same layout level of the **Web** component, such as the comment area and toolbar.
 - Home page of a long page. In this scenario, there are other system components at the same layout level of the **Web** component, such as the grid menu.
 
-**Web Layout Following the System**
+**System-adaptive web layout**
 
-As shown in Figure 1, the height of the **Web** component is the same as the screen height, and the height of the HTML 5 page is 8000 px, which is greater than the height of the **Web** component. In this case, a scroll bar is displayed in the **Web** component. When the **Web** component is scrolled, a part of the page is hidden, and the screen cannot be fully used to display the web page, resulting in poor user experience.
+As shown in Figure 1, the height of the **Web** component is the same as the screen height, and the height of the HTML 5 page is 8000 px, which is greater than the height of the **Web** component. In this case, a scroll bar is displayed in the **Web** component. When the **Web** component is scrolled, a part of the page is hidden, and the screen cannot be fully used to display the web page, resulting in poor user experience, as shown in Figure 2.
 
-**Web Layout Fitting In the Page Content**
+| Figure 1 Web layout following the system| Figure 2 Real effect of the web layout|
+| --- | --- |
+| ![web-fit-content-sample](figures/arkweb-layoutmode-none.png) | ![web-without-fit-content](figures/web-without-fit-content.gif) |
+
+**Content-fitting web layout**
 
 As shown in Figure 3, the height of both the **Web** component and the HTML5 page is 8000 px. In this case, no scroll bar is generated in the **Web** component. When a user scrolls the page, other ArkUI components are scrolled at the same time, and the **Web** component is displayed on the entire screen, as shown in Figure 4.
 
@@ -23,9 +33,9 @@ As shown in Figure 3, the height of both the **Web** component and the HTML5 pag
 
 ## Specifications and Constraints
 
-1. Set the [rendering mode](web-render-mode.md) to synchronous to avoid exceptions (white screen and layout errors) caused by the component size exceeding the limit.
-2. Disable the [overscroll mode](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#overscrollmode11). When the overscroll mode is enabled and a user scrolls to the edge of a web page, the web page is displayed with a spring animation, which conflicts with the rebound effect of the **Scroll** component, affecting user experience.
-3. Set the attribute of [keyboard avoidance mode](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#keyboardavoidmode12) to **RESIZE_CONTENT** to disable this mode.
+1. Set the [rendering mode](web-render-mode.md) to [synchronous](web-render-mode.md#synchronous-rendering-mode) to avoid exceptions (white screen and layout errors) caused by the excessive component size.
+2. Disable [overScrollMode](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#overscrollmode11). When the overscroll mode is enabled and a user scrolls to the edge of a web page, the web page is displayed with a spring animation, which conflicts with the rebound effect of the **Scroll** component, affecting user experience.
+3. Set [keyboardAvoidMode](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#keyboardavoidmode12) to **RESIZE_CONTENT** to disable this mode.
 4. Do not support page zooming.
 5. Do not support using the **height** attribute of the **Web** component to change the component height.
 6. Support only component height fitting in the page content, but not width fitting.
@@ -83,7 +93,7 @@ struct WebHeightPage {
 <body>
 <div>
     <div><h2 id="When to use">When to use</h2>
-        <p>ArkWeb provides Web components to display web page content in applications. The common application scenarios are as follows:</p>;
+        <p>ArkWeb provides Web components to display web page content in applications. The common application scenarios are as follows:</p>
         <ul>
             <li><p>
                 Web page integration: Applications can use Web components to embed web page content to reduce development costs and improve development and operation efficiency.</p> 
@@ -95,7 +105,7 @@ struct WebHeightPage {
         </ul>
     </div>
     <div><h2 id="Capabilities">Capabilities</h2>
-        <p>The Web component provides various capabilities for controlling web pages, including: </p>;
+        <p>The Web component provides various capabilities for controlling web pages, including: </p>
         <ul>
             <li><p>Web page loading: Declarative loading and off-screen loading of web pages. </p></li>
             <li><p>Lifecycle management: Managing the lifecycle of components and notifying web pages of loading status changes. </p></li>
@@ -129,13 +139,13 @@ struct WebHeightPage {
 
 **Possible Causes**
 
-- The height of the internal HTML5 page exceeds 7680 px (physical pixel), but the rendering mode is not set to [synchronous rendering mode](web-render-mode.md).
+- The height of the internal HTML5 page exceeds 7680 px (physical pixel), but the rendering mode is not set to [synchronous rendering mode](web-render-mode.md#synchronous-rendering-mode).
 - The **metaviewport** attribute is not configured.
 
 **Solution**
 
-- Change the rendering mode to [synchronous rendering mode](web-render-mode.md).
-- Configure **<\meta name="viewport" content="width=device-width, initial-scale=1.0">** on the HTML5 page.
+- Change the rendering mode to [synchronous rendering mode](web-render-mode.md#synchronous-rendering-mode).
+- Configure `<\meta name="viewport" content="width=device-width, initial-scale=1.0">` on the HTML5 page.
 
 
 ### What should I do if a white screen is displayed or the page disappears after FIT_CONTENT is set?
@@ -162,7 +172,7 @@ If the CSS **height: <number& > vh** is conflict with the **Web** component size
   ```
   <body>
     <div id = "1">
-      <div id = "2"><div style = "height: 20px"><div/></div>
+      <div id = "2"><div style = "height: 20px"></div></div>
       <div id = "3" style = "height: 20px">Child DOM</div>
     </div>
   </body>

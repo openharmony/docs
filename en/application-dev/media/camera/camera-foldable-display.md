@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 Foldable devices come in various forms. When developing camera applications, a consistent camera switching solution is necessary to enhance user experience during photo and video capture.
 
 A single foldable device can use different cameras depending on its fold state. The system identifies each camera and associates it with a specific fold state, indicating which cameras are available in those states. Applications can call [CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#onfoldstatuschange12) or [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for fold state changes of the device, call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras) to obtain the available cameras in the current state, and make adaptations accordingly.
@@ -12,11 +13,11 @@ The number of supported cameras can differ among foldable devices in various fol
 
 For example, foldable device A has three cameras: B (rear), C (front), and D (front). In the unfolded state, calling [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras) returns both cameras B (rear) and C (front). However, in the folded state, only camera D (front) is accessible. Therefore, when using the rear camera or switching between cameras, it is crucial to first verify the existence of the rear camera.
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 ## Creating an XComponent
 Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) to present the folded and unfolded states, respectively. This prevents the previous camera feed from lingering on the screen if the camera is not properly closed during fold state transition.
 
@@ -88,7 +89,18 @@ You can use either of the following solutions.
 - Solution 2: Call [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for fold state changes.
     ```ts
     import { display } from '@kit.ArkUI';
-    let preFoldStatus: display.FoldStatus = display.getFoldStatus();
+    
+    function getFoldStatus(): display.FoldStatus {
+      let curFoldStatus: display.FoldStatus = display.FoldStatus.FOLD_STATUS_UNKNOWN;
+      try {
+        curFoldStatus = display.getFoldStatus();
+      } catch (error) {
+        console.error('getFoldStatus call failed');
+      }
+      return curFoldStatus;
+    }
+    
+    let preFoldStatus: display.FoldStatus = getFoldStatus();
     display.on('foldStatusChange', (foldStatus: display.FoldStatus) => {
       // The supported cameras returned by the camera framework are the same when the device is in the FOLD_STATUS_HALF_FOLDED or FOLD_STATUS_EXPANDED state. Therefore, you do not need to reconfigure streams during the transition between these two states.
       if ((preFoldStatus === display.FoldStatus.FOLD_STATUS_HALF_FOLDED &&
@@ -106,6 +118,8 @@ You can use either of the following solutions.
 ## Checking the Presence of a Camera at a Specific Position
 You can call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras) to obtain all the cameras supported by the device in the current fold state. By iterating through the results and using [CameraPosition](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraposition), you can determine whether a camera exists at the specified position.
 ```ts
+import { camera } from '@kit.CameraKit';
+
 // The default value of connectionType is camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN, indicating the device's built-in camera.
 function hasCameraAt(cameraManager: camera.CameraManager, cameraPosition: camera.CameraPosition,
   connectionType: camera.ConnectionType = camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN): boolean {
@@ -125,7 +139,7 @@ function hasCameraAt(cameraManager: camera.CameraManager, cameraPosition: camera
 ```
 ## Camera Switching Logic
 When a fold state change is detected, the **foldStatus** variable, decorated with @StorageLink, is updated. This triggers the **reloadXComponent** API to reload the **XComponent**, thereby implementing the camera switching logic.
-## Sample Code
+## Complete Sample Code
 ```ts
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -157,7 +171,7 @@ struct Index {
   private mCameraInput: camera.CameraInput | undefined = undefined;
   private mPreviewOutput: camera.PreviewOutput | undefined = undefined;
   private mPhotoSession: camera.PhotoSession | undefined = undefined;
-  // One of the recommended preview resolutions.
+  // Choose the appropriate preview stream profile based on your specific needs. This example uses a resolution of 1080P with CameraFormat: 1003.
   private previewProfileObj: camera.Profile = {
     format: 1003,
     size: {
@@ -167,7 +181,7 @@ struct Index {
   };
   private mContext: Context | undefined = undefined;
 
-  private preFoldStatus: display.FoldStatus = display.getFoldStatus();
+  private preFoldStatus: display.FoldStatus = this.getFoldStatus();
   // Listen for the foldable screen status. You can use cameraManager.on(type: 'foldStatusChange', callback: AsyncCallback<FoldStatusInfo>): void;
   // or display.on(type: 'foldStatusChange', callback: Callback<FoldStatus>): void;.
   private foldStatusCallback =
@@ -175,8 +189,21 @@ struct Index {
   private displayFoldStatusCallback =
     (foldStatus: display.FoldStatus): void => this.onDisplayFoldStatusChange(foldStatus);
 
+  getFoldStatus(): display.FoldStatus {
+    let curFoldStatus: display.FoldStatus = display.FoldStatus.FOLD_STATUS_UNKNOWN;
+    try {
+      curFoldStatus = display.getFoldStatus();
+    } catch (error) {
+      console.info(`${TAG} getFoldStatus call failed, error: ${error.code}`);
+    }
+    return curFoldStatus;
+  }
 
   registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
+    if (err !== undefined && err.code !== 0) {
+      console.info(`${TAG} registerFoldStatusChanged call failed, error: ${err.code}`);
+      return;
+    }
     console.info(TAG + 'foldStatusChanged foldStatus: ' + foldStatusInfo.foldStatus);
     for (let i = 0; i < foldStatusInfo.supportedCameras.length; i++) {
       console.info(TAG +
@@ -186,7 +213,7 @@ struct Index {
   }
 
   onDisplayFoldStatusChange(foldStatus: display.FoldStatus): void {
-    console.error(TAG + `onDisplayFoldStatusChange foldStatus: ${foldStatus}`);
+    console.info(TAG + `onDisplayFoldStatusChange foldStatus: ${foldStatus}`);
     if ((this.preFoldStatus === display.FoldStatus.FOLD_STATUS_HALF_FOLDED &&
       foldStatus === display.FoldStatus.FOLD_STATUS_EXPANDED) ||
       (this.preFoldStatus === display.FoldStatus.FOLD_STATUS_EXPANDED &&
@@ -209,7 +236,7 @@ struct Index {
     ]).then((): void => {
       this.isShow = true;
     }).catch((error: BusinessError): void => {
-      console.error(TAG + 'ohos.permission.CAMERA no permission.');
+      console.error(`${TAG} requestPermissionsFromUser call failed, error: ${error.code}`);
     });
   }
 
@@ -219,7 +246,11 @@ struct Index {
   }
 
   initCameraManager(): void {
-    this.mCameraManager = camera.getCameraManager(this.mContext);
+    try {
+      this.mCameraManager = camera.getCameraManager(this.mContext);
+    } catch (error) {
+      console.error(`${TAG} getCameraManager call failed, error: ${error.code}`);
+    }
   }
 
   aboutToAppear(): void {
@@ -294,6 +325,10 @@ struct Index {
   }
 
   async loadXComponent(): Promise<void> {
+    if (!this.mXComponentController) {
+      console.error(TAG + 'mXComponentController is null');
+      return;
+    }
     this.mSurfaceId = this.mXComponentController.getXComponentSurfaceId();
     this.mXComponentController.setXComponentSurfaceRect(this.surfaceRect);
     console.info(TAG + `mCameraPosition: ${this.mCameraPosition}`)
@@ -327,7 +362,7 @@ struct Index {
 
     // Obtain the camera list.
     let cameraArray: Array<camera.CameraDevice> = this.mCameraManager.getSupportedCameras();
-    if (cameraArray.length <= 0) {
+    if (!cameraArray || cameraArray.length == 0) {
       console.error(TAG + 'cameraManager.getSupportedCameras error');
       return;
     }
@@ -373,6 +408,7 @@ struct Index {
     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
     if (!isSupportPhotoMode) {
       console.error(TAG + 'photo mode not support');
+      await this.releaseCamera();
       return;
     }
 
@@ -385,8 +421,9 @@ struct Index {
     }
     console.info(TAG + 'outputCapability: ' + JSON.stringify(cameraOutputCapability));
     let previewProfile = this.getPreviewProfile(cameraOutputCapability);
-    if (previewProfile === undefined) {
+    if (!previewProfile) {
       console.error(TAG + 'The resolution of the current preview stream is not supported.');
+      await this.releaseCamera();
       return;
     }
     this.previewProfileObj = previewProfile;
@@ -398,18 +435,26 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + `Failed to create the PreviewOutput instance. error code: ${err.code}`);
     }
-    if (this.mPreviewOutput === undefined) {
+    if (!this.mPreviewOutput) {
+      await this.releaseCamera();
       return;
     }
 
     // Create a session.
     try {
-      this.mPhotoSession = this.mCameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+      let session = this.mCameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+      if (!session) {
+        await this.releaseCamera();
+        return;
+      }
+      this.mPhotoSession = session as camera.PhotoSession;
     } catch (error) {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to create the session instance. errorCode = ' + err.code);
     }
-    if (this.mPhotoSession === undefined) {
+
+    if (!this.mPhotoSession) {
+      await this.releaseCamera();
       return;
     }
 

@@ -1,4 +1,10 @@
 # @ohos.data.cloudData (Device-Cloud Service)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @lvcong_oh-->
+<!--Tester: @ltttjs; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **cloudData** module provides APIs for implementing device-cloud synergy and device-cloud sharing, and setting the device-cloud sync strategy.
 
@@ -41,8 +47,10 @@ setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&g
 
 <!--RP1-->
 Sets the device-cloud sync strategy for the application. If no strategy is set, the global strategy set by [setGlobalCloudStrategy](js-apis-data-cloudData-sys.md#setglobalcloudstrategy12) is used. If the global strategy is not set, the application data is synced over Wi-Fi and the cellular network by default. This API uses a promise to return the result.<!--RP1End-->
- 
+
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**Parameters**
 
 | Name    | Type                                                                         | Mandatory| Description                            |
 | ---------- |-----------------------------------------------------------------------------| ---- | -------------------------------- |
@@ -77,4 +85,4 @@ cloudData.setCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStr
 });
 
 ```
-<!--no_check-->
+

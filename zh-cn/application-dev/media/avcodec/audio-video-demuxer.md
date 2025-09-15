@@ -29,7 +29,7 @@
 
 ## 开发指导
 
-详细的API说明参考[AVDemuxer](../../reference/apis-avcodec-kit/_a_v_demuxer.md)和[AVSource](../../reference/apis-avcodec-kit/_a_v_source.md)
+详细的API说明参考[AVDemuxer](../../reference/apis-avcodec-kit/capi-avdemuxer.md)和[AVSource](../../reference/apis-avcodec-kit/_a_v_source.md)
 
 > **说明**
 >
@@ -162,7 +162,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
-4. 注册[DRM信息监听函数](../../reference/apis-avcodec-kit/_a_v_demuxer.md#demuxer_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/capi-drm-drm-mediakeysysteminfo.md)，可跳过此步）。
+4. 注册[DRM信息监听函数](../../reference/apis-avcodec-kit/capi-native-avdemuxer-h.md#demuxer_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/capi-drm-drm-mediakeysysteminfo.md)，可跳过此步）。
 
    设置DRM信息监听的接口，回调函数支持返回解封装器实例，适用于多个解封装器场景。
 

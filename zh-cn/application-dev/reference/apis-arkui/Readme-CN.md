@@ -93,10 +93,8 @@
       - [Types](arkts-apis-window-t.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
-    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
-    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
-    <!--DelEnd-->
+    <!--DelEnd-->  
   - 屏幕管理<!--display-manager-api-->
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
@@ -113,6 +111,10 @@
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
     - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+    <!--Del-->
+    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
+    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
 - ArkTS组件<!--arkui-declarative-comp-->
   - [通用事件](arkui-ts/ts-component-general-events.md)
     - 基础输入事件<!--basic-raw-input-event-->
@@ -218,6 +220,7 @@
     - 绑定手势<!--gesture-binding-->
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
       - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
+      - [手势处理器](arkui-ts/ts-gesturehandler.md)
     - 基础手势<!--basic-gestures-->
       - [TapGesture](arkui-ts/ts-basic-gestures-tapgesture.md)
       - [LongPressGesture](arkui-ts/ts-basic-gestures-longpressgesture.md)
@@ -322,6 +325,7 @@
     - [ImageAnimator](arkui-ts/ts-basic-components-imageanimator.md)
     - [Video](arkui-ts/ts-media-components-video.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
+    - [SVG新增解析能力](arkui-ts/ts-image-svg2-capabilities.md)
     <!--Del-->
     - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
     - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)

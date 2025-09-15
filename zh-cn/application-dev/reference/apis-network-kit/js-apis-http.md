@@ -1235,14 +1235,14 @@ request方法回调函数的返回值类型。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称                 | 类型                                         | 必填 | 说明                                                          |
-| -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string \| Object \| ArrayBuffer | 是   | HTTP请求根据响应头中content-type类型返回对应的响应格式内容，若HttpRequestOptions无expectDataType字段，按如下规则返回：<br />- application/json：返回JSON格式的字符串。<br />- application/octet-stream：ArrayBuffer。<br />- image：ArrayBuffer。<br />- 其他：string。<br /> 若HttpRequestOption有expectDataType字段，开发者需传入与服务器返回类型相同的数据类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
-| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']。<br />- status-line：header['status-line']。<br />- date：header.date/header['date']。<br />- server：header.server/header['server']。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的原始cookies。开发者可自行处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
-| performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | 是 | HTTP请求的各个阶段的耗时。|
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| result               | string \| Object \| ArrayBuffer | 否   | 否   | HTTP请求根据响应头中content-type类型返回对应的响应格式内容，若HttpRequestOptions无expectDataType字段，按如下规则返回：<br />- application/json：返回JSON格式的字符串。<br />- application/octet-stream：ArrayBuffer。<br />- image：ArrayBuffer。<br />- 其他：string。<br /> 若HttpRequestOption有expectDataType字段，开发者需传入与服务器返回类型相同的数据类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 否   | 否   | 返回值类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
+| responseCode         | [ResponseCode](#responsecode) \| number      | 否   | 否   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| header               | Object                                       | 否   | 否  | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']。<br />- status-line：header['status-line']。<br />- date：header.date/header['date']。<br />- server：header.server/header['server']。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| cookies<sup>8+</sup> | string                                       | 否   | 否   | 服务器返回的原始cookies。开发者可自行处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
+| performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | 否   | 否 | HTTP请求的各个阶段的耗时。|
 
 ## ClientCert<sup>11+</sup>
 
@@ -1250,12 +1250,12 @@ request方法回调函数的返回值类型。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------| --- | ----------- |
-| certPath | string | 是 | 证书路径。 |
-| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM。 |
-| keyPath | string | 是 | 证书密钥的路径。 |
-| keyPassword | string | 否  | 证书密钥的密码。默认值为空字符串。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| certPath | string | 否   | 否 | 证书路径。 |
+| certType | [CertType](#certtype11) | 否   | 是 | 证书类型，默认是PEM。 |
+| keyPath | string | 否   | 否 | 证书密钥的路径。 |
+| keyPassword | string | 否   | 是  | 证书密钥的密码。默认值为空字符串。 |
 
 ## PerformanceTiming<sup>11+</sup>
 
@@ -1263,18 +1263,18 @@ request方法回调函数的返回值类型。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称       | 类型   | 必填   | 说明                   |
-| ---------- | ------ | ---- | --------------------- |
-| dnsTiming  | number | 是   | 从[request](#request)请求到DNS解析完成耗时。 |
-| tcpTiming  | number | 是   | 从[request](#request)请求到TCP连接完成耗时。 |
-| tlsTiming  | number | 是   | 从[request](#request)请求到TLS连接完成耗时。 |
-| firstSendTiming  | number | 是   | 从[request](#request)请求到开始发送第一个字节的耗时。 |
-| firstReceiveTiming  | number | 是   | 从[request](#request)请求到接收第一个字节的耗时。 |
-| totalFinishTiming  | number | 是   | 从[request](#request)请求到完成请求的耗时。 |
-| redirectTiming  | number | 是   | 从[request](#request)请求到完成所有重定向步骤的耗时。 |
-| responseHeaderTiming  | number | 是   | 从[request](#request)请求到header解析完成的耗时。 |
-| responseBodyTiming  | number | 是   | 从[request](#request)请求到body解析完成的耗时。 |
-| totalTiming  | number | 是   | 从[request](#request)请求回调到应用程序的耗时。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| dnsTiming  | number | 否   | 否   | 从[request](#request)请求到DNS解析完成耗时。 |
+| tcpTiming  | number | 否   | 否   | 从[request](#request)请求到TCP连接完成耗时。 |
+| tlsTiming  | number | 否   | 否   | 从[request](#request)请求到TLS连接完成耗时。 |
+| firstSendTiming  | number | 否   | 否   | 从[request](#request)请求到开始发送第一个字节的耗时。 |
+| firstReceiveTiming  | number | 否   | 否   | 从[request](#request)请求到接收第一个字节的耗时。 |
+| totalFinishTiming  | number | 否   | 否  | 从[request](#request)请求到完成请求的耗时。 |
+| redirectTiming  | number | 否   | 否  | 从[request](#request)请求到完成所有重定向步骤的耗时。 |
+| responseHeaderTiming  | number | 否   | 否   | 从[request](#request)请求到header解析完成的耗时。 |
+| responseBodyTiming  | number | 否   | 否   | 从[request](#request)请求到body解析完成的耗时。 |
+| totalTiming  | number | 否   | 否   | 从[request](#request)请求回调到应用程序的耗时。 |
 
 ## DataReceiveProgressInfo<sup>11+</sup>
 
@@ -1284,10 +1284,10 @@ request方法回调函数的返回值类型。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型 | 必填 | 说明                |
-| ---- | ---- | ---- |-------------------|
-|  receiveSize        | number | 是  | 已接收的数据量（单位：字节）。   |
-| totalSize| number | 是 | 总共要接收的数据量（单位：字节）。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+|  receiveSize        | number | 否   | 否  | 已接收的数据量（单位：字节）。   |
+| totalSize| number | 否   | 否 | 总共要接收的数据量（单位：字节）。 |
 
 ## DataSendProgressInfo<sup>11+</sup>
 
@@ -1299,10 +1299,10 @@ request方法回调函数的返回值类型。
 
 ### 属性
 
-| 名称 | 类型 | 必填 | 说明 |
-| ---- | ---- | ---- | ---- |
-| sendSize        | number | 是  | 每次发送的数据量(单位：字节)。  |
-| totalSize | number | 是 | 总共要发送的数据量(单位：字节)。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| sendSize        | number | 否   | 否  | 每次发送的数据量(单位：字节)。  |
+| totalSize | number | 否   | 否 | 总共要发送的数据量(单位：字节)。 |
 
 ## MultiFormData<sup>11+</sup>
 
@@ -1310,13 +1310,13 @@ request方法回调函数的返回值类型。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型 | 必填 | 说明 |
-| ---- | ---- | ---- | ---- |
-| name        | string | 是  | 数据名称。                                                                      |
-| contentType | string | 是 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等。 |
-| remoteFileName | string | 否 | 上传到服务器保存为文件的名称。                                                 |
-| data | string \| Object \| ArrayBuffer | 否 | 表单数据内容。                                                 |
-| filePath | string | 否 | 此参数根据文件的内容设置mime部件的正文内容。用于代替data将文件数据设置为数据内容，如果data为空，则必须设置filePath。如果data有值，则filePath不会生效。|
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| name        | string | 否 | 否 | 数据名称。                                                                      |
+| contentType | string | 否 | 否 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等。 |
+| remoteFileName | string | 否 | 是 | 上传到服务器保存为文件的名称。<br>**说明**：指定该字段后，请求头中会添加filename字段，表示上传到服务器文件的名称。<br>（1）当上传数据为文件时，若通过data字段指定文件内容，通常需要设置remoteFileName字段，用以指定上传到服务器文件的名称（实际结果与服务器具体行为有关）；若通过filePath字段指定文件路径，请求头中会自动添加filename字段，其默认值为filePath中的文件名称，如需特殊指定，也可通过本字段对filename重新设置。<br>（2）当上传数据为二进制格式时，则必须设置remoteFileName字段。                                                 |
+| data | string \| Object \| ArrayBuffer | 否 | 是 | 表单数据内容。                                               |
+| filePath | string | 否 | 是 | 此参数根据文件的内容设置mime部件的正文内容。用于代替data将文件数据设置为数据内容，如果data为空，则必须设置filePath。如果data有值，则filePath不会生效。|
 
 ## http.createHttpResponseCache<sup>9+</sup>
 
@@ -1588,10 +1588,10 @@ HTTP协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|  名称  |  类型  |  必填  |说明     |
-| ------------------  |---- |-- | ----------- |
-| publicKeyHash       | string | 是 |字符串类型的证书PIN码。 |
-| hashAlgorithm        | 'SHA-256' |  是  |加密算法，当前仅支持该算法。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| publicKeyHash       | string | 否   | 否 |字符串类型的证书PIN码。 |
+| hashAlgorithm        | 'SHA-256' |  否   | 否  |加密算法，当前仅支持该算法。 |
 
 ## HttpProxy<sup>10+</sup>
 

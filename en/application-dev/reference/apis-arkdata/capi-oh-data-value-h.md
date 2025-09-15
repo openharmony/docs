@@ -1,4 +1,10 @@
 # oh_data_value.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -411,7 +417,7 @@ Checks whether a value is null.
 | Name                                       | Description                                                      |
 | --------------------------------------------- | ---------------------------------------------------------- |
 | [OH_Data_Value](capi-rdb-oh-data-value.md) *value | Pointer to the [OH_Data_Value](capi-rdb-oh-data-value.md) instance.|
-| bool *val                                     | Pointer to the check result. The value **true** means the value is null, and the value **false** means the opposite.               |
+| bool *val                                     | Pointer to the check result. The value **true** means the value is empty, and the value **false** means the opposite.               |
 
 **Returns**
 

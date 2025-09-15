@@ -22,7 +22,7 @@
 
 >  **说明：** 
 >
->  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。不建议子组件中混用懒加载组件（包括LazyForEach、Repeat）和非懒加载组件，或者子组件中使用多个懒加载组件，否则可能导致懒加载组件预加载能力失效等问题。不建议在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md)）。不建议子组件中混用懒加载组件（包括LazyForEach、Repeat）和非懒加载组件，或者子组件中使用多个懒加载组件，否则可能导致懒加载组件预加载能力失效等问题。不建议在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
 >
 >  - Swiper子组件的[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为Visibility.None，且Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数；visibility属性设置为Visibility.None或者Visibility.Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
@@ -283,7 +283,7 @@ cachedCount(value: number)
 >
 >  - 在连续滑动场景中，一屏显示一个Swiper子组件时，通常将cachedCount值设置为1或2即可。最佳实践请参考[优化Swiper组件加载慢丢帧问题-缓存数据项](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-swiper_high_performance_development_guide#section143504547145)。
 >
->  - 只在[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)中生效，生效后超出显示及缓存范围的子节点会被释放。
+>  - 只在[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md)中生效，生效后超出显示及缓存范围的子节点会被释放。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -568,7 +568,7 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 
 maintainVisibleContentPosition(enabled: boolean)
 
-设置显示区域上方或前方插入或删除数据时是否保持可见内容位置不变。适用于使用单一[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)作为Swiper子节点的情况，通过LazyForEach的[onDateAdd](ts-rendering-control-lazyforeach.md#ondataadd8)、[onDataDelete](ts-rendering-control-lazyforeach.md#ondatadelete8)等接口修改数据源。
+设置显示区域上方或前方插入或删除数据时是否保持可见内容位置不变。适用于使用单一[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)作为Swiper子节点的情况，通过LazyForEach的[onDateAdd](ts-rendering-control-lazyforeach.md#ondataadd8)、[onDataDelete](ts-rendering-control-lazyforeach.md#ondatadelete8)等接口修改数据源。其他场景下，显示区域上方或前方插入或删除数据，可见内容位置会变化。
 
 在[displayCount](#displaycount8)属性的swipeByGroup参数设置为true，生效按组翻页时，一次在显示区域上方或前方插入或删除和一组节点数量倍数的数据量时才能保持可见内容位置不变，否则可见内容位置可能会随每组数据重新分组改变。
 
@@ -740,7 +740,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 如果SwiperController对象未绑定任何Swiper组件，直接调用该接口，会抛出JS异常，并返回错误码100004。因此使用该接口时，建议通过try-catch捕获异常。
 
-与[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
+与[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -1429,7 +1429,7 @@ Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页�
 
 >  **说明：** 
 >
->  - 回调会在页面动画结束、动画打断、索引设置等时机，引起页面索引变化时触发，在动画过程中不触发。
+>  - 如果是动画引起的索引变化，回调在动画结束时触发。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 

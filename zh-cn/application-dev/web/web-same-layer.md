@@ -99,6 +99,15 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 - 默认不支持由于同层标签CSS样式或尺寸变化导致的可见状态变化上报，具体规格参考[onNativeEmbedVisibilityChange](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedvisibilitychange12)。
 
+**同层渲染&lt;object&gt;标签内嵌param元素状态变化：**
+当同层渲染&lt;object&gt;内嵌标签param元素变化时触发[onNativeEmbedObjectParamChange()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedobjectparamchange21)回调。
+
+- 支持上报param元素的增加、修改、删除三种状态变化。
+
+- 接口每次最多上报500个param元素变化信息，超出部分将分多次上报。
+
+- 详细上报信息参考[NativeEmbedParamDataInfo](../reference/apis-arkweb/arkts-basic-components-web-i.md#nativeembedparamdatainfo21)。
+
 **约束限制：**
 
 - Web页面内同层标签数量应控制在5个以内。超过5个，渲染性能将会下降。

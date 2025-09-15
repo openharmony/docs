@@ -1496,6 +1496,8 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 >
 > - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
+>
+> - javaScriptOnDocumentStart在[onControllerAttached](./arkts-basic-components-web-events.md#oncontrollerattached10)之后执行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2158,6 +2160,8 @@ registerNativeEmbedRule(tag: string, type: string)
 
 本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的<embed\>标签识别为同层标签。
 
+具体使用详情请参考[同层渲染](../../web/web-same-layer.md#web页面中同层渲染输入框)指南。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -2172,21 +2176,124 @@ registerNativeEmbedRule(tag: string, type: string)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { NodeController, BuilderNode, NodeRenderType, FrameNode, UIContext } from '@kit.ArkUI';
+
+  declare class Params {
+    text: string;
+    width: number;
+    height: number;
+  }
+
+  declare class NodeControllerParams {
+    surfaceId: string;
+    renderType: NodeRenderType;
+    width: number;
+    height: number;
+  }
+
+  class MyNodeController extends NodeController {
+    private rootNode: BuilderNode<[Params]> | undefined | null;
+    private surfaceId_: string = "";
+    private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_: number = 0;
+    private height_: number = 0;
+
+    setRenderOption(params: NodeControllerParams) {
+      this.surfaceId_ = params.surfaceId;
+      this.renderType_ = params.renderType;
+      this.width_ = params.width;
+      this.height_ = params.height;
+    }
+
+    makeNode(uiContext: UIContext): FrameNode | null {
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
+      this.rootNode.build(wrapBuilder(ButtonBuilder), { text: "myButton", width: this.width_, height: this.height_ });
+      return this.rootNode.getFrameNode();
+    }
+
+    postInputEvent(event: TouchEvent | MouseEvent | undefined): boolean {
+      return this.rootNode?.postInputEvent(event) as boolean;
+    }
+  }
+
+  @Component
+  struct ButtonComponent {
+    @Prop params: Params;
+    @State bkColor: Color = Color.Red;
+
+    build() {
+      Column() {
+        Button(this.params.text)
+          .height(50)
+          .width(200)
+          .border({ width: 2, color: Color.Red })
+          .backgroundColor(this.bkColor)
+      }
+      .width(this.params.width)
+      .height(this.params.height)
+    }
+  }
+
+  @Builder
+  function ButtonBuilder(params: Params) {
+    ButtonComponent({ params: params })
+      .backgroundColor(Color.Green)
+  }
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    private nodeController: MyNodeController = new MyNodeController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .enableNativeEmbedMode(true)
-          .registerNativeEmbedRule("object", "application/view")
+        Stack() {
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile('index.html'), controller: this.controller })
+             // 配置同层渲染开关开启。
+            .enableNativeEmbedMode(true)
+             // 注册同层标签为<object>，类型为"native"前缀。
+            .registerNativeEmbedRule("object", "native")
+             // 获取<object>标签的生命周期变化数据。
+            .onNativeEmbedLifecycleChange((object) => {
+              if (object.status == NativeEmbedStatus.CREATE) {
+                this.nodeController.setRenderOption({
+                  surfaceId: object.surfaceId as string,
+                  renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
+                  width: this.uiContext!.px2vp(object.info?.width),
+                  height: this.uiContext!.px2vp(object.info?.height)
+                });
+                this.nodeController.rebuild();
+              }
+            })
+        }
       }
     }
   }
   ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染测试</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <object id="nativeButton" type ="native/button" width="300" height="300" style="background-color:red">
+          </object>
+      </div>
+  </div>
+  </body>
+  </html>
+  ```
+
 ## defaultTextEncodingFormat<sup>12+</sup>
 
 defaultTextEncodingFormat(textEncodingFormat: string)

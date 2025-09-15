@@ -42,7 +42,7 @@ createAppAccountManager(): AppAccountManager
 
 ## AppAccountManager
 
-应用账号管理器类。
+应用账号管理器，可用于管理应用自身的账号信息。
 
 ### createAccount<sup>9+</sup>
 
@@ -1223,7 +1223,7 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
 ### getCustomDataSync<sup>9+</sup>
 
-getCustomDataSync(name: string, key: string): string;
+getCustomDataSync(name: string, key: string): string
 
 根据指定键名获取特定应用账号的自定义数据。使用同步方式返回结果。
 
@@ -5008,7 +5008,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示应用账号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称   | 类型     | 只读  | 可选   | 说明          |
 | ----- | ------ | ---- | ---- | ----------- |
@@ -5019,13 +5019,13 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示Auth令牌信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称               | 类型            | 只读  | 可选   | 说明              |
 | -------------------- | -------------- | -----| ----- | ---------------- |
-| authType<sup>9+</sup>             | string         | 否 | 否    | 令牌的鉴权类型。   |
-| token<sup>9+</sup>                | string         | 否 | 否    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
+| authType            | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token               | string         | 否 | 否    | 令牌的取值。       |
+| account | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -5035,7 +5035,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 >
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[AuthTokenInfo](#authtokeninfo9)替代。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称               | 类型            | 只读  | 可选   | 说明              |
 | -------------------- | -------------- | ----- | ----- | ---------------- |
@@ -5046,7 +5046,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示OAuth认证器信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称     | 类型     | 只读  | 可选   | 说明         |
 | ------- | ------ | ---- | ---- | ---------- |
@@ -5058,7 +5058,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示认证结果信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称     | 类型     | 只读  | 可选   | 说明         |
 | ------- | ------ | ---- | ---- | ---------- |
@@ -5069,7 +5069,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示创建账号的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称     | 类型     | 只读  | 可选   | 说明         |
 | ------- | ------ | ---- | ---- | ---------- |
@@ -5079,7 +5079,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示隐式创建账号的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称     | 类型     | 只读  | 可选   | 说明         |
 | ------- | ------ | ---- | ---- | ---------- |
@@ -5091,7 +5091,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示用于选择账号的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称          | 类型                         | 只读  | 可选   | 说明                |
 | --------------- | --------------------------- | ----- | ----- | ------------------- |
@@ -5103,7 +5103,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示用于验证凭据的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称          | 类型                   | 只读  | 可选   | 说明           |
 | -------------- | ---------------------- | ----- | ----- | -------------- |
@@ -5116,7 +5116,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示用于设置属性的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称     | 类型                    | 只读  | 可选   | 说明           |
 | ---------- | ---------------------- | ----- | ----- | -------------- |
@@ -5127,7 +5127,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 表示常量的枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称                            | 值                    | 说明                   |
 | -------------------------------- | ---------------------- | ----------------------- |
@@ -5156,7 +5156,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 > **说明：**<br/>
 > 从API version 8开始支持，从API version 9开始废弃。相关信息建议查看[错误码文档](errorcode-account.md)替代。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+**系统能力：** SystemCapability.Account.AppAccount
 
 | 名称                                  | 值   | 说明           |
 | ----------------------------------- | ----- | ------------ |
@@ -5478,6 +5478,10 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | 是    | 验证凭据的可选项。            |
 | callback  | [AuthCallback](#authcallback9)    | 是    | 认证器回调，用于返回验证结果。 |
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
+
 ### setProperties<sup>9+</sup>
 
 setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
@@ -5492,6 +5496,10 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 | ---------------- | --------------------- | ---- | --------------- |
 | options   | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的可选项。            |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回设置结果。 |
+
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 ### checkAccountLabels<sup>9+</sup>
 
@@ -5509,6 +5517,10 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 | labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回检查结果。 |
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
+
 ### checkAccountRemovable<sup>9+</sup>
 
 checkAccountRemovable(name: string, callback: AuthCallback): void
@@ -5524,6 +5536,10 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 | name      | string                | 是    | 应用账号的名称。              |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回判断结果。 |
 
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
+
 ### getRemoteObject<sup>9+</sup>
 
 getRemoteObject(): rpc.RemoteObject;
@@ -5536,7 +5552,11 @@ getRemoteObject(): rpc.RemoteObject;
 
 | 类型             | 说明                                                   |
 | ---------------- | ----------------------------------------------------- |
-| rpc.RemoteObject | 认证器Authenticator的远程对象。用于跨进程通信。          |
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 认证器Authenticator的远程对象。用于跨进程通信。          |
+
+**示例：**
+
+接口需组合使用，请查看[getRemoteObject](#getremoteobject9)中的示例。
 
 **示例：**
 

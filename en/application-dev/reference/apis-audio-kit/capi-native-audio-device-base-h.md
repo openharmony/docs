@@ -1,4 +1,10 @@
 # native_audio_device_base.h
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -38,15 +44,15 @@ The file declares the types of audio device parameters and the functions for obt
 
 | Name| Description|
 | -- | -- |
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescriptor *audioDeviceDescriptor,OH_AudioDevice_Role *deviceRole)](#oh_audiodevicedescriptor_getdevicerole) | Obtains the device role based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescriptor *audioDeviceDescriptor,OH_AudioDevice_Type *deviceType)](#oh_audiodevicedescriptor_getdevicetype) | Obtains the device type based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescriptor *audioDeviceDescriptor,uint32_t *id)](#oh_audiodevicedescriptor_getdeviceid) | Obtains the device ID based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,char **name)](#oh_audiodevicedescriptor_getdevicename) | Obtains the device name based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDescriptor *audioDeviceDescriptor,char **address)](#oh_audiodevicedescriptor_getdeviceaddress) | Obtains the device address based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDeviceDescriptor *audioDeviceDescriptor,uint32_t **sampleRates, uint32_t *size)](#oh_audiodevicedescriptor_getdevicesamplerates) | Obtains the sample rates based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDeviceDescriptor *audioDeviceDescriptor,uint32_t **channelCounts, uint32_t *size)](#oh_audiodevicedescriptor_getdevicechannelcounts) | Obtains an array that holds the number of device channels based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,char **displayName)](#oh_audiodevicedescriptor_getdevicedisplayname) | Obtains the device display name based on an audio device descriptor.|
-| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes(OH_AudioDeviceDescriptor *audioDeviceDescriptor,OH_AudioStream_EncodingType **encodingTypes, uint32_t *size)](#oh_audiodevicedescriptor_getdeviceencodingtypes) | Obtains the device encoding types based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_Role *deviceRole)](#oh_audiodevicedescriptor_getdevicerole) | Obtains the device role based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_Type *deviceType)](#oh_audiodevicedescriptor_getdevicetype) | Obtains the device type based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t *id)](#oh_audiodevicedescriptor_getdeviceid) | Obtains the device ID based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **name)](#oh_audiodevicedescriptor_getdevicename) | Obtains the device name based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **address)](#oh_audiodevicedescriptor_getdeviceaddress) | Obtains the device address based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t **sampleRates, uint32_t *size)](#oh_audiodevicedescriptor_getdevicesamplerates) | Obtains the sample rates based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t **channelCounts, uint32_t *size)](#oh_audiodevicedescriptor_getdevicechannelcounts) | Obtains an array that holds the number of device channels based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **displayName)](#oh_audiodevicedescriptor_getdevicedisplayname) | Obtains the device display name based on an audio device descriptor.|
+| [OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes(OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioStream_EncodingType **encodingTypes, uint32_t *size)](#oh_audiodevicedescriptor_getdeviceencodingtypes) | Obtains the device encoding types based on an audio device descriptor.|
 
 ## Enum Description
 
@@ -113,6 +119,7 @@ Enumerates the types of audio devices.
 | AUDIO_DEVICE_TYPE_ACCESSORY = 26 | Accessory device, such as the microphone on a remote control.<br>**Since**: 18|
 | AUDIO_DEVICE_TYPE_HDMI = 27 | HDMI device (such as HDMI, ARC, and eARC).<br>**Since**: 19|
 | AUDIO_DEVICE_TYPE_LINE_DIGITAL = 28 | Wired digital device (such as S/PDIF)<br>**Since**: 19|
+| AUDIO_DEVICE_TYPE_HEARING_AID = 30 |  Hearing aid device.<br>**Since**: 20|
 | AUDIO_DEVICE_TYPE_NEARLINK = 31 | NearLink device.<br>**Since**: 20|
 | AUDIO_DEVICE_TYPE_DEFAULT = 1000 | Default device type.|
 
@@ -252,7 +259,7 @@ Obtains the device ID based on an audio device descriptor.
 
 | Type| Description|
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | Operation result. **AUDIODEVICE_SUCCESS** is returned if the operation is successful; **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM** is returned otherwise.|
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | Operation result. **AUDIOCOMMON_RESULT_SUCCESS** is returned if the operation is successful; **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM** is returned otherwise.|
 
 ### OH_AudioDeviceDescriptor_GetDeviceName()
 
