@@ -12,9 +12,7 @@
 
 在数据库被篡改、删除、或者设备断电场景下，数据库可能会因为数据丢失、数据损坏、脏数据等而不可用，可以通过数据库的备份恢复能力将数据库恢复至可用状态。
 
-
 键值型数据库和关系型数据库均支持对数据库的备份和恢复。另外，键值型数据库还支持删除数据库备份，以释放本地存储空间。
-
 
 ## 键值型数据库备份、恢复与删除
 
@@ -393,7 +391,7 @@ export default class EntryAbility extends UIAbility {
          store = await relationalStore.getRdbStore(context, STORE_CONFIG);
          // 调用restore接口恢复数据
          await store.restore("Backup.db");
-         console.log("Restore from backup success.")
+         console.info("Restore from backup success.")
        } catch (e) {
          const err = e as BusinessError;
          console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
