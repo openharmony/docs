@@ -123,9 +123,9 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 ### 添加头文件
 
 ```c++
+#include "napi/native_api.h"
 #include "multimodalinput/oh_input_manager.h"
 #include "window_manager/oh_window.h"
-#include "napi/native_api.h"
 ```
 
 ### 接口使用说明
