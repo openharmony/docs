@@ -242,19 +242,23 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err) => {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-        subWindow.showWindow().then(() => {
-          try {
-            window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
-              const errCode: number = err.code;
-              if (errCode) {
-                console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-                return;
-              }
-              console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
-            });
-          } catch (exception) {
-            console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-          }
+        let storage: LocalStorage = new LocalStorage();
+        storage.setOrCreate('storageSimpleProp', 121);
+        windowClass.loadContent('pages/Index', storage, (err: BusinessError) => {
+          subWindow.showWindow().then(() => {
+            try {
+              window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
+                const errCode: number = err.code;
+                if (errCode) {
+                  console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+                  return;
+                }
+                console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          });
         });
       });
     });
@@ -311,16 +315,20 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err) => {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-        subWindow.showWindow().then(() => {
-          try {
-            window.getLastWindow(this.context).then((topWindow) => {
-              console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
-            }).catch((err: BusinessError) => {
-              console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-            });
-          } catch (exception) {
-            console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-          }
+        let storage: LocalStorage = new LocalStorage();
+        storage.setOrCreate('storageSimpleProp', 121);
+        windowClass.loadContent('pages/Index', storage, (err: BusinessError) => {
+          subWindow.showWindow().then(() => {
+            try {
+              window.getLastWindow(this.context).then((topWindow) => {
+                console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          });
         });
       });
     });
@@ -332,9 +340,9 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowFocus<sup>11+</sup>
 shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗和子窗的焦点转移。
+在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗、子窗范围内的焦点转移。
 
-目标窗口需确保可获焦属性为true（见[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)），并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功并执行完毕。
+目标窗口需确保具有获得焦点的能力（可通过[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)设置），并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功且执行完毕。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
