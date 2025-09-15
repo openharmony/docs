@@ -126,7 +126,6 @@ import { DownloadFileButton } from '@kit.ArkUI';
 | ---------- | ---- | ------------------------------------------ |
 | HORIZONTAL | 0    | 下载控件上图标和文字分布的方向为水平排列。 |
 | VERTICAL   | 1    | 下载控件上图标和文字分布的方向为垂直排列。 |
-
 ## 事件
 
 支持[通用事件](ts-component-general-events.md)。
