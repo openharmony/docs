@@ -1,5 +1,10 @@
 # Interface (MediaKeySession)
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -24,12 +29,12 @@ Generates a media key request.
 
 **Parameters**
 
-| Name    | Type                                            | Mandatory| Description                          |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
-| initData  | Uint8Array     | Yes  | Initial data.                  |
-| mediaKeyType| number     | Yes  | Type of the media key. The value **0** means an online media key, and **1** means an offline media key.|
-| options  | [OptionsData[]](arkts-apis-drm-i.md#optionsdata)     | No  | Optional data.                  |
+| Name    | Type                                            | Mandatory| Description                                                                                                    |
+| -------- | ----------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------|
+| mimeType  | string     | Yes  | MIME type. The supported DRM solution names can be queried by calling [isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1).|
+| initData  | Uint8Array     | Yes  | Initial data.                                                                                                 |
+| mediaKeyType| number     | Yes  | Type of the media key. The value **0** means an online media key, and **1** means an offline media key.                                                                                   |
+| options  | [OptionsData[]](arkts-apis-drm-i.md#optionsdata)     | No  | Optional data.                                                                                                 |
 
 **Return value**
 
@@ -404,9 +409,9 @@ Checks whether secure decoding is required.
 
 **Parameters**
 
-| Name    | Type                                            | Mandatory| Description                          |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
+| Name    | Type                                            | Mandatory| Description                                                                                                    |
+| -------- | ----------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------|
+| mimeType  | string     | Yes  | MIME type. The supported MIME types depend on the DRM solution and can be queried by calling [isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1).|
 
 **Return value**
 
@@ -455,7 +460,7 @@ Subscribes to events indicating that the application requests a media key.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**. This event is triggered when the application requires a media key.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -493,7 +498,7 @@ Unsubscribes from events indicating that the application requests a media key.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -529,7 +534,7 @@ Subscribes to events indicating that a media key expires.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**. This event is triggered when a media key expires.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -567,7 +572,7 @@ Unsubscribes from events indicating that a media key expires.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -603,7 +608,7 @@ Subscribes to vendor-defined events.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**. This event is triggered when a vendor-defined event occurs.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -641,7 +646,7 @@ Unsubscribes from vendor-defined events.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -677,7 +682,7 @@ Subscribes to events indicating that a media key updates on expiry.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**. This event is triggered when a media key updates on expiry.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | Yes  | Callback used to return the event information.                |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -715,7 +720,7 @@ Unsubscribes from events indicating that a media key updates on expiry.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -751,7 +756,7 @@ Subscribes to events indicating that a media key changes.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**. This event is triggered when a media key changes.|
-| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) | Yes  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.                |
+| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) => void | Yes  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.                |
 
 **Error codes**
 
@@ -791,7 +796,7 @@ Unsubscribes from events indicating that a media key changes.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**.|
-| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) | No  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.               |
+| callback | (keyInfo: [KeysInfo[]](arkts-apis-drm-i.md#keysinfo), newKeyAvailable: boolean) => void | No  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.               |
 
 **Error codes**
 
