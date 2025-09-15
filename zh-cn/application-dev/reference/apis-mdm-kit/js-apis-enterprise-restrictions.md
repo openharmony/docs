@@ -72,6 +72,8 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 |privateSpace<sup>20+</sup>|创建隐私空间能力，当前仅支持手机、平板使用。对已创建的隐私空间无效。|
 |telephoneCall<sup>20+</sup>|设备通话能力，禁用后电话无法呼入和呼出。当前仅支持手机、平板设备使用。|
 |appClone<sup>21+</sup>|[应用分身能力](../../quick-start/app-clone.md)，禁用后无法创建应用分身。对已创建的应用分身无效。|
+|externalStorageCard<sup>21+</sup> |外置存储能力，禁用后设备无法使用外置存储，并且当前已连接的外置存储会被卸载。如果外置存储卸载时有文件正在被使用，可能会导致卸载失败，返回9200013错误码。<br/>外置存储禁用后重新启用，需要手动重新连接外置存储。|
+|randomMac<sup>21+</sup>|Wi-Fi连接时使用随机MAC能力，设置禁用后，连接Wi-Fi仅能使用设备物理MAC。|
 <!--RP1--><!--RP1End-->
 
 **错误码**：
@@ -82,6 +84,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
+| 9200013  | The enterprise management policy has been successfully set, but the function has not taken effect in real time. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -154,6 +157,8 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 |privateSpace<sup>20+</sup>|创建隐私空间能力，当前仅支持手机、平板使用。|
 |telephoneCall<sup>20+</sup>|设备通话能力，禁用后电话无法呼入和呼出。当前仅支持手机、平板设备使用。|
 |appClone<sup>21+</sup>|[应用分身能力](../../quick-start/app-clone.md)，禁用后无法创建应用分身。|
+|externalStorageCard<sup>21+</sup> |外置存储能力。|
+|randomMac<sup>21+</sup>|Wi-Fi连接时使用随机MAC能力。|
 <!--RP2--><!--RP2End-->
 
 **返回值：**
