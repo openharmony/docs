@@ -1,9 +1,9 @@
 # 电话子系统错误码
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
-<!--Owner: @Fanyl8-->
-<!--Designer: @ghxbob-->
-<!--Tester: @weitiantian-->
+<!--Owner: @shao-yikai-->
+<!--Designer: @wnazgul-->
+<!--Tester: @jiang_99-->
 <!--Adviser: @zhang_yixin13-->
 
 > **说明：**

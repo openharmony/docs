@@ -1,9 +1,9 @@
 # @ohos.telephony.call (拨打电话)
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
-<!--Owner: @Fanyl8-->
-<!--Designer: @ghxbob-->
-<!--Tester: @weitiantian-->
+<!--Owner: @shao-yikai-->
+<!--Designer: @wnazgul-->
+<!--Tester: @jiang_99-->
 <!--Adviser: @zhang_yixin13-->
 
 该模块提供呼叫管理功能，包括拨打电话、跳转到拨号界面、获取通话状态、格式化电话号码等。

@@ -1,9 +1,9 @@
 # @ohos.telephony.observer (observer)
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
-<!--Owner: @Fanyl8-->
-<!--Designer: @ghxbob-->
-<!--Tester: @weitiantian-->
+<!--Owner: @shao-yikai-->
+<!--Designer: @wnazgul-->
+<!--Tester: @jiang_99-->
 <!--Adviser: @zhang_yixin13-->
 
 本模块提供订阅管理功能，可以订阅/取消订阅的事件包括：网络状态变化、信号状态变化、通话状态变化、蜂窝数据链路连接状态、蜂窝数据业务的上下行数据流状态、SIM状态变化。
