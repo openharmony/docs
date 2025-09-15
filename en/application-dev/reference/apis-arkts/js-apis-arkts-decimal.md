@@ -1,4 +1,10 @@
 # @arkts.math.Decimal (High-Precision Math Library Decimal)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 The Decimal module provides high-precision mathematical operation capabilities, supporting high-precision floating-point calculations.
 
@@ -71,7 +77,7 @@ The actual rounding mode can be the union of the types listed below.
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
 | [Rounding](#rounding) | Same rounding mode as that represented by [Rounding](#constants). |
-| 9                      | Positive remainder from Euclid's division. It is the same as [Decimal.EUCLIDEAN](#constants).|
+| 9                      | Positive remainder Euclid's division, which is the same as [Decimal.EUCLIDEAN](#constants).|
 
 ## DecimalConfig
 
@@ -83,17 +89,17 @@ Describes the configuration of a **Decimal** object. You can call [Decimal.set](
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name     | Type                  | Read-Only| Mandatory| Description                                                        |
+| Name     | Type                  | Read-Only| Optional| Description                                                        |
 | --------- | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
-| precision | number                 | No  | No  | Maximum number of significant digits of the result of an operation. The value range is [1, 1e9], and the default value is **20**.    |
-| rounding  | [Rounding](#rounding) | No  | No  | Rounding mode. The value is an integer ranging from 0 to 8, and the default value is **4**.                 |
-| toExpNeg  | number                 | No  | No  | Negative exponent value at and below which [toString](#tostring) returns exponential notation. The value range is [-9e15, 0], and the default value is **-7**.|
-| toExpPos  | number                 | No  | No  | Positive exponent value at and above which [toString](#tostring) returns exponential notation. The value range is [0, 9e15], and the default value is **21**.|
-| minE      | number                 | No  | No  | Minimum negative exponents. A decimal with an exponent less than this minimum value underflows towards zero. The value range is [-9e15, 0], and the default value is **-9e15**.|
-| maxE      | number                 | No  | No  | Maximum positive exponent. A decimal with an exponent greater than this maximum value overflows to infinity. The value range is [0, 9e15], and the default value is **9e15**.|
-| crypto    | boolean                | No  | No  | Whether to use a pseudorandom number for encryption. The value **true** means to use a pseudorandom number for encryption, and **false** means the opposite. The default value is **false**. The capability is not supported yet, and error code 10200061 is reported if it is used. |
-| modulo    | [Modulo](#modulo)      | No  | No  | Rounding mode used in the modulo operation. The value is an integer ranging from 0 to 9, and the default value is **1**.   |
-| defaults  | boolean                | No  | No  | Whether the default value is used if no value is passed in for a property. The value **true** means that the default value is used, and **false** means the opposite. The default value is **true**.|
+| precision | number                 | No  | Yes  | Maximum number of significant digits of the result of an operation. The value range is [1, 1e9], and the default value is **20**.    |
+| rounding  | [Rounding](#rounding) | No  | Yes  | Rounding mode. The value is an integer ranging from 0 to 8, and the default value is **4**.                 |
+| toExpNeg  | number                 | No  | Yes  | Negative exponent value at and below which [toString](#tostring) returns exponential notation. The value range is [-9e15, 0], and the default value is **-7**.|
+| toExpPos  | number                 | No  | Yes  | Positive exponent value at and above which [toString](#tostring) returns exponential notation. The value range is [0, 9e15], and the default value is **21**.|
+| minE      | number                 | No  | Yes  | Minimum negative exponents. A decimal with an exponent less than this minimum value underflows towards zero. The value range is [-9e15, 0], and the default value is **-9e15**.|
+| maxE      | number                 | No  | Yes  | Maximum positive exponent. A decimal with an exponent greater than this maximum value overflows to infinity. The value range is [0, 9e15], and the default value is **9e15**.|
+| crypto    | boolean                | No  | Yes  | Whether to use a pseudorandom number for encryption. The value **true** means to use a pseudorandom number for encryption, and **false** means the opposite. The default value is **false**. The capability is not supported yet, and error code 10200061 is reported if it is used. |
+| modulo    | [Modulo](#modulo)      | No  | Yes  | Rounding mode used in the modulo operation. The value is an integer ranging from 0 to 9, and the default value is **1**.   |
+| defaults  | boolean                | No  | Yes  | Whether the default value is used if no value is passed in for a property. The value **true** means that the default value is used, and **false** means the opposite. The default value is **true**.|
 
 ## Decimal
 
@@ -105,11 +111,11 @@ Decimal with any precision.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type    | Read-Only| Mandatory| Description                                     |
+| Name| Type    | Read-Only| Optional| Description                                     |
 | ---- | -------- | ---- | ---- | ----------------------------------------- |
-| d    | number[] | Yes  | Yes  | Digits in the integer part and factional part of a decimal.|
-| e    | number   | Yes  | Yes  | Exponent in a decimal.|
-| s    | number   | Yes  | Yes  | Sign in a decimal.            |
+| d    | number[] | Yes  | No  | Digits in the integer part and factional part of a decimal.|
+| e    | number   | Yes  | No  | Exponent in a decimal.|
+| s    | number   | Yes  | No  | Sign in a decimal. **0**: positive; **1**: negative.|
 
 ### Constants
 
@@ -283,13 +289,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'min' is out of range.                          |
+| 10200001 | The value of \`min\` is out of range.                          |
 
 **Example**
 
 ```ts
-let data: Decimal = new Decimal(10.1).clamp(0, 10);
-console.info("test Decimal clamp:" + data.toString()); // 'test Decimal clamp:10'
+let data1: Decimal = new Decimal(10.1).clamp(0, 10);
+console.info("test Decimal clamp:" + data1.toString()); // 'test Decimal clamp:10'
+
+let data2: Decimal = new Decimal(-5).clamp(0, 10);
+console.info("test Decimal clamp:" + data2.toString()); // 'test Decimal clamp:0'
+
+let data3: Decimal = new Decimal(7.5).clamp(0, 10);
+console.info("test Decimal clamp:" + data3.toString()); // 'test Decimal clamp:7.5'
 ```
 
 
@@ -1023,7 +1035,7 @@ Compares this decimal with the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1065,7 +1077,7 @@ Checks whether this decimal is equal to the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1103,7 +1115,7 @@ Checks whether this decimal is greater than the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1141,7 +1153,7 @@ Checks whether this decimal is greater than or equal to the specified number *n*
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1179,7 +1191,7 @@ Checks whether this decimal is less than the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1217,7 +1229,7 @@ Checks whether this decimal is less than or equal to the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1514,7 +1526,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **Example**
 
@@ -1553,7 +1565,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \| rounding' is out of range. |
+| 10200001 | The value of \`significantDigits \| rounding\` is out of range. |
 
 **Example**
 
@@ -1619,7 +1631,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **Example**
 
@@ -1658,7 +1670,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \| rounding' is out of range. |
+| 10200001 | The value of \`significantDigits \| rounding\` is out of range. |
 
 **Example**
 
@@ -1724,7 +1736,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **Example**
 
@@ -1763,7 +1775,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \| rounding' is out of range. |
+| 10200001 | The value of \`significantDigits \| rounding\` is out of range. |
 
 **Example**
 
@@ -1827,7 +1839,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                     |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces' is out of range. |
+| 10200001 | The value of \`decimalPlaces\` is out of range. |
 
 **Example**
 
@@ -1866,7 +1878,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                 |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces \| rounding' is out of range. |
+| 10200001 | The value of \`decimalPlaces \| rounding\` is out of range. |
 
 **Example**
 
@@ -1931,7 +1943,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                     |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces' is out of range. |
+| 10200001 | The value of \`decimalPlaces\` is out of range. |
 
 **Example**
 
@@ -1940,7 +1952,7 @@ let data: Decimal = new Decimal(45.6);
 let data1: string = data.toExponential(0);
 console.info("test Decimal toExponential:" + data1); // 'test Decimal toExponential:5e+1'
 data1 = data.toExponential(1); // data1: '4.6e+1'
-data1 = data.toExponential(1); // data1: '4.560e+1'
+data1 = data.toExponential(3); // data1: '4.560e+1'
 ```
 
 ### toExponential
@@ -1972,7 +1984,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                 |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces \| rounding' is out of range. |
+| 10200001 | The value of \`decimalPlaces \| rounding\` is out of range. |
 
 **Example**
 
@@ -2036,7 +2048,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                     |
 | -------- | --------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces' is out of range. |
+| 10200001 | The value of \`decimalPlaces\` is out of range. |
 
 **Example**
 
@@ -2077,7 +2089,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                 |
 | -------- | --------------------------------------------------------- |
-| 10200001 | The value of 'decimalPlaces \| rounding' is out of range. |
+| 10200001 | The value of \`decimalPlaces \| rounding\` is out of range. |
 
 **Example**
 
@@ -2113,7 +2125,7 @@ console.info("test Decimal toFraction:" + data1.toString()); // 'test Decimal to
 
 ### toFraction
 
-toFraction(max_denominator: Value): Decimal[]
+toFraction(maxDenominator: Value): Decimal[]
 
 Converts this decimal to a fraction, with the maximum denominator specified.
 
@@ -2125,7 +2137,7 @@ Converts this decimal to a fraction, with the maximum denominator specified.
 
 | Name         | Type           | Mandatory| Description                    |
 | --------------- | --------------- | ---- | ------------------------ |
-| max_denominator | [Value](#value) | Yes  | Maximum denominator. This value is inclusive.|
+| maxDenominator | [Value](#value) | Yes  | Maximum denominator. This value is inclusive.|
 
 **Return value**
 
@@ -2221,7 +2233,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'rounding' is out of range. |
+| 10200001 | The value of \`rounding\` is out of range. |
 
 **Example**
 
@@ -2287,7 +2299,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **Example**
 
@@ -2327,7 +2339,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \|  rounding' is out of range. |
+| 10200001 | The value of \`significantDigits \|  rounding\` is out of range. |
 
 **Example**
 
@@ -2393,7 +2405,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
+| 10200001 | The value of \`significantDigits\` is out of range. |
 
 **Example**
 
@@ -2432,7 +2444,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 10200001 | The value of 'significantDigits \|  rounding' is out of range. |
+| 10200001 | The value of \`significantDigits \|  rounding\` is out of range. |
 
 **Example**
 
@@ -2599,7 +2611,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 10200001 | The value of includeZeros is out of range. |
+| 10200001 | The value of \`includeZeros\` is out of range. |
 
 **Example**
 
@@ -2789,7 +2801,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'min' is out of range.                          |
+| 10200001 | The value of \`min\` is out of range.                          |
 
 **Example**
 
@@ -2842,7 +2854,7 @@ console.info("test Decimal add:" + data.toString()); // 'test Decimal add:1'
 
 static sum(...n: Value[]): Decimal
 
-Returns a **Decimal** object representing the sum of elements in an array.
+Returns a **Decimal** object representing the sum of elements in an array. This API is used to sum up the parameters. If no parameter is passed, a runtime exception will be thrown.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -2854,7 +2866,7 @@ You can use [DecimalConfig.precision](#decimalconfig) to specify the precision a
 
 | Name| Type             | Mandatory| Description        |
 | ------ | ----------------- | ---- | ------------ |
-| n      | [Value](#value)[] | Yes  | Target array to operate.|
+| n      | [Value](#value)[] | No  | Target array to operate.|
 
 **Return value**
 
@@ -3875,7 +3887,7 @@ console.info("test Decimal atan2:" + data.toString()); // 'test Decimal atan2:0.
 
 static hypot(...n: Value[]): Decimal
 
-Returns a **Decimal** object representing the Euclidean norm of elements in an array.
+Returns a **Decimal** object representing the Euclidean norm of elements in an array. If no parameter is passed, 0 is returned by default.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -3887,7 +3899,7 @@ You can use [DecimalConfig.precision](#decimalconfig) to specify the precision a
 
 | Name| Type             | Mandatory| Description                |
 | ------ | ----------------- | ---- | -------------------- |
-| n      | [Value](#value)[] | Yes  | Target array to operate.|
+| n      | [Value](#value)[] | No  | Target array to operate.|
 
 **Return value**
 
@@ -3914,7 +3926,7 @@ console.info("test Decimal hypot:" + data.toString()); // 'test Decimal hypot:5.
 
 static max(...n: Value[]): Decimal
 
-Returns a **Decimal** object representing the maximum value among all elements in an array.
+Returns a **Decimal** object representing the maximum value among all elements in an array. This API is used to obtain the maximum value of the parameters. If no parameter is passed, a runtime exception occurs.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3924,7 +3936,7 @@ Returns a **Decimal** object representing the maximum value among all elements i
 
 | Name| Type             | Mandatory| Description                |
 | ------ | ----------------- | ---- | -------------------- |
-| n      | [Value](#value)[] | Yes  | Target array to operate.|
+| n      | [Value](#value)[] | No  | Target array to operate.|
 
 **Return value**
 
@@ -3951,7 +3963,7 @@ console.info("test Decimal max:" + data.toString()); // 'test Decimal max:4'
 
 static min(...n: Value[]): Decimal
 
-Returns a **Decimal** object representing the minimum value among all elements in an array.
+Returns a **Decimal** object representing the minimum value among all elements in an array. This API is used to obtain the minimum value of the parameters. If no parameter is passed, a runtime exception occurs.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3961,7 +3973,7 @@ Returns a **Decimal** object representing the minimum value among all elements i
 
 | Name| Type           | Mandatory| Description                |
 | ------ | --------------- | ---- | -------------------- |
-| n      | [Value](#value)[] | Yes  | Target array to operate.|
+| n      | [Value](#value)[] | No  | Target array to operate.|
 
 **Return value**
 
@@ -4084,8 +4096,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let data: number = Decimal.sign(2);
-console.info("test Decimal sign:" + data); // 'test Decimal sign:1'
+let data1: number = Decimal.sign(2);
+console.info("test Decimal sign:" + data1); // 'test Decimal sign:1'
+
+let data2: number = Decimal.sign(-3);
+console.info("test Decimal sign:" + data2); // 'test Decimal sign:-1'
+
+let data3: number = Decimal.sign(0);
+console.info("test Decimal sign:" + data3); // 'test Decimal sign:0'
+
+let data4: number = Decimal.sign(3.14);
+console.info("test Decimal sign:" + data4); // 'test Decimal sign:1'
+
+let data5: number = Decimal.sign(-1.618);
+console.info("test Decimal sign:" + data5); // 'test Decimal sign:-1'
+
+let data6: number = Decimal.sign("100");
+console.info("test Decimal sign:" + data6); // 'test Decimal sign:1'
+
+let data7: number = Decimal.sign("-50");
+console.info("test Decimal sign:" + data7); // 'test Decimal sign:-1'
+
+let data8: number = Decimal.sign(NaN);
+console.info("test Decimal sign:" + data8); // 'test Decimal sign:NaN'
+
 ```
 
 ### round
@@ -4128,7 +4162,7 @@ console.info("test Decimal round:" + data.toString()); // 'test Decimal round:3'
 
 ### set
 
-static set(object: DecimalConfig):void
+static set(config: DecimalConfig):void
 
 Sets the properties for this **Decimal** object. The properties set by calling this API take effect globally.
 
@@ -4140,7 +4174,7 @@ Sets the properties for this **Decimal** object. The properties set by calling t
 
 | Name| Type                           | Mandatory| Description                |
 | ------ | ------------------------------- | ---- | -------------------- |
-| object | [DecimalConfig](#decimalconfig) | Yes  | Properties to set.|
+| config | [DecimalConfig](#decimalconfig) | Yes  | Properties to set.|
 
 **Error codes**
 
@@ -4149,7 +4183,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
-| 10200001 | The value of 'DecimalConfig.properties' is out of range.     |
+| 10200001 | The value of \`DecimalConfig.properties\` is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 
 **Example 1**

@@ -1,4 +1,10 @@
 # Overview of Inter-Thread Communication Objects
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 In multithreaded concurrency scenarios, such as creating background threads via TaskPool or Worker, data interaction between different threads is necessary. Due to memory isolation between threads, inter-thread communication objects must implement value copying or memory sharing through serialization.
 

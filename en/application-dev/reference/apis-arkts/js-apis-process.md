@@ -1,4 +1,10 @@
 # @ohos.process (Obtaining Process Information)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 The **process** module provides process management APIs, for example, APIs for obtaining process information.
 
@@ -93,7 +99,7 @@ let result = process.is64Bit();
 
 getStartRealtime(): number
 
-Obtains the duration, in milliseconds, from the time the system starts to the time the process starts.
+Obtains the duration (excluding the system sleep time), in milliseconds, from the time the system starts to the time the process starts.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -434,7 +440,7 @@ let pro = new process.ProcessManager();
 // Use process.uid to obtain the UID.
 let pres = process.uid;
 let result = pro.isAppUid(pres);
-console.log("result: " + result); // result: true
+console.info("result: " + result); // result: true
 ```
 
 
@@ -634,7 +640,7 @@ pro.exit(0);
 
 kill(signal: number, pid: number): boolean
 
-Sends a signal to the specified process to terminate it.
+Sends a signal to the specified process to terminate it. Only the current process can be terminated.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

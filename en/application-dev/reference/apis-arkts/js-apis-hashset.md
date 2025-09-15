@@ -1,8 +1,14 @@
 # @ohos.util.HashSet (Nonlinear Container HashSet)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 HashSet is implemented based on [HashMap](js-apis-hashmap.md). In HashSet, only the **value** object is processed.
 
-Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, HashSet stores data in a random order. This means that HashSet may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in HashSet, but not in TreeSet, because null values may affect the order of elements in the container.
+Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, HashSet sorts data by hash value. This means that HashSet may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in HashSet, but not in TreeSet, because null values may affect the order of elements in the container.
 
 **Recommended use case**: Use HashSet when you need a set that has only unique elements or need to deduplicate a set.
 
@@ -12,6 +18,8 @@ This topic uses the following to identify the use of generics:
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -28,20 +36,21 @@ import { HashSet } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a HashSet.|
 
 **Example**
 
 ```ts
-let hashSet: HashSet<number> = new HashSet();
+let hashSet = new HashSet<number>();
 hashSet.add(1);
 hashSet.add(2);
 hashSet.add(3);
 hashSet.add(4);
 hashSet.add(5);
 let res = hashSet.length;
+console.info("length:", res);  // length: 5
 ```
 
 ### constructor
@@ -65,7 +74,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashSet: HashSet<number> = new HashSet();
+let hashSet = new HashSet<number>();
 ```
 
 
@@ -96,8 +105,9 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-const hashSet: HashSet<number> = new HashSet();
+const hashSet = new HashSet<number>();
 let result = hashSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -135,9 +145,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 let result = hashSet.has("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -145,7 +156,7 @@ let result = hashSet.has("squirrel");
 
 add(value: T): boolean
 
-Adds an element to this HashSet.
+Adds elements to this HashSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -175,8 +186,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 let result = hashSet.add("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -214,10 +226,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -242,10 +255,12 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
+let result = hashSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -276,15 +291,15 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
-let iter = hashSet.values();
-let temp = iter.next();
-while(!temp.done) {
-  console.log("value:" + temp.value);
-  temp = iter.next();
+let values = hashSet.values();
+for (let value of values) {
+  console.info("value:", value);
 }
+// value: squirrel
+// value: sparrow
 ```
 
 
@@ -292,7 +307,7 @@ while(!temp.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this HashSet and obtain their position indexes.
+Uses a callback to traverse each element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -308,8 +323,8 @@ Uses a callback to traverse the elements in this HashSet and obtain their positi
 callbackFn parameters
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
-| key | T | No| Key of the element that is currently traversed (same as **value**). The default value is the key of the first key-value pair.|
+| value | T | No| Value of the element that is currently traversed.|
+| key | T | No| Key of the element that is currently traversed (same as **value**).|
 | set | HashSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
@@ -324,20 +339,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
-hashSet.forEach((value?: string, key?: string): void => {
-  console.log("value:" + value, "key:" + key);
+hashSet.forEach((value: string, key: string): void => {
+  console.info("value:" + value, "key:" + key);
 });
+// value:squirrel key:squirrel
+// value:sparrow key:sparrow
 ```
 ```ts
 // You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let hashSet : HashSet<string> = new HashSet();
-for(let i = 0;i < 10; i++) {
+let hashSet = new HashSet<string>();
+for(let i = 0; i < 10; i++) {
   hashSet.add("sparrow" + i);
 }
-for(let i = 0;i < 10; i++) {
+for(let i = 0; i < 10; i++) {
   hashSet.remove("sparrow" + i);
 }
 ```
@@ -368,24 +385,28 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
 let temp: IteratorResult<[string, string]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
+// key:squirrel
+// value:squirrel
+// key:sparrow
+// value:sparrow
 ```
 ```ts
 // You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let hashSet : HashSet<string> = new HashSet();
-for(let i = 0;i < 10; i++) {
+let hashSet = new HashSet<string>();
+for(let i = 0; i < 10; i++) {
   hashSet.add("sparrow" + i);
 }
-for(let i = 0;i < 10; i++) {
+for(let i = 0; i < 10; i++) {
   hashSet.remove("sparrow" + i);
 }
 ```
@@ -417,27 +438,31 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // Method 1:
-let val: Array<string> = Array.from(hashSet.values());
-for (let item of val) {
-  console.log("value: " + item);
+for (let item of hashSet) {
+  console.info("value: " + item);
 }
+// value: squirrel
+// value: sparrow
 
 // Method 2:
 let iter = hashSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
-  console.log("value: " + temp.value);
+  console.info("value: " + temp.value);
   temp = iter.next();
 }
+// value: squirrel
+// value: sparrow
 ```
+
 ```ts
 // You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let hashSet : HashSet<string> = new HashSet();
+let hashSet = new HashSet<string>();
 for(let i = 0;i < 10;i++) {
   hashSet.add("sparrow" + i);
 }

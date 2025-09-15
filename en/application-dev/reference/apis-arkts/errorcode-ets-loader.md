@@ -1,4 +1,10 @@
 # Compilation Toolchain Error Codes
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @aftott-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 > **NOTE**
 >
@@ -59,7 +65,7 @@ The ${moduleRequest} kit does not have the corresponding configuration file in t
 **Solution**
 
 1. Make sure the kit API you are importing is consistent with the SDK version you are using, and the kit APIs are not modified locally.
-2. For details about the kit APIs, see <!--RP1-->[API Reference Document Description](../development-intro-api.md)<!--RP1End-->.
+2. For details about the kit APIs, see <!--RP1-->[API Reference Document Description](../development-intro-api.md).<!--RP1End-->
 
 ## 10311005 Incorrect Kit Identifier
 
@@ -151,7 +157,7 @@ An error occurred during the execution of es2abc.
 
 **Solution**
 
-Refer to the error codes of es2abc for troubleshooting.
+Rectify the fault by referring to [es2abc Compiler Error Codes](./errorcode-es2abc.md).
 
 ## 10311010 Lazy Import Re-export Error
 

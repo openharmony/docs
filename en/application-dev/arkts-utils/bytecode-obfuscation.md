@@ -1,4 +1,10 @@
 # ArkGuard Principles and Capabilities for Bytecode Obfuscation
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @oatuwwutao; @u012789010-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## Glossary
 
@@ -24,16 +30,14 @@ ArkGuard supports the ArkTS/TS/JS languages. For JSON, only filename obfuscation
 
 ArkGuard provides basic name obfuscation, but does not support advanced features like control obfuscation or data obfuscation.
 
-It primarily offers name renaming and trustlist configuration for retention.
+It primarily offers renaming and trustlist configuration for retention.
 
 ### Limitations of Obfuscation Capabilities
 
 **Language Limitations**
-
 Code obfuscation tools vary in type analysis mechanisms, obfuscation strategies, and execution efficiency based on the target language. For example, ProGuard targets strongly-typed languages like Java, where each type has a clear definition source. This feature makes the type relationship tracing and processing in the obfuscation process more accurate, greatly reducing the need for retention rules.
 
 In contrast, ArkGuard targets JS, TS, and ArkTS. Suppose ArkGuard supports configuring a trustlist for specific types. JS supports dynamic modification of objects and functions at runtime, but obfuscation is a static process in the compilation phase. This difference may cause a failure in parsing obfuscated named at runtime, resulting in runtime exceptions. TS and ArkTS use a structural type system, where different named types with the same structure are considered as equivalent types. Therefore, it is difficult to trace the exact source of types.
-
 As such, when using ArkGuard, you need to configure trustlists for more syntax scenarios. Moreover, ArkGuard uses a global property retention mechanism that retains all properties with the same name according to the trustlist. It does not support precise retention settings for specific types.
 
 To illustrate, consider this example:
@@ -41,16 +45,20 @@ To illustrate, consider this example:
 Assume that ArkGuard allows the configuration of a trustlist for specific types. If class A1 is configured in a trustlist with its property prop1, but prop1 in class A2 is not in the trustlist, passing an instance of A2 (a2) to the **test** function would cause issues when accessing the prop1 property.
 
 ```typescript
+// example.ts
 // Before obfuscation:
 class A1 {
-  prop1: string = '';
+	prop1: string = '';
 }
+
 class A2 {
-  prop1: string = '';
+	prop1: string = '';
 }
+
 function test(input: A1) {
-  console.log(input.prop1);
+	console.info(input.prop1);
 }
+
 let a2 = new A2();
 a2.prop1 = 'prop a2';
 test(a2);
@@ -59,14 +67,17 @@ test(a2);
 ```typescript
 // After obfuscation:
 class A1 {
-  prop1: string = '';
+	prop1: string = '';
 }
+
 class A2 {
-  a: string = '';
+	a: string = '';
 }
+
 function test(input: A1) {
-  console.log(input.prop1);
+	console.info(input.prop1);
 }
+
 let a2 = new A2();
 a2.a = 'prop a2';
 test(a2);
@@ -108,6 +119,7 @@ Before using obfuscation, you are advised to learn about the capabilities of [ob
 |Removing console logs|[`-remove-log`](#-remove-log)|
 |Printing name caches|[`-print-namecache`](#-print-namecache)|
 |Reusing name caches|[`-apply-namecache`](#-apply-namecache)|
+|Merging dependent module options|[`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options)|
 |Enabling bytecode obfuscation|[`-enable-bytecode-obfuscation`](#-enable-bytecode-obfuscation)|
 |Enabling bytecode obfuscation debugging|[`-enable-bytecode-obfuscation-debugging`](#-enable-bytecode-obfuscation-debugging)|
 
@@ -121,21 +133,22 @@ If this option is configured, the default obfuscation capabilities and all confi
 
 Enables property name obfuscation. The effect is as follows:
 
- ```ts
+```ts
+// test.ts
 // Before obfuscation:
 class TestA {
-  static prop1: number = 0;
+	static prop1: number = 0;
 }
 TestA.prop1;
- ```
+```
 
- ```ts
+```ts
 // After obfuscation:
 class TestA {
-  static i: number = 0;
+	static i: number = 0;
 }
 TestA.i;
- ```
+```
 
 If this option is configured, all property names except the following are obfuscated:
 
@@ -143,17 +156,20 @@ If this option is configured, all property names except the following are obfusc
 
     ```ts
     export class MyClass {
-       data: string;
+        data: string;
     }
     ```
 
 * Property names in ArkUI components. For example, **message** and **data** in the following example are not obfuscated.
 
     ```ts
+    // example.ets
     @Component struct MyExample {
-     @State message: string = "hello";
+        @State message: string = "hello";
         data: number[] = [];
-        // ...
+
+        build() {
+        }
     }
     ```
 
@@ -169,9 +185,10 @@ If this option is configured, all property names except the following are obfusc
 * Annotation member names. For example, **authorName** and **revision** in the following example are not obfuscated.
 
     ```ts
+    // example.ets
     @interface MyAnnotation {
-    authorName: string;
-    revision: number = 1;
+        authorName: string;
+        revision: number;
     }
     ```
 
@@ -181,27 +198,26 @@ Enables obfuscation of string literal property names. It is effective only if pr
 
 To obfuscate string literal property names, you must use this option together with **-enable-property-obfuscation**. Example:
 
-  ```txt
-  -enable-property-obfuscation
-  -enable-string-property-obfuscation
-  ```
+```txt
+-enable-property-obfuscation
+-enable-string-property-obfuscation
+```
 
 According to the preceding configuration, the obfuscation effect of **"fritstName"** and **"personAge"** is as follows:
 
-  ```ts
-  // Before obfuscation:
-  let person = {"fritstName": "abc"};
-  person["personAge"] = 22;
-  ```
+```ts
+// Before obfuscation:
+let person = {"firstName": "abc"};
+person["personAge"] = 22;
+```
 
-  ```ts
-  // After obfuscation:
-  let person = {"a": "abc"};
-  person["b"] = 22;
-  ```
+```ts
+// After obfuscation:
+let person = {"a": "abc"};
+person["b"] = 22;
+```
 
 **NOTE**
-
 **1.** If a string literal property name contains special characters, for example, **let obj = {"\n": 123, "": 4, " ": 5}**, you are advised not to use the **-enable-string-property-obfuscation** option because these names may fail to be retained using [retention options](#-keep-property-name). Special characters refer to characters other than lowercase letters a-z, uppercase letters A-Z, digits 0-9, and underscores (_).
 
 **2.** The property trustlist of the SDK API list does not contain string constants used in the declaration file. For example, the string **'ohos.want.action.home'** in the example is not included in the property trustlist.
@@ -209,7 +225,7 @@ According to the preceding configuration, the obfuscation effect of **"fritstNam
 ```ts
 // Part of the SDK API file @ohos.app.ability.wantConstant:
 export enum Params {
-  ACTION_HOME = 'ohos.want.action.home'
+    ACTION_HOME = 'ohos.want.action.home'
 }
 // Source code example:
 let params = obj['ohos.want.action.home'];
@@ -245,21 +261,19 @@ Enables obfuscation for imported/exported names. The effect is as follows:
 ```ts
 // Before obfuscation:
 namespace ns {
-  export type customT = string;
+	export type customT = string;
 }
 ```
 
 ```ts
 // After obfuscation:
 namespace ns {
-  export type h = string;
+    export type h = string;
 }
 ```
 
 If this option is configured, names imported/exported in non-top-level scopes will be obfuscated.
-
 To obfuscate names imported/exported in the top-level scope, use this option with **-enable-toplevel-obfuscation**.
-
 To obfuscate imported or exported property names, use this option with **-enable-property-obfuscation**. Note the following special scenarios:
 
 * Names exported from remote HARs (packages whose real paths are in **oh_modules**) and their property names are not obfuscated.
@@ -307,7 +321,7 @@ If this option is configured, all code is compressed to one line. The effect is 
 ```ts
 // Before obfuscation:
 class TestA {
-  static prop1: number = 0;
+	static prop1: number = 0;
 }
 TestA.prop1;
 ```
@@ -328,7 +342,7 @@ Removes calls to console.* statements, provided the return value is not used. Th
 ```ts
 // Before obfuscation:
 if (flag) {
-  console.log("hello");
+	console.info("hello");
 }
 ```
 
@@ -344,7 +358,7 @@ If this option is configured, the console.* statements in the following scenario
     Example:
 
     ```js
-    console.log("in tolevel");
+    console.info("in tolevel");
     ```
 
 2. Calls within a code block.
@@ -352,7 +366,7 @@ If this option is configured, the console.* statements in the following scenario
 
     ```ts
     function foo() {
-    console.log('in block');
+        console.info('in block');
     }
     ```
   
@@ -361,27 +375,26 @@ If this option is configured, the console.* statements in the following scenario
   
     ```ts
     namespace ns {
-    console.log('in ns');
+        console.info('in ns');
     }
     ```
   
 4. Calls within a **switch** statement.
-    Example:
+    For example:
   
     ```js
     switch (value) {
-    case 1:
-        console.log("in switch case");
-        break;
-    default:
-        console.warn("default");
+        case 1:
+            console.info("in switch case");
+            break;
+        default:
+            console.info("default");
     }
     ```
 
 ### -print-namecache
 
 Saves the name cache to the specified file path. The name cache contains the mappings of names before and after obfuscation. The **filepath** parameter is mandatory. It supports relative and absolute paths. For a relative path, the start point is the current directory of the obfuscation configuration file. The file name extension in **filepath** must be .json.
-
 Example:
 
 ```txt
@@ -396,7 +409,6 @@ Example:
 ### -apply-namecache
 
 Reuses a name cache file in the specified file path. The **filepath** parameter is mandatory. It supports relative and absolute paths. For a relative path, the start point is the current directory of the obfuscation configuration file. The file name extension in **filepath** must be .json.
-
 This option should be used in incremental build scenarios. After this option is enabled, the names will be obfuscated according to the cache mappings. If there is no corresponding name, new random names are used.
 
 Example:
@@ -407,19 +419,14 @@ Example:
 ```
 
 By default, DevEco Studio saves cache files in a temporary cache directory and automatically applies the cache files during incremental build.
-
 Default cache directory: **build/default/cache/{...}/release/obfuscation**
 
 ### -enable-lib-obfuscation-options
 
 Merges obfuscation options of dependent modules into the obfuscation configuration of the current module.
-
 Obfuscation configuration includes [obfuscation options](#obfuscation-options) and [retention options](#retention-options).
-
 By default, the effective obfuscation configuration is the merged result of the current module's obfuscation configuration and the dependent modules' retention options.
-
 When this option is configured, the effective obfuscation configuration is the merged result of the current module's obfuscation configuration and the dependent modules' obfuscation configuration.
-
 For details about the merging logic, see [Obfuscation Rule Merging Strategies](#obfuscation-rule-merging-strategies).
 
 ### -enable-bytecode-obfuscation
@@ -429,7 +436,6 @@ Enables or disables bytecode obfuscation. This function is disabled by default.
 ### -enable-bytecode-obfuscation-debugging
 
 Controls whether bytecode obfuscation outputs debugging information. If this option is enabled, obfuscation logs are generated. For details, see [Viewing Obfuscation Effects](bytecode-obfuscation-guide.md#viewing-obfuscation-effects). This option is not enabled by default.
-
 Use this option with **-enable-bytecode-obfuscation**.
 
 ## Retention Options
@@ -465,104 +471,117 @@ lastName
 
 1. If object properties are defined via string concatenation, variable access, or the **defineProperty** method within the code, these property names should be retained. Example:
 
-   ```js
-   var obj = {x0: 0, x1: 0, x2: 0};
-   for (var i = 0; i <= 2; i++) {
-       console.info(obj['x' + i]);  // x0, x1, and x2 should be retained.
-   }
-   
-   Object.defineProperty(obj, 'y', {});  // y should be retained.
-   Object.getOwnPropertyDescriptor(obj, 'y');  // y should be retained.
-   console.info(obj.y);
-   
-   obj.s = 0;
-   let key = 's';
-   console.info(obj[key]);        // The variable value s corresponding to key should be retained.
-   
-   obj.t1 = 0;
-   console.info(obj['t' + '1']);        // t1 should be retained.
-   ```
+```js
+// example.js
+var obj = {x0: 0, x1: 0, x2: 0};
+for (var i = 0; i <= 2; i++) {
+    console.info(obj['x' + i]);  // x0, x1, and x2 should be retained.
+}
 
-   For the following string literal property calls, you can choose to retain them.
+Object.defineProperty(obj, 'y', {});  // y should be retained.
+Object.getOwnPropertyDescriptor(obj, 'y');  // y should be retained.
+console.info(obj.y);
 
-   ```js
-   // Obfuscation configuration:
-   // -enable-property-obfuscation
-   // -enable-string-property-obfuscation
-   obj.t = 0;
-   console.info(obj['t']); // 't' will be correctly confused, and t can be retained.
-   
-   obj.['v'] = 0;
-   console.info(obj['v']); // 'v' will be correctly confused, and v can be retained.
-   ```
+obj.s1 = 'a';
+let key = 's1';
+console.info(obj[key]);        // The variable value s corresponding to key should be retained.
+
+obj.t1 = 'b';
+console.info(obj['t' + '1']);        // t1 should be retained.
+```
+
+For the following string literal property calls, you can choose to retain them.
+
+```js
+// Obfuscation configuration:
+// -enable-property-obfuscation
+// -enable-string-property-obfuscation
+obj.t = 0;
+console.info(obj['t']); // 't' will be correctly confused, and t can be retained.
+
+obj['v'] = 0;
+console.info(obj['v']); // 'v' will be correctly confused, and v can be retained.
+```
 
 2. In the case of indirect exports, for example, **export MyClass** and **let a = MyClass; export {a}**, if you do not want to obfuscate property names, use [retention options](#retention-options) to retain them. For property names of directly exported classes or objects, such as **firstName** and **personAge** in the following example, if you do not want to obfuscate them, use [retention options](#retention-options) to retain them.
 
-   ```ts
-   export class MyClass {
-       person = {firstName: "123", personAge: 100};
-   }
-   ```
+```ts
+// myclass.ts
+export class MyClass {
+    person = {firstName: "123", personAge: 100};
+}
+```
 
 3. If you want to use an API (for example, **foo** in the example) of the .so library in the ArkTS/TS/JS file, manually keep the API name.
 
-   ```ts
-   import testNapi from 'library.so'
-   testNapi.foo() // foo should be retained Example: -keep-property-name foo
-   ```
+```ts
+// src/main/cpp/types/libentry/Index.d.ts
+export const add: (a: number, b: number) => number;
+
+// test.ets
+import testNapi from 'library.so'
+
+testNapi.add() // add should be retained. Example: -keep-property-name foo
+```
 
 4. Fields used in JSON parsing and object serialization should be retained.
 
-   ```ts
-   // Example JSON file structure (test.json):
-   /*
-   {
-     "jsonProperty": "value",
-     "otherProperty": "value2"
-   }
-   */
-   const jsonData = fs.readFileSync('./test.json', 'utf8');
-   let jsonObj = JSON.parse(jsonData);
-   let jsonProp = jsonObj.jsonProperty; // jsonProperty should be retained.
-   class jsonTest {
-     prop1: string = '';
-     prop2: number = 0
-   }
-   let obj = new jsonTest();
-   const jsonStr = JSON.stringify(obj); // prop1 and prop2 will be obfuscated and should be retained.
-   ```
+```ts
+// Example JSON file structure (test.json):
+/*
+{
+  "jsonProperty": "value",
+  "otherProperty": "value2"
+}
+*/
+
+import jsonData from './test.json';
+
+let jsonProp = jsonData.jsonProperty; // jsonProperty should be retained.
+
+class jsonTest {
+    prop1: string = '';
+    prop2: number = 0;
+}
+let obj = new jsonTest();
+const jsonStr = JSON.stringify(obj); // prop1 and prop2 will be obfuscated and should be retained.
+```
 
 5. Database-related fields should be manually retained. For example, properties in the database key-value pair type (ValuesBucket):
 
-   ```ts
-   const valueBucket: ValuesBucket = {
-     'ID1': ID1, // ID1 should be retained.
-     'NAME1': name, // NAME1 should be retained.
-     'AGE1': age, // AGE1 should be retained.
-     'SALARY1': salary // SALARY1 should be retained.
-   }
-   ```
+```ts
+const valueBucket: ValuesBucket = {
+    'ID1': ID1, // ID1 should be retained.
+    'NAME1': name, // NAME1 should be retained.
+    'AGE1': age, // AGE1 should be retained.
+    'SALARY1': salary // SALARY1 should be retained.
+}
+```
 
 6. When custom decorators are used on member variables, member methods, or parameters in the source code, and the intermediate product of source code compilation is a JS file (for example, compiling release-mode source code HAR or source code containing @ts-ignore or @ts-nocheck), the names of these member variables or member methods should be retained. This is because the names of these member variables/methods are hardcoded as string literals during conversion from TS syntax to standard JS syntax.
-    Example:
-    
-      ```ts
-      class A {
-        // 1. Member variable decorator
-        @CustomDecoarter
-        propertyName: string = ""   // propertyName should be retained.
-        // 2. Member method decorator
-        @MethodDecoarter
-        methodName1(){} // methodName1 should be retained.
-        // 3. Method parameter decorator
-        methodName2(@ParamDecorator param: string): void { // methodName2 should be retained.
-        }
-      }
-      ```
+Example:
+
+```ts
+function CustomDecorator(target: Object, propertyKey: string) {}
+function MethodDecorator(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {}
+function ParamDecorator(target: Object, propertyKey: string, parameterIndex: number) {}
+
+class A {
+    // 1. Member variable decorator
+    @CustomDecorator
+    propertyName: string = ""   // propertyName should be retained.
+    // 2. Member method decorator
+    @MethodDecorator
+    methodName1(){} // methodName1 should be retained.
+    // 3. Method parameter decorator
+    methodName2(@ParamDecorator param: string): void { // methodName2 should be retained.
+    }
+}
+```
 
 ### -keep-global-name
 
-Retains the specified top-level scope names or imported/exported element names. [Name wildcards](#name-wildcards) are supported. You can perform the configuration as follows:
+Retains the specified top-level scope names and imported/exported element names. [Name wildcards](#name-wildcards) are supported. You can perform the configuration as follows:
 
 ```txt
 -keep-global-name
@@ -574,8 +593,8 @@ Names exported from the namespace can also be retained using the **-keep-global-
 
 ```ts
 export namespace Ns {
-  export const age = 18; // -keep-global-name age: retains variable age.
-  export function myFunc () {}; // -keep-global-name myFunc: retains function myFunc.
+    export const myAge = 18; // -keep-global-name myAge: retains variable myAge.
+    export function myFunc () {}; // -keep-global-name myFunc: retains function myFunc.
 }
 ```
 
@@ -587,26 +606,34 @@ export namespace Ns {
 
 1. In JS, variables in the top-level scope are properties of **globalThis**. If **globalThis** is used to access a global variable in the code, the variable name should be retained.
 
-   Example:
+Example:
 
-   ```ts
-   var a = 0;
-   console.info(globalThis.a);  // a should be retained.
-   function foo(){}
-   globalThis.foo();           // foo should be retained.
-   var c = 0;
-   console.info(c);             // c can be correctly obfuscated.
-   function bar(){}
-   bar();                      // bar can be correctly obfuscated.
-   class MyClass {}
-   let d = new MyClass();      // MyClass can be correctly obfuscated.
-   ```
+```ts
+var a = 0;
+console.info(globalThis.a);  // a should be retained.
+function foo(){}
+globalThis.foo();           // foo should be retained.
+var c = 0;
+console.info(c);             // c can be correctly obfuscated.
+function bar(){}
+bar();                      // bar can be correctly obfuscated.
+class MyClass {}
+let d = new MyClass();      // MyClass can be correctly obfuscated.
+```
 
 2. When importing API names from .so libraries using named imports, if both **-enable-toplevel-obfuscation** and **-enable-export-obfuscation** are configured, the API names should be manually retained.
 
-   ```ts
-   import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi and testNapi1 should be retained.
-   ```
+```ts
+// src/main/cpp/types/libentry/Index.d.ts
+declare function testNapi(): void;
+declare function testNapi1(): void;
+
+// example.ets
+import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi and testNapi1 should be retained.
+
+testNapi();
+myNapi();
+```
 
 ### -keep-file-name
 
@@ -621,33 +648,39 @@ entry
 **Which file names should be retained?**
 1. When **require** is used to import file paths, the path should be retained. This is because ArkTS does not support [CommonJS](../arkts-utils/module-principle.md#commonjs-module) syntax.
 
-   ```ts
-   const module1 = require('./file1')   // file1 should be retained.
-   ```
+```ts
+// example.js
+const module1 = require('./file1')   // file1 should be retained.
+```
 
 2. For dynamically imported paths, since it is impossible to determine whether the parameter in the **import** function is a path, the path should be retained.
 
-   ```ts
-   const moduleName = './file2'         // The path name file2 corresponding to moduleName should be retained.
-   const module2 = import(moduleName)
-   ```
+```ts
+// file2.ts
+export function foo () {}
+```
+```ts
+// main.ts
+const moduleName = './file2'         // The path name file2 corresponding to moduleName should be retained.
+const module2 = import(moduleName)
+```
 
 3. When [dynamic routing](../ui/arkts-navigation-navigation.md#cross-package-dynamic-routing) is used for navigation, the path passed to the dynamic routing should be retained. Dynamic routing provides two modes: system routing table and custom routing table. If a custom routing table is used for redirection, the way to configure a trustlist is consistent with the second dynamic reference scenario. However, if the system routing table is used for redirection, the path corresponding to the **pageSourceFile** field in the **resources/base/profile/route_map.json** file of the module should be added to the trustlist.
 
-   ```json
-   {
-       "routerMap": [
-         {
-           "name": "PageOne",
-           "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // The path should be retained.
-           "buildFunction": "PageOneBuilder",
-           "data": {
-             "description" : "this is PageOne"
-           }
-         }
-       ]
-     }
-   ```
+```json
+{
+  "routerMap": [
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // The path should be retained.
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description" : "this is PageOne"
+      }
+    }
+  ]
+}
+```
 
 ### -keep-dts
 
@@ -666,9 +699,7 @@ Retains all names (such as class names, and property names) in the specified rel
 ```
 
 **NOTE**
-
 **1.** For files retained by **-keep filepath**, all exported names and their properties in the dependency chain of these files are also retained.
-
 **2.** This option does not affect the capability provided by the **-enable-filename-obfuscation** option.
 
 ## Wildcards Supported by Retention Options
@@ -680,10 +711,9 @@ The table below lists the name wildcards supported.
 | Wildcard| Description                  | Example                                      |
 | ------ | ---------------------- | ------------------------------------------ |
 |?|Matches any single character.|"AB?" matches "ABC", but not "AB".|
-|*|Matches any number of characters.|"*AB*" matches "AB", "aABb", "cAB", and "ABc".|
+|*|Matches any number of characters.|"\*AB\*" matches "AB", "aABb", "cAB", and "ABc".|
 
 **Example**
-
 Retain all property names that start with **a**.
 
 ```txt
@@ -761,12 +791,11 @@ Retain all the files in the module.
 ```
 
 **NOTE**
-
 **1.** In these options, the wildcards *, ?, and ! cannot be used for other meanings. Example:
 
 ```txt
 class A {
-  '*'= 1
+	'*'= 1
 }
 -keep-property-name
 *
@@ -781,15 +810,13 @@ In this example, * indicates any number of characters, and all property names ar
 During module compilation, by default, the effective obfuscation rules are the merged result of the current module's obfuscation rules and the dependent modules' obfuscation rules. The specific rules are as follows:
 
 **Obfuscation rules of the current module**
-
 Content of the obfuscation configuration file specified by the **arkOptions.obfuscation.ruleOptions.files** field in the current module's configuration file **build-profile.json5**.
 
 **Obfuscation rules of dependent modules**
-
 Depending on the type of dependent module, the obfuscation rules come from the following two sources:
 
 - **Local HAR/HSP modules**
-  Content of the obfuscation configuration file specified by the **arkOptions.obfuscation.consumerFiles** field in the module's configuration file **build-profile.json5**.
+  Content of the obfuscation configuration file specified by the `arkOptions.obfuscation.consumerFiles` field in the module's configuration file `build-profile.json5`.
 
 - **Remote HAR/HSP packages**
   Content of the **obfuscation.txt** file in the remote HAR/HSP package.

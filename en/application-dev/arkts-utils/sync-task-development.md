@@ -1,12 +1,18 @@
 # Synchronous Task Development (TaskPool and Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
-Synchronous tasks involve coordinating execution across multiple threads to ensure that tasks run in a specific order and adhere to certain rules, such as using locks to prevent data races.
+Synchronous tasks are used to coordinate the execution of multiple threads and ensure that tasks are executed in a specific sequence and according to specific rules (for example, locks are used to prevent data contention).
 
 
 To implement synchronous tasks, you must consider the collaboration and synchronization between multiple threads and ensure data integrity and correct program execution.
 
-TaskPool is well-suited for individual, independent tasks. Therefore, it is recommended for scenarios where synchronous tasks are relatively independent, such as a series of static methods or methods implemented using a singleton pattern. Conversely, if synchronous tasks are interdependent, Worker is the better choice.
+TaskPool is well-suited for independent synchronous tasks. Therefore, it is recommended for scenarios where synchronous tasks are relatively independent, such as a series of static methods or methods implemented using a singleton pattern. Conversely, if synchronous tasks are interdependent, Worker is the better choice.
 
 
 ## Using TaskPool for Independent Synchronous Tasks
@@ -21,7 +27,7 @@ TaskPool is recommended in the following scenarios:
 
 > **NOTE**
 >
-> Due to the memory isolation feature of the [actor model](multi-thread-concurrency-overview.md#actor-model) between threads, regular singletons cannot be shared across threads. This issue can be solved by exporting singletons through sendable modules.
+> Due to the memory isolation feature of the [actor model](multi-thread-concurrency-overview.md#actor-model) between threads, regular singletons cannot be shared across threads. This issue can be solved by exporting singletons through shared modules.
 
 1. Define a concurrent function to implement service logic.
 
@@ -33,7 +39,7 @@ In the following example, the service logic uses TaskPool to call related synchr
 
 
 ```ts
-// Index.ets code
+// Index.ets
 import { taskpool} from '@kit.ArkTS';
 
 // Step 1: Define a concurrent function to implement service logic.
@@ -76,18 +82,18 @@ struct Index {
   }
 }
 ```
-<!-- @[taskpool_handle_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
+<!-- @[taskpool_handle_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 ## Using Worker for Interdependent Synchronous Tasks
 
 When a series of synchronous tasks needs to be scheduled using the same handle, or when they depend on a specific class object that cannot be shared across different task pools, Worker is the appropriate choice.
 
-1. Create a Worker object in the UI main thread and receive messages from the Worker thread. DevEco Studio supports generation of Worker templates with a single click. In the corresponding {moduleName} directory, right-click anywhere and choose **New > Worker** to automatically generate the Worker template files and configuration information.
+1. Create a Worker object in the UI main thread and receive messages from the Worker thread. DevEco Studio supports generation of Worker templates with a single click. In the corresponding {moduleName} directory, right-click anywhere and choose **New** > **Worker** to automatically generate the Worker template files and configuration information.
 
     ```ts
     // Index.ets
-    import { worker } from '@kit.ArkTS';
+    import { MessageEvents, worker } from '@kit.ArkTS';
     
     @Entry
     @Component
@@ -101,20 +107,18 @@ When a series of synchronous tasks needs to be scheduled using the same handle, 
               .fontSize(50)
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
-                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
-                w.onmessage = (): void => {
-                  // Receive results from the Worker thread.
-                }
-                w.onAllErrors = (): void => {
-                  // Receive error messages from the Worker thread.
-                }
+                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
                 // Send a Set message to the Worker thread.
-                w.postMessage({'type': 0, 'data': 'data'})
+                w.postMessage({'type': 0, 'data': 10});
                 // Send a Get message to the Worker thread.
-                w.postMessage({'type': 1})
-                // ...
-                // Destroy the thread based on actual service requirements.
-                w.terminate()
+                w.postMessage({'type': 1});
+                // Receive results from the Worker thread.
+                w.onmessage = (e: MessageEvents): void => {
+                  // Receive results from the Worker thread.
+                  console.info('main thread onmessage, ' + e.data);
+                  // Destroy the Worker.
+                  w.terminate();
+                }
               })
           }
           .width('100%')
@@ -123,47 +127,55 @@ When a series of synchronous tasks needs to be scheduled using the same handle, 
       }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 2. Bind the Worker object in the Worker thread and process the synchronous task logic.
 
     ```ts
-    // handle.ts code
+    // handle.ts code, which is in the same directory as Worker.ets.
     export default class Handle {
-      syncGet() {
-        return;
+      id: number = 0;
+    
+      syncGet(): number {
+        return this.id;
       }
     
-      syncSet(num: number) {
-        return;
+      syncSet(num: number): boolean {
+        this.id = num;
+        return true;
       }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
     
     ```ts
-    // MyWorker.ts code
+    // Worker.ets
     import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-    import Handle from './handle'  // Import the handle.
+    // Return the handle.
+    import Handle from './handle'; 
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     
     // Handle that cannot be transferred. All operations depend on this handle.
-    let handler: Handle = new Handle()
+    let handler: Handle = new Handle();
     
     // onmessage() logic of the Worker thread.
     workerPort.onmessage = (e : MessageEvents): void => {
-     switch (e.data.type as number) {
-      case 0:
-       handler.syncSet(e.data.data);
-       workerPort.postMessage('success set');
-       break;
-      case 1:
-       handler.syncGet();
-       workerPort.postMessage('success get');
-       break;
-     }
+      switch (e.data.type as number) {
+        case 0:
+          let result: boolean = false;
+          result = handler.syncSet(e.data.data);
+          console.info("worker: result is " + result);
+          workerPort.postMessage('the result of syncSet() is ' + result);
+          break;
+        case 1:
+          let num: number = 0;
+          num = handler.syncGet();
+          console.info("worker: num is " + num);
+          workerPort.postMessage('the result of syncGet() is ' + num);
+          break;
+      }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->

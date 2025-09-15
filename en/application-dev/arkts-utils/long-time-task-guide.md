@@ -1,10 +1,16 @@
 # Continuous Task Development (TaskPool)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 This section provides a development guide for continuous tasks using TaskPool, with the example of periodically collecting sensor data.
 
 ## Using TaskPool to Listen for Sensor Data
 
-1. Import the required modules.
+1. Import the required module.
 
    ```ts
    // Index.ets
@@ -30,7 +36,17 @@ This section provides a development guide for continuous tasks using TaskPool, w
    }
    ```
 
-3. Define the registration and destruction behavior in the host thread.
+3. Add the ohos.permission.ACCELEROMETER permission to the sensor.
+
+   ```json
+   // module.json5
+   "requestPermissions": [
+     {
+       "name": "ohos.permission.ACCELEROMETER"
+     }
+   ]
+   ```
+4. Define the registration and destruction behavior in the host thread.
    - Registration: Initiate the continuous task and receive listening data via emitter.
    - Destruction: Send an event to cancel sensor listening and terminate the continuous task.
 
@@ -51,7 +67,7 @@ This section provides a development guide for continuous tasks using TaskPool, w
              this.sensorTask = new taskpool.LongTask(SensorListener);
              emitter.on({ eventId: 0 }, (data) => {
                // Do something here
-               console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}`);
+               console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}}`);
              });
              taskpool.execute(this.sensorTask).then(() => {
                console.info("Add listener of ACCELEROMETER success");
@@ -78,6 +94,6 @@ This section provides a development guide for continuous tasks using TaskPool, w
      }
    }
    ```
-   <!-- @[taskpool_listen_sensor_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
+   <!-- @[taskpool_listen_sensor_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
    
    

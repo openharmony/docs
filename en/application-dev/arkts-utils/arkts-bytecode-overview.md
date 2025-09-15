@@ -1,8 +1,15 @@
 # Overview of Ark Bytecode
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
+<!--Designer: @ctw-ian; @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
+
 The Ark bytecode file is a binary output generated from compiling ArkTS/TS/JS source code. This topic describes the Ark bytecode file format, helping you understand the structure and content of Ark bytecode files, thereby effectively analyzing and modifying bytecode.
 
-- Ark bytecode file format: describes the composition of Ark bytecode files, including information about data structures within the file, how they are stored, and their interdependencies.
+- Ark bytecode file format: describes the composition of Ark bytecode files, including information about data structures within the file, how they are stored, and their mappings.
 
 - Basic principles of Ark bytecode: describes the fundamental concepts, formats, and meanings of bytecode instructions, helping you understand these instructions and develop features related to bytecode manipulation.
 

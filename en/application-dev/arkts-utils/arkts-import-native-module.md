@@ -1,4 +1,10 @@
 # Statically Loading Native Modules
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @yao_dashuai-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 In ECMAScript 6.0 (ES6) module design, the **import** syntax is used to load content exported by other files, as defined by the ECMAScript specification. To help you import content exported from native modules (.so), ArkTS has adapted and provides the following methods:
 
@@ -34,22 +40,28 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import * as add from 'libentry.so'
-add.add(2, 3);
+import * as entry from 'libentry.so'
+entry.add(2, 3);
 ```
 
 ## Indirect Import
 
 ### Export as Named Variables and Import
 ```ts
+// index.d.ts corresponding to libentry.so
+export const add: (a: number, b: number) => number;
+```
+```ts
 // test1.ets
-import hilog from '@ohos.hilog'
-export { hilog }
+// Encapsulate the API of libentry.so and export it.
+import { add } from 'libentry.so';
+export { add };
 ```
 ```ts
 // test2.ets
-import { hilog } from './test1'
-hilog.info(0x000, 'testTag', '%{public}s', 'test');
+// Import APIs from the intermediate module.
+import { add } from './test1';
+const result = add(2, 3);
 ```
 
 ### Export as Namespaces and Import
@@ -90,19 +102,19 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import('libentry.so').then((ns:ESObject) => {
-    ns.default.add(2, 3);
+import('libentry.so').then((entry:ESObject) => {
+    entry.default.add(2, 3);
 })
 ```
 ### Indirect Import
 ```ts
 // test1.ets
-import add from 'libentry.so'
-export { add }
+import entry from 'libentry.so'
+export { entry }
 
 // test2.ets
 import('./test1').then((ns:ESObject) => {
-    ns.add.add(2, 3);
+    ns.entry.add(2, 3);
 })
 ```
 
