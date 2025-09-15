@@ -570,6 +570,11 @@ libnative_rdb_ndk.z.so
        return;
     }
     OH_VObject *valueObject = OH_Rdb_CreateValueObject();
+    if (valueObject == NULL) {
+       OH_LOG_ERROR(LOG_APP, "CreateValueObject failed.");
+       predicates2->destroy(predicates2);
+       return;
+    }
     valueObject->putText(valueObject, "1");
     predicates2->equalTo(predicates2, "data4", valueObject);
     int64_t changes = -1;
@@ -659,6 +664,7 @@ libnative_rdb_ndk.z.so
         OH_LOG_ERROR(LOG_APP, "Put text failed, errCode: %{public}d", errCode);
         OH_Rdb_DestroyConfig(attachDbConfig);
         OH_Rdb_CloseStore(attachStore);
+        valueBucket->destroy(valueBucket);
         return;
     }
     errCode = valueBucket->putInt64(valueBucket, "AGE", 18);
@@ -666,6 +672,7 @@ libnative_rdb_ndk.z.so
         OH_LOG_ERROR(LOG_APP, "Put int64 failed, errCode: %{public}d", errCode);
         OH_Rdb_DestroyConfig(attachDbConfig);
         OH_Rdb_CloseStore(attachStore);
+        valueBucket->destroy(valueBucket);
         return;
     }
     errCode = valueBucket->putReal(valueBucket, "SALARY", 100.5);
@@ -673,6 +680,7 @@ libnative_rdb_ndk.z.so
         OH_LOG_ERROR(LOG_APP, "Put real failed, errCode: %{public}d", errCode);
         OH_Rdb_DestroyConfig(attachDbConfig);
         OH_Rdb_CloseStore(attachStore);
+        valueBucket->destroy(valueBucket);
         return;
     }
     uint8_t arr[] = {1, 2, 3, 4, 5};
@@ -682,6 +690,7 @@ libnative_rdb_ndk.z.so
         OH_LOG_ERROR(LOG_APP, "Put blob failed, errCode: %{public}d", errCode);
         OH_Rdb_DestroyConfig(attachDbConfig);
         OH_Rdb_CloseStore(attachStore);
+        valueBucket->destroy(valueBucket);
         return;
     }
     int rowId = OH_Rdb_Insert(attachStore, "EMPLOYEE", valueBucket);
@@ -692,13 +701,11 @@ libnative_rdb_ndk.z.so
     // 附加数据库
     size_t attachedNumber = 0;
     errCode = OH_Rdb_Attach(store_, attachDbConfig, "attach", 10, &attachedNumber);
-    
     OH_Rdb_DestroyConfig(attachDbConfig);
     if (errCode != OH_Rdb_ErrCode::RDB_OK) {
         OH_LOG_ERROR(LOG_APP, "Attach store failed, errCode: %{public}d", errCode);
         return;
     }
-    
     OH_Predicates *predicates = OH_Rdb_CreatePredicates("attach.EMPLOYEE");
     if (predicates == NULL) {
        OH_LOG_ERROR(LOG_APP, "CreatePredicates failed.");
@@ -708,25 +715,22 @@ libnative_rdb_ndk.z.so
     }
     char *colName[] = {};
     OH_Cursor *cursor = OH_Rdb_Query(store_, predicates, colName, 0);
-    
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         errCode = OH_Rdb_Detach(store_, "attach", 10, &attachedNumber);
         OH_LOG_INFO(LOG_APP, "Detach result: %{public}d", errCode);
+        predicates->destroy(predicates);
         return;
     }
-    
     int rowCount = -1;
     errCode = cursor->getRowCount(cursor, &rowCount);
-    
     if (errCode != OH_Rdb_ErrCode::RDB_OK) {
         OH_LOG_ERROR(LOG_APP, "Get row count failed, errCode: %{public}d", errCode);
     } else {
         OH_LOG_INFO(LOG_APP, "Query success, row count: %{public}d", rowCount);
     }
-    
     cursor->destroy(cursor);
-
+    predicates->destroy(predicates);
     // 分离数据库
     errCode = OH_Rdb_Detach(store_, "attach", 10, &attachedNumber);
     OH_LOG_INFO(LOG_APP, "Detach result: %{public}d", errCode);
