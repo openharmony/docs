@@ -244,7 +244,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
         storage.setOrCreate('storageSimpleProp', 121);
-        windowClass.loadContent('pages/Index', storage, (err: BusinessError) => {
+        subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
           subWindow.showWindow().then(() => {
             try {
               window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
@@ -317,7 +317,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
         storage.setOrCreate('storageSimpleProp', 121);
-        windowClass.loadContent('pages/Index', storage, (err: BusinessError) => {
+        subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
           subWindow.showWindow().then(() => {
             try {
               window.getLastWindow(this.context).then((topWindow) => {
