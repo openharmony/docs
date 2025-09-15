@@ -166,9 +166,9 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 以下示例代码介绍了如何将多模触摸事件注入目标窗口，以单次事件注入为例。
 
 ```c++
+#include "napi/native_api.h"
 #include "window_manager/oh_window.h"
 #include "multimodalinput/oh_input_manager.h"
-#include "napi/native_api.h"
 
 static napi_value injectEvent(napi_env env, napi_callback_info info) {
   size_t argc = 1;
