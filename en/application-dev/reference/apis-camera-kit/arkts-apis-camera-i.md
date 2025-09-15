@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -24,7 +25,7 @@ Describes the camera device information.
 | cameraType                      | [CameraType](arkts-apis-camera-e.md#cameratype)           | Yes  | No | Camera type.   |
 | connectionType                  | [ConnectionType](arkts-apis-camera-e.md#connectiontype)   | Yes  | No | Camera connection type.|
 | cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Camera installation angle, which does not change as the screen rotates. The value ranges from 0° to 360°, measured in degrees.|
-| hostDeviceName<sup>15+</sup>    | string                              | Yes  | No | Remote device name.|
+| hostDeviceName<sup>15+</sup>    | string                              | Yes  | No | Remote device name. If no remote device is available, null is returned.|
 | hostDeviceType<sup>15+</sup>    | [HostDeviceType](arkts-apis-camera-e.md#hostdevicetype15) | Yes  | No | Remote device type.|
 
 ## CameraStatusInfo
@@ -76,8 +77,8 @@ Describes the frame rate range.
 
 | Name     | Type                         | Read-only| Optional| Description           |
 | -------- | ----------------------------- |----- |---| -------------- |
-| min      | number                        |  Yes | No| Minimum frame rate.     |
-| max      | number                        |  Yes | No| Maximum frame rate.     |
+| min      | number                        |  Yes | No| Minimum frame rate, in fps.     |
+| max      | number                        |  Yes | No| Maximum frame rate, in fps.     |
 
 ## VideoProfile
 
@@ -122,7 +123,7 @@ Describes the flashlight status information.
 
 ## Size
 
-Describes the output capability.
+Describes the image dimensions.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -171,8 +172,8 @@ Describes the geolocation information.
 
 | Name         | Type  | Read-only| Optional |Description        |
 | ------------ | ------ | ---- |-----|------------ |
-| latitude     | number |  No | No  |Latitude, in degrees.   |
-| longitude    | number |  No | No  |Longitude, in degrees.   |
+| latitude     | number |  No | No  |Latitude, in degrees, within the range [-90, 90].   |
+| longitude    | number |  No | No  |Longitude, in degrees, within the range [-180, 180].   |
 | altitude     | number |  No | No  |Altitude, in meters.   |
 
 ## PhotoCaptureSetting
@@ -183,11 +184,11 @@ Describes the settings for taking an image.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type                           | Read-only| Optional| Description                                                                                                                          |
-| -------- | ------------------------------- | ---- | ---- |------------------------------------------------------------------------------------------------------------------------------|
-| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | No  | Yes  | Image quality (low by default).                                                                                                                  |
-| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | No  | Yes  | Rotation angle of the image. The default value is **0**, indicating clockwise rotation.                                                                                                         |
-| location | [Location](#location)           | No  | Yes  | Geolocation information of the image (depending on the device hardware information by default).                                                                                                      |
+| Name     | Type                           | Read-only| Optional| Description                                                                  |
+| -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
+| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | No  | Yes  | Image quality (low by default).                                                          |
+| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | No  | Yes  | Rotation angle of the image. The default value is **0**, indicating clockwise rotation.                                                 |
+| location | [Location](#location)           | No  | Yes  | Geolocation information of the image (depending on the device hardware information by default).                                              |
 | mirror   | boolean                         | No  | Yes  | Whether mirror photography is enabled (disabled by default). Before using this enumerated value, call [isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported) to check whether mirror photography is supported. **true** if enabled, **false** otherwise.|
 
 ## FrameShutterInfo
@@ -201,7 +202,7 @@ Describes the frame shutter information.
 | Name      | Type  | Read-only| Optional| Description       |
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | No  | No  | ID of this capture action.|
-| timestamp | number | No  | No  | Timestamp when the frame shutter event is triggered.|
+| timestamp | number | No  | No  | Timestamp of the shutter, in milliseconds.|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -256,7 +257,7 @@ Describes the information about the automatic camera switch status.
 
 ## Rect
 
-Describes a rectangle.
+Describes a rectangle. The coordinate system for the returned detection points is based on the landscape device orientation, with the charging port on the right. In this coordinate system, the top-left corner is (0, 0), and the bottom-right corner is (1, 1). Here, **topLeftX** and **topLeftY** represent the coordinates of the top-left corner of the rectangle, whereas **width** and **height** represent the width and height of the rectangle, respectively. When cropping or selecting a face region based on specific requirements, the x and y coordinates of the rectangle must be multiplied by the width and height of the actual camera output stream to obtain the cropped face region.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -264,8 +265,8 @@ Describes a rectangle.
 
 | Name     | Type  |  Read-only | Optional |           Description        |
 | -------- | ------ | ------ |-----| --------------------- |
-| topLeftX | number |   No  | No  | X-axis coordinate of the upper left corner of the rectangle.  |
-| topLeftY | number |   No  | No  | Y-axis coordinate of the upper left corner of the rectangle.  |
+| topLeftX | number |   No  | No  | X-axis coordinate of the top-left corner of the rectangle.  |
+| topLeftY | number |   No  | No  | Y-axis coordinate of the top-left corner of the rectangle.  |
 | width    | number |   No  | No  | Width of the rectangle, which is a relative value. The value range is [0, 1]. |
 | height   | number |   No  | No  | Height of the rectangle, which is a relative value. The value range is [0, 1]. |
 

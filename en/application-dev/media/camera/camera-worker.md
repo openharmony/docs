@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 [Worker](../../arkts-utils/worker-introduction.md) is mainly used to offer applications a multithreaded environment. It enables applications to perform time-consuming operations in background threads. This greatly prevents computing-intensive or high-latency tasks from blocking the running of the main thread.
 
@@ -24,7 +25,7 @@ When using camera capabilities, you often need to create camera sessions and con
      private imageWidth: number = 1920;
      private imageHeight: number = 1080;
      private cameraManager: camera.CameraManager | undefined = undefined;
-     private cameras: Array<camera.CameraDevice> | Array<camera.CameraDevice> = [];
+     private cameras: Array<camera.CameraDevice> = [];
      private cameraInput: camera.CameraInput | undefined = undefined;
      private previewOutput: camera.PreviewOutput | undefined = undefined;
      private photoOutput: camera.PhotoOutput | undefined = undefined;
@@ -42,7 +43,10 @@ When using camera capabilities, you often need to create camera sessions and con
            return;
          }
          this.cameras = this.cameraManager.getSupportedCameras();
-   
+         if (!this.cameras || this.cameras.length <= 0) {
+           console.error("cameraManager.getSupportedCameras error");
+           return;
+         }
          // Create a cameraInput object.
          this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
          if (this.cameraInput === undefined) {
@@ -63,6 +67,7 @@ When using camera capabilities, you often need to create camera sessions and con
          this.previewOutput = this.cameraManager.createPreviewOutput(previewProfile, surfaceId);
          if (this.previewOutput === undefined) {
            console.error('Failed to create the preview stream.');
+           this.releaseCamera();
            return;
          }
    
@@ -77,11 +82,18 @@ When using camera capabilities, you often need to create camera sessions and con
          this.photoOutput = this.cameraManager.createPhotoOutput(photoProfile);
          if (this.photoOutput === undefined) {
            console.error('Failed to create the photoOutput.');
+           this.releaseCamera();
            return;
          }
    
          // Create a camera session and start the session.
-         this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+         let session = this.cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+         if (!session) {
+           console.error('session is null');
+           this.releaseCamera();
+           return;
+         }
+         this.session = session as camera.PhotoSession;
          this.session.beginConfig();
          this.session.addInput(this.cameraInput);
          this.session.addOutput(this.previewOutput);
@@ -91,27 +103,23 @@ When using camera capabilities, you often need to create camera sessions and con
        } catch (error) {
          let err = error as BusinessError;
          console.error(`initCamera fail: ${err}`);
+         this.releaseCamera();
        }
      }
    
      // Release the camera resource.
      async releaseCamera(): Promise<void> {
        console.info('releaseCamera is called');
-       try {
-         await this.previewOutput?.release();
-         await this.photoOutput?.release();
-         await this.session?.release();
-         await this.cameraInput?.close();
-       } catch (error) {
-         let err = error as BusinessError;
-         console.error(`releaseCamera fail: error: ${err}`);
-       } finally {
-         this.previewOutput = undefined;
-         this.photoOutput = undefined;
-         this.cameraManager = undefined;
-         this.session = undefined;
-         this.cameraInput = undefined;
-       }
+       // Stop the session.
+       await this.session?.stop().catch((e: BusinessError) => {console.error('Failed to stop session: ', e)});
+       // Release the camera input stream.
+       await this.cameraInput?.close().catch((e: BusinessError) => {console.error('Failed to close the camera: ', e)});
+       // Release the preview output stream.
+       await this.previewOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the preview stream: ', e)});
+       // Release the photo output stream.
+       await this.photoOutput?.release().catch((e: BusinessError) => {console.error('Stop Photo Stream Failure: ', e)});
+       // Release the session.
+       await this.session?.release().catch((e: BusinessError) => {console.error('Failed to release session: ', e)});
        console.info('releaseCamera success');
      }
    }

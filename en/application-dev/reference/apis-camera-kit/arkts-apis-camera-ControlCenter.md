@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -12,7 +13,7 @@
 
 ControlCenter inherits from [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.md).
 
-It is a class used to enable the camera controller.
+It is used to enable the camera controller.
 
 ## Modules to Import
 

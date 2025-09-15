@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -248,7 +249,7 @@ Sets a frame rate range for preview streams. The range must be within the suppor
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | Yes  | Minimum frame rate, in fps.|
+| minFps   | number        | Yes  | Minimum frame rate, in fps. When the maximum value is less than the minimum value, the API does not take effect.|
 | maxFps   | number        | Yes  | Maximum frame rate, in fps. When the minimum value is greater than the maximum value, the API does not take effect.|
 
 **Error codes**
@@ -345,7 +346,7 @@ Obtains the preview rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
 - Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
-- Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+- Screen orientation: The top-left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -406,7 +407,7 @@ Sets the preview rotation degree.
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | previewRotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation)  | Yes  | Preview rotation angle.|
-| isDisplayLocked | boolean  | No  | Whether the display is locked.|
+| isDisplayLocked | boolean  | No  | Whether the orientation of the surface is locked when the screen rotates. If this parameter is not set, the default value **false** is used, indicating that the orientation is not locked. **true** if locked, **false** otherwise. For details, see [SurfaceRotationOptions](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#surfacerotationoptions12).|
 
 **Error codes**
 
@@ -451,7 +452,7 @@ Starts to output preview streams. This API uses an asynchronous callback to retu
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the preview stream output starts successfully, **err** is **undefined**; otherwise, **err** is an error object with an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -533,7 +534,7 @@ Stops outputting preview streams. This API uses an asynchronous callback to retu
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the preview stream output stops successfully, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 

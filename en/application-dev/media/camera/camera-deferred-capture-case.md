@@ -2,10 +2,11 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete deferred photo delivery process to help you understand the complete API calling sequence.
 
@@ -17,7 +18,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 ![deferred-capture-development-process](figures/deferred-capture-development-process.png)
 
-## Sample Code
+## Complete Sample Code
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -73,19 +74,20 @@ async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): void {
   // After the callback is set, call capture() of photoOutput to trigger the callback upon the receiving of a low-quality image.
-  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+  photoOutput.on('photoAssetAvailable', async (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): Promise<void> => {
     console.info('getPhotoAsset start');
-    console.info(`err: ${JSON.stringify(err)}`);
+    console.error(`err: ${err}`);
     if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
       console.error('getPhotoAsset failed');
       return;
     }
     // Call the mediaLibrary flush API to save the low-quality image in the first phase. After the real image in the second phase is ready, the mediaLibrary proactively replaces the image flushed.
-    mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
+    await mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
     // Call the mediaLibrary API to register the buffer callback to receive low-quality or high-quality images for custom processing.
-    mediaLibRequestBuffer(photoAsset, context);
+    // mediaLibRequestBuffer(photoAsset, context);
   });
 }
+
 
 async function deferredCaptureCase(context: Context, surfaceId: string): Promise<void> {
   // Create a CameraManager object.
@@ -133,7 +135,7 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.error(`Camera input error code: ${error.code}`);
-  })
+  });
 
   // Open the camera.
   await cameraInput.open();
@@ -337,14 +339,14 @@ async function releaseCamSession() {
   // Stop the session.
   await photoSession?.stop();
 
-  // Release the camera input stream.
-  await cameraInput?.close();
+  // Release the photo output stream.
+  await photoOutput?.release();
 
   // Release the preview output stream.
   await previewOutput?.release();
 
-  // Release the photo output stream.
-  await photoOutput?.release();
+  // Release the camera input stream.
+  await cameraInput?.close();
 
   // Release the session.
   await photoSession?.release();
@@ -396,7 +398,7 @@ struct Index {
               console.info(`onLoad surfaceId: ${this.surfaceId}`);
               deferredCaptureCase(this.context, this.surfaceId);
             }
-          })// The width and height of the surface are opposite to those of the XComponent.
+          })
           .renderFit(RenderFit.RESIZE_CONTAIN)
         }
       }

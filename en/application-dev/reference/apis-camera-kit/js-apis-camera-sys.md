@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The module provides a set of camera service APIs for you to easily develop a camera application. The application can access and operate the camera hardware to implement basic operations, such as preview, taking photos, and recording videos. It can also perform more operations, for example, controlling the flash and exposure time, and focusing or adjusting the focus.
 
@@ -465,6 +466,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { camera } from '@kit.CameraKit';
 
 function preLaunch(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -753,7 +755,7 @@ Implements depth data output. It inherits from [CameraOutput](arkts-apis-camera-
 
 start(): Promise\<void\>
 
-Starts a depth data output stream. This API uses a promise to return the result.
+Starts depth data output. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -792,7 +794,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 
 stop(): Promise\<void\>
 
-Stops a depth data output stream. This API uses a promise to return the result.
+Stops depth data output. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -986,7 +988,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
   try {
     let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
-    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+    console.info('Indicate that isDepthFusionSupported method execution success.');
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
@@ -1065,15 +1067,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
-function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): boolean {
+  let isEnable: boolean = false;
   try {
-    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    isEnable = DepthFusion.isDepthFusionEnabled();
     console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
   };
+  return isEnable;
 }
 ```
 
@@ -1210,7 +1213,13 @@ async function preview(context: common.BaseContext, cameraDevice: camera.CameraD
   session.addOutput(previewOutput);
   session.addOutput(photoOutput);
   await session.commitConfig();
-  await session.start();
+  try {
+    await session.start();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`start session failed. error code: ${err.code}`);
+  }
   previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
@@ -1520,7 +1529,7 @@ function getThumbnail(proxyObj: camera.DeferredPhotoProxy): void {
 
 release(): Promise\<void\>
 
-Releases output resources. This API uses a promise to return the result.
+Releases depth data output resources. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1556,7 +1565,7 @@ Implements output information used in a photo session. It inherits from [CameraO
 
 burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
 
-Starts the burst mode, in which users can capture a series of photos in quick succession. This API is generally used in photo mode. After the burst mode starts, the bottom layer continues displaying photos. You can call [confirmCapture](#confirmcapture11) to cancel the burst mode.
+Starts the burst mode, in which users can capture a series of photos in quick succession. This API is generally used in photo mode. After the burst mode starts, the bottom layer continues displaying photos. You can call [confirmCapture](#confirmcapture11) to cancel the burst mode. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1921,6 +1930,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 function callback(err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
   proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
     AppStorage.setOrCreate('proxyThumbnail', thumbnail);
   });
@@ -1962,6 +1975,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function isQuickThumbnailSupported(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -1971,12 +1985,22 @@ async function isQuickThumbnailSupported(context: common.BaseContext, mode: came
   // Start configuration for the session.
   session.beginConfig();
   // Add a CameraInput instance to the session.
+  if (cameras.length <= 0) {
+    console.info('Get supported cameras is null or [].');
+    return false;
+  }
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
   // Add a PhotoOutput instance to the session.
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  session.addOutput(photoOutput);
+  try {
+    session.addOutput(photoOutput);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`AddOutput called failed. error code: ${err.code}`);
+    return false;
+  }
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   return isSupported;
 }
@@ -2016,6 +2040,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { camera } from '@kit.CameraKit';
 
 async function enableQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -2070,6 +2095,7 @@ The listening takes effect after **enableQuickThumbnail(true)** is called.
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { camera } from '@kit.CameraKit';
 
 function callback(err: BusinessError, pixelMap: image.PixelMap): void {
   if (err || pixelMap === undefined) {
@@ -2077,7 +2103,7 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       return;
   }
   // Display or save the PixelMap instance.
-  // do something.
+  // Execute the operation.
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
@@ -2151,7 +2177,7 @@ Adds the types of metadata objects to be detected.
 
 | Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
+| types  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
 
 **Error codes**
 
@@ -2192,7 +2218,7 @@ Removes the types of metadata objects to be detected.
 
 | Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
+| types  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
 
 **Error codes**
 
@@ -2250,7 +2276,7 @@ Enumerates the types of emotions in the detected human face information.
 
 ## MetadataObject
 
-Implements the basic metadata object used for camera detection. This class is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the basic metadata object used for camera detection. It is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2261,7 +2287,7 @@ Implements the basic metadata object used for camera detection. This class is th
 
 ## MetadataFaceObject<sup>13+</sup>
 
-Implements the human face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the human face metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2277,13 +2303,13 @@ Implements the human face metadata object used for camera detection. This class 
 
 ## MetadataHumanBodyObject<sup>13+</sup>
 
-Implements the human body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the human body metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataCatFaceObject<sup>13+</sup>
 
-Implements the cat face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the cat face metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2294,13 +2320,13 @@ Implements the cat face metadata object used for camera detection. This class in
 
 ## MetadataCatBodyObject<sup>13+</sup>
 
-Implements the cat body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the cat body metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataDogFaceObject<sup>13+</sup>
 
-Implements the dog face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the dog face metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2311,19 +2337,19 @@ Implements the dog face metadata object used for camera detection. This class in
 
 ## MetadataDogBodyObject<sup>13+</sup>
 
-Implements the dog body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the dog body metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataSalientDetectionObject<sup>13+</sup>
 
-Implements the salient detection metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the salient detection metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataBarcodeObject<sup>14+</sup>
 
-Implements the barcode metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
+Implements the barcode metadata object used for camera detection. It inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3636,82 +3662,6 @@ PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 Implements a photo session, which sets the parameters of the normal photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
-### on('macroStatusChanged')<sup>11+</sup>
-
-on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
-
-Subscribes to macro state change events. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory| Description                      |
-| -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. **true** if enabled, **false** otherwise. |
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID| Error Message                     |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function callback(err: BusinessError, macroStatus: boolean): void {
-  if (err !== undefined && err.code !== 0) {
-    console.error(`Callback Error, errorCode: ${err.code}`);
-    return;
-  }
-  console.info(`Macro state: ${macroStatus}`);
-}
-
-function registerMacroStatusChanged(photoSession: camera.PhotoSession): void {
-  photoSession.on('macroStatusChanged', callback);
-}
-```
-
-### off('macroStatusChanged')<sup>11+</sup>
-
-off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
-
-Unsubscribes from macro state change events.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                   | Mandatory| Description                      |
-| -------- | ------------------------ | ---- | ------------------------ |
-| type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. **true** if enabled, **false** otherwise. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID| Error Message                     |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**Example**
-
-```ts
-function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
-  photoSession.off('macroStatusChanged');
-}
-```
-
 ### on('featureDetection')<sup>12+</sup>
 
 on(type: 'featureDetection', featureType: SceneFeatureType, callback: AsyncCallback\<SceneFeatureDetectionResult\>): void
@@ -3917,82 +3867,6 @@ Implements a video session for system applications, which sets the parameters of
 VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
 Implements a video session, which sets the parameters of the normal video mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
-
-### on('macroStatusChanged')<sup>11+</sup>
-
-on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
-
-Subscribes to macro state change events. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory| Description                      |
-| -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. **true** if enabled, **false** otherwise. |
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID| Error Message                     |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function callback(err: BusinessError, macroStatus: boolean): void {
-  if (err !== undefined && err.code !== 0) {
-    console.error(`Callback Error, errorCode: ${err.code}`);
-    return;
-  }
-  console.info(`Macro state: ${macroStatus}`);
-}
-
-function registerMacroStatusChanged(videoSession: camera.VideoSession): void {
-  videoSession.on('macroStatusChanged', callback);
-}
-```
-
-### off('macroStatusChanged')<sup>11+</sup>
-
-off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
-
-Unsubscribes from macro state change events.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description                      |
-| -------- | ------------------------ | ---- | ------------------------ |
-| type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. **true** if enabled, **false** otherwise. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID| Error Message                     |
-|-------|---------------------------|
-| 202   | Not System Application.   |
-
-**Example**
-
-```ts
-function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
-  videoSession.off('macroStatusChanged');
-}
-```
 
 ### on('lcdFlashStatus')<sup>13+</sup>
 
@@ -4506,7 +4380,9 @@ function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-Implements a night photo session, which sets the parameters of the night photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
+Implements a night photo session, which sets the parameters of the night photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md), [CameraOutput](arkts-apis-camera-CameraOutput.md), and [PhotoOutput](arkts-apis-camera-PhotoOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
+
+For night photo capture scenarios, you must listen for the [onCaptureEnd](arkts-apis-camera-PhotoOutput.md#oncaptureend) event to mark the end of the photo capture session.
 
 ### on('error')<sup>11+</sup>
 
@@ -5921,10 +5797,8 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
-  let isFocusAssistOpened: boolean;
+  let isFocusAssistOpened: boolean = false;
   try {
     isFocusAssistOpened = professionalPhotoSession.getFocusAssist();
   } catch (error) {
@@ -6128,7 +6002,7 @@ Sets the manual focus distance.
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0, 1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.|
+| distance | number | Yes  | Manual focus distance. The value is a floating-point number in the range [0, 1]. The value **0** indicates a close-up shot, and **1** indicates a long shot. |
 
 **Error codes**
 

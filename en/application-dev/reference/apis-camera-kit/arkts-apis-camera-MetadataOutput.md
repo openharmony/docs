@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -31,7 +32,7 @@ Starts to output metadata. This API uses an asynchronous callback to return the 
 
 | Name    | Type                                                        | Mandatory| Description                |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\>       | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\>       | Yes  | Callback used to return the result. If the metadata output starts successfully, **err** is **undefined**; otherwise, **err** is an error object with an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -92,7 +93,7 @@ function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start().then(() => {
     console.info('Callback returned with metadata output started.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to metadata output stop, error code: ${error.code}`);
+    console.error(`Failed to metadata output start, error code: ${error.code}`);
   });
 }
 ```
@@ -111,7 +112,7 @@ Stops outputting metadata. This API uses an asynchronous callback to return the 
 
 | Name    | Type                        | Mandatory| Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\>       | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\>       | Yes  | Callback used to return the result. If the metadata output stops successfully, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
