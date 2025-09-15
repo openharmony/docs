@@ -349,18 +349,18 @@ HID DDK错误码定义。
 
 | 枚举项 | 描述 |
 | -- | -- |
-| HID_DDK_SUCCESS = 0 | 操作成功 |
-| HID_DDK_NO_PERM = 201 | 没有权限，从API 16起，取值由-6变更为201 |
-| HID_DDK_INVALID_PARAMETER = 401 | 非法参数，从API 16起，取值由-2变更为401 |
-| HID_DDK_FAILURE = 27300001 | 操作失败，从API 16起，取值由-1变更为27300001 |
-| HID_DDK_NULL_PTR = 27300002 | 空指针异常，从API 16起，取值由-4变更为27300002 |
-| HID_DDK_INVALID_OPERATION = 27300003 | 非法操作，从API 16起，取值由-3变更为27300003 |
-| HID_DDK_TIMEOUT = 27300004 | 超时，从API 16起，取值由-5变更为27300004 |
-| HID_DDK_INIT_ERROR = 27300005 | 初始化DDK失败或DDK未初始化。，从API 16开始支持此枚举 |
-| HID_DDK_SERVICE_ERROR = 27300006 | 服务通信过程中错误，从API 16开始支持此枚举 |
-| HID_DDK_MEMORY_ERROR  = 27300007 | 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等，从API 16开始支持此枚举 |
-| HID_DDK_IO_ERROR = 27300008 | I/O操作失败，从API 16开始支持此枚举 |
-| HID_DDK_DEVICE_NOT_FOUND = 27300009 | 设备未找到，从API 16开始支持此枚举 |
+| HID_DDK_SUCCESS = 0 | 操作成功。 |
+| HID_DDK_NO_PERM = 201 | 没有权限，从API 16起，取值由-6变更为201。 |
+| HID_DDK_INVALID_PARAMETER = 401 | 非法参数，从API 16起，取值由-2变更为401。 |
+| HID_DDK_FAILURE = 27300001 | 操作失败，从API 16起，取值由-1变更为27300001。 |
+| HID_DDK_NULL_PTR = 27300002 | 空指针异常，从API 16起，取值由-4变更为27300002。 |
+| HID_DDK_INVALID_OPERATION = 27300003 | 非法操作，从API 16起，取值由-3变更为27300003。 |
+| HID_DDK_TIMEOUT = 27300004 | 超时，从API 16起，取值由-5变更为27300004。 |
+| HID_DDK_INIT_ERROR = 27300005 | 初始化DDK失败或DDK未初始化。<br> **起始版本：** 18 |
+| HID_DDK_SERVICE_ERROR = 27300006 | 服务通信过程中错误。<br> **起始版本：** 18 |
+| HID_DDK_MEMORY_ERROR  = 27300007 | 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。<br> **起始版本：** 18 |
+| HID_DDK_IO_ERROR = 27300008 | I/O操作失败。<br> **起始版本：** 18 |
+| HID_DDK_DEVICE_NOT_FOUND = 27300009 | 设备未找到。<br> **起始版本：** 18 |
 
 ### Hid_ReportType
 
