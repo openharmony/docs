@@ -63,7 +63,6 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.BundleManager.BundleFramework.Resource
 - SystemCapability.BundleManager.Zlib
 - SystemCapability.Applications.CalendarData
-- SystemCapability.Notification.CommonEvent
 - SystemCapability.Customization.ConfigPolicy
 - SystemCapability.Customization.CustomConfig
 - SystemCapability.Security.CryptoFramework
@@ -88,12 +87,13 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 - SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 - SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
+- SystemCapability.Notification.CommonEvent
 - SystemCapability.Notification.Notification
-- SystemCapability.Notification.NotificationSettings
 - SystemCapability.Notification.ReminderAgent
+- SystemCapability.Notification.NotificationSettings
+- SystemCapability.Notification.Emitter
 - SystemCapability.Multimedia.Drm.Core
 - SystemCapability.Utils.Lang
-- SystemCapability.Notification.Emitter
 - SystemCapability.Resourceschedule.Ffrt.Core
 - SystemCapability.Graphic.Graphic2D.ColorManager.Core
 - SystemCapability.Graphic.Graphic2D.EGL
