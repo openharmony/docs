@@ -273,7 +273,7 @@ send(data: Record\<string, Object\>): void
 
 | 参数名  | 类型                                     | 必填   | 说明            |
 | ---- | ---------------------------------------- | ---- | --------------- |
-| data | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。 |
+| data | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。API version 18之前的版本，data的类型为Object。 |
 
 ### sendSync<sup>11+</sup>
 
@@ -442,6 +442,9 @@ struct Second {
           .onReceive((data) => {
             console.info('Lee onReceive, for test');
             this.message3 = JSON.stringify(data['data']);
+          })
+          .onError((info) => {
+            console.error(`onError: code = ${info.code}`);
           })
           .onTerminated((info) => {
             console.info('onTerminated: code =' + info.code + ', want = ' + JSON.stringify(info.want));

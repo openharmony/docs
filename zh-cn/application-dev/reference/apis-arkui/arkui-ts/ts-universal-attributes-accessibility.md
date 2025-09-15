@@ -252,7 +252,7 @@ accessibilitySelected(isSelect: boolean):T
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为：<br/>true：当前组件被选中。<br/>false：当前组件未被选中。<br/>undefined：由组件自行确定选中状态。<br/>默认值：undefined <br/>**说明：**<br/>1. [accessibilityChecked](ts-universal-attributes-accessibility.md#accessibilitychecked13)属性代表组件是多选模式，而accessibilitySelected属性代表组件是单选模式，组件不能同时存在两种选择模式，会造成无障碍状态冲突，导致屏幕朗读等无障碍辅助应用无法正确识别选中状态。如使用当前接口设置组件为单选模式（true、false），则需要保证未使用accessibilityChecked函数设置属性为true或者false，如果已设置，需使用accessibilityChecked函数设置accessibilityChecked属性为undefined模式。 |
+| isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为：<br/>true：当前组件被选中。<br/>false：当前组件未被选中。<br/>undefined：由组件自行确定选中状态。<br/>默认值：undefined <br/>**说明：**<br/>1. [accessibilityChecked](ts-universal-attributes-accessibility.md#accessibilitychecked13)属性代表组件是多选模式，而accessibilitySelected属性代表组件是单选模式，组件不能同时存在两种选择模式，会造成无障碍状态冲突，导致屏幕朗读等无障碍辅助应用无法正确识别选中状态。<br/>如使用当前接口设置组件为单选模式（true、false），则需要保证未使用accessibilityChecked函数设置属性为true或者false；<br/>如果已设置，需使用accessibilityChecked函数设置accessibilityChecked属性为undefined模式。 |
 
 **返回值：**
 
@@ -473,6 +473,8 @@ accessibilityDefaultFocus(focus: boolean):T
 ## accessibilityUseSamePage<sup>18+</sup>
 
 accessibilityUseSamePage(pageMode: AccessibilitySamePageMode):T
+
+设置当前组件和宿主应用为同page模式。
 
 针对跨进程嵌入式显示的组件，例如[EmbeddedComponent](ts-container-embedded-component.md)，其子树场景中出现的跳焦问题，可通过设置accessibilityUseSamePage属性解决。因跨进程嵌入式显示的组件启动进程的page事件与宿主page事件发送时序不一致，可能导致焦点从当前组件移至另一组件，此现象称为“跳焦”。
 
