@@ -1167,7 +1167,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持一个UIAbility下申请多个不同类型的长时任务，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（个别类型没有通知，如TASK_KEEPING，系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）。
+申请长时任务，支持一个UIAbility下申请多个不同类型的长时任务，使用promise异步回调。同一时间最多可存在10个，长时任务申请成功后，会有通知栏消息，没有提示音（个别类型没有通知，如TASK_KEEPING，系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
