@@ -71,14 +71,14 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-4. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码。
-     
+4. 配置session，完成后通过调用[OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start)方法输出metadata数据。接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode)。
+
    ```c++
-   Camera_ErrorCode StartMetadataOutput(Camera_MetadataOutput* metadataOutput)
+   Camera_ErrorCode SessionStart(Camera_CaptureSession* captureSession)
    {
-       Camera_ErrorCode ret = OH_MetadataOutput_Start(metadataOutput);
+       Camera_ErrorCode ret = OH_CaptureSession_Start(captureSession);
        if (ret != CAMERA_OK) {
-           OH_LOG_ERROR(LOG_APP, "OH_MetadataOutput_Start failed.");
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
        }
        return ret;
    }
