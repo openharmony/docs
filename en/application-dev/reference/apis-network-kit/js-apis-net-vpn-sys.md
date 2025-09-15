@@ -1,5 +1,12 @@
 # @ohos.net.vpn (VPN Management) (System API)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 The **vpn** module implements virtual private network (VPN) management, such as starting and stopping a VPN.
 This module is the built-in VPN function provided by the OS. It allows users to set up VPN connections through the network settings of the OS. Generally, this module provides only limited functions and is subject to strict restrictions.
 
@@ -27,7 +34,7 @@ Creates a VPN connection.
 
 | Name | Type                                                                            | Mandatory| Description        |
 | ------- | -------------------------------------------------------------------------------- | ---- | ------------ |
-| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | Yes  | Specified context.|
+| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | Specified context.|
 
 **Return value**
 
@@ -45,6 +52,11 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 | 401       | Parameter error.                                 |
 
 **Example**
+
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
 ```ts
@@ -54,7 +66,7 @@ import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   functiontest()
   {
@@ -104,6 +116,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -112,7 +128,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -127,7 +143,7 @@ struct Index {
       dnsAddresses: ["114.114.114.114"]
     }
     this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
-      console.info(JSON.stringify(error));
+      console.error(JSON.stringify(error));
       console.info("tunfd: " + JSON.stringify(data));
     });
   }
@@ -176,6 +192,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -184,7 +204,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -201,7 +221,7 @@ struct Index {
     this.VpnConnection.setUp(config).then((data: number) => {
       console.info("setUp success, tunfd: " + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.info("setUp fail" + JSON.stringify(err));
+      console.error("setUp fail" + JSON.stringify(err));
     });
   }
   build() { }
@@ -243,6 +263,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { socket, vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -251,7 +275,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -272,7 +296,7 @@ struct Index {
     tcp.getSocketFd().then((tunnelfd: number) => {
       console.info("tunenlfd: " + tunnelfd);
       this.VpnConnection.protect(tunnelfd, (error: BusinessError) => {
-        console.info(JSON.stringify(error));
+        console.error(JSON.stringify(error));
       });
     });
   }
@@ -320,6 +344,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { socket, vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -328,7 +356,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -351,7 +379,7 @@ struct Index {
       this.VpnConnection.protect(tunnelfd).then(() => {
         console.info("protect success.");
       }).catch((err: BusinessError) => {
-        console.info("protect fail" + JSON.stringify(err));
+        console.error("protect fail" + JSON.stringify(err));
       });
     });
   }
@@ -391,6 +419,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -399,11 +431,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy((error: BusinessError) => {
-      console.info(JSON.stringify(error));
+      console.error(JSON.stringify(error));
     });
   }
   build() { }
@@ -442,6 +474,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -450,13 +486,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((err: BusinessError) => {
-      console.info("destroy fail" + JSON.stringify(err));
+      console.error("destroy fail" + JSON.stringify(err));
     });
   }
   build() { }
@@ -471,16 +507,16 @@ Defines the VPN configuration.
 
 **System capability**: SystemCapability.Communication.NetManager.Vpn
 
-| Name               | Type                                                          | Mandatory| Description                               |
-| ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
-| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | Yes  | IP address of the vNIC.           |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC.           |
-| dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server.               |
-| searchDomains       | Array\<string\>                                                | No  | List of DNS search domains.                 |
-| mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes.    |
-| isIPv4Accepted      | boolean                                                        | No  | Whether IPv4 is supported. The default value is **true**.     |
-| isIPv6Accepted      | boolean                                                        | No  | Whether IPv6 is supported. The default value is **false**.    |
-| isLegacy            | boolean                                                        | No  | Whether the built-in VPN is supported. The default value is **false**.  |
-| isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
-| trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
-| blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
+| Name               | Type                                                          | Read-Only|Optional| Description                               |
+| ------------------- | -------------------------------------------------------------- | ---- | ---|----------------------------------- |
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | No  |No| IP address of the vNIC.           |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  |Yes|Route information of the vNIC.           |
+| dnsAddresses        | Array\<string\>                                                | No  |Yes|IP address of the DNS server.               |
+| searchDomains       | Array\<string\>                                                | No  | Yes|List of DNS search domains.                 |
+| mtu                 | number                                                         | No  |Yes|Maximum transmission unit (MTU), in bytes.    |
+| isIPv4Accepted      | boolean                                                        | No  | Yes| Whether IPv4 is supported. The default value is **true**.     |
+| isIPv6Accepted      | boolean                                                        | No  |Yes|Whether IPv6 is supported. The default value is **false**.    |
+| isLegacy            | boolean                                                        | No  |Yes|Whether the built-in VPN is supported. The default value is **false**.  |
+| isBlocking          | boolean                                                        | No  |Yes|Whether the blocking mode is used. The default value is **false**.      |
+| trustedApplications | Array\<string\>                                                | No  |Yes|List of trusted applications, which are represented by bundle names of the string type. |
+| blockedApplications | Array\<string\>                                                | No  |Yes|List of blocked applications, which are represented by bundle names of the string type. |

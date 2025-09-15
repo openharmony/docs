@@ -1,6 +1,6 @@
 # @ohos.net.netFirewall (Network Firewall)
 
-The **netFirewall** module implements the firewall query functionality. It allows applications to query the firewall interception records of the device.
+The **netFirewall** module implements the network firewall functionality for applications. It allows applications to query the firewall interception records of the device.
 
 
 > **NOTE**
@@ -10,7 +10,7 @@ The **netFirewall** module implements the firewall query functionality. It allow
 ## Modules to Import
 
 ```ts
-import { netfirewall } from '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 ```
 
 
@@ -53,7 +53,7 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallPolicy(100).then((result: netFirewall.NetFirewallPolicy) => {
@@ -108,7 +108,7 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRuleUpd: netFirewall.NetFirewallRule = {
@@ -116,7 +116,7 @@ let ipRuleUpd: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description update",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_IP,
   isEnabled: false,
   appUid: 20001,
@@ -155,7 +155,6 @@ Removes a firewall rule.
 
 | Name  | Type                            | Mandatory| Description                                        |
 | -------- | ----------------------------------- | ---- | -------------------------------------------- |
-| rule     | [NetFirewallRule](#netfirewallrule) | Yes  | Firewall rule.                                |
 | userId   | number                              | Yes  | Existing user ID.    |
 | ruleId   | number                              | Yes  | ID of the firewall rule.                              |
 
@@ -182,7 +181,7 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.removeNetFirewallRule(100, 1).then(() => {
@@ -231,7 +230,7 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ruleParam: netFirewall.RequestParam = {
@@ -240,7 +239,7 @@ let ruleParam: netFirewall.RequestParam = {
   orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RULE_NAME,
   orderType: netFirewall.NetFirewallOrderType.ORDER_ASC
 };
-netFirewall.getNetFirewallRules(100, ruleParam).then((result: netfirewall.FirewallRulePage) => {
+netFirewall.getNetFirewallRules(100, ruleParam).then((result: netFirewall.FirewallRulePage) => {
   console.info("result:", JSON.stringify(result));
 }, (error: BusinessError) => {
   console.error("get firewall rules failed: " + JSON.stringify(error));
@@ -287,7 +286,7 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallRule(100, 1).then((rule: netFirewall.NetFirewallRule) => {
@@ -336,7 +335,7 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -395,14 +394,14 @@ For details about the error codes, see [Network Connection Management Error Code
 **Example**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRule: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_IP,
   isEnabled: true,
   appUid: 20001,
@@ -456,7 +455,7 @@ let domainRule: netFirewall.NetFirewallRule = {
   name: "rule2",
   description: "rule2 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DOMAIN,
   isEnabled: true,
   appUid: 20002,
@@ -480,12 +479,14 @@ let dnsRule: netFirewall.NetFirewallRule = {
   name: "rule3",
   description: "rule3 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DNS,
   isEnabled: true,
   appUid: 20003,
-  primaryDns: "4.4.4.4",
-  standbyDns: "8.8.8.8",
+  dns:{
+   primaryDns: "4.4.4.4",
+   standbyDns: "8.8.8.8",
+  },
   userId: 100
 };
 netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
@@ -622,14 +623,14 @@ Enumerates firewall rule sorting orders.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Name       | Type  |Mandatory| Description                                                       |
-| ----------- | -------|----|------------------------------------------------------------ |
-| type        | number | Yes| IP address type. The value **1** indicates an IP address or subnet. When a single IP address is used, the mask is 32. The value **2** indicates an IP address segment.         |
-| family      | number | No| IP address family. The value **1** indicates IPv4 and value **2** indicates IPv6. The default value is IPv4. Other values are not supported.                 |
-| address     | string | No| IP address. This parameter is valid only when **type** is set to **1**.                  |
-| mask        | number | No| Subnet mask for an IPv4 address and prefix for an IPv6 address. This parameter is valid only when **type** is set to **1**.|
-| startIp     | string | No| Start IP address: This parameter is valid only when **type** is set to **2**.                  |
-| endIp       | string | No| End IP address: This parameter is valid only when **type** is set to **2**.                  |
+| Name       | Type  |Mandatory| Description                                            |
+| ----------- | -------|----|------------------------------------------------|
+| type        | number | Yes| **1**: IP address or subnet. When a single IP address is used, the mask is 32.<br>**2**: IP address segment.<br>|
+| family      | number | No| **1**: The IP address family is **IPv4**.<br>**2**: The IP address family is **IPv6**.<br>The default value is **IPv4**. Other values are not supported currently.     |
+| address     | string | No| IP address. This parameter is mandatory and valid only when type is set to **1**.                  |
+| mask        | number | No| IPv4: subnet mask.<br>IPv6: address prefix.<br>This parameter is mandatory and valid only when type is set to **1**.      |
+| startIp     | string | No| Start IP address. This parameter is mandatory and valid only when type is set to **2**.                        |
+| endIp       | string | No| End IP address. This parameter is mandatory and valid only when type is set to **2**.                       |
 
 ## NetFirewallPortParams
 

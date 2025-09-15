@@ -1,5 +1,12 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management) (System API)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
 Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options.
 
@@ -18,7 +25,7 @@ import { vpnExtension } from '@kit.NetworkKit';
 
 setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
-Enables or disables the **always on** mode.
+Enables or disables the **always on** mode. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -74,7 +81,7 @@ vpnExtension.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
 
 isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
-Obtains the status of the **always on** mode.
+Obtains the status of the **always on** mode. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -173,5 +180,5 @@ let want: Want = {
 };
 
 let result: boolean = vpnExtension.updateVpnAuthorizedState(want.bundleName);
-console.log("Result: "+ result);
+console.info("Result: "+ result);
 ```

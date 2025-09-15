@@ -1,5 +1,12 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN. Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options. Currently, the VPN capabilities provided to third-party applications are primarily used for creating virtual NICs and configuring VPN routing information. The connection tunnel process and internal connection protocols need to be implemented by the applications themselves.
 
 > **NOTE**
@@ -458,25 +465,121 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 }
 ```
 
+### destroy<sup>20+</sup>
+
+destroy(vpnId: string): Promise\<void\>
+  
+Destroys a VPN network based on the specified VPN ID. This API uses a promise to return the result.
+  
+**System capability**: SystemCapability.Communication.NetManager.Vpn
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                                                       |
+| -------- | ------ | ---- | ------------------------------------------------------------------------------------------- |
+| vpnId | string |  Yes | Unique VPN ID.|
+
+**Return value**
+
+| Type           | Description                                                 |
+| --------------- | ----------------------------------------------------- |
+| Promise\<void\> | Promise that returns no result.|
+
+**Error codes**
+
+For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 19900001       |  Invalid parameter value.  |
+| 19900002  |  System internal error.  |
+
+**Example**
+
+```ts
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
+export default class MyVpnExtAbility extends VpnExtensionAbility {
+  onCreate() {
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
+
+    // You can call generateVpnId() to obtain the VPN ID.
+    let vpnId = 'testVpnId';
+    vpnConnection.destroy(vpnId).then(() => {
+      console.info("destroy success");
+    }).catch((error: BusinessError) => {
+      console.error(`destroy fail, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
+
+### generateVpnId<sup>20+</sup>
+
+generateVpnId(): Promise\<string\>
+
+Generates a unique VPN ID. This API uses a promise to return the result.
+
+To use the multi-VPN capability of the system, you need to call this API to generate a VPN ID and configure it in **VpnConfig**.
+
+**System capability**: SystemCapability.Communication.NetManager.Vpn
+
+**Return value**
+
+| Type           | Description                                                 |
+| --------------- | ----------------------------------------------------- |
+| Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 19900001       |  Invalid parameter value.  |
+| 19900002  |  System internal error.  |
+
+**Example**
+
+```ts
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
+export default class MyVpnExtAbility extends VpnExtensionAbility {
+  onCreate() {
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
+    vpnConnection.generateVpnId().then((data) => {
+      if (data) {
+        console.info("generateVpnId success, vpnId = " + JSON.stringify(data));
+      }
+    }).catch((error: BusinessError) => {
+      console.error(`generateVpnId fail, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
+
 ## VpnConfig
 
 Defines the VPN configuration.
 
 **System capability**: SystemCapability.Communication.NetManager.Vpn
 
-| Name               | Type                                                          | Mandatory| Description                                            |
-| ------------------- | -------------------------------------------------------------- | ---- |------------------------------------------------|
-| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | Yes  | IP addresses of vNICs.                                 |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Routes of vNICs. Currently, a maximum of 1024 routes can be configured.                 |
-| dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server.                                   |
-| searchDomains       | Array\<string\>                                                | No  | List of DNS search domains.                                    |
-| mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes. The value range is [576,1500].              |
-| isIPv4Accepted      | boolean                                                        | No  | Whether IPv4 is supported. The value **true** indicates that the IPv4 is supported, and the value **false** indicates the opposite. The default value is **true**. |
-| isIPv6Accepted      | boolean                                                        | No  | Whether IPV6 is supported. The value **true** indicates that the IPV6 is supported, and the value **false** indicates the opposite. The default value is **false**.|
-| isInternal          | boolean                                                        | No  | Whether the built-in VPN is supported. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite. The default value is **false**.|
-| isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite. The default value is **false**.      |
-| trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by package names of the string type.                        |
-| blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by package names of the string type.                        |
+| Name            | Type                                     | Read-only| Optional| Description                                      |
+| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\>  | No | No| IP addresses of vNICs.                                 |
+| vpnId<sup>20+</sup>           | string | No| Yes| Unique VPN ID.| 
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>      | No | Yes| Routes of vNICs. Currently, a maximum of 1024 routes can be configured.                 |
+| dnsAddresses        | Array\<string\>                                                 | No | Yes| IP address of the DNS server. After the IP address is configured, when the VPN is active and proxy-enabled applications access the Internet, the configured DNS server will be used for DNS queries.                                   |
+| searchDomains       | Array\<string\>                                                | No | Yes| List of DNS search domains.                                    |
+| mtu                 | number                                                         | No | Yes| Maximum transmission unit (MTU), in bytes. The value range is [576,1500].              |
+| isIPv4Accepted      | boolean                                                         | No | Yes| Whether IPv4 is supported. The value **true** indicates that the IPv4 is supported, and the value **false** indicates the opposite. The default value is **true**. |
+| isIPv6Accepted      | boolean                                                         | No | Yes| Whether IPV6 is supported. The value **true** indicates that the IPV6 is supported, and the value **false** indicates the opposite. The default value is **false**.|
+| isInternal          | boolean                                                         | No | Yes| Whether the built-in VPN is supported. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite. The default value is **false**.|
+| isBlocking          | boolean                                                        | No | Yes| Whether the blocking mode is used. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite. The default value is **false**.      |
+| trustedApplications | Array\<string\>                                                | No | Yes| List of trusted applications, which are represented by package names of the string type. After such a list is configured, only the applications in the list can be proxied by the VPN according to the specified **routes**.<br>**Note**: Configure either **trustedApplications** or **blockedApplications** as they are mutually exclusive.                        |
+| blockedApplications | Array\<string\>                                                 | No | Yes| List of blocked applications, which are represented by package names of the string type. After such a list is configured, only applications that are not in the list can be proxied by the VPN according to the specified **routes**.<br>**Note**: Configure either **trustedApplications** or **blockedApplications** as they are mutually exclusive.                        |
 
 **Example**
 
@@ -485,6 +588,7 @@ import { vpnExtension} from '@kit.NetworkKit';
 
 let vpnConfig: vpnExtension.VpnConfig = {
   addresses: [],
+  vpnId: '123',
   routes: [{
     interface: "eth0",
     destination: {

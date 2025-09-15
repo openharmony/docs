@@ -1,4 +1,10 @@
-# Ethernet Connection (For System Applications Only)
+# Ethernet Connection Management (For System Applications Only)
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## Overview
 
@@ -49,31 +55,31 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
 ethernet.getAllActiveIfaces().then((data: string[]) => {
-  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  console.info("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
+    console.info("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // Call isIfaceActive to check whether the specified network port is active.
 ethernet.isIfaceActive("eth0").then((data: number) => {
-  console.log("isIfaceActive promise = " + JSON.stringify(data));
+  console.info("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // Call getIfaceConfig to obtain the network attributes of the specified Ethernet network.
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
-  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
-  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
-  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
-  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
-  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
-  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.info("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.info("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.info("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.info("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.info("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.info("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -95,19 +101,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
 ethernet.getAllActiveIfaces().then((data: string[]) => {
-  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  console.info("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
+    console.info("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // Call isIfaceActive to check whether the specified network port is active.
 ethernet.isIfaceActive("eth0").then((data: number) => {
-  console.log("isIfaceActive promise = " + JSON.stringify(data));
+  console.info("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // Call setIfaceConfig to configure the network attributes of the specified Ethernet network.
@@ -123,21 +129,21 @@ let config: ethernet.InterfaceConfiguration = {
 const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 
 setConfigPromise.then(() => {
-  console.log("setIfaceConfig promise ok");
+  console.info("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
-  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 
 // Call getIfaceConfig to obtain the network attributes of the specified Ethernet network.
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
-  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
-  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
-  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
-  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
-  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
-  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.info("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.info("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.info("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.info("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.info("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.info("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -161,7 +167,7 @@ class EthernetData{
 }
 
 ethernet.on('interfaceStateChange', (data: EthernetData) => {
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 
 // Unsubscribe from interfaceStateChange events.

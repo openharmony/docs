@@ -1,4 +1,10 @@
 # Introduction to Neural Network Runtime Kit
+<!--Kit: Neural Network Runtime Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
 
 ## Usage Scenario
 Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and underlying acceleration chips, implementing cross-chip inference computing for AI models.
@@ -49,3 +55,6 @@ Image composition is not required for interconnection between MindSpore Lite and
 
 In addition, MindSpore Lite supports heterogeneous model inference between general-purpose computing hardware (CPUs/GPUs) and dedicated AI acceleration hardware.
 <!--RP1End-->
+
+## Supported Emulators
+This kit does not support any emulators.
