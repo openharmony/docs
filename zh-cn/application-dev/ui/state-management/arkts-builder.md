@@ -12,7 +12,7 @@ ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，�
 
 在阅读本文档前，建议提前阅读：[基本语法概述](./arkts-basic-syntax-overview.md)、[声明式UI描述](./arkts-declarative-ui-description.md)、[自定义组件-创建自定义组件](./arkts-create-custom-components.md)。
 
-@Builder装饰器和@Component装饰器的区别：
+@Builder装饰器和@Component装饰器在功能和使用方式上的主要差异：
 
 1. @Builder装饰器用于封装可复用的UI结构，通过提取重复的布局代码提高开发效率。该装饰器严格禁止在其内部定义状态变量或使用生命周期函数，必须通过参数传递或者访问所属组件的状态变量完成数据交互。
 
@@ -93,7 +93,7 @@ struct BuilderDemo {
 }
 ```
 
-- 如果不涉及组件状态变化，建议使用全局的自定义构建函数。
+- 如果不涉及组件状态变量变化，建议使用全局的自定义构建函数。
 
 - 全局自定义构建函数允许在build函数和其他自定义构建函数中调用。
 
@@ -102,7 +102,7 @@ struct BuilderDemo {
 
 自定义构建函数的参数传递有[按值传递](#按值传递参数)和[按引用传递](#按引用传递参数)两种，均需遵守以下规则：
 
-- @Builder装饰的函数参数类型不允许为undefined、null和返回undefined、null的表达式。
+- \@Builder装饰的函数参数类型不允许为undefined、null和返回undefined、null的表达式。
 
 - 在\@Builder装饰的函数内部，不允许改变参数值。
 
@@ -173,11 +173,11 @@ struct Parent {
 
 2. \@Builder按引用传递且仅传入一个参数时，才会触发动态渲染UI。请参考[按引用传递参数](#按引用传递参数)。
 
-3. 如果\@Builder传入的参数是两个或两个以上，不会触发动态渲染UI，请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+3. 如果\@Builder传入的参数是两个或两个以上，不会触发动态渲染UI，请参考[@Builder存在两个或两个以上参数](#builder存在两个或两个以上参数)。
 
-4. \@Builder传入的参数中同时包含按值传递和按引用传递，不会触发动态渲染UI，请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+4. \@Builder传入的参数中同时包含按值传递和按引用传递，不会触发动态渲染UI，请参考[@Builder存在两个或两个以上参数](#builder存在两个或两个以上参数)。
 
-5. \@Builder的参数必须按照对象字面量的形式，把所需属性一一传入，才会触发动态渲染UI，请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+5. \@Builder的参数必须按照对象字面量的形式，把所需属性一一传入，才会触发动态渲染UI，请参考[@Builder存在两个或两个以上参数](#builder存在两个或两个以上参数)。
 
 
 ## 使用场景
@@ -238,7 +238,7 @@ struct PrivateBuilder {
 
 ### 全局自定义构建函数
 
-创建全局的\@Builder函数，在Column里面使用overBuilder()方式调用，通过以对象字面量的形式传递参数，无论是简单类型还是复杂类型，值的改变都会引起UI界面的刷新。
+创建全局的`@Builder`函数，并在`Column`中通过`overBuilder()`方式调用。传递参数时，可以使用对象字面量形式，无论是简单类型还是复杂类型，值的任何变化都会触发UI界面的刷新。
 
 ```ts
 class ChildTmp {
@@ -385,7 +385,7 @@ struct Parent {
 
 ![arkts-builder-usage-scenario3](figures/arkts-builder-usage-scenario3.gif)
 
-### 将@Builder装饰的函数当作customBuilder类型使用
+### 将@Builder装饰的函数当作CustomBuilder类型使用
 
 当参数类型为`CustomBuilder`时，可以传入定义的`@Builder`函数。因为`CustomBuilder`实际上是`Function(() => any)`或`void`类型，而`@Builder`也是`Function`类型。所以通过传入`@Builder`可以实现特定效果。
 全局`@Builder`函数当作`CustomBuilder`类型传递时需要绑定this上下文，开发者可以直接调用全局`@Builder`函数，编译工具链会自动生成绑定this上下文的代码。
@@ -450,7 +450,7 @@ struct customBuilderDemo {
 
 ### 多层\@Builder函数嵌套
 
-在\@Builder函数内调用自定义组件或者其他\@Builder函数，以实现多个\@Builder嵌套使用的场景，若要实现最内层的\@Builder动态UI刷新功能，必须要保证每层调用\@Builder的地方使用按引用传递的方式。这里的[`$$`](./arkts-two-way-sync.md)不是必须的参数形式，[`$$`](./arkts-two-way-sync.md)也可以换成其他名称。
+在\@Builder函数内调用自定义组件或其他\@Builder函数，实现多个\@Builder嵌套使用。若要实现最内层的\@Builder动态UI刷新功能，每层调用\@Builder的地方必须使用按引用传递的方式。这里`$$`不是必须的参数形式，可以换成其他名称。
 
 ```ts
 class Tmp {
@@ -587,8 +587,7 @@ struct Parent {
 
 ### \@Builder函数联合V2装饰器
 
-由`@ObservedV2`和`@Trace`装饰的类对象实例具备深度观测属性变化的能力。在`@ComponentV2`装饰的自定义组件中，当调用全局Builder或局部Builder且使用值传递的方式传递参数时，修改`@Trace`装饰的对象属性可以触发UI刷新。
-
+由[@ObservedV2](./arkts-new-observedV2-and-trace.md)和[@Trace](./arkts-new-observedV2-and-trace.md)装饰的类对象实例具备深度观测属性变化的能力。在`@ComponentV2`装饰的自定义组件中，当调用全局Builder或局部Builder且使用值传递的方式传递参数时，修改`@Trace`装饰的对象属性可以触发UI刷新。
 ```ts
 @ObservedV2
 class Info {
@@ -993,7 +992,7 @@ struct Single {
 
 ## 常见问题
 
-### \@Builder存在两个或者两个以上参数
+### @Builder存在两个或两个以上参数
 
 当存在两个或两个以上的参数时，即使通过对象字面量形式传递，值的改变也不会触发UI刷新。
 
@@ -1075,7 +1074,7 @@ struct Parent {
 }
 ```
 
-\@Builder只接受一个参数，当传入一个参数的时候，通过对象字面量的形式传递，值的改变会引起UI的刷新。
+\@Builder只接受一个参数。当传入一个参数的时候，通过对象字面量的形式传递，值的改变会引起UI的刷新。
 
 【正例】
 
@@ -1115,7 +1114,7 @@ struct Parent {
 
 ### 使用@ComponentV2装饰器触发动态刷新
 
-在@ComponentV2装饰器装饰的自定义组件中配合@ObservedV2和@Trace装饰器，通过按值传递的方式可以实现UI刷新功能。
+在@ComponentV2装饰的组件中，配合@ObservedV2和@Trace装饰器，通过按值传递实现UI刷新功能。
 
 【反例】
 
@@ -1374,7 +1373,7 @@ struct ParentPage {
 
 ### 在UI语句外调用\@Builder函数或方法影响节点正常刷新
 
-当\@Builder方法赋值给变量或者数组后，在UI方法中无法使用，且可能会造成刷新时节点显示异常。
+当\@Builder方法赋值给变量或者数组后，在UI方法中无法使用，且会造成刷新时节点显示异常。
 
 【反例】
 ```ts
@@ -1384,6 +1383,7 @@ struct BackGround {
   @Builder
   myImages() {
     Column() {
+      // 从应用media目录加载名为startIcon的图像资源。此处'app.media.startIcon'仅作示例，请开发者自行替换。
       Image($r('app.media.startIcon')).width('100%').height('100%')
     }
   };
@@ -1730,7 +1730,7 @@ struct Parent {
 
 ### 在\@Watch函数中执行\@Builder函数
 
-在\@Watch函数中执行\@Builder函数，可能导致UI刷新异常。
+在\@Watch函数中执行\@Builder函数，会导致UI刷新异常。
 
 【反例】
 ```ts
