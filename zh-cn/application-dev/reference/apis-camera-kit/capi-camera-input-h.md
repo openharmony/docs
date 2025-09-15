@@ -65,14 +65,17 @@ typedef void (*OH_CameraInput_OnError)(const Camera_Input* cameraInput, Camera_E
 
 | 参数项 | 描述 |
 | -- | -- |
-| [const Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | 传递回调的Camera_Input。 |
+| const [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | 传递回调的Camera_Input。 |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 相机输入的Camera_ErrorCode。 |
 
 **参考：**
 
 [CAMERA_CONFLICT_CAMERA](capi-camera-h.md#camera_errorcode)
+
 [CAMERA_DEVICE_DISABLED](capi-camera-h.md#camera_errorcode)
+
 [CAMERA_DEVICE_PREEMPTED](capi-camera-h.md#camera_errorcode)
+
 [CAMERA_SERVICE_FATAL_ERROR](capi-camera-h.md#camera_errorcode)
 
 
