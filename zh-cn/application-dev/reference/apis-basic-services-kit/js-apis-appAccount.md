@@ -5023,9 +5023,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称               | 类型            | 只读  | 可选   | 说明              |
 | -------------------- | -------------- | -----| ----- | ---------------- |
-| authType<sup>9+</sup>             | string         | 否 | 否    | 令牌的鉴权类型。   |
-| token<sup>9+</sup>                | string         | 否 | 否    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
+| authType            | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token               | string         | 否 | 否    | 令牌的取值。       |
+| account | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
