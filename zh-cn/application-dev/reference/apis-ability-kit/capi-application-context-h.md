@@ -42,8 +42,8 @@
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,AbilityRuntime_StartOptions *options)](#oh_abilityruntime_startselfuiabilitywithstartoptions) | 通过StartOptions启动当前应用的UIAbility。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)](#oh_abilityruntime_applicationcontextgetversioncode) | 获取应用版本号。 |
 | [AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithPidResult(AbilityBase_Want *want, AbilityRuntime_StartOptions *options, int32_t *targetPid)](#oh_abilityruntime_startselfuiabilitywithpidresult) | 通过StartOptions启动当前应用的UIAbility，并获取目标UIAbility的进程号。 |
-| [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(char* buffer, const int32_t bufferSize, int32_t* writeLength)](#oh_abilityruntime_applicationcontextgetlaunchparameter) | 查询本应用首次启动UIAbility的WantParams参数。|
-| [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(char* buffer, const int32_t bufferSize, int32_t* writeLength)](#oh_abilityruntime_applicationcontextgetlatestparameter)| 查询本应用最近一次启动UIAbility的WantParams参数。|
+| [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(char* buffer, const int32_t bufferSize, int32_t* writeLength)](#oh_abilityruntime_applicationcontextgetlaunchparameter) | 获取本应用首次启动UIAbility的WantParams参数。|
+| [AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(char* buffer, const int32_t bufferSize, int32_t* writeLength)](#oh_abilityruntime_applicationcontextgetlatestparameter)| 获取本应用最近一次启动UIAbility的WantParams参数。|
 
 ## 函数说明
 
@@ -557,7 +557,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(
 
 **描述**
 
-查询本应用首次启动UIAbility时的WantParams参数，WantParams可参考[Want中的parameters参数](js-apis-inner-ability-want.md)。
+获取本应用首次启动UIAbility时的WantParams参数，WantParams可参考[Want中的parameters参数](js-apis-inner-ability-want.md)。
 
 **起始版本：** 21
 
@@ -606,7 +606,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
 
 **描述**
 
-查询本应用最近一次启动UIAbility时的WantParams参数，WantParams可参考[Want中的parameters参数](js-apis-inner-ability-want.md)。
+获取本应用最近一次启动UIAbility时的WantParams参数，WantParams可参考[Want中的parameters参数](js-apis-inner-ability-want.md)。
 
 **起始版本：** 21
 
