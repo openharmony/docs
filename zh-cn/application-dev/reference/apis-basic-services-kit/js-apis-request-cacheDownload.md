@@ -26,7 +26,7 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 
 ## CacheDownloadOptions
 
-缓存下载的配置选项。例如：HTTP选项、传输选项、任务选项等。
+缓存下载的配置选项。包括HTTP选项、传输选项和任务选项。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
