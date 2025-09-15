@@ -464,7 +464,7 @@ let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
 promise.then((data: Array<display.Display>) => {
   displayClass = data;
-  console.info(`Succeeded in obtaining all the display objects. Data:  ${JSON.stringify(data)}`
+  console.info(`Succeeded in obtaining all the display objects. Data:  ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
