@@ -25,10 +25,10 @@ import { media } from '@kit.MediaKit';
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
-| 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称                                                | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移：0，字节长度：100。其文件描述为AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> 将资源句柄（fd）传递给AVMetadataExtractor实例之后，不允许通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个AVPlayer/AVMetadataExtractor/AVImageGenerator/AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频元数据获取异常。 |
-| dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](arkts-apis-media-i.md#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元数据。|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | 否   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移：0，字节长度：100。其文件描述为AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> 将资源句柄（fd）传递给AVMetadataExtractor实例之后，不允许通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个AVPlayer/AVMetadataExtractor/AVImageGenerator/AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频元数据获取异常。 |
+| dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](arkts-apis-media-i.md#avdatasrcdescriptor10)                | 否   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元数据。|
 
 ## setUrlSource<sup>20+</sup>
 
@@ -59,7 +59,7 @@ media.createAVMetadataExtractor(async (error: BusinessError, extractor: media.AV
     console.info('Succeeded in creating AVMetadataExtractor');
     let url = "http://xx";
     let headers: Record<string, string> = {
-      "User-Agent" : "User-Agent-Value"
+      "User-Agent": "User-Agent-Value"
     };
     avMetadataExtractor.setUrlSource(url, headers);
   } else {
@@ -108,14 +108,14 @@ import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-let pixel_map : image.PixelMap | undefined = undefined;
+let pixel_map: image.PixelMap | undefined = undefined;
 
 // 初始化入参。
 let timeUs: number = 0;
 let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_PREVIOUS_SYNC;
 let param: media.PixelMapParams = {
-  width : 300,
-  height : 300
+  width: 300,
+  height: 300
 };
 // 获取缩略图。
 media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
@@ -137,7 +137,7 @@ media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetada
 
 fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 
-异步方式获取媒体元数据。通过注册回调函数获取返回值。
+获取媒体元数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -179,7 +179,7 @@ async function test() {
 
 fetchMetadata(): Promise\<AVMetadata>
 
-异步方式获取媒体元数据。通过Promise获取返回值。
+获取媒体元数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -219,7 +219,7 @@ async function test() {
 
 fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
-异步方式获取音频专辑封面。通过注册回调函数获取返回值。
+获取音频专辑封面。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -248,7 +248,7 @@ import { media } from '@kit.MediaKit';
 async function test() {
   // 创建AVMetadataExtractor对象。
   let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-  let pixel_map : image.PixelMap | undefined = undefined;
+  let pixel_map: image.PixelMap | undefined = undefined;
 
   avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
     if (error) {
@@ -264,7 +264,7 @@ async function test() {
 
 fetchAlbumCover(): Promise\<image.PixelMap>
 
-异步方式获取专辑封面。通过Promise获取返回值。
+获取专辑封面。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -293,7 +293,7 @@ import { media } from '@kit.MediaKit';
 async function test() {
   // 创建AVMetadataExtractor对象。
   let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
-  let pixel_map : image.PixelMap | undefined = undefined;
+  let pixel_map: image.PixelMap | undefined = undefined;
 
   avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
     pixel_map = pixelMap;
@@ -307,7 +307,7 @@ async function test() {
 
 release(callback: AsyncCallback\<void>): void
 
-异步方式释放资源。通过注册回调函数获取返回值。
+释放资源。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -348,7 +348,7 @@ async function test() {
 
 release(): Promise\<void>
 
-异步方式释放资源。通过Promise获取返回值。
+释放资源。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 

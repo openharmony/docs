@@ -33,7 +33,7 @@ import { media } from '@kit.MediaKit';
 
 fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams, callback: AsyncCallback\<image.PixelMap>): void
 
-异步方式获取视频缩略图。通过注册回调函数获取返回值。
+获取视频缩略图。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -63,7 +63,7 @@ import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
-let pixel_map : image.PixelMap | undefined = undefined;
+let pixel_map: image.PixelMap | undefined = undefined;
 
 // 初始化入参。
 let timeUs: number = 0;
@@ -71,13 +71,13 @@ let timeUs: number = 0;
 let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
 
 let param: media.PixelMapParams = {
-  width : 300,
-  height : 300,
+  width: 300,
+  height: 300,
 };
 
 // 获取缩略图。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
+  if (generator != null) {
     avImageGenerator = generator;
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
@@ -88,8 +88,8 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       pixel_map = pixelMap;
     });
   } else {
-    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
-  };
+    console.error(`Failed to create AVImageGenerator, error message:${err.message}`);
+  }
 });
 ```
 
@@ -97,7 +97,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams): Promise<image.PixelMap>
 
-异步方式获取视频缩略图。通过Promise获取返回值。
+获取视频缩略图。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -132,7 +132,7 @@ import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
-let pixel_map : image.PixelMap | undefined = undefined;
+let pixel_map: image.PixelMap | undefined = undefined;
 
 // 初始化入参。
 let timeUs: number = 0;
@@ -140,13 +140,13 @@ let timeUs: number = 0;
 let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
 
 let param: media.PixelMapParams = {
-  width : 300,
-  height : 300,
+  width: 300,
+  height: 300,
 };
 
 // 获取缩略图。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
+  if (generator != null) {
     avImageGenerator = generator;
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
@@ -155,8 +155,8 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       console.error(`Failed to fetch FrameByTime, error message:${error.message}`);
     });
   } else {
-    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
-  };
+    console.error(`Failed to create AVImageGenerator, error message:${err.message}`);
+  }
 });
 ```
 
@@ -197,18 +197,19 @@ fetchScaledFrameByTime(timeUs: number, queryMode: AVImageQueryOptions, outputSiz
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
+
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
-let pixel_map : image.PixelMap | undefined = undefined;
+let pixel_map: image.PixelMap | undefined = undefined;
 // 初始化入参。
 let timeUs: number = 0;
 let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
 let outputSize: media.OutputSize = {
-  width : 300,
-  height : 300,
+  width: 300,
+  height: 300,
 };
 // 获取缩略图。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
+  if (generator != null) {
     avImageGenerator = generator;
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchScaledFrameByTime(timeUs, queryOption, outputSize).then((pixelMap: image.PixelMap) => {
@@ -217,8 +218,8 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       console.error(`Failed to fetch ScaledFrameByTime, error message:${error.message}`);
     });
   } else {
-    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
-  };
+    console.error(`Failed to create AVImageGenerator, error message:${err.message}`);
+  }
 });
 ```
 
@@ -226,7 +227,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 release(callback: AsyncCallback\<void>): void
 
-异步方式释放资源。通过注册回调函数获取返回值。
+释放资源。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -252,9 +253,9 @@ import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
-//释放资源。
+// 释放资源。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
+  if (generator != null) {
     avImageGenerator = generator;
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.release((error: BusinessError) => {
@@ -265,8 +266,8 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       console.info(`Succeeded in releasing`);
     });
   } else {
-    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
-  };
+    console.error(`Failed to create AVImageGenerator, error message:${err.message}`);
+  }
 });
 ```
 
@@ -274,7 +275,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 release(): Promise\<void>
 
-异步方式释放资源。通过Promise获取返回值。
+释放资源。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -300,9 +301,9 @@ import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
-//释放资源
+// 释放资源。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
+  if (generator != null) {
     avImageGenerator = generator;
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.release().then(() => {
@@ -311,7 +312,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       console.error(`Failed to release, error message:${error.message}`);
     });
   } else {
-    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
-  };
+    console.error(`Failed to create AVImageGenerator, error message:${err.message}`);
+  }
 });
 ```
