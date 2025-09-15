@@ -71,8 +71,6 @@ Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定�
 
 ### 属性
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
