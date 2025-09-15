@@ -91,6 +91,8 @@ import { DownloadFileButton } from '@kit.ArkUI';
 | FULL_FILLED | 1    | 下载按钮展示填充样式图标。 |
 | LINES       | 2    | 下载按钮展示线条样式图标。 |
 
+
+
 ## DownloadDescription
 
 下载按钮中文字的内容。
@@ -124,7 +126,6 @@ import { DownloadFileButton } from '@kit.ArkUI';
 | ---------- | ---- | ------------------------------------------ |
 | HORIZONTAL | 0    | 下载控件上图标和文字分布的方向为水平排列。 |
 | VERTICAL   | 1    | 下载控件上图标和文字分布的方向为垂直排列。 |
-
 
 ## 事件
 
