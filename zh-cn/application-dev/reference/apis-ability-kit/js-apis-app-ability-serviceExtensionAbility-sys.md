@@ -41,7 +41,7 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 ### onCreate
 
-onCreate(want: Want): void;
+onCreate(want: Want): void
 
 Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
 
@@ -70,7 +70,7 @@ class ServiceExt extends ServiceExtensionAbility {
 
 ### onDestroy
 
-onDestroy(): void;
+onDestroy(): void
 
 Extension生命周期回调，在销毁时回调，执行资源清理等操作。
 
@@ -93,7 +93,7 @@ class ServiceExt extends ServiceExtensionAbility {
 
 ### onRequest
 
-onRequest(want: Want, startId: number): void;
+onRequest(want: Want, startId: number): void
 
 Extension生命周期回调，如果是startAbility或者startServiceExtensionAbility拉起的服务，会在onCreate之后回调。每次拉起服务都会回调，startId会递增。
 
@@ -123,7 +123,7 @@ class ServiceExt extends ServiceExtensionAbility {
 
 ### onConnect
 
-onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
+onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>
 
 Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于客户端和服务端进行通信。
 
@@ -192,9 +192,17 @@ class ServiceExt extends ServiceExtensionAbility {
 
 ### onDisconnect
 
-onDisconnect(want: Want): void | Promise\<void>;
+onDisconnect(want: Want): void | Promise\<void>
 
 Extension的生命周期回调，客户端执行断开连接服务时回调。
+
+使用同步回调或Promise异步回调。
+
+> **说明：**
+>
+> - 在执行完onDisconnect生命周期回调后，应用可能会退出，从而导致其中的异步函数（比如异步写入数据库）未能正确执行。如果涉及耗时操作，推荐使用Promise异步回调。
+>
+> - 异步操作的默认超时时间为1秒，超时后应用仍可能会被强制终止。不同设备的超时时间可能存在差异，以设备实际行为为准。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -214,32 +222,34 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 
 **示例：**
 
-```ts
-import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+- 同步回调示例如下：
 
-class ServiceExt extends ServiceExtensionAbility {
-  onDisconnect(want: Want) {
-    console.info('onDisconnect, want: ${want.abilityName}');
+  ```ts
+  import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  
+  class ServiceExt extends ServiceExtensionAbility {
+    onDisconnect(want: Want) {
+      console.info(`onDisconnect, want: ${want.abilityName}`);
+    }
   }
-}
-```
+  ```
 
-在执行完onDisconnect生命周期回调后，应用可能会退出，从而可能导致onDisconnect中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDisconnect完成后再继续后续的生命周期。
+- Promise异步回调示例如下：
 
-```ts
-import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
-
-class ServiceExt extends ServiceExtensionAbility {
-  async onDisconnect(want: Want) {
-    console.info('onDisconnect, want: ${want.abilityName}');
-    // 调用异步函数...
+  ```ts
+  import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  
+  class ServiceExt extends ServiceExtensionAbility {
+    async onDisconnect(want: Want) {
+      console.info(`onDisconnect, want: ${want.abilityName}`);
+      // 调用异步函数...
+    }
   }
-}
-```
+  ```
 
 ### onReconnect
 
-onReconnect(want: Want): void;
+onReconnect(want: Want): void
 
 Extension的生命周期回调，当所有以前的客户端都断开连接之后，新客户端尝试连接到服务时调用。预留能力，当前暂未支持。
 
@@ -267,7 +277,7 @@ class ServiceExt extends ServiceExtensionAbility {
 
 ### onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 当Extension更新配置信息时调用。
 
@@ -295,7 +305,7 @@ class ServiceExt extends ServiceExtensionAbility {
 
 ### onDump
 
-onDump(params: Array\<string>): Array\<string>;
+onDump(params: Array\<string>): Array\<string>
 
 转储客户端信息时调用。
 
