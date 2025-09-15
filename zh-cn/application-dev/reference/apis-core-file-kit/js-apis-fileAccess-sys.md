@@ -26,6 +26,8 @@ import fileAccess from '@ohos.file.fileAccess';
 
 **模型约束**：仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -41,6 +43,8 @@ getFileAccessAbilityInfo() : Promise&lt;Array&lt;Want&gt;&gt;
 以异步方法获取系统内extension配置为fileAccess类型的所有Want信息。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -80,6 +84,8 @@ getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void
 以异步方法获取系统内extension配置为fileAccess类型的所有Want信息。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -123,6 +129,8 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 以同步方法创建连接指定wants的helper对象。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -183,6 +191,8 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -231,6 +241,8 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 表示文件(夹)属性信息和接口能力。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -316,6 +328,8 @@ scanFile(filter?: Filter) : FileIterator;
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -374,6 +388,8 @@ scanFile(filter?: Filter) : FileIterator;
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -385,6 +401,8 @@ next() : { value: FileInfo, done: boolean }
 可以通过next同步方法获取下一级文件(夹)信息。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -405,6 +423,8 @@ next() : { value: FileInfo, done: boolean }
 表示设备的根属性信息和接口能力。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -427,6 +447,8 @@ listFile(filter?: Filter) : FileIterator
 以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备过滤，外置存储设备不支持过滤。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -488,6 +510,8 @@ scanFile(filter?: Filter) : FileIterator
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -546,6 +570,8 @@ scanFile(filter?: Filter) : FileIterator
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -557,6 +583,8 @@ next() : { value: RootInfo, done: boolean }
 通过next同步方法获取下一级设备根目录。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -576,6 +604,8 @@ next() : { value: RootInfo, done: boolean }
 
 FileAccessHelper对象。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -586,6 +616,8 @@ getRoots() : Promise&lt;RootIterator&gt;
 
 以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用Promise异步回调。
 该方法返回迭代器对象RootIterator，然后通过[next](#next-1)方法返回[RootInfo](#rootinfo)。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -639,6 +671,8 @@ getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void
 以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用callback异步回调。
 callback带回迭代器对象RootIterator，然后通过[next](#next-1)方法返回[RootInfo](#rootinfo)。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -690,6 +724,8 @@ callback带回迭代器对象RootIterator，然后通过[next](#next-1)方法返
 createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 
 以异步方法创建文件到指定目录，返回新文件uri。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -747,6 +783,8 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
 
 以异步方法创建文件到指定目录，返回新文件uri。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -794,6 +832,8 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
 mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 以异步方法创建文件夹到指定目录，返回文件夹uri。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -851,6 +891,8 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
 
 以异步方法创建文件夹到指定目录，返回文件夹uri。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -898,6 +940,8 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
 openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 以异步方法打开文件，返回文件描述符。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -948,6 +992,8 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
 
 以异步方法打开文件，返回文件描述符。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -994,6 +1040,8 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
 delete(uri: string) : Promise&lt;number&gt;
 
 以异步方法删除文件(夹)，返回错误码。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1045,6 +1093,8 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
 
 以异步方法删除文件(夹)，返回错误码。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1090,6 +1140,8 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
 move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
 以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。目前仅支持设备内移动，跨设备不支持移动。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1142,6 +1194,8 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
 
 以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。目前仅支持设备内移动，跨设备不支持移动。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1189,6 +1243,8 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
 rename(uri: string, displayName: string) : Promise&lt;string&gt;
 
 以异步方法重命名文件(夹)，返回重命名后的文件(夹)的Uri。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1240,6 +1296,8 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
 
 以异步方法重命名文件(夹)，返回重命名后的文件(夹)的Uri。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1286,6 +1344,8 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
 access(sourceFileUri: string) : Promise&lt;boolean&gt;
 
 以异步方法判断文件(夹)是否存在。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1340,6 +1400,8 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
 
 以异步方法判断文件(夹)是否存在。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1390,6 +1452,8 @@ getFileInfoFromUri(uri: string) : Promise\<FileInfo>
 
 以异步方法获取uri对应的FileInfo对象。使用promise异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1433,6 +1497,8 @@ getFileInfoFromUri(uri: string) : Promise\<FileInfo>
 getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
 
 以异步方法获取uri对应的FileInfo对象。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1478,6 +1544,8 @@ getFileInfoFromRelativePath(relativePath: string) : Promise\<FileInfo>
 
 以异步方法获取relativePath对应的FileInfo对象。使用promise异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1521,6 +1589,8 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileI
 
 以异步方法获取relativePath对应的FileInfo对象。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1562,6 +1632,8 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileI
 query(uri:string, metaJson: string) : Promise&lt;string&gt;
 
 通过uri查询文件或目录的相关信息，使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1608,6 +1680,8 @@ query(uri:string, metaJson: string, callback: AsyncCallback&lt;string&gt;) : voi
 
 通过uri查询文件或目录的相关信息，使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1652,6 +1726,8 @@ async function getQuery02() {
 copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;CopyResult&gt;&gt;
 
 复制文件或目录，使用 Promise 异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1743,6 +1819,8 @@ copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;Cop
 
 复制文件或目录，使用 callback 异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1795,6 +1873,8 @@ try {
 copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
 
 复制文件或目录，使用 callback 异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1852,6 +1932,8 @@ copyFile(sourceUri: string, destUri: string, fileName: string): Promise&lt;strin
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1903,6 +1985,8 @@ copyFile(sourceUri: string, destUri: string, fileName: string, callback: AsyncCa
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1945,6 +2029,8 @@ try {
 registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&lt;NotifyMessage&gt;): void
 
 注册指定uri的callback。uri与callback可以为多对多的关系，推荐使用一个callback监听一个uri。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2117,6 +2203,8 @@ async function UnregisterObserver03() {
 
 取消注册指定的uri和callback。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2277,6 +2365,8 @@ moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2375,6 +2465,8 @@ moveItem(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2433,6 +2525,8 @@ moveItem(sourceUri: string, destUri: string, force: boolean, callback: AsyncCall
 当前仅支持设备内移动，不支持跨设备移动。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2494,6 +2588,8 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2553,6 +2649,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2601,6 +2699,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 表示复制操作失败时的返回信息，复制成功时则没有返回信息。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2615,6 +2715,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 ## OPENFLAGS
 
 枚举，目前支持的文件打开的标志位。
+
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -2632,6 +2734,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力** ：SystemCapability.FileManagement.UserFileService
 
 | 名称          | 值            | 说明                                |
@@ -2647,6 +2751,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 枚举，通知类型。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2666,6 +2772,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2680,6 +2788,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 表示移动操作失败时的返回信息，移动成功时则没有返回信息。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
