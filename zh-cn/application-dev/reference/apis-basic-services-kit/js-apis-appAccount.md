@@ -33,7 +33,7 @@ createAppAccountManager(): AppAccountManager
 
 | 类型                | 说明           |
 | ----------------- | ------------ |
-| AppAccountManager | 应用账号管理器对象。 |
+| [AppAccountManager](#appaccountmanager) | 应用账号管理器对象。 |
 
 **示例：**
   ```ts
@@ -5487,7 +5487,7 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 
 ### getRemoteObject<sup>9+</sup>
 
-getRemoteObject(): rpc.RemoteObject;
+getRemoteObject(): rpc.RemoteObject
 
 获取认证器的远程对象，不可以重载实现。
 
