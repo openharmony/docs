@@ -8186,7 +8186,7 @@ setRelationship(relationship: string): Promise&lt;void&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| relationship | string | 是   | 需要设置的人物关系名称。 |
+| relationship | string | 是   | 需要设置的人物关系名称。 <br>支持设置为空字符串，功能为取消当前设置的人物关系。|
 
 支持的人物关系名称范围：
 
