@@ -16,6 +16,7 @@ import { networkSecurity } from '@kit.NetworkKit';
 
 ```ts
 import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -89,6 +90,8 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 **Error codes**
 
+For details about the error codes, see [Network Security Error Codes](errorcode-net-networkSecurity.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.                                     |
@@ -112,7 +115,7 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 > **NOTE**
 > 
-> If any of the preceding error codes is reported during certificate verification, rectify the error based on the detailed information about the error description.
+> The preceding error codes indicate errors that may occur during certificate verification.
 
 **Example**
 
@@ -169,6 +172,8 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 **Error codes**
 
+For details about the error codes, see [Network Security Error Codes](errorcode-net-networkSecurity.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.                                     |
@@ -192,7 +197,7 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 > **NOTE**
 >
-> If any of the preceding error codes is reported during certificate verification, rectify the error based on the detailed information about the error description.
+> The preceding error codes indicate errors that may occur during certificate verification.
 
 **Example**
 
@@ -247,6 +252,8 @@ Checks whether plaintext HTTP access is allowed from the preset **network_config
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission denied.                                  |
@@ -288,6 +295,8 @@ Checks whether host name–based plaintext HTTP access is allowed from the prese
 | boolean | Boolean value indicating whether host name–based plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |

@@ -865,6 +865,7 @@ For details about the error codes, see [Network Connection Management Error Code
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
@@ -1700,6 +1701,100 @@ connection.clearCustomDnsRules().then(() => {
 })
 ```
 
+## connection.setPacFileUrl<sup>20+</sup>
+
+setPacFileUrl(pacFileUrl: string): void
+
+Sets the URL of the current PAC script. You can obtain the proxy information by parsing the URL.
+
+**Required permissions**: ohos.permission.SET_PAC_URL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description                          |
+| ----------- | ------ | ---- | ------------------------------ |
+| pacFileUrl  | string | Yes  | URL of the current PAC script.        |
+
+**Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID  | Error Message    |
+|---------|----------|
+| 201     | Permission denied.   |
+| 2100002 | Failed to connect to the service. |
+
+**Example**
+
+```typescript
+import { connection } from '@kit.NetworkKit';
+
+let pacFileUrl = "http://example.com/proxy.pac";
+connection.setPacFileUrl(pacFileUrl);
+```
+## connection.getPacFileUrl<sup>20+</sup>
+
+getPacFileUrl(): string
+
+Obtains the URL of the current PAC script.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type| Description                                           |
+| -------- | ----------------------------------------------- |
+| string   | URL of the current PAC script. If no PAC script is available, an empty string is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 2100002  | Failed to connect to the service.                 |
+
+**Example**
+
+```typescript
+import { connection } from '@kit.NetworkKit';
+
+let pacFileUrl = connection.getPacFileUrl();
+console.info(pacFileUrl);
+```
+
+## connection.findProxyForUrl<sup>20+</sup>
+
+findProxyForUrl(url: string): string
+
+Searches for PAC proxy information based on the given URL.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description             |
+| ------ | ------ | ---- | ----------------- |
+| url    | string | Yes  | URL used to search for the proxy information.|
+
+**Return value**
+
+| Type| Description                    |
+| -------- | ------------------------ |
+| string   | Proxy information.             |
+
+
+**Example**
+
+```typescript
+import { connection } from '@kit.NetworkKit';
+
+let proxyInfo = connection.findProxyForUrl("http://example.com");
+console.info(proxyInfo);
+```
+
 ## connection.setPacUrl<sup>15+</sup>
 
 setPacUrl(pacUrl: string): void
@@ -1831,7 +1926,7 @@ setNetExtAttributeSync(netHandle: NetHandle, netExtAttribute: string): void
 Sets extended attributes of the network specified by **netHandle** to indicate its security level. This API returns the result synchronously.
 
 > **NOTE**
-> Currently, this API is available only on PCs.
+> Currently, this API is available only for PCs.
 
 **Required permissions**: ohos.permission.SET_NET_EXT_ATTRIBUTE
 
@@ -2747,13 +2842,13 @@ Represents the HTTP proxy configuration.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name   | Type  | Mandatory| Description                     |
-| ------ | ------ | --- |------------------------- |
-| host  | string | Yes |  Host name of the proxy server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| port  | number | Yes |  Host port. The value range is \[0, 65535].<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| exclusionList  | Array\<string\> | Yes | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| username<sup>12+</sup>  | string | No|  Name of the user who uses the proxy.|
-| password<sup>12+</sup>  | string | No|  Password of the user who uses the proxy.|
+| Name   | Type  | Read Only|Optional|Description                     |
+| ------ | ------ | --- |---|------------------------- |
+| host  | string | No | No|Host name of the proxy server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| port  | number | No |No |Host port. The value range is \[0, 65535].<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| exclusionList  | Array\<string\> | No |No|List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| username<sup>12+</sup>  | string | No|Yes |Name of the user who uses the proxy.|
+| password<sup>12+</sup>  | string | No| Yes| Password of the user who uses the proxy.|
 
 ## NetSpecifier
 

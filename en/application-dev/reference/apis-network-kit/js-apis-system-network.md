@@ -76,7 +76,7 @@ Listens to the network connection state of this device. If this API is called mu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse3).|
+| success | Function | No| Called when the network connection state changes The return value is defined by [NetworkResponse](#networkresponse3).|
 | fail | Function | No| Called when an API call fails.|
 
 Error codes:
@@ -124,5 +124,5 @@ network.unsubscribe();
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| metered | boolean | No|Whether to charge by traffic.|
+| metered | boolean | No|Whether to charge by traffic. The value **true** means to charge by traffic, and the value **false** means the opposite.|
 | type | string | Yes|Network type. The value can be **2G**, **3G**, **4G**, **5G**, **WiFi**, or **none**.|

@@ -1,5 +1,12 @@
 # HTTP Error Codes
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -52,7 +59,7 @@ This error code is reported if the domain name of the proxy server cannot be res
 
 **Cause**
 
-This error code is reported if the URL of the proxy server is incorrect.
+The URL of the proxy server is incorrect.
 
 **Solution**
 
@@ -134,7 +141,7 @@ The access to the specified resource is denied by the server.
 
 Check whether access to the requested resource is allowed.
 
-## 2300016 HTT2 Framing Layer Error
+## 2300016 HTTP2 Framing Layer Error
 
 **Error Message**
 
@@ -183,6 +190,7 @@ This error code is reported if an error occurs while writing received data to th
 **Cause**
 
 - The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+
 - The **destroy** function is called before the data of the last request is fully received.
 
 **Solution**
@@ -201,7 +209,7 @@ This error code is reported if data upload fails.
 
 **Cause**
 
-The file is too large or the network is faulty. The server may reject the **STOR** command if FTP is used.  
+The file is too large or the network is faulty. The server may reject the **STOR** command if FTP is used. The error buffer usually contains the reason from the server.
 
 **Solution**
 
@@ -273,7 +281,7 @@ This error code is reported if the number of redirections reaches the maximum.
 
 **Cause**
 
-Redirection is performed too frequently.
+Redirections are too frequent.
 
 **Solution**
 
@@ -323,7 +331,7 @@ Failed to receive data from the peer.
 
 **Description**
 
-This error code is reported if an error occurs while receiving network data from the peer end.
+This error code is reported if an error occurred while receiving network data from the peer end.
 
 **Cause**
 
@@ -463,7 +471,7 @@ Check the server for files that already exist.
 
 **Error Message**
 
-The SSL CA certificate does not exist or is unaccessible.
+The SSL CA certificate does not exist or is inaccessible.
 
 **Description**
 
@@ -489,7 +497,7 @@ This error code is reported if the file requested by the specified URL does not 
 
 **Cause**
 
-The file requested by the specified URL does not exist.
+This error code is reported if the file requested by the specified URL does not exist.
 
 **Solution**
 
@@ -549,15 +557,15 @@ An incorrect server domain name is configured for the atomic service.
 
 Configure a correct server domain name for the atomic service.
 
-## 2300999 Unknown Error
+## 2300999 Internal Error
 
 **Error Message**
 
-Unknown error.
+Internal error.
 
 **Description**
 
-This error code is reported if an unknown error occurs.
+This error code is reported if an internal error occurs.
 
 **Cause**
 

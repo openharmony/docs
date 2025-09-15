@@ -1,4 +1,12 @@
-# Extensible Authentication Error Codes
+# Extended Authentication Error Codes
+
+
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 > **NOTE**
 >
@@ -56,7 +64,7 @@ The **profile** field value is incorrect.
 
 **Solution**
 
-Configure the **profile** filed correctly.
+Configure the **profile** field correctly.
 
 ## 33200004 Invalid eap Result Value
 
@@ -143,7 +151,7 @@ This error code is reported if **eapType** is invalid.
 
 **Possible causes**
 
-The value of **eapType** is not within the valid value range.
+The input **eapType** is not within the valid value range.
 
 **Solution**
 

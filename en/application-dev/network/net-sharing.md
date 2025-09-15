@@ -1,4 +1,10 @@
 # Network Sharing (For System Applications Only)
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## Introduction
 
@@ -72,7 +78,7 @@ sharing.on('sharingStateChange', (data: boolean) => {
 sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 ```
 
@@ -99,7 +105,7 @@ sharing.on('sharingStateChange', (data: boolean) => {
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 ```
 
@@ -121,27 +127,27 @@ import { BusinessError } from '@kit.BasicServicesKit';
 sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 
 // Call getStatsTotalBytes to obtain the data traffic generated during data sharing.
 sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // Call stopSharing to stop network sharing of the specified type and clear the data volume of network sharing.
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 
 // Call getStatsTotalBytes again. The data volume of network sharing has been cleared.
 sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```

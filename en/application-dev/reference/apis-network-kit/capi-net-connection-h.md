@@ -1,5 +1,12 @@
 # net_connection.h
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 ## Overview
 
 Provides the C APIs of the network connection module for network management.
@@ -709,7 +716,7 @@ int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *
 
 Queries network trace route information.
 
-**Required permissions**: ohos.permission.INTERNET, ohos.permission.LOCATION, and ohos.permission.ACCESS_TRACE_ROUTE_INFO
+**Required permissions**: ohos.permission.INTERNET, ohos.permission.LOCATION, and ohos.permission.ACCESS_NET_TRACE_INFO
 
 **Since**: 20
 
@@ -720,7 +727,7 @@ Queries network trace route information.
 | -- | -- |
 | char *destination | Destination address.|
 | [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md) *option | Route options.|
-| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) *traceRouteInfo | Route result.|
+| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) *traceRouteInfo | Route result. An array pointer needs to be passed. The array size indicates the number of route hops, which is **30** by default.|
 
 **Returns**
 

@@ -1,5 +1,12 @@
 # @ohos.net.statistics (Traffic Management) (System API)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 The **statistics** module provides APIs to query real-time or historical traffic statistics by the specified network interface card (NIC) or user ID (UID).
 
 > **NOTE**
@@ -17,7 +24,7 @@ import { statistics } from '@kit.NetworkKit';
 
 on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
-Subscribes to traffic change events.
+Subscribes to traffic change events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -54,7 +61,7 @@ class IFace {
   uid?: number = 0
 }
 statistics.on('netStatsChange', (data: IFace) => {
-  console.log('on netStatsChange' + JSON.stringify(data));
+  console.info('on netStatsChange' + JSON.stringify(data));
 });
 ```
 
@@ -62,7 +69,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void
 
-Unsubscribes from traffic change events.
+Unsubscribes from traffic change events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -99,7 +106,7 @@ class IFace {
   uid?: number = 0
 }
 let callback: (data: IFace) => void = (data: IFace) => {
-    console.log("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
+    console.info("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
 }
 statistics.on('netStatsChange', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -149,20 +156,20 @@ import { statistics } from '@kit.NetworkKit';
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
   statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
-    console.log(JSON.stringify(error));
-    console.log(
+    console.error(JSON.stringify(error));
+    console.info(
       "getTrafficStatsByIface bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -213,19 +220,19 @@ import { statistics } from '@kit.NetworkKit';
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
   statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByIface packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -284,20 +291,20 @@ let uidInfo: statistics.UidInfo = {
 statistics.getTrafficStatsByUid(
   uidInfo,
   (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
-    console.log(JSON.stringify(error));
-    console.log(
+    console.error(JSON.stringify(error));
+    console.info(
       "getTrafficStatsByUid bytes of received = " +
       JSON.stringify(statsInfo.rxBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid bytes of sent = " +
       JSON.stringify(statsInfo.txBytes)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid packets of received = " +
       JSON.stringify(statsInfo.rxPackets)
     );
-    console.log(
+    console.info(
       "getTrafficStatsByUid packets of sent = " +
       JSON.stringify(statsInfo.txPackets)
     );
@@ -358,10 +365,10 @@ let uidInfo: statistics.UidInfo = {
 }
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-  console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-  console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-  console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
+  console.info("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.info("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.info("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.info("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
 })
 ```
 
@@ -446,7 +453,7 @@ Obtains the traffic statistics of the specified application on the specified net
 
 | Type                                                       | Description                              |
 |-----------------------------------------------------------|----------------------------------|
-| Promise\<[NetStatsInfoSequence](#netstatsinfosequence12)> | Promise used to return the result, which is the historical traffic statistics of the specified application.|
+| Promise\<[NetStatsInfoSequence](#netstatsinfosequence12)> | Promise used to return the result, which is the historical traffic statistics of the application.|
 
 **Error codes**
 
@@ -490,11 +497,11 @@ Defines the parameters for querying historical traffic of an NIC.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name     | Type  | Mandatory| Description                             |
-| --------- | ------ | ---- | --------------------------------- |
-| iface     | string | Yes  | NIC name.                   |
-| startTime | number | Yes  | Start time of the query, which is a timestamp in seconds.|
-| endTime   | number | Yes  | End time of the query, which is a timestamp in seconds.|
+| Name     | Type  | Read-Only|Optional|Description                             |
+| --------- | ------ | ---- |---| --------------------------------- |
+| iface     | string | No  |No|NIC name.                   |
+| startTime | number | No  |No|Start time of the query, which is a timestamp in seconds.|
+| endTime   | number | No | No|End time of the query, which is a timestamp in seconds.|
 
 ## UidInfo<sup>10+</sup>
 
@@ -504,10 +511,10 @@ Defines the parameters for querying historical traffic of an application.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name     | Type                                 | Mandatory| Description                       |
-| --------- | ------------------------------------- | ---- | -------------------------- |
-| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | Yes  | NIC information, including the NIC name and query time range.|
-| uid       | number                                | Yes  | Application UID.         |
+| Name     | Type                                 | Read-Only|Optional| Description                       |
+| --------- | ------------------------------------- | ---- |---| -------------------------- |
+| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | No  |No|NIC information, including the NIC name and query time range.|
+| uid       | number                                | No  |No|Application UID.         |
 
 ## NetStatsInfo<sup>10+</sup>
 
@@ -517,12 +524,12 @@ Defines the historical traffic information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name     | Type  | Mandatory| Description                     |
-| --------- | ------ | ---- | ------------------------ |
-| rxBytes   | number | Yes  | Downlink traffic, in bytes.|
-| txBytes   | number | Yes  | Uplink traffic, in bytes.|
-| rxPackets | number | Yes  | Number of downlink packets.         |
-| txPackets | number | Yes  | Number of uplink packets.         |
+| Name     | Type  | Read-Only|Optional| Description                     |
+| --------- | ------ | ---- |---| ------------------------ |
+| rxBytes   | number | No  |No|Downlink traffic, in bytes.|
+| txBytes   | number | No  |No|Uplink traffic, in bytes.|
+| rxPackets | number | No  |No|Number of downlink packets.         |
+| txPackets | number | No  |No|Number of uplink packets.         |
 
 ## NetStatsChangeInfo<sup>11+</sup>
 
@@ -532,10 +539,10 @@ Defines the NIC status and usage of an application.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name     | Type  | Mandatory| Description      |
-| --------- | ------ | ---- | --------- |
-| iface     | string | Yes  | NIC name.|
-| uid       | number | No  | Application UID. |
+| Name     | Type  | Read-Only|Optional| Description      |
+| --------- | ------ | ---- |---|--------- |
+| iface     | string | No  |No| NIC name.|
+| uid       | number | No  |Yes|Application UID. |
 
 ## NetworkInfo<sup>12+</sup>
 
@@ -545,12 +552,12 @@ Defines the network information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name       | Type                                                  | Mandatory| Description          |
-|-----------|------------------------------------------------------|----|--------------|
-| type      | [NetBearType](js-apis-net-connection.md#netbeartype) | Yes | Network type.       |
-| startTime | number                                               | Yes | Start timestamp, in seconds.|
-| endTime   | number                                               | Yes | End timestamp, in seconds.|
-| simId     | number                                               | No | SIM card ID.   |
+| Name       | Type                                                  | Read-Only|Optional| Description          |
+|-----------|------------------------------------------------------|----|---|--------------|
+| type      | [NetBearType](js-apis-net-connection.md#netbeartype) | No | No|Network type.       |
+| startTime | number                                               | No |No| Start timestamp, in seconds.|
+| endTime   | number                                               | No |No|End timestamp, in seconds.|
+| simId     | number                                               | No | Yes|SIM card ID.   |
 
 ## UidNetStatsInfo<sup>12+</sup>
 
@@ -560,9 +567,9 @@ Defines the historical traffic statistics of all applications.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name       | Type                                           | Mandatory| Description          |
-|-----------|-----------------------------------------------|----|--------------|
-| undefined | [uid:number]: [NetStatsInfo](#netstatsinfo10) | Yes | Historical traffic statistics of all applications.|
+| Name       | Type                                           | Read-Only|Optional| Description          |
+|-----------|-----------------------------------------------|----|---|--------------|
+| undefined | [uid:number]: [NetStatsInfo](#netstatsinfo10) | No |No|Historical traffic statistics of all applications.|
 
 ## NetStatsInfoSequence<sup>12+</sup>
 
@@ -572,8 +579,8 @@ Defines the historical traffic statistics of the specified application.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name       | Type                             | Mandatory| Description          |
-|-----------|---------------------------------|----|--------------|
-| startTime | number                          | Yes | Start timestamp, in seconds.|
-| endTime   | number                          | Yes | End timestamp, in seconds.|
-| info      | [NetStatsInfo](#netstatsinfo10) | Yes | Historical traffic statistics of the specified application.|
+| Name       | Type                             | Read-Only| Optional|Description          |
+|-----------|---------------------------------|----|---|--------------|
+| startTime | number                          | No |No|Start timestamp, in seconds.|
+| endTime   | number                          | No |No|End timestamp, in seconds.|
+| info      | [NetStatsInfo](#netstatsinfo10) | No |No|Defines the historical traffic statistics of the specified application.|
