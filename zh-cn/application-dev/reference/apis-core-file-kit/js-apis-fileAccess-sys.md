@@ -17,7 +17,7 @@ fileAccess模块是基于[extension](../../application-models/extensionability-o
 ## 导入模块
 
 ```ts
-import fileAccess from '@ohos.file.fileAccess';
+import  { fileAccess } from '@kit.CoreFileKit';
 ```
 
 ## 常量
@@ -69,7 +69,7 @@ getFileAccessAbilityInfo() : Promise&lt;Array&lt;Want&gt;&gt;
     let wantInfos: Array<Want> = [];
     try {
       wantInfos = await fileAccess.getFileAccessAbilityInfo();
-      console.log("getFileAccessAbilityInfo data " + JSON.stringify(wantInfos));
+      console.info("getFileAccessAbilityInfo data " + JSON.stringify(wantInfos));
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getFileAccessAbilityInfo failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -113,7 +113,7 @@ getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void
           console.error("Failed to getFileAccessAbilityInfo in async, errCode:" + err.code + ", errMessage:" + err.message);
           return;
         }
-        console.log("getFileAccessAbilityInfo data " + JSON.stringify(wantInfos));
+        console.info("getFileAccessAbilityInfo data " + JSON.stringify(wantInfos));
       });
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -307,7 +307,7 @@ listFile(filter?: Filter) : FileIterator
       }
       while (!isDone) {
         let result = fileIterator.next();
-        console.log("next result = " + JSON.stringify(result));
+        console.info("next result = " + JSON.stringify(result));
         isDone = result.done;
         if (!isDone) {
           subfileInfos.push(result.value);
@@ -369,7 +369,7 @@ scanFile(filter?: Filter) : FileIterator;
       }
       while (!isDone) {
         let result = fileIterator.next();
-        console.log("next result = " + JSON.stringify(result));
+        console.info("next result = " + JSON.stringify(result));
         isDone = result.done;
         if (!isDone) {
           subfileInfos.push(result.value);
@@ -489,7 +489,7 @@ listFile(filter?: Filter) : FileIterator
       }
       while (!isDone) {
         let result = fileIterator.next();
-        console.log("next result = " + JSON.stringify(result));
+        console.info("next result = " + JSON.stringify(result));
         isDone = result.done;
         if (!isDone) {
           fileInfos.push(result.value);
@@ -551,7 +551,7 @@ scanFile(filter?: Filter) : FileIterator
       }
       while (!isDone) {
         let result = fileIterator.next();
-        console.log("next result = " + JSON.stringify(result));
+        console.info("next result = " + JSON.stringify(result));
         isDone = result.done;
         if (!isDone) {
           fileInfos.push(result.value);
@@ -650,7 +650,7 @@ async function getRoots() {
       }
       while (!isDone) {
         let result = rootIterator.next();
-        console.log("next result = " + JSON.stringify(result));
+        console.info("next result = " + JSON.stringify(result));
         isDone = result.done;
         if (!isDone) {
           rootinfos.push(result.value);
@@ -704,7 +704,7 @@ callback带回迭代器对象RootIterator，然后通过[next](#next-1)方法返
           }
           while (!isDone) {
             let result = rootIterator.next();
-            console.log("next result = " + JSON.stringify(result));
+            console.info("next result = " + JSON.stringify(result));
             isDone = result.done;
             if (!isDone) {
               rootinfos.push(result.value);
@@ -768,7 +768,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
           console.error("createFile return undefined object");
           return;
         }
-        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));       
+        console.info("createFile success, fileUri: " + JSON.stringify(fileUri));       
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -818,7 +818,7 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
         if (err) {
           console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));
+        console.info("createFile success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {
@@ -875,7 +875,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
         if (!dirUri) {
           console.error("mkDir return undefined object");
         } else {
-          console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
+          console.info("mkDir success, dirUri: " + JSON.stringify(dirUri));
         }
       }
     } catch (err) {
@@ -926,7 +926,7 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
         if (err) {
           console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
+        console.info("mkDir success, dirUri: " + JSON.stringify(dirUri));
       });
     }
   } catch (err) {
@@ -1026,7 +1026,7 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
         if (err) {
           console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("openFile success, fd: " + fd);
+        console.info("openFile success, fd: " + fd);
       });
     }
   } catch (err) {
@@ -1179,7 +1179,7 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
     try {
       if (fileAccessHelper != undefined) {
         let fileUri = await fileAccessHelper.move(sourceFile, destFile);
-        console.log("move success, fileUri: " + JSON.stringify(fileUri));
+        console.info("move success, fileUri: " + JSON.stringify(fileUri));
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1229,7 +1229,7 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
         if (err) {
           console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("move success, fileUri: " + JSON.stringify(fileUri));
+        console.info("move success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {
@@ -1281,7 +1281,7 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
     try {
       if (fileAccessHelper != undefined) {
         let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
-        console.log("rename success, DestDir: " + JSON.stringify(DestDir));
+        console.info("rename success, DestDir: " + JSON.stringify(DestDir));
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1330,7 +1330,7 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
         if (err) {
           console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("rename success, DestDir: " + JSON.stringify(DestDir));
+        console.info("rename success, DestDir: " + JSON.stringify(DestDir));
       });
     }
   } catch (err) {
@@ -1382,9 +1382,9 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
       if (fileAccessHelper != undefined) {
         let existJudgment = await fileAccessHelper.access(sourceDir);
         if (existJudgment) {
-          console.log("sourceDir exists");
+          console.info("sourceDir exists");
         } else {
-          console.log("sourceDir does not exist");
+          console.info("sourceDir does not exist");
         }
       }
     } catch (err) {
@@ -1435,9 +1435,9 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
           return;
         }
         if (existJudgment)
-          console.log("sourceDir exists");
+          console.info("sourceDir exists");
         else
-          console.log("sourceDir does not exist");
+          console.info("sourceDir does not exist");
       });
     }
   } catch (err) {
@@ -1528,7 +1528,7 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
           console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
           return;
         }
-        console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
+        console.info("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
       });
     }
   } catch (err) {
@@ -1618,7 +1618,7 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileI
           console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
           return;
         }
-        console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
+        console.info("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
       });
     }
   } catch (err) {
@@ -1665,7 +1665,7 @@ async function getQuery01() {
     if (fileAccessHelper != undefined) {
       let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
       let queryResult = await fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath);
-      console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+      console.info("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -1711,7 +1711,7 @@ async function getQuery02() {
           console.error(`query_file_single faf query Failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+        console.info("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
       })
     }
   } catch (err) {
@@ -1763,7 +1763,7 @@ async function copyFunc01() {
     if (fileAccessHelper != undefined) {
       let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
       if (copyResult.length === 0) {
-        console.log("copy success");
+        console.info("copy success");
       } else {
         for (let i = 0; i < copyResult.length; i++) {
           console.error("errCode" + copyResult[i].errCode);
@@ -1796,7 +1796,7 @@ async function copyFunc02() {
     if (fileAccessHelper != undefined) {
       let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
       if (copyResult.length === 0) {
-        console.log("copy success");
+        console.info("copy success");
       } else {
         for (let i = 0; i < copyResult.length; i++) {
           console.error("errCode" + copyResult[i].errCode);
@@ -1851,7 +1851,7 @@ try {
         console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
       if (copyResult.length === 0) {
-        console.log("copy success");
+        console.info("copy success");
       } else {
         for (let i = 0; i < copyResult.length; i++) {
           console.error("errCode" + copyResult[i].errCode);
@@ -1907,7 +1907,7 @@ try {
         console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
       if (copyResult.length === 0) {
-        console.log("copy success");
+        console.info("copy success");
       } else {
         for (let i = 0; i < copyResult.length; i++) {
           console.error("errCode" + copyResult[i].errCode);
@@ -1968,7 +1968,7 @@ async function copyFunc01() {
   try {
     if (fileAccessHelper != undefined) {
       let copyResult = await fileAccessHelper.copyFile(sourceFile, destFile, fileName);
-      console.log("copyResult uri: " + copyResult);
+      console.info("copyResult uri: " + copyResult);
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -2015,7 +2015,7 @@ let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
   if (fileAccessHelper != undefined) {
     fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
-          console.log("copyResult uri: " + copyResult);
+          console.info("copyResult uri: " + copyResult);
     });
   }
 } catch (err) {
@@ -2061,7 +2061,7 @@ async function registerObserver01() {
       // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
       const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2069,7 +2069,7 @@ async function registerObserver01() {
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'，事件类型为NOTIFY_MOVED_TO
       const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2078,7 +2078,7 @@ async function registerObserver01() {
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
       const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2115,7 +2115,7 @@ async function registerObserver02() {
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'，事件类型为NOTIFY_ADD
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2149,7 +2149,7 @@ async function registerObserver03() {
       // 期待无第二次返回
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2179,7 +2179,7 @@ async function UnregisterObserver03() {
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2230,7 +2230,7 @@ async function UnregisterObserver01() {
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2261,7 +2261,7 @@ async function UnregisterObserver02() {
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2295,7 +2295,7 @@ async function UnregisterObserver03() {
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'，事件类型为NOTIFY_MOVED_TO
       const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+          console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -2335,7 +2335,7 @@ async function UnregisterObserver03() {
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2405,7 +2405,7 @@ async function moveItemFunc01() {
     if (fileAccessHelper != undefined) {
       let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri);
       if (moveResult.length === 0) {
-        console.log("moveItem success");
+        console.info("moveItem success");
       } else {
         for (let i = 0; i < moveResult.length; i++) {
           console.error("errCode" + moveResult[i].errCode);
@@ -2438,7 +2438,7 @@ async function moveItemFunc02() {
     if (fileAccessHelper != undefined) {
       let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri, true);
       if (moveResult.length === 0) {
-        console.log("moveItem success");
+        console.info("moveItem success");
       } else {
         for (let i = 0; i < moveResult.length; i++) {
           console.error("errCode" + moveResult[i].errCode);
@@ -2497,7 +2497,7 @@ try {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
       if (moveResult.length === 0) {
-        console.log("moveItem success");
+        console.info("moveItem success");
       } else {
         for (let i = 0; i < moveResult.length; i++) {
           console.error("errCode" + moveResult[i].errCode);
@@ -2559,7 +2559,7 @@ try {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
       if (moveResult.length === 0) {
-        console.log("moveItem success");
+        console.info("moveItem success");
       } else {
         for (let i = 0; i < moveResult.length; i++) {
           console.error("errCode" + moveResult[i].errCode);
