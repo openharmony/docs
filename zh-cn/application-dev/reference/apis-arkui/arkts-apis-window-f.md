@@ -204,7 +204,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最上层显示的子窗口，使用callback异步回调。
+获取当前应用内层级最高的子窗口，使用callback异步回调。
 
 若无应用子窗口或子窗口未调用[showWindow()](arkts-apis-window-Window.md#showwindow9)进行显示，则返回应用主窗口。
 
@@ -217,7 +217,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
-| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。返回当前应用内最上层的窗口对象。 |
+| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。返回当前应用内层级最高的窗口对象。 |
 
 **错误码：**
 
@@ -271,7 +271,7 @@ export default class EntryAbility extends UIAbility {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最上层显示的子窗口，使用Promise异步回调。
+获取当前应用内层级最高的子窗口，使用Promise异步回调。
 
 若无应用子窗口或子窗口未调用[showWindow()](arkts-apis-window-Window.md#showwindow9)进行显示，则返回应用主窗口。
 
@@ -289,7 +289,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 类型 | 说明 |
 | -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前应用内最上层的窗口对象。 |
+| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前应用内层级最高的窗口对象。 |
 
 **错误码：**
 
@@ -352,8 +352,8 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 
 | 参数名          | 类型   | 必填  | 说明                    |
 | -------------- | ------ | ----- | ----------------------- |
-| sourceWindowId | number | 是    | 源窗口id，必须是获焦状态。|
-| targetWindowId | number | 是    | 目标窗口id。             |
+| sourceWindowId | number | 是    | 源窗口id，必须是获焦状态。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 
