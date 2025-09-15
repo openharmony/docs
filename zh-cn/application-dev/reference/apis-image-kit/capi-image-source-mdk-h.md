@@ -52,7 +52,7 @@
 | [int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormatList* res)](#oh_imagesource_getsupportedformats) | 获取所有支持的解码格式元标记。 |
 | [ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source)](#oh_imagesource_initnative) | 从输入JavaScript native层ImageSource对象中，转换成[ImageSourceNative](capi-image-imagesourcenative-.md)值。 |
 | [int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native, struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmap) | 通过一个给定的选项[OhosImageDecodingOps](capi-image-ohosimagedecodingops.md)结构体，从ImageSource中解码JavaScript native层PixelMap对象。 |
-| [int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native, struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmaplist) | 通过一个给定的选项[OhosImageDecodingOps](capi-image-ohosimagedecodingops.md)结构体结构体，从ImageSource中解码所有的JavaScript native层PixelMap对象列表。 |
+| [int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native, struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmaplist) | 通过一个给定的选项[OhosImageDecodingOps](capi-image-ohosimagedecodingops.md)结构体，从ImageSource中解码所有的JavaScript native层PixelMap对象列表。 |
 | [int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native, struct OhosImageSourceDelayTimeList* res)](#oh_imagesource_getdelaytime) | 从ImageSource（如GIF图像源）获取延迟时间列表。 |
 | [int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *res)](#oh_imagesource_getframecount) | 从ImageSource中获取帧计数。 |
 | [int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t index, struct OhosImageSourceInfo* info)](#oh_imagesource_getimageinfo) | 通过索引从ImageSource获取图像源信息。 |
