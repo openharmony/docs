@@ -107,7 +107,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
