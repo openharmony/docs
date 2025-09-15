@@ -2,21 +2,22 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 11.
 
-VideoSession inhertis from [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis-camera-Flash.md), [AutoExposure](arkts-apis-camera-AutoExposure.md), [WhiteBalance](arkts-apis-camera-WhiteBalance.md), [Focus](arkts-apis-camera-Focus.md), [Zoom](arkts-apis-camera-Zoom.md), [Stabilization](arkts-apis-camera-Stabilization.md), [ColorManagement](arkts-apis-camera-ColorManagement.md), [AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md), [Macro](arkts-apis-camera-Macro.md), and [ControlCenter](arkts-apis-camera-ControlCenter.md).
+VideoSession inherits from [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis-camera-Flash.md), [AutoExposure](arkts-apis-camera-AutoExposure.md), [WhiteBalance](arkts-apis-camera-WhiteBalance.md), [Focus](arkts-apis-camera-Focus.md), [Zoom](arkts-apis-camera-Zoom.md), [Stabilization](arkts-apis-camera-Stabilization.md), [ColorManagement](arkts-apis-camera-ColorManagement.md), [AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md), [Macro](arkts-apis-camera-Macro.md), and [ControlCenter](arkts-apis-camera-ControlCenter.md).
 
 It implements a video session, which provides operations on the flash, exposure, white balance, focus, zoom, video stabilization, color space, macro mode, and controller.
 
 > **NOTE**
 >
-> This class is provided for the default video recording mode. It applies to common scenarios. It supports recording at various resolutions (such as 720p and 1080p) and frame rates (such as 30 fps and 60 fps).
+> VideoSession is provided for the default video recording mode. It applies to common scenarios. It supports recording at various resolutions (such as 720p and 1080p) and frame rates (such as 30 fps and 60 fps).
 
 ## Modules to Import
 
@@ -58,6 +59,8 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testCanPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
@@ -98,6 +101,8 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
@@ -530,5 +535,67 @@ Unsubscribes from events indicating that the camera controller effect status cha
 ```ts
 function unregisterControlCenterEffectStatusChange(videoSession: camera.VideoSession): void {
   videoSession.off('controlCenterEffectStatusChange');
+}
+```
+
+## on('macroStatusChanged')<sup>20+</sup>
+
+on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
+
+Subscribes to macro state change events. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. **true** if enabled, **false** otherwise. |
+
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, macroStatus: boolean): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Macro state: ${macroStatus}`);
+}
+
+function registerMacroStatusChanged(videoSession: camera.VideoSession): void {
+  videoSession.on('macroStatusChanged', callback);
+}
+```
+
+## off('macroStatusChanged')<sup>20+</sup>
+
+off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
+
+Unsubscribes from macro state change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                                                                    |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------------|
+| type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.                     |
+| callback | AsyncCallback\<boolean\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+
+**Example**
+
+```ts
+function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
+  videoSession.off('macroStatusChanged');
 }
 ```

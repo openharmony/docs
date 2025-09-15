@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -24,4 +25,4 @@ The struct describes the parameters related to photo capture.
 | [Camera_QualityLevel](capi-camera-h.md#camera_qualitylevel) quality | Quality of the photo.|
 | [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation) rotation | Rotation angle.|
 | [Camera_Location](capi-oh-camera-camera-location.md)* location | Pointer to the location where the photo is taken.|
-| bool mirror | Whether mirroring is enabled.<br>**true** if enabled, **false** otherwise. The default value is **false**.|
+| bool mirror | Whether mirroring is enabled.<br> **true** if enabled, **false** otherwise. The default value is **false**.|

@@ -2,12 +2,13 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
-This topic provides sample code that covers the complete photo capture process and the API calling sequence. For details about a single process (such as device input, session management, and photo capture), see the corresponding C/C++ development guide links provided in [Requesting Camera Development Permissions](camera-preparation.md).
+This topic provides sample code that covers the complete photo capture process and the API calling sequence. For details about a single process (such as device input, session management, and photo capture), see the corresponding C/C++ development guide links provided in [Requesting Camera Development Permissions](native-camera-device-management.md).
 
 ## Development Process
 
@@ -15,7 +16,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 ![Photographing Development Process](figures/photographing-ndk-development-process.png)
 
-## Sample Code
+## Complete Sample Code
 
 1. Link the dynamic library in the CMake script.
     ```txt

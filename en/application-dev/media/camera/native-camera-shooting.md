@@ -2,16 +2,17 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Photo capture is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
+Photo capture is an important function of the camera application. Based on the complex logic of the camera device, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
 Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
 
    ```c++
    // Include the NDK header files.
@@ -132,6 +133,10 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Map err:%{public}d", ret);
        // Call the buffer callback at the NAPI layer.
        auto cb = (void (*)(void *, size_t))(bufferCb);
+       if (!virAddr || nativeBufferSize <= 0) {
+         OH_LOG_INFO(LOG_APP, "On buffer callback failed");
+         return;
+       }
        cb(virAddr, nativeBufferSize);
        // Release resources.
 	   delete[] components;
@@ -248,6 +253,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
 6. Create a photo session. For details, see [Camera Session Management (C/C++)](./native-camera-session-management.md).
 
 7. (Optional) Set photo capture parameters.
+
    You can set camera parameters to adjust photo capture functions, including the flash, zoom ratio, and focal length.
 
    ```c++

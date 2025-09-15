@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 As an important feature of the camera, deferred photo delivery enables the system, after receiving a photo capture task from an application, to report images of different quality levels in multiple phases.
 
@@ -14,7 +15,7 @@ As an important feature of the camera, deferred photo delivery enables the syste
 
 Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
 
    ```c++
    // Include the NDK header files.

@@ -2,14 +2,15 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence.
 
-Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Video Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Video Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-device-management.md).
 
 To save videos to the media library, follow the instructions provided in [Saving Media Assets](../medialibrary/photoAccessHelper-savebutton.md).
 ## Development Process
@@ -19,7 +20,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 ![Recording Development Process](figures/recording-development-process.png)
 
 
-## Sample Code
+## Complete Sample Code
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
@@ -96,7 +97,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   // In this sample code, the first video profile is selected. You need to select a video profile as required.
   let videoProfile: camera.VideoProfile = videoProfilesArray[0];
   let isHdr = videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCBCR_P010 || videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCRCB_P010;
-  // Configure the parameters based on those supported by the hardware device.
+  // Configure the parameters based on those supported by the device.
   let aVRecorderProfile: media.AVRecorderProfile = {
     audioBitrate: 48000,
     audioChannels: 2,
@@ -110,15 +111,19 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoFrameRate: 30,
     isHdr: isHdr
   };
-  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // Local sandbox path.
+
+  let avMetadata: media.AVMetadata = {
+    videoOrientation: '0', // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
+    location: { latitude: 30, longitude: 130 }
+  }
+  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // Local sandbox path.
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
     url: `fd://${file.fd.toString()}`, // Before passing in a file descriptor to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45--file:///data/media/01.mp4.
-    rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
-    location: { latitude: 30, longitude: 130 }
+    metadata: avMetadata
   };
 
   let avRecorder: media.AVRecorder | undefined = undefined;
@@ -182,7 +187,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Video session error code: ${error.code}`);
   });
 
-  // Start configuration for the session.
+  // // Start configuration for the session.
   try {
     videoSession.beginConfig();
   } catch (error) {
@@ -223,7 +228,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to add cameraInput. error: ${err}`);
   }
 
-  // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
+  // Create a preview output stream. The preview stream uses the surface provided by the XComponent.
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   let previewProfile = previewProfilesArray.find((previewProfile: camera.Profile) => {
     return Math.abs((previewProfile.size.width / previewProfile.size.height) - (videoProfile.size.width / videoProfile.size.height)) < Number.EPSILON;
@@ -283,7 +288,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.info('Callback invoked to indicate the video output start success.');
   });
 
-  // Start video recording.
+  // Start recording.
   try {
     await avRecorder.start();
   } catch (error) {
@@ -300,7 +305,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.info('Callback invoked to indicate the video output stop success.');
   });
 
-  // Stop video recording.
+  // Stop recording.
   try {
     await avRecorder.stop();
   } catch (error) {
@@ -312,20 +317,42 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   await videoSession.stop();
 
   // Close the file.
-  fs.closeSync(file);
+  try {
+    fs.closeSync(file);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`closeSync failed, error: ${err}`);
+  }
+
 
   // Release the camera input stream.
   await cameraInput.close();
 
   // Release the preview output stream.
-  await previewOutput.release();
+  try {
+    await previewOutput.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release previewOutput failed, error: ${err.code}`);
+  }
+
 
   // Release the video output stream.
-  await videoOutput.release();
+  try {
+    await videoOutput.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release videoOutput failed, error: ${err.code}`);
+  }
 
   // Release the session.
-  await videoSession.release();
-
+  try {
+    await videoSession.release();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`release videoSession failed, error: ${err.code}`);
+  }
+  
   // Set the session to null.
   videoSession = undefined;
 }

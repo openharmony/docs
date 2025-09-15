@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Applications can invoke the camera picker to take photos or record videos without applying for the camera permission.
 The camera interaction UI of the camera picker is provided by the system. After a user touches the **PHOTO** and **OK** buttons, the application that invokes the camera picker obtains a photo or video.
@@ -16,7 +17,7 @@ Given that users are the ones who actively take and confirm the photos, your app
 
 Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for the API reference.
 
-1. Import the module.
+1. Import the modules.
    ```ts
    import { camera, cameraPicker as picker } from '@kit.CameraKit';
    import { fileIo, fileUri } from '@kit.CoreFileKit';
@@ -35,7 +36,12 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
      let pathDir = context.filesDir;
      let fileName = `${new Date().getTime()}`;
      let filePath = pathDir + `/${fileName}.tmp`;
-     fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
+     try {
+       fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`create picker profile failed. error code: ${err.code}`);
+     }
      
      let uri = fileUri.getUriFromPath(filePath);
      let pickerProfile: picker.PickerProfile = {
@@ -45,11 +51,13 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
      return pickerProfile;
    }
    ```
+   For details about how to call the **fileIo** API, see [createRandomAccessFileSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fscreaterandomaccessfilesync10) and [getUriFromPath](../../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath).
 
 3. Call the **picker** API to obtain the photo or video capture result.
    ```ts
    async function getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
      let result: picker.PickerResult =
+       // Call the picker API to start the system camera and obtain the captured photo or video.
        await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
          pickerProfile);
      console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
@@ -57,7 +65,7 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
    }
    ```
 
-## Example
+## Complete Sample Code
    ```ts 
    import { camera, cameraPicker as picker } from '@kit.CameraKit';
    import { fileIo, fileUri } from '@kit.CoreFileKit';
