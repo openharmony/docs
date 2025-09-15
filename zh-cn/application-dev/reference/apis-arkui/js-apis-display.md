@@ -675,10 +675,7 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 import { display } from '@kit.ArkUI';
 
 let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
-if(data.creaseRects && data.creaseRects.length > 0)
-{
-  console.info(`Succeeded in obtaining current fold crease region. Data: ${JSON.stringify(data)}`);
-}
+console.info(`Succeeded in obtaining current fold crease region. Data: ${JSON.stringify(data)}`);
 ```
 
 ## display.on('foldStatusChange')<sup>10+</sup>
