@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```js
-import trash from '@ohos.file.trash';
+import  { trash } from '@kit.CoreFileKit';
 ```
 
 ## trash.listFile
