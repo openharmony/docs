@@ -1,7 +1,13 @@
 # Stage模型启动FA模型PageAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-本小节介绍Stage模型的两种应用组件如何启动FA模型的PageAbility组件。
+本小节介绍[Stage模型](ability-terminology.md#stage模型)的两种应用组件如何启动[FA模型](ability-terminology.md#fa模型)的PageAbility组件。
 
 
 ## UIAbility启动PageAbility

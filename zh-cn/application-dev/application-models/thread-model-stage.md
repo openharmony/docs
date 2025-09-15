@@ -1,9 +1,17 @@
 # 线程模型
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @ykzp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+
 线程是操作系统进行运算调度的基本单位，是[进程](./process-model-stage.md)中的执行流，共享进程的资源。一个进程可以包含多个线程。
 
 ## 线程类型
-Stage模型下的线程主要有如下三类：
+[Stage模型](ability-terminology.md#stage模型)下的线程主要有如下三类：
 - 主线程
   - 执行UI绘制。
   - 管理主线程的[ArkTS引擎](../arkts-utils/arkts-runtime-overview.md)实例，使多个UIAbility组件能够运行在其之上。
