@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc-->
 <!--Designer: @ctqctq99-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 - [ArkWeb简介](web-component-overview.md)
 - [ArkWeb进程](web_component_process.md)
