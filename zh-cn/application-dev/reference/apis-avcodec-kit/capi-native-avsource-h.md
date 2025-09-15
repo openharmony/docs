@@ -65,7 +65,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVDataSource](capi-codecbase-oh-avdatasource.md) *dataSource | 用户自定义数据源。 |
+| [OH_AVDataSource](_codec_base.md#oh_avdatasource) *dataSource | 用户自定义数据源。 |
 
 **返回：**
 
@@ -92,7 +92,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVDataSourceExt](capi-codecbase-oh-avdatasourceext.md) *dataSource | 指向数据源结构体的指针，该结构体可用于获取输入数据。 |
+| [OH_AVDataSourceExt](_codec_base.md#oh_avdatasourcereadatext) *dataSource | 指向数据源结构体的指针，该结构体可用于获取输入数据。 |
 | void *userData | 指向用户自定义数据的指针。 |
 
 **返回：**
