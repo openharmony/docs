@@ -3724,6 +3724,8 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中正常调用。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3777,6 +3779,8 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中正常调用。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3828,6 +3832,8 @@ try{
 off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 取消通知监听回调。
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中正常调用。
 
 **系统能力**：SystemCapability.Notification.Notification
 
