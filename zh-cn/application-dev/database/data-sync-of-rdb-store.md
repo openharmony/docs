@@ -127,7 +127,7 @@
              return;
            }
            console.info(`The data of device:${device} has been changed.`);
-           // 获取device组网内设备对应的分布式表名。
+           // 获取device对应的分布式表名。
            const distributedTableName = await store.obtainDistributedTableName(device, 'EMPLOYEE');
            // 创建查询谓词，查询组网内设备分布式表的数据
            const predicates = new relationalStore.RdbPredicates(distributedTableName);
