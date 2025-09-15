@@ -14,8 +14,8 @@ ArkGraphics 3D支持用户创建环境资源，定义3D场景的背景。
 ## 环境资源的创建及使用
 环境资源的创建需要指定名字以及图片或者glTF在文件沙箱中的路径，将环境资源设置到3D scene的environment属性，即可以将创建的环境资源设置为3D场景的背景环境。环境资源提供了diffuseFactor、specularFactor等的属性，支撑开发者对于环境资源属性进行控制。示例代码如下：
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, EnvironmentBackgroundType } from '@kit.ArkGraphics3D';
+import { Image, Environment, SceneResourceParameters, SceneResourceFactory, Scene,
+  EnvironmentBackgroundType } from '@kit.ArkGraphics3D';
 
 function createEnvironmentPromise(): Promise<Environment> {
   return new Promise((resolve, reject) => {
