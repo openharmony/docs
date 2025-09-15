@@ -10306,7 +10306,7 @@ static setSocketIdleTimeout(timeout: int): void
 
 设置ArkWeb中已使用过的空闲socket的超时时间，即已使用过的socket可以处于空闲状态的最大时长。如果设置的值与已存在的空闲socket超时时间不同，则根据新的值对已存在的空闲socket进行清理。
 
-未使用该接口设置空闲socket的超时时间时ArkWeb的默认值为300s。
+未使用该接口设置空闲socket的超时时间时，ArkWeb的默认值为300s。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
