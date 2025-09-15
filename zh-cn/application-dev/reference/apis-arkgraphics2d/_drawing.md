@@ -14692,7 +14692,7 @@ void OH_Drawing_SetTextStyleEllipsisModal (OH_Drawing_TextStyle* , int  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| int | 设置省略号样式，支持可选的省略号样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 | 
+| int | 设置省略号样式，可选的省略号样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 | 
 
 
 ### OH_Drawing_SetTextStyleFontFamilies()
@@ -15111,7 +15111,7 @@ void OH_Drawing_SetTypographyTextEllipsisModal (OH_Drawing_TypographyStyle* , in
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
-| int | 设置省略号样式，支持可选的省略号样式样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 | 
+| int | 设置省略号样式，可选的省略号样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 | 
 
 
 ### OH_Drawing_SetTypographyTextFontFamily()
@@ -18384,7 +18384,7 @@ void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies (char** fontFamilies,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| fontFamilies | 表示指向字体字体类型的指针。 | 
+| fontFamilies | 表示指向字体类型的指针。 | 
 | fontFamiliesNum | 字体名称的数量。 | 
 
 
