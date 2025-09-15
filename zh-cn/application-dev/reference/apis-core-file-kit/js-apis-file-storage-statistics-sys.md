@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import storageStatistics from "@ohos.file.storageStatistics";
+import  { storageStatistics } from '@kit.CoreFileKit';
 ```
 
 ## storageStatistics.getTotalSizeOfVolume
