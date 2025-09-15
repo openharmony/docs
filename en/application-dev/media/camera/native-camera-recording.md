@@ -6,7 +6,7 @@ As another important function of the camera application, video recording is the 
 
 Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
      
    ```c++
    // Include the NDK header files.

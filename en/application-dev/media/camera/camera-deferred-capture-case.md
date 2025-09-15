@@ -12,7 +12,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 ![deferred-capture-development-process](figures/deferred-capture-development-process.png)
 
-## Sample Code
+## Complete Sample Code
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 

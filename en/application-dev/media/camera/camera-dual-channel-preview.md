@@ -200,7 +200,7 @@ function createDualPreviewOutput(cameraManager: camera.CameraManager, previewPro
 
  
 
-## Sample
+## Complete Sample Code
 
 ```ts
 import { camera } from '@kit.CameraKit';
