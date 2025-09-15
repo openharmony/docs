@@ -121,7 +121,7 @@ int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered)
 
 **描述**
 
-查询默认数据网络是否记流量。
+查询默认数据网络是否计流量。
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
