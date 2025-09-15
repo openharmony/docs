@@ -30,6 +30,7 @@
     - [使用AVRecorder录制视频(C/C++)](using-ndk-avrecorder-for-video-recording.md)
     - [使用AVScreenCapture录屏取码流(C/C++)](using-avscreencapture-for-buffer.md)
     - [使用AVScreenCapture录屏写文件(C/C++)](using-avscreencapture-for-file.md)
+    - [屏幕录制支持矩形区域录制(C/C++)](video-supports-rectangular-area-recording.md)
   - 媒体信息查询<!--media-info-c-->
     - [使用AVMetadataExtractor获取元数据(C/C++)](using-ndk-avmetadataextractor-for-media.md)
     - [使用AVImageGenerator获取视频帧(C/C++)](using-ndk-avimagegenerator-for-video.md)
