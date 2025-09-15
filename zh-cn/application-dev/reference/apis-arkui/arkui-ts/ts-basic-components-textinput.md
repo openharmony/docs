@@ -2055,7 +2055,7 @@ struct TextInputExample {
   @State submitValue: string = '';
   @State text: string = '';
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
-  @State teleNumberNoSpace: string = "";
+  @State telNumberNoSpace: string = "";
   @State nextCaret: number = -1; // 用于记录下次光标设置的位置
   @State actualCh: number = -1; // 用于记录光标在第i个数字后插入或者第i个数字前删除
   @State lastCaretPosition: number = 0;
@@ -2099,13 +2099,13 @@ struct TextInputExample {
   calcCaretPosition(nextText: string) {
     let befNumberNoSpace: string = this.removeSpace(this.text);
     this.actualCh = 0;
-    if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // 插入场景
+    if (befNumberNoSpace.length < this.telNumberNoSpace.length) { // 插入场景
       for (let i = 0; i < this.lastCaretPosition; i++) {
         if (this.text[i] != ' ') {
           this.actualCh += 1;
         }
       }
-      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
+      this.actualCh += this.telNumberNoSpace.length - befNumberNoSpace.length;
       console.info("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
@@ -2116,7 +2116,7 @@ struct TextInputExample {
           }
         }
       }
-    } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
+    } else if (befNumberNoSpace.length > this.telNumberNoSpace.length) { // 删除场景
       if (this.lastCaretPosition === this.text.length) {
         console.info("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
@@ -2147,20 +2147,20 @@ struct TextInputExample {
       Row() {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((value: string) => {
-            this.teleNumberNoSpace = this.removeSpace(value);
+            this.telNumberNoSpace = this.removeSpace(value);
             let nextText: string = "";
-            if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              nextText = this.teleNumberNoSpace;
+            if (this.telNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              nextText = this.telNumberNoSpace;
             } else if (this.checkNeedNumberSpace(value)) {
-              if (this.teleNumberNoSpace.length <= 3) {
-                nextText = this.teleNumberNoSpace;
+              if (this.telNumberNoSpace.length <= 3) {
+                nextText = this.telNumberNoSpace;
               } else {
-                let split1: string = this.teleNumberNoSpace.substring(0, 3);
-                let split2: string = this.teleNumberNoSpace.substring(3);
+                let split1: string = this.telNumberNoSpace.substring(0, 3);
+                let split2: string = this.telNumberNoSpace.substring(3);
                 nextText = split1 + ' ' + split2;
-                if (this.teleNumberNoSpace.length > 7) {
-                  split2 = this.teleNumberNoSpace.substring(3, 7);
-                  let split3: string = this.teleNumberNoSpace.substring(7);
+                if (this.telNumberNoSpace.length > 7) {
+                  split2 = this.telNumberNoSpace.substring(3, 7);
+                  let split3: string = this.telNumberNoSpace.substring(7);
                   nextText = split1 + ' ' + split2 + ' ' + split3;
                 }
               }
