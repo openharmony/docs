@@ -1,5 +1,12 @@
 # Media Kit（媒体服务）
 
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @chenkun-->
+<!--Designer: @yxc2-->
+<!--Tester: @zengxi_3007-->
+<!--Adviser: @zengyawen-->
+
 - [Media Kit简介](media-kit-intro.md)
 - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
   - 播放<!--media-playback-arkts-->
