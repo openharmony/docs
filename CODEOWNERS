@@ -1029,6 +1029,7 @@ zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-measureutils.md	
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-mediaquery.md	@lanshouren	@liuli0427	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-promptaction.md	@houguobiao	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-uicontext.md	@xiang-shouxing	@sally__	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext.md	@xiang-shouxing	@sally__	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-uiobserver.md	@xiang-shouxing	@fredyuan912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/capi-arkui-accessibility-arkui-accessibilityactionarguments.md	@lmleon	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/capi-arkui-accessibility-arkui-accessibilityelementinfo.md	@lmleon	@fredyuan0912	@HelloCrease
