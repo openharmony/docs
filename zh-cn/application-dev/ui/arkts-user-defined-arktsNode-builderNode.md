@@ -1723,7 +1723,7 @@ struct TextBuilder {
       // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中。
       // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新。
       makeNode(uiContext: UIContext): FrameNode | null {
-        console.info(" uicontext is undifined : "+ (uiContext === undefined));
+        console.info(" uicontext is undefined : "+ (uiContext === undefined));
         if (this.rootnode != null) {
           // 返回FrameNode节点。
           return this.rootnode.getFrameNode();
