@@ -93,7 +93,7 @@ struct BuilderDemo {
 }
 ```
 
-- 如果不涉及组件的\@State、\@Link、\@Observed等装饰器变量变化，建议使用全局的自定义构建函数。
+- 如果不涉及组件状态变量变化，建议使用全局的自定义构建函数。
 
 - 全局自定义构建函数允许在build函数和其他自定义构建函数中调用。
 
@@ -448,9 +448,9 @@ struct customBuilderDemo {
 
 ![arkts-builder-usage-scenario4](figures/arkts-builder-usage-scenario4.gif)
 
-### 多层\@Builde函数嵌套
+### 多层\@Builder函数嵌套
 
-在\@Builder函数内调用自定义组件或其他\@Builder函数，实现多个\@Builder嵌套使用。若要实现最内层的\@Builder动态UI刷新功能，每层调用\@Builder的地方必须使用按引用传递的方式。这里\(`$$\)\不是必须的参数形式，也可以换成其他名称。可以换成其他名称。
+在\@Builder函数内调用自定义组件或其他\@Builder函数，实现多个\@Builder嵌套使用。若要实现最内层的\@Builder动态UI刷新功能，每层调用\@Builder的地方必须使用按引用传递的方式。这里`$$`不是必须的参数形式，可以换成其他名称。
 
 ```ts
 class Tmp {
