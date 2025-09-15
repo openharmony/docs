@@ -139,7 +139,7 @@ sharing.getStatsTotalBytes().then((data: number) => {
 
 // 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
-  console.log('start wifi sharing successful');
+  console.log('stop wifi sharing successful');
 }).catch((error: BusinessError) => {
   console.error('start wifi sharing failed');
 });
