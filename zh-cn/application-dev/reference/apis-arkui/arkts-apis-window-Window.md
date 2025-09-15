@@ -57,36 +57,43 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    try {
-      // 创建子窗
-      windowStage.createSubWindow("testSubWindow").then((subWindow) => {
-        if (subWindow == null) {
-          console.error('Failed to create the subWindow. Cause: The data is empty');
-          return;
-        }
-        windowStage.loadContent('pages/Index', (err) => {
-          if (err.code) {
-            console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // 创建子窗
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
             return;
           }
-          console.info('Succeeded in loading the content.');
-          try {
-            subWindow.showWindow((err: BusinessError) => {
-              const errCode: number = err.code;
-              if (errCode) {
-                console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
-                return;
-              }
-              console.info('Succeeded in showing the window.');
-            });
-          } catch (exception) {
-            console.error(`Failed to show the window. Cause code: ${exception.code}, message: ${exception.message}`);
-          }
-        })
-      });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+          subWindow.loadContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              subWindow.showWindow((err: BusinessError) => {
+                const errCode: number = err.code;
+                if (errCode) {
+                  console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+                  return;
+                }
+                console.info('Succeeded in showing the window.');
+              });
+            } catch (exception) {
+              console.error(`Failed to show the window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          })
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+  });
   }
 }
 ```
@@ -128,34 +135,41 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    try {
-      // 创建子窗
-      windowStage.createSubWindow("testSubWindow").then((subWindow) => {
-        if (subWindow == null) {
-          console.error('Failed to create the subWindow. Cause: The data is empty');
-          return;
-        }
-        windowStage.loadContent('pages/Index', (err) => {
-          if (err.code) {
-            console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // 创建子窗
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
             return;
           }
-          console.info('Succeeded in loading the content.');
-          try {
-            let promise = data.showWindow();
-            promise.then(() => {
-              console.info('Succeeded in showing the window.');
-            }).catch((err: BusinessError) => {
-              console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
-            });
-          } catch (exception) {
-            console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
-          }
-        })
-      });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+          subWindow.loadContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              let promise = subWindow.showWindow();
+              promise.then(() => {
+                console.info('Succeeded in showing the window.');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          });
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 }
 ```
@@ -208,36 +222,43 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    // 创建子窗
-    try {
-      windowStage.createSubWindow('subWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to create the sub window. Cause: The data is empty');
-          return;
-        }
-        windowStage.loadContent('pages/Index', (err) => {
-          if (err.code) {
-            console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 创建子窗
+      try {
+        windowStage.createSubWindow('subWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
             return;
           }
-            console.info('Succeeded in loading the content.');
-          let options: window.ShowWindowOptions = {
-            focusOnShow: false
-          };
-          try {
-            data.showWindow(options).then(() => {
-              console.info('Succeeded in showing window');
-            }).catch((err: BusinessError) => {
-              console.error(`Failed to show window. Error code: ${err.code}, message: ${err.message}`);
-            });
-          } catch (exception) {
-            console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
-          }
+          data.loadContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            let options: window.ShowWindowOptions = {
+              focusOnShow: false
+            };
+            try {
+              data.showWindow(options).then(() => {
+                console.info('Succeeded in showing window');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          });
         });
-      });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 }
 ```
