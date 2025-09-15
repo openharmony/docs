@@ -1,7 +1,7 @@
 # SQLite调试工具指导
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
-<!--Owner: @MyLinChi-->
+<!--Owner: @linzhuobin1-->
 <!--Designer: @csuxsh-->
 <!--Tester: @zhujieliang-->
 <!--Adviser: @ge-yafang-->
