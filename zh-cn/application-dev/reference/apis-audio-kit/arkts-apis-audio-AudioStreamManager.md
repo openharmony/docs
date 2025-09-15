@@ -929,7 +929,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 isIntelligentNoiseReductionEnabledForCurrentDevice(sourceType: SourceType): boolean
 
-查询指定source type的智能降噪开关是否已开启。
+查询指定的音源类型智能降噪开关是否打开。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
