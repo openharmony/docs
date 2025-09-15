@@ -38,7 +38,7 @@ onCreate(want: Want): void
 
 ```ts
 import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCreate(want: Want): void {
