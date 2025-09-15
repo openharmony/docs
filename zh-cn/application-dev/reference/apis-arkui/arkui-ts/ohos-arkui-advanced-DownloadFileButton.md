@@ -84,6 +84,8 @@ import { DownloadFileButton } from '@kit.ArkUI';
 | FULL_FILLED | 1    | 下载按钮展示填充样式图标。 |
 | LINES       | 2    | 下载按钮展示线条样式图标。 |
 
+
+
 ## DownloadDescription
 
 下载按钮中文字的内容。
