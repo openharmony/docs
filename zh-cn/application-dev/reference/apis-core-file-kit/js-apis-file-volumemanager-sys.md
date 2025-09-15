@@ -25,6 +25,8 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
 异步获取当前外置存储中所有卷设备信息，以promise方式返回。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -64,6 +66,8 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
 异步获取当前外置存储中所有卷设备信息，以callback方式返回。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -101,7 +105,9 @@ mount(volumeId: string): Promise&lt;void&gt;
 
 异步挂载指定卷设备，以promise方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
 
-**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -151,6 +157,8 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
 异步挂载指定卷设备，以callback方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -193,6 +201,8 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 unmount(volumeId: string): Promise&lt;void&gt;
 
 异步卸载指定卷设备，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -244,6 +254,8 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步卸载指定卷设备，以callback方式返回。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -286,6 +298,8 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
 异步通过卷设备uuid获得指定卷设备信息，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -334,6 +348,8 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 异步通过卷设备uuid获得指定卷设备信息，以callback方式返回。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -373,6 +389,8 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
 异步通过卷设备id获得指定卷设备信息，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -421,6 +439,8 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 异步通过指定卷设备id获得卷设备信息，以callback方式返回。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -460,6 +480,8 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
 异步修改指定卷设备描述，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -512,6 +534,8 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 
 异步修改指定卷设备描述，以callback方式返回。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -555,6 +579,8 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
 异步对指定卷设备进行格式化，以promise方式返回。当前仅支持vfat和exfat两种文件系统类型的格式化，只有处于卸载状态的卷设备可以进行格式化，格式化后卷设备的uuid、挂载路径和卷设备描述均会发生变化。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -607,6 +633,8 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 
 异步对指定卷设备进行格式化，以callback方式返回。当前仅支持vfat和exfat两种文件系统类型的格式化，只有处于卸载状态的卷设备可以进行格式化，格式化后卷设备的uuid、挂载路径和卷设备描述均会发生变化。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -650,6 +678,8 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 partition(diskId: string, type: number): Promise&lt;void&gt;
 
 异步对磁盘设备进行分区，以promise方式返回。当前仅支持将磁盘设备重新分区为一个分区，系统是支持读取多分区的磁盘设备。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -700,6 +730,8 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 
 异步对磁盘进行分区，以callback方式返回。当前仅支持将磁盘设备重新分区为一个分区，系统是支持读取多分区的磁盘设备。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
@@ -737,6 +769,8 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
   ```
 
 ## Volume
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.Volume。
 
