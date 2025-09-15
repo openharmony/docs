@@ -1829,7 +1829,7 @@ try {
 
 killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
-批量查杀进程。
+批量终止进程。
 
 **需要权限**：ohos.permission.KILL_APP_PROCESSES
 
@@ -1843,7 +1843,7 @@ killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pids    | Array\<number>   | 是    | 要查杀的进程ID。 |
+| pids    | Array\<number>   | 是    | 要终止的进程ID。 |
 
 **返回值：**
 
