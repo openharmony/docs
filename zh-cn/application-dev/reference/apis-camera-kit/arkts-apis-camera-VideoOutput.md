@@ -117,8 +117,6 @@ stop(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop(() => {
     console.info('Callback invoked to indicate the video output stop success.');
