@@ -71,7 +71,7 @@ The actual rounding mode can be the union of the types listed below.
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
 | [Rounding](#rounding) | Same rounding mode as that represented by [Rounding](#constants). |
-| 9                      | Positive remainder from Euclid's division. It is the same as [Decimal.EUCLIDEAN](#constants).|
+| 9                      | Positive remainder Euclid's division, which is the same as [Decimal.EUCLID](#constants).|
 
 ## DecimalConfig
 
@@ -109,7 +109,7 @@ Decimal with any precision.
 | ---- | -------- | ---- | ---- | ----------------------------------------- |
 | d    | number[] | Yes  | Yes  | Digits in the integer part and factional part of a decimal.|
 | e    | number   | Yes  | Yes  | Exponent in a decimal.|
-| s    | number   | Yes  | Yes  | Sign in a decimal.            |
+| s    | number   | Yes  | Yes  | Sign in a decimal.|
 
 ### Constants
 
@@ -288,8 +288,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let data: Decimal = new Decimal(10.1).clamp(0, 10);
-console.info("test Decimal clamp:" + data.toString()); // 'test Decimal clamp:10'
+let data1: Decimal = new Decimal(10.1).clamp(0, 10);
+console.info("test Decimal clamp:" + data1.toString()); // 'test Decimal clamp:10'
+
+let data2: Decimal = new Decimal(-5).clamp(0, 10);
+console.info("test Decimal clamp:" + data2.toString()); // 'test Decimal clamp:0'
+
+let data3: Decimal = new Decimal(7.5).clamp(0, 10);
+console.info("test Decimal clamp:" + data3.toString()); // 'test Decimal clamp:7.5'
 ```
 
 
@@ -1023,7 +1029,7 @@ Compares this decimal with the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1065,7 +1071,7 @@ Checks whether this decimal is equal to the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1103,7 +1109,7 @@ Checks whether this decimal is greater than the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1141,7 +1147,7 @@ Checks whether this decimal is greater than or equal to the specified number *n*
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1179,7 +1185,7 @@ Checks whether this decimal is less than the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1217,7 +1223,7 @@ Checks whether this decimal is less than or equal to the specified number *n*.
 
 | Name| Type           | Mandatory| Description                 |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | Yes  | Target number to compare.|
+| n      | [Value](#value) | Yes  | Value to be compared.|
 
 **Return value**
 
@@ -1940,7 +1946,7 @@ let data: Decimal = new Decimal(45.6);
 let data1: string = data.toExponential(0);
 console.info("test Decimal toExponential:" + data1); // 'test Decimal toExponential:5e+1'
 data1 = data.toExponential(1); // data1: '4.6e+1'
-data1 = data.toExponential(1); // data1: '4.560e+1'
+data1 = data.toExponential(3); // data1: '4.560e+1'
 ```
 
 ### toExponential
@@ -4084,8 +4090,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let data: number = Decimal.sign(2);
-console.info("test Decimal sign:" + data); // 'test Decimal sign:1'
+let data1: number = Decimal.sign(2);
+console.info("test Decimal sign:" + data1); // 'test Decimal sign:1'
+
+let data2: number = Decimal.sign(-3);
+console.info("test Decimal sign:" + data2); // 'test Decimal sign:-1'
+
+let data3: number = Decimal.sign(0);
+console.info("test Decimal sign:" + data3); // 'test Decimal sign:0'
+
+let data4: number = Decimal.sign(-0);
+console.info("test Decimal sign:" + data4); // 'test Decimal sign:0'
+
+let data5: number = Decimal.sign(3.14);
+console.info("test Decimal sign:" + data5); // 'test Decimal sign:1'
+
+let data6: number = Decimal.sign(-1.618);
+console.info("test Decimal sign:" + data6); // 'test Decimal sign:-1'
+
+let data7: number = Decimal.sign("100");
+console.info("test Decimal sign:" + data7); // 'test Decimal sign:1'
+
+let data8: number = Decimal.sign("-50");
+console.info("test Decimal sign:" + data8); // 'test Decimal sign:-1'
+
+let data9: number = Decimal.sign(NaN);
+console.info("test Decimal sign:" + data9); // 'test Decimal sign:NaN'
+
 ```
 
 ### round

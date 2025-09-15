@@ -83,9 +83,10 @@
         - [Dynamic Import](arkts-dynamic-import.md)
         - [Lazy Import](arkts-lazy-import.md)
         - [Dynamically Loading Native Modules in Synchronous Mode](js-apis-load-native-module.md)
-        - [Statically Loading Native Modules](arkts-import-native-module.md).
+        - [Statically Loading Native Modules](arkts-import-native-module.md)
         - [Loading Modules Using Node-API](load-module-base-nodeapi.md)
         - [Side Effects and Optimization of Module Loading](arkts-module-side-effects.md)
+    - [ArkTS Runtime FAQs](arkts-runtime-faq.md)
 - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
     - [Overview of the ArkTS Compilation Toolchain](compilation-tool-chain-overview.md)
     - Ark Bytecode<!--arkts-bytecode-->
@@ -102,3 +103,4 @@
         - [Package-specific Source Code Obfuscation Recommendations](source-obfuscation-practice.md)
         - [Common Issues with ArkGuard in Source Code Obfuscation](source-obfuscation-questions.md)
     - [Configuring arkOptions in build-profile.json5](arkoptions-guide.md)
+

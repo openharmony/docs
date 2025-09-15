@@ -21,7 +21,7 @@ TaskPool is recommended in the following scenarios:
 
 > **NOTE**
 >
-> Due to the memory isolation feature of the [actor model](multi-thread-concurrency-overview.md#actor-model) between threads, regular singletons cannot be shared across threads. This issue can be solved by exporting singletons through sendable modules.
+> Due to the memory isolation feature of the [actor model](multi-thread-concurrency-overview.md#actor-model) between threads, regular singletons cannot be shared across threads. This issue can be solved by exporting singletons through shared modules.
 
 1. Define a concurrent function to implement service logic.
 
@@ -33,7 +33,7 @@ In the following example, the service logic uses TaskPool to call related synchr
 
 
 ```ts
-// Index.ets code
+// Index.ets
 import { taskpool} from '@kit.ArkTS';
 
 // Step 1: Define a concurrent function to implement service logic.
@@ -82,7 +82,7 @@ struct Index {
 
 When a series of synchronous tasks needs to be scheduled using the same handle, or when they depend on a specific class object that cannot be shared across different task pools, Worker is the appropriate choice.
 
-1. Create a Worker object in the UI main thread and receive messages from the Worker thread. DevEco Studio supports generation of Worker templates with a single click. In the corresponding {moduleName} directory, right-click anywhere and choose **New > Worker** to automatically generate the Worker template files and configuration information.
+1. Create a Worker object in the UI main thread and receive messages from the Worker thread. DevEco Studio supports generation of Worker templates with a single click. In the corresponding {moduleName} directory, right-click anywhere and choose **New** > **Worker** to automatically generate the Worker template files and configuration information.
 
     ```ts
     // Index.ets
@@ -127,7 +127,7 @@ When a series of synchronous tasks needs to be scheduled using the same handle, 
 2. Bind the Worker object in the Worker thread and process the synchronous task logic.
 
     ```ts
-    // handle.ts code
+    // handle.ts code.
     export default class Handle {
       syncGet() {
         return;
@@ -142,7 +142,7 @@ When a series of synchronous tasks needs to be scheduled using the same handle, 
     ```ts
     // MyWorker.ts code
     import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-    import Handle from './handle'  // Import the handle.
+    import Handle from './handle';  // Return the handle.
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     

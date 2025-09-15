@@ -22,7 +22,7 @@ export class A {
   private count_: number = 0;
   lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
 
-  public async getCount(): Promise<number> {
+  public getCount(): Promise<number> {
     // Add an asynchronous lock to protect the data.
     return this.lock_.lockAsync(() => {
       return this.count_;
@@ -39,6 +39,7 @@ export class A {
 
 @Concurrent
 async function printCount(a: A) {
+  a.increaseCount();
   console.info("InputModule: count is:" + await a.getCount());
 }
 

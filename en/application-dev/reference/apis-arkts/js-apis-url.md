@@ -13,7 +13,7 @@ import { url } from '@kit.ArkTS';
 ```
 ## URLParams<sup>9+</sup>
 
-URLParams is a utility class for parsing, constructing, and manipulating URL parameters. This class provides a unified interface for handling parameters across different dimensions, such as query parameters and path parameters.
+A utility class for parsing, constructing, and manipulating URL parameters. It provides a unified API to process parameters (such as query parameters and path parameters).
 
 ### constructor<sup>9+</sup>
 
@@ -259,8 +259,7 @@ Obtains the value of the first key-value pair based on the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| string | Returns the value of the first key-value pair if obtained.|
-| null | Returns **null** if no value is obtained.|
+| string \| null | The first value is returned. If no value is found, **null** is returned.|
 
 **Error codes**
 
@@ -359,7 +358,7 @@ paramsObject.set('baz', '3'); // Add a third parameter.
 
 sort(): void
 
-Sorts all key-value pairs contained in this object based on the Unicode code points of the keys and returns undefined.  This method uses a stable sorting algorithm, that is, the relative order between key-value pairs with equal keys is retained.
+Sorts all key-value pairs in this object based on the Unicode code points of the keys.  This method uses a stable sorting algorithm. (The relative order between key-value pairs with equal keys is retained.)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -388,7 +387,7 @@ Obtains an ES6 iterator that contains the keys of all the key-value pairs.
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs.|
+| IterableIterator&lt;string&gt; | An ES6 iterator that contains the keys of all the key-value pairs.|
 
 **Example**
 
@@ -415,7 +414,7 @@ Obtains an ES6 iterator that contains the values of all the key-value pairs.
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs.|
+| IterableIterator&lt;string&gt; | An ES6 iterator that contains the values of all the key-value pairs.|
 
 **Example**
 
@@ -670,9 +669,7 @@ let result = urlObject.toJSON();
 
 ## URLSearchParams<sup>(deprecated)</sup>
 
-Defines APIs for handling URL query strings.
-
-This class is deprecated since API version 9. You are advised to use [URLParams](#urlparams9) instead.
+Defines APIs for handling URL query strings. This class is deprecated since API version 9. You are advised to use [URLParams](#urlparams9) instead.
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -863,8 +860,7 @@ Obtains the value of the first key-value pair based on the specified key.
 
 > **NOTE**
 >
-> If the key-value pair does not exist, **undefined** is returned.
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.get<sup>9+</sup>](#get9) instead.
+> If the key-value pair does not exist, **undefined** is returned.<br>This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.get<sup>9+</sup>](#get9) instead.
 
 
 **System capability**: SystemCapability.Utils.Lang
@@ -879,8 +875,7 @@ Obtains the value of the first key-value pair based on the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| string | Returns the value of the first key-value pair if obtained.|
-| null | Returns **null** if no value is obtained.|
+| string \| null | The first value is returned. If no value is found, **null** is returned.|
 
 **Example**
 

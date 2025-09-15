@@ -29,8 +29,8 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
     import { common } from '@kit.AbilityKit';
 
     @Concurrent
-    async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
-      let filePath1: string = context.filesDir + "/path1.txt"; // Application file path
+    async function concurrentTest(context: common.UIAbilityContext): Promise<void> {
+      let filePath1: string = context.filesDir + "/path1.txt"; // Application file path.
       let filePath2: string = context.filesDir + "/path2.txt";
       // Write data to the file cyclically.
       let fileList: Array<string> = [];
@@ -41,10 +41,9 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`)
-          return false;
         })
       }
-      return true;
+      return;
     }
 	```
 

@@ -4,7 +4,7 @@ This section provides a development guide for continuous tasks using TaskPool, w
 
 ## Using TaskPool to Listen for Sensor Data
 
-1. Import the required modules.
+1. Import the required module.
 
    ```ts
    // Index.ets

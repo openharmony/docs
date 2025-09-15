@@ -6,7 +6,7 @@ ArkTS, which supports asynchronous operations, now provides the capability for a
 
 > **NOTE**
 >
-> Methods using asynchronous waiting must be marked as **async**, and the caller must use the **await** keyword to ensure correct timing.
+> Asynchronous methods must be marked as **async**, and the caller must use the **await** keyword to ensure correct timing.
 
 ## Usage Example
 
