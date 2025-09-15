@@ -168,7 +168,7 @@ Failure[INSTALL_FAILED_SIZE_TOO_LARGE] error while deploying hap？
 
 **解决措施**
 
-使用\@ohos.systemDateTime的getCurrentTime来获取系统系统时间和时区。
+使用\@ohos.systemDateTime的getCurrentTime来获取系统时间和时区。
 
 **代码示例**
 
@@ -257,7 +257,7 @@ DevEco Studio默认下载是public-sdk。
 
 **问题现象**
 
-已在stage模型下的应用如何拉起FA模型
+已在Stage模型下的应用如何拉起FA模型
 
 **解决措施**
 
@@ -375,7 +375,7 @@ this.context.startAbility(
 ```
 
 
-## stage模型，\@Component组件内如何获取UIAbilityContext(API 9)
+## Stage模型，\@Component组件内如何获取UIAbilityContext(API 9)
 
 **解决措施**
 

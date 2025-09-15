@@ -730,7 +730,7 @@ aa start命令的参数wl、wt、wh、ww或aa test命令不支持release签名�
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 
 ### 10100101 获取应用信息失败
 
@@ -1114,5 +1114,5 @@ Cannot debug applications using a release certificate.
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 签名工具及签名证书的生成方式可以参考：[签名工具指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
