@@ -402,8 +402,8 @@ uinput --stylus --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time]
 
 # <dx1> <dy1>触控笔拖拽起点以屏幕左上角为原点的相对坐标系的位置坐标。
 # <dx2> <dy2>触控笔拖拽终点以屏幕左上角为原点的相对坐标系的位置坐标。
-# [press time]按压时间，可选参数，需与拖动时间同时填写或缺省，单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
-# [total time]拖动时间，可选参数，需与按压时间同时填写或缺省，单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500，否则命令报错：total time input is error。
+# [press time]按压时间，可选参数，需要与total time配合使用，如果两者中只有一个填写，则不生效。单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
+# [total time]拖动时间，可选参数，需要与press time配合使用，如果两者中只有一个填写，则不生效。单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500，否则命令报错：total time input is error。
 ```
 
 **使用示例**
@@ -512,8 +512,8 @@ uinput --touch --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time]
 
 # <dx1> <dy1>触摸拖拽起点以屏幕左上角为原点的相对坐标系的位置坐标。
 # <dx2> <dy2>触摸拖拽终点以屏幕左上角为原点的相对坐标系的位置坐标。
-# [press time]按压时间，可选参数，需与拖动时间同时填写或缺省，单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
-# [total time]拖动时间，可选参数，需与按压时间同时填写或缺省，单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500，否则命令报错：total time input is error。
+# [press time]按压时间，可选参数，需要与total time配合使用，如果两者中只有一个填写，则不生效。单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
+# [total time]拖动时间，可选参数，需要与press time配合使用，如果两者中只有一个填写，则不生效。单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500，否则命令报错：total time input is error。
 ```
 
 **使用示例**
