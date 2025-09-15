@@ -639,25 +639,14 @@ struct ListItemExample5 {
     }.padding('4vp').justifyContent(FlexAlign.SpaceEvenly)
   }
 
-  getList(): FrameNode | undefined | null {
-    let node: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(this.getUniqueId());
-    let count: number = node?.getChildrenCount() ?? 0;
-    for (let i = 0; i < count; i++) {
-      let child: FrameNode | undefined | null = node?.getChild(i);
-      if (child?.getNodeType() === "List") {
-        return child;
-      }
-    }
-    return undefined;
-  }
-
   build() {
     Flex({ wrap: FlexWrap.Wrap }) {
       Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween }) {
         Button("expand start")
           .onClick(() => {
             try {
-              ListItemSwipeActionManager.expand(this.getList()?.getChild(0), ListItemSwipeActionDirection.START)
+              let node: FrameNode | null = this.getUIContext().getAttachedFrameNodeById('listItem');
+              ListItemSwipeActionManager.expand(node, ListItemSwipeActionDirection.START)
             } catch (error) {
               console.error("Error expand item:", (error as BusinessError).code, (error as BusinessError).message);
             }
@@ -665,7 +654,8 @@ struct ListItemExample5 {
         Button("expand end")
           .onClick(() => {
             try {
-              ListItemSwipeActionManager.expand(this.getList()?.getChild(0), ListItemSwipeActionDirection.END)
+              let node: FrameNode | null = this.getUIContext().getAttachedFrameNodeById('listItem');
+              ListItemSwipeActionManager.expand(node, ListItemSwipeActionDirection.END)
             } catch (error) {
               console.error("Error expand item:", (error as BusinessError).code, (error as BusinessError).message);
             }
@@ -673,7 +663,8 @@ struct ListItemExample5 {
         Button("collapse")
           .onClick(() => {
             try {
-              ListItemSwipeActionManager.collapse(this.getList()?.getChild(Number(0)))
+              let node: FrameNode | null = this.getUIContext().getAttachedFrameNodeById('listItem');
+              ListItemSwipeActionManager.collapse(node)
             } catch (error) {
               console.error("Error collapse item:", (error as BusinessError).code, (error as BusinessError).message);
             }
@@ -691,6 +682,7 @@ struct ListItemExample5 {
             .borderRadius(10)
             .backgroundColor(0xFFFFFF)
         }
+        .id('listItem')
         .transition({ type: TransitionType.Delete, opacity: 0 })
         .swipeAction({
           start: {
