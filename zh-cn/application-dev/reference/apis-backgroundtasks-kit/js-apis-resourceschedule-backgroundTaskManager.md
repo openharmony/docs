@@ -1167,7 +1167,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持一个UIAbility下申请多个不同类型的长时任务，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（个别类型没有通知，如TASK_KEEPING，系统应用VOIP和AUDIO_RECORDING类型）。
+申请长时任务，支持一个UIAbility下申请多个不同类型的长时任务，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（个别类型没有通知，如TASK_KEEPING，系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1374,7 +1374,7 @@ stopBackgroundRunning(context: Context, ContinuousTaskId: number): Promise&lt;vo
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| ContinuousTaskId   | number | 是    | 长时任务Id。|
+| ContinuousTaskId   | number | 是    | 长时任务Id。</br>**说明 :** 从申请长时任务[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)接口中获取。|
 
 **错误码**：
 
@@ -1580,11 +1580,12 @@ export default class EntryAbility extends UIAbility {
 ## ContinuousTaskRequest<sup>21+</sup>
 
 长时任务的请求信息。
-1、申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
+</br>1、申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
    如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
-2、合并的通知的任务，必须主类型、子类型都相同。
-3、如果该任务本身没有通知、则不支持合并。
-4、如果任务类型里，包含了上传下载，则不支持合并。
+</br>2、合并的通知的任务，必须主类型、子类型都相同。
+</br>3、如果该任务本身没有通知、则不支持合并。
+</br>4、如果任务类型里，包含了上传下载，则不支持合并。
+</br>5、合并通知后不能取消合并，本身合并的不能改成不合并，本身不合并的不能改成合并
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
