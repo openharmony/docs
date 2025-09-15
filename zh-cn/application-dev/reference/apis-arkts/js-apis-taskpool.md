@@ -920,8 +920,6 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | HIGH   | 0    | 任务为高优先级。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2144,10 +2142,6 @@ taskGroup.addTask(task);
 
 表示串行队列的任务，用于执行一组需要串行执行的任务。
 
-**系统能力：** SystemCapability.Utils.Lang
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 ### constructor<sup>11+</sup>
 
 constructor(priority?: Priority)
@@ -2470,8 +2464,6 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2489,8 +2481,6 @@ async function asyRunner2() {
 工作线程的内部信息。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### 属性
 
@@ -2510,8 +2500,6 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2528,8 +2516,6 @@ async function asyRunner2() {
 处于等待或执行过程中的任务进行取消操作后，在catch分支里捕获到BusinessError里的补充信息。其他场景下该信息为undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 ### 属性
 
