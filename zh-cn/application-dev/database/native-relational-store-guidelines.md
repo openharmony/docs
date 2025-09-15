@@ -205,7 +205,7 @@ libnative_rdb_ndk.z.so
    调用OH_Rdb_Update方法修改数据，调用OH_Rdb_Delete方法删除数据。示例代码如下所示：
 
    ```c
-   // 修改数据
+   // 创建valueBucket对象，用于存储要更新的新数据
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    valueBucket->putText(valueBucket, "NAME", "Rose");
    valueBucket->putInt64(valueBucket, "AGE", 22);
@@ -213,7 +213,7 @@ libnative_rdb_ndk.z.so
    uint8_t arr[] = {1, 2, 3, 4, 5};
    int len = sizeof(arr) / sizeof(arr[0]);
    valueBucket->putBlob(valueBucket, "CODES", arr, len);
-   
+   // 创建谓词对象，指定更新条件：NAME为"Lisa"且SALARY为100.5
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    if (predicates == NULL) {
       OH_LOG_ERROR(LOG_APP, "CreatePredicates failed.");
@@ -228,7 +228,7 @@ libnative_rdb_ndk.z.so
    double salary = 100.5;
    valueObject->putDouble(valueObject, &salary, count);
    predicates->equalTo(predicates, "SALARY", valueObject);
-
+   // 执行更新操作，将符合条件的数据更新为valueBucket中的值
    int changeRows = OH_Rdb_Update(store_, valueBucket, predicates);
    int rowId = OH_Rdb_Insert(store_, "EMPLOYEE", valueBucket);
    OH_Predicates *predicates2 = OH_Rdb_CreatePredicates("EMPLOYEE");
@@ -308,7 +308,7 @@ libnative_rdb_ndk.z.so
    cursor->destroy(cursor);
    ```
    
-   配置谓词以LIKE模式或NOTLIKE模式匹配进行数据查询。示例代码如下：
+   配置谓词以LIKE模式或NOT LIKE模式匹配进行数据查询。示例代码如下：
 
    ```c
    OH_Predicates *likePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
@@ -615,9 +615,8 @@ libnative_rdb_ndk.z.so
     当不再使用附加数据时，可调用OH_Rdb_Detach分离附加数据库。
 
     ```c
-    char attachStoreTableCreateSql[] =
-        "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, "
-        "AGE INTEGER, SALARY REAL, CODES BLOB)";
+    char attachStoreTableCreateSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)";
     OH_Rdb_ConfigV2 *attachDbConfig = OH_Rdb_CreateConfig();
     if (attachDbConfig == NULL) {
         OH_LOG_ERROR(LOG_APP, "Create store config failed.");
@@ -740,7 +739,7 @@ libnative_rdb_ndk.z.so
 
    ```c
    // 列的属性为单个资产类型时，sql语句中应指定为asset，多个资产类型应指定为assets。
-   char createAssetTableSql[] = "CREATE TABLE IF NOT EXISTS asset_table (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 asset, data2 assets );";
+   char createAssetTableSql[] = "CREATE TABLE IF NOT EXISTS asset_table (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 ASSET, data2 ASSETS );";
    const char *table = "asset_table";
    int errCode = OH_Rdb_Execute(store_, createAssetTableSql);
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
@@ -846,7 +845,7 @@ libnative_rdb_ndk.z.so
    cursor = OH_Rdb_FindModifyTime(store_, "EMPLOYEE", "ROWID", values);
    ```
 
-10. 删除数据库。调用OH_Rdb_DeleteStore方法，删除数据库及数据库相关文件。示例代码如下：
+10. 删除数据库。调用OH_Rdb_DeleteStoreV2方法，删除数据库及数据库相关文件。示例代码如下：
     
     ```c
     // 释放数据库实例
