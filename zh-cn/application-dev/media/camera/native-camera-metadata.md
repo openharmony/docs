@@ -71,7 +71,11 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
+<<<<<<< HEAD
 4. 配置session，当session完成CommitConfig后通过调用[OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start)方法输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode)。
+=======
+4. 配置session，完成后通过调用[OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start)方法输出metadata数据。接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode)。
+>>>>>>> 2ca5f5b259 (metadata文档启流步骤补充)
 
    ```c++
    Camera_ErrorCode SessionStart(Camera_CaptureSession* captureSession)
