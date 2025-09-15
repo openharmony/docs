@@ -448,7 +448,9 @@ struct customBuilderDemo {
 
 ![arkts-builder-usage-scenario4](figures/arkts-builder-usage-scenario4.gif)
 
-### 多层\@Builde在\@Builder函数内调用自定义组件或其他\@Builder函数，实现多个\@Builder嵌套使用。若要实现最内层的\@Builder动态UI刷新功能，每层调用\@Builder的地方必须使用按引用传递的方式。这里\(`$$\)\不是必须的参数形式，也可以换成其他名称。可以换成其他名称。
+### 多层\@Builde函数嵌套
+
+在\@Builder函数内调用自定义组件或其他\@Builder函数，实现多个\@Builder嵌套使用。若要实现最内层的\@Builder动态UI刷新功能，每层调用\@Builder的地方必须使用按引用传递的方式。这里\(`$$\)\不是必须的参数形式，也可以换成其他名称。可以换成其他名称。
 
 ```ts
 class Tmp {
@@ -1112,7 +1114,7 @@ struct Parent {
 
 ### 使用@ComponentV2装饰器触发动态刷新
 
-在在@ComponentV2装饰的组件中，配合@ObservedV2和@Trace装饰器，通过按值传递实现UI刷新功能。
+在@ComponentV2装饰的组件中，配合@ObservedV2和@Trace装饰器，通过按值传递实现UI刷新功能。
 
 【反例】
 
