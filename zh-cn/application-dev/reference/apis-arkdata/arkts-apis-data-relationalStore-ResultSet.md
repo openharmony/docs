@@ -633,7 +633,7 @@ getValue(columnIndex: number): ValueType
 
 ```ts
 if (resultSet !== undefined) {
-  if (resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const colIndex = resultSet.getColumnIndex("NAME");
     if (colIndex > -1) {
       const name = resultSet.getValue(colIndex);
@@ -805,7 +805,7 @@ getLong(columnIndex: number): number
 
 ```ts
 if (resultSet !== undefined) {
-  if (resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const colIndex = resultSet.getColumnIndex("AGE");
     if (colIndex > -1) {
       const age = resultSet.getLong(colIndex);
@@ -866,7 +866,7 @@ getDouble(columnIndex: number): number
 
 ```ts
 if (resultSet !== undefined) {
-  if (resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const colIndex = resultSet.getColumnIndex("SALARY");
     if (colIndex > -1) {
       const salary = resultSet.getDouble(colIndex);
@@ -1246,7 +1246,7 @@ isColumnNull(columnIndex: number): boolean
 
 ```ts
 if (resultSet !== undefined) {
-  if (resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const colIndex = resultSet.getColumnIndex("CODES");
     if (colIndex > -1) {
       const isColumnNull = resultSet.isColumnNull(colIndex);
