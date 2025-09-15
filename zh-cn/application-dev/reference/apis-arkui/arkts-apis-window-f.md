@@ -606,7 +606,6 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 | 1300003 | This window manager service works abnormally. |
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
