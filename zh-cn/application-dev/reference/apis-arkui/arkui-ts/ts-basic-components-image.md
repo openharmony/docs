@@ -2307,19 +2307,19 @@ struct Index {
 @Entry
 @Component
 struct ImageExample {
-  // $r('app.media.cloud1')需要替换为开发者所需的图像资源文件。
-  @State imageResource: Resource = $r('app.media.cloud1')
+  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+  @State imageResource: Resource = $r('app.media.icon');
   build() {
     Row() {
       Column() {
         Image(this.imageResource)
           .width(200)
           .height(200)
-          // 启用淡入淡出过渡效果
+          // 启用淡入淡出过渡效果。
           .contentTransition(ContentTransitionEffect.OPACITY)
           .onClick(()=>{
-            // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
-            this.imageResource = $r('app.media.icon')
+            // $r('app.media.cloud1')需要替换为开发者所需的图像资源文件。
+            this.imageResource = $r('app.media.cloud1')
           })
       }
       .width('100%')

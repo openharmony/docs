@@ -104,11 +104,11 @@ getImageAnalyzerSupportTypes(): ImageAnalyzerType[]
 | ------ | ----------------------- |
 | [ImageAnalyzerType[]](#imageanalyzertype12) | 对应组件支持的分析类型。 |
 
-## ContentTransitionEffect<sup>21+</sup>
+### ContentTransitionEffect<sup>21+</sup>
 
 定义内容切换时的过渡效果。  
 
-**原子化服务 API：** 从 API version 21 开始，该接口支持在原子化服务中使用。  
+**原子化服务 API：** 从 API version 21开始，该接口支持在原子化服务中使用。  
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full  
 
