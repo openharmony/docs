@@ -57,8 +57,7 @@ screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
     console.error(`Failed to get all screens. Code:${err.code},message is ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item => `{"id":${item.id}, "parent":${item.parent}}`).join(',');
-  console.info(`Succeeded in getting all screens. Data: ${dataInfo}`);
+  console.info(`Succeeded in getting all screens. Data: ${JSON.stringify(data)}`);
   if(data.length > 0 ）{
     screenClass = data[0];
   }
@@ -101,8 +100,7 @@ promise.then((data: Array<screen.Screen>) => {
   if(data.length > 0){
   	screenClass = data[0];
   }
-  const dataInfo = data.map(item => `{"id":${item.id}, "parent":${item.parent}}`).join(',');
-  console.info(`Succeeded in getting all screens. Data: ${dataInfo}`);
+  console.info(`Succeeded in getting all screens. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get all screens. Code " ${err.code} , message : ${err.message}`);
 });
@@ -464,7 +462,7 @@ screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => 
     return;
   }
   screenClass = data;
-  console.info(`Succeeded in creating the virtual screen. id : ${data.id}`);
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -527,7 +525,7 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   screenClass = data;
-  console.info(`Succeeded in creating the virtual screen. id : ${data.id}`);
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
 });
@@ -1434,7 +1432,7 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info(`Succeeded in creating the virtual screen. id : ${data.id}`);
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -1503,7 +1501,7 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info(`Succeeded in creating the virtual screen. id : ${data.id}`);
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
   promise.then(() => {
     console.info('Succeeded in setting the vertical orientation.');
@@ -1565,7 +1563,7 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info(`Succeeded in creating the virtual screen. id : ${data.id}`);
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   let modeIndex: number = 0;
   screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -1635,7 +1633,7 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info(`Succeeded in creating the virtual screen. id : ${data.id}`);
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   let modeIndex: number = 0;
   let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
   promise.then(() => {
@@ -1699,7 +1697,7 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info(`Succeeded in creating the virtual screen. id : ${data.id}`);
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {

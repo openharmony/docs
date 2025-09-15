@@ -426,8 +426,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
-  console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
+  console.info(`Succeeded in obtaining all the display objects. Data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -465,8 +464,7 @@ let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
 promise.then((data: Array<display.Display>) => {
   displayClass = data;
-  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
-  console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
+  console.info(`Succeeded in obtaining all the display objects. Data:  ${JSON.stringify(data)}`
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -679,7 +677,7 @@ import { display } from '@kit.ArkUI';
 let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
 if(data.creaseRects && data.creaseRects.length > 0)
 {
-  console.info(`Succeeded in obtaining current fold crease region. id : ${data.displayId},crease_area:${data.creaseRects[0]}`);
+  console.info(`Succeeded in obtaining current fold crease region. Data: ${JSON.stringify(data)}`);
 }
 ```
 
@@ -1383,7 +1381,7 @@ display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
     console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info(`Succeeded in obtaining the default display object. id : ${data.id} , name : ${data.name}`);
+  console.info(`Succeeded in obtaining the default display object. Data: ${JSON.stringify(data)}`);
   displayClass = data;
 });
 ```
@@ -1415,7 +1413,7 @@ let displayClass: display.Display | null = null;
 let promise: Promise<display.Display> = display.getDefaultDisplay();
 promise.then((data: display.Display) => {
   displayClass = data;
-  console.info(`Succeeded in obtaining the default display object. id : ${data.id} , name : ${data.name}`);
+  console.info(`Succeeded in obtaining the default display object. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1450,8 +1448,7 @@ display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
-  console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
+  console.info(`Succeeded in obtaining the default display objects. Data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -1480,8 +1477,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
-  const dataInfo = data.map(item => `{"id":${item.id}, "name":${item.name}}`).join(',');
-  console.info(`Succeeded in obtaining all the display objects. Data: ${dataInfo}`);
+  console.info(`Succeeded in obtaining the default display objects. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1558,14 +1554,7 @@ displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
     console.error(`Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  if(data.boundingRects && data.boundingRects.length > 0)
-  {
-    console.info(`Succeeded in getting cutoutInfo. data: ` +
-      `left : ${data.boundingRects[0].left}, ` +
-      `top : ${data.boundingRects[0].top}, ` +
-      `width : ${data.boundingRects[0].width}, ` +
-      `height : ${data.boundingRects[0].height}`);
-  }
+  console.info(`Succeeded in getting cutoutInfo. Data: ${JSON.stringify(data)}`);
 });
 ```
 ### getCutoutInfo<sup>9+</sup>
@@ -1600,14 +1589,7 @@ let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
-  if(data.boundingRects && data.boundingRects.length > 0)
-    {
-      console.info(`Succeeded in getting cutoutInfo. data: ` +
-        `left : ${data.boundingRects[0].left}, ` +
-        `top : ${data.boundingRects[0].top}, ` +
-        `width : ${data.boundingRects[0].width}, ` +
-        `height : ${data.boundingRects[0].height}`);
-    }
+  console.info(`Succeeded in getting cutoutInfo. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1650,11 +1632,7 @@ try {
   displayClass = display.getDefaultDisplaySync();
   let promise = displayClass.getAvailableArea();
   promise.then((data) => {
-    console.info(`Succeeded get the available area in this display. data: ` +
-      `left : ${data.left},` +
-      `top : ${data.top},` +
-      `width : ${data.width},` +
-      `height : ${data.height}`);
+    console.info(`Succeeded get the available area in this display. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
   })
@@ -1698,11 +1676,7 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info(`Listening enabled. Data: ` +
-    `left : ${data.left}, ` +
-    `top : ${data.top}, ` +
-    `width : ${data.width}, ` +
-    `height : ${data.height}`);
+  console.info(`Listening enabled. Data: ${JSON.stringify(data)}`);
 };
 let displayClass: display.Display | null = null;
 try {
@@ -1749,11 +1723,7 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info(`Listening enabled. Data: ` +
-    `left : ${data.left}, ` +
-    `top : ${data.top}, ` +
-    `width : ${data.width}, ` +
-    `height : ${data.height}`);
+  console.info(`Listening enabled. Data: ${JSON.stringify(data)}`);
 };
 let displayClass: display.Display | null = null;
 try {
@@ -1795,10 +1765,7 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
   let data: display.FoldCreaseRegion = displayClass.getLiveCreaseRegion();
-  if(data.creaseRects && data.creaseRects.length > 0)
-  {
-    console.info(`Succeeded in getting the live crease region. Data: id:${data.displayId},crease_area:${data.creaseRects[0]}`);
-  }
+  console.info(`Succeeded in getting the live crease region. Data: ${JSON.stringify(data)}`);
 } catch (exception) {
   console.error(`Failed to get the live crease region. Code: ${exception.code}, message: ${exception.message}`);
 }
