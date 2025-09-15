@@ -1,4 +1,4 @@
-# Database Backup and Restoration (C/C++)
+# Database Backup and Restore (C/C++)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
@@ -14,7 +14,7 @@ An important operation being performed by an application is interrupted.
 
 The database is unavailable due to data loss or corruption, or dirty data.
 
-Currently, only RDB stores (C/C++) supports database backup and restoration.
+Currently, only RDB stores (C/C++) supports database backup and restore.
 
 ## How to Develop
 
