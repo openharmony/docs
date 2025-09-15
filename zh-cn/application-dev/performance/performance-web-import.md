@@ -266,11 +266,11 @@ struct WebComponent {
       }
     }
     let wrap = wrapBuilder<Data[]>(WebBuilder);
-    // 用于控制和反馈对应的NodeContianer上的节点的行为，需要与NodeContainer一起使用。
+    // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用。
     export class myNodeController extends NodeController {
       private rootnode: BuilderNode<Data[]> | null = null;
-      // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContianer中。
-      // 在对应NodeContianer创建的时候调用、或者通过rebuild方法调用刷新。
+      // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中。
+      // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新。
       makeNode(uiContext: UIContext): FrameNode | null {
         console.info(" uicontext is undifined : "+ (uiContext === undefined));
         if (this.rootnode != null) {
