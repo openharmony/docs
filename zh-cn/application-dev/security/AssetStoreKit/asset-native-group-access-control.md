@@ -170,7 +170,7 @@ static napi_value QueryAsset(napi_env env, napi_callback_info info)
 
 ## 查询单条群组关键资产属性
 
-查询别名是demo_alias的关键资产属性。
+查询别名为demo_alias的关键资产属性。
 
 ```c
 #include <string.h>
