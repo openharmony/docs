@@ -48,8 +48,8 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 | 名称 | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| icon | [DownloadIconStyle](#downloadiconstyle) | 否   | 是   | 设置下载按钮的图标风格 <br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [DownloadDescription](#downloaddescription) | 否   | 是   | 设置下载按钮的文本描述 <br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+| icon | [DownloadIconStyle](#downloadiconstyle) | 否   | 是   | 设置下载按钮的图标风格。 <br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
+| text | [DownloadDescription](#downloaddescription) | 否   | 是   | 设置下载按钮的文本描述。 <br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 
 ## DownloadStyleOptions
 
