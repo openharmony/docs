@@ -40,7 +40,7 @@
   }
   ```
 
-4. 若当前设备及当前场景支持相机控制器，通过[enableControlCenter](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenter.md#enablecontrolcenter20)接口，可以使能或关闭相机控制器。
+4. 若设备及场景支持相机控制器，使用[enableControlCenter](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenter.md#enablecontrolcenter20)接口可启用或关闭控制器。
 
   ```ts
   function enableControlCenter(videoSession: camera.VideoSession, enable: boolean): void {
